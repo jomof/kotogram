@@ -254,8 +254,8 @@ This triggers both [python_publish.yml](.github/workflows/python_publish.yml) an
 The README includes status badges for build status, package versions, and license:
 
 ```markdown
-[![Python Canary](https://github.com/yourusername/kotogram/actions/workflows/python_canary.yml/badge.svg)](https://github.com/yourusername/kotogram/actions/workflows/python_canary.yml)
-[![TypeScript Canary](https://github.com/yourusername/kotogram/actions/workflows/typescript_canary.yml/badge.svg)](https://github.com/yourusername/kotogram/actions/workflows/typescript_canary.yml)
+[![Python Canary](https://github.com/yourusername/kotogram/actions/workflows/python_canary.yml/badge.svg?branch=main)](https://github.com/yourusername/kotogram/actions/workflows/python_canary.yml)
+[![TypeScript Canary](https://github.com/yourusername/kotogram/actions/workflows/typescript_canary.yml/badge.svg?branch=main)](https://github.com/yourusername/kotogram/actions/workflows/typescript_canary.yml)
 [![PyPI Version](https://img.shields.io/pypi/v/kotogram.svg)](https://pypi.org/project/kotogram/)
 [![npm Version](https://img.shields.io/npm/v/kotogram.svg)](https://www.npmjs.com/package/kotogram)
 [![Python Support](https://img.shields.io/pypi/pyversions/kotogram.svg)](https://pypi.org/project/kotogram/)
