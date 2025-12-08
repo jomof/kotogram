@@ -7,93 +7,106 @@
 [![Python Support](https://img.shields.io/pypi/pyversions/kotogram.svg)](https://pypi.org/project/kotogram/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-A template for creating dual Python/TypeScript libraries that can be published to both PyPI and npm.
+A dual Python/TypeScript library for Japanese text parsing and encoding using the kotogram compact format.
 
 ## Overview
 
-This project demonstrates how to maintain a library with identical functionality in both Python and TypeScript, with automated testing and publishing workflows for both ecosystems.
+Kotogram provides tools for parsing Japanese text into a compact, linguistically-rich format that encodes part-of-speech, conjugation, and pronunciation information. The library features:
+
+- **Abstract parser interface** (`JapaneseParser`) for multiple backend implementations
+- **MeCab implementation** (`MecabJapaneseParser`) using UniDic dictionary
+- **Kotogram format** - compact representation preserving linguistic features
+- **Bidirectional conversion** between Japanese text and kotogram format
+- **Dual-language support** - Python and TypeScript implementations (TypeScript coming soon)
+- **Production-quality CI/CD** with comprehensive testing and publishing workflows
 
 ## Project Structure
 
 ```
 kotogram/
-├── kotogram/              # Python package
-│   ├── __init__.py       # Package exports and version
-│   ├── codec.py          # Abstract Codec interface
-│   └── reversing_codec.py # ReversingCodec implementation
-├── src/                   # TypeScript source
-│   ├── codec.ts          # Codec interface
-│   ├── reversing-codec.ts # ReversingCodec implementation
-│   └── index.ts          # Package exports
-├── tests-py/              # Python tests
-│   └── test_reversing_codec.py
-├── tests-ts/              # TypeScript tests
+├── kotogram/                    # Python package
+│   ├── __init__.py             # Package exports and version
+│   ├── japanese_parser.py      # Abstract JapaneseParser interface
+│   ├── mecab_japanese_parser.py # MeCab implementation
+│   ├── codec.py                # Abstract Codec interface
+│   └── reversing_codec.py      # ReversingCodec implementation
+├── src/                         # TypeScript source (coming soon)
+│   ├── codec.ts                # Codec interface
+│   ├── reversing-codec.ts      # ReversingCodec implementation
+│   └── index.ts                # Package exports
+├── tests-py/                    # Python tests
+│   ├── test_japanese_parser.py # Japanese parser tests
+│   └── test_reversing_codec.py # Codec tests
+├── tests-ts/                    # TypeScript tests
 │   └── reversing-codec.test.ts
-├── .github/workflows/     # CI/CD workflows
-│   ├── python_canary.yml      # Python build & test
-│   ├── typescript_canary.yml  # TypeScript build & test
-│   ├── python_publish.yml     # Publish to PyPI
-│   └── typescript_publish.yml # Publish to npm
-├── version.txt           # Single source of truth for version
-├── publish.sh           # Version bump and publish script
-├── pyproject.toml       # Python package configuration
-├── package.json         # TypeScript package configuration
-└── tsconfig.json        # TypeScript compiler configuration
+├── .github/workflows/           # CI/CD workflows
+│   ├── python_canary.yml       # Python build & test
+│   ├── typescript_canary.yml   # TypeScript build & test
+│   ├── python_publish.yml      # Publish to PyPI
+│   └── typescript_publish.yml  # Publish to npm
+├── version.txt                  # Single source of truth for version
+├── publish.sh                  # Version bump and publish script
+├── pyproject.toml              # Python package configuration
+├── package.json                # TypeScript package configuration
+└── tsconfig.json               # TypeScript compiler configuration
 ```
 
-## Example Components
+## Quick Start
 
-### Codec Interface
+### Japanese Text Parsing
 
-The library includes a simple `Codec` interface that defines encoding and decoding operations:
+Parse Japanese text into kotogram format with full linguistic information:
 
-**Python** ([kotogram/codec.py](kotogram/codec.py)):
+**Python**:
 ```python
-from abc import ABC, abstractmethod
+from kotogram import MecabJapaneseParser, kotogram_to_japanese
 
-class Codec(ABC):
-    @abstractmethod
-    def encode(self, text: str) -> str:
-        pass
+# Initialize parser (requires MeCab and unidic)
+parser = MecabJapaneseParser()
 
-    @abstractmethod
-    def decode(self, text: str) -> str:
-        pass
+# Convert Japanese to kotogram
+japanese = "猫を食べる"
+kotogram = parser.japanese_to_kotogram(japanese)
+# Result: ⌈ˢ猫ᵖn:common_noun⌉⌈ˢをᵖprt:case_particle⌉⌈ˢ食べるᵖv:general:e-ichidan-ba:terminal⌉
+
+# Convert back to Japanese
+reconstructed = kotogram_to_japanese(kotogram)
+# Result: "猫を食べる"
+
+# With spaces between tokens
+spaced = kotogram_to_japanese(kotogram, spaces=True)
+# Result: "猫 を 食べる"
 ```
 
-**TypeScript** ([src/codec.ts](src/codec.ts)):
-```typescript
-export interface Codec {
-  encode(text: string): string;
-  decode(text: string): string;
-}
+### Kotogram Format
+
+The kotogram format encodes rich linguistic information in a compact representation:
+
+```
+⌈ˢ食べるᵖv:general:e-ichidan-ba:terminalᵇ食べるᵈ食べるʳタベル⌉
+  │  │    │ │       │            │         │      │      │
+  │  │    │ │       │            │         │      │      └─ pronunciation (ʳ)
+  │  │    │ │       │            │         │      └─ lemma (ᵈ)
+  │  │    │ │       │            │         └─ base form (ᵇ)
+  │  │    │ │       │            └─ conjugation form
+  │  │    │ │       └─ conjugation type
+  │  │    │ └─ POS detail
+  │  │    └─ part-of-speech (ᵖ)
+  │  └─ surface form (ˢ)
+  └─ token boundary markers (⌈⌉)
 ```
 
-### ReversingCodec Implementation
+### Legacy Codec Interface
 
-A concrete implementation that reverses strings for both encoding and decoding:
+The library also includes a simple codec interface for demonstration purposes:
 
 **Python** ([kotogram/reversing_codec.py](kotogram/reversing_codec.py)):
 ```python
-class ReversingCodec(Codec):
-    def encode(self, text: str) -> str:
-        return text[::-1]
+from kotogram import ReversingCodec
 
-    def decode(self, text: str) -> str:
-        return text[::-1]
-```
-
-**TypeScript** ([src/reversing-codec.ts](src/reversing-codec.ts)):
-```typescript
-export class ReversingCodec implements Codec {
-  encode(text: string): string {
-    return text.split("").reverse().join("");
-  }
-
-  decode(text: string): string {
-    return text.split("").reverse().join("");
-  }
-}
+codec = ReversingCodec()
+encoded = codec.encode("hello")  # "olleh"
+decoded = codec.decode(encoded)  # "hello"
 ```
 
 ## Development
@@ -284,26 +297,68 @@ To publish to npm, you need an npm access token:
 2. Add it as a GitHub secret named `NPM_TOKEN`
 3. Configure the `npm` environment in your repository settings
 
-## Usage Examples
+## API Reference
 
-### Python
+### JapaneseParser (Abstract Base Class)
+
+Abstract interface for Japanese text parsing implementations.
 
 ```python
-from kotogram import ReversingCodec
+from kotogram import JapaneseParser
 
-codec = ReversingCodec()
-encoded = codec.encode("hello")  # "olleh"
-decoded = codec.decode(encoded)  # "hello"
+class JapaneseParser(ABC):
+    @abstractmethod
+    def japanese_to_kotogram(self, text: str) -> str:
+        """Convert Japanese text to kotogram compact representation."""
+        pass
 ```
 
-### TypeScript
+### MecabJapaneseParser
 
-```typescript
-import { ReversingCodec } from 'kotogram';
+MeCab-based implementation using the UniDic dictionary.
 
-const codec = new ReversingCodec();
-const encoded = codec.encode("hello");  // "olleh"
-const decoded = codec.decode(encoded);  // "hello"
+```python
+from kotogram import MecabJapaneseParser
+
+# Initialize with default settings
+parser = MecabJapaneseParser()
+
+# Or provide your own MeCab tagger instance
+import MeCab
+tagger = MeCab.Tagger('-d /path/to/unidic')
+parser = MecabJapaneseParser(mecab_tagger=tagger)
+
+# Parse Japanese text
+kotogram = parser.japanese_to_kotogram("今日は良い天気です")
+```
+
+### Helper Functions
+
+```python
+from kotogram import kotogram_to_japanese, split_kotogram
+
+# Convert kotogram back to Japanese
+japanese = kotogram_to_japanese(kotogram_str)
+japanese_with_spaces = kotogram_to_japanese(kotogram_str, spaces=True)
+
+# Split kotogram into individual tokens
+tokens = split_kotogram(kotogram_str)
+```
+
+### Mapping Constants
+
+Global mapping constants are available in `japanese_parser` module:
+
+```python
+from kotogram.japanese_parser import (
+    POS_MAP,              # Part-of-speech mappings
+    POS1_MAP,             # POS detail level 1
+    POS2_MAP,             # POS detail level 2
+    CONJUGATED_TYPE_MAP,  # Conjugation type mappings
+    CONJUGATED_FORM_MAP,  # Conjugation form mappings
+    POS_TO_CHARS,         # POS to character mappings
+    CHAR_TO_POS,          # Character to POS mappings
+)
 ```
 
 ## License

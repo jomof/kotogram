@@ -1,7 +1,7 @@
 {
   "name": "kotogram",
   "version": "0.0.2",
-  "description": "A dual Python/TypeScript library template",
+  "description": "A dual Python/TypeScript library for Japanese text parsing and encoding using kotogram format",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "type": "module",
@@ -14,8 +14,12 @@
     "prepublishOnly": "npm run clean && npm run build && npm test"
   },
   "keywords": [
-    "template",
-    "dual-library",
+    "japanese",
+    "nlp",
+    "mecab",
+    "parser",
+    "tokenizer",
+    "kotogram",
     "typescript"
   ],
   "author": "Your Name <your.email@example.com>",
