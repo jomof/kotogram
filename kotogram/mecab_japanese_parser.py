@@ -20,12 +20,14 @@ class MecabJapaneseParser(JapaneseParser):
     Japanese text, converting it into kotogram compact format.
     """
 
-    def __init__(self, mecab_tagger: Optional[object] = None) -> None:
+    def __init__(self, mecab_tagger: Optional[object] = None, validate: bool = False) -> None:
         """Initialize the MeCab Japanese parser.
 
         Args:
             mecab_tagger: Optional pre-configured MeCab tagger instance.
                          If None, will attempt to create one using unidic.
+            validate: If True, raises descriptive exceptions when mapping lookups fail.
+                     Useful for debugging unmapped linguistic features.
         """
         if mecab_tagger is None:
             # Lazy import to avoid requiring MeCab for the abstract interface
@@ -43,6 +45,8 @@ class MecabJapaneseParser(JapaneseParser):
             self.tagger = MeCab.Tagger('-d "{}"'.format(unidic.DICDIR))
         else:
             self.tagger = mecab_tagger
+
+        self.validate = validate
 
     def japanese_to_kotogram(self, text: str) -> str:
         """Convert Japanese text to kotogram compact representation.
@@ -106,15 +110,41 @@ class MecabJapaneseParser(JapaneseParser):
                     return features_list[index]
                 return default_value
 
+            def validated_lookup(mapping: Dict[str, str], key: str, map_name: str) -> Optional[str]:
+                """Lookup with validation support.
+
+                Args:
+                    mapping: The dictionary to look up in
+                    key: The key to look up
+                    map_name: Name of the mapping for error messages
+
+                Returns:
+                    The mapped value or None if not found
+
+                Raises:
+                    KeyError: If validate=True and key not found in mapping (excluding empty keys)
+                """
+                if key == "":
+                    return mapping.get(key)
+
+                result = mapping.get(key)
+                if self.validate and result is None and key != "":
+                    raise KeyError(
+                        f"Missing mapping in {map_name}: "
+                        f"key='{key}' not found. "
+                        f"Raw MeCab token: {line}"
+                    )
+                return result
+
             # Part of Speech (POS)
-            add("pos", POS_MAP.get(get_feature(features, 0)))
-            add("pos_detail_1", POS1_MAP.get(get_feature(features, 1)))
-            add("pos_detail_2", POS2_MAP[get_feature(features, 2)])
+            add("pos", validated_lookup(POS_MAP, get_feature(features, 0), "POS_MAP"))
+            add("pos_detail_1", validated_lookup(POS1_MAP, get_feature(features, 1), "POS1_MAP"))
+            add("pos_detail_2", validated_lookup(POS2_MAP, get_feature(features, 2), "POS2_MAP"))
             add("pos_detail_3", get_feature(features, 3))
 
             # Conjugation
-            add("conjugated_type", CONJUGATED_TYPE_MAP.get(get_feature(features, 4)))
-            add("conjugated_form", CONJUGATED_FORM_MAP.get(get_feature(features, 5)))
+            add("conjugated_type", validated_lookup(CONJUGATED_TYPE_MAP, get_feature(features, 4), "CONJUGATED_TYPE_MAP"))
+            add("conjugated_form", validated_lookup(CONJUGATED_FORM_MAP, get_feature(features, 5), "CONJUGATED_FORM_MAP"))
 
             # Lexical Information & Pronunciation
             add("lemma_pronunciation", get_feature(features, 6))
@@ -167,7 +197,7 @@ class MecabJapaneseParser(JapaneseParser):
         """
         recombined = ""
         surface = token["surface"]
-        pos = token["pos"]
+        pos = token.get("pos", "")
         pos_detail_1 = token.get("pos_detail_1")
         pos_detail_2 = token.get("pos_detail_2")
 
@@ -177,7 +207,7 @@ class MecabJapaneseParser(JapaneseParser):
         base = token.get("base_orthography", None)
         pronunciation = token.get("surface_pronunciation", None)
 
-        pos_code = POS_MAP.get(pos, pos)
+        pos_code = pos if pos else ""
 
         recombined += f"⌈ˢ{surface}ᵖ{pos_code}"
         if pos_detail_1:

@@ -328,8 +328,32 @@ import MeCab
 tagger = MeCab.Tagger('-d /path/to/unidic')
 parser = MecabJapaneseParser(mecab_tagger=tagger)
 
+# Enable validation mode for debugging unmapped features
+parser_strict = MecabJapaneseParser(validate=True)
+# This will raise descriptive KeyError if any MeCab features
+# are missing from the mapping dictionaries
+
 # Parse Japanese text
 kotogram = parser.japanese_to_kotogram("今日は良い天気です")
+```
+
+**Parameters**:
+- `mecab_tagger` (optional): Pre-configured MeCab tagger instance
+- `validate` (default: `False`): When `True`, raises descriptive `KeyError` exceptions when encountering unmapped linguistic features. The error message includes:
+  - The name of the mapping dictionary (e.g., `POS_MAP`, `CONJUGATED_TYPE_MAP`)
+  - The unmapped key value
+  - The raw MeCab token line for context
+
+**Validation Mode Example**:
+```python
+# With validate=True, unmapped features raise detailed errors
+parser = MecabJapaneseParser(validate=True)
+try:
+    kotogram = parser.japanese_to_kotogram("未知の単語")
+except KeyError as e:
+    # Error message: "Missing mapping in POS_MAP: key='未知品詞' not found.
+    #                 Raw MeCab token: 未知の単語\t未知品詞,..."
+    print(f"Unmapped feature detected: {e}")
 ```
 
 ### Helper Functions
