@@ -36,6 +36,7 @@ POS2_MAP = {
     "サ変形状詞可能": "pos2-unk2",
     "人名": "person-name",
     "助数詞": "counter",
+    "*": '',  # Unspecified/empty field marker in MeCab
     "": ''
 }
 
@@ -63,6 +64,9 @@ POS1_MAP = {
     "形状詞的": 'shape_word_like',  # Shape word-like
     "タリ": 'tari',  # tari (a form of auxiliary verb)
     "動詞的": 'verb_like',  # Verb-like
+    "文字": 'character',  # Character/letter (e.g., Greek letters like α, β, γ)
+    "ＡＡ": 'ascii_art',  # ASCII art / emoticon
+    "*": '',  # Unspecified/empty field marker in MeCab
     "": ''
 }
 
@@ -80,9 +84,23 @@ CONJUGATED_TYPE_MAP = {
     "文語助動詞-リ": "auxv-ri",  # り (ri - classical perfective), classical
     "文語助動詞-ベシ": "auxv-beshi",  # べし (beshi - "should/ought to"), classical
     "文語助動詞-ゴトシ": "auxv-gotoshi",  # ごとし (gotoshi - "like/as if"), classical
+    "文語助動詞-ズ": "auxv-zu",  # ず (zu - classical negative auxiliary), classical
+    "文語助動詞-キ": "auxv-ki",  # き (ki - classical past tense), classical
+    "文語助動詞-ケリ": "auxv-keri",  # けり (keri - classical perfect/recollective), classical
+    "文語助動詞-タリ-完了": "auxv-tari-perfective",  # たり (tari - classical perfective), classical
+    "文語助動詞-ナリ-断定": "auxv-nari-assertive",  # なり (nari - classical assertive copula), classical
+    "文語助動詞-マジ": "auxv-maji",  # まじ (maji - classical negative presumptive), classical
+    "文語助動詞-ム": "auxv-mu",  # む (mu - classical presumptive/volitional), classical
+    "文語形容詞-シク": "classical-adj-shiku",  # しく (shiku-inflection classical adjective)
+    "文語ラ行変格": "classical-irregular-ra",  # Classical ra-row irregular verbs
     "助動詞-マイ": "auxv-mai",  # まい (mai - "probably won't/shouldn't")
     "助動詞-ジャ": "auxv-ja",  # じゃ (ja - contracted copula "is/am/are")
     "助動詞-ヤ": "auxv-ya",  # や (ya - classical question particle/auxiliary)
+    "助動詞-ナンダ": "auxv-nanda",  # なんだ (nanda - colloquial past tense of だ)
+    "助動詞-ヒン": "auxv-hin",  # ひん (hin - Kansai dialect negative)
+    "助動詞-ヘン": "auxv-hen",  # へん (hen - Kansai dialect negative)
+    "助動詞-ヤス": "auxv-yasu",  # やす (yasu - polite auxiliary)
+    "助動詞-ンス": "auxv-nsu",  # んす (nsu - colloquial/dialectal auxiliary)
     "文語助動詞-タリ-断定": "auxv-tari",  # たり (tari - classical assertive), classical
     "形容詞": "adjective",          # 高い (takai - "tall/expensive")
     "五段-ラ行": "godan-ra",       # 作る (tsukuru - "to make")
@@ -101,6 +119,7 @@ CONJUGATED_TYPE_MAP = {
     "上一段-ザ行": "i-ichidan-za", # 信じる (shinjiru - "to believe")
     "上一段-タ行": "i-ichidan-ta", # 落ちる (ochiru - "to fall")
     "上一段-ナ行": "i-ichidan-na", # 死ぬる (shinuru), archaic
+    "上一段-ハ行": "i-ichidan-ha", # 干る (hiru - "to dry"), rare
     "上一段-バ行": "i-ichidan-ba", # 浴びる (abiru - "to bathe")
     "上一段-マ行": "i-ichidan-ma", # 見る (miru - "to see")
     "上一段-ラ行": "i-ichidan-ra", # 居る (iru - "to be"), archaic
@@ -155,21 +174,29 @@ CONJUGATED_FORM_MAP = {
     "意志推量形": "volitional-presumptive",
     "未然形-サ": "imperfective-sa",
     "未然形-一般": "imperfective",
+    "未然形-撥音便": "imperfective-nasal",
     "終止形-一般": "terminal",
     "終止形-撥音便": "terminal-nasal",
+    "終止形-促音便": "terminal-geminate",
     "終止形-融合": "terminal-fused",
     "語幹-一般": "stem",
+    "語幹-サ": "stem-sa",
     "連体形-一般": "attributive",
+    "連体形-省略": "attributive-abbreviated",
     "連用形-イ音便": "conjunctive-i-sound",
     "連用形-ニ": "conjunctive-ni",
+    "連用形-ト": "conjunctive-to",
     "連用形-一般": "conjunctive",
     "連用形-促音便": "conjunctive-geminate",
     "連用形-撥音便": "conjunctive-nasal",
+    "連用形-省略": "conjunctive-abbreviated",
+    "連用形-補助": "conjunctive-auxiliary",
     "連用形-融合": "conjunctive-fused",
     "未然形-セ": "imperfective-se",
     "連用形-ウ音便": "conjunctive-u-sound",
     "連体形-撥音便": "attributive-nasal",
     "已然形-一般": "realis",
+    "已然形-補助": "realis-auxiliary",
     "連体形-補助": "attributive-auxiliary",
     "未然形-補助": "imperfective-auxiliary",
     "": ""
