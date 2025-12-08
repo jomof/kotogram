@@ -98,7 +98,7 @@ export class ReversingCodec implements Codec {
 pip install -e .
 
 # Run tests
-python -m pytest tests/
+python -m pytest tests-py/
 
 # Run type checking
 mypy kotogram/
