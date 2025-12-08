@@ -156,11 +156,13 @@ These workflows run on every push, pull request, and daily at 2 AM UTC:
   - Runs linting (black, isort, flake8)
   - Type checking with mypy
   - Builds package and uploads artifacts
+  - **Validates package purity**: Ensures no TypeScript/JavaScript files leak into the Python package
 
 - **[.github/workflows/typescript_canary.yml](.github/workflows/typescript_canary.yml)**
   - Tests on Node.js 18, 20, 22
   - Type checking with TypeScript compiler
   - Builds package and uploads artifacts
+  - **Validates package purity**: Ensures no Python files leak into the TypeScript package
 
 ### Publishing Workflows
 
