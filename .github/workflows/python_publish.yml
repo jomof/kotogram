@@ -1,0 +1,153 @@
+name: Publish Python Package to PyPI
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on version tags like v0.0.1, v1.0.0, etc.
+
+permissions:
+  contents: write  # For creating GitHub releases
+  id-token: write  # For PyPI trusted publishing
+
+jobs:
+  build:
+    name: Build Distribution
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install build dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine
+
+    - name: Extract version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+    - name: Verify version consistency
+      run: |
+        TAG_VERSION="${{ steps.get_version.outputs.VERSION }}"
+        # Extract version from version.txt
+        VERSION_TXT=$(cat version.txt)
+        # Extract version from kotogram/__init__.py using grep
+        INIT_VERSION=$(grep -oP '__version__\s*=\s*"\K[^"]+' kotogram/__init__.py)
+        # Extract version from pyproject.toml using grep
+        PYPROJECT_VERSION=$(grep -oP '^version\s*=\s*"\K[^"]+' pyproject.toml)
+
+        echo "Tag version: $TAG_VERSION"
+        echo "version.txt: $VERSION_TXT"
+        echo "kotogram/__init__.py version: $INIT_VERSION"
+        echo "pyproject.toml version: $PYPROJECT_VERSION"
+
+        if [ "$TAG_VERSION" != "$VERSION_TXT" ]; then
+          echo "Error: Version mismatch between tag ($TAG_VERSION) and version.txt ($VERSION_TXT)"
+          exit 1
+        fi
+
+        if [ "$TAG_VERSION" != "$INIT_VERSION" ]; then
+          echo "Error: Version mismatch between tag ($TAG_VERSION) and kotogram/__init__.py ($INIT_VERSION)"
+          exit 1
+        fi
+
+        if [ "$TAG_VERSION" != "$PYPROJECT_VERSION" ]; then
+          echo "Error: Version mismatch between tag ($TAG_VERSION) and pyproject.toml ($PYPROJECT_VERSION)"
+          exit 1
+        fi
+
+        echo "✅ All versions match: $TAG_VERSION"
+
+    - name: Build package
+      run: python -m build
+
+    - name: Check distribution
+      run: twine check dist/*
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+
+  publish-pypi:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/kotogram
+
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+
+    - name: Publish to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        skip-existing: true
+
+  verify-installation:
+    name: Verify Installation
+    needs: publish-pypi
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12']
+
+    steps:
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Extract version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+    - name: Install from PyPI with retry
+      run: |
+        VERSION="${{ steps.get_version.outputs.VERSION }}"
+        MAX_ATTEMPTS=12
+        ATTEMPT=1
+        WAIT_TIME=30
+
+        echo "Attempting to install kotogram==${VERSION} from PyPI..."
+        echo "PyPI may take several minutes to index the new release."
+
+        while [ $ATTEMPT -le $MAX_ATTEMPTS ]; do
+          echo ""
+          echo "Attempt $ATTEMPT/$MAX_ATTEMPTS (waiting ${WAIT_TIME}s before trying)..."
+          sleep $WAIT_TIME
+
+          # Clear pip cache and try to install with retries
+          pip cache purge 2>/dev/null || true
+          if pip install --no-cache-dir --retries 3 "kotogram==${VERSION}"; then
+            echo "✅ Successfully installed kotogram==${VERSION}"
+            exit 0
+          fi
+
+          if [ $ATTEMPT -lt $MAX_ATTEMPTS ]; then
+            echo "⚠️  Installation failed. PyPI may still be indexing the release."
+            ATTEMPT=$((ATTEMPT + 1))
+          else
+            echo "❌ Failed to install after $MAX_ATTEMPTS attempts"
+            echo ""
+            echo "Debug: Checking what versions are available on PyPI..."
+            pip index versions kotogram || true
+            exit 1
+          fi
+        done
+
+    - name: Verify import
+      run: |
+        python -c "import kotogram; from kotogram import ReversingCodec; print(f'Successfully imported kotogram v{kotogram.__version__}')"

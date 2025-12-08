@@ -1,0 +1,158 @@
+name: Publish TypeScript Package to npm
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on version tags like v0.0.1, v1.0.0, etc.
+
+permissions:
+  contents: write  # For creating GitHub releases
+  id-token: write  # For npm provenance
+
+jobs:
+  build:
+    name: Build Distribution
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        registry-url: 'https://registry.npmjs.org'
+        cache: 'npm'
+
+    - name: Extract version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+    - name: Verify version consistency
+      run: |
+        TAG_VERSION="${{ steps.get_version.outputs.VERSION }}"
+        # Extract version from version.txt
+        VERSION_TXT=$(cat version.txt)
+        # Extract version from package.json using node
+        PACKAGE_VERSION=$(node -p "require('./package.json').version")
+
+        echo "Tag version: $TAG_VERSION"
+        echo "version.txt: $VERSION_TXT"
+        echo "package.json version: $PACKAGE_VERSION"
+
+        if [ "$TAG_VERSION" != "$VERSION_TXT" ]; then
+          echo "Error: Version mismatch between tag ($TAG_VERSION) and version.txt ($VERSION_TXT)"
+          exit 1
+        fi
+
+        if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
+          echo "Error: Version mismatch between tag ($TAG_VERSION) and package.json ($PACKAGE_VERSION)"
+          exit 1
+        fi
+
+        echo "✅ All versions match: $TAG_VERSION"
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build package
+      run: npm run build
+
+    - name: Run tests
+      run: npm test
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: typescript-package-distributions
+        path: |
+          dist/
+          package.json
+          README.md
+
+  publish-npm:
+    name: Publish to npm
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: npm
+      url: https://www.npmjs.com/package/kotogram
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        registry-url: 'https://registry.npmjs.org'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build package
+      run: npm run build
+
+    - name: Publish to npm
+      run: npm publish --provenance --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  verify-installation:
+    name: Verify Installation
+    needs: publish-npm
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['18', '20', '22']
+
+    steps:
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Extract version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+    - name: Install from npm with retry
+      run: |
+        VERSION="${{ steps.get_version.outputs.VERSION }}"
+        MAX_ATTEMPTS=12
+        ATTEMPT=1
+        WAIT_TIME=30
+
+        echo "Attempting to install kotogram@${VERSION} from npm..."
+        echo "npm may take several minutes to index the new release."
+
+        while [ $ATTEMPT -le $MAX_ATTEMPTS ]; do
+          echo ""
+          echo "Attempt $ATTEMPT/$MAX_ATTEMPTS (waiting ${WAIT_TIME}s before trying)..."
+          sleep $WAIT_TIME
+
+          # Clear npm cache and try to install
+          npm cache clean --force 2>/dev/null || true
+          if npm install "kotogram@${VERSION}"; then
+            echo "✅ Successfully installed kotogram@${VERSION}"
+            exit 0
+          fi
+
+          if [ $ATTEMPT -lt $MAX_ATTEMPTS ]; then
+            echo "⚠️  Installation failed. npm may still be indexing the release."
+            ATTEMPT=$((ATTEMPT + 1))
+          else
+            echo "❌ Failed to install after $MAX_ATTEMPTS attempts"
+            echo ""
+            echo "Debug: Checking what versions are available on npm..."
+            npm view kotogram versions || true
+            exit 1
+          fi
+        done
+
+    - name: Verify import
+      run: |
+        node -e "import('kotogram').then(m => { const codec = new m.ReversingCodec(); console.log('Successfully imported kotogram'); console.log('Test:', codec.encode('hello')); })"
