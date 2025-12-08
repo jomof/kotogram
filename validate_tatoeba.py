@@ -1,25 +1,41 @@
 #!/usr/bin/env python3
-"""Script to validate all Tatoeba sentences and find unmapped features."""
+"""Script to validate all Tatoeba sentences and find unmapped features.
+
+Usage:
+    python validate_tatoeba.py [count] [backend]
+
+    count: Number of sentences to validate (default: 100, use 'all' for all sentences)
+    backend: Parser backend to use - 'mecab' or 'sudachi' (default: both)
+
+Examples:
+    python validate_tatoeba.py 100          # Validate first 100 sentences with both parsers
+    python validate_tatoeba.py all mecab    # Validate all sentences with MeCab only
+    python validate_tatoeba.py all sudachi  # Validate all sentences with Sudachi only
+    python validate_tatoeba.py all both     # Validate all sentences with both parsers
+"""
 
 import sys
 from collections import defaultdict
-from kotogram import MecabJapaneseParser
+from typing import Tuple, Dict, List, Set
 
-def validate_sentences(tsv_file: str, max_sentences: int = None):
+
+def validate_sentences(
+    parser,
+    parser_name: str,
+    tsv_file: str,
+    max_sentences: int = None
+) -> Tuple[Dict[str, Set[str]], List[Dict[str, str]]]:
     """Validate sentences and collect unmapped features.
 
     Args:
+        parser: Parser instance (MecabJapaneseParser or SudachiJapaneseParser)
+        parser_name: Name of the parser for display purposes
         tsv_file: Path to the Tatoeba TSV file
         max_sentences: Maximum number of sentences to process (None for all)
-    """
-    # Try to create parser with validation
-    try:
-        parser = MecabJapaneseParser(validate=True)
-    except Exception as e:
-        print(f"Warning: Could not initialize MeCab parser: {e}")
-        print("MeCab and unidic may not be installed. Skipping validation.")
-        return {}, []
 
+    Returns:
+        Tuple of (unmapped_features dict, failed_sentences list)
+    """
     unmapped_features = defaultdict(set)
     failed_sentences = []
     successful_count = 0
@@ -76,7 +92,7 @@ def validate_sentences(tsv_file: str, max_sentences: int = None):
 
     # Print summary
     print(f"\n{'='*80}")
-    print(f"VALIDATION SUMMARY")
+    print(f"{parser_name.upper()} VALIDATION SUMMARY")
     print(f"{'='*80}")
     print(f"Successful: {successful_count}")
     print(f"Failed: {len(failed_sentences)}")
@@ -98,23 +114,66 @@ def validate_sentences(tsv_file: str, max_sentences: int = None):
             print(f"Text: {failure['text']}")
             print(f"Map: {failure['map']}, Key: '{failure['key']}'")
     else:
-        print("✅ All sentences validated successfully!")
+        print(f"✅ All sentences validated successfully with {parser_name}!")
 
     return unmapped_features, failed_sentences
 
-if __name__ == "__main__":
+
+def main():
+    """Main validation function."""
     import os
 
     # Use path relative to script location
     script_dir = os.path.dirname(os.path.abspath(__file__))
     tsv_file = os.path.join(script_dir, "data", "jpn_sentences.tsv")
 
-    # Start with first 100 sentences to see what we find
-    max_sentences = 100
+    # Parse command line arguments
+    max_sentences = 100  # Default
+    backend = "both"     # Default
+
     if len(sys.argv) > 1:
         max_sentences = int(sys.argv[1]) if sys.argv[1] != "all" else None
 
+    if len(sys.argv) > 2:
+        backend = sys.argv[2].lower()
+        if backend not in ['mecab', 'sudachi', 'both']:
+            print(f"Error: Invalid backend '{backend}'. Must be 'mecab', 'sudachi', or 'both'")
+            sys.exit(1)
+
     print(f"Validating {'all' if max_sentences is None else max_sentences} sentences from {tsv_file}")
+    print(f"Backend(s): {backend}")
     print("This may take a while...\n")
 
-    unmapped, failed = validate_sentences(tsv_file, max_sentences)
+    # Validate with MeCab
+    if backend in ['mecab', 'both']:
+        try:
+            from kotogram import MecabJapaneseParser
+            parser = MecabJapaneseParser(validate=True)
+            print(f"\n{'#'*80}")
+            print(f"# VALIDATING WITH MECAB")
+            print(f"{'#'*80}")
+            validate_sentences(parser, "MeCab", tsv_file, max_sentences)
+        except ImportError:
+            print("⚠️  MeCab parser not available (kotogram.MecabJapaneseParser not found)")
+        except Exception as e:
+            print(f"⚠️  Could not initialize MeCab parser: {e}")
+            print("MeCab and unidic may not be installed.")
+
+    # Validate with Sudachi
+    if backend in ['sudachi', 'both']:
+        try:
+            from kotogram import SudachiJapaneseParser
+            parser = SudachiJapaneseParser(dict_type='full', validate=True)
+            print(f"\n{'#'*80}")
+            print(f"# VALIDATING WITH SUDACHI")
+            print(f"{'#'*80}")
+            validate_sentences(parser, "Sudachi", tsv_file, max_sentences)
+        except ImportError:
+            print("⚠️  Sudachi parser not available (kotogram.SudachiJapaneseParser not found)")
+        except Exception as e:
+            print(f"⚠️  Could not initialize Sudachi parser: {e}")
+            print("SudachiPy and sudachidict_full may not be installed.")
+
+
+if __name__ == "__main__":
+    main()

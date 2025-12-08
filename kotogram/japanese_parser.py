@@ -14,6 +14,7 @@ POS_MAP = {
     "助詞": "prt",  # Particle
     "接続詞": "conj",  # Conjunction
     "感動詞": "int",  # Interjection
+    "空白": "space",  # Whitespace
     "記号": "sym",  # Symbol
     "助動詞": "auxv",  # Auxiliary verb
     "補助記号": "auxs",  # Auxiliary symbol
@@ -36,6 +37,7 @@ POS2_MAP = {
     "サ変形状詞可能": "pos2-unk2",
     "人名": "person-name",
     "助数詞": "counter",
+    "顔文字": "kaomoji",  # Emoticon/kaomoji
     "*": '',  # Unspecified/empty field marker in MeCab
     "": ''
 }
@@ -149,6 +151,16 @@ CONJUGATED_TYPE_MAP = {
     "文語下二段-ワ行": "nidan-wa",  # 植う (uu - "to plant"), classical
     "文語上二段-カ行": "upper-nidan-ka", # 起く (oku - "to wake up"), classical
     "文語上二段-ガ行": "upper-nidan-ga", # 過ぐ (sugu - "to pass"), classical
+    "文語上二段-タ行": "upper-nidan-ta", # classical upper ni-dan ta-row
+    "文語上二段-ダ行": "upper-nidan-da", # classical upper ni-dan da-row
+    "文語上二段-バ行": "upper-nidan-ba", # classical upper ni-dan ba-row
+    "文語下二段-サ行": "lower-nidan-sa", # classical lower ni-dan sa-row
+    "文語下二段-ハ行": "lower-nidan-ha", # classical lower ni-dan ha-row
+    "文語助動詞-ザマス": "auxv-zamasu",  # ザマス (zamasu - colloquial polite auxiliary)
+    "文語助動詞-ジ": "auxv-ji",  # じ (ji - classical auxiliary)
+    "文語助動詞-ヌ": "auxv-nu-classical",  # ぬ (nu - classical auxiliary)
+    "文語助動詞-ラシ": "auxv-rashi",  # らし (rashi - classical evidential)
+    "文語助動詞-ラム": "auxv-ramu",  # らむ (ramu - classical presumptive/conjecture)
     "カ行変格": "ka-irregular",    # 来る (kuru - "to come")
     "サ行変格": "sa-irregular",    # する (suru - "to do")
     "文語サ行変格": "classical-sa-irregular",  # す (su - classical "to do"), classical
@@ -199,6 +211,8 @@ CONJUGATED_FORM_MAP = {
     "已然形-補助": "realis-auxiliary",
     "連体形-補助": "attributive-auxiliary",
     "未然形-補助": "imperfective-auxiliary",
+    "ク語法": "ku-form",  # ku-form classical grammar
+    "終止形-ウ音便": "terminal-u-sound",  # terminal u-sound change
     "": ""
 }
 

@@ -30,7 +30,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest pytest-cov mypy mecab-python3 unidic
+        pip install pytest pytest-cov mypy mecab-python3 unidic sudachipy sudachidict_full
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Download UniDic dictionary
@@ -41,10 +41,10 @@ jobs:
       run: |
         python -m unittest discover -s tests-py -p 'test_*.py' -v
 
-    - name: Validate Tatoeba sentences
+    - name: Validate Tatoeba sentences with both parsers
       run: |
-        echo "Validating all 195,143 Japanese sentences from Tatoeba corpus..."
-        python validate_mappings.py all
+        echo "Validating all 195,143 Japanese sentences from Tatoeba corpus with MeCab and Sudachi..."
+        python validate_tatoeba.py all both
       continue-on-error: false
 
     - name: Run tests with pytest
