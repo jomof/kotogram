@@ -1,7 +1,7 @@
 """MeCab-based implementation of Japanese parser."""
 
 import re
-from typing import Optional
+from typing import Any, Dict, List, Optional
 
 from .japanese_parser import (
     JapaneseParser,
@@ -70,7 +70,7 @@ class MecabJapaneseParser(JapaneseParser):
         tokens = self._parse_raw_mecab_output(raw)
         return self._raw_tokens_to_kotogram(tokens)
 
-    def _parse_raw_mecab_output(self, raw_output: str) -> list[dict]:
+    def _parse_raw_mecab_output(self, raw_output: str) -> List[Dict[str, Any]]:
         """Parse raw MeCab output into structured token dictionaries.
 
         Args:
@@ -100,7 +100,7 @@ class MecabJapaneseParser(JapaneseParser):
                     return
                 token[field] = value
 
-            def get_feature(features_list: list[str], index: int, default_value: str = "") -> str:
+            def get_feature(features_list: List[str], index: int, default_value: str = "") -> str:
                 """Safely get a feature from the list by index."""
                 if index < len(features_list):
                     return features_list[index]
@@ -156,7 +156,7 @@ class MecabJapaneseParser(JapaneseParser):
             tokens.append(token)
         return tokens
 
-    def _raw_token_to_kotogram(self, token: dict) -> str:
+    def _raw_token_to_kotogram(self, token: Dict[str, Any]) -> str:
         """Convert a single parsed token to kotogram format.
 
         Args:
@@ -197,7 +197,7 @@ class MecabJapaneseParser(JapaneseParser):
         recombined += "⌉"
         return recombined
 
-    def _raw_tokens_to_kotogram(self, tokens: list[dict]) -> str:
+    def _raw_tokens_to_kotogram(self, tokens: List[Dict[str, Any]]) -> str:
         """Convert a list of parsed tokens to kotogram format.
 
         Args:
@@ -240,7 +240,7 @@ def kotogram_to_japanese(kotogram: str, spaces: bool = False, collapse_punctuati
         return ''.join(matches)
 
 
-def split_kotogram(kotogram: str) -> list[str]:
+def split_kotogram(kotogram: str) -> List[str]:
     """Split a kotogram sentence into individual token representations.
 
     Args:
