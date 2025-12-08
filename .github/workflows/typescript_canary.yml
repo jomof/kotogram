@@ -56,7 +56,141 @@ jobs:
       run: npm ci
 
     - name: Type check with TypeScript
-      run: npx tsc --noEmit
+      run: |
+        echo "Running TypeScript type checker..."
+        npx tsc --noEmit
+
+    - name: Lint with ESLint (if configured)
+      run: |
+        echo "Checking for ESLint configuration..."
+        if [ -f .eslintrc.js ] || [ -f .eslintrc.json ] || [ -f .eslintrc.yml ] || grep -q '"eslintConfig"' package.json; then
+          echo "Running ESLint..."
+          npx eslint src/ tests-ts/ --ext .ts --max-warnings 0 || echo "⚠️  ESLint warnings/errors found"
+        else
+          echo "⚠️  No ESLint configuration found. Consider adding ESLint for code quality."
+        fi
+      continue-on-error: true
+
+    - name: Check code formatting with Prettier (if configured)
+      run: |
+        echo "Checking for Prettier configuration..."
+        if [ -f .prettierrc ] || [ -f .prettierrc.json ] || [ -f .prettierrc.yml ] || [ -f prettier.config.js ] || grep -q '"prettier"' package.json; then
+          echo "Running Prettier..."
+          npx prettier --check "src/**/*.ts" "tests-ts/**/*.ts" || echo "⚠️  Code formatting issues found"
+        else
+          echo "⚠️  No Prettier configuration found. Consider adding Prettier for consistent formatting."
+        fi
+      continue-on-error: true
+
+    - name: Check for circular dependencies
+      run: |
+        echo "Checking for circular dependencies..."
+        npm install --no-save madge
+        npx madge --circular --extensions ts src/ || echo "⚠️  Circular dependencies detected"
+      continue-on-error: true
+
+    - name: Check bundle size
+      run: |
+        echo "Analyzing bundle size..."
+        # Build first
+        npm run build
+        # Check size of main output
+        if [ -f "dist/index.js" ]; then
+          SIZE=$(wc -c < dist/index.js)
+          SIZE_KB=$((SIZE / 1024))
+          echo "Main bundle size: ${SIZE_KB}KB"
+          if [ $SIZE_KB -gt 100 ]; then
+            echo "⚠️  Warning: Bundle size is large (>${SIZE_KB}KB). Consider code splitting."
+          else
+            echo "✅ Bundle size is reasonable"
+          fi
+        fi
+      continue-on-error: true
+
+    - name: Security audit
+      run: |
+        echo "Running npm security audit..."
+        npm audit --audit-level=moderate || echo "⚠️  Security vulnerabilities found (review recommended)"
+      continue-on-error: true
+
+    - name: Check for common issues
+      run: |
+        echo "Checking for common issues..."
+
+        # Check for console.log statements
+        echo "Checking for console.log() statements..."
+        if grep -r "console\.log\|console\.debug" src/ --include="*.ts" | grep -v "\.d\.ts"; then
+          echo "⚠️  Warning: Found console.log() statements in source code."
+        else
+          echo "✅ No console.log() statements found"
+        fi
+
+        # Check for TODO/FIXME comments
+        echo ""
+        echo "Checking for TODO/FIXME comments..."
+        if grep -rn "TODO\|FIXME\|XXX\|HACK" src/ --include="*.ts" | grep -v "\.d\.ts"; then
+          echo "⚠️  Found TODO/FIXME comments (review recommended)"
+        else
+          echo "✅ No TODO/FIXME comments found"
+        fi
+
+        # Check for any 'any' types
+        echo ""
+        echo "Checking for 'any' types..."
+        if grep -rn ": any\|<any>" src/ --include="*.ts" | grep -v "\.d\.ts" | grep -v "node_modules"; then
+          echo "⚠️  Found 'any' types. Consider using more specific types."
+        else
+          echo "✅ No 'any' types found"
+        fi
+
+        # Check README exists
+        echo ""
+        echo "Validating README..."
+        if [ ! -f README.md ]; then
+          echo "❌ ERROR: README.md is missing!"
+          exit 1
+        elif [ ! -s README.md ]; then
+          echo "❌ ERROR: README.md is empty!"
+          exit 1
+        else
+          echo "✅ README.md exists and has content"
+        fi
+
+        # Check LICENSE exists
+        echo ""
+        echo "Validating LICENSE..."
+        if [ ! -f LICENSE ]; then
+          echo "⚠️  Warning: LICENSE file is missing"
+        else
+          echo "✅ LICENSE file exists"
+        fi
+
+        # Check package.json metadata
+        echo ""
+        echo "Validating package.json metadata..."
+        if ! grep -q '"description"' package.json || grep -q '"description": ""' package.json; then
+          echo "⚠️  Warning: package.json missing description"
+        fi
+        if ! grep -q '"keywords"' package.json; then
+          echo "⚠️  Warning: package.json missing keywords"
+        fi
+        if ! grep -q '"repository"' package.json; then
+          echo "⚠️  Warning: package.json missing repository URL"
+        fi
+        if ! grep -q '"license"' package.json; then
+          echo "⚠️  Warning: package.json missing license"
+        fi
+        echo "✅ Package metadata validation complete"
+
+        # Check for proper exports in package.json
+        echo ""
+        echo "Validating package.json exports..."
+        if ! grep -q '"exports"' package.json; then
+          echo "⚠️  Warning: Consider adding 'exports' field for better module resolution"
+        else
+          echo "✅ Package has exports field"
+        fi
+      continue-on-error: true
 
   build:
     name: Build Package

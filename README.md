@@ -152,17 +152,45 @@ npm test
 These workflows run on every push, pull request, and daily at 2 AM UTC:
 
 - **[.github/workflows/python_canary.yml](.github/workflows/python_canary.yml)**
-  - Tests on Python 3.8, 3.9, 3.10, 3.11, 3.12
-  - Runs linting (black, isort, flake8)
-  - Type checking with mypy
-  - Builds package and uploads artifacts
-  - **Validates package purity**: Ensures no TypeScript/JavaScript files leak into the Python package
+  - **Testing**: Runs on Python 3.8, 3.9, 3.10, 3.11, 3.12 with unittest and pytest
+  - **Code Coverage**: Tracks test coverage and uploads to Codecov
+  - **Code Quality**:
+    - Black for code formatting
+    - isort for import sorting
+    - flake8 for linting (complexity limit: 10)
+    - pylint for advanced code quality (minimum score: 8.0)
+    - mypy for strict type checking
+  - **Security**:
+    - bandit for security vulnerability scanning
+    - safety for dependency vulnerability checks
+  - **Best Practices**:
+    - Checks for print() statements (should use logging)
+    - Detects TODO/FIXME comments
+    - Validates README.md and LICENSE files exist
+  - **Package Validation**:
+    - Ensures no TypeScript/JavaScript files leak into Python package
+    - Verifies package contents and structure
 
 - **[.github/workflows/typescript_canary.yml](.github/workflows/typescript_canary.yml)**
-  - Tests on Node.js 18, 20, 22
-  - Type checking with TypeScript compiler
-  - Builds package and uploads artifacts
-  - **Validates package purity**: Ensures no Python files leak into the TypeScript package
+  - **Testing**: Runs on Node.js 18, 20, 22
+  - **Type Checking**: Strict TypeScript type checking with --noEmit
+  - **Code Quality**:
+    - ESLint for linting (if configured)
+    - Prettier for code formatting (if configured)
+    - Circular dependency detection with madge
+  - **Performance**:
+    - Bundle size analysis (warns if >100KB)
+  - **Security**:
+    - npm audit for dependency vulnerabilities
+  - **Best Practices**:
+    - Checks for console.log() statements
+    - Detects TODO/FIXME comments
+    - Warns about `any` types (encourages type safety)
+    - Validates package.json metadata (description, keywords, repository, license)
+    - Validates README.md and LICENSE files exist
+  - **Package Validation**:
+    - Ensures no Python files leak into TypeScript package
+    - Verifies dist/ directory contents
 
 ### Publishing Workflows
 
