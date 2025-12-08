@@ -94,9 +94,9 @@ class MecabJapaneseParser(JapaneseParser):
                 "surface": surface,
             }
 
-            def add(field: str, value: str) -> None:
+            def add(field: str, value: Optional[str]) -> None:
                 """Add field to token dict if value is not empty."""
-                if value == '""' or value == "":
+                if value is None or value == '""' or value == "":
                     return
                 token[field] = value
 
