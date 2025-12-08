@@ -29,13 +29,15 @@ from typing import List
 def kotogram_to_japanese(
     kotogram: str,
     spaces: bool = False,
-    collapse_punctuation: bool = True
+    collapse_punctuation: bool = True,
+    furigana: bool = False
 ) -> str:
     """Convert kotogram compact representation back to Japanese text.
 
     This function extracts the surface forms (ˢ markers) from a kotogram string
     and reconstructs the original Japanese text. It can optionally preserve
-    token boundaries with spaces and handle punctuation spacing intelligently.
+    token boundaries with spaces, handle punctuation spacing intelligently, and
+    include furigana readings in parentheses.
 
     Args:
         kotogram: Kotogram compact sentence representation containing encoded
@@ -48,11 +50,16 @@ def kotogram_to_japanese(
                             marks to ensure natural Japanese formatting. Only
                             applies when spaces=True. Handles common Japanese
                             punctuation including 。、・etc.
+        furigana: If True, append IME-style readings in hiragana brackets after
+                 each token when available and different from the surface form. Shows
+                 what you would type in a Japanese IME to input the text. For example,
+                 "漢字[かんじ]" for kanji. Default is False. Redundant readings (same
+                 as surface) are omitted.
 
     Returns:
         Japanese text string reconstructed from the kotogram representation.
         Preserves the original character sequence and can optionally show
-        token boundaries with spaces.
+        token boundaries with spaces and/or furigana readings.
 
     Examples:
         >>> kotogram = "⌈ˢ猫ᵖn⌉⌈ˢをᵖprt:case_particle⌉⌈ˢ食べるᵖv⌉"
@@ -66,36 +73,117 @@ def kotogram_to_japanese(
         >>> kotogram_to_japanese(kotogram, spaces=True, collapse_punctuation=True)
         'こんにちは。'
 
+        >>> kotogram = "⌈ˢ漢字ᵖnʳカンジ⌉⌈ˢですᵖauxv⌉"
+        >>> kotogram_to_japanese(kotogram, furigana=True)
+        '漢字[かんじ]です'
+
+        >>> # Redundant readings are omitted (hiragana surface = hiragana reading)
+        >>> kotogram = "⌈ˢひらがなᵖnʳヒラガナ⌉"
+        >>> kotogram_to_japanese(kotogram, furigana=True)
+        'ひらがな'
+
     Note:
-        This function is lossy - it only preserves the surface forms and discards
-        all linguistic annotations (POS tags, readings, etc.). To preserve full
-        information, keep the original kotogram string.
+        Without furigana=True, this function is lossy - it only preserves the
+        surface forms and discards all linguistic annotations (POS tags, readings,
+        etc.). To preserve full information, keep the original kotogram string.
     """
     from .japanese_parser import POS_TO_CHARS
 
-    # Extract all surface forms using regex pattern
-    # Pattern matches: ˢ followed by any chars until ᵖ
-    pattern = r'ˢ(.*?)ᵖ'
-    matches = re.findall(pattern, kotogram, re.DOTALL)
+    if not furigana:
+        # Original implementation - extract surface forms only
+        pattern = r'ˢ(.*?)ᵖ'
+        matches = re.findall(pattern, kotogram, re.DOTALL)
 
-    if spaces:
-        # Join tokens with spaces
-        result = ' '.join(matches).replace('{ ', '{').replace(' }', '}')
+        if spaces:
+            # Join tokens with spaces
+            result = ' '.join(matches).replace('{ ', '{').replace(' }', '}')
 
-        if collapse_punctuation:
-            # Remove spaces around Japanese punctuation for natural formatting
-            for punc in POS_TO_CHARS['auxs']:
-                # Skip braces as they're handled above
-                if punc == '{' or punc == '}':
-                    continue
-                # Remove space before and after punctuation
-                result = result.replace(f' {punc}', punc)
-                result = result.replace(f'{punc} ', punc)
+            if collapse_punctuation:
+                # Remove spaces around Japanese punctuation for natural formatting
+                for punc in POS_TO_CHARS['auxs']:
+                    # Skip braces as they're handled above
+                    if punc == '{' or punc == '}':
+                        continue
+                    # Remove space before and after punctuation
+                    result = result.replace(f' {punc}', punc)
+                    result = result.replace(f'{punc} ', punc)
 
-        return result
+            return result
+        else:
+            # Concatenate all surface forms without spaces (natural Japanese)
+            return ''.join(matches)
     else:
-        # Concatenate all surface forms without spaces (natural Japanese)
-        return ''.join(matches)
+        # Furigana mode - extract surface forms and IME readings (hiragana)
+        tokens = split_kotogram(kotogram)
+        result_parts = []
+
+        def to_hiragana(text: str) -> str:
+            """Convert katakana to hiragana for IME-style furigana."""
+            result = []
+            for char in text:
+                code = ord(char)
+                # Katakana range: 0x30A1-0x30F6
+                if 0x30A1 <= code <= 0x30F6:
+                    # Convert to hiragana by subtracting offset
+                    result.append(chr(code - 0x60))
+                # Keep katakana length marker as hiragana equivalent
+                elif char == 'ー':
+                    result.append('ー')
+                else:
+                    result.append(char)
+            return ''.join(result)
+
+        def is_kana_only(text: str) -> bool:
+            """Check if text contains only hiragana and katakana characters."""
+            for char in text:
+                code = ord(char)
+                # Check if it's hiragana (0x3041-0x309F) or katakana (0x30A0-0x30FF)
+                is_hiragana = 0x3041 <= code <= 0x309F
+                is_katakana = 0x30A0 <= code <= 0x30FF
+
+                if not (is_hiragana or is_katakana):
+                    return False
+            return True
+
+        for token in tokens:
+            # Extract surface form
+            surface_match = re.search(r'ˢ(.*?)ᵖ', token, re.DOTALL)
+            if not surface_match:
+                continue
+            surface = surface_match.group(1)
+
+            # For IME-style furigana, we only add readings for kanji or mixed text
+            # Pure kana (hiragana/katakana) already shows the IME input
+            if is_kana_only(surface):
+                # Surface is already in kana - no furigana needed
+                result_parts.append(surface)
+            else:
+                # Surface contains kanji - extract reading for IME input
+                reading_match = re.search(r'ʳ(.*?)(?:⌉|ᵇ|ᵈ)', token)
+                reading_katakana = reading_match.group(1) if reading_match else None
+
+                if reading_katakana:
+                    # Convert pronunciation to hiragana for IME-style furigana
+                    reading_hiragana = to_hiragana(reading_katakana)
+                    result_parts.append(f"{surface}[{reading_hiragana}]")
+                else:
+                    # No reading available
+                    result_parts.append(surface)
+
+        if spaces:
+            result = ' '.join(result_parts).replace('{ ', '{').replace(' }', '}')
+
+            if collapse_punctuation:
+                # Remove spaces around Japanese punctuation for natural formatting
+                for punc in POS_TO_CHARS['auxs']:
+                    if punc == '{' or punc == '}':
+                        continue
+                    result = result.replace(f' {punc}', punc)
+                    result = result.replace(f'{punc} ', punc)
+
+            return result
+        else:
+            return ''.join(result_parts)
 
 
 def split_kotogram(kotogram: str) -> List[str]:
