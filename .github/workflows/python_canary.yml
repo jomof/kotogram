@@ -68,33 +68,104 @@ jobs:
     - name: Install linting tools
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 black isort mypy
+        pip install flake8 black isort mypy pylint bandit safety
 
     - name: Check code formatting with black
       run: |
+        echo "Checking code formatting..."
         black --check --diff .
       continue-on-error: true
 
     - name: Check import sorting with isort
       run: |
+        echo "Checking import order..."
         isort --check-only --diff .
       continue-on-error: true
 
     - name: Lint with flake8
       run: |
+        echo "Running flake8 linter..."
         # Stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # Exit-zero treats all errors as warnings
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=100 --statistics
       continue-on-error: true
 
+    - name: Lint with pylint
+      run: |
+        echo "Running pylint for code quality..."
+        pylint kotogram/ --fail-under=8.0 --output-format=colorized || echo "⚠️  Pylint score below 8.0 (non-blocking)"
+      continue-on-error: true
+
     - name: Type check with mypy
       run: |
+        echo "Running mypy type checker..."
         # Check the main package
-        mypy kotogram/ --ignore-missing-imports
+        mypy kotogram/ --ignore-missing-imports --strict
         # Check test files (informational only)
         mypy tests-py/ --ignore-missing-imports || echo "Test files have type issues (non-blocking)"
       continue-on-error: false
+
+    - name: Security check with bandit
+      run: |
+        echo "Running security analysis with bandit..."
+        bandit -r kotogram/ -f screen || echo "⚠️  Security issues found (review recommended)"
+      continue-on-error: true
+
+    - name: Check dependencies for vulnerabilities
+      run: |
+        echo "Checking dependencies for known vulnerabilities..."
+        # Check if there are any dependencies first
+        if [ -f requirements.txt ]; then
+          safety check --file requirements.txt || echo "⚠️  Vulnerable dependencies found (review recommended)"
+        else
+          echo "No requirements.txt found, skipping dependency vulnerability check"
+        fi
+      continue-on-error: true
+
+    - name: Check for common issues
+      run: |
+        echo "Checking for common issues..."
+
+        # Check for print statements in production code
+        echo "Checking for print() statements..."
+        if grep -r "print(" kotogram/ --include="*.py" | grep -v "__pycache__"; then
+          echo "⚠️  Warning: Found print() statements in production code. Consider using logging instead."
+        else
+          echo "✅ No print() statements found"
+        fi
+
+        # Check for TODO/FIXME comments
+        echo ""
+        echo "Checking for TODO/FIXME comments..."
+        if grep -rn "TODO\|FIXME\|XXX\|HACK" kotogram/ --include="*.py" | grep -v "__pycache__"; then
+          echo "⚠️  Found TODO/FIXME comments (review recommended)"
+        else
+          echo "✅ No TODO/FIXME comments found"
+        fi
+
+        # Check README exists and has content
+        echo ""
+        echo "Validating README..."
+        if [ ! -f README.md ]; then
+          echo "❌ ERROR: README.md is missing!"
+          exit 1
+        elif [ ! -s README.md ]; then
+          echo "❌ ERROR: README.md is empty!"
+          exit 1
+        else
+          echo "✅ README.md exists and has content"
+        fi
+
+        # Check LICENSE exists
+        echo ""
+        echo "Validating LICENSE..."
+        if [ ! -f LICENSE ]; then
+          echo "⚠️  Warning: LICENSE file is missing"
+        else
+          echo "✅ LICENSE file exists"
+        fi
+      continue-on-error: true
 
   build:
     name: Build Package
