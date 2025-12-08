@@ -76,6 +76,38 @@ reconstructed = kotogram_to_japanese(kotogram)
 # With spaces between tokens
 spaced = kotogram_to_japanese(kotogram, spaces=True)
 # Result: "猫 を 食べる"
+
+# With furigana (IME-style readings in brackets)
+with_furigana = kotogram_to_japanese(kotogram, furigana=True)
+# Result: "猫[ねこ]を食べる[たべる]"
+
+# Combine options
+spaced_furigana = kotogram_to_japanese(kotogram, spaces=True, furigana=True)
+# Result: "猫[ねこ] を 食べる[たべる]"
+```
+
+**TypeScript**:
+```typescript
+import { kotogramToJapanese, splitKotogram } from 'kotogram';
+
+// Convert Japanese to kotogram (requires Python parser)
+const kotogram = "⌈ˢ猫ᵖn:common_noun⌉⌈ˢをᵖprt:case_particle⌉⌈ˢ食べるᵖv:general:e-ichidan-ba:terminal⌉";
+
+// Convert back to Japanese
+const reconstructed = kotogramToJapanese(kotogram);
+// Result: "猫を食べる"
+
+// With spaces between tokens
+const spaced = kotogramToJapanese(kotogram, { spaces: true });
+// Result: "猫 を 食べる"
+
+// With furigana (IME-style readings in brackets)
+const withFurigana = kotogramToJapanese(kotogram, { furigana: true });
+// Result: "猫[ねこ]を食べる[たべる]"
+
+// Split into tokens
+const tokens = splitKotogram(kotogram);
+// Result: ["⌈ˢ猫ᵖn:common_noun⌉", "⌈ˢをᵖprt:case_particle⌉", "⌈ˢ食べるᵖv:general:e-ichidan-ba:terminal⌉"]
 ```
 
 ### Kotogram Format
