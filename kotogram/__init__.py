@@ -10,12 +10,14 @@ from .mecab_japanese_parser import (
     kotogram_to_japanese,
     split_kotogram,
 )
+from .sudachi_japanese_parser import SudachiJapaneseParser
 
 __all__ = [
     "Codec",
     "ReversingCodec",
     "JapaneseParser",
     "MecabJapaneseParser",
+    "SudachiJapaneseParser",
     "kotogram_to_japanese",
     "split_kotogram",
 ]
