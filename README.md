@@ -254,15 +254,15 @@ This triggers both [python_publish.yml](.github/workflows/python_publish.yml) an
 The README includes status badges for build status, package versions, and license:
 
 ```markdown
-[![Python Canary](https://github.com/yourusername/kotogram/actions/workflows/python_canary.yml/badge.svg?branch=main)](https://github.com/yourusername/kotogram/actions/workflows/python_canary.yml)
-[![TypeScript Canary](https://github.com/yourusername/kotogram/actions/workflows/typescript_canary.yml/badge.svg?branch=main)](https://github.com/yourusername/kotogram/actions/workflows/typescript_canary.yml)
+[![Python Canary](https://github.com/jomof/kotogram/actions/workflows/python_canary.yml/badge.svg?branch=main)](https://github.com/jomof/kotogram/actions/workflows/python_canary.yml)
+[![TypeScript Canary](https://github.com/jomof/kotogram/actions/workflows/typescript_canary.yml/badge.svg?branch=main)](https://github.com/jomof/kotogram/actions/workflows/typescript_canary.yml)
 [![PyPI Version](https://img.shields.io/pypi/v/kotogram.svg)](https://pypi.org/project/kotogram/)
 [![npm Version](https://img.shields.io/npm/v/kotogram.svg)](https://www.npmjs.com/package/kotogram)
 [![Python Support](https://img.shields.io/pypi/pyversions/kotogram.svg)](https://pypi.org/project/kotogram/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ```
 
-**To customize**: Replace `yourusername/kotogram` with your GitHub repository path and `kotogram` with your package name.
+**Note**: Update the username in badge URLs if you fork this to your own repository.
 
 ## Configuration Requirements
 
@@ -272,7 +272,7 @@ To publish to PyPI, configure trusted publishing:
 
 1. Go to PyPI → Your Account → Publishing
 2. Add a new publisher with:
-   - Repository: `yourusername/kotogram`
+   - Repository: `jomof/kotogram`
    - Workflow: `python_publish.yml`
    - Environment: `pypi`
 
