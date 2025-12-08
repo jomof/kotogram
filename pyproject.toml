@@ -8,7 +8,7 @@ version = "0.0.2"
 authors = [
     { name = "Your Name", email = "your.email@example.com" }
 ]
-description = "A dual Python/TypeScript library template"
+description = "A dual Python/TypeScript library for Japanese text parsing and encoding using kotogram format"
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
@@ -21,8 +21,10 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Operating System :: OS Independent",
+    "Topic :: Text Processing :: Linguistic",
+    "Natural Language :: Japanese",
 ]
-keywords = ["template", "dual-library"]
+keywords = ["japanese", "nlp", "mecab", "parser", "tokenizer", "kotogram"]
 
 [project.urls]
 "Homepage" = "https://github.com/jomof/kotogram"
