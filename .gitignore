@@ -69,3 +69,7 @@ env/
 .tmp-inspiration/
 *.tmp
 *.bak
+
+# Build artifacts (prevent cross-contamination)
+*.whl
+*.tar.gz

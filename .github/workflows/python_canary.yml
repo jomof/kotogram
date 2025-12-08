@@ -119,6 +119,41 @@ jobs:
       run: |
         python -m build
 
+    - name: Validate package contents
+      run: |
+        echo "Checking Python package for TypeScript contamination..."
+
+        # Extract the wheel to inspect contents
+        WHEEL_FILE=$(ls dist/*.whl)
+        unzip -l "$WHEEL_FILE" > /tmp/wheel_contents.txt
+
+        # Check for TypeScript/Node.js files that shouldn't be in Python package
+        if grep -E '\.(ts|js|tsx|jsx|mjs)$' /tmp/wheel_contents.txt; then
+          echo "❌ ERROR: Found TypeScript/JavaScript files in Python package!"
+          echo "The following files should not be in the Python wheel:"
+          grep -E '\.(ts|js|tsx|jsx|mjs)$' /tmp/wheel_contents.txt
+          exit 1
+        fi
+
+        # Check for node_modules or TypeScript config files
+        if grep -E '(node_modules|package\.json|tsconfig\.json|package-lock\.json)' /tmp/wheel_contents.txt; then
+          echo "❌ ERROR: Found Node.js/TypeScript configuration files in Python package!"
+          grep -E '(node_modules|package\.json|tsconfig\.json|package-lock\.json)' /tmp/wheel_contents.txt
+          exit 1
+        fi
+
+        # Check for TypeScript test files
+        if grep -E 'tests-ts/' /tmp/wheel_contents.txt; then
+          echo "❌ ERROR: Found TypeScript test files in Python package!"
+          grep -E 'tests-ts/' /tmp/wheel_contents.txt
+          exit 1
+        fi
+
+        echo "✅ Python package is clean - no TypeScript files found"
+        echo ""
+        echo "Package contents:"
+        cat /tmp/wheel_contents.txt
+
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
