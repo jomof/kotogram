@@ -120,7 +120,7 @@ def formality(kotogram: str, use_model: bool = False) -> FormalityLevel:
         # Predict
         model.eval()
         with torch.no_grad():
-            formality_probs, _ = model.predict(field_inputs, attention_mask)
+            formality_probs, _, _ = model.predict(field_inputs, attention_mask)
             formality_idx = int(formality_probs[0].argmax().item())
 
         # Map model output index to FormalityLevel
@@ -327,11 +327,11 @@ def _analyze_formality_features(features: List[Dict[str, str]]) -> FormalityLeve
     return FormalityLevel.NEUTRAL
 
 
-def style(kotogram: str, use_model: bool = False) -> Tuple[FormalityLevel, GenderLevel]:
-    """Analyze a Japanese sentence and return both formality and gender levels.
+def style(kotogram: str, use_model: bool = False) -> Tuple[FormalityLevel, GenderLevel, bool]:
+    """Analyze a Japanese sentence and return formality, gender, and grammaticality.
 
-    This is more efficient than calling formality() and gender() separately
-    when using the model, as it only runs inference once.
+    This is more efficient than calling formality(), gender(), and grammaticality()
+    separately when using the model, as it only runs inference once.
 
     Args:
         kotogram: Kotogram compact sentence representation containing encoded
@@ -340,20 +340,22 @@ def style(kotogram: str, use_model: bool = False) -> Tuple[FormalityLevel, Gende
                   of rule-based analysis. Default is False.
 
     Returns:
-        Tuple of (FormalityLevel, GenderLevel) for the sentence.
+        Tuple of (FormalityLevel, GenderLevel, is_grammatic) for the sentence.
+        is_grammatic is always True for rule-based analysis (no rule-based
+        grammaticality detection).
 
     Examples:
         >>> # Formal, neutral sentence: 食べます (I eat - polite)
         >>> kotogram1 = "⌈ˢ食べᵖv:e-ichidan-ba:conjunctive⌉⌈ˢますᵖauxv-masu:terminal⌉"
         >>> style(kotogram1)
-        (<FormalityLevel.FORMAL: 'formal'>, <GenderLevel.NEUTRAL: 'neutral'>)
+        (<FormalityLevel.FORMAL: 'formal'>, <GenderLevel.NEUTRAL: 'neutral'>, True)
 
         >>> # Using the trained model
         >>> style(kotogram1, use_model=True)  # doctest: +SKIP
-        (<FormalityLevel.FORMAL: 'formal'>, <GenderLevel.NEUTRAL: 'neutral'>)
+        (<FormalityLevel.FORMAL: 'formal'>, <GenderLevel.NEUTRAL: 'neutral'>, True)
     """
     if use_model:
-        # Use the trained neural model for prediction (single inference for both)
+        # Use the trained neural model for prediction (single inference for all)
         import torch
         from kotogram.style_classifier import FEATURE_FIELDS
 
@@ -372,9 +374,10 @@ def style(kotogram: str, use_model: bool = False) -> Tuple[FormalityLevel, Gende
         # Predict
         model.eval()
         with torch.no_grad():
-            formality_probs, gender_probs = model.predict(field_inputs, attention_mask)
+            formality_probs, gender_probs, grammaticality_probs = model.predict(field_inputs, attention_mask)
             formality_idx = int(formality_probs[0].argmax().item())
             gender_idx = int(gender_probs[0].argmax().item())
+            grammaticality_idx = int(grammaticality_probs[0].argmax().item())
 
         # Map model output indices to enum values
         formality_map = {
@@ -391,13 +394,15 @@ def style(kotogram: str, use_model: bool = False) -> Tuple[FormalityLevel, Gende
             2: GenderLevel.NEUTRAL,
             3: GenderLevel.UNPRAGMATIC_GENDER,
         }
+        is_grammatic = grammaticality_idx == 1  # 1 = grammatic, 0 = agrammatic
         return (
             formality_map.get(formality_idx, FormalityLevel.NEUTRAL),
             gender_map.get(gender_idx, GenderLevel.NEUTRAL),
+            is_grammatic,
         )
 
-    # Rule-based analysis
-    return formality(kotogram), gender(kotogram)
+    # Rule-based analysis (no rule-based grammaticality detection)
+    return formality(kotogram), gender(kotogram), True
 
 
 def gender(kotogram: str, use_model: bool = False) -> GenderLevel:
@@ -465,7 +470,7 @@ def gender(kotogram: str, use_model: bool = False) -> GenderLevel:
         # Predict
         model.eval()
         with torch.no_grad():
-            _, gender_probs = model.predict(field_inputs, attention_mask)
+            _, gender_probs, _ = model.predict(field_inputs, attention_mask)
             gender_idx = int(gender_probs[0].argmax().item())
 
         # Map model output index to GenderLevel
@@ -607,3 +612,61 @@ def _analyze_gender_features(features: List[Dict[str, str]]) -> GenderLevel:
 
     # Default to neutral
     return GenderLevel.NEUTRAL
+
+
+def grammaticality(kotogram: str, use_model: bool = True) -> bool:
+    """Analyze a Japanese sentence and return whether it is grammatically correct.
+
+    This function uses a trained neural model to predict whether a sentence
+    is grammatically correct. There is no rule-based fallback; if use_model=False,
+    the function always returns True.
+
+    Args:
+        kotogram: Kotogram compact sentence representation containing encoded
+                 linguistic information with POS tags and conjugation forms.
+        use_model: If True (default), use the trained neural model for prediction.
+                  If False, always returns True (assumes grammatic).
+
+    Returns:
+        True if the sentence is predicted to be grammatically correct,
+        False if predicted to be agrammatic (has grammatical errors).
+
+    Examples:
+        >>> # A grammatically correct sentence
+        >>> kotogram1 = "⌈ˢ食べᵖv:e-ichidan-ba:conjunctive⌉⌈ˢますᵖauxv-masu:terminal⌉"
+        >>> grammaticality(kotogram1, use_model=True)  # doctest: +SKIP
+        True
+
+        >>> # An agrammatic sentence (detected by model)
+        >>> kotogram2 = "⌈ˢ食べᵖv:e-ichidan-ba:terminal⌉⌈ˢますᵖauxv-masu:terminal⌉"  # invalid
+        >>> grammaticality(kotogram2, use_model=True)  # doctest: +SKIP
+        False
+    """
+    if not use_model:
+        # No rule-based grammaticality detection; assume grammatic
+        return True
+
+    # Use the trained neural model for prediction
+    import torch
+    from kotogram.style_classifier import FEATURE_FIELDS
+
+    model, tokenizer = _load_style_model()
+
+    # Encode the kotogram
+    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
+
+    # Create batch tensors
+    field_inputs = {
+        f'input_ids_{field}': torch.tensor([feature_ids[field]], dtype=torch.long)
+        for field in FEATURE_FIELDS
+    }
+    attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
+
+    # Predict
+    model.eval()
+    with torch.no_grad():
+        _, _, grammaticality_probs = model.predict(field_inputs, attention_mask)
+        grammaticality_idx = int(grammaticality_probs[0].argmax().item())
+
+    # 1 = grammatic, 0 = agrammatic
+    return grammaticality_idx == 1

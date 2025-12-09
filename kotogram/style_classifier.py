@@ -85,6 +85,7 @@ FEATURE_FIELDS = ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_ty
 # Number of classes for each task
 NUM_FORMALITY_CLASSES = 6
 NUM_GENDER_CLASSES = 4
+NUM_GRAMMATICALITY_CLASSES = 2  # grammatic (1) vs agrammatic (0)
 
 
 class Tokenizer:
@@ -313,10 +314,11 @@ class Tokenizer:
 
 @dataclass
 class Sample:
-    """Single data sample with per-field feature IDs and labels for both tasks."""
+    """Single data sample with per-field feature IDs and labels for all tasks."""
     feature_ids: Dict[str, List[int]]  # field -> list of token IDs
     formality_label: int
     gender_label: int
+    grammaticality_label: int = 1  # 1 = grammatic (default), 0 = agrammatic
     original_sentence: str = ""
     kotogram: str = ""
 
@@ -490,12 +492,13 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         max_samples: Optional[int] = None,
         verbose: bool = True,
         labeled: bool = True,
+        grammaticality_labels: Optional[List[int]] = None,
     ) -> 'StyleDataset':
         """Load dataset from multiple TSV files of Japanese sentences.
 
         This method loads samples from multiple TSV files, combining them into
         a single dataset. Useful for augmenting training data with additional
-        examples (e.g., unpragmatic sentences).
+        examples (e.g., unpragmatic sentences, agrammatic sentences).
 
         Args:
             tsv_paths: List of paths to TSV files with Japanese sentences
@@ -504,6 +507,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             max_samples: Optional limit on total number of samples across all files
             verbose: If True, print progress
             labeled: If True, compute formality and gender labels
+            grammaticality_labels: Optional list of grammaticality labels (0 or 1) for each
+                                  TSV file. If provided, must have same length as tsv_paths.
+                                  1 = grammatic (default), 0 = agrammatic.
 
         Returns:
             StyleDataset with encoded samples from all files
@@ -515,14 +521,25 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         else:
             actual_parser = parser
 
+        # Default all files to grammatic if not specified
+        if grammaticality_labels is None:
+            grammaticality_labels = [1] * len(tsv_paths)
+        elif len(grammaticality_labels) != len(tsv_paths):
+            raise ValueError(
+                f"grammaticality_labels length ({len(grammaticality_labels)}) "
+                f"must match tsv_paths length ({len(tsv_paths)})"
+            )
+
         samples: List[Sample] = []
         formality_counts: Counter[FormalityLevel] = Counter()
         gender_counts: Counter[GenderLevel] = Counter()
+        grammaticality_counts: Counter[int] = Counter()
         total = 0
 
-        for tsv_path in tsv_paths:
+        for tsv_path, gram_label in zip(tsv_paths, grammaticality_labels):
             if verbose:
-                print(f"\nLoading from {tsv_path}...")
+                gram_str = "grammatic" if gram_label == 1 else "agrammatic"
+                print(f"\nLoading from {tsv_path} ({gram_str})...")
 
             file_count = 0
             with open(tsv_path, 'r', encoding='utf-8') as f:
@@ -560,12 +577,14 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                             feature_ids=feature_ids,
                             formality_label=formality_id,
                             gender_label=gender_id,
+                            grammaticality_label=gram_label,
                             original_sentence=sentence,
                             kotogram=kotogram,
                         )
                         samples.append(sample)
                         formality_counts[formality_enum] += 1
                         gender_counts[gender_enum] += 1
+                        grammaticality_counts[gram_label] += 1
                         total += 1
                         file_count += 1
 
@@ -597,6 +616,11 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 print("Gender distribution:")
                 for g_label, g_count in sorted(gender_counts.items(), key=lambda x: x[1], reverse=True):
                     print(f"  {g_label.value}: {g_count} ({100*g_count/len(samples):.1f}%)")
+            print("Grammaticality distribution:")
+            gram_labels = {1: "grammatic", 0: "agrammatic"}
+            for g_id in [1, 0]:
+                g_count = grammaticality_counts.get(g_id, 0)
+                print(f"  {gram_labels[g_id]}: {g_count} ({100*g_count/len(samples):.1f}%)")
 
         # Freeze vocabulary after building
         tokenizer.freeze()
@@ -618,7 +642,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             seed: Random seed for reproducibility
             stratify: If True, use stratified splitting to ensure proportional
                      representation of all class combinations in each split.
-                     Uses combined (formality, gender) labels for stratification.
+                     Uses combined (formality, gender, grammaticality) labels for stratification.
 
         Returns:
             Tuple of (train, validation, test) StyleDataset instances
@@ -637,11 +661,11 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             val_indices = indices[n_train:n_train + n_val]
             test_indices = indices[n_train + n_val:]
         else:
-            # Stratified splitting using combined (formality, gender) labels
+            # Stratified splitting using combined (formality, gender, grammaticality) labels
             # Group samples by combined label
-            label_to_indices: Dict[Tuple[int, int], List[int]] = {}
+            label_to_indices: Dict[Tuple[int, int, int], List[int]] = {}
             for i, sample in enumerate(self.samples):
-                combined_label = (sample.formality_label, sample.gender_label)
+                combined_label = (sample.formality_label, sample.gender_label, sample.grammaticality_label)
                 if combined_label not in label_to_indices:
                     label_to_indices[combined_label] = []
                 label_to_indices[combined_label].append(i)
@@ -703,6 +727,17 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         return weights
 
+    def get_grammaticality_class_weights(self) -> torch.Tensor:
+        """Compute inverse frequency class weights for imbalanced grammaticality data."""
+        counts = Counter(s.grammaticality_label for s in self.samples)
+        total = len(self.samples)
+        weights = torch.zeros(NUM_GRAMMATICALITY_CLASSES)
+
+        for label_id, count in counts.items():
+            weights[label_id] = total / (NUM_GRAMMATICALITY_CLASSES * count) if count > 0 else 0.0
+
+        return weights
+
 
 def collate_fn(
     batch: List[Sample],
@@ -719,7 +754,7 @@ def collate_fn(
 
     Returns:
         Dictionary with per-field 'input_ids_<field>', 'attention_mask',
-        'formality_labels', and 'gender_labels' tensors
+        'formality_labels', 'gender_labels', and 'grammaticality_labels' tensors
     """
     batch_max_len = max(s.seq_len for s in batch)
     # Apply truncation if max_seq_len is specified
@@ -730,6 +765,7 @@ def collate_fn(
     attention_mask = []
     formality_labels = []
     gender_labels = []
+    grammaticality_labels = []
 
     for sample in batch:
         # Truncate sequence if needed
@@ -745,6 +781,7 @@ def collate_fn(
         attention_mask.append([1] * seq_len + [0] * padding_len)
         formality_labels.append(sample.formality_label)
         gender_labels.append(sample.gender_label)
+        grammaticality_labels.append(sample.grammaticality_label)
 
     result = {
         f'input_ids_{field}': torch.tensor(field_ids[field], dtype=torch.long)
@@ -753,6 +790,7 @@ def collate_fn(
     result['attention_mask'] = torch.tensor(attention_mask, dtype=torch.long)
     result['formality_labels'] = torch.tensor(formality_labels, dtype=torch.long)
     result['gender_labels'] = torch.tensor(gender_labels, dtype=torch.long)
+    result['grammaticality_labels'] = torch.tensor(grammaticality_labels, dtype=torch.long)
 
     return result
 
@@ -794,12 +832,13 @@ class ModelConfig:
 
     This config supports multi-field embeddings where each morphological feature
     (pos, pos_detail1, conjugated_type, conjugated_form, lemma) has its own
-    embedding table. The model has two classification heads: one for formality
-    and one for gender.
+    embedding table. The model has three classification heads: formality, gender,
+    and grammaticality.
     """
     vocab_sizes: Dict[str, int]  # Field name -> vocabulary size
     num_formality_classes: int = NUM_FORMALITY_CLASSES
     num_gender_classes: int = NUM_GENDER_CLASSES
+    num_grammaticality_classes: int = NUM_GRAMMATICALITY_CLASSES
     field_embed_dims: Dict[str, int] = field(default_factory=lambda: {
         'pos': 32,
         'pos_detail1': 32,
@@ -821,6 +860,7 @@ class ModelConfig:
             'vocab_sizes': self.vocab_sizes,
             'num_formality_classes': self.num_formality_classes,
             'num_gender_classes': self.num_gender_classes,
+            'num_grammaticality_classes': self.num_grammaticality_classes,
             'field_embed_dims': self.field_embed_dims,
             'd_model': self.d_model,
             'hidden_dim': self.hidden_dim,
@@ -902,14 +942,14 @@ class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
 
 
 class StyleClassifier(nn.Module):  # type: ignore[misc]
-    """Neural sequence classifier for multi-task style prediction (formality + gender).
+    """Neural sequence classifier for multi-task style prediction (formality + gender + grammaticality).
 
     Architecture:
     1. Multi-field embedding: per-field embeddings concatenated and projected
     2. Positional encoding: learned or sinusoidal
     3. Transformer encoder: multi-layer self-attention
     4. Pooling: CLS token embedding for sentence representation
-    5. Classification heads: Separate MLP heads for formality and gender
+    5. Classification heads: Separate MLP heads for formality, gender, and grammaticality
     """
 
     def __init__(self, config: ModelConfig):
@@ -956,6 +996,14 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             nn.GELU(),
             nn.Dropout(config.dropout),
             nn.Linear(config.hidden_dim, config.num_gender_classes),
+        )
+
+        # Grammaticality classification head (binary: grammatic vs agrammatic)
+        self.grammaticality_classifier = nn.Sequential(
+            nn.Linear(config.d_model, config.hidden_dim),
+            nn.GELU(),
+            nn.Dropout(config.dropout),
+            nn.Linear(config.hidden_dim, config.num_grammaticality_classes),
         )
 
     def _get_pooled_output(
@@ -1008,7 +1056,7 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         self,
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
-    ) -> Tuple[torch.Tensor, torch.Tensor]:
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
         """Forward pass through the model.
 
         Args:
@@ -1016,23 +1064,29 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             attention_mask: Binary mask of shape (batch, seq_len), 1 for real tokens
 
         Returns:
-            Tuple of (formality_logits, gender_logits), each of shape (batch, num_classes)
+            Tuple of (formality_logits, gender_logits, grammaticality_logits),
+            each of shape (batch, num_classes)
         """
         pooled = self._get_pooled_output(field_inputs, attention_mask)
 
         formality_logits = self.formality_classifier(pooled)
         gender_logits = self.gender_classifier(pooled)
+        grammaticality_logits = self.grammaticality_classifier(pooled)
 
-        return formality_logits, gender_logits
+        return formality_logits, gender_logits, grammaticality_logits
 
     def predict(
         self,
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
-    ) -> Tuple[torch.Tensor, torch.Tensor]:
-        """Get predicted class probabilities for both tasks."""
-        formality_logits, gender_logits = self.forward(field_inputs, attention_mask)
-        return F.softmax(formality_logits, dim=-1), F.softmax(gender_logits, dim=-1)
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+        """Get predicted class probabilities for all tasks."""
+        formality_logits, gender_logits, grammaticality_logits = self.forward(field_inputs, attention_mask)
+        return (
+            F.softmax(formality_logits, dim=-1),
+            F.softmax(gender_logits, dim=-1),
+            F.softmax(grammaticality_logits, dim=-1),
+        )
 
     def get_encoder_output(
         self,
@@ -1127,13 +1181,13 @@ class StyleClassifierWithMLM(StyleClassifier):
         return cast(Dict[str, torch.Tensor], self.mlm_head(encoder_output))
 
     def reset_classifier(self) -> None:
-        """Reinitialize both classifier head weights.
+        """Reinitialize all classifier head weights.
 
         Call this after MLM pretraining and before supervised fine-tuning
         to start the classification heads from a fresh state while keeping
         the pretrained encoder weights.
         """
-        for classifier in [self.formality_classifier, self.gender_classifier]:
+        for classifier in [self.formality_classifier, self.gender_classifier, self.grammaticality_classifier]:
             for module in classifier.modules():
                 if isinstance(module, nn.Linear):
                     nn.init.xavier_uniform_(module.weight)
@@ -1154,6 +1208,7 @@ class TrainerConfig:
     use_class_weights: bool = True
     formality_loss_weight: float = 1.0  # Weight for formality loss in multi-task
     gender_loss_weight: float = 1.0  # Weight for gender loss in multi-task
+    grammaticality_loss_weight: float = 1.0  # Weight for grammaticality loss in multi-task
     device: str = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
 
 
@@ -1417,17 +1472,21 @@ class Trainer:
         if self.config.use_class_weights:
             formality_weights = train_dataset.get_formality_class_weights().to(self.device)
             gender_weights = train_dataset.get_gender_class_weights().to(self.device)
+            grammaticality_weights = train_dataset.get_grammaticality_class_weights().to(self.device)
             self.formality_criterion = nn.CrossEntropyLoss(weight=formality_weights)
             self.gender_criterion = nn.CrossEntropyLoss(weight=gender_weights)
+            self.grammaticality_criterion = nn.CrossEntropyLoss(weight=grammaticality_weights)
         else:
             self.formality_criterion = nn.CrossEntropyLoss()
             self.gender_criterion = nn.CrossEntropyLoss()
+            self.grammaticality_criterion = nn.CrossEntropyLoss()
 
         # Optimizer with differential learning rates
         encoder_params = list(model.embedding.parameters()) + list(model.encoder.parameters())
         classifier_params = (
             list(model.formality_classifier.parameters()) +
-            list(model.gender_classifier.parameters())
+            list(model.gender_classifier.parameters()) +
+            list(model.grammaticality_classifier.parameters())
         )
 
         self.optimizer = Adam([
@@ -1449,15 +1508,18 @@ class Trainer:
             'train_loss': [],
             'train_formality_loss': [],
             'train_gender_loss': [],
+            'train_grammaticality_loss': [],
             'val_loss': [],
             'val_formality_loss': [],
             'val_gender_loss': [],
+            'val_grammaticality_loss': [],
             'val_formality_accuracy': [],
             'val_gender_accuracy': [],
+            'val_grammaticality_accuracy': [],
         }
         self.best_state: Optional[Dict[str, torch.Tensor]] = None
 
-    def _batch_to_device(self, batch: Dict[str, torch.Tensor]) -> Tuple[Dict[str, torch.Tensor], torch.Tensor, torch.Tensor, torch.Tensor]:
+    def _batch_to_device(self, batch: Dict[str, torch.Tensor]) -> Tuple[Dict[str, torch.Tensor], torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         """Move batch tensors to device and split into inputs/mask/labels."""
         field_inputs = {
             k: v.to(self.device) for k, v in batch.items()
@@ -1466,33 +1528,37 @@ class Trainer:
         attention_mask = batch['attention_mask'].to(self.device)
         formality_labels = batch['formality_labels'].to(self.device)
         gender_labels = batch['gender_labels'].to(self.device)
-        return field_inputs, attention_mask, formality_labels, gender_labels
+        grammaticality_labels = batch['grammaticality_labels'].to(self.device)
+        return field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels
 
-    def train_epoch(self) -> Tuple[float, float, float]:
+    def train_epoch(self) -> Tuple[float, float, float, float]:
         """Run one training epoch.
 
         Returns:
-            Tuple of (total_loss, formality_loss, gender_loss)
+            Tuple of (total_loss, formality_loss, gender_loss, grammaticality_loss)
         """
         self.model.train()
         total_loss = 0
         total_formality_loss = 0
         total_gender_loss = 0
+        total_grammaticality_loss = 0
         n_batches = 0
 
         for batch in self.train_loader:
-            field_inputs, attention_mask, formality_labels, gender_labels = self._batch_to_device(batch)
+            field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels = self._batch_to_device(batch)
 
             self.optimizer.zero_grad()
-            formality_logits, gender_logits = self.model(field_inputs, attention_mask)
+            formality_logits, gender_logits, grammaticality_logits = self.model(field_inputs, attention_mask)
 
             formality_loss = self.formality_criterion(formality_logits, formality_labels)
             gender_loss = self.gender_criterion(gender_logits, gender_labels)
+            grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_labels)
 
             # Weighted multi-task loss
             loss = (
                 self.config.formality_loss_weight * formality_loss +
-                self.config.gender_loss_weight * gender_loss
+                self.config.gender_loss_weight * gender_loss +
+                self.config.grammaticality_loss_weight * grammaticality_loss
             )
 
             loss.backward()
@@ -1505,9 +1571,10 @@ class Trainer:
             total_loss += loss.item()
             total_formality_loss += formality_loss.item()
             total_gender_loss += gender_loss.item()
+            total_grammaticality_loss += grammaticality_loss.item()
             n_batches += 1
 
-        return total_loss / n_batches, total_formality_loss / n_batches, total_gender_loss / n_batches
+        return total_loss / n_batches, total_formality_loss / n_batches, total_gender_loss / n_batches, total_grammaticality_loss / n_batches
 
     @torch.no_grad()  # type: ignore[untyped-decorator]
     def evaluate(self) -> Dict[str, Any]:
@@ -1520,41 +1587,51 @@ class Trainer:
         total_loss = 0
         total_formality_loss = 0
         total_gender_loss = 0
+        total_grammaticality_loss = 0
         n_batches = 0
 
         all_formality_preds = []
         all_formality_labels = []
         all_gender_preds = []
         all_gender_labels = []
+        all_grammaticality_preds = []
+        all_grammaticality_labels = []
 
         for batch in self.val_loader:
-            field_inputs, attention_mask, formality_labels, gender_labels = self._batch_to_device(batch)
+            field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels = self._batch_to_device(batch)
 
-            formality_logits, gender_logits = self.model(field_inputs, attention_mask)
+            formality_logits, gender_logits, grammaticality_logits = self.model(field_inputs, attention_mask)
 
             formality_loss = self.formality_criterion(formality_logits, formality_labels)
             gender_loss = self.gender_criterion(gender_logits, gender_labels)
+            grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_labels)
             loss = (
                 self.config.formality_loss_weight * formality_loss +
-                self.config.gender_loss_weight * gender_loss
+                self.config.gender_loss_weight * gender_loss +
+                self.config.grammaticality_loss_weight * grammaticality_loss
             )
 
             formality_preds = formality_logits.argmax(dim=-1)
             gender_preds = gender_logits.argmax(dim=-1)
+            grammaticality_preds = grammaticality_logits.argmax(dim=-1)
 
             all_formality_preds.extend(formality_preds.cpu().tolist())
             all_formality_labels.extend(formality_labels.cpu().tolist())
             all_gender_preds.extend(gender_preds.cpu().tolist())
             all_gender_labels.extend(gender_labels.cpu().tolist())
+            all_grammaticality_preds.extend(grammaticality_preds.cpu().tolist())
+            all_grammaticality_labels.extend(grammaticality_labels.cpu().tolist())
 
             total_loss += loss.item()
             total_formality_loss += formality_loss.item()
             total_gender_loss += gender_loss.item()
+            total_grammaticality_loss += grammaticality_loss.item()
             n_batches += 1
 
         avg_loss = total_loss / n_batches
         avg_formality_loss = total_formality_loss / n_batches
         avg_gender_loss = total_gender_loss / n_batches
+        avg_grammaticality_loss = total_grammaticality_loss / n_batches
 
         formality_accuracy = sum(
             p == l for p, l in zip(all_formality_preds, all_formality_labels)
@@ -1562,6 +1639,9 @@ class Trainer:
         gender_accuracy = sum(
             p == l for p, l in zip(all_gender_preds, all_gender_labels)
         ) / len(all_gender_preds)
+        grammaticality_accuracy = sum(
+            p == l for p, l in zip(all_grammaticality_preds, all_grammaticality_labels)
+        ) / len(all_grammaticality_preds)
 
         # Build confusion matrices
         formality_confusion = [[0] * NUM_FORMALITY_CLASSES for _ in range(NUM_FORMALITY_CLASSES)]
@@ -1572,20 +1652,27 @@ class Trainer:
         for pred, label in zip(all_gender_preds, all_gender_labels):
             gender_confusion[label][pred] += 1
 
+        grammaticality_confusion = [[0] * NUM_GRAMMATICALITY_CLASSES for _ in range(NUM_GRAMMATICALITY_CLASSES)]
+        for pred, label in zip(all_grammaticality_preds, all_grammaticality_labels):
+            grammaticality_confusion[label][pred] += 1
+
         return {
             'loss': avg_loss,
             'formality_loss': avg_formality_loss,
             'gender_loss': avg_gender_loss,
+            'grammaticality_loss': avg_grammaticality_loss,
             'formality_accuracy': formality_accuracy,
             'gender_accuracy': gender_accuracy,
+            'grammaticality_accuracy': grammaticality_accuracy,
             'formality_confusion': formality_confusion,
             'gender_confusion': gender_confusion,
+            'grammaticality_confusion': grammaticality_confusion,
         }
 
     def train(self, verbose: bool = True) -> Dict[str, List[float]]:
         """Run full training loop."""
         for epoch in range(self.config.epochs):
-            train_loss, train_formality_loss, train_gender_loss = self.train_epoch()
+            train_loss, train_formality_loss, train_gender_loss, train_grammaticality_loss = self.train_epoch()
             eval_results = self.evaluate()
 
             self.scheduler.step(eval_results['loss'])
@@ -1593,17 +1680,20 @@ class Trainer:
             self.history['train_loss'].append(train_loss)
             self.history['train_formality_loss'].append(train_formality_loss)
             self.history['train_gender_loss'].append(train_gender_loss)
+            self.history['train_grammaticality_loss'].append(train_grammaticality_loss)
             self.history['val_loss'].append(eval_results['loss'])
             self.history['val_formality_loss'].append(eval_results['formality_loss'])
             self.history['val_gender_loss'].append(eval_results['gender_loss'])
+            self.history['val_grammaticality_loss'].append(eval_results['grammaticality_loss'])
             self.history['val_formality_accuracy'].append(eval_results['formality_accuracy'])
             self.history['val_gender_accuracy'].append(eval_results['gender_accuracy'])
+            self.history['val_grammaticality_accuracy'].append(eval_results['grammaticality_accuracy'])
 
             if verbose:
                 print(f"Epoch {epoch+1}/{self.config.epochs}")
-                print(f"  Train Loss: {train_loss:.4f} (formality={train_formality_loss:.4f}, gender={train_gender_loss:.4f})")
-                print(f"  Val Loss: {eval_results['loss']:.4f} (formality={eval_results['formality_loss']:.4f}, gender={eval_results['gender_loss']:.4f})")
-                print(f"  Val Acc: formality={eval_results['formality_accuracy']:.4f}, gender={eval_results['gender_accuracy']:.4f}")
+                print(f"  Train Loss: {train_loss:.4f} (formality={train_formality_loss:.4f}, gender={train_gender_loss:.4f}, gram={train_grammaticality_loss:.4f})")
+                print(f"  Val Loss: {eval_results['loss']:.4f} (formality={eval_results['formality_loss']:.4f}, gender={eval_results['gender_loss']:.4f}, gram={eval_results['grammaticality_loss']:.4f})")
+                print(f"  Val Acc: formality={eval_results['formality_accuracy']:.4f}, gender={eval_results['gender_accuracy']:.4f}, gram={eval_results['grammaticality_accuracy']:.4f}")
                 enc_lr = self.optimizer.param_groups[0]['lr']
                 cls_lr = self.optimizer.param_groups[1]['lr']
                 print(f"  LR: encoder={enc_lr:.2e}, classifier={cls_lr:.2e}")
@@ -1628,7 +1718,7 @@ class Trainer:
         return self.history
 
     def print_confusion_matrices(self) -> None:
-        """Print confusion matrices for both tasks."""
+        """Print confusion matrices for all tasks."""
         eval_results = self.evaluate()
 
         # Formality confusion matrix
@@ -1651,6 +1741,17 @@ class Trainer:
         for i, row in enumerate(eval_results['gender_confusion']):
             row_label = gender_labels[i].ljust(25)
             row_values = " ".join(str(v).ljust(10) for v in row)
+            print(f"{row_label}{row_values}")
+
+        # Grammaticality confusion matrix
+        grammaticality_labels = ["agrammatic", "grammatic"]
+        print("\nGrammaticality Confusion Matrix:")
+        header = "True\\Pred".ljust(25) + " ".join(l[:10].ljust(12) for l in grammaticality_labels)
+        print(header)
+        print("-" * len(header))
+        for i, row in enumerate(eval_results['grammaticality_confusion']):
+            row_label = grammaticality_labels[i].ljust(25)
+            row_values = " ".join(str(v).ljust(12) for v in row)
             print(f"{row_label}{row_values}")
 
 
@@ -1678,10 +1779,12 @@ def save_model(
     # Save label mappings
     formality_label_map = {k.value: v for k, v in FORMALITY_LABEL_TO_ID.items()}
     gender_label_map = {k.value: v for k, v in GENDER_LABEL_TO_ID.items()}
+    grammaticality_label_map = {'agrammatic': 0, 'grammatic': 1}
     with open(os.path.join(path, 'labels.json'), 'w') as f:
         json.dump({
             'formality': formality_label_map,
             'gender': gender_label_map,
+            'grammaticality': grammaticality_label_map,
         }, f, indent=2)
 
     # Mark as feature-based multi-task model
@@ -1721,8 +1824,8 @@ def predict_style(
     tokenizer: Tokenizer,
     parser: Optional[JapaneseParser] = None,
     device: Optional[str] = None,
-) -> Tuple[FormalityLevel, GenderLevel, Dict[str, Dict[str, float]]]:
-    """Predict formality and gender style for a Japanese sentence.
+) -> Tuple[FormalityLevel, GenderLevel, bool, Dict[str, Dict[str, float]]]:
+    """Predict formality, gender, and grammaticality for a Japanese sentence.
 
     Args:
         sentence: Japanese sentence text
@@ -1732,8 +1835,8 @@ def predict_style(
         device: Device to run inference on
 
     Returns:
-        Tuple of (formality_label, gender_label, probability_dicts)
-        where probability_dicts has 'formality' and 'gender' keys
+        Tuple of (formality_label, gender_label, is_grammatic, probability_dicts)
+        where probability_dicts has 'formality', 'gender', and 'grammaticality' keys
     """
     if parser is None:
         from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
@@ -1760,15 +1863,18 @@ def predict_style(
     # Predict
     model.eval()
     with torch.no_grad():
-        formality_probs, gender_probs = model.predict(field_inputs, attention_mask)
+        formality_probs, gender_probs, grammaticality_probs = model.predict(field_inputs, attention_mask)
         formality_probs = formality_probs[0]
         gender_probs = gender_probs[0]
+        grammaticality_probs = grammaticality_probs[0]
 
     formality_id = int(formality_probs.argmax().item())
     gender_id = int(gender_probs.argmax().item())
+    grammaticality_id = int(grammaticality_probs.argmax().item())
 
     formality_label = FORMALITY_ID_TO_LABEL[formality_id]
     gender_label = GENDER_ID_TO_LABEL[gender_id]
+    is_grammatic = grammaticality_id == 1  # 1 = grammatic, 0 = agrammatic
 
     prob_dicts = {
         'formality': {
@@ -1779,9 +1885,13 @@ def predict_style(
             GENDER_ID_TO_LABEL[i].value: gender_probs[i].item()
             for i in range(NUM_GENDER_CLASSES)
         },
+        'grammaticality': {
+            'agrammatic': grammaticality_probs[0].item(),
+            'grammatic': grammaticality_probs[1].item(),
+        },
     }
 
-    return formality_label, gender_label, prob_dicts
+    return formality_label, gender_label, is_grammatic, prob_dicts
 
 
 if __name__ == "__main__":
@@ -1819,15 +1929,25 @@ if __name__ == "__main__":
                         help="Loss weight for formality task")
     parser.add_argument("--gender-weight", type=float, default=1.0,
                         help="Loss weight for gender task")
+    parser.add_argument("--grammaticality-weight", type=float, default=1.0,
+                        help="Loss weight for grammaticality task")
     parser.add_argument("--extra-data", type=str, default=None,
                         help="Path to additional TSV file with training data (e.g., unpragmatic examples)")
+    parser.add_argument("--agrammatic-data", type=str, default=None,
+                        help="Path to TSV file with agrammatic sentences (for grammaticality training)")
 
     args = parser.parse_args()
 
-    # Build list of data files
+    # Build list of data files and their grammaticality labels
+    # grammatic (1) = normal sentences, agrammatic (0) = generated bad grammar
     data_files = [args.data]
+    grammaticality_labels = [1]  # jpn_sentences.tsv is grammatic
     if args.extra_data:
         data_files.append(args.extra_data)
+        grammaticality_labels.append(1)  # unpragmatic_sentences.tsv is still grammatic (just unusual style)
+    if args.agrammatic_data:
+        data_files.append(args.agrammatic_data)
+        grammaticality_labels.append(0)  # agrammatic sentences
 
     # Load data: if doing MLM pretraining, first load unlabeled data for pretraining,
     # then load labeled data for fine-tuning
@@ -1842,6 +1962,7 @@ if __name__ == "__main__":
                 max_samples=args.max_samples,
                 verbose=True,
                 labeled=False,  # No labels needed for pretraining
+                grammaticality_labels=grammaticality_labels,
             )
         else:
             unlabeled_dataset = StyleDataset.from_tsv(
@@ -1858,6 +1979,7 @@ if __name__ == "__main__":
             vocab_sizes=tokenizer.get_vocab_sizes(),
             num_formality_classes=NUM_FORMALITY_CLASSES,
             num_gender_classes=NUM_GENDER_CLASSES,
+            num_grammaticality_classes=NUM_GRAMMATICALITY_CLASSES,
             d_model=args.embed_dim,
             hidden_dim=args.hidden_dim,
             num_layers=args.num_layers,
@@ -1892,6 +2014,7 @@ if __name__ == "__main__":
                 max_samples=args.max_samples,
                 verbose=True,
                 labeled=True,
+                grammaticality_labels=grammaticality_labels,
             )
         else:
             labeled_dataset = StyleDataset.from_tsv(
@@ -1911,6 +2034,7 @@ if __name__ == "__main__":
                 tokenizer,
                 max_samples=args.max_samples,
                 verbose=True,
+                grammaticality_labels=grammaticality_labels,
             )
         else:
             dataset = StyleDataset.from_tsv(
@@ -1926,6 +2050,7 @@ if __name__ == "__main__":
             vocab_sizes=tokenizer.get_vocab_sizes(),
             num_formality_classes=NUM_FORMALITY_CLASSES,
             num_gender_classes=NUM_GENDER_CLASSES,
+            num_grammaticality_classes=NUM_GRAMMATICALITY_CLASSES,
             d_model=args.embed_dim,
             hidden_dim=args.hidden_dim,
             num_layers=args.num_layers,
@@ -1945,6 +2070,7 @@ if __name__ == "__main__":
         learning_rate=args.learning_rate,
         formality_loss_weight=args.formality_weight,
         gender_loss_weight=args.gender_weight,
+        grammaticality_loss_weight=args.grammaticality_weight,
     )
     # Use smaller LR for encoder if pretrained
     encoder_lr_factor = args.encoder_lr_factor if args.pretrain_mlm else 1.0
@@ -1969,6 +2095,7 @@ if __name__ == "__main__":
     device = torch.device(trainer_config.device)
     formality_correct = 0
     gender_correct = 0
+    grammaticality_correct = 0
     total = 0
 
     with torch.no_grad():
@@ -1980,16 +2107,19 @@ if __name__ == "__main__":
             attention_mask = batch['attention_mask'].to(device)
             formality_labels = batch['formality_labels'].to(device)
             gender_labels = batch['gender_labels'].to(device)
+            grammaticality_labels = batch['grammaticality_labels'].to(device)
 
-            formality_logits, gender_logits = model(field_inputs, attention_mask)
+            formality_logits, gender_logits, grammaticality_logits = model(field_inputs, attention_mask)
             formality_preds = formality_logits.argmax(dim=-1)
             gender_preds = gender_logits.argmax(dim=-1)
+            grammaticality_preds = grammaticality_logits.argmax(dim=-1)
 
             formality_correct += (formality_preds == formality_labels).sum().item()
             gender_correct += (gender_preds == gender_labels).sum().item()
+            grammaticality_correct += (grammaticality_preds == grammaticality_labels).sum().item()
             total += formality_labels.size(0)
 
-    print(f"Test Accuracy: formality={formality_correct/total:.4f}, gender={gender_correct/total:.4f}")
+    print(f"Test Accuracy: formality={formality_correct/total:.4f}, gender={gender_correct/total:.4f}, gram={grammaticality_correct/total:.4f}")
 
     # Save model
     print(f"\nSaving model to {args.output}...")

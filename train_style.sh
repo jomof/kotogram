@@ -1,5 +1,5 @@
 #!/bin/bash
-# Train style classifier (formality + gender) on full Japanese sentence corpus
+# Train style classifier (formality + gender + grammaticality) on full Japanese sentence corpus
 #
 # Usage:
 #   ./train_style.sh                    # Default training
@@ -52,6 +52,7 @@ setup_environment
 # Default configuration
 DATA_PATH="data/jpn_sentences.tsv"
 EXTRA_DATA_PATH="data/unpragmatic_sentences.tsv"
+AGRAMMATIC_DATA_PATH="data/jpn_agrammatic.tsv"
 OUTPUT_DIR="models/style"
 EPOCHS=20
 BATCH_SIZE=64
@@ -66,6 +67,7 @@ ENCODER_LR_FACTOR=0.1
 LEARNING_RATE=1e-4
 FORMALITY_WEIGHT=1.0
 GENDER_WEIGHT=1.0
+GRAMMATICALITY_WEIGHT=1.0
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -80,6 +82,14 @@ while [[ $# -gt 0 ]]; do
             ;;
         --no-extra-data)
             EXTRA_DATA_PATH=""
+            shift
+            ;;
+        --agrammatic-data)
+            AGRAMMATIC_DATA_PATH="$2"
+            shift 2
+            ;;
+        --no-agrammatic-data)
+            AGRAMMATIC_DATA_PATH=""
             shift
             ;;
         --output)
@@ -138,8 +148,12 @@ while [[ $# -gt 0 ]]; do
             GENDER_WEIGHT="$2"
             shift 2
             ;;
+        --grammaticality-weight)
+            GRAMMATICALITY_WEIGHT="$2"
+            shift 2
+            ;;
         --help)
-            echo "Train style classifier (formality + gender) on Japanese sentence corpus"
+            echo "Train style classifier (formality + gender + grammaticality) on Japanese sentence corpus"
             echo ""
             echo "Usage: $0 [OPTIONS]"
             echo ""
@@ -147,6 +161,8 @@ while [[ $# -gt 0 ]]; do
             echo "  --data PATH           Path to primary TSV file (default: data/jpn_sentences.tsv)"
             echo "  --extra-data PATH     Path to extra TSV file (default: data/unpragmatic_sentences.tsv)"
             echo "  --no-extra-data       Disable loading extra data file"
+            echo "  --agrammatic-data PATH Path to agrammatic TSV file (default: data/jpn_agrammatic.tsv)"
+            echo "  --no-agrammatic-data  Disable loading agrammatic data file"
             echo "  --output DIR          Output directory (default: models/style)"
             echo "  --max-samples N       Limit samples (for testing)"
             echo ""
@@ -161,6 +177,7 @@ while [[ $# -gt 0 ]]; do
             echo "Multi-task Loss Weights:"
             echo "  --formality-weight F  Weight for formality loss (default: 1.0)"
             echo "  --gender-weight F     Weight for gender loss (default: 1.0)"
+            echo "  --grammaticality-weight F Weight for grammaticality loss (default: 1.0)"
             echo ""
             echo "Model Architecture:"
             echo "  --embed-dim N         Model dimension (default: 192)"
@@ -178,12 +195,15 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-echo "=============================================="
-echo "Style Classifier Training (Formality + Gender)"
-echo "=============================================="
+echo "========================================================"
+echo "Style Classifier Training (Formality + Gender + Grammaticality)"
+echo "========================================================"
 echo "Data:           $DATA_PATH"
 if [ -n "$EXTRA_DATA_PATH" ]; then
     echo "Extra data:     $EXTRA_DATA_PATH"
+fi
+if [ -n "$AGRAMMATIC_DATA_PATH" ]; then
+    echo "Agrammatic:     $AGRAMMATIC_DATA_PATH"
 fi
 echo "Output:         $OUTPUT_DIR"
 echo "Epochs:         $EPOCHS"
@@ -195,6 +215,7 @@ echo "Num layers:     $NUM_LAYERS"
 echo "Num heads:      $NUM_HEADS"
 echo "Formality wt:   $FORMALITY_WEIGHT"
 echo "Gender wt:      $GENDER_WEIGHT"
+echo "Grammatic wt:   $GRAMMATICALITY_WEIGHT"
 if [ -n "$PRETRAIN_MLM" ]; then
     echo "MLM pretrain:   $PRETRAIN_EPOCHS epochs"
     echo "Encoder LR:     ${ENCODER_LR_FACTOR}x base LR during fine-tuning"
@@ -225,7 +246,8 @@ CMD="python -m kotogram.style_classifier \
     --pretrain-epochs $PRETRAIN_EPOCHS \
     --encoder-lr-factor $ENCODER_LR_FACTOR \
     --formality-weight $FORMALITY_WEIGHT \
-    --gender-weight $GENDER_WEIGHT"
+    --gender-weight $GENDER_WEIGHT \
+    --grammaticality-weight $GRAMMATICALITY_WEIGHT"
 
 if [ -n "$PRETRAIN_MLM" ]; then
     CMD="$CMD --pretrain-mlm"
@@ -237,6 +259,10 @@ fi
 
 if [ -n "$EXTRA_DATA_PATH" ]; then
     CMD="$CMD --extra-data \"$EXTRA_DATA_PATH\""
+fi
+
+if [ -n "$AGRAMMATIC_DATA_PATH" ]; then
+    CMD="$CMD --agrammatic-data \"$AGRAMMATIC_DATA_PATH\""
 fi
 
 # Run training
