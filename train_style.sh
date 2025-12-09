@@ -51,6 +51,7 @@ setup_environment
 
 # Default configuration
 DATA_PATH="data/jpn_sentences.tsv"
+EXTRA_DATA_PATH="data/unpragmatic_sentences.tsv"
 OUTPUT_DIR="models/style"
 EPOCHS=20
 BATCH_SIZE=64
@@ -72,6 +73,14 @@ while [[ $# -gt 0 ]]; do
         --data)
             DATA_PATH="$2"
             shift 2
+            ;;
+        --extra-data)
+            EXTRA_DATA_PATH="$2"
+            shift 2
+            ;;
+        --no-extra-data)
+            EXTRA_DATA_PATH=""
+            shift
             ;;
         --output)
             OUTPUT_DIR="$2"
@@ -135,7 +144,9 @@ while [[ $# -gt 0 ]]; do
             echo "Usage: $0 [OPTIONS]"
             echo ""
             echo "Data Options:"
-            echo "  --data PATH           Path to TSV file (default: data/jpn_sentences.tsv)"
+            echo "  --data PATH           Path to primary TSV file (default: data/jpn_sentences.tsv)"
+            echo "  --extra-data PATH     Path to extra TSV file (default: data/unpragmatic_sentences.tsv)"
+            echo "  --no-extra-data       Disable loading extra data file"
             echo "  --output DIR          Output directory (default: models/style)"
             echo "  --max-samples N       Limit samples (for testing)"
             echo ""
@@ -171,6 +182,9 @@ echo "=============================================="
 echo "Style Classifier Training (Formality + Gender)"
 echo "=============================================="
 echo "Data:           $DATA_PATH"
+if [ -n "$EXTRA_DATA_PATH" ]; then
+    echo "Extra data:     $EXTRA_DATA_PATH"
+fi
 echo "Output:         $OUTPUT_DIR"
 echo "Epochs:         $EPOCHS"
 echo "Batch size:     $BATCH_SIZE"
@@ -219,6 +233,10 @@ fi
 
 if [ -n "$MAX_SAMPLES" ]; then
     CMD="$CMD $MAX_SAMPLES"
+fi
+
+if [ -n "$EXTRA_DATA_PATH" ]; then
+    CMD="$CMD --extra-data \"$EXTRA_DATA_PATH\""
 fi
 
 # Run training

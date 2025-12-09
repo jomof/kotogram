@@ -480,6 +480,128 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         return cls(samples, tokenizer)
 
+    @classmethod
+    def from_multiple_tsv(
+        cls,
+        tsv_paths: List[str],
+        tokenizer: Tokenizer,
+        parser: Optional[JapaneseParser] = None,
+        max_samples: Optional[int] = None,
+        verbose: bool = True,
+        labeled: bool = True,
+    ) -> 'StyleDataset':
+        """Load dataset from multiple TSV files of Japanese sentences.
+
+        This method loads samples from multiple TSV files, combining them into
+        a single dataset. Useful for augmenting training data with additional
+        examples (e.g., unpragmatic sentences).
+
+        Args:
+            tsv_paths: List of paths to TSV files with Japanese sentences
+            tokenizer: Tokenizer to build vocabulary
+            parser: JapaneseParser instance (defaults to SudachiJapaneseParser)
+            max_samples: Optional limit on total number of samples across all files
+            verbose: If True, print progress
+            labeled: If True, compute formality and gender labels
+
+        Returns:
+            StyleDataset with encoded samples from all files
+        """
+        actual_parser: JapaneseParser
+        if parser is None:
+            from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+            actual_parser = SudachiJapaneseParser()
+        else:
+            actual_parser = parser
+
+        samples: List[Sample] = []
+        formality_counts: Counter[FormalityLevel] = Counter()
+        gender_counts: Counter[GenderLevel] = Counter()
+        total = 0
+
+        for tsv_path in tsv_paths:
+            if verbose:
+                print(f"\nLoading from {tsv_path}...")
+
+            file_count = 0
+            with open(tsv_path, 'r', encoding='utf-8') as f:
+                reader = csv.reader(f, delimiter='\t')
+
+                for row in reader:
+                    if len(row) < 3:
+                        continue
+
+                    sentence_id, lang, sentence = row[0], row[1], row[2]
+
+                    if lang != 'jpn':
+                        continue
+
+                    try:
+                        # Convert to Kotogram
+                        kotogram = actual_parser.japanese_to_kotogram(sentence)
+
+                        # Get labels (or dummy for pretraining)
+                        if labeled:
+                            formality_enum = formality(kotogram)
+                            gender_enum = gender(kotogram)
+                            formality_id = FORMALITY_LABEL_TO_ID[formality_enum]
+                            gender_id = GENDER_LABEL_TO_ID[gender_enum]
+                        else:
+                            formality_enum = FormalityLevel.NEUTRAL
+                            gender_enum = GenderLevel.NEUTRAL
+                            formality_id = FORMALITY_LABEL_TO_ID[formality_enum]
+                            gender_id = GENDER_LABEL_TO_ID[gender_enum]
+
+                        # Encode to feature IDs (builds vocabulary)
+                        feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
+
+                        sample = Sample(
+                            feature_ids=feature_ids,
+                            formality_label=formality_id,
+                            gender_label=gender_id,
+                            original_sentence=sentence,
+                            kotogram=kotogram,
+                        )
+                        samples.append(sample)
+                        formality_counts[formality_enum] += 1
+                        gender_counts[gender_enum] += 1
+                        total += 1
+                        file_count += 1
+
+                        if verbose and total % 10000 == 0:
+                            vocab_sizes = tokenizer.get_vocab_sizes()
+                            print(f"Processed {total} sentences, vocab sizes: {vocab_sizes}")
+
+                        if max_samples and total >= max_samples:
+                            break
+
+                    except Exception as e:
+                        if verbose:
+                            print(f"Error processing sentence {sentence_id}: {e}")
+                        continue
+
+            if verbose:
+                print(f"  Loaded {file_count} samples from {tsv_path}")
+
+            if max_samples and total >= max_samples:
+                break
+
+        if verbose:
+            print(f"\nDataset loaded: {len(samples)} samples from {len(tsv_paths)} files")
+            print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
+            if labeled:
+                print("Formality distribution:")
+                for f_label, f_count in sorted(formality_counts.items(), key=lambda x: x[1], reverse=True):
+                    print(f"  {f_label.value}: {f_count} ({100*f_count/len(samples):.1f}%)")
+                print("Gender distribution:")
+                for g_label, g_count in sorted(gender_counts.items(), key=lambda x: x[1], reverse=True):
+                    print(f"  {g_label.value}: {g_count} ({100*g_count/len(samples):.1f}%)")
+
+        # Freeze vocabulary after building
+        tokenizer.freeze()
+
+        return cls(samples, tokenizer)
+
     def split(
         self,
         train_ratio: float = 0.8,
@@ -1646,8 +1768,15 @@ if __name__ == "__main__":
                         help="Loss weight for formality task")
     parser.add_argument("--gender-weight", type=float, default=1.0,
                         help="Loss weight for gender task")
+    parser.add_argument("--extra-data", type=str, default=None,
+                        help="Path to additional TSV file with training data (e.g., unpragmatic examples)")
 
     args = parser.parse_args()
+
+    # Build list of data files
+    data_files = [args.data]
+    if args.extra_data:
+        data_files.append(args.extra_data)
 
     # Load data: if doing MLM pretraining, first load unlabeled data for pretraining,
     # then load labeled data for fine-tuning
@@ -1655,13 +1784,22 @@ if __name__ == "__main__":
     if args.pretrain_mlm:
         print("Loading unlabeled data for MLM pretraining...")
         tokenizer = Tokenizer()
-        unlabeled_dataset = StyleDataset.from_tsv(
-            args.data,
-            tokenizer,
-            max_samples=args.max_samples,
-            verbose=True,
-            labeled=False,  # No labels needed for pretraining
-        )
+        if len(data_files) > 1:
+            unlabeled_dataset = StyleDataset.from_multiple_tsv(
+                data_files,
+                tokenizer,
+                max_samples=args.max_samples,
+                verbose=True,
+                labeled=False,  # No labels needed for pretraining
+            )
+        else:
+            unlabeled_dataset = StyleDataset.from_tsv(
+                args.data,
+                tokenizer,
+                max_samples=args.max_samples,
+                verbose=True,
+                labeled=False,  # No labels needed for pretraining
+            )
         # Note: tokenizer is frozen after from_tsv
 
         # Model config (vocab is now fixed)
@@ -1694,23 +1832,42 @@ if __name__ == "__main__":
 
         # Now load labeled dataset with the frozen tokenizer
         print("\nLoading labeled data for fine-tuning...")
-        labeled_dataset = StyleDataset.from_tsv(
-            args.data,
-            tokenizer,
-            max_samples=args.max_samples,
-            verbose=True,
-            labeled=True,
-        )
+        # For fine-tuning, we need to unfreeze temporarily to load new data
+        tokenizer._frozen = False
+        if len(data_files) > 1:
+            labeled_dataset = StyleDataset.from_multiple_tsv(
+                data_files,
+                tokenizer,
+                max_samples=args.max_samples,
+                verbose=True,
+                labeled=True,
+            )
+        else:
+            labeled_dataset = StyleDataset.from_tsv(
+                args.data,
+                tokenizer,
+                max_samples=args.max_samples,
+                verbose=True,
+                labeled=True,
+            )
         train_data, val_data, test_data = labeled_dataset.split()
     else:
         print("Loading data...")
         tokenizer = Tokenizer()
-        dataset = StyleDataset.from_tsv(
-            args.data,
-            tokenizer,
-            max_samples=args.max_samples,
-            verbose=True,
-        )
+        if len(data_files) > 1:
+            dataset = StyleDataset.from_multiple_tsv(
+                data_files,
+                tokenizer,
+                max_samples=args.max_samples,
+                verbose=True,
+            )
+        else:
+            dataset = StyleDataset.from_tsv(
+                args.data,
+                tokenizer,
+                max_samples=args.max_samples,
+                verbose=True,
+            )
         train_data, val_data, test_data = dataset.split()
 
         # Model config
