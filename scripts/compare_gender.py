@@ -23,6 +23,26 @@ MODEL_INCORRECT_SENTENCES: set[str] = {
     "大抵の人は僕を気違いだと思っている。",  # ID 4747
     "僕はすごく太ってる。",  # ID 4764
     "僕は不幸かも知れないけれど自殺はしない。",  # ID 4782
+
+    # Model predicts NEUTRAL but has くだらねえ (masculine contraction)
+    "「くだらねえ都市伝説だろう」「でも、火のないところに煙は立たないというけどね」",  # ID 74728
+
+    # Model predicts NEUTRAL but has オレ (masculine pronoun)
+    "ああ、オレも実際、こうして目の当たりにするまでは半信半疑だったが・・・。",  # ID 75203
+    "雪がしんしんと降り積もる・・・オレの体に。",  # ID 75936
+
+    # Model predicts NEUTRAL but has ぞ particle (masculine)
+    "買い物の割に遅かったな。どこぞでよろしくやっていたのか？",  # ID 75272
+
+    # Model predicts NEUTRAL but has のよ (feminine pattern)
+    "いいのよ。それより、早く行かないとタイムセール終わっちゃう。",  # ID 75407
+    "こーゆーのは、買うのが楽しいのよ。使うか使わないかなんてのは、二の次なんだって。",  # ID 76768
+
+    # Model predicts NEUTRAL but has ねえ (masculine rough negation)
+    "なんだってずらからねえんだ！",  # ID 76498
+
+    # Model predicts NEUTRAL but has オレ (masculine pronoun)
+    "助けてください！オレ、毎晩同じ悪夢を見るんです。",  # ID 147383
 }
 
 # Sentences where NEITHER is definitively wrong (design differences)
@@ -38,6 +58,31 @@ DESIGN_DIFFERENCE_SENTENCES: set[str] = {
 
     # のかな pattern - can have feminine associations
     "みんなもそうなのかな、と思うことくらいしかできない。",  # ID 4732 - Rule: neutral, Model: feminine
+
+    # Model predicts masculine based on aggressive tone (やっとる is regional/masculine)
+    # Rule sees no explicit markers
+    "こ、こら！ナニやっとるかぁぁ！！",  # ID 74701 - Rule: neutral, Model: masculine
+
+    # Model predicts masculine for 見して (casual imperative) - can have masculine associations
+    "「マナカの絵、見して」「えーー、恥ずかしいですよー」",  # ID 75055 - Rule: neutral, Model: masculine
+
+    # Model predicts feminine for sentences with sentence-final よ
+    # よ can be used by anyone but model may associate it with feminine speech
+    "料理をするのを手伝ってよ。",  # ID 77922 - Rule: neutral, Model: feminine
+    "彼が君の申し出を引き受けるのは請け合うよ。",  # ID 120446 - Rule: neutral, Model: feminine
+
+    # Model predicts masculine for おれ but it's the imperative verb form of 構える, not pronoun オレ
+    "詳しいことが全部わかるまでは、あわててその場にふみこむな。見当がつくまでは、慎重にかまえておれ。",  # ID 146327
+
+    # Model predicts feminine for のでね pattern - reasonable interpretation
+    "出来ればそうしたいのだが、行くところがあるのでね。",  # ID 147668
+    "十分間に合うように出かけよう。危険は犯したくないのでね。",  # ID 148031
+
+    # Model predicts masculine for unclear reasons
+    "私はその少年がほんを読むのに反対しない。",  # ID 160025
+
+    # Model predicts feminine, seeing 煮よ as sentence-final よ (it's actually part of 煮 cooking style)
+    "私の十八番、チキンのレモン煮よ。",  # ID 163353
 }
 
 def main():
