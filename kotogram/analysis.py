@@ -570,15 +570,16 @@ def _analyze_gender_features(features: List[Dict[str, str]]) -> GenderLevel:
 
     # Check for のよ / のね patterns (feminine sentence endings)
     # Pattern: の (pre_noun_particle) followed by よ/ね (sentence_final_particle)
+    # Also match lengthened variants like のねー, のよー
     for j in range(len(particle_sequence) - 1):
         idx1, surf1, detail1 = particle_sequence[j]
         idx2, surf2, detail2 = particle_sequence[j + 1]
         # Check if consecutive particles
         if idx2 == idx1 + 1:
             if surf1 == 'の' and detail1 == 'pre_noun_particle':
-                if surf2 in ['よ', 'ヨ'] and detail2 == 'sentence_final_particle':
+                if surf2 in ['よ', 'ヨ', 'よー', 'よお', 'ヨー'] and detail2 == 'sentence_final_particle':
                     has_feminine = True
-                if surf2 in ['ね', 'ネ'] and detail2 == 'sentence_final_particle':
+                if surf2 in ['ね', 'ネ', 'ねー', 'ねえ', 'ネー'] and detail2 == 'sentence_final_particle':
                     has_feminine = True
 
     # Check individual sentence-final particles
