@@ -29,6 +29,11 @@ setup_environment() {
         python -m pip install torch
     fi
 
+    if ! python -c "import sudachipy" 2>/dev/null; then
+        echo "SudachiPy not found. Installing..."
+        python -m pip install sudachipy sudachidict_core
+    fi
+
     if ! python -c "import kotogram" 2>/dev/null; then
         echo "Kotogram not found. Installing from current directory..."
         python -m pip install -e .
