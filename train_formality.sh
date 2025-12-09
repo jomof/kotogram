@@ -26,7 +26,12 @@ setup_environment() {
     if ! python -c "import torch" 2>/dev/null; then
         echo "PyTorch not found. Installing..."
         python -m pip install --upgrade pip
-        python -m pip install torch
+        python -m pip install torch numpy
+    fi
+
+    if ! python -c "import numpy" 2>/dev/null; then
+        echo "NumPy not found. Installing..."
+        python -m pip install numpy
     fi
 
     if ! python -c "import sudachidict_full" 2>/dev/null; then

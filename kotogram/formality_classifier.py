@@ -730,7 +730,7 @@ class TrainerConfig:
     lr_scheduler_factor: float = 0.5
     gradient_clip: float = 1.0
     use_class_weights: bool = True
-    device: str = "cuda" if torch.cuda.is_available() else "cpu"
+    device: str = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
 
 
 class Trainer:
