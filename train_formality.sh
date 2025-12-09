@@ -62,6 +62,7 @@ NUM_LAYERS=3
 PRETRAIN_MLM=""
 PRETRAIN_EPOCHS=5
 MAX_SAMPLES=""
+STRIP_SURFACE=""
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -110,6 +111,10 @@ while [[ $# -gt 0 ]]; do
             MAX_SAMPLES="--max-samples $2"
             shift 2
             ;;
+        --strip-surface)
+            STRIP_SURFACE="--strip-surface"
+            shift
+            ;;
         --help)
             echo "Train formality classifier on Japanese sentence corpus"
             echo ""
@@ -127,6 +132,7 @@ while [[ $# -gt 0 ]]; do
             echo "  --pretrain-mlm        Enable masked LM pretraining"
             echo "  --pretrain-epochs N   MLM pretraining epochs (default: 5)"
             echo "  --max-samples N       Limit samples (for testing)"
+            echo "  --strip-surface       Strip surface forms (kanji) to reduce vocab size"
             echo "  --help                Show this help message"
             exit 0
             ;;
@@ -154,6 +160,9 @@ fi
 if [ -n "$MAX_SAMPLES" ]; then
     echo "Max samples:    ${MAX_SAMPLES#--max-samples }"
 fi
+if [ -n "$STRIP_SURFACE" ]; then
+    echo "Strip surface:  yes (grammar-only tokens)"
+fi
 echo "=============================================="
 echo ""
 
@@ -176,6 +185,7 @@ python -m kotogram.formality_classifier \
     $PRETRAIN_MLM \
     --pretrain-epochs "$PRETRAIN_EPOCHS" \
     $MAX_SAMPLES \
+    $STRIP_SURFACE \
     2>&1 | tee "$OUTPUT_DIR/training.log"
 
 echo ""

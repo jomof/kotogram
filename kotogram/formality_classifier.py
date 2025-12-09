@@ -54,6 +54,25 @@ CLS_TOKEN = "<CLS>"
 MASK_TOKEN = "<MASK>"  # For self-supervised pretraining
 
 
+def strip_surface_form(token: str) -> str:
+    """Strip surface form (kanji/kana) from a Kotogram token, keeping only POS tags.
+
+    Converts: ⌈ˢ食べᵖv:e-ichidan-ba:conjunctive⌉ -> ⌈ᵖv:e-ichidan-ba:conjunctive⌉
+
+    This reduces vocabulary size by collapsing tokens that differ only by
+    surface form into the same grammatical pattern.
+
+    Args:
+        token: A single Kotogram token string
+
+    Returns:
+        Token with surface form removed
+    """
+    import re
+    # Remove surface form (ˢ...ᵖ) but keep the ᵖ marker
+    return re.sub(r'ˢ[^ᵖ]*ᵖ', 'ᵖ', token)
+
+
 class KotogramTokenizer:
     """Tokenizer that splits Kotogram strings into tokens and manages vocabulary.
 
@@ -64,10 +83,16 @@ class KotogramTokenizer:
         token_to_id: Mapping from token string to integer ID
         id_to_token: Mapping from integer ID to token string
         vocab_size: Total vocabulary size including special tokens
+        strip_surface: If True, remove surface forms (kanji/kana) from tokens
     """
 
-    def __init__(self):
-        """Initialize tokenizer with special tokens."""
+    def __init__(self, strip_surface: bool = False):
+        """Initialize tokenizer with special tokens.
+
+        Args:
+            strip_surface: If True, strip surface forms from tokens to reduce
+                          vocabulary size. Tokens will only contain POS/grammar info.
+        """
         self.token_to_id: Dict[str, int] = {
             PAD_TOKEN: 0,
             UNK_TOKEN: 1,
@@ -77,6 +102,7 @@ class KotogramTokenizer:
         self.id_to_token: Dict[int, str] = {v: k for k, v in self.token_to_id.items()}
         self._next_id = len(self.token_to_id)
         self._frozen = False
+        self.strip_surface = strip_surface
 
     @property
     def vocab_size(self) -> int:
@@ -106,9 +132,13 @@ class KotogramTokenizer:
             kotogram: Kotogram string with ⌈...⌉ token boundaries
 
         Returns:
-            List of token strings (each ⌈...⌉ block)
+            List of token strings (each ⌈...⌉ block), optionally with
+            surface forms stripped if strip_surface=True
         """
-        return split_kotogram(kotogram)
+        tokens = split_kotogram(kotogram)
+        if self.strip_surface:
+            tokens = [strip_surface_form(t) for t in tokens]
+        return tokens
 
     def add_token(self, token: str) -> int:
         """Add a token to vocabulary and return its ID.
@@ -193,6 +223,7 @@ class KotogramTokenizer:
         data = {
             'token_to_id': self.token_to_id,
             'frozen': self._frozen,
+            'strip_surface': self.strip_surface,
         }
         with open(path, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
@@ -210,7 +241,7 @@ class KotogramTokenizer:
         with open(path, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
-        tokenizer = cls()
+        tokenizer = cls(strip_surface=data.get('strip_surface', False))
         tokenizer.token_to_id = data['token_to_id']
         tokenizer.id_to_token = {int(v): k for k, v in tokenizer.token_to_id.items()}
         tokenizer._next_id = max(tokenizer.token_to_id.values()) + 1
@@ -1221,11 +1252,15 @@ if __name__ == "__main__":
                         help="Pre-train with masked language modeling")
     parser.add_argument("--pretrain-epochs", type=int, default=5,
                         help="MLM pretraining epochs")
+    parser.add_argument("--strip-surface", action="store_true",
+                        help="Strip surface forms (kanji) from tokens to reduce vocab size")
 
     args = parser.parse_args()
 
     print("Loading data...")
-    tokenizer = KotogramTokenizer()
+    tokenizer = KotogramTokenizer(strip_surface=args.strip_surface)
+    if args.strip_surface:
+        print("Surface forms will be stripped (grammar-only tokens)")
     dataset = FormalityDataset.from_tsv(
         args.data,
         tokenizer,
