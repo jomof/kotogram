@@ -1,9 +1,9 @@
 #!/bin/bash
-# Train formality classifier on full Japanese sentence corpus
+# Train style classifier (formality + gender) on full Japanese sentence corpus
 #
 # Usage:
-#   ./train_formality.sh                    # Default training
-#   ./train_formality.sh --pretrain-mlm     # With MLM pretraining
+#   ./train_style.sh                    # Default training
+#   ./train_style.sh --pretrain-mlm     # With MLM pretraining
 
 set -e
 
@@ -51,7 +51,7 @@ setup_environment
 
 # Default configuration
 DATA_PATH="data/jpn_sentences.tsv"
-OUTPUT_DIR="models/formality"
+OUTPUT_DIR="models/style"
 EPOCHS=20
 BATCH_SIZE=64
 EMBED_DIM=192
@@ -63,6 +63,8 @@ PRETRAIN_EPOCHS=5
 MAX_SAMPLES=""
 ENCODER_LR_FACTOR=0.1
 LEARNING_RATE=1e-4
+FORMALITY_WEIGHT=1.0
+GENDER_WEIGHT=1.0
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -119,14 +121,22 @@ while [[ $# -gt 0 ]]; do
             LEARNING_RATE="$2"
             shift 2
             ;;
+        --formality-weight)
+            FORMALITY_WEIGHT="$2"
+            shift 2
+            ;;
+        --gender-weight)
+            GENDER_WEIGHT="$2"
+            shift 2
+            ;;
         --help)
-            echo "Train formality classifier on Japanese sentence corpus"
+            echo "Train style classifier (formality + gender) on Japanese sentence corpus"
             echo ""
             echo "Usage: $0 [OPTIONS]"
             echo ""
             echo "Data Options:"
             echo "  --data PATH           Path to TSV file (default: data/jpn_sentences.tsv)"
-            echo "  --output DIR          Output directory (default: models/formality)"
+            echo "  --output DIR          Output directory (default: models/style)"
             echo "  --max-samples N       Limit samples (for testing)"
             echo ""
             echo "Training Options:"
@@ -136,6 +146,10 @@ while [[ $# -gt 0 ]]; do
             echo "  --pretrain-mlm        Enable masked LM pretraining"
             echo "  --pretrain-epochs N   MLM pretraining epochs (default: 5)"
             echo "  --encoder-lr-factor F LR factor for encoder in fine-tuning (default: 0.1)"
+            echo ""
+            echo "Multi-task Loss Weights:"
+            echo "  --formality-weight F  Weight for formality loss (default: 1.0)"
+            echo "  --gender-weight F     Weight for gender loss (default: 1.0)"
             echo ""
             echo "Model Architecture:"
             echo "  --embed-dim N         Model dimension (default: 192)"
@@ -154,7 +168,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo "=============================================="
-echo "Formality Classifier Training"
+echo "Style Classifier Training (Formality + Gender)"
 echo "=============================================="
 echo "Data:           $DATA_PATH"
 echo "Output:         $OUTPUT_DIR"
@@ -165,6 +179,8 @@ echo "Model dim:      $EMBED_DIM"
 echo "Hidden dim:     $HIDDEN_DIM"
 echo "Num layers:     $NUM_LAYERS"
 echo "Num heads:      $NUM_HEADS"
+echo "Formality wt:   $FORMALITY_WEIGHT"
+echo "Gender wt:      $GENDER_WEIGHT"
 if [ -n "$PRETRAIN_MLM" ]; then
     echo "MLM pretrain:   $PRETRAIN_EPOCHS epochs"
     echo "Encoder LR:     ${ENCODER_LR_FACTOR}x base LR during fine-tuning"
@@ -182,7 +198,7 @@ mkdir -p "$OUTPUT_DIR"
 export PYTORCH_ENABLE_MPS_FALLBACK=1
 
 # Build command
-CMD="python -m kotogram.formality_classifier \
+CMD="python -m kotogram.style_classifier \
     --data \"$DATA_PATH\" \
     --output \"$OUTPUT_DIR\" \
     --epochs $EPOCHS \
@@ -193,7 +209,9 @@ CMD="python -m kotogram.formality_classifier \
     --num-heads $NUM_HEADS \
     --learning-rate $LEARNING_RATE \
     --pretrain-epochs $PRETRAIN_EPOCHS \
-    --encoder-lr-factor $ENCODER_LR_FACTOR"
+    --encoder-lr-factor $ENCODER_LR_FACTOR \
+    --formality-weight $FORMALITY_WEIGHT \
+    --gender-weight $GENDER_WEIGHT"
 
 if [ -n "$PRETRAIN_MLM" ]; then
     CMD="$CMD --pretrain-mlm"

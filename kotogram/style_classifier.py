@@ -1,8 +1,9 @@
-"""Supervised formality classifier for Japanese sentences using Kotogram representations.
+"""Supervised style classifier for Japanese sentences using Kotogram representations.
 
-This module provides a neural sequence classifier that predicts formality labels
-for Japanese sentences based on their Kotogram representation. It uses a
-pretrain-then-finetune approach with a small transformer encoder.
+This module provides a neural sequence classifier that predicts both formality and
+gender-associated speech style labels for Japanese sentences based on their Kotogram
+representation. It uses a pretrain-then-finetune approach with a small transformer encoder
+and multi-task classification heads.
 
 Architecture:
 - Token Embedding: Multi-field embeddings for morphological features (pos, pos_detail1,
@@ -11,7 +12,8 @@ Architecture:
 - Encoder: Small transformer encoder (2-4 layers) with multi-head self-attention.
 - Pretraining: Multi-field Masked Language Modeling (MLM) that predicts all morphological
   features at masked positions, not just POS tags. This provides richer supervision.
-- Fine-tuning: Sentence-level classification using [CLS] token representation.
+- Fine-tuning: Sentence-level multi-task classification using [CLS] token representation,
+  with separate heads for formality and gender prediction.
 
 Pipeline:
 1. Load Japanese sentences from TSV corpus (unlabeled for pretraining)
@@ -19,26 +21,26 @@ Pipeline:
 3. Extract token features using extract_token_features()
 4. Build vocabulary for each categorical field
 5. Pretrain encoder with multi-field MLM on unlabeled data
-6. Reinitialize classifier head, then fine-tune with formality labels
+6. Reinitialize classifier heads, then fine-tune with formality and gender labels
 
 Usage:
-    from kotogram.formality_classifier import (
-        FormalityDataset, Tokenizer, FormalityClassifier,
-        FormalityClassifierWithMLM, MLMTrainer, Trainer, predict_formality
+    from kotogram.style_classifier import (
+        StyleDataset, Tokenizer, StyleClassifier,
+        StyleClassifierWithMLM, MLMTrainer, Trainer, predict_style
     )
 
     # Build vocabulary with unlabeled data
     tokenizer = Tokenizer()
-    unlabeled = FormalityDataset.from_tsv("data/sentences.tsv", tokenizer, labeled=False)
+    unlabeled = StyleDataset.from_tsv("data/sentences.tsv", tokenizer, labeled=False)
 
     # Pretrain with multi-field MLM
-    model = FormalityClassifierWithMLM(tokenizer.get_model_config())
+    model = StyleClassifierWithMLM(tokenizer.get_model_config())
     mlm_trainer = MLMTrainer(model, unlabeled)
     mlm_trainer.train(epochs=5)
 
     # Reset classifier and load labeled data
     model.reset_classifier()
-    labeled = FormalityDataset.from_tsv("data/sentences.tsv", tokenizer, labeled=True)
+    labeled = StyleDataset.from_tsv("data/sentences.tsv", tokenizer, labeled=True)
     train_data, val_data, test_data = labeled.split()
 
     # Fine-tune for classification
@@ -46,7 +48,7 @@ Usage:
     trainer.train(epochs=10)
 
     # Inference
-    label, probs = predict_formality("何かしてみましょう。", model, tokenizer)
+    formality_label, gender_label, probs = predict_style("何かしてみましょう。", model, tokenizer)
 """
 
 import csv
@@ -65,7 +67,7 @@ from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 from kotogram.kotogram import split_kotogram
-from kotogram.analysis import formality, FormalityLevel, extract_token_features
+from kotogram.analysis import formality, FormalityLevel, gender, GenderLevel, extract_token_features
 
 
 # Special token values for vocabulary
@@ -76,6 +78,10 @@ MASK_TOKEN = "<MASK>"  # For self-supervised pretraining
 
 # Feature fields used for token embedding
 FEATURE_FIELDS = ['pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma']
+
+# Number of classes for each task
+NUM_FORMALITY_CLASSES = 6
+NUM_GENDER_CLASSES = 4
 
 
 class Tokenizer:
@@ -304,9 +310,10 @@ class Tokenizer:
 
 @dataclass
 class Sample:
-    """Single data sample with per-field feature IDs and label."""
+    """Single data sample with per-field feature IDs and labels for both tasks."""
     feature_ids: Dict[str, List[int]]  # field -> list of token IDs
-    label: int
+    formality_label: int
+    gender_label: int
     original_sentence: str = ""
     kotogram: str = ""
 
@@ -317,24 +324,32 @@ class Sample:
         return len(self.feature_ids[first_field])
 
 
-class FormalityDataset(Dataset):
-    """PyTorch Dataset for formality classification using feature-based tokenization.
+# Label mappings
+FORMALITY_LABEL_TO_ID = {
+    FormalityLevel.VERY_FORMAL: 0,
+    FormalityLevel.FORMAL: 1,
+    FormalityLevel.NEUTRAL: 2,
+    FormalityLevel.CASUAL: 3,
+    FormalityLevel.VERY_CASUAL: 4,
+    FormalityLevel.UNPRAGMATIC_FORMALITY: 5,
+}
+FORMALITY_ID_TO_LABEL = {v: k for k, v in FORMALITY_LABEL_TO_ID.items()}
+
+GENDER_LABEL_TO_ID = {
+    GenderLevel.MASCULINE: 0,
+    GenderLevel.FEMININE: 1,
+    GenderLevel.NEUTRAL: 2,
+    GenderLevel.UNPRAGMATIC_GENDER: 3,
+}
+GENDER_ID_TO_LABEL = {v: k for k, v in GENDER_LABEL_TO_ID.items()}
+
+
+class StyleDataset(Dataset):
+    """PyTorch Dataset for style classification (formality + gender) using feature-based tokenization.
 
     Each sample contains per-field feature IDs rather than a single token ID sequence.
     This allows the model to learn from individual morphological features.
     """
-
-    # Map FormalityLevel enum to integer class IDs
-    LABEL_TO_ID = {
-        FormalityLevel.VERY_FORMAL: 0,
-        FormalityLevel.FORMAL: 1,
-        FormalityLevel.NEUTRAL: 2,
-        FormalityLevel.CASUAL: 3,
-        FormalityLevel.VERY_CASUAL: 4,
-        FormalityLevel.UNPRAGMATIC_FORMALITY: 5,
-    }
-    ID_TO_LABEL = {v: k for k, v in LABEL_TO_ID.items()}
-    NUM_CLASSES = len(LABEL_TO_ID)
 
     def __init__(
         self,
@@ -365,7 +380,7 @@ class FormalityDataset(Dataset):
         max_samples: Optional[int] = None,
         verbose: bool = True,
         labeled: bool = True,
-    ) -> 'FormalityDataset':
+    ) -> 'StyleDataset':
         """Load dataset from TSV file of Japanese sentences.
 
         Args:
@@ -374,18 +389,19 @@ class FormalityDataset(Dataset):
             parser: JapaneseParser instance (defaults to SudachiJapaneseParser)
             max_samples: Optional limit on number of samples
             verbose: If True, print progress
-            labeled: If True, compute formality labels. If False, use dummy labels
+            labeled: If True, compute formality and gender labels. If False, use dummy labels
                     (for pretraining on unlabeled data).
 
         Returns:
-            FormalityDataset with encoded samples
+            StyleDataset with encoded samples
         """
         if parser is None:
             from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
             parser = SudachiJapaneseParser()
 
         samples = []
-        label_counts = Counter()
+        formality_counts = Counter()
+        gender_counts = Counter()
 
         with open(tsv_path, 'r', encoding='utf-8') as f:
             reader = csv.reader(f, delimiter='\t')
@@ -404,25 +420,31 @@ class FormalityDataset(Dataset):
                     # Convert to Kotogram
                     kotogram = parser.japanese_to_kotogram(sentence)
 
-                    # Get formality label (or dummy for pretraining)
+                    # Get labels (or dummy for pretraining)
                     if labeled:
-                        label_enum = formality(kotogram)
-                        label_id = cls.LABEL_TO_ID[label_enum]
+                        formality_enum = formality(kotogram)
+                        gender_enum = gender(kotogram)
+                        formality_id = FORMALITY_LABEL_TO_ID[formality_enum]
+                        gender_id = GENDER_LABEL_TO_ID[gender_enum]
                     else:
-                        label_enum = FormalityLevel.NEUTRAL
-                        label_id = cls.LABEL_TO_ID[label_enum]
+                        formality_enum = FormalityLevel.NEUTRAL
+                        gender_enum = GenderLevel.NEUTRAL
+                        formality_id = FORMALITY_LABEL_TO_ID[formality_enum]
+                        gender_id = GENDER_LABEL_TO_ID[gender_enum]
 
                     # Encode to feature IDs (builds vocabulary)
                     feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
 
                     sample = Sample(
                         feature_ids=feature_ids,
-                        label=label_id,
+                        formality_label=formality_id,
+                        gender_label=gender_id,
                         original_sentence=sentence,
                         kotogram=kotogram,
                     )
                     samples.append(sample)
-                    label_counts[label_enum] += 1
+                    formality_counts[formality_enum] += 1
+                    gender_counts[gender_enum] += 1
                     total += 1
 
                     if verbose and total % 10000 == 0:
@@ -441,8 +463,11 @@ class FormalityDataset(Dataset):
             print(f"\nDataset loaded: {len(samples)} samples")
             print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
             if labeled:
-                print("Label distribution:")
-                for label, count in sorted(label_counts.items(), key=lambda x: x[1], reverse=True):
+                print("Formality distribution:")
+                for label, count in sorted(formality_counts.items(), key=lambda x: x[1], reverse=True):
+                    print(f"  {label.value}: {count} ({100*count/len(samples):.1f}%)")
+                print("Gender distribution:")
+                for label, count in sorted(gender_counts.items(), key=lambda x: x[1], reverse=True):
                     print(f"  {label.value}: {count} ({100*count/len(samples):.1f}%)")
 
         # Freeze vocabulary after building
@@ -455,7 +480,7 @@ class FormalityDataset(Dataset):
         train_ratio: float = 0.8,
         val_ratio: float = 0.1,
         seed: int = 42,
-    ) -> Tuple['FormalityDataset', 'FormalityDataset', 'FormalityDataset']:
+    ) -> Tuple['StyleDataset', 'StyleDataset', 'StyleDataset']:
         """Split dataset into train/validation/test sets."""
         random.seed(seed)
         indices = list(range(len(self.samples)))
@@ -473,19 +498,30 @@ class FormalityDataset(Dataset):
         test_samples = [self.samples[i] for i in test_indices]
 
         return (
-            FormalityDataset(train_samples, self.tokenizer),
-            FormalityDataset(val_samples, self.tokenizer),
-            FormalityDataset(test_samples, self.tokenizer),
+            StyleDataset(train_samples, self.tokenizer),
+            StyleDataset(val_samples, self.tokenizer),
+            StyleDataset(test_samples, self.tokenizer),
         )
 
-    def get_class_weights(self) -> torch.Tensor:
-        """Compute inverse frequency class weights for imbalanced data."""
-        counts = Counter(s.label for s in self.samples)
+    def get_formality_class_weights(self) -> torch.Tensor:
+        """Compute inverse frequency class weights for imbalanced formality data."""
+        counts = Counter(s.formality_label for s in self.samples)
         total = len(self.samples)
-        weights = torch.zeros(self.NUM_CLASSES)
+        weights = torch.zeros(NUM_FORMALITY_CLASSES)
 
         for label_id, count in counts.items():
-            weights[label_id] = total / (self.NUM_CLASSES * count) if count > 0 else 0.0
+            weights[label_id] = total / (NUM_FORMALITY_CLASSES * count) if count > 0 else 0.0
+
+        return weights
+
+    def get_gender_class_weights(self) -> torch.Tensor:
+        """Compute inverse frequency class weights for imbalanced gender data."""
+        counts = Counter(s.gender_label for s in self.samples)
+        total = len(self.samples)
+        weights = torch.zeros(NUM_GENDER_CLASSES)
+
+        for label_id, count in counts.items():
+            weights[label_id] = total / (NUM_GENDER_CLASSES * count) if count > 0 else 0.0
 
         return weights
 
@@ -504,7 +540,8 @@ def collate_fn(
                     truncated. If None, uses the maximum length in the batch.
 
     Returns:
-        Dictionary with per-field 'input_ids_<field>', 'attention_mask', 'labels' tensors
+        Dictionary with per-field 'input_ids_<field>', 'attention_mask',
+        'formality_labels', and 'gender_labels' tensors
     """
     batch_max_len = max(s.seq_len for s in batch)
     # Apply truncation if max_seq_len is specified
@@ -513,7 +550,8 @@ def collate_fn(
     # Initialize per-field lists
     field_ids = {field: [] for field in FEATURE_FIELDS}
     attention_mask = []
-    labels = []
+    formality_labels = []
+    gender_labels = []
 
     for sample in batch:
         # Truncate sequence if needed
@@ -527,14 +565,16 @@ def collate_fn(
             field_ids[field].append(padded)
 
         attention_mask.append([1] * seq_len + [0] * padding_len)
-        labels.append(sample.label)
+        formality_labels.append(sample.formality_label)
+        gender_labels.append(sample.gender_label)
 
     result = {
         f'input_ids_{field}': torch.tensor(field_ids[field], dtype=torch.long)
         for field in FEATURE_FIELDS
     }
     result['attention_mask'] = torch.tensor(attention_mask, dtype=torch.long)
-    result['labels'] = torch.tensor(labels, dtype=torch.long)
+    result['formality_labels'] = torch.tensor(formality_labels, dtype=torch.long)
+    result['gender_labels'] = torch.tensor(gender_labels, dtype=torch.long)
 
     return result
 
@@ -571,14 +611,16 @@ class PositionalEncoding(nn.Module):
 
 @dataclass
 class ModelConfig:
-    """Configuration for FormalityClassifier model.
+    """Configuration for StyleClassifier model.
 
     This config supports multi-field embeddings where each morphological feature
     (pos, pos_detail1, conjugated_type, conjugated_form, lemma) has its own
-    embedding table.
+    embedding table. The model has two classification heads: one for formality
+    and one for gender.
     """
     vocab_sizes: Dict[str, int]  # Field name -> vocabulary size
-    num_classes: int = 6
+    num_formality_classes: int = NUM_FORMALITY_CLASSES
+    num_gender_classes: int = NUM_GENDER_CLASSES
     field_embed_dims: Dict[str, int] = field(default_factory=lambda: {
         'pos': 32,
         'pos_detail1': 32,
@@ -598,7 +640,8 @@ class ModelConfig:
     def to_dict(self) -> Dict[str, Any]:
         return {
             'vocab_sizes': self.vocab_sizes,
-            'num_classes': self.num_classes,
+            'num_formality_classes': self.num_formality_classes,
+            'num_gender_classes': self.num_gender_classes,
             'field_embed_dims': self.field_embed_dims,
             'd_model': self.d_model,
             'hidden_dim': self.hidden_dim,
@@ -679,15 +722,15 @@ class MultiFieldEmbedding(nn.Module):
         return self.dropout(normalized)
 
 
-class FormalityClassifier(nn.Module):
-    """Neural sequence classifier using multi-field morphological features.
+class StyleClassifier(nn.Module):
+    """Neural sequence classifier for multi-task style prediction (formality + gender).
 
     Architecture:
     1. Multi-field embedding: per-field embeddings concatenated and projected
     2. Positional encoding: learned or sinusoidal
     3. Transformer encoder: multi-layer self-attention
     4. Pooling: CLS token embedding for sentence representation
-    5. Classification head: MLP to formality classes
+    5. Classification heads: Separate MLP heads for formality and gender
     """
 
     def __init__(self, config: ModelConfig):
@@ -720,27 +763,35 @@ class FormalityClassifier(nn.Module):
         )
         self.encoder = nn.TransformerEncoder(encoder_layer, config.num_layers)
 
-        # Classification head
-        self.classifier = nn.Sequential(
+        # Formality classification head
+        self.formality_classifier = nn.Sequential(
             nn.Linear(config.d_model, config.hidden_dim),
             nn.GELU(),
             nn.Dropout(config.dropout),
-            nn.Linear(config.hidden_dim, config.num_classes),
+            nn.Linear(config.hidden_dim, config.num_formality_classes),
         )
 
-    def forward(
+        # Gender classification head
+        self.gender_classifier = nn.Sequential(
+            nn.Linear(config.d_model, config.hidden_dim),
+            nn.GELU(),
+            nn.Dropout(config.dropout),
+            nn.Linear(config.hidden_dim, config.num_gender_classes),
+        )
+
+    def _get_pooled_output(
         self,
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
     ) -> torch.Tensor:
-        """Forward pass through the model.
+        """Get pooled sentence representation.
 
         Args:
             field_inputs: Dict with 'input_ids_<field>' tensors of shape (batch, seq_len)
             attention_mask: Binary mask of shape (batch, seq_len), 1 for real tokens
 
         Returns:
-            Logits of shape (batch, num_classes)
+            Pooled representation of shape (batch, d_model)
         """
         # Embed tokens
         x = self.embedding(field_inputs)  # (batch, seq_len, d_model)
@@ -772,18 +823,37 @@ class FormalityClassifier(nn.Module):
         else:
             raise ValueError(f"Unknown pooling: {self.config.pooling}")
 
-        # Classification
-        logits = self.classifier(pooled)
-        return logits
+        return pooled
+
+    def forward(
+        self,
+        field_inputs: Dict[str, torch.Tensor],
+        attention_mask: Optional[torch.Tensor] = None,
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
+        """Forward pass through the model.
+
+        Args:
+            field_inputs: Dict with 'input_ids_<field>' tensors of shape (batch, seq_len)
+            attention_mask: Binary mask of shape (batch, seq_len), 1 for real tokens
+
+        Returns:
+            Tuple of (formality_logits, gender_logits), each of shape (batch, num_classes)
+        """
+        pooled = self._get_pooled_output(field_inputs, attention_mask)
+
+        formality_logits = self.formality_classifier(pooled)
+        gender_logits = self.gender_classifier(pooled)
+
+        return formality_logits, gender_logits
 
     def predict(
         self,
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
-    ) -> torch.Tensor:
-        """Get predicted class probabilities."""
-        logits = self.forward(field_inputs, attention_mask)
-        return F.softmax(logits, dim=-1)
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
+        """Get predicted class probabilities for both tasks."""
+        formality_logits, gender_logits = self.forward(field_inputs, attention_mask)
+        return F.softmax(formality_logits, dim=-1), F.softmax(gender_logits, dim=-1)
 
     def get_encoder_output(
         self,
@@ -848,12 +918,12 @@ class MLMHead(nn.Module):
         return {field: decoder(x) for field, decoder in self.decoders.items()}
 
 
-class FormalityClassifierWithMLM(FormalityClassifier):
-    """Feature-based formality classifier with MLM pretraining head.
+class StyleClassifierWithMLM(StyleClassifier):
+    """Multi-task style classifier with MLM pretraining head.
 
     This model can be:
     1. Pre-trained with masked token prediction (self-supervised)
-    2. Fine-tuned for formality classification (supervised)
+    2. Fine-tuned for multi-task style classification (supervised)
     """
 
     def __init__(self, config: ModelConfig):
@@ -878,17 +948,18 @@ class FormalityClassifierWithMLM(FormalityClassifier):
         return self.mlm_head(encoder_output)
 
     def reset_classifier(self):
-        """Reinitialize the classifier head weights.
+        """Reinitialize both classifier head weights.
 
         Call this after MLM pretraining and before supervised fine-tuning
-        to start the classification head from a fresh state while keeping
+        to start the classification heads from a fresh state while keeping
         the pretrained encoder weights.
         """
-        for module in self.classifier.modules():
-            if isinstance(module, nn.Linear):
-                nn.init.xavier_uniform_(module.weight)
-                if module.bias is not None:
-                    nn.init.zeros_(module.bias)
+        for classifier in [self.formality_classifier, self.gender_classifier]:
+            for module in classifier.modules():
+                if isinstance(module, nn.Linear):
+                    nn.init.xavier_uniform_(module.weight)
+                    if module.bias is not None:
+                        nn.init.zeros_(module.bias)
 
 
 @dataclass
@@ -902,6 +973,8 @@ class TrainerConfig:
     lr_scheduler_factor: float = 0.5
     gradient_clip: float = 1.0
     use_class_weights: bool = True
+    formality_loss_weight: float = 1.0  # Weight for formality loss in multi-task
+    gender_loss_weight: float = 1.0  # Weight for gender loss in multi-task
     device: str = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
 
 
@@ -985,8 +1058,8 @@ class MLMTrainer:
 
     def __init__(
         self,
-        model: FormalityClassifierWithMLM,
-        dataset: FormalityDataset,
+        model: StyleClassifierWithMLM,
+        dataset: StyleDataset,
         config: TrainerConfig = None,
         mask_prob: float = 0.15,
         field_weights: Dict[str, float] = None,
@@ -994,7 +1067,7 @@ class MLMTrainer:
         """Initialize MLM trainer.
 
         Args:
-            model: FormalityClassifierWithMLM model
+            model: StyleClassifierWithMLM model
             dataset: Dataset for pretraining (can be unlabeled)
             config: TrainerConfig with hyperparameters
             mask_prob: Probability of masking each token position
@@ -1116,20 +1189,20 @@ class MLMTrainer:
 
 
 class Trainer:
-    """Training loop for feature-based formality classifier with differential learning rates."""
+    """Training loop for multi-task style classifier with differential learning rates."""
 
     def __init__(
         self,
-        model: FormalityClassifier,
-        train_dataset: FormalityDataset,
-        val_dataset: FormalityDataset,
+        model: StyleClassifier,
+        train_dataset: StyleDataset,
+        val_dataset: StyleDataset,
         config: TrainerConfig = None,
         encoder_lr_factor: float = 0.1,
     ):
         """Initialize trainer.
 
         Args:
-            model: FormalityClassifier model
+            model: StyleClassifier model
             train_dataset: Training dataset
             val_dataset: Validation dataset
             config: TrainerConfig with hyperparameters
@@ -1161,16 +1234,22 @@ class Trainer:
             collate_fn=lambda b: collate_fn(b, pad_id, max_seq_len),
         )
 
-        # Loss function with optional class weights
+        # Loss functions with optional class weights
         if self.config.use_class_weights:
-            weights = train_dataset.get_class_weights().to(self.device)
-            self.criterion = nn.CrossEntropyLoss(weight=weights)
+            formality_weights = train_dataset.get_formality_class_weights().to(self.device)
+            gender_weights = train_dataset.get_gender_class_weights().to(self.device)
+            self.formality_criterion = nn.CrossEntropyLoss(weight=formality_weights)
+            self.gender_criterion = nn.CrossEntropyLoss(weight=gender_weights)
         else:
-            self.criterion = nn.CrossEntropyLoss()
+            self.formality_criterion = nn.CrossEntropyLoss()
+            self.gender_criterion = nn.CrossEntropyLoss()
 
         # Optimizer with differential learning rates
         encoder_params = list(model.embedding.parameters()) + list(model.encoder.parameters())
-        classifier_params = list(model.classifier.parameters())
+        classifier_params = (
+            list(model.formality_classifier.parameters()) +
+            list(model.gender_classifier.parameters())
+        )
 
         self.optimizer = Adam([
             {'params': encoder_params, 'lr': self.config.learning_rate * encoder_lr_factor},
@@ -1189,32 +1268,53 @@ class Trainer:
         self.patience_counter = 0
         self.history = {
             'train_loss': [],
+            'train_formality_loss': [],
+            'train_gender_loss': [],
             'val_loss': [],
-            'val_accuracy': [],
+            'val_formality_loss': [],
+            'val_gender_loss': [],
+            'val_formality_accuracy': [],
+            'val_gender_accuracy': [],
         }
 
-    def _batch_to_device(self, batch: Dict[str, torch.Tensor]) -> Tuple[Dict[str, torch.Tensor], torch.Tensor, torch.Tensor]:
+    def _batch_to_device(self, batch: Dict[str, torch.Tensor]) -> Tuple[Dict[str, torch.Tensor], torch.Tensor, torch.Tensor, torch.Tensor]:
         """Move batch tensors to device and split into inputs/mask/labels."""
         field_inputs = {
             k: v.to(self.device) for k, v in batch.items()
             if k.startswith('input_ids_')
         }
         attention_mask = batch['attention_mask'].to(self.device)
-        labels = batch['labels'].to(self.device)
-        return field_inputs, attention_mask, labels
+        formality_labels = batch['formality_labels'].to(self.device)
+        gender_labels = batch['gender_labels'].to(self.device)
+        return field_inputs, attention_mask, formality_labels, gender_labels
 
-    def train_epoch(self) -> float:
-        """Run one training epoch."""
+    def train_epoch(self) -> Tuple[float, float, float]:
+        """Run one training epoch.
+
+        Returns:
+            Tuple of (total_loss, formality_loss, gender_loss)
+        """
         self.model.train()
         total_loss = 0
+        total_formality_loss = 0
+        total_gender_loss = 0
         n_batches = 0
 
         for batch in self.train_loader:
-            field_inputs, attention_mask, labels = self._batch_to_device(batch)
+            field_inputs, attention_mask, formality_labels, gender_labels = self._batch_to_device(batch)
 
             self.optimizer.zero_grad()
-            logits = self.model(field_inputs, attention_mask)
-            loss = self.criterion(logits, labels)
+            formality_logits, gender_logits = self.model(field_inputs, attention_mask)
+
+            formality_loss = self.formality_criterion(formality_logits, formality_labels)
+            gender_loss = self.gender_criterion(gender_logits, gender_labels)
+
+            # Weighted multi-task loss
+            loss = (
+                self.config.formality_loss_weight * formality_loss +
+                self.config.gender_loss_weight * gender_loss
+            )
+
             loss.backward()
 
             if self.config.gradient_clip > 0:
@@ -1223,66 +1323,114 @@ class Trainer:
             self.optimizer.step()
 
             total_loss += loss.item()
+            total_formality_loss += formality_loss.item()
+            total_gender_loss += gender_loss.item()
             n_batches += 1
 
-        return total_loss / n_batches
+        return total_loss / n_batches, total_formality_loss / n_batches, total_gender_loss / n_batches
 
     @torch.no_grad()
-    def evaluate(self) -> Tuple[float, float, List[List[int]]]:
-        """Evaluate on validation set."""
+    def evaluate(self) -> Dict[str, Any]:
+        """Evaluate on validation set.
+
+        Returns:
+            Dictionary with losses, accuracies, and confusion matrices
+        """
         self.model.eval()
         total_loss = 0
+        total_formality_loss = 0
+        total_gender_loss = 0
         n_batches = 0
-        all_preds = []
-        all_labels = []
+
+        all_formality_preds = []
+        all_formality_labels = []
+        all_gender_preds = []
+        all_gender_labels = []
 
         for batch in self.val_loader:
-            field_inputs, attention_mask, labels = self._batch_to_device(batch)
+            field_inputs, attention_mask, formality_labels, gender_labels = self._batch_to_device(batch)
 
-            logits = self.model(field_inputs, attention_mask)
-            loss = self.criterion(logits, labels)
+            formality_logits, gender_logits = self.model(field_inputs, attention_mask)
 
-            preds = logits.argmax(dim=-1)
-            all_preds.extend(preds.cpu().tolist())
-            all_labels.extend(labels.cpu().tolist())
+            formality_loss = self.formality_criterion(formality_logits, formality_labels)
+            gender_loss = self.gender_criterion(gender_logits, gender_labels)
+            loss = (
+                self.config.formality_loss_weight * formality_loss +
+                self.config.gender_loss_weight * gender_loss
+            )
+
+            formality_preds = formality_logits.argmax(dim=-1)
+            gender_preds = gender_logits.argmax(dim=-1)
+
+            all_formality_preds.extend(formality_preds.cpu().tolist())
+            all_formality_labels.extend(formality_labels.cpu().tolist())
+            all_gender_preds.extend(gender_preds.cpu().tolist())
+            all_gender_labels.extend(gender_labels.cpu().tolist())
 
             total_loss += loss.item()
+            total_formality_loss += formality_loss.item()
+            total_gender_loss += gender_loss.item()
             n_batches += 1
 
         avg_loss = total_loss / n_batches
-        accuracy = sum(p == l for p, l in zip(all_preds, all_labels)) / len(all_preds)
+        avg_formality_loss = total_formality_loss / n_batches
+        avg_gender_loss = total_gender_loss / n_batches
 
-        # Build confusion matrix
-        num_classes = FormalityDataset.NUM_CLASSES
-        confusion = [[0] * num_classes for _ in range(num_classes)]
-        for pred, label in zip(all_preds, all_labels):
-            confusion[label][pred] += 1
+        formality_accuracy = sum(
+            p == l for p, l in zip(all_formality_preds, all_formality_labels)
+        ) / len(all_formality_preds)
+        gender_accuracy = sum(
+            p == l for p, l in zip(all_gender_preds, all_gender_labels)
+        ) / len(all_gender_preds)
 
-        return avg_loss, accuracy, confusion
+        # Build confusion matrices
+        formality_confusion = [[0] * NUM_FORMALITY_CLASSES for _ in range(NUM_FORMALITY_CLASSES)]
+        for pred, label in zip(all_formality_preds, all_formality_labels):
+            formality_confusion[label][pred] += 1
+
+        gender_confusion = [[0] * NUM_GENDER_CLASSES for _ in range(NUM_GENDER_CLASSES)]
+        for pred, label in zip(all_gender_preds, all_gender_labels):
+            gender_confusion[label][pred] += 1
+
+        return {
+            'loss': avg_loss,
+            'formality_loss': avg_formality_loss,
+            'gender_loss': avg_gender_loss,
+            'formality_accuracy': formality_accuracy,
+            'gender_accuracy': gender_accuracy,
+            'formality_confusion': formality_confusion,
+            'gender_confusion': gender_confusion,
+        }
 
     def train(self, verbose: bool = True) -> Dict[str, List[float]]:
         """Run full training loop."""
         for epoch in range(self.config.epochs):
-            train_loss = self.train_epoch()
-            val_loss, val_acc, confusion = self.evaluate()
+            train_loss, train_formality_loss, train_gender_loss = self.train_epoch()
+            eval_results = self.evaluate()
 
-            self.scheduler.step(val_loss)
+            self.scheduler.step(eval_results['loss'])
 
             self.history['train_loss'].append(train_loss)
-            self.history['val_loss'].append(val_loss)
-            self.history['val_accuracy'].append(val_acc)
+            self.history['train_formality_loss'].append(train_formality_loss)
+            self.history['train_gender_loss'].append(train_gender_loss)
+            self.history['val_loss'].append(eval_results['loss'])
+            self.history['val_formality_loss'].append(eval_results['formality_loss'])
+            self.history['val_gender_loss'].append(eval_results['gender_loss'])
+            self.history['val_formality_accuracy'].append(eval_results['formality_accuracy'])
+            self.history['val_gender_accuracy'].append(eval_results['gender_accuracy'])
 
             if verbose:
                 print(f"Epoch {epoch+1}/{self.config.epochs}")
-                print(f"  Train Loss: {train_loss:.4f}")
-                print(f"  Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.4f}")
+                print(f"  Train Loss: {train_loss:.4f} (formality={train_formality_loss:.4f}, gender={train_gender_loss:.4f})")
+                print(f"  Val Loss: {eval_results['loss']:.4f} (formality={eval_results['formality_loss']:.4f}, gender={eval_results['gender_loss']:.4f})")
+                print(f"  Val Acc: formality={eval_results['formality_accuracy']:.4f}, gender={eval_results['gender_accuracy']:.4f}")
                 enc_lr = self.optimizer.param_groups[0]['lr']
                 cls_lr = self.optimizer.param_groups[1]['lr']
                 print(f"  LR: encoder={enc_lr:.2e}, classifier={cls_lr:.2e}")
 
             # Early stopping
-            if val_loss < self.best_val_loss:
-                self.best_val_loss = val_loss
+            if eval_results['loss'] < self.best_val_loss:
+                self.best_val_loss = eval_results['loss']
                 self.patience_counter = 0
                 self.best_state = {k: v.cpu().clone() for k, v in self.model.state_dict().items()}
             else:
@@ -1299,30 +1447,40 @@ class Trainer:
 
         return self.history
 
-    def print_confusion_matrix(self):
-        """Print confusion matrix with class labels."""
-        _, _, confusion = self.evaluate()
+    def print_confusion_matrices(self):
+        """Print confusion matrices for both tasks."""
+        eval_results = self.evaluate()
 
-        labels = [FormalityDataset.ID_TO_LABEL[i].value for i in range(FormalityDataset.NUM_CLASSES)]
-
-        print("\nConfusion Matrix:")
-        header = "True\\Pred".ljust(25) + " ".join(l[:8].ljust(10) for l in labels)
+        # Formality confusion matrix
+        formality_labels = [FORMALITY_ID_TO_LABEL[i].value for i in range(NUM_FORMALITY_CLASSES)]
+        print("\nFormality Confusion Matrix:")
+        header = "True\\Pred".ljust(25) + " ".join(l[:8].ljust(10) for l in formality_labels)
         print(header)
         print("-" * len(header))
+        for i, row in enumerate(eval_results['formality_confusion']):
+            row_label = formality_labels[i].ljust(25)
+            row_values = " ".join(str(v).ljust(10) for v in row)
+            print(f"{row_label}{row_values}")
 
-        for i, row in enumerate(confusion):
-            row_label = labels[i].ljust(25)
+        # Gender confusion matrix
+        gender_labels = [GENDER_ID_TO_LABEL[i].value for i in range(NUM_GENDER_CLASSES)]
+        print("\nGender Confusion Matrix:")
+        header = "True\\Pred".ljust(25) + " ".join(l[:8].ljust(10) for l in gender_labels)
+        print(header)
+        print("-" * len(header))
+        for i, row in enumerate(eval_results['gender_confusion']):
+            row_label = gender_labels[i].ljust(25)
             row_values = " ".join(str(v).ljust(10) for v in row)
             print(f"{row_label}{row_values}")
 
 
 def save_model(
-    model: FormalityClassifier,
+    model: StyleClassifier,
     tokenizer: Tokenizer,
     path: str,
     config: Optional[ModelConfig] = None,
 ):
-    """Save feature-based trained model, tokenizer, and config."""
+    """Save trained model, tokenizer, and config."""
     import os
     os.makedirs(path, exist_ok=True)
 
@@ -1337,21 +1495,25 @@ def save_model(
     with open(os.path.join(path, 'config.json'), 'w') as f:
         json.dump(config.to_dict(), f, indent=2)
 
-    # Save label mapping
-    label_map = {k.value: v for k, v in FormalityDataset.LABEL_TO_ID.items()}
+    # Save label mappings
+    formality_label_map = {k.value: v for k, v in FORMALITY_LABEL_TO_ID.items()}
+    gender_label_map = {k.value: v for k, v in GENDER_LABEL_TO_ID.items()}
     with open(os.path.join(path, 'labels.json'), 'w') as f:
-        json.dump(label_map, f, indent=2)
+        json.dump({
+            'formality': formality_label_map,
+            'gender': gender_label_map,
+        }, f, indent=2)
 
-    # Mark as feature-based model
+    # Mark as feature-based multi-task model
     with open(os.path.join(path, 'model_type.txt'), 'w') as f:
-        f.write('feature')
+        f.write('style-multitask')
 
 
 def load_model(
     path: str,
     device: str = None,
-) -> Tuple[FormalityClassifier, Tokenizer]:
-    """Load feature-based trained model and tokenizer."""
+) -> Tuple[StyleClassifier, Tokenizer]:
+    """Load trained model and tokenizer."""
     import os
 
     # Load config
@@ -1363,7 +1525,7 @@ def load_model(
     tokenizer = Tokenizer.load(os.path.join(path, 'tokenizer.json'))
 
     # Load model
-    model = FormalityClassifier(config)
+    model = StyleClassifier(config)
     model.load_state_dict(torch.load(os.path.join(path, 'model.pt'), map_location=device or 'cpu'))
 
     if device:
@@ -1373,24 +1535,25 @@ def load_model(
     return model, tokenizer
 
 
-def predict_formality(
+def predict_style(
     sentence: str,
-    model: FormalityClassifier,
+    model: StyleClassifier,
     tokenizer: Tokenizer,
     parser=None,
     device: str = None,
-) -> Tuple[FormalityLevel, Dict[str, float]]:
-    """Predict formality level for a Japanese sentence using feature-based model.
+) -> Tuple[FormalityLevel, GenderLevel, Dict[str, Dict[str, float]]]:
+    """Predict formality and gender style for a Japanese sentence.
 
     Args:
         sentence: Japanese sentence text
-        model: Trained FormalityClassifier
+        model: Trained StyleClassifier
         tokenizer: Tokenizer
         parser: JapaneseParser (defaults to SudachiJapaneseParser)
         device: Device to run inference on
 
     Returns:
-        Tuple of (predicted_label, class_probabilities)
+        Tuple of (formality_label, gender_label, probability_dicts)
+        where probability_dicts has 'formality' and 'gender' keys
     """
     if parser is None:
         from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
@@ -1417,27 +1580,38 @@ def predict_formality(
     # Predict
     model.eval()
     with torch.no_grad():
-        probs = model.predict(field_inputs, attention_mask)[0]
+        formality_probs, gender_probs = model.predict(field_inputs, attention_mask)
+        formality_probs = formality_probs[0]
+        gender_probs = gender_probs[0]
 
-    predicted_id = probs.argmax().item()
-    predicted_label = FormalityDataset.ID_TO_LABEL[predicted_id]
+    formality_id = formality_probs.argmax().item()
+    gender_id = gender_probs.argmax().item()
 
-    prob_dict = {
-        FormalityDataset.ID_TO_LABEL[i].value: probs[i].item()
-        for i in range(FormalityDataset.NUM_CLASSES)
+    formality_label = FORMALITY_ID_TO_LABEL[formality_id]
+    gender_label = GENDER_ID_TO_LABEL[gender_id]
+
+    prob_dicts = {
+        'formality': {
+            FORMALITY_ID_TO_LABEL[i].value: formality_probs[i].item()
+            for i in range(NUM_FORMALITY_CLASSES)
+        },
+        'gender': {
+            GENDER_ID_TO_LABEL[i].value: gender_probs[i].item()
+            for i in range(NUM_GENDER_CLASSES)
+        },
     }
 
-    return predicted_label, prob_dict
+    return formality_label, gender_label, prob_dicts
 
 
 if __name__ == "__main__":
     # Example usage
     import argparse
 
-    parser = argparse.ArgumentParser(description="Train formality classifier")
+    parser = argparse.ArgumentParser(description="Train style classifier (formality + gender)")
     parser.add_argument("--data", type=str, default="data/jpn_sentences.tsv",
                         help="Path to TSV file with Japanese sentences")
-    parser.add_argument("--output", type=str, default="models/formality",
+    parser.add_argument("--output", type=str, default="models/style",
                         help="Output directory for trained model")
     parser.add_argument("--max-samples", type=int, default=None,
                         help="Maximum samples to use (for testing)")
@@ -1461,6 +1635,10 @@ if __name__ == "__main__":
                         help="Learning rate factor for encoder during fine-tuning")
     parser.add_argument("--learning-rate", type=float, default=1e-4,
                         help="Base learning rate")
+    parser.add_argument("--formality-weight", type=float, default=1.0,
+                        help="Loss weight for formality task")
+    parser.add_argument("--gender-weight", type=float, default=1.0,
+                        help="Loss weight for gender task")
 
     args = parser.parse_args()
 
@@ -1469,7 +1647,7 @@ if __name__ == "__main__":
     if args.pretrain_mlm:
         print("Loading unlabeled data for MLM pretraining...")
         tokenizer = Tokenizer()
-        unlabeled_dataset = FormalityDataset.from_tsv(
+        unlabeled_dataset = StyleDataset.from_tsv(
             args.data,
             tokenizer,
             max_samples=args.max_samples,
@@ -1481,7 +1659,8 @@ if __name__ == "__main__":
         # Model config (vocab is now fixed)
         model_config = ModelConfig(
             vocab_sizes=tokenizer.get_vocab_sizes(),
-            num_classes=FormalityDataset.NUM_CLASSES,
+            num_formality_classes=NUM_FORMALITY_CLASSES,
+            num_gender_classes=NUM_GENDER_CLASSES,
             d_model=args.embed_dim,
             hidden_dim=args.hidden_dim,
             num_layers=args.num_layers,
@@ -1489,7 +1668,7 @@ if __name__ == "__main__":
         )
 
         print("\nCreating model with MLM head...")
-        model = FormalityClassifierWithMLM(model_config)
+        model = StyleClassifierWithMLM(model_config)
 
         # MLM pretraining on unlabeled data
         print("\nStarting MLM pretraining on unlabeled data...")
@@ -1501,13 +1680,13 @@ if __name__ == "__main__":
         mlm_trainer = MLMTrainer(model, unlabeled_dataset, pretrain_config)
         mlm_trainer.train(epochs=args.pretrain_epochs)
 
-        # Reset classifier head for fine-tuning
-        print("\nReinitializing classifier head for fine-tuning...")
+        # Reset classifier heads for fine-tuning
+        print("\nReinitializing classifier heads for fine-tuning...")
         model.reset_classifier()
 
         # Now load labeled dataset with the frozen tokenizer
         print("\nLoading labeled data for fine-tuning...")
-        labeled_dataset = FormalityDataset.from_tsv(
+        labeled_dataset = StyleDataset.from_tsv(
             args.data,
             tokenizer,
             max_samples=args.max_samples,
@@ -1518,7 +1697,7 @@ if __name__ == "__main__":
     else:
         print("Loading data...")
         tokenizer = Tokenizer()
-        dataset = FormalityDataset.from_tsv(
+        dataset = StyleDataset.from_tsv(
             args.data,
             tokenizer,
             max_samples=args.max_samples,
@@ -1529,7 +1708,8 @@ if __name__ == "__main__":
         # Model config
         model_config = ModelConfig(
             vocab_sizes=tokenizer.get_vocab_sizes(),
-            num_classes=FormalityDataset.NUM_CLASSES,
+            num_formality_classes=NUM_FORMALITY_CLASSES,
+            num_gender_classes=NUM_GENDER_CLASSES,
             d_model=args.embed_dim,
             hidden_dim=args.hidden_dim,
             num_layers=args.num_layers,
@@ -1537,7 +1717,7 @@ if __name__ == "__main__":
         )
 
         print("\nCreating model...")
-        model = FormalityClassifier(model_config)
+        model = StyleClassifier(model_config)
 
     print(f"\nSplit: {len(train_data)} train, {len(val_data)} val, {len(test_data)} test")
 
@@ -1547,6 +1727,8 @@ if __name__ == "__main__":
         epochs=args.epochs,
         batch_size=args.batch_size,
         learning_rate=args.learning_rate,
+        formality_loss_weight=args.formality_weight,
+        gender_loss_weight=args.gender_weight,
     )
     # Use smaller LR for encoder if pretrained
     encoder_lr_factor = args.encoder_lr_factor if args.pretrain_mlm else 1.0
@@ -1557,7 +1739,7 @@ if __name__ == "__main__":
     history = trainer.train()
 
     # Print final metrics
-    trainer.print_confusion_matrix()
+    trainer.print_confusion_matrices()
 
     # Evaluate on test set
     print("\nEvaluating on test set...")
@@ -1569,7 +1751,8 @@ if __name__ == "__main__":
 
     model.eval()
     device = torch.device(trainer_config.device)
-    correct = 0
+    formality_correct = 0
+    gender_correct = 0
     total = 0
 
     with torch.no_grad():
@@ -1579,15 +1762,18 @@ if __name__ == "__main__":
                 if k.startswith('input_ids_')
             }
             attention_mask = batch['attention_mask'].to(device)
-            labels = batch['labels'].to(device)
+            formality_labels = batch['formality_labels'].to(device)
+            gender_labels = batch['gender_labels'].to(device)
 
-            logits = model(field_inputs, attention_mask)
-            preds = logits.argmax(dim=-1)
+            formality_logits, gender_logits = model(field_inputs, attention_mask)
+            formality_preds = formality_logits.argmax(dim=-1)
+            gender_preds = gender_logits.argmax(dim=-1)
 
-            correct += (preds == labels).sum().item()
-            total += labels.size(0)
+            formality_correct += (formality_preds == formality_labels).sum().item()
+            gender_correct += (gender_preds == gender_labels).sum().item()
+            total += formality_labels.size(0)
 
-    print(f"Test Accuracy: {correct/total:.4f}")
+    print(f"Test Accuracy: formality={formality_correct/total:.4f}, gender={gender_correct/total:.4f}")
 
     # Save model
     print(f"\nSaving model to {args.output}...")
