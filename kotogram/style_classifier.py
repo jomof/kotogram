@@ -2095,12 +2095,12 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Build list of data files and their grammaticality labels
-    # grammatic (1) = normal sentences, agrammatic (0) = generated bad grammar
+    # grammatic (1) = normal sentences, agrammatic (0) = ungrammatical sentences
     data_files = [args.data]
     grammaticality_labels = [1]  # jpn_sentences.tsv is grammatic
     if args.extra_data:
         data_files.append(args.extra_data)
-        grammaticality_labels.append(1)  # unpragmatic_sentences.tsv is still grammatic (just unusual style)
+        grammaticality_labels.append(0)  # unpragmatic_sentences.tsv is agrammatic (unpragmatic = ungrammatical)
     if args.agrammatic_data:
         data_files.append(args.agrammatic_data)
         grammaticality_labels.append(0)  # agrammatic sentences
