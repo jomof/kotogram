@@ -238,95 +238,130 @@ def _analyze_formality_features(features: List[Dict[str, str]]) -> FormalityLeve
     if not features:
         return FormalityLevel.NEUTRAL
 
-    # Count formality indicators
-    formal_count = 0
-    casual_count = 0
-    very_formal_count = 0
+    # Formality indicators
+    has_formal = False           # ます/です forms
+    has_very_formal = False      # Honorific/humble forms (keigo)
+    has_casual = False           # Plain forms with casual markers
+    has_very_casual = False      # Very casual particles/forms
 
-    # Track sentence-ending formality
-    sentence_ender_formality = None
+    # Track sentence-final particles for context
+    sentence_final_particles = []
 
     for i, feature in enumerate(features):
         pos = feature.get('pos', '')
         pos_detail1 = feature.get('pos_detail1', '')
-        pos_detail2 = feature.get('pos_detail2', '')
         conjugated_type = feature.get('conjugated_type', '')
-        conjugated_form = feature.get('conjugated_form', '')
         surface = feature.get('surface', '')
 
-        # Check for formal auxiliary verbs
-        # Format: auxv:auxv-masu:terminal or auxv:auxv-desu:terminal
-        # Note: auxv-masu/auxv-desu appear in conjugated_type, not pos_detail1
-        if pos == 'auxv' and conjugated_type == 'auxv-masu':
-            formal_count += 2
-            sentence_ender_formality = 'formal'
-        elif pos == 'auxv' and conjugated_type == 'auxv-desu':
-            formal_count += 2
-            sentence_ender_formality = 'formal'
+        # Check for formal auxiliary verbs (ます/です)
+        if conjugated_type in ['auxv-masu', 'auxv-desu']:
+            has_formal = True
 
-        # Check for polite imperative verbs (ください, なさい)
-        # These are v:general:godan-ra:imperative
-        if pos == 'v' and conjugated_form == 'imperative':
-            if surface in ['ください', 'なさい']:
-                formal_count += 2
-                sentence_ender_formality = 'formal'
+        # Check for ください and なさい - formal but not very formal when imperative
+        lemma = feature.get('lemma', '')
+        conjugated_form = feature.get('conjugated_form', '')
 
-        # Check for honorific/humble forms (keigo)
-        if pos == 'v' and any(x in surface for x in ['いらっしゃ', 'おっしゃ', '申し上げ', 'いただ', 'お〜になる']):
-            very_formal_count += 2
+        if lemma in ['くださる', '下さる']:
+            # ください (imperative of くださる) is standard formal/polite
+            # Only mark as very formal if it's NOT the imperative form
+            if conjugated_form == 'imperative':
+                has_formal = True
+            else:
+                # くださる in other forms (e.g., くださった, くださいます) is keigo
+                has_very_formal = True
 
-        # Check for casual auxiliary verbs
-        # Note: These appear in conjugated_type for auxv
-        if pos == 'auxv' and conjugated_type == 'auxv-ja':  # じゃ (contracted copula)
-            casual_count += 1
-        elif pos == 'auxv' and conjugated_type == 'auxv-nanda':  # なんだ
-            casual_count += 1
-        elif pos == 'auxv' and (conjugated_type == 'auxv-hen' or conjugated_type == 'auxv-hin'):  # Kansai dialect
-            casual_count += 2
+        if lemma in ['なさる', '為さる']:
+            # なさい (imperative of なさる) is polite imperative
+            # Only mark as very formal if it's NOT the imperative form
+            if conjugated_form == 'imperative':
+                has_formal = True
+            else:
+                # なさる in other forms is honorific keigo
+                has_very_formal = True
 
-        # Check for casual particles at sentence end
-        if i == len(features) - 1 or (i == len(features) - 2 and features[-1].get('pos', '') == 'auxs'):
-            if pos == 'prt' and surface in ['よ', 'ね', 'な', 'ぜ', 'ぞ', 'さ', 'わ', 'べ', 'け', 'の']:
-                # These particles are casual, but some are used with formal too
-                if sentence_ender_formality == 'formal':
-                    # よ, ね, わ, の, and な are acceptable with formal forms
-                    # - よ/ね: common with polite speech
-                    # - わ/の/な: feminine-formal register (ojou-sama kotoba)
-                    if surface not in ['よ', 'ね', 'わ', 'の', 'な']:
-                        casual_count += 2  # Unpragmatic combination
-                else:
-                    casual_count += 1
+        # Check for other very formal/honorific forms
+        # Honorific verbs often have specific patterns or use special verb forms
+        # Common indicators: いらっしゃる, おっしゃる, etc.
+        if lemma in ['いらっしゃる', 'おっしゃる', 'ご覧になる', 'お～になる']:
+            has_very_formal = True
+        # Humble verbs (謙譲語)
+        # Note: Sudachi may use potential forms like いただける
+        if lemma in ['いたす', '致す', 'まいる', '申す', '申し上げる', 'お～する', 'いただく', '頂く', 'いただける']:
+            has_very_formal = True
 
-        # Check for plain/dictionary form verbs at sentence end
-        if i == len(features) - 1 or (i == len(features) - 2 and features[-1].get('pos', '') == 'auxs'):
-            # For verbs: v:general:general:e-ichidan-ba:terminal (conjugated_form is terminal)
-            if pos == 'v' and conjugated_form == 'terminal':
-                sentence_ender_formality = 'casual'
-            # For adjectives: adj:general:adjective:attributive (terminal form uses attributive)
-            elif pos == 'adj' and conjugated_form == 'attributive':
-                sentence_ender_formality = 'casual'
-            # For plain copula: auxv:auxv-da:terminal
-            elif pos == 'auxv' and conjugated_type == 'auxv-da' and conjugated_form == 'terminal':
-                sentence_ender_formality = 'casual'
+        # Check for casual copula (だ)
+        # Only mark as casual for specific forms:
+        # - terminal: だ at sentence end (not in embedded clauses)
+        # - conjunctive-geminate: だっ (becomes だった, だって)
+        # - volitional-presumptive: だろう
+        # Do NOT mark as casual:
+        # - attributive: な (normal adjectival form)
+        # - conjunctive-ni: に (normal adverbial form)
+        # - conjunctive: で (normal connective)
+        # - terminal だ in embedded clauses (mid-sentence)
+        if conjugated_type == 'auxv-da':
+            # Check if near sentence end (within last 2 positions, allowing for auxs)
+            is_near_end = i >= len(features) - 2
+            casual_forms = ['conjunctive-geminate', 'volitional-presumptive']
+            if conjugated_form in casual_forms:
+                has_casual = True
+            elif conjugated_form == 'terminal' and is_near_end:
+                # Terminal だ only casual if actually at sentence end
+                has_casual = True
+
+        # Check for very casual auxiliary verbs
+        if conjugated_type in ['auxv-ja', 'auxv-nanda', 'auxv-hin', 'auxv-hen', 'auxv-nsu']:
+            has_very_casual = True
+
+        # Sudachi may parse じゃ as conj instead of auxv-ja
+        if pos == 'conj' and surface == 'じゃ':
+            has_very_casual = True
+
+        # Check for sentence-final particles
+        if pos == 'prt' and pos_detail1 == 'sentence_final_particle':
+            sentence_final_particles.append(surface)
+
+    # Analyze sentence-final particles for casual/very casual markers
+    very_casual_particles = ['ぜ', 'ぞ', 'ぞい', 'さ']  # Masculine/rough particles
+    casual_particles = ['よ', 'ね', 'の', 'わ', 'な']  # Conversational particles
+    # Note: These particles are acceptable with formal forms, but make plain forms casual
+
+    for particle in sentence_final_particles:
+        if particle in very_casual_particles:
+            # Very casual particles - inappropriate with formal forms
+            if has_formal:
+                has_very_casual = True  # Unpragmatic mixing
+            else:
+                has_casual = True
+        elif particle in casual_particles:
+            # Casual particles - acceptable with formal, but make plain forms casual
+            if not has_formal:
+                # With plain forms, these particles create casual speech
+                has_casual = True
+            # If has_formal, these are acceptable and don't change the formality
+
+    # Decision logic based on features
+
+    # Very formal (keigo) takes precedence
+    if has_very_formal:
+        return FormalityLevel.VERY_FORMAL
 
     # Check for unpragmatic formality mixing
-    # If we have both formal and casual markers, it's unpragmatic
-    if formal_count > 0 and casual_count > 1:
+    # Formal forms mixed with very casual markers is unpragmatic
+    if has_formal and has_very_casual:
         return FormalityLevel.UNPRAGMATIC_FORMALITY
 
-    # If very formal markers mixed with casual
-    if very_formal_count > 0 and casual_count > 0:
-        return FormalityLevel.UNPRAGMATIC_FORMALITY
-
-    # Determine final formality level
-    if very_formal_count > 0:
-        return FormalityLevel.VERY_FORMAL
-    elif formal_count > 0:
+    # Formal forms (ます/です) - even with acceptable particles
+    if has_formal:
         return FormalityLevel.FORMAL
-    elif casual_count > 1:
+
+    # Very casual markers without formal forms
+    if has_very_casual:
+        return FormalityLevel.VERY_CASUAL
+
+    # Casual forms (だ copula or casual markers)
+    if has_casual:
         return FormalityLevel.CASUAL
-    elif casual_count == 1:
-        return FormalityLevel.NEUTRAL
-    else:
-        # Default to neutral for plain forms
-        return FormalityLevel.NEUTRAL
+
+    # Default to neutral for plain forms
+    return FormalityLevel.NEUTRAL
