@@ -31,7 +31,7 @@ setup_environment() {
 
     if ! python -c "import sudachipy" 2>/dev/null; then
         echo "SudachiPy not found. Installing..."
-        python -m pip install sudachipy sudachidict_core
+        python -m pip install sudachipy sudachidict_full
     fi
 
     if ! python -c "import kotogram" 2>/dev/null; then
