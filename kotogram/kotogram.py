@@ -23,7 +23,7 @@ Functions:
 """
 
 import re
-from typing import List
+from typing import List, Dict
 
 
 def kotogram_to_japanese(
@@ -225,3 +225,154 @@ def split_kotogram(kotogram: str) -> List[str]:
     # Find all complete token annotations enclosed in ⌈⌉
     # Pattern matches: ⌈ followed by any chars (non-greedy) until ⌉
     return re.findall(r'⌈[^⌉]*⌉', kotogram)
+
+
+def extract_token_features(token: str) -> Dict[str, str]:
+    """Extract linguistic features from a single kotogram token.
+
+    Parses a kotogram token to extract all encoded linguistic information including
+    part of speech, conjugation details, and orthographic forms. This function handles
+    the variable-length POS format where empty fields are omitted by the parser.
+
+    Kotogram format uses Unicode markers to encode linguistic information:
+    - ⌈⌉ : Token boundaries
+    - ˢ : Surface form (the actual text)
+    - ᵖ : Part of speech and grammatical features (colon-separated)
+    - ᵇ : Base orthography (dictionary form spelling)
+    - ᵈ : Lemma (dictionary form)
+    - ʳ : Reading/pronunciation
+
+    The POS field (ᵖ) contains colon-separated values in a specific semantic order:
+    `pos:pos_detail_1:pos_detail_2:conjugated_type:conjugated_form`
+
+    However, the parser omits empty fields, so this function identifies each field
+    semantically by checking which mapping it belongs to, rather than relying on
+    positional indices.
+
+    Args:
+        token: A single kotogram token string (⌈...⌉)
+
+    Returns:
+        Dictionary with extracted features:
+        - surface: The surface form of the token (actual text)
+        - pos: Part of speech main category (e.g., 'v', 'n', 'auxv', 'prt')
+        - pos_detail1: First POS detail level (e.g., 'general', 'common_noun')
+        - pos_detail2: Second POS detail level (e.g., 'general')
+        - conjugated_type: Conjugation type (e.g., 'e-ichidan-ba', 'auxv-masu')
+        - conjugated_form: Conjugation form (e.g., 'conjunctive', 'terminal')
+        - base_orth: Base orthography (dictionary form spelling)
+        - lemma: Lemma/dictionary form
+        - reading: Reading/pronunciation
+
+    Examples:
+        >>> # Extract features from a verb token
+        >>> token = "⌈ˢ食べᵖv:general:e-ichidan-ba:conjunctiveᵇ食べるᵈ食べるʳタベ⌉"
+        >>> features = extract_token_features(token)
+        >>> features['pos']
+        'v'
+        >>> features['conjugated_type']
+        'e-ichidan-ba'
+        >>> features['conjugated_form']
+        'conjunctive'
+
+        >>> # Extract features from an auxiliary verb (note: empty fields omitted)
+        >>> token = "⌈ˢますᵖauxv:auxv-masu:terminalᵇますʳマス⌉"
+        >>> features = extract_token_features(token)
+        >>> features['pos']
+        'auxv'
+        >>> features['conjugated_type']
+        'auxv-masu'
+        >>> features['conjugated_form']
+        'terminal'
+        >>> features['pos_detail1']  # Empty because parser omitted it
+        ''
+
+    Note:
+        All returned dictionary values are strings. Fields that are not present
+        in the token will have empty string values ('').
+    """
+    from .japanese_parser import (
+        POS1_MAP, POS2_MAP,
+        CONJUGATED_TYPE_MAP, CONJUGATED_FORM_MAP
+    )
+
+    feature = {
+        'surface': '',
+        'pos': '',
+        'pos_detail1': '',
+        'pos_detail2': '',
+        'conjugated_type': '',
+        'conjugated_form': '',
+        'base_orth': '',
+        'lemma': '',
+        'reading': ''
+    }
+
+    # Extract surface form (ˢ...ᵖ)
+    surface_match = re.search(r'ˢ(.*?)ᵖ', token, re.DOTALL)
+    if surface_match:
+        feature['surface'] = surface_match.group(1)
+
+    # Extract POS data (ᵖ...ᵇ|ᵈ|ʳ|⌉)
+    pos_match = re.search(r'ᵖ([^⌉ᵇᵈʳ]+)', token)
+    if pos_match:
+        pos_data = pos_match.group(1)
+        parts = pos_data.split(':')
+
+        # Main POS code (always first)
+        feature['pos'] = parts[0] if len(parts) > 0 else ''
+
+        # Parse remaining fields semantically by checking which map they belong to
+        # The parser skips empty fields, so we can't rely on position alone
+        #
+        # Parser builds: pos:pos_detail_1:pos_detail_2:conjugated_type:conjugated_form
+        # But skips empty fields, so we need to identify each by checking the maps
+        for i in range(1, len(parts)):
+            value = parts[i]
+            if not value:
+                continue
+
+            # Check which map this value belongs to
+            if value in CONJUGATED_FORM_MAP.values():
+                feature['conjugated_form'] = value
+            elif value in CONJUGATED_TYPE_MAP.values():
+                feature['conjugated_type'] = value
+            elif value in POS2_MAP.values():
+                # pos_detail_2 comes after pos_detail_1, so check if we already have pos_detail_1
+                if feature.get('pos_detail1'):
+                    feature['pos_detail2'] = value
+                else:
+                    feature['pos_detail1'] = value
+            elif value in POS1_MAP.values():
+                # pos_detail_1 comes before pos_detail_2
+                if not feature.get('pos_detail1'):
+                    feature['pos_detail1'] = value
+                else:
+                    feature['pos_detail2'] = value
+            else:
+                # Unknown value - try to assign by position as fallback
+                if not feature.get('pos_detail1'):
+                    feature['pos_detail1'] = value
+                elif not feature.get('pos_detail2'):
+                    feature['pos_detail2'] = value
+                elif not feature.get('conjugated_type'):
+                    feature['conjugated_type'] = value
+                elif not feature.get('conjugated_form'):
+                    feature['conjugated_form'] = value
+
+    # Extract base orthography (ᵇ...ᵈ|ʳ|⌉)
+    base_match = re.search(r'ᵇ([^⌉ᵈʳ]+)', token)
+    if base_match:
+        feature['base_orth'] = base_match.group(1)
+
+    # Extract lemma/dictionary form (ᵈ...ʳ|⌉)
+    lemma_match = re.search(r'ᵈ([^⌉ʳ]+)', token)
+    if lemma_match:
+        feature['lemma'] = lemma_match.group(1)
+
+    # Extract reading (ʳ...⌉)
+    reading_match = re.search(r'ʳ([^⌉]+)', token)
+    if reading_match:
+        feature['reading'] = reading_match.group(1)
+
+    return feature
