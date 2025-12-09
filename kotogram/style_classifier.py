@@ -346,7 +346,7 @@ GENDER_LABEL_TO_ID = {
 GENDER_ID_TO_LABEL = {v: k for k, v in GENDER_LABEL_TO_ID.items()}
 
 
-class StyleDataset(Dataset[Sample]):  # type: ignore[type-arg]
+class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
     """PyTorch Dataset for style classification (formality + gender) using feature-based tokenization.
 
     Each sample contains per-field feature IDs rather than a single token ID sequence.
@@ -1336,7 +1336,7 @@ class Trainer:
 
         return total_loss / n_batches, total_formality_loss / n_batches, total_gender_loss / n_batches
 
-    @torch.no_grad()  # type: ignore[misc]
+    @torch.no_grad()  # type: ignore[untyped-decorator]
     def evaluate(self) -> Dict[str, Any]:
         """Evaluate on validation set.
 
