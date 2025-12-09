@@ -8,12 +8,24 @@
 
 set -e
 
-# Check for required dependencies
-check_dependencies() {
+# Setup virtual environment and dependencies
+setup_environment() {
+    VENV_DIR=".venv"
+
+    # Create venv if it doesn't exist
+    if [ ! -d "$VENV_DIR" ]; then
+        echo "Creating virtual environment..."
+        python3 -m venv "$VENV_DIR"
+    fi
+
+    # Activate venv
+    source "$VENV_DIR/bin/activate"
+
     echo "Checking dependencies..."
 
     if ! python -c "import torch" 2>/dev/null; then
         echo "PyTorch not found. Installing..."
+        python -m pip install --upgrade pip
         python -m pip install torch
     fi
 
@@ -22,11 +34,11 @@ check_dependencies() {
         python -m pip install -e .
     fi
 
-    echo "Dependencies OK"
+    echo "Dependencies OK (using venv: $VENV_DIR)"
     echo ""
 }
 
-check_dependencies
+setup_environment
 
 # Default configuration
 DATA_PATH="data/jpn_sentences.tsv"
