@@ -106,74 +106,68 @@ def make_auxv_token(surface: str, aux_type: str, form: str = 'terminal') -> str:
 def error_particle_wa_ga_swap(kotogram: str) -> Optional[Tuple[str, str]]:
     """Swap は and が particles inappropriately.
 
-    Common beginner mistake: not understanding topic marker vs subject marker.
+    NOTE: This error type is DISABLED because swapping は/が almost always
+    produces grammatically valid sentences (just with different nuance).
+    Both particles are grammatically correct in most contexts.
+
+    Keeping the function for reference but returning None.
     """
-    tokens = split_kotogram(kotogram)
-    if not tokens:
-        return None
-
-    # Find は or が particles
-    for i, token in enumerate(tokens):
-        if extract_pos(token) == 'prt':
-            surface = extract_surface(token)
-            if surface == 'は':
-                # Swap は -> が
-                new_token = make_particle_token('が', 'case_particle')
-                new_tokens = tokens[:i] + [new_token] + tokens[i+1:]
-                return ''.join(new_tokens), 'wa_ga_swap'
-            elif surface == 'が':
-                # Swap が -> は
-                new_token = make_particle_token('は', 'binding_particle')
-                new_tokens = tokens[:i] + [new_token] + tokens[i+1:]
-                return ''.join(new_tokens), 'ga_wa_swap'
-
+    # DISABLED - は/が swaps produce valid sentences
     return None
 
 
 def error_particle_wo_omission(kotogram: str) -> Optional[Tuple[str, str]]:
     """Remove を particle from direct objects.
 
-    While を omission is natural in casual speech, removing it in certain
-    contexts sounds ungrammatical (especially in written/formal text).
+    NOTE: This error type is DISABLED because を omission is natural
+    and grammatically acceptable in casual/spoken Japanese. It doesn't
+    produce reliably ungrammatical sentences.
     """
-    tokens = split_kotogram(kotogram)
-    if not tokens:
-        return None
-
-    # Find を particle and remove it
-    for i, token in enumerate(tokens):
-        if extract_pos(token) == 'prt':
-            surface = extract_surface(token)
-            if surface == 'を':
-                # Remove を particle
-                new_tokens = tokens[:i] + tokens[i+1:]
-                if new_tokens:
-                    return ''.join(new_tokens), 'wo_omission'
-
+    # DISABLED - を omission is acceptable in casual Japanese
     return None
 
 
 def error_particle_ni_de_confusion(kotogram: str) -> Optional[Tuple[str, str]]:
-    """Confuse に and で particles.
+    """Confuse に and で particles in clearly wrong contexts.
 
-    Common error: using に for location of action (should be で)
-    or using で for destination (should be に).
+    Only swap in specific contexts where the result is ungrammatical:
+    - に after time expressions -> で (wrong: 3時で会う)
+    - で before いる/ある existence verbs -> に would be correct, but we want errors
+      so we do the reverse: に before action verbs -> で
+
+    Many に/で swaps produce valid sentences, so we're selective.
     """
     tokens = split_kotogram(kotogram)
     if not tokens:
         return None
 
     for i, token in enumerate(tokens):
-        if extract_pos(token) == 'prt':
-            surface = extract_surface(token)
-            if surface == 'に':
+        if extract_pos(token) != 'prt':
+            continue
+        surface = extract_surface(token)
+
+        # Case 1: に before existence verbs (いる/ある) - this is CORRECT
+        # So we swap it to で which is WRONG for pure existence
+        if surface == 'に' and i + 1 < len(tokens):
+            next_surface = extract_surface(tokens[i + 1])
+            next_pos = extract_pos(tokens[i + 1])
+            # Check if followed by いる/ある (existence verbs)
+            if next_pos == 'v' and next_surface in ['いる', 'い', 'ある', 'あり', 'あっ']:
                 new_token = make_particle_token('で', 'case_particle')
                 new_tokens = tokens[:i] + [new_token] + tokens[i+1:]
-                return ''.join(new_tokens), 'ni_de_swap'
-            elif surface == 'で':
-                new_token = make_particle_token('に', 'case_particle')
+                return ''.join(new_tokens), 'ni_de_existence'
+
+        # Case 2: で before destination verbs (行く/来る/帰る) - this is WRONG
+        # に is correct for destinations. But we want to CREATE errors,
+        # so find に + movement verb and swap to で
+        if surface == 'に' and i + 1 < len(tokens):
+            next_surface = extract_surface(tokens[i + 1])
+            # Movement verbs that require に for destination
+            movement_verbs = ['行', '来', '帰', '着', '届', '入', '戻']
+            if any(next_surface.startswith(v) for v in movement_verbs):
+                new_token = make_particle_token('で', 'case_particle')
                 new_tokens = tokens[:i] + [new_token] + tokens[i+1:]
-                return ''.join(new_tokens), 'de_ni_swap'
+                return ''.join(new_tokens), 'ni_de_destination'
 
     return None
 
@@ -181,20 +175,11 @@ def error_particle_ni_de_confusion(kotogram: str) -> Optional[Tuple[str, str]]:
 def error_particle_he_ni_confusion(kotogram: str) -> Optional[Tuple[str, str]]:
     """Confuse へ and に for movement/direction.
 
-    While often interchangeable, misuse in certain contexts sounds unnatural.
+    NOTE: This error type is DISABLED because へ and に are largely
+    interchangeable for direction/destination. Swapping them almost
+    never produces ungrammatical sentences.
     """
-    tokens = split_kotogram(kotogram)
-    if not tokens:
-        return None
-
-    for i, token in enumerate(tokens):
-        if extract_pos(token) == 'prt':
-            surface = extract_surface(token)
-            if surface == 'へ':
-                new_token = make_particle_token('に', 'case_particle')
-                new_tokens = tokens[:i] + [new_token] + tokens[i+1:]
-                return ''.join(new_tokens), 'he_ni_swap'
-
+    # DISABLED - へ/に swaps produce valid sentences
     return None
 
 
@@ -262,6 +247,190 @@ def error_double_particle(kotogram: str) -> Optional[Tuple[str, str]]:
                 # Duplicate the particle
                 new_tokens = tokens[:i+1] + [token] + tokens[i+1:]
                 return ''.join(new_tokens), f'double_{surface}'
+
+    return None
+
+
+def error_na_adjective_missing_na(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Remove な from な-adjective before noun (incorrect).
+
+    Error: 静か部屋 (should be 静かな部屋)
+    This is a clear grammatical error - な-adjectives require な before nouns.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    # Common な-adjectives (shape/state predicates that need な)
+    na_adjectives = [
+        '静か', '綺麗', '元気', '有名', '便利', '不便', '親切', '丁寧',
+        '簡単', '複雑', '大切', '大事', '必要', '特別', '普通', '自由',
+        '健康', '安全', '危険', '正直', '素敵', '立派', '真剣', '確か',
+        '好き', '嫌い', '上手', '下手', '得意', '苦手', '暇', '無理',
+    ]
+
+    for i, token in enumerate(tokens):
+        surface = extract_surface(token)
+        pos = extract_pos(token)
+
+        # Check if this is a な-adjective (shp = shape/state predicate)
+        if pos == 'shp' or surface in na_adjectives:
+            # Check if followed by な + noun
+            if i + 2 < len(tokens):
+                next_surface = extract_surface(tokens[i + 1])
+                next_next_pos = extract_pos(tokens[i + 2])
+                # If な followed by noun, remove the な
+                if next_surface == 'な' and next_next_pos == 'n':
+                    new_tokens = tokens[:i + 1] + tokens[i + 2:]
+                    return ''.join(new_tokens), 'na_adj_missing_na'
+
+    return None
+
+
+def error_i_adjective_with_na(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Add な after い-adjective before noun (incorrect).
+
+    Error: 高いな山 (should be 高い山)
+    い-adjectives directly modify nouns without な.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    for i, token in enumerate(tokens):
+        pos = extract_pos(token)
+        surface = extract_surface(token)
+
+        # Check if this is an い-adjective in attributive form
+        if pos == 'adj' and 'adjective' in token:
+            # Check if followed directly by a noun (correct pattern)
+            if i + 1 < len(tokens):
+                next_pos = extract_pos(tokens[i + 1])
+                if next_pos == 'n':
+                    # Insert な between adjective and noun (incorrect)
+                    na_token = "⌈ˢなᵖauxv:auxv-da:conjunctive⌉"
+                    new_tokens = tokens[:i + 1] + [na_token] + tokens[i + 1:]
+                    return ''.join(new_tokens), 'i_adj_with_na'
+
+    return None
+
+
+def error_copula_after_verb(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Add だ/です directly after verb (incorrect).
+
+    Error: 食べるだ, 行くです (copula cannot follow verbs directly)
+    Verbs already conjugate for politeness; adding copula is wrong.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    for i, token in enumerate(tokens):
+        pos = extract_pos(token)
+        form = extract_conjugation_form(token)
+
+        # Find verb in terminal form (sentence-ending)
+        if pos == 'v' and form == 'terminal':
+            # Check it's not already followed by auxiliary
+            if i + 1 < len(tokens):
+                next_pos = extract_pos(tokens[i + 1])
+                if next_pos in ['auxv', 'prt']:
+                    continue
+
+            # Add だ after the verb (incorrect)
+            da_token = make_auxv_token('だ', 'auxv-da', 'terminal')
+            new_tokens = tokens[:i + 1] + [da_token] + tokens[i + 1:]
+            return ''.join(new_tokens), 'copula_after_verb'
+
+    return None
+
+
+def error_dictionary_form_plus_masu(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Use dictionary form + ます (incorrect).
+
+    Error: 食べるます (should be 食べます), 行くます (should be 行きます)
+    ます attaches to the verb stem, not the dictionary form.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    for i, token in enumerate(tokens):
+        pos = extract_pos(token)
+        form = extract_conjugation_form(token)
+
+        # Find verb in terminal (dictionary) form
+        if pos == 'v' and form == 'terminal':
+            surface = extract_surface(token)
+            # Skip する and 来る which have irregular stems
+            if surface in ['する', '来る', 'くる']:
+                continue
+
+            # Add ます after dictionary form (incorrect)
+            masu_token = make_auxv_token('ます', 'auxv-masu', 'terminal')
+            new_tokens = tokens[:i + 1] + [masu_token] + tokens[i + 1:]
+            return ''.join(new_tokens), 'dict_form_plus_masu'
+
+    return None
+
+
+def error_particle_after_verb(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Put case particle directly after verb (incorrect).
+
+    Error: 食べたを見た (particle を after conjugated verb)
+    Case particles attach to nouns, not verbs.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    for i, token in enumerate(tokens):
+        pos = extract_pos(token)
+
+        # Find verb
+        if pos == 'v':
+            # Check if followed by another element (not end of sentence)
+            if i + 1 < len(tokens):
+                next_pos = extract_pos(tokens[i + 1])
+                # If not already followed by particle, insert one incorrectly
+                if next_pos not in ['prt', 'auxv', 'auxs']:
+                    # Insert を after the verb (incorrect)
+                    wo_token = make_particle_token('を', 'case_particle')
+                    new_tokens = tokens[:i + 1] + [wo_token] + tokens[i + 1:]
+                    return ''.join(new_tokens), 'particle_after_verb'
+
+    return None
+
+
+def error_quote_missing_to(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Remove と after quotation (incorrect).
+
+    Error: 「行く」言った (should be 「行く」と言った)
+    Quotations require と before verbs like 言う, 思う, etc.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    # Quote verbs that require と
+    quote_verbs = ['言', '思', '考え', '聞', '答え', '話', '書']
+
+    for i, token in enumerate(tokens):
+        surface = extract_surface(token)
+
+        # Find と particle
+        if surface == 'と' and extract_pos(token) == 'prt':
+            # Check if followed by a quote verb
+            if i + 1 < len(tokens):
+                next_surface = extract_surface(tokens[i + 1])
+                if any(next_surface.startswith(qv) for qv in quote_verbs):
+                    # Check if preceded by quote (」)
+                    if i > 0:
+                        prev_surface = extract_surface(tokens[i - 1])
+                        if '」' in prev_surface or extract_pos(tokens[i - 1]) == 'auxs':
+                            # Remove the と (incorrect)
+                            new_tokens = tokens[:i] + tokens[i + 1:]
+                            return ''.join(new_tokens), 'quote_missing_to'
 
     return None
 
@@ -383,30 +552,11 @@ def error_passive_potential_confusion(kotogram: str) -> Optional[Tuple[str, str]
 def error_pragmatic_particle_misuse(kotogram: str) -> Optional[Tuple[str, str]]:
     """Misuse sentence-final particles (ね, よ, ぞ, etc.).
 
-    Error: Using assertive よ when seeking agreement (should be ね)
-    Or using feminine わ in masculine context.
+    NOTE: This error type is DISABLED because swapping ね/よ produces
+    pragmatically odd but grammatically valid sentences. Both particles
+    are grammatically correct; they just convey different speaker attitudes.
     """
-    tokens = split_kotogram(kotogram)
-    if not tokens:
-        return None
-
-    # Find sentence-final particles
-    for i, token in enumerate(tokens):
-        if extract_pos(token) == 'prt':
-            detail = extract_pos_detail(token)
-            surface = extract_surface(token)
-            if detail == 'sentence_final_particle':
-                if surface == 'ね':
-                    # Replace with inappropriate よ
-                    new_token = make_particle_token('よ', 'sentence_final_particle')
-                    new_tokens = tokens[:i] + [new_token] + tokens[i+1:]
-                    return ''.join(new_tokens), 'ne_yo_swap'
-                elif surface == 'よ':
-                    # Replace with inappropriate ね
-                    new_token = make_particle_token('ね', 'sentence_final_particle')
-                    new_tokens = tokens[:i] + [new_token] + tokens[i+1:]
-                    return ''.join(new_tokens), 'yo_ne_swap'
-
+    # DISABLED - ね/よ swaps are grammatically valid
     return None
 
 
@@ -494,27 +644,11 @@ def error_da_after_noun_polite(kotogram: str) -> Optional[Tuple[str, str]]:
 def error_over_specification(kotogram: str) -> Optional[Tuple[str, str]]:
     """Over-specify subjects/objects that should be dropped.
 
-    Japanese naturally drops pronouns when clear from context.
-    Error: Adding 私は at the beginning when unnecessary.
+    NOTE: This error type is DISABLED because adding 私は is grammatically
+    valid, just stylistically redundant. It doesn't produce ungrammatical
+    sentences.
     """
-    tokens = split_kotogram(kotogram)
-    if not tokens:
-        return None
-
-    # Check if sentence starts with a pronoun
-    has_initial_pronoun = False
-    for token in tokens[:3]:
-        if extract_pos(token) == 'pron':
-            has_initial_pronoun = True
-            break
-
-    if not has_initial_pronoun and len(tokens) > 2:
-        # Add unnecessary 私は at the beginning
-        watashi_token = "⌈ˢ私ᵖpronʳワタシ⌉"
-        wa_token = make_particle_token('は', 'binding_particle')
-        new_tokens = [watashi_token, wa_token] + tokens
-        return ''.join(new_tokens), 'over_specification'
-
+    # DISABLED - Adding pronouns is grammatically valid
     return None
 
 
@@ -571,32 +705,40 @@ def error_wrong_verb_base(kotogram: str) -> Optional[Tuple[str, str]]:
 # ============================================================================
 
 # All error generators with their categories and weights
+# NOTE: Several generators have been DISABLED because they produce
+# grammatically valid sentences. Only truly ungrammatical errors remain.
 ERROR_GENERATORS: List[Tuple[str, str, Callable, float]] = [
     # (error_code, category, function, probability_weight)
 
-    # Beginner level errors (more common)
-    ('b_wa_ga', 'beginner', error_particle_wa_ga_swap, 1.0),
-    ('b_wo_omit', 'beginner', error_particle_wo_omission, 0.8),
-    ('b_ni_de', 'beginner', error_particle_ni_de_confusion, 0.8),
-    ('b_he_ni', 'beginner', error_particle_he_ni_confusion, 0.5),
-    ('b_da_i_adj', 'beginner', error_copula_da_after_i_adjective, 0.7),
-    ('b_desu_past', 'beginner', error_desu_after_plain_past, 0.6),
-    ('b_double_prt', 'beginner', error_double_particle, 0.4),
+    # Beginner level errors - RELIABLE (produce ungrammatical sentences)
+    # DISABLED: ('b_wa_ga', ...) - は/が swaps produce valid sentences
+    # DISABLED: ('b_wo_omit', ...) - を omission is valid in casual speech
+    ('b_ni_de', 'beginner', error_particle_ni_de_confusion, 1.0),  # Only in specific contexts now
+    # DISABLED: ('b_he_ni', ...) - へ/に are interchangeable
+    ('b_da_i_adj', 'beginner', error_copula_da_after_i_adjective, 1.0),  # Clear error: 高いだ
+    ('b_desu_past', 'beginner', error_desu_after_plain_past, 1.0),  # Clear error: 食べたです
+    ('b_double_prt', 'beginner', error_double_particle, 1.0),  # Clear error: をを
+    ('b_na_missing', 'beginner', error_na_adjective_missing_na, 1.0),  # Clear error: 静か部屋
+    ('b_i_adj_na', 'beginner', error_i_adjective_with_na, 1.0),  # Clear error: 高いな山
+    ('b_copula_verb', 'beginner', error_copula_after_verb, 1.0),  # Clear error: 食べるだ
+    ('b_dict_masu', 'beginner', error_dictionary_form_plus_masu, 1.0),  # Clear error: 食べるます
 
     # Intermediate level errors
-    ('i_masu_sub', 'intermediate', error_formality_mixing_subordinate, 0.5),
-    ('i_trans', 'intermediate', error_transitivity_confusion, 0.4),
-    ('i_cond', 'intermediate', error_conditional_mixing, 0.5),
-    ('i_pass_pot', 'intermediate', error_passive_potential_confusion, 0.3),
+    ('i_masu_sub', 'intermediate', error_formality_mixing_subordinate, 0.8),
+    ('i_trans', 'intermediate', error_transitivity_confusion, 0.6),
+    ('i_cond', 'intermediate', error_conditional_mixing, 0.6),
+    ('i_pass_pot', 'intermediate', error_passive_potential_confusion, 0.5),
+    ('i_prt_verb', 'intermediate', error_particle_after_verb, 0.6),  # Clear error: 食べたを
+    ('i_quote_to', 'intermediate', error_quote_missing_to, 0.8),  # Clear error: 「行く」言った
 
     # Advanced level errors
-    ('a_prag_prt', 'advanced', error_pragmatic_particle_misuse, 0.6),
-    ('a_honor', 'advanced', error_honorific_mixing, 0.3),
-    ('a_noda', 'advanced', error_noda_misuse, 0.4),
-    ('a_da_desu', 'advanced', error_da_after_noun_polite, 0.4),
-    ('a_over_spec', 'advanced', error_over_specification, 0.5),
-    ('a_te_form', 'advanced', error_te_form_wrong, 0.3),
-    ('a_verb_base', 'advanced', error_wrong_verb_base, 0.3),
+    # DISABLED: ('a_prag_prt', ...) - ね/よ swaps are grammatically valid
+    ('a_honor', 'advanced', error_honorific_mixing, 0.5),
+    ('a_noda', 'advanced', error_noda_misuse, 0.6),
+    ('a_da_desu', 'advanced', error_da_after_noun_polite, 0.8),  # Clear error: 先生だです
+    # DISABLED: ('a_over_spec', ...) - Adding pronouns is valid
+    ('a_te_form', 'advanced', error_te_form_wrong, 0.5),
+    ('a_verb_base', 'advanced', error_wrong_verb_base, 0.5),
 ]
 
 
