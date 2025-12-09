@@ -20,6 +20,15 @@ class FormalityLevel(Enum):
     UNPRAGMATIC_FORMALITY = "unpragmatic_formality"  # Mixed/awkward formality
 
 
+class GenderLevel(Enum):
+    """Gender-associated speech patterns for Japanese sentences."""
+
+    MASCULINE = "masculine"               # Male-associated speech (俺, ぜ, ぞ, etc.)
+    FEMININE = "feminine"                 # Female-associated speech (わ, の, あたし, etc.)
+    NEUTRAL = "neutral"                   # Gender-neutral speech
+    UNPRAGMATIC_GENDER = "unpragmatic_gender"  # Mixed/awkward gender markers
+
+
 def formality(kotogram: str) -> FormalityLevel:
     """Analyze a Japanese sentence and return its formality level.
 
@@ -213,3 +222,170 @@ def _analyze_formality_features(features: List[Dict[str, str]]) -> FormalityLeve
 
     # Default to neutral for plain forms
     return FormalityLevel.NEUTRAL
+
+
+def gender(kotogram: str) -> GenderLevel:
+    """Analyze a Japanese sentence and return its gender-associated speech level.
+
+    This function examines the linguistic features encoded in a kotogram
+    representation to determine the gender association of the speech style.
+    It looks for:
+    - Masculine pronouns (俺, 僕) and particles (ぜ, ぞ, ぞい)
+    - Feminine pronouns (あたし) and particles (わ, の with rising intonation)
+    - Mixed patterns that sound unpragmatic
+
+    Note: These are sociolinguistic associations, not prescriptive rules.
+    Modern Japanese speakers may use various combinations regardless of gender.
+
+    Args:
+        kotogram: Kotogram compact sentence representation containing encoded
+                 linguistic information with POS tags and conjugation forms.
+
+    Returns:
+        GenderLevel indicating the sentence's gender-associated speech level,
+        including UNPRAGMATIC_GENDER if the sentence has an awkward combination
+        of different gender markers.
+
+    Examples:
+        >>> # Masculine sentence: 俺が行くぜ (I'll go - masculine)
+        >>> kotogram1 = "⌈ˢ俺ᵖpn⌉⌈ˢがᵖprt⌉⌈ˢ行くᵖv:u-godan-ka:terminal⌉⌈ˢぜᵖprt:sentence_final_particle⌉"
+        >>> gender(kotogram1)
+        <GenderLevel.MASCULINE: 'masculine'>
+
+        >>> # Feminine sentence: あたしが行くわ (I'll go - feminine)
+        >>> kotogram2 = "⌈ˢあたしᵖpn⌉⌈ˢがᵖprt⌉⌈ˢ行くᵖv:u-godan-ka:terminal⌉⌈ˢわᵖprt:sentence_final_particle⌉"
+        >>> gender(kotogram2)
+        <GenderLevel.FEMININE: 'feminine'>
+
+        >>> # Neutral sentence: 私が行きます (I'll go - neutral/polite)
+        >>> kotogram3 = "⌈ˢ私ᵖpn⌉⌈ˢがᵖprt⌉⌈ˢ行きᵖv:u-godan-ka:conjunctive⌉⌈ˢますᵖauxv-masu:terminal⌉"
+        >>> gender(kotogram3)
+        <GenderLevel.NEUTRAL: 'neutral'>
+    """
+    # Split into tokens and extract linguistic features
+    tokens = split_kotogram(kotogram)
+
+    if not tokens:
+        return GenderLevel.NEUTRAL
+
+    # Extract features from each token
+    features = []
+    for token in tokens:
+        feature = extract_token_features(token)
+        if feature:
+            features.append(feature)
+
+    # Analyze gender based on features
+    return _analyze_gender_features(features)
+
+
+def _analyze_gender_features(features: List[Dict[str, str]]) -> GenderLevel:
+    """Analyze extracted features to determine gender-associated speech level.
+
+    Args:
+        features: List of feature dictionaries from tokens
+
+    Returns:
+        GenderLevel based on the combination of features
+    """
+    if not features:
+        return GenderLevel.NEUTRAL
+
+    # Gender indicators
+    has_masculine = False
+    has_feminine = False
+
+    # Track particles and their positions for pattern detection
+    particle_sequence = []  # List of (index, surface, pos_detail1)
+
+    for i, feature in enumerate(features):
+        pos = feature.get('pos', '')
+        pos_detail1 = feature.get('pos_detail1', '')
+        surface = feature.get('surface', '')
+        lemma = feature.get('lemma', '')
+        conjugated_type = feature.get('conjugated_type', '')
+        conjugated_form = feature.get('conjugated_form', '')
+
+        # Check for masculine pronouns
+        # 俺 (ore) - strongly masculine
+        # 僕 (boku) - masculine (but used by some women too)
+        # お前 (omae) - masculine second-person pronoun
+        # Check both surface form and lemma since parsers vary
+        if pos == 'pron':
+            if surface in ['俺', 'おれ', 'オレ'] or lemma in ['俺', 'おれ', 'オレ']:
+                has_masculine = True
+            if surface in ['僕', 'ぼく', 'ボク'] or lemma in ['僕', 'ぼく', 'ボク', '僕-代名詞']:
+                has_masculine = True
+            # お前 (omae) - rough masculine second-person pronoun
+            if surface in ['お前', 'おまえ', 'オマエ'] or lemma in ['御前', 'お前']:
+                has_masculine = True
+
+            # Check for feminine pronouns
+            # あたし (atashi) - feminine variant of 私
+            # あたくし (atakushi) - very formal feminine
+            # Note: lemma might be 私 for these, so check surface
+            if surface in ['あたし', 'アタシ', 'あたくし', 'アタクシ']:
+                has_feminine = True
+
+        # Check for rough masculine auxiliary verb forms
+        # ねえ (nee) - rough masculine negation (variant of ない)
+        if pos == 'auxv' and conjugated_type == 'auxv-nai':
+            if surface in ['ねえ', 'ねー', 'ネエ', 'ネー']:
+                has_masculine = True
+
+        # Check for だろ (daro) - masculine sentence-final assertive
+        # volitional-presumptive form of だ used assertively
+        if pos == 'auxv' and conjugated_type == 'auxv-da':
+            if conjugated_form == 'volitional-presumptive' and surface in ['だろ', 'ダロ']:
+                has_masculine = True
+
+        # Track particles for pattern detection
+        if pos == 'prt':
+            particle_sequence.append((i, surface, pos_detail1))
+
+        # Check for かしら (kashira) - feminine wonder/question marker
+        if surface in ['かしら', 'カシラ']:
+            has_feminine = True
+
+    # Analyze particle patterns
+    masculine_particles = ['ぜ', 'ゼ', 'ぞ', 'ゾ', 'ぞい', 'ゾイ']
+    feminine_particles = ['わ', 'ワ']
+
+    # Check for のよ / のね patterns (feminine sentence endings)
+    # Pattern: の (pre_noun_particle) followed by よ/ね (sentence_final_particle)
+    for j in range(len(particle_sequence) - 1):
+        idx1, surf1, detail1 = particle_sequence[j]
+        idx2, surf2, detail2 = particle_sequence[j + 1]
+        # Check if consecutive particles
+        if idx2 == idx1 + 1:
+            if surf1 == 'の' and detail1 == 'pre_noun_particle':
+                if surf2 in ['よ', 'ヨ'] and detail2 == 'sentence_final_particle':
+                    has_feminine = True
+                if surf2 in ['ね', 'ネ'] and detail2 == 'sentence_final_particle':
+                    has_feminine = True
+
+    # Check individual sentence-final particles
+    for _, surface, pos_detail1 in particle_sequence:
+        if pos_detail1 in ['sentence_final_particle', 'adverbial_particle']:
+            if surface in masculine_particles:
+                has_masculine = True
+            elif surface in feminine_particles:
+                has_feminine = True
+
+    # Decision logic based on features
+
+    # Check for unpragmatic gender mixing
+    # Strong masculine markers mixed with strong feminine markers is unusual
+    if has_masculine and has_feminine:
+        return GenderLevel.UNPRAGMATIC_GENDER
+
+    # Masculine speech markers
+    if has_masculine:
+        return GenderLevel.MASCULINE
+
+    # Feminine speech markers
+    if has_feminine:
+        return GenderLevel.FEMININE
+
+    # Default to neutral
+    return GenderLevel.NEUTRAL

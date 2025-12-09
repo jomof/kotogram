@@ -8,7 +8,7 @@ from .japanese_parser import JapaneseParser
 from .mecab_japanese_parser import MecabJapaneseParser
 from .sudachi_japanese_parser import SudachiJapaneseParser
 from .kotogram import kotogram_to_japanese, split_kotogram, extract_token_features
-from .analysis import formality, FormalityLevel
+from .analysis import formality, FormalityLevel, gender, GenderLevel
 
 __all__ = [
     "Codec",
@@ -20,5 +20,7 @@ __all__ = [
     "split_kotogram",
     "formality",
     "FormalityLevel",
+    "gender",
+    "GenderLevel",
     "extract_token_features",
 ]
