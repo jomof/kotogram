@@ -1,39 +1,54 @@
 """Supervised formality classifier for Japanese sentences using Kotogram representations.
 
 This module provides a neural sequence classifier that predicts formality labels
-for Japanese sentences based on their Kotogram representation.
+for Japanese sentences based on their Kotogram representation. It uses a
+pretrain-then-finetune approach with a small transformer encoder.
+
+Architecture:
+- Token Embedding: Multi-field embeddings for morphological features (pos, pos_detail1,
+  conjugated_type, conjugated_form, lemma) are concatenated and projected to d_model.
+- Encoder: Small transformer encoder (2-4 layers) with multi-head self-attention.
+- Pretraining: Masked Language Modeling (MLM) over token sequences.
+- Fine-tuning: Sentence-level classification using [CLS] token representation.
 
 Pipeline:
 1. Load Japanese sentences from TSV corpus
 2. Convert sentences to Kotogram strings using japanese_to_kotogram()
-3. Derive formality labels using formality(kotogram)
-4. Tokenize Kotograms into sequences of token IDs
-5. Train a neural model to predict formality from token sequences
+3. Extract token features using extract_token_features()
+4. Build vocabulary for each categorical field
+5. Pretrain encoder with MLM on unlabeled data
+6. Fine-tune with formality labels from formality(kotogram)
 
 Usage:
     from kotogram.formality_classifier import (
-        FormalityDataset, KotogramTokenizer, FormalityClassifier, Trainer
+        FormalityDataset, Tokenizer, FormalityClassifier,
+        MLMTrainer, Trainer, predict_formality
     )
 
-    # Load and preprocess data
-    tokenizer = KotogramTokenizer()
+    # Build vocabulary and load data
+    tokenizer = Tokenizer()
     dataset = FormalityDataset.from_tsv("data/jpn_sentences.tsv", tokenizer)
+    train_data, val_data, test_data = dataset.split()
 
-    # Train model
-    model = FormalityClassifier(vocab_size=tokenizer.vocab_size, num_classes=6)
-    trainer = Trainer(model, dataset)
+    # Pretrain with MLM
+    model = FormalityClassifierWithMLM(tokenizer.get_model_config())
+    mlm_trainer = MLMTrainer(model, train_data)
+    mlm_trainer.train(epochs=5)
+
+    # Fine-tune for classification
+    trainer = Trainer(model, train_data, val_data)
     trainer.train(epochs=10)
+
+    # Inference
+    label, probs = predict_formality("何かしてみましょう。", model, tokenizer)
 """
 
 import csv
 import json
 import math
 import random
-import re
 from collections import Counter
 from dataclasses import dataclass, field
-from enum import Enum
-from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
 
 import torch
@@ -44,233 +59,263 @@ from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 from kotogram.kotogram import split_kotogram
-from kotogram.analysis import formality, FormalityLevel
+from kotogram.analysis import formality, FormalityLevel, extract_token_features
 
 
-# Special token IDs
+# Special token values for vocabulary
 PAD_TOKEN = "<PAD>"
 UNK_TOKEN = "<UNK>"
 CLS_TOKEN = "<CLS>"
 MASK_TOKEN = "<MASK>"  # For self-supervised pretraining
 
-
-def strip_surface_form(token: str) -> str:
-    """Strip all word-specific info from a Kotogram token, keeping only POS tags.
-
-    Converts: ⌈ˢ食べᵖv:e-ichidan-ba:conjunctiveᵇ食べるᵈ食べるʳタベ⌉ -> ⌈ᵖv:e-ichidan-ba:conjunctive⌉
-
-    This removes:
-    - ˢ...ᵖ : surface form (the actual text)
-    - ᵇ... : base orthography
-    - ᵈ... : lemma/dictionary form
-    - ʳ... : reading/pronunciation
-
-    Only the POS and grammatical info (ᵖ...) is kept.
-
-    Args:
-        token: A single Kotogram token string
-
-    Returns:
-        Token with only POS/grammar tags
-    """
-    import re
-    # Extract just the POS section (ᵖ...⌉ or ᵖ...ᵇ or ᵖ...ᵈ or ᵖ...ʳ)
-    pos_match = re.search(r'ᵖ([^⌉ᵇᵈʳ]*)', token)
-    if pos_match:
-        return f'⌈ᵖ{pos_match.group(1)}⌉'
-    return token
+# Feature fields used for token embedding
+FEATURE_FIELDS = ['pos', 'pos_detail1', 'conjugated_type', 'conjugated_form', 'lemma']
 
 
-class KotogramTokenizer:
-    """Tokenizer that splits Kotogram strings into tokens and manages vocabulary.
+class Tokenizer:
+    """Tokenizer that extracts morphological features from Kotogram tokens.
 
-    Each ⌈...⌉ block in a Kotogram string is treated as one token. The tokenizer
-    builds a vocabulary mapping from token strings to integer IDs.
+    Instead of treating each token as a single vocabulary item, this tokenizer
+    extracts categorical features (pos, pos_detail1, conjugated_type, conjugated_form,
+    lemma) and maintains separate vocabularies for each field.
+
+    This allows the model to generalize better across tokens with similar
+    grammatical properties, even if the exact surface form is unseen.
 
     Attributes:
-        token_to_id: Mapping from token string to integer ID
-        id_to_token: Mapping from integer ID to token string
-        vocab_size: Total vocabulary size including special tokens
-        strip_surface: If True, remove surface forms (kanji/kana) from tokens
+        field_vocabs: Dict mapping field name to {value: id} mapping
+        field_vocab_sizes: Dict mapping field name to vocabulary size
+        lemma_min_freq: Minimum frequency for lemma to be in vocabulary
     """
 
-    def __init__(self, strip_surface: bool = False):
-        """Initialize tokenizer with special tokens.
+    def __init__(self, lemma_min_freq: int = 5, max_lemma_vocab: int = 10000):
+        """Initialize feature tokenizer.
 
         Args:
-            strip_surface: If True, strip surface forms from tokens to reduce
-                          vocabulary size. Tokens will only contain POS/grammar info.
+            lemma_min_freq: Minimum frequency for a lemma to be included in vocabulary.
+                           Less frequent lemmas map to UNK.
+            max_lemma_vocab: Maximum vocabulary size for lemma field.
         """
-        self.token_to_id: Dict[str, int] = {
-            PAD_TOKEN: 0,
-            UNK_TOKEN: 1,
-            CLS_TOKEN: 2,
-            MASK_TOKEN: 3,
-        }
-        self.id_to_token: Dict[int, str] = {v: k for k, v in self.token_to_id.items()}
-        self._next_id = len(self.token_to_id)
-        self._frozen = False
-        self.strip_surface = strip_surface
+        self.lemma_min_freq = lemma_min_freq
+        self.max_lemma_vocab = max_lemma_vocab
 
-    @property
-    def vocab_size(self) -> int:
-        """Return total vocabulary size."""
-        return len(self.token_to_id)
+        # Initialize vocabularies for each field with special tokens
+        self.field_vocabs: Dict[str, Dict[str, int]] = {}
+        self._field_counters: Dict[str, Counter] = {}
+        for field in FEATURE_FIELDS:
+            self.field_vocabs[field] = {
+                PAD_TOKEN: 0,
+                UNK_TOKEN: 1,
+                CLS_TOKEN: 2,
+                MASK_TOKEN: 3,
+            }
+            self._field_counters[field] = Counter()
+
+        self._frozen = False
+        self._lemma_counts: Counter = Counter()
 
     @property
     def pad_id(self) -> int:
-        return self.token_to_id[PAD_TOKEN]
+        return 0
 
     @property
     def unk_id(self) -> int:
-        return self.token_to_id[UNK_TOKEN]
+        return 1
 
     @property
     def cls_id(self) -> int:
-        return self.token_to_id[CLS_TOKEN]
+        return 2
 
     @property
     def mask_id(self) -> int:
-        return self.token_to_id[MASK_TOKEN]
+        return 3
 
-    def tokenize(self, kotogram: str) -> List[str]:
-        """Split a Kotogram string into token strings.
+    def get_vocab_size(self, field: str) -> int:
+        """Get vocabulary size for a specific field."""
+        return len(self.field_vocabs[field])
 
-        Args:
-            kotogram: Kotogram string with ⌈...⌉ token boundaries
+    def get_vocab_sizes(self) -> Dict[str, int]:
+        """Get vocabulary sizes for all fields."""
+        return {field: len(vocab) for field, vocab in self.field_vocabs.items()}
 
-        Returns:
-            List of token strings (each ⌈...⌉ block), optionally with
-            surface forms stripped if strip_surface=True
-        """
-        tokens = split_kotogram(kotogram)
-        if self.strip_surface:
-            tokens = [strip_surface_form(t) for t in tokens]
-        return tokens
+    def _add_value(self, field: str, value: str) -> int:
+        """Add a value to field vocabulary and return its ID."""
+        if not value:
+            value = UNK_TOKEN
 
-    def add_token(self, token: str) -> int:
-        """Add a token to vocabulary and return its ID.
-
-        If vocabulary is frozen, returns UNK ID for new tokens.
-
-        Args:
-            token: Token string to add
-
-        Returns:
-            Integer ID for the token
-        """
-        if token in self.token_to_id:
-            return self.token_to_id[token]
+        vocab = self.field_vocabs[field]
+        if value in vocab:
+            return vocab[value]
 
         if self._frozen:
             return self.unk_id
 
-        token_id = self._next_id
-        self.token_to_id[token] = token_id
-        self.id_to_token[token_id] = token
-        self._next_id += 1
-        return token_id
+        # For lemma field, track counts for later pruning
+        if field == 'lemma':
+            self._lemma_counts[value] += 1
+            # Don't add to vocab until finalize_vocab is called
+            return self.unk_id
 
-    def encode(self, kotogram: str, add_cls: bool = True, add_to_vocab: bool = True) -> List[int]:
-        """Convert Kotogram string to sequence of token IDs.
+        new_id = len(vocab)
+        vocab[value] = new_id
+        return new_id
+
+    def extract_features(self, kotogram: str) -> List[Dict[str, str]]:
+        """Extract features from each token in a Kotogram string.
+
+        Args:
+            kotogram: Kotogram string to process
+
+        Returns:
+            List of feature dictionaries, one per token
+        """
+        tokens = split_kotogram(kotogram)
+        features_list = []
+
+        for token in tokens:
+            features = extract_token_features(token)
+            # Only keep the fields we use
+            filtered = {field: features.get(field, '') for field in FEATURE_FIELDS}
+            features_list.append(filtered)
+
+        return features_list
+
+    def encode_features(
+        self,
+        features_list: List[Dict[str, str]],
+        add_cls: bool = True,
+        add_to_vocab: bool = True,
+    ) -> Dict[str, List[int]]:
+        """Convert list of feature dicts to sequences of field IDs.
+
+        Args:
+            features_list: List of feature dictionaries from extract_features
+            add_cls: If True, prepend CLS token IDs
+            add_to_vocab: If True, add new values to vocabulary
+
+        Returns:
+            Dict mapping field name to list of token IDs for that field
+        """
+        result = {field: [] for field in FEATURE_FIELDS}
+
+        if add_cls:
+            for field in FEATURE_FIELDS:
+                result[field].append(self.cls_id)
+
+        for features in features_list:
+            for field in FEATURE_FIELDS:
+                value = features.get(field, '')
+                if add_to_vocab and not self._frozen:
+                    self._field_counters[field][value] += 1
+                    token_id = self._add_value(field, value)
+                else:
+                    vocab = self.field_vocabs[field]
+                    token_id = vocab.get(value, self.unk_id)
+                result[field].append(token_id)
+
+        return result
+
+    def encode(
+        self,
+        kotogram: str,
+        add_cls: bool = True,
+        add_to_vocab: bool = True,
+    ) -> Dict[str, List[int]]:
+        """Encode a Kotogram string to feature ID sequences.
 
         Args:
             kotogram: Kotogram string to encode
-            add_cls: If True, prepend CLS token ID
-            add_to_vocab: If True, add new tokens to vocabulary
+            add_cls: If True, prepend CLS token
+            add_to_vocab: If True, add new values to vocabulary
 
         Returns:
-            List of integer token IDs
+            Dict mapping field name to list of token IDs
         """
-        tokens = self.tokenize(kotogram)
-        ids = []
+        features_list = self.extract_features(kotogram)
+        return self.encode_features(features_list, add_cls, add_to_vocab)
 
-        if add_cls:
-            ids.append(self.cls_id)
+    def finalize_vocab(self):
+        """Finalize vocabulary, pruning rare lemmas.
 
-        for token in tokens:
-            if add_to_vocab:
-                ids.append(self.add_token(token))
-            else:
-                ids.append(self.token_to_id.get(token, self.unk_id))
-
-        return ids
-
-    def decode(self, ids: List[int]) -> str:
-        """Convert sequence of token IDs back to Kotogram string.
-
-        Args:
-            ids: List of integer token IDs
-
-        Returns:
-            Kotogram string (concatenated tokens, special tokens excluded)
+        Should be called after processing all training data but before freezing.
         """
-        tokens = []
-        for id_ in ids:
-            if id_ in (self.pad_id, self.cls_id, self.mask_id):
-                continue
-            token = self.id_to_token.get(id_, UNK_TOKEN)
-            if token != UNK_TOKEN:
-                tokens.append(token)
-        return ''.join(tokens)
+        # Prune lemma vocabulary to most frequent items
+        vocab = self.field_vocabs['lemma']
+        frequent_lemmas = self._lemma_counts.most_common(self.max_lemma_vocab)
+
+        for lemma, count in frequent_lemmas:
+            if count >= self.lemma_min_freq and lemma not in vocab:
+                vocab[lemma] = len(vocab)
 
     def freeze(self):
-        """Freeze vocabulary - new tokens will map to UNK."""
+        """Freeze vocabulary - new values will map to UNK."""
+        self.finalize_vocab()
         self._frozen = True
 
     def unfreeze(self):
-        """Unfreeze vocabulary - allow adding new tokens."""
+        """Unfreeze vocabulary."""
         self._frozen = False
 
-    def save(self, path: str):
-        """Save tokenizer vocabulary to JSON file.
+    def get_model_config(self, **kwargs) -> 'ModelConfig':
+        """Create a ModelConfig with vocabulary sizes from this tokenizer.
 
         Args:
-            path: File path to save vocabulary
+            **kwargs: Additional config parameters to override defaults
+
+        Returns:
+            ModelConfig instance
         """
+        return ModelConfig(
+            vocab_sizes=self.get_vocab_sizes(),
+            **kwargs
+        )
+
+    def save(self, path: str):
+        """Save tokenizer vocabularies to JSON file."""
         data = {
-            'token_to_id': self.token_to_id,
+            'field_vocabs': self.field_vocabs,
+            'lemma_min_freq': self.lemma_min_freq,
+            'max_lemma_vocab': self.max_lemma_vocab,
             'frozen': self._frozen,
-            'strip_surface': self.strip_surface,
         }
         with open(path, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
 
     @classmethod
-    def load(cls, path: str) -> 'KotogramTokenizer':
-        """Load tokenizer vocabulary from JSON file.
-
-        Args:
-            path: File path to load vocabulary from
-
-        Returns:
-            KotogramTokenizer instance with loaded vocabulary
-        """
+    def load(cls, path: str) -> 'Tokenizer':
+        """Load tokenizer from JSON file."""
         with open(path, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
-        tokenizer = cls(strip_surface=data.get('strip_surface', False))
-        tokenizer.token_to_id = data['token_to_id']
-        tokenizer.id_to_token = {int(v): k for k, v in tokenizer.token_to_id.items()}
-        tokenizer._next_id = max(tokenizer.token_to_id.values()) + 1
+        tokenizer = cls(
+            lemma_min_freq=data.get('lemma_min_freq', 5),
+            max_lemma_vocab=data.get('max_lemma_vocab', 10000),
+        )
+        tokenizer.field_vocabs = data['field_vocabs']
         tokenizer._frozen = data.get('frozen', False)
         return tokenizer
 
 
 @dataclass
-class FormalitySample:
-    """Single data sample with encoded sequence and label."""
-    token_ids: List[int]
+class Sample:
+    """Single data sample with per-field feature IDs and label."""
+    feature_ids: Dict[str, List[int]]  # field -> list of token IDs
     label: int
     original_sentence: str = ""
     kotogram: str = ""
 
+    @property
+    def seq_len(self) -> int:
+        """Get sequence length (same for all fields)."""
+        first_field = next(iter(self.feature_ids.keys()))
+        return len(self.feature_ids[first_field])
+
 
 class FormalityDataset(Dataset):
-    """PyTorch Dataset for formality classification.
+    """PyTorch Dataset for formality classification using feature-based tokenization.
 
-    Loads Japanese sentences, converts to Kotogram, extracts formality labels,
-    and provides batched access to encoded sequences.
+    Each sample contains per-field feature IDs rather than a single token ID sequence.
+    This allows the model to learn from individual morphological features.
     """
 
     # Map FormalityLevel enum to integer class IDs
@@ -285,12 +330,16 @@ class FormalityDataset(Dataset):
     ID_TO_LABEL = {v: k for k, v in LABEL_TO_ID.items()}
     NUM_CLASSES = len(LABEL_TO_ID)
 
-    def __init__(self, samples: List[FormalitySample], tokenizer: KotogramTokenizer):
+    def __init__(
+        self,
+        samples: List[Sample],
+        tokenizer: Tokenizer,
+    ):
         """Initialize dataset with preprocessed samples.
 
         Args:
-            samples: List of FormalitySample objects
-            tokenizer: KotogramTokenizer used to encode samples
+            samples: List of Sample objects
+            tokenizer: Tokenizer used to encode samples
         """
         self.samples = samples
         self.tokenizer = tokenizer
@@ -298,28 +347,29 @@ class FormalityDataset(Dataset):
     def __len__(self) -> int:
         return len(self.samples)
 
-    def __getitem__(self, idx: int) -> FormalitySample:
+    def __getitem__(self, idx: int) -> Sample:
         return self.samples[idx]
 
     @classmethod
     def from_tsv(
         cls,
         tsv_path: str,
-        tokenizer: KotogramTokenizer,
+        tokenizer: Tokenizer,
         parser=None,
         max_samples: Optional[int] = None,
         verbose: bool = True,
+        labeled: bool = True,
     ) -> 'FormalityDataset':
         """Load dataset from TSV file of Japanese sentences.
 
-        Expects TSV format: id<tab>lang<tab>sentence
-
         Args:
             tsv_path: Path to TSV file with Japanese sentences
-            tokenizer: KotogramTokenizer to build vocabulary
+            tokenizer: Tokenizer to build vocabulary
             parser: JapaneseParser instance (defaults to SudachiJapaneseParser)
             max_samples: Optional limit on number of samples
             verbose: If True, print progress
+            labeled: If True, compute formality labels. If False, use dummy labels
+                    (for pretraining on unlabeled data).
 
         Returns:
             FormalityDataset with encoded samples
@@ -348,15 +398,19 @@ class FormalityDataset(Dataset):
                     # Convert to Kotogram
                     kotogram = parser.japanese_to_kotogram(sentence)
 
-                    # Get formality label
-                    label_enum = formality(kotogram)
-                    label_id = cls.LABEL_TO_ID[label_enum]
+                    # Get formality label (or dummy for pretraining)
+                    if labeled:
+                        label_enum = formality(kotogram)
+                        label_id = cls.LABEL_TO_ID[label_enum]
+                    else:
+                        label_enum = FormalityLevel.NEUTRAL
+                        label_id = cls.LABEL_TO_ID[label_enum]
 
-                    # Encode to token IDs (builds vocabulary)
-                    token_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
+                    # Encode to feature IDs (builds vocabulary)
+                    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
 
-                    sample = FormalitySample(
-                        token_ids=token_ids,
+                    sample = Sample(
+                        feature_ids=feature_ids,
                         label=label_id,
                         original_sentence=sentence,
                         kotogram=kotogram,
@@ -366,7 +420,8 @@ class FormalityDataset(Dataset):
                     total += 1
 
                     if verbose and total % 10000 == 0:
-                        print(f"Processed {total} sentences, vocab size: {tokenizer.vocab_size}")
+                        vocab_sizes = tokenizer.get_vocab_sizes()
+                        print(f"Processed {total} sentences, vocab sizes: {vocab_sizes}")
 
                     if max_samples and total >= max_samples:
                         break
@@ -378,10 +433,11 @@ class FormalityDataset(Dataset):
 
         if verbose:
             print(f"\nDataset loaded: {len(samples)} samples")
-            print(f"Vocabulary size: {tokenizer.vocab_size}")
-            print("Label distribution:")
-            for label, count in sorted(label_counts.items(), key=lambda x: x[1], reverse=True):
-                print(f"  {label.value}: {count} ({100*count/len(samples):.1f}%)")
+            print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
+            if labeled:
+                print("Label distribution:")
+                for label, count in sorted(label_counts.items(), key=lambda x: x[1], reverse=True):
+                    print(f"  {label.value}: {count} ({100*count/len(samples):.1f}%)")
 
         # Freeze vocabulary after building
         tokenizer.freeze()
@@ -394,16 +450,7 @@ class FormalityDataset(Dataset):
         val_ratio: float = 0.1,
         seed: int = 42,
     ) -> Tuple['FormalityDataset', 'FormalityDataset', 'FormalityDataset']:
-        """Split dataset into train/validation/test sets.
-
-        Args:
-            train_ratio: Fraction for training set
-            val_ratio: Fraction for validation set
-            seed: Random seed for reproducibility
-
-        Returns:
-            Tuple of (train_dataset, val_dataset, test_dataset)
-        """
+        """Split dataset into train/validation/test sets."""
         random.seed(seed)
         indices = list(range(len(self.samples)))
         random.shuffle(indices)
@@ -426,51 +473,56 @@ class FormalityDataset(Dataset):
         )
 
     def get_class_weights(self) -> torch.Tensor:
-        """Compute inverse frequency class weights for imbalanced data.
-
-        Returns:
-            Tensor of shape (num_classes,) with class weights
-        """
+        """Compute inverse frequency class weights for imbalanced data."""
         counts = Counter(s.label for s in self.samples)
         total = len(self.samples)
         weights = torch.zeros(self.NUM_CLASSES)
 
         for label_id, count in counts.items():
-            # Inverse frequency weighting
             weights[label_id] = total / (self.NUM_CLASSES * count) if count > 0 else 0.0
 
         return weights
 
 
-def collate_fn(batch: List[FormalitySample], pad_id: int = 0) -> Dict[str, torch.Tensor]:
+def collate_fn(
+    batch: List[Sample],
+    pad_id: int = 0,
+) -> Dict[str, torch.Tensor]:
     """Collate samples into padded batches.
 
     Args:
-        batch: List of FormalitySample objects
+        batch: List of Sample objects
         pad_id: Padding token ID
 
     Returns:
-        Dictionary with 'input_ids', 'attention_mask', 'labels' tensors
+        Dictionary with per-field 'input_ids_<field>', 'attention_mask', 'labels' tensors
     """
-    max_len = max(len(s.token_ids) for s in batch)
+    max_len = max(s.seq_len for s in batch)
 
-    input_ids = []
+    # Initialize per-field lists
+    field_ids = {field: [] for field in FEATURE_FIELDS}
     attention_mask = []
     labels = []
 
     for sample in batch:
-        seq_len = len(sample.token_ids)
+        seq_len = sample.seq_len
         padding_len = max_len - seq_len
 
-        input_ids.append(sample.token_ids + [pad_id] * padding_len)
+        for field in FEATURE_FIELDS:
+            padded = sample.feature_ids[field] + [pad_id] * padding_len
+            field_ids[field].append(padded)
+
         attention_mask.append([1] * seq_len + [0] * padding_len)
         labels.append(sample.label)
 
-    return {
-        'input_ids': torch.tensor(input_ids, dtype=torch.long),
-        'attention_mask': torch.tensor(attention_mask, dtype=torch.long),
-        'labels': torch.tensor(labels, dtype=torch.long),
+    result = {
+        f'input_ids_{field}': torch.tensor(field_ids[field], dtype=torch.long)
+        for field in FEATURE_FIELDS
     }
+    result['attention_mask'] = torch.tensor(attention_mask, dtype=torch.long)
+    result['labels'] = torch.tensor(labels, dtype=torch.long)
+
+    return result
 
 
 class PositionalEncoding(nn.Module):
@@ -505,29 +557,40 @@ class PositionalEncoding(nn.Module):
 
 @dataclass
 class ModelConfig:
-    """Configuration for FormalityClassifier model."""
-    vocab_size: int
+    """Configuration for FormalityClassifier model.
+
+    This config supports multi-field embeddings where each morphological feature
+    (pos, pos_detail1, conjugated_type, conjugated_form, lemma) has its own
+    embedding table.
+    """
+    vocab_sizes: Dict[str, int]  # Field name -> vocabulary size
     num_classes: int = 6
-    embedding_dim: int = 128
-    hidden_dim: int = 256
-    num_layers: int = 2
-    num_heads: int = 4
+    field_embed_dims: Dict[str, int] = field(default_factory=lambda: {
+        'pos': 32,
+        'pos_detail1': 32,
+        'conjugated_type': 32,
+        'conjugated_form': 32,
+        'lemma': 64,
+    })
+    d_model: int = 192  # Total model dimension after projection
+    hidden_dim: int = 384
+    num_layers: int = 3
+    num_heads: int = 6
     dropout: float = 0.1
     max_seq_len: int = 512
-    encoder_type: str = "transformer"  # "transformer" or "bilstm"
     pooling: str = "cls"  # "cls", "mean", or "max"
 
     def to_dict(self) -> Dict[str, Any]:
         return {
-            'vocab_size': self.vocab_size,
+            'vocab_sizes': self.vocab_sizes,
             'num_classes': self.num_classes,
-            'embedding_dim': self.embedding_dim,
+            'field_embed_dims': self.field_embed_dims,
+            'd_model': self.d_model,
             'hidden_dim': self.hidden_dim,
             'num_layers': self.num_layers,
             'num_heads': self.num_heads,
             'dropout': self.dropout,
             'max_seq_len': self.max_seq_len,
-            'encoder_type': self.encoder_type,
             'pooling': self.pooling,
         }
 
@@ -536,15 +599,80 @@ class ModelConfig:
         return cls(**d)
 
 
+class MultiFieldEmbedding(nn.Module):
+    """Embedding layer that combines multiple categorical feature embeddings.
+
+    For each token position, this layer:
+    1. Looks up embeddings for each feature field (pos, pos_detail1, etc.)
+    2. Concatenates the field embeddings
+    3. Projects to the model dimension
+
+    This allows the model to learn from morphological features while
+    maintaining a fixed-size representation for the transformer.
+    """
+
+    def __init__(self, config: ModelConfig):
+        """Initialize multi-field embedding layer.
+
+        Args:
+            config: ModelConfig with vocabulary sizes and dimensions
+        """
+        super().__init__()
+        self.config = config
+
+        # Create embedding tables for each field
+        self.embeddings = nn.ModuleDict()
+        total_embed_dim = 0
+
+        for field_name in FEATURE_FIELDS:
+            vocab_size = config.vocab_sizes.get(field_name, 100)
+            embed_dim = config.field_embed_dims.get(field_name, 32)
+            self.embeddings[field_name] = nn.Embedding(
+                vocab_size,
+                embed_dim,
+                padding_idx=0,  # PAD token
+            )
+            total_embed_dim += embed_dim
+
+        # Projection to model dimension
+        self.projection = nn.Linear(total_embed_dim, config.d_model)
+        self.layer_norm = nn.LayerNorm(config.d_model)
+        self.dropout = nn.Dropout(config.dropout)
+
+    def forward(self, field_inputs: Dict[str, torch.Tensor]) -> torch.Tensor:
+        """Embed and combine features from all fields.
+
+        Args:
+            field_inputs: Dict mapping field name to tensor of shape (batch, seq_len)
+
+        Returns:
+            Combined embeddings of shape (batch, seq_len, d_model)
+        """
+        # Look up embeddings for each field
+        field_embeds = []
+        for field_name in FEATURE_FIELDS:
+            input_ids = field_inputs[f'input_ids_{field_name}']
+            embed = self.embeddings[field_name](input_ids)
+            field_embeds.append(embed)
+
+        # Concatenate along embedding dimension
+        concat = torch.cat(field_embeds, dim=-1)  # (batch, seq_len, total_embed_dim)
+
+        # Project to model dimension
+        projected = self.projection(concat)
+        normalized = self.layer_norm(projected)
+        return self.dropout(normalized)
+
+
 class FormalityClassifier(nn.Module):
-    """Neural sequence classifier for Kotogram formality prediction.
+    """Neural sequence classifier using multi-field morphological features.
 
     Architecture:
-    1. Embedding layer: token IDs -> dense vectors
-    2. Positional encoding (for Transformer) or implicit order (for BiLSTM)
-    3. Encoder: Transformer or BiLSTM stack
-    4. Pooling: CLS token, mean, or max pooling
-    5. Classification head: FC layers -> softmax over formality classes
+    1. Multi-field embedding: per-field embeddings concatenated and projected
+    2. Positional encoding: learned or sinusoidal
+    3. Transformer encoder: multi-layer self-attention
+    4. Pooling: CLS token embedding for sentence representation
+    5. Classification head: MLP to formality classes
     """
 
     def __init__(self, config: ModelConfig):
@@ -556,106 +684,72 @@ class FormalityClassifier(nn.Module):
         super().__init__()
         self.config = config
 
-        # Embedding layer
-        self.embedding = nn.Embedding(
-            config.vocab_size,
-            config.embedding_dim,
-            padding_idx=0,  # PAD token
+        # Multi-field embedding
+        self.embedding = MultiFieldEmbedding(config)
+
+        # Positional encoding
+        self.pos_encoding = PositionalEncoding(
+            config.d_model,
+            config.max_seq_len,
+            config.dropout,
         )
 
-        # Encoder
-        if config.encoder_type == "transformer":
-            self.pos_encoding = PositionalEncoding(
-                config.embedding_dim,
-                config.max_seq_len,
-                config.dropout,
-            )
-            encoder_layer = nn.TransformerEncoderLayer(
-                d_model=config.embedding_dim,
-                nhead=config.num_heads,
-                dim_feedforward=config.hidden_dim,
-                dropout=config.dropout,
-                batch_first=True,
-            )
-            self.encoder = nn.TransformerEncoder(encoder_layer, config.num_layers)
-            encoder_output_dim = config.embedding_dim
-
-        elif config.encoder_type == "bilstm":
-            self.encoder = nn.LSTM(
-                config.embedding_dim,
-                config.hidden_dim // 2,  # Bidirectional doubles output
-                config.num_layers,
-                batch_first=True,
-                bidirectional=True,
-                dropout=config.dropout if config.num_layers > 1 else 0,
-            )
-            encoder_output_dim = config.hidden_dim
-            self.pos_encoding = None
-        else:
-            raise ValueError(f"Unknown encoder_type: {config.encoder_type}")
+        # Transformer encoder
+        encoder_layer = nn.TransformerEncoderLayer(
+            d_model=config.d_model,
+            nhead=config.num_heads,
+            dim_feedforward=config.hidden_dim,
+            dropout=config.dropout,
+            batch_first=True,
+            activation='gelu',
+        )
+        self.encoder = nn.TransformerEncoder(encoder_layer, config.num_layers)
 
         # Classification head
         self.classifier = nn.Sequential(
-            nn.Linear(encoder_output_dim, config.hidden_dim),
-            nn.ReLU(),
+            nn.Linear(config.d_model, config.hidden_dim),
+            nn.GELU(),
             nn.Dropout(config.dropout),
             nn.Linear(config.hidden_dim, config.num_classes),
         )
 
     def forward(
         self,
-        input_ids: torch.Tensor,
+        field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
     ) -> torch.Tensor:
         """Forward pass through the model.
 
         Args:
-            input_ids: Token IDs of shape (batch, seq_len)
+            field_inputs: Dict with 'input_ids_<field>' tensors of shape (batch, seq_len)
             attention_mask: Binary mask of shape (batch, seq_len), 1 for real tokens
 
         Returns:
             Logits of shape (batch, num_classes)
         """
         # Embed tokens
-        x = self.embedding(input_ids)  # (batch, seq_len, embed_dim)
+        x = self.embedding(field_inputs)  # (batch, seq_len, d_model)
+        x = self.pos_encoding(x)
 
-        if self.config.encoder_type == "transformer":
-            x = self.pos_encoding(x)
+        # Create attention mask for transformer (True = ignore)
+        if attention_mask is not None:
+            src_key_padding_mask = attention_mask == 0
+        else:
+            src_key_padding_mask = None
 
-            # Create attention mask for transformer (True = ignore)
-            if attention_mask is not None:
-                # Transformer expects True for positions to mask
-                src_key_padding_mask = attention_mask == 0
-            else:
-                src_key_padding_mask = None
-
-            x = self.encoder(x, src_key_padding_mask=src_key_padding_mask)
-
-        elif self.config.encoder_type == "bilstm":
-            if attention_mask is not None:
-                # Pack sequences for efficient LSTM processing
-                lengths = attention_mask.sum(dim=1).cpu()
-                packed = nn.utils.rnn.pack_padded_sequence(
-                    x, lengths, batch_first=True, enforce_sorted=False
-                )
-                packed_out, _ = self.encoder(packed)
-                x, _ = nn.utils.rnn.pad_packed_sequence(packed_out, batch_first=True)
-            else:
-                x, _ = self.encoder(x)
+        # Encode
+        x = self.encoder(x, src_key_padding_mask=src_key_padding_mask)
 
         # Pooling
         if self.config.pooling == "cls":
-            # Use CLS token (first position)
             pooled = x[:, 0, :]
         elif self.config.pooling == "mean":
-            # Mean pooling over non-padded positions
             if attention_mask is not None:
                 mask = attention_mask.unsqueeze(-1).float()
                 pooled = (x * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1e-9)
             else:
                 pooled = x.mean(dim=1)
         elif self.config.pooling == "max":
-            # Max pooling over non-padded positions
             if attention_mask is not None:
                 mask = attention_mask.unsqueeze(-1).float()
                 x = x.masked_fill(mask == 0, float('-inf'))
@@ -667,37 +761,67 @@ class FormalityClassifier(nn.Module):
         logits = self.classifier(pooled)
         return logits
 
-    def predict(self, input_ids: torch.Tensor, attention_mask: Optional[torch.Tensor] = None) -> torch.Tensor:
-        """Get predicted class probabilities.
-
-        Args:
-            input_ids: Token IDs of shape (batch, seq_len)
-            attention_mask: Binary mask of shape (batch, seq_len)
-
-        Returns:
-            Probabilities of shape (batch, num_classes)
-        """
-        logits = self.forward(input_ids, attention_mask)
+    def predict(
+        self,
+        field_inputs: Dict[str, torch.Tensor],
+        attention_mask: Optional[torch.Tensor] = None,
+    ) -> torch.Tensor:
+        """Get predicted class probabilities."""
+        logits = self.forward(field_inputs, attention_mask)
         return F.softmax(logits, dim=-1)
 
+    def get_encoder_output(
+        self,
+        field_inputs: Dict[str, torch.Tensor],
+        attention_mask: Optional[torch.Tensor] = None,
+    ) -> torch.Tensor:
+        """Get encoder output for all positions (for MLM).
 
-class MaskedLMHead(nn.Module):
-    """Masked language modeling head for self-supervised pretraining."""
+        Returns:
+            Tensor of shape (batch, seq_len, d_model)
+        """
+        x = self.embedding(field_inputs)
+        x = self.pos_encoding(x)
+
+        if attention_mask is not None:
+            src_key_padding_mask = attention_mask == 0
+        else:
+            src_key_padding_mask = None
+
+        return self.encoder(x, src_key_padding_mask=src_key_padding_mask)
+
+
+class MLMHead(nn.Module):
+    """Masked language modeling head for feature-based tokens.
+
+    For MLM pretraining, we predict the original token's features at masked positions.
+    This head predicts the 'pos' field as the primary MLM target, since POS is the
+    most informative single feature for understanding sentence structure.
+    """
 
     def __init__(self, config: ModelConfig):
+        """Initialize MLM head.
+
+        Args:
+            config: ModelConfig with model dimensions
+        """
         super().__init__()
-        self.dense = nn.Linear(config.embedding_dim if config.encoder_type == "transformer" else config.hidden_dim, config.embedding_dim)
-        self.layer_norm = nn.LayerNorm(config.embedding_dim)
-        self.decoder = nn.Linear(config.embedding_dim, config.vocab_size)
+        self.config = config
+
+        # Prediction head for 'pos' field (primary MLM target)
+        pos_vocab_size = config.vocab_sizes.get('pos', 50)
+        self.dense = nn.Linear(config.d_model, config.d_model)
+        self.layer_norm = nn.LayerNorm(config.d_model)
+        self.decoder = nn.Linear(config.d_model, pos_vocab_size)
 
     def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:
         """Project hidden states to vocabulary logits.
 
         Args:
-            hidden_states: Encoder output of shape (batch, seq_len, hidden_dim)
+            hidden_states: Encoder output of shape (batch, seq_len, d_model)
 
         Returns:
-            Vocabulary logits of shape (batch, seq_len, vocab_size)
+            Vocabulary logits of shape (batch, seq_len, pos_vocab_size)
         """
         x = self.dense(hidden_states)
         x = F.gelu(x)
@@ -707,7 +831,7 @@ class MaskedLMHead(nn.Module):
 
 
 class FormalityClassifierWithMLM(FormalityClassifier):
-    """Formality classifier with optional masked language modeling head.
+    """Feature-based formality classifier with MLM pretraining head.
 
     This model can be:
     1. Pre-trained with masked token prediction (self-supervised)
@@ -716,46 +840,24 @@ class FormalityClassifierWithMLM(FormalityClassifier):
 
     def __init__(self, config: ModelConfig):
         super().__init__(config)
-        self.mlm_head = MaskedLMHead(config)
+        self.mlm_head = MLMHead(config)
 
     def forward_mlm(
         self,
-        input_ids: torch.Tensor,
+        field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
     ) -> torch.Tensor:
         """Forward pass for masked language modeling.
 
         Args:
-            input_ids: Token IDs with some positions masked
+            field_inputs: Dict with masked 'input_ids_<field>' tensors
             attention_mask: Binary mask for padding
 
         Returns:
-            Vocabulary logits of shape (batch, seq_len, vocab_size)
+            Vocabulary logits of shape (batch, seq_len, pos_vocab_size)
         """
-        # Embed and encode
-        x = self.embedding(input_ids)
-
-        if self.config.encoder_type == "transformer":
-            x = self.pos_encoding(x)
-            if attention_mask is not None:
-                src_key_padding_mask = attention_mask == 0
-            else:
-                src_key_padding_mask = None
-            x = self.encoder(x, src_key_padding_mask=src_key_padding_mask)
-        elif self.config.encoder_type == "bilstm":
-            if attention_mask is not None:
-                lengths = attention_mask.sum(dim=1).cpu()
-                packed = nn.utils.rnn.pack_padded_sequence(
-                    x, lengths, batch_first=True, enforce_sorted=False
-                )
-                packed_out, _ = self.encoder(packed)
-                x, _ = nn.utils.rnn.pad_packed_sequence(packed_out, batch_first=True)
-            else:
-                x, _ = self.encoder(x)
-
-        # MLM prediction
-        mlm_logits = self.mlm_head(x)
-        return mlm_logits
+        encoder_output = self.get_encoder_output(field_inputs, attention_mask)
+        return self.mlm_head(encoder_output)
 
 
 @dataclass
@@ -772,377 +874,73 @@ class TrainerConfig:
     device: str = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
 
 
-class Trainer:
-    """Training loop for formality classifier with validation metrics."""
-
-    def __init__(
-        self,
-        model: FormalityClassifier,
-        train_dataset: FormalityDataset,
-        val_dataset: FormalityDataset,
-        config: TrainerConfig = None,
-    ):
-        """Initialize trainer.
-
-        Args:
-            model: FormalityClassifier model
-            train_dataset: Training dataset
-            val_dataset: Validation dataset
-            config: TrainerConfig with hyperparameters
-        """
-        self.model = model
-        self.train_dataset = train_dataset
-        self.val_dataset = val_dataset
-        self.config = config or TrainerConfig()
-
-        self.device = torch.device(self.config.device)
-        self.model.to(self.device)
-
-        # Data loaders
-        pad_id = train_dataset.tokenizer.pad_id
-        self.train_loader = DataLoader(
-            train_dataset,
-            batch_size=self.config.batch_size,
-            shuffle=True,
-            collate_fn=lambda b: collate_fn(b, pad_id),
-        )
-        self.val_loader = DataLoader(
-            val_dataset,
-            batch_size=self.config.batch_size,
-            shuffle=False,
-            collate_fn=lambda b: collate_fn(b, pad_id),
-        )
-
-        # Loss function with optional class weights
-        if self.config.use_class_weights:
-            weights = train_dataset.get_class_weights().to(self.device)
-            self.criterion = nn.CrossEntropyLoss(weight=weights)
-        else:
-            self.criterion = nn.CrossEntropyLoss()
-
-        # Optimizer and scheduler
-        self.optimizer = Adam(model.parameters(), lr=self.config.learning_rate)
-        self.scheduler = ReduceLROnPlateau(
-            self.optimizer,
-            mode='min',
-            factor=self.config.lr_scheduler_factor,
-            patience=self.config.lr_scheduler_patience,
-        )
-
-        # Training state
-        self.best_val_loss = float('inf')
-        self.patience_counter = 0
-        self.history = {
-            'train_loss': [],
-            'val_loss': [],
-            'val_accuracy': [],
-        }
-
-    def train_epoch(self) -> float:
-        """Run one training epoch.
-
-        Returns:
-            Average training loss
-        """
-        self.model.train()
-        total_loss = 0
-        n_batches = 0
-
-        for batch in self.train_loader:
-            input_ids = batch['input_ids'].to(self.device)
-            attention_mask = batch['attention_mask'].to(self.device)
-            labels = batch['labels'].to(self.device)
-
-            self.optimizer.zero_grad()
-            logits = self.model(input_ids, attention_mask)
-            loss = self.criterion(logits, labels)
-            loss.backward()
-
-            if self.config.gradient_clip > 0:
-                nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
-
-            self.optimizer.step()
-
-            total_loss += loss.item()
-            n_batches += 1
-
-        return total_loss / n_batches
-
-    @torch.no_grad()
-    def evaluate(self) -> Tuple[float, float, Dict[str, List[int]]]:
-        """Evaluate on validation set.
-
-        Returns:
-            Tuple of (val_loss, accuracy, confusion_matrix)
-        """
-        self.model.eval()
-        total_loss = 0
-        n_batches = 0
-        all_preds = []
-        all_labels = []
-
-        for batch in self.val_loader:
-            input_ids = batch['input_ids'].to(self.device)
-            attention_mask = batch['attention_mask'].to(self.device)
-            labels = batch['labels'].to(self.device)
-
-            logits = self.model(input_ids, attention_mask)
-            loss = self.criterion(logits, labels)
-
-            preds = logits.argmax(dim=-1)
-            all_preds.extend(preds.cpu().tolist())
-            all_labels.extend(labels.cpu().tolist())
-
-            total_loss += loss.item()
-            n_batches += 1
-
-        avg_loss = total_loss / n_batches
-        accuracy = sum(p == l for p, l in zip(all_preds, all_labels)) / len(all_preds)
-
-        # Build confusion matrix
-        num_classes = FormalityDataset.NUM_CLASSES
-        confusion = [[0] * num_classes for _ in range(num_classes)]
-        for pred, label in zip(all_preds, all_labels):
-            confusion[label][pred] += 1
-
-        return avg_loss, accuracy, confusion
-
-    def train(self, verbose: bool = True) -> Dict[str, List[float]]:
-        """Run full training loop.
-
-        Args:
-            verbose: If True, print progress
-
-        Returns:
-            Training history dictionary
-        """
-        for epoch in range(self.config.epochs):
-            train_loss = self.train_epoch()
-            val_loss, val_acc, confusion = self.evaluate()
-
-            self.scheduler.step(val_loss)
-
-            self.history['train_loss'].append(train_loss)
-            self.history['val_loss'].append(val_loss)
-            self.history['val_accuracy'].append(val_acc)
-
-            if verbose:
-                print(f"Epoch {epoch+1}/{self.config.epochs}")
-                print(f"  Train Loss: {train_loss:.4f}")
-                print(f"  Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.4f}")
-                print(f"  LR: {self.optimizer.param_groups[0]['lr']:.2e}")
-
-            # Early stopping
-            if val_loss < self.best_val_loss:
-                self.best_val_loss = val_loss
-                self.patience_counter = 0
-                self.best_state = {k: v.cpu().clone() for k, v in self.model.state_dict().items()}
-            else:
-                self.patience_counter += 1
-                if self.patience_counter >= self.config.patience:
-                    if verbose:
-                        print(f"Early stopping at epoch {epoch+1}")
-                    break
-
-        # Restore best model
-        if hasattr(self, 'best_state'):
-            self.model.load_state_dict(self.best_state)
-            self.model.to(self.device)
-
-        return self.history
-
-    def print_confusion_matrix(self):
-        """Print confusion matrix with class labels."""
-        _, _, confusion = self.evaluate()
-
-        labels = [FormalityDataset.ID_TO_LABEL[i].value for i in range(FormalityDataset.NUM_CLASSES)]
-
-        # Header
-        print("\nConfusion Matrix:")
-        header = "True\\Pred".ljust(25) + " ".join(l[:8].ljust(10) for l in labels)
-        print(header)
-        print("-" * len(header))
-
-        # Rows
-        for i, row in enumerate(confusion):
-            row_label = labels[i].ljust(25)
-            row_values = " ".join(str(v).ljust(10) for v in row)
-            print(f"{row_label}{row_values}")
-
-
-def save_model(
-    model: FormalityClassifier,
-    tokenizer: KotogramTokenizer,
-    path: str,
-    config: Optional[ModelConfig] = None,
-):
-    """Save trained model, tokenizer, and config.
-
-    Args:
-        model: Trained FormalityClassifier
-        tokenizer: KotogramTokenizer with vocabulary
-        path: Directory path to save files
-    """
-    import os
-    os.makedirs(path, exist_ok=True)
-
-    # Save model weights
-    torch.save(model.state_dict(), os.path.join(path, 'model.pt'))
-
-    # Save tokenizer
-    tokenizer.save(os.path.join(path, 'tokenizer.json'))
-
-    # Save config
-    config = config or model.config
-    with open(os.path.join(path, 'config.json'), 'w') as f:
-        json.dump(config.to_dict(), f, indent=2)
-
-    # Save label mapping
-    label_map = {k.value: v for k, v in FormalityDataset.LABEL_TO_ID.items()}
-    with open(os.path.join(path, 'labels.json'), 'w') as f:
-        json.dump(label_map, f, indent=2)
-
-
-def load_model(path: str, device: str = None) -> Tuple[FormalityClassifier, KotogramTokenizer]:
-    """Load trained model and tokenizer.
-
-    Args:
-        path: Directory path with saved model files
-        device: Device to load model to
-
-    Returns:
-        Tuple of (model, tokenizer)
-    """
-    import os
-
-    # Load config
-    with open(os.path.join(path, 'config.json'), 'r') as f:
-        config_dict = json.load(f)
-    config = ModelConfig.from_dict(config_dict)
-
-    # Load tokenizer
-    tokenizer = KotogramTokenizer.load(os.path.join(path, 'tokenizer.json'))
-
-    # Load model
-    model = FormalityClassifier(config)
-    model.load_state_dict(torch.load(os.path.join(path, 'model.pt'), map_location=device or 'cpu'))
-
-    if device:
-        model.to(device)
-
-    model.eval()
-    return model, tokenizer
-
-
-def predict_formality(
-    sentence: str,
-    model: FormalityClassifier,
-    tokenizer: KotogramTokenizer,
-    parser=None,
-    device: str = None,
-) -> Tuple[FormalityLevel, Dict[str, float]]:
-    """Predict formality level for a Japanese sentence.
-
-    Args:
-        sentence: Japanese sentence text
-        model: Trained FormalityClassifier
-        tokenizer: KotogramTokenizer
-        parser: JapaneseParser (defaults to SudachiJapaneseParser)
-        device: Device to run inference on
-
-    Returns:
-        Tuple of (predicted_label, class_probabilities)
-    """
-    if parser is None:
-        from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-        parser = SudachiJapaneseParser()
-
-    # Convert to Kotogram
-    kotogram = parser.japanese_to_kotogram(sentence)
-
-    # Encode
-    token_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
-    input_ids = torch.tensor([token_ids], dtype=torch.long)
-    attention_mask = torch.ones_like(input_ids)
-
-    if device:
-        input_ids = input_ids.to(device)
-        attention_mask = attention_mask.to(device)
-        model.to(device)
-
-    # Predict
-    model.eval()
-    with torch.no_grad():
-        probs = model.predict(input_ids, attention_mask)[0]
-
-    predicted_id = probs.argmax().item()
-    predicted_label = FormalityDataset.ID_TO_LABEL[predicted_id]
-
-    prob_dict = {
-        FormalityDataset.ID_TO_LABEL[i].value: probs[i].item()
-        for i in range(FormalityDataset.NUM_CLASSES)
-    }
-
-    return predicted_label, prob_dict
-
-
-# Self-supervised pretraining utilities
-
 def create_mlm_batch(
     batch: Dict[str, torch.Tensor],
     mask_prob: float = 0.15,
     mask_token_id: int = 3,
-    vocab_size: int = None,
+    pos_vocab_size: int = None,
     special_token_ids: List[int] = None,
 ) -> Dict[str, torch.Tensor]:
-    """Create masked language modeling batch from regular batch.
+    """Create masked language modeling batch for feature-based tokens.
+
+    Masks positions across all feature fields and creates labels for the 'pos' field.
 
     Args:
-        batch: Batch with input_ids, attention_mask
-        mask_prob: Probability of masking a token
+        batch: Batch with 'input_ids_<field>' for each field, attention_mask
+        mask_prob: Probability of masking a token position
         mask_token_id: ID of MASK token
-        vocab_size: Vocabulary size for random token replacement
+        pos_vocab_size: Vocabulary size for 'pos' field (for random replacement)
         special_token_ids: IDs to never mask
 
     Returns:
-        Batch with masked input_ids and mlm_labels
+        Batch with masked input_ids_<field> and mlm_labels (for 'pos' field)
     """
     special_token_ids = special_token_ids or [0, 1, 2, 3]  # PAD, UNK, CLS, MASK
 
-    input_ids = batch['input_ids'].clone()
-    mlm_labels = torch.full_like(input_ids, -100)  # Ignore index for loss
+    # Use 'pos' field as the primary for determining mask positions
+    pos_ids = batch['input_ids_pos'].clone()
+    mlm_labels = torch.full_like(pos_ids, -100)  # Ignore index for loss
 
     # Create mask for tokens that can be masked
     maskable = batch['attention_mask'].bool()
     for special_id in special_token_ids:
-        maskable &= (input_ids != special_id)
+        maskable &= (pos_ids != special_id)
 
     # Random mask
-    probs = torch.rand_like(input_ids.float())
+    probs = torch.rand_like(pos_ids.float())
     mask = maskable & (probs < mask_prob)
 
-    # Set labels for masked positions
-    mlm_labels[mask] = input_ids[mask]
+    # Set labels for masked positions (using 'pos' field as target)
+    mlm_labels[mask] = pos_ids[mask]
 
     # 80% MASK, 10% random, 10% unchanged
-    mask_token = mask & (probs < mask_prob * 0.8)
-    random_token = mask & (probs >= mask_prob * 0.8) & (probs < mask_prob * 0.9)
+    mask_token_positions = mask & (probs < mask_prob * 0.8)
+    random_token_positions = mask & (probs >= mask_prob * 0.8) & (probs < mask_prob * 0.9)
 
-    input_ids[mask_token] = mask_token_id
-    if vocab_size:
-        input_ids[random_token] = torch.randint(
-            len(special_token_ids), vocab_size, (random_token.sum().item(),)
-        )
+    # Clone all field IDs and apply masking
+    result = {'attention_mask': batch['attention_mask'], 'mlm_labels': mlm_labels}
 
-    return {
-        'input_ids': input_ids,
-        'attention_mask': batch['attention_mask'],
-        'mlm_labels': mlm_labels,
-    }
+    for field in FEATURE_FIELDS:
+        field_ids = batch[f'input_ids_{field}'].clone()
+
+        # Apply MASK token
+        field_ids[mask_token_positions] = mask_token_id
+
+        # Apply random replacement (only for 'pos' field to keep it simple)
+        if field == 'pos' and pos_vocab_size:
+            num_random = random_token_positions.sum().item()
+            if num_random > 0:
+                field_ids[random_token_positions] = torch.randint(
+                    len(special_token_ids), pos_vocab_size, (num_random,)
+                )
+
+        result[f'input_ids_{field}'] = field_ids
+
+    return result
 
 
 class MLMTrainer:
-    """Trainer for self-supervised masked language modeling pretraining."""
+    """Trainer for self-supervised MLM pretraining with feature-based tokens."""
 
     def __init__(
         self,
@@ -1178,21 +976,27 @@ class MLMTrainer:
         total_loss = 0
         n_batches = 0
 
+        pos_vocab_size = self.dataset.tokenizer.get_vocab_size('pos')
+
         for batch in self.data_loader:
             # Create MLM batch
             mlm_batch = create_mlm_batch(
                 batch,
                 mask_prob=self.mask_prob,
                 mask_token_id=self.dataset.tokenizer.mask_id,
-                vocab_size=self.dataset.tokenizer.vocab_size,
+                pos_vocab_size=pos_vocab_size,
             )
 
-            input_ids = mlm_batch['input_ids'].to(self.device)
+            # Move to device
+            field_inputs = {
+                k: v.to(self.device) for k, v in mlm_batch.items()
+                if k.startswith('input_ids_')
+            }
             attention_mask = mlm_batch['attention_mask'].to(self.device)
             mlm_labels = mlm_batch['mlm_labels'].to(self.device)
 
             self.optimizer.zero_grad()
-            mlm_logits = self.model.forward_mlm(input_ids, attention_mask)
+            mlm_logits = self.model.forward_mlm(field_inputs, attention_mask)
 
             # Compute loss over masked positions
             loss = self.criterion(
@@ -1211,15 +1015,7 @@ class MLMTrainer:
         return total_loss / n_batches
 
     def train(self, epochs: int = None, verbose: bool = True) -> Dict[str, List[float]]:
-        """Run MLM pretraining.
-
-        Args:
-            epochs: Number of epochs (defaults to config.epochs)
-            verbose: Print progress
-
-        Returns:
-            Training history
-        """
+        """Run MLM pretraining."""
         epochs = epochs or self.config.epochs
 
         for epoch in range(epochs):
@@ -1230,6 +1026,320 @@ class MLMTrainer:
                 print(f"Epoch {epoch+1}/{epochs} - MLM Loss: {mlm_loss:.4f}")
 
         return self.history
+
+
+class Trainer:
+    """Training loop for feature-based formality classifier with differential learning rates."""
+
+    def __init__(
+        self,
+        model: FormalityClassifier,
+        train_dataset: FormalityDataset,
+        val_dataset: FormalityDataset,
+        config: TrainerConfig = None,
+        encoder_lr_factor: float = 0.1,
+    ):
+        """Initialize trainer.
+
+        Args:
+            model: FormalityClassifier model
+            train_dataset: Training dataset
+            val_dataset: Validation dataset
+            config: TrainerConfig with hyperparameters
+            encoder_lr_factor: Learning rate multiplier for encoder (vs classifier head).
+                              Set < 1.0 to use smaller LR for pretrained encoder.
+        """
+        self.model = model
+        self.train_dataset = train_dataset
+        self.val_dataset = val_dataset
+        self.config = config or TrainerConfig()
+        self.encoder_lr_factor = encoder_lr_factor
+
+        self.device = torch.device(self.config.device)
+        self.model.to(self.device)
+
+        # Data loaders
+        pad_id = train_dataset.tokenizer.pad_id
+        self.train_loader = DataLoader(
+            train_dataset,
+            batch_size=self.config.batch_size,
+            shuffle=True,
+            collate_fn=lambda b: collate_fn(b, pad_id),
+        )
+        self.val_loader = DataLoader(
+            val_dataset,
+            batch_size=self.config.batch_size,
+            shuffle=False,
+            collate_fn=lambda b: collate_fn(b, pad_id),
+        )
+
+        # Loss function with optional class weights
+        if self.config.use_class_weights:
+            weights = train_dataset.get_class_weights().to(self.device)
+            self.criterion = nn.CrossEntropyLoss(weight=weights)
+        else:
+            self.criterion = nn.CrossEntropyLoss()
+
+        # Optimizer with differential learning rates
+        encoder_params = list(model.embedding.parameters()) + list(model.encoder.parameters())
+        classifier_params = list(model.classifier.parameters())
+
+        self.optimizer = Adam([
+            {'params': encoder_params, 'lr': self.config.learning_rate * encoder_lr_factor},
+            {'params': classifier_params, 'lr': self.config.learning_rate},
+        ])
+
+        self.scheduler = ReduceLROnPlateau(
+            self.optimizer,
+            mode='min',
+            factor=self.config.lr_scheduler_factor,
+            patience=self.config.lr_scheduler_patience,
+        )
+
+        # Training state
+        self.best_val_loss = float('inf')
+        self.patience_counter = 0
+        self.history = {
+            'train_loss': [],
+            'val_loss': [],
+            'val_accuracy': [],
+        }
+
+    def _batch_to_device(self, batch: Dict[str, torch.Tensor]) -> Tuple[Dict[str, torch.Tensor], torch.Tensor, torch.Tensor]:
+        """Move batch tensors to device and split into inputs/mask/labels."""
+        field_inputs = {
+            k: v.to(self.device) for k, v in batch.items()
+            if k.startswith('input_ids_')
+        }
+        attention_mask = batch['attention_mask'].to(self.device)
+        labels = batch['labels'].to(self.device)
+        return field_inputs, attention_mask, labels
+
+    def train_epoch(self) -> float:
+        """Run one training epoch."""
+        self.model.train()
+        total_loss = 0
+        n_batches = 0
+
+        for batch in self.train_loader:
+            field_inputs, attention_mask, labels = self._batch_to_device(batch)
+
+            self.optimizer.zero_grad()
+            logits = self.model(field_inputs, attention_mask)
+            loss = self.criterion(logits, labels)
+            loss.backward()
+
+            if self.config.gradient_clip > 0:
+                nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
+
+            self.optimizer.step()
+
+            total_loss += loss.item()
+            n_batches += 1
+
+        return total_loss / n_batches
+
+    @torch.no_grad()
+    def evaluate(self) -> Tuple[float, float, List[List[int]]]:
+        """Evaluate on validation set."""
+        self.model.eval()
+        total_loss = 0
+        n_batches = 0
+        all_preds = []
+        all_labels = []
+
+        for batch in self.val_loader:
+            field_inputs, attention_mask, labels = self._batch_to_device(batch)
+
+            logits = self.model(field_inputs, attention_mask)
+            loss = self.criterion(logits, labels)
+
+            preds = logits.argmax(dim=-1)
+            all_preds.extend(preds.cpu().tolist())
+            all_labels.extend(labels.cpu().tolist())
+
+            total_loss += loss.item()
+            n_batches += 1
+
+        avg_loss = total_loss / n_batches
+        accuracy = sum(p == l for p, l in zip(all_preds, all_labels)) / len(all_preds)
+
+        # Build confusion matrix
+        num_classes = FormalityDataset.NUM_CLASSES
+        confusion = [[0] * num_classes for _ in range(num_classes)]
+        for pred, label in zip(all_preds, all_labels):
+            confusion[label][pred] += 1
+
+        return avg_loss, accuracy, confusion
+
+    def train(self, verbose: bool = True) -> Dict[str, List[float]]:
+        """Run full training loop."""
+        for epoch in range(self.config.epochs):
+            train_loss = self.train_epoch()
+            val_loss, val_acc, confusion = self.evaluate()
+
+            self.scheduler.step(val_loss)
+
+            self.history['train_loss'].append(train_loss)
+            self.history['val_loss'].append(val_loss)
+            self.history['val_accuracy'].append(val_acc)
+
+            if verbose:
+                print(f"Epoch {epoch+1}/{self.config.epochs}")
+                print(f"  Train Loss: {train_loss:.4f}")
+                print(f"  Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.4f}")
+                enc_lr = self.optimizer.param_groups[0]['lr']
+                cls_lr = self.optimizer.param_groups[1]['lr']
+                print(f"  LR: encoder={enc_lr:.2e}, classifier={cls_lr:.2e}")
+
+            # Early stopping
+            if val_loss < self.best_val_loss:
+                self.best_val_loss = val_loss
+                self.patience_counter = 0
+                self.best_state = {k: v.cpu().clone() for k, v in self.model.state_dict().items()}
+            else:
+                self.patience_counter += 1
+                if self.patience_counter >= self.config.patience:
+                    if verbose:
+                        print(f"Early stopping at epoch {epoch+1}")
+                    break
+
+        # Restore best model
+        if hasattr(self, 'best_state'):
+            self.model.load_state_dict(self.best_state)
+            self.model.to(self.device)
+
+        return self.history
+
+    def print_confusion_matrix(self):
+        """Print confusion matrix with class labels."""
+        _, _, confusion = self.evaluate()
+
+        labels = [FormalityDataset.ID_TO_LABEL[i].value for i in range(FormalityDataset.NUM_CLASSES)]
+
+        print("\nConfusion Matrix:")
+        header = "True\\Pred".ljust(25) + " ".join(l[:8].ljust(10) for l in labels)
+        print(header)
+        print("-" * len(header))
+
+        for i, row in enumerate(confusion):
+            row_label = labels[i].ljust(25)
+            row_values = " ".join(str(v).ljust(10) for v in row)
+            print(f"{row_label}{row_values}")
+
+
+def save_model(
+    model: FormalityClassifier,
+    tokenizer: Tokenizer,
+    path: str,
+    config: Optional[ModelConfig] = None,
+):
+    """Save feature-based trained model, tokenizer, and config."""
+    import os
+    os.makedirs(path, exist_ok=True)
+
+    # Save model weights
+    torch.save(model.state_dict(), os.path.join(path, 'model.pt'))
+
+    # Save tokenizer
+    tokenizer.save(os.path.join(path, 'tokenizer.json'))
+
+    # Save config
+    config = config or model.config
+    with open(os.path.join(path, 'config.json'), 'w') as f:
+        json.dump(config.to_dict(), f, indent=2)
+
+    # Save label mapping
+    label_map = {k.value: v for k, v in FormalityDataset.LABEL_TO_ID.items()}
+    with open(os.path.join(path, 'labels.json'), 'w') as f:
+        json.dump(label_map, f, indent=2)
+
+    # Mark as feature-based model
+    with open(os.path.join(path, 'model_type.txt'), 'w') as f:
+        f.write('feature')
+
+
+def load_model(
+    path: str,
+    device: str = None,
+) -> Tuple[FormalityClassifier, Tokenizer]:
+    """Load feature-based trained model and tokenizer."""
+    import os
+
+    # Load config
+    with open(os.path.join(path, 'config.json'), 'r') as f:
+        config_dict = json.load(f)
+    config = ModelConfig.from_dict(config_dict)
+
+    # Load tokenizer
+    tokenizer = Tokenizer.load(os.path.join(path, 'tokenizer.json'))
+
+    # Load model
+    model = FormalityClassifier(config)
+    model.load_state_dict(torch.load(os.path.join(path, 'model.pt'), map_location=device or 'cpu'))
+
+    if device:
+        model.to(device)
+
+    model.eval()
+    return model, tokenizer
+
+
+def predict_formality(
+    sentence: str,
+    model: FormalityClassifier,
+    tokenizer: Tokenizer,
+    parser=None,
+    device: str = None,
+) -> Tuple[FormalityLevel, Dict[str, float]]:
+    """Predict formality level for a Japanese sentence using feature-based model.
+
+    Args:
+        sentence: Japanese sentence text
+        model: Trained FormalityClassifier
+        tokenizer: Tokenizer
+        parser: JapaneseParser (defaults to SudachiJapaneseParser)
+        device: Device to run inference on
+
+    Returns:
+        Tuple of (predicted_label, class_probabilities)
+    """
+    if parser is None:
+        from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+        parser = SudachiJapaneseParser()
+
+    # Convert to Kotogram
+    kotogram = parser.japanese_to_kotogram(sentence)
+
+    # Encode
+    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
+
+    # Create batch tensors
+    field_inputs = {
+        f'input_ids_{field}': torch.tensor([feature_ids[field]], dtype=torch.long)
+        for field in FEATURE_FIELDS
+    }
+    attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
+
+    if device:
+        field_inputs = {k: v.to(device) for k, v in field_inputs.items()}
+        attention_mask = attention_mask.to(device)
+        model.to(device)
+
+    # Predict
+    model.eval()
+    with torch.no_grad():
+        probs = model.predict(field_inputs, attention_mask)[0]
+
+    predicted_id = probs.argmax().item()
+    predicted_label = FormalityDataset.ID_TO_LABEL[predicted_id]
+
+    prob_dict = {
+        FormalityDataset.ID_TO_LABEL[i].value: probs[i].item()
+        for i in range(FormalityDataset.NUM_CLASSES)
+    }
+
+    return predicted_label, prob_dict
 
 
 if __name__ == "__main__":
@@ -1247,28 +1357,27 @@ if __name__ == "__main__":
                         help="Number of training epochs")
     parser.add_argument("--batch-size", type=int, default=32,
                         help="Batch size")
-    parser.add_argument("--encoder", type=str, default="transformer",
-                        choices=["transformer", "bilstm"],
-                        help="Encoder architecture")
-    parser.add_argument("--embed-dim", type=int, default=128,
-                        help="Embedding dimension")
-    parser.add_argument("--hidden-dim", type=int, default=256,
+    parser.add_argument("--embed-dim", type=int, default=192,
+                        help="Model dimension (d_model)")
+    parser.add_argument("--hidden-dim", type=int, default=384,
                         help="Hidden layer dimension")
-    parser.add_argument("--num-layers", type=int, default=2,
+    parser.add_argument("--num-layers", type=int, default=3,
                         help="Number of encoder layers")
+    parser.add_argument("--num-heads", type=int, default=6,
+                        help="Number of attention heads")
     parser.add_argument("--pretrain-mlm", action="store_true",
                         help="Pre-train with masked language modeling")
     parser.add_argument("--pretrain-epochs", type=int, default=5,
                         help="MLM pretraining epochs")
-    parser.add_argument("--strip-surface", action="store_true",
-                        help="Strip surface forms (kanji) from tokens to reduce vocab size")
+    parser.add_argument("--encoder-lr-factor", type=float, default=0.1,
+                        help="Learning rate factor for encoder during fine-tuning")
+    parser.add_argument("--learning-rate", type=float, default=1e-4,
+                        help="Base learning rate")
 
     args = parser.parse_args()
 
     print("Loading data...")
-    tokenizer = KotogramTokenizer(strip_surface=args.strip_surface)
-    if args.strip_surface:
-        print("Surface forms will be stripped (grammar-only tokens)")
+    tokenizer = Tokenizer()
     dataset = FormalityDataset.from_tsv(
         args.data,
         tokenizer,
@@ -1281,12 +1390,12 @@ if __name__ == "__main__":
 
     # Model config
     model_config = ModelConfig(
-        vocab_size=tokenizer.vocab_size,
+        vocab_sizes=tokenizer.get_vocab_sizes(),
         num_classes=FormalityDataset.NUM_CLASSES,
-        embedding_dim=args.embed_dim,
+        d_model=args.embed_dim,
         hidden_dim=args.hidden_dim,
         num_layers=args.num_layers,
-        encoder_type=args.encoder,
+        num_heads=args.num_heads,
     )
 
     # Create model
@@ -1296,19 +1405,30 @@ if __name__ == "__main__":
 
         # MLM pretraining
         print("\nStarting MLM pretraining...")
-        mlm_trainer = MLMTrainer(model, train_data)
+        pretrain_config = TrainerConfig(
+            epochs=args.pretrain_epochs,
+            batch_size=args.batch_size,
+            learning_rate=args.learning_rate,
+        )
+        mlm_trainer = MLMTrainer(model, train_data, pretrain_config)
         mlm_trainer.train(epochs=args.pretrain_epochs)
     else:
         print("\nCreating model...")
         model = FormalityClassifier(model_config)
 
-    # Supervised training
+    # Supervised training with differential learning rates
     print("\nStarting supervised training...")
     trainer_config = TrainerConfig(
         epochs=args.epochs,
         batch_size=args.batch_size,
+        learning_rate=args.learning_rate,
     )
-    trainer = Trainer(model, train_data, val_data, trainer_config)
+    # Use smaller LR for encoder if pretrained
+    encoder_lr_factor = args.encoder_lr_factor if args.pretrain_mlm else 1.0
+    trainer = Trainer(
+        model, train_data, val_data, trainer_config,
+        encoder_lr_factor=encoder_lr_factor,
+    )
     history = trainer.train()
 
     # Print final metrics
@@ -1329,11 +1449,14 @@ if __name__ == "__main__":
 
     with torch.no_grad():
         for batch in test_loader:
-            input_ids = batch['input_ids'].to(device)
+            field_inputs = {
+                k: v.to(device) for k, v in batch.items()
+                if k.startswith('input_ids_')
+            }
             attention_mask = batch['attention_mask'].to(device)
             labels = batch['labels'].to(device)
 
-            logits = model(input_ids, attention_mask)
+            logits = model(field_inputs, attention_mask)
             preds = logits.argmax(dim=-1)
 
             correct += (preds == labels).sum().item()

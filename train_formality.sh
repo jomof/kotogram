@@ -4,7 +4,6 @@
 # Usage:
 #   ./train_formality.sh                    # Default training
 #   ./train_formality.sh --pretrain-mlm     # With MLM pretraining
-#   ./train_formality.sh --encoder bilstm   # Use BiLSTM instead of Transformer
 
 set -e
 
@@ -55,14 +54,15 @@ DATA_PATH="data/jpn_sentences.tsv"
 OUTPUT_DIR="models/formality"
 EPOCHS=20
 BATCH_SIZE=64
-ENCODER="transformer"
-EMBED_DIM=128
-HIDDEN_DIM=256
+EMBED_DIM=192
+HIDDEN_DIM=384
 NUM_LAYERS=3
+NUM_HEADS=6
 PRETRAIN_MLM=""
 PRETRAIN_EPOCHS=5
 MAX_SAMPLES=""
-STRIP_SURFACE=""
+ENCODER_LR_FACTOR=0.1
+LEARNING_RATE=1e-4
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -83,10 +83,6 @@ while [[ $# -gt 0 ]]; do
             BATCH_SIZE="$2"
             shift 2
             ;;
-        --encoder)
-            ENCODER="$2"
-            shift 2
-            ;;
         --embed-dim)
             EMBED_DIM="$2"
             shift 2
@@ -97,6 +93,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --num-layers)
             NUM_LAYERS="$2"
+            shift 2
+            ;;
+        --num-heads)
+            NUM_HEADS="$2"
             shift 2
             ;;
         --pretrain-mlm)
@@ -111,28 +111,38 @@ while [[ $# -gt 0 ]]; do
             MAX_SAMPLES="--max-samples $2"
             shift 2
             ;;
-        --strip-surface)
-            STRIP_SURFACE="--strip-surface"
-            shift
+        --encoder-lr-factor)
+            ENCODER_LR_FACTOR="$2"
+            shift 2
+            ;;
+        --learning-rate)
+            LEARNING_RATE="$2"
+            shift 2
             ;;
         --help)
             echo "Train formality classifier on Japanese sentence corpus"
             echo ""
             echo "Usage: $0 [OPTIONS]"
             echo ""
-            echo "Options:"
+            echo "Data Options:"
             echo "  --data PATH           Path to TSV file (default: data/jpn_sentences.tsv)"
             echo "  --output DIR          Output directory (default: models/formality)"
+            echo "  --max-samples N       Limit samples (for testing)"
+            echo ""
+            echo "Training Options:"
             echo "  --epochs N            Training epochs (default: 20)"
             echo "  --batch-size N        Batch size (default: 64)"
-            echo "  --encoder TYPE        Encoder type: transformer or bilstm (default: transformer)"
-            echo "  --embed-dim N         Embedding dimension (default: 128)"
-            echo "  --hidden-dim N        Hidden layer dimension (default: 256)"
-            echo "  --num-layers N        Number of encoder layers (default: 3)"
+            echo "  --learning-rate F     Base learning rate (default: 1e-4)"
             echo "  --pretrain-mlm        Enable masked LM pretraining"
             echo "  --pretrain-epochs N   MLM pretraining epochs (default: 5)"
-            echo "  --max-samples N       Limit samples (for testing)"
-            echo "  --strip-surface       Strip surface forms (kanji) to reduce vocab size"
+            echo "  --encoder-lr-factor F LR factor for encoder in fine-tuning (default: 0.1)"
+            echo ""
+            echo "Model Architecture:"
+            echo "  --embed-dim N         Model dimension (default: 192)"
+            echo "  --hidden-dim N        Hidden layer dimension (default: 384)"
+            echo "  --num-layers N        Number of encoder layers (default: 3)"
+            echo "  --num-heads N         Number of attention heads (default: 6)"
+            echo ""
             echo "  --help                Show this help message"
             exit 0
             ;;
@@ -150,18 +160,17 @@ echo "Data:           $DATA_PATH"
 echo "Output:         $OUTPUT_DIR"
 echo "Epochs:         $EPOCHS"
 echo "Batch size:     $BATCH_SIZE"
-echo "Encoder:        $ENCODER"
-echo "Embedding dim:  $EMBED_DIM"
+echo "Learning rate:  $LEARNING_RATE"
+echo "Model dim:      $EMBED_DIM"
 echo "Hidden dim:     $HIDDEN_DIM"
 echo "Num layers:     $NUM_LAYERS"
+echo "Num heads:      $NUM_HEADS"
 if [ -n "$PRETRAIN_MLM" ]; then
     echo "MLM pretrain:   $PRETRAIN_EPOCHS epochs"
+    echo "Encoder LR:     ${ENCODER_LR_FACTOR}x base LR during fine-tuning"
 fi
 if [ -n "$MAX_SAMPLES" ]; then
     echo "Max samples:    ${MAX_SAMPLES#--max-samples }"
-fi
-if [ -n "$STRIP_SURFACE" ]; then
-    echo "Strip surface:  yes (grammar-only tokens)"
 fi
 echo "=============================================="
 echo ""
@@ -172,21 +181,30 @@ mkdir -p "$OUTPUT_DIR"
 # Enable MPS fallback for unsupported ops (Mac Apple Silicon)
 export PYTORCH_ENABLE_MPS_FALLBACK=1
 
+# Build command
+CMD="python -m kotogram.formality_classifier \
+    --data \"$DATA_PATH\" \
+    --output \"$OUTPUT_DIR\" \
+    --epochs $EPOCHS \
+    --batch-size $BATCH_SIZE \
+    --embed-dim $EMBED_DIM \
+    --hidden-dim $HIDDEN_DIM \
+    --num-layers $NUM_LAYERS \
+    --num-heads $NUM_HEADS \
+    --learning-rate $LEARNING_RATE \
+    --pretrain-epochs $PRETRAIN_EPOCHS \
+    --encoder-lr-factor $ENCODER_LR_FACTOR"
+
+if [ -n "$PRETRAIN_MLM" ]; then
+    CMD="$CMD --pretrain-mlm"
+fi
+
+if [ -n "$MAX_SAMPLES" ]; then
+    CMD="$CMD $MAX_SAMPLES"
+fi
+
 # Run training
-python -m kotogram.formality_classifier \
-    --data "$DATA_PATH" \
-    --output "$OUTPUT_DIR" \
-    --epochs "$EPOCHS" \
-    --batch-size "$BATCH_SIZE" \
-    --encoder "$ENCODER" \
-    --embed-dim "$EMBED_DIM" \
-    --hidden-dim "$HIDDEN_DIM" \
-    --num-layers "$NUM_LAYERS" \
-    $PRETRAIN_MLM \
-    --pretrain-epochs "$PRETRAIN_EPOCHS" \
-    $MAX_SAMPLES \
-    $STRIP_SURFACE \
-    2>&1 | tee "$OUTPUT_DIR/training.log"
+eval $CMD 2>&1 | tee "$OUTPUT_DIR/training.log"
 
 echo ""
 echo "=============================================="
