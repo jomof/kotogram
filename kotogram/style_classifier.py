@@ -79,7 +79,8 @@ CLS_TOKEN = "<CLS>"
 MASK_TOKEN = "<MASK>"  # For self-supervised pretraining
 
 # Feature fields used for token embedding
-FEATURE_FIELDS = ['pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma']
+# NOTE: 'surface' is critical for gender detection (pronouns like 僕, 俺, あたし)
+FEATURE_FIELDS = ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma']
 
 # Number of classes for each task
 NUM_FORMALITY_CLASSES = 6

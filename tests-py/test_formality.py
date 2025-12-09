@@ -1041,5 +1041,112 @@ class TestUnpragmaticFormality(unittest.TestCase):
         self.assertNotEqual(result, FormalityLevel.UNPRAGMATIC_FORMALITY)
 
 
+class TestFormalityCasualParticles(unittest.TestCase):
+    """Tests for casual sentence-final particles detection.
+
+    These tests verify that casual sentence-final particles like なあ, ねえ, etc.
+    are correctly identified as casual markers.
+    """
+
+    def setUp(self):
+        """Set up test fixtures."""
+        try:
+            self.parser = SudachiJapaneseParser(dict_type='full')
+        except Exception as e:
+            self.skipTest(f"Sudachi not available: {e}")
+
+    def test_casual_naa_particle(self):
+        """Sentence with なあ particle should be CASUAL.
+
+        Real example from dataset ID 4826.
+        なあ is a lengthened form of な, expressing reflection/wonder.
+        """
+        text = "何が言いたいのか分からないなあ。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_nee_particle(self):
+        """Sentence with ねえ particle should be CASUAL.
+
+        ねえ is a lengthened form of ね, expressing seeking agreement.
+        """
+        text = "そうだねえ。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_yoo_particle(self):
+        """Sentence with よー/よお particle should be CASUAL.
+
+        よー/よお is a lengthened form of よ, emphasizing assertion.
+        """
+        text = "早くしろよー。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_kashira_particle(self):
+        """Sentence with かしら particle should be CASUAL.
+
+        Real example from dataset ID 4921.
+        かしら is a feminine wondering/questioning particle.
+        """
+        text = "はぁ・・・（汗）、それでコンタクトは取れるようになったのかしら・・・？"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_neutral_plain_kurete_arigatou(self):
+        """Plain くれて + ありがとう is NEUTRAL (no explicit casual markers).
+
+        Real example from dataset ID 4820.
+        While conversationally informal, this sentence lacks explicit casual
+        markers (sentence-final particles, だ copula, etc). The rule-based
+        system classifies it as NEUTRAL. The model predicts CASUAL based on
+        overall tone, which may be more accurate for conversation analysis.
+        """
+        text = "なぜみんなが私のことを気違いだと思うのか、遂に説明してくれてありがとう。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # Rule-based: NEUTRAL (no explicit casual markers at sentence end)
+        # Model: CASUAL (overall informal tone)
+        self.assertEqual(result, FormalityLevel.NEUTRAL)
+
+    def test_casual_quoted_da_ending(self):
+        """Terminal だ in quoted speech should be detected as CASUAL.
+
+        Real example from dataset ID 4928.
+        The sentence contains two quoted statements both ending with だ
+        which is the casual copula form.
+        """
+        text = "「彼女は音楽が好きだ。」　「私もそうだ。」"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_kai_question_particle(self):
+        """Sentence with かい question particle should be CASUAL.
+
+        Real example from dataset ID 4970.
+        かい is a casual masculine question particle.
+        """
+        text = "それらはみんな同じかい？"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_mono_particle(self):
+        """Sentence with もの particle should be CASUAL.
+
+        Real example from dataset ID 74028.
+        もの is a feminine explanatory particle.
+        """
+        text = "あなたの行くところなら、どこへでも付いてゆくと決めたのだもの。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+
 if __name__ == "__main__":
     unittest.main()
