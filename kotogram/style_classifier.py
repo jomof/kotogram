@@ -607,18 +607,68 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         train_ratio: float = 0.8,
         val_ratio: float = 0.1,
         seed: int = 42,
+        stratify: bool = True,
     ) -> Tuple['StyleDataset', 'StyleDataset', 'StyleDataset']:
-        """Split dataset into train/validation/test sets."""
+        """Split dataset into train/validation/test sets.
+
+        Args:
+            train_ratio: Fraction of data for training (default 0.8)
+            val_ratio: Fraction of data for validation (default 0.1)
+            seed: Random seed for reproducibility
+            stratify: If True, use stratified splitting to ensure proportional
+                     representation of all class combinations in each split.
+                     Uses combined (formality, gender) labels for stratification.
+
+        Returns:
+            Tuple of (train, validation, test) StyleDataset instances
+        """
         random.seed(seed)
-        indices = list(range(len(self.samples)))
-        random.shuffle(indices)
 
-        n_train = int(len(indices) * train_ratio)
-        n_val = int(len(indices) * val_ratio)
+        if not stratify:
+            # Original random splitting
+            indices = list(range(len(self.samples)))
+            random.shuffle(indices)
 
-        train_indices = indices[:n_train]
-        val_indices = indices[n_train:n_train + n_val]
-        test_indices = indices[n_train + n_val:]
+            n_train = int(len(indices) * train_ratio)
+            n_val = int(len(indices) * val_ratio)
+
+            train_indices = indices[:n_train]
+            val_indices = indices[n_train:n_train + n_val]
+            test_indices = indices[n_train + n_val:]
+        else:
+            # Stratified splitting using combined (formality, gender) labels
+            # Group samples by combined label
+            label_to_indices: Dict[Tuple[int, int], List[int]] = {}
+            for i, sample in enumerate(self.samples):
+                combined_label = (sample.formality_label, sample.gender_label)
+                if combined_label not in label_to_indices:
+                    label_to_indices[combined_label] = []
+                label_to_indices[combined_label].append(i)
+
+            train_indices: List[int] = []
+            val_indices: List[int] = []
+            test_indices: List[int] = []
+
+            # Split each group proportionally
+            for combined_label, indices in label_to_indices.items():
+                random.shuffle(indices)
+                n = len(indices)
+                n_train = max(1, int(n * train_ratio)) if n > 0 else 0
+                n_val = max(1, int(n * val_ratio)) if n > 1 else 0
+
+                # Ensure we have at least 1 sample in test if possible
+                if n > 2 and n_train + n_val >= n:
+                    # Reduce train to make room for test
+                    n_train = max(1, n - n_val - 1)
+
+                train_indices.extend(indices[:n_train])
+                val_indices.extend(indices[n_train:n_train + n_val])
+                test_indices.extend(indices[n_train + n_val:])
+
+            # Shuffle the combined indices
+            random.shuffle(train_indices)
+            random.shuffle(val_indices)
+            random.shuffle(test_indices)
 
         train_samples = [self.samples[i] for i in train_indices]
         val_samples = [self.samples[i] for i in val_indices]
