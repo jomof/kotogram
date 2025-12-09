@@ -55,22 +55,30 @@ MASK_TOKEN = "<MASK>"  # For self-supervised pretraining
 
 
 def strip_surface_form(token: str) -> str:
-    """Strip surface form (kanji/kana) from a Kotogram token, keeping only POS tags.
+    """Strip all word-specific info from a Kotogram token, keeping only POS tags.
 
-    Converts: ⌈ˢ食べᵖv:e-ichidan-ba:conjunctive⌉ -> ⌈ᵖv:e-ichidan-ba:conjunctive⌉
+    Converts: ⌈ˢ食べᵖv:e-ichidan-ba:conjunctiveᵇ食べるᵈ食べるʳタベ⌉ -> ⌈ᵖv:e-ichidan-ba:conjunctive⌉
 
-    This reduces vocabulary size by collapsing tokens that differ only by
-    surface form into the same grammatical pattern.
+    This removes:
+    - ˢ...ᵖ : surface form (the actual text)
+    - ᵇ... : base orthography
+    - ᵈ... : lemma/dictionary form
+    - ʳ... : reading/pronunciation
+
+    Only the POS and grammatical info (ᵖ...) is kept.
 
     Args:
         token: A single Kotogram token string
 
     Returns:
-        Token with surface form removed
+        Token with only POS/grammar tags
     """
     import re
-    # Remove surface form (ˢ...ᵖ) but keep the ᵖ marker
-    return re.sub(r'ˢ[^ᵖ]*ᵖ', 'ᵖ', token)
+    # Extract just the POS section (ᵖ...⌉ or ᵖ...ᵇ or ᵖ...ᵈ or ᵖ...ʳ)
+    pos_match = re.search(r'ᵖ([^⌉ᵇᵈʳ]*)', token)
+    if pos_match:
+        return f'⌈ᵖ{pos_match.group(1)}⌉'
+    return token
 
 
 class KotogramTokenizer:
