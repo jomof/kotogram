@@ -14,6 +14,151 @@ class TestFormalityMecab(unittest.TestCase):
         except Exception as e:
             self.skipTest(f"MeCab not available: {e}")
 
+    def test_very_formal_itadaku_humble(self):
+        """いただく humble verb should be VERY_FORMAL."""
+        # Real example from dataset ID 5193
+        text = "また後でかけ直していただけませんか？"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # いただく is humble keigo
+        self.assertEqual(result, FormalityLevel.VERY_FORMAL)
+
+    def test_very_formal_itasu_humble(self):
+        """いたす humble verb should be VERY_FORMAL."""
+        # Real example from dataset ID 74370
+        text = "遅延便については、オリジナルの出発日に基づくシーズナリティを適用するため、マイル差額の払い戻しはいたしません。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # いたす is humble keigo
+        self.assertEqual(result, FormalityLevel.VERY_FORMAL)
+
+    def test_very_casual_nanda(self):
+        """なんだ contraction should be VERY_CASUAL."""
+        # Real example from dataset ID 74670
+        text = "あらまあ、ホント、全く知らなんだ。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # なんだ is casual contraction
+        self.assertEqual(result, FormalityLevel.VERY_CASUAL)
+
+    def test_very_casual_ja_copula(self):
+        """じゃ copula should be VERY_CASUAL."""
+        # Real example from dataset ID 75050
+        text = "じゃ、１年前のはもう効き目がないんだ！"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # じゃ is casual contracted copula
+        self.assertEqual(result, FormalityLevel.VERY_CASUAL)
+
+    def test_casual_datta_past_copula(self):
+        """Sentence ending with だった (past copula) should be CASUAL."""
+        # Real example from dataset ID 4714
+        text = "こいつは悪いウサギだった。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # だった is casual past copula (contrasts with でした formal)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_darou_presumptive(self):
+        """Sentence with だろう (presumptive) should be CASUAL."""
+        # Real example from dataset ID 4769
+        text = "兄弟がいるとどんなだろうといつも思う。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # だろう is casual presumptive (contrasts with でしょう formal)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_neutral_dakara_conjunction(self):
+        """だから conjunction with plain ending should be NEUTRAL."""
+        # Real example from dataset ID 4765
+        text = "だから何？"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # だから is conjunction, sentence ends with plain pronoun
+        # While colloquially casual, grammatically it's neutral (no formal/casual markers at sentence end)
+        self.assertEqual(result, FormalityLevel.NEUTRAL)
+
+    def test_neutral_with_embedded_da(self):
+        """Sentence with だ in embedded clause should be NEUTRAL if main ending is plain."""
+        # Real example from dataset ID 4747
+        text = "大抵の人は僕を気違いだと思っている。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # だ is in embedded quotation "〜だと思う", main verb is plain ている
+        self.assertEqual(result, FormalityLevel.NEUTRAL)
+
+    def test_neutral_with_attributive_da(self):
+        """Sentence with attributive な (from だ) should be NEUTRAL if ending is plain."""
+        # Real example from dataset ID 4760
+        text = "こんな馬鹿なことは言ったことが無い。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # な is attributive form of だ (馬鹿な), sentence ends with plain 無い
+        self.assertEqual(result, FormalityLevel.NEUTRAL)
+
+    def test_neutral_with_conjunctive_ni(self):
+        """Sentence with conjunctive に (from だ) should be NEUTRAL if ending is plain."""
+        # Real example from dataset ID 4775
+        text = "自分勝手にするつもりはない。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # に is conjunctive form of だ (勝手に), sentence ends with plain ない
+        self.assertEqual(result, FormalityLevel.NEUTRAL)
+
+    def test_formal_with_casual_conjunction(self):
+        """Formal sentence with casual conjunction (だけど) should still be FORMAL."""
+        # Real example from dataset ID 4842
+        text = "だけど、ここではそんなに簡単ではないんです。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # Casual conjunctions like だけど are acceptable in formal speech
+        self.assertEqual(result, FormalityLevel.FORMAL)
+
+    def test_formal_kudasai_imperative(self):
+        """Polite imperative ください should be FORMAL."""
+        # Real example from dataset ID 5021
+        text = "あなたが受けるに値する助けをあなたに与えて下さい。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # ください is the polite imperative form
+        self.assertEqual(result, FormalityLevel.FORMAL)
+
+    def test_formal_kudasai_imperative_short(self):
+        """Short polite imperative ください should be FORMAL."""
+        # Real example from dataset ID 5076
+        text = "ベストを尽くして下さい。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # ください is the polite imperative form
+        self.assertEqual(result, FormalityLevel.FORMAL)
+
+    def test_formal_nasai_imperative(self):
+        """Polite imperative なさい should be FORMAL."""
+        # Real example from dataset ID 5179
+        text = "心配なさい。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # なさい is a polite imperative (less than ください but still formal)
+        self.assertEqual(result, FormalityLevel.FORMAL)
+
+    def test_formal_nasai_imperative_long(self):
+        """Polite imperative なさい in longer sentence should be FORMAL."""
+        # Real example from dataset ID 5186
+        text = "君はどう思うかについて、深く掘り下げて考えなさい。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # なさい is a polite imperative
+        self.assertEqual(result, FormalityLevel.FORMAL)
+
+    def test_casual_with_no_particle_question(self):
+        """Plain verb + の question marker should be CASUAL."""
+        # Real example from dataset ID 5170
+        text = "ここに来て夢を見てるの？"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # の as sentence-final particle creates casual questions
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
     def test_formal_masu_form(self):
         """Polite ます form should be FORMAL."""
         text = "食べます"
@@ -98,11 +243,88 @@ class TestFormalityMecab(unittest.TestCase):
         self.assertIn(result, [FormalityLevel.UNPRAGMATIC_FORMALITY, FormalityLevel.FORMAL])
 
     def test_casual_da_form(self):
-        """Plain だ copula should be NEUTRAL or CASUAL."""
+        """Plain だ copula should be CASUAL (not NEUTRAL)."""
         text = "学生だ"
         kotogram = self.parser.japanese_to_kotogram(text)
         result = formality(kotogram)
-        self.assertIn(result, [FormalityLevel.NEUTRAL, FormalityLevel.CASUAL])
+        # The だ copula is the plain/casual form, contrasting with です (formal)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_da_past_sentence(self):
+        """Sentence with だった (past copula) should be CASUAL."""
+        # Real example from dataset ID 4714
+        text = "こいつは悪いウサギだった。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_da_with_yo_particle(self):
+        """Sentence with だ + よ should be CASUAL."""
+        # Real example from dataset ID 4749
+        text = "それは私の台詞だよ！"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_da_present_simple(self):
+        """Sentence ending with plain だ should be CASUAL."""
+        # Real example from dataset ID 4757
+        text = "私はなぜか夜の方が元気だ。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_with_yo_particle(self):
+        """Plain verb + よ should be CASUAL (conversational marker)."""
+        # Real example from dataset ID 1297
+        text = "きみにちょっとしたものをもってきたよ。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # よ with plain forms creates casual/conversational speech
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_with_no_particle(self):
+        """Plain verb + の should be CASUAL (casual question marker)."""
+        # Real example from dataset ID 4704
+        text = "何してるの？"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # の as a sentence-final particle creates casual questions
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_adjective_with_yo(self):
+        """Plain adjective + よ should be CASUAL (conversational)."""
+        # Real example from dataset ID 4738
+        text = "眠った方がいいよ。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_with_wa_particle_in_dialogue(self):
+        """Dialogue with わ particle should be CASUAL."""
+        # Real example from dataset ID 4995
+        text = "「あの音で考え事ができないわ」と、彼女はタイプライターを見つめながら言った。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # わ with plain form creates casual speech
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_with_yo_and_ellipsis(self):
+        """Plain verb + よ + ellipsis should be CASUAL."""
+        # Real example from dataset ID 5116
+        text = "いびきをかくことは認めるよ・・・。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_with_na_prohibitive(self):
+        """Prohibitive な with plain form should be CASUAL."""
+        # Real example from dataset ID 5139
+        text = "考えていることを聞くな。やることを聞け。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # な as prohibitive particle creates casual/direct speech
+        self.assertEqual(result, FormalityLevel.CASUAL)
 
     def test_empty_kotogram(self):
         """Empty kotogram should return NEUTRAL."""
@@ -119,6 +341,151 @@ class TestFormalitySudachi(unittest.TestCase):
             self.parser = SudachiJapaneseParser(dict_type='full')
         except Exception as e:
             self.skipTest(f"Sudachi not available: {e}")
+
+    def test_very_formal_itadaku_humble(self):
+        """いただく humble verb should be VERY_FORMAL."""
+        # Real example from dataset ID 5193
+        text = "また後でかけ直していただけませんか？"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # いただく is humble keigo
+        self.assertEqual(result, FormalityLevel.VERY_FORMAL)
+
+    def test_very_formal_itasu_humble(self):
+        """いたす humble verb should be VERY_FORMAL."""
+        # Real example from dataset ID 74370
+        text = "遅延便については、オリジナルの出発日に基づくシーズナリティを適用するため、マイル差額の払い戻しはいたしません。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # いたす is humble keigo
+        self.assertEqual(result, FormalityLevel.VERY_FORMAL)
+
+    def test_very_casual_nanda(self):
+        """なんだ contraction should be VERY_CASUAL."""
+        # Real example from dataset ID 74670
+        text = "あらまあ、ホント、全く知らなんだ。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # なんだ is casual contraction
+        self.assertEqual(result, FormalityLevel.VERY_CASUAL)
+
+    def test_very_casual_ja_copula(self):
+        """じゃ copula should be VERY_CASUAL."""
+        # Real example from dataset ID 75050
+        text = "じゃ、１年前のはもう効き目がないんだ！"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # じゃ is casual contracted copula
+        self.assertEqual(result, FormalityLevel.VERY_CASUAL)
+
+    def test_casual_datta_past_copula(self):
+        """Sentence ending with だった (past copula) should be CASUAL."""
+        # Real example from dataset ID 4714
+        text = "こいつは悪いウサギだった。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # だった is casual past copula (contrasts with でした formal)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_darou_presumptive(self):
+        """Sentence with だろう (presumptive) should be CASUAL."""
+        # Real example from dataset ID 4769
+        text = "兄弟がいるとどんなだろうといつも思う。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # だろう is casual presumptive (contrasts with でしょう formal)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_neutral_dakara_conjunction(self):
+        """だから conjunction with plain ending should be NEUTRAL."""
+        # Real example from dataset ID 4765
+        text = "だから何？"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # だから is conjunction, sentence ends with plain pronoun
+        # While colloquially casual, grammatically it's neutral (no formal/casual markers at sentence end)
+        self.assertEqual(result, FormalityLevel.NEUTRAL)
+
+    def test_neutral_with_embedded_da(self):
+        """Sentence with だ in embedded clause should be NEUTRAL if main ending is plain."""
+        # Real example from dataset ID 4747
+        text = "大抵の人は僕を気違いだと思っている。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # だ is in embedded quotation "〜だと思う", main verb is plain ている
+        self.assertEqual(result, FormalityLevel.NEUTRAL)
+
+    def test_neutral_with_attributive_da(self):
+        """Sentence with attributive な (from だ) should be NEUTRAL if ending is plain."""
+        # Real example from dataset ID 4760
+        text = "こんな馬鹿なことは言ったことが無い。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # な is attributive form of だ (馬鹿な), sentence ends with plain 無い
+        self.assertEqual(result, FormalityLevel.NEUTRAL)
+
+    def test_neutral_with_conjunctive_ni(self):
+        """Sentence with conjunctive に (from だ) should be NEUTRAL if ending is plain."""
+        # Real example from dataset ID 4775
+        text = "自分勝手にするつもりはない。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # に is conjunctive form of だ (勝手に), sentence ends with plain ない
+        self.assertEqual(result, FormalityLevel.NEUTRAL)
+
+    def test_formal_with_casual_conjunction(self):
+        """Formal sentence with casual conjunction (だけど) should still be FORMAL."""
+        # Real example from dataset ID 4842
+        text = "だけど、ここではそんなに簡単ではないんです。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # Casual conjunctions like だけど are acceptable in formal speech
+        self.assertEqual(result, FormalityLevel.FORMAL)
+
+    def test_formal_kudasai_imperative(self):
+        """Polite imperative ください should be FORMAL."""
+        # Real example from dataset ID 5021
+        text = "あなたが受けるに値する助けをあなたに与えて下さい。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # ください is the polite imperative form
+        self.assertEqual(result, FormalityLevel.FORMAL)
+
+    def test_formal_kudasai_imperative_short(self):
+        """Short polite imperative ください should be FORMAL."""
+        # Real example from dataset ID 5076
+        text = "ベストを尽くして下さい。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # ください is the polite imperative form
+        self.assertEqual(result, FormalityLevel.FORMAL)
+
+    def test_formal_nasai_imperative(self):
+        """Polite imperative なさい should be FORMAL."""
+        # Real example from dataset ID 5179
+        text = "心配なさい。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # なさい is a polite imperative (less than ください but still formal)
+        self.assertEqual(result, FormalityLevel.FORMAL)
+
+    def test_formal_nasai_imperative_long(self):
+        """Polite imperative なさい in longer sentence should be FORMAL."""
+        # Real example from dataset ID 5186
+        text = "君はどう思うかについて、深く掘り下げて考えなさい。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # なさい is a polite imperative
+        self.assertEqual(result, FormalityLevel.FORMAL)
+
+    def test_casual_with_no_particle_question(self):
+        """Plain verb + の question marker should be CASUAL."""
+        # Real example from dataset ID 5170
+        text = "ここに来て夢を見てるの？"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # の as sentence-final particle creates casual questions
+        self.assertEqual(result, FormalityLevel.CASUAL)
 
     def test_formal_masu_form(self):
         """Polite ます form should be FORMAL."""
@@ -193,11 +560,88 @@ class TestFormalitySudachi(unittest.TestCase):
         self.assertEqual(result, FormalityLevel.FORMAL)
 
     def test_casual_da_form(self):
-        """Plain だ copula should be NEUTRAL or CASUAL."""
+        """Plain だ copula should be CASUAL (not NEUTRAL)."""
         text = "学生だ"
         kotogram = self.parser.japanese_to_kotogram(text)
         result = formality(kotogram)
-        self.assertIn(result, [FormalityLevel.NEUTRAL, FormalityLevel.CASUAL])
+        # The だ copula is the plain/casual form, contrasting with です (formal)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_da_past_sentence(self):
+        """Sentence with だった (past copula) should be CASUAL."""
+        # Real example from dataset ID 4714
+        text = "こいつは悪いウサギだった。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_da_with_yo_particle(self):
+        """Sentence with だ + よ should be CASUAL."""
+        # Real example from dataset ID 4749
+        text = "それは私の台詞だよ！"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_da_present_simple(self):
+        """Sentence ending with plain だ should be CASUAL."""
+        # Real example from dataset ID 4757
+        text = "私はなぜか夜の方が元気だ。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_with_yo_particle(self):
+        """Plain verb + よ should be CASUAL (conversational marker)."""
+        # Real example from dataset ID 1297
+        text = "きみにちょっとしたものをもってきたよ。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # よ with plain forms creates casual/conversational speech
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_with_no_particle(self):
+        """Plain verb + の should be CASUAL (casual question marker)."""
+        # Real example from dataset ID 4704
+        text = "何してるの？"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # の as a sentence-final particle creates casual questions
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_adjective_with_yo(self):
+        """Plain adjective + よ should be CASUAL (conversational)."""
+        # Real example from dataset ID 4738
+        text = "眠った方がいいよ。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_with_wa_particle_in_dialogue(self):
+        """Dialogue with わ particle should be CASUAL."""
+        # Real example from dataset ID 4995
+        text = "「あの音で考え事ができないわ」と、彼女はタイプライターを見つめながら言った。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # わ with plain form creates casual speech
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_with_yo_and_ellipsis(self):
+        """Plain verb + よ + ellipsis should be CASUAL."""
+        # Real example from dataset ID 5116
+        text = "いびきをかくことは認めるよ・・・。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        self.assertEqual(result, FormalityLevel.CASUAL)
+
+    def test_casual_with_na_prohibitive(self):
+        """Prohibitive な with plain form should be CASUAL."""
+        # Real example from dataset ID 5139
+        text = "考えていることを聞くな。やることを聞け。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = formality(kotogram)
+        # な as prohibitive particle creates casual/direct speech
+        self.assertEqual(result, FormalityLevel.CASUAL)
 
     def test_empty_kotogram(self):
         """Empty kotogram should return NEUTRAL."""
