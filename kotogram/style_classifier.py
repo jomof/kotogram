@@ -649,6 +649,10 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         """
         random.seed(seed)
 
+        train_indices: List[int] = []
+        val_indices: List[int] = []
+        test_indices: List[int] = []
+
         if not stratify:
             # Original random splitting
             indices = list(range(len(self.samples)))
@@ -670,14 +674,10 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     label_to_indices[combined_label] = []
                 label_to_indices[combined_label].append(i)
 
-            train_indices: List[int] = []
-            val_indices: List[int] = []
-            test_indices: List[int] = []
-
             # Split each group proportionally
-            for combined_label, indices in label_to_indices.items():
-                random.shuffle(indices)
-                n = len(indices)
+            for combined_label, group_indices in label_to_indices.items():
+                random.shuffle(group_indices)
+                n = len(group_indices)
                 n_train = max(1, int(n * train_ratio)) if n > 0 else 0
                 n_val = max(1, int(n * val_ratio)) if n > 1 else 0
 
@@ -686,9 +686,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     # Reduce train to make room for test
                     n_train = max(1, n - n_val - 1)
 
-                train_indices.extend(indices[:n_train])
-                val_indices.extend(indices[n_train:n_train + n_val])
-                test_indices.extend(indices[n_train + n_val:])
+                train_indices.extend(group_indices[:n_train])
+                val_indices.extend(group_indices[n_train:n_train + n_val])
+                test_indices.extend(group_indices[n_train + n_val:])
 
             # Shuffle the combined indices
             random.shuffle(train_indices)

@@ -18,7 +18,7 @@ _style_tokenizer: Optional['Tokenizer'] = None
 _style_model_path: str = "models/style"
 
 
-def _load_style_model() -> tuple['StyleClassifier', 'Tokenizer']:
+def _load_style_model() -> Tuple['StyleClassifier', 'Tokenizer']:
     """Load and cache the style classifier model.
 
     Returns:
