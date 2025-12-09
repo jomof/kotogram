@@ -6,34 +6,40 @@ pretrain-then-finetune approach with a small transformer encoder.
 
 Architecture:
 - Token Embedding: Multi-field embeddings for morphological features (pos, pos_detail1,
-  conjugated_type, conjugated_form, lemma) are concatenated and projected to d_model.
+  pos_detail2, conjugated_type, conjugated_form, lemma) are concatenated and projected
+  to d_model.
 - Encoder: Small transformer encoder (2-4 layers) with multi-head self-attention.
-- Pretraining: Masked Language Modeling (MLM) over token sequences.
+- Pretraining: Multi-field Masked Language Modeling (MLM) that predicts all morphological
+  features at masked positions, not just POS tags. This provides richer supervision.
 - Fine-tuning: Sentence-level classification using [CLS] token representation.
 
 Pipeline:
-1. Load Japanese sentences from TSV corpus
+1. Load Japanese sentences from TSV corpus (unlabeled for pretraining)
 2. Convert sentences to Kotogram strings using japanese_to_kotogram()
 3. Extract token features using extract_token_features()
 4. Build vocabulary for each categorical field
-5. Pretrain encoder with MLM on unlabeled data
-6. Fine-tune with formality labels from formality(kotogram)
+5. Pretrain encoder with multi-field MLM on unlabeled data
+6. Reinitialize classifier head, then fine-tune with formality labels
 
 Usage:
     from kotogram.formality_classifier import (
         FormalityDataset, Tokenizer, FormalityClassifier,
-        MLMTrainer, Trainer, predict_formality
+        FormalityClassifierWithMLM, MLMTrainer, Trainer, predict_formality
     )
 
-    # Build vocabulary and load data
+    # Build vocabulary with unlabeled data
     tokenizer = Tokenizer()
-    dataset = FormalityDataset.from_tsv("data/jpn_sentences.tsv", tokenizer)
-    train_data, val_data, test_data = dataset.split()
+    unlabeled = FormalityDataset.from_tsv("data/sentences.tsv", tokenizer, labeled=False)
 
-    # Pretrain with MLM
+    # Pretrain with multi-field MLM
     model = FormalityClassifierWithMLM(tokenizer.get_model_config())
-    mlm_trainer = MLMTrainer(model, train_data)
+    mlm_trainer = MLMTrainer(model, unlabeled)
     mlm_trainer.train(epochs=5)
+
+    # Reset classifier and load labeled data
+    model.reset_classifier()
+    labeled = FormalityDataset.from_tsv("data/sentences.tsv", tokenizer, labeled=True)
+    train_data, val_data, test_data = labeled.split()
 
     # Fine-tune for classification
     trainer = Trainer(model, train_data, val_data)
@@ -69,7 +75,7 @@ CLS_TOKEN = "<CLS>"
 MASK_TOKEN = "<MASK>"  # For self-supervised pretraining
 
 # Feature fields used for token embedding
-FEATURE_FIELDS = ['pos', 'pos_detail1', 'conjugated_type', 'conjugated_form', 'lemma']
+FEATURE_FIELDS = ['pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma']
 
 
 class Tokenizer:
@@ -487,17 +493,22 @@ class FormalityDataset(Dataset):
 def collate_fn(
     batch: List[Sample],
     pad_id: int = 0,
+    max_seq_len: Optional[int] = None,
 ) -> Dict[str, torch.Tensor]:
     """Collate samples into padded batches.
 
     Args:
         batch: List of Sample objects
         pad_id: Padding token ID
+        max_seq_len: Maximum sequence length. Sequences longer than this will be
+                    truncated. If None, uses the maximum length in the batch.
 
     Returns:
         Dictionary with per-field 'input_ids_<field>', 'attention_mask', 'labels' tensors
     """
-    max_len = max(s.seq_len for s in batch)
+    batch_max_len = max(s.seq_len for s in batch)
+    # Apply truncation if max_seq_len is specified
+    max_len = min(batch_max_len, max_seq_len) if max_seq_len else batch_max_len
 
     # Initialize per-field lists
     field_ids = {field: [] for field in FEATURE_FIELDS}
@@ -505,11 +516,14 @@ def collate_fn(
     labels = []
 
     for sample in batch:
-        seq_len = sample.seq_len
+        # Truncate sequence if needed
+        seq_len = min(sample.seq_len, max_len)
         padding_len = max_len - seq_len
 
         for field in FEATURE_FIELDS:
-            padded = sample.feature_ids[field] + [pad_id] * padding_len
+            # Truncate and pad
+            truncated = sample.feature_ids[field][:seq_len]
+            padded = truncated + [pad_id] * padding_len
             field_ids[field].append(padded)
 
         attention_mask.append([1] * seq_len + [0] * padding_len)
@@ -568,6 +582,7 @@ class ModelConfig:
     field_embed_dims: Dict[str, int] = field(default_factory=lambda: {
         'pos': 32,
         'pos_detail1': 32,
+        'pos_detail2': 16,
         'conjugated_type': 32,
         'conjugated_form': 32,
         'lemma': 64,
@@ -795,8 +810,8 @@ class MLMHead(nn.Module):
     """Masked language modeling head for feature-based tokens.
 
     For MLM pretraining, we predict the original token's features at masked positions.
-    This head predicts the 'pos' field as the primary MLM target, since POS is the
-    most informative single feature for understanding sentence structure.
+    This head predicts all feature fields (pos, pos_detail1, pos_detail2, conjugated_type,
+    conjugated_form, lemma) to learn richer representations.
     """
 
     def __init__(self, config: ModelConfig):
@@ -808,26 +823,29 @@ class MLMHead(nn.Module):
         super().__init__()
         self.config = config
 
-        # Prediction head for 'pos' field (primary MLM target)
-        pos_vocab_size = config.vocab_sizes.get('pos', 50)
-        self.dense = nn.Linear(config.d_model, config.d_model)
-        self.layer_norm = nn.LayerNorm(config.d_model)
-        self.decoder = nn.Linear(config.d_model, pos_vocab_size)
+        # Shared transformation layer
+        self.shared_dense = nn.Linear(config.d_model, config.d_model)
+        self.shared_norm = nn.LayerNorm(config.d_model)
 
-    def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:
-        """Project hidden states to vocabulary logits.
+        # Per-field decoders
+        self.decoders = nn.ModuleDict()
+        for field_name in FEATURE_FIELDS:
+            vocab_size = config.vocab_sizes.get(field_name, 100)
+            self.decoders[field_name] = nn.Linear(config.d_model, vocab_size)
+
+    def forward(self, hidden_states: torch.Tensor) -> Dict[str, torch.Tensor]:
+        """Project hidden states to per-field vocabulary logits.
 
         Args:
             hidden_states: Encoder output of shape (batch, seq_len, d_model)
 
         Returns:
-            Vocabulary logits of shape (batch, seq_len, pos_vocab_size)
+            Dict mapping field name to logits of shape (batch, seq_len, field_vocab_size)
         """
-        x = self.dense(hidden_states)
+        x = self.shared_dense(hidden_states)
         x = F.gelu(x)
-        x = self.layer_norm(x)
-        logits = self.decoder(x)
-        return logits
+        x = self.shared_norm(x)
+        return {field: decoder(x) for field, decoder in self.decoders.items()}
 
 
 class FormalityClassifierWithMLM(FormalityClassifier):
@@ -846,7 +864,7 @@ class FormalityClassifierWithMLM(FormalityClassifier):
         self,
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
-    ) -> torch.Tensor:
+    ) -> Dict[str, torch.Tensor]:
         """Forward pass for masked language modeling.
 
         Args:
@@ -854,10 +872,23 @@ class FormalityClassifierWithMLM(FormalityClassifier):
             attention_mask: Binary mask for padding
 
         Returns:
-            Vocabulary logits of shape (batch, seq_len, pos_vocab_size)
+            Dict mapping field name to logits of shape (batch, seq_len, field_vocab_size)
         """
         encoder_output = self.get_encoder_output(field_inputs, attention_mask)
         return self.mlm_head(encoder_output)
+
+    def reset_classifier(self):
+        """Reinitialize the classifier head weights.
+
+        Call this after MLM pretraining and before supervised fine-tuning
+        to start the classification head from a fresh state while keeping
+        the pretrained encoder weights.
+        """
+        for module in self.classifier.modules():
+            if isinstance(module, nn.Linear):
+                nn.init.xavier_uniform_(module.weight)
+                if module.bias is not None:
+                    nn.init.zeros_(module.bias)
 
 
 @dataclass
@@ -878,28 +909,30 @@ def create_mlm_batch(
     batch: Dict[str, torch.Tensor],
     mask_prob: float = 0.15,
     mask_token_id: int = 3,
-    pos_vocab_size: int = None,
+    vocab_sizes: Dict[str, int] = None,
     special_token_ids: List[int] = None,
 ) -> Dict[str, torch.Tensor]:
     """Create masked language modeling batch for feature-based tokens.
 
-    Masks positions across all feature fields and creates labels for the 'pos' field.
+    Masks positions across all feature fields and creates labels for all fields.
+    This enables richer MLM pretraining that learns to predict all morphological
+    features, not just POS tags.
 
     Args:
         batch: Batch with 'input_ids_<field>' for each field, attention_mask
         mask_prob: Probability of masking a token position
         mask_token_id: ID of MASK token
-        pos_vocab_size: Vocabulary size for 'pos' field (for random replacement)
+        vocab_sizes: Dict mapping field name to vocabulary size (for random replacement)
         special_token_ids: IDs to never mask
 
     Returns:
-        Batch with masked input_ids_<field> and mlm_labels (for 'pos' field)
+        Batch with masked input_ids_<field> and mlm_labels_<field> for each field
     """
     special_token_ids = special_token_ids or [0, 1, 2, 3]  # PAD, UNK, CLS, MASK
+    vocab_sizes = vocab_sizes or {}
 
     # Use 'pos' field as the primary for determining mask positions
     pos_ids = batch['input_ids_pos'].clone()
-    mlm_labels = torch.full_like(pos_ids, -100)  # Ignore index for loss
 
     # Create mask for tokens that can be masked
     maskable = batch['attention_mask'].bool()
@@ -910,28 +943,31 @@ def create_mlm_batch(
     probs = torch.rand_like(pos_ids.float())
     mask = maskable & (probs < mask_prob)
 
-    # Set labels for masked positions (using 'pos' field as target)
-    mlm_labels[mask] = pos_ids[mask]
-
     # 80% MASK, 10% random, 10% unchanged
     mask_token_positions = mask & (probs < mask_prob * 0.8)
     random_token_positions = mask & (probs >= mask_prob * 0.8) & (probs < mask_prob * 0.9)
 
-    # Clone all field IDs and apply masking
-    result = {'attention_mask': batch['attention_mask'], 'mlm_labels': mlm_labels}
+    # Clone all field IDs and apply masking, create labels for each field
+    result = {'attention_mask': batch['attention_mask']}
 
     for field in FEATURE_FIELDS:
         field_ids = batch[f'input_ids_{field}'].clone()
 
+        # Create labels for this field (ignore non-masked positions)
+        mlm_labels = torch.full_like(field_ids, -100)
+        mlm_labels[mask] = field_ids[mask]
+        result[f'mlm_labels_{field}'] = mlm_labels
+
         # Apply MASK token
         field_ids[mask_token_positions] = mask_token_id
 
-        # Apply random replacement (only for 'pos' field to keep it simple)
-        if field == 'pos' and pos_vocab_size:
+        # Apply random replacement for this field using its own vocabulary
+        field_vocab_size = vocab_sizes.get(field)
+        if field_vocab_size:
             num_random = random_token_positions.sum().item()
             if num_random > 0:
                 field_ids[random_token_positions] = torch.randint(
-                    len(special_token_ids), pos_vocab_size, (num_random,)
+                    len(special_token_ids), field_vocab_size, (num_random,)
                 )
 
         result[f'input_ids_{field}'] = field_ids
@@ -940,7 +976,12 @@ def create_mlm_batch(
 
 
 class MLMTrainer:
-    """Trainer for self-supervised MLM pretraining with feature-based tokens."""
+    """Trainer for self-supervised MLM pretraining with feature-based tokens.
+
+    This trainer predicts all morphological feature fields (pos, pos_detail1,
+    pos_detail2, conjugated_type, conjugated_form, lemma) at masked positions,
+    providing richer supervision than POS-only MLM.
+    """
 
     def __init__(
         self,
@@ -948,43 +989,64 @@ class MLMTrainer:
         dataset: FormalityDataset,
         config: TrainerConfig = None,
         mask_prob: float = 0.15,
+        field_weights: Dict[str, float] = None,
     ):
+        """Initialize MLM trainer.
+
+        Args:
+            model: FormalityClassifierWithMLM model
+            dataset: Dataset for pretraining (can be unlabeled)
+            config: TrainerConfig with hyperparameters
+            mask_prob: Probability of masking each token position
+            field_weights: Optional weights for each field's loss contribution.
+                          Defaults to equal weights for all fields.
+        """
         self.model = model
         self.dataset = dataset
         self.config = config or TrainerConfig()
         self.mask_prob = mask_prob
 
+        # Default to equal weights for all fields
+        self.field_weights = field_weights or {field: 1.0 for field in FEATURE_FIELDS}
+
         self.device = torch.device(self.config.device)
         self.model.to(self.device)
 
         pad_id = dataset.tokenizer.pad_id
+        max_seq_len = model.config.max_seq_len
         self.data_loader = DataLoader(
             dataset,
             batch_size=self.config.batch_size,
             shuffle=True,
-            collate_fn=lambda b: collate_fn(b, pad_id),
+            collate_fn=lambda b: collate_fn(b, pad_id, max_seq_len),
         )
 
         self.criterion = nn.CrossEntropyLoss(ignore_index=-100)
         self.optimizer = Adam(model.parameters(), lr=self.config.learning_rate)
 
-        self.history = {'mlm_loss': []}
+        # Get vocabulary sizes for all fields
+        self.vocab_sizes = dataset.tokenizer.get_vocab_sizes()
 
-    def train_epoch(self) -> float:
-        """Run one MLM pretraining epoch."""
+        self.history = {'mlm_loss': [], 'field_losses': {field: [] for field in FEATURE_FIELDS}}
+
+    def train_epoch(self) -> Tuple[float, Dict[str, float]]:
+        """Run one MLM pretraining epoch.
+
+        Returns:
+            Tuple of (average total loss, dict of average per-field losses)
+        """
         self.model.train()
         total_loss = 0
+        field_losses = {field: 0.0 for field in FEATURE_FIELDS}
         n_batches = 0
 
-        pos_vocab_size = self.dataset.tokenizer.get_vocab_size('pos')
-
         for batch in self.data_loader:
-            # Create MLM batch
+            # Create MLM batch with labels for all fields
             mlm_batch = create_mlm_batch(
                 batch,
                 mask_prob=self.mask_prob,
                 mask_token_id=self.dataset.tokenizer.mask_id,
-                pos_vocab_size=pos_vocab_size,
+                vocab_sizes=self.vocab_sizes,
             )
 
             # Move to device
@@ -993,16 +1055,27 @@ class MLMTrainer:
                 if k.startswith('input_ids_')
             }
             attention_mask = mlm_batch['attention_mask'].to(self.device)
-            mlm_labels = mlm_batch['mlm_labels'].to(self.device)
 
             self.optimizer.zero_grad()
-            mlm_logits = self.model.forward_mlm(field_inputs, attention_mask)
 
-            # Compute loss over masked positions
-            loss = self.criterion(
-                mlm_logits.view(-1, mlm_logits.size(-1)),
-                mlm_labels.view(-1),
-            )
+            # Get logits for all fields
+            mlm_logits_dict = self.model.forward_mlm(field_inputs, attention_mask)
+
+            # Compute weighted sum of losses across all fields
+            batch_loss = 0.0
+            for field in FEATURE_FIELDS:
+                logits = mlm_logits_dict[field]
+                labels = mlm_batch[f'mlm_labels_{field}'].to(self.device)
+                field_loss = self.criterion(
+                    logits.view(-1, logits.size(-1)),
+                    labels.view(-1),
+                )
+                weighted_loss = self.field_weights[field] * field_loss
+                batch_loss = batch_loss + weighted_loss
+                field_losses[field] += field_loss.item()
+
+            # Average across fields
+            loss = batch_loss / len(FEATURE_FIELDS)
 
             loss.backward()
             if self.config.gradient_clip > 0:
@@ -1012,18 +1085,32 @@ class MLMTrainer:
             total_loss += loss.item()
             n_batches += 1
 
-        return total_loss / n_batches
+        avg_loss = total_loss / n_batches
+        avg_field_losses = {field: loss / n_batches for field, loss in field_losses.items()}
+        return avg_loss, avg_field_losses
 
     def train(self, epochs: int = None, verbose: bool = True) -> Dict[str, List[float]]:
-        """Run MLM pretraining."""
+        """Run MLM pretraining.
+
+        Args:
+            epochs: Number of epochs (defaults to config.epochs)
+            verbose: If True, print progress
+
+        Returns:
+            Training history with 'mlm_loss' and per-field losses
+        """
         epochs = epochs or self.config.epochs
 
         for epoch in range(epochs):
-            mlm_loss = self.train_epoch()
+            mlm_loss, field_losses = self.train_epoch()
             self.history['mlm_loss'].append(mlm_loss)
+            for field, loss in field_losses.items():
+                self.history['field_losses'][field].append(loss)
 
             if verbose:
                 print(f"Epoch {epoch+1}/{epochs} - MLM Loss: {mlm_loss:.4f}")
+                field_str = ", ".join(f"{f}={l:.3f}" for f, l in field_losses.items())
+                print(f"  Field losses: {field_str}")
 
         return self.history
 
@@ -1058,19 +1145,20 @@ class Trainer:
         self.device = torch.device(self.config.device)
         self.model.to(self.device)
 
-        # Data loaders
+        # Data loaders with max_seq_len truncation
         pad_id = train_dataset.tokenizer.pad_id
+        max_seq_len = model.config.max_seq_len
         self.train_loader = DataLoader(
             train_dataset,
             batch_size=self.config.batch_size,
             shuffle=True,
-            collate_fn=lambda b: collate_fn(b, pad_id),
+            collate_fn=lambda b: collate_fn(b, pad_id, max_seq_len),
         )
         self.val_loader = DataLoader(
             val_dataset,
             batch_size=self.config.batch_size,
             shuffle=False,
-            collate_fn=lambda b: collate_fn(b, pad_id),
+            collate_fn=lambda b: collate_fn(b, pad_id, max_seq_len),
         )
 
         # Loss function with optional class weights
@@ -1376,45 +1464,82 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    print("Loading data...")
-    tokenizer = Tokenizer()
-    dataset = FormalityDataset.from_tsv(
-        args.data,
-        tokenizer,
-        max_samples=args.max_samples,
-        verbose=True,
-    )
-
-    train_data, val_data, test_data = dataset.split()
-    print(f"\nSplit: {len(train_data)} train, {len(val_data)} val, {len(test_data)} test")
-
-    # Model config
-    model_config = ModelConfig(
-        vocab_sizes=tokenizer.get_vocab_sizes(),
-        num_classes=FormalityDataset.NUM_CLASSES,
-        d_model=args.embed_dim,
-        hidden_dim=args.hidden_dim,
-        num_layers=args.num_layers,
-        num_heads=args.num_heads,
-    )
-
-    # Create model
+    # Load data: if doing MLM pretraining, first load unlabeled data for pretraining,
+    # then load labeled data for fine-tuning
     if args.pretrain_mlm:
+        print("Loading unlabeled data for MLM pretraining...")
+        tokenizer = Tokenizer()
+        unlabeled_dataset = FormalityDataset.from_tsv(
+            args.data,
+            tokenizer,
+            max_samples=args.max_samples,
+            verbose=True,
+            labeled=False,  # No labels needed for pretraining
+        )
+        # Note: tokenizer is frozen after from_tsv
+
+        # Model config (vocab is now fixed)
+        model_config = ModelConfig(
+            vocab_sizes=tokenizer.get_vocab_sizes(),
+            num_classes=FormalityDataset.NUM_CLASSES,
+            d_model=args.embed_dim,
+            hidden_dim=args.hidden_dim,
+            num_layers=args.num_layers,
+            num_heads=args.num_heads,
+        )
+
         print("\nCreating model with MLM head...")
         model = FormalityClassifierWithMLM(model_config)
 
-        # MLM pretraining
-        print("\nStarting MLM pretraining...")
+        # MLM pretraining on unlabeled data
+        print("\nStarting MLM pretraining on unlabeled data...")
         pretrain_config = TrainerConfig(
             epochs=args.pretrain_epochs,
             batch_size=args.batch_size,
             learning_rate=args.learning_rate,
         )
-        mlm_trainer = MLMTrainer(model, train_data, pretrain_config)
+        mlm_trainer = MLMTrainer(model, unlabeled_dataset, pretrain_config)
         mlm_trainer.train(epochs=args.pretrain_epochs)
+
+        # Reset classifier head for fine-tuning
+        print("\nReinitializing classifier head for fine-tuning...")
+        model.reset_classifier()
+
+        # Now load labeled dataset with the frozen tokenizer
+        print("\nLoading labeled data for fine-tuning...")
+        labeled_dataset = FormalityDataset.from_tsv(
+            args.data,
+            tokenizer,
+            max_samples=args.max_samples,
+            verbose=True,
+            labeled=True,
+        )
+        train_data, val_data, test_data = labeled_dataset.split()
     else:
+        print("Loading data...")
+        tokenizer = Tokenizer()
+        dataset = FormalityDataset.from_tsv(
+            args.data,
+            tokenizer,
+            max_samples=args.max_samples,
+            verbose=True,
+        )
+        train_data, val_data, test_data = dataset.split()
+
+        # Model config
+        model_config = ModelConfig(
+            vocab_sizes=tokenizer.get_vocab_sizes(),
+            num_classes=FormalityDataset.NUM_CLASSES,
+            d_model=args.embed_dim,
+            hidden_dim=args.hidden_dim,
+            num_layers=args.num_layers,
+            num_heads=args.num_heads,
+        )
+
         print("\nCreating model...")
         model = FormalityClassifier(model_config)
+
+    print(f"\nSplit: {len(train_data)} train, {len(val_data)} val, {len(test_data)} test")
 
     # Supervised training with differential learning rates
     print("\nStarting supervised training...")
@@ -1439,7 +1564,7 @@ if __name__ == "__main__":
     test_loader = DataLoader(
         test_data,
         batch_size=args.batch_size,
-        collate_fn=lambda b: collate_fn(b, tokenizer.pad_id),
+        collate_fn=lambda b: collate_fn(b, tokenizer.pad_id, model_config.max_seq_len),
     )
 
     model.eval()
