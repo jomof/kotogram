@@ -52,9 +52,13 @@ Usage:
 """
 
 import csv
+import hashlib
 import json
 import math
+import os
+import pickle
 import random
+import sys
 from collections import Counter
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple, Any, Union, cast
@@ -376,6 +380,82 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
     def __getitem__(self, idx: int) -> Sample:
         return self.samples[idx]
 
+    @staticmethod
+    def _get_cache_path(
+        tsv_paths: List[str],
+        max_samples: Optional[int],
+        labeled: bool,
+        grammaticality_labels: Optional[List[int]],
+        cache_dir: str = ".cache/style_dataset",
+    ) -> str:
+        """Generate a cache file path based on input parameters.
+
+        The cache key includes file paths, modification times, and processing options
+        to ensure the cache is invalidated when inputs change.
+        """
+        # Build a hash from all relevant parameters
+        hash_parts = []
+
+        for tsv_path in tsv_paths:
+            hash_parts.append(tsv_path)
+            # Include file modification time
+            if os.path.exists(tsv_path):
+                mtime = os.path.getmtime(tsv_path)
+                hash_parts.append(str(mtime))
+
+        hash_parts.append(f"max_samples={max_samples}")
+        hash_parts.append(f"labeled={labeled}")
+        hash_parts.append(f"gram_labels={grammaticality_labels}")
+
+        # Create hash
+        hash_str = hashlib.sha256("|".join(hash_parts).encode()).hexdigest()[:16]
+        return os.path.join(cache_dir, f"dataset_{hash_str}.pkl")
+
+    @staticmethod
+    def _save_cache(
+        cache_path: str,
+        samples: List[Sample],
+        tokenizer: Tokenizer,
+    ) -> None:
+        """Save preprocessed samples and tokenizer to cache."""
+        os.makedirs(os.path.dirname(cache_path), exist_ok=True)
+        cache_data = {
+            'samples': samples,
+            'field_vocabs': tokenizer.field_vocabs,
+            'lemma_min_freq': tokenizer.lemma_min_freq,
+            'max_lemma_vocab': tokenizer.max_lemma_vocab,
+            'frozen': tokenizer._frozen,
+        }
+        with open(cache_path, 'wb') as f:
+            pickle.dump(cache_data, f)
+
+    @staticmethod
+    def _load_cache(
+        cache_path: str,
+        tokenizer: Tokenizer,
+    ) -> Optional[List[Sample]]:
+        """Load preprocessed samples from cache and restore tokenizer state.
+
+        Returns None if cache doesn't exist or is invalid.
+        """
+        if not os.path.exists(cache_path):
+            return None
+
+        try:
+            with open(cache_path, 'rb') as f:
+                cache_data = pickle.load(f)
+
+            # Restore tokenizer state
+            tokenizer.field_vocabs = cache_data['field_vocabs']
+            tokenizer.lemma_min_freq = cache_data['lemma_min_freq']
+            tokenizer.max_lemma_vocab = cache_data['max_lemma_vocab']
+            tokenizer._frozen = cache_data['frozen']
+
+            return cache_data['samples']
+        except Exception:
+            # Cache corrupted or incompatible, ignore it
+            return None
+
     @classmethod
     def from_tsv(
         cls,
@@ -385,6 +465,8 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         max_samples: Optional[int] = None,
         verbose: bool = True,
         labeled: bool = True,
+        use_cache: bool = True,
+        cache_dir: str = ".cache/style_dataset",
     ) -> 'StyleDataset':
         """Load dataset from TSV file of Japanese sentences.
 
@@ -396,10 +478,22 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             verbose: If True, print progress
             labeled: If True, compute formality and gender labels. If False, use dummy labels
                     (for pretraining on unlabeled data).
+            use_cache: If True, cache preprocessed data to disk for faster subsequent loads
+            cache_dir: Directory for cache files
 
         Returns:
             StyleDataset with encoded samples
         """
+        # Try to load from cache
+        if use_cache:
+            cache_path = cls._get_cache_path([tsv_path], max_samples, labeled, None, cache_dir)
+            cached_samples = cls._load_cache(cache_path, tokenizer)
+            if cached_samples is not None:
+                if verbose:
+                    print(f"Loaded {len(cached_samples)} samples from cache")
+                    print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
+                return cls(cached_samples, tokenizer)
+
         actual_parser: JapaneseParser
         if parser is None:
             from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
@@ -481,6 +575,12 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         # Freeze vocabulary after building
         tokenizer.freeze()
 
+        # Save to cache
+        if use_cache:
+            cls._save_cache(cache_path, samples, tokenizer)
+            if verbose:
+                print(f"Saved preprocessed data to cache")
+
         return cls(samples, tokenizer)
 
     @classmethod
@@ -493,6 +593,8 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         verbose: bool = True,
         labeled: bool = True,
         grammaticality_labels: Optional[List[int]] = None,
+        use_cache: bool = True,
+        cache_dir: str = ".cache/style_dataset",
     ) -> 'StyleDataset':
         """Load dataset from multiple TSV files of Japanese sentences.
 
@@ -510,17 +612,12 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             grammaticality_labels: Optional list of grammaticality labels (0 or 1) for each
                                   TSV file. If provided, must have same length as tsv_paths.
                                   1 = grammatic (default), 0 = agrammatic.
+            use_cache: If True, cache preprocessed data to disk for faster subsequent loads
+            cache_dir: Directory for cache files
 
         Returns:
             StyleDataset with encoded samples from all files
         """
-        actual_parser: JapaneseParser
-        if parser is None:
-            from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-            actual_parser = SudachiJapaneseParser()
-        else:
-            actual_parser = parser
-
         # Default all files to grammatic if not specified
         if grammaticality_labels is None:
             grammaticality_labels = [1] * len(tsv_paths)
@@ -529,6 +626,23 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 f"grammaticality_labels length ({len(grammaticality_labels)}) "
                 f"must match tsv_paths length ({len(tsv_paths)})"
             )
+
+        # Try to load from cache
+        if use_cache:
+            cache_path = cls._get_cache_path(tsv_paths, max_samples, labeled, grammaticality_labels, cache_dir)
+            cached_samples = cls._load_cache(cache_path, tokenizer)
+            if cached_samples is not None:
+                if verbose:
+                    print(f"Loaded {len(cached_samples)} samples from cache")
+                    print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
+                return cls(cached_samples, tokenizer)
+
+        actual_parser: JapaneseParser
+        if parser is None:
+            from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+            actual_parser = SudachiJapaneseParser()
+        else:
+            actual_parser = parser
 
         samples: List[Sample] = []
         formality_counts: Counter[FormalityLevel] = Counter()
@@ -617,13 +731,19 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 for g_label, g_count in sorted(gender_counts.items(), key=lambda x: x[1], reverse=True):
                     print(f"  {g_label.value}: {g_count} ({100*g_count/len(samples):.1f}%)")
             print("Grammaticality distribution:")
-            gram_labels = {1: "grammatic", 0: "agrammatic"}
+            gram_labels_map = {1: "grammatic", 0: "agrammatic"}
             for g_id in [1, 0]:
                 g_count = grammaticality_counts.get(g_id, 0)
-                print(f"  {gram_labels[g_id]}: {g_count} ({100*g_count/len(samples):.1f}%)")
+                print(f"  {gram_labels_map[g_id]}: {g_count} ({100*g_count/len(samples):.1f}%)")
 
         # Freeze vocabulary after building
         tokenizer.freeze()
+
+        # Save to cache
+        if use_cache:
+            cls._save_cache(cache_path, samples, tokenizer)
+            if verbose:
+                print(f"Saved preprocessed data to cache")
 
         return cls(samples, tokenizer)
 
@@ -980,7 +1100,9 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             batch_first=True,
             activation='gelu',
         )
-        self.encoder = nn.TransformerEncoder(encoder_layer, config.num_layers)
+        self.encoder = nn.TransformerEncoder(
+            encoder_layer, config.num_layers, enable_nested_tensor=False
+        )
 
         # Formality classification head
         self.formality_classifier = nn.Sequential(
@@ -1336,7 +1458,7 @@ class MLMTrainer:
 
         self.history: Dict[str, Any] = {'mlm_loss': [], 'field_losses': {f: [] for f in FEATURE_FIELDS}}
 
-    def train_epoch(self) -> Tuple[float, Dict[str, float]]:
+    def train_epoch(self, verbose: bool = True) -> Tuple[float, Dict[str, float]]:
         """Run one MLM pretraining epoch.
 
         Returns:
@@ -1346,8 +1468,9 @@ class MLMTrainer:
         total_loss = 0.0
         field_losses = {field: 0.0 for field in FEATURE_FIELDS}
         n_batches = 0
+        total_batches = len(self.data_loader)
 
-        for batch in self.data_loader:
+        for batch_idx, batch in enumerate(self.data_loader):
             # Create MLM batch with labels for all fields
             mlm_batch = create_mlm_batch(
                 batch,
@@ -1392,6 +1515,20 @@ class MLMTrainer:
             total_loss += loss.item()
             n_batches += 1
 
+            # Progress display
+            if verbose:
+                avg_loss_so_far = total_loss / n_batches
+                progress = (batch_idx + 1) / total_batches
+                bar_len = 30
+                filled = int(bar_len * progress)
+                bar = '=' * filled + '>' + '.' * (bar_len - filled - 1)
+                sys.stdout.write(f'\r  [{bar}] {batch_idx+1}/{total_batches} loss={avg_loss_so_far:.4f}')
+                sys.stdout.flush()
+
+        if verbose:
+            sys.stdout.write('\n')
+            sys.stdout.flush()
+
         avg_loss = total_loss / n_batches
         avg_field_losses = {field: loss / n_batches for field, loss in field_losses.items()}
         return avg_loss, avg_field_losses
@@ -1409,13 +1546,15 @@ class MLMTrainer:
         actual_epochs = epochs or self.config.epochs
 
         for epoch in range(actual_epochs):
-            mlm_loss, field_loss_dict = self.train_epoch()
+            if verbose:
+                print(f"Epoch {epoch+1}/{actual_epochs}")
+            mlm_loss, field_loss_dict = self.train_epoch(verbose=verbose)
             self.history['mlm_loss'].append(mlm_loss)
             for f, loss_val in field_loss_dict.items():
                 self.history['field_losses'][f].append(loss_val)
 
             if verbose:
-                print(f"Epoch {epoch+1}/{actual_epochs} - MLM Loss: {mlm_loss:.4f}")
+                print(f"  MLM Loss: {mlm_loss:.4f}")
                 field_str = ", ".join(f"{f}={l:.3f}" for f, l in field_loss_dict.items())
                 print(f"  Field losses: {field_str}")
 
@@ -1531,7 +1670,7 @@ class Trainer:
         grammaticality_labels = batch['grammaticality_labels'].to(self.device)
         return field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels
 
-    def train_epoch(self) -> Tuple[float, float, float, float]:
+    def train_epoch(self, verbose: bool = True) -> Tuple[float, float, float, float]:
         """Run one training epoch.
 
         Returns:
@@ -1543,8 +1682,9 @@ class Trainer:
         total_gender_loss = 0
         total_grammaticality_loss = 0
         n_batches = 0
+        total_batches = len(self.train_loader)
 
-        for batch in self.train_loader:
+        for batch_idx, batch in enumerate(self.train_loader):
             field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels = self._batch_to_device(batch)
 
             self.optimizer.zero_grad()
@@ -1573,6 +1713,20 @@ class Trainer:
             total_gender_loss += gender_loss.item()
             total_grammaticality_loss += grammaticality_loss.item()
             n_batches += 1
+
+            # Progress display
+            if verbose:
+                avg_loss_so_far = total_loss / n_batches
+                progress = (batch_idx + 1) / total_batches
+                bar_len = 30
+                filled = int(bar_len * progress)
+                bar = '=' * filled + '>' + '.' * (bar_len - filled - 1)
+                sys.stdout.write(f'\r  [{bar}] {batch_idx+1}/{total_batches} loss={avg_loss_so_far:.4f}')
+                sys.stdout.flush()
+
+        if verbose:
+            sys.stdout.write('\n')
+            sys.stdout.flush()
 
         return total_loss / n_batches, total_formality_loss / n_batches, total_gender_loss / n_batches, total_grammaticality_loss / n_batches
 
@@ -1672,7 +1826,9 @@ class Trainer:
     def train(self, verbose: bool = True) -> Dict[str, List[float]]:
         """Run full training loop."""
         for epoch in range(self.config.epochs):
-            train_loss, train_formality_loss, train_gender_loss, train_grammaticality_loss = self.train_epoch()
+            if verbose:
+                print(f"Epoch {epoch+1}/{self.config.epochs}")
+            train_loss, train_formality_loss, train_gender_loss, train_grammaticality_loss = self.train_epoch(verbose=verbose)
             eval_results = self.evaluate()
 
             self.scheduler.step(eval_results['loss'])
@@ -1690,7 +1846,6 @@ class Trainer:
             self.history['val_grammaticality_accuracy'].append(eval_results['grammaticality_accuracy'])
 
             if verbose:
-                print(f"Epoch {epoch+1}/{self.config.epochs}")
                 print(f"  Train Loss: {train_loss:.4f} (formality={train_formality_loss:.4f}, gender={train_gender_loss:.4f}, gram={train_grammaticality_loss:.4f})")
                 print(f"  Val Loss: {eval_results['loss']:.4f} (formality={eval_results['formality_loss']:.4f}, gender={eval_results['gender_loss']:.4f}, gram={eval_results['grammaticality_loss']:.4f})")
                 print(f"  Val Acc: formality={eval_results['formality_accuracy']:.4f}, gender={eval_results['gender_accuracy']:.4f}, gram={eval_results['grammaticality_accuracy']:.4f}")
