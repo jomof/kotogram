@@ -29,8 +29,8 @@ setup_environment() {
         python -m pip install torch
     fi
 
-    if ! python -c "import sudachipy" 2>/dev/null; then
-        echo "SudachiPy not found. Installing..."
+    if ! python -c "import sudachidict_full" 2>/dev/null; then
+        echo "SudachiPy/dictionary not found. Installing..."
         python -m pip install sudachipy sudachidict_full
     fi
 
