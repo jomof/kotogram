@@ -8,6 +8,26 @@
 
 set -e
 
+# Check for required dependencies
+check_dependencies() {
+    echo "Checking dependencies..."
+
+    if ! python -c "import torch" 2>/dev/null; then
+        echo "PyTorch not found. Installing..."
+        pip install torch
+    fi
+
+    if ! python -c "import kotogram" 2>/dev/null; then
+        echo "Kotogram not found. Installing from current directory..."
+        pip install -e .
+    fi
+
+    echo "Dependencies OK"
+    echo ""
+}
+
+check_dependencies
+
 # Default configuration
 DATA_PATH="data/jpn_sentences.tsv"
 OUTPUT_DIR="models/formality"
