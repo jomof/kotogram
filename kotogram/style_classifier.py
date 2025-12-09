@@ -443,7 +443,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         try:
             with open(cache_path, 'rb') as f:
-                cache_data = pickle.load(f)
+                cache_data: Dict[str, Any] = pickle.load(f)
 
             # Restore tokenizer state
             tokenizer.field_vocabs = cache_data['field_vocabs']
@@ -451,7 +451,8 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             tokenizer.max_lemma_vocab = cache_data['max_lemma_vocab']
             tokenizer._frozen = cache_data['frozen']
 
-            return cache_data['samples']
+            samples: List[Sample] = cache_data['samples']
+            return samples
         except Exception:
             # Cache corrupted or incompatible, ignore it
             return None
