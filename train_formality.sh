@@ -14,12 +14,12 @@ check_dependencies() {
 
     if ! python -c "import torch" 2>/dev/null; then
         echo "PyTorch not found. Installing..."
-        pip install torch
+        python -m pip install torch
     fi
 
     if ! python -c "import kotogram" 2>/dev/null; then
         echo "Kotogram not found. Installing from current directory..."
-        pip install -e .
+        python -m pip install -e .
     fi
 
     echo "Dependencies OK"
