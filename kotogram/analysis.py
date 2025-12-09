@@ -5,8 +5,35 @@ by examining linguistic features such as verb forms, particles, and auxiliary ve
 """
 
 from enum import Enum
-from typing import List, Dict
+from typing import List, Dict, Optional, Tuple, TYPE_CHECKING
+
 from kotogram.kotogram import split_kotogram, extract_token_features
+
+if TYPE_CHECKING:
+    from kotogram.style_classifier import StyleClassifier, Tokenizer
+
+# Global cache for loaded model (lazy loading)
+_style_model: Optional['StyleClassifier'] = None
+_style_tokenizer: Optional['Tokenizer'] = None
+_style_model_path: str = "models/style"
+
+
+def _load_style_model() -> tuple['StyleClassifier', 'Tokenizer']:
+    """Load and cache the style classifier model.
+
+    Returns:
+        Tuple of (model, tokenizer) for style classification.
+
+    Raises:
+        FileNotFoundError: If model files are not found at the expected path.
+    """
+    global _style_model, _style_tokenizer
+
+    if _style_model is None or _style_tokenizer is None:
+        from kotogram.style_classifier import load_model
+        _style_model, _style_tokenizer = load_model(_style_model_path)
+
+    return _style_model, _style_tokenizer
 
 
 class FormalityLevel(Enum):
@@ -29,7 +56,7 @@ class GenderLevel(Enum):
     UNPRAGMATIC_GENDER = "unpragmatic_gender"  # Mixed/awkward gender markers
 
 
-def formality(kotogram: str) -> FormalityLevel:
+def formality(kotogram: str, use_model: bool = False) -> FormalityLevel:
     """Analyze a Japanese sentence and return its formality level.
 
     This function examines the linguistic features encoded in a kotogram
@@ -44,6 +71,9 @@ def formality(kotogram: str) -> FormalityLevel:
     Args:
         kotogram: Kotogram compact sentence representation containing encoded
                  linguistic information with POS tags and conjugation forms.
+        use_model: If True, use the trained neural model for prediction instead
+                  of rule-based analysis. The model must be available at the
+                  default model path (models/style). Default is False.
 
     Returns:
         FormalityLevel indicating the sentence's formality level, including
@@ -65,7 +95,47 @@ def formality(kotogram: str) -> FormalityLevel:
         >>> kotogram3 = "⌈ˢ食べᵖv:e-ichidan-ba:conjunctive⌉⌈ˢますᵖauxv-masu:terminal⌉⌈ˢよᵖprt⌉⌈ˢ〜ᵖauxs⌉"
         >>> formality(kotogram3)
         <FormalityLevel.UNPRAGMATIC_FORMALITY: 'unpragmatic_formality'>
+
+        >>> # Using the trained model
+        >>> formality(kotogram1, use_model=True)  # doctest: +SKIP
+        <FormalityLevel.FORMAL: 'formal'>
     """
+    if use_model:
+        # Use the trained neural model for prediction
+        import torch
+        from kotogram.style_classifier import FEATURE_FIELDS
+
+        model, tokenizer = _load_style_model()
+
+        # Encode the kotogram
+        feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
+
+        # Create batch tensors
+        field_inputs = {
+            f'input_ids_{field}': torch.tensor([feature_ids[field]], dtype=torch.long)
+            for field in FEATURE_FIELDS
+        }
+        attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
+
+        # Predict
+        model.eval()
+        with torch.no_grad():
+            formality_probs, _ = model.predict(field_inputs, attention_mask)
+            formality_idx = int(formality_probs[0].argmax().item())
+
+        # Map model output index to FormalityLevel
+        # Model uses: 0=very_formal, 1=formal, 2=neutral, 3=casual, 4=very_casual, 5=unpragmatic
+        formality_map = {
+            0: FormalityLevel.VERY_FORMAL,
+            1: FormalityLevel.FORMAL,
+            2: FormalityLevel.NEUTRAL,
+            3: FormalityLevel.CASUAL,
+            4: FormalityLevel.VERY_CASUAL,
+            5: FormalityLevel.UNPRAGMATIC_FORMALITY,
+        }
+        return formality_map.get(formality_idx, FormalityLevel.NEUTRAL)
+
+    # Rule-based analysis
     # Split into tokens and extract linguistic features
     tokens = split_kotogram(kotogram)
 
@@ -157,14 +227,24 @@ def _analyze_formality_features(features: List[Dict[str, str]]) -> FormalityLeve
         # - conjunctive: で (normal connective)
         # - terminal だ in embedded clauses (mid-sentence)
         if conjugated_type == 'auxv-da':
-            # Check if near sentence end (within last 2 positions, allowing for auxs)
-            is_near_end = i >= len(features) - 2
             casual_forms = ['conjunctive-geminate', 'volitional-presumptive']
             if conjugated_form in casual_forms:
                 has_casual = True
-            elif conjugated_form == 'terminal' and is_near_end:
-                # Terminal だ only casual if actually at sentence end
-                has_casual = True
+            elif conjugated_form == 'terminal':
+                # Terminal だ is casual if followed only by punctuation/brackets
+                # This handles quoted speech like 「好きだ。」
+                is_at_clause_end = True
+                for j in range(i + 1, len(features)):
+                    next_pos = features[j].get('pos', '')
+                    next_surface = features[j].get('surface', '')
+                    # Skip punctuation and brackets
+                    if next_pos == 'auxs' or next_surface in ['」', '』', ')', '）']:
+                        continue
+                    # If we hit another token, だ is mid-sentence
+                    is_at_clause_end = False
+                    break
+                if is_at_clause_end:
+                    has_casual = True
 
         # Check for very casual auxiliary verbs
         if conjugated_type in ['auxv-ja', 'auxv-nanda', 'auxv-hin', 'auxv-hen', 'auxv-nsu']:
@@ -180,8 +260,31 @@ def _analyze_formality_features(features: List[Dict[str, str]]) -> FormalityLeve
 
     # Analyze sentence-final particles for casual/very casual markers
     very_casual_particles = ['ぜ', 'ぞ', 'ぞい', 'さ']  # Masculine/rough particles
-    casual_particles = ['よ', 'ね', 'の', 'わ', 'な']  # Conversational particles
+    # Casual particles include base forms and lengthened variants (なあ, ねえ, よー, etc.)
+    casual_particles = [
+        'よ', 'ね', 'の', 'わ', 'な',  # Base forms
+        'なあ', 'なー', 'ねえ', 'ねー',  # Lengthened な/ね
+        'よお', 'よー', 'わあ', 'わー',  # Lengthened よ/わ
+        'かしら',  # Feminine wondering particle
+        'かい',  # Casual question particle (masculine)
+        'もの', 'もん',  # Explanatory particle (feminine casual)
+    ]
     # Note: These particles are acceptable with formal forms, but make plain forms casual
+
+    # Combine adjacent sentence-final particles (e.g., か+い -> かい)
+    combined_particles = ''.join(sentence_final_particles)
+
+    # Check combined particles first for multi-character sequences
+    for particle in casual_particles:
+        if len(particle) > 1 and particle in combined_particles:
+            if not has_formal:
+                has_casual = True
+    for particle in very_casual_particles:
+        if len(particle) > 1 and particle in combined_particles:
+            if has_formal:
+                has_very_casual = True
+            else:
+                has_casual = True
 
     for particle in sentence_final_particles:
         if particle in very_casual_particles:
@@ -224,7 +327,80 @@ def _analyze_formality_features(features: List[Dict[str, str]]) -> FormalityLeve
     return FormalityLevel.NEUTRAL
 
 
-def gender(kotogram: str) -> GenderLevel:
+def style(kotogram: str, use_model: bool = False) -> Tuple[FormalityLevel, GenderLevel]:
+    """Analyze a Japanese sentence and return both formality and gender levels.
+
+    This is more efficient than calling formality() and gender() separately
+    when using the model, as it only runs inference once.
+
+    Args:
+        kotogram: Kotogram compact sentence representation containing encoded
+                 linguistic information with POS tags and conjugation forms.
+        use_model: If True, use the trained neural model for prediction instead
+                  of rule-based analysis. Default is False.
+
+    Returns:
+        Tuple of (FormalityLevel, GenderLevel) for the sentence.
+
+    Examples:
+        >>> # Formal, neutral sentence: 食べます (I eat - polite)
+        >>> kotogram1 = "⌈ˢ食べᵖv:e-ichidan-ba:conjunctive⌉⌈ˢますᵖauxv-masu:terminal⌉"
+        >>> style(kotogram1)
+        (<FormalityLevel.FORMAL: 'formal'>, <GenderLevel.NEUTRAL: 'neutral'>)
+
+        >>> # Using the trained model
+        >>> style(kotogram1, use_model=True)  # doctest: +SKIP
+        (<FormalityLevel.FORMAL: 'formal'>, <GenderLevel.NEUTRAL: 'neutral'>)
+    """
+    if use_model:
+        # Use the trained neural model for prediction (single inference for both)
+        import torch
+        from kotogram.style_classifier import FEATURE_FIELDS
+
+        model, tokenizer = _load_style_model()
+
+        # Encode the kotogram
+        feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
+
+        # Create batch tensors
+        field_inputs = {
+            f'input_ids_{field}': torch.tensor([feature_ids[field]], dtype=torch.long)
+            for field in FEATURE_FIELDS
+        }
+        attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
+
+        # Predict
+        model.eval()
+        with torch.no_grad():
+            formality_probs, gender_probs = model.predict(field_inputs, attention_mask)
+            formality_idx = int(formality_probs[0].argmax().item())
+            gender_idx = int(gender_probs[0].argmax().item())
+
+        # Map model output indices to enum values
+        formality_map = {
+            0: FormalityLevel.VERY_FORMAL,
+            1: FormalityLevel.FORMAL,
+            2: FormalityLevel.NEUTRAL,
+            3: FormalityLevel.CASUAL,
+            4: FormalityLevel.VERY_CASUAL,
+            5: FormalityLevel.UNPRAGMATIC_FORMALITY,
+        }
+        gender_map = {
+            0: GenderLevel.MASCULINE,
+            1: GenderLevel.FEMININE,
+            2: GenderLevel.NEUTRAL,
+            3: GenderLevel.UNPRAGMATIC_GENDER,
+        }
+        return (
+            formality_map.get(formality_idx, FormalityLevel.NEUTRAL),
+            gender_map.get(gender_idx, GenderLevel.NEUTRAL),
+        )
+
+    # Rule-based analysis
+    return formality(kotogram), gender(kotogram)
+
+
+def gender(kotogram: str, use_model: bool = False) -> GenderLevel:
     """Analyze a Japanese sentence and return its gender-associated speech level.
 
     This function examines the linguistic features encoded in a kotogram
@@ -240,6 +416,9 @@ def gender(kotogram: str) -> GenderLevel:
     Args:
         kotogram: Kotogram compact sentence representation containing encoded
                  linguistic information with POS tags and conjugation forms.
+        use_model: If True, use the trained neural model for prediction instead
+                  of rule-based analysis. The model must be available at the
+                  default model path (models/style). Default is False.
 
     Returns:
         GenderLevel indicating the sentence's gender-associated speech level,
@@ -261,7 +440,45 @@ def gender(kotogram: str) -> GenderLevel:
         >>> kotogram3 = "⌈ˢ私ᵖpn⌉⌈ˢがᵖprt⌉⌈ˢ行きᵖv:u-godan-ka:conjunctive⌉⌈ˢますᵖauxv-masu:terminal⌉"
         >>> gender(kotogram3)
         <GenderLevel.NEUTRAL: 'neutral'>
+
+        >>> # Using the trained model
+        >>> gender(kotogram1, use_model=True)  # doctest: +SKIP
+        <GenderLevel.MASCULINE: 'masculine'>
     """
+    if use_model:
+        # Use the trained neural model for prediction
+        import torch
+        from kotogram.style_classifier import FEATURE_FIELDS
+
+        model, tokenizer = _load_style_model()
+
+        # Encode the kotogram
+        feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
+
+        # Create batch tensors
+        field_inputs = {
+            f'input_ids_{field}': torch.tensor([feature_ids[field]], dtype=torch.long)
+            for field in FEATURE_FIELDS
+        }
+        attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
+
+        # Predict
+        model.eval()
+        with torch.no_grad():
+            _, gender_probs = model.predict(field_inputs, attention_mask)
+            gender_idx = int(gender_probs[0].argmax().item())
+
+        # Map model output index to GenderLevel
+        # Model uses: 0=masculine, 1=feminine, 2=neutral, 3=unpragmatic
+        gender_map = {
+            0: GenderLevel.MASCULINE,
+            1: GenderLevel.FEMININE,
+            2: GenderLevel.NEUTRAL,
+            3: GenderLevel.UNPRAGMATIC_GENDER,
+        }
+        return gender_map.get(gender_idx, GenderLevel.NEUTRAL)
+
+    # Rule-based analysis
     # Split into tokens and extract linguistic features
     tokens = split_kotogram(kotogram)
 
