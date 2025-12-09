@@ -160,6 +160,9 @@ echo ""
 # Create output directory
 mkdir -p "$OUTPUT_DIR"
 
+# Enable MPS fallback for unsupported ops (Mac Apple Silicon)
+export PYTORCH_ENABLE_MPS_FALLBACK=1
+
 # Run training
 python -m kotogram.formality_classifier \
     --data "$DATA_PATH" \
