@@ -346,7 +346,7 @@ GENDER_LABEL_TO_ID = {
 GENDER_ID_TO_LABEL = {v: k for k, v in GENDER_LABEL_TO_ID.items()}
 
 
-class StyleDataset(Dataset[Sample]):
+class StyleDataset(Dataset[Sample]):  # type: ignore[type-arg]
     """PyTorch Dataset for style classification (formality + gender) using feature-based tokenization.
 
     Each sample contains per-field feature IDs rather than a single token ID sequence.
@@ -584,7 +584,7 @@ def collate_fn(
     return result
 
 
-class PositionalEncoding(nn.Module):
+class PositionalEncoding(nn.Module):  # type: ignore[misc]
     """Sinusoidal positional encoding for Transformer."""
 
     def __init__(self, d_model: int, max_len: int = 512, dropout: float = 0.1):
@@ -663,7 +663,7 @@ class ModelConfig:
         return cls(**d)
 
 
-class MultiFieldEmbedding(nn.Module):
+class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
     """Embedding layer that combines multiple categorical feature embeddings.
 
     For each token position, this layer:
@@ -728,7 +728,7 @@ class MultiFieldEmbedding(nn.Module):
         return cast(torch.Tensor, self.dropout(normalized))
 
 
-class StyleClassifier(nn.Module):
+class StyleClassifier(nn.Module):  # type: ignore[misc]
     """Neural sequence classifier for multi-task style prediction (formality + gender).
 
     Architecture:
@@ -882,7 +882,7 @@ class StyleClassifier(nn.Module):
         return cast(torch.Tensor, self.encoder(x, src_key_padding_mask=src_key_padding_mask))
 
 
-class MLMHead(nn.Module):
+class MLMHead(nn.Module):  # type: ignore[misc]
     """Masked language modeling head for feature-based tokens.
 
     For MLM pretraining, we predict the original token's features at masked positions.
@@ -1336,7 +1336,7 @@ class Trainer:
 
         return total_loss / n_batches, total_formality_loss / n_batches, total_gender_loss / n_batches
 
-    @torch.no_grad()
+    @torch.no_grad()  # type: ignore[misc]
     def evaluate(self) -> Dict[str, Any]:
         """Evaluate on validation set.
 
