@@ -57,7 +57,7 @@ import math
 import random
 from collections import Counter
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Tuple, Any
+from typing import Dict, List, Optional, Tuple, Any, Union, cast
 
 import torch
 import torch.nn as nn
@@ -67,7 +67,9 @@ from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 from kotogram.kotogram import split_kotogram
-from kotogram.analysis import formality, FormalityLevel, gender, GenderLevel, extract_token_features
+from kotogram.analysis import formality, FormalityLevel, gender, GenderLevel
+from kotogram.analysis import extract_token_features  # type: ignore[attr-defined]
+from kotogram.japanese_parser import JapaneseParser
 
 
 # Special token values for vocabulary
@@ -113,18 +115,18 @@ class Tokenizer:
 
         # Initialize vocabularies for each field with special tokens
         self.field_vocabs: Dict[str, Dict[str, int]] = {}
-        self._field_counters: Dict[str, Counter] = {}
-        for field in FEATURE_FIELDS:
-            self.field_vocabs[field] = {
+        self._field_counters: Dict[str, Counter[str]] = {}
+        for f in FEATURE_FIELDS:
+            self.field_vocabs[f] = {
                 PAD_TOKEN: 0,
                 UNK_TOKEN: 1,
                 CLS_TOKEN: 2,
                 MASK_TOKEN: 3,
             }
-            self._field_counters[field] = Counter()
+            self._field_counters[f] = Counter()
 
         self._frozen = False
-        self._lemma_counts: Counter = Counter()
+        self._lemma_counts: Counter[str] = Counter()
 
     @property
     def pad_id(self) -> int:
@@ -208,7 +210,7 @@ class Tokenizer:
         Returns:
             Dict mapping field name to list of token IDs for that field
         """
-        result = {field: [] for field in FEATURE_FIELDS}
+        result: Dict[str, List[int]] = {f: [] for f in FEATURE_FIELDS}
 
         if add_cls:
             for field in FEATURE_FIELDS:
@@ -246,7 +248,7 @@ class Tokenizer:
         features_list = self.extract_features(kotogram)
         return self.encode_features(features_list, add_cls, add_to_vocab)
 
-    def finalize_vocab(self):
+    def finalize_vocab(self) -> None:
         """Finalize vocabulary, pruning rare lemmas.
 
         Should be called after processing all training data but before freezing.
@@ -259,16 +261,16 @@ class Tokenizer:
             if count >= self.lemma_min_freq and lemma not in vocab:
                 vocab[lemma] = len(vocab)
 
-    def freeze(self):
+    def freeze(self) -> None:
         """Freeze vocabulary - new values will map to UNK."""
         self.finalize_vocab()
         self._frozen = True
 
-    def unfreeze(self):
+    def unfreeze(self) -> None:
         """Unfreeze vocabulary."""
         self._frozen = False
 
-    def get_model_config(self, **kwargs) -> 'ModelConfig':
+    def get_model_config(self, **kwargs: Any) -> 'ModelConfig':
         """Create a ModelConfig with vocabulary sizes from this tokenizer.
 
         Args:
@@ -282,7 +284,7 @@ class Tokenizer:
             **kwargs
         )
 
-    def save(self, path: str):
+    def save(self, path: str) -> None:
         """Save tokenizer vocabularies to JSON file."""
         data = {
             'field_vocabs': self.field_vocabs,
@@ -344,7 +346,7 @@ GENDER_LABEL_TO_ID = {
 GENDER_ID_TO_LABEL = {v: k for k, v in GENDER_LABEL_TO_ID.items()}
 
 
-class StyleDataset(Dataset):
+class StyleDataset(Dataset[Sample]):
     """PyTorch Dataset for style classification (formality + gender) using feature-based tokenization.
 
     Each sample contains per-field feature IDs rather than a single token ID sequence.
@@ -376,7 +378,7 @@ class StyleDataset(Dataset):
         cls,
         tsv_path: str,
         tokenizer: Tokenizer,
-        parser=None,
+        parser: Optional[JapaneseParser] = None,
         max_samples: Optional[int] = None,
         verbose: bool = True,
         labeled: bool = True,
@@ -395,13 +397,16 @@ class StyleDataset(Dataset):
         Returns:
             StyleDataset with encoded samples
         """
+        actual_parser: JapaneseParser
         if parser is None:
             from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-            parser = SudachiJapaneseParser()
+            actual_parser = SudachiJapaneseParser()
+        else:
+            actual_parser = parser
 
-        samples = []
-        formality_counts = Counter()
-        gender_counts = Counter()
+        samples: List[Sample] = []
+        formality_counts: Counter[FormalityLevel] = Counter()
+        gender_counts: Counter[GenderLevel] = Counter()
 
         with open(tsv_path, 'r', encoding='utf-8') as f:
             reader = csv.reader(f, delimiter='\t')
@@ -418,7 +423,7 @@ class StyleDataset(Dataset):
 
                 try:
                     # Convert to Kotogram
-                    kotogram = parser.japanese_to_kotogram(sentence)
+                    kotogram = actual_parser.japanese_to_kotogram(sentence)
 
                     # Get labels (or dummy for pretraining)
                     if labeled:
@@ -464,11 +469,11 @@ class StyleDataset(Dataset):
             print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
             if labeled:
                 print("Formality distribution:")
-                for label, count in sorted(formality_counts.items(), key=lambda x: x[1], reverse=True):
-                    print(f"  {label.value}: {count} ({100*count/len(samples):.1f}%)")
+                for f_label, f_count in sorted(formality_counts.items(), key=lambda x: x[1], reverse=True):
+                    print(f"  {f_label.value}: {f_count} ({100*f_count/len(samples):.1f}%)")
                 print("Gender distribution:")
-                for label, count in sorted(gender_counts.items(), key=lambda x: x[1], reverse=True):
-                    print(f"  {label.value}: {count} ({100*count/len(samples):.1f}%)")
+                for g_label, g_count in sorted(gender_counts.items(), key=lambda x: x[1], reverse=True):
+                    print(f"  {g_label.value}: {g_count} ({100*g_count/len(samples):.1f}%)")
 
         # Freeze vocabulary after building
         tokenizer.freeze()
@@ -548,7 +553,7 @@ def collate_fn(
     max_len = min(batch_max_len, max_seq_len) if max_seq_len else batch_max_len
 
     # Initialize per-field lists
-    field_ids = {field: [] for field in FEATURE_FIELDS}
+    field_ids: Dict[str, List[List[int]]] = {f: [] for f in FEATURE_FIELDS}
     attention_mask = []
     formality_labels = []
     gender_labels = []
@@ -605,8 +610,9 @@ class PositionalEncoding(nn.Module):
         Returns:
             Tensor with positional encoding added
         """
-        x = x + self.pe[:, :x.size(1), :]
-        return self.dropout(x)
+        pe = cast(torch.Tensor, self.pe)
+        x = x + pe[:, :x.size(1), :]
+        return cast(torch.Tensor, self.dropout(x))
 
 
 @dataclass
@@ -719,7 +725,7 @@ class MultiFieldEmbedding(nn.Module):
         # Project to model dimension
         projected = self.projection(concat)
         normalized = self.layer_norm(projected)
-        return self.dropout(normalized)
+        return cast(torch.Tensor, self.dropout(normalized))
 
 
 class StyleClassifier(nn.Module):
@@ -804,7 +810,7 @@ class StyleClassifier(nn.Module):
             src_key_padding_mask = None
 
         # Encode
-        x = self.encoder(x, src_key_padding_mask=src_key_padding_mask)
+        x = cast(torch.Tensor, self.encoder(x, src_key_padding_mask=src_key_padding_mask))
 
         # Pooling
         if self.config.pooling == "cls":
@@ -873,7 +879,7 @@ class StyleClassifier(nn.Module):
         else:
             src_key_padding_mask = None
 
-        return self.encoder(x, src_key_padding_mask=src_key_padding_mask)
+        return cast(torch.Tensor, self.encoder(x, src_key_padding_mask=src_key_padding_mask))
 
 
 class MLMHead(nn.Module):
@@ -945,9 +951,9 @@ class StyleClassifierWithMLM(StyleClassifier):
             Dict mapping field name to logits of shape (batch, seq_len, field_vocab_size)
         """
         encoder_output = self.get_encoder_output(field_inputs, attention_mask)
-        return self.mlm_head(encoder_output)
+        return cast(Dict[str, torch.Tensor], self.mlm_head(encoder_output))
 
-    def reset_classifier(self):
+    def reset_classifier(self) -> None:
         """Reinitialize both classifier head weights.
 
         Call this after MLM pretraining and before supervised fine-tuning
@@ -982,8 +988,8 @@ def create_mlm_batch(
     batch: Dict[str, torch.Tensor],
     mask_prob: float = 0.15,
     mask_token_id: int = 3,
-    vocab_sizes: Dict[str, int] = None,
-    special_token_ids: List[int] = None,
+    vocab_sizes: Optional[Dict[str, int]] = None,
+    special_token_ids: Optional[List[int]] = None,
 ) -> Dict[str, torch.Tensor]:
     """Create masked language modeling batch for feature-based tokens.
 
@@ -1037,7 +1043,7 @@ def create_mlm_batch(
         # Apply random replacement for this field using its own vocabulary
         field_vocab_size = vocab_sizes.get(field)
         if field_vocab_size:
-            num_random = random_token_positions.sum().item()
+            num_random = int(random_token_positions.sum().item())
             if num_random > 0:
                 field_ids[random_token_positions] = torch.randint(
                     len(special_token_ids), field_vocab_size, (num_random,)
@@ -1060,9 +1066,9 @@ class MLMTrainer:
         self,
         model: StyleClassifierWithMLM,
         dataset: StyleDataset,
-        config: TrainerConfig = None,
+        config: Optional[TrainerConfig] = None,
         mask_prob: float = 0.15,
-        field_weights: Dict[str, float] = None,
+        field_weights: Optional[Dict[str, float]] = None,
     ):
         """Initialize MLM trainer.
 
@@ -1100,7 +1106,7 @@ class MLMTrainer:
         # Get vocabulary sizes for all fields
         self.vocab_sizes = dataset.tokenizer.get_vocab_sizes()
 
-        self.history = {'mlm_loss': [], 'field_losses': {field: [] for field in FEATURE_FIELDS}}
+        self.history: Dict[str, Any] = {'mlm_loss': [], 'field_losses': {f: [] for f in FEATURE_FIELDS}}
 
     def train_epoch(self) -> Tuple[float, Dict[str, float]]:
         """Run one MLM pretraining epoch.
@@ -1109,7 +1115,7 @@ class MLMTrainer:
             Tuple of (average total loss, dict of average per-field losses)
         """
         self.model.train()
-        total_loss = 0
+        total_loss = 0.0
         field_losses = {field: 0.0 for field in FEATURE_FIELDS}
         n_batches = 0
 
@@ -1135,17 +1141,17 @@ class MLMTrainer:
             mlm_logits_dict = self.model.forward_mlm(field_inputs, attention_mask)
 
             # Compute weighted sum of losses across all fields
-            batch_loss = 0.0
-            for field in FEATURE_FIELDS:
-                logits = mlm_logits_dict[field]
-                labels = mlm_batch[f'mlm_labels_{field}'].to(self.device)
+            batch_loss: torch.Tensor = torch.tensor(0.0, device=self.device)
+            for f in FEATURE_FIELDS:
+                logits = mlm_logits_dict[f]
+                labels = mlm_batch[f'mlm_labels_{f}'].to(self.device)
                 field_loss = self.criterion(
                     logits.view(-1, logits.size(-1)),
                     labels.view(-1),
                 )
-                weighted_loss = self.field_weights[field] * field_loss
+                weighted_loss = self.field_weights[f] * field_loss
                 batch_loss = batch_loss + weighted_loss
-                field_losses[field] += field_loss.item()
+                field_losses[f] += field_loss.item()
 
             # Average across fields
             loss = batch_loss / len(FEATURE_FIELDS)
@@ -1162,7 +1168,7 @@ class MLMTrainer:
         avg_field_losses = {field: loss / n_batches for field, loss in field_losses.items()}
         return avg_loss, avg_field_losses
 
-    def train(self, epochs: int = None, verbose: bool = True) -> Dict[str, List[float]]:
+    def train(self, epochs: Optional[int] = None, verbose: bool = True) -> Dict[str, Any]:
         """Run MLM pretraining.
 
         Args:
@@ -1172,17 +1178,17 @@ class MLMTrainer:
         Returns:
             Training history with 'mlm_loss' and per-field losses
         """
-        epochs = epochs or self.config.epochs
+        actual_epochs = epochs or self.config.epochs
 
-        for epoch in range(epochs):
-            mlm_loss, field_losses = self.train_epoch()
+        for epoch in range(actual_epochs):
+            mlm_loss, field_loss_dict = self.train_epoch()
             self.history['mlm_loss'].append(mlm_loss)
-            for field, loss in field_losses.items():
-                self.history['field_losses'][field].append(loss)
+            for f, loss_val in field_loss_dict.items():
+                self.history['field_losses'][f].append(loss_val)
 
             if verbose:
-                print(f"Epoch {epoch+1}/{epochs} - MLM Loss: {mlm_loss:.4f}")
-                field_str = ", ".join(f"{f}={l:.3f}" for f, l in field_losses.items())
+                print(f"Epoch {epoch+1}/{actual_epochs} - MLM Loss: {mlm_loss:.4f}")
+                field_str = ", ".join(f"{f}={l:.3f}" for f, l in field_loss_dict.items())
                 print(f"  Field losses: {field_str}")
 
         return self.history
@@ -1196,7 +1202,7 @@ class Trainer:
         model: StyleClassifier,
         train_dataset: StyleDataset,
         val_dataset: StyleDataset,
-        config: TrainerConfig = None,
+        config: Optional[TrainerConfig] = None,
         encoder_lr_factor: float = 0.1,
     ):
         """Initialize trainer.
@@ -1266,7 +1272,7 @@ class Trainer:
         # Training state
         self.best_val_loss = float('inf')
         self.patience_counter = 0
-        self.history = {
+        self.history: Dict[str, List[float]] = {
             'train_loss': [],
             'train_formality_loss': [],
             'train_gender_loss': [],
@@ -1276,6 +1282,7 @@ class Trainer:
             'val_formality_accuracy': [],
             'val_gender_accuracy': [],
         }
+        self.best_state: Optional[Dict[str, torch.Tensor]] = None
 
     def _batch_to_device(self, batch: Dict[str, torch.Tensor]) -> Tuple[Dict[str, torch.Tensor], torch.Tensor, torch.Tensor, torch.Tensor]:
         """Move batch tensors to device and split into inputs/mask/labels."""
@@ -1441,13 +1448,13 @@ class Trainer:
                     break
 
         # Restore best model
-        if hasattr(self, 'best_state'):
+        if self.best_state is not None:
             self.model.load_state_dict(self.best_state)
             self.model.to(self.device)
 
         return self.history
 
-    def print_confusion_matrices(self):
+    def print_confusion_matrices(self) -> None:
         """Print confusion matrices for both tasks."""
         eval_results = self.evaluate()
 
@@ -1479,7 +1486,7 @@ def save_model(
     tokenizer: Tokenizer,
     path: str,
     config: Optional[ModelConfig] = None,
-):
+) -> None:
     """Save trained model, tokenizer, and config."""
     import os
     os.makedirs(path, exist_ok=True)
@@ -1511,7 +1518,7 @@ def save_model(
 
 def load_model(
     path: str,
-    device: str = None,
+    device: Optional[str] = None,
 ) -> Tuple[StyleClassifier, Tokenizer]:
     """Load trained model and tokenizer."""
     import os
@@ -1539,8 +1546,8 @@ def predict_style(
     sentence: str,
     model: StyleClassifier,
     tokenizer: Tokenizer,
-    parser=None,
-    device: str = None,
+    parser: Optional[JapaneseParser] = None,
+    device: Optional[str] = None,
 ) -> Tuple[FormalityLevel, GenderLevel, Dict[str, Dict[str, float]]]:
     """Predict formality and gender style for a Japanese sentence.
 
@@ -1584,8 +1591,8 @@ def predict_style(
         formality_probs = formality_probs[0]
         gender_probs = gender_probs[0]
 
-    formality_id = formality_probs.argmax().item()
-    gender_id = gender_probs.argmax().item()
+    formality_id = int(formality_probs.argmax().item())
+    gender_id = int(gender_probs.argmax().item())
 
     formality_label = FORMALITY_ID_TO_LABEL[formality_id]
     gender_label = GENDER_ID_TO_LABEL[gender_id]
@@ -1644,6 +1651,7 @@ if __name__ == "__main__":
 
     # Load data: if doing MLM pretraining, first load unlabeled data for pretraining,
     # then load labeled data for fine-tuning
+    model: StyleClassifier  # Type annotation for both branches
     if args.pretrain_mlm:
         print("Loading unlabeled data for MLM pretraining...")
         tokenizer = Tokenizer()
