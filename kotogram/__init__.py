@@ -1,6 +1,6 @@
 """Kotogram - A dual Python/TypeScript library for Japanese text parsing and encoding."""
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 from .codec import Codec
 from .reversing_codec import ReversingCodec
