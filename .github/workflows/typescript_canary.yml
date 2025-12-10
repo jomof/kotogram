@@ -299,7 +299,8 @@ jobs:
 
     - name: Install Python dependencies
       run: |
-        pip install mecab-python3 unidic-lite sudachipy sudachidict-core sudachidict-full
+        pip install mecab-python3 unidic unidic-lite sudachipy sudachidict-core sudachidict-full
+        python -m unidic download
 
     - name: Install Node.js dependencies
       run: npm ci
