@@ -25,6 +25,11 @@ classifiers = [
     "Natural Language :: Japanese",
 ]
 keywords = ["japanese", "nlp", "mecab", "parser", "tokenizer", "kotogram"]
+dependencies = [
+    "sudachipy",
+    "sudachidict-core",
+    "sudachidict-full",
+]
 
 [project.urls]
 "Homepage" = "https://github.com/jomof/kotogram"

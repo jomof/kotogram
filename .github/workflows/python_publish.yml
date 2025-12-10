@@ -151,3 +151,21 @@ jobs:
     - name: Verify import
       run: |
         python -c "import kotogram; print(f'Successfully imported kotogram v{kotogram.__version__}')"
+
+    - name: Verify Japanese to kotogram conversion
+      run: |
+        python -c "
+        from kotogram import SudachiJapaneseParser, kotogram_to_japanese
+
+        parser = SudachiJapaneseParser()
+        japanese = '猫を食べる'
+        kotogram = parser.japanese_to_kotogram(japanese)
+        reconstructed = kotogram_to_japanese(kotogram)
+
+        print(f'Original: {japanese}')
+        print(f'Kotogram: {kotogram}')
+        print(f'Reconstructed: {reconstructed}')
+
+        assert reconstructed == japanese, f'Mismatch: {reconstructed} != {japanese}'
+        print('✅ Japanese to kotogram conversion verified successfully')
+        "
