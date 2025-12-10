@@ -82,11 +82,18 @@ def extract_conjugation_form(token: str) -> str:
     return match.group(1) if match else ''
 
 
-def extract_all_surfaces(kotogram: str) -> str:
-    """Extract and concatenate all surface forms from a kotogram."""
+def extract_all_surfaces(kotogram: str, with_spaces: bool = True) -> str:
+    """Extract and concatenate all surface forms from a kotogram.
+
+    Args:
+        kotogram: The kotogram string to extract surfaces from
+        with_spaces: If True, join surfaces with spaces (for model training).
+                    If False, join without spaces (for display).
+    """
     pattern = r'ˢ(.*?)ᵖ'
     matches = re.findall(pattern, kotogram, re.DOTALL)
-    return ''.join(matches)
+    separator = ' ' if with_spaces else ''
+    return separator.join(matches)
 
 
 def make_particle_token(surface: str, detail: str = 'case_particle') -> str:
@@ -983,31 +990,126 @@ def error_past_i_adj_plus_da(kotogram: str) -> Optional[Tuple[str, str]]:
         return None
 
     # Sentence-final particles that might follow
-    final_particles = ['ね', 'よ', 'な', 'わ', 'さ', 'ぞ', 'ぜ', 'かな', 'かしら']
+    final_particles = ['ね', 'よ', 'な', 'わ', 'さ', 'ぞ', 'ぜ', 'かな', 'かしら', 'なあ']
+
+    for i, token in enumerate(tokens):
+        surface = extract_surface(token)
+
+        # Look for た (past auxiliary) after い-adjective stem
+        if 'auxv-ta' in token and surface == 'た':
+            if i > 0:
+                prev_token = tokens[i - 1]
+                prev_surface = extract_surface(prev_token)
+                prev_pos = extract_pos(prev_token)
+
+                # Check if preceded by い-adjective (POS starts with 'adj')
+                # The adjective surface ends in かっ for past form
+                if prev_pos.startswith('adj') and prev_surface.endswith('かっ'):
+                    # Check if followed by sentence-final particle or punctuation
+                    if i + 1 < len(tokens):
+                        next_surface = extract_surface(tokens[i + 1])
+                        if next_surface in final_particles or next_surface in ['。', '！', '？', '.']:
+                            # Insert だ between た and particle (wrong)
+                            da_token = "⌈ˢだᵖauxv:auxv-da:terminal⌉"
+                            new_tokens = tokens[:i + 1] + [da_token] + tokens[i + 1:]
+                            return ''.join(new_tokens), 'past_i_adj_da'
+
+    return None
+
+
+def error_nai_plus_da(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Add だ after ない auxiliary (incorrect).
+
+    Error: 食べないだよ (should be 食べないよ)
+    Error: 新鮮ではないだよ (should be 新鮮ではないよ)
+
+    ない is an い-adjective-like auxiliary, so adding だ is incorrect.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    final_particles = ['ね', 'よ', 'な', 'わ', 'さ', 'ぞ', 'ぜ', 'かな', 'かしら', 'なあ']
+
+    for i, token in enumerate(tokens):
+        surface = extract_surface(token)
+
+        # Look for ない (negative auxiliary) in terminal form
+        if 'auxv-nai' in token and surface == 'ない':
+            # Check if followed by sentence-final particle
+            if i + 1 < len(tokens):
+                next_surface = extract_surface(tokens[i + 1])
+                if next_surface in final_particles or next_surface in ['。', '！', '？', '.']:
+                    # Insert だ between ない and particle (wrong)
+                    da_token = "⌈ˢだᵖauxv:auxv-da:terminal⌉"
+                    new_tokens = tokens[:i + 1] + [da_token] + tokens[i + 1:]
+                    return ''.join(new_tokens), 'nai_da'
+
+    return None
+
+
+def error_tai_plus_da(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Add だ after たい auxiliary (incorrect).
+
+    Error: 食べたいだよ (should be 食べたいよ)
+    Error: 買いたいだな (should be 買いたいな)
+
+    たい is an い-adjective-like auxiliary, so adding だ is incorrect.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    final_particles = ['ね', 'よ', 'な', 'わ', 'さ', 'ぞ', 'ぜ', 'かな', 'かしら', 'なあ']
+
+    for i, token in enumerate(tokens):
+        surface = extract_surface(token)
+
+        # Look for たい (desiderative auxiliary) in terminal form
+        if 'auxv-tai' in token and surface == 'たい':
+            # Check if followed by sentence-final particle
+            if i + 1 < len(tokens):
+                next_surface = extract_surface(tokens[i + 1])
+                if next_surface in final_particles or next_surface in ['。', '！', '？', '.']:
+                    # Insert だ between たい and particle (wrong)
+                    da_token = "⌈ˢだᵖauxv:auxv-da:terminal⌉"
+                    new_tokens = tokens[:i + 1] + [da_token] + tokens[i + 1:]
+                    return ''.join(new_tokens), 'tai_da'
+
+    return None
+
+
+def error_i_adj_terminal_plus_da(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Add だ after terminal い-adjective (incorrect).
+
+    Error: 危ないだよ (should be 危ないよ)
+    Error: 少ないだね (should be 少ないね)
+
+    い-adjectives in terminal form don't take だ.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    final_particles = ['ね', 'よ', 'な', 'わ', 'さ', 'ぞ', 'ぜ', 'かな', 'かしら', 'なあ']
 
     for i, token in enumerate(tokens):
         surface = extract_surface(token)
         pos = extract_pos(token)
 
-        # Check for past い-adjective (ends in かった or くなかった)
-        # Look for た that's part of adjective conjugation
-        if 'auxv-ta' in token and surface == 'た':
-            # Check if preceded by く (adjective stem) or かっ
-            if i > 0:
-                prev_surface = extract_surface(tokens[i - 1])
-                prev_pos = extract_pos(tokens[i - 1])
-
-                # Check if this is adjective past (かっ + た pattern)
-                if prev_surface == 'かっ' and i > 1:
-                    # This looks like past い-adjective
-                    # Check if followed by sentence-final particle
-                    if i + 1 < len(tokens):
-                        next_surface = extract_surface(tokens[i + 1])
-                        if next_surface in final_particles or next_surface in ['。', '！', '？']:
-                            # Insert だ between た and particle (wrong)
-                            da_token = "⌈ˢだᵖauxv:auxv-da:terminal⌉"
-                            new_tokens = tokens[:i + 1] + [da_token] + tokens[i + 1:]
-                            return ''.join(new_tokens), 'past_i_adj_da'
+        # Look for terminal い-adjective (ends in い, POS is adj, form is terminal)
+        if pos.startswith('adj') and 'terminal' in token and surface.endswith('い'):
+            # Exclude らしい which has its own generator
+            if surface == 'らしい':
+                continue
+            # Check if followed by sentence-final particle
+            if i + 1 < len(tokens):
+                next_surface = extract_surface(tokens[i + 1])
+                if next_surface in final_particles or next_surface in ['。', '！', '？', '.']:
+                    # Insert だ between adjective and particle (wrong)
+                    da_token = "⌈ˢだᵖauxv:auxv-da:terminal⌉"
+                    new_tokens = tokens[:i + 1] + [da_token] + tokens[i + 1:]
+                    return ''.join(new_tokens), 'i_adj_da'
 
     return None
 
@@ -1132,6 +1234,9 @@ ERROR_GENERATORS: List[Tuple[str, str, Callable, float]] = [
     ('i_polite_mod', 'intermediate', error_polite_form_as_modifier, 0.8),  # Clear error: ありませんホテル
     ('i_past_adj_da', 'intermediate', error_past_i_adj_plus_da, 0.7),  # Clear error: 楽しかっただね
     ('i_rashii_da', 'intermediate', error_rashii_plus_da, 0.6),  # Clear error: らしいだよ
+    ('i_nai_da', 'intermediate', error_nai_plus_da, 0.7),  # Clear error: 食べないだよ
+    ('i_tai_da', 'intermediate', error_tai_plus_da, 0.7),  # Clear error: 食べたいだよ
+    ('i_i_adj_da', 'intermediate', error_i_adj_terminal_plus_da, 0.7),  # Clear error: 危ないだよ
     ('i_doko_tokoro', 'intermediate', error_doko_instead_of_tokoro, 0.7),  # Clear error: いるどこも
 
     # Advanced level errors
