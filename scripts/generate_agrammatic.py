@@ -1041,6 +1041,35 @@ def error_rashii_plus_da(kotogram: str) -> Optional[Tuple[str, str]]:
     return None
 
 
+def error_doko_instead_of_tokoro(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Replace ところ with どこ after relative clauses (incorrect).
+
+    Error: 残っているどこもない (should be 残っているところもない)
+
+    どこ is an interrogative pronoun, not a relative pronoun.
+    ところ should be used for "place where X" constructions.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    for i, token in enumerate(tokens):
+        surface = extract_surface(token)
+
+        # Look for ところ after a verb
+        if surface == 'ところ' and i > 0:
+            prev_token = tokens[i - 1]
+            # Check if preceded by a verb form (いる, た, etc.) indicating relative clause
+            prev_surface = extract_surface(prev_token)
+            if prev_surface in ['いる', 'た', 'ある', 'ない', 'できる', 'する']:
+                # Replace ところ with どこ (wrong)
+                doko_token = "⌈ˢどこᵖpron:pron-interrogative:⌉"
+                new_tokens = tokens[:i] + [doko_token] + tokens[i + 1:]
+                return ''.join(new_tokens), 'doko_tokoro_confusion'
+
+    return None
+
+
 def error_wrong_verb_base(kotogram: str) -> Optional[Tuple[str, str]]:
     """Use wrong verb conjugation base.
 
@@ -1103,6 +1132,7 @@ ERROR_GENERATORS: List[Tuple[str, str, Callable, float]] = [
     ('i_polite_mod', 'intermediate', error_polite_form_as_modifier, 0.8),  # Clear error: ありませんホテル
     ('i_past_adj_da', 'intermediate', error_past_i_adj_plus_da, 0.7),  # Clear error: 楽しかっただね
     ('i_rashii_da', 'intermediate', error_rashii_plus_da, 0.6),  # Clear error: らしいだよ
+    ('i_doko_tokoro', 'intermediate', error_doko_instead_of_tokoro, 0.7),  # Clear error: いるどこも
 
     # Advanced level errors
     # DISABLED: ('a_prag_prt', ...) - ね/よ swaps are grammatically valid
