@@ -68,7 +68,7 @@ class SudachiJapaneseParser(JapaneseParser):
             dictionary_form = token.dictionary_form()
             reading_form = token.reading_form()
 
-            # Parse POS tuple (similar to MeCab features)
+            # Parse POS tuple
             # Format: (POS, POS1, POS2, POS3, conjugation_type, conjugation_form)
             parsed_token = {
                 "surface": surface,

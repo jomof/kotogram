@@ -13,7 +13,7 @@ Usage:
 """
 
 import sys
-from kotogram import MecabJapaneseParser, SudachiJapaneseParser, formality, FormalityLevel
+from kotogram import SudachiJapaneseParser, formality, FormalityLevel
 from kotogram.kotogram import split_kotogram
 import re
 
@@ -27,23 +27,13 @@ BLACKLIST = {
     '192863',  # Honorific imperative + よ (borderline but acceptable)
 }
 
-# Initialize parsers
+# Initialize parser
 try:
-    mecab = MecabJapaneseParser()
-    print("✓ MeCab parser loaded")
-except Exception as e:
-    print(f"✗ MeCab parser failed: {e}")
-    mecab = None
-
-try:
-    sudachi = SudachiJapaneseParser(dict_type='full')
+    parser = SudachiJapaneseParser(dict_type='full')
     print("✓ Sudachi parser loaded")
 except Exception as e:
     print(f"✗ Sudachi parser failed: {e}")
-    sudachi = None
-
-if not mecab and not sudachi:
-    print("ERROR: No parsers available!")
+    print("ERROR: Parser not available!")
     sys.exit(1)
 
 print("\nSearching for UNPRAGMATIC sentences...")
@@ -76,31 +66,15 @@ with open('data/jpn_sentences.tsv', 'r', encoding='utf-8') as f:
         if len(text) < 3 or len(text) > 100:
             continue
 
-        # Test with both parsers
-        results = {}
+        # Test with parser
+        try:
+            kotogram = parser.japanese_to_kotogram(text)
+            level = formality(kotogram)
+        except Exception as e:
+            continue
 
-        if mecab:
-            try:
-                kotogram = mecab.japanese_to_kotogram(text)
-                level = formality(kotogram)
-                results['mecab'] = level
-            except Exception as e:
-                results['mecab'] = f"ERROR: {e}"
-
-        if sudachi:
-            try:
-                kotogram = sudachi.japanese_to_kotogram(text)
-                level = formality(kotogram)
-                results['sudachi'] = level
-            except Exception as e:
-                results['sudachi'] = f"ERROR: {e}"
-
-        # Check if either parser found unpragmatic
-        is_unpragmatic = False
-        for parser_name, result in results.items():
-            if isinstance(result, FormalityLevel) and result == FormalityLevel.UNPRAGMATIC_FORMALITY:
-                is_unpragmatic = True
-                break
+        # Check if unpragmatic
+        is_unpragmatic = level == FormalityLevel.UNPRAGMATIC_FORMALITY
 
         if is_unpragmatic:
             # Check if blacklisted
@@ -111,19 +85,14 @@ with open('data/jpn_sentences.tsv', 'r', encoding='utf-8') as f:
             unpragmatic_found.append({
                 'id': sentence_id,
                 'text': text,
-                'results': results,
+                'level': level,
                 'line': line_count
             })
 
             # Display this sentence
             print(f"\n[{len(unpragmatic_found)}/{target_count}] ID: {sentence_id} (line {line_count})")
             print(f"Text: {text}")
-            print(f"Results:")
-            for parser_name, result in results.items():
-                if isinstance(result, FormalityLevel):
-                    print(f"  {parser_name:10s}: {result.value}")
-                else:
-                    print(f"  {parser_name:10s}: {result}")
+            print(f"Result: {level.value}")
 
             # Stop after finding target_count non-blacklisted unpragmatic sentences
             if len(unpragmatic_found) >= target_count:
@@ -151,21 +120,20 @@ if unpragmatic_found:
         print(f"   Line: {item['line']}")
 
         # Get kotogram for detailed inspection
-        if mecab and 'mecab' in item['results']:
-            try:
-                kotogram = mecab.japanese_to_kotogram(item['text'])
-                tokens = split_kotogram(kotogram)
-                print(f"\n   MeCab tokens ({len(tokens)}):")
-                for j, token in enumerate(tokens):
-                    # Extract surface and POS
-                    surface_match = re.search(r'ˢ(.*?)ᵖ', token)
-                    pos_match = re.search(r'ᵖ([^⌉ᵇᵈʳ]+)', token)
-                    if surface_match and pos_match:
-                        surface = surface_match.group(1)
-                        pos = pos_match.group(1)
-                        print(f"      [{j}] {surface:10s} → {pos}")
-            except Exception as e:
-                print(f"   Error analyzing: {e}")
+        try:
+            kotogram = parser.japanese_to_kotogram(item['text'])
+            tokens = split_kotogram(kotogram)
+            print(f"\n   Tokens ({len(tokens)}):")
+            for j, token in enumerate(tokens):
+                # Extract surface and POS
+                surface_match = re.search(r'ˢ(.*?)ᵖ', token)
+                pos_match = re.search(r'ᵖ([^⌉ᵇᵈʳ]+)', token)
+                if surface_match and pos_match:
+                    surface = surface_match.group(1)
+                    pos = pos_match.group(1)
+                    print(f"      [{j}] {surface:10s} → {pos}")
+        except Exception as e:
+            print(f"   Error analyzing: {e}")
 
         print()
 

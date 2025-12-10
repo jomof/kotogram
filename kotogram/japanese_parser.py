@@ -38,7 +38,7 @@ POS2_MAP = {
     "人名": "person-name",
     "助数詞": "counter",
     "顔文字": "kaomoji",  # Emoticon/kaomoji
-    "*": '',  # Unspecified/empty field marker in MeCab
+    "*": '',  # Unspecified/empty field marker
     "": ''
 }
 
@@ -68,7 +68,7 @@ POS1_MAP = {
     "動詞的": 'verb_like',  # Verb-like
     "文字": 'character',  # Character/letter (e.g., Greek letters like α, β, γ)
     "ＡＡ": 'ascii_art',  # ASCII art / emoticon
-    "*": '',  # Unspecified/empty field marker in MeCab
+    "*": '',  # Unspecified/empty field marker
     "": ''
 }
 

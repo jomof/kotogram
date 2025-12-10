@@ -6,7 +6,7 @@ kotogram_to_japanese produce identical results when furigana=true.
 
 Process:
 1. Read all sentences from jpn_sentences.tsv
-2. Convert each to kotogram using both MeCab and Sudachi parsers
+2. Convert each to kotogram using Sudachi parser
 3. Write kotograms to temp files
 4. Run Python kotogram_to_japanese(furigana=True) on all kotograms
 5. Run TypeScript kotogramToJapanese({ furigana: true }) on all kotograms
@@ -22,16 +22,14 @@ from pathlib import Path
 # Add parent to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from kotogram import MecabJapaneseParser, SudachiJapaneseParser, kotogram_to_japanese
+from kotogram import SudachiJapaneseParser, kotogram_to_japanese
 
 
-def generate_kotograms(data_path: Path) -> tuple[list[str], list[str]]:
-    """Generate kotograms for all sentences using both parsers."""
-    mecab_parser = MecabJapaneseParser()
-    sudachi_parser = SudachiJapaneseParser(dict_type='full')
+def generate_kotograms(data_path: Path) -> list[str]:
+    """Generate kotograms for all sentences using Sudachi parser."""
+    parser = SudachiJapaneseParser(dict_type='full')
 
-    mecab_kotograms = []
-    sudachi_kotograms = []
+    kotograms = []
 
     with open(data_path, 'r', encoding='utf-8') as f:
         reader = csv.reader(f, delimiter='\t')
@@ -41,18 +39,12 @@ def generate_kotograms(data_path: Path) -> tuple[list[str], list[str]]:
             sentence = row[2]
 
             try:
-                mecab_kotograms.append(mecab_parser.japanese_to_kotogram(sentence))
-            except Exception as e:
-                print(f"MeCab error for '{sentence[:30]}...': {e}", file=sys.stderr)
-                mecab_kotograms.append("")
-
-            try:
-                sudachi_kotograms.append(sudachi_parser.japanese_to_kotogram(sentence))
+                kotograms.append(parser.japanese_to_kotogram(sentence))
             except Exception as e:
                 print(f"Sudachi error for '{sentence[:30]}...': {e}", file=sys.stderr)
-                sudachi_kotograms.append("")
+                kotograms.append("")
 
-    return mecab_kotograms, sudachi_kotograms
+    return kotograms
 
 
 def python_convert_furigana(kotograms: list[str]) -> list[str]:
@@ -146,59 +138,50 @@ def main():
 
     # Step 1: Generate kotograms
     print("Step 1: Generating kotograms from Japanese sentences...")
-    mecab_kotograms, sudachi_kotograms = generate_kotograms(data_path)
-    print(f"  Generated {len(mecab_kotograms)} MeCab kotograms")
-    print(f"  Generated {len(sudachi_kotograms)} Sudachi kotograms")
+    kotograms = generate_kotograms(data_path)
+    print(f"  Generated {len(kotograms)} kotograms")
     print()
-
-    all_mismatches = []
 
     with tempfile.TemporaryDirectory() as tmpdir:
         tmpdir = Path(tmpdir)
 
-        for parser_name, kotograms in [("MeCab", mecab_kotograms), ("Sudachi", sudachi_kotograms)]:
-            print(f"Step 2: Converting {parser_name} kotograms with Python...")
-            python_results = python_convert_furigana(kotograms)
-            print(f"  Converted {len(python_results)} kotograms")
+        print("Step 2: Converting kotograms with Python...")
+        python_results = python_convert_furigana(kotograms)
+        print(f"  Converted {len(python_results)} kotograms")
 
-            # Write kotograms to temp file for TypeScript
-            kotograms_file = tmpdir / f'{parser_name.lower()}_kotograms.txt'
-            kotograms_file.write_text('\n'.join(kotograms))
+        # Write kotograms to temp file for TypeScript
+        kotograms_file = tmpdir / 'kotograms.txt'
+        kotograms_file.write_text('\n'.join(kotograms))
 
-            ts_output_file = tmpdir / f'{parser_name.lower()}_ts_results.txt'
+        ts_output_file = tmpdir / 'ts_results.txt'
 
-            print(f"Step 3: Converting {parser_name} kotograms with TypeScript...")
-            if not typescript_convert_furigana(kotograms_file, ts_output_file):
-                print(f"  ❌ TypeScript conversion failed for {parser_name}")
-                continue
+        print("Step 3: Converting kotograms with TypeScript...")
+        if not typescript_convert_furigana(kotograms_file, ts_output_file):
+            print("  ❌ TypeScript conversion failed")
+            sys.exit(1)
 
-            typescript_results = ts_output_file.read_text().split('\n')
-            print(f"  Converted {len(typescript_results)} kotograms")
+        typescript_results = ts_output_file.read_text().split('\n')
+        print(f"  Converted {len(typescript_results)} kotograms")
 
-            # Step 4: Compare results
-            print(f"Step 4: Comparing {parser_name} results...")
-            matches, total, mismatches = compare_results(
-                python_results, typescript_results, kotograms
-            )
+        # Step 4: Compare results
+        print("Step 4: Comparing results...")
+        matches, total, mismatches = compare_results(
+            python_results, typescript_results, kotograms
+        )
 
-            if not mismatches:
-                print(f"  ✅ All {matches} {parser_name} conversions match!")
-            else:
-                print(f"  ❌ {len(mismatches)} mismatches found out of {total} {parser_name} conversions")
-                print()
-                print(f"  First 5 {parser_name} mismatches:")
-                for m in mismatches[:5]:
-                    print(f"    Line {m['line']}:")
-                    print(f"      Kotogram: {m['kotogram']}")
-                    print(f"      Python:     {m['python']}")
-                    print(f"      TypeScript: {m['typescript']}")
-                    print()
-                all_mismatches.extend(mismatches)
+        if not mismatches:
+            print(f"  ✅ All {matches} conversions match!")
+        else:
+            print(f"  ❌ {len(mismatches)} mismatches found out of {total} conversions")
             print()
-
-    # Return exit code based on results
-    if all_mismatches:
-        sys.exit(1)
+            print("  First 5 mismatches:")
+            for m in mismatches[:5]:
+                print(f"    Line {m['line']}:")
+                print(f"      Kotogram: {m['kotogram']}")
+                print(f"      Python:     {m['python']}")
+                print(f"      TypeScript: {m['typescript']}")
+                print()
+            sys.exit(1)
 
 
 if __name__ == "__main__":

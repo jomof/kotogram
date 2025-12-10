@@ -6,7 +6,7 @@ The `kotogram.analysis` module provides formality analysis for Japanese sentence
 
 - Analyzes Japanese sentence formality levels
 - Detects awkward formality mixing (unpragmatic formality)
-- Works with both MeCab and Sudachi parsers
+- Works with Sudachi parser
 
 ## Formality Levels
 
@@ -65,10 +65,10 @@ The function detects awkward combinations of formal and casual markers:
 For lower-level analysis, you can extract linguistic features from individual tokens:
 
 ```python
-from kotogram import MecabJapaneseParser, extract_token_features
+from kotogram import SudachiJapaneseParser, extract_token_features
 from kotogram.kotogram import split_kotogram
 
-parser = MecabJapaneseParser()
+parser = SudachiJapaneseParser(dict_type='full')
 text = "食べます"
 kotogram = parser.japanese_to_kotogram(text)
 
@@ -114,14 +114,12 @@ The `extract_token_features()` function returns a dictionary with:
 
 Comprehensive tests are provided:
 - `tests-py/test_formality.py`: Formality analysis tests
-  - Tests for both MeCab and Sudachi parsers
+  - Tests with Sudachi parser
   - Edge cases (questions, negatives, past tense)
-  - Cross-parser compatibility tests
   - Unpragmatic formality detection tests
 - `tests-py/test_extract_token_features.py`: Token feature extraction tests
   - Semantic parsing of variable-length POS format
   - Edge cases and malformed tokens
-  - Cross-parser consistency
 
 Run tests:
 ```bash

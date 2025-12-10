@@ -3,22 +3,17 @@
 
 import argparse
 import sys
-from typing import Optional
 
 
-def get_parser(parser_type: str):
-    """Get the appropriate parser instance."""
-    if parser_type == "mecab":
-        from kotogram.mecab_japanese_parser import MecabJapaneseParser
-        return MecabJapaneseParser()
-    else:
-        from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-        return SudachiJapaneseParser()
+def get_parser():
+    """Get the Sudachi parser instance."""
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    return SudachiJapaneseParser()
 
 
 def cmd_parse(args) -> int:
     """Parse Japanese text to kotogram format."""
-    parser = get_parser(args.parser)
+    parser = get_parser()
     text = args.text
 
     if text == "-":
@@ -40,35 +35,20 @@ def cmd_raw(args) -> int:
     print(f"Input: {text}")
     print()
 
-    if args.parser == "mecab":
-        import MeCab
-        import unidic
-        import os
+    from sudachipy import dictionary
 
-        dicdir = unidic.DICDIR
-        if not os.path.isdir(dicdir):
-            unidic_path = os.path.dirname(unidic.__file__)
-            dicdir = os.path.join(unidic_path, "dicdir")
+    dict_obj = dictionary.Dictionary(dict='full')
+    tokenizer = dict_obj.create()
+    tokens = tokenizer.tokenize(text)
 
-        tagger = MeCab.Tagger('-d "{}"'.format(dicdir))
-        raw_output = tagger.parse(text)
-        print("MeCab raw output:")
-        print(raw_output)
-    else:
-        from sudachipy import dictionary
-
-        dict_obj = dictionary.Dictionary(dict='full')
-        tokenizer = dict_obj.create()
-        tokens = tokenizer.tokenize(text)
-
-        print("Sudachi raw output:")
-        for token in tokens:
-            print(f"Surface: {token.surface()}")
-            print(f"  POS: {token.part_of_speech()}")
-            print(f"  Dictionary form: {token.dictionary_form()}")
-            print(f"  Reading form: {token.reading_form()}")
-            print(f"  Normalized form: {token.normalized_form()}")
-            print()
+    print("Sudachi raw output:")
+    for token in tokens:
+        print(f"Surface: {token.surface()}")
+        print(f"  POS: {token.part_of_speech()}")
+        print(f"  Dictionary form: {token.dictionary_form()}")
+        print(f"  Reading form: {token.reading_form()}")
+        print(f"  Normalized form: {token.normalized_form()}")
+        print()
 
     return 0
 
@@ -90,22 +70,7 @@ def main() -> int:
         "text",
         help="Japanese text to parse (use '-' to read from stdin)",
     )
-    parser_group = parse_parser.add_mutually_exclusive_group()
-    parser_group.add_argument(
-        "-m", "--mecab",
-        action="store_const",
-        const="mecab",
-        dest="parser",
-        help="Use MeCab parser",
-    )
-    parser_group.add_argument(
-        "-s", "--sudachi",
-        action="store_const",
-        const="sudachi",
-        dest="parser",
-        help="Use Sudachi parser (default)",
-    )
-    parse_parser.set_defaults(parser="sudachi", func=cmd_parse)
+    parse_parser.set_defaults(func=cmd_parse)
 
     # raw command
     raw_parser = subparsers.add_parser(
@@ -116,22 +81,7 @@ def main() -> int:
         "text",
         help="Japanese text to parse (use '-' to read from stdin)",
     )
-    raw_parser_group = raw_parser.add_mutually_exclusive_group()
-    raw_parser_group.add_argument(
-        "-m", "--mecab",
-        action="store_const",
-        const="mecab",
-        dest="parser",
-        help="Use MeCab parser",
-    )
-    raw_parser_group.add_argument(
-        "-s", "--sudachi",
-        action="store_const",
-        const="sudachi",
-        dest="parser",
-        help="Use Sudachi parser (default)",
-    )
-    raw_parser.set_defaults(parser="sudachi", func=cmd_raw)
+    raw_parser.set_defaults(func=cmd_raw)
 
     args = parser.parse_args()
 

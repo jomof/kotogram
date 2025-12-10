@@ -1,18 +1,18 @@
 """Tests for formality analysis of Japanese sentences."""
 
 import unittest
-from kotogram import MecabJapaneseParser, SudachiJapaneseParser, formality, FormalityLevel
+from kotogram import SudachiJapaneseParser, formality, FormalityLevel
 
 
-class TestFormalityMecab(unittest.TestCase):
-    """Test formality analysis with MeCab parser."""
+class TestFormalitySudachiBasic(unittest.TestCase):
+    """Test formality analysis with Sudachi parser - basic cases."""
 
     def setUp(self):
         """Set up test fixtures."""
         try:
-            self.parser = MecabJapaneseParser()
+            self.parser = SudachiJapaneseParser(dict_type='full')
         except Exception as e:
-            self.skipTest(f"MeCab not available: {e}")
+            self.skipTest(f"Sudachi not available: {e}")
 
     def test_very_formal_itadaku_humble(self):
         """いただく humble verb should be VERY_FORMAL."""
@@ -655,212 +655,51 @@ class TestFormalityEdgeCases(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures."""
         try:
-            self.mecab_parser = MecabJapaneseParser()
+            self.parser = SudachiJapaneseParser(dict_type='full')
         except Exception as e:
-            self.mecab_parser = None
+            self.skipTest(f"Sudachi not available: {e}")
 
-        try:
-            self.sudachi_parser = SudachiJapaneseParser(dict_type='full')
-        except Exception as e:
-            self.sudachi_parser = None
-
-        if not self.mecab_parser and not self.sudachi_parser:
-            self.skipTest("No parsers available")
-
-    def test_question_formal_mecab(self):
+    def test_question_formal(self):
         """Formal question should be FORMAL."""
-        if not self.mecab_parser:
-            self.skipTest("MeCab not available")
-
         text = "何を食べますか"
-        kotogram = self.mecab_parser.japanese_to_kotogram(text)
+        kotogram = self.parser.japanese_to_kotogram(text)
         result = formality(kotogram)
         self.assertEqual(result, FormalityLevel.FORMAL)
 
-    def test_question_formal_sudachi(self):
-        """Formal question should be FORMAL."""
-        if not self.sudachi_parser:
-            self.skipTest("Sudachi not available")
-
-        text = "何を食べますか"
-        kotogram = self.sudachi_parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        self.assertEqual(result, FormalityLevel.FORMAL)
-
-    def test_question_casual_mecab(self):
+    def test_question_casual(self):
         """Casual question should be NEUTRAL or CASUAL."""
-        if not self.mecab_parser:
-            self.skipTest("MeCab not available")
-
         text = "何を食べる"
-        kotogram = self.mecab_parser.japanese_to_kotogram(text)
+        kotogram = self.parser.japanese_to_kotogram(text)
         result = formality(kotogram)
         self.assertIn(result, [FormalityLevel.NEUTRAL, FormalityLevel.CASUAL])
 
-    def test_question_casual_sudachi(self):
-        """Casual question should be NEUTRAL or CASUAL."""
-        if not self.sudachi_parser:
-            self.skipTest("Sudachi not available")
-
-        text = "何を食べる"
-        kotogram = self.sudachi_parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        self.assertIn(result, [FormalityLevel.NEUTRAL, FormalityLevel.CASUAL])
-
-    def test_negative_formal_mecab(self):
+    def test_negative_formal(self):
         """Formal negative should be FORMAL."""
-        if not self.mecab_parser:
-            self.skipTest("MeCab not available")
-
         text = "食べません"
-        kotogram = self.mecab_parser.japanese_to_kotogram(text)
+        kotogram = self.parser.japanese_to_kotogram(text)
         result = formality(kotogram)
         self.assertEqual(result, FormalityLevel.FORMAL)
 
-    def test_negative_formal_sudachi(self):
-        """Formal negative should be FORMAL."""
-        if not self.sudachi_parser:
-            self.skipTest("Sudachi not available")
-
-        text = "食べません"
-        kotogram = self.sudachi_parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        self.assertEqual(result, FormalityLevel.FORMAL)
-
-    def test_negative_casual_mecab(self):
+    def test_negative_casual(self):
         """Casual negative should be NEUTRAL or CASUAL."""
-        if not self.mecab_parser:
-            self.skipTest("MeCab not available")
-
         text = "食べない"
-        kotogram = self.mecab_parser.japanese_to_kotogram(text)
+        kotogram = self.parser.japanese_to_kotogram(text)
         result = formality(kotogram)
         self.assertIn(result, [FormalityLevel.NEUTRAL, FormalityLevel.CASUAL])
 
-    def test_negative_casual_sudachi(self):
-        """Casual negative should be NEUTRAL or CASUAL."""
-        if not self.sudachi_parser:
-            self.skipTest("Sudachi not available")
-
-        text = "食べない"
-        kotogram = self.sudachi_parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        self.assertIn(result, [FormalityLevel.NEUTRAL, FormalityLevel.CASUAL])
-
-    def test_past_tense_formal_mecab(self):
+    def test_past_tense_formal(self):
         """Formal past tense should be FORMAL."""
-        if not self.mecab_parser:
-            self.skipTest("MeCab not available")
-
         text = "食べました"
-        kotogram = self.mecab_parser.japanese_to_kotogram(text)
+        kotogram = self.parser.japanese_to_kotogram(text)
         result = formality(kotogram)
         self.assertEqual(result, FormalityLevel.FORMAL)
 
-    def test_past_tense_formal_sudachi(self):
-        """Formal past tense should be FORMAL."""
-        if not self.sudachi_parser:
-            self.skipTest("Sudachi not available")
-
-        text = "食べました"
-        kotogram = self.sudachi_parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        self.assertEqual(result, FormalityLevel.FORMAL)
-
-    def test_past_tense_casual_mecab(self):
+    def test_past_tense_casual(self):
         """Casual past tense should be NEUTRAL or CASUAL."""
-        if not self.mecab_parser:
-            self.skipTest("MeCab not available")
-
         text = "食べた"
-        kotogram = self.mecab_parser.japanese_to_kotogram(text)
+        kotogram = self.parser.japanese_to_kotogram(text)
         result = formality(kotogram)
         self.assertIn(result, [FormalityLevel.NEUTRAL, FormalityLevel.CASUAL])
-
-    def test_past_tense_casual_sudachi(self):
-        """Casual past tense should be NEUTRAL or CASUAL."""
-        if not self.sudachi_parser:
-            self.skipTest("Sudachi not available")
-
-        text = "食べた"
-        kotogram = self.sudachi_parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        self.assertIn(result, [FormalityLevel.NEUTRAL, FormalityLevel.CASUAL])
-
-
-class TestCrossParserFormality(unittest.TestCase):
-    """Test that formality analysis works consistently across parsers."""
-
-    def setUp(self):
-        """Set up test fixtures."""
-        try:
-            self.mecab_parser = MecabJapaneseParser()
-        except Exception as e:
-            self.mecab_parser = None
-
-        try:
-            self.sudachi_parser = SudachiJapaneseParser(dict_type='full')
-        except Exception as e:
-            self.sudachi_parser = None
-
-        if not self.mecab_parser or not self.sudachi_parser:
-            self.skipTest("Both parsers required for cross-parser tests")
-
-    def test_both_detect_formal(self):
-        """Both parsers should detect formal sentences."""
-        text = "食べます"
-
-        mecab_kotogram = self.mecab_parser.japanese_to_kotogram(text)
-        sudachi_kotogram = self.sudachi_parser.japanese_to_kotogram(text)
-
-        mecab_result = formality(mecab_kotogram)
-        sudachi_result = formality(sudachi_kotogram)
-
-        # Both should detect formal
-        self.assertEqual(mecab_result, FormalityLevel.FORMAL)
-        self.assertEqual(sudachi_result, FormalityLevel.FORMAL)
-
-    def test_both_detect_neutral(self):
-        """Both parsers should detect neutral sentences."""
-        text = "食べる"
-
-        mecab_kotogram = self.mecab_parser.japanese_to_kotogram(text)
-        sudachi_kotogram = self.sudachi_parser.japanese_to_kotogram(text)
-
-        mecab_result = formality(mecab_kotogram)
-        sudachi_result = formality(sudachi_kotogram)
-
-        # Both should detect neutral
-        self.assertEqual(mecab_result, FormalityLevel.NEUTRAL)
-        self.assertEqual(sudachi_result, FormalityLevel.NEUTRAL)
-
-    def test_both_handle_complex_sentence(self):
-        """Both parsers should handle complex sentences."""
-        text = "私は毎日学校に行きます。"
-
-        mecab_kotogram = self.mecab_parser.japanese_to_kotogram(text)
-        sudachi_kotogram = self.sudachi_parser.japanese_to_kotogram(text)
-
-        mecab_result = formality(mecab_kotogram)
-        sudachi_result = formality(sudachi_kotogram)
-
-        # Both should detect formal
-        self.assertEqual(mecab_result, FormalityLevel.FORMAL)
-        self.assertEqual(sudachi_result, FormalityLevel.FORMAL)
-
-    def test_both_handle_particles(self):
-        """Both parsers should handle casual particles similarly."""
-        text = "食べるよ"
-
-        mecab_kotogram = self.mecab_parser.japanese_to_kotogram(text)
-        sudachi_kotogram = self.sudachi_parser.japanese_to_kotogram(text)
-
-        mecab_result = formality(mecab_kotogram)
-        sudachi_result = formality(sudachi_kotogram)
-
-        # Both should be in similar category (neutral or casual)
-        self.assertIn(mecab_result, [FormalityLevel.NEUTRAL, FormalityLevel.CASUAL])
-        self.assertIn(sudachi_result, [FormalityLevel.NEUTRAL, FormalityLevel.CASUAL])
 
 
 class TestFeminineFormalRegister(unittest.TestCase):
@@ -869,115 +708,42 @@ class TestFeminineFormalRegister(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures."""
         try:
-            self.mecab_parser = MecabJapaneseParser()
+            self.parser = SudachiJapaneseParser(dict_type='full')
         except Exception as e:
-            self.mecab_parser = None
+            self.skipTest(f"Sudachi not available: {e}")
 
-        try:
-            self.sudachi_parser = SudachiJapaneseParser(dict_type='full')
-        except Exception as e:
-            self.sudachi_parser = None
-
-        if not self.mecab_parser and not self.sudachi_parser:
-            self.skipTest("No parsers available")
-
-    def test_desu_wa_is_formal_mecab(self):
+    def test_desu_wa_is_formal(self):
         """Feminine-formal ですわ should be FORMAL, not unpragmatic."""
-        if not self.mecab_parser:
-            self.skipTest("MeCab not available")
-
         text = "それは素敵ですわ"
-        kotogram = self.mecab_parser.japanese_to_kotogram(text)
+        kotogram = self.parser.japanese_to_kotogram(text)
         result = formality(kotogram)
         self.assertEqual(result, FormalityLevel.FORMAL)
 
-    def test_desu_wa_is_formal_sudachi(self):
-        """Feminine-formal ですわ should be FORMAL, not unpragmatic."""
-        if not self.sudachi_parser:
-            self.skipTest("Sudachi not available")
-
-        text = "それは素敵ですわ"
-        kotogram = self.sudachi_parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        self.assertEqual(result, FormalityLevel.FORMAL)
-
-    def test_desu_no_is_formal_mecab(self):
+    def test_desu_no_is_formal(self):
         """Feminine-formal ですの should be FORMAL, not unpragmatic."""
-        if not self.mecab_parser:
-            self.skipTest("MeCab not available")
-
         text = "これは私の本ですの"
-        kotogram = self.mecab_parser.japanese_to_kotogram(text)
+        kotogram = self.parser.japanese_to_kotogram(text)
         result = formality(kotogram)
         self.assertEqual(result, FormalityLevel.FORMAL)
 
-    def test_desu_no_is_formal_sudachi(self):
-        """Feminine-formal ですの should be FORMAL, not unpragmatic."""
-        if not self.sudachi_parser:
-            self.skipTest("Sudachi not available")
-
-        text = "これは私の本ですの"
-        kotogram = self.sudachi_parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        self.assertEqual(result, FormalityLevel.FORMAL)
-
-    def test_masu_wa_is_formal_mecab(self):
+    def test_masu_wa_is_formal(self):
         """Feminine-formal ますわ should be FORMAL, not unpragmatic."""
-        if not self.mecab_parser:
-            self.skipTest("MeCab not available")
-
         text = "参りますわ"
-        kotogram = self.mecab_parser.japanese_to_kotogram(text)
+        kotogram = self.parser.japanese_to_kotogram(text)
         result = formality(kotogram)
         self.assertEqual(result, FormalityLevel.FORMAL)
 
-    def test_masu_wa_is_formal_sudachi(self):
-        """Feminine-formal ますわ should be FORMAL, not unpragmatic."""
-        if not self.sudachi_parser:
-            self.skipTest("Sudachi not available")
-
-        text = "参りますわ"
-        kotogram = self.sudachi_parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        self.assertEqual(result, FormalityLevel.FORMAL)
-
-    def test_kudasai_ne_is_formal_mecab(self):
+    def test_kudasai_ne_is_formal(self):
         """Polite ください + ね should be FORMAL, not unpragmatic."""
-        if not self.mecab_parser:
-            self.skipTest("MeCab not available")
-
         text = "連絡してくださいね"
-        kotogram = self.mecab_parser.japanese_to_kotogram(text)
+        kotogram = self.parser.japanese_to_kotogram(text)
         result = formality(kotogram)
         self.assertEqual(result, FormalityLevel.FORMAL)
 
-    def test_kudasai_ne_is_formal_sudachi(self):
-        """Polite ください + ね should be FORMAL, not unpragmatic."""
-        if not self.sudachi_parser:
-            self.skipTest("Sudachi not available")
-
-        text = "連絡してくださいね"
-        kotogram = self.sudachi_parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        self.assertEqual(result, FormalityLevel.FORMAL)
-
-    def test_kudasai_na_is_formal_mecab(self):
+    def test_kudasai_na_is_formal(self):
         """Polite ください + な (feminine) should be FORMAL, not unpragmatic."""
-        if not self.mecab_parser:
-            self.skipTest("MeCab not available")
-
         text = "怒らないでくださいな"
-        kotogram = self.mecab_parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        self.assertEqual(result, FormalityLevel.FORMAL)
-
-    def test_kudasai_na_is_formal_sudachi(self):
-        """Polite ください + な (feminine) should be FORMAL, not unpragmatic."""
-        if not self.sudachi_parser:
-            self.skipTest("Sudachi not available")
-
-        text = "怒らないでくださいな"
-        kotogram = self.sudachi_parser.japanese_to_kotogram(text)
+        kotogram = self.parser.japanese_to_kotogram(text)
         result = formality(kotogram)
         self.assertEqual(result, FormalityLevel.FORMAL)
 
@@ -988,55 +754,21 @@ class TestUnpragmaticFormality(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures."""
         try:
-            self.mecab_parser = MecabJapaneseParser()
+            self.parser = SudachiJapaneseParser(dict_type='full')
         except Exception as e:
-            self.mecab_parser = None
+            self.skipTest(f"Sudachi not available: {e}")
 
-        try:
-            self.sudachi_parser = SudachiJapaneseParser(dict_type='full')
-        except Exception as e:
-            self.sudachi_parser = None
-
-        if not self.mecab_parser and not self.sudachi_parser:
-            self.skipTest("No parsers available")
-
-    def test_consistent_formal_not_unpragmatic_mecab(self):
+    def test_consistent_formal_not_unpragmatic(self):
         """Consistent formal usage should not be unpragmatic."""
-        if not self.mecab_parser:
-            self.skipTest("MeCab not available")
-
         text = "私は学生です。"
-        kotogram = self.mecab_parser.japanese_to_kotogram(text)
+        kotogram = self.parser.japanese_to_kotogram(text)
         result = formality(kotogram)
         self.assertNotEqual(result, FormalityLevel.UNPRAGMATIC_FORMALITY)
 
-    def test_consistent_formal_not_unpragmatic_sudachi(self):
-        """Consistent formal usage should not be unpragmatic."""
-        if not self.sudachi_parser:
-            self.skipTest("Sudachi not available")
-
-        text = "私は学生です。"
-        kotogram = self.sudachi_parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        self.assertNotEqual(result, FormalityLevel.UNPRAGMATIC_FORMALITY)
-
-    def test_consistent_casual_not_unpragmatic_mecab(self):
+    def test_consistent_casual_not_unpragmatic(self):
         """Consistent casual usage should not be unpragmatic."""
-        if not self.mecab_parser:
-            self.skipTest("MeCab not available")
-
         text = "私は学生だ。"
-        kotogram = self.mecab_parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        self.assertNotEqual(result, FormalityLevel.UNPRAGMATIC_FORMALITY)
-
-    def test_consistent_casual_not_unpragmatic_sudachi(self):
-        """Consistent casual usage should not be unpragmatic."""
-        if not self.sudachi_parser:
-            self.skipTest("Sudachi not available")
-
-        text = "私は学生だ。"
-        kotogram = self.sudachi_parser.japanese_to_kotogram(text)
+        kotogram = self.parser.japanese_to_kotogram(text)
         result = formality(kotogram)
         self.assertNotEqual(result, FormalityLevel.UNPRAGMATIC_FORMALITY)
 

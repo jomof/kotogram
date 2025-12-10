@@ -1,7 +1,7 @@
 # Formality Analysis Bug Fixes Summary
 
 ## Testing Process
-Analyzed sentences from `data/jpn_sentences.tsv` using both MeCab and Sudachi parsers to find sentences flagged as UNPRAGMATIC_FORMALITY and validate against real Japanese usage.
+Analyzed sentences from `data/jpn_sentences.tsv` using Sudachi parser to find sentences flagged as UNPRAGMATIC_FORMALITY and validate against real Japanese usage.
 
 ## Bugs Found and Fixed
 
@@ -60,7 +60,7 @@ if pos == 'v' and detail3 == 'imperative':
 **Before Fixes**: 45 tests passing
 **After Fixes**: 55 tests passing (10 new tests added)
 
-All tests pass with both MeCab and Sudachi parsers.
+All tests pass with Sudachi parser.
 
 ## Remaining Considerations
 
@@ -98,6 +98,5 @@ The formality analysis function now correctly handles:
 - ✅ Polite imperatives (ください, なさい)
 - ✅ Standard formal forms (です, ます)
 - ✅ Plain/casual forms
-- ✅ Cross-parser compatibility (MeCab + Sudachi)
 
 The function is designed for single-speaker sentence analysis and correctly identifies unpragmatic mixing within that scope.

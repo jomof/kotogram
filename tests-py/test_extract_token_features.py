@@ -1,39 +1,35 @@
 """Tests for extract_token_features function."""
 
 import unittest
-from kotogram import MecabJapaneseParser, SudachiJapaneseParser, extract_token_features
+from kotogram import SudachiJapaneseParser, extract_token_features
 from kotogram.kotogram import split_kotogram
 
 
-class TestExtractTokenFeaturesMecab(unittest.TestCase):
-    """Test extract_token_features with MeCab parser."""
+class TestExtractTokenFeaturesSudachi(unittest.TestCase):
+    """Test extract_token_features with Sudachi parser."""
 
     def setUp(self):
         """Set up test fixtures."""
         try:
-            self.parser = MecabJapaneseParser()
+            self.parser = SudachiJapaneseParser(dict_type='full')
         except Exception as e:
-            self.skipTest(f"MeCab not available: {e}")
+            self.skipTest(f"Sudachi not available: {e}")
 
-    def test_verb_with_all_fields(self):
-        """Test extracting features from a verb with all POS fields."""
+    def test_verb_extraction_sudachi(self):
+        """Test extracting verb features with Sudachi."""
         text = "食べる"
         kotogram = self.parser.japanese_to_kotogram(text)
         tokens = split_kotogram(kotogram)
 
-        # Should have one token: 食べる
         self.assertEqual(len(tokens), 1)
-
         features = extract_token_features(tokens[0])
+
         self.assertEqual(features['surface'], '食べる')
         self.assertEqual(features['pos'], 'v')
-        self.assertEqual(features['pos_detail1'], 'general')
-        # pos_detail2 may be omitted if it's "general"
-        self.assertEqual(features['conjugated_type'], 'e-ichidan-ba')
-        self.assertIn(features['conjugated_form'], ['terminal', 'attributive'])
+        self.assertIn(features['conjugated_type'], ['e-ichidan-ba', 'ichidan'])
 
-    def test_auxv_masu_semantic_parsing(self):
-        """Test that auxv-masu is correctly identified in conjugated_type, not pos_detail1."""
+    def test_auxv_masu_sudachi(self):
+        """Test auxv-masu extraction with Sudachi."""
         text = "食べます"
         kotogram = self.parser.japanese_to_kotogram(text)
         tokens = split_kotogram(kotogram)
@@ -44,11 +40,8 @@ class TestExtractTokenFeaturesMecab(unittest.TestCase):
 
         self.assertEqual(features['surface'], 'ます')
         self.assertEqual(features['pos'], 'auxv')
-        # auxv-masu should be in conjugated_type, not pos_detail1
         self.assertEqual(features['conjugated_type'], 'auxv-masu')
         self.assertEqual(features['conjugated_form'], 'terminal')
-        # pos_detail1 should be empty because parser omits it
-        self.assertEqual(features['pos_detail1'], '')
 
     def test_auxv_desu(self):
         """Test extracting features from です."""
@@ -110,20 +103,6 @@ class TestExtractTokenFeaturesMecab(unittest.TestCase):
         self.assertEqual(features['conjugated_type'], '')
         self.assertEqual(features['conjugated_form'], '')
 
-    def test_imperative_verb_kudasai(self):
-        """Test extracting features from polite imperative ください."""
-        text = "ください"
-        kotogram = self.parser.japanese_to_kotogram(text)
-        tokens = split_kotogram(kotogram)
-
-        self.assertEqual(len(tokens), 1)
-        features = extract_token_features(tokens[0])
-
-        self.assertEqual(features['surface'], 'ください')
-        self.assertEqual(features['pos'], 'v')
-        self.assertEqual(features['conjugated_type'], 'godan-ra')
-        self.assertEqual(features['conjugated_form'], 'imperative')
-
     def test_adjective_extraction(self):
         """Test extracting features from an adjective."""
         text = "高い"
@@ -137,36 +116,6 @@ class TestExtractTokenFeaturesMecab(unittest.TestCase):
         self.assertEqual(features['pos'], 'adj')
         self.assertEqual(features['pos_detail1'], 'general')
         self.assertEqual(features['conjugated_type'], 'adjective')
-
-    def test_base_orth_extraction(self):
-        """Test extraction of base orthography."""
-        text = "食べます"
-        kotogram = self.parser.japanese_to_kotogram(text)
-        tokens = split_kotogram(kotogram)
-
-        # First token: 食べ
-        features = extract_token_features(tokens[0])
-        self.assertEqual(features['base_orth'], '食べる')
-
-    def test_lemma_extraction(self):
-        """Test extraction of lemma/dictionary form."""
-        text = "食べます"
-        kotogram = self.parser.japanese_to_kotogram(text)
-        tokens = split_kotogram(kotogram)
-
-        # First token: 食べ
-        features = extract_token_features(tokens[0])
-        self.assertEqual(features['lemma'], '食べる')
-
-    def test_reading_extraction(self):
-        """Test extraction of reading."""
-        text = "食べます"
-        kotogram = self.parser.japanese_to_kotogram(text)
-        tokens = split_kotogram(kotogram)
-
-        # First token: 食べ
-        features = extract_token_features(tokens[0])
-        self.assertIn('タベ', features['reading'])
 
     def test_empty_fields_default_to_empty_string(self):
         """Test that missing fields default to empty string."""
@@ -184,74 +133,6 @@ class TestExtractTokenFeaturesMecab(unittest.TestCase):
         self.assertEqual(features['base_orth'], '')
         self.assertEqual(features['lemma'], '')
         self.assertEqual(features['reading'], '')
-
-
-class TestExtractTokenFeaturesSudachi(unittest.TestCase):
-    """Test extract_token_features with Sudachi parser."""
-
-    def setUp(self):
-        """Set up test fixtures."""
-        try:
-            self.parser = SudachiJapaneseParser(dict_type='full')
-        except Exception as e:
-            self.skipTest(f"Sudachi not available: {e}")
-
-    def test_verb_extraction_sudachi(self):
-        """Test extracting verb features with Sudachi."""
-        text = "食べる"
-        kotogram = self.parser.japanese_to_kotogram(text)
-        tokens = split_kotogram(kotogram)
-
-        self.assertEqual(len(tokens), 1)
-        features = extract_token_features(tokens[0])
-
-        self.assertEqual(features['surface'], '食べる')
-        self.assertEqual(features['pos'], 'v')
-        self.assertIn(features['conjugated_type'], ['e-ichidan-ba', 'ichidan'])
-
-    def test_auxv_masu_sudachi(self):
-        """Test auxv-masu extraction with Sudachi."""
-        text = "食べます"
-        kotogram = self.parser.japanese_to_kotogram(text)
-        tokens = split_kotogram(kotogram)
-
-        # Second token should be ます
-        masu_token = tokens[1]
-        features = extract_token_features(masu_token)
-
-        self.assertEqual(features['surface'], 'ます')
-        self.assertEqual(features['pos'], 'auxv')
-        self.assertEqual(features['conjugated_type'], 'auxv-masu')
-        self.assertEqual(features['conjugated_form'], 'terminal')
-
-    def test_cross_parser_consistency(self):
-        """Test that both parsers produce features that can be extracted consistently."""
-        mecab_parser = None
-        try:
-            mecab_parser = MecabJapaneseParser()
-        except Exception:
-            self.skipTest("MeCab not available for cross-parser test")
-
-        text = "食べます"
-
-        # Parse with both
-        mecab_kotogram = mecab_parser.japanese_to_kotogram(text)
-        sudachi_kotogram = self.parser.japanese_to_kotogram(text)
-
-        mecab_tokens = split_kotogram(mecab_kotogram)
-        sudachi_tokens = split_kotogram(sudachi_kotogram)
-
-        # Extract features from ます token
-        mecab_masu = extract_token_features(mecab_tokens[1])
-        sudachi_masu = extract_token_features(sudachi_tokens[1])
-
-        # Both should identify ます correctly
-        self.assertEqual(mecab_masu['surface'], 'ます')
-        self.assertEqual(sudachi_masu['surface'], 'ます')
-        self.assertEqual(mecab_masu['pos'], 'auxv')
-        self.assertEqual(sudachi_masu['pos'], 'auxv')
-        self.assertEqual(mecab_masu['conjugated_type'], 'auxv-masu')
-        self.assertEqual(sudachi_masu['conjugated_type'], 'auxv-masu')
 
 
 class TestExtractTokenFeaturesEdgeCases(unittest.TestCase):

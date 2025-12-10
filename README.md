@@ -13,8 +13,8 @@ A dual Python/TypeScript library for Japanese text parsing and encoding using th
 
 Kotogram provides tools for parsing Japanese text into a compact, linguistically-rich format that encodes part-of-speech, conjugation, and pronunciation information. The library features:
 
-- **Abstract parser interface** (`JapaneseParser`) for multiple backend implementations
-- **MeCab implementation** (`MecabJapaneseParser`) using UniDic dictionary
+- **Abstract parser interface** (`JapaneseParser`) for backend implementations
+- **Sudachi implementation** (`SudachiJapaneseParser`) using SudachiPy with full dictionary
 - **Kotogram format** - compact representation preserving linguistic features
 - **Bidirectional conversion** between Japanese text and kotogram format
 - **Dual-language support** - Python and TypeScript implementations (TypeScript coming soon)
@@ -27,7 +27,7 @@ kotogram/
 ├── kotogram/                    # Python package
 │   ├── __init__.py             # Package exports and version
 │   ├── japanese_parser.py      # Abstract JapaneseParser interface
-│   └── mecab_japanese_parser.py # MeCab implementation
+│   └── sudachi_japanese_parser.py # Sudachi implementation
 ├── src/                         # TypeScript source
 │   ├── kotogram.ts             # Kotogram conversion functions
 │   └── index.ts                # Package exports
@@ -55,10 +55,10 @@ Parse Japanese text into kotogram format with full linguistic information:
 
 **Python**:
 ```python
-from kotogram import MecabJapaneseParser, kotogram_to_japanese
+from kotogram import SudachiJapaneseParser, kotogram_to_japanese
 
-# Initialize parser (requires MeCab and unidic)
-parser = MecabJapaneseParser()
+# Initialize parser (requires sudachipy and sudachidict_full)
+parser = SudachiJapaneseParser(dict_type='full')
 
 # Convert Japanese to kotogram
 japanese = "猫を食べる"
@@ -328,24 +328,23 @@ class JapaneseParser(ABC):
         pass
 ```
 
-### MecabJapaneseParser
+### SudachiJapaneseParser
 
-MeCab-based implementation using the UniDic dictionary.
+Sudachi-based implementation using SudachiPy with the full dictionary.
 
 ```python
-from kotogram import MecabJapaneseParser
+from kotogram import SudachiJapaneseParser
 
-# Initialize with default settings
-parser = MecabJapaneseParser()
+# Initialize with full dictionary (recommended)
+parser = SudachiJapaneseParser(dict_type='full')
 
-# Or provide your own MeCab tagger instance
-import MeCab
-tagger = MeCab.Tagger('-d /path/to/unidic')
-parser = MecabJapaneseParser(mecab_tagger=tagger)
+# Or use smaller dictionaries for faster loading
+parser_small = SudachiJapaneseParser(dict_type='small')
+parser_core = SudachiJapaneseParser(dict_type='core')
 
 # Enable validation mode for debugging unmapped features
-parser_strict = MecabJapaneseParser(validate=True)
-# This will raise descriptive KeyError if any MeCab features
+parser_strict = SudachiJapaneseParser(dict_type='full', validate=True)
+# This will raise descriptive KeyError if any Sudachi features
 # are missing from the mapping dictionaries
 
 # Parse Japanese text
@@ -353,21 +352,19 @@ kotogram = parser.japanese_to_kotogram("今日は良い天気です")
 ```
 
 **Parameters**:
-- `mecab_tagger` (optional): Pre-configured MeCab tagger instance
+- `dict_type` (default: `'full'`): Dictionary type to use ('small', 'core', or 'full')
 - `validate` (default: `False`): When `True`, raises descriptive `KeyError` exceptions when encountering unmapped linguistic features. The error message includes:
   - The name of the mapping dictionary (e.g., `POS_MAP`, `CONJUGATED_TYPE_MAP`)
   - The unmapped key value
-  - The raw MeCab token line for context
 
 **Validation Mode Example**:
 ```python
 # With validate=True, unmapped features raise detailed errors
-parser = MecabJapaneseParser(validate=True)
+parser = SudachiJapaneseParser(dict_type='full', validate=True)
 try:
     kotogram = parser.japanese_to_kotogram("未知の単語")
 except KeyError as e:
-    # Error message: "Missing mapping in POS_MAP: key='未知品詞' not found.
-    #                 Raw MeCab token: 未知の単語\t未知品詞,..."
+    # Error message: "Missing mapping in POS_MAP: key='未知品詞' not found."
     print(f"Unmapped feature detected: {e}")
 ```
 

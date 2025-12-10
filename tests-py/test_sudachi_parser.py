@@ -124,26 +124,5 @@ class TestSudachiJapaneseParser(unittest.TestCase):
         except Exception as e:
             self.skipTest(f"Not all dictionary types available: {e}")
 
-    def test_comparison_with_mecab(self):
-        """Sudachi and MeCab produce similar kotogram structures."""
-        try:
-            from kotogram import MecabJapaneseParser
-            mecab_parser = MecabJapaneseParser()
-        except Exception:
-            self.skipTest("MeCab not available for comparison")
-
-        text = "猫を食べる"
-        sudachi_result = self.parser.japanese_to_kotogram(text)
-        mecab_result = mecab_parser.japanese_to_kotogram(text)
-
-        # Both should have same number of tokens
-        self.assertEqual(sudachi_result.count("⌈"), mecab_result.count("⌈"))
-
-        # Both should extract the same surface forms
-        sudachi_surface = kotogram_to_japanese(sudachi_result)
-        mecab_surface = kotogram_to_japanese(mecab_result)
-        self.assertEqual(sudachi_surface, mecab_surface)
-
-
 if __name__ == "__main__":
     unittest.main()
