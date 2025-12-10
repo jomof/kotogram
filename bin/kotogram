@@ -29,6 +29,50 @@ def cmd_parse(args) -> int:
     return 0
 
 
+def cmd_raw(args) -> int:
+    """Show raw parser output for inspection."""
+    text = args.text
+
+    if text == "-":
+        text = sys.stdin.read().strip()
+
+    # Print original sentence
+    print(f"Input: {text}")
+    print()
+
+    if args.parser == "mecab":
+        import MeCab
+        import unidic
+        import os
+
+        dicdir = unidic.DICDIR
+        if not os.path.isdir(dicdir):
+            unidic_path = os.path.dirname(unidic.__file__)
+            dicdir = os.path.join(unidic_path, "dicdir")
+
+        tagger = MeCab.Tagger('-d "{}"'.format(dicdir))
+        raw_output = tagger.parse(text)
+        print("MeCab raw output:")
+        print(raw_output)
+    else:
+        from sudachipy import dictionary
+
+        dict_obj = dictionary.Dictionary(dict='full')
+        tokenizer = dict_obj.create()
+        tokens = tokenizer.tokenize(text)
+
+        print("Sudachi raw output:")
+        for token in tokens:
+            print(f"Surface: {token.surface()}")
+            print(f"  POS: {token.part_of_speech()}")
+            print(f"  Dictionary form: {token.dictionary_form()}")
+            print(f"  Reading form: {token.reading_form()}")
+            print(f"  Normalized form: {token.normalized_form()}")
+            print()
+
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         prog="kotogram",
@@ -62,6 +106,32 @@ def main() -> int:
         help="Use Sudachi parser (default)",
     )
     parse_parser.set_defaults(parser="sudachi", func=cmd_parse)
+
+    # raw command
+    raw_parser = subparsers.add_parser(
+        "raw",
+        help="Show raw parser output for inspection",
+    )
+    raw_parser.add_argument(
+        "text",
+        help="Japanese text to parse (use '-' to read from stdin)",
+    )
+    raw_parser_group = raw_parser.add_mutually_exclusive_group()
+    raw_parser_group.add_argument(
+        "-m", "--mecab",
+        action="store_const",
+        const="mecab",
+        dest="parser",
+        help="Use MeCab parser",
+    )
+    raw_parser_group.add_argument(
+        "-s", "--sudachi",
+        action="store_const",
+        const="sudachi",
+        dest="parser",
+        help="Use Sudachi parser (default)",
+    )
+    raw_parser.set_defaults(parser="sudachi", func=cmd_raw)
 
     args = parser.parse_args()
 
