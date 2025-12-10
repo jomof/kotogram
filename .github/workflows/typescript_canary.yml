@@ -292,15 +292,9 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Install MeCab
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y mecab libmecab-dev mecab-ipadic-utf8
-
     - name: Install Python dependencies
       run: |
-        pip install mecab-python3 unidic unidic-lite sudachipy sudachidict-core sudachidict-full
-        python -m unidic download
+        pip install sudachipy sudachidict-core sudachidict-full
 
     - name: Install Node.js dependencies
       run: npm ci

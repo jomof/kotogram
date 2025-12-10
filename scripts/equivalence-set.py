@@ -268,7 +268,7 @@ def filter_ungrammatical(sentences: Set[str], parser, check_grammar: bool = True
 
     Args:
         sentences: Set of Japanese sentences to filter
-        parser: MecabJapaneseParser instance for converting to kotogram
+        parser: SudachiJapaneseParser instance for converting to kotogram
         check_grammar: If True, actually check grammaticality. If False, return all.
 
     Returns:
@@ -342,8 +342,8 @@ def main():
 
     # Initialize parser for grammaticality checking
     print("Loading parser and grammaticality model...")
-    from kotogram.mecab_japanese_parser import MecabJapaneseParser
-    parser = MecabJapaneseParser()
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    parser = SudachiJapaneseParser(dict_type='full')
 
     # Warm up the model
     from kotogram.analysis import grammaticality
