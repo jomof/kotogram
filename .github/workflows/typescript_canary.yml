@@ -272,10 +272,48 @@ jobs:
         name: typescript-package-distributions
         path: dist/
 
+  cross-language-validation:
+    name: Cross-Language Furigana Validation
+    runs-on: ubuntu-latest
+    needs: [test]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install MeCab
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y mecab libmecab-dev mecab-ipadic-utf8
+
+    - name: Install Python dependencies
+      run: |
+        pip install mecab-python3 unidic-lite sudachipy sudachidict-core sudachidict-full
+
+    - name: Install Node.js dependencies
+      run: npm ci
+
+    - name: Build TypeScript
+      run: npm run build
+
+    - name: Run cross-language furigana validation
+      run: python scripts/cross_language_furigana.py
+
   canary-report:
     name: Canary Status Report
     runs-on: ubuntu-latest
-    needs: [test, lint, build]
+    needs: [test, lint, build, cross-language-validation]
     if: always()
 
     steps:
@@ -284,12 +322,16 @@ jobs:
         echo "Test Status: ${{ needs.test.result }}"
         echo "Lint Status: ${{ needs.lint.result }}"
         echo "Build Status: ${{ needs.build.result }}"
+        echo "Cross-Language Validation Status: ${{ needs.cross-language-validation.result }}"
 
         if [ "${{ needs.test.result }}" != "success" ]; then
           echo "❌ Tests failed"
           exit 1
         elif [ "${{ needs.build.result }}" != "success" ]; then
           echo "❌ Build failed"
+          exit 1
+        elif [ "${{ needs.cross-language-validation.result }}" != "success" ]; then
+          echo "❌ Cross-language validation failed"
           exit 1
         else
           echo "✅ Canary build successful"
