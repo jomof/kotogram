@@ -35,14 +35,14 @@ class MecabJapaneseParser(JapaneseParser):
             import unidic
             import os
 
-            # Try common unidic dictionary locations
-            unidic.DICDIR = "/usr/local/python/3.10.13/lib/python3.10/site-packages/unidic/dicdir"
-            if not os.path.isdir(unidic.DICDIR):
-                unidic.DICDIR = "/usr/local/lib/python3.10/dist-packages/unidic/dicdir"
-            if not os.path.isdir(unidic.DICDIR):
-                unidic.DICDIR = "/usr/local/python/3.12.1/lib/python3.12/site-packages/unidic/dicdir"
+            # Get the unidic dictionary path dynamically
+            dicdir = unidic.DICDIR
+            if not os.path.isdir(dicdir):
+                # Try to find dicdir relative to unidic module location
+                unidic_path = os.path.dirname(unidic.__file__)
+                dicdir = os.path.join(unidic_path, "dicdir")
 
-            self.tagger = MeCab.Tagger('-d "{}"'.format(unidic.DICDIR))
+            self.tagger = MeCab.Tagger('-d "{}"'.format(dicdir))
         else:
             self.tagger = mecab_tagger
 
