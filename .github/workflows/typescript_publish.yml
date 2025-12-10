@@ -155,4 +155,4 @@ jobs:
 
     - name: Verify import
       run: |
-        node -e "import('kotogram').then(m => { const codec = new m.ReversingCodec(); console.log('Successfully imported kotogram'); console.log('Test:', codec.encode('hello')); })"
+        node -e "import('kotogram').then(m => { console.log('Successfully imported kotogram'); console.log('Functions:', Object.keys(m)); })"

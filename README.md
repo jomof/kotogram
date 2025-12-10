@@ -27,18 +27,14 @@ kotogram/
 ├── kotogram/                    # Python package
 │   ├── __init__.py             # Package exports and version
 │   ├── japanese_parser.py      # Abstract JapaneseParser interface
-│   ├── mecab_japanese_parser.py # MeCab implementation
-│   ├── codec.py                # Abstract Codec interface
-│   └── reversing_codec.py      # ReversingCodec implementation
-├── src/                         # TypeScript source (coming soon)
-│   ├── codec.ts                # Codec interface
-│   ├── reversing-codec.ts      # ReversingCodec implementation
+│   └── mecab_japanese_parser.py # MeCab implementation
+├── src/                         # TypeScript source
+│   ├── kotogram.ts             # Kotogram conversion functions
 │   └── index.ts                # Package exports
 ├── tests-py/                    # Python tests
-│   ├── test_japanese_parser.py # Japanese parser tests
-│   └── test_reversing_codec.py # Codec tests
+│   └── test_japanese_parser.py # Japanese parser tests
 ├── tests-ts/                    # TypeScript tests
-│   └── reversing-codec.test.ts
+│   └── kotogram.test.ts
 ├── .github/workflows/           # CI/CD workflows
 │   ├── python_canary.yml       # Python build & test
 │   ├── typescript_canary.yml   # TypeScript build & test
@@ -126,19 +122,6 @@ The kotogram format encodes rich linguistic information in a compact representat
   │  │    └─ part-of-speech (ᵖ)
   │  └─ surface form (ˢ)
   └─ token boundary markers (⌈⌉)
-```
-
-### Legacy Codec Interface
-
-The library also includes a simple codec interface for demonstration purposes:
-
-**Python** ([kotogram/reversing_codec.py](kotogram/reversing_codec.py)):
-```python
-from kotogram import ReversingCodec
-
-codec = ReversingCodec()
-encoded = codec.encode("hello")  # "olleh"
-decoded = codec.decode(encoded)  # "hello"
 ```
 
 ## Development
