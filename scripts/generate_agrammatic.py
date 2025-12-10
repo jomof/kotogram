@@ -679,6 +679,368 @@ def error_te_form_wrong(kotogram: str) -> Optional[Tuple[str, str]]:
     return None
 
 
+def error_desu_after_dictionary_verb(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Add です after dictionary form verb (incorrect).
+
+    Error: 行くです, 食べるです (です cannot follow dictionary form verbs)
+    Verbs conjugate for politeness; adding です after dictionary form is wrong.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    for i, token in enumerate(tokens):
+        pos = extract_pos(token)
+        form = extract_conjugation_form(token)
+
+        # Find verb in terminal (dictionary) form at sentence end or before punctuation
+        if pos == 'v' and form == 'terminal':
+            # Check it's not already followed by auxiliary
+            if i + 1 < len(tokens):
+                next_pos = extract_pos(tokens[i + 1])
+                next_surface = extract_surface(tokens[i + 1])
+                # Only add if followed by punctuation or sentence-final particle
+                if next_pos == 'auxs' or next_surface in ['。', '！', '？', '、']:
+                    desu_token = make_auxv_token('です', 'auxv-desu', 'terminal')
+                    new_tokens = tokens[:i + 1] + [desu_token] + tokens[i + 1:]
+                    return ''.join(new_tokens), 'desu_after_dict_verb'
+            elif i == len(tokens) - 1:
+                # Verb is last token
+                desu_token = make_auxv_token('です', 'auxv-desu', 'terminal')
+                new_tokens = tokens + [desu_token]
+                return ''.join(new_tokens), 'desu_after_dict_verb'
+
+    return None
+
+
+def error_nai_desu_wrong(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Create incorrect negative polite form: ないです instead of ません pattern errors.
+
+    Error: 食べますない (completely wrong order - ます before ない)
+    Note: 食べないです is actually acceptable in modern Japanese, so we create
+    worse errors like ますない.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    # Find ません pattern and corrupt it
+    for i, token in enumerate(tokens):
+        if 'auxv-masu' in token:
+            surface = extract_surface(token)
+            if surface == 'ませ' or surface == 'ません':
+                # Check if followed by ん (ません pattern)
+                if i + 1 < len(tokens) and extract_surface(tokens[i + 1]) == 'ん':
+                    # Replace ません with ますない (wrong)
+                    masu_token = make_auxv_token('ます', 'auxv-masu', 'terminal')
+                    nai_token = make_auxv_token('ない', 'auxv-nai', 'terminal')
+                    new_tokens = tokens[:i] + [masu_token, nai_token] + tokens[i + 2:]
+                    return ''.join(new_tokens), 'masu_nai_order'
+
+    return None
+
+
+def error_double_past(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Create double past tense marking (incorrect).
+
+    Error: 食べましたた, 行ったた (double past marker)
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    for i, token in enumerate(tokens):
+        # Find past tense た
+        if 'auxv-ta' in token:
+            surface = extract_surface(token)
+            if surface in ['た', 'だ']:
+                # Add another た after it
+                ta_token = make_auxv_token('た', 'auxv-ta', 'terminal')
+                new_tokens = tokens[:i + 1] + [ta_token] + tokens[i + 1:]
+                return ''.join(new_tokens), 'double_past'
+
+    return None
+
+
+def error_wa_after_verb(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Put topic particle は directly after verb (incorrect).
+
+    Error: 食べるは, 行ったは (topic marker cannot follow verb directly)
+    Topic particle は marks nouns, not verbs.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    for i, token in enumerate(tokens):
+        pos = extract_pos(token)
+        form = extract_conjugation_form(token)
+
+        # Find verb in terminal form
+        if pos == 'v' and form == 'terminal':
+            # Check if followed by something other than は already
+            if i + 1 < len(tokens):
+                next_surface = extract_surface(tokens[i + 1])
+                if next_surface != 'は':
+                    # Insert は after verb (incorrect)
+                    wa_token = make_particle_token('は', 'binding_particle')
+                    new_tokens = tokens[:i + 1] + [wa_token] + tokens[i + 1:]
+                    return ''.join(new_tokens), 'wa_after_verb'
+
+    return None
+
+
+def error_i_adj_negative_wrong(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Create incorrect い-adjective negative form.
+
+    Error: 高いくない (should be 高くない - い should change to く)
+    Error: 高いない (missing く entirely)
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    # Find い-adjective followed by negative
+    for i, token in enumerate(tokens):
+        pos = extract_pos(token)
+        surface = extract_surface(token)
+
+        if pos == 'adj' and surface.endswith('く'):
+            # This is correct form (高く), check if followed by ない
+            if i + 1 < len(tokens):
+                next_surface = extract_surface(tokens[i + 1])
+                if next_surface in ['ない', 'なかっ', 'なく']:
+                    # Change く back to い to create error (高いない)
+                    wrong_surface = surface[:-1] + 'い'
+                    new_token = re.sub(r'ˢ[^ᵖ]+ᵖ', f'ˢ{wrong_surface}ᵖ', token)
+                    new_tokens = tokens[:i] + [new_token] + tokens[i + 1:]
+                    return ''.join(new_tokens), 'i_adj_neg_wrong'
+
+    return None
+
+
+def error_na_adj_negative_wrong(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Create incorrect な-adjective negative form.
+
+    Error: 静かないです (should be 静かじゃないです or 静かではないです)
+    Missing じゃ/では before ない.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    # Common な-adjectives
+    na_adjectives = [
+        '静か', '綺麗', '元気', '有名', '便利', '親切', '丁寧',
+        '簡単', '複雑', '大切', '大事', '必要', '特別', '普通',
+        '好き', '嫌い', '上手', '下手', '得意', '苦手',
+    ]
+
+    for i, token in enumerate(tokens):
+        surface = extract_surface(token)
+        pos = extract_pos(token)
+
+        # Check if this is a な-adjective
+        if pos == 'shp' or surface in na_adjectives:
+            # Check if followed by じゃ/では + ない
+            if i + 2 < len(tokens):
+                next_surface = extract_surface(tokens[i + 1])
+                next_next_surface = extract_surface(tokens[i + 2])
+                if next_surface in ['じゃ', 'では', 'で'] and next_next_surface in ['ない', 'なかっ', 'は']:
+                    # Remove じゃ/では to create error (静かない)
+                    new_tokens = tokens[:i + 1] + tokens[i + 2:]
+                    return ''.join(new_tokens), 'na_adj_neg_missing_ja'
+
+    return None
+
+
+def error_te_de_confusion(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Confuse て and で in て-form (incorrect voicing).
+
+    Error: 書いで (should be 書いて)
+    Error: 読んて (should be 読んで)
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    for i, token in enumerate(tokens):
+        surface = extract_surface(token)
+        if surface == 'て':
+            # Check if preceded by ん (should be で after ん)
+            if i > 0:
+                prev_surface = extract_surface(tokens[i - 1])
+                if not prev_surface.endswith('ん'):
+                    # Change て to で (wrong for most verbs)
+                    new_token = re.sub(r'ˢてᵖ', 'ˢでᵖ', token)
+                    new_tokens = tokens[:i] + [new_token] + tokens[i + 1:]
+                    return ''.join(new_tokens), 'te_de_wrong_voicing'
+        elif surface == 'で':
+            # Check if preceded by ん (should be で after ん, so this is correct)
+            if i > 0:
+                prev_surface = extract_surface(tokens[i - 1])
+                if prev_surface.endswith('ん'):
+                    # Change で to て (wrong after ん)
+                    new_token = re.sub(r'ˢでᵖ', 'ˢてᵖ', token)
+                    new_tokens = tokens[:i] + [new_token] + tokens[i + 1:]
+                    return ''.join(new_tokens), 'de_te_wrong_voicing'
+
+    return None
+
+
+def error_ru_ta_confusion(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Create る + た error (incorrect past formation).
+
+    Error: 食べるた (should be 食べた - dictionary form + た is wrong)
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    # Find past tense patterns
+    for i, token in enumerate(tokens):
+        if 'auxv-ta' in token and i > 0:
+            prev_token = tokens[i - 1]
+            prev_pos = extract_pos(prev_token)
+            prev_form = extract_conjugation_form(prev_token)
+
+            # Check if verb is in conjunctive form (correct for た attachment)
+            if prev_pos == 'v' and prev_form in ['conjunctive', 'conjunctive-geminate']:
+                # Change verb to terminal form (dictionary) to create error
+                prev_surface = extract_surface(prev_token)
+                # Simple heuristic: add る for ichidan verbs
+                if prev_surface.endswith(('べ', 'め', 'ね', 'け', 'せ', 'て', 'え', 'れ', 'げ', 'で', 'ぜ', 'へ', 'ぺ', 'み', 'き', 'し', 'ち', 'に', 'ひ', 'い', 'り', 'ぎ', 'じ', 'び', 'ぴ')):
+                    wrong_surface = prev_surface + 'る'
+                    new_token = re.sub(r'ˢ[^ᵖ]+ᵖ', f'ˢ{wrong_surface}ᵖ', prev_token)
+                    new_tokens = tokens[:i - 1] + [new_token] + tokens[i:]
+                    return ''.join(new_tokens), 'dict_form_plus_ta'
+
+    return None
+
+
+def error_polite_form_as_modifier(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Use polite form as noun modifier (incorrect).
+
+    Error: 駐車場がありませんホテル (should be 駐車場がないホテル)
+    Error: 食べましたレストラン (should be 食べたレストラン)
+
+    In Japanese, only plain forms can modify nouns. Polite forms cannot.
+    This is a common error for learners.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    # Common nouns that can be modified
+    modifiable_nouns = [
+        '人', 'もの', 'こと', 'ところ', '時', '方', '店', '家', '車', '本',
+        '会社', '学校', '国', '町', '駅', '部屋', 'ホテル', 'レストラン',
+        '映画', '料理', '仕事', '話', '問題', '理由', '場所', '物',
+    ]
+
+    # Find plain form that could be changed to polite
+    for i, token in enumerate(tokens):
+        surface = extract_surface(token)
+        pos = extract_pos(token)
+
+        # Check if this is a plain negative (ない) followed by a noun
+        if surface == 'ない' and 'auxv' in token:
+            if i + 1 < len(tokens):
+                next_surface = extract_surface(tokens[i + 1])
+                if next_surface in modifiable_nouns:
+                    # Change ない to ありません (wrong for modifier)
+                    # We need to insert あり + ませ + ん
+                    ari_token = "⌈ˢありᵖv:existence:conjunctive⌉"
+                    mase_token = make_auxv_token('ませ', 'auxv-masu', 'imperfective')
+                    n_token = "⌈ˢんᵖauxv:auxv-nu:terminal⌉"
+                    new_tokens = tokens[:i] + [ari_token, mase_token, n_token] + tokens[i + 1:]
+                    return ''.join(new_tokens), 'polite_modifier'
+
+        # Check for past plain (た/だ) followed by noun
+        if surface in ['た', 'だ'] and 'auxv-ta' in token:
+            if i + 1 < len(tokens):
+                next_surface = extract_surface(tokens[i + 1])
+                if next_surface in modifiable_nouns:
+                    # Change た to ました (wrong for modifier)
+                    mashi_token = make_auxv_token('まし', 'auxv-masu', 'conjunctive')
+                    ta_token = make_auxv_token('た', 'auxv-ta', 'terminal')
+                    new_tokens = tokens[:i] + [mashi_token, ta_token] + tokens[i + 1:]
+                    return ''.join(new_tokens), 'polite_past_modifier'
+
+    return None
+
+
+def error_past_i_adj_plus_da(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Add だ after past い-adjective (incorrect).
+
+    Error: 楽しかっただね (should be 楽しかったね)
+    Error: よかっただよ (should be よかったよ)
+
+    い-adjectives already conjugate for tense, so adding だ is redundant/wrong.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    # Sentence-final particles that might follow
+    final_particles = ['ね', 'よ', 'な', 'わ', 'さ', 'ぞ', 'ぜ', 'かな', 'かしら']
+
+    for i, token in enumerate(tokens):
+        surface = extract_surface(token)
+        pos = extract_pos(token)
+
+        # Check for past い-adjective (ends in かった or くなかった)
+        # Look for た that's part of adjective conjugation
+        if 'auxv-ta' in token and surface == 'た':
+            # Check if preceded by く (adjective stem) or かっ
+            if i > 0:
+                prev_surface = extract_surface(tokens[i - 1])
+                prev_pos = extract_pos(tokens[i - 1])
+
+                # Check if this is adjective past (かっ + た pattern)
+                if prev_surface == 'かっ' and i > 1:
+                    # This looks like past い-adjective
+                    # Check if followed by sentence-final particle
+                    if i + 1 < len(tokens):
+                        next_surface = extract_surface(tokens[i + 1])
+                        if next_surface in final_particles or next_surface in ['。', '！', '？']:
+                            # Insert だ between た and particle (wrong)
+                            da_token = "⌈ˢだᵖauxv:auxv-da:terminal⌉"
+                            new_tokens = tokens[:i + 1] + [da_token] + tokens[i + 1:]
+                            return ''.join(new_tokens), 'past_i_adj_da'
+
+    return None
+
+
+def error_rashii_plus_da(kotogram: str) -> Optional[Tuple[str, str]]:
+    """Add だ after らしい (incorrect).
+
+    Error: 美味しいらしいだよ (should be 美味しいらしいよ)
+
+    らしい is an い-adjective-like auxiliary, so adding だ is incorrect.
+    """
+    tokens = split_kotogram(kotogram)
+    if not tokens:
+        return None
+
+    final_particles = ['ね', 'よ', 'な', 'わ', 'さ', 'ぞ', 'ぜ']
+
+    for i, token in enumerate(tokens):
+        surface = extract_surface(token)
+
+        if surface == 'らしい':
+            # Check if followed by sentence-final particle
+            if i + 1 < len(tokens):
+                next_surface = extract_surface(tokens[i + 1])
+                if next_surface in final_particles or next_surface in ['。', '！', '？']:
+                    # Insert だ between らしい and particle (wrong)
+                    da_token = "⌈ˢだᵖauxv:auxv-da:terminal⌉"
+                    new_tokens = tokens[:i + 1] + [da_token] + tokens[i + 1:]
+                    return ''.join(new_tokens), 'rashii_da'
+
+    return None
+
+
 def error_wrong_verb_base(kotogram: str) -> Optional[Tuple[str, str]]:
     """Use wrong verb conjugation base.
 
@@ -722,6 +1084,9 @@ ERROR_GENERATORS: List[Tuple[str, str, Callable, float]] = [
     ('b_i_adj_na', 'beginner', error_i_adjective_with_na, 1.0),  # Clear error: 高いな山
     ('b_copula_verb', 'beginner', error_copula_after_verb, 1.0),  # Clear error: 食べるだ
     ('b_dict_masu', 'beginner', error_dictionary_form_plus_masu, 1.0),  # Clear error: 食べるます
+    ('b_desu_dict', 'beginner', error_desu_after_dictionary_verb, 1.0),  # Clear error: 行くです
+    ('b_double_past', 'beginner', error_double_past, 0.8),  # Clear error: 食べたた
+    ('b_wa_verb', 'beginner', error_wa_after_verb, 0.8),  # Clear error: 食べるは
 
     # Intermediate level errors
     ('i_masu_sub', 'intermediate', error_formality_mixing_subordinate, 0.8),
@@ -730,6 +1095,14 @@ ERROR_GENERATORS: List[Tuple[str, str, Callable, float]] = [
     ('i_pass_pot', 'intermediate', error_passive_potential_confusion, 0.5),
     ('i_prt_verb', 'intermediate', error_particle_after_verb, 0.6),  # Clear error: 食べたを
     ('i_quote_to', 'intermediate', error_quote_missing_to, 0.8),  # Clear error: 「行く」言った
+    ('i_masu_nai', 'intermediate', error_nai_desu_wrong, 0.7),  # Clear error: 食べますない
+    ('i_i_adj_neg', 'intermediate', error_i_adj_negative_wrong, 0.8),  # Clear error: 高いない
+    ('i_na_adj_neg', 'intermediate', error_na_adj_negative_wrong, 0.7),  # Clear error: 静かない
+    ('i_te_de', 'intermediate', error_te_de_confusion, 0.6),  # Clear error: 書いで, 読んて
+    ('i_dict_ta', 'intermediate', error_ru_ta_confusion, 0.6),  # Clear error: 食べるた
+    ('i_polite_mod', 'intermediate', error_polite_form_as_modifier, 0.8),  # Clear error: ありませんホテル
+    ('i_past_adj_da', 'intermediate', error_past_i_adj_plus_da, 0.7),  # Clear error: 楽しかっただね
+    ('i_rashii_da', 'intermediate', error_rashii_plus_da, 0.6),  # Clear error: らしいだよ
 
     # Advanced level errors
     # DISABLED: ('a_prag_prt', ...) - ね/よ swaps are grammatically valid
@@ -811,7 +1184,7 @@ def main():
     parser.add_argument(
         "--error-probability",
         type=float,
-        default=0.3,
+        default=0.4,
         help="Base probability of generating each error type (0.0-1.0)"
     )
     parser.add_argument(
@@ -834,6 +1207,17 @@ def main():
         "--include-error-type",
         action="store_true",
         help="Include error type in output (extra column)"
+    )
+    parser.add_argument(
+        "--no-balance",
+        action="store_true",
+        help="Disable balancing (keep all generated examples without capping)"
+    )
+    parser.add_argument(
+        "--max-per-type",
+        type=int,
+        default=45000,
+        help="Maximum examples per error type when balancing (default: 45000)"
     )
 
     args = parser.parse_args()
@@ -903,6 +1287,47 @@ def main():
     if args.verbose:
         print(f"\nTotal processed: {processed} sentences")
         print(f"Total generated: {len(generated)} agrammatic examples")
+
+    # Balance error types by default (unless --no-balance is specified)
+    if not args.no_balance:
+        if args.verbose:
+            print(f"\nBalancing error types (max {args.max_per_type} per type)...")
+
+        # Group by error code (extracted from the ID)
+        by_error_code: Dict[str, List] = {}
+        for item in generated:
+            # Extract error code from ID like "1234_agram_b_double_prt"
+            error_code = item[0].split('_agram_')[-1]
+            if error_code not in by_error_code:
+                by_error_code[error_code] = []
+            by_error_code[error_code].append(item)
+
+        # Cap each type and rebuild the list
+        balanced = []
+        for error_code, items in by_error_code.items():
+            if len(items) > args.max_per_type:
+                # Randomly sample to cap
+                sampled = random.sample(items, args.max_per_type)
+                balanced.extend(sampled)
+                if args.verbose:
+                    print(f"  {error_code}: {len(items)} -> {args.max_per_type}")
+            else:
+                balanced.extend(items)
+                if args.verbose and len(items) < args.max_per_type:
+                    print(f"  {error_code}: {len(items)} (kept all)")
+
+        # Shuffle to mix error types
+        random.shuffle(balanced)
+        generated = balanced
+
+        # Recalculate error counts
+        error_counts = {}
+        for item in generated:
+            error_type = item[4]
+            error_counts[error_type] = error_counts.get(error_type, 0) + 1
+
+        if args.verbose:
+            print(f"\nAfter balancing: {len(generated)} examples")
 
     # Write output
     if args.verbose:
