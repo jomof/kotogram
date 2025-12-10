@@ -156,3 +156,23 @@ jobs:
     - name: Verify import
       run: |
         node -e "import('kotogram').then(m => { console.log('Successfully imported kotogram'); console.log('Functions:', Object.keys(m)); })"
+
+    - name: Verify kotogram to Japanese with furigana
+      run: |
+        node -e "
+        import('kotogram').then(m => {
+          const kotogram = '⌈ˢ漢字ᵖnʳカンジ⌉⌈ˢですᵖauxv⌉';
+          const result = m.kotogramToJapanese(kotogram, { furigana: true });
+          const expected = '漢字[かんじ]です';
+          if (result === expected) {
+            console.log('✅ Furigana conversion successful');
+            console.log('   Input:    ' + kotogram);
+            console.log('   Output:   ' + result);
+          } else {
+            console.error('❌ Furigana conversion failed');
+            console.error('   Expected: ' + expected);
+            console.error('   Got:      ' + result);
+            process.exit(1);
+          }
+        });
+        "
