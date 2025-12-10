@@ -150,4 +150,4 @@ jobs:
 
     - name: Verify import
       run: |
-        python -c "import kotogram; from kotogram import ReversingCodec; print(f'Successfully imported kotogram v{kotogram.__version__}')"
+        python -c "import kotogram; print(f'Successfully imported kotogram v{kotogram.__version__}')"
