@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+"""Command-line tool for working with kotograms."""
+
+import argparse
+import sys
+from typing import Optional
+
+
+def get_parser(parser_type: str):
+    """Get the appropriate parser instance."""
+    if parser_type == "mecab":
+        from kotogram.mecab_japanese_parser import MecabJapaneseParser
+        return MecabJapaneseParser()
+    else:
+        from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+        return SudachiJapaneseParser()
+
+
+def cmd_parse(args) -> int:
+    """Parse Japanese text to kotogram format."""
+    parser = get_parser(args.parser)
+    text = args.text
+
+    if text == "-":
+        text = sys.stdin.read().strip()
+
+    kotogram = parser.japanese_to_kotogram(text)
+    print(kotogram)
+    return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        prog="kotogram",
+        description="Command-line tool for working with kotograms",
+    )
+
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    # parse command
+    parse_parser = subparsers.add_parser(
+        "parse",
+        help="Parse Japanese text to kotogram format",
+    )
+    parse_parser.add_argument(
+        "text",
+        help="Japanese text to parse (use '-' to read from stdin)",
+    )
+    parser_group = parse_parser.add_mutually_exclusive_group()
+    parser_group.add_argument(
+        "-m", "--mecab",
+        action="store_const",
+        const="mecab",
+        dest="parser",
+        help="Use MeCab parser",
+    )
+    parser_group.add_argument(
+        "-s", "--sudachi",
+        action="store_const",
+        const="sudachi",
+        dest="parser",
+        help="Use Sudachi parser (default)",
+    )
+    parse_parser.set_defaults(parser="sudachi", func=cmd_parse)
+
+    args = parser.parse_args()
+
+    try:
+        return args.func(args)
+    except KeyboardInterrupt:
+        return 130
+    except BrokenPipeError:
+        return 0
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
