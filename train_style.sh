@@ -69,6 +69,7 @@ FORMALITY_WEIGHT=1.0
 GENDER_WEIGHT=1.0
 GRAMMATICALITY_WEIGHT=1.0
 FP16=""
+FP8=""
 RESUME=""
 
 # Parse command line arguments
@@ -158,6 +159,10 @@ while [[ $# -gt 0 ]]; do
             FP16="--fp16"
             shift
             ;;
+        --fp8)
+            FP8="--fp8"
+            shift
+            ;;
         --resume)
             RESUME="--resume"
             shift
@@ -195,6 +200,7 @@ while [[ $# -gt 0 ]]; do
             echo "  --num-layers N        Number of encoder layers (default: 3)"
             echo "  --num-heads N         Number of attention heads (default: 8)"
             echo "  --fp16                Save model in float16 (half size, minimal accuracy loss)"
+            echo "  --fp8                 Save model in float8 (quarter size, requires PyTorch 2.1+)"
             echo "  --resume              Resume training from checkpoint in output directory"
             echo ""
             echo "  --help                Show this help message"
@@ -235,7 +241,9 @@ fi
 if [ -n "$MAX_SAMPLES" ]; then
     echo "Max samples:    ${MAX_SAMPLES#--max-samples }"
 fi
-if [ -n "$FP16" ]; then
+if [ -n "$FP8" ]; then
+    echo "Precision:      float8 (quarter size)"
+elif [ -n "$FP16" ]; then
     echo "Precision:      float16 (half size)"
 fi
 if [ -n "$RESUME" ]; then
@@ -283,7 +291,9 @@ if [ -n "$AGRAMMATIC_DATA_PATH" ]; then
     CMD="$CMD --agrammatic-data \"$AGRAMMATIC_DATA_PATH\""
 fi
 
-if [ -n "$FP16" ]; then
+if [ -n "$FP8" ]; then
+    CMD="$CMD --fp8"
+elif [ -n "$FP16" ]; then
     CMD="$CMD --fp16"
 fi
 

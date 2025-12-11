@@ -2015,6 +2015,7 @@ def save_model(
     path: str,
     config: Optional[ModelConfig] = None,
     fp16: bool = False,
+    fp8: bool = False,
 ) -> None:
     """Save trained model, tokenizer, and config.
 
@@ -2024,12 +2025,21 @@ def save_model(
         path: Directory to save to
         config: Optional model config (uses model.config if not provided)
         fp16: If True, convert model weights to float16 for smaller size
+        fp8: If True, convert model weights to float8 for even smaller size
+             (requires PyTorch 2.1+, experimental)
     """
     import os
     os.makedirs(path, exist_ok=True)
 
     # Save model weights
-    if fp16:
+    if fp8:
+        # Convert to float8 for smallest model size
+        if not hasattr(torch, 'float8_e4m3fn'):
+            raise RuntimeError("FP8 requires PyTorch 2.1+. Use --fp16 instead.")
+        state_dict = {k: v.to(torch.float8_e4m3fn) if v.dtype == torch.float32 else v
+                      for k, v in model.state_dict().items()}
+        torch.save(state_dict, os.path.join(path, 'model.pt'))
+    elif fp16:
         # Convert to float16 for smaller model size
         state_dict = {k: v.half() if v.dtype == torch.float32 else v
                       for k, v in model.state_dict().items()}
@@ -2119,6 +2129,7 @@ def save_checkpoint(
             'gender_weight': args.gender_weight,
             'grammaticality_weight': args.grammaticality_weight,
             'fp16': args.fp16,
+            'fp8': args.fp8,
         },
     }
     torch.save(checkpoint, os.path.join(path, 'checkpoint.pt'))
@@ -2194,9 +2205,14 @@ def load_model(
     model = StyleClassifier(config)
     state_dict = torch.load(os.path.join(path, 'model.pt'), map_location=device or 'cpu')
 
-    # Convert float16 weights back to float32 for inference compatibility
-    state_dict = {k: v.float() if v.dtype == torch.float16 else v
-                  for k, v in state_dict.items()}
+    # Convert float16/float8 weights back to float32 for inference compatibility
+    def to_float32(v: torch.Tensor) -> torch.Tensor:
+        if v.dtype == torch.float16:
+            return v.float()
+        if hasattr(torch, 'float8_e4m3fn') and v.dtype == torch.float8_e4m3fn:
+            return v.float()
+        return v
+    state_dict = {k: to_float32(v) for k, v in state_dict.items()}
 
     model.load_state_dict(state_dict)
 
@@ -2326,6 +2342,8 @@ if __name__ == "__main__":
                         help="Path to TSV file with agrammatic sentences (for grammaticality training)")
     parser.add_argument("--fp16", action="store_true",
                         help="Save model in float16 precision (half size, minimal accuracy loss)")
+    parser.add_argument("--fp8", action="store_true",
+                        help="Save model in float8 precision (quarter size, requires PyTorch 2.1+)")
     parser.add_argument("--resume", action="store_true",
                         help="Resume training from checkpoint in output directory")
 
@@ -2607,14 +2625,17 @@ if __name__ == "__main__":
 
     # Save model
     print(f"\nSaving model to {args.output}...")
-    if args.fp16:
+    if args.fp8:
+        print("  (converting to float8 for smallest size)")
+    elif args.fp16:
         print("  (converting to float16 for smaller size)")
-    save_model(model, tokenizer, args.output, model_config, fp16=args.fp16)
+    save_model(model, tokenizer, args.output, model_config, fp16=args.fp16, fp8=args.fp8)
     print("Done!")
 
-    # Verify fp16 model accuracy if applicable
-    if args.fp16:
-        print("\nVerifying loaded fp16 model accuracy...")
+    # Verify reduced precision model accuracy if applicable
+    if args.fp16 or args.fp8:
+        precision_name = "fp8" if args.fp8 else "fp16"
+        print(f"\nVerifying loaded {precision_name} model accuracy...")
         loaded_model, _ = load_model(args.output, device=device)
 
         formality_correct = 0
@@ -2643,9 +2664,9 @@ if __name__ == "__main__":
                 grammaticality_correct += (grammaticality_preds == grammaticality_labels).sum().item()
                 total += formality_labels.size(0)
 
-        f16_accuracy = (formality_correct/total, gender_correct/total, grammaticality_correct/total)
-        print(f"Test Accuracy (fp16):    formality={f16_accuracy[0]:.4f}, gender={f16_accuracy[1]:.4f}, gram={f16_accuracy[2]:.4f}")
+        reduced_accuracy = (formality_correct/total, gender_correct/total, grammaticality_correct/total)
+        print(f"Test Accuracy ({precision_name}):    formality={reduced_accuracy[0]:.4f}, gender={reduced_accuracy[1]:.4f}, gram={reduced_accuracy[2]:.4f}")
 
         # Show difference
-        diff = tuple(f16 - f32 for f16, f32 in zip(f16_accuracy, f32_accuracy))
-        print(f"Difference (fp16-f32):   formality={diff[0]:+.4f}, gender={diff[1]:+.4f}, gram={diff[2]:+.4f}")
+        diff = tuple(reduced - f32 for reduced, f32 in zip(reduced_accuracy, f32_accuracy))
+        print(f"Difference ({precision_name}-f32):   formality={diff[0]:+.4f}, gender={diff[1]:+.4f}, gram={diff[2]:+.4f}")
