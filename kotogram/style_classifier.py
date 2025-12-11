@@ -1063,6 +1063,42 @@ class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
         normalized = self.layer_norm(projected)
         return cast(torch.Tensor, self.dropout(normalized))
 
+    def resize_embeddings(self, new_vocab_sizes: Dict[str, int]) -> Dict[str, int]:
+        """Resize embedding tables to accommodate larger vocabularies.
+
+        New embeddings are initialized randomly. Existing embeddings are preserved.
+
+        Args:
+            new_vocab_sizes: Dict mapping field name to new vocab size
+
+        Returns:
+            Dict mapping field name to number of new tokens added (0 if not resized)
+        """
+        resized = {}
+        for field_name in FEATURE_FIELDS:
+            old_size = self.embeddings[field_name].num_embeddings
+            new_size = new_vocab_sizes.get(field_name, old_size)
+
+            if new_size > old_size:
+                # Create new larger embedding
+                embed_dim = self.embeddings[field_name].embedding_dim
+                old_weight = self.embeddings[field_name].weight.data
+
+                new_embedding = nn.Embedding(new_size, embed_dim, padding_idx=0)
+                # Copy old weights
+                new_embedding.weight.data[:old_size] = old_weight
+                # New weights are randomly initialized by default
+
+                self.embeddings[field_name] = new_embedding
+                resized[field_name] = new_size - old_size
+
+                # Update config
+                self.config.vocab_sizes[field_name] = new_size
+            else:
+                resized[field_name] = 0
+
+        return resized
+
 
 class StyleClassifier(nn.Module):  # type: ignore[misc]
     """Neural sequence classifier for multi-task style prediction (formality + gender + grammaticality).
@@ -1199,6 +1235,17 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         grammaticality_logits = self.grammaticality_classifier(pooled)
 
         return formality_logits, gender_logits, grammaticality_logits
+
+    def resize_embeddings(self, new_vocab_sizes: Dict[str, int]) -> Dict[str, int]:
+        """Resize embedding tables to accommodate larger vocabularies.
+
+        Args:
+            new_vocab_sizes: Dict mapping field name to new vocab size
+
+        Returns:
+            Dict mapping field name to number of new tokens added
+        """
+        return self.embedding.resize_embeddings(new_vocab_sizes)
 
     def predict(
         self,
@@ -1660,6 +1707,7 @@ class Trainer:
             'val_grammaticality_accuracy': [],
         }
         self.best_state: Optional[Dict[str, torch.Tensor]] = None
+        self.start_epoch = 0  # For resumption
 
     def _batch_to_device(self, batch: Dict[str, torch.Tensor]) -> Tuple[Dict[str, torch.Tensor], torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         """Move batch tensors to device and split into inputs/mask/labels."""
@@ -1826,9 +1874,22 @@ class Trainer:
             'grammaticality_confusion': grammaticality_confusion,
         }
 
-    def train(self, verbose: bool = True) -> Dict[str, List[float]]:
-        """Run full training loop."""
-        for epoch in range(self.config.epochs):
+    def train(
+        self,
+        verbose: bool = True,
+        checkpoint_dir: Optional[str] = None,
+        checkpoint_args: Optional[Any] = None,
+        model_config: Optional[ModelConfig] = None,
+    ) -> Dict[str, List[float]]:
+        """Run full training loop.
+
+        Args:
+            verbose: Print progress
+            checkpoint_dir: Directory to save checkpoints (if provided)
+            checkpoint_args: Args object to save in checkpoint
+            model_config: Model config to save in checkpoint
+        """
+        for epoch in range(self.start_epoch, self.config.epochs):
             if verbose:
                 print(f"Epoch {epoch+1}/{self.config.epochs}")
             train_loss, train_formality_loss, train_gender_loss, train_grammaticality_loss = self.train_epoch(verbose=verbose)
@@ -1867,6 +1928,23 @@ class Trainer:
                     if verbose:
                         print(f"Early stopping at epoch {epoch+1}")
                     break
+
+            # Save checkpoint after each epoch
+            if checkpoint_dir and checkpoint_args and model_config:
+                save_checkpoint(
+                    checkpoint_dir,
+                    self.model,
+                    self.train_dataset.tokenizer,
+                    self.optimizer,
+                    self.scheduler,
+                    epoch,
+                    self.history,
+                    self.best_val_loss,
+                    self.patience_counter,
+                    self.best_state,
+                    checkpoint_args,
+                    model_config,
+                )
 
         # Restore best model
         if self.best_state is not None:
@@ -1911,6 +1989,24 @@ class Trainer:
             row_label = grammaticality_labels[i].ljust(25)
             row_values = " ".join(str(v).ljust(12) for v in row)
             print(f"{row_label}{row_values}")
+
+    def restore_from_checkpoint(self, checkpoint: Dict[str, Any]) -> None:
+        """Restore training state from checkpoint.
+
+        Args:
+            checkpoint: Checkpoint dict from load_checkpoint()
+        """
+        self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+        self.scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+        self.history = checkpoint['history']
+        self.best_val_loss = checkpoint['best_val_loss']
+        self.patience_counter = checkpoint['patience_counter']
+        self.best_state = checkpoint['best_state']
+        self.start_epoch = checkpoint['epoch'] + 1  # Resume from next epoch
+
+        print(f"Restored training state from epoch {checkpoint['epoch'] + 1}")
+        print(f"  Best val loss: {self.best_val_loss:.4f}")
+        print(f"  Patience counter: {self.patience_counter}")
 
 
 def save_model(
@@ -1963,6 +2059,116 @@ def save_model(
     # Mark as feature-based multi-task model
     with open(os.path.join(path, 'model_type.txt'), 'w') as f:
         f.write('style-multitask')
+
+
+def save_checkpoint(
+    path: str,
+    model: StyleClassifier,
+    tokenizer: Tokenizer,
+    optimizer: torch.optim.Optimizer,
+    scheduler: Any,
+    epoch: int,
+    history: Dict[str, List[float]],
+    best_val_loss: float,
+    patience_counter: int,
+    best_state: Optional[Dict[str, torch.Tensor]],
+    args: Any,
+    model_config: ModelConfig,
+) -> None:
+    """Save training checkpoint for resumption.
+
+    Args:
+        path: Directory to save checkpoint
+        model: Current model state
+        tokenizer: Tokenizer
+        optimizer: Optimizer state
+        scheduler: LR scheduler state
+        epoch: Current epoch number (0-indexed, completed epochs)
+        history: Training history dict
+        best_val_loss: Best validation loss seen
+        patience_counter: Current patience counter for early stopping
+        best_state: Best model state dict
+        args: Command line arguments (for reproducing settings)
+        model_config: Model configuration
+    """
+    import os
+    os.makedirs(path, exist_ok=True)
+
+    checkpoint = {
+        'epoch': epoch,
+        'model_state_dict': model.state_dict(),
+        'optimizer_state_dict': optimizer.state_dict(),
+        'scheduler_state_dict': scheduler.state_dict(),
+        'history': history,
+        'best_val_loss': best_val_loss,
+        'patience_counter': patience_counter,
+        'best_state': best_state,
+        'args': {
+            'data': args.data,
+            'extra_data': args.extra_data,
+            'agrammatic_data': args.agrammatic_data,
+            'epochs': args.epochs,
+            'batch_size': args.batch_size,
+            'embed_dim': args.embed_dim,
+            'hidden_dim': args.hidden_dim,
+            'num_layers': args.num_layers,
+            'num_heads': args.num_heads,
+            'learning_rate': args.learning_rate,
+            'encoder_lr_factor': args.encoder_lr_factor,
+            'formality_weight': args.formality_weight,
+            'gender_weight': args.gender_weight,
+            'grammaticality_weight': args.grammaticality_weight,
+            'fp16': args.fp16,
+        },
+    }
+    torch.save(checkpoint, os.path.join(path, 'checkpoint.pt'))
+
+    # Also save tokenizer and config (needed to reconstruct model)
+    tokenizer.save(os.path.join(path, 'tokenizer.json'))
+    with open(os.path.join(path, 'config.json'), 'w') as f:
+        json.dump(model_config.to_dict(), f, indent=2)
+
+    print(f"  Checkpoint saved at epoch {epoch + 1}")
+
+
+def load_checkpoint(
+    path: str,
+    device: Optional[str] = None,
+) -> Tuple[StyleClassifier, Tokenizer, Dict[str, Any]]:
+    """Load training checkpoint for resumption.
+
+    Args:
+        path: Directory containing checkpoint
+        device: Device to load model to
+
+    Returns:
+        Tuple of (model, tokenizer, checkpoint_dict)
+        checkpoint_dict contains: epoch, optimizer_state_dict, scheduler_state_dict,
+                                  history, best_val_loss, patience_counter, best_state, args
+    """
+    import os
+
+    checkpoint_path = os.path.join(path, 'checkpoint.pt')
+    if not os.path.exists(checkpoint_path):
+        raise FileNotFoundError(f"No checkpoint found at {checkpoint_path}")
+
+    # Load config and tokenizer
+    with open(os.path.join(path, 'config.json'), 'r') as f:
+        config_dict = json.load(f)
+    config = ModelConfig.from_dict(config_dict)
+    tokenizer = Tokenizer.load(os.path.join(path, 'tokenizer.json'))
+
+    # Load checkpoint
+    checkpoint = torch.load(checkpoint_path, map_location=device or 'cpu')
+
+    # Reconstruct model
+    model = StyleClassifier(config)
+    model.load_state_dict(checkpoint['model_state_dict'])
+
+    if device:
+        model.to(device)
+
+    return model, tokenizer, checkpoint
 
 
 def load_model(
@@ -2120,8 +2326,48 @@ if __name__ == "__main__":
                         help="Path to TSV file with agrammatic sentences (for grammaticality training)")
     parser.add_argument("--fp16", action="store_true",
                         help="Save model in float16 precision (half size, minimal accuracy loss)")
+    parser.add_argument("--resume", action="store_true",
+                        help="Resume training from checkpoint in output directory")
 
     args = parser.parse_args()
+
+    # Handle resume from checkpoint
+    checkpoint = None
+    if args.resume:
+        import os
+        checkpoint_path = os.path.join(args.output, 'checkpoint.pt')
+        if os.path.exists(checkpoint_path):
+            print(f"Resuming from checkpoint in {args.output}...")
+            model, tokenizer, checkpoint = load_checkpoint(args.output)
+
+            # Override args with saved args (but keep epochs from command line to allow extending)
+            saved_args = checkpoint['args']
+            print(f"  Using saved parameters:")
+            print(f"    data: {saved_args['data']}")
+            print(f"    embed_dim: {saved_args['embed_dim']}")
+            print(f"    hidden_dim: {saved_args['hidden_dim']}")
+            print(f"    num_layers: {saved_args['num_layers']}")
+            print(f"    num_heads: {saved_args['num_heads']}")
+            print(f"    learning_rate: {saved_args['learning_rate']}")
+            print(f"  Resuming from epoch {checkpoint['epoch'] + 1}, training to epoch {args.epochs}")
+
+            # Update args with saved values (except epochs which can be extended)
+            args.data = saved_args['data']
+            args.extra_data = saved_args['extra_data']
+            args.agrammatic_data = saved_args['agrammatic_data']
+            args.embed_dim = saved_args['embed_dim']
+            args.hidden_dim = saved_args['hidden_dim']
+            args.num_layers = saved_args['num_layers']
+            args.num_heads = saved_args['num_heads']
+            args.learning_rate = saved_args['learning_rate']
+            args.encoder_lr_factor = saved_args['encoder_lr_factor']
+            args.formality_weight = saved_args['formality_weight']
+            args.gender_weight = saved_args['gender_weight']
+            args.grammaticality_weight = saved_args['grammaticality_weight']
+            # Note: args.fp16 is NOT overwritten - allow changing save format on resume
+        else:
+            print(f"No checkpoint found at {checkpoint_path}, starting fresh training")
+            args.resume = False
 
     # Build list of data files and their grammaticality labels
     # grammatic (1) = normal sentences, agrammatic (0) = ungrammatical sentences
@@ -2137,7 +2383,50 @@ if __name__ == "__main__":
     # Load data: if doing MLM pretraining, first load unlabeled data for pretraining,
     # then load labeled data for fine-tuning
     model: StyleClassifier  # Type annotation for both branches
-    if args.pretrain_mlm:
+
+    # Skip model creation if resuming (model already loaded)
+    if args.resume and checkpoint is not None:
+        # Load datasets with existing tokenizer
+        # Unfreeze tokenizer to allow new vocabulary
+        old_vocab_sizes = tokenizer.get_vocab_sizes()
+        tokenizer._frozen = False
+
+        print("\nLoading data (tokenizer unfrozen for new vocabulary)...")
+        if len(data_files) > 1:
+            dataset = StyleDataset.from_multiple_tsv(
+                data_files,
+                tokenizer,
+                max_samples=args.max_samples,
+                verbose=True,
+                grammaticality_labels=grammaticality_labels,
+            )
+        else:
+            dataset = StyleDataset.from_tsv(
+                args.data,
+                tokenizer,
+                max_samples=args.max_samples,
+                verbose=True,
+            )
+        train_data, val_data, test_data = dataset.split()
+
+        # Check if vocabulary grew and resize embeddings if needed
+        new_vocab_sizes = tokenizer.get_vocab_sizes()
+        vocab_grew = any(new_vocab_sizes[f] > old_vocab_sizes[f] for f in FEATURE_FIELDS)
+
+        if vocab_grew:
+            print("\nResizing embeddings for new vocabulary...")
+            resized = model.resize_embeddings(new_vocab_sizes)
+            for field, count in resized.items():
+                if count > 0:
+                    print(f"  {field}: +{count} tokens ({old_vocab_sizes[field]} -> {new_vocab_sizes[field]})")
+
+            # Update model config with new vocab sizes
+            model_config = model.config
+        else:
+            print("\nNo new vocabulary tokens found.")
+            model_config = model.config
+
+    elif args.pretrain_mlm:
         print("Loading unlabeled data for MLM pretraining...")
         tokenizer = Tokenizer()
         if len(data_files) > 1:
@@ -2263,7 +2552,16 @@ if __name__ == "__main__":
         model, train_data, val_data, trainer_config,
         encoder_lr_factor=encoder_lr_factor,
     )
-    history = trainer.train()
+
+    # Restore training state if resuming
+    if args.resume and checkpoint is not None:
+        trainer.restore_from_checkpoint(checkpoint)
+
+    history = trainer.train(
+        checkpoint_dir=args.output,
+        checkpoint_args=args,
+        model_config=model_config,
+    )
 
     # Print final metrics
     trainer.print_confusion_matrices()
