@@ -542,17 +542,13 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     # Convert to Kotogram
                     kotogram = actual_parser.japanese_to_kotogram(sentence)
 
-                    # Get labels (or dummy for pretraining)
-                    if labeled:
-                        formality_enum = formality(kotogram)
-                        gender_enum = gender(kotogram)
-                        formality_id = FORMALITY_LABEL_TO_ID[formality_enum]
-                        gender_id = GENDER_LABEL_TO_ID[gender_enum]
-                    else:
-                        formality_enum = FormalityLevel.NEUTRAL
-                        gender_enum = GenderLevel.NEUTRAL
-                        formality_id = FORMALITY_LABEL_TO_ID[formality_enum]
-                        gender_id = GENDER_LABEL_TO_ID[gender_enum]
+                    # Compute all labels
+                    formality_enum = formality(kotogram)
+                    gender_enum = gender(kotogram)
+                    formality_id = FORMALITY_LABEL_TO_ID[formality_enum]
+                    gender_id = GENDER_LABEL_TO_ID[gender_enum]
+                    formality_counts[formality_enum] += 1
+                    gender_counts[gender_enum] += 1
 
                     # Encode to feature IDs (builds vocabulary)
                     feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
@@ -565,8 +561,6 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                         kotogram=kotogram,
                     )
                     samples.append(sample)
-                    formality_counts[formality_enum] += 1
-                    gender_counts[gender_enum] += 1
                     total += 1
 
                     if verbose and total % 10000 == 0:
@@ -584,16 +578,23 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         if verbose:
             print(f"\nDataset loaded: {len(samples)} samples")
             print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
-            if labeled:
-                print("Formality distribution:")
-                for f_label, f_count in sorted(formality_counts.items(), key=lambda x: x[1], reverse=True):
-                    print(f"  {f_label.value}: {f_count} ({100*f_count/len(samples):.1f}%)")
-                print("Gender distribution:")
-                for g_label, g_count in sorted(gender_counts.items(), key=lambda x: x[1], reverse=True):
-                    print(f"  {g_label.value}: {g_count} ({100*g_count/len(samples):.1f}%)")
+            print("Formality distribution:")
+            for f_label, f_count in sorted(formality_counts.items(), key=lambda x: x[1], reverse=True):
+                print(f"  {f_label.value}: {f_count} ({100*f_count/len(samples):.1f}%)")
+            print("Gender distribution:")
+            for g_label, g_count in sorted(gender_counts.items(), key=lambda x: x[1], reverse=True):
+                print(f"  {g_label.value}: {g_count} ({100*g_count/len(samples):.1f}%)")
 
-        # Freeze vocabulary after building
+        # Freeze vocabulary after building (this finalizes lemma vocab)
         tokenizer.freeze()
+
+        if verbose:
+            final_sizes = tokenizer.get_vocab_sizes()
+            print(f"Final vocabulary sizes: {final_sizes}")
+            # Show detailed stats for key fields
+            print(f"  surface: {final_sizes['surface']:,} unique forms")
+            print(f"  lemma: {final_sizes['lemma']:,} (from {len(tokenizer._lemma_counts):,} unique, min_freq={tokenizer.lemma_min_freq})")
+            print(f"  pos: {final_sizes['pos']}, conjugated_type: {final_sizes['conjugated_type']}, conjugated_form: {final_sizes['conjugated_form']}")
 
         # Save to cache
         if use_cache:
@@ -692,17 +693,13 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                         # Convert to Kotogram
                         kotogram = actual_parser.japanese_to_kotogram(sentence)
 
-                        # Get labels (or dummy for pretraining)
-                        if labeled:
-                            formality_enum = formality(kotogram)
-                            gender_enum = gender(kotogram)
-                            formality_id = FORMALITY_LABEL_TO_ID[formality_enum]
-                            gender_id = GENDER_LABEL_TO_ID[gender_enum]
-                        else:
-                            formality_enum = FormalityLevel.NEUTRAL
-                            gender_enum = GenderLevel.NEUTRAL
-                            formality_id = FORMALITY_LABEL_TO_ID[formality_enum]
-                            gender_id = GENDER_LABEL_TO_ID[gender_enum]
+                        # Compute all labels (formality, gender from analysis; grammaticality from file source)
+                        formality_enum = formality(kotogram)
+                        gender_enum = gender(kotogram)
+                        formality_id = FORMALITY_LABEL_TO_ID[formality_enum]
+                        gender_id = GENDER_LABEL_TO_ID[gender_enum]
+                        formality_counts[formality_enum] += 1
+                        gender_counts[gender_enum] += 1
 
                         # Encode to feature IDs (builds vocabulary)
                         feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
@@ -716,8 +713,6 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                             kotogram=kotogram,
                         )
                         samples.append(sample)
-                        formality_counts[formality_enum] += 1
-                        gender_counts[gender_enum] += 1
                         grammaticality_counts[gram_label] += 1
                         total += 1
                         file_count += 1
@@ -743,21 +738,28 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         if verbose:
             print(f"\nDataset loaded: {len(samples)} samples from {len(tsv_paths)} files")
             print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
-            if labeled:
-                print("Formality distribution:")
-                for f_label, f_count in sorted(formality_counts.items(), key=lambda x: x[1], reverse=True):
-                    print(f"  {f_label.value}: {f_count} ({100*f_count/len(samples):.1f}%)")
-                print("Gender distribution:")
-                for g_label, g_count in sorted(gender_counts.items(), key=lambda x: x[1], reverse=True):
-                    print(f"  {g_label.value}: {g_count} ({100*g_count/len(samples):.1f}%)")
+            print("Formality distribution:")
+            for f_label, f_count in sorted(formality_counts.items(), key=lambda x: x[1], reverse=True):
+                print(f"  {f_label.value}: {f_count} ({100*f_count/len(samples):.1f}%)")
+            print("Gender distribution:")
+            for g_label, g_count in sorted(gender_counts.items(), key=lambda x: x[1], reverse=True):
+                print(f"  {g_label.value}: {g_count} ({100*g_count/len(samples):.1f}%)")
             print("Grammaticality distribution:")
             gram_labels_map = {1: "grammatic", 0: "agrammatic"}
             for g_id in [1, 0]:
                 g_count = grammaticality_counts.get(g_id, 0)
                 print(f"  {gram_labels_map[g_id]}: {g_count} ({100*g_count/len(samples):.1f}%)")
 
-        # Freeze vocabulary after building
+        # Freeze vocabulary after building (this finalizes lemma vocab)
         tokenizer.freeze()
+
+        if verbose:
+            final_sizes = tokenizer.get_vocab_sizes()
+            print(f"Final vocabulary sizes: {final_sizes}")
+            # Show detailed stats for key fields
+            print(f"  surface: {final_sizes['surface']:,} unique forms")
+            print(f"  lemma: {final_sizes['lemma']:,} (from {len(tokenizer._lemma_counts):,} unique, min_freq={tokenizer.lemma_min_freq})")
+            print(f"  pos: {final_sizes['pos']}, conjugated_type: {final_sizes['conjugated_type']}, conjugated_form: {final_sizes['conjugated_form']}")
 
         # Save to cache
         if use_cache:
