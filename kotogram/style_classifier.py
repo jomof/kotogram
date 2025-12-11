@@ -1918,13 +1918,28 @@ def save_model(
     tokenizer: Tokenizer,
     path: str,
     config: Optional[ModelConfig] = None,
+    fp16: bool = False,
 ) -> None:
-    """Save trained model, tokenizer, and config."""
+    """Save trained model, tokenizer, and config.
+
+    Args:
+        model: The trained model
+        tokenizer: The tokenizer used for encoding
+        path: Directory to save to
+        config: Optional model config (uses model.config if not provided)
+        fp16: If True, convert model weights to float16 for smaller size
+    """
     import os
     os.makedirs(path, exist_ok=True)
 
     # Save model weights
-    torch.save(model.state_dict(), os.path.join(path, 'model.pt'))
+    if fp16:
+        # Convert to float16 for smaller model size
+        state_dict = {k: v.half() if v.dtype == torch.float32 else v
+                      for k, v in model.state_dict().items()}
+        torch.save(state_dict, os.path.join(path, 'model.pt'))
+    else:
+        torch.save(model.state_dict(), os.path.join(path, 'model.pt'))
 
     # Save tokenizer
     tokenizer.save(os.path.join(path, 'tokenizer.json'))
@@ -1954,7 +1969,11 @@ def load_model(
     path: str,
     device: Optional[str] = None,
 ) -> Tuple[StyleClassifier, Tokenizer]:
-    """Load trained model and tokenizer."""
+    """Load trained model and tokenizer.
+
+    Handles both float32 and float16 saved models. Float16 models are
+    converted back to float32 for inference compatibility.
+    """
     import os
 
     # Load config
@@ -1967,7 +1986,13 @@ def load_model(
 
     # Load model
     model = StyleClassifier(config)
-    model.load_state_dict(torch.load(os.path.join(path, 'model.pt'), map_location=device or 'cpu'))
+    state_dict = torch.load(os.path.join(path, 'model.pt'), map_location=device or 'cpu')
+
+    # Convert float16 weights back to float32 for inference compatibility
+    state_dict = {k: v.float() if v.dtype == torch.float16 else v
+                  for k, v in state_dict.items()}
+
+    model.load_state_dict(state_dict)
 
     if device:
         model.to(device)
@@ -2093,6 +2118,8 @@ if __name__ == "__main__":
                         help="Path to additional TSV file with training data (e.g., unpragmatic examples)")
     parser.add_argument("--agrammatic-data", type=str, default=None,
                         help="Path to TSV file with agrammatic sentences (for grammaticality training)")
+    parser.add_argument("--fp16", action="store_true",
+                        help="Save model in float16 precision (half size, minimal accuracy loss)")
 
     args = parser.parse_args()
 
@@ -2277,9 +2304,50 @@ if __name__ == "__main__":
             grammaticality_correct += (grammaticality_preds == grammaticality_labels).sum().item()
             total += formality_labels.size(0)
 
-    print(f"Test Accuracy: formality={formality_correct/total:.4f}, gender={gender_correct/total:.4f}, gram={grammaticality_correct/total:.4f}")
+    print(f"Test Accuracy (float32): formality={formality_correct/total:.4f}, gender={gender_correct/total:.4f}, gram={grammaticality_correct/total:.4f}")
+    f32_accuracy = (formality_correct/total, gender_correct/total, grammaticality_correct/total)
 
     # Save model
     print(f"\nSaving model to {args.output}...")
-    save_model(model, tokenizer, args.output, model_config)
+    if args.fp16:
+        print("  (converting to float16 for smaller size)")
+    save_model(model, tokenizer, args.output, model_config, fp16=args.fp16)
     print("Done!")
+
+    # Verify fp16 model accuracy if applicable
+    if args.fp16:
+        print("\nVerifying loaded fp16 model accuracy...")
+        loaded_model, _ = load_model(args.output, device=device)
+
+        formality_correct = 0
+        gender_correct = 0
+        grammaticality_correct = 0
+        total = 0
+
+        with torch.no_grad():
+            for batch in test_loader:
+                field_inputs = {
+                    k: v.to(device) for k, v in batch.items()
+                    if k.startswith('input_ids_')
+                }
+                attention_mask = batch['attention_mask'].to(device)
+                formality_labels = batch['formality_labels'].to(device)
+                gender_labels = batch['gender_labels'].to(device)
+                grammaticality_labels = batch['grammaticality_labels'].to(device)
+
+                formality_logits, gender_logits, grammaticality_logits = loaded_model(field_inputs, attention_mask)
+                formality_preds = formality_logits.argmax(dim=-1)
+                gender_preds = gender_logits.argmax(dim=-1)
+                grammaticality_preds = grammaticality_logits.argmax(dim=-1)
+
+                formality_correct += (formality_preds == formality_labels).sum().item()
+                gender_correct += (gender_preds == gender_labels).sum().item()
+                grammaticality_correct += (grammaticality_preds == grammaticality_labels).sum().item()
+                total += formality_labels.size(0)
+
+        f16_accuracy = (formality_correct/total, gender_correct/total, grammaticality_correct/total)
+        print(f"Test Accuracy (fp16):    formality={f16_accuracy[0]:.4f}, gender={f16_accuracy[1]:.4f}, gram={f16_accuracy[2]:.4f}")
+
+        # Show difference
+        diff = tuple(f16 - f32 for f16, f32 in zip(f16_accuracy, f32_accuracy))
+        print(f"Difference (fp16-f32):   formality={diff[0]:+.4f}, gender={diff[1]:+.4f}, gram={diff[2]:+.4f}")

@@ -68,6 +68,7 @@ LEARNING_RATE=1e-4
 FORMALITY_WEIGHT=1.0
 GENDER_WEIGHT=1.0
 GRAMMATICALITY_WEIGHT=1.0
+FP16=""
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -152,6 +153,10 @@ while [[ $# -gt 0 ]]; do
             GRAMMATICALITY_WEIGHT="$2"
             shift 2
             ;;
+        --fp16)
+            FP16="--fp16"
+            shift
+            ;;
         --help)
             echo "Train style classifier (formality + gender + grammaticality) on Japanese sentence corpus"
             echo ""
@@ -184,6 +189,7 @@ while [[ $# -gt 0 ]]; do
             echo "  --hidden-dim N        Hidden layer dimension (default: 512)"
             echo "  --num-layers N        Number of encoder layers (default: 3)"
             echo "  --num-heads N         Number of attention heads (default: 8)"
+            echo "  --fp16                Save model in float16 (half size, minimal accuracy loss)"
             echo ""
             echo "  --help                Show this help message"
             exit 0
@@ -222,6 +228,9 @@ if [ -n "$PRETRAIN_MLM" ]; then
 fi
 if [ -n "$MAX_SAMPLES" ]; then
     echo "Max samples:    ${MAX_SAMPLES#--max-samples }"
+fi
+if [ -n "$FP16" ]; then
+    echo "Precision:      float16 (half size)"
 fi
 echo "=============================================="
 echo ""
@@ -263,6 +272,10 @@ fi
 
 if [ -n "$AGRAMMATIC_DATA_PATH" ]; then
     CMD="$CMD --agrammatic-data \"$AGRAMMATIC_DATA_PATH\""
+fi
+
+if [ -n "$FP16" ]; then
+    CMD="$CMD --fp16"
 fi
 
 # Run training
