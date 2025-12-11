@@ -961,17 +961,19 @@ class ModelConfig:
     num_gender_classes: int = NUM_GENDER_CLASSES
     num_grammaticality_classes: int = NUM_GRAMMATICALITY_CLASSES
     field_embed_dims: Dict[str, int] = field(default_factory=lambda: {
+        'surface': 64,  # Critical for gender detection (pronouns like 僕, 俺, あたし)
         'pos': 32,
         'pos_detail1': 32,
         'pos_detail2': 16,
-        'conjugated_type': 32,
-        'conjugated_form': 32,
+        'conjugated_type': 32,  # Important for grammaticality (verb type)
+        'conjugated_form': 32,  # Critical for grammaticality (terminal, conjunctive, etc.)
         'lemma': 64,
     })
-    d_model: int = 192  # Total model dimension after projection
-    hidden_dim: int = 384
+    # Total: 64+32+32+16+32+32+64 = 272 dims, projected to d_model
+    d_model: int = 256  # Model dimension after projection (increased to reduce info loss)
+    hidden_dim: int = 512  # Increased proportionally with d_model
     num_layers: int = 3
-    num_heads: int = 6
+    num_heads: int = 8  # 256/8 = 32 dims per head
     dropout: float = 0.1
     max_seq_len: int = 512
     pooling: str = "cls"  # "cls", "mean", or "max"
