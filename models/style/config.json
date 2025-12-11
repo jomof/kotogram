@@ -1,17 +1,18 @@
 {
   "vocab_sizes": {
-    "surface": 45610,
+    "surface": 46009,
     "pos": 20,
     "pos_detail1": 28,
     "pos_detail2": 13,
     "conjugated_type": 91,
     "conjugated_form": 35,
-    "lemma": 3780
+    "lemma": 4891
   },
   "num_formality_classes": 6,
   "num_gender_classes": 4,
   "num_grammaticality_classes": 2,
   "field_embed_dims": {
+    "surface": 64,
     "pos": 32,
     "pos_detail1": 32,
     "pos_detail2": 16,
@@ -19,10 +20,10 @@
     "conjugated_form": 32,
     "lemma": 64
   },
-  "d_model": 192,
-  "hidden_dim": 384,
-  "num_layers": 3,
-  "num_heads": 6,
+  "d_model": 128,
+  "hidden_dim": 256,
+  "num_layers": 2,
+  "num_heads": 4,
   "dropout": 0.1,
   "max_seq_len": 512,
   "pooling": "cls"
