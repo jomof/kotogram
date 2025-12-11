@@ -71,6 +71,7 @@ GRAMMATICALITY_WEIGHT=1.0
 FP16=""
 FP8=""
 RESUME=""
+EXCLUDE_FEATURES=""
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -167,6 +168,10 @@ while [[ $# -gt 0 ]]; do
             RESUME="--resume"
             shift
             ;;
+        --exclude-features)
+            EXCLUDE_FEATURES="$2"
+            shift 2
+            ;;
         --help)
             echo "Train style classifier (formality + gender + grammaticality) on Japanese sentence corpus"
             echo ""
@@ -202,6 +207,10 @@ while [[ $# -gt 0 ]]; do
             echo "  --fp16                Save model in float16 (half size, minimal accuracy loss)"
             echo "  --fp8                 Save model in float8 (quarter size, requires PyTorch 2.1+)"
             echo "  --resume              Resume training from checkpoint in output directory"
+            echo ""
+            echo "Feature Ablation:"
+            echo "  --exclude-features F  Comma-separated features to exclude (for ablation study)"
+            echo "                        Valid: surface,pos,pos_detail1,pos_detail2,conjugated_type,conjugated_form,lemma"
             echo ""
             echo "  --help                Show this help message"
             exit 0
@@ -248,6 +257,9 @@ elif [ -n "$FP16" ]; then
 fi
 if [ -n "$RESUME" ]; then
     echo "Resume:         from checkpoint"
+fi
+if [ -n "$EXCLUDE_FEATURES" ]; then
+    echo "Exclude:        $EXCLUDE_FEATURES"
 fi
 echo "=============================================="
 echo ""
@@ -299,6 +311,10 @@ fi
 
 if [ -n "$RESUME" ]; then
     CMD="$CMD --resume"
+fi
+
+if [ -n "$EXCLUDE_FEATURES" ]; then
+    CMD="$CMD --exclude-features \"$EXCLUDE_FEATURES\""
 fi
 
 # Run training
