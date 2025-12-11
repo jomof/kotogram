@@ -84,7 +84,26 @@ MASK_TOKEN = "<MASK>"  # For self-supervised pretraining
 
 # Feature fields used for token embedding
 # NOTE: 'surface' is critical for gender detection (pronouns like 僕, 俺, あたし)
-FEATURE_FIELDS = ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma']
+ALL_FEATURE_FIELDS = ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma']
+FEATURE_FIELDS = ALL_FEATURE_FIELDS  # Default: use all features
+
+# Global variable to track excluded features (set via --exclude-features)
+_EXCLUDED_FEATURES: List[str] = []
+
+
+def get_active_features() -> List[str]:
+    """Get the list of active feature fields (excluding any disabled ones)."""
+    return [f for f in ALL_FEATURE_FIELDS if f not in _EXCLUDED_FEATURES]
+
+
+def set_excluded_features(excluded: List[str]) -> None:
+    """Set the list of features to exclude from training."""
+    global _EXCLUDED_FEATURES, FEATURE_FIELDS
+    invalid = [f for f in excluded if f not in ALL_FEATURE_FIELDS]
+    if invalid:
+        raise ValueError(f"Invalid feature names: {invalid}. Valid: {ALL_FEATURE_FIELDS}")
+    _EXCLUDED_FEATURES = excluded
+    FEATURE_FIELDS = get_active_features()
 
 # Number of classes for each task
 NUM_FORMALITY_CLASSES = 6
@@ -977,6 +996,7 @@ class ModelConfig:
     dropout: float = 0.1
     max_seq_len: int = 512
     pooling: str = "cls"  # "cls", "mean", or "max"
+    excluded_features: List[str] = field(default_factory=list)  # Features excluded during training
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -992,10 +1012,15 @@ class ModelConfig:
             'dropout': self.dropout,
             'max_seq_len': self.max_seq_len,
             'pooling': self.pooling,
+            'excluded_features': self.excluded_features,
         }
 
     @classmethod
     def from_dict(cls, d: Dict[str, Any]) -> 'ModelConfig':
+        # Handle backward compatibility for models saved without excluded_features
+        if 'excluded_features' not in d:
+            d = dict(d)  # Copy to avoid mutating input
+            d['excluded_features'] = []
         return cls(**d)
 
 
@@ -2130,6 +2155,7 @@ def save_checkpoint(
             'grammaticality_weight': args.grammaticality_weight,
             'fp16': args.fp16,
             'fp8': args.fp8,
+            'exclude_features': args.exclude_features,
         },
     }
     torch.save(checkpoint, os.path.join(path, 'checkpoint.pt'))
@@ -2190,6 +2216,9 @@ def load_model(
 
     Handles both float32 and float16 saved models. Float16 models are
     converted back to float32 for inference compatibility.
+
+    Also restores excluded features from training, so inference uses
+    the same feature set as training.
     """
     import os
 
@@ -2197,6 +2226,11 @@ def load_model(
     with open(os.path.join(path, 'config.json'), 'r') as f:
         config_dict = json.load(f)
     config = ModelConfig.from_dict(config_dict)
+
+    # Restore excluded features BEFORE creating model or using tokenizer
+    # This ensures FEATURE_FIELDS matches what the model was trained with
+    if config.excluded_features:
+        set_excluded_features(config.excluded_features)
 
     # Load tokenizer
     tokenizer = Tokenizer.load(os.path.join(path, 'tokenizer.json'))
@@ -2340,6 +2374,9 @@ if __name__ == "__main__":
                         help="Path to additional TSV file with training data (e.g., unpragmatic examples)")
     parser.add_argument("--agrammatic-data", type=str, default=None,
                         help="Path to TSV file with agrammatic sentences (for grammaticality training)")
+    parser.add_argument("--exclude-features", type=str, default="",
+                        help="Comma-separated list of features to exclude (for ablation study). "
+                             f"Valid: {','.join(ALL_FEATURE_FIELDS)}")
     parser.add_argument("--fp16", action="store_true",
                         help="Save model in float16 precision (half size, minimal accuracy loss)")
     parser.add_argument("--fp8", action="store_true",
@@ -2355,11 +2392,22 @@ if __name__ == "__main__":
         import os
         checkpoint_path = os.path.join(args.output, 'checkpoint.pt')
         if os.path.exists(checkpoint_path):
+            # First, peek at saved args to restore feature exclusion before loading model
+            checkpoint_data = torch.load(checkpoint_path, map_location='cpu')
+            saved_args = checkpoint_data['args']
+
+            # Restore feature exclusion BEFORE loading model
+            saved_exclude = saved_args.get('exclude_features', '')
+            if saved_exclude:
+                excluded = [f.strip() for f in saved_exclude.split(',') if f.strip()]
+                set_excluded_features(excluded)
+                print(f"Restored feature exclusion: {excluded}")
+                print(f"Active features: {FEATURE_FIELDS}")
+
             print(f"Resuming from checkpoint in {args.output}...")
             model, tokenizer, checkpoint = load_checkpoint(args.output)
 
             # Override args with saved args (but keep epochs from command line to allow extending)
-            saved_args = checkpoint['args']
             print(f"  Using saved parameters:")
             print(f"    data: {saved_args['data']}")
             print(f"    embed_dim: {saved_args['embed_dim']}")
@@ -2382,10 +2430,18 @@ if __name__ == "__main__":
             args.formality_weight = saved_args['formality_weight']
             args.gender_weight = saved_args['gender_weight']
             args.grammaticality_weight = saved_args['grammaticality_weight']
+            args.exclude_features = saved_exclude
             # Note: args.fp16 is NOT overwritten - allow changing save format on resume
         else:
             print(f"No checkpoint found at {checkpoint_path}, starting fresh training")
             args.resume = False
+
+    # Handle feature exclusion (for new training, not resume)
+    if args.exclude_features and not checkpoint:
+        excluded = [f.strip() for f in args.exclude_features.split(',') if f.strip()]
+        set_excluded_features(excluded)
+        print(f"Feature ablation: excluding {excluded}")
+        print(f"Active features: {FEATURE_FIELDS}")
 
     # Build list of data files and their grammaticality labels
     # grammatic (1) = normal sentences, agrammatic (0) = ungrammatical sentences
@@ -2467,6 +2523,7 @@ if __name__ == "__main__":
         # Note: tokenizer is frozen after from_tsv
 
         # Model config (vocab is now fixed)
+        excluded = [f.strip() for f in args.exclude_features.split(',') if f.strip()] if args.exclude_features else []
         model_config = ModelConfig(
             vocab_sizes=tokenizer.get_vocab_sizes(),
             num_formality_classes=NUM_FORMALITY_CLASSES,
@@ -2476,6 +2533,7 @@ if __name__ == "__main__":
             hidden_dim=args.hidden_dim,
             num_layers=args.num_layers,
             num_heads=args.num_heads,
+            excluded_features=excluded,
         )
 
         print("\nCreating model with MLM head...")
@@ -2538,6 +2596,7 @@ if __name__ == "__main__":
         train_data, val_data, test_data = dataset.split()
 
         # Model config
+        excluded = [f.strip() for f in args.exclude_features.split(',') if f.strip()] if args.exclude_features else []
         model_config = ModelConfig(
             vocab_sizes=tokenizer.get_vocab_sizes(),
             num_formality_classes=NUM_FORMALITY_CLASSES,
@@ -2547,6 +2606,7 @@ if __name__ == "__main__":
             hidden_dim=args.hidden_dim,
             num_layers=args.num_layers,
             num_heads=args.num_heads,
+            excluded_features=excluded,
         )
 
         print("\nCreating model...")
