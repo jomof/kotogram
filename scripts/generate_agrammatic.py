@@ -1274,11 +1274,11 @@ def process_sentence(
             if result:
                 new_kotogram, error_type = result
                 # Extract surface form for the new sentence
-                new_surface = extract_all_surfaces(new_kotogram)
+                new_surface = extract_all_surfaces(new_kotogram, with_spaces=False)
                 # Make sure we actually changed something
                 if new_surface != sentence:
-                    new_id = f"{sentence_id}_agram_{error_code}"
-                    results.append((new_id, 'jpn', new_surface, new_kotogram, f"{category}:{error_type}"))
+                    # ID will be assigned later as a simple number
+                    results.append((None, 'jpn', new_surface, new_kotogram, f"{category}:{error_type}"))
 
                     if len(results) >= max_errors_per_sentence:
                         break
@@ -1313,14 +1313,14 @@ def main():
     parser.add_argument(
         "--max-errors",
         type=int,
-        default=3,
-        help="Maximum number of error variants per sentence"
+        default=100,
+        help="Maximum number of error variants per sentence (default: 100 = effectively unlimited)"
     )
     parser.add_argument(
         "--error-probability",
         type=float,
-        default=0.4,
-        help="Base probability of generating each error type (0.0-1.0)"
+        default=1.0,
+        help="Base probability of generating each error type (0.0-1.0, default: 1.0 = try all)"
     )
     parser.add_argument(
         "--seed",
@@ -1341,12 +1341,18 @@ def main():
     parser.add_argument(
         "--include-error-type",
         action="store_true",
-        help="Include error type in output (extra column)"
+        help="Include error type in output (extra column). Default: False (no hints about grammar errors)"
     )
     parser.add_argument(
         "--no-balance",
         action="store_true",
-        help="Disable balancing (keep all generated examples without capping)"
+        default=True,
+        help="Disable balancing (default: True = keep all generated examples without capping)"
+    )
+    parser.add_argument(
+        "--balance",
+        action="store_true",
+        help="Enable balancing to cap examples per error type"
     )
     parser.add_argument(
         "--max-per-type",
@@ -1423,16 +1429,18 @@ def main():
         print(f"\nTotal processed: {processed} sentences")
         print(f"Total generated: {len(generated)} agrammatic examples")
 
-    # Balance error types by default (unless --no-balance is specified)
-    if not args.no_balance:
+    # Balance error types only if --balance is specified (disabled by default)
+    if args.balance:
         if args.verbose:
             print(f"\nBalancing error types (max {args.max_per_type} per type)...")
 
-        # Group by error code (extracted from the ID)
+        # Group by error type (from the 5th element)
         by_error_code: Dict[str, List] = {}
         for item in generated:
-            # Extract error code from ID like "1234_agram_b_double_prt"
-            error_code = item[0].split('_agram_')[-1]
+            # Extract error code from error_type like "beginner:double_past" -> "b_double_past"
+            error_type = item[4]
+            category, error_name = error_type.split(':')
+            error_code = f"{category[0]}_{error_name}"
             if error_code not in by_error_code:
                 by_error_code[error_code] = []
             by_error_code[error_code].append(item)
@@ -1463,6 +1471,10 @@ def main():
 
         if args.verbose:
             print(f"\nAfter balancing: {len(generated)} examples")
+
+    # Assign sequential numeric IDs
+    for i, item in enumerate(generated):
+        generated[i] = (str(i + 1), item[1], item[2], item[3], item[4])
 
     # Write output
     if args.verbose:

@@ -56,10 +56,10 @@ AGRAMMATIC_DATA_PATH="data/jpn_agrammatic.tsv"
 OUTPUT_DIR="models/style"
 EPOCHS=20
 BATCH_SIZE=64
-EMBED_DIM=192
-HIDDEN_DIM=384
+EMBED_DIM=256
+HIDDEN_DIM=512
 NUM_LAYERS=3
-NUM_HEADS=6
+NUM_HEADS=8
 PRETRAIN_MLM=""
 PRETRAIN_EPOCHS=5
 MAX_SAMPLES=""
@@ -180,10 +180,10 @@ while [[ $# -gt 0 ]]; do
             echo "  --grammaticality-weight F Weight for grammaticality loss (default: 1.0)"
             echo ""
             echo "Model Architecture:"
-            echo "  --embed-dim N         Model dimension (default: 192)"
-            echo "  --hidden-dim N        Hidden layer dimension (default: 384)"
+            echo "  --embed-dim N         Model dimension (default: 256)"
+            echo "  --hidden-dim N        Hidden layer dimension (default: 512)"
             echo "  --num-layers N        Number of encoder layers (default: 3)"
-            echo "  --num-heads N         Number of attention heads (default: 6)"
+            echo "  --num-heads N         Number of attention heads (default: 8)"
             echo ""
             echo "  --help                Show this help message"
             exit 0
