@@ -55,13 +55,14 @@ import csv
 import hashlib
 import json
 import math
+import multiprocessing as mp
 import os
 import pickle
 import random
 import sys
 from collections import Counter
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Tuple, Any, Union, cast
+from typing import Dict, List, Optional, Tuple, Any, cast
 
 import torch
 import torch.nn as nn
@@ -74,6 +75,51 @@ from kotogram.kotogram import split_kotogram
 from kotogram.analysis import formality, FormalityLevel, gender, GenderLevel
 from kotogram.analysis import extract_token_features  # type: ignore[attr-defined]
 from kotogram.japanese_parser import JapaneseParser
+
+
+def _process_sentence_batch(
+    batch: List[Tuple[str, str, int]],  # (sentence, sentence_id, gram_label)
+) -> List[Tuple[str, str, str, int, int, int, int]]:
+    """Process a batch of sentences in a worker process.
+
+    Returns list of (sentence, sentence_id, kotogram, formality_id, gender_id, gram_label, success)
+    where success=1 if processed successfully, 0 if failed.
+    """
+    # Import parser in worker process to avoid pickling issues
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    from kotogram.analysis import formality, gender, FormalityLevel, GenderLevel
+
+    parser = SudachiJapaneseParser()
+    results = []
+
+    # Local copies of label mappings
+    formality_to_id = {
+        FormalityLevel.VERY_FORMAL: 0,
+        FormalityLevel.FORMAL: 1,
+        FormalityLevel.NEUTRAL: 2,
+        FormalityLevel.CASUAL: 3,
+        FormalityLevel.VERY_CASUAL: 4,
+        FormalityLevel.UNPRAGMATIC_FORMALITY: 5,
+    }
+    gender_to_id = {
+        GenderLevel.MASCULINE: 0,
+        GenderLevel.FEMININE: 1,
+        GenderLevel.NEUTRAL: 2,
+        GenderLevel.UNPRAGMATIC_GENDER: 3,
+    }
+
+    for sentence, sentence_id, gram_label in batch:
+        try:
+            kotogram = parser.japanese_to_kotogram(sentence)
+            formality_enum = formality(kotogram)
+            gender_enum = gender(kotogram)
+            formality_id = formality_to_id[formality_enum]
+            gender_id = gender_to_id[gender_enum]
+            results.append((sentence, sentence_id, kotogram, formality_id, gender_id, gram_label, 1))
+        except Exception:
+            results.append((sentence, sentence_id, "", 0, 0, gram_label, 0))
+
+    return results
 
 
 # Special token values for vocabulary
@@ -336,6 +382,13 @@ GENDER_LABEL_TO_ID = {
 GENDER_ID_TO_LABEL = {v: k for k, v in GENDER_LABEL_TO_ID.items()}
 
 
+# Cache version - bump this when cache format changes to invalidate old caches
+# v1: Initial version
+# v2: Removed lemma pruning (lemma_min_freq, max_lemma_vocab)
+# v3: Added parallel processing
+CACHE_VERSION = 3
+
+
 class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
     """PyTorch Dataset for style classification (formality + gender) using feature-based tokenization.
 
@@ -377,7 +430,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         to ensure the cache is invalidated when inputs change.
         """
         # Build a hash from all relevant parameters
-        hash_parts = []
+        hash_parts = [f"v{CACHE_VERSION}"]  # Include cache version
 
         for tsv_path in tsv_paths:
             hash_parts.append(tsv_path)
@@ -392,7 +445,56 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         # Create hash
         hash_str = hashlib.sha256("|".join(hash_parts).encode()).hexdigest()[:16]
-        return os.path.join(cache_dir, f"dataset_{hash_str}.pkl")
+        return os.path.join(cache_dir, f"dataset_v{CACHE_VERSION}_{hash_str}.pkl")
+
+    @staticmethod
+    def _process_parallel(
+        rows: List[Tuple[str, str, int]],  # (sentence, sentence_id, gram_label)
+        num_workers: Optional[int] = None,
+        batch_size: int = 1000,
+        verbose: bool = True,
+    ) -> List[Tuple[str, str, str, int, int, int]]:
+        """Process sentences in parallel using multiprocessing.
+
+        Args:
+            rows: List of (sentence, sentence_id, gram_label) tuples
+            num_workers: Number of worker processes (default: CPU count)
+            batch_size: Sentences per batch sent to workers
+            verbose: Print progress
+
+        Returns:
+            List of (sentence, kotogram, formality_id, gender_id, gram_label, success) tuples
+        """
+        if num_workers is None:
+            num_workers = max(1, mp.cpu_count() - 1)
+
+        if len(rows) == 0:
+            return []
+
+        # Split into batches
+        batches = [rows[i:i + batch_size] for i in range(0, len(rows), batch_size)]
+
+        if verbose:
+            print(f"Processing {len(rows)} sentences with {num_workers} workers...")
+
+        results: List[Tuple[str, str, str, int, int, int]] = []
+        processed = 0
+
+        # Use spawn context for better compatibility
+        ctx = mp.get_context('spawn')
+        with ctx.Pool(num_workers) as pool:
+            for batch_results in pool.imap(_process_sentence_batch, batches):
+                for sentence, _sid, kotogram, form_id, gen_id, gram_label, success in batch_results:
+                    if success:
+                        results.append((sentence, kotogram, form_id, gen_id, gram_label, success))
+                processed += len(batch_results)
+                if verbose and processed % 10000 < batch_size:
+                    print(f"  Processed {processed}/{len(rows)} sentences...")
+
+        if verbose:
+            print(f"  Completed: {len(results)} successful, {len(rows) - len(results)} failed")
+
+        return results
 
     @staticmethod
     def _save_cache(
@@ -403,6 +505,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         """Save preprocessed samples and tokenizer to cache."""
         os.makedirs(os.path.dirname(cache_path), exist_ok=True)
         cache_data = {
+            'version': CACHE_VERSION,
             'samples': samples,
             'field_vocabs': tokenizer.field_vocabs,
             'frozen': tokenizer._frozen,
@@ -417,7 +520,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
     ) -> Optional[List[Sample]]:
         """Load preprocessed samples from cache and restore tokenizer state.
 
-        Returns None if cache doesn't exist or is invalid.
+        Returns None if cache doesn't exist, has wrong version, or is invalid.
         """
         if not os.path.exists(cache_path):
             return None
@@ -426,9 +529,15 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             with open(cache_path, 'rb') as f:
                 cache_data: Dict[str, Any] = pickle.load(f)
 
+            # Check cache version
+            cached_version = cache_data.get('version', 1)
+            if cached_version != CACHE_VERSION:
+                print(f"  Cache version mismatch (found v{cached_version}, need v{CACHE_VERSION}), rebuilding...")
+                return None
+
             # Restore tokenizer state
             tokenizer.field_vocabs = cache_data['field_vocabs']
-            tokenizer._frozen = cache_data['frozen']
+            tokenizer._frozen = cache_data.get('frozen', False)
 
             samples: List[Sample] = cache_data['samples']
             return samples
@@ -474,69 +583,58 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
                 return cls(cached_samples, tokenizer)
 
-        actual_parser: JapaneseParser
-        if parser is None:
-            from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-            actual_parser = SudachiJapaneseParser()
-        else:
-            actual_parser = parser
+        # Phase 1: Read all rows from TSV file (fast I/O)
+        all_rows: List[Tuple[str, str, int]] = []  # (sentence, sentence_id, gram_label)
+        gram_label = 1  # Single-file load assumes grammatic
+
+        if verbose:
+            print(f"Reading {tsv_path}...")
+
+        with open(tsv_path, 'r', encoding='utf-8') as f:
+            reader = csv.reader(f, delimiter='\t')
+            for row in reader:
+                if len(row) < 3:
+                    continue
+                sentence_id, lang, sentence = row[0], row[1], row[2]
+                if lang != 'jpn':
+                    continue
+                all_rows.append((sentence, sentence_id, gram_label))
+                if max_samples and len(all_rows) >= max_samples:
+                    break
+
+        if verbose:
+            print(f"  Read {len(all_rows)} sentences")
+
+        # Phase 2: Process sentences in parallel (kotogram conversion + label computation)
+        processed_results = cls._process_parallel(all_rows, verbose=verbose)
+
+        # Phase 3: Build vocabulary and create samples (must be sequential)
+        if verbose:
+            print("\nBuilding vocabulary...")
 
         samples: List[Sample] = []
         formality_counts: Counter[FormalityLevel] = Counter()
         gender_counts: Counter[GenderLevel] = Counter()
         grammaticality_counts: Counter[int] = Counter()
 
-        with open(tsv_path, 'r', encoding='utf-8') as f:
-            reader = csv.reader(f, delimiter='\t')
-            total = 0
+        for sentence, kotogram, formality_id, gender_id, gram_label, _success in processed_results:
+            # Encode to feature IDs (builds vocabulary - must be sequential)
+            feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
 
-            for row in reader:
-                if len(row) < 3:
-                    continue
+            sample = Sample(
+                feature_ids=feature_ids,
+                formality_label=formality_id,
+                gender_label=gender_id,
+                grammaticality_label=gram_label,
+                original_sentence=sentence,
+                kotogram=kotogram,
+            )
+            samples.append(sample)
 
-                sentence_id, lang, sentence = row[0], row[1], row[2]
-
-                if lang != 'jpn':
-                    continue
-
-                try:
-                    # Convert to Kotogram
-                    kotogram = actual_parser.japanese_to_kotogram(sentence)
-
-                    # Compute all labels
-                    formality_enum = formality(kotogram)
-                    gender_enum = gender(kotogram)
-                    formality_id = FORMALITY_LABEL_TO_ID[formality_enum]
-                    gender_id = GENDER_LABEL_TO_ID[gender_enum]
-                    formality_counts[formality_enum] += 1
-                    gender_counts[gender_enum] += 1
-                    grammaticality_counts[1] += 1  # Single-file load assumes grammatic
-
-                    # Encode to feature IDs (builds vocabulary)
-                    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
-
-                    sample = Sample(
-                        feature_ids=feature_ids,
-                        formality_label=formality_id,
-                        gender_label=gender_id,
-                        grammaticality_label=1,  # Single-file load assumes grammatic
-                        original_sentence=sentence,
-                        kotogram=kotogram,
-                    )
-                    samples.append(sample)
-                    total += 1
-
-                    if verbose and total % 10000 == 0:
-                        vocab_sizes = tokenizer.get_vocab_sizes()
-                        print(f"Processed {total} sentences, vocab sizes: {vocab_sizes}")
-
-                    if max_samples and total >= max_samples:
-                        break
-
-                except Exception as e:
-                    if verbose:
-                        print(f"Error processing sentence {sentence_id}: {e}")
-                    continue
+            # Track counts using IDs (enums were converted in workers)
+            formality_counts[FORMALITY_ID_TO_LABEL[formality_id]] += 1
+            gender_counts[GENDER_ID_TO_LABEL[gender_id]] += 1
+            grammaticality_counts[gram_label] += 1
 
         if verbose:
             print(f"\nDataset loaded: {len(samples)} samples")
@@ -625,82 +723,66 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
                 return cls(cached_samples, tokenizer)
 
-        actual_parser: JapaneseParser
-        if parser is None:
-            from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-            actual_parser = SudachiJapaneseParser()
-        else:
-            actual_parser = parser
+        # Phase 1: Read all rows from TSV files (fast I/O)
+        all_rows: List[Tuple[str, str, int]] = []  # (sentence, sentence_id, gram_label)
+        for tsv_path, gram_label in zip(tsv_paths, grammaticality_labels):
+            if verbose:
+                gram_str = "grammatic" if gram_label == 1 else "agrammatic"
+                print(f"Reading {tsv_path} ({gram_str})...")
+
+            file_count = 0
+            with open(tsv_path, 'r', encoding='utf-8') as f:
+                reader = csv.reader(f, delimiter='\t')
+                for row in reader:
+                    if len(row) < 3:
+                        continue
+                    sentence_id, lang, sentence = row[0], row[1], row[2]
+                    if lang != 'jpn':
+                        continue
+                    all_rows.append((sentence, sentence_id, gram_label))
+                    file_count += 1
+                    if max_samples and len(all_rows) >= max_samples:
+                        break
+
+            if verbose:
+                print(f"  Read {file_count} sentences from {tsv_path}")
+
+            if max_samples and len(all_rows) >= max_samples:
+                break
+
+        if verbose:
+            print(f"\nTotal sentences to process: {len(all_rows)}")
+
+        # Phase 2: Process sentences in parallel (kotogram conversion + label computation)
+        processed_results = cls._process_parallel(all_rows, verbose=verbose)
+
+        # Phase 3: Build vocabulary and create samples (must be sequential)
+        if verbose:
+            print("\nBuilding vocabulary...")
 
         samples: List[Sample] = []
         formality_counts: Counter[FormalityLevel] = Counter()
         gender_counts: Counter[GenderLevel] = Counter()
         grammaticality_counts: Counter[int] = Counter()
-        total = 0
 
-        for tsv_path, gram_label in zip(tsv_paths, grammaticality_labels):
-            if verbose:
-                gram_str = "grammatic" if gram_label == 1 else "agrammatic"
-                print(f"\nLoading from {tsv_path} ({gram_str})...")
+        for sentence, kotogram, formality_id, gender_id, gram_label, _success in processed_results:
+            # Encode to feature IDs (builds vocabulary - must be sequential)
+            feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
 
-            file_count = 0
-            with open(tsv_path, 'r', encoding='utf-8') as f:
-                reader = csv.reader(f, delimiter='\t')
+            sample = Sample(
+                feature_ids=feature_ids,
+                formality_label=formality_id,
+                gender_label=gender_id,
+                grammaticality_label=gram_label,
+                original_sentence=sentence,
+                kotogram=kotogram,
+            )
+            samples.append(sample)
 
-                for row in reader:
-                    if len(row) < 3:
-                        continue
-
-                    sentence_id, lang, sentence = row[0], row[1], row[2]
-
-                    if lang != 'jpn':
-                        continue
-
-                    try:
-                        # Convert to Kotogram
-                        kotogram = actual_parser.japanese_to_kotogram(sentence)
-
-                        # Compute all labels (formality, gender from analysis; grammaticality from file source)
-                        formality_enum = formality(kotogram)
-                        gender_enum = gender(kotogram)
-                        formality_id = FORMALITY_LABEL_TO_ID[formality_enum]
-                        gender_id = GENDER_LABEL_TO_ID[gender_enum]
-                        formality_counts[formality_enum] += 1
-                        gender_counts[gender_enum] += 1
-
-                        # Encode to feature IDs (builds vocabulary)
-                        feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
-
-                        sample = Sample(
-                            feature_ids=feature_ids,
-                            formality_label=formality_id,
-                            gender_label=gender_id,
-                            grammaticality_label=gram_label,
-                            original_sentence=sentence,
-                            kotogram=kotogram,
-                        )
-                        samples.append(sample)
-                        grammaticality_counts[gram_label] += 1
-                        total += 1
-                        file_count += 1
-
-                        if verbose and total % 10000 == 0:
-                            vocab_sizes = tokenizer.get_vocab_sizes()
-                            print(f"Processed {total} sentences, vocab sizes: {vocab_sizes}")
-
-                        if max_samples and total >= max_samples:
-                            break
-
-                    except Exception as e:
-                        if verbose:
-                            print(f"Error processing sentence {sentence_id}: {e}")
-                        continue
-
-            if verbose:
-                print(f"  Loaded {file_count} samples from {tsv_path}")
-
-            if max_samples and total >= max_samples:
-                break
+            # Track counts using IDs (enums were converted in workers)
+            formality_counts[FORMALITY_ID_TO_LABEL[formality_id]] += 1
+            gender_counts[GENDER_ID_TO_LABEL[gender_id]] += 1
+            grammaticality_counts[gram_label] += 1
 
         if verbose:
             print(f"\nDataset loaded: {len(samples)} samples from {len(tsv_paths)} files")
@@ -1727,6 +1809,10 @@ class Trainer:
         total_grammaticality_loss = 0
         n_batches = 0
         total_batches = len(self.train_loader)
+
+        if total_batches == 0:
+            print("  WARNING: No batches in train_loader!")
+            return 0.0, 0.0, 0.0, 0.0
 
         for batch_idx, batch in enumerate(self.train_loader):
             field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels = self._batch_to_device(batch)
