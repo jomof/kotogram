@@ -2503,25 +2503,20 @@ if __name__ == "__main__":
             model_config = model.config
 
     elif args.pretrain_mlm:
-        print("Loading unlabeled data for MLM pretraining...")
+        # MLM pretraining should only use grammatical sentences
+        # The encoder should learn what correct Japanese looks like
+        # Agrammatic data is only used during fine-tuning for classification
+        grammatic_files = [args.data]  # Only primary data file (grammatical)
+        print("Loading grammatical data for MLM pretraining...")
+        print(f"  (agrammatic data excluded from pretraining, will be used in fine-tuning)")
         tokenizer = Tokenizer()
-        if len(data_files) > 1:
-            unlabeled_dataset = StyleDataset.from_multiple_tsv(
-                data_files,
-                tokenizer,
-                max_samples=args.max_samples,
-                verbose=True,
-                labeled=False,  # No labels needed for pretraining
-                grammaticality_labels=grammaticality_labels,
-            )
-        else:
-            unlabeled_dataset = StyleDataset.from_tsv(
-                args.data,
-                tokenizer,
-                max_samples=args.max_samples,
-                verbose=True,
-                labeled=False,  # No labels needed for pretraining
-            )
+        unlabeled_dataset = StyleDataset.from_tsv(
+            grammatic_files[0],
+            tokenizer,
+            max_samples=args.max_samples,
+            verbose=True,
+            labeled=False,  # No labels needed for pretraining
+        )
         # Note: tokenizer is frozen after from_tsv
 
         # Model config (vocab is now fixed)
