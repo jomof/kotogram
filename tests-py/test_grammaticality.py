@@ -230,7 +230,7 @@ class TestStyleGrammaticality(unittest.TestCase):
 
 
 class TestGrammaticalityFromAgrammaticFile(unittest.TestCase):
-    """Test grammaticality against sentences from data/agrammatic_sentences.tsv."""
+    """Test grammaticality against sentences from data/jpn_agrammatic.tsv."""
 
     def setUp(self):
         """Set up test fixtures."""
@@ -817,7 +817,7 @@ class TestGrammaticalFalsePositiveFixes(unittest.TestCase):
 
 
 class TestAgrammaticTruePositives(unittest.TestCase):
-    """Test that agrammatic sentences from agrammatic_sentences.tsv are correctly detected."""
+    """Test that agrammatic sentences from jpn_agrammatic.tsv are correctly detected."""
 
     def setUp(self):
         """Set up test fixtures."""
