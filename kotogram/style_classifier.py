@@ -584,6 +584,11 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             print("Gender distribution:")
             for g_label, g_count in sorted(gender_counts.items(), key=lambda x: x[1], reverse=True):
                 print(f"  {g_label.value}: {g_count} ({100*g_count/len(samples):.1f}%)")
+            print("Grammaticality distribution:")
+            gram_labels_map = {1: "grammatic", 0: "agrammatic"}
+            for g_id in [1, 0]:
+                g_count = grammaticality_counts.get(g_id, 0)
+                print(f"  {gram_labels_map[g_id]}: {g_count} ({100*g_count/len(samples):.1f}%)")
 
         # Freeze vocabulary after building (this finalizes lemma vocab)
         tokenizer.freeze()
