@@ -1235,7 +1235,7 @@ def collate_fn(
     batch: List[Sample],
     pad_id: int = 0,
     max_seq_len: Optional[int] = None,
-) -> Dict[str, torch.Tensor]:
+) -> Dict[str, Any]:
     """Collate samples into padded batches.
 
     Args:
@@ -1246,7 +1246,8 @@ def collate_fn(
 
     Returns:
         Dictionary with per-field 'input_ids_<field>', 'attention_mask',
-        'formality_labels', 'gender_labels', and 'grammaticality_labels' tensors
+        'formality_labels', 'gender_labels', 'grammaticality_labels' tensors,
+        and 'original_sentence', 'source_id', 'kotogram' lists.
     """
     batch_max_len = max(s.seq_len for s in batch)
     # Apply truncation if max_seq_len is specified
@@ -1283,6 +1284,11 @@ def collate_fn(
     result['formality_labels'] = torch.tensor(formality_labels, dtype=torch.long)
     result['gender_labels'] = torch.tensor(gender_labels, dtype=torch.long)
     result['grammaticality_labels'] = torch.tensor(grammaticality_labels, dtype=torch.long)
+
+    # Pass through metadata
+    result['original_sentence'] = [s.original_sentence for s in batch]
+    result['source_id'] = [s.source_id for s in batch]
+    result['kotogram'] = [s.kotogram for s in batch]
 
     return result
 
@@ -2162,11 +2168,15 @@ class Trainer:
         return total_loss / n_batches, total_formality_loss / n_batches, total_gender_loss / n_batches, total_grammaticality_loss / n_batches
 
     @torch.no_grad()  # type: ignore[untyped-decorator]
-    def evaluate(self) -> Dict[str, Any]:
+    def evaluate(self, return_mismatches: bool = False) -> Dict[str, Any]:
         """Evaluate on validation set.
 
+        Args:
+            return_mismatches: If True, return lists of misclassified examples
+
         Returns:
-            Dictionary with losses, accuracies, and confusion matrices
+            Dictionary with losses, accuracies, and confusion matrices.
+            If return_mismatches is True, also includes 'mismatches' dict.
         """
         self.model.eval()
         total_loss = 0
@@ -2180,7 +2190,11 @@ class Trainer:
         all_gender_preds = []
         all_gender_labels = []
         all_grammaticality_preds = []
+        all_grammaticality_preds = []
         all_grammaticality_labels = []
+        all_sentences = []
+        all_source_ids = []
+        all_kotograms = []
 
         for batch in self.val_loader:
             field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels = self._batch_to_device(batch)
@@ -2206,6 +2220,11 @@ class Trainer:
             all_gender_labels.extend(gender_labels.cpu().tolist())
             all_grammaticality_preds.extend(grammaticality_preds.cpu().tolist())
             all_grammaticality_labels.extend(grammaticality_labels.cpu().tolist())
+
+            if return_mismatches:
+                all_sentences.extend(batch.get('original_sentence', []))
+                all_source_ids.extend(batch.get('source_id', []))
+                all_kotograms.extend(batch.get('kotogram', []))
 
             total_loss += loss.item()
             total_formality_loss += formality_loss.item()
@@ -2241,7 +2260,7 @@ class Trainer:
         for pred, label in zip(all_grammaticality_preds, all_grammaticality_labels):
             grammaticality_confusion[label][pred] += 1
 
-        return {
+        results = {
             'loss': avg_loss,
             'formality_loss': avg_formality_loss,
             'gender_loss': avg_gender_loss,
@@ -2253,6 +2272,51 @@ class Trainer:
             'gender_confusion': gender_confusion,
             'grammaticality_confusion': grammaticality_confusion,
         }
+
+        if return_mismatches:
+            mismatches: Dict[str, List[Dict[str, Any]]] = {
+                'formality': [],
+                'gender': [],
+                'grammaticality': []
+            }
+
+            for i, sent in enumerate(all_sentences):
+                # Formality
+                if all_formality_preds[i] != all_formality_labels[i]:
+                    mismatches['formality'].append({
+                        'sentence': sent,
+                        'source_id': all_source_ids[i] if i < len(all_source_ids) else '',
+                        'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
+                        'predicted': FORMALITY_ID_TO_LABEL[all_formality_preds[i]].value,
+                        'actual': FORMALITY_ID_TO_LABEL[all_formality_labels[i]].value,
+                    })
+                
+                # Gender
+                if all_gender_preds[i] != all_gender_labels[i]:
+                    mismatches['gender'].append({
+                        'sentence': sent,
+                        'source_id': all_source_ids[i] if i < len(all_source_ids) else '',
+                        'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
+                        'predicted': GENDER_ID_TO_LABEL[all_gender_preds[i]].value,
+                        'actual': GENDER_ID_TO_LABEL[all_gender_labels[i]].value,
+                    })
+
+                # Grammaticality
+                if all_grammaticality_preds[i] != all_grammaticality_labels[i]:
+                    # Map 0/1 to labels
+                    pred_label = "grammatic" if all_grammaticality_preds[i] == 1 else "agrammatic"
+                    actual_label = "grammatic" if all_grammaticality_labels[i] == 1 else "agrammatic"
+                    mismatches['grammaticality'].append({
+                        'sentence': sent,
+                        'source_id': all_source_ids[i] if i < len(all_source_ids) else '',
+                        'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
+                        'predicted': pred_label,
+                        'actual': actual_label,
+                    })
+            
+            results['mismatches'] = mismatches
+
+        return results
 
     def train(
         self,
@@ -2333,9 +2397,9 @@ class Trainer:
 
         return self.history
 
-    def print_confusion_matrices(self) -> None:
-        """Print confusion matrices for all tasks."""
-        eval_results = self.evaluate()
+    def print_confusion_matrices(self, save_dir: Optional[str] = None) -> None:
+        """Print confusion matrices for all tasks and optionally save mismatches."""
+        eval_results = self.evaluate(return_mismatches=True)
 
         # Formality confusion matrix
         formality_labels = [FORMALITY_ID_TO_LABEL[i].value for i in range(NUM_FORMALITY_CLASSES)]
@@ -2369,6 +2433,38 @@ class Trainer:
             row_label = grammaticality_labels[i].ljust(25)
             row_values = " ".join(str(v).ljust(12) for v in row)
             print(f"{row_label}{row_values}")
+
+        # Save mismatches if requested
+        if save_dir and 'mismatches' in eval_results:
+            import csv
+            import os
+            
+            # Save Grammaticality Mismatches
+            mismatches = eval_results['mismatches']
+            if mismatches['grammaticality']:
+                out_path = os.path.join(save_dir, 'grammaticality_confusion.csv')
+                with open(out_path, 'w', newline='', encoding='utf-8') as f:
+                    writer = csv.DictWriter(f, fieldnames=['sentence', 'source_id', 'predicted', 'actual', 'kotogram'], delimiter='\t')
+                    writer.writeheader()
+                    writer.writerows(mismatches['grammaticality'])
+                print(f"\nSaved {len(mismatches['grammaticality'])} grammaticality mismatches to {out_path}")
+
+            # Save Other Mismatches (optional, maybe just formality/gender if they have many errors)
+            if mismatches['formality']:
+                out_path = os.path.join(save_dir, 'formality_confusion.csv')
+                with open(out_path, 'w', newline='', encoding='utf-8') as f:
+                    writer = csv.DictWriter(f, fieldnames=['sentence', 'source_id', 'predicted', 'actual', 'kotogram'], delimiter='\t')
+                    writer.writeheader()
+                    writer.writerows(mismatches['formality'])
+                print(f"Saved {len(mismatches['formality'])} formality mismatches to {out_path}")
+                
+            if mismatches['gender']:
+                out_path = os.path.join(save_dir, 'gender_confusion.csv')
+                with open(out_path, 'w', newline='', encoding='utf-8') as f:
+                    writer = csv.DictWriter(f, fieldnames=['sentence', 'source_id', 'predicted', 'actual', 'kotogram'], delimiter='\t')
+                    writer.writeheader()
+                    writer.writerows(mismatches['gender'])
+                print(f"Saved {len(mismatches['gender'])} gender mismatches to {out_path}")
 
     def restore_from_checkpoint(self, checkpoint: Dict[str, Any]) -> None:
         """Restore training state from checkpoint.
@@ -2747,12 +2843,14 @@ if __name__ == "__main__":
                         help="Resume training from checkpoint in output directory")
     parser.add_argument("--retrain", action="store_true",
                         help="Retrain from scratch using parameters from existing checkpoint")
+    parser.add_argument("--confusion", action="store_true",
+                        help="Print confusion matrices for existing model and exit")
 
     args = parser.parse_args()
 
-    # Handle resume from checkpoint or retrain
+    # Handle resume from checkpoint or retrain or confusion logic
     checkpoint = None
-    if args.resume or args.retrain:
+    if args.resume or args.retrain or args.confusion:
         import os
         checkpoint_path = os.path.join(args.output, 'checkpoint.pt')
         if os.path.exists(checkpoint_path):
@@ -2771,6 +2869,10 @@ if __name__ == "__main__":
             if args.resume:
                 print(f"Resuming from checkpoint in {args.output}...")
                 model, tokenizer, checkpoint = load_checkpoint(args.output)
+            elif args.confusion:
+                print(f"Loading best model for evaluation from {args.output}...")
+                model, tokenizer = load_model(args.output)
+                checkpoint = checkpoint_data
             else:
                 print(f"Retraining from scratch using parameters from {args.output}...")
                 # We need tokenizer to load data, but we'll create a fresh one or load it?
@@ -2790,6 +2892,8 @@ if __name__ == "__main__":
             print(f"    learning_rate: {saved_args['learning_rate']}")
             if args.resume:
                 print(f"  Resuming from epoch {checkpoint['epoch'] + 1}, training to epoch {args.epochs}")
+            elif args.confusion:
+                print(f"  Evaluating best model from {args.output}")
             else:
                 print(f"  Retraining from epoch 0 to {args.epochs}")
 
@@ -2809,6 +2913,11 @@ if __name__ == "__main__":
             args.exclude_features = saved_exclude
             # Note: args.fp16 is NOT overwritten - allow changing save format on resume
         else:
+            if args.confusion:
+                print(f"Error: No checkpoint found at {checkpoint_path}, cannot print confusion matrix.")
+                import sys
+                sys.exit(1)
+
             print(f"No checkpoint found at {checkpoint_path}, starting fresh training")
             args.resume = False
             # args.retrain = False # If no checkpoint, retrain just means train normally
@@ -2837,7 +2946,7 @@ if __name__ == "__main__":
     model: StyleClassifier  # Type annotation for both branches
 
     # Skip model creation if resuming (model already loaded)
-    if args.resume and checkpoint is not None:
+    if (args.resume or args.confusion) and checkpoint is not None:
         # Load datasets with existing tokenizer
         # Unfreeze tokenizer to allow new vocabulary
         old_vocab_sizes = tokenizer.get_vocab_sizes()
@@ -3009,6 +3118,26 @@ if __name__ == "__main__":
 
         print("\nCreating model...")
         model = StyleClassifier(model_config)
+
+    if args.confusion:
+        print("\nLoading model for confusion matrix evaluation...")
+        # Since we are not training, we can just load the model state we already set up?
+        # But we need to make sure the model architecture matches.
+        # If we came from 'resume' path (checkpoint detected), model is already loaded with correct config.
+        # If we are here, we MUST have loaded from checkpoint because of the check above.
+
+        print("\nEvaluating on validation set...")
+        # Need trainer to run evaluation easily
+        trainer_config = TrainerConfig(
+            batch_size=args.batch_size,
+            device="cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
+        )
+        trainer = Trainer(model, train_data, val_data, trainer_config)
+
+        trainer.print_confusion_matrices(save_dir=args.output)
+        print("\nConfusion matrix evaluation complete.")
+        import sys
+        sys.exit(0)
 
     print(f"\nSplit: {len(train_data)} train, {len(val_data)} val, {len(test_data)} test")
 
