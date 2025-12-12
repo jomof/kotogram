@@ -59,6 +59,7 @@ import multiprocessing as mp
 import os
 import pickle
 import random
+import sqlite3
 import sys
 from collections import Counter
 from dataclasses import dataclass, field
@@ -75,6 +76,179 @@ from kotogram.kotogram import split_kotogram
 from kotogram.analysis import formality, FormalityLevel, gender, GenderLevel
 from kotogram.analysis import extract_token_features  # type: ignore[attr-defined]
 from kotogram.japanese_parser import JapaneseParser
+
+
+class KotogramCache:
+    """Durable cache for Japanese → kotogram conversions.
+
+    This cache stores the expensive SudachiPy parsing results in a SQLite database.
+    It is keyed only by sentence hash and is independent of model architecture,
+    training parameters, or label computations. This means:
+
+    1. The cache persists across training runs
+    2. Changes to model dimensions, features, or labels don't invalidate it
+    3. Only the kotogram conversion itself is cached (not formality/gender labels)
+
+    The cache uses SQLite for durability and efficient key-value lookups.
+    """
+
+    DEFAULT_PATH = ".cache/kotogram.db"
+
+    def __init__(self, db_path: str = DEFAULT_PATH):
+        """Initialize the kotogram cache.
+
+        Args:
+            db_path: Path to the SQLite database file
+        """
+        self.db_path = db_path
+        os.makedirs(os.path.dirname(db_path), exist_ok=True)
+        self._init_db()
+
+    def _init_db(self) -> None:
+        """Initialize the database schema."""
+        conn = sqlite3.connect(self.db_path)
+        try:
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS kotogram_cache (
+                    sentence_hash TEXT PRIMARY KEY,
+                    sentence TEXT NOT NULL,
+                    kotogram TEXT NOT NULL
+                )
+            """)
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_hash ON kotogram_cache(sentence_hash)")
+            conn.commit()
+        finally:
+            conn.close()
+
+    @staticmethod
+    def _hash_sentence(sentence: str) -> str:
+        """Create a hash key for a sentence."""
+        return hashlib.sha256(sentence.encode('utf-8')).hexdigest()
+
+    def get(self, sentence: str) -> Optional[str]:
+        """Get cached kotogram for a sentence.
+
+        Args:
+            sentence: Japanese sentence
+
+        Returns:
+            Cached kotogram string, or None if not cached
+        """
+        sentence_hash = self._hash_sentence(sentence)
+        conn = sqlite3.connect(self.db_path)
+        try:
+            cursor = conn.execute(
+                "SELECT kotogram FROM kotogram_cache WHERE sentence_hash = ?",
+                (sentence_hash,)
+            )
+            row = cursor.fetchone()
+            return row[0] if row else None
+        finally:
+            conn.close()
+
+    def get_batch(self, sentences: List[str]) -> Dict[str, Optional[str]]:
+        """Get cached kotograms for multiple sentences.
+
+        Args:
+            sentences: List of Japanese sentences
+
+        Returns:
+            Dict mapping sentence → kotogram (or None if not cached)
+        """
+        if not sentences:
+            return {}
+
+        hashes = [(self._hash_sentence(s), s) for s in sentences]
+        hash_to_sentence = {h: s for h, s in hashes}
+
+        conn = sqlite3.connect(self.db_path)
+        try:
+            # Query in batches of 500 to avoid SQLite variable limits
+            results: Dict[str, Optional[str]] = {s: None for s in sentences}
+            hash_list = list(hash_to_sentence.keys())
+
+            for i in range(0, len(hash_list), 500):
+                batch_hashes = hash_list[i:i + 500]
+                placeholders = ",".join("?" * len(batch_hashes))
+                cursor = conn.execute(
+                    f"SELECT sentence_hash, kotogram FROM kotogram_cache WHERE sentence_hash IN ({placeholders})",
+                    batch_hashes
+                )
+                for row in cursor:
+                    sentence = hash_to_sentence[row[0]]
+                    results[sentence] = row[1]
+
+            return results
+        finally:
+            conn.close()
+
+    def put(self, sentence: str, kotogram: str) -> None:
+        """Cache a kotogram for a sentence.
+
+        Args:
+            sentence: Japanese sentence
+            kotogram: Kotogram representation
+        """
+        sentence_hash = self._hash_sentence(sentence)
+        conn = sqlite3.connect(self.db_path)
+        try:
+            conn.execute(
+                "INSERT OR REPLACE INTO kotogram_cache (sentence_hash, sentence, kotogram) VALUES (?, ?, ?)",
+                (sentence_hash, sentence, kotogram)
+            )
+            conn.commit()
+        finally:
+            conn.close()
+
+    def put_batch(self, items: List[Tuple[str, str]]) -> None:
+        """Cache multiple sentence→kotogram mappings.
+
+        Args:
+            items: List of (sentence, kotogram) tuples
+        """
+        if not items:
+            return
+
+        conn = sqlite3.connect(self.db_path)
+        try:
+            data = [(self._hash_sentence(s), s, k) for s, k in items]
+            conn.executemany(
+                "INSERT OR REPLACE INTO kotogram_cache (sentence_hash, sentence, kotogram) VALUES (?, ?, ?)",
+                data
+            )
+            conn.commit()
+        finally:
+            conn.close()
+
+    def __len__(self) -> int:
+        """Return the number of cached entries."""
+        conn = sqlite3.connect(self.db_path)
+        try:
+            cursor = conn.execute("SELECT COUNT(*) FROM kotogram_cache")
+            return cursor.fetchone()[0]
+        finally:
+            conn.close()
+
+    def clear(self) -> None:
+        """Clear all cached entries."""
+        conn = sqlite3.connect(self.db_path)
+        try:
+            conn.execute("DELETE FROM kotogram_cache")
+            conn.commit()
+        finally:
+            conn.close()
+
+
+# Global kotogram cache instance
+_kotogram_cache: Optional[KotogramCache] = None
+
+
+def get_kotogram_cache(db_path: str = KotogramCache.DEFAULT_PATH) -> KotogramCache:
+    """Get the global kotogram cache instance."""
+    global _kotogram_cache
+    if _kotogram_cache is None or _kotogram_cache.db_path != db_path:
+        _kotogram_cache = KotogramCache(db_path)
+    return _kotogram_cache
 
 
 def _process_sentence_batch(
@@ -453,14 +627,21 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         num_workers: Optional[int] = None,
         batch_size: int = 1000,
         verbose: bool = True,
+        use_kotogram_cache: bool = True,
     ) -> List[Tuple[str, str, str, int, int, int]]:
         """Process sentences in parallel using multiprocessing.
+
+        Uses a durable kotogram cache to avoid re-parsing sentences that have
+        already been processed in previous runs. The cache is keyed only by
+        sentence content, so it persists across changes to model architecture,
+        training parameters, etc.
 
         Args:
             rows: List of (sentence, sentence_id, gram_label) tuples
             num_workers: Number of worker processes (default: CPU count)
             batch_size: Sentences per batch sent to workers
             verbose: Print progress
+            use_kotogram_cache: If True, use durable kotogram cache
 
         Returns:
             List of (sentence, kotogram, formality_id, gender_id, gram_label, success) tuples
@@ -471,28 +652,90 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         if len(rows) == 0:
             return []
 
-        # Split into batches
-        batches = [rows[i:i + batch_size] for i in range(0, len(rows), batch_size)]
+        # Check kotogram cache for already-parsed sentences
+        cache = get_kotogram_cache() if use_kotogram_cache else None
+        cached_kotograms: Dict[str, Optional[str]] = {}
+        uncached_rows: List[Tuple[str, str, int]] = []
 
-        if verbose:
-            print(f"Processing {len(rows)} sentences with {num_workers} workers...")
+        if cache is not None:
+            sentences = [r[0] for r in rows]
+            cached_kotograms = cache.get_batch(sentences)
+            cache_hits = sum(1 for v in cached_kotograms.values() if v is not None)
 
+            for row in rows:
+                if cached_kotograms.get(row[0]) is None:
+                    uncached_rows.append(row)
+
+            if verbose:
+                print(f"Kotogram cache: {cache_hits}/{len(rows)} hits ({100*cache_hits/len(rows):.1f}%)")
+        else:
+            uncached_rows = list(rows)
+
+        # Process uncached sentences in parallel
+        new_kotograms: List[Tuple[str, str]] = []  # (sentence, kotogram) for cache update
+
+        if uncached_rows:
+            batches = [uncached_rows[i:i + batch_size] for i in range(0, len(uncached_rows), batch_size)]
+
+            if verbose:
+                print(f"Processing {len(uncached_rows)} uncached sentences with {num_workers} workers...")
+
+            processed = 0
+
+            # Use spawn context for better compatibility
+            ctx = mp.get_context('spawn')
+            with ctx.Pool(num_workers) as pool:
+                for batch_results in pool.imap(_process_sentence_batch, batches):
+                    for sentence, _sid, kotogram, _form_id, _gen_id, _gram_label, success in batch_results:
+                        if success:
+                            cached_kotograms[sentence] = kotogram
+                            new_kotograms.append((sentence, kotogram))
+                    processed += len(batch_results)
+                    if verbose and processed % 10000 < batch_size:
+                        print(f"  Processed {processed}/{len(uncached_rows)} sentences...")
+
+            if verbose:
+                print(f"  Completed: {len(new_kotograms)} new kotograms parsed")
+
+            # Save new kotograms to cache
+            if cache is not None and new_kotograms:
+                cache.put_batch(new_kotograms)
+                if verbose:
+                    print(f"  Saved {len(new_kotograms)} new entries to kotogram cache")
+
+        # Now compute labels for all sentences (both cached and newly parsed)
+        # Labels are quick to compute, no need for parallel processing
         results: List[Tuple[str, str, str, int, int, int]] = []
-        processed = 0
 
-        # Use spawn context for better compatibility
-        ctx = mp.get_context('spawn')
-        with ctx.Pool(num_workers) as pool:
-            for batch_results in pool.imap(_process_sentence_batch, batches):
-                for sentence, _sid, kotogram, form_id, gen_id, gram_label, success in batch_results:
-                    if success:
-                        results.append((sentence, kotogram, form_id, gen_id, gram_label, success))
-                processed += len(batch_results)
-                if verbose and processed % 10000 < batch_size:
-                    print(f"  Processed {processed}/{len(rows)} sentences...")
+        formality_to_id = {
+            FormalityLevel.VERY_FORMAL: 0,
+            FormalityLevel.FORMAL: 1,
+            FormalityLevel.NEUTRAL: 2,
+            FormalityLevel.CASUAL: 3,
+            FormalityLevel.VERY_CASUAL: 4,
+            FormalityLevel.UNPRAGMATIC_FORMALITY: 5,
+        }
+        gender_to_id = {
+            GenderLevel.MASCULINE: 0,
+            GenderLevel.FEMININE: 1,
+            GenderLevel.NEUTRAL: 2,
+            GenderLevel.UNPRAGMATIC_GENDER: 3,
+        }
+
+        for sentence, _sid, gram_label in rows:
+            kotogram = cached_kotograms.get(sentence)
+            if kotogram:
+                try:
+                    formality_enum = formality(kotogram)
+                    gender_enum = gender(kotogram)
+                    formality_id = formality_to_id[formality_enum]
+                    gender_id = gender_to_id[gender_enum]
+                    results.append((sentence, kotogram, formality_id, gender_id, gram_label, 1))
+                except Exception:
+                    pass  # Skip sentences that fail label computation
 
         if verbose:
-            print(f"  Completed: {len(results)} successful, {len(rows) - len(results)} failed")
+            print(f"  Total: {len(results)} sentences ready for training")
 
         return results
 
@@ -1814,63 +2057,48 @@ class Trainer:
             print("  WARNING: No batches in train_loader!")
             return 0.0, 0.0, 0.0, 0.0
 
-        if verbose:
-            print(f"  Training {total_batches} batches...")
-            sys.stdout.flush()
+        for batch_idx, batch in enumerate(self.train_loader):
+            field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels = self._batch_to_device(batch)
 
-        try:
-            for batch_idx, batch in enumerate(self.train_loader):
-                field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels = self._batch_to_device(batch)
+            self.optimizer.zero_grad()
+            formality_logits, gender_logits, grammaticality_logits = self.model(field_inputs, attention_mask)
 
-                self.optimizer.zero_grad()
-                formality_logits, gender_logits, grammaticality_logits = self.model(field_inputs, attention_mask)
+            formality_loss = self.formality_criterion(formality_logits, formality_labels)
+            gender_loss = self.gender_criterion(gender_logits, gender_labels)
+            grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_labels)
 
-                formality_loss = self.formality_criterion(formality_logits, formality_labels)
-                gender_loss = self.gender_criterion(gender_logits, gender_labels)
-                grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_labels)
+            # Weighted multi-task loss
+            loss = (
+                self.config.formality_loss_weight * formality_loss +
+                self.config.gender_loss_weight * gender_loss +
+                self.config.grammaticality_loss_weight * grammaticality_loss
+            )
 
-                # Weighted multi-task loss
-                loss = (
-                    self.config.formality_loss_weight * formality_loss +
-                    self.config.gender_loss_weight * gender_loss +
-                    self.config.grammaticality_loss_weight * grammaticality_loss
-                )
+            loss.backward()
 
-                loss.backward()
+            if self.config.gradient_clip > 0:
+                nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
 
-                if self.config.gradient_clip > 0:
-                    nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
+            self.optimizer.step()
 
-                self.optimizer.step()
+            total_loss += loss.item()
+            total_formality_loss += formality_loss.item()
+            total_gender_loss += gender_loss.item()
+            total_grammaticality_loss += grammaticality_loss.item()
+            n_batches += 1
 
-                total_loss += loss.item()
-                total_formality_loss += formality_loss.item()
-                total_gender_loss += gender_loss.item()
-                total_grammaticality_loss += grammaticality_loss.item()
-                n_batches += 1
-
-                # Progress display
-                if verbose:
-                    avg_loss_so_far = total_loss / n_batches
-                    progress = (batch_idx + 1) / total_batches
-                    bar_len = 30
-                    filled = int(bar_len * progress)
-                    bar = '=' * filled + '>' + '.' * (bar_len - filled - 1)
-                    sys.stdout.write(f'\r  [{bar}] {batch_idx+1}/{total_batches} loss={avg_loss_so_far:.4f}')
-                    sys.stdout.flush()
-        except Exception as e:
-            print(f"\n  ERROR during training: {e}")
-            import traceback
-            traceback.print_exc()
-            raise
+            # Progress display
+            if verbose:
+                avg_loss_so_far = total_loss / n_batches
+                progress = (batch_idx + 1) / total_batches
+                bar_len = 30
+                filled = int(bar_len * progress)
+                bar = '=' * filled + '>' + '.' * (bar_len - filled - 1)
+                sys.stdout.write(f'\r  [{bar}] {batch_idx+1}/{total_batches} loss={avg_loss_so_far:.4f}')
+                sys.stdout.flush()
 
         if verbose:
             sys.stdout.write('\n')
-            sys.stdout.flush()
-
-        if n_batches == 0:
-            print("  WARNING: No batches were processed!")
-            return 0.0, 0.0, 0.0, 0.0
 
         return total_loss / n_batches, total_formality_loss / n_batches, total_gender_loss / n_batches, total_grammaticality_loss / n_batches
 
@@ -1982,35 +2210,11 @@ class Trainer:
             checkpoint_args: Args object to save in checkpoint
             model_config: Model config to save in checkpoint
         """
-        if verbose:
-            print(f"DEBUG: Starting training loop with start_epoch={self.start_epoch}, epochs={self.config.epochs}")
-            print(f"DEBUG: train_loader has {len(self.train_loader)} batches, val_loader has {len(self.val_loader)} batches")
-            sys.stdout.flush()
-
         for epoch in range(self.start_epoch, self.config.epochs):
             if verbose:
                 print(f"Epoch {epoch+1}/{self.config.epochs}")
-                sys.stdout.flush()
-            try:
-                train_loss, train_formality_loss, train_gender_loss, train_grammaticality_loss = self.train_epoch(verbose=verbose)
-                if verbose:
-                    print(f"DEBUG: train_epoch returned: loss={train_loss:.4f}")
-                    sys.stdout.flush()
-            except Exception as e:
-                print(f"DEBUG: Exception in train_epoch: {e}")
-                import traceback
-                traceback.print_exc()
-                raise
-            try:
-                eval_results = self.evaluate()
-                if verbose:
-                    print(f"DEBUG: evaluate returned: loss={eval_results['loss']:.4f}")
-                    sys.stdout.flush()
-            except Exception as e:
-                print(f"DEBUG: Exception in evaluate: {e}")
-                import traceback
-                traceback.print_exc()
-                raise
+            train_loss, train_formality_loss, train_gender_loss, train_grammaticality_loss = self.train_epoch(verbose=verbose)
+            eval_results = self.evaluate()
 
             self.scheduler.step(eval_results['loss'])
 
@@ -2426,11 +2630,6 @@ def predict_style(
 
 
 if __name__ == "__main__":
-    # Force unbuffered output for debugging
-    import os
-    os.environ['PYTHONUNBUFFERED'] = '1'
-
-    # Example usage
     import argparse
 
     parser = argparse.ArgumentParser(description="Train style classifier (formality + gender)")
