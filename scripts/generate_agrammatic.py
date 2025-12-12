@@ -470,14 +470,21 @@ def error_conditional_mixing(kotogram: str) -> Optional[Tuple[str, str]]:
     """Mix up conditional forms inappropriately.
 
     Error: Using ～たら when ～なら is required, or vice versa.
+    Only targets actual conditional particles, not parts of other words.
     """
     tokens = split_kotogram(kotogram)
     if not tokens:
         return None
 
-    # Find conditional markers
+    # Find conditional markers - must be particles, not parts of verbs/auxiliaries
     for i, token in enumerate(tokens):
         surface = extract_surface(token)
+        pos = extract_pos(token)
+
+        # Only target actual particles
+        if pos != 'prt':
+            continue
+
         if surface == 'たら':
             # Replace with なら (often incorrect context)
             new_token = make_particle_token('なら', 'binding_particle')
@@ -485,7 +492,6 @@ def error_conditional_mixing(kotogram: str) -> Optional[Tuple[str, str]]:
             return ''.join(new_tokens), 'tara_nara_swap'
         elif surface == 'なら':
             # Replace with たら
-            # This is simplified - proper implementation would need verb stem + たら
             new_token = "⌈ˢたらᵖprt:conjunctive_particle⌉"
             new_tokens = tokens[:i] + [new_token] + tokens[i+1:]
             return ''.join(new_tokens), 'nara_tara_swap'
@@ -560,29 +566,35 @@ def error_honorific_mixing(kotogram: str) -> Optional[Tuple[str, str]]:
 def error_noda_misuse(kotogram: str) -> Optional[Tuple[str, str]]:
     """Misuse のだ/んだ explanatory form.
 
-    Error: Adding のだ where it adds awkward emphasis or sounds unnatural.
+    Error: Adding のだ after polite forms (ます/です) where it's ungrammatical.
+    E.g., 食べますのだ, きれいですのだ (wrong)
+
+    Note: のだ after plain forms is grammatical (explanatory), so we only
+    target polite forms where のだ cannot follow.
     """
     tokens = split_kotogram(kotogram)
     if not tokens:
         return None
 
-    # Find sentence-ending verbs/adjectives and add inappropriate のだ
+    # Find polite endings (ます/です) and add inappropriate のだ after them
     for i in range(len(tokens) - 1, -1, -1):
         token = tokens[i]
-        pos = extract_pos(token)
-        if pos in ['v', 'adj', 'auxv']:
-            form = extract_conjugation_form(token)
-            if form == 'terminal':
-                # Check if already has のだ
-                has_noda = any('のだ' in extract_surface(t) or 'んだ' in extract_surface(t)
-                              for t in tokens[i+1:i+3])
-                if not has_noda:
-                    # Add のだ inappropriately
-                    no_token = make_particle_token('の', 'pre_noun_particle')
-                    da_token = make_auxv_token('だ', 'auxv-da', 'terminal')
-                    new_tokens = tokens[:i+1] + [no_token, da_token] + tokens[i+1:]
-                    return ''.join(new_tokens), 'noda_overuse'
-                break
+        surface = extract_surface(token)
+
+        # Only target polite forms where のだ is ungrammatical
+        if 'auxv-masu' in token and surface in ['ます', 'ました']:
+            # Add のだ after ます/ました (ungrammatical)
+            no_token = make_particle_token('の', 'pre_noun_particle')
+            da_token = make_auxv_token('だ', 'auxv-da', 'terminal')
+            new_tokens = tokens[:i+1] + [no_token, da_token] + tokens[i+1:]
+            return ''.join(new_tokens), 'noda_after_masu'
+
+        if 'auxv-desu' in token and surface in ['です', 'でした']:
+            # Add のだ after です/でした (ungrammatical)
+            no_token = make_particle_token('の', 'pre_noun_particle')
+            da_token = make_auxv_token('だ', 'auxv-da', 'terminal')
+            new_tokens = tokens[:i+1] + [no_token, da_token] + tokens[i+1:]
+            return ''.join(new_tokens), 'noda_after_desu'
 
     return None
 
@@ -829,6 +841,9 @@ def error_te_de_confusion(kotogram: str) -> Optional[Tuple[str, str]]:
 
     Error: 書いで (should be 書いて)
     Error: 読んて (should be 読んで)
+
+    Only targets て/で that are conjunctive particles after verbs,
+    not parts of words like なんで, そこで, etc.
     """
     tokens = split_kotogram(kotogram)
     if not tokens:
@@ -836,6 +851,25 @@ def error_te_de_confusion(kotogram: str) -> Optional[Tuple[str, str]]:
 
     for i, token in enumerate(tokens):
         surface = extract_surface(token)
+        pos = extract_pos(token)
+
+        # Only target conjunctive particles after verb stems
+        if pos != 'prt':
+            continue
+
+        # Skip if preceded by interrogatives or other standalone words
+        if i > 0:
+            prev_surface = extract_surface(tokens[i - 1])
+            prev_pos = extract_pos(tokens[i - 1])
+
+            # Skip if preceded by pronoun/adverb (like なん, そこ, etc.)
+            if prev_pos in ['pron', 'adv', 'n']:
+                continue
+
+            # Only process after verb conjunctive forms
+            if prev_pos != 'v':
+                continue
+
         if surface == 'て':
             # Check if preceded by ん (should be で after ん)
             if i > 0:
@@ -1138,20 +1172,22 @@ def error_doko_instead_of_tokoro(kotogram: str) -> Optional[Tuple[str, str]]:
 def error_wrong_verb_base(kotogram: str) -> Optional[Tuple[str, str]]:
     """Use wrong verb conjugation base.
 
-    Error: Using dictionary form where ます-stem is needed.
+    Error: Add る to ます-stem creating invalid form like 食べまする, 行きまする.
+    This creates clearly ungrammatical verb forms.
     """
     tokens = split_kotogram(kotogram)
     if not tokens:
         return None
 
-    # Find ます and replace it but keep dictionary form before it
+    # Find ます in terminal form and add る after it (ungrammatical)
     for i, token in enumerate(tokens):
-        if 'auxv-masu' in token:
-            # This would need proper verb knowledge to implement correctly
-            # Simplified: just remove ます to create incomplete form
-            new_tokens = tokens[:i] + tokens[i+1:]
-            if new_tokens:
-                return ''.join(new_tokens), 'masu_omission'
+        surface = extract_surface(token)
+        if 'auxv-masu' in token and surface == 'ます':
+            # Add る after ます to create invalid form like ますร
+            # Change ます to まする (ungrammatical)
+            new_token = re.sub(r'ˢますᵖ', 'ˢまするᵖ', token)
+            new_tokens = tokens[:i] + [new_token] + tokens[i+1:]
+            return ''.join(new_tokens), 'masu_plus_ru'
 
     return None
 
@@ -1219,11 +1255,12 @@ def process_sentence(
     sentence_id: str,
     max_errors_per_sentence: int = 3,
     error_probability: float = 0.3,
-) -> List[Tuple[str, str, str, str, str]]:
+) -> List[Tuple[str, str, str, str, str, str]]:
     """Process a single sentence and generate agrammatic variants.
 
     Returns:
-        List of (new_id, 'jpn', new_sentence, new_kotogram, error_type) tuples
+        List of (new_id, 'jpn', new_sentence, source_id, new_kotogram, error_type) tuples
+        source_id is the ID of the original sentence this was derived from
     """
     results = []
 
@@ -1241,7 +1278,8 @@ def process_sentence(
                 # Make sure we actually changed something
                 if new_surface != sentence:
                     # ID will be assigned later as a simple number
-                    results.append((None, 'jpn', new_surface, new_kotogram, f"{category}:{error_type}"))
+                    # source_id tracks which original sentence this came from
+                    results.append((None, 'jpn', new_surface, sentence_id, new_kotogram, f"{category}:{error_type}"))
 
                     if len(results) >= max_errors_per_sentence:
                         break
@@ -1323,8 +1361,31 @@ def main():
         default=45000,
         help="Maximum examples per error type when balancing (default: 45000)"
     )
+    parser.add_argument(
+        "--validate",
+        action="store_true",
+        help="Validate generated sentences against grammaticality model. Stop on first false positive."
+    )
+    parser.add_argument(
+        "--disable-generator",
+        type=str,
+        default="",
+        help="Comma-separated list of generator codes to disable (e.g., 'b_desu_past,a_verb_base,a_noda')"
+    )
+    parser.add_argument(
+        "--include-source-id",
+        action="store_true",
+        help="Include source sentence ID in output (4th column before kotogram/error-type). "
+             "Required for source-based train/test splitting."
+    )
 
     args = parser.parse_args()
+
+    # Parse disabled generators
+    disabled_generators: set = set()
+    if args.disable_generator:
+        disabled_generators = set(g.strip() for g in args.disable_generator.split(','))
+        print(f"Disabled generators: {disabled_generators}")
     random.seed(args.seed)
 
     # Import kotogram parser
@@ -1336,6 +1397,140 @@ def main():
         print("Make sure kotogram is installed: pip install -e .")
         return
 
+    # Validation mode: check generated sentences against grammaticality model
+    if args.validate:
+        from kotogram.analysis import grammaticality
+        import inspect
+
+        print("Validation mode: checking generated sentences against grammaticality model...")
+        print(f"Reading from {args.input}...")
+
+        # Load known model errors to skip
+        model_errors_path = "data/jpn_model_errors.tsv"
+        known_model_errors: set = set()
+        try:
+            with open(model_errors_path, 'r', encoding='utf-8') as f:
+                reader = csv.reader(f, delimiter='\t')
+                for row in reader:
+                    if len(row) >= 3:
+                        known_model_errors.add(row[2])  # sentence is 3rd column
+            print(f"Loaded {len(known_model_errors)} known model errors to skip")
+        except FileNotFoundError:
+            print(f"No known model errors file found at {model_errors_path}")
+
+        processed = 0
+        checked = 0
+        false_positives = 0
+        skipped = 0
+
+        with open(args.input, 'r', encoding='utf-8') as f:
+            reader = csv.reader(f, delimiter='\t')
+
+            for row in reader:
+                if len(row) < 3:
+                    continue
+
+                sentence_id, lang, sentence = row[0], row[1], row[2]
+
+                if lang != 'jpn':
+                    continue
+
+                try:
+                    kotogram = parser_instance.japanese_to_kotogram(sentence)
+
+                    # Process each error generator individually to track which one produced the error
+                    for error_code, category, generator, weight in ERROR_GENERATORS:
+                        # Skip disabled generators
+                        if error_code in disabled_generators:
+                            continue
+
+                        try:
+                            result = generator(kotogram)
+                            if result:
+                                new_kotogram, error_type = result
+                                new_surface = kotogram_to_japanese(new_kotogram, spaces=False)
+
+                                if new_surface != sentence:
+                                    # Skip known model errors
+                                    if new_surface in known_model_errors:
+                                        skipped += 1
+                                        continue
+
+                                    checked += 1
+                                    # Check if model thinks it's grammatic (false positive)
+                                    is_grammatic = grammaticality(new_kotogram, use_model=True)
+
+                                    if is_grammatic:
+                                        false_positives += 1
+                                        accuracy = 100 * (checked - false_positives) / checked if checked > 0 else 0
+
+                                        # Found a false positive - print details and stop
+                                        print("\n" + "=" * 70)
+                                        print("FALSE POSITIVE DETECTED")
+                                        print("=" * 70)
+                                        print(f"Original sentence ID: {sentence_id}")
+                                        print(f"Original sentence:    {sentence}")
+                                        print(f"Generated sentence:   {new_surface}")
+                                        print(f"Error type:           {category}:{error_type}")
+                                        print(f"Error code:           {error_code}")
+                                        print(f"Generator function:   {generator.__name__}")
+                                        print(f"Kotogram:             {new_kotogram[:100]}...")
+                                        print()
+
+                                        # Get source location of the generator function
+                                        try:
+                                            source_file = inspect.getfile(generator)
+                                            source_lines, start_line = inspect.getsourcelines(generator)
+                                            print(f"Source location:      {source_file}:{start_line}")
+                                            print()
+                                            print("Generator function source (first 30 lines):")
+                                            print("-" * 70)
+                                            for i, line in enumerate(source_lines[:30]):
+                                                print(f"{start_line + i:4d}: {line.rstrip()}")
+                                            if len(source_lines) > 30:
+                                                print(f"      ... ({len(source_lines) - 30} more lines)")
+                                        except Exception as e:
+                                            print(f"Could not get source: {e}")
+
+                                        print("=" * 70)
+                                        print(f"\nStatistics:")
+                                        print(f"  Processed sentences:  {processed}")
+                                        print(f"  Checked examples:     {checked}")
+                                        print(f"  Skipped (known):      {skipped}")
+                                        print(f"  False positives:      {false_positives}")
+                                        print(f"  Model accuracy:       {accuracy:.2f}%")
+                                        print("\nStopping for debugging.")
+                                        return
+
+                        except Exception:
+                            pass
+
+                    processed += 1
+
+                    if processed % 1000 == 0:
+                        accuracy = 100 * (checked - false_positives) / checked if checked > 0 else 0
+                        print(f"Processed {processed} sentences, checked {checked}, false positives: {false_positives} ({accuracy:.2f}% accuracy)...")
+
+                    if args.max_samples and processed >= args.max_samples:
+                        break
+
+                except Exception as e:
+                    if args.verbose:
+                        print(f"Error processing {sentence_id}: {e}")
+                    continue
+
+        accuracy = 100 * (checked - false_positives) / checked if checked > 0 else 0
+        print(f"\nValidation complete!")
+        print(f"  Processed sentences:  {processed}")
+        print(f"  Checked examples:     {checked}")
+        print(f"  Skipped (known):      {skipped}")
+        print(f"  False positives:      {false_positives}")
+        print(f"  Model accuracy:       {accuracy:.2f}%")
+        if false_positives == 0:
+            print("\nNo false positives found - all generated sentences were correctly identified as agrammatic.")
+        return
+
+    # Normal generation mode
     generated = []
     processed = 0
     error_counts: Dict[str, int] = {}
@@ -1372,7 +1567,7 @@ def main():
 
                 for var in variants:
                     generated.append(var)
-                    error_type = var[4]
+                    error_type = var[5]  # (id, lang, sentence, source_id, kotogram, error_type)
                     error_counts[error_type] = error_counts.get(error_type, 0) + 1
 
                 processed += 1
@@ -1397,11 +1592,11 @@ def main():
         if args.verbose:
             print(f"\nBalancing error types (max {args.max_per_type} per type)...")
 
-        # Group by error type (from the 5th element)
+        # Group by error type (from the 6th element, index 5)
         by_error_code: Dict[str, List] = {}
         for item in generated:
             # Extract error code from error_type like "beginner:double_past" -> "b_double_past"
-            error_type = item[4]
+            error_type = item[5]  # (id, lang, sentence, source_id, kotogram, error_type)
             category, error_name = error_type.split(':')
             error_code = f"{category[0]}_{error_name}"
             if error_code not in by_error_code:
@@ -1429,15 +1624,16 @@ def main():
         # Recalculate error counts
         error_counts = {}
         for item in generated:
-            error_type = item[4]
+            error_type = item[5]  # (id, lang, sentence, source_id, kotogram, error_type)
             error_counts[error_type] = error_counts.get(error_type, 0) + 1
 
         if args.verbose:
             print(f"\nAfter balancing: {len(generated)} examples")
 
-    # Assign sequential numeric IDs
+    # Assign sequential numeric IDs (keep source_id intact)
+    # Tuple: (id, lang, sentence, source_id, kotogram, error_type)
     for i, item in enumerate(generated):
-        generated[i] = (str(i + 1), item[1], item[2], item[3], item[4])
+        generated[i] = (str(i + 1), item[1], item[2], item[3], item[4], item[5])
 
     # Write output
     if args.verbose:
@@ -1445,8 +1641,10 @@ def main():
 
     with open(args.output, 'w', encoding='utf-8', newline='') as f:
         writer = csv.writer(f, delimiter='\t')
-        for new_id, lang, new_sentence, new_kotogram, error_type in generated:
+        for new_id, lang, new_sentence, source_id, new_kotogram, error_type in generated:
             row = [new_id, lang, new_sentence]
+            if args.include_source_id:
+                row.append(source_id)
             if args.include_kotogram:
                 row.append(new_kotogram)
             if args.include_error_type:

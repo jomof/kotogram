@@ -528,6 +528,7 @@ class Sample:
     grammaticality_label: int = 1  # 1 = grammatic (default), 0 = agrammatic
     original_sentence: str = ""
     kotogram: str = ""
+    source_id: str = ""  # Source sentence ID (for agrammatic sentences, this is the ID of the original sentence)
 
     @property
     def seq_len(self) -> int:
@@ -560,7 +561,7 @@ GENDER_ID_TO_LABEL = {v: k for k, v in GENDER_LABEL_TO_ID.items()}
 # v1: Initial version
 # v2: Removed lemma pruning (lemma_min_freq, max_lemma_vocab)
 # v3: Added parallel processing
-CACHE_VERSION = 3
+CACHE_VERSION = 4  # v4: Added source_id to Sample for source-based train/test splitting
 
 
 class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
@@ -623,12 +624,12 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
     @staticmethod
     def _process_parallel(
-        rows: List[Tuple[str, str, int]],  # (sentence, sentence_id, gram_label)
+        rows: List[Tuple[str, str, int, str]],  # (sentence, sentence_id, gram_label, source_id)
         num_workers: Optional[int] = None,
         batch_size: int = 1000,
         verbose: bool = True,
         use_kotogram_cache: bool = True,
-    ) -> List[Tuple[str, str, str, int, int, int]]:
+    ) -> List[Tuple[str, str, int, int, int, int, str]]:
         """Process sentences in parallel using multiprocessing.
 
         Uses a durable kotogram cache to avoid re-parsing sentences that have
@@ -637,14 +638,14 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         training parameters, etc.
 
         Args:
-            rows: List of (sentence, sentence_id, gram_label) tuples
+            rows: List of (sentence, sentence_id, gram_label, source_id) tuples
             num_workers: Number of worker processes (default: CPU count)
             batch_size: Sentences per batch sent to workers
             verbose: Print progress
             use_kotogram_cache: If True, use durable kotogram cache
 
         Returns:
-            List of (sentence, kotogram, formality_id, gender_id, gram_label, success) tuples
+            List of (sentence, kotogram, formality_id, gender_id, gram_label, success, source_id) tuples
         """
         if num_workers is None:
             num_workers = max(1, mp.cpu_count() - 1)
@@ -655,7 +656,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         # Check kotogram cache for already-parsed sentences
         cache = get_kotogram_cache() if use_kotogram_cache else None
         cached_kotograms: Dict[str, Optional[str]] = {}
-        uncached_rows: List[Tuple[str, str, int]] = []
+        uncached_rows: List[Tuple[str, str, int, str]] = []
 
         if cache is not None:
             sentences = [r[0] for r in rows]
@@ -705,7 +706,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         # Now compute labels for all sentences (both cached and newly parsed)
         # Labels are quick to compute, no need for parallel processing
-        results: List[Tuple[str, str, str, int, int, int]] = []
+        results: List[Tuple[str, str, int, int, int, int, str]] = []
 
         formality_to_id = {
             FormalityLevel.VERY_FORMAL: 0,
@@ -722,7 +723,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             GenderLevel.UNPRAGMATIC_GENDER: 3,
         }
 
-        for sentence, _sid, gram_label in rows:
+        for sentence, _sid, gram_label, source_id in rows:
             kotogram = cached_kotograms.get(sentence)
             if kotogram:
                 try:
@@ -730,7 +731,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     gender_enum = gender(kotogram)
                     formality_id = formality_to_id[formality_enum]
                     gender_id = gender_to_id[gender_enum]
-                    results.append((sentence, kotogram, formality_id, gender_id, gram_label, 1))
+                    results.append((sentence, kotogram, formality_id, gender_id, gram_label, 1, source_id))
                 except Exception:
                     pass  # Skip sentences that fail label computation
 
@@ -827,7 +828,8 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 return cls(cached_samples, tokenizer)
 
         # Phase 1: Read all rows from TSV file (fast I/O)
-        all_rows: List[Tuple[str, str, int]] = []  # (sentence, sentence_id, gram_label)
+        # Tuple: (sentence, sentence_id, gram_label, source_id)
+        all_rows: List[Tuple[str, str, int, str]] = []
         gram_label = 1  # Single-file load assumes grammatic
 
         if verbose:
@@ -841,7 +843,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 sentence_id, lang, sentence = row[0], row[1], row[2]
                 if lang != 'jpn':
                     continue
-                all_rows.append((sentence, sentence_id, gram_label))
+                # source_id is in 4th column if present, otherwise use sentence_id itself
+                source_id = row[3] if len(row) >= 4 else sentence_id
+                all_rows.append((sentence, sentence_id, gram_label, source_id))
                 if max_samples and len(all_rows) >= max_samples:
                     break
 
@@ -860,7 +864,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         gender_counts: Counter[GenderLevel] = Counter()
         grammaticality_counts: Counter[int] = Counter()
 
-        for sentence, kotogram, formality_id, gender_id, gram_label, _success in processed_results:
+        for sentence, kotogram, formality_id, gender_id, gram_label, _success, source_id in processed_results:
             # Encode to feature IDs (builds vocabulary - must be sequential)
             feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
 
@@ -871,6 +875,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 grammaticality_label=gram_label,
                 original_sentence=sentence,
                 kotogram=kotogram,
+                source_id=source_id,
             )
             samples.append(sample)
 
@@ -967,7 +972,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 return cls(cached_samples, tokenizer)
 
         # Phase 1: Read all rows from TSV files (fast I/O)
-        all_rows: List[Tuple[str, str, int]] = []  # (sentence, sentence_id, gram_label)
+        # Tuple: (sentence, sentence_id, gram_label, source_id)
+        # source_id is the original sentence ID for agrammatic sentences (4th column if present)
+        all_rows: List[Tuple[str, str, int, str]] = []
         for tsv_path, gram_label in zip(tsv_paths, grammaticality_labels):
             if verbose:
                 gram_str = "grammatic" if gram_label == 1 else "agrammatic"
@@ -982,7 +989,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     sentence_id, lang, sentence = row[0], row[1], row[2]
                     if lang != 'jpn':
                         continue
-                    all_rows.append((sentence, sentence_id, gram_label))
+                    # source_id is in 4th column if present, otherwise use sentence_id itself
+                    source_id = row[3] if len(row) >= 4 else sentence_id
+                    all_rows.append((sentence, sentence_id, gram_label, source_id))
                     file_count += 1
                     if max_samples and len(all_rows) >= max_samples:
                         break
@@ -1008,7 +1017,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         gender_counts: Counter[GenderLevel] = Counter()
         grammaticality_counts: Counter[int] = Counter()
 
-        for sentence, kotogram, formality_id, gender_id, gram_label, _success in processed_results:
+        for sentence, kotogram, formality_id, gender_id, gram_label, _success, source_id in processed_results:
             # Encode to feature IDs (builds vocabulary - must be sequential)
             feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
 
@@ -1019,6 +1028,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 grammaticality_label=gram_label,
                 original_sentence=sentence,
                 kotogram=kotogram,
+                source_id=source_id,
             )
             samples.append(sample)
 
@@ -1066,6 +1076,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         val_ratio: float = 0.1,
         seed: int = 42,
         stratify: bool = True,
+        split_by_source: bool = True,
     ) -> Tuple['StyleDataset', 'StyleDataset', 'StyleDataset']:
         """Split dataset into train/validation/test sets.
 
@@ -1076,6 +1087,10 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             stratify: If True, use stratified splitting to ensure proportional
                      representation of all class combinations in each split.
                      Uses combined (formality, gender, grammaticality) labels for stratification.
+            split_by_source: If True, split by source_id so all derivatives of a source
+                     sentence stay together in the same split. This prevents data leakage
+                     for agrammatic sentences that were derived from the same source.
+                     Default True for better generalization evaluation.
 
         Returns:
             Tuple of (train, validation, test) StyleDataset instances
@@ -1086,7 +1101,51 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         val_indices: List[int] = []
         test_indices: List[int] = []
 
-        if not stratify:
+        if split_by_source:
+            # Split by source_id to prevent data leakage
+            # Group samples by source_id
+            source_to_indices: Dict[str, List[int]] = {}
+            for i, sample in enumerate(self.samples):
+                source_id = sample.source_id if sample.source_id else str(i)
+                if source_id not in source_to_indices:
+                    source_to_indices[source_id] = []
+                source_to_indices[source_id].append(i)
+
+            # Get unique source IDs and shuffle
+            source_ids = list(source_to_indices.keys())
+            random.shuffle(source_ids)
+
+            # Split source IDs into train/val/test
+            n_sources = len(source_ids)
+            n_train_sources = int(n_sources * train_ratio)
+            n_val_sources = int(n_sources * val_ratio)
+
+            train_source_ids = set(source_ids[:n_train_sources])
+            val_source_ids = set(source_ids[n_train_sources:n_train_sources + n_val_sources])
+            test_source_ids = set(source_ids[n_train_sources + n_val_sources:])
+
+            # Assign all samples from each source to its split
+            for source_id, indices in source_to_indices.items():
+                if source_id in train_source_ids:
+                    train_indices.extend(indices)
+                elif source_id in val_source_ids:
+                    val_indices.extend(indices)
+                else:
+                    test_indices.extend(indices)
+
+            # Shuffle within each split
+            random.shuffle(train_indices)
+            random.shuffle(val_indices)
+            random.shuffle(test_indices)
+
+            # Print split statistics
+            print(f"\nSource-based split:")
+            print(f"  Unique source sentences: {n_sources}")
+            print(f"  Train sources: {len(train_source_ids)} -> {len(train_indices)} samples")
+            print(f"  Val sources: {len(val_source_ids)} -> {len(val_indices)} samples")
+            print(f"  Test sources: {len(test_source_ids)} -> {len(test_indices)} samples")
+
+        elif not stratify:
             # Original random splitting
             indices = list(range(len(self.samples)))
             random.shuffle(indices)
