@@ -72,6 +72,7 @@ FP16=""
 FP8=""
 RESUME=""
 RETRAIN=""
+CONFUSION=""
 EXCLUDE_FEATURES=""
 
 # Parse command line arguments
@@ -173,6 +174,10 @@ while [[ $# -gt 0 ]]; do
             RETRAIN="--retrain"
             shift
             ;;
+        --confusion)
+            CONFUSION="--confusion"
+            shift
+            ;;
         --exclude-features)
             EXCLUDE_FEATURES="$2"
             shift 2
@@ -222,6 +227,7 @@ while [[ $# -gt 0 ]]; do
             echo "  --fp8                 Save model in float8 (quarter size, requires PyTorch 2.1+)"
             echo "  --resume              Resume training from checkpoint in output directory"
             echo "  --retrain             Retrain from scratch using parameters from checkpoint"
+            echo "  --confusion           Print confusion matrices for existing model and exit"
             echo ""
             echo "Feature Ablation:"
             echo "  --exclude-features F  Comma-separated features to exclude (for ablation study)"
@@ -276,6 +282,9 @@ if [ -n "$RESUME" ]; then
 fi
 if [ -n "$RETRAIN" ]; then
     echo "Retrain:        from scratch using parameters from checkpoint"
+fi
+if [ -n "$CONFUSION" ]; then
+    echo "Action:         Print confusion matrices (no training)"
 fi
 if [ -n "$EXCLUDE_FEATURES" ]; then
     echo "Exclude:        $EXCLUDE_FEATURES"
@@ -334,6 +343,10 @@ fi
 
 if [ -n "$RETRAIN" ]; then
     CMD="$CMD --retrain"
+fi
+
+if [ -n "$CONFUSION" ]; then
+    CMD="$CMD --confusion"
 fi
 
 if [ -n "$EXCLUDE_FEATURES" ]; then

@@ -126,10 +126,13 @@ def error_particle_ni_de_confusion(kotogram: str) -> Optional[Tuple[str, str]]:
             next_surface = extract_surface(tokens[i + 1])
             next_pos = extract_pos(tokens[i + 1])
             # Check if followed by いる/ある (existence verbs)
-            if next_pos == 'v' and next_surface in ['いる', 'い', 'ある', 'あり', 'あっ']:
-                new_token = make_particle_token('で', 'case_particle')
-                new_tokens = tokens[:i] + [new_token] + tokens[i+1:]
-                return ''.join(new_tokens), 'ni_de_existence'
+            # Check if followed by いる (animate existence verb)
+            # Note: Removed ある/あり/あっ (inanimate) because swapping to で creates
+            # 'である'/'であります' which is a valid formal copula, not an error.
+            # if next_pos == 'v' and next_surface in ['いる', 'い']:
+            #     new_token = make_particle_token('で', 'case_particle')
+            #     new_tokens = tokens[:i] + [new_token] + tokens[i+1:]
+            #     return ''.join(new_tokens), 'ni_de_existence'
 
         # Case 2: で before destination verbs (行く/来る/帰る) - this is WRONG
         # に is correct for destinations. But we want to CREATE errors,
@@ -197,6 +200,10 @@ def error_desu_after_plain_past(kotogram: str) -> Optional[Tuple[str, str]]:
         if pos == 'auxv' and 'auxv-ta' in token:
             form = extract_conjugation_form(token)
             if form == 'terminal':
+                # Check preceding token - if it's an adjective, "past + desu" is VALID (e.g. よかったです)
+                if i > 0 and 'adj' in extract_pos(tokens[i-1]):
+                    continue
+
                 # Insert です after the past auxiliary
                 desu_token = make_auxv_token('です', 'auxv-desu', 'terminal')
                 new_tokens = tokens[:i+1] + [desu_token] + tokens[i+1:]
@@ -656,6 +663,9 @@ def error_te_form_wrong(kotogram: str) -> Optional[Tuple[str, str]]:
                 prev_surface = extract_surface(tokens[i-1])
                 # Create wrong て-form by adding extra っ or removing small tsu
                 if prev_surface.endswith('っ'):
+                    # Skip 'shitte' (know) -> 'shite' (do) as it creates valid sentences
+                    if prev_surface in ['知っ', 'しっ']:
+                        continue
                     # Remove the small tsu (wrong)
                     new_prev = prev_surface[:-1]
                     new_token = re.sub(r'ˢ[^ᵖ]+ᵖ', f'ˢ{new_prev}ᵖ', tokens[i-1])
@@ -878,7 +888,21 @@ def error_te_de_confusion(kotogram: str) -> Optional[Tuple[str, str]]:
             # Check if preceded by ん (should be で after ん)
             if i > 0:
                 prev_surface = extract_surface(tokens[i - 1])
+                
+                # Exclusion list for verb stems that are also common nouns
+                # "Tsukare de" (due to fatigue) is valid, so unlikely to be an error
+                if prev_surface in ['疲れ', '休み', '誤り', '考え', '起き', '押し', '比べ', '諦め', 'あきらめ', '遅れ', '覚まし', '減らし', '緩め', '締め', '言いつけ']:
+                    continue
+
                 if not prev_surface.endswith('ん'):
+                    # Check if followed by aru/iru/oru (existence verbs)
+                    # "te aru" -> "de aru" creates a valid copula structure
+                    # "te iru" -> "de iru" creates a valid "at/by means of ... exists" structure
+                    if i + 1 < len(tokens):
+                        next_surface = extract_surface(tokens[i+1])
+                        if next_surface in ['いる', 'い', 'ある', 'あ', 'おり', 'お', '居る', '有る', '在る', 'います', 'あります']:
+                            continue
+
                     # Change て to で (wrong for most verbs)
                     new_token = re.sub(r'ˢてᵖ', 'ˢでᵖ', token)
                     new_tokens = tokens[:i] + [new_token] + tokens[i + 1:]
@@ -1070,6 +1094,9 @@ def error_tai_plus_da(kotogram: str) -> Optional[Tuple[str, str]]:
         if 'auxv-tai' in token and surface == 'たい':
             # Check if followed by sentence-final particle
             if i + 1 < len(tokens):
+                # Skip 'mitai' (want to see/try) -> 'mitai da' as it mimics 'mitai da' (looks like)
+                if i > 0 and extract_surface(tokens[i-1]) in ['み', '見']:
+                    continue
                 next_surface = extract_surface(tokens[i + 1])
                 if next_surface in final_particles or next_surface in ['。', '！', '？', '.']:
                     # Insert だ between たい and particle (wrong)
