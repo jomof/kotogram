@@ -270,8 +270,8 @@ mkdir -p "$OUTPUT_DIR"
 # Enable MPS fallback for unsupported ops (Mac Apple Silicon)
 export PYTORCH_ENABLE_MPS_FALLBACK=1
 
-# Build command
-CMD="python -m kotogram.style_classifier \
+# Build command (use -u for unbuffered output)
+CMD="python -u -m kotogram.style_classifier \
     --data \"$DATA_PATH\" \
     --output \"$OUTPUT_DIR\" \
     --epochs $EPOCHS \

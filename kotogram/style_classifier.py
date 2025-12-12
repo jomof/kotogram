@@ -1814,49 +1814,63 @@ class Trainer:
             print("  WARNING: No batches in train_loader!")
             return 0.0, 0.0, 0.0, 0.0
 
-        for batch_idx, batch in enumerate(self.train_loader):
-            field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels = self._batch_to_device(batch)
+        if verbose:
+            print(f"  Training {total_batches} batches...")
+            sys.stdout.flush()
 
-            self.optimizer.zero_grad()
-            formality_logits, gender_logits, grammaticality_logits = self.model(field_inputs, attention_mask)
+        try:
+            for batch_idx, batch in enumerate(self.train_loader):
+                field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels = self._batch_to_device(batch)
 
-            formality_loss = self.formality_criterion(formality_logits, formality_labels)
-            gender_loss = self.gender_criterion(gender_logits, gender_labels)
-            grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_labels)
+                self.optimizer.zero_grad()
+                formality_logits, gender_logits, grammaticality_logits = self.model(field_inputs, attention_mask)
 
-            # Weighted multi-task loss
-            loss = (
-                self.config.formality_loss_weight * formality_loss +
-                self.config.gender_loss_weight * gender_loss +
-                self.config.grammaticality_loss_weight * grammaticality_loss
-            )
+                formality_loss = self.formality_criterion(formality_logits, formality_labels)
+                gender_loss = self.gender_criterion(gender_logits, gender_labels)
+                grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_labels)
 
-            loss.backward()
+                # Weighted multi-task loss
+                loss = (
+                    self.config.formality_loss_weight * formality_loss +
+                    self.config.gender_loss_weight * gender_loss +
+                    self.config.grammaticality_loss_weight * grammaticality_loss
+                )
 
-            if self.config.gradient_clip > 0:
-                nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
+                loss.backward()
 
-            self.optimizer.step()
+                if self.config.gradient_clip > 0:
+                    nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
 
-            total_loss += loss.item()
-            total_formality_loss += formality_loss.item()
-            total_gender_loss += gender_loss.item()
-            total_grammaticality_loss += grammaticality_loss.item()
-            n_batches += 1
+                self.optimizer.step()
 
-            # Progress display
-            if verbose:
-                avg_loss_so_far = total_loss / n_batches
-                progress = (batch_idx + 1) / total_batches
-                bar_len = 30
-                filled = int(bar_len * progress)
-                bar = '=' * filled + '>' + '.' * (bar_len - filled - 1)
-                sys.stdout.write(f'\r  [{bar}] {batch_idx+1}/{total_batches} loss={avg_loss_so_far:.4f}')
-                sys.stdout.flush()
+                total_loss += loss.item()
+                total_formality_loss += formality_loss.item()
+                total_gender_loss += gender_loss.item()
+                total_grammaticality_loss += grammaticality_loss.item()
+                n_batches += 1
+
+                # Progress display
+                if verbose:
+                    avg_loss_so_far = total_loss / n_batches
+                    progress = (batch_idx + 1) / total_batches
+                    bar_len = 30
+                    filled = int(bar_len * progress)
+                    bar = '=' * filled + '>' + '.' * (bar_len - filled - 1)
+                    sys.stdout.write(f'\r  [{bar}] {batch_idx+1}/{total_batches} loss={avg_loss_so_far:.4f}')
+                    sys.stdout.flush()
+        except Exception as e:
+            print(f"\n  ERROR during training: {e}")
+            import traceback
+            traceback.print_exc()
+            raise
 
         if verbose:
             sys.stdout.write('\n')
             sys.stdout.flush()
+
+        if n_batches == 0:
+            print("  WARNING: No batches were processed!")
+            return 0.0, 0.0, 0.0, 0.0
 
         return total_loss / n_batches, total_formality_loss / n_batches, total_gender_loss / n_batches, total_grammaticality_loss / n_batches
 
@@ -1968,11 +1982,35 @@ class Trainer:
             checkpoint_args: Args object to save in checkpoint
             model_config: Model config to save in checkpoint
         """
+        if verbose:
+            print(f"DEBUG: Starting training loop with start_epoch={self.start_epoch}, epochs={self.config.epochs}")
+            print(f"DEBUG: train_loader has {len(self.train_loader)} batches, val_loader has {len(self.val_loader)} batches")
+            sys.stdout.flush()
+
         for epoch in range(self.start_epoch, self.config.epochs):
             if verbose:
                 print(f"Epoch {epoch+1}/{self.config.epochs}")
-            train_loss, train_formality_loss, train_gender_loss, train_grammaticality_loss = self.train_epoch(verbose=verbose)
-            eval_results = self.evaluate()
+                sys.stdout.flush()
+            try:
+                train_loss, train_formality_loss, train_gender_loss, train_grammaticality_loss = self.train_epoch(verbose=verbose)
+                if verbose:
+                    print(f"DEBUG: train_epoch returned: loss={train_loss:.4f}")
+                    sys.stdout.flush()
+            except Exception as e:
+                print(f"DEBUG: Exception in train_epoch: {e}")
+                import traceback
+                traceback.print_exc()
+                raise
+            try:
+                eval_results = self.evaluate()
+                if verbose:
+                    print(f"DEBUG: evaluate returned: loss={eval_results['loss']:.4f}")
+                    sys.stdout.flush()
+            except Exception as e:
+                print(f"DEBUG: Exception in evaluate: {e}")
+                import traceback
+                traceback.print_exc()
+                raise
 
             self.scheduler.step(eval_results['loss'])
 
@@ -2388,6 +2426,10 @@ def predict_style(
 
 
 if __name__ == "__main__":
+    # Force unbuffered output for debugging
+    import os
+    os.environ['PYTHONUNBUFFERED'] = '1'
+
     # Example usage
     import argparse
 
