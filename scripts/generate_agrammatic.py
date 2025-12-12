@@ -37,63 +37,26 @@ import random
 import re
 from typing import List, Tuple, Optional, Dict, Callable
 
+from kotogram import split_kotogram, extract_token_features, kotogram_to_japanese
+
 
 # ============================================================================
 # KOTOGRAM TOKEN UTILITIES
 # ============================================================================
 
-def split_kotogram(kotogram: str) -> List[str]:
-    """Split a kotogram sentence into individual tokens."""
-    return re.findall(r'⌈[^⌉]*⌉', kotogram)
-
-
 def extract_surface(token: str) -> str:
     """Extract surface form from a kotogram token."""
-    match = re.search(r'ˢ(.*?)ᵖ', token)
-    return match.group(1) if match else ''
+    return extract_token_features(token)['surface']
 
 
 def extract_pos(token: str) -> str:
     """Extract main POS from a kotogram token."""
-    match = re.search(r'ᵖ([^:⌉]+)', token)
-    return match.group(1) if match else ''
-
-
-def extract_pos_detail(token: str) -> str:
-    """Extract POS detail from a kotogram token."""
-    match = re.search(r'ᵖ[^:⌉]+:([^:⌉]+)', token)
-    return match.group(1) if match else ''
-
-
-def extract_conjugation_type(token: str) -> str:
-    """Extract conjugation type from a kotogram token."""
-    # Format: ᵖpos:detail1:detail2:conjugation_type:conjugation_form
-    match = re.search(r'ᵖ[^⌉]+:([^:⌉]+):[^:⌉]+$', token)
-    if match:
-        return match.group(1)
-    # Alternative: look for auxv-XXX patterns
-    match = re.search(r'auxv-([^:⌉]+)', token)
-    return match.group(1) if match else ''
+    return extract_token_features(token)['pos']
 
 
 def extract_conjugation_form(token: str) -> str:
     """Extract conjugation form from a kotogram token."""
-    match = re.search(r':([^:⌉]+)⌉$', token)
-    return match.group(1) if match else ''
-
-
-def extract_all_surfaces(kotogram: str, with_spaces: bool = True) -> str:
-    """Extract and concatenate all surface forms from a kotogram.
-
-    Args:
-        kotogram: The kotogram string to extract surfaces from
-        with_spaces: If True, join surfaces with spaces (for model training).
-                    If False, join without spaces (for display).
-    """
-    pattern = r'ˢ(.*?)ᵖ'
-    matches = re.findall(pattern, kotogram, re.DOTALL)
-    separator = ' ' if with_spaces else ''
-    return separator.join(matches)
+    return extract_token_features(token)['conjugated_form']
 
 
 def make_particle_token(surface: str, detail: str = 'case_particle') -> str:
@@ -1274,7 +1237,7 @@ def process_sentence(
             if result:
                 new_kotogram, error_type = result
                 # Extract surface form for the new sentence
-                new_surface = extract_all_surfaces(new_kotogram, with_spaces=False)
+                new_surface = kotogram_to_japanese(new_kotogram, spaces=False)
                 # Make sure we actually changed something
                 if new_surface != sentence:
                     # ID will be assigned later as a simple number
