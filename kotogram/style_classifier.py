@@ -252,7 +252,7 @@ def get_kotogram_cache(db_path: str = KotogramCache.DEFAULT_PATH) -> KotogramCac
 
 
 def _process_sentence_batch(
-    batch: List[Tuple[str, str, int]],  # (sentence, sentence_id, gram_label)
+    batch: List[Tuple[str, str, int, str]],  # (sentence, sentence_id, gram_label, source_id)
 ) -> List[Tuple[str, str, str, int, int, int, int]]:
     """Process a batch of sentences in a worker process.
 
@@ -282,7 +282,7 @@ def _process_sentence_batch(
         GenderLevel.UNPRAGMATIC_GENDER: 3,
     }
 
-    for sentence, sentence_id, gram_label in batch:
+    for sentence, sentence_id, gram_label, source_id in batch:
         try:
             kotogram = parser.japanese_to_kotogram(sentence)
             formality_enum = formality(kotogram)
@@ -2745,12 +2745,14 @@ if __name__ == "__main__":
                         help="Save model in float8 precision (quarter size, requires PyTorch 2.1+)")
     parser.add_argument("--resume", action="store_true",
                         help="Resume training from checkpoint in output directory")
+    parser.add_argument("--retrain", action="store_true",
+                        help="Retrain from scratch using parameters from existing checkpoint")
 
     args = parser.parse_args()
 
-    # Handle resume from checkpoint
+    # Handle resume from checkpoint or retrain
     checkpoint = None
-    if args.resume:
+    if args.resume or args.retrain:
         import os
         checkpoint_path = os.path.join(args.output, 'checkpoint.pt')
         if os.path.exists(checkpoint_path):
@@ -2766,8 +2768,17 @@ if __name__ == "__main__":
                 print(f"Restored feature exclusion: {excluded}")
                 print(f"Active features: {FEATURE_FIELDS}")
 
-            print(f"Resuming from checkpoint in {args.output}...")
-            model, tokenizer, checkpoint = load_checkpoint(args.output)
+            if args.resume:
+                print(f"Resuming from checkpoint in {args.output}...")
+                model, tokenizer, checkpoint = load_checkpoint(args.output)
+            else:
+                print(f"Retraining from scratch using parameters from {args.output}...")
+                # We need tokenizer to load data, but we'll create a fresh one or load it?
+                # Actually, if we retrain, we probably want to start with a fresh tokenizer
+                # UNLESS the user wants to keep the vocab.
+                # Standard retrain usually implies fresh start. 
+                # Let's see if we can just leverage the arg restoration and let the rest flow.
+                pass
 
             # Override args with saved args (but keep epochs from command line to allow extending)
             print(f"  Using saved parameters:")
@@ -2777,7 +2788,10 @@ if __name__ == "__main__":
             print(f"    num_layers: {saved_args['num_layers']}")
             print(f"    num_heads: {saved_args['num_heads']}")
             print(f"    learning_rate: {saved_args['learning_rate']}")
-            print(f"  Resuming from epoch {checkpoint['epoch'] + 1}, training to epoch {args.epochs}")
+            if args.resume:
+                print(f"  Resuming from epoch {checkpoint['epoch'] + 1}, training to epoch {args.epochs}")
+            else:
+                print(f"  Retraining from epoch 0 to {args.epochs}")
 
             # Update args with saved values (except epochs which can be extended)
             args.data = saved_args['data']
@@ -2797,6 +2811,8 @@ if __name__ == "__main__":
         else:
             print(f"No checkpoint found at {checkpoint_path}, starting fresh training")
             args.resume = False
+            # args.retrain = False # If no checkpoint, retrain just means train normally
+
 
     # Handle feature exclusion (for new training, not resume)
     if args.exclude_features and not checkpoint:

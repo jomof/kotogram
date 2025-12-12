@@ -71,6 +71,7 @@ GRAMMATICALITY_WEIGHT=1.0
 FP16=""
 FP8=""
 RESUME=""
+RETRAIN=""
 EXCLUDE_FEATURES=""
 
 # Parse command line arguments
@@ -168,9 +169,22 @@ while [[ $# -gt 0 ]]; do
             RESUME="--resume"
             shift
             ;;
+        --retrain)
+            RETRAIN="--retrain"
+            shift
+            ;;
         --exclude-features)
             EXCLUDE_FEATURES="$2"
             shift 2
+            ;;
+        --test)
+            IS_TEST=1
+            OUTPUT_DIR="models/test_style"
+            # Set defaults for test mode if not already specified (simple approach: just set them)
+            # Users can override by passing --epochs N after --test if they really want
+            EPOCHS=1
+            MAX_SAMPLES="--max-samples 100"
+            shift
             ;;
         --help)
             echo "Train style classifier (formality + gender + grammaticality) on Japanese sentence corpus"
@@ -207,11 +221,13 @@ while [[ $# -gt 0 ]]; do
             echo "  --fp16                Save model in float16 (half size, minimal accuracy loss)"
             echo "  --fp8                 Save model in float8 (quarter size, requires PyTorch 2.1+)"
             echo "  --resume              Resume training from checkpoint in output directory"
+            echo "  --retrain             Retrain from scratch using parameters from checkpoint"
             echo ""
             echo "Feature Ablation:"
             echo "  --exclude-features F  Comma-separated features to exclude (for ablation study)"
             echo "                        Valid: surface,pos,pos_detail1,pos_detail2,conjugated_type,conjugated_form,lemma"
             echo ""
+            echo "  --test                Run in test mode (output to models/test_style, 1 epoch, 100 samples)"
             echo "  --help                Show this help message"
             exit 0
             ;;
@@ -257,6 +273,9 @@ elif [ -n "$FP16" ]; then
 fi
 if [ -n "$RESUME" ]; then
     echo "Resume:         from checkpoint"
+fi
+if [ -n "$RETRAIN" ]; then
+    echo "Retrain:        from scratch using parameters from checkpoint"
 fi
 if [ -n "$EXCLUDE_FEATURES" ]; then
     echo "Exclude:        $EXCLUDE_FEATURES"
@@ -311,6 +330,10 @@ fi
 
 if [ -n "$RESUME" ]; then
     CMD="$CMD --resume"
+fi
+
+if [ -n "$RETRAIN" ]; then
+    CMD="$CMD --retrain"
 fi
 
 if [ -n "$EXCLUDE_FEATURES" ]; then

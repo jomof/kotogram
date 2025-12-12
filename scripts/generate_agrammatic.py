@@ -31,11 +31,15 @@ Usage:
     python scripts/generate_agrammatic.py --input data/jpn_sentences.tsv --output data/jpn_agrammatic.tsv --max-samples 1000
 """
 
+import multiprocessing as mp
+import time
+from concurrent.futures import ProcessPoolExecutor
 import argparse
 import csv
 import random
 import re
-from typing import List, Tuple, Optional, Dict, Callable
+import math
+from typing import List, Tuple, Optional, Dict, Callable, Set, Any
 
 from kotogram import split_kotogram, extract_token_features, kotogram_to_japanese
 
@@ -1193,6 +1197,84 @@ def error_wrong_verb_base(kotogram: str) -> Optional[Tuple[str, str]]:
 
 
 # ============================================================================
+# MULTIPROCESSING WORKERS
+# ============================================================================
+
+# Global variables for worker processes
+_worker_parser = None
+_worker_known_errors: Set[str] = set()
+_worker_disabled_generators: Set[str] = set()
+
+def init_worker(known_errors: Set[str], disabled_generators: Set[str]):
+    """Initialize worker process with parser and shared data."""
+    global _worker_parser, _worker_known_errors, _worker_disabled_generators
+    
+    # Import parser locally to reuse inside worker
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    _worker_parser = SudachiJapaneseParser()
+    _worker_known_errors = known_errors
+    _worker_disabled_generators = disabled_generators
+
+def _process_validation_row(row: List[str]) -> List[Dict[str, Any]]:
+    """Process a single row for validation in a worker process."""
+    if len(row) < 3:
+        return []
+    
+    sentence_id, lang, sentence = row[0], row[1], row[2]
+    if lang != 'jpn':
+        return []
+
+    results = []
+    
+    try:
+        # 1. Parse original
+        kotogram = _worker_parser.japanese_to_kotogram(sentence)
+        
+        # 2. Generate variants
+        # Access global ERROR_GENERATORS (defined in module)
+        for error_code, category, generator, weight in ERROR_GENERATORS:
+            if error_code in _worker_disabled_generators:
+                continue
+            
+            try:
+                result = generator(kotogram)
+                if result:
+                    new_kotogram, error_type = result
+                    new_surface = kotogram_to_japanese(new_kotogram, spaces=False)
+                    
+                    if new_surface != sentence:
+                        # Skip known errors
+                        if new_surface in _worker_known_errors:
+                            results.append({
+                                'type': 'skipped', 
+                                'surface': new_surface
+                            })
+                            continue
+                        
+                        # Re-parse for validation (simulate pipeline)
+                        reparsed_kotogram = _worker_parser.japanese_to_kotogram(new_surface)
+                        
+                        results.append({
+                            'type': 'check',
+                            'sentence_id': sentence_id,
+                            'original': sentence,
+                            'generated': new_surface,
+                            'kotogram': new_kotogram,
+                            'reparsed_kotogram': reparsed_kotogram,
+                            'category': category,
+                            'error_type': error_type,
+                            'error_code': error_code,
+                            'generator': generator.__name__,
+                        })
+            except Exception:
+                pass
+                
+    except Exception:
+        pass
+        
+    return results
+
+# ============================================================================
 # MAIN PROCESSING
 # ============================================================================
 
@@ -1378,6 +1460,12 @@ def main():
         help="Include source sentence ID in output (4th column before kotogram/error-type). "
              "Required for source-based train/test splitting."
     )
+    parser.add_argument(
+        "--model-dir",
+        type=str,
+        default="models/style",
+        help="Directory containing trained model to use for validation (default: models/style)"
+    )
 
     args = parser.parse_args()
 
@@ -1399,11 +1487,12 @@ def main():
 
     # Validation mode: check generated sentences against grammaticality model
     if args.validate:
-        from kotogram.analysis import grammaticality
-        import inspect
-
+        from kotogram.style_classifier import load_model
+        import torch
+        
         print("Validation mode: checking generated sentences against grammaticality model...")
         print(f"Reading from {args.input}...")
+        print(f"Using model from: {args.model_dir}")
 
         # Load known model errors to skip
         model_errors_path = "data/jpn_model_errors.tsv"
@@ -1418,108 +1507,170 @@ def main():
         except FileNotFoundError:
             print(f"No known model errors file found at {model_errors_path}")
 
+        # Load model for batched inference
+        print("Loading model...")
+        model, tokenizer = load_model(args.model_dir)
+        model.eval()
+        device = next(model.parameters()).device
+        print(f"Model loaded on {device}")
+        
+        # Read all rows first
+        print("Reading sentences...")
+        all_rows = []
+        with open(args.input, 'r', encoding='utf-8') as f:
+            reader = csv.reader(f, delimiter='\t')
+            for row in reader:
+                all_rows.append(row)
+        
+        if args.max_samples:
+            all_rows = all_rows[:args.max_samples]
+            
+        print(f"Processing {len(all_rows)} sentences...")
+        
+        # Process in parallel
+        # Use spawn to ensure clean worker state
+        ctx = mp.get_context('spawn')
+        num_workers = max(1, mp.cpu_count() - 1)
+        
         processed = 0
         checked = 0
         false_positives = 0
         skipped = 0
+        
+        batch_buffer = []  # Buffer for model inference
+        BATCH_SIZE = 128
+        
+        start_time = time.time()
+        
+        with ctx.Pool(num_workers, initializer=init_worker, initargs=(known_model_errors, disabled_generators)) as pool:
+            # Process rows in chunks
+            # chunksize=1 here means 1 task per worker is grabbed. 
+            # But imap_unordered handles iteration nicely. 
+            # Using default chunksize or small number is fine.
+            
+            for chunk_results in pool.imap_unordered(_process_validation_row, all_rows, chunksize=20):
+                processed += 1
+                
+                # Handling results from one sentence
+                for item in chunk_results:
+                    if item['type'] == 'skipped':
+                        skipped += 1
+                    elif item['type'] == 'check':
+                        batch_buffer.append(item)
+                
+                # Perform inference if batch is full
+                while len(batch_buffer) >= BATCH_SIZE:
+                    batch = batch_buffer[:BATCH_SIZE]
+                    batch_buffer = batch_buffer[BATCH_SIZE:]
+                    
+                    # Prepare batch for model
+                    kotograms = [item['reparsed_kotogram'] for item in batch]
+                    
+                    # Manually encode batch (Tokenizer doesn't have encode_batch)
+                    encoded_batch = [tokenizer.encode(k, add_cls=True, add_to_vocab=False) for k in kotograms]
+                    
+                    # Collate (pad)
+                    field_inputs = {}
+                    # Assuming 'surface' is always present and representative of length
+                    if not encoded_batch:
+                        continue
+                        
+                    max_len = max(len(enc['surface']) for enc in encoded_batch)
+                    
+                    for field in encoded_batch[0].keys():
+                        # Pad with 0 (PAD_TOKEN)
+                        padded_seqs = [enc[field] + [0] * (max_len - len(enc[field])) for enc in encoded_batch]
+                        field_inputs[f'input_ids_{field}'] = torch.tensor(padded_seqs, dtype=torch.long).to(device)
+                    
+                    # Inference
+                    with torch.no_grad():
+                        # Run model
+                        outputs = model(field_inputs)
+                        
+                        # Get grammaticality predictions (assuming 3rd element or explicit output)
+                        # The StyleClassifier returns (formality, gender, grammaticality)
+                        # We need the gram output (index 2)
+                        gram_logits = outputs[2] 
+                        gram_probs = torch.softmax(gram_logits, dim=1)
+                        # Label 1 is grammatic, 0 is agrammatic
+                        # If prob(1) > prob(0), model thinks it's grammatic
+                        is_grammatic_preds = (gram_probs[:, 1] > gram_probs[:, 0]).cpu().tolist()
+                        
+                    checked += len(batch)
+                    
+                    # Check for false positives
+                    for i, is_grammatic in enumerate(is_grammatic_preds):
+                        if is_grammatic:
+                            # False positive found within this batch
+                            item = batch[i]
+                            false_positives += 1
+                            total_checked = checked + skipped
+                            accuracy = 100 * (checked - false_positives) / total_checked if total_checked > 0 else 0
+                            
+                            print("\n" + "=" * 70)
+                            print("FALSE POSITIVE DETECTED")
+                            print("=" * 70)
+                            print(f"Original sentence ID: {item['sentence_id']}")
+                            print(f"Original sentence:    {item['original']}")
+                            print(f"Generated sentence:   {item['generated']}")
+                            print(f"Error type:           {item['category']}:{item['error_type']}")
+                            print(f"Error code:           {item['error_code']}")
+                            print(f"Generator function:   {item['generator']}")
+                            print(f"Kotogram:             {item['kotogram'][:100]}...")
+                            print("=" * 70)
+                            print(f"\nStatistics:")
+                            print(f"  Processed sentences:  {processed}/{len(all_rows)}")
+                            print(f"  Checked examples:     {checked}")
+                            print(f"  Skipped (known fail): {skipped}")
+                            print(f"  New False positives:  {false_positives}")
+                            print(f"  Model accuracy:       {accuracy:.2f}%")
+                            print("\nStopping for debugging.")
+                            return
 
-        with open(args.input, 'r', encoding='utf-8') as f:
-            reader = csv.reader(f, delimiter='\t')
+                if processed % 100 == 0:
+                    elapsed = time.time() - start_time
+                    rate = processed / elapsed if elapsed > 0 else 0
+                    print(f"Processed {processed}/{len(all_rows)} sentences ({rate:.1f} sent/s)...")
 
-            for row in reader:
-                if len(row) < 3:
-                    continue
+            # Process remaining items in buffer
+            if batch_buffer:
+                batch = batch_buffer
+                kotograms = [item['reparsed_kotogram'] for item in batch]
+                
+                # Manually encode batch
+                encoded_batch = [tokenizer.encode(k, add_cls=True, add_to_vocab=False) for k in kotograms]
+                
+                # Collate (pad)
+                field_inputs = {}
+                if encoded_batch:
+                    max_len = max(len(enc['surface']) for enc in encoded_batch)
+                    
+                    for field in encoded_batch[0].keys():
+                        padded_seqs = [enc[field] + [0] * (max_len - len(enc[field])) for enc in encoded_batch]
+                        field_inputs[f'input_ids_{field}'] = torch.tensor(padded_seqs, dtype=torch.long).to(device)
+                    
+                    with torch.no_grad():
+                        outputs = model(field_inputs)
+                        gram_logits = outputs[2]
+                        gram_probs = torch.softmax(gram_logits, dim=1)
+                        is_grammatic_preds = (gram_probs[:, 1] > gram_probs[:, 0]).cpu().tolist()
+                    
+                    checked += len(batch)
+                    
+                    for i, is_grammatic in enumerate(is_grammatic_preds):
+                        if is_grammatic:
+                            item = batch[i]
+                            false_positives += 1
+                            print("\n" + "=" * 70)
+                            print("FALSE POSITIVE DETECTED")
+                            # ... (duplicate print logic or function could be better but sticking to inline for speed)
+                            print(f"Generated sentence:   {item['generated']}")
+                            print(f"Error code:           {item['error_code']}")
+                            print("\nStopping for debugging.")
+                            return
 
-                sentence_id, lang, sentence = row[0], row[1], row[2]
-
-                if lang != 'jpn':
-                    continue
-
-                try:
-                    kotogram = parser_instance.japanese_to_kotogram(sentence)
-
-                    # Process each error generator individually to track which one produced the error
-                    for error_code, category, generator, weight in ERROR_GENERATORS:
-                        # Skip disabled generators
-                        if error_code in disabled_generators:
-                            continue
-
-                        try:
-                            result = generator(kotogram)
-                            if result:
-                                new_kotogram, error_type = result
-                                new_surface = kotogram_to_japanese(new_kotogram, spaces=False)
-
-                                if new_surface != sentence:
-                                    # Skip known model errors
-                                    if new_surface in known_model_errors:
-                                        skipped += 1
-                                        continue
-
-                                    checked += 1
-                                    # Check if model thinks it's grammatic (false positive)
-                                    is_grammatic = grammaticality(new_kotogram, use_model=True)
-
-                                    if is_grammatic:
-                                        false_positives += 1
-                                        accuracy = 100 * (checked - false_positives) / checked if checked > 0 else 0
-
-                                        # Found a false positive - print details and stop
-                                        print("\n" + "=" * 70)
-                                        print("FALSE POSITIVE DETECTED")
-                                        print("=" * 70)
-                                        print(f"Original sentence ID: {sentence_id}")
-                                        print(f"Original sentence:    {sentence}")
-                                        print(f"Generated sentence:   {new_surface}")
-                                        print(f"Error type:           {category}:{error_type}")
-                                        print(f"Error code:           {error_code}")
-                                        print(f"Generator function:   {generator.__name__}")
-                                        print(f"Kotogram:             {new_kotogram[:100]}...")
-                                        print()
-
-                                        # Get source location of the generator function
-                                        try:
-                                            source_file = inspect.getfile(generator)
-                                            source_lines, start_line = inspect.getsourcelines(generator)
-                                            print(f"Source location:      {source_file}:{start_line}")
-                                            print()
-                                            print("Generator function source (first 30 lines):")
-                                            print("-" * 70)
-                                            for i, line in enumerate(source_lines[:30]):
-                                                print(f"{start_line + i:4d}: {line.rstrip()}")
-                                            if len(source_lines) > 30:
-                                                print(f"      ... ({len(source_lines) - 30} more lines)")
-                                        except Exception as e:
-                                            print(f"Could not get source: {e}")
-
-                                        print("=" * 70)
-                                        print(f"\nStatistics:")
-                                        print(f"  Processed sentences:  {processed}")
-                                        print(f"  Checked examples:     {checked}")
-                                        print(f"  Skipped (known):      {skipped}")
-                                        print(f"  False positives:      {false_positives}")
-                                        print(f"  Model accuracy:       {accuracy:.2f}%")
-                                        print("\nStopping for debugging.")
-                                        return
-
-                        except Exception:
-                            pass
-
-                    processed += 1
-
-                    if processed % 1000 == 0:
-                        accuracy = 100 * (checked - false_positives) / checked if checked > 0 else 0
-                        print(f"Processed {processed} sentences, checked {checked}, false positives: {false_positives} ({accuracy:.2f}% accuracy)...")
-
-                    if args.max_samples and processed >= args.max_samples:
-                        break
-
-                except Exception as e:
-                    if args.verbose:
-                        print(f"Error processing {sentence_id}: {e}")
-                    continue
-
-        accuracy = 100 * (checked - false_positives) / checked if checked > 0 else 0
+        total_checked = checked + skipped
+        accuracy = 100 * (checked - false_positives) / total_checked if total_checked > 0 else 0
         print(f"\nValidation complete!")
         print(f"  Processed sentences:  {processed}")
         print(f"  Checked examples:     {checked}")
