@@ -225,7 +225,7 @@ class KotogramCache:
         conn = sqlite3.connect(self.db_path)
         try:
             cursor = conn.execute("SELECT COUNT(*) FROM kotogram_cache")
-            return cursor.fetchone()[0]
+            return int(cursor.fetchone()[0])
         finally:
             conn.close()
 
@@ -724,14 +724,14 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         }
 
         for sentence, _sid, gram_label, source_id in rows:
-            kotogram = cached_kotograms.get(sentence)
-            if kotogram:
+            cached_kotogram = cached_kotograms.get(sentence)
+            if cached_kotogram:
                 try:
-                    formality_enum = formality(kotogram)
-                    gender_enum = gender(kotogram)
+                    formality_enum = formality(cached_kotogram)
+                    gender_enum = gender(cached_kotogram)
                     formality_id = formality_to_id[formality_enum]
                     gender_id = gender_to_id[gender_enum]
-                    results.append((sentence, kotogram, formality_id, gender_id, gram_label, 1, source_id))
+                    results.append((sentence, cached_kotogram, formality_id, gender_id, gram_label, 1, source_id))
                 except Exception:
                     pass  # Skip sentences that fail label computation
 
@@ -2189,8 +2189,7 @@ class Trainer:
         all_formality_labels = []
         all_gender_preds = []
         all_gender_labels = []
-        all_grammaticality_preds = []
-        all_grammaticality_preds = []
+        all_grammaticality_preds: List[int] = []
         all_grammaticality_labels = []
         all_sentences = []
         all_source_ids = []
@@ -2891,6 +2890,7 @@ if __name__ == "__main__":
             print(f"    num_heads: {saved_args['num_heads']}")
             print(f"    learning_rate: {saved_args['learning_rate']}")
             if args.resume:
+                assert checkpoint is not None
                 print(f"  Resuming from epoch {checkpoint['epoch'] + 1}, training to epoch {args.epochs}")
             elif args.confusion:
                 print(f"  Evaluating best model from {args.output}")
@@ -2943,7 +2943,6 @@ if __name__ == "__main__":
 
     # Load data: if doing MLM pretraining, first load unlabeled data for pretraining,
     # then load labeled data for fine-tuning
-    model: StyleClassifier  # Type annotation for both branches
 
     # Skip model creation if resuming (model already loaded)
     if (args.resume or args.confusion) and checkpoint is not None:
@@ -2977,9 +2976,9 @@ if __name__ == "__main__":
         if vocab_grew:
             print("\nResizing embeddings for new vocabulary...")
             resized = model.resize_embeddings(new_vocab_sizes)
-            for field, count in resized.items():
+            for f_name, count in resized.items():
                 if count > 0:
-                    print(f"  {field}: +{count} tokens ({old_vocab_sizes[field]} -> {new_vocab_sizes[field]})")
+                    print(f"  {f_name}: +{count} tokens ({old_vocab_sizes[f_name]} -> {new_vocab_sizes[f_name]})")
 
             # Update model config with new vocab sizes
             model_config = model.config
