@@ -2441,6 +2441,9 @@ class Trainer:
             # Save Grammaticality Mismatches
             mismatches = eval_results['mismatches']
             if mismatches['grammaticality']:
+                # Sort by source_id then sentence for reproducible order
+                mismatches['grammaticality'].sort(key=lambda x: (x.get('source_id', ''), x.get('sentence', '')))
+                
                 out_path = os.path.join(save_dir, 'grammaticality_confusion.csv')
                 with open(out_path, 'w', newline='', encoding='utf-8') as f:
                     writer = csv.DictWriter(f, fieldnames=['sentence', 'source_id', 'predicted', 'actual', 'kotogram'], delimiter='\t')
@@ -2450,6 +2453,9 @@ class Trainer:
 
             # Save Other Mismatches (optional, maybe just formality/gender if they have many errors)
             if mismatches['formality']:
+                # Sort by source_id then sentence for reproducible order
+                mismatches['formality'].sort(key=lambda x: (x.get('source_id', ''), x.get('sentence', '')))
+                
                 out_path = os.path.join(save_dir, 'formality_confusion.csv')
                 with open(out_path, 'w', newline='', encoding='utf-8') as f:
                     writer = csv.DictWriter(f, fieldnames=['sentence', 'source_id', 'predicted', 'actual', 'kotogram'], delimiter='\t')
@@ -2458,6 +2464,9 @@ class Trainer:
                 print(f"Saved {len(mismatches['formality'])} formality mismatches to {out_path}")
                 
             if mismatches['gender']:
+                # Sort by source_id then sentence for reproducible order
+                mismatches['gender'].sort(key=lambda x: (x.get('source_id', ''), x.get('sentence', '')))
+
                 out_path = os.path.join(save_dir, 'gender_confusion.csv')
                 with open(out_path, 'w', newline='', encoding='utf-8') as f:
                     writer = csv.DictWriter(f, fieldnames=['sentence', 'source_id', 'predicted', 'actual', 'kotogram'], delimiter='\t')
@@ -2465,14 +2474,19 @@ class Trainer:
                     writer.writerows(mismatches['gender'])
                 print(f"Saved {len(mismatches['gender'])} gender mismatches to {out_path}")
 
-    def restore_from_checkpoint(self, checkpoint: Dict[str, Any]) -> None:
+    def restore_from_checkpoint(self, checkpoint: Dict[str, Any], reset_optimizer: bool = False) -> None:
         """Restore training state from checkpoint.
 
         Args:
             checkpoint: Checkpoint dict from load_checkpoint()
+            reset_optimizer: If True, do not load optimizer/scheduler state (useful if model architecture changed)
         """
-        self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-        self.scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+        if not reset_optimizer:
+            self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+            self.scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+        else:
+            print("  Note: Resetting optimizer and scheduler state due to model architecture change (vocabulary expansion)")
+        
         self.history = checkpoint['history']
         self.best_val_loss = checkpoint['best_val_loss']
         self.patience_counter = checkpoint['patience_counter']
@@ -2511,16 +2525,18 @@ def save_model(
         # Convert to float8 for smallest model size
         if not hasattr(torch, 'float8_e4m3fn'):
             raise RuntimeError("FP8 requires PyTorch 2.1+. Use --fp16 instead.")
-        state_dict = {k: v.to(torch.float8_e4m3fn) if v.dtype == torch.float32 else v
+        # MPS doesn not support float8, so move to CPU first
+        state_dict = {k: v.cpu().to(torch.float8_e4m3fn) if v.dtype == torch.float32 else v.cpu()
                       for k, v in model.state_dict().items()}
         torch.save(state_dict, os.path.join(path, 'model.pt'))
     elif fp16:
         # Convert to float16 for smaller model size
-        state_dict = {k: v.half() if v.dtype == torch.float32 else v
+        state_dict = {k: v.cpu().half() if v.dtype == torch.float32 else v.cpu()
                       for k, v in model.state_dict().items()}
         torch.save(state_dict, os.path.join(path, 'model.pt'))
     else:
-        torch.save(model.state_dict(), os.path.join(path, 'model.pt'))
+        state_dict = {k: v.cpu() for k, v in model.state_dict().items()}
+        torch.save(state_dict, os.path.join(path, 'model.pt'))
 
     # Save tokenizer
     tokenizer.save(os.path.join(path, 'tokenizer.json'))
@@ -2691,7 +2707,8 @@ def load_model(
 
     # Load model
     model = StyleClassifier(config)
-    state_dict = torch.load(os.path.join(path, 'model.pt'), map_location=device or 'cpu')
+    # Always load to CPU first to handle float8/float16 conversion safely (MPS doesn't support float8)
+    state_dict = torch.load(os.path.join(path, 'model.pt'), map_location='cpu')
 
     # Convert float16/float8 weights back to float32 for inference compatibility
     def to_float32(v: torch.Tensor) -> torch.Tensor:
@@ -2941,6 +2958,9 @@ if __name__ == "__main__":
         data_files.append(args.agrammatic_data)
         grammaticality_labels.append(0)  # agrammatic sentences
 
+    # Track if vocabulary grew during data loading/resume
+    vocab_grew = False
+
     # Load data: if doing MLM pretraining, first load unlabeled data for pretraining,
     # then load labeled data for fine-tuning
 
@@ -3159,7 +3179,7 @@ if __name__ == "__main__":
 
     # Restore training state if resuming
     if args.resume and checkpoint is not None:
-        trainer.restore_from_checkpoint(checkpoint)
+        trainer.restore_from_checkpoint(checkpoint, reset_optimizer=vocab_grew)
 
     history = trainer.train(
         checkpoint_dir=args.output,

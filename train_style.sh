@@ -6,6 +6,7 @@
 #   ./train_style.sh --pretrain-mlm     # With MLM pretraining
 
 set -e
+set -o pipefail
 
 # Setup virtual environment and dependencies
 setup_environment() {
