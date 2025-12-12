@@ -2843,9 +2843,11 @@ if __name__ == "__main__":
         print("\nReinitializing classifier heads for fine-tuning...")
         model.reset_classifier()
 
-        # Now load labeled dataset with the frozen tokenizer
+        # Now load labeled dataset - may include new vocabulary from agrammatic data
         print("\nLoading labeled data for fine-tuning...")
-        # For fine-tuning, we need to unfreeze temporarily to load new data
+        # Save old vocab sizes before loading new data
+        old_vocab_sizes = tokenizer.get_vocab_sizes()
+        # Unfreeze tokenizer to allow vocabulary expansion
         tokenizer._frozen = False
         if len(data_files) > 1:
             labeled_dataset = StyleDataset.from_multiple_tsv(
@@ -2865,6 +2867,29 @@ if __name__ == "__main__":
                 labeled=True,
             )
         train_data, val_data, test_data = labeled_dataset.split()
+
+        # Check if vocabulary grew and resize embeddings if needed
+        new_vocab_sizes = tokenizer.get_vocab_sizes()
+        vocab_grew = any(new_vocab_sizes[f] > old_vocab_sizes[f] for f in FEATURE_FIELDS)
+
+        if vocab_grew:
+            print("\nResizing embeddings for expanded vocabulary...")
+            resized = model.resize_embeddings(new_vocab_sizes)
+            for field_name, count in resized.items():
+                if count > 0:
+                    print(f"  {field_name}: +{count} tokens ({old_vocab_sizes[field_name]} -> {new_vocab_sizes[field_name]})")
+            # Update model config
+            model_config = ModelConfig(
+                vocab_sizes=new_vocab_sizes,
+                num_formality_classes=NUM_FORMALITY_CLASSES,
+                num_gender_classes=NUM_GENDER_CLASSES,
+                num_grammaticality_classes=NUM_GRAMMATICALITY_CLASSES,
+                d_model=args.embed_dim,
+                hidden_dim=args.hidden_dim,
+                num_layers=args.num_layers,
+                num_heads=args.num_heads,
+                excluded_features=excluded,
+            )
     else:
         print("Loading data...")
         tokenizer = Tokenizer()
