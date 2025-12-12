@@ -27,8 +27,8 @@ ADVANCED LEVEL:
 - Sentence-final form errors (のだ/んだ misuse)
 
 Usage:
-    python scripts/generate_agrammatic.py --input data/jpn_sentences.tsv --output data/agrammatic_sentences.tsv
-    python scripts/generate_agrammatic.py --input data/jpn_sentences.tsv --output data/agrammatic_sentences.tsv --max-samples 1000
+    python scripts/generate_agrammatic.py --input data/jpn_sentences.tsv --output data/jpn_agrammatic.tsv
+    python scripts/generate_agrammatic.py --input data/jpn_sentences.tsv --output data/jpn_agrammatic.tsv --max-samples 1000
 """
 
 import argparse
@@ -1301,7 +1301,7 @@ def main():
     parser.add_argument(
         "--output", "-o",
         type=str,
-        default="data/agrammatic_sentences.tsv",
+        default="data/jpn_agrammatic.tsv",
         help="Output TSV file for generated examples"
     )
     parser.add_argument(
