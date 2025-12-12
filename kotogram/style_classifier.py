@@ -2496,7 +2496,11 @@ def load_checkpoint(
 
     # Reconstruct model
     model = StyleClassifier(config)
-    model.load_state_dict(checkpoint['model_state_dict'])
+
+    # Filter out MLM head weights (present when model was trained with --pretrain-mlm)
+    model_state = checkpoint['model_state_dict']
+    model_state = {k: v for k, v in model_state.items() if not k.startswith('mlm_head.')}
+    model.load_state_dict(model_state)
 
     if device:
         model.to(device)
@@ -2543,6 +2547,10 @@ def load_model(
             return v.float()
         return v
     state_dict = {k: to_float32(v) for k, v in state_dict.items()}
+
+    # Filter out MLM head weights (present when model was trained with --pretrain-mlm)
+    # These are not needed for inference
+    state_dict = {k: v for k, v in state_dict.items() if not k.startswith('mlm_head.')}
 
     model.load_state_dict(state_dict)
 
