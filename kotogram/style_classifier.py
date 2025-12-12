@@ -124,20 +124,10 @@ class Tokenizer:
     Attributes:
         field_vocabs: Dict mapping field name to {value: id} mapping
         field_vocab_sizes: Dict mapping field name to vocabulary size
-        lemma_min_freq: Minimum frequency for lemma to be in vocabulary
     """
 
-    def __init__(self, lemma_min_freq: int = 5, max_lemma_vocab: int = 10000):
-        """Initialize feature tokenizer.
-
-        Args:
-            lemma_min_freq: Minimum frequency for a lemma to be included in vocabulary.
-                           Less frequent lemmas map to UNK.
-            max_lemma_vocab: Maximum vocabulary size for lemma field.
-        """
-        self.lemma_min_freq = lemma_min_freq
-        self.max_lemma_vocab = max_lemma_vocab
-
+    def __init__(self) -> None:
+        """Initialize feature tokenizer."""
         # Initialize vocabularies for each field with special tokens
         self.field_vocabs: Dict[str, Dict[str, int]] = {}
         self._field_counters: Dict[str, Counter[str]] = {}
@@ -151,7 +141,6 @@ class Tokenizer:
             self._field_counters[f] = Counter()
 
         self._frozen = False
-        self._lemma_counts: Counter[str] = Counter()
 
     @property
     def pad_id(self) -> int:
@@ -187,12 +176,6 @@ class Tokenizer:
             return vocab[value]
 
         if self._frozen:
-            return self.unk_id
-
-        # For lemma field, track counts for later pruning
-        if field == 'lemma':
-            self._lemma_counts[value] += 1
-            # Don't add to vocab until finalize_vocab is called
             return self.unk_id
 
         new_id = len(vocab)
@@ -273,22 +256,8 @@ class Tokenizer:
         features_list = self.extract_features(kotogram)
         return self.encode_features(features_list, add_cls, add_to_vocab)
 
-    def finalize_vocab(self) -> None:
-        """Finalize vocabulary, pruning rare lemmas.
-
-        Should be called after processing all training data but before freezing.
-        """
-        # Prune lemma vocabulary to most frequent items
-        vocab = self.field_vocabs['lemma']
-        frequent_lemmas = self._lemma_counts.most_common(self.max_lemma_vocab)
-
-        for lemma, count in frequent_lemmas:
-            if count >= self.lemma_min_freq and lemma not in vocab:
-                vocab[lemma] = len(vocab)
-
     def freeze(self) -> None:
         """Freeze vocabulary - new values will map to UNK."""
-        self.finalize_vocab()
         self._frozen = True
 
     def unfreeze(self) -> None:
@@ -313,8 +282,6 @@ class Tokenizer:
         """Save tokenizer vocabularies to JSON file."""
         data = {
             'field_vocabs': self.field_vocabs,
-            'lemma_min_freq': self.lemma_min_freq,
-            'max_lemma_vocab': self.max_lemma_vocab,
             'frozen': self._frozen,
         }
         with open(path, 'w', encoding='utf-8') as f:
@@ -326,10 +293,7 @@ class Tokenizer:
         with open(path, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
-        tokenizer = cls(
-            lemma_min_freq=data.get('lemma_min_freq', 5),
-            max_lemma_vocab=data.get('max_lemma_vocab', 10000),
-        )
+        tokenizer = cls()
         tokenizer.field_vocabs = data['field_vocabs']
         tokenizer._frozen = data.get('frozen', False)
         return tokenizer
@@ -441,8 +405,6 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         cache_data = {
             'samples': samples,
             'field_vocabs': tokenizer.field_vocabs,
-            'lemma_min_freq': tokenizer.lemma_min_freq,
-            'max_lemma_vocab': tokenizer.max_lemma_vocab,
             'frozen': tokenizer._frozen,
         }
         with open(cache_path, 'wb') as f:
@@ -466,8 +428,6 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
             # Restore tokenizer state
             tokenizer.field_vocabs = cache_data['field_vocabs']
-            tokenizer.lemma_min_freq = cache_data['lemma_min_freq']
-            tokenizer.max_lemma_vocab = cache_data['max_lemma_vocab']
             tokenizer._frozen = cache_data['frozen']
 
             samples: List[Sample] = cache_data['samples']
@@ -524,6 +484,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         samples: List[Sample] = []
         formality_counts: Counter[FormalityLevel] = Counter()
         gender_counts: Counter[GenderLevel] = Counter()
+        grammaticality_counts: Counter[int] = Counter()
 
         with open(tsv_path, 'r', encoding='utf-8') as f:
             reader = csv.reader(f, delimiter='\t')
@@ -549,6 +510,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     gender_id = GENDER_LABEL_TO_ID[gender_enum]
                     formality_counts[formality_enum] += 1
                     gender_counts[gender_enum] += 1
+                    grammaticality_counts[1] += 1  # Single-file load assumes grammatic
 
                     # Encode to feature IDs (builds vocabulary)
                     feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
@@ -557,6 +519,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                         feature_ids=feature_ids,
                         formality_label=formality_id,
                         gender_label=gender_id,
+                        grammaticality_label=1,  # Single-file load assumes grammatic
                         original_sentence=sentence,
                         kotogram=kotogram,
                     )
@@ -597,8 +560,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             final_sizes = tokenizer.get_vocab_sizes()
             print(f"Final vocabulary sizes: {final_sizes}")
             # Show detailed stats for key fields
-            print(f"  surface: {final_sizes['surface']:,} unique forms")
-            print(f"  lemma: {final_sizes['lemma']:,} (from {len(tokenizer._lemma_counts):,} unique, min_freq={tokenizer.lemma_min_freq})")
+            print(f"  surface: {final_sizes['surface']:,}, lemma: {final_sizes['lemma']:,}")
             print(f"  pos: {final_sizes['pos']}, conjugated_type: {final_sizes['conjugated_type']}, conjugated_form: {final_sizes['conjugated_form']}")
 
         # Save to cache
@@ -762,8 +724,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             final_sizes = tokenizer.get_vocab_sizes()
             print(f"Final vocabulary sizes: {final_sizes}")
             # Show detailed stats for key fields
-            print(f"  surface: {final_sizes['surface']:,} unique forms")
-            print(f"  lemma: {final_sizes['lemma']:,} (from {len(tokenizer._lemma_counts):,} unique, min_freq={tokenizer.lemma_min_freq})")
+            print(f"  surface: {final_sizes['surface']:,}, lemma: {final_sizes['lemma']:,}")
             print(f"  pos: {final_sizes['pos']}, conjugated_type: {final_sizes['conjugated_type']}, conjugated_form: {final_sizes['conjugated_form']}")
 
         # Save to cache
