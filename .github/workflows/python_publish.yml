@@ -169,3 +169,15 @@ jobs:
         assert reconstructed == japanese, f'Mismatch: {reconstructed} != {japanese}'
         print('✅ Japanese to kotogram conversion verified successfully')
         "
+
+    - name: Verify augment function
+      run: |
+        python -c "
+        from kotogram import augment
+        sentences = ['私は猫だ']
+        augmented = augment(sentences)
+        print(f'Original: {sentences}')
+        print(f'Augmented: {augmented}')
+        assert len(augmented) > 0
+        print('✅ Augmentation verified successfully')
+        "
