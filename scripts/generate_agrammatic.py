@@ -1521,19 +1521,6 @@ def main():
         print(f"Reading from {args.input}...")
         print(f"Using model from: {args.model_dir}")
 
-        # Load known model errors to skip
-        model_errors_path = "data/jpn_model_errors.tsv"
-        known_model_errors: set = set()
-        try:
-            with open(model_errors_path, 'r', encoding='utf-8') as f:
-                reader = csv.reader(f, delimiter='\t')
-                for row in reader:
-                    if len(row) >= 3:
-                        known_model_errors.add(row[2])  # sentence is 3rd column
-            print(f"Loaded {len(known_model_errors)} known model errors to skip")
-        except FileNotFoundError:
-            print(f"No known model errors file found at {model_errors_path}")
-
         # Load model for batched inference
         print("Loading model...")
         model, tokenizer = load_model(args.model_dir)
