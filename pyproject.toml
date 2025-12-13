@@ -36,9 +36,14 @@ dependencies = [
 "Bug Reports" = "https://github.com/jomof/kotogram/issues"
 "Source" = "https://github.com/jomof/kotogram"
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["kotogram*"]
+[tool.setuptools]
+packages = ["kotogram", "kotogram.model_data"]
+
+[tool.setuptools.package-dir]
+"kotogram.model_data" = "models/style"
+
+[tool.setuptools.package-data]
+"kotogram.model_data" = ["*.pt", "*.json", "*.csv", "*.txt"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests-py"]

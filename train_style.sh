@@ -300,7 +300,7 @@ mkdir -p "$OUTPUT_DIR"
 export PYTORCH_ENABLE_MPS_FALLBACK=1
 
 # Build command
-CMD="python -m kotogram.style_classifier \
+CMD="python scripts/train_style.py \
     --data \"$DATA_PATH\" \
     --output \"$OUTPUT_DIR\" \
     --epochs $EPOCHS \

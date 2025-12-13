@@ -10,7 +10,7 @@ from typing import List, Dict, Optional, Tuple, TYPE_CHECKING
 from kotogram.kotogram import split_kotogram, extract_token_features
 
 if TYPE_CHECKING:
-    from kotogram.style_classifier import StyleClassifier, Tokenizer
+    from kotogram.model import StyleClassifier, Tokenizer
 
 # Global cache for loaded model (lazy loading)
 _style_model: Optional['StyleClassifier'] = None
@@ -30,8 +30,8 @@ def _load_style_model() -> Tuple['StyleClassifier', 'Tokenizer']:
     global _style_model, _style_tokenizer
 
     if _style_model is None or _style_tokenizer is None:
-        from kotogram.style_classifier import load_model
-        _style_model, _style_tokenizer = load_model(_style_model_path)
+        from kotogram.model import load_default_style_model
+        _style_model, _style_tokenizer = load_default_style_model()
 
     return _style_model, _style_tokenizer
 
@@ -103,7 +103,7 @@ def formality(kotogram: str, use_model: bool = False) -> FormalityLevel:
     if use_model:
         # Use the trained neural model for prediction
         import torch
-        from kotogram.style_classifier import FEATURE_FIELDS
+        from kotogram.model import FEATURE_FIELDS
 
         model, tokenizer = _load_style_model()
 
@@ -357,7 +357,7 @@ def style(kotogram: str, use_model: bool = False) -> Tuple[FormalityLevel, Gende
     if use_model:
         # Use the trained neural model for prediction (single inference for all)
         import torch
-        from kotogram.style_classifier import FEATURE_FIELDS
+        from kotogram.model import FEATURE_FIELDS
 
         model, tokenizer = _load_style_model()
 
@@ -453,7 +453,7 @@ def gender(kotogram: str, use_model: bool = False) -> GenderLevel:
     if use_model:
         # Use the trained neural model for prediction
         import torch
-        from kotogram.style_classifier import FEATURE_FIELDS
+        from kotogram.model import FEATURE_FIELDS
 
         model, tokenizer = _load_style_model()
 
