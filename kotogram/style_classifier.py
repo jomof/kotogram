@@ -2851,9 +2851,9 @@ if __name__ == "__main__":
     parser.add_argument("--exclude-features", type=str, default="",
                         help="Comma-separated list of features to exclude (for ablation study). "
                              f"Valid: {','.join(ALL_FEATURE_FIELDS)}")
-    parser.add_argument("--fp16", action="store_true",
+    parser.add_argument("--fp16", action="store_true", default=None,
                         help="Save model in float16 precision (half size, minimal accuracy loss)")
-    parser.add_argument("--fp8", action="store_true",
+    parser.add_argument("--fp8", action="store_true", default=None,
                         help="Save model in float8 precision (quarter size, requires PyTorch 2.1+)")
     parser.add_argument("--resume", action="store_true",
                         help="Resume training from checkpoint in output directory")
@@ -2863,6 +2863,18 @@ if __name__ == "__main__":
                         help="Print confusion matrices for existing model and exit")
 
     args = parser.parse_args()
+
+    # Log device information
+    if torch.cuda.is_available():
+        count = torch.cuda.device_count()
+        name = torch.cuda.get_device_name(0)
+        print(f"\nDevice:         CUDA ({count} devices)")
+        print(f"  Name:         {name}")
+    elif torch.backends.mps.is_available():
+         print(f"\nDevice:         MPS (Apple Silicon)")
+    else:
+         print(f"\nDevice:         CPU")
+         print(f"  Info:         Training will be slow. CUDA or MPS not found.")
 
     # Handle resume from checkpoint or retrain or confusion logic
     checkpoint = None
@@ -2928,7 +2940,29 @@ if __name__ == "__main__":
             args.gender_weight = saved_args['gender_weight']
             args.grammaticality_weight = saved_args['grammaticality_weight']
             args.exclude_features = saved_exclude
-            # Note: args.fp16 is NOT overwritten - allow changing save format on resume
+            # Sticky flags: restore only if not explicitly set on command line (i.e. None)
+            if args.fp16 is None:
+                args.fp16 = saved_args.get('fp16', False)
+                if args.fp16:
+                    print(f"  Restored flag: --fp16")
+            elif args.fp16 is False:
+                 # argparse 'store_true' with default=None sets False if not provided?
+                 # No, 'store_true' only stores True if present.
+                 # If default is None, and flag is absent, it remains None.
+                 # Wait, let's verify argparse behavior.
+                 # parser.add_argument('--foo', action='store_true', default=None)
+                 # args = parser.parse_args([]) -> args.foo is None
+                 # args = parser.parse_args(['--foo']) -> args.foo is True
+                 pass
+
+            if args.fp8 is None:
+                args.fp8 = saved_args.get('fp8', False)
+                if args.fp8:
+                    print(f"  Restored flag: --fp8")
+
+            # Ensure they are boolean False if still None (and not restored to True)
+            if args.fp16 is None: args.fp16 = False
+            if args.fp8 is None: args.fp8 = False
         else:
             if args.confusion:
                 print(f"Error: No checkpoint found at {checkpoint_path}, cannot print confusion matrix.")
