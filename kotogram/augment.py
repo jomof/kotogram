@@ -23,17 +23,17 @@ class Token:
         self.features = features or {}
         self._hash = hash((surface, tuple(sorted(self.features.items()))))
         
-    def __hash__(self):
+    def __hash__(self) -> int:
         return self._hash
     
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
         if isinstance(other, str):
             return self.surface == other
         if isinstance(other, Token):
             return self.surface == other.surface and self.features == other.features
         return False
         
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Token({self.surface}, {self.features})"
         
     def get(self, key: str, default: Any = None) -> Any:
@@ -186,7 +186,7 @@ class VerbPolitenessRule(AugmentationRule):
         # To avoid index drift issues during iteration, we collect potential replacement sites first,
         # then generate combinations relative to the original sequence.
         
-        potential_swaps = [] # List of (index, length_to_remove, replacement_tokens)
+        potential_swaps: List[Tuple[int, int, Tuple[AugmentationToken, ...]]] = [] # List of (index, length_to_remove, replacement_tokens)
 
         for i, token in enumerate(tokens):
             # Only process if we have features
@@ -207,7 +207,7 @@ class VerbPolitenessRule(AugmentationRule):
                 stem = self._conjugate_to_masu_stem(lemma, ctype)
                 if stem:
                     # Valid conjugation found
-                    replacement = (stem, 'ます')
+                    replacement: Tuple[AugmentationToken, ...] = (stem, 'ます')
                     potential_swaps.append((i, 1, replacement))
 
             # Case 2: Polite -> Plain
@@ -240,7 +240,7 @@ class VerbPolitenessRule(AugmentationRule):
             # Apply all possible swaps to generate ONLY the inverted politeness version?
             # Or should we output mixed? We prefer consistent.
             
-            new_tokens = []
+            new_tokens: List[AugmentationToken] = []
             last_idx = 0
             
             # Sort swaps by index
@@ -327,7 +327,7 @@ class ContractionRule(AugmentationRule):
                     if not any(replacement_mask):
                         continue
                     
-                    new_tokens = []
+                    new_tokens: List[AugmentationToken] = []
                     last_idx = 0
                     matches = sorted(indices_a)
                     
@@ -399,7 +399,7 @@ class ParticleDropRule(AugmentationRule):
                 if not any(drop_mask):
                     continue
                     
-                new_tokens = []
+                new_tokens: List[AugmentationToken] = []
                 last_idx = 0
                 
                 for idx, do_drop in zip(drop_indices, drop_mask):
@@ -482,7 +482,7 @@ class Augmenter:
     
     _parser: Optional[SudachiJapaneseParser] = None
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.rules: List[AugmentationRule] = [
             VerbPolitenessRule(), # Run first to use rich features
             PronounRule(),
@@ -550,8 +550,8 @@ class Augmenter:
             
             # Join back surfaces
             results = set()
-            for t in augmented_tuples:
-                surface_list = [get_surface(token) for token in t]
+            for aug_tuple in augmented_tuples:
+                surface_list = [get_surface(token) for token in aug_tuple]
                 results.add("".join(surface_list))
                 
             return results
