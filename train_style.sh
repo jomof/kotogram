@@ -39,8 +39,9 @@ setup_environment() {
         python -m pip install sudachipy sudachidict_full
     fi
 
-    if ! python -c "import kotogram" 2>/dev/null; then
-        echo "Kotogram not found. Installing from current directory..."
+    # Check if kotogram is installed in the environment (ignoring CWD)
+    if ! python -c "import sys; sys.path = [p for p in sys.path if p != '']; import kotogram" 2>/dev/null; then
+        echo "Kotogram not found in site-packages. Installing from current directory..."
         python -m pip install -e .
     fi
 
