@@ -5,7 +5,63 @@ from kotogram.augment import (
     PronounRule, CopulaRule, ContractionRule, TopicDropRule, ProgressiveRule, PluralRule
 )
 
+from kotogram.augment import (
+    Augmenter, augment,
+    PronounRule, CopulaRule, ContractionRule, TopicDropRule, ProgressiveRule, PluralRule,
+    VerbPolitenessRule, Token
+)
+
 # --- Rule Tests ---
+
+def test_verb_politeness_rule():
+    rule = VerbPolitenessRule()
+    
+    # 1. Plain -> Polite (Godan u -> i + masu)
+    # 行く -> 行きます
+    token_iku = Token('行く', {'surface': '行く', 'pos': 'v', 'lemma': '行く', 'conjugated_type': 'godan-k', 'conjugated_form': 'terminal'})
+    tokens = (token_iku, '。')
+    results = rule.apply(tokens)
+    # Should contain original and ('行き', 'ます', '。')
+    assert len(results) == 2
+    
+    variants = {tuple(t if isinstance(t, str) else t.surface for t in res) for res in results}
+    assert ('行き', 'ます', '。') in variants
+
+    # 2. Plain -> Polite (Ichidan drop ru + masu)
+    # 食べる -> 食べます
+    token_taberu = Token('食べる', {'surface': '食べる', 'pos': 'v', 'lemma': '食べる', 'conjugated_type': 'i-ichidan', 'conjugated_form': 'terminal'})
+    tokens_ichidan = (token_taberu,)
+    results_ichidan = rule.apply(tokens_ichidan)
+    variants_ichidan = {tuple(t if isinstance(t, str) else t.surface for t in res) for res in results_ichidan}
+    assert ('食べ', 'ます') in variants_ichidan
+    
+    # 3. Plain -> Polite (Suru irregular)
+    # 勉強する -> 勉強します
+    token_suru = Token('勉強する', {'surface': '勉強する', 'pos': 'v', 'lemma': '勉強する', 'conjugated_type': 'suru', 'conjugated_form': 'terminal'})
+    tokens_suru = (token_suru,)
+    results_suru = rule.apply(tokens_suru)
+    variants_suru = {tuple(t if isinstance(t, str) else t.surface for t in res) for res in results_suru}
+    assert ('勉強し', 'ます') in variants_suru
+
+    # 4. Polite -> Plain
+    # 行きます -> 行く
+    # Tokens: 行き(verb), ます(auxv)
+    token_iki = Token('行き', {'surface': '行き', 'pos': 'v', 'lemma': '行く', 'conjugated_type': 'godan-k', 'conjugated_form': 'conjunctive'})
+    token_masu = Token('ます', {'surface': 'ます', 'pos': 'auxv'})
+    tokens_polite = (token_iki, token_masu)
+    
+    results_polite = rule.apply(tokens_polite)
+    variants_polite = {tuple(t if isinstance(t, str) else t.get('surface', t) for t in res) for res in results_polite}
+    
+    assert ('行く',) in variants_polite
+    # Also ensure original is kept
+    assert ('行き', 'ます') in variants_polite
+
+    # 5. Non-terminal plain verb should NOT change
+    # 行って (conjunctive te-form)
+    token_itte = Token('行って', {'surface': '行って', 'pos': 'v', 'lemma': '行く', 'conjugated_type': 'godan-k', 'conjugated_form': 'conjunctive'})
+    results_no_change = rule.apply((token_itte,))
+    assert len(results_no_change) == 1
 
 def test_contraction_rule():
     rule = ContractionRule()

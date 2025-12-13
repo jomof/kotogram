@@ -6,11 +6,40 @@ their grammaticality using a neural model.
 """
 
 from abc import ABC, abstractmethod
-from typing import Set, Tuple, List, Optional
+from typing import Set, Tuple, List, Optional, Dict, Union, Any
 from itertools import product
 from kotogram.kotogram import split_kotogram, extract_token_features
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 from kotogram.analysis import grammaticality, _load_style_model
+
+# Type alias for tokens (either surface string or feature dict wrapper)
+# Forward declaration issue? Just use class name strings or object
+AugmentationToken = Union[str, 'Token']
+
+class Token:
+    """Hashable wrapper for token features."""
+    def __init__(self, surface: str, features: Optional[Dict[str, str]] = None):
+        self.surface = surface
+        self.features = features or {}
+        self._hash = hash((surface, tuple(sorted(self.features.items()))))
+        
+    def __hash__(self):
+        return self._hash
+    
+    def __eq__(self, other):
+        if isinstance(other, str):
+            return self.surface == other
+        if isinstance(other, Token):
+            return self.surface == other.surface and self.features == other.features
+        return False
+        
+    def __repr__(self):
+        return f"Token({self.surface}, {self.features})"
+        
+    def get(self, key: str, default: Any = None) -> Any:
+        if key == 'surface':
+            return self.surface
+        return self.features.get(key, default)
 
 # Constants and Patterns
 FIRST_PERSON_PRONOUNS = {'私', '僕', '俺', 'わたし', 'ぼく', 'おれ'}
@@ -35,15 +64,6 @@ COPULA_PATTERNS = [
     (('だ', 'な'), ('です', 'な')),
     # With period instead of 。
     (('だ', '.'), ('です', '.')),
-]
-
-DROPPABLE_TOPIC_STARTS = [
-    ('私', 'は'),
-    ('僕', 'は'),
-    ('俺', 'は'),
-    ('わたし', 'は'),
-    ('ぼく', 'は'),
-    ('おれ', 'は'),
 ]
 
 PROGRESSIVE_END_PATTERNS = [
@@ -72,16 +92,34 @@ CONTRACTION_PATTERNS = [
     (('で', 'いる'), ('でる',)),
 ]
 
+DROPPABLE_TOPIC_STARTS = [
+    ('私', 'は'),
+    ('僕', 'は'),
+    ('俺', 'は'),
+    ('わたし', 'は'),
+    ('ぼく', 'は'),
+    ('おれ', 'は'),
+]
+
+
+def get_surface(token: AugmentationToken) -> str:
+    """Extract surface form from a token (string or dict)."""
+    if isinstance(token, Token):
+        return token.surface
+    if isinstance(token, dict):
+        return token.get('surface', '')
+    return str(token)
+
 
 class AugmentationRule(ABC):
     """Abstract base class for sentence augmentation rules."""
     
     @abstractmethod
-    def apply(self, tokens: Tuple[str, ...]) -> Set[Tuple[str, ...]]:
+    def apply(self, tokens: Tuple[AugmentationToken, ...]) -> Set[Tuple[AugmentationToken, ...]]:
         """Apply the rule to a sequence of tokens.
         
         Args:
-            tokens: A tuple of surface forms representing the sentence.
+            tokens: A tuple of tokens (strings or feature dicts).
             
         Returns:
             A set of token tuples comprising the original and any valid variations.
@@ -89,11 +127,141 @@ class AugmentationRule(ABC):
         pass
 
 
+class VerbPolitenessRule(AugmentationRule):
+    """Augments sentences by swapping plain/polite verb forms."""
+
+    def _conjugate_to_masu_stem(self, lemma: str, ctype: str) -> Optional[str]:
+        """Conjugate a dictionary form verb to its masu-stem (ren'youkei)."""
+        if not lemma or not ctype:
+            return None
+
+        # Ichidan: Drop 'ru'
+        if ctype.startswith('i-ichidan') or ctype == 'e-ichidan' or 'ichidan' in ctype:
+            if lemma.endswith('る'):
+                return lemma[:-1]
+        
+        if ctype == 'suru' or lemma.endswith('する'):
+            if lemma == 'する':
+                return 'し'
+            if lemma.endswith('する'):
+                return lemma[:-2] + 'し'
+
+        # Kuru irregular
+        if ctype == 'kuru' or lemma == '来る':
+            return '来'
+        if lemma == 'くる':
+            return 'き'
+
+        # Godan: Change last vowel u -> i
+        # u, tsu, ru, ku, gu, mu, bu, nu, su
+        mappings = {
+            'う': 'い',
+            'つ': 'ち',
+            'る': 'り',
+            'く': 'き',
+            'ぐ': 'ぎ',
+            'む': 'み',
+            'ぶ': 'び',
+            'ぬ': 'に',
+            'す': 'し',
+        }
+        if ctype.startswith('godan'):
+            last_char = lemma[-1]
+            if last_char in mappings:
+                return lemma[:-1] + mappings[last_char]
+                
+        return None
+
+    def apply(self, tokens: Tuple[AugmentationToken, ...]) -> Set[Tuple[AugmentationToken, ...]]:
+        result = {tokens}
+        
+        # To avoid index drift issues during iteration, we collect potential replacement sites first,
+        # then generate combinations relative to the original sequence.
+        
+        potential_swaps = [] # List of (index, length_to_remove, replacement_tokens)
+
+        for i, token in enumerate(tokens):
+            # Only process if we have features
+            if not isinstance(token, Token):
+                continue
+                
+            pos = token.get('pos', '')
+            if pos != 'v':
+                continue
+                
+            lemma = token.get('lemma', get_surface(token))
+            ctype = token.get('conjugated_type', '')
+            cform = token.get('conjugated_form', '')
+            
+            # Case 1: Plain -> Polite
+            # Verb (terminal) -> Verb (masu-stem) + ます
+            if cform == 'terminal':
+                stem = self._conjugate_to_masu_stem(lemma, ctype)
+                if stem:
+                    # Valid conjugation found
+                    replacement = (stem, 'ます')
+                    potential_swaps.append((i, 1, replacement))
+
+            # Case 2: Polite -> Plain
+            # Verb (conjunctive?) + ます (auxv) -> Lemma
+            # Note: "ます" might be separate token.
+            # Look ahead for "ます"
+            if i + 1 < len(tokens):
+                next_token = tokens[i+1]
+                next_surf = get_surface(next_token)
+                
+                # Check if next is 'ます' (auxv)
+                # Ideally check POS of next token if dict, but surface 'ます' is strong signal
+                if next_surf == 'ます':
+                    # Replace (Verb, ます) -> (Lemma,)
+                    replacement = (lemma,)
+                    potential_swaps.append((i, 2, replacement))
+
+        if potential_swaps:
+            import itertools
+            # Generate sub-combinations? 
+            # Similar to ContractionRule, let's just generate "Original" and "All Swapped".
+            # Mixing politeness levels in one sentence is usually grammatically weird.
+            # So let's try to apply ALL consistent changes.
+            
+            # Group swaps by type? No, just apply them.
+            # But wait, we might have conflicting overlaps? 
+            # Case 1 (length 1) and Case 2 (length 2) won't overlap start indices for same token
+            # unless one is subset. A token is either terminal OR followed by masu. Mutually exclusive.
+            
+            # Apply all possible swaps to generate ONLY the inverted politeness version?
+            # Or should we output mixed? We prefer consistent.
+            
+            new_tokens = []
+            last_idx = 0
+            
+            # Sort swaps by index
+            potential_swaps.sort(key=lambda x: x[0])
+            
+            for idx, length, replacement in potential_swaps:
+                if idx < last_idx:
+                    continue # Should not happen if mutually exclusive
+                    
+                # Copy preceding
+                new_tokens.extend(tokens[last_idx:idx])
+                # Add replacement
+                new_tokens.extend(replacement)
+                last_idx = idx + length
+                
+            if last_idx < len(tokens):
+                new_tokens.extend(tokens[last_idx:])
+                
+            result.add(tuple(new_tokens))
+
+        return result
+
+
 class PronounRule(AugmentationRule):
     """Augments sentences by swapping first-person pronouns."""
     
-    def apply(self, tokens: Tuple[str, ...]) -> Set[Tuple[str, ...]]:
-        pronoun_indices = [i for i, t in enumerate(tokens) if t in FIRST_PERSON_PRONOUNS]
+    def apply(self, tokens: Tuple[AugmentationToken, ...]) -> Set[Tuple[AugmentationToken, ...]]:
+        token_surfaces = [get_surface(t) for t in tokens]
+        pronoun_indices = [i for i, t in enumerate(token_surfaces) if t in FIRST_PERSON_PRONOUNS]
         
         if not pronoun_indices:
             return {tokens}
@@ -102,7 +270,7 @@ class PronounRule(AugmentationRule):
         for combo in product(FIRST_PERSON_PRONOUNS, repeat=len(pronoun_indices)):
             new_tokens = list(tokens)
             for idx, new_pronoun in zip(pronoun_indices, combo):
-                new_tokens[idx] = new_pronoun
+                new_tokens[idx] = new_pronoun # Replace with string
             result.add(tuple(new_tokens))
             
         return result
@@ -111,19 +279,20 @@ class PronounRule(AugmentationRule):
 class CopulaRule(AugmentationRule):
     """Augments sentences by changing copula formality (da <-> desu)."""
     
-    def apply(self, tokens: Tuple[str, ...]) -> Set[Tuple[str, ...]]:
+    def apply(self, tokens: Tuple[AugmentationToken, ...]) -> Set[Tuple[AugmentationToken, ...]]:
         result = {tokens}
+        token_surfaces = tuple(get_surface(t) for t in tokens)
         
         for da_toks, desu_toks in COPULA_PATTERNS:
             # Check if sentence ends with da_toks
-            if len(tokens) >= len(da_toks) and tokens[-len(da_toks):] == da_toks:
-                new_tokens = tokens[:-len(da_toks)] + desu_toks
-                result.add(new_tokens)
+            if len(tokens) >= len(da_toks) and token_surfaces[-len(da_toks):] == da_toks:
+                new_tokens = list(tokens[:-len(da_toks)]) + list(desu_toks)
+                result.add(tuple(new_tokens))
                 
             # Check if sentence ends with desu_toks
-            if len(tokens) >= len(desu_toks) and tokens[-len(desu_toks):] == desu_toks:
-                new_tokens = tokens[:-len(desu_toks)] + da_toks
-                result.add(new_tokens)
+            if len(tokens) >= len(desu_toks) and token_surfaces[-len(desu_toks):] == desu_toks:
+                new_tokens = list(tokens[:-len(desu_toks)]) + list(da_toks)
+                result.add(tuple(new_tokens))
                 
         return result
 
@@ -131,67 +300,44 @@ class CopulaRule(AugmentationRule):
 class ContractionRule(AugmentationRule):
     """Augments sentences by swapping contractions (e.g. dewa <-> ja)."""
     
-    def apply(self, tokens: Tuple[str, ...]) -> Set[Tuple[str, ...]]:
+    def apply(self, tokens: Tuple[AugmentationToken, ...]) -> Set[Tuple[AugmentationToken, ...]]:
         result = {tokens}
+        token_surfaces = tuple(get_surface(t) for t in tokens)
         
         for form_a, form_b in CONTRACTION_PATTERNS:
             len_a = len(form_a)
             len_b = len(form_b)
             
-            # Form A -> Form B (iterate through tokens to find matches)
-            # Since matches can be anywhere, we simply check sliding windows?
-            # Or simpler: exact match replacement.
-            # However, unlike ends-with check, this needs to scan the whole sentence.
-            # For efficiency in Python with short lists, iterating indices is fine.
-            
-            # We must be careful about multiple occurrences.
-            # A recursive or iterative approach replacing one by one is needed.
-            # Let's collect all start indices first.
-            
             indices_a = []
-            for i in range(len(tokens) - len_a + 1):
-                if tokens[i:i+len_a] == form_a:
+            for i in range(len(token_surfaces) - len_a + 1):
+                if token_surfaces[i:i+len_a] == form_a:
                     indices_a.append(i)
             
             if indices_a:
-                # Generate all combinations of replacing/not replacing
-                # Replacing 'all' is distinct from replacing 'some'. 
-                # For equivalent generation, usually ALL instances being consistent isn't required by language,
-                # but mixed style might be odd ("食べているけど飲んでる"). 
-                # Let's generate the version where ALL are swapped, and the original.
-                # Or just do simplistic "replace one by one" -> exhaustive?
-                # Given sentences are short, exhaustive combination is better coverage.
-                
-                # Simplified approach: just generate the version with ALL replacements?
-                # Users often want full coverage. Let's do all combinations.
                 import itertools
                 for replacement_mask in itertools.product([False, True], repeat=len(indices_a)):
                     if not any(replacement_mask):
                         continue
-                        
+                    
                     new_tokens = []
                     last_idx = 0
-                    current_match_idx = 0
-                    
-                    matches = sorted(indices_a) # just in case
+                    matches = sorted(indices_a)
                     
                     for i, do_replace in zip(matches, replacement_mask):
-                        # Copy everything up to this match from last position
                         new_tokens.extend(tokens[last_idx:i])
                         if do_replace:
                             new_tokens.extend(form_b)
                         else:
-                            new_tokens.extend(form_a)
+                            new_tokens.extend(tokens[i:i+len_a])
                         last_idx = i + len_a
                         
-                    # Copy tail
                     new_tokens.extend(tokens[last_idx:])
                     result.add(tuple(new_tokens))
 
             # Form B -> Form A
             indices_b = []
-            for i in range(len(tokens) - len_b + 1):
-                if tokens[i:i+len_b] == form_b:
+            for i in range(len(token_surfaces) - len_b + 1):
+                if token_surfaces[i:i+len_b] == form_b:
                     indices_b.append(i)
             
             if indices_b:
@@ -202,7 +348,6 @@ class ContractionRule(AugmentationRule):
                         
                     new_tokens = []
                     last_idx = 0
-                    
                     matches = sorted(indices_b)
                     
                     for i, do_replace in zip(matches, replacement_mask):
@@ -210,7 +355,7 @@ class ContractionRule(AugmentationRule):
                         if do_replace:
                             new_tokens.extend(form_a)
                         else:
-                            new_tokens.extend(form_b)
+                            new_tokens.extend(tokens[i:i+len_b])
                         last_idx = i + len_b
                         
                     new_tokens.extend(tokens[last_idx:])
@@ -222,11 +367,12 @@ class ContractionRule(AugmentationRule):
 class TopicDropRule(AugmentationRule):
     """Aguments sentences by dropping clear subjects/topics at the start."""
     
-    def apply(self, tokens: Tuple[str, ...]) -> Set[Tuple[str, ...]]:
+    def apply(self, tokens: Tuple[AugmentationToken, ...]) -> Set[Tuple[AugmentationToken, ...]]:
         result = {tokens}
+        token_surfaces = tuple(get_surface(t) for t in tokens)
         
         for topic_toks in DROPPABLE_TOPIC_STARTS:
-            if len(tokens) > len(topic_toks) and tokens[:len(topic_toks)] == topic_toks:
+            if len(tokens) > len(topic_toks) and token_surfaces[:len(topic_toks)] == topic_toks:
                 new_tokens = tokens[len(topic_toks):]
                 result.add(new_tokens)
                 
@@ -236,17 +382,21 @@ class TopicDropRule(AugmentationRule):
 class ProgressiveRule(AugmentationRule):
     """Augments sentences by changing progressive form formality (te iru <-> te i masu)."""
     
-    def apply(self, tokens: Tuple[str, ...]) -> Set[Tuple[str, ...]]:
+    def apply(self, tokens: Tuple[AugmentationToken, ...]) -> Set[Tuple[AugmentationToken, ...]]:
         result = {tokens}
         
+        # This rule logic is strictly surface end-match based in the original
+        # We need to construct mixed tuples if we have dicts.
+        token_surfaces = tuple(get_surface(t) for t in tokens)
+
         for polite_toks, plain_toks in PROGRESSIVE_END_PATTERNS:
-            if len(tokens) >= len(polite_toks) and tokens[-len(polite_toks):] == polite_toks:
-                new_tokens = tokens[:-len(polite_toks)] + plain_toks
-                result.add(new_tokens)
+            if len(tokens) >= len(polite_toks) and token_surfaces[-len(polite_toks):] == polite_toks:
+                new_tokens = list(tokens[:-len(polite_toks)]) + list(plain_toks)
+                result.add(tuple(new_tokens))
                 
-            if len(tokens) >= len(plain_toks) and tokens[-len(plain_toks):] == plain_toks:
-                new_tokens = tokens[:-len(plain_toks)] + polite_toks
-                result.add(new_tokens)
+            if len(tokens) >= len(plain_toks) and token_surfaces[-len(plain_toks):] == plain_toks:
+                new_tokens = list(tokens[:-len(plain_toks)]) + list(polite_toks)
+                result.add(tuple(new_tokens))
                 
         return result
 
@@ -254,19 +404,20 @@ class ProgressiveRule(AugmentationRule):
 class PluralRule(AugmentationRule):
     """Augments sentences by swapping kanji/hiragana for plural suffix."""
     
-    def apply(self, tokens: Tuple[str, ...]) -> Set[Tuple[str, ...]]:
+    def apply(self, tokens: Tuple[AugmentationToken, ...]) -> Set[Tuple[AugmentationToken, ...]]:
         result = {tokens}
+        token_surfaces = [get_surface(t) for t in tokens]
         
         for kanji, hiragana in PLURAL_PATTERNS:
-            indices_kanji = [i for i, t in enumerate(tokens) if t == kanji]
+            indices_kanji = [i for i, t in enumerate(token_surfaces) if t == kanji]
             if indices_kanji:
                  for combo in product([kanji, hiragana], repeat=len(indices_kanji)):
                      new_tokens = list(tokens)
                      for idx, val in zip(indices_kanji, combo):
-                         new_tokens[idx] = val
+                         new_tokens[idx] = val # String replacement
                      result.add(tuple(new_tokens))
 
-            indices_hiragana = [i for i, t in enumerate(tokens) if t == hiragana]
+            indices_hiragana = [i for i, t in enumerate(token_surfaces) if t == hiragana]
             if indices_hiragana:
                  for combo in product([kanji, hiragana], repeat=len(indices_hiragana)):
                      new_tokens = list(tokens)
@@ -283,6 +434,7 @@ class Augmenter:
 
     def __init__(self):
         self.rules: List[AugmentationRule] = [
+            VerbPolitenessRule(), # Run first to use rich features
             PronounRule(),
             CopulaRule(),
             ContractionRule(),
@@ -299,7 +451,7 @@ class Augmenter:
             cls._parser = SudachiJapaneseParser(dict_type='full')
         return cls._parser
         
-    def augment_tokens(self, tokens: Tuple[str, ...]) -> Set[Tuple[str, ...]]:
+    def augment_tokens(self, tokens: Tuple[AugmentationToken, ...]) -> Set[Tuple[AugmentationToken, ...]]:
         """Apply all rules repeatedly to generate variations."""
         current_set = {tokens}
         
@@ -325,22 +477,39 @@ class Augmenter:
         try:
             kotogram = parser.japanese_to_kotogram(clean_sentence)
             tokens_kotogram = split_kotogram(kotogram)
-            token_surfaces = []
-            for t in tokens_kotogram:
-                f = extract_token_features(t)
-                if f and 'surface' in f:
-                    token_surfaces.append(f['surface'])
             
-            if not token_surfaces:
-                return {clean_sentence}
+            # Extract features for all tokens
+            # This gives us a Tuple[Token, ...]
+            token_features = []
+            for t in tokens_kotogram:
+                f = extract_token_features(t) or {}
+                # Ensure surface is set
+                if 'surface' not in f:
+                     import re
+                     match = re.search(r'ˢ(.*?)ᵖ', t)
+                     f['surface'] = match.group(1) if match else t
                 
-            token_tuple = tuple(token_surfaces)
+                token_features.append(Token(f['surface'], f))
+            
+            if not token_features:
+                 return {clean_sentence}
+            
+            token_tuple = tuple(token_features)
             augmented_tuples = self.augment_tokens(token_tuple)
             
-            return {"".join(t) for t in augmented_tuples}
+            # Join back surfaces
+            results = set()
+            for t in augmented_tuples:
+                surface_list = [get_surface(token) for token in t]
+                results.add("".join(surface_list))
+                
+            return results
             
-        except Exception:
+        except Exception as e:
             # Fallback on parsing error
+            print(f"Error in process_sentence: {e}")
+            import traceback
+            traceback.print_exc()
             return {clean_sentence}
 
     def filter_grammatical(self, sentences: Set[str]) -> List[str]:
