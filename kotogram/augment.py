@@ -73,9 +73,17 @@ PROGRESSIVE_END_PATTERNS = [
     (('で', 'い', 'まし', 'た', '。'), ('で', 'い', 'た', '。')),
     # Without period
     (('て', 'い', 'ます'), ('て', 'いる')),
-    (('て', 'い', 'まし', 'た'), ('て', 'い', 'た')),
+    (('て', 'い', 'まし', 'ta'), ('て', 'い', 'た')),
     (('で', 'い', 'ます'), ('で', 'いる')),
     (('で', 'い', 'まし', 'た'), ('で', 'い', 'た')),
+]
+
+DROPPABLE_PARTICLES = {'は', 'が', 'を'}
+
+DROPPABLE_TOPIC_STARTS = [
+    ('私', 'は'),
+    ('僕達', '僕たち'),
+    ('俺達', '俺たち'),
 ]
 
 PLURAL_PATTERNS = [
@@ -364,6 +372,48 @@ class ContractionRule(AugmentationRule):
         return result
 
 
+class ParticleDropRule(AugmentationRule):
+    """Augments sentences by dropping case particles (wa, ga, o) in casual contexts."""
+    
+    def apply(self, tokens: Tuple[AugmentationToken, ...]) -> Set[Tuple[AugmentationToken, ...]]:
+        result = {tokens}
+        
+        drop_indices = []
+        for i, token in enumerate(tokens):
+            # Only drop if we are sure it's a particle (i.e. have POS info)
+            if not isinstance(token, Token):
+                continue
+                
+            if token.get('pos') == 'prt' and token.surface in DROPPABLE_PARTICLES:
+                # Safety check: Don't drop 'wa' part of split greetings (konnichi-wa, konban-wa)
+                if token.surface == 'は' and i > 0:
+                    prev = get_surface(tokens[i-1])
+                    if prev in {'こんにち', 'こんばん'}:
+                        continue
+                        
+                drop_indices.append(i)
+                
+        if drop_indices:
+            import itertools
+            for drop_mask in itertools.product([False, True], repeat=len(drop_indices)):
+                if not any(drop_mask):
+                    continue
+                    
+                new_tokens = []
+                last_idx = 0
+                
+                for idx, do_drop in zip(drop_indices, drop_mask):
+                    new_tokens.extend(tokens[last_idx:idx])
+                    if not do_drop:
+                        new_tokens.append(tokens[idx])
+                    last_idx = idx + 1
+                    
+                new_tokens.extend(tokens[last_idx:])
+                result.add(tuple(new_tokens))
+                
+        return result
+
+
 class TopicDropRule(AugmentationRule):
     """Aguments sentences by dropping clear subjects/topics at the start."""
     
@@ -438,6 +488,7 @@ class Augmenter:
             PronounRule(),
             CopulaRule(),
             ContractionRule(),
+            ParticleDropRule(),
             TopicDropRule(),
             ProgressiveRule(),
             PluralRule(),
