@@ -1,6 +1,6 @@
 """Kotogram - A dual Python/TypeScript library for Japanese text parsing and encoding."""
 
-__version__ = "0.0.10"
+__version__ = "0.0.11"
 
 from .japanese_parser import JapaneseParser
 from .sudachi_japanese_parser import SudachiJapaneseParser
