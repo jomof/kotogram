@@ -6,6 +6,7 @@ from .japanese_parser import JapaneseParser
 from .sudachi_japanese_parser import SudachiJapaneseParser
 from .kotogram import kotogram_to_japanese, split_kotogram, extract_token_features
 from .analysis import formality, FormalityLevel, gender, GenderLevel, style, grammaticality
+from .augment import augment
 
 
 __all__ = [
@@ -20,4 +21,5 @@ __all__ = [
     "style",
     "grammaticality",
     "extract_token_features",
+    "augment",
 ]
