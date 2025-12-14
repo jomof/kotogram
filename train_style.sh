@@ -53,8 +53,8 @@ setup_environment
 
 # Default configuration
 DATA_PATH="data/jpn_sentences.tsv"  # Filtered to exclude known errors
-EXTRA_DATA_PATH="data/unpragmatic_sentences.tsv"
-AGRAMMATIC_DATA_PATH="data/jpn_agrammatic.tsv"
+EXTRA_DATA_PATH=""
+AGRAMMATIC_PATTERN="data/jpn_agrammatic*.tsv"
 OUTPUT_DIR="models/style"
 EPOCHS=20
 BATCH_SIZE=64
@@ -69,7 +69,7 @@ ENCODER_LR_FACTOR=0.1
 LEARNING_RATE=1e-4
 FORMALITY_WEIGHT=1.0
 GENDER_WEIGHT=1.0
-GRAMMATICALITY_WEIGHT=1.0
+GRAMMATICALITY_WEIGHT=5.0
 FP16=""
 FP8=""
 RESUME=""
@@ -92,12 +92,12 @@ while [[ $# -gt 0 ]]; do
             EXTRA_DATA_PATH=""
             shift
             ;;
-        --agrammatic-data)
-            AGRAMMATIC_DATA_PATH="$2"
+        --agrammatic-pattern)
+            AGRAMMATIC_PATTERN="$2"
             shift 2
             ;;
         --no-agrammatic-data)
-            AGRAMMATIC_DATA_PATH=""
+            AGRAMMATIC_PATTERN=""
             shift
             ;;
         --output)
@@ -202,7 +202,7 @@ while [[ $# -gt 0 ]]; do
             echo "  --data PATH           Path to primary TSV file (default: data/jpn_sentences.tsv)"
             echo "  --extra-data PATH     Path to extra TSV file (default: data/unpragmatic_sentences.tsv)"
             echo "  --no-extra-data       Disable loading extra data file"
-            echo "  --agrammatic-data PATH Path to agrammatic TSV file (default: data/jpn_agrammatic.tsv)"
+            echo "  --agrammatic-pattern PATTERN Pattern for agrammatic TSV files (default: data/jpn_agrammatic*.tsv)"
             echo "  --no-agrammatic-data  Disable loading agrammatic data file"
             echo "  --output DIR          Output directory (default: models/style)"
             echo "  --max-samples N       Limit samples (for testing)"
@@ -253,8 +253,8 @@ echo "Data:           $DATA_PATH"
 if [ -n "$EXTRA_DATA_PATH" ]; then
     echo "Extra data:     $EXTRA_DATA_PATH"
 fi
-if [ -n "$AGRAMMATIC_DATA_PATH" ]; then
-    echo "Agrammatic:     $AGRAMMATIC_DATA_PATH"
+if [ -n "$AGRAMMATIC_PATTERN" ]; then
+    echo "Agrammatic pattern: $AGRAMMATIC_PATTERN"
 fi
 echo "Output:         $OUTPUT_DIR"
 echo "Epochs:         $EPOCHS"
@@ -296,6 +296,63 @@ echo ""
 
 # Create output directory
 mkdir -p "$OUTPUT_DIR"
+
+# Process grammatical data (from pattern)
+if ls $DATA_PATH 1> /dev/null 2>&1; then
+    mkdir -p .cache
+    
+    COMBINED_GRAM_FILE=".cache/grammatic_combined.tsv"
+    TEMP_GRAM_FILE="${COMBINED_GRAM_FILE}.tmp"
+    
+    # Combine and deduplicate by 3rd column (sentence) called from pattern
+    awk -F'\t' '!seen[$3]++' $DATA_PATH > "$TEMP_GRAM_FILE"
+    
+    # Only update if content changed
+    if [ -f "$COMBINED_GRAM_FILE" ] && cmp -s "$TEMP_GRAM_FILE" "$COMBINED_GRAM_FILE"; then
+        echo "Grammatic data unchanged, using cached file."
+        rm "$TEMP_GRAM_FILE"
+    else
+        echo "Updating combined grammatic data..."
+        mv "$TEMP_GRAM_FILE" "$COMBINED_GRAM_FILE"
+    fi
+    
+    DATA_PATH="$COMBINED_GRAM_FILE"
+    echo "Combined grammatic data: $DATA_PATH ($(wc -l < "$DATA_PATH" | xargs) lines)"
+else
+    echo "Error: No files matched grammatic data pattern: $DATA_PATH"
+    exit 1
+fi
+
+# Process agrammatic data
+AGRAMMATIC_DATA_PATH=""
+if [ -n "$AGRAMMATIC_PATTERN" ]; then
+    # Check if any files match the pattern
+    if ls $AGRAMMATIC_PATTERN 1> /dev/null 2>&1; then
+        echo "Processing agrammatic data from: $AGRAMMATIC_PATTERN"
+        mkdir -p .cache
+        
+        COMBINED_FILE=".cache/agrammatic_combined.tsv"
+        TEMP_FILE="${COMBINED_FILE}.tmp"
+        
+        # Combine and deduplicate by 3rd column (sentence), keeping the first occurrence
+        # We assume files are TSV and 3rd column is the sentence
+        awk -F'\t' '!seen[$3]++' $AGRAMMATIC_PATTERN > "$TEMP_FILE"
+        
+        # Only update if content has changed (preserves mtime for caching)
+        if [ -f "$COMBINED_FILE" ] && cmp -s "$TEMP_FILE" "$COMBINED_FILE"; then
+            echo "Agrammatic data unchanged, using cached file."
+            rm "$TEMP_FILE"
+        else
+            echo "Updating combined agrammatic data..."
+            mv "$TEMP_FILE" "$COMBINED_FILE"
+        fi
+        
+        AGRAMMATIC_DATA_PATH="$COMBINED_FILE"
+        echo "Combined agrammatic data: $AGRAMMATIC_DATA_PATH ($(wc -l < "$AGRAMMATIC_DATA_PATH" | xargs) lines)"
+    else
+        echo "Warning: No files matched agrammatic pattern: $AGRAMMATIC_PATTERN"
+    fi
+fi
 
 # Enable MPS fallback for unsupported ops (Mac Apple Silicon)
 export PYTORCH_ENABLE_MPS_FALLBACK=1
