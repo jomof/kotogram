@@ -61,6 +61,13 @@ import pickle
 import random
 import sqlite3
 import sys
+import time  # For timing
+import yaml  # For timing output
+
+# Start timing immediately
+script_start_time = time.time()
+timings = {}
+
 from collections import Counter
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple, Any, cast
@@ -72,10 +79,16 @@ from torch.utils.data import Dataset, DataLoader
 from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
+
+import sudachipy
+import sudachidict_full
+
 from kotogram.kotogram import split_kotogram
 from kotogram.analysis import formality, gender, FormalityLevel, GenderLevel
 from kotogram.analysis import extract_token_features  # type: ignore[attr-defined]
+
 from kotogram.japanese_parser import JapaneseParser
+
 from kotogram.model import (
     StyleClassifier, Tokenizer, ModelConfig,
     FEATURE_FIELDS, ALL_FEATURE_FIELDS, set_excluded_features,
@@ -85,6 +98,9 @@ from kotogram.model import (
     PAD_TOKEN, UNK_TOKEN, CLS_TOKEN, MASK_TOKEN,
     load_model
 )
+
+# Record import time
+timings['imports'] = time.time() - script_start_time
 # Note: load_model is imported but we might need to adjust logic if training script uses custom loading.
 # Actually, the training script has its own save_model function (if I recall).
 
@@ -2143,6 +2159,8 @@ if __name__ == "__main__":
                         help="Print confusion matrices for existing model and exit")
 
     args = parser.parse_args()
+    timings['args_parsing'] = time.time() - script_start_time
+
 
     # Log device information
     if torch.cuda.is_available():
@@ -2207,9 +2225,9 @@ if __name__ == "__main__":
                 print(f"  Retraining from epoch 0 to {args.epochs}")
 
             # Update args with saved values (except epochs which can be extended)
-            args.data = saved_args['data']
-            args.extra_data = saved_args['extra_data']
-            args.agrammatic_data = saved_args['agrammatic_data']
+            # Note: We do NOT restore data paths (data, extra_data, agrammatic_data) to allow
+            # resuming training even if data files have moved or been reorganized, provided
+            # valid paths are passed via command line.
             args.embed_dim = saved_args['embed_dim']
             args.hidden_dim = saved_args['hidden_dim']
             args.num_layers = saved_args['num_layers']
@@ -2275,10 +2293,88 @@ if __name__ == "__main__":
     # Track if vocabulary grew during data loading/resume
     vocab_grew = False
 
+    # Check for sentence overlap between grammatic and agrammatic data
+    # (Optimized: skips check if files haven't changed since last successful validation)
+    t_check_start = time.time()
+    
+    validation_cache_path = os.path.join(os.path.dirname(args.output) if args.output else ".", ".cache", "data_validation_state.json")
+    os.makedirs(os.path.dirname(validation_cache_path), exist_ok=True)
+
+    def get_file_fingerprint(path: str) -> Optional[Dict[str, Any]]:
+        if not path or not os.path.exists(path):
+            return None
+        stat = os.stat(path)
+        return {'mtime': stat.st_mtime, 'size': stat.st_size}
+
+    # Helper to clean read sentences
+    def read_sentences_to_set(path: str, target_set: set):
+        if not path or not os.path.exists(path):
+            return
+        with open(path, 'r', encoding='utf-8') as f:
+            reader = csv.reader(f, delimiter='\t')
+            for row in reader:
+                if len(row) >= 3 and row[1] == 'jpn':
+                    target_set.add(row[2])
+
+    # Current state
+    current_state = {
+        'data': get_file_fingerprint(args.data),
+        'extra_data': get_file_fingerprint(args.extra_data) if args.extra_data else None,
+        'agrammatic_data': get_file_fingerprint(args.agrammatic_data) if args.agrammatic_data else None,
+    }
+
+    # Check cache
+    files_changed = True
+    if os.path.exists(validation_cache_path):
+        try:
+            with open(validation_cache_path, 'r') as f:
+                cached_state = json.load(f)
+            if cached_state == current_state:
+                files_changed = False
+        except Exception:
+            pass  # Ignore cache read errors
+
+    if not files_changed:
+        print("Data validation: Files unchanged, skipping overlap check.")
+    else:
+        print("Data validation: Checking for sentence overlap...")
+        grammatic_sentences = set()
+        agrammatic_sentences = set()
+
+        # Read grammatic
+        read_sentences_to_set(args.data, grammatic_sentences)
+        
+        # Read agrammatic
+        if args.extra_data:
+            read_sentences_to_set(args.extra_data, agrammatic_sentences)
+        if args.agrammatic_data:
+            read_sentences_to_set(args.agrammatic_data, agrammatic_sentences)
+            
+        # Check intersection
+        overlap = grammatic_sentences.intersection(agrammatic_sentences)
+        if overlap:
+            print(f"\nERROR: Found {len(overlap)} sentences appearing in both grammatic and agrammatic datasets.")
+            print("This contamination invalidates the training assumption.")
+            print("Examples:")
+            for i, sent in enumerate(list(overlap)[:5]):
+                print(f"  {i+1}. {sent}")
+            sys.exit(1)
+        
+        # Save state if successful
+        try:
+            with open(validation_cache_path, 'w') as f:
+                json.dump(current_state, f)
+            print("Data validation: Passed and cached.")
+        except Exception as e:
+            print(f"Warning: Failed to cache validation state: {e}")
+        
+    timings['overlap_check'] = time.time() - t_check_start
+
     # Load data: if doing MLM pretraining, first load unlabeled data for pretraining,
     # then load labeled data for fine-tuning
 
     # Skip model creation if resuming (model already loaded)
+    t_data_start = time.time()
     if (args.resume or args.confusion) and checkpoint is not None:
         # Load datasets with existing tokenizer
         # Unfreeze tokenizer to allow new vocabulary
@@ -2319,6 +2415,8 @@ if __name__ == "__main__":
         else:
             print("\nNo new vocabulary tokens found.")
             model_config = model.config
+        
+        timings['data_loading'] = time.time() - t_data_start
 
     elif args.pretrain_mlm:
         # MLM pretraining should only use grammatical sentences
@@ -2434,6 +2532,7 @@ if __name__ == "__main__":
                 verbose=True,
             )
         train_data, val_data, test_data = dataset.split()
+        timings['data_loading'] = time.time() - t_data_start
 
         # Model config
         excluded = [f.strip() for f in args.exclude_features.split(',') if f.strip()] if args.exclude_features else []
@@ -2450,7 +2549,9 @@ if __name__ == "__main__":
         )
 
         print("\nCreating model...")
+        t_model_start = time.time()
         model = StyleClassifier(model_config)
+        timings['model_creation'] = time.time() - t_model_start
 
     if args.confusion:
         print("\nLoading model for confusion matrix evaluation...")
@@ -2476,6 +2577,17 @@ if __name__ == "__main__":
 
     # Supervised training with differential learning rates
     print("\nStarting supervised training...")
+    
+    # Save timings
+    timings['total_startup'] = time.time() - script_start_time
+    try:
+        os.makedirs(args.output, exist_ok=True)
+        with open(os.path.join(args.output, "timing.yml"), "w") as f:
+            yaml.dump(timings, f)
+        print(f"Startup timings saved to {os.path.join(args.output, 'timing.yml')}")
+    except Exception as e:
+        print(f"Warning: Failed to save timings: {e}")
+
     trainer_config = TrainerConfig(
         epochs=args.epochs,
         batch_size=args.batch_size,
