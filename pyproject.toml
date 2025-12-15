@@ -44,7 +44,7 @@ packages = ["kotogram", "kotogram.model_data"]
 "kotogram.model_data" = "models/style"
 
 [tool.setuptools.package-data]
-"kotogram.model_data" = ["*.pt", "*.json", "*.csv", "*.txt"]
+"kotogram.model_data" = ["model.pt", "*.json", "*.txt"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests-py"]
