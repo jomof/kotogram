@@ -19,7 +19,7 @@ import torch.nn.functional as F
 
 from kotogram.kotogram import split_kotogram
 from kotogram.analysis import FormalityLevel, GenderLevel
-from kotogram.analysis import extract_token_features  # type: ignore[attr-defined]
+from kotogram.kotogram import extract_token_features
 from kotogram.japanese_parser import JapaneseParser
 
 # Special token values for vocabulary

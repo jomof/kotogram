@@ -84,8 +84,14 @@ import sudachipy
 import sudachidict_full
 
 from kotogram.kotogram import split_kotogram
-from kotogram.analysis import formality, gender, FormalityLevel, GenderLevel
-from kotogram.analysis import extract_token_features  # type: ignore[attr-defined]
+from kotogram.analysis import FormalityLevel, GenderLevel
+from kotogram.kotogram import extract_token_features
+
+# Import rule-based analysis functions
+try:
+    from rule_based_analysis import analyze_formality, analyze_gender
+except ImportError:
+    from scripts.rule_based_analysis import analyze_formality, analyze_gender
 
 from kotogram.japanese_parser import JapaneseParser
 
@@ -289,7 +295,12 @@ def _process_sentence_batch(
     """
     # Import parser in worker process to avoid pickling issues
     from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-    from kotogram.analysis import formality, gender, FormalityLevel, GenderLevel
+    from kotogram.analysis import FormalityLevel, GenderLevel
+    # Try importing from local directory first, then package
+    try:
+        from rule_based_analysis import analyze_formality, analyze_gender
+    except ImportError:
+        from scripts.rule_based_analysis import analyze_formality, analyze_gender
 
     parser = SudachiJapaneseParser()
     results = []
@@ -313,8 +324,8 @@ def _process_sentence_batch(
     for sentence, sentence_id, gram_label, source_id in batch:
         try:
             kotogram = parser.japanese_to_kotogram(sentence)
-            formality_enum = formality(kotogram)
-            gender_enum = gender(kotogram)
+            formality_enum = analyze_formality(kotogram)
+            gender_enum = analyze_gender(kotogram)
             formality_id = formality_to_id[formality_enum]
             gender_id = gender_to_id[gender_enum]
             results.append((sentence, sentence_id, kotogram, formality_id, gender_id, gram_label, 1))
@@ -518,12 +529,14 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             cached_kotogram = cached_kotograms.get(sentence)
             if cached_kotogram:
                 try:
-                    formality_enum = formality(cached_kotogram)
-                    gender_enum = gender(cached_kotogram)
+                    formality_enum = analyze_formality(cached_kotogram)
+                    gender_enum = analyze_gender(cached_kotogram)
                     formality_id = formality_to_id[formality_enum]
                     gender_id = gender_to_id[gender_enum]
                     results.append((sentence, cached_kotogram, formality_id, gender_id, gram_label, 1, source_id))
-                except Exception:
+                except Exception as e:
+                    if verbose:
+                        print(f"Error computing labels for cached sentence: {e}")
                     pass  # Skip sentences that fail label computation
 
         if verbose:
