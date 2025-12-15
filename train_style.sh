@@ -52,7 +52,7 @@ setup_environment() {
 setup_environment
 
 # Default configuration
-DATA_PATH="data/jpn_sentences.tsv"  # Filtered to exclude known errors
+DATA_PATH="data/jpn_sentences*.tsv"  # Filtered to exclude known errors
 EXTRA_DATA_PATH=""
 AGRAMMATIC_PATTERN="data/jpn_agrammatic*.tsv"
 OUTPUT_DIR="models/style"
