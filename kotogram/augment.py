@@ -573,7 +573,7 @@ class Augmenter:
         for sent in sentences:
             try:
                 k = parser.japanese_to_kotogram(sent)
-                if grammaticality(k, use_model=True):
+                if grammaticality(k):
                     valid_sentences.append(sent)
             except Exception:
                 # Be conservative: assume valid if parse fails? Or drop?
