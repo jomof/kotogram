@@ -1,13 +1,14 @@
-kotogram-*.dist-info/licenses/LICENSE
 kotogram-*.dist-info/METADATA
 kotogram-*.dist-info/RECORD
-kotogram-*.dist-info/top_level.txt
 kotogram-*.dist-info/WHEEL
+kotogram-*.dist-info/licenses/LICENSE
+kotogram-*.dist-info/top_level.txt
 kotogram/__init__.py
 kotogram/analysis.py
 kotogram/augment.py
 kotogram/japanese_parser.py
 kotogram/kotogram.py
+kotogram/model.py
 kotogram/model_data/__init__.py
 kotogram/model_data/checkpoint.pt
 kotogram/model_data/config.json
@@ -15,8 +16,7 @@ kotogram/model_data/formality_confusion.csv
 kotogram/model_data/gender_confusion.csv
 kotogram/model_data/grammaticality_confusion.csv
 kotogram/model_data/labels.json
-kotogram/model_data/model_type.txt
 kotogram/model_data/model.pt
+kotogram/model_data/model_type.txt
 kotogram/model_data/tokenizer.json
-kotogram/model.py
 kotogram/sudachi_japanese_parser.py

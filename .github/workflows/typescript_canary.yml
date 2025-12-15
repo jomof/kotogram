@@ -222,7 +222,7 @@ jobs:
         PACK_FILE=$(npm pack)
         
         # List files, strip 'package/' prefix, sort
-        tar -tf "$PACK_FILE" | sed 's/^package\///' | sort > /tmp/package_files.txt
+        tar -tf "$PACK_FILE" | sed 's/^package\///' | LC_ALL=C sort > /tmp/package_files.txt
         
         echo "Actual package files:"
         cat /tmp/package_files.txt
