@@ -241,7 +241,7 @@ jobs:
         grep -v "\-\-\-\-" | \
         grep -v "^\s*$" | \
         sed 's/kotogram-.*\.dist-info/kotogram-*.dist-info/g' | \
-        sort > /tmp/package_files.txt
+        LC_ALL=C sort > /tmp/package_files.txt
         
         echo "Actual package files:"
         cat /tmp/package_files.txt
