@@ -230,6 +230,31 @@ jobs:
         echo "Package contents:"
         cat /tmp/wheel_contents.txt
 
+    - name: Check against baseline
+      run: |
+        echo "Comparing package contents against baseline..."
+        # Extract filenames, remove header/footer, sort, and normalize version
+        unzip -l dist/*.whl | \
+        awk '{print $4}' | \
+        grep -v "Name" | \
+        grep -v "\-\-\-\-" | \
+        grep -v "^\s*$" | \
+        sed 's/kotogram-.*\.dist-info/kotogram-*.dist-info/g' | \
+        sort > /tmp/package_files.txt
+        
+        echo "Actual package files:"
+        cat /tmp/package_files.txt
+        
+        echo "Expected baseline:"
+        cat tests/python_package_baseline.txt
+        
+        if diff -u tests/python_package_baseline.txt /tmp/package_files.txt; then
+           echo "✅ Package contents match baseline"
+        else
+           echo "❌ ERROR: Package contents do not match baseline!"
+           exit 1
+        fi
+
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:

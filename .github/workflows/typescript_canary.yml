@@ -212,59 +212,30 @@ jobs:
     - name: Build package
       run: npm run build
 
-    - name: Validate package contents
-      run: |
-        echo "Checking TypeScript package for Python contamination..."
-
-        # Create a tarball to simulate what would be published
-        npm pack --dry-run > /tmp/npm_pack_output.txt 2>&1 || true
-
-        # List what files would be included in the package
-        echo "Files that would be published to npm:"
-        npm pack --dry-run 2>&1 | grep -E '^\s+[0-9]' || true
-
-        # Check the actual dist directory and package.json files config
-        echo ""
-        echo "Checking for Python contamination in dist/ directory..."
-
-        # Check for Python files
-        if find dist/ -name '*.py' 2>/dev/null | grep -q .; then
-          echo "❌ ERROR: Found Python files in dist/ directory!"
-          find dist/ -name '*.py'
-          exit 1
-        fi
-
-        # Check for Python test files
-        if [ -d "dist/tests-py" ] || [ -d "dist/kotogram" ]; then
-          echo "❌ ERROR: Found Python package directories in dist/!"
-          ls -la dist/
-          exit 1
-        fi
-
-        # Verify only expected TypeScript output exists
-        if [ ! -f "dist/index.js" ] || [ ! -f "dist/index.d.ts" ]; then
-          echo "❌ ERROR: Missing expected TypeScript output files!"
-          echo "Contents of dist/:"
-          ls -la dist/
-          exit 1
-        fi
-
-        # Check for Python config files that might leak in
-        if find . -path ./node_modules -prune -o \( -name '*.py' -o -name 'pyproject.toml' -o -name 'setup.py' \) -print | grep -v '^\./node_modules' | grep -q .; then
-          echo "⚠️  Warning: Python files exist in repository (this is expected)"
-          echo "Verifying they won't be published..."
-
-          # Make sure package.json 'files' field is restrictive
-          if ! grep -q '"files"' package.json; then
-            echo "❌ ERROR: package.json missing 'files' field - might publish everything!"
-            exit 1
-          fi
-        fi
-
         echo "✅ TypeScript package is clean - no Python files in dist/"
         echo ""
-        echo "Contents of dist/:"
-        ls -lah dist/
+
+    - name: Check against baseline
+      run: |
+        echo "Comparing package contents against baseline..."
+        # Create package and list contents
+        PACK_FILE=$(npm pack)
+        
+        # List files, strip 'package/' prefix, sort
+        tar -tf "$PACK_FILE" | sed 's/^package\///' | sort > /tmp/package_files.txt
+        
+        echo "Actual package files:"
+        cat /tmp/package_files.txt
+        
+        echo "Expected baseline:"
+        cat tests/typescript_package_baseline.txt
+        
+        if diff -u tests/typescript_package_baseline.txt /tmp/package_files.txt; then
+           echo "✅ Package contents match baseline"
+        else
+           echo "❌ ERROR: Package contents do not match baseline!"
+           exit 1
+        fi
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
