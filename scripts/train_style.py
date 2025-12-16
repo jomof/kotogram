@@ -511,6 +511,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         # Process uncached sentences in parallel
         new_kotograms: List[Tuple[str, str]] = []  # (sentence, kotogram) for cache update
+        
+        # Initialize multiprocessing context early
+        ctx = mp.get_context('spawn')
 
         if uncached_rows:
             batches = [uncached_rows[i:i + batch_size] for i in range(0, len(uncached_rows), batch_size)]
@@ -521,7 +524,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             processed = 0
 
             # Use spawn context for better compatibility
-            ctx = mp.get_context('spawn')
+            # ctx = mp.get_context('spawn') # Moved to top of function
             with ctx.Pool(num_workers) as pool:
                 for batch_results in pool.imap(_process_sentence_batch, batches):
                     for sentence, _sid, kotogram, _form_id, _gen_id, _gram_label, success in batch_results:
