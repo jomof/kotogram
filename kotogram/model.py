@@ -407,11 +407,12 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             nn.Linear(config.hidden_dim, config.num_grammaticality_classes),
         )
 
-    def _get_pooled_output(
+    def get_encoder_output(
         self,
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
     ) -> torch.Tensor:
+        """Get the sequence of encoder hidden states."""
         x = self.embedding(field_inputs)
         x = self.pos_encoding(x)
 
@@ -421,6 +422,14 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             src_key_padding_mask = None
 
         x = cast(torch.Tensor, self.encoder(x, src_key_padding_mask=src_key_padding_mask))
+        return x
+
+    def _get_pooled_output(
+        self,
+        field_inputs: Dict[str, torch.Tensor],
+        attention_mask: Optional[torch.Tensor] = None,
+    ) -> torch.Tensor:
+        x = self.get_encoder_output(field_inputs, attention_mask)
 
         if self.config.pooling == "cls":
             pooled = x[:, 0, :]
