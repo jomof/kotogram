@@ -117,176 +117,210 @@ timings['imports'] = time.time() - script_start_time
 
 
 
-class KotogramCache:
-    """Durable cache for Japanese → kotogram conversions.
+class ShardedKotogramCache:
+    """Durable sharded cache for Japanese → kotogram + label conversions.
 
-    This cache stores the expensive SudachiPy parsing results in a SQLite database.
-    It is keyed only by sentence hash and is independent of model architecture,
-    training parameters, or label computations. This means:
-
-    1. The cache persists across training runs
-    2. Changes to model dimensions, features, or labels don't invalidate it
-    3. Only the kotogram conversion itself is cached (not formality/gender labels)
-
-    The cache uses SQLite for durability and efficient key-value lookups.
+    This cache stores processing results in multiple small SQLite databases (shards)
+    to keep file sizes manageable (~1MB) and avoid lock contention.
+    
+    It accepts a legacy monolithic database path for migration purposes.
+    
+    Keyed by sentence hash.
+    Schema: (sentence, kotogram, formality_label, gender_label)
     """
 
-    DEFAULT_PATH = ".cache/kotogram.db"
+    DEFAULT_SHARDS_DIR = ".cache/kotogram_shards"
+    LEGACY_DB_PATH = ".cache/kotogram.db"
+    SHARD_PREFIX_LEN = 3 # 3 hex chars = 4096 shards
 
-    def __init__(self, db_path: str = DEFAULT_PATH):
-        """Initialize the kotogram cache.
-
+    def __init__(self, shards_dir: str = DEFAULT_SHARDS_DIR):
+        """Initialize the sharded cache.
+        
         Args:
-            db_path: Path to the SQLite database file
+            shards_dir: Directory to store shard database files
         """
-        self.db_path = db_path
-        os.makedirs(os.path.dirname(db_path), exist_ok=True)
-        self._init_db()
+        self.shards_dir = shards_dir
+        os.makedirs(shards_dir, exist_ok=True)
+        
+        # Check for legacy DB and migrate if needed
+        if os.path.exists(self.LEGACY_DB_PATH):
+            print(f"Found legacy cache at {self.LEGACY_DB_PATH}. Migrating to shards...")
+            self._migrate_legacy_cache(self.LEGACY_DB_PATH)
 
-    def _init_db(self) -> None:
-        """Initialize the database schema."""
-        conn = sqlite3.connect(self.db_path)
+    def _get_shard_path(self, sentence_hash: str) -> str:
+        """Get path to the shard file for a given hash."""
+        shard_key = sentence_hash[:self.SHARD_PREFIX_LEN]
+        return os.path.join(self.shards_dir, f"{shard_key}.db")
+
+    def _init_shard(self, shard_path: str) -> None:
+        """Initialize a single shard database (if not exists)."""
+        conn = sqlite3.connect(shard_path)
         try:
             conn.execute("""
-                CREATE TABLE IF NOT EXISTS kotogram_cache (
+                CREATE TABLE IF NOT EXISTS cache_entries (
                     sentence_hash TEXT PRIMARY KEY,
                     sentence TEXT NOT NULL,
-                    kotogram TEXT NOT NULL
+                    kotogram TEXT NOT NULL,
+                    formality_label INTEGER,
+                    gender_label INTEGER
                 )
             """)
-            conn.execute("CREATE INDEX IF NOT EXISTS idx_hash ON kotogram_cache(sentence_hash)")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_hash ON cache_entries(sentence_hash)")
             conn.commit()
         finally:
             conn.close()
+
+    def _migrate_legacy_cache(self, legacy_path: str) -> None:
+        """Migrate entries from legacy monolithic DB to shards."""
+        try:
+            conn = sqlite3.connect(legacy_path)
+            cursor = conn.execute("SELECT sentence, kotogram FROM kotogram_cache")
+            
+            # Batch read to avoid memory issues (though 1.2GB might fit in RAM, safer to stream)
+            batch = []
+            count = 0
+            while True:
+                rows = cursor.fetchmany(10000)
+                if not rows:
+                    break
+                
+                # Convert to format expected by put_batch (sentence, kotogram, formality, gender)
+                # Legacy cache has no labels, so None
+                items = [(r[0], r[1], None, None) for r in rows]
+                self.put_batch(items, verbose=False) # Verbose False to avoid spam
+                count += len(rows)
+                print(f"  Migrated {count} entries...")
+            
+            conn.close()
+            
+            # Rename legacy file to prevent re-migration
+            os.rename(legacy_path, legacy_path + ".bak")
+            print(f"Migration complete. Legacy cache moved to {legacy_path}.bak")
+            
+        except sqlite3.Error as e:
+            print(f"Error migrating legacy cache: {e}")
+            # Don't crash, just continue with empty shards
 
     @staticmethod
     def _hash_sentence(sentence: str) -> str:
         """Create a hash key for a sentence."""
         return hashlib.sha256(sentence.encode('utf-8')).hexdigest()
 
-    def get(self, sentence: str) -> Optional[str]:
-        """Get cached kotogram for a sentence.
-
-        Args:
-            sentence: Japanese sentence
+    def get_batch(self, sentences: List[str]) -> Dict[str, Optional[Tuple[str, Optional[int], Optional[int]]]]:
+        """Get cached entries for multiple sentences.
 
         Returns:
-            Cached kotogram string, or None if not cached
-        """
-        sentence_hash = self._hash_sentence(sentence)
-        conn = sqlite3.connect(self.db_path)
-        try:
-            cursor = conn.execute(
-                "SELECT kotogram FROM kotogram_cache WHERE sentence_hash = ?",
-                (sentence_hash,)
-            )
-            row = cursor.fetchone()
-            return row[0] if row else None
-        finally:
-            conn.close()
-
-    def get_batch(self, sentences: List[str]) -> Dict[str, Optional[str]]:
-        """Get cached kotograms for multiple sentences.
-
-        Args:
-            sentences: List of Japanese sentences
-
-        Returns:
-            Dict mapping sentence → kotogram (or None if not cached)
+            Dict mapping sentence → (kotogram, formality, gender) OR None
         """
         if not sentences:
             return {}
 
-        hashes = [(self._hash_sentence(s), s) for s in sentences]
-        hash_to_sentence = {h: s for h, s in hashes}
+        # Group by shard
+        shard_to_hashes: Dict[str, List[Tuple[str, str]]] = {} # shard_path -> [(hash, sentence)]
+        results: Dict[str, Optional[Tuple[str, Optional[int], Optional[int]]]] = {s: None for s in sentences}
+        
+        for s in sentences:
+            h = self._hash_sentence(s)
+            path = self._get_shard_path(h)
+            if path not in shard_to_hashes:
+                shard_to_hashes[path] = []
+            shard_to_hashes[path].append((h, s))
 
-        conn = sqlite3.connect(self.db_path)
-        try:
-            # Query in batches of 500 to avoid SQLite variable limits
-            results: Dict[str, Optional[str]] = {s: None for s in sentences}
-            hash_list = list(hash_to_sentence.keys())
-
-            for i in range(0, len(hash_list), 500):
-                batch_hashes = hash_list[i:i + 500]
-                placeholders = ",".join("?" * len(batch_hashes))
+        # Query each shard
+        for shard_path, items in shard_to_hashes.items():
+            if not os.path.exists(shard_path):
+                continue
+                
+            hash_to_sentence = {h: s for h, s in items}
+            hashes = list(hash_to_sentence.keys())
+            
+            try:
+                conn = sqlite3.connect(shard_path)
+                placeholders = ",".join("?" * len(hashes))
                 cursor = conn.execute(
-                    f"SELECT sentence_hash, kotogram FROM kotogram_cache WHERE sentence_hash IN ({placeholders})",
-                    batch_hashes
+                    f"SELECT sentence_hash, kotogram, formality_label, gender_label FROM cache_entries WHERE sentence_hash IN ({placeholders})",
+                    hashes
                 )
+                
                 for row in cursor:
-                    sentence = hash_to_sentence[row[0]]
-                    results[sentence] = row[1]
+                    h, k, f_lbl, g_lbl = row
+                    sent = hash_to_sentence[h]
+                    results[sent] = (k, f_lbl, g_lbl)
+                conn.close()
+            except sqlite3.Error:
+                # If shard is corrupt or locked, just treat as miss
+                pass
 
-            return results
-        finally:
-            conn.close()
+        return results
 
-    def put(self, sentence: str, kotogram: str) -> None:
-        """Cache a kotogram for a sentence.
-
+    def put_batch(
+        self, 
+        items: List[Tuple[str, str, Optional[int], Optional[int]]],
+        verbose: bool = False
+    ) -> None:
+        """Cache multiple entries.
+        
         Args:
-            sentence: Japanese sentence
-            kotogram: Kotogram representation
-        """
-        sentence_hash = self._hash_sentence(sentence)
-        conn = sqlite3.connect(self.db_path)
-        try:
-            conn.execute(
-                "INSERT OR REPLACE INTO kotogram_cache (sentence_hash, sentence, kotogram) VALUES (?, ?, ?)",
-                (sentence_hash, sentence, kotogram)
-            )
-            conn.commit()
-        finally:
-            conn.close()
-
-    def put_batch(self, items: List[Tuple[str, str]]) -> None:
-        """Cache multiple sentence→kotogram mappings.
-
-        Args:
-            items: List of (sentence, kotogram) tuples
+            items: List of (sentence, kotogram, formality_label, gender_label)
         """
         if not items:
             return
 
-        conn = sqlite3.connect(self.db_path)
-        try:
-            data = [(self._hash_sentence(s), s, k) for s, k in items]
-            conn.executemany(
-                "INSERT OR REPLACE INTO kotogram_cache (sentence_hash, sentence, kotogram) VALUES (?, ?, ?)",
-                data
-            )
-            conn.commit()
-        finally:
-            conn.close()
+        # Group by shard
+        shard_to_data: Dict[str, List[Tuple[str, str, str, Optional[int], Optional[int]]]] = {}
+        
+        for s, k, f_lbl, g_lbl in items:
+            h = self._hash_sentence(s)
+            path = self._get_shard_path(h)
+            if path not in shard_to_data:
+                shard_to_data[path] = []
+            shard_to_data[path].append((h, s, k, f_lbl, g_lbl))
+
+        # Write to each shard
+        for shard_path, data in shard_to_data.items():
+            self._init_shard(shard_path) # Ensure exists
+            
+            conn = sqlite3.connect(shard_path)
+            try:
+                conn.executemany(
+                    """INSERT OR REPLACE INTO cache_entries 
+                       (sentence_hash, sentence, kotogram, formality_label, gender_label) 
+                       VALUES (?, ?, ?, ?, ?)""",
+                    data
+                )
+                conn.commit()
+            except sqlite3.Error as e:
+                if verbose:
+                    print(f"Error writing to cache shard {shard_path}: {e}")
+            finally:
+                conn.close()
 
     def __len__(self) -> int:
-        """Return the number of cached entries."""
-        conn = sqlite3.connect(self.db_path)
-        try:
-            cursor = conn.execute("SELECT COUNT(*) FROM kotogram_cache")
-            return int(cursor.fetchone()[0])
-        finally:
-            conn.close()
-
-    def clear(self) -> None:
-        """Clear all cached entries."""
-        conn = sqlite3.connect(self.db_path)
-        try:
-            conn.execute("DELETE FROM kotogram_cache")
-            conn.commit()
-        finally:
-            conn.close()
+        """Return approximate number of cached entries (expensive to count all)."""
+        # For speed, we might just estimate or skip. 
+        # But if needed, we iterate all shards.
+        total = 0
+        for fname in os.listdir(self.shards_dir):
+            if fname.endswith(".db"):
+                try:
+                    conn = sqlite3.connect(os.path.join(self.shards_dir, fname))
+                    cursor = conn.execute("SELECT COUNT(*) FROM cache_entries")
+                    total += int(cursor.fetchone()[0])
+                    conn.close()
+                except: pass
+        return total
 
 
 # Global kotogram cache instance
-_kotogram_cache: Optional[KotogramCache] = None
+# Global kotogram cache instance
+_kotogram_cache: Optional[ShardedKotogramCache] = None
 
 
-def get_kotogram_cache(db_path: str = KotogramCache.DEFAULT_PATH) -> KotogramCache:
-    """Get the global kotogram cache instance."""
+def get_kotogram_cache(shards_dir: str = ShardedKotogramCache.DEFAULT_SHARDS_DIR) -> ShardedKotogramCache:
+    """Get the global sharded kotogram cache instance."""
     global _kotogram_cache
-    if _kotogram_cache is None or _kotogram_cache.db_path != db_path:
-        _kotogram_cache = KotogramCache(db_path)
+    if _kotogram_cache is None or _kotogram_cache.shards_dir != shards_dir:
+        _kotogram_cache = ShardedKotogramCache(shards_dir)
     return _kotogram_cache
 
 
@@ -523,26 +557,51 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             return []
 
         # Check kotogram cache for already-parsed sentences
+        # Check kotogram cache for already-parsed sentences
         cache = get_kotogram_cache() if use_kotogram_cache else None
-        cached_kotograms: Dict[str, Optional[str]] = {}
-        uncached_rows: List[Tuple[str, str, int]] = []
+        
+        # Results storage
+        # We need final list of (sentence, kotogram, f_id, g_id, gram_label, success)
+        # We can store intermediate results in a dict or build list at the end
+        final_data: Dict[str, Tuple[str, int, int]] = {} # sentence -> (kotogram, f, g)
+        
+        uncached_rows: List[Tuple[str, str, int]] = [] # Need parsing
+        unlabeled_rows: List[Tuple[str, str, int]] = [] # Have kotogram, need labels
 
         if cache is not None:
             sentences = [r[0] for r in rows]
-            cached_kotograms = cache.get_batch(sentences)
-            cache_hits = sum(1 for v in cached_kotograms.values() if v is not None)
+            cached_batch = cache.get_batch(sentences)
+            
+            kotogram_hits = 0
+            label_hits = 0
 
             for row in rows:
-                if cached_kotograms.get(row[0]) is None:
+                s = row[0]
+                entry = cached_batch.get(s)
+                
+                if entry is not None:
+                    k, f, g = entry
+                    kotogram_hits += 1
+                    
+                    if f is not None and g is not None:
+                        final_data[s] = (k, f, g)
+                        label_hits += 1
+                    else:
+                        # Partial hit (kotogram only)
+                        unlabeled_rows.append((s, k, row[2]))
+                else:
                     uncached_rows.append(row)
 
             if verbose:
-                print(f"Kotogram cache: {cache_hits}/{len(rows)} hits ({100*cache_hits/len(rows):.1f}%)")
+                print(f"Kotogram cache: {kotogram_hits}/{len(rows)} hits ({100*kotogram_hits/len(rows):.1f}%)")
+                print(f"Label cache:    {label_hits}/{len(rows)} hits ({100*label_hits/len(rows):.1f}%)")
         else:
             uncached_rows = list(rows)
 
-        # Process uncached sentences in parallel
-        new_kotograms: List[Tuple[str, str]] = []  # (sentence, kotogram) for cache update
+
+        # 1. Process Uncached (Parse + Label)
+        # -----------------------------------
+        new_cache_entries: List[Tuple[str, str, Optional[int], Optional[int]]] = []
         
         # Initialize multiprocessing context early
         ctx = mp.get_context('spawn')
@@ -551,56 +610,68 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             batches = [uncached_rows[i:i + batch_size] for i in range(0, len(uncached_rows), batch_size)]
 
             if verbose:
-                print(f"Processing {len(uncached_rows)} uncached sentences with {num_workers} workers...")
+                print(f"Parsing {len(uncached_rows)} uncached sentences with {num_workers} workers...")
 
             processed = 0
 
-            # Use spawn context for better compatibility
-            # ctx = mp.get_context('spawn') # Moved to top of function
             with ctx.Pool(num_workers) as pool:
                 for batch_results in pool.imap(_process_sentence_batch, batches):
-                    for sentence, _sid, kotogram, _form_id, _gen_id, _gram_label, success in batch_results:
+                    # batch_results: (sentence, _sid, kotogram, f_id, g_id, gram_label, success)
+                    for sentence, _sid, kotogram, f_id, g_id, _gram_label, success in batch_results:
                         if success:
-                            cached_kotograms[sentence] = kotogram
-                            new_kotograms.append((sentence, kotogram))
+                            final_data[sentence] = (kotogram, f_id, g_id)
+                            new_cache_entries.append((sentence, kotogram, f_id, g_id))
+                    
                     processed += len(batch_results)
                     if verbose and processed % 10000 < batch_size:
-                        print(f"  Processed {processed}/{len(uncached_rows)} sentences...")
+                        print(f"  Parsed {processed}/{len(uncached_rows)} sentences...")
 
             if verbose:
-                print(f"  Completed: {len(new_kotograms)} new kotograms parsed")
+                print(f"  Completed: {len(new_cache_entries)} new kotograms parsed")
 
-            # Save new kotograms to cache
-            if cache is not None and new_kotograms:
-                cache.put_batch(new_kotograms)
-                if verbose:
-                    print(f"  Saved {len(new_kotograms)} new entries to kotogram cache")
 
-        # Now compute labels for all sentences (both cached and newly parsed)
-        # Parallelize label computation
-        if verbose:
-            print(f"Computing labels for {len(rows)} sentences with {num_workers} workers...")
+        # 2. Process Unlabeled (Label only)
+        # ---------------------------------
+        # These are partial cache hits (legacy cache data)
+        if unlabeled_rows:
+            if verbose:
+                print(f"Computing labels for {len(unlabeled_rows)} partial-hit sentences...")
             
-        # Prepare inputs for parallel processing
-        # We need to pass (sentence, kotogram, gram_label)
-        label_inputs = []
-        for sentence, _sid, gram_label in rows:
-            cached_k = cached_kotograms.get(sentence)
-            if cached_k:
-                label_inputs.append((sentence, cached_k, gram_label))
-        
-        # Batching
-        label_batches = [label_inputs[i:i + batch_size] for i in range(0, len(label_inputs), batch_size)]
-        
+            # Batching
+            label_batches = [unlabeled_rows[i:i + batch_size] for i in range(0, len(unlabeled_rows), batch_size)]
+            processed_labels = 0
+            
+            with ctx.Pool(num_workers) as pool:
+                for batch_results in pool.imap(_compute_labels_batch, label_batches):
+                    # batch_results: (sentence, kotogram, f_id, g_id, gram_label, success)
+                    for sentence, kotogram, f_id, g_id, _gram_label, success in batch_results:
+                        if success:
+                            final_data[sentence] = (kotogram, f_id, g_id)
+                            new_cache_entries.append((sentence, kotogram, f_id, g_id))
+                    
+                    processed_labels += len(batch_results)
+                    if verbose and processed_labels % 100000 < batch_size:
+                         print(f"  Labeled {processed_labels}/{len(unlabeled_rows)} sentences...")
+
+        # 3. Update Cache
+        # ---------------
+        if cache is not None and new_cache_entries:
+            cache.put_batch(new_cache_entries, verbose=verbose)
+            if verbose:
+                print(f"  Saved {len(new_cache_entries)} new entries to sharded cache")
+
+
+        # 4. Assemble Final Results
+        # -------------------------
+        # Match original rows to preserve order/grammar label
         results: List[Tuple[str, str, int, int, int, int]] = []
-        processed_labels = 0
         
-        with ctx.Pool(num_workers) as pool:
-            for batch_results in pool.imap(_compute_labels_batch, label_batches):
-                results.extend(batch_results)
-                processed_labels += len(batch_results)
-                if verbose and processed_labels % 100000 < batch_size:
-                     print(f"  Labeled {processed_labels}/{len(label_inputs)} sentences...")
+        for sentence, _sid, gram_label in rows:
+            if sentence in final_data:
+                k, f, g = final_data[sentence]
+                results.append((sentence, k, f, g, gram_label, 1))
+            else:
+                pass # Failed to parse or label
 
         if verbose:
             print(f"  Total: {len(results)} sentences ready for training")
