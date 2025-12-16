@@ -1249,16 +1249,21 @@ def create_mlm_batch(
     special_token_ids = special_token_ids or [0, 1, 2, 3]  # PAD, UNK, CLS, MASK
     vocab_sizes = vocab_sizes or {}
 
-    # Use 'pos' field as the primary for determining mask positions
-    pos_ids = batch['input_ids_pos'].clone()
+    # Define fields that should be completely HIDDEN (100% masked, no prediction)
+    # This forces the model to learn grammar structure without lexical cues.
+    HIDDEN_FIELDS = ['surface', 'lemma']
+
+    # Use 'pos' field as the primary for determining mask positions for NON-HIDDEN fields
+    primary_field = 'pos'
+    primary_ids = batch[f'input_ids_{primary_field}'].clone()
 
     # Create mask for tokens that can be masked
     maskable = batch['attention_mask'].bool()
     for special_id in special_token_ids:
-        maskable &= (pos_ids != special_id)
+        maskable &= (primary_ids != special_id)
 
-    # Random mask
-    probs = torch.rand_like(pos_ids.float())
+    # Random mask for standard MLM fields
+    probs = torch.rand_like(primary_ids.float())
     mask = maskable & (probs < mask_prob)
 
     # 80% MASK, 10% random, 10% unchanged
@@ -1270,24 +1275,38 @@ def create_mlm_batch(
 
     for field in FEATURE_FIELDS:
         field_ids = batch[f'input_ids_{field}'].clone()
-
-        # Create labels for this field (ignore non-masked positions)
         mlm_labels = torch.full_like(field_ids, -100)
-        mlm_labels[mask] = field_ids[mask]
+
+        if field in HIDDEN_FIELDS:
+            # For hidden fields:
+            # 1. Mask ALL non-padding tokens (100% hidden)
+            # 2. Labels remain -100 (never predict them)
+            
+            # Apply MASK token to all attended positions
+            # We respect the attention mask (0 = padding)
+            active_tokens = batch['attention_mask'].bool()
+            field_ids[active_tokens] = mask_token_id
+            
+        else:
+            # For standard fields (Grammar):
+            # Apply standard MLM logic
+            
+            # Create labels for this field (ignore non-masked positions)
+            mlm_labels[mask] = field_ids[mask]
+            
+            # Apply MASK token
+            field_ids[mask_token_positions] = mask_token_id
+
+            # Apply random replacement for this field using its own vocabulary
+            field_vocab_size = vocab_sizes.get(field)
+            if field_vocab_size:
+                num_random = int(random_token_positions.sum().item())
+                if num_random > 0:
+                    field_ids[random_token_positions] = torch.randint(
+                        len(special_token_ids), field_vocab_size, (num_random,)
+                    )
+        
         result[f'mlm_labels_{field}'] = mlm_labels
-
-        # Apply MASK token
-        field_ids[mask_token_positions] = mask_token_id
-
-        # Apply random replacement for this field using its own vocabulary
-        field_vocab_size = vocab_sizes.get(field)
-        if field_vocab_size:
-            num_random = int(random_token_positions.sum().item())
-            if num_random > 0:
-                field_ids[random_token_positions] = torch.randint(
-                    len(special_token_ids), field_vocab_size, (num_random,)
-                )
-
         result[f'input_ids_{field}'] = field_ids
 
     return result
@@ -1382,19 +1401,36 @@ class MLMTrainer:
 
             # Compute weighted sum of losses across all fields
             batch_loss: torch.Tensor = torch.tensor(0.0, device=self.device)
+            valid_fields_count = 0
+
             for f in FEATURE_FIELDS:
                 logits = mlm_logits_dict[f]
                 labels = mlm_batch[f'mlm_labels_{f}'].to(self.device)
+                
+                # Skip if all labels are ignore_index (-100)
+                # This prevents nan loss for fields that aren't masked (like pos, etc.)
+                if (labels != -100).sum() == 0:
+                    continue
+
                 field_loss = self.criterion(
                     logits.view(-1, logits.size(-1)),
                     labels.view(-1),
                 )
+                
+                # Check for nan just in case
+                if torch.isnan(field_loss):
+                    continue
+
                 weighted_loss = self.field_weights[f] * field_loss
                 batch_loss = batch_loss + weighted_loss
                 field_losses[f] += field_loss.item()
+                valid_fields_count += 1
 
             # Average across fields
-            loss = batch_loss / len(FEATURE_FIELDS)
+            if valid_fields_count > 0:
+                loss = batch_loss / valid_fields_count
+            else:
+                loss = torch.tensor(0.0, device=self.device, requires_grad=True)
 
             loss.backward()
             if self.config.gradient_clip > 0:
@@ -1406,7 +1442,8 @@ class MLMTrainer:
 
             # Progress display
             if verbose:
-                avg_loss_so_far = total_loss / n_batches
+                # Avoid division by zero if n_batches is 0 (shouldn't happen here but good practice)
+                avg_loss_so_far = total_loss / max(1, n_batches)
                 progress = (batch_idx + 1) / total_batches
                 bar_len = 30
                 filled = int(bar_len * progress)
