@@ -55,22 +55,21 @@ import csv
 import hashlib
 import json
 import math
+import logging
 import multiprocessing as mp
 import os
-import pickle
 import random
-import sqlite3
 import sys
-import time  # For timing
-import yaml  # For timing output
+import time
+from collections import Counter
+from dataclasses import dataclass, field
+from datetime import datetime
+from functools import partial
+from typing import Dict, List, Optional, Tuple, Any, cast, Set, Union
 
 # Start timing immediately
 script_start_time = time.time()
 timings = {}
-
-from collections import Counter
-from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Tuple, Any, cast
 
 import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel as DDP
@@ -1012,9 +1011,12 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
                 return cls(cached_samples, tokenizer)
 
+        preprocessing_start = time.time()
+        
         # Phase 1: Read all rows from TSV files (fast I/O)
         # Tuple: (sentence, sentence_id, gram_label)
         all_rows: List[Tuple[str, str, int]] = []
+        phase1_start = time.time()
         for tsv_path, gram_label in zip(tsv_paths, grammaticality_labels):
             if verbose:
                 gram_str = "grammatic" if gram_label == 1 else "agrammatic"
@@ -1028,17 +1030,10 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     if len(row) < 3:
                         continue
                     sentence_id, _lang, sentence = row[0], row[1], row[2]
-                    
-                    # Removed lang check and source_id logic
-                    
                     file_rows.append((sentence, sentence_id, gram_label))
-                    
                     if max_samples and len(all_rows) + len(file_rows) >= max_samples:
                         break
             
-            # Subsampling now happens after all data is loaded and cached
-            # We read all rows here
-
             all_rows.extend(file_rows)
             file_count = len(file_rows)
 
@@ -1050,9 +1045,13 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         if verbose:
             print(f"\nTotal sentences to process: {len(all_rows)}")
+            
+        phase1_duration = time.time() - phase1_start
 
         # Phase 2: Process sentences in parallel (kotogram conversion + label computation)
+        phase2_start = time.time()
         processed_results = cls._process_parallel(all_rows, verbose=verbose)
+        phase2_duration = time.time() - phase2_start
 
         # Phase 3: Build vocabulary and create samples (Parallelized)
         if verbose:
@@ -1060,6 +1059,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         # 3a. Parallel Token Collection (map-reduce)
         # ------------------------------------------
+        phase3a_start = time.time()
         kotograms = [r[1] for r in processed_results]
         
         # Batching for token collection
@@ -1091,9 +1091,11 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         
         # Freeze vocabulary
         tokenizer.freeze()
+        phase3a_duration = time.time() - phase3a_start
         
         # 3b. Parallel Sample Encoding
         # ----------------------------
+        phase3b_start = time.time()
         if verbose:
             print("  Encoding samples with frozen tokenizer...")
             
@@ -1119,21 +1121,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         processed_encodings = 0
         with ctx.Pool(num_workers) as pool:
-            # Use starmap equivalent via a wrapper lambda or just pass tuple to helper
-            # We defined helper to take (batch, state)
-            # But imap takes one arg. Let's use partial or tuple.
-            # Helper `_encode_samples_batch` takes (batch, state).
-            # We can't use partial easily with spawn context pickling sometimes.
-            # Better to use a generator or starmap.
-            # Let's wrap calling logic or use `starmap` (but starmap is eager? No, starmap is eager).
-            # `imap` is lazy.
-            # We will use a list of args: [(batch, state), ...]
-            
             pool_args = [(b, tokenizer_state) for b in batches]
-            
-            # We need a wrapper function because `_encode_samples_batch` takes 2 args, 
-            # but we can make it take 1 tuple arg? No, let's just make it take 2 args in definition 
-            # and use `starmap`. `starmap` supports multiple args.
             
             for batch_samples in pool.starmap(_encode_samples_batch, pool_args):
                 samples.extend(batch_samples)
@@ -1147,7 +1135,6 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     
                 if verbose and processed_encodings % 100000 < 5000:
                      print(f"  Encoded {processed_encodings}/{len(encoding_inputs)} samples...")
-
 
 
         if verbose:
@@ -1174,6 +1161,41 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             # Show detailed stats for key fields
             print(f"  surface: {final_sizes['surface']:,}, lemma: {final_sizes['lemma']:,}")
             print(f"  pos: {final_sizes['pos']}, conjugated_type: {final_sizes['conjugated_type']}, conjugated_form: {final_sizes['conjugated_form']}")
+        
+        phase3b_duration = time.time() - phase3b_start
+        total_preprocessing_duration = time.time() - preprocessing_start
+        
+        # Write timing metrics to timing.yml (if rank 0)
+        if is_main_process():
+            timing_path = "models/style/timing.yml"
+            os.makedirs(os.path.dirname(timing_path), exist_ok=True)
+            
+            # Use appending or creating logic. 
+            # We want to add keys to the existing file or create new.
+            # Simple YAML usage
+            try:
+                import yaml
+                current_timing = {}
+                if os.path.exists(timing_path):
+                    with open(timing_path, 'r') as f:
+                        current_timing = yaml.safe_load(f) or {}
+                
+                current_timing.update({
+                    'preprocessing_phase1_io': phase1_duration,
+                    'preprocessing_phase2_parsing': phase2_duration,
+                    'preprocessing_phase3a_token_collection': phase3a_duration,
+                    'preprocessing_phase3b_encoding': phase3b_duration,
+                    'preprocessing_total': total_preprocessing_duration
+                })
+                
+                with open(timing_path, 'w') as f:
+                    yaml.dump(current_timing, f, default_flow_style=False)
+                if verbose:
+                    print(f"Detailed preprocessing timing saved to {timing_path}")
+            except ImportError:
+                print("PyYAML not installed, skipping timing.yml update")
+            except Exception as e:
+                print(f"Error updating timing.yml: {e}")
 
         # Save to cache (full dataset)
         if use_cache:
@@ -1879,7 +1901,7 @@ class Trainer:
                 self.model,
                 device_ids=[self.config.local_rank],
                 output_device=self.config.local_rank,
-                find_unused_parameters=True
+                find_unused_parameters=False
             ) # type: ignore
 
         # Mixed precision scaler
