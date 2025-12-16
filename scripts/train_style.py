@@ -2653,22 +2653,51 @@ if __name__ == "__main__":
 
         print("\nLoading data (tokenizer unfrozen for new vocabulary)...")
         if len(data_files) > 1:
-            dataset = StyleDataset.from_multiple_tsv(
-                data_files,
-                tokenizer,
-                labeled=True,
-                grammaticality_labels=grammaticality_labels,
-                max_samples=args.max_samples,
-                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-            )
+            if is_main_process():
+                dataset = StyleDataset.from_multiple_tsv(
+                    data_files,
+                    tokenizer,
+                    labeled=True,
+                    grammaticality_labels=grammaticality_labels,
+                    max_samples=args.max_samples,
+                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                )
+            
+            if dist.is_available() and dist.is_initialized():
+                dist.barrier()
+                
+            if not is_main_process():
+                dataset = StyleDataset.from_multiple_tsv(
+                    data_files,
+                    tokenizer,
+                    labeled=True,
+                    grammaticality_labels=grammaticality_labels,
+                    max_samples=args.max_samples,
+                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                    verbose=False,
+                )
         else:
-            dataset = StyleDataset.from_tsv(
-                data_files[0],
-                tokenizer,
-                labeled=True,
-                max_samples=args.max_samples,
-                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-            )
+            if is_main_process():
+                dataset = StyleDataset.from_tsv(
+                    data_files[0],
+                    tokenizer,
+                    labeled=True,
+                    max_samples=args.max_samples,
+                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                )
+            
+            if dist.is_available() and dist.is_initialized():
+                dist.barrier()
+                
+            if not is_main_process():
+                dataset = StyleDataset.from_tsv(
+                    data_files[0],
+                    tokenizer,
+                    labeled=True,
+                    max_samples=args.max_samples,
+                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                    verbose=False,
+                )
 
         train_data, val_data, test_data = dataset.split()
 
@@ -2699,14 +2728,28 @@ if __name__ == "__main__":
         print("Loading grammatical data for MLM pretraining...")
         print(f"  (agrammatic data excluded from pretraining, will be used in fine-tuning)")
         tokenizer = Tokenizer()
-        unlabeled_dataset = StyleDataset.from_tsv(
-            grammatic_files[0],
-            tokenizer,
-            max_samples=args.max_samples,
-            verbose=True,
-            labeled=False,  # No labels needed for pretraining
-            sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-        )
+        if is_main_process():
+            unlabeled_dataset = StyleDataset.from_tsv(
+                grammatic_files[0],
+                tokenizer,
+                max_samples=args.max_samples,
+                verbose=True,
+                labeled=False,  # No labels needed for pretraining
+                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+            )
+        
+        if dist.is_available() and dist.is_initialized():
+            dist.barrier()
+            
+        if not is_main_process():
+            unlabeled_dataset = StyleDataset.from_tsv(
+                grammatic_files[0],
+                tokenizer,
+                max_samples=args.max_samples,
+                verbose=False,
+                labeled=False,  # No labels needed for pretraining
+                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+            )
         # Note: tokenizer is frozen after from_tsv
 
         # Model config (vocab is now fixed)
@@ -2754,24 +2797,53 @@ if __name__ == "__main__":
         # Unfreeze tokenizer to allow vocabulary expansion
         tokenizer._frozen = False
         if len(data_files) > 1:
-            labeled_dataset = StyleDataset.from_multiple_tsv(
-                data_files,
-                tokenizer,
-                max_samples=args.max_samples,
-                verbose=True,
-                labeled=True,
-                grammaticality_labels=grammaticality_labels,
-                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-            )
+            if is_main_process():
+                labeled_dataset = StyleDataset.from_multiple_tsv(
+                    data_files,
+                    tokenizer,
+                    max_samples=args.max_samples,
+                    verbose=True,
+                    labeled=True,
+                    grammaticality_labels=grammaticality_labels,
+                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                )
+            
+            if dist.is_available() and dist.is_initialized():
+                dist.barrier()
+                
+            if not is_main_process():
+                labeled_dataset = StyleDataset.from_multiple_tsv(
+                    data_files,
+                    tokenizer,
+                    max_samples=args.max_samples,
+                    verbose=False,
+                    labeled=True,
+                    grammaticality_labels=grammaticality_labels,
+                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                )
         else:
-            labeled_dataset = StyleDataset.from_tsv(
-                args.data,
-                tokenizer,
-                max_samples=args.max_samples,
-                verbose=True,
-                labeled=True,
-                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-            )
+            if is_main_process():
+                labeled_dataset = StyleDataset.from_tsv(
+                    args.data,
+                    tokenizer,
+                    max_samples=args.max_samples,
+                    verbose=True,
+                    labeled=True,
+                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                )
+            
+            if dist.is_available() and dist.is_initialized():
+                dist.barrier()
+                
+            if not is_main_process():
+                labeled_dataset = StyleDataset.from_tsv(
+                    args.data,
+                    tokenizer,
+                    max_samples=args.max_samples,
+                    verbose=False,
+                    labeled=True,
+                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                )
         train_data, val_data, test_data = labeled_dataset.split()
 
         # Check if vocabulary grew and resize embeddings if needed
@@ -2800,22 +2872,49 @@ if __name__ == "__main__":
         print("Loading data...")
         tokenizer = Tokenizer()
         if len(data_files) > 1:
-            dataset = StyleDataset.from_multiple_tsv(
-                data_files,
-                tokenizer,
-                max_samples=args.max_samples,
-                verbose=True,
-                grammaticality_labels=grammaticality_labels,
-                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-            )
+            if is_main_process():
+                dataset = StyleDataset.from_multiple_tsv(
+                    data_files,
+                    tokenizer,
+                    max_samples=args.max_samples,
+                    verbose=True,
+                    grammaticality_labels=grammaticality_labels,
+                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                )
+            
+            if dist.is_available() and dist.is_initialized():
+                dist.barrier()
+            
+            if not is_main_process():
+                dataset = StyleDataset.from_multiple_tsv(
+                    data_files,
+                    tokenizer,
+                    max_samples=args.max_samples,
+                    verbose=False,
+                    grammaticality_labels=grammaticality_labels,
+                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                )
         else:
-            dataset = StyleDataset.from_tsv(
-                args.data,
-                tokenizer,
-                max_samples=args.max_samples,
-                verbose=True,
-                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-            )
+            if is_main_process():
+                dataset = StyleDataset.from_tsv(
+                    args.data,
+                    tokenizer,
+                    max_samples=args.max_samples,
+                    verbose=True,
+                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                )
+            
+            if dist.is_available() and dist.is_initialized():
+                dist.barrier()
+                
+            if not is_main_process():
+                dataset = StyleDataset.from_tsv(
+                    args.data,
+                    tokenizer,
+                    max_samples=args.max_samples,
+                    verbose=False,
+                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                )
         train_data, val_data, test_data = dataset.split()
         timings['data_loading'] = time.time() - t_data_start
 
