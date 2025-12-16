@@ -686,9 +686,10 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     
                     processed += len(batch_results)
                     if verbose and processed % 10000 < batch_size:
-                        print(f"  Parsed {processed}/{len(uncached_rows)} sentences...")
+                        print(f"\r  Parsed {processed}/{len(uncached_rows)} sentences...", end="", flush=True)
 
             if verbose:
+                print() # Newline after progress bar
                 print(f"  Completed: {len(new_cache_entries)} new kotograms parsed")
 
 

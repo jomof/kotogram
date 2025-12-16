@@ -1,29 +1,603 @@
-尊敬語（そんけいご）-- Honorific speech
-謙譲語（けんじょうご）-- Humble speech
-丁寧語（ていねいご）-- Polite speech
-タメ口（ためぐち）-- Casual speech
-敬体（けいたい）-- Formal Written Register
-ビジネス敬語 / 会社員語 -- Business Formal
-常体（じょうたい）-- Plain / Informal Narrative Register
-女性語（じょせいご）-- Feminine speech
-男性語（だんせいご）-- Masculine speech
-中性語（ちゅうせいご）-- Neutral speech
-関西弁（かんさいべん）-- Kansai register
-博多弁（はかたべん）-- Hakata register
-沖縄方言・ウチナーグチ（おちながち）-- Okinawan register
-ギャル語（ぎゃるご）-- Gyaru speech
-オタク語（おたくご）-- Otaku / nerd speech
-ヤンキー語（ヤンキーご）-- Delinquent / “tough kid” register
-軍隊調（ぐんたいちょう）-- Military register
-教師語（きょうしご）-- Teacher voice
-ぶりっ子言葉（ぶりっこことば）-- Burikko speech / cutesy-girlish affected speech
-お嬢様言葉（おじょうさまことば）-- Refined-lady speech / upper-class feminine register
-赤ちゃん言葉（あかちゃんことば）-- Baby-talk
-医療者言葉（いりょうしゃことば）-- Clinical register
-法律文語（ほうりつぶんご）-- Legalese
-アナウンサー言葉（ニュース読み）-- Newscaster register
-書き言葉（文語）-- Classical or pseudo-classical
-ネットスラング系（5ch語・Twitter語）-- Internet slang
-若者言葉（わかものことば）-- Youth speech
-ロジカル敬語（consulting style）-- Business Formal
-雑談口語（ごく自然な conversational casual）-- Casual speech
+registers:
+  - id: sonkeigo
+    ja: 尊敬語
+    en: Honorific Register
+    hallmarks:
+      - subject-elevation verbs (いらっしゃる, なさる)
+      - honorific passive (お書きになる)
+      - お/ご + verb/noun
+    shibboleths:
+      - "社長がいらっしゃいました。"
+      - "先生はもうお帰りになりました。"
+      - "お客様はコーヒーをお飲みになりますか？"
+  - id: kenjogo
+    ja: 謙譲語
+    en: Humble Register
+    hallmarks:
+      - speaker lowering verbs (伺う, 申し上げる)
+      - 私側行為の自己卑下
+    shibboleths:
+      - "私がご説明いたします。"
+      - "後ほど伺います。"
+      - "資料を拝見いたしました。"
+  - id: teineigo
+    ja: 丁寧語
+    en: Polite Register
+    hallmarks:
+      - です／ます endings
+      - polite copula
+    shibboleths:
+      - "今日は寒いですね。"
+      - "それは難しいです。"
+      - "新しいプロジェクトが始まります。"
+  - id: tameguchi
+    ja: タメ口
+    en: Casual Register
+    hallmarks:
+      - sentence-final dropping
+      - だ／だよ／じゃん
+    shibboleths:
+      - "マジで？"
+      - "それ無理。"
+      - "明日、一緒に遊びに行こうぜ。"
+  - id: keitai
+    ja: 敬体
+    en: Formal Written Register
+    hallmarks:
+      - consistent です／ます
+      - impersonal tone
+    shibboleths:
+      - "本件につきましてご連絡いたします。"
+      - "添付ファイルをご確認ください。"
+      - "今後の対応についてご説明申し上げます。"
+  - id: business_keigo
+    ja: ビジネス敬語
+    en: Business Formal
+    hallmarks:
+      - double politeness
+      - ritualized phrases
+    shibboleths:
+      - "お世話になっております。"
+      - "ご確認のほどお願いいたします。"
+      - "恐れ入りますが、少々お待ちいただけますでしょうか。"
+  - id: jotai
+    ja: 常体
+    en: Plain Narrative
+    hallmarks:
+      - だ／である
+      - written narration
+    shibboleths:
+      - "彼はそう言った。"
+      - "その問題は深刻である。"
+      - "これは新しい時代の始まりである。"
+  - id: joseigo
+    ja: 女性語
+    en: Feminine Register
+    hallmarks:
+      - sentence-final わ／の／かしら
+      - softer prosody
+    shibboleths:
+      - "そうなの？"
+      - "困っちゃうわ。"
+      - "何を召し上がりますかしら。"
+  - id: danseigo
+    ja: 男性語
+    en: Masculine Register
+    hallmarks:
+      - 俺／だぞ／ぜ
+      - blunt imperatives
+    shibboleths:
+      - "俺がやる。"
+      - "行くぞ。"
+      - "お前、何してんだよ。"
+  - id: chuseigo
+    ja: 中性語
+    en: Neutral Register
+    hallmarks:
+      - pronoun avoidance
+      - minimal gender marking
+    shibboleths:
+      - "そう思います。"
+      - "この件について検討が必要です。"
+      - "どうすれば良いでしょうか。"
+  - id: kansaiben
+    ja: 関西弁
+    en: Kansai Register
+    hallmarks:
+      - や／で／へん
+      - intonational rise
+    shibboleths:
+      - "知らんで。"
+      - "行かへん。"
+      - "なんでやねん。"
+  - id: hakataben
+    ja: 博多弁
+    en: Hakata Register
+    hallmarks:
+      - ばい／たい
+    shibboleths:
+      - "好いとーよ。"
+      - "そうたい。"
+      - "雨が降っとうばい。"
+  - id: okinawan
+    ja: ウチナーグチ
+    en: Okinawan Register
+    hallmarks:
+      - non-Japanese lexemes
+      - copula やいびーん
+    shibboleths:
+      - "はいさい。"
+      - "なんくるないさ。"
+      - "ちゅらさん。"
+  - id: gyarugo
+    ja: ギャル語
+    en: Gyaru Register
+    hallmarks:
+      - vowel stretching
+      - slang abbreviations
+    shibboleths:
+      - "それな〜"
+      - "ウケるんだけど。"
+      - "まじ卍。"
+  - id: otakugo
+    ja: オタク語
+    en: Otaku Register
+    hallmarks:
+      - meta-commentary
+      - excessive explanation
+    shibboleths:
+      - "つまりですね…"
+      - "公式設定的には。"
+      - "俺の嫁がかわいい。"
+  - id: yankee
+    ja: ヤンキー語
+    en: Delinquent Register
+    hallmarks:
+      - aggressive contractions
+      - confrontational particles
+    shibboleths:
+      - "あぁ？"
+      - "やんのか。"
+      - "てめぇ、どこ見て歩いてんだ。"
+  - id: guntai
+    ja: 軍隊調
+    en: Military Register
+    hallmarks:
+      - clipped imperatives
+      - collective discipline
+    shibboleths:
+      - "前へ進め！"
+      - "了解！"
+      - "集合！"
+  - id: kyoshigo
+    ja: 教師語
+    en: Teacher Voice
+    hallmarks:
+      - corrective framing
+      - soft authority
+    shibboleths:
+      - "ここ大事だからね。"
+      - "静かにしなさい。"
+      - "もう一度よく考えてごらん。"
+  - id: burikko
+    ja: ぶりっ子言葉
+    en: Burikko Register
+    hallmarks:
+      - exaggerated cuteness
+      - self-infantilization
+    shibboleths:
+      - "え〜わかんな〜い。"
+      - "やだぁ〜"
+      - "〇〇くんってば、ひどいんだから。"
+  - id: ojousama
+    ja: お嬢様言葉
+    en: Refined Lady Register
+    hallmarks:
+      - hyper-polite feminine forms
+      - restraint
+    shibboleths:
+      - "まあ、素敵ですわ。"
+      - "ごきげんよう。"
+      - "わたくしは紅茶をいただきますわ。"
+  - id: baby
+    ja: 赤ちゃん言葉
+    en: Baby Talk
+    hallmarks:
+      - reduplication
+      - phonological simplification
+    shibboleths:
+      - "ねんねしようね。"
+      - "ブーブーだよ。"
+      - "まんま、たべた？"
+  - id: iryosha
+    ja: 医療者言葉
+    en: Clinical Register
+    hallmarks:
+      - depersonalization
+      - condition-first phrasing
+    shibboleths:
+      - "症状は安定しています。"
+      - "本日の検査結果ですが。"
+      - "入院の準備をお願いします。"
+  - id: legal
+    ja: 法律文語
+    en: Legalese
+    hallmarks:
+      - nominalization
+      - excessive passives
+    shibboleths:
+      - "本契約に基づき。"
+      - "ここに規定する。"
+      - "前項の定めるところにより。"
+  - id: announcer
+    ja: アナウンサー言葉
+    en: Newscaster Register
+    hallmarks:
+      - neutral clarity
+      - controlled prosody
+    shibboleths:
+      - "次のニュースです。"
+      - "速報が入りました。"
+      - "それでは、天気予報をお伝えします。"
+  - id: bungotai
+    ja: 文語
+    en: Classical-Style
+    hallmarks:
+      - 〜なり／〜たり
+    shibboleths:
+      - "風吹けば桶屋が儲かるなり。"
+      - "然るに。"
+      - "見るに堪えたり。"
+  - id: netslang
+    ja: ネットスラング
+    en: Internet Slang
+    hallmarks:
+      - irony markers
+      - abbreviations
+    shibboleths:
+      - "草"
+      - "それなw"
+      - "乙です。"
+  - id: wakamono
+    ja: 若者言葉
+    en: Youth Register
+    hallmarks:
+      - semantic bleaching
+      - trendy fillers
+    shibboleths:
+      - "エモい。"
+      - "ぴえん。"
+      - "ワンチャンある。"
+  - id: logical_keigo
+    ja: ロジカル敬語
+    en: Consulting Style
+    hallmarks:
+      - structure signaling
+      - causality markers
+    shibboleths:
+      - "結論から申し上げますと。"
+      - "構造化してご説明します。"
+      - "その上で、次に進むべきです。"
+  - id: zatsudan
+    ja: 雑談口語
+    en: Conversational Casual
+    hallmarks:
+      - fillers
+      - topic drift
+    shibboleths:
+      - "ていうかさ。"
+      - "なんか、ちょっとね。"
+      - "で、結局どうなったんだっけ？"
+  - id: teichogo
+    ja: 丁重語
+    en: Humble-Polite
+    hallmarks:
+      - 謙譲＋丁寧 stacking
+    shibboleths:
+      - "拝見いたしました。"
+      - "わたくしが担当でございます。"
+      - "そのように承知いたしました。"
+  - id: bikago
+    ja: 美化語
+    en: Beautification Register
+    hallmarks:
+      - お＋日常名詞
+    shibboleths:
+      - "お水"
+      - "お料理"
+      - "お紅茶をどうぞ。"
+  - id: hyoujungo
+    ja: 標準語
+    en: Standard Japanese
+    hallmarks:
+      - broadcast norm
+    shibboleths:
+      - "私は東京に住んでいます。"
+      - "この電車は品川行きです。"
+      - "昨日の夜、雨が降りました。"
+  - id: tohoku
+    ja: 東北弁
+    en: Tōhoku Register
+    hallmarks:
+      - vowel centralization
+      - sentence-final べ
+    shibboleths:
+      - "行くべ。"
+      - "んだ、んだ。"
+      - "けっぱれ。"
+  - id: kyokotoba
+    ja: 京言葉
+    en: Kyoto Register
+    hallmarks:
+      - indirectness
+      - soft negation
+    shibboleths:
+      - "よろしおすな。"
+      - "おいでやす。"
+      - "おおきに。"
+  - id: seijika
+    ja: 政治家言葉
+    en: Political Register
+    hallmarks:
+      - ambiguity
+      - responsibility diffusion
+    shibboleths:
+      - "慎重に検討しております。"
+      - "遺憾の意を表明いたします。"
+      - "未来志向で対応してまいります。"
+  - id: kotengo
+    ja: 古典語
+    en: Classical Japanese
+    hallmarks:
+      - 已然形
+      - けり／む
+    shibboleths:
+      - "風吹けば。"
+      - "いとをかし。"
+      - "もののあはれ。"
+  - id: buddhist
+    ja: 僧侶語
+    en: Buddhist Register
+    hallmarks:
+      - Sino-Japanese abstraction
+    shibboleths:
+      - "無常でございます。"
+      - "お布施を賜ります。"
+      - "合掌。"
+  - id: shinto
+    ja: 神道語
+    en: Shinto Register
+    hallmarks:
+      - ritual formulae
+    shibboleths:
+      - "祓え給い清め給え。"
+      - "畏み畏みも申す。"
+      - "みたまを安らかに。"
+  - id: bushi
+    ja: 武士語
+    en: Samurai Register
+    hallmarks:
+      - archaic masculine forms
+    shibboleths:
+      - "かたじけない。"
+      - "いざ、参る。"
+      - "面目次第もござらん。"
+  - id: jidaigeki
+    ja: 時代劇調
+    en: Period Drama
+    hallmarks:
+      - stylized Edo speech
+    shibboleths:
+      - "てめえ。"
+      - "お主、何者じゃ。"
+      - "曲者じゃ！"
+  - id: rakugo
+    ja: 落語語り口
+    en: Rakugo Storytelling
+    hallmarks:
+      - character switching
+      - rhythmic pacing
+    shibboleths:
+      - "そこで旦那がこう言いましてね。"
+      - "と、まあ、こういうわけでございます。"
+      - "それが、なかなかの難題でして。"
+  - id: bungei
+    ja: 文芸語
+    en: Literary Prose
+    hallmarks:
+      - metaphor density
+    shibboleths:
+      - "夜は静かに息をしていた。"
+      - "彼の瞳は遠い記憶を宿していた。"
+      - "風が彼の頬を撫でる。"
+  - id: ronbun
+    ja: 論文語
+    en: Academic Register
+    hallmarks:
+      - nominalization
+      - hedging
+    shibboleths:
+      - "本研究では。"
+      - "〜と考えられる。"
+      - "先行研究に基づき、考察を行う。"
+  - id: gijutsusha
+    ja: 技術者語
+    en: Engineering Register
+    hallmarks:
+      - constraint framing
+    shibboleths:
+      - "仕様上の制約です。"
+      - "これは設計思想に反します。"
+      - "トレードオフを考慮する必要があります。"
+  - id: it_jargon
+    ja: IT業界語
+    en: Tech Jargon
+    hallmarks:
+      - katakana overload
+    shibboleths:
+      - "アサインします。"
+      - "このタスクはペンディングで。"
+      - "コミットメントをお願いします。"
+  - id: eigyo
+    ja: 営業トーク
+    en: Sales Register
+    hallmarks:
+      - benefit-forward framing
+    shibboleths:
+      - "今だけのご提案です。"
+      - "ぜひ一度、お試しください。"
+      - "お客様にとってメリットがございます。"
+  - id: sekkyaku
+    ja: 接客語
+    en: Hospitality Register
+    hallmarks:
+      - pseudo-keigo
+    shibboleths:
+      - "少々お待ちくださいませ。"
+      - "こちらがお客様のお席でございます。"
+      - "失礼いたします。"
+  - id: tennaian
+    ja: 店内アナウンス語
+    en: Store Announcement
+    hallmarks:
+      - formulaic repetition
+    shibboleths:
+      - "お客様にお知らせいたします。"
+      - "まもなく閉店のお時間となります。"
+      - "本日もご来店ありがとうございました。"
+  - id: yakusho
+    ja: 役所言葉
+    en: Bureaucratic Register
+    hallmarks:
+      - responsibility avoidance
+    shibboleths:
+      - "検討中でございます。"
+      - "関係各所と調整中です。"
+      - "規定に基づき対応いたします。"
+  - id: manual
+    ja: マニュアル語
+    en: Instruction Manual
+    hallmarks:
+      - imperative-neutral
+    shibboleths:
+      - "ボタンを押してください。"
+      - "接続が完了します。"
+      - "設定を変更します。"
+  - id: setsumei
+    ja: 説明口調
+    en: Explanatory
+    hallmarks:
+      - stepwise logic
+    shibboleths:
+      - "まず最初に。"
+      - "次に、この部分に注目してください。"
+      - "以上が概要となります。"
+  - id: sekkyou
+    ja: 説教調
+    en: Moralizing
+    hallmarks:
+      - value assertions
+    shibboleths:
+      - "だから言ったでしょう。"
+      - "もっと真面目にやりなさい。"
+      - "人生は甘くないんだよ。"
+  - id: meirei
+    ja: 命令口調
+    en: Command
+    hallmarks:
+      - bare imperatives
+    shibboleths:
+      - "黙れ。"
+      - "やめろ！"
+      - "急げ。"
+  - id: iatsu
+    ja: 威圧語
+    en: Intimidating
+    hallmarks:
+      - threat implication
+    shibboleths:
+      - "覚えとけ。"
+      - "次はないぞ。"
+      - "いい加減にしろよ。"
+  - id: poetic
+    ja: 詩的口調
+    en: Poetic
+    hallmarks:
+      - imagery dominance
+    shibboleths:
+      - "言葉は風だった。"
+      - "星々の瞬きが語りかける。"
+      - "静寂が夜を包む。"
+  - id: emotion
+    ja: 感情吐露口調
+    en: Emotional Outpouring
+    hallmarks:
+      - fragmented syntax
+    shibboleths:
+      - "もう無理…"
+      - "信じられない！"
+      - "どうしてこんなことに！"
+  - id: yankee_manga
+    ja: 不良少年漫画語
+    en: Delinquent Manga
+    hallmarks:
+      - hypermasculine exaggeration
+    shibboleths:
+      - "てめぇぶっ殺すぞ！"
+      - "喧嘩売ってんのか？"
+      - "上等だ！"
+  - id: vtuber
+    ja: 配信者語
+    en: Streamer Register
+    hallmarks:
+      - parasocial markers
+    shibboleths:
+      - "みんな聞いて〜"
+      - "スパチャありがとう！"
+      - "ねえねえ、今日の企画なんだけどさ。"
+  - id: niji
+    ja: 二次元キャラ語
+    en: Fictional Character
+    hallmarks:
+      - trope-heavy phrasing
+    shibboleths:
+      - "この力を解放する時が来た。"
+      - "フフ、面白いな。"
+      - "貴様、名乗る必要はない。"
+  - id: foreigner
+    ja: 外国人日本語
+    en: Foreigner Japanese
+    hallmarks:
+      - particle dropping
+    shibboleths:
+      - "私 行く 東京。"
+      - "これ 食べたい。"
+      - "日本語 難しい。"
+  - id: yasashii
+    ja: やさしい日本語
+    en: Easy Japanese
+    hallmarks:
+      - short sentences
+      - high-frequency words
+    shibboleths:
+      - "ここは危ないです。"
+      - "ゆっくり話します。"
+      - "お金を払ってください。"
+  - id: child_explain
+    ja: 幼児向け説明語
+    en: Child-directed Explanation
+    hallmarks:
+      - simplification
+    shibboleths:
+      - "順番にしようね。"
+      - "これはワンワンだよ。"
+      - "おててをつないで歩こうね。"
+  - id: narration
+    ja: ナレーション語
+    en: Voice-over Register
+    hallmarks:
+      - neutral gravitas
+    shibboleths:
+      - "物語はここから始まる。"
+      - "そして、誰もいなくなった。"
+      - "静かに時は流れる。"
