@@ -1406,8 +1406,15 @@ class MLMTrainer:
             )  # type: ignore
 
         # Mixed precision scaler
-        scaler_device = 'cuda' if torch.cuda.is_available() else 'cpu'
-        self.scaler = GradScaler(device=scaler_device, enabled=self.config.use_amp and scaler_device == 'cuda')
+        # Mixed precision scaler
+        if torch.cuda.is_available():
+            scaler_device = 'cuda'
+        elif torch.backends.mps.is_available():
+            scaler_device = 'mps'
+        else:
+            scaler_device = 'cpu'
+            
+        self.scaler = GradScaler(device=scaler_device, enabled=self.config.use_amp)
 
         pad_id = dataset.tokenizer.pad_id
         max_seq_len = self.model.module.config.max_seq_len if self.is_distributed else self.model.config.max_seq_len
@@ -1633,8 +1640,15 @@ class Trainer:
             ) # type: ignore
 
         # Mixed precision scaler
-        scaler_device = 'cuda' if torch.cuda.is_available() else 'cpu'
-        self.scaler = GradScaler(device=scaler_device, enabled=self.config.use_amp and scaler_device == 'cuda')
+        # Mixed precision scaler
+        if torch.cuda.is_available():
+            scaler_device = 'cuda'
+        elif torch.backends.mps.is_available():
+            scaler_device = 'mps'
+        else:
+            scaler_device = 'cpu'
+            
+        self.scaler = GradScaler(device=scaler_device, enabled=self.config.use_amp)
 
         # Data loaders with max_seq_len truncation
 
@@ -2395,6 +2409,9 @@ if __name__ == "__main__":
                         help="Number of data loader workers")
     parser.add_argument("--local_rank", type=int, default=0,
                         help="Local rank for distributed training (usually passed by torchrun)")
+    parser.add_argument("--preprocess-only", action="store_true",
+                        help="Exit after loading and caching data (for multi-stage pipelines)")
+
 
 
     args = parser.parse_args()
@@ -2935,7 +2952,14 @@ if __name__ == "__main__":
         print("\nCreating model...")
         t_model_start = time.time()
         model = StyleClassifier(model_config)
+        model = StyleClassifier(model_config)
         timings['model_creation'] = time.time() - t_model_start
+
+    # Preprocessing only mode: Exit after data is loaded and cached
+    if args.preprocess_only:
+        if is_main_process():
+            print("\nPreprocessing complete. Data is cached.")
+        sys.exit(0)
 
     if args.confusion:
         print("\nLoading model for confusion matrix evaluation...")
