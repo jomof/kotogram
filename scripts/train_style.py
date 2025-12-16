@@ -1437,6 +1437,23 @@ class StyleClassifierWithMLM(StyleClassifier):
         super().__init__(config)
         self.mlm_head = MLMHead(config)
 
+    def forward(
+        self,
+        *args,
+        mode: str = "classification",
+        **kwargs,
+    ) -> Any:
+        """Forward pass dispatch.
+        
+        Args:
+            *args: Positional arguments for the specific forward method
+            mode: 'classification' (default) or 'mlm'
+            **kwargs: Keyword arguments for the specific forward method
+        """
+        if mode == "mlm":
+            return self.forward_mlm(*args, **kwargs)
+        return super().forward(*args, **kwargs)
+
     def forward_mlm(
         self,
         field_inputs: Dict[str, torch.Tensor],
@@ -1714,7 +1731,9 @@ class MLMTrainer:
                 # Get logits for all fields
 
                 # Note: if DDP, model is wrapped, so we call directly or check hierarchy
-                mlm_logits_dict = self.model.forward_mlm(field_inputs, attention_mask) if not self.is_distributed else self.model.module.forward_mlm(field_inputs, attention_mask)
+                # mlm_logits_dict = self.model.forward_mlm(field_inputs, attention_mask) if not self.is_distributed else self.model.module.forward_mlm(field_inputs, attention_mask)
+                # FIX: Call forward() with mode='mlm' so DDP wrapper works
+                mlm_logits_dict = self.model(field_inputs, attention_mask=attention_mask, mode='mlm')
 
                 # Compute weighted sum of losses across all fields
                 batch_loss: torch.Tensor = torch.tensor(0.0, device=self.device)
