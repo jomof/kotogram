@@ -75,7 +75,9 @@ FP8=""
 RESUME=""
 RETRAIN=""
 CONFUSION=""
+
 EXCLUDE_FEATURES=""
+PERCENT=""
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -184,6 +186,10 @@ while [[ $# -gt 0 ]]; do
             EXCLUDE_FEATURES="$2"
             shift 2
             ;;
+        --percent)
+            PERCENT="--percent $2"
+            shift 2
+            ;;
         --test)
             IS_TEST=1
             OUTPUT_DIR="models/test_style"
@@ -234,6 +240,9 @@ while [[ $# -gt 0 ]]; do
             echo "Feature Ablation:"
             echo "  --exclude-features F  Comma-separated features to exclude (for ablation study)"
             echo "                        Valid: surface,pos,pos_detail1,pos_detail2,conjugated_type,conjugated_form,lemma"
+
+            echo ""
+            echo "  --percent N           Percentage of data to use (1-100)"
             echo ""
             echo "  --test                Run in test mode (output to models/test_style, 1 epoch, 100 samples)"
             echo "  --help                Show this help message"
@@ -288,8 +297,10 @@ fi
 if [ -n "$CONFUSION" ]; then
     echo "Action:         Print confusion matrices (no training)"
 fi
-if [ -n "$EXCLUDE_FEATURES" ]; then
-    echo "Exclude:        $EXCLUDE_FEATURES"
+
+
+if [ -n "$PERCENT" ]; then
+    echo "Data usage:     ${PERCENT#--percent }%"
 fi
 echo "=============================================="
 echo ""
@@ -410,6 +421,10 @@ fi
 
 if [ -n "$EXCLUDE_FEATURES" ]; then
     CMD="$CMD --exclude-features \"$EXCLUDE_FEATURES\""
+fi
+
+if [ -n "$PERCENT" ]; then
+    CMD="$CMD $PERCENT"
 fi
 
 # Run training

@@ -604,6 +604,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         labeled: bool = True,
         use_cache: bool = True,
         cache_dir: str = ".cache/style_dataset",
+        sample_ratio: float = 1.0,
     ) -> 'StyleDataset':
         """Load dataset from TSV file of Japanese sentences.
 
@@ -617,18 +618,32 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     (for pretraining on unlabeled data).
             use_cache: If True, cache preprocessed data to disk for faster subsequent loads
             cache_dir: Directory for cache files
+            sample_ratio: Ratio of data to use (0.0 to 1.0)
 
         Returns:
             StyleDataset with encoded samples
         """
         # Try to load from cache
         if use_cache:
+            # Note: sample_ratio is NOT part of cache key - we cache full dataset
             cache_path = cls._get_cache_path([tsv_path], max_samples, labeled, None, cache_dir)
             cached_samples = cls._load_cache(cache_path, tokenizer)
             if cached_samples is not None:
                 if verbose:
                     print(f"Loaded {len(cached_samples)} samples from cache")
                     print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
+                
+                # Apply subsampling after loading from cache
+                if sample_ratio < 1.0:
+                    if verbose:
+                        print(f"  Subsampling {sample_ratio:.1%} of {len(cached_samples)} cached samples...")
+                    content_str = "".join(s.original_sentence for s in cached_samples[:100])
+                    seed = int(hashlib.md5(content_str.encode()).hexdigest(), 16) % 100000
+                    rng = random.Random(seed)
+                    cached_samples = rng.sample(cached_samples, int(len(cached_samples) * sample_ratio))
+                    if verbose:
+                        print(f"  Using {len(cached_samples)} samples after subsampling")
+
                 return cls(cached_samples, tokenizer)
 
         # Phase 1: Read all rows from TSV file (fast I/O)
@@ -652,6 +667,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 all_rows.append((sentence, sentence_id, gram_label, source_id))
                 if max_samples and len(all_rows) >= max_samples:
                     break
+        
+        # Subsampling moved to after caching to ensure cache consistency
+        # We read all rows here
 
         if verbose:
             print(f"  Read {len(all_rows)} sentences")
@@ -713,11 +731,22 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             print(f"  surface: {final_sizes['surface']:,}, lemma: {final_sizes['lemma']:,}")
             print(f"  pos: {final_sizes['pos']}, conjugated_type: {final_sizes['conjugated_type']}, conjugated_form: {final_sizes['conjugated_form']}")
 
-        # Save to cache
+        # Save to cache (full dataset)
         if use_cache:
             cls._save_cache(cache_path, samples, tokenizer)
             if verbose:
-                print(f"Saved preprocessed data to cache")
+                print(f"Saved {len(samples)} preprocessed samples to cache")
+
+        # Apply subsampling after processing/caching
+        if sample_ratio < 1.0:
+            if verbose:
+                print(f"  Subsampling {sample_ratio:.1%} of {len(samples)} samples...")
+            content_str = "".join(s.original_sentence for s in samples[:100])
+            seed = int(hashlib.md5(content_str.encode()).hexdigest(), 16) % 100000
+            rng = random.Random(seed)
+            samples = rng.sample(samples, int(len(samples) * sample_ratio))
+            if verbose:
+                print(f"  Using {len(samples)} samples after subsampling")
 
         return cls(samples, tokenizer)
 
@@ -733,6 +762,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         grammaticality_labels: Optional[List[int]] = None,
         use_cache: bool = True,
         cache_dir: str = ".cache/style_dataset",
+        sample_ratio: float = 1.0,
     ) -> 'StyleDataset':
         """Load dataset from multiple TSV files of Japanese sentences.
 
@@ -752,6 +782,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                                   1 = grammatic (default), 0 = agrammatic.
             use_cache: If True, cache preprocessed data to disk for faster subsequent loads
             cache_dir: Directory for cache files
+            sample_ratio: Ratio of data to use (0.0 to 1.0)
 
         Returns:
             StyleDataset with encoded samples from all files
@@ -767,12 +798,25 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         # Try to load from cache
         if use_cache:
+            # Note: sample_ratio is NOT part of cache key - we cache full dataset
             cache_path = cls._get_cache_path(tsv_paths, max_samples, labeled, grammaticality_labels, cache_dir)
             cached_samples = cls._load_cache(cache_path, tokenizer)
             if cached_samples is not None:
                 if verbose:
                     print(f"Loaded {len(cached_samples)} samples from cache")
                     print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
+                
+                # Apply subsampling after loading from cache
+                if sample_ratio < 1.0:
+                    if verbose:
+                        print(f"  Subsampling {sample_ratio:.1%} of {len(cached_samples)} cached samples...")
+                    content_str = "".join(s.original_sentence for s in cached_samples[:100])
+                    seed = int(hashlib.md5(content_str.encode()).hexdigest(), 16) % 100000
+                    rng = random.Random(seed)
+                    cached_samples = rng.sample(cached_samples, int(len(cached_samples) * sample_ratio))
+                    if verbose:
+                        print(f"  Using {len(cached_samples)} samples after subsampling")
+
                 return cls(cached_samples, tokenizer)
 
         # Phase 1: Read all rows from TSV files (fast I/O)
@@ -785,6 +829,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 print(f"Reading {tsv_path} ({gram_str})...")
 
             file_count = 0
+            file_rows: List[Tuple[str, str, int, str]] = []
             with open(tsv_path, 'r', encoding='utf-8') as f:
                 reader = csv.reader(f, delimiter='\t')
                 for row in reader:
@@ -795,10 +840,16 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                         continue
                     # source_id is in 4th column if present, otherwise use sentence_id itself
                     source_id = row[3] if len(row) >= 4 else sentence_id
-                    all_rows.append((sentence, sentence_id, gram_label, source_id))
-                    file_count += 1
-                    if max_samples and len(all_rows) >= max_samples:
+                    file_rows.append((sentence, sentence_id, gram_label, source_id))
+                    
+                    if max_samples and len(all_rows) + len(file_rows) >= max_samples:
                         break
+            
+            # Subsampling now happens after all data is loaded and cached
+            # We read all rows here
+
+            all_rows.extend(file_rows)
+            file_count = len(file_rows)
 
             if verbose:
                 print(f"  Read {file_count} sentences from {tsv_path}")
@@ -866,11 +917,22 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             print(f"  surface: {final_sizes['surface']:,}, lemma: {final_sizes['lemma']:,}")
             print(f"  pos: {final_sizes['pos']}, conjugated_type: {final_sizes['conjugated_type']}, conjugated_form: {final_sizes['conjugated_form']}")
 
-        # Save to cache
+        # Save to cache (full dataset)
         if use_cache:
             cls._save_cache(cache_path, samples, tokenizer)
             if verbose:
-                print(f"Saved preprocessed data to cache")
+                print(f"Saved {len(samples)} preprocessed samples to cache")
+
+        # Apply subsampling after processing/caching
+        if sample_ratio < 1.0:
+            if verbose:
+                print(f"  Subsampling {sample_ratio:.1%} of {len(samples)} samples...")
+            content_str = "".join(s.original_sentence for s in samples[:100])
+            seed = int(hashlib.md5(content_str.encode()).hexdigest(), 16) % 100000
+            rng = random.Random(seed)
+            samples = rng.sample(samples, int(len(samples) * sample_ratio))
+            if verbose:
+                print(f"  Using {len(samples)} samples after subsampling")
 
         return cls(samples, tokenizer)
 
@@ -2058,6 +2120,7 @@ def save_checkpoint(
             'fp16': args.fp16,
             'fp8': args.fp8,
             'exclude_features': args.exclude_features,
+            'percent': args.percent,
         },
     }
     torch.save(checkpoint, os.path.join(path, 'checkpoint.pt'))
@@ -2170,6 +2233,8 @@ if __name__ == "__main__":
                         help="Retrain from scratch using parameters from existing checkpoint")
     parser.add_argument("--confusion", action="store_true",
                         help="Print confusion matrices for existing model and exit")
+    parser.add_argument("--percent", type=float, default=None,
+                        help="Percentage of data to use for training (1-100)")
 
     args = parser.parse_args()
     timings['args_parsing'] = time.time() - script_start_time
@@ -2250,7 +2315,15 @@ if __name__ == "__main__":
             args.formality_weight = saved_args['formality_weight']
             args.gender_weight = saved_args['gender_weight']
             args.grammaticality_weight = saved_args['grammaticality_weight']
+            args.grammaticality_weight = saved_args['grammaticality_weight']
             args.exclude_features = saved_exclude
+            
+            # Sticky flags: restore only if not explicitly set on command line
+            if args.percent is None:
+                args.percent = saved_args.get('percent', None)
+                if args.percent is not None:
+                    print(f"  Restored flag: --percent {args.percent}")
+            
             # Sticky flags: restore only if not explicitly set on command line (i.e. None)
             if args.fp16 is None:
                 args.fp16 = saved_args.get('fp16', False)
@@ -2399,17 +2472,20 @@ if __name__ == "__main__":
             dataset = StyleDataset.from_multiple_tsv(
                 data_files,
                 tokenizer,
-                max_samples=args.max_samples,
-                verbose=True,
+                labeled=True,
                 grammaticality_labels=grammaticality_labels,
+                max_samples=args.max_samples,
+                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
             )
         else:
             dataset = StyleDataset.from_tsv(
-                args.data,
+                data_files[0],
                 tokenizer,
+                labeled=True,
                 max_samples=args.max_samples,
-                verbose=True,
+                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
             )
+
         train_data, val_data, test_data = dataset.split()
 
         # Check if vocabulary grew and resize embeddings if needed
@@ -2445,6 +2521,7 @@ if __name__ == "__main__":
             max_samples=args.max_samples,
             verbose=True,
             labeled=False,  # No labels needed for pretraining
+            sample_ratio=args.percent / 100.0 if args.percent else 1.0,
         )
         # Note: tokenizer is frozen after from_tsv
 
@@ -2493,6 +2570,7 @@ if __name__ == "__main__":
                 verbose=True,
                 labeled=True,
                 grammaticality_labels=grammaticality_labels,
+                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
             )
         else:
             labeled_dataset = StyleDataset.from_tsv(
@@ -2501,6 +2579,7 @@ if __name__ == "__main__":
                 max_samples=args.max_samples,
                 verbose=True,
                 labeled=True,
+                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
             )
         train_data, val_data, test_data = labeled_dataset.split()
 
@@ -2536,6 +2615,7 @@ if __name__ == "__main__":
                 max_samples=args.max_samples,
                 verbose=True,
                 grammaticality_labels=grammaticality_labels,
+                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
             )
         else:
             dataset = StyleDataset.from_tsv(
@@ -2543,6 +2623,7 @@ if __name__ == "__main__":
                 tokenizer,
                 max_samples=args.max_samples,
                 verbose=True,
+                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
             )
         train_data, val_data, test_data = dataset.split()
         timings['data_loading'] = time.time() - t_data_start
