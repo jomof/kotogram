@@ -393,15 +393,15 @@ def _collect_tokens_batch(kotograms: List[str]) -> Dict[str, Counter]:
     Returns:
         Dict mapping field_name -> Counter of token values
     """
-    from kotogram.kotogram import extract_token_features
+    from kotogram.kotogram import extract_token_features, split_kotogram
     from kotogram.model import FEATURE_FIELDS
     
     counters = {f: Counter() for f in FEATURE_FIELDS}
     
     for k in kotograms:
-        # returns List[Dict[field, value]]
-        token_features = extract_token_features(k)
-        for token_feat in token_features:
+        tokens = split_kotogram(k)
+        for token in tokens:
+            token_feat = extract_token_features(token)
             for field, value in token_feat.items():
                 if field in counters: # Only track active features
                     counters[field][value] += 1
