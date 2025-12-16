@@ -3130,21 +3130,22 @@ if __name__ == "__main__":
         model = StyleClassifierWithMLM(model_config)
 
         # MLM pretraining on unlabeled data
-        if is_main_process():
-            print("\nStarting MLM pretraining on unlabeled data...")
-        
-        pretrain_config = TrainerConfig(
-            epochs=args.pretrain_epochs,
-            batch_size=args.batch_size,
-            learning_rate=args.learning_rate,
-            device="cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu",
-            use_amp=args.fp16 if args.fp16 is not None else False,
-            local_rank=local_rank,
-            world_size=world_size,
-            grad_accum_steps=args.grad_accum_steps
-        )
-        mlm_trainer = MLMTrainer(model, unlabeled_dataset, pretrain_config)
-        mlm_trainer.train(epochs=args.pretrain_epochs, verbose=is_main_process())
+        if not args.preprocess_only:
+            if is_main_process():
+                print("\nStarting MLM pretraining on unlabeled data...")
+            
+            pretrain_config = TrainerConfig(
+                epochs=args.pretrain_epochs,
+                batch_size=args.batch_size,
+                learning_rate=args.learning_rate,
+                device="cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu",
+                use_amp=args.fp16 if args.fp16 is not None else False,
+                local_rank=local_rank,
+                world_size=world_size,
+                grad_accum_steps=args.grad_accum_steps
+            )
+            mlm_trainer = MLMTrainer(model, unlabeled_dataset, pretrain_config)
+            mlm_trainer.train(epochs=args.pretrain_epochs, verbose=is_main_process())
 
         # Reset classifier heads for fine-tuning
         print("\nReinitializing classifier heads for fine-tuning...")
