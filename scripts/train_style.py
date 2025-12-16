@@ -3151,7 +3151,7 @@ if __name__ == "__main__":
         # Unfreeze tokenizer to allow vocabulary expansion
         tokenizer._frozen = False
         if len(data_files) > 1:
-                if is_main_process():
+            if is_main_process():
                 labeled_dataset = StyleDataset.from_multiple_tsv(
                     data_files,
                     tokenizer,
