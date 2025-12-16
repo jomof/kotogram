@@ -1906,7 +1906,7 @@ class Trainer:
                 self.model,
                 device_ids=[self.config.local_rank],
                 output_device=self.config.local_rank,
-                find_unused_parameters=False
+                find_unused_parameters=True
             ) # type: ignore
 
         # Mixed precision scaler
