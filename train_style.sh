@@ -57,7 +57,12 @@ EXTRA_DATA_PATH=""
 AGRAMMATIC_PATTERN="data/jpn_agrammatic*.tsv"
 OUTPUT_DIR="models/style"
 EPOCHS=20
-BATCH_SIZE=64
+OUTPUT_DIR="models/style"
+EPOCHS=20
+# Batch size will be adjusted based on device detection
+BATCH_SIZE="" 
+DEFAULT_BATCH_SIZE_SINGLE=64
+DEFAULT_BATCH_SIZE_MULTI=32 # Optimized for T4 (per GPU)
 EMBED_DIM=256
 HIDDEN_DIM=512
 NUM_LAYERS=3
@@ -366,10 +371,41 @@ if [ -n "$AGRAMMATIC_PATTERN" ]; then
 fi
 
 # Enable MPS fallback for unsupported ops (Mac Apple Silicon)
+# Enable MPS fallback for unsupported ops (Mac Apple Silicon)
 export PYTORCH_ENABLE_MPS_FALLBACK=1
 
+# Detect Environment
+NUM_GPUS=$(python -c "import torch; print(torch.cuda.device_count())" 2>/dev/null || echo "0")
+if [ "$NUM_GPUS" -gt 0 ] && [ -n "$DEBUG" ]; then
+    echo "Detected GPUs: $NUM_GPUS"
+fi
+
+# Set defaults if not provided
+if [ -z "$BATCH_SIZE" ]; then
+    if [ "$NUM_GPUS" -gt 1 ]; then
+        BATCH_SIZE=$DEFAULT_BATCH_SIZE_MULTI
+        # Quiet auto-config
+    else
+        BATCH_SIZE=$DEFAULT_BATCH_SIZE_SINGLE
+    fi
+fi
+
+# Auto-enable FP16 for multi-GPU if not specified (and not FP8)
+if [ "$NUM_GPUS" -gt 1 ] && [ -z "$FP16" ] && [ -z "$FP8" ]; then
+    FP16="--fp16"
+fi
+
+# Build command definition
+if [ "$NUM_GPUS" -gt 1 ]; then
+    LAUNCHER="torchrun --nproc_per_node=$NUM_GPUS"
+else
+    LAUNCHER="python"
+fi
+
+echo "Configuration: $LAUNCHER, Batch: $BATCH_SIZE, FP16: ${FP16:-off}, GPUs: $NUM_GPUS"
+
 # Build command
-CMD="python scripts/train_style.py \
+CMD="$LAUNCHER scripts/train_style.py \
     --data \"$DATA_PATH\" \
     --output \"$OUTPUT_DIR\" \
     --epochs $EPOCHS \
@@ -427,7 +463,16 @@ if [ -n "$PERCENT" ]; then
     CMD="$CMD $PERCENT"
 fi
 
+if [ -n "$PERCENT" ]; then
+    CMD="$CMD $PERCENT"
+fi
+
+# Add grad accum steps if multi-gpu (defaulting to 1 for now as per request)
+# The user script defaults to 1 so we don't strictly need to pass it unless we want to enforce it.
+# We'll rely on the python script default of 1 if not passed.
+
 # Run training
+echo "Executing training..."
 eval $CMD 2>&1 | tee "$OUTPUT_DIR/training.log"
 
 echo ""
