@@ -2182,7 +2182,7 @@ class Trainer:
             p == l for p, l in zip(all_grammaticality_preds, all_grammaticality_labels)
         ) / len(all_grammaticality_preds)
 
-        # Build confusion matrices
+        # Build confusion matrices locally
         formality_confusion = [[0] * NUM_FORMALITY_CLASSES for _ in range(NUM_FORMALITY_CLASSES)]
         for pred, label in zip(all_formality_preds, all_formality_labels):
             formality_confusion[label][pred] += 1
@@ -2195,14 +2195,78 @@ class Trainer:
         for pred, label in zip(all_grammaticality_preds, all_grammaticality_labels):
             grammaticality_confusion[label][pred] += 1
 
+        # DDP Aggregation
+        if self.is_distributed:
+            # Pack metrics into a single tensor for efficient all_reduce
+            # [total_loss, total_formality_loss, total_gender_loss, total_grammaticality_loss, n_batches,
+            #  formality_correct, total_formality_samples,
+            #  gender_correct, total_gender_samples,
+            #  grammaticality_correct, total_grammaticality_samples]
+            # + flattened confusion matrices
+            
+            formality_correct = sum(p == l for p, l in zip(all_formality_preds, all_formality_labels))
+            gender_correct = sum(p == l for p, l in zip(all_gender_preds, all_gender_labels))
+            grammaticality_correct = sum(p == l for p, l in zip(all_grammaticality_preds, all_grammaticality_labels))
+            
+            metrics = torch.tensor([
+                total_loss, total_formality_loss, total_gender_loss, total_grammaticality_loss, n_batches,
+                formality_correct, len(all_formality_preds),
+                gender_correct, len(all_gender_preds),
+                grammaticality_correct, len(all_grammaticality_preds)
+            ], device=self.device)
+            
+            # Flatten confusion matrices
+            f_conf_flat = torch.tensor([item for sublist in formality_confusion for item in sublist], device=self.device)
+            g_conf_flat = torch.tensor([item for sublist in gender_confusion for item in sublist], device=self.device)
+            gram_conf_flat = torch.tensor([item for sublist in grammaticality_confusion for item in sublist], device=self.device)
+            
+            # All-reduce everything
+            dist.all_reduce(metrics, op=dist.ReduceOp.SUM)
+            dist.all_reduce(f_conf_flat, op=dist.ReduceOp.SUM)
+            dist.all_reduce(g_conf_flat, op=dist.ReduceOp.SUM)
+            dist.all_reduce(gram_conf_flat, op=dist.ReduceOp.SUM)
+            
+            # Unpack
+            total_loss = metrics[0].item()
+            total_formality_loss = metrics[1].item()
+            total_gender_loss = metrics[2].item()
+            total_grammaticality_loss = metrics[3].item()
+            n_batches = int(metrics[4].item())
+            
+            # Accuracies from global counts
+            formality_acc = metrics[5].item() / metrics[6].item() if metrics[6].item() > 0 else 0
+            gender_acc = metrics[7].item() / metrics[8].item() if metrics[8].item() > 0 else 0
+            grammaticality_acc = metrics[9].item() / metrics[10].item() if metrics[10].item() > 0 else 0
+            
+            # Reconstruct confusion matrices
+            f_conf_list = f_conf_flat.cpu().tolist()
+            formality_confusion = [f_conf_list[i*NUM_FORMALITY_CLASSES:(i+1)*NUM_FORMALITY_CLASSES] for i in range(NUM_FORMALITY_CLASSES)]
+            
+            g_conf_list = g_conf_flat.cpu().tolist()
+            gender_confusion = [g_conf_list[i*NUM_GENDER_CLASSES:(i+1)*NUM_GENDER_CLASSES] for i in range(NUM_GENDER_CLASSES)]
+            
+            gram_conf_list = gram_conf_flat.cpu().tolist()
+            grammaticality_confusion = [gram_conf_list[i*NUM_GRAMMATICALITY_CLASSES:(i+1)*NUM_GRAMMATICALITY_CLASSES] for i in range(NUM_GRAMMATICALITY_CLASSES)]
+            
+        else:
+            # Local calculation
+            formality_acc = sum(p == l for p, l in zip(all_formality_preds, all_formality_labels)) / len(all_formality_preds) if all_formality_preds else 0
+            gender_acc = sum(p == l for p, l in zip(all_gender_preds, all_gender_labels)) / len(all_gender_preds) if all_gender_preds else 0
+            grammaticality_acc = sum(p == l for p, l in zip(all_grammaticality_preds, all_grammaticality_labels)) / len(all_grammaticality_preds) if all_grammaticality_preds else 0
+
+        avg_loss = total_loss / n_batches if n_batches > 0 else 0
+        avg_formality_loss = total_formality_loss / n_batches if n_batches > 0 else 0
+        avg_gender_loss = total_gender_loss / n_batches if n_batches > 0 else 0
+        avg_grammaticality_loss = total_grammaticality_loss / n_batches if n_batches > 0 else 0
+
         results = {
             'loss': avg_loss,
             'formality_loss': avg_formality_loss,
             'gender_loss': avg_gender_loss,
             'grammaticality_loss': avg_grammaticality_loss,
-            'formality_accuracy': formality_accuracy,
-            'gender_accuracy': gender_accuracy,
-            'grammaticality_accuracy': grammaticality_accuracy,
+            'formality_accuracy': formality_acc,
+            'gender_accuracy': gender_acc,
+            'grammaticality_accuracy': grammaticality_acc,
             'formality_confusion': formality_confusion,
             'gender_confusion': gender_confusion,
             'grammaticality_confusion': grammaticality_confusion,
@@ -2329,9 +2393,12 @@ class Trainer:
 
         return self.history
 
-    def print_confusion_matrices(self, save_dir: Optional[str] = None) -> None:
+    def print_confusion_matrices(self, save_dir: Optional[str] = None, verbose: bool = True) -> None:
         """Print confusion matrices for all tasks and optionally save mismatches."""
         eval_results = self.evaluate(return_mismatches=True)
+
+        if not verbose:
+            return
 
         # Formality confusion matrix
         formality_labels = [FORMALITY_ID_TO_LABEL[i].value for i in range(NUM_FORMALITY_CLASSES)]
@@ -3243,7 +3310,7 @@ if __name__ == "__main__":
         )
         trainer = Trainer(model, train_data, val_data, trainer_config)
 
-        trainer.print_confusion_matrices(save_dir=args.output)
+        trainer.print_confusion_matrices(save_dir=args.output, verbose=is_main_process())
         print("\nConfusion matrix evaluation complete.")
         import sys
         sys.exit(0)
@@ -3255,13 +3322,14 @@ if __name__ == "__main__":
     
     # Save timings
     timings['total_startup'] = time.time() - script_start_time
-    try:
-        os.makedirs(args.output, exist_ok=True)
-        with open(os.path.join(args.output, "timing.yml"), "w") as f:
-            yaml.dump(timings, f)
-        print(f"Startup timings saved to {os.path.join(args.output, 'timing.yml')}")
-    except Exception as e:
-        print(f"Warning: Failed to save timings: {e}")
+    if is_main_process():
+        try:
+            os.makedirs(args.output, exist_ok=True)
+            with open(os.path.join(args.output, "timing.yml"), "w") as f:
+                yaml.dump(timings, f)
+            print(f"Startup timings saved to {os.path.join(args.output, 'timing.yml')}")
+        except Exception as e:
+            print(f"Warning: Failed to save timings: {e}")
 
     trainer_config = TrainerConfig(
         epochs=args.epochs,
@@ -3294,7 +3362,7 @@ if __name__ == "__main__":
     )
 
     # Print final metrics
-    trainer.print_confusion_matrices()
+    trainer.print_confusion_matrices(verbose=is_main_process())
 
     # Evaluate on test set
     print("\nEvaluating on test set...")
@@ -3349,7 +3417,7 @@ if __name__ == "__main__":
         print("Done!")
 
     # Verify reduced precision model accuracy if applicable
-    if args.fp16 or args.fp8:
+    if (args.fp16 or args.fp8) and is_main_process():
         precision_name = "fp8" if args.fp8 else "fp16"
         print(f"\nVerifying loaded {precision_name} model accuracy...")
         loaded_model, _ = load_model(args.output, device=device)
