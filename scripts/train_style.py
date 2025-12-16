@@ -342,7 +342,7 @@ def setup_distributed() -> Tuple[int, int, int]:
 
             if torch.cuda.is_available():
                 torch.cuda.set_device(local_rank)
-                dist.init_process_group(backend="nccl", init_method="env://")
+                dist.init_process_group(backend="nccl", init_method="env://", device_id=torch.device(f"cuda:{local_rank}"))
                 print(f"Distributed init: Rank {rank}/{world_size} (Local {local_rank})")
                 return rank, world_size, local_rank
         except ValueError:
@@ -3093,7 +3093,7 @@ if __name__ == "__main__":
             )
         
         if dist.is_available() and dist.is_initialized():
-            dist.barrier()
+            dist.barrier(device_ids=[local_rank])
             
         if not is_main_process():
             unlabeled_dataset = StyleDataset.from_tsv(
@@ -3151,7 +3151,7 @@ if __name__ == "__main__":
         # Unfreeze tokenizer to allow vocabulary expansion
         tokenizer._frozen = False
         if len(data_files) > 1:
-            if is_main_process():
+                if is_main_process():
                 labeled_dataset = StyleDataset.from_multiple_tsv(
                     data_files,
                     tokenizer,
@@ -3163,7 +3163,7 @@ if __name__ == "__main__":
                 )
             
             if dist.is_available() and dist.is_initialized():
-                dist.barrier()
+                dist.barrier(device_ids=[local_rank])
                 
             if not is_main_process():
                 labeled_dataset = StyleDataset.from_multiple_tsv(
@@ -3187,7 +3187,7 @@ if __name__ == "__main__":
                 )
             
             if dist.is_available() and dist.is_initialized():
-                dist.barrier()
+                dist.barrier(device_ids=[local_rank])
                 
             if not is_main_process():
                 labeled_dataset = StyleDataset.from_tsv(
@@ -3237,7 +3237,7 @@ if __name__ == "__main__":
                 )
             
             if dist.is_available() and dist.is_initialized():
-                dist.barrier()
+                dist.barrier(device_ids=[local_rank])
             
             if not is_main_process():
                 dataset = StyleDataset.from_multiple_tsv(
@@ -3259,7 +3259,7 @@ if __name__ == "__main__":
                 )
             
             if dist.is_available() and dist.is_initialized():
-                dist.barrier()
+                dist.barrier(device_ids=[local_rank])
                 
             if not is_main_process():
                 dataset = StyleDataset.from_tsv(
@@ -3330,9 +3330,17 @@ if __name__ == "__main__":
     if is_main_process():
         try:
             os.makedirs(args.output, exist_ok=True)
-            with open(os.path.join(args.output, "timing.yml"), "w") as f:
-                yaml.dump(timings, f)
-            print(f"Startup timings saved to {os.path.join(args.output, 'timing.yml')}")
+            timing_path = os.path.join(args.output, "timing.yml")
+            existing_timings = {}
+            if os.path.exists(timing_path):
+                with open(timing_path, "r") as f:
+                    existing_timings = yaml.safe_load(f) or {}
+            
+            existing_timings.update(timings)
+            
+            with open(timing_path, "w") as f:
+                yaml.dump(existing_timings, f)
+            print(f"Startup timings saved to {timing_path}")
         except Exception as e:
             print(f"Warning: Failed to save timings: {e}")
 
