@@ -1713,6 +1713,9 @@ class MLMTrainer:
         # Get vocabulary sizes for all fields
         self.vocab_sizes = dataset.tokenizer.get_vocab_sizes()
 
+        # Initialize field weights (default to 1.0 for all fields during pre-training)
+        self.field_weights = {f: 1.0 for f in FEATURE_FIELDS}
+
         self.history: Dict[str, Any] = {'mlm_loss': [], 'field_losses': {f: [] for f in FEATURE_FIELDS}}
 
     def train_epoch(self, verbose: bool = True) -> Tuple[float, Dict[str, float]]:
