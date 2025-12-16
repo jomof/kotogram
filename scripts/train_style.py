@@ -1148,10 +1148,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 if verbose and processed_encodings % 100000 < 5000:
                      print(f"  Encoded {processed_encodings}/{len(encoding_inputs)} samples...")
 
-            # Track counts using IDs (enums were converted in workers)
-            formality_counts[FORMALITY_ID_TO_LABEL[formality_id]] += 1
-            gender_counts[GENDER_ID_TO_LABEL[gender_id]] += 1
-            grammaticality_counts[gram_label] += 1
+
 
         if verbose:
             print(f"\nDataset loaded: {len(samples)} samples from {len(tsv_paths)} files")
