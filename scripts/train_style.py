@@ -1192,7 +1192,7 @@ class TrainerConfig:
     learning_rate: float = 1e-4
     batch_size: int = 32
     epochs: int = 10
-    patience: int = 3  # Early stopping patience
+    patience: int = 5  # Early stopping patience
     lr_scheduler_patience: int = 2
     lr_scheduler_factor: float = 0.5
     gradient_clip: float = 1.0
