@@ -2673,6 +2673,9 @@ def load_checkpoint(
 
     # Filter out MLM head weights (present when model was trained with --pretrain-mlm)
     model_state = checkpoint['model_state_dict']
+    # Strip 'module.' prefix if present (from DDP training)
+    model_state = {k.replace('module.', ''): v for k, v in model_state.items()}
+    
     model_state = {k: v for k, v in model_state.items() if not k.startswith('mlm_head.')}
     model.load_state_dict(model_state)
 
