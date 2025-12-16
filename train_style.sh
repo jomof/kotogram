@@ -374,6 +374,9 @@ fi
 # Enable MPS fallback for unsupported ops (Mac Apple Silicon)
 export PYTORCH_ENABLE_MPS_FALLBACK=1
 
+# Silence OMP warnings and prevent thread oversubscription
+export OMP_NUM_THREADS=1
+
 # Detect Environment
 NUM_GPUS=$(python -c "import torch; print(torch.cuda.device_count())" 2>/dev/null || echo "0")
 if [ "$NUM_GPUS" -gt 0 ] && [ -n "$DEBUG" ]; then
