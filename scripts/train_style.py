@@ -321,7 +321,6 @@ def is_main_process() -> bool:
     return True
 
 
-
 def _process_sentence_batch(
     batch: List[Tuple[str, str, int]],  # (sentence, sentence_id, gram_label)
 ) -> List[Tuple[str, str, str, int, int, int, int]]:
@@ -543,37 +542,30 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     print(f"  Saved {len(new_kotograms)} new entries to kotogram cache")
 
         # Now compute labels for all sentences (both cached and newly parsed)
-        # Labels are quick to compute, no need for parallel processing
-        results: List[Tuple[str, str, int, int, int, int]] = []
-
-        formality_to_id = {
-            FormalityLevel.VERY_FORMAL: 0,
-            FormalityLevel.FORMAL: 1,
-            FormalityLevel.NEUTRAL: 2,
-            FormalityLevel.CASUAL: 3,
-            FormalityLevel.VERY_CASUAL: 4,
-            FormalityLevel.UNPRAGMATIC_FORMALITY: 5,
-        }
-        gender_to_id = {
-            GenderLevel.MASCULINE: 0,
-            GenderLevel.FEMININE: 1,
-            GenderLevel.NEUTRAL: 2,
-            GenderLevel.UNPRAGMATIC_GENDER: 3,
-        }
-
+        # Parallelize label computation
+        if verbose:
+            print(f"Computing labels for {len(rows)} sentences with {num_workers} workers...")
+            
+        # Prepare inputs for parallel processing
+        # We need to pass (sentence, kotogram, gram_label)
+        label_inputs = []
         for sentence, _sid, gram_label in rows:
-            cached_kotogram = cached_kotograms.get(sentence)
-            if cached_kotogram:
-                try:
-                    formality_enum = analyze_formality(cached_kotogram)
-                    gender_enum = analyze_gender(cached_kotogram)
-                    formality_id = formality_to_id[formality_enum]
-                    gender_id = gender_to_id[gender_enum]
-                    results.append((sentence, cached_kotogram, formality_id, gender_id, gram_label, 1))
-                except Exception as e:
-                    if verbose:
-                        print(f"Error computing labels for cached sentence: {e}")
-                    pass  # Skip sentences that fail label computation
+            cached_k = cached_kotograms.get(sentence)
+            if cached_k:
+                label_inputs.append((sentence, cached_k, gram_label))
+        
+        # Batching
+        label_batches = [label_inputs[i:i + batch_size] for i in range(0, len(label_inputs), batch_size)]
+        
+        results: List[Tuple[str, str, int, int, int, int]] = []
+        processed_labels = 0
+        
+        with ctx.Pool(num_workers) as pool:
+            for batch_results in pool.imap(cls._compute_labels_batch, label_batches):
+                results.extend(batch_results)
+                processed_labels += len(batch_results)
+                if verbose and processed_labels % 100000 < batch_size:
+                     print(f"  Labeled {processed_labels}/{len(label_inputs)} sentences...")
 
         if verbose:
             print(f"  Total: {len(results)} sentences ready for training")
