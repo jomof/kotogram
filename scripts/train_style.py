@@ -2592,6 +2592,9 @@ def save_checkpoint(
         args: Command line arguments (for reproducing settings)
         model_config: Model configuration
     """
+    if not is_main_process():
+        return
+
     import os
     os.makedirs(path, exist_ok=True)
 
@@ -3283,9 +3286,9 @@ if __name__ == "__main__":
             excluded_features=excluded,
         )
 
-        print("\nCreating model...")
+        if is_main_process():
+            print("\nCreating model...")
         t_model_start = time.time()
-        model = StyleClassifier(model_config)
         model = StyleClassifier(model_config)
         timings['model_creation'] = time.time() - t_model_start
 
@@ -3315,10 +3318,12 @@ if __name__ == "__main__":
         import sys
         sys.exit(0)
 
-    print(f"\nSplit: {len(train_data)} train, {len(val_data)} val, {len(test_data)} test")
+    if is_main_process():
+        print(f"\nSplit: {len(train_data)} train, {len(val_data)} val, {len(test_data)} test")
 
     # Supervised training with differential learning rates
-    print("\nStarting supervised training...")
+    if is_main_process():
+        print("\nStarting supervised training...")
     
     # Save timings
     timings['total_startup'] = time.time() - script_start_time
@@ -3359,6 +3364,7 @@ if __name__ == "__main__":
         checkpoint_dir=args.output,
         checkpoint_args=args,
         model_config=model_config,
+        verbose=is_main_process(),
     )
 
     # Print final metrics
