@@ -3304,6 +3304,8 @@ if __name__ == "__main__":
     if args.preprocess_only:
         if is_main_process():
             print("\nPreprocessing complete. Data is cached.")
+        if dist.is_available() and dist.is_initialized():
+            dist.destroy_process_group()
         sys.exit(0)
 
     if args.confusion:
@@ -3323,6 +3325,8 @@ if __name__ == "__main__":
 
         trainer.print_confusion_matrices(save_dir=args.output, verbose=is_main_process())
         print("\nConfusion matrix evaluation complete.")
+        if dist.is_available() and dist.is_initialized():
+            dist.destroy_process_group()
         import sys
         sys.exit(0)
 
@@ -3475,4 +3479,9 @@ if __name__ == "__main__":
 
         # Show difference
         diff = tuple(reduced - f32 for reduced, f32 in zip(reduced_accuracy, f32_accuracy))
+        # Show difference
+        diff = tuple(reduced - f32 for reduced, f32 in zip(reduced_accuracy, f32_accuracy))
         print(f"Difference ({precision_name}-f32):   formality={diff[0]:+.4f}, gender={diff[1]:+.4f}, gram={diff[2]:+.4f}")
+
+    if dist.is_available() and dist.is_initialized():
+        dist.destroy_process_group()
