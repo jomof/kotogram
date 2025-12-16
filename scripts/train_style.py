@@ -70,6 +70,8 @@ from datetime import datetime
 from functools import partial
 from typing import Dict, List, Optional, Tuple, Any, cast, Set, Union
 
+import yaml
+
 # Start timing immediately
 script_start_time = time.time()
 timings = {}
@@ -1173,32 +1175,29 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             timing_path = "models/style/timing.yml"
             os.makedirs(os.path.dirname(timing_path), exist_ok=True)
             
-            # Use appending or creating logic. 
-            # We want to add keys to the existing file or create new.
-            # Simple YAML usage
-            try:
-                import yaml
-                current_timing = {}
-                if os.path.exists(timing_path):
-                    with open(timing_path, 'r') as f:
-                        current_timing = yaml.safe_load(f) or {}
-                
-                current_timing.update({
-                    'preprocessing_phase1_io': phase1_duration,
-                    'preprocessing_phase2_parsing': phase2_duration,
-                    'preprocessing_phase3a_token_collection': phase3a_duration,
-                    'preprocessing_phase3b_encoding': phase3b_duration,
-                    'preprocessing_total': total_preprocessing_duration
-                })
-                
-                with open(timing_path, 'w') as f:
-                    yaml.dump(current_timing, f, default_flow_style=False)
-                if verbose:
-                    print(f"Detailed preprocessing timing saved to {timing_path}")
-            except ImportError:
-                print("PyYAML not installed, skipping timing.yml update")
-            except Exception as e:
-                print(f"Error updating timing.yml: {e}")
+            if yaml:
+                try:
+                    current_timing = {}
+                    if os.path.exists(timing_path):
+                        with open(timing_path, 'r') as f:
+                            current_timing = yaml.safe_load(f) or {}
+                    
+                    current_timing.update({
+                        'preprocessing_phase1_io': phase1_duration,
+                        'preprocessing_phase2_parsing': phase2_duration,
+                        'preprocessing_phase3a_token_collection': phase3a_duration,
+                        'preprocessing_phase3b_encoding': phase3b_duration,
+                        'preprocessing_total': total_preprocessing_duration
+                    })
+                    
+                    with open(timing_path, 'w') as f:
+                        yaml.dump(current_timing, f, default_flow_style=False)
+                    if verbose:
+                        print(f"Detailed preprocessing timing saved to {timing_path}")
+                except Exception as e:
+                    print(f"Error updating timing.yml: {e}")
+            else:
+                 print("PyYAML not installed, skipping timing.yml update")
 
         # Save to cache (full dataset)
         if use_cache:
