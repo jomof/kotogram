@@ -59,10 +59,9 @@ OUTPUT_DIR="models/style"
 EPOCHS=20
 OUTPUT_DIR="models/style"
 EPOCHS=20
-# Batch size will be adjusted based on device detection
-BATCH_SIZE="" 
-DEFAULT_BATCH_SIZE_SINGLE=64
-DEFAULT_BATCH_SIZE_MULTI=32 # Optimized for T4 (per GPU)
+# Batch settings
+MICRO_BATCH_SIZE=32       # Batch size per device
+TARGET_GLOBAL_BATCH_SIZE=128 # Operations per optimizer step (32 * 4 GPUs = 128)
 EMBED_DIM=256
 HIDDEN_DIM=512
 NUM_LAYERS=3
@@ -383,18 +382,36 @@ if [ "$NUM_GPUS" -gt 0 ] && [ -n "$DEBUG" ]; then
     echo "Detected GPUs: $NUM_GPUS"
 fi
 
-# Set defaults if not provided
-if [ -z "$BATCH_SIZE" ]; then
-    if [ "$NUM_GPUS" -gt 1 ]; then
-        BATCH_SIZE=$DEFAULT_BATCH_SIZE_MULTI
-        # Quiet auto-config
-    else
-        BATCH_SIZE=$DEFAULT_BATCH_SIZE_SINGLE
-    fi
+# Calculate devices for math alignment
+# If 0 GPUs, we assume 1 device (MPS or CPU)
+if [ "$NUM_GPUS" -eq 0 ]; then
+    NUM_DEVICES=1
+else
+    NUM_DEVICES=$NUM_GPUS
 fi
 
-# Auto-enable FP16 for multi-GPU if not specified (and not FP8)
-if [ "$NUM_GPUS" -gt 1 ] && [ -z "$FP16" ] && [ -z "$FP8" ]; then
+# Calculate Gradient Accumulation to match Target Global Batch
+# Formula: GradAccum = Target / (Devices * MicroBatch)
+TOTAL_CURRENT_BATCH=$((NUM_DEVICES * MICRO_BATCH_SIZE))
+GRAD_ACCUM_STEPS=$((TARGET_GLOBAL_BATCH_SIZE / TOTAL_CURRENT_BATCH))
+
+# Ensure at least 1 step
+if [ "$GRAD_ACCUM_STEPS" -lt 1 ]; then
+    GRAD_ACCUM_STEPS=1
+fi
+
+echo "Auto-config: Target Global Batch=$TARGET_GLOBAL_BATCH_SIZE"
+echo "             Devices=$NUM_DEVICES, MicroBatch=$MICRO_BATCH_SIZE"
+echo "             => GradAccumSteps=$GRAD_ACCUM_STEPS"
+
+
+# Set defaults if not provided
+if [ -z "$BATCH_SIZE" ]; then
+    BATCH_SIZE=$MICRO_BATCH_SIZE
+fi
+
+# Auto-enable FP16 globally for alignment (unless FP8 or user specified otherwise)
+if [ -z "$FP16" ] && [ -z "$FP8" ]; then
     FP16="--fp16"
 fi
 
@@ -405,7 +422,10 @@ else
     LAUNCHER="python"
 fi
 
-echo "Configuration: $LAUNCHER, Batch: $BATCH_SIZE, FP16: ${FP16:-off}, GPUs: $NUM_GPUS"
+# Configuration Summary
+if [ -n "$DEBUG" ]; then
+    echo "Configuration: $LAUNCHER, Batch: $BATCH_SIZE, Accum: $GRAD_ACCUM_STEPS, FP16: ${FP16:-off}"
+fi
 
 # Build command
 CMD="$LAUNCHER scripts/train_style.py \
@@ -466,16 +486,60 @@ if [ -n "$PERCENT" ]; then
     CMD="$CMD $PERCENT"
 fi
 
-if [ -n "$PERCENT" ]; then
-    CMD="$CMD $PERCENT"
-fi
+# Add grad accum steps 
+CMD="$CMD --grad-accum-steps $GRAD_ACCUM_STEPS"
 
-# Add grad accum steps if multi-gpu (defaulting to 1 for now as per request)
-# The user script defaults to 1 so we don't strictly need to pass it unless we want to enforce it.
-# We'll rely on the python script default of 1 if not passed.
+# Run Preprocessing Phase (Single Process)
+# This ensures that Kotogram parsing and dataset caching happens once, cleanly,
+# before launching training (whether single or multi-process).
+echo "=============================================="
+echo "Running Preprocessing Phase..."
+echo "=============================================="
+# Construct preprocessing command (always use python, single process)
+    PREPROC_CMD="python scripts/train_style.py \
+        --data \"$DATA_PATH\" \
+        --output \"$OUTPUT_DIR\" \
+        --epochs 1 \
+        --batch-size $BATCH_SIZE \
+        --embed-dim $EMBED_DIM \
+        --hidden-dim $HIDDEN_DIM \
+        --num-layers $NUM_LAYERS \
+        --num-heads $NUM_HEADS \
+        --learning-rate $LEARNING_RATE \
+        --pretrain-epochs $PRETRAIN_EPOCHS \
+        --encoder-lr-factor $ENCODER_LR_FACTOR \
+        --formality-weight $FORMALITY_WEIGHT \
+        --gender-weight $GENDER_WEIGHT \
+        --grammaticality-weight $GRAMMATICALITY_WEIGHT \
+        --preprocess-only"
+
+    # Append all optional flags
+    if [ -n "$PRETRAIN_MLM" ]; then PREPROC_CMD="$PREPROC_CMD --pretrain-mlm"; fi
+    if [ -n "$MAX_SAMPLES" ]; then PREPROC_CMD="$PREPROC_CMD $MAX_SAMPLES"; fi
+    if [ -n "$EXTRA_DATA_PATH" ]; then PREPROC_CMD="$PREPROC_CMD --extra-data \"$EXTRA_DATA_PATH\""; fi
+    if [ -n "$AGRAMMATIC_DATA_PATH" ]; then PREPROC_CMD="$PREPROC_CMD --agrammatic-data \"$AGRAMMATIC_DATA_PATH\""; fi
+    if [ -n "$FP8" ]; then PREPROC_CMD="$PREPROC_CMD --fp8";
+    elif [ -n "$FP16" ]; then PREPROC_CMD="$PREPROC_CMD --fp16"; fi
+    if [ -n "$RESUME" ]; then PREPROC_CMD="$PREPROC_CMD --resume"; fi
+    if [ -n "$RETRAIN" ]; then PREPROC_CMD="$PREPROC_CMD --retrain"; fi
+    if [ -n "$EXCLUDE_FEATURES" ]; then PREPROC_CMD="$PREPROC_CMD --exclude-features \"$EXCLUDE_FEATURES\""; fi
+    if [ -n "$PERCENT" ]; then PREPROC_CMD="$PREPROC_CMD $PERCENT"; fi
+
+if [ -n "$DEBUG" ]; then
+    echo "Command: $PREPROC_CMD"
+else
+    echo "Executing preprocessing script..."
+fi
+eval $PREPROC_CMD || exit 1
+echo "Preprocessing complete."
+echo ""
 
 # Run training
-echo "Executing training..."
+if [ -n "$DEBUG" ]; then
+    echo "Command: $CMD"
+else
+    echo "Starting training run..."
+fi
 eval $CMD 2>&1 | tee "$OUTPUT_DIR/training.log"
 
 echo ""
