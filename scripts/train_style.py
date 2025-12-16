@@ -414,7 +414,8 @@ def _encode_samples_batch(
     tokenizer_state: Dict[str, Any], # Serialization of tokenizer
 ) -> List[Any]: # List[Sample]
     """Encode samples using a frozen tokenizer state."""
-    from kotogram.model import Tokenizer, Sample
+    from kotogram.model import Tokenizer
+    # Sample is defined in this module (train_style.py), so it's available in global scope
     
     # Reconstruct tokenizer
     tokenizer = Tokenizer()
