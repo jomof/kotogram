@@ -321,6 +321,38 @@ def is_main_process() -> bool:
     return True
 
 
+def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[Tuple[str, str, int, int, int, int]]:
+    """Compute labels for a batch of sentences."""
+    results = []
+    
+    formality_to_id = {
+        FormalityLevel.VERY_FORMAL: 0,
+        FormalityLevel.FORMAL: 1,
+        FormalityLevel.NEUTRAL: 2,
+        FormalityLevel.CASUAL: 3,
+        FormalityLevel.VERY_CASUAL: 4,
+        FormalityLevel.UNPRAGMATIC_FORMALITY: 5,
+    }
+    gender_to_id = {
+        GenderLevel.MASCULINE: 0,
+        GenderLevel.FEMININE: 1,
+        GenderLevel.NEUTRAL: 2,
+        GenderLevel.UNPRAGMATIC_GENDER: 3,
+    }
+    
+    for sentence, kotogram, gram_label in batch:
+        try:
+            formality_enum = analyze_formality(kotogram)
+            gender_enum = analyze_gender(kotogram)
+            formality_id = formality_to_id[formality_enum]
+            gender_id = gender_to_id[gender_enum]
+            results.append((sentence, kotogram, formality_id, gender_id, gram_label, 1))
+        except Exception:
+            pass # Skip failed
+            
+    return results
+
+
 def _process_sentence_batch(
     batch: List[Tuple[str, str, int]],  # (sentence, sentence_id, gram_label)
 ) -> List[Tuple[str, str, str, int, int, int, int]]:
@@ -564,7 +596,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         processed_labels = 0
         
         with ctx.Pool(num_workers) as pool:
-            for batch_results in pool.imap(cls._compute_labels_batch, label_batches):
+            for batch_results in pool.imap(_compute_labels_batch, label_batches):
                 results.extend(batch_results)
                 processed_labels += len(batch_results)
                 if verbose and processed_labels % 100000 < batch_size:
