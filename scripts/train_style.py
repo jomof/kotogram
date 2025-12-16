@@ -286,7 +286,7 @@ def get_kotogram_cache(db_path: str = KotogramCache.DEFAULT_PATH) -> KotogramCac
 
 
 def _process_sentence_batch(
-    batch: List[Tuple[str, str, int, str]],  # (sentence, sentence_id, gram_label, source_id)
+    batch: List[Tuple[str, str, int]],  # (sentence, sentence_id, gram_label)
 ) -> List[Tuple[str, str, str, int, int, int, int]]:
     """Process a batch of sentences in a worker process.
 
@@ -321,7 +321,7 @@ def _process_sentence_batch(
         GenderLevel.UNPRAGMATIC_GENDER: 3,
     }
 
-    for sentence, sentence_id, gram_label, source_id in batch:
+    for sentence, sentence_id, gram_label in batch:
         try:
             kotogram = parser.japanese_to_kotogram(sentence)
             formality_enum = analyze_formality(kotogram)
@@ -347,7 +347,6 @@ class Sample:
     grammaticality_label: int = 1  # 1 = grammatic (default), 0 = agrammatic
     original_sentence: str = ""
     kotogram: str = ""
-    source_id: str = ""  # Source sentence ID (for agrammatic sentences, this is the ID of the original sentence)
 
     @property
     def seq_len(self) -> int:
@@ -363,7 +362,7 @@ class Sample:
 # v1: Initial version
 # v2: Removed lemma pruning (lemma_min_freq, max_lemma_vocab)
 # v3: Added parallel processing
-CACHE_VERSION = 4  # v4: Added source_id to Sample for source-based train/test splitting
+CACHE_VERSION = 5  # v5: Removed source_id from Sample
 
 
 class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
@@ -426,12 +425,12 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
     @staticmethod
     def _process_parallel(
-        rows: List[Tuple[str, str, int, str]],  # (sentence, sentence_id, gram_label, source_id)
+        rows: List[Tuple[str, str, int]],  # (sentence, sentence_id, gram_label)
         num_workers: Optional[int] = None,
         batch_size: int = 1000,
         verbose: bool = True,
         use_kotogram_cache: bool = True,
-    ) -> List[Tuple[str, str, int, int, int, int, str]]:
+    ) -> List[Tuple[str, str, int, int, int, int]]:
         """Process sentences in parallel using multiprocessing.
 
         Uses a durable kotogram cache to avoid re-parsing sentences that have
@@ -447,7 +446,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             use_kotogram_cache: If True, use durable kotogram cache
 
         Returns:
-            List of (sentence, kotogram, formality_id, gender_id, gram_label, success, source_id) tuples
+            List of (sentence, kotogram, formality_id, gender_id, gram_label, success) tuples
         """
         if num_workers is None:
             num_workers = max(1, mp.cpu_count() - 1)
@@ -458,7 +457,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         # Check kotogram cache for already-parsed sentences
         cache = get_kotogram_cache() if use_kotogram_cache else None
         cached_kotograms: Dict[str, Optional[str]] = {}
-        uncached_rows: List[Tuple[str, str, int, str]] = []
+        uncached_rows: List[Tuple[str, str, int]] = []
 
         if cache is not None:
             sentences = [r[0] for r in rows]
@@ -508,7 +507,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         # Now compute labels for all sentences (both cached and newly parsed)
         # Labels are quick to compute, no need for parallel processing
-        results: List[Tuple[str, str, int, int, int, int, str]] = []
+        results: List[Tuple[str, str, int, int, int, int]] = []
 
         formality_to_id = {
             FormalityLevel.VERY_FORMAL: 0,
@@ -525,7 +524,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             GenderLevel.UNPRAGMATIC_GENDER: 3,
         }
 
-        for sentence, _sid, gram_label, source_id in rows:
+        for sentence, _sid, gram_label in rows:
             cached_kotogram = cached_kotograms.get(sentence)
             if cached_kotogram:
                 try:
@@ -533,7 +532,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     gender_enum = analyze_gender(cached_kotogram)
                     formality_id = formality_to_id[formality_enum]
                     gender_id = gender_to_id[gender_enum]
-                    results.append((sentence, cached_kotogram, formality_id, gender_id, gram_label, 1, source_id))
+                    results.append((sentence, cached_kotogram, formality_id, gender_id, gram_label, 1))
                 except Exception as e:
                     if verbose:
                         print(f"Error computing labels for cached sentence: {e}")
@@ -647,8 +646,8 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 return cls(cached_samples, tokenizer)
 
         # Phase 1: Read all rows from TSV file (fast I/O)
-        # Tuple: (sentence, sentence_id, gram_label, source_id)
-        all_rows: List[Tuple[str, str, int, str]] = []
+        # Tuple: (sentence, sentence_id, gram_label)
+        all_rows: List[Tuple[str, str, int]] = []
         gram_label = 1  # Single-file load assumes grammatic
 
         if verbose:
@@ -659,12 +658,14 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             for row in reader:
                 if len(row) < 3:
                     continue
-                sentence_id, lang, sentence = row[0], row[1], row[2]
-                if lang != 'jpn':
-                    continue
-                # source_id is in 4th column if present, otherwise use sentence_id itself
-                source_id = row[3] if len(row) >= 4 else sentence_id
-                all_rows.append((sentence, sentence_id, gram_label, source_id))
+                # Simply ignore rows that don't have enough columns, but otherwise be permissive
+                # Column 1 = ID, Column 2 = Lang (ignored), Column 3 = Sentence
+                sentence_id, _lang, sentence = row[0], row[1], row[2]
+                
+                # Removed: if lang != 'jpn': continue
+                # Removed: source_id logic
+
+                all_rows.append((sentence, sentence_id, gram_label))
                 if max_samples and len(all_rows) >= max_samples:
                     break
         
@@ -686,7 +687,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         gender_counts: Counter[GenderLevel] = Counter()
         grammaticality_counts: Counter[int] = Counter()
 
-        for sentence, kotogram, formality_id, gender_id, gram_label, _success, source_id in processed_results:
+        for sentence, kotogram, formality_id, gender_id, gram_label, _success in processed_results:
             # Encode to feature IDs (builds vocabulary - must be sequential)
             feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
 
@@ -697,7 +698,6 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 grammaticality_label=gram_label,
                 original_sentence=sentence,
                 kotogram=kotogram,
-                source_id=source_id,
             )
             samples.append(sample)
 
@@ -820,27 +820,25 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 return cls(cached_samples, tokenizer)
 
         # Phase 1: Read all rows from TSV files (fast I/O)
-        # Tuple: (sentence, sentence_id, gram_label, source_id)
-        # source_id is the original sentence ID for agrammatic sentences (4th column if present)
-        all_rows: List[Tuple[str, str, int, str]] = []
+        # Tuple: (sentence, sentence_id, gram_label)
+        all_rows: List[Tuple[str, str, int]] = []
         for tsv_path, gram_label in zip(tsv_paths, grammaticality_labels):
             if verbose:
                 gram_str = "grammatic" if gram_label == 1 else "agrammatic"
                 print(f"Reading {tsv_path} ({gram_str})...")
 
             file_count = 0
-            file_rows: List[Tuple[str, str, int, str]] = []
+            file_rows: List[Tuple[str, str, int]] = []
             with open(tsv_path, 'r', encoding='utf-8') as f:
                 reader = csv.reader(f, delimiter='\t')
                 for row in reader:
                     if len(row) < 3:
                         continue
-                    sentence_id, lang, sentence = row[0], row[1], row[2]
-                    if lang != 'jpn':
-                        continue
-                    # source_id is in 4th column if present, otherwise use sentence_id itself
-                    source_id = row[3] if len(row) >= 4 else sentence_id
-                    file_rows.append((sentence, sentence_id, gram_label, source_id))
+                    sentence_id, _lang, sentence = row[0], row[1], row[2]
+                    
+                    # Removed lang check and source_id logic
+                    
+                    file_rows.append((sentence, sentence_id, gram_label))
                     
                     if max_samples and len(all_rows) + len(file_rows) >= max_samples:
                         break
@@ -872,7 +870,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         gender_counts: Counter[GenderLevel] = Counter()
         grammaticality_counts: Counter[int] = Counter()
 
-        for sentence, kotogram, formality_id, gender_id, gram_label, _success, source_id in processed_results:
+        for sentence, kotogram, formality_id, gender_id, gram_label, _success in processed_results:
             # Encode to feature IDs (builds vocabulary - must be sequential)
             feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
 
@@ -883,7 +881,6 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 grammaticality_label=gram_label,
                 original_sentence=sentence,
                 kotogram=kotogram,
-                source_id=source_id,
             )
             samples.append(sample)
 
@@ -942,7 +939,6 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         val_ratio: float = 0.1,
         seed: int = 42,
         stratify: bool = True,
-        split_by_source: bool = True,
     ) -> Tuple['StyleDataset', 'StyleDataset', 'StyleDataset']:
         """Split dataset into train/validation/test sets.
 
@@ -953,10 +949,6 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             stratify: If True, use stratified splitting to ensure proportional
                      representation of all class combinations in each split.
                      Uses combined (formality, gender, grammaticality) labels for stratification.
-            split_by_source: If True, split by source_id so all derivatives of a source
-                     sentence stay together in the same split. This prevents data leakage
-                     for agrammatic sentences that were derived from the same source.
-                     Default True for better generalization evaluation.
 
         Returns:
             Tuple of (train, validation, test) StyleDataset instances
@@ -967,51 +959,17 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         val_indices: List[int] = []
         test_indices: List[int] = []
 
-        if split_by_source:
-            # Split by source_id to prevent data leakage
-            # Group samples by source_id
-            source_to_indices: Dict[str, List[int]] = {}
-            for i, sample in enumerate(self.samples):
-                source_id = sample.source_id if sample.source_id else str(i)
-                if source_id not in source_to_indices:
-                    source_to_indices[source_id] = []
-                source_to_indices[source_id].append(i)
+        if not stratify:
+            # Original random splitting
+            indices = list(range(len(self.samples)))
+            random.shuffle(indices)
 
-            # Get unique source IDs and shuffle
-            source_ids = list(source_to_indices.keys())
-            random.shuffle(source_ids)
+            n_train = int(len(indices) * train_ratio)
+            n_val = int(len(indices) * val_ratio)
 
-            # Split source IDs into train/val/test
-            n_sources = len(source_ids)
-            n_train_sources = int(n_sources * train_ratio)
-            n_val_sources = int(n_sources * val_ratio)
-
-            train_source_ids = set(source_ids[:n_train_sources])
-            val_source_ids = set(source_ids[n_train_sources:n_train_sources + n_val_sources])
-            test_source_ids = set(source_ids[n_train_sources + n_val_sources:])
-
-            # Assign all samples from each source to its split
-            for source_id, indices in source_to_indices.items():
-                if source_id in train_source_ids:
-                    train_indices.extend(indices)
-                elif source_id in val_source_ids:
-                    val_indices.extend(indices)
-                else:
-                    test_indices.extend(indices)
-
-            # Shuffle within each split
-            random.shuffle(train_indices)
-            random.shuffle(val_indices)
-            random.shuffle(test_indices)
-
-            # Print split statistics
-            print(f"\nSource-based split:")
-            print(f"  Unique source sentences: {n_sources}")
-            print(f"  Train sources: {len(train_source_ids)} -> {len(train_indices)} samples")
-            print(f"  Val sources: {len(val_source_ids)} -> {len(val_indices)} samples")
-            print(f"  Test sources: {len(test_source_ids)} -> {len(test_indices)} samples")
-
-        elif not stratify:
+            train_indices = indices[:n_train]
+            val_indices = indices[n_train:n_train + n_val]
+            test_indices = indices[n_train + n_val:]
             # Original random splitting
             indices = list(range(len(self.samples)))
             random.shuffle(indices)
@@ -1113,7 +1071,7 @@ def collate_fn(
     Returns:
         Dictionary with per-field 'input_ids_<field>', 'attention_mask',
         'formality_labels', 'gender_labels', 'grammaticality_labels' tensors,
-        and 'original_sentence', 'source_id', 'kotogram' lists.
+        and 'original_sentence', 'kotogram' lists.
     """
     batch_max_len = max(s.seq_len for s in batch)
     # Apply truncation if max_seq_len is specified
@@ -1152,8 +1110,8 @@ def collate_fn(
     result['grammaticality_labels'] = torch.tensor(grammaticality_labels, dtype=torch.long)
 
     # Pass through metadata
+    # Pass through metadata
     result['original_sentence'] = [s.original_sentence for s in batch]
-    result['source_id'] = [s.source_id for s in batch]
     result['kotogram'] = [s.kotogram for s in batch]
 
     return result
@@ -1690,7 +1648,6 @@ class Trainer:
         all_grammaticality_preds: List[int] = []
         all_grammaticality_labels = []
         all_sentences = []
-        all_source_ids = []
         all_kotograms = []
 
         for batch in self.val_loader:
@@ -1720,7 +1677,6 @@ class Trainer:
 
             if return_mismatches:
                 all_sentences.extend(batch.get('original_sentence', []))
-                all_source_ids.extend(batch.get('source_id', []))
                 all_kotograms.extend(batch.get('kotogram', []))
 
             total_loss += loss.item()
@@ -1782,20 +1738,18 @@ class Trainer:
                 if all_formality_preds[i] != all_formality_labels[i]:
                     mismatches['formality'].append({
                         'sentence': sent,
-                        'source_id': all_source_ids[i] if i < len(all_source_ids) else '',
-                        'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
                         'predicted': FORMALITY_ID_TO_LABEL[all_formality_preds[i]].value,
                         'actual': FORMALITY_ID_TO_LABEL[all_formality_labels[i]].value,
+                        'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
                     })
                 
                 # Gender
                 if all_gender_preds[i] != all_gender_labels[i]:
                     mismatches['gender'].append({
                         'sentence': sent,
-                        'source_id': all_source_ids[i] if i < len(all_source_ids) else '',
-                        'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
                         'predicted': GENDER_ID_TO_LABEL[all_gender_preds[i]].value,
                         'actual': GENDER_ID_TO_LABEL[all_gender_labels[i]].value,
+                        'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
                     })
 
                 # Grammaticality
@@ -1805,10 +1759,9 @@ class Trainer:
                     actual_label = "grammatic" if all_grammaticality_labels[i] == 1 else "agrammatic"
                     mismatches['grammaticality'].append({
                         'sentence': sent,
-                        'source_id': all_source_ids[i] if i < len(all_source_ids) else '',
-                        'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
                         'predicted': pred_label,
                         'actual': actual_label,
+                        'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
                     })
             
             results['mismatches'] = mismatches
@@ -1939,35 +1892,35 @@ class Trainer:
             # Save Grammaticality Mismatches
             mismatches = eval_results['mismatches']
             if mismatches['grammaticality']:
-                # Sort by source_id then sentence for reproducible order
-                mismatches['grammaticality'].sort(key=lambda x: (x.get('source_id', ''), x.get('sentence', '')))
+                # Sort by sentence for reproducible order
+                mismatches['grammaticality'].sort(key=lambda x: x.get('sentence', ''))
                 
                 out_path = os.path.join(save_dir, 'grammaticality_confusion.csv')
                 with open(out_path, 'w', newline='', encoding='utf-8') as f:
-                    writer = csv.DictWriter(f, fieldnames=['sentence', 'source_id', 'predicted', 'actual', 'kotogram'], delimiter='\t')
+                    writer = csv.DictWriter(f, fieldnames=['sentence', 'predicted', 'actual', 'kotogram'], delimiter='\t')
                     writer.writeheader()
                     writer.writerows(mismatches['grammaticality'])
                 print(f"\nSaved {len(mismatches['grammaticality'])} grammaticality mismatches to {out_path}")
 
             # Save Other Mismatches (optional, maybe just formality/gender if they have many errors)
             if mismatches['formality']:
-                # Sort by source_id then sentence for reproducible order
-                mismatches['formality'].sort(key=lambda x: (x.get('source_id', ''), x.get('sentence', '')))
+                # Sort by sentence for reproducible order
+                mismatches['formality'].sort(key=lambda x: x.get('sentence', ''))
                 
                 out_path = os.path.join(save_dir, 'formality_confusion.csv')
                 with open(out_path, 'w', newline='', encoding='utf-8') as f:
-                    writer = csv.DictWriter(f, fieldnames=['sentence', 'source_id', 'predicted', 'actual', 'kotogram'], delimiter='\t')
+                    writer = csv.DictWriter(f, fieldnames=['sentence', 'predicted', 'actual', 'kotogram'], delimiter='\t')
                     writer.writeheader()
                     writer.writerows(mismatches['formality'])
                 print(f"Saved {len(mismatches['formality'])} formality mismatches to {out_path}")
                 
             if mismatches['gender']:
-                # Sort by source_id then sentence for reproducible order
-                mismatches['gender'].sort(key=lambda x: (x.get('source_id', ''), x.get('sentence', '')))
+                # Sort by sentence for reproducible order
+                mismatches['gender'].sort(key=lambda x: x.get('sentence', ''))
 
                 out_path = os.path.join(save_dir, 'gender_confusion.csv')
                 with open(out_path, 'w', newline='', encoding='utf-8') as f:
-                    writer = csv.DictWriter(f, fieldnames=['sentence', 'source_id', 'predicted', 'actual', 'kotogram'], delimiter='\t')
+                    writer = csv.DictWriter(f, fieldnames=['sentence', 'predicted', 'actual', 'kotogram'], delimiter='\t')
                     writer.writeheader()
                     writer.writerows(mismatches['gender'])
                 print(f"Saved {len(mismatches['gender'])} gender mismatches to {out_path}")
