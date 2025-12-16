@@ -387,6 +387,63 @@ def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[Tuple[str, 
     return results
 
 
+def _collect_tokens_batch(kotograms: List[str]) -> Dict[str, Counter]:
+    """Collect token counts from a batch of kotograms in parallel.
+    
+    Returns:
+        Dict mapping field_name -> Counter of token values
+    """
+    from kotogram.kotogram import extract_token_features
+    from kotogram.model import FEATURE_FIELDS
+    
+    counters = {f: Counter() for f in FEATURE_FIELDS}
+    
+    for k in kotograms:
+        # returns List[Dict[field, value]]
+        token_features = extract_token_features(k)
+        for token_feat in token_features:
+            for field, value in token_feat.items():
+                if field in counters: # Only track active features
+                    counters[field][value] += 1
+                    
+    return counters
+
+
+def _encode_samples_batch(
+    items: List[Tuple[str, str, int, int, int]], # (sentence, kotogram, f_id, g_id, gram_label)
+    tokenizer_state: Dict[str, Any], # Serialization of tokenizer
+) -> List[Any]: # List[Sample]
+    """Encode samples using a frozen tokenizer state."""
+    from kotogram.model import Tokenizer, Sample
+    
+    # Reconstruct tokenizer
+    tokenizer = Tokenizer()
+    tokenizer.field_vocabs = tokenizer_state['field_vocabs']
+    tokenizer._frozen = True
+    
+    samples = []
+    pad_id = tokenizer.pad_id
+    unk_id = tokenizer.unk_id
+    cls_id = tokenizer.cls_id
+    
+    for sentence, kotogram, f_id, g_id, gram_label in items:
+        # Manually encode to avoid tokenizer overhead if possible, 
+        # or just use tokenizer.encode. tokenizer.encode is fast if frozen.
+        feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
+        
+        sample = Sample(
+            feature_ids=feature_ids,
+            formality_label=f_id,
+            gender_label=g_id,
+            grammaticality_label=gram_label,
+            original_sentence=sentence,
+            kotogram=kotogram,
+        )
+        samples.append(sample)
+        
+    return samples
+
+
 def _process_sentence_batch(
     batch: List[Tuple[str, str, int]],  # (sentence, sentence_id, gram_label)
 ) -> List[Tuple[str, str, str, int, int, int, int]]:
@@ -996,28 +1053,99 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         # Phase 2: Process sentences in parallel (kotogram conversion + label computation)
         processed_results = cls._process_parallel(all_rows, verbose=verbose)
 
-        # Phase 3: Build vocabulary and create samples (must be sequential)
+        # Phase 3: Build vocabulary and create samples (Parallelized)
         if verbose:
-            print("\nBuilding vocabulary...")
+            print("\nBuilding vocabulary and encoding samples (Phase 3)...")
 
+        # 3a. Parallel Token Collection (map-reduce)
+        # ------------------------------------------
+        kotograms = [r[1] for r in processed_results]
+        
+        # Batching for token collection
+        # Larger batches are fine for token collection as it's CPU bound string processing
+        token_batches = [kotograms[i:i + 5000] for i in range(0, len(kotograms), 5000)]
+        
+        ctx = mp.get_context('spawn')
+        num_workers = max(1, mp.cpu_count() - 1)
+
+        if verbose:
+            print(f"  Collecting tokens from {len(kotograms)} sentences with {num_workers} workers...")
+            
+        merged_counters = {f: Counter() for f in tokenizer.field_vocabs.keys()}
+        
+        with ctx.Pool(num_workers) as pool:
+            for batch_counters in pool.imap(_collect_tokens_batch, token_batches):
+                for f, counter in batch_counters.items():
+                    if f in merged_counters:
+                        merged_counters[f].update(counter)
+
+        # Update tokenizer sequentially (fast dict updates)
+        if verbose:
+            print("  Updating tokenizer vocabulary...")
+            
+        for f, counter in merged_counters.items():
+            # Add tokens sorted by frequency (optional, but good for stability)
+            for token, _count in counter.most_common():
+                tokenizer._add_value(f, token)
+        
+        # Freeze vocabulary
+        tokenizer.freeze()
+        
+        # 3b. Parallel Sample Encoding
+        # ----------------------------
+        if verbose:
+            print("  Encoding samples with frozen tokenizer...")
+            
+        # Serialize tokenizer state for workers
+        tokenizer_state = {
+            'field_vocabs': tokenizer.field_vocabs,
+        }
+        
+        # Prepare inputs: (sentence, kotogram, f_id, g_id, gram_label)
+        encoding_inputs = []
+        for p in processed_results:
+            # p: (sentence, kotogram, f_id, g_id, gram_label, success)
+            if p[5]: # success
+                encoding_inputs.append((p[0], p[1], p[2], p[3], p[4]))
+
+        batches = [encoding_inputs[i:i + 5000] for i in range(0, len(encoding_inputs), 5000)]
+        
         samples: List[Sample] = []
+        # Re-initialize counters for stats
         formality_counts: Counter[FormalityLevel] = Counter()
         gender_counts: Counter[GenderLevel] = Counter()
         grammaticality_counts: Counter[int] = Counter()
 
-        for sentence, kotogram, formality_id, gender_id, gram_label, _success in processed_results:
-            # Encode to feature IDs (builds vocabulary - must be sequential)
-            feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
-
-            sample = Sample(
-                feature_ids=feature_ids,
-                formality_label=formality_id,
-                gender_label=gender_id,
-                grammaticality_label=gram_label,
-                original_sentence=sentence,
-                kotogram=kotogram,
-            )
-            samples.append(sample)
+        processed_encodings = 0
+        with ctx.Pool(num_workers) as pool:
+            # Use starmap equivalent via a wrapper lambda or just pass tuple to helper
+            # We defined helper to take (batch, state)
+            # But imap takes one arg. Let's use partial or tuple.
+            # Helper `_encode_samples_batch` takes (batch, state).
+            # We can't use partial easily with spawn context pickling sometimes.
+            # Better to use a generator or starmap.
+            # Let's wrap calling logic or use `starmap` (but starmap is eager? No, starmap is eager).
+            # `imap` is lazy.
+            # We will use a list of args: [(batch, state), ...]
+            
+            pool_args = [(b, tokenizer_state) for b in batches]
+            
+            # We need a wrapper function because `_encode_samples_batch` takes 2 args, 
+            # but we can make it take 1 tuple arg? No, let's just make it take 2 args in definition 
+            # and use `starmap`. `starmap` supports multiple args.
+            
+            for batch_samples in pool.starmap(_encode_samples_batch, pool_args):
+                samples.extend(batch_samples)
+                processed_encodings += len(batch_samples)
+                
+                # Update stats locally (fast)
+                for s in batch_samples:
+                    formality_counts[FORMALITY_ID_TO_LABEL[s.formality_label]] += 1
+                    gender_counts[GENDER_ID_TO_LABEL[s.gender_label]] += 1
+                    grammaticality_counts[s.grammaticality_label] += 1
+                    
+                if verbose and processed_encodings % 100000 < 5000:
+                     print(f"  Encoded {processed_encodings}/{len(encoding_inputs)} samples...")
 
             # Track counts using IDs (enums were converted in workers)
             formality_counts[FORMALITY_ID_TO_LABEL[formality_id]] += 1
