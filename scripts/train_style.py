@@ -72,6 +72,11 @@ from collections import Counter
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple, Any, cast
 
+import torch.distributed as dist
+from torch.nn.parallel import DistributedDataParallel as DDP
+from torch.utils.data.distributed import DistributedSampler
+from torch.amp import GradScaler, autocast
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -283,6 +288,38 @@ def get_kotogram_cache(db_path: str = KotogramCache.DEFAULT_PATH) -> KotogramCac
     if _kotogram_cache is None or _kotogram_cache.db_path != db_path:
         _kotogram_cache = KotogramCache(db_path)
     return _kotogram_cache
+
+
+def setup_distributed() -> Tuple[int, int, int]:
+    """Initialize distributed training if available.
+
+    Returns:
+        Tuple of (rank, world_size, local_rank)
+    """
+    if "RANK" in os.environ and "WORLD_SIZE" in os.environ:
+        try:
+            rank = int(os.environ["RANK"])
+            world_size = int(os.environ["WORLD_SIZE"])
+            local_rank = int(os.environ.get("LOCAL_RANK", "0"))
+
+            if torch.cuda.is_available():
+                torch.cuda.set_device(local_rank)
+                dist.init_process_group(backend="nccl", init_method="env://")
+                print(f"Distributed init: Rank {rank}/{world_size} (Local {local_rank})")
+                return rank, world_size, local_rank
+        except ValueError:
+            pass
+
+    # Default to single process
+    return 0, 1, 0
+
+
+def is_main_process() -> bool:
+    """Check if we are on the main process (rank 0)."""
+    if dist.is_available() and dist.is_initialized():
+        return dist.get_rank() == 0
+    return True
+
 
 
 def _process_sentence_batch(
@@ -1221,6 +1258,11 @@ class TrainerConfig:
     gender_loss_weight: float = 1.0  # Weight for gender loss in multi-task
     grammaticality_loss_weight: float = 1.0  # Weight for grammaticality loss in multi-task
     device: str = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
+    use_amp: bool = False  # Mixed precision training
+    grad_accum_steps: int = 1  # Gradient accumulation steps
+    local_rank: int = 0  # Local rank for distributed training
+    world_size: int = 1  # World size for distributed training
+
 
 
 def create_mlm_batch(
@@ -1340,26 +1382,61 @@ class MLMTrainer:
         """
         self.model = model
         self.dataset = dataset
+        self.dataset = dataset
         self.config = config or TrainerConfig()
         self.mask_prob = mask_prob
 
-        # Default to equal weights for all fields
-        self.field_weights = field_weights or {field: 1.0 for field in FEATURE_FIELDS}
+        # Setup device and distributed
+        if self.config.world_size > 1:
+            self.device = torch.device('cuda', self.config.local_rank)
+            self.is_distributed = True
+        else:
+            self.device = torch.device(self.config.device)
+            self.is_distributed = False
 
-        self.device = torch.device(self.config.device)
         self.model.to(self.device)
 
+        # Wrap in DDP if distributed
+        if self.is_distributed:
+            self.model = DDP(
+                self.model,
+                device_ids=[self.config.local_rank],
+                output_device=self.config.local_rank,
+                find_unused_parameters=True # MLM might have unused params depending on implementation
+            )  # type: ignore
+
+        # Mixed precision scaler
+        scaler_device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        self.scaler = GradScaler(device=scaler_device, enabled=self.config.use_amp and scaler_device == 'cuda')
+
         pad_id = dataset.tokenizer.pad_id
-        max_seq_len = model.config.max_seq_len
+        max_seq_len = self.model.module.config.max_seq_len if self.is_distributed else self.model.config.max_seq_len
+
+        # Data sampler
+        if self.is_distributed:
+            self.sampler = DistributedSampler(
+                dataset,
+                num_replicas=self.config.world_size,
+                rank=dist.get_rank(),
+                shuffle=True,  # Handle shuffling in sampler
+            )
+            shuffle = False
+        else:
+            self.sampler = None
+            shuffle = True
+
         self.data_loader = DataLoader(
             dataset,
             batch_size=self.config.batch_size,
-            shuffle=True,
+            shuffle=shuffle, # False if using sampler
+            sampler=self.sampler,
             collate_fn=lambda b: collate_fn(b, pad_id, max_seq_len),
+            pin_memory=True if self.config.device == "cuda" else False,
+            num_workers=4 if self.config.device == "cuda" else 0,
         )
 
         self.criterion = nn.CrossEntropyLoss(ignore_index=-100)
-        self.optimizer = Adam(model.parameters(), lr=self.config.learning_rate)
+        self.optimizer = Adam(self.model.parameters(), lr=self.config.learning_rate)
 
         # Get vocabulary sizes for all fields
         self.vocab_sizes = dataset.tokenizer.get_vocab_sizes()
@@ -1394,54 +1471,69 @@ class MLMTrainer:
             }
             attention_mask = mlm_batch['attention_mask'].to(self.device)
 
-            self.optimizer.zero_grad()
+            self.optimizer.zero_grad(set_to_none=True)
 
-            # Get logits for all fields
-            mlm_logits_dict = self.model.forward_mlm(field_inputs, attention_mask)
+            # Mixed precision context
+            # Determine device type string for autocast (e.g., 'cuda', 'mps', 'cpu')
+            device_type = 'cuda' if 'cuda' in str(self.device) else ('mps' if 'mps' in str(self.device) else 'cpu')
+            
+            with autocast(device_type=device_type, enabled=self.config.use_amp):
+                # Get logits for all fields
 
-            # Compute weighted sum of losses across all fields
-            batch_loss: torch.Tensor = torch.tensor(0.0, device=self.device)
-            valid_fields_count = 0
+                # Note: if DDP, model is wrapped, so we call directly or check hierarchy
+                mlm_logits_dict = self.model.forward_mlm(field_inputs, attention_mask) if not self.is_distributed else self.model.module.forward_mlm(field_inputs, attention_mask)
 
-            for f in FEATURE_FIELDS:
-                logits = mlm_logits_dict[f]
-                labels = mlm_batch[f'mlm_labels_{f}'].to(self.device)
+                # Compute weighted sum of losses across all fields
+                batch_loss: torch.Tensor = torch.tensor(0.0, device=self.device)
+                valid_fields_count = 0
+
+                for f in FEATURE_FIELDS:
+                    logits = mlm_logits_dict[f]
+                    labels = mlm_batch[f'mlm_labels_{f}'].to(self.device)
+                    
+                    # Skip if all labels are ignore_index (-100)
+                    if (labels != -100).sum() == 0:
+                        continue
+
+                    field_loss = self.criterion(
+                        logits.view(-1, logits.size(-1)),
+                        labels.view(-1),
+                    )
+                    
+                    if torch.isnan(field_loss):
+                        continue
+
+                    weighted_loss = self.field_weights[f] * field_loss
+                    batch_loss = batch_loss + weighted_loss
+                    field_losses[f] += field_loss.item()
+                    valid_fields_count += 1
+
+                # Average across fields
+                if valid_fields_count > 0:
+                    loss = batch_loss / valid_fields_count
+                else:
+                    loss = torch.tensor(0.0, device=self.device, requires_grad=True)
+
+                # Normalize loss for gradient accumulation
+                loss = loss / self.config.grad_accum_steps
+
+            # Backward pass with scaler
+            self.scaler.scale(loss).backward()
+
+            if (batch_idx + 1) % self.config.grad_accum_steps == 0:
+                if self.config.gradient_clip > 0:
+                    self.scaler.unscale_(self.optimizer)
+                    nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
                 
-                # Skip if all labels are ignore_index (-100)
-                # This prevents nan loss for fields that aren't masked (like pos, etc.)
-                if (labels != -100).sum() == 0:
-                    continue
+                self.scaler.step(self.optimizer)
+                self.scaler.update()
+                self.optimizer.zero_grad(set_to_none=True)
 
-                field_loss = self.criterion(
-                    logits.view(-1, logits.size(-1)),
-                    labels.view(-1),
-                )
-                
-                # Check for nan just in case
-                if torch.isnan(field_loss):
-                    continue
-
-                weighted_loss = self.field_weights[f] * field_loss
-                batch_loss = batch_loss + weighted_loss
-                field_losses[f] += field_loss.item()
-                valid_fields_count += 1
-
-            # Average across fields
-            if valid_fields_count > 0:
-                loss = batch_loss / valid_fields_count
-            else:
-                loss = torch.tensor(0.0, device=self.device, requires_grad=True)
-
-            loss.backward()
-            if self.config.gradient_clip > 0:
-                nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
-            self.optimizer.step()
-
-            total_loss += loss.item()
+            total_loss += loss.item() * self.config.grad_accum_steps # Scale back up for reporting
             n_batches += 1
 
-            # Progress display
-            if verbose:
+            # Progress display (only on rank 0)
+            if verbose and is_main_process():
                 # Avoid division by zero if n_batches is 0 (shouldn't happen here but good practice)
                 avg_loss_so_far = total_loss / max(1, n_batches)
                 progress = (batch_idx + 1) / total_batches
@@ -1451,7 +1543,7 @@ class MLMTrainer:
                 sys.stdout.write(f'\r  [{bar}] {batch_idx+1}/{total_batches} loss={avg_loss_so_far:.4f}')
                 sys.stdout.flush()
 
-        if verbose:
+        if verbose and is_main_process():
             sys.stdout.write('\n')
             sys.stdout.flush()
 
@@ -1472,14 +1564,18 @@ class MLMTrainer:
         actual_epochs = epochs or self.config.epochs
 
         for epoch in range(actual_epochs):
-            if verbose:
+            # Update sampler epoch for shuffling
+            if self.dataset and self.is_distributed:
+                 cast(DistributedSampler, self.sampler).set_epoch(epoch)
+
+            if verbose and is_main_process():
                 print(f"Epoch {epoch+1}/{actual_epochs}")
             mlm_loss, field_loss_dict = self.train_epoch(verbose=verbose)
             self.history['mlm_loss'].append(mlm_loss)
             for f, loss_val in field_loss_dict.items():
                 self.history['field_losses'][f].append(loss_val)
 
-            if verbose:
+            if verbose and is_main_process():
                 print(f"  MLM Loss: {mlm_loss:.4f}")
                 field_str = ", ".join(f"{f}={l:.3f}" for f, l in field_loss_dict.items())
                 print(f"  Field losses: {field_str}")
@@ -1514,23 +1610,76 @@ class Trainer:
         self.config = config or TrainerConfig()
         self.encoder_lr_factor = encoder_lr_factor
 
-        self.device = torch.device(self.config.device)
+        self.config = config or TrainerConfig()
+        self.encoder_lr_factor = encoder_lr_factor
+
+        # Setup device and distributed
+        if self.config.world_size > 1:
+            self.device = torch.device('cuda', self.config.local_rank)
+            self.is_distributed = True
+        else:
+            self.device = torch.device(self.config.device)
+            self.is_distributed = False
+
         self.model.to(self.device)
 
+        # Wrap in DDP if distributed
+        if self.is_distributed:
+            self.model = DDP(
+                self.model,
+                device_ids=[self.config.local_rank],
+                output_device=self.config.local_rank,
+                find_unused_parameters=True
+            ) # type: ignore
+
+        # Mixed precision scaler
+        scaler_device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        self.scaler = GradScaler(device=scaler_device, enabled=self.config.use_amp and scaler_device == 'cuda')
+
         # Data loaders with max_seq_len truncation
+
         pad_id = train_dataset.tokenizer.pad_id
-        max_seq_len = model.config.max_seq_len
+        max_seq_len = self.model.module.config.max_seq_len if self.is_distributed else self.model.config.max_seq_len
+
+        # Data samplers
+        if self.is_distributed:
+            self.train_sampler = DistributedSampler(
+                train_dataset,
+                num_replicas=self.config.world_size,
+                rank=dist.get_rank(),
+                shuffle=True,
+            )
+            self.val_sampler = DistributedSampler(
+                val_dataset,
+                num_replicas=self.config.world_size,
+                rank=dist.get_rank(),
+                shuffle=False, # Validation doesn't need shuffle, but distributing it speeds it up
+            )
+            train_shuffle = False
+            val_shuffle = False
+        else:
+            self.train_sampler = None
+            self.val_sampler = None
+            train_shuffle = True
+            val_shuffle = False
+
         self.train_loader = DataLoader(
             train_dataset,
             batch_size=self.config.batch_size,
-            shuffle=True,
+            shuffle=train_shuffle,
+            sampler=self.train_sampler,
             collate_fn=lambda b: collate_fn(b, pad_id, max_seq_len),
+            pin_memory=True if self.config.device == "cuda" else False,
+            num_workers=4 if self.config.device == "cuda" else 0,
         )
         self.val_loader = DataLoader(
             val_dataset,
             batch_size=self.config.batch_size,
-            shuffle=False,
+            shuffle=val_shuffle,
+            sampler=self.val_sampler,
             collate_fn=lambda b: collate_fn(b, pad_id, max_seq_len),
+            pin_memory=True if self.config.device == "cuda" else False,
+            num_workers=4 if self.config.device == "cuda" else 0,
         )
 
         # Loss functions with optional class weights
@@ -1547,11 +1696,14 @@ class Trainer:
             self.grammaticality_criterion = nn.CrossEntropyLoss()
 
         # Optimizer with differential learning rates
-        encoder_params = list(model.embedding.parameters()) + list(model.encoder.parameters())
+        # Handle wrappped model
+        model_module = self.model.module if self.is_distributed else self.model
+        
+        encoder_params = list(model_module.embedding.parameters()) + list(model_module.encoder.parameters())
         classifier_params = (
-            list(model.formality_classifier.parameters()) +
-            list(model.gender_classifier.parameters()) +
-            list(model.grammaticality_classifier.parameters())
+            list(model_module.formality_classifier.parameters()) +
+            list(model_module.gender_classifier.parameters()) +
+            list(model_module.grammaticality_classifier.parameters())
         )
 
         self.optimizer = Adam([
@@ -1618,35 +1770,47 @@ class Trainer:
         for batch_idx, batch in enumerate(self.train_loader):
             field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels = self._batch_to_device(batch)
 
-            self.optimizer.zero_grad()
-            formality_logits, gender_logits, grammaticality_logits = self.model(field_inputs, attention_mask)
+            self.optimizer.zero_grad(set_to_none=True)
+            
+            # Mixed precision context
+            device_type = 'cuda' if 'cuda' in str(self.device) else ('mps' if 'mps' in str(self.device) else 'cpu')
+            
+            with autocast(device_type=device_type, enabled=self.config.use_amp):
+                formality_logits, gender_logits, grammaticality_logits = self.model(field_inputs, attention_mask)
 
-            formality_loss = self.formality_criterion(formality_logits, formality_labels)
-            gender_loss = self.gender_criterion(gender_logits, gender_labels)
-            grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_labels)
+                formality_loss = self.formality_criterion(formality_logits, formality_labels)
+                gender_loss = self.gender_criterion(gender_logits, gender_labels)
+                grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_labels)
 
-            # Weighted multi-task loss
-            loss = (
-                self.config.formality_loss_weight * formality_loss +
-                self.config.gender_loss_weight * gender_loss +
-                self.config.grammaticality_loss_weight * grammaticality_loss
-            )
+                # Weighted multi-task loss
+                loss = (
+                    self.config.formality_loss_weight * formality_loss +
+                    self.config.gender_loss_weight * gender_loss +
+                    self.config.grammaticality_loss_weight * grammaticality_loss
+                )
+                
+                loss = loss / self.config.grad_accum_steps
 
-            loss.backward()
+            # Backward pass with scaler
+            self.scaler.scale(loss).backward()
 
-            if self.config.gradient_clip > 0:
-                nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
+            if (batch_idx + 1) % self.config.grad_accum_steps == 0:
+                if self.config.gradient_clip > 0:
+                    self.scaler.unscale_(self.optimizer)
+                    nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
+                
+                self.scaler.step(self.optimizer)
+                self.scaler.update()
+                self.optimizer.zero_grad(set_to_none=True)
 
-            self.optimizer.step()
-
-            total_loss += loss.item()
+            total_loss += loss.item() * self.config.grad_accum_steps
             total_formality_loss += formality_loss.item()
             total_gender_loss += gender_loss.item()
             total_grammaticality_loss += grammaticality_loss.item()
             n_batches += 1
 
-            # Progress display
-            if verbose:
+            # Progress display (only on main process)
+            if verbose and is_main_process():
                 avg_loss_so_far = total_loss / n_batches
                 progress = (batch_idx + 1) / total_batches
                 bar_len = 30
@@ -1655,7 +1819,7 @@ class Trainer:
                 sys.stdout.write(f'\r  [{bar}] {batch_idx+1}/{total_batches} loss={avg_loss_so_far:.4f}')
                 sys.stdout.flush()
 
-        if verbose:
+        if verbose and is_main_process():
             sys.stdout.write('\n')
 
         return total_loss / n_batches, total_formality_loss / n_batches, total_gender_loss / n_batches, total_grammaticality_loss / n_batches
@@ -2225,26 +2389,45 @@ if __name__ == "__main__":
                         help="Print confusion matrices for existing model and exit")
     parser.add_argument("--percent", type=float, default=None,
                         help="Percentage of data to use for training (1-100)")
+    parser.add_argument("--grad-accum-steps", type=int, default=1,
+                        help="Gradient accumulation steps for larger effective batch size")
+    parser.add_argument("--num-workers", type=int, default=None,
+                        help="Number of data loader workers")
+    parser.add_argument("--local_rank", type=int, default=0,
+                        help="Local rank for distributed training (usually passed by torchrun)")
+
 
     args = parser.parse_args()
     timings['args_parsing'] = time.time() - script_start_time
 
 
+    # Setup distributed training
+    rank, world_size, local_rank = setup_distributed()
+    # If args.local_rank is set by argument (torchrun often sets this), prefer it, 
+    # but our helper checks env vars which torchrun also sets.
+    
     # Log device information
-    if torch.cuda.is_available():
-        count = torch.cuda.device_count()
-        name = torch.cuda.get_device_name(0)
-        print(f"\nDevice:         CUDA ({count} devices)")
-        print(f"  Name:         {name}")
-    elif torch.backends.mps.is_available():
-         print(f"\nDevice:         MPS (Apple Silicon)")
-    else:
-         print(f"\nDevice:         CPU")
-         print(f"  Info:         Training will be slow. CUDA or MPS not found.")
+    if is_main_process():
+        if torch.cuda.is_available():
+            count = torch.cuda.device_count()
+            name = torch.cuda.get_device_name(0)
+            print(f"\nDevice:         CUDA ({count} devices available)")
+            print(f"  Name:         {name}")
+            if world_size > 1:
+                print(f"  Distributed:  d_model=DDP, {world_size} gpus, global_batch={args.batch_size * world_size * args.grad_accum_steps}")
+                print(f"  Mixed Prec:   {'On' if args.fp16 else 'Off'}")
+        elif torch.backends.mps.is_available():
+             print(f"\nDevice:         MPS (Apple Silicon)")
+        else:
+             print(f"\nDevice:         CPU")
+             print(f"  Info:         Training will be slow. CUDA or MPS not found.")
+
 
     # Handle resume from checkpoint or retrain or confusion logic
     checkpoint = None
     if args.resume or args.retrain or args.confusion:
+        import os
+        checkpoint_path = os.path.join(args.output, 'checkpoint.pt')
         import os
         checkpoint_path = os.path.join(args.output, 'checkpoint.pt')
         if os.path.exists(checkpoint_path):
@@ -2257,28 +2440,29 @@ if __name__ == "__main__":
             if saved_exclude:
                 excluded = [f.strip() for f in saved_exclude.split(',') if f.strip()]
                 set_excluded_features(excluded)
-                print(f"Restored feature exclusion: {excluded}")
-                print(f"Active features: {FEATURE_FIELDS}")
+                if is_main_process():
+                    print(f"Restored feature exclusion: {excluded}")
+                    print(f"Active features: {FEATURE_FIELDS}")
 
             if args.resume:
-                print(f"Resuming from checkpoint in {args.output}...")
+                if is_main_process():
+                    print(f"Resuming from checkpoint in {args.output}...")
                 model, tokenizer, checkpoint = load_checkpoint(args.output)
             elif args.confusion:
                 print(f"Loading best model for evaluation from {args.output}...")
                 model, tokenizer = load_model(args.output)
                 checkpoint = checkpoint_data
             else:
-                print(f"Retraining from scratch using parameters from {args.output}...")
-                # We need tokenizer to load data, but we'll create a fresh one or load it?
-                # Actually, if we retrain, we probably want to start with a fresh tokenizer
-                # UNLESS the user wants to keep the vocab.
-                # Standard retrain usually implies fresh start. 
-                # Let's see if we can just leverage the arg restoration and let the rest flow.
+                if is_main_process():
+                    print(f"Retraining from scratch using parameters from {args.output}...")
                 pass
 
             # Override args with saved args (but keep epochs from command line to allow extending)
-            print(f"  Using saved parameters:")
-            print(f"    data: {saved_args['data']}")
+            if is_main_process():
+                print(f"  Using saved parameters:")
+                print(f"    data: {saved_args['data']}")
+            # ... skipping full print for brevity in DDP
+
             print(f"    embed_dim: {saved_args['embed_dim']}")
             print(f"    hidden_dim: {saved_args['hidden_dim']}")
             print(f"    num_layers: {saved_args['num_layers']}")
@@ -2352,8 +2536,9 @@ if __name__ == "__main__":
     if args.exclude_features and not checkpoint:
         excluded = [f.strip() for f in args.exclude_features.split(',') if f.strip()]
         set_excluded_features(excluded)
-        print(f"Feature ablation: excluding {excluded}")
-        print(f"Active features: {FEATURE_FIELDS}")
+        if is_main_process():
+            print(f"Feature ablation: excluding {excluded}")
+            print(f"Active features: {FEATURE_FIELDS}")
 
     # Build list of data files and their grammaticality labels
     # grammatic (1) = normal sentences, agrammatic (0) = ungrammatical sentences
@@ -2411,38 +2596,47 @@ if __name__ == "__main__":
             pass  # Ignore cache read errors
 
     if not files_changed:
-        print("Data validation: Files unchanged, skipping overlap check.")
+        if is_main_process():
+            print("Data validation: Files unchanged, skipping overlap check.")
     else:
-        print("Data validation: Checking for sentence overlap...")
-        grammatic_sentences = set()
-        agrammatic_sentences = set()
+        # Synchronization check: Only rank 0 does the check, others wait
+        # This prevents race conditions on the cache file and printing
+        if is_main_process():
+            print("Data validation: Checking for sentence overlap...")
+            grammatic_sentences = set()
+            agrammatic_sentences = set()
 
-        # Read grammatic
-        read_sentences_to_set(args.data, grammatic_sentences)
-        
-        # Read agrammatic
-        if args.extra_data:
-            read_sentences_to_set(args.extra_data, agrammatic_sentences)
-        if args.agrammatic_data:
-            read_sentences_to_set(args.agrammatic_data, agrammatic_sentences)
+            # Read grammatic
+            read_sentences_to_set(args.data, grammatic_sentences)
             
-        # Check intersection
-        overlap = grammatic_sentences.intersection(agrammatic_sentences)
-        if overlap:
-            print(f"\nERROR: Found {len(overlap)} sentences appearing in both grammatic and agrammatic datasets.")
-            print("This contamination invalidates the training assumption.")
-            print("Examples:")
-            for i, sent in enumerate(list(overlap)[:5]):
-                print(f"  {i+1}. {sent}")
-            sys.exit(1)
+            # Read agrammatic
+            if args.extra_data:
+                read_sentences_to_set(args.extra_data, agrammatic_sentences)
+            if args.agrammatic_data:
+                read_sentences_to_set(args.agrammatic_data, agrammatic_sentences)
+                
+            # Check intersection
+            overlap = grammatic_sentences.intersection(agrammatic_sentences)
+            if overlap:
+                print(f"\nERROR: Found {len(overlap)} sentences appearing in both grammatic and agrammatic datasets.")
+                print("This contamination invalidates the training assumption.")
+                print("Examples:")
+                for i, sent in enumerate(list(overlap)[:5]):
+                    print(f"  {i+1}. {sent}")
+                sys.exit(1) # This will kill rank 0. Other ranks will likely timeout or die.
+            
+            # Save state if successful
+            try:
+                with open(validation_cache_path, 'w') as f:
+                    json.dump(current_state, f)
+                print("Data validation: Passed and cached.")
+            except Exception as e:
+                print(f"Warning: Failed to cache validation state: {e}")
         
-        # Save state if successful
-        try:
-            with open(validation_cache_path, 'w') as f:
-                json.dump(current_state, f)
-            print("Data validation: Passed and cached.")
-        except Exception as e:
-            print(f"Warning: Failed to cache validation state: {e}")
+        # Wait for rank 0 to complete validation
+        if torch.distributed.is_available() and torch.distributed.is_initialized():
+             torch.distributed.barrier()
+
         
     timings['overlap_check'] = time.time() - t_check_start
 
@@ -2533,14 +2727,21 @@ if __name__ == "__main__":
         model = StyleClassifierWithMLM(model_config)
 
         # MLM pretraining on unlabeled data
-        print("\nStarting MLM pretraining on unlabeled data...")
+        if is_main_process():
+            print("\nStarting MLM pretraining on unlabeled data...")
+        
         pretrain_config = TrainerConfig(
             epochs=args.pretrain_epochs,
             batch_size=args.batch_size,
             learning_rate=args.learning_rate,
+            device="cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu",
+            use_amp=args.fp16 if args.fp16 is not None else False,
+            local_rank=local_rank,
+            world_size=world_size,
+            grad_accum_steps=args.grad_accum_steps
         )
         mlm_trainer = MLMTrainer(model, unlabeled_dataset, pretrain_config)
-        mlm_trainer.train(epochs=args.pretrain_epochs)
+        mlm_trainer.train(epochs=args.pretrain_epochs, verbose=is_main_process())
 
         # Reset classifier heads for fine-tuning
         print("\nReinitializing classifier heads for fine-tuning...")
@@ -2679,6 +2880,11 @@ if __name__ == "__main__":
         formality_loss_weight=args.formality_weight,
         gender_loss_weight=args.gender_weight,
         grammaticality_loss_weight=args.grammaticality_weight,
+        device="cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu",
+        use_amp=args.fp16 if args.fp16 is not None else False,
+        local_rank=local_rank,
+        world_size=world_size,
+        grad_accum_steps=args.grad_accum_steps
     )
     # Use smaller LR for encoder if pretrained
     encoder_lr_factor = args.encoder_lr_factor if args.pretrain_mlm else 1.0
@@ -2740,13 +2946,17 @@ if __name__ == "__main__":
     f32_accuracy = (formality_correct/total, gender_correct/total, grammaticality_correct/total)
 
     # Save model
-    print(f"\nSaving model to {args.output}...")
-    if args.fp8:
-        print("  (converting to float8 for smallest size)")
-    elif args.fp16:
-        print("  (converting to float16 for smaller size)")
-    save_model(model, tokenizer, args.output, model_config, fp16=args.fp16, fp8=args.fp8)
-    print("Done!")
+    if is_main_process():
+        print(f"\nSaving model to {args.output}...")
+        if args.fp8:
+            print("  (converting to float8 for smallest size)")
+        elif args.fp16:
+            print("  (converting to float16 for smaller size)")
+        
+        # Unwrap model if distributed
+        model_to_save = model.module if hasattr(model, 'module') else model
+        save_model(model_to_save, tokenizer, args.output, model_config, fp16=args.fp16, fp8=args.fp8)
+        print("Done!")
 
     # Verify reduced precision model accuracy if applicable
     if args.fp16 or args.fp8:
