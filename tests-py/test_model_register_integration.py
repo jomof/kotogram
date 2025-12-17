@@ -25,15 +25,14 @@ class TestModelRegisterIntegration(unittest.TestCase):
         mock_load.return_value = (self.mock_model, self.mock_tokenizer)
         
         # Setup model mock prediction for register
-        # register: 0=sonkeigo (from model.py or just testing logic)
-        # We need to match REGISTER_ID_TO_LABEL in model.py
-        # Assuming mappings: 0:SONKEIGO, 1:KENJOGO, 2:KANSAIBEN, 3:HAKATABEN, 4:KYOSHIGO, 5:NETSLANG, 6:NEUTRAL
+        # REGISTER_ID_TO_LABEL mapping (from model.py):
+        # 0:NEUTRAL, 1:SONKEIGO, 2:KENJOGO, 3:KANSAIBEN, 4:HAKATABEN, 5:KYOSHIGO, 6:NETSLANG, 7:OJOUSAMA, 8:GUNTAI
         
-        # Mock probabilities: Batch size 1, 7 classes.
+        # Mock probabilities: Batch size 1, 9 classes.
         # Use values > 0.5 for active, < 0.5 for inactive
-        register_probs = torch.tensor([[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]])
-        # Let's make index 0 (SONKEIGO) the winner
-        register_probs[0, 0] = 0.9
+        register_probs = torch.tensor([[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]])
+        # Let's make index 1 (SONKEIGO) the winner
+        register_probs[0, 1] = 0.9
         
         # model.predict returns 4 tensors (probabilities)
         self.mock_model.predict.return_value = (
@@ -47,9 +46,9 @@ class TestModelRegisterIntegration(unittest.TestCase):
         result = register("dummy kotogram")
         self.assertEqual(result, {RegisterLevel.SONKEIGO})
         
-        # Test 2: Expect {KANSAIBEN} (index 2)
-        register_probs[0, 0] = 0.1
-        register_probs[0, 2] = 0.9
+        # Test 2: Expect {KANSAIBEN} (index 3)
+        register_probs[0, 1] = 0.1
+        register_probs[0, 3] = 0.9
         self.mock_model.predict.return_value = (
             torch.zeros(1, 6), 
             torch.zeros(1, 4), 
@@ -60,11 +59,11 @@ class TestModelRegisterIntegration(unittest.TestCase):
         self.assertEqual(result, {RegisterLevel.KANSAIBEN})
         
         # Test 3: Expect {NEUTRAL} (all low)
-        # Using index 6 (NEUTRAL) explicit logic in analysis.py: 
+        # Using index 0 (NEUTRAL) explicit logic in analysis.py: 
         # "if not detected_registers: detected_registers.add(RegisterLevel.NEUTRAL)"
         # So even if all are 0.1, it should return {NEUTRAL}
-        register_probs[0, 2] = 0.1
-        register_probs[0, 6] = 0.1 # even if neutral logit is low, it falls back
+        register_probs[0, 3] = 0.1
+        register_probs[0, 0] = 0.1 # even if neutral logit is low, it falls back
         self.mock_model.predict.return_value = (
             torch.zeros(1, 6), 
             torch.zeros(1, 4), 
@@ -75,8 +74,8 @@ class TestModelRegisterIntegration(unittest.TestCase):
         self.assertEqual(result, {RegisterLevel.NEUTRAL})
 
         # Test 4: Expect {SONKEIGO, KANSAIBEN} (multi-label)
-        register_probs[0, 0] = 0.9 # SONKEIGO
-        register_probs[0, 2] = 0.9 # KANSAIBEN
+        register_probs[0, 1] = 0.9 # SONKEIGO
+        register_probs[0, 3] = 0.9 # KANSAIBEN
         self.mock_model.predict.return_value = (
             torch.zeros(1, 6), 
             torch.zeros(1, 4), 
@@ -100,8 +99,8 @@ class TestModelRegisterIntegration(unittest.TestCase):
         gram_logits = torch.zeros(1, 2)
         gram_logits[0, 1] = 5.0 # Grammatic
         
-        register_probs = torch.zeros(1, 7)
-        register_probs[0, 2] = 0.9 # KANSAIBEN
+        register_probs = torch.zeros(1, 9)
+        register_probs[0, 3] = 0.9 # KANSAIBEN
         
         self.mock_model.predict.return_value = (
             formality_logits,

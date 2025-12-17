@@ -4,7 +4,7 @@ These tests validate that tuples returned by the processing functions have
 the correct cardinality and field types, ensuring the data flow is correct.
 """
 
-import pytest
+import unittest
 import sys
 import os
 
@@ -12,7 +12,7 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
-class TestTupleCardinality:
+class TestTupleCardinality(unittest.TestCase):
     """Tests for tuple structure validation."""
 
     def test_process_sentence_batch_returns_8_tuple(self):
@@ -115,7 +115,7 @@ class TestTupleCardinality:
             assert 0 <= rid <= 10, f"register ID {rid} out of expected range [0, 10]"
 
 
-class TestEncodingInputs:
+class TestEncodingInputs(unittest.TestCase):
     """Tests for the encoding_inputs tuple passed to _encode_samples_batch."""
 
     def test_encoding_inputs_structure(self):
@@ -151,4 +151,4 @@ class TestEncodingInputs:
 
 
 if __name__ == "__main__":
-    pytest.main([__file__, "-v"])
+    unittest.main()

@@ -685,12 +685,12 @@ def rule_based_register(features: List[Dict[str, str]]) -> Set[RegisterLevel]:
              next_lemma = features[i+1].get('lemma', '')
              if next_lemma == 'できる':
                   detected_registers.add(RegisterLevel.KYOSHIGO)
-        # "Dakara ne" / "Kara ne" (explanatory/instructional tone)
+        # "Desu kara ne" (explanatory/instructional tone with formal copula)
+        # Only trigger for "ですからね" (formal), not "だからね" (casual)
         if surface == 'ね' and i > 1:
              prev1 = features[i-1] # kara
-             prev2 = features[i-2] # da
-             da_lemma = prev2.get('lemma') or prev2.get('surface')
-             if prev1.get('surface') == 'から' and (da_lemma == 'だ' or prev2.get('surface') == 'だ'):
+             prev2 = features[i-2] # desu (formal copula only)
+             if prev1.get('surface') == 'から' and prev2.get('surface') == 'です':
                   detected_registers.add(RegisterLevel.KYOSHIGO)
         # Vocabulary keywords for classroom context (Heuristic)
         if '宿題' in surface or '宿題' in lemma:
@@ -707,8 +707,29 @@ def rule_based_register(features: List[Dict[str, str]]) -> Set[RegisterLevel]:
                       has_context = True
              if has_context:
                   detected_registers.add(RegisterLevel.KYOSHIGO) 
-        if '間違い' in lemma or '間違っ' in surface: # Correction
-             detected_registers.add(RegisterLevel.KYOSHIGO)
+        # "Machigai" (mistake/correction) - but exclude "machigainaku" and casual usage
+        if '間違い' in lemma or '間違っ' in surface:
+             # Exclude "間違いなく" (undoubtedly) which is not a correction context
+             if i < len(features) - 1 and features[i+1].get('surface') == 'なく':
+                  pass  # Skip "間違いなく" - this is an adverb, not correction
+             # Exclude "間違った + noun" (e.g., "間違ったバス" = wrong bus) - casual attribution
+             elif '間違っ' in surface:
+                  # Check if followed by noun (directly or after 'た' auxiliary)
+                  next_idx = i + 1
+                  if next_idx < len(features) and features[next_idx].get('surface') == 'た':
+                       next_idx = i + 2  # Skip past the 'た' auxiliary
+                  if next_idx < len(features):
+                       next_pos = features[next_idx].get('pos', '')
+                       # Check if next is a noun (名詞 in Japanese, or 'noun'/'n' for different parsers)
+                       if next_pos in ['名詞', 'noun'] or next_pos.startswith('n'):
+                            pass  # Skip casual attributive usage like "wrong bus"
+                       else:
+                            detected_registers.add(RegisterLevel.KYOSHIGO)
+                  else:
+                       detected_registers.add(RegisterLevel.KYOSHIGO)
+             else:
+                  # Trigger for actual correction contexts
+                  detected_registers.add(RegisterLevel.KYOSHIGO)
         if 'テスト' in surface: 
              detected_registers.add(RegisterLevel.KYOSHIGO)
         if '線を引い' in surface or ('線' in lemma and '引い' in kotogram_str(features)):
