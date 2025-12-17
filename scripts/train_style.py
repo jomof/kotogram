@@ -362,6 +362,13 @@ def is_main_process() -> bool:
 
 def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[Tuple[str, str, int, int, List[int], int, int]]:
     """Compute labels for a batch of sentences."""
+    # Import in worker process to avoid pickling issues
+    from kotogram.analysis import FormalityLevel, GenderLevel, RegisterLevel
+    try:
+        from rule_based_analysis import analyze_formality, analyze_gender, analyze_register
+    except ImportError:
+        from scripts.rule_based_analysis import analyze_formality, analyze_gender, analyze_register
+
     results = []
     
     formality_to_id = {
@@ -697,11 +704,12 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     k, f, g, r_lbls = entry
                     kotogram_hits += 1
                     
-                    if f is not None and g is not None:
+                    # Treat None register labels as a partial hit (needs re-labeling)
+                    if f is not None and g is not None and r_lbls is not None:
                         final_data[s] = (k, f, g, r_lbls)
                         label_hits += 1
                     else:
-                        # Partial hit (kotogram only)
+                        # Partial hit (kotogram only, or missing register labels)
                         unlabeled_rows.append((s, k, row[2]))
                 else:
                     uncached_rows.append(row)
