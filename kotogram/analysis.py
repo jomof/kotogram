@@ -97,6 +97,9 @@ def formality(kotogram: str) -> FormalityLevel:
         >>> formality(kotogram2)  # doctest: +SKIP
         <FormalityLevel.NEUTRAL: 'neutral'>
     """
+    from kotogram.validation import ensure_string
+    ensure_string(kotogram, "kotogram")
+
     # Use the trained neural model for prediction
     import torch
     from kotogram.model import FEATURE_FIELDS
@@ -155,6 +158,9 @@ def style(kotogram: str) -> Tuple[FormalityLevel, GenderLevel, Set[RegisterLevel
         >>> style(kotogram1)  # doctest: +SKIP
         (<FormalityLevel.FORMAL: 'formal'>, <GenderLevel.NEUTRAL: 'neutral'>, <RegisterLevel.NEUTRAL: 'neutral'>, True)
     """
+    from kotogram.validation import ensure_string
+    ensure_string(kotogram, "kotogram")
+
     # Use the trained neural model for prediction (single inference for all)
     import torch
     from kotogram.model import FEATURE_FIELDS, REGISTER_ID_TO_LABEL
@@ -225,9 +231,10 @@ def register(kotogram: str) -> Set[RegisterLevel]:
     Args:
         kotogram: Kotogram compact sentence representation.
 
-    Returns:
-        Set[RegisterLevel] indicating the detected register(s).
     """
+    from kotogram.validation import ensure_string
+    ensure_string(kotogram, "kotogram")
+
     # Use the trained neural model for prediction
     import torch
     from kotogram.model import FEATURE_FIELDS, REGISTER_ID_TO_LABEL
@@ -292,6 +299,9 @@ def gender(kotogram: str) -> GenderLevel:
         >>> gender(kotogram2)  # doctest: +SKIP
         <GenderLevel.FEMININE: 'feminine'>
     """
+    from kotogram.validation import ensure_string
+    ensure_string(kotogram, "kotogram")
+
     # Use the trained neural model for prediction
     import torch
     from kotogram.model import FEATURE_FIELDS
@@ -354,6 +364,9 @@ def grammaticality(kotogram: str) -> bool:
         >>> grammaticality(kotogram2)  # doctest: +SKIP
         False
     """
+    from kotogram.validation import ensure_string
+    ensure_string(kotogram, "kotogram")
+
     # Use the trained neural model for prediction
     import torch
     from kotogram.model import FEATURE_FIELDS

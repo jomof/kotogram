@@ -87,6 +87,9 @@ def kotogram_to_japanese(
         surface forms and discards all linguistic annotations (POS tags, readings,
         etc.). To preserve full information, keep the original kotogram string.
     """
+    from kotogram.validation import ensure_string
+    ensure_string(kotogram, "kotogram")
+
     from .japanese_parser import POS_TO_CHARS
 
     if not furigana:
@@ -222,6 +225,9 @@ def split_kotogram(kotogram: str) -> List[str]:
     See Also:
         kotogram_to_japanese: Extract surface forms from tokens
     """
+    from kotogram.validation import ensure_string
+    ensure_string(kotogram, "kotogram")
+
     # Find all complete token annotations enclosed in ⌈⌉
     # Pattern matches: ⌈ followed by any chars (non-greedy) until ⌉
     return re.findall(r'⌈[^⌉]*⌉', kotogram)
@@ -291,6 +297,9 @@ def extract_token_features(token: str) -> Dict[str, str]:
         All returned dictionary values are strings. Fields that are not present
         in the token will have empty string values ('').
     """
+    from kotogram.validation import ensure_string
+    ensure_string(token, "token")
+
     from .japanese_parser import (
         POS1_MAP, POS2_MAP,
         CONJUGATED_TYPE_MAP, CONJUGATED_FORM_MAP

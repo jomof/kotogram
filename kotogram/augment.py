@@ -583,6 +583,7 @@ class Augmenter:
         return sorted(list(set(valid_sentences)))
 
 
+
 def augment(sentences: List[str]) -> List[str]:
     """Augment a list of Japanese sentences and filter for grammaticality.
     
@@ -594,6 +595,9 @@ def augment(sentences: List[str]) -> List[str]:
     Returns:
         Sorted unique list of augmented, grammatically valid sentences.
     """
+    from kotogram.validation import ensure_list_of_strings
+    ensure_list_of_strings(sentences, "sentences")
+
     augmenter = Augmenter()
     
     # 1. Augment
@@ -603,3 +607,4 @@ def augment(sentences: List[str]) -> List[str]:
         
     # 2. Filter
     return augmenter.filter_grammatical(candidates)
+
