@@ -76,6 +76,20 @@ GENDER_LABEL_TO_ID = {
 }
 GENDER_ID_TO_LABEL = {v: k for k, v in GENDER_LABEL_TO_ID.items()}
 
+NUM_REGISTER_CLASSES = 7  # sonkeigo, kenjogo, kansaiben, hakataben, kyoshigo, netslang, neutral
+from kotogram.analysis import RegisterLevel
+
+REGISTER_LABEL_TO_ID = {
+    RegisterLevel.SONKEIGO: 0,
+    RegisterLevel.KENJOGO: 1,
+    RegisterLevel.KANSAIBEN: 2,
+    RegisterLevel.HAKATABEN: 3,
+    RegisterLevel.KYOSHIGO: 4,
+    RegisterLevel.NETSLANG: 5,
+    RegisterLevel.NEUTRAL: 6,
+}
+REGISTER_ID_TO_LABEL = {v: k for k, v in REGISTER_LABEL_TO_ID.items()}
+
 
 class Tokenizer:
     """Tokenizer that extracts morphological features from Kotogram tokens.
@@ -236,7 +250,9 @@ class ModelConfig:
     vocab_sizes: Dict[str, int]  # Field name -> vocabulary size
     num_formality_classes: int = NUM_FORMALITY_CLASSES
     num_gender_classes: int = NUM_GENDER_CLASSES
+    num_gender_classes: int = NUM_GENDER_CLASSES
     num_grammaticality_classes: int = NUM_GRAMMATICALITY_CLASSES
+    num_register_classes: int = NUM_REGISTER_CLASSES
     field_embed_dims: Dict[str, int] = field(default_factory=lambda: {
         'surface': 64,
         'pos': 32,
@@ -261,6 +277,7 @@ class ModelConfig:
             'num_formality_classes': self.num_formality_classes,
             'num_gender_classes': self.num_gender_classes,
             'num_grammaticality_classes': self.num_grammaticality_classes,
+            'num_register_classes': self.num_register_classes,
             'field_embed_dims': self.field_embed_dims,
             'd_model': self.d_model,
             'hidden_dim': self.hidden_dim,
@@ -407,6 +424,13 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             nn.Linear(config.hidden_dim, config.num_grammaticality_classes),
         )
 
+        self.register_classifier = nn.Sequential(
+            nn.Linear(config.d_model, config.hidden_dim),
+            nn.GELU(),
+            nn.Dropout(config.dropout),
+            nn.Linear(config.hidden_dim, config.num_register_classes),
+        )
+
     def get_encoder_output(
         self,
         field_inputs: Dict[str, torch.Tensor],
@@ -459,18 +483,20 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             self.formality_classifier(pooled),
             self.gender_classifier(pooled),
             self.grammaticality_classifier(pooled),
+            self.register_classifier(pooled),
         )
 
     def predict(
         self,
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
-    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
-        formality_logits, gender_logits, grammaticality_logits = self(field_inputs, attention_mask)
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+        formality_logits, gender_logits, grammaticality_logits, register_logits = self(field_inputs, attention_mask)
         return (
             F.softmax(formality_logits, dim=-1),
             F.softmax(gender_logits, dim=-1),
             F.softmax(grammaticality_logits, dim=-1),
+            torch.sigmoid(register_logits),
         )
 
     def resize_embeddings(self, new_vocab_sizes: Dict[str, int]) -> Dict[str, int]:

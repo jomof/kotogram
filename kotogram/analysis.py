@@ -5,7 +5,7 @@ by examining linguistic features such as verb forms, particles, and auxiliary ve
 """
 
 from enum import Enum
-from typing import List, Dict, Optional, Tuple, TYPE_CHECKING
+from typing import List, Dict, Optional, Tuple, TYPE_CHECKING, Set
 
 
 
@@ -54,6 +54,19 @@ class GenderLevel(Enum):
     FEMININE = "feminine"                 # Female-associated speech (わ, の, あたし, etc.)
     NEUTRAL = "neutral"                   # Gender-neutral speech
     UNPRAGMATIC_GENDER = "unpragmatic_gender"  # Mixed/awkward gender markers
+
+
+class RegisterLevel(Enum):
+    """Specific register/dialect classifications."""
+
+    SONKEIGO = "sonkeigo"                 # Honorific (respectful)
+    KENJOGO = "kenjogo"                   # Humble
+    KANSAIBEN = "kansaiben"               # Kansai dialect
+    HAKATABEN = "hakataben"               # Hakata dialect
+    KYOSHIGO = "kyoshigo"                 # Teacher style
+    NETSLANG = "netslang"                 # Internet slang
+    NEUTRAL = "neutral"                   # Standard/Neutral
+
 
 
 def formality(kotogram: str) -> FormalityLevel:
@@ -121,10 +134,10 @@ def formality(kotogram: str) -> FormalityLevel:
 
 
 
-def style(kotogram: str) -> Tuple[FormalityLevel, GenderLevel, bool]:
-    """Analyze a Japanese sentence and return formality, gender, and grammaticality.
+def style(kotogram: str) -> Tuple[FormalityLevel, GenderLevel, Set[RegisterLevel], bool]:
+    """Analyze a Japanese sentence and return formality, gender, register, and grammaticality.
 
-    This is more efficient than calling formality(), gender(), and grammaticality()
+    This is more efficient than calling formality(), gender(), register(), and grammaticality()
     separately, as it only runs inference once.
 
     Args:
@@ -132,17 +145,17 @@ def style(kotogram: str) -> Tuple[FormalityLevel, GenderLevel, bool]:
                  linguistic information with POS tags and conjugation forms.
 
     Returns:
-        Tuple of (FormalityLevel, GenderLevel, is_grammatic) for the sentence.
+        Tuple of (FormalityLevel, GenderLevel, Set[RegisterLevel], is_grammatic) for the sentence.
 
     Examples:
         >>> # Formal, neutral sentence: 食べます (I eat - polite)
         >>> kotogram1 = "⌈ˢ食べᵖv:e-ichidan-ba:conjunctive⌉⌈ˢますᵖauxv-masu:terminal⌉"
         >>> style(kotogram1)  # doctest: +SKIP
-        (<FormalityLevel.FORMAL: 'formal'>, <GenderLevel.NEUTRAL: 'neutral'>, True)
+        (<FormalityLevel.FORMAL: 'formal'>, <GenderLevel.NEUTRAL: 'neutral'>, <RegisterLevel.NEUTRAL: 'neutral'>, True)
     """
     # Use the trained neural model for prediction (single inference for all)
     import torch
-    from kotogram.model import FEATURE_FIELDS
+    from kotogram.model import FEATURE_FIELDS, REGISTER_ID_TO_LABEL
 
     model, tokenizer = _load_style_model()
 
@@ -159,10 +172,11 @@ def style(kotogram: str) -> Tuple[FormalityLevel, GenderLevel, bool]:
     # Predict
     model.eval()
     with torch.no_grad():
-        formality_probs, gender_probs, grammaticality_probs = model.predict(field_inputs, attention_mask)
+        formality_probs, gender_probs, grammaticality_probs, register_probs = model.predict(field_inputs, attention_mask)
         formality_idx = int(formality_probs[0].argmax().item())
         gender_idx = int(gender_probs[0].argmax().item())
         grammaticality_idx = int(grammaticality_probs[0].argmax().item())
+        register_idx = int(register_probs[0].argmax().item())
 
     # Map model output indices to enum values
     formality_map = {
@@ -180,11 +194,74 @@ def style(kotogram: str) -> Tuple[FormalityLevel, GenderLevel, bool]:
         3: GenderLevel.UNPRAGMATIC_GENDER,
     }
     is_grammatic = grammaticality_idx == 1  # 1 = grammatic, 0 = agrammatic
+    
+    # Process register probabilities (multi-label)
+    detected_registers = set()
+    register_probs_list = register_probs[0].tolist()
+    threshold = 0.5
+    
+    for i, prob in enumerate(register_probs_list):
+        if prob > threshold:
+            label = REGISTER_ID_TO_LABEL.get(i)
+            if label:
+                detected_registers.add(label)
+                
+    if not detected_registers:
+        detected_registers.add(RegisterLevel.NEUTRAL)
+
     return (
         formality_map.get(formality_idx, FormalityLevel.NEUTRAL),
         gender_map.get(gender_idx, GenderLevel.NEUTRAL),
+        detected_registers,
         is_grammatic,
     )
+
+
+def register(kotogram: str) -> Set[RegisterLevel]:
+    """Analyze a Japanese sentence and return its specific register/dialect.
+
+    Args:
+        kotogram: Kotogram compact sentence representation.
+
+    Returns:
+        Set[RegisterLevel] indicating the detected register(s).
+    """
+    # Use the trained neural model for prediction
+    import torch
+    from kotogram.model import FEATURE_FIELDS, REGISTER_ID_TO_LABEL
+
+    model, tokenizer = _load_style_model()
+
+    # Encode the kotogram
+    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
+
+    # Create batch tensors
+    field_inputs = {
+        f'input_ids_{field}': torch.tensor([feature_ids[field]], dtype=torch.long)
+        for field in FEATURE_FIELDS
+    }
+    attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
+
+    # Predict
+    model.eval()
+    with torch.no_grad():
+        _, _, _, register_probs = model.predict(field_inputs, attention_mask)
+    
+    # Process register probabilities (multi-label)
+    detected_registers = set()
+    register_probs_list = register_probs[0].tolist()
+    threshold = 0.5
+    
+    for i, prob in enumerate(register_probs_list):
+        if prob > threshold:
+            label = REGISTER_ID_TO_LABEL.get(i)
+            if label:
+                detected_registers.add(label)
+
+    if not detected_registers:
+        detected_registers.add(RegisterLevel.NEUTRAL)
+
+    return detected_registers
 
 
 def gender(kotogram: str) -> GenderLevel:
@@ -232,7 +309,7 @@ def gender(kotogram: str) -> GenderLevel:
     # Predict
     model.eval()
     with torch.no_grad():
-        _, gender_probs, _ = model.predict(field_inputs, attention_mask)
+        _, gender_probs, _, _ = model.predict(field_inputs, attention_mask)
         gender_idx = int(gender_probs[0].argmax().item())
 
     # Map model output index to GenderLevel
