@@ -2386,12 +2386,6 @@ class Trainer:
             gram_conf_list = gram_conf_flat.cpu().tolist()
             grammaticality_confusion = [gram_conf_list[i*NUM_GRAMMATICALITY_CLASSES:(i+1)*NUM_GRAMMATICALITY_CLASSES] for i in range(NUM_GRAMMATICALITY_CLASSES)]
             
-            reg_conf_list = reg_conf_flat.cpu().tolist()
-            reg_conf_list = reg_conf_flat.cpu().tolist() # Actually this was placeholder in original code? No, I added reg_conf_flat logic?
-            # Wait, line 2369 in original was `reg_conf_list = reg_conf_flat.cpu().tolist()`? 
-            # In my view output it wasn't there. I need to be careful.
-            # The original code did NOT have register confusion logic in DDP block.
-            # So I am ADDING it.
             
             reg_stats_list = reg_stats_flat.cpu().tolist()
             register_stats = [reg_stats_list[i*4:(i+1)*4] for i in range(NUM_REGISTER_CLASSES)]
