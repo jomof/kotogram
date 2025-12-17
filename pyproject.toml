@@ -61,3 +61,4 @@ disallow_untyped_defs = true
 [[tool.mypy.overrides]]
 module = "sudachipy.*"
 ignore_missing_imports = true
+disable_error_code = ["import-untyped"]
