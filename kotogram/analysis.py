@@ -65,6 +65,8 @@ class RegisterLevel(Enum):
     HAKATABEN = "hakataben"               # Hakata dialect
     KYOSHIGO = "kyoshigo"                 # Teacher style
     NETSLANG = "netslang"                 # Internet slang
+    OJOUSAMA = "ojousama"                 # Refined lady style
+    GUNTAI = "guntai"                     # Military style
     NEUTRAL = "neutral"                   # Standard/Neutral
 
 

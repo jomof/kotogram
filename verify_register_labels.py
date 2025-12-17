@@ -29,6 +29,8 @@ def verify_registers(tsv_path):
         'hakataben': RegisterLevel.HAKATABEN,
         'kyoshigo': RegisterLevel.KYOSHIGO,
         'netslang': RegisterLevel.NETSLANG,
+        'ojousama': RegisterLevel.OJOUSAMA,
+        'guntai': RegisterLevel.GUNTAI,
         'neutral': RegisterLevel.NEUTRAL,
     }
 
