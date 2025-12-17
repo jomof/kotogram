@@ -406,7 +406,10 @@ def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[Tuple[str, 
             if not register_ids:
                  register_ids.append(register_to_id[RegisterLevel.NEUTRAL])
 
-            results.append((sentence, kotogram, formality_id, gender_id, register_ids, gram_label, 1))
+            res = (sentence, kotogram, formality_id, gender_id, register_ids, gram_label, 1)
+            assert len(res) == 7, f"Expected 7-tuple from _compute_labels_batch, got {len(res)}"
+            assert isinstance(res[4], list), f"Expected list for register_ids, got {type(res[4])}"
+            results.append(res)
         except Exception:
             pass # Skip failed
             
@@ -454,6 +457,9 @@ def _encode_samples_batch(
     cls_id = tokenizer.cls_id
     
     for sentence, kotogram, f_id, g_id, r_ids, gram_label in items:
+        # Tuple validation
+        assert isinstance(r_ids, list), f"Expected list for register_ids, got {type(r_ids)}"
+        
         # Manually encode to avoid tokenizer overhead if possible, 
         # or just use tokenizer.encode. tokenizer.encode is fast if frozen.
         feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
@@ -534,8 +540,9 @@ def _process_sentence_batch(
         if not register_ids:
                 register_ids.append(register_to_id[RegisterLevel.NEUTRAL])
 
-        results.append((sentence, sentence_id, kotogram, formality_id, gender_id, register_ids, gram_label, 1))
-
+        res = (sentence, sentence_id, kotogram, formality_id, gender_id, register_ids, gram_label, 1)
+        assert len(res) == 8, f"Expected 8-tuple from _process_sentence_batch, got {len(res)}"
+        results.append(res)
     return results
 
 
@@ -724,7 +731,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             with ctx.Pool(num_workers) as pool:
                 for batch_results in pool.imap(_process_sentence_batch, batches):
                     # batch_results: (sentence, _sid, kotogram, f_id, g_id, r_ids, gram_label, success)
-                    for sentence, _sid, kotogram, f_id, g_id, r_ids, _gram_label, success in batch_results:
+                    for item in batch_results:
+                        assert len(item) == 8, f"Expected 8-tuple from worker, got {len(item)}"
+                        sentence, _sid, kotogram, f_id, g_id, r_ids, _gram_label, success = item
                         if success:
                             final_data[sentence] = (kotogram, f_id, g_id, r_ids)
                             new_cache_entries.append((sentence, kotogram, f_id, g_id, r_ids))
@@ -1160,7 +1169,8 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         # Prepare inputs: (sentence, kotogram, f_id, g_id, r_id, gram_label)
         encoding_inputs = []
         for p in processed_results:
-            # p: (sentence, kotogram, f_id, g_id, r_id, gram_label, success)
+            # p: (sentence, kotogram, f_id, g_id, r_ids, gram_label, success)
+            assert len(p) == 7, f"Expected 7-tuple in processed_results, got {len(p)}"
             if p[6]: # success
                 encoding_inputs.append((p[0], p[1], p[2], p[3], p[4], p[5]))
 
