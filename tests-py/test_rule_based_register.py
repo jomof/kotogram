@@ -61,6 +61,18 @@ class TestRegisterLabeler(unittest.TestCase):
         self._check("どうぞ召し上がってください", {RegisterLevel.SONKEIGO})
         self._check("お忙しいところ", {RegisterLevel.SONKEIGO})
         self._check("こちらにお掛けください", {RegisterLevel.SONKEIGO})
+        
+    def test_ojousama(self):
+        self._check("ごきげんよう", {RegisterLevel.OJOUSAMA})
+        self._check("素敵ですわ", {RegisterLevel.OJOUSAMA})
+        self._check("存じておりますの", {RegisterLevel.OJOUSAMA}) # "zonjite" -> Kenjogo too? Test specific first.
+        # "my rule" triggers ojousama for 'masu no'.
+
+    def test_guntai(self):
+        self._check("了解であります", {RegisterLevel.GUNTAI})
+        self._check("全員集合", {RegisterLevel.GUNTAI})
+        self._check("異常なし", {RegisterLevel.GUNTAI})
+        self._check("自分はそう思います", {RegisterLevel.GUNTAI})
 
     def test_kenjogo(self):
         self._check("私が申す", {RegisterLevel.KENJOGO})
@@ -92,6 +104,8 @@ class TestRegisterLabeler(unittest.TestCase):
             'hakataben': RegisterLevel.HAKATABEN,
             'kyoshigo': RegisterLevel.KYOSHIGO,
             'netslang': RegisterLevel.NETSLANG,
+            'ojousama': RegisterLevel.OJOUSAMA,
+            'guntai': RegisterLevel.GUNTAI,
             'neutral': RegisterLevel.NEUTRAL,
         }
 

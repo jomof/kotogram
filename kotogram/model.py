@@ -76,19 +76,31 @@ GENDER_LABEL_TO_ID = {
 }
 GENDER_ID_TO_LABEL = {v: k for k, v in GENDER_LABEL_TO_ID.items()}
 
-NUM_REGISTER_CLASSES = 7  # sonkeigo, kenjogo, kansaiben, hakataben, kyoshigo, netslang, neutral
 from kotogram.analysis import RegisterLevel
-
+# Register classes
+NUM_REGISTER_CLASSES = 9
 REGISTER_LABEL_TO_ID = {
-    RegisterLevel.SONKEIGO: 0,
-    RegisterLevel.KENJOGO: 1,
-    RegisterLevel.KANSAIBEN: 2,
-    RegisterLevel.HAKATABEN: 3,
-    RegisterLevel.KYOSHIGO: 4,
-    RegisterLevel.NETSLANG: 5,
-    RegisterLevel.NEUTRAL: 6,
+    RegisterLevel.NEUTRAL: 0,
+    RegisterLevel.SONKEIGO: 1,
+    RegisterLevel.KENJOGO: 2,
+    RegisterLevel.KANSAIBEN: 3,
+    RegisterLevel.HAKATABEN: 4,
+    RegisterLevel.KYOSHIGO: 5,
+    RegisterLevel.NETSLANG: 6,
+    RegisterLevel.OJOUSAMA: 7,
+    RegisterLevel.GUNTAI: 8,
 }
-REGISTER_ID_TO_LABEL = {v: k for k, v in REGISTER_LABEL_TO_ID.items()}
+REGISTER_ID_TO_LABEL = {
+    0: RegisterLevel.NEUTRAL,
+    1: RegisterLevel.SONKEIGO,
+    2: RegisterLevel.KENJOGO,
+    3: RegisterLevel.KANSAIBEN,
+    4: RegisterLevel.HAKATABEN,
+    5: RegisterLevel.KYOSHIGO,
+    6: RegisterLevel.NETSLANG,
+    7: RegisterLevel.OJOUSAMA,
+    8: RegisterLevel.GUNTAI,
+}
 
 
 class Tokenizer:

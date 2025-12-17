@@ -478,7 +478,173 @@ def rule_based_register(features: List[Dict[str, str]]) -> Set[RegisterLevel]:
         # "ba" (variant of 'wo' in Kyushu, sometimes 'n' + 'ba') - careful
         # "ken" (kara/because)
         if surface == 'けん' and (pos_detail1.startswith('brt') or pos_detail1.startswith('prt')):
-             detected_registers.add(RegisterLevel.HAKATABEN)
+              detected_registers.add(RegisterLevel.HAKATABEN)
+
+        # OJOUSAMA
+        # Sentence ending "desu wa"
+        if surface == 'わ' and i > 0 and features[i-1].get('surface') == 'です':
+             detected_registers.add(RegisterLevel.OJOUSAMA)
+        # "masu wa" / "masen wa"
+        if surface == 'わ' and i > 0 and (features[i-1].get('surface') == 'ます' or features[i-1].get('surface') == 'て'):
+             # "masu wa" or "te wa" (rare, but "yoroshikute wa")
+             detected_registers.add(RegisterLevel.OJOUSAMA)
+        if surface == 'わ' and i > 0 and 'ません' in features[i-1].get('surface'):
+             # "masen wa" is usually split as "mase" + "n" + "wa". Check negation 'n'.
+             pass # logic below for 'wa' after 'n'
+        if surface == 'わ' and i > 1 and features[i-1].get('surface') == 'ん' and features[i-2].get('surface') == 'ませ':
+             detected_registers.add(RegisterLevel.OJOUSAMA)
+        
+        # "masu no"
+        if surface == 'の' and i > 0 and features[i-1].get('surface') == 'ます':
+             detected_registers.add(RegisterLevel.OJOUSAMA)
+        # "desu no" (could be question or assertion)
+        if surface == 'の' and i > 0 and features[i-1].get('surface') == 'です':
+             detected_registers.add(RegisterLevel.OJOUSAMA)
+        # "masen no"
+        if surface == 'の' and i > 1 and features[i-1].get('surface') == 'ん' and features[i-2].get('surface') == 'ませ':
+             detected_registers.add(RegisterLevel.OJOUSAMA)
+
+        # "deshita no" / "mashita no"
+        if surface == 'の' and i > 0 and (features[i-1].get('surface') == 'た' or 'た' in features[i-1].get('surface')):
+             # Check if previous was polite 'deshi' or 'mashi'
+             if i > 1 and (features[i-2].get('surface') in ['でし', 'まし']): 
+                  detected_registers.add(RegisterLevel.OJOUSAMA)
+
+        # "gokigenyou"
+        if 'ごきげんよう' in surface or 'ごきげんよう' in lemma:
+             detected_registers.add(RegisterLevel.OJOUSAMA)
+        # "yoroshikute"
+        if surface.startswith('よろしくて'):
+             detected_registers.add(RegisterLevel.OJOUSAMA)
+        # Handle split "yoroshiku" + "te" + "yo"
+        if surface == 'て' and i > 0 and features[i-1].get('lemma') == 'よろしい':
+             # Check if next is 'yo' or 'wa' or '?'
+             if i < len(features)-1 and features[i+1].get('surface') in ['よ', 'わ', 'の', '？', '?']:
+                  detected_registers.add(RegisterLevel.OJOUSAMA)
+        
+        # "mashite?" (Question polite) 
+        if surface == 'して' and i > 0 and features[i-1].get('surface') == 'ま': # "ma-shite"
+             # Wait, "takemashite" -> take (v) + mashi (aux) + te (prt).
+             pass
+        # "masu" + "te" (mashi te)
+        if surface == 'て' and i > 0 and features[i-1].get('surface') == 'まし':
+             # "mashi te" at end or before ?
+             if i == len(features)-1 or (i < len(features)-1 and features[i+1].get('surface') in ['？', '?', 'よ', 'の']):
+                 detected_registers.add(RegisterLevel.OJOUSAMA)
+
+        # "koto" at end (exclamatory/soft)
+        if surface == 'こと' and i > 0:
+             # End of sentence or before punctuation
+             if i == len(features)-1 or features[i+1].get('surface') in ['。', '？', '?', '！', '!']:
+                 # Check previous token type (Adj or Masu/Desu) to avoid generic nouns
+                 prev = features[i-1]
+                 if prev.get('pos').startswith('adj') or 'ませ' in prev.get('surface') or prev.get('surface') == 'です' or prev.get('surface') == 'ない' or prev.get('surface') == 'ん':
+                     detected_registers.add(RegisterLevel.OJOUSAMA)
+                 # "kawairashii koto" -> adj + koto.
+        
+        # "ara ara"
+        if 'あらあら' in surface:
+             detected_registers.add(RegisterLevel.OJOUSAMA)
+
+        # GUNTAI
+        # "de arimasu"
+        if surface == 'あり' and i > 0 and features[i-1].get('surface') == 'で':
+             if i < len(features)-1 and features[i+1].get('surface').startswith('ます'):
+                  detected_registers.add(RegisterLevel.GUNTAI)
+        # Check "arimasu" directly
+        if surface == 'あります' and i > 0 and features[i-1].get('surface') == 'で':
+             detected_registers.add(RegisterLevel.GUNTAI)
+        
+        # "Jibun" (First person)
+        if surface == '自分':
+             # "Jibun wa" or "Jibun ga" (Strict military "I")
+             # "Jibun no", "Jibun to", etc are common.
+             if i < len(features)-1 and features[i+1].get('surface') in ['は', 'が']:
+                 detected_registers.add(RegisterLevel.GUNTAI)
+             # "Jibun" at start, still require 'wa' or 'ga' to be safe?
+             # Or "Jibun, ..." (comma). Guntai: "Jibun, ikimasu!"
+             if i == 0 and i < len(features)-1 and features[i+1].get('surface') in ['、', ',', 'は', 'が', 'で']: # "Jibun de"
+                 detected_registers.add(RegisterLevel.GUNTAI)
+
+        # "Shuugou!" (imperative noun usage)
+        if '集合' in surface or '集合' in lemma:
+             detected_registers.add(RegisterLevel.GUNTAI)
+        # "Ryoukai"
+        if surface == '了解':
+             detected_registers.add(RegisterLevel.GUNTAI)
+        # "Ninmu"
+        if surface == '任務':
+             detected_registers.add(RegisterLevel.GUNTAI)
+        # "Sakusen"
+        if surface == '作戦':
+             detected_registers.add(RegisterLevel.GUNTAI)
+        # "Zenshin"
+        if surface == '前進':
+             detected_registers.add(RegisterLevel.GUNTAI)
+        # "Houkoku"
+        if surface == '報告':
+             detected_registers.add(RegisterLevel.GUNTAI)
+        # "Haaku" (Grasp/Understand - common usage)
+        if surface == '把握' and i < len(features)-1 and features[i+1].get('surface').startswith('し'):
+             detected_registers.add(RegisterLevel.GUNTAI)
+        # "Kyuritsu" (Discipline - Kiritsu) -> "Kiritsu wo mamore"
+        if surface == '規律':
+             detected_registers.add(RegisterLevel.GUNTAI)
+
+        # "Ijou nashi"
+        if surface == '異常' and i < len(features)-1 and 'なし' in features[i+1].get('surface'):
+             detected_registers.add(RegisterLevel.GUNTAI)
+        # "Ijou arimasen"
+        if surface == '異常':
+             if i < len(features)-3:
+                  f1 = features[i+1].get('surface')
+                  f2 = features[i+2].get('surface')
+                  f3 = features[i+3].get('surface')
+                  if 'あり' in f1 and 'ませ' in f2 and 'ん' in f3:
+                       detected_registers.add(RegisterLevel.GUNTAI)
+        # "Ijou arimasen"
+        if surface == '異常':
+             if i < len(features)-3:
+                  f1 = features[i+1].get('surface')
+                  f2 = features[i+2].get('surface')
+                  f3 = features[i+3].get('surface')
+                  if 'あり' in f1 and 'ませ' in f2 and 'ん' in f3:
+                       detected_registers.add(RegisterLevel.GUNTAI)
+        # "Mokuhyou" (Target) - Too common (Goal). Removed.
+        # if surface == '目標':
+        #      detected_registers.add(RegisterLevel.GUNTAI)
+
+        # Imperatives
+        # "MATE!", "SE-YO!", "MAMORE!"
+        # Often: Verb(Imperative) + !
+        if pos_detail1.endswith('imperative') or 'imperative' in pos_detail1 or (feature.get('conjugated_form') and 'imperative' in feature.get('conjugated_form')):
+            # Check for exclamation or strong context
+             # Exclude "Kudasai", "Nasai" (polite request/command)
+             if lemma not in ['ください', '下さい', '下さる', 'なさい', '為さる'] and surface not in ['ください', '下さい', 'kudasai', 'なさい', 'nasai']:
+                 if i < len(features)-1 and features[i+1].get('surface') in ['！', '!']:
+                     detected_registers.add(RegisterLevel.GUNTAI)
+                 # "seyo" specifiically
+                 if surface == 'せよ':
+                     # Exclude "ni seyo" (even if)
+                     if i > 0 and features[i-1].get('surface') == 'に':
+                          pass
+                     else:
+                          detected_registers.add(RegisterLevel.GUNTAI)
+        # "da" / "aru" + ! (Plain form + !)
+        # "Kaishi suru!"
+        if surface == 'する' and i < len(features)-1 and features[i+1].get('surface') in ['！', '!']:
+             # Only if preceded by military-ish noun (Sakusen, Ninmu, Kaishi)
+             # We added noun triggers, so maybe we don't need this, but "Kaishi" isn't triggered yet.
+             if i > 0 and features[i-1].get('surface') in ['開始']:
+                  detected_registers.add(RegisterLevel.GUNTAI)
+        if surface == '開始': # Trigger on noun itself?
+              detected_registers.add(RegisterLevel.GUNTAI)
+
+        # "Nai" + ! (Strong negative assertion/imperative feel)
+        # Narrowed: Only "Yurusanai" (Unforgivable) or similar strict words
+        if surface == 'ない' and i < len(features)-1 and features[i+1].get('surface') in ['！', '!']:
+             if i > 0 and features[i-1].get('lemma') in ['許す', '許せる', '許される']: # Yurusenai, Yurusarenai
+                 detected_registers.add(RegisterLevel.GUNTAI)
 
         # Netslang
         if surface in ['w', 'www', '乙', '草', '草生える', 'なう', 'now']:
