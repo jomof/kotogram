@@ -116,7 +116,7 @@ def formality(kotogram: str) -> FormalityLevel:
     # Predict
     model.eval()
     with torch.no_grad():
-        formality_probs, _, _ = model.predict(field_inputs, attention_mask)
+        formality_probs, _, _, _ = model.predict(field_inputs, attention_mask)
         formality_idx = int(formality_probs[0].argmax().item())
 
     # Map model output index to FormalityLevel
@@ -373,7 +373,7 @@ def grammaticality(kotogram: str) -> bool:
     # Predict
     model.eval()
     with torch.no_grad():
-        _, _, grammaticality_probs = model.predict(field_inputs, attention_mask)
+        _, _, grammaticality_probs, _ = model.predict(field_inputs, attention_mask)
         grammaticality_idx = int(grammaticality_probs[0].argmax().item())
 
     # 1 = grammatic, 0 = agrammatic
