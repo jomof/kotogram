@@ -570,7 +570,8 @@ class Sample:
 # v4: Added register labeling
 # v6: Added register_label to Sample
 # v7: Changed register_label to register_labels (multi-label)
-CACHE_VERSION = 7
+# v8: Fixed register_labels defaults and instantiation bug
+CACHE_VERSION = 8
 
 
 class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
