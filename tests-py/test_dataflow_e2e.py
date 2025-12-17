@@ -396,7 +396,7 @@ def test_step7_evaluate_list_consistency():
     print("STEP 7: Evaluate List Length Consistency")
     print("="*60)
     
-    from scripts.train_style import StyleDataset, Trainer, TrainingConfig, collate_fn
+    from scripts.train_style import StyleDataset, collate_fn
     from kotogram.model import Tokenizer, StyleClassifier, ModelConfig, NUM_REGISTER_CLASSES
     from torch.utils.data import DataLoader
     import torch
@@ -430,13 +430,6 @@ def test_step7_evaluate_list_consistency():
     # Create model and evaluate
     config = ModelConfig(vocab_sizes=tokenizer.get_vocab_sizes())
     model = StyleClassifier(config)
-    
-    # Create minimal training config
-    training_config = TrainingConfig(
-        epochs=1,
-        learning_rate=1e-4,
-        use_class_weights=False,
-    )
     
     # Create dataloader with collate_fn
     dataloader = DataLoader(
@@ -525,6 +518,7 @@ if __name__ == "__main__":
         test_step4_encoding_inputs_extraction,
         test_step5_encode_samples_batch,
         test_step6_collate_fn,
+        test_step7_evaluate_list_consistency,
     ]
     
     passed = 0
