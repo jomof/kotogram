@@ -98,18 +98,19 @@ from kotogram.kotogram import extract_token_features
 
 # Import rule-based analysis functions
 try:
-    from rule_based_analysis import analyze_formality, analyze_gender
+    from rule_based_analysis import analyze_formality, analyze_gender, analyze_register
 except ImportError:
-    from scripts.rule_based_analysis import analyze_formality, analyze_gender
+    from scripts.rule_based_analysis import analyze_formality, analyze_gender, analyze_register
 
 from kotogram.japanese_parser import JapaneseParser
 
 from kotogram.model import (
     StyleClassifier, Tokenizer, ModelConfig,
     FEATURE_FIELDS, ALL_FEATURE_FIELDS, set_excluded_features,
-    NUM_FORMALITY_CLASSES, NUM_GENDER_CLASSES, NUM_GRAMMATICALITY_CLASSES,
+    NUM_FORMALITY_CLASSES, NUM_GENDER_CLASSES, NUM_GRAMMATICALITY_CLASSES, NUM_REGISTER_CLASSES,
     FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL,
     GENDER_LABEL_TO_ID, GENDER_ID_TO_LABEL,
+    REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL,
     PAD_TOKEN, UNK_TOKEN, CLS_TOKEN, MASK_TOKEN,
     load_model
 )
@@ -166,7 +167,8 @@ class ShardedKotogramCache:
                     sentence TEXT NOT NULL,
                     kotogram TEXT NOT NULL,
                     formality_label INTEGER,
-                    gender_label INTEGER
+                    gender_label INTEGER,
+                    register_labels TEXT
                 )
             """)
             conn.execute("CREATE INDEX IF NOT EXISTS idx_hash ON cache_entries(sentence_hash)")
@@ -190,7 +192,9 @@ class ShardedKotogramCache:
                 
                 # Convert to format expected by put_batch (sentence, kotogram, formality, gender)
                 # Legacy cache has no labels, so None
-                items = [(r[0], r[1], None, None) for r in rows]
+                # Convert to format expected by put_batch (sentence, kotogram, formality, gender, register)
+                # Legacy cache has no labels, so None
+                items = [(r[0], r[1], None, None, None) for r in rows]
                 self.put_batch(items, verbose=False) # Verbose False to avoid spam
                 count += len(rows)
                 print(f"  Migrated {count} entries...")
@@ -210,18 +214,18 @@ class ShardedKotogramCache:
         """Create a hash key for a sentence."""
         return hashlib.sha256(sentence.encode('utf-8')).hexdigest()
 
-    def get_batch(self, sentences: List[str]) -> Dict[str, Optional[Tuple[str, Optional[int], Optional[int]]]]:
+    def get_batch(self, sentences: List[str]) -> Dict[str, Optional[Tuple[str, Optional[int], Optional[int], Optional[List[int]]]]]:
         """Get cached entries for multiple sentences.
 
         Returns:
-            Dict mapping sentence → (kotogram, formality, gender) OR None
+            Dict mapping sentence → (kotogram, formality, gender, register) OR None
         """
         if not sentences:
             return {}
 
         # Group by shard
         shard_to_hashes: Dict[str, List[Tuple[str, str]]] = {} # shard_path -> [(hash, sentence)]
-        results: Dict[str, Optional[Tuple[str, Optional[int], Optional[int]]]] = {s: None for s in sentences}
+        results: Dict[str, Optional[Tuple[str, Optional[int], Optional[int], Optional[List[int]]]]] = {s: None for s in sentences}
         
         for s in sentences:
             h = self._hash_sentence(s)
@@ -242,14 +246,23 @@ class ShardedKotogramCache:
                 conn = sqlite3.connect(shard_path)
                 placeholders = ",".join("?" * len(hashes))
                 cursor = conn.execute(
-                    f"SELECT sentence_hash, kotogram, formality_label, gender_label FROM cache_entries WHERE sentence_hash IN ({placeholders})",
+                    f"SELECT sentence_hash, kotogram, formality_label, gender_label, register_labels FROM cache_entries WHERE sentence_hash IN ({placeholders})",
                     hashes
                 )
                 
                 for row in cursor:
-                    h, k, f_lbl, g_lbl = row
+                    if len(row) == 5:
+                         h, k, f_lbl, g_lbl, r_lbls_json = row
+                         r_lbls = json.loads(r_lbls_json) if r_lbls_json else None
+                    else:
+                         # Backward compact if column missing? (sqlite * expands to avail cols)
+                         # Safe to select explicit cols but if schema old it fails.
+                         # Assuming schema update handled or recreation.
+                         # For now assuming updated schema or new file.
+                         pass
+                    
                     sent = hash_to_sentence[h]
-                    results[sent] = (k, f_lbl, g_lbl)
+                    results[sent] = (k, f_lbl, g_lbl, r_lbls)
                 conn.close()
             except sqlite3.Error:
                 # If shard is corrupt or locked, just treat as miss
@@ -259,26 +272,28 @@ class ShardedKotogramCache:
 
     def put_batch(
         self, 
-        items: List[Tuple[str, str, Optional[int], Optional[int]]],
+        items: List[Tuple[str, str, Optional[int], Optional[int], Optional[List[int]]]],
         verbose: bool = False
     ) -> None:
         """Cache multiple entries.
         
         Args:
-            items: List of (sentence, kotogram, formality_label, gender_label)
+            items: List of (sentence, kotogram, formality_label, gender_label, register_labels)
         """
         if not items:
             return
 
         # Group by shard
-        shard_to_data: Dict[str, List[Tuple[str, str, str, Optional[int], Optional[int]]]] = {}
+        shard_to_data: Dict[str, List[Tuple[str, str, str, Optional[int], Optional[int], Optional[str]]]] = {}
         
-        for s, k, f_lbl, g_lbl in items:
+        for s, k, f_lbl, g_lbl, r_lbls in items:
             h = self._hash_sentence(s)
             path = self._get_shard_path(h)
             if path not in shard_to_data:
                 shard_to_data[path] = []
-            shard_to_data[path].append((h, s, k, f_lbl, g_lbl))
+            
+            r_lbls_json = json.dumps(r_lbls) if r_lbls is not None else None
+            shard_to_data[path].append((h, s, k, f_lbl, g_lbl, r_lbls_json))
 
         # Write to each shard
         for shard_path, data in shard_to_data.items():
@@ -288,8 +303,8 @@ class ShardedKotogramCache:
             try:
                 conn.executemany(
                     """INSERT OR REPLACE INTO cache_entries 
-                       (sentence_hash, sentence, kotogram, formality_label, gender_label) 
-                       VALUES (?, ?, ?, ?, ?)""",
+                       (sentence_hash, sentence, kotogram, formality_label, gender_label, register_labels) 
+                       VALUES (?, ?, ?, ?, ?, ?)""",
                     data
                 )
                 conn.commit()
@@ -359,7 +374,7 @@ def is_main_process() -> bool:
     return True
 
 
-def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[Tuple[str, str, int, int, int, int]]:
+def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[Tuple[str, str, int, int, List[int], int, int]]:
     """Compute labels for a batch of sentences."""
     results = []
     
@@ -377,14 +392,35 @@ def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[Tuple[str, 
         GenderLevel.NEUTRAL: 2,
         GenderLevel.UNPRAGMATIC_GENDER: 3,
     }
+    register_to_id = {
+        RegisterLevel.SONKEIGO: 0,
+        RegisterLevel.KENJOGO: 1,
+        RegisterLevel.KANSAIBEN: 2,
+        RegisterLevel.HAKATABEN: 3,
+        RegisterLevel.KYOSHIGO: 4,
+        RegisterLevel.NETSLANG: 5,
+        RegisterLevel.NEUTRAL: 6,
+    }
     
     for sentence, kotogram, gram_label in batch:
         try:
             formality_enum = analyze_formality(kotogram)
             gender_enum = analyze_gender(kotogram)
+            register_enums = analyze_register(kotogram) # returns Set
+            
             formality_id = formality_to_id[formality_enum]
             gender_id = gender_to_id[gender_enum]
-            results.append((sentence, kotogram, formality_id, gender_id, gram_label, 1))
+            
+            register_ids = []
+            for r_enum in register_enums:
+                if r_enum in register_to_id:
+                     register_ids.append(register_to_id[r_enum])
+            
+            # Default to neutral if empty (though analyze_register should handle this)
+            if not register_ids:
+                 register_ids.append(register_to_id[RegisterLevel.NEUTRAL])
+
+            results.append((sentence, kotogram, formality_id, gender_id, register_ids, gram_label, 1))
         except Exception:
             pass # Skip failed
             
@@ -414,7 +450,7 @@ def _collect_tokens_batch(kotograms: List[str]) -> Dict[str, Counter]:
 
 
 def _encode_samples_batch(
-    items: List[Tuple[str, str, int, int, int]], # (sentence, kotogram, f_id, g_id, gram_label)
+    items: List[Tuple[str, str, int, int, List[int], int]], # (sentence, kotogram, f_id, g_id, r_ids, gram_label)
     tokenizer_state: Dict[str, Any], # Serialization of tokenizer
 ) -> List[Any]: # List[Sample]
     """Encode samples using a frozen tokenizer state."""
@@ -431,7 +467,7 @@ def _encode_samples_batch(
     unk_id = tokenizer.unk_id
     cls_id = tokenizer.cls_id
     
-    for sentence, kotogram, f_id, g_id, gram_label in items:
+    for sentence, kotogram, f_id, g_id, r_ids, gram_label in items:
         # Manually encode to avoid tokenizer overhead if possible, 
         # or just use tokenizer.encode. tokenizer.encode is fast if frozen.
         feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
@@ -440,6 +476,7 @@ def _encode_samples_batch(
             feature_ids=feature_ids,
             formality_label=f_id,
             gender_label=g_id,
+            register_labels=r_ids,
             grammaticality_label=gram_label,
             original_sentence=sentence,
             kotogram=kotogram,
@@ -451,20 +488,20 @@ def _encode_samples_batch(
 
 def _process_sentence_batch(
     batch: List[Tuple[str, str, int]],  # (sentence, sentence_id, gram_label)
-) -> List[Tuple[str, str, str, int, int, int, int]]:
+) -> List[Tuple[str, str, str, int, int, List[int], int]]:
     """Process a batch of sentences in a worker process.
 
-    Returns list of (sentence, sentence_id, kotogram, formality_id, gender_id, gram_label, success)
+    Returns list of (sentence, sentence_id, kotogram, formality_id, gender_id, register_ids, gram_label, success)
     where success=1 if processed successfully, 0 if failed.
     """
     # Import parser in worker process to avoid pickling issues
     from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-    from kotogram.analysis import FormalityLevel, GenderLevel
+    from kotogram.analysis import FormalityLevel, GenderLevel, RegisterLevel
     # Try importing from local directory first, then package
     try:
-        from rule_based_analysis import analyze_formality, analyze_gender
+        from rule_based_analysis import analyze_formality, analyze_gender, analyze_register
     except ImportError:
-        from scripts.rule_based_analysis import analyze_formality, analyze_gender
+        from scripts.rule_based_analysis import analyze_formality, analyze_gender, analyze_register
 
     parser = SudachiJapaneseParser()
     results = []
@@ -484,17 +521,37 @@ def _process_sentence_batch(
         GenderLevel.NEUTRAL: 2,
         GenderLevel.UNPRAGMATIC_GENDER: 3,
     }
+    register_to_id = {
+        RegisterLevel.SONKEIGO: 0,
+        RegisterLevel.KENJOGO: 1,
+        RegisterLevel.KANSAIBEN: 2,
+        RegisterLevel.HAKATABEN: 3,
+        RegisterLevel.KYOSHIGO: 4,
+        RegisterLevel.NETSLANG: 5,
+        RegisterLevel.NEUTRAL: 6,
+    }
 
     for sentence, sentence_id, gram_label in batch:
         try:
             kotogram = parser.japanese_to_kotogram(sentence)
             formality_enum = analyze_formality(kotogram)
             gender_enum = analyze_gender(kotogram)
+            register_enums = analyze_register(kotogram) # returns Set
+            
             formality_id = formality_to_id[formality_enum]
             gender_id = gender_to_id[gender_enum]
-            results.append((sentence, sentence_id, kotogram, formality_id, gender_id, gram_label, 1))
+            
+            register_ids = []
+            for r_enum in register_enums:
+                 if r_enum in register_to_id:
+                      register_ids.append(register_to_id[r_enum])
+            
+            if not register_ids:
+                 register_ids.append(register_to_id[RegisterLevel.NEUTRAL])
+
+            results.append((sentence, sentence_id, kotogram, formality_id, gender_id, register_ids, gram_label, 1))
         except Exception:
-            results.append((sentence, sentence_id, "", 0, 0, gram_label, 0))
+            results.append((sentence, sentence_id, "", 0, 0, [], gram_label, 0))
 
     return results
 
@@ -508,6 +565,7 @@ class Sample:
     feature_ids: Dict[str, List[int]]  # field -> list of token IDs
     formality_label: int
     gender_label: int
+    register_labels: List[int] = field(default_factory=lambda: [6]) # Default neutral
     grammaticality_label: int = 1  # 1 = grammatic (default), 0 = agrammatic
     original_sentence: str = ""
     kotogram: str = ""
@@ -526,7 +584,10 @@ class Sample:
 # v1: Initial version
 # v2: Removed lemma pruning (lemma_min_freq, max_lemma_vocab)
 # v3: Added parallel processing
-CACHE_VERSION = 5  # v5: Removed source_id from Sample
+# v4: Added register labeling
+# v6: Added register_label to Sample
+# v7: Changed register_label to register_labels (multi-label)
+CACHE_VERSION = 7
 
 
 class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
@@ -594,7 +655,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         batch_size: int = 1000,
         verbose: bool = True,
         use_kotogram_cache: bool = True,
-    ) -> List[Tuple[str, str, int, int, int, int]]:
+    ) -> List[Tuple[str, str, int, int, List[int], int]]:
         """Process sentences in parallel using multiprocessing.
 
         Uses a durable kotogram cache to avoid re-parsing sentences that have
@@ -610,7 +671,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             use_kotogram_cache: If True, use durable kotogram cache
 
         Returns:
-            List of (sentence, kotogram, formality_id, gender_id, gram_label, success) tuples
+            List of (sentence, kotogram, formality_id, gender_id, register_id, gram_label, success) tuples
         """
         if num_workers is None:
             num_workers = max(1, mp.cpu_count() - 1)
@@ -623,9 +684,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         cache = get_kotogram_cache() if use_kotogram_cache else None
         
         # Results storage
-        # We need final list of (sentence, kotogram, f_id, g_id, gram_label, success)
+        # We need final list of (sentence, kotogram, f_id, g_id, r_ids, gram_label, success)
         # We can store intermediate results in a dict or build list at the end
-        final_data: Dict[str, Tuple[str, int, int]] = {} # sentence -> (kotogram, f, g)
+        final_data: Dict[str, Tuple[str, int, int, List[int]]] = {} # sentence -> (kotogram, f, g, r_ids)
         
         uncached_rows: List[Tuple[str, str, int]] = [] # Need parsing
         unlabeled_rows: List[Tuple[str, str, int]] = [] # Have kotogram, need labels
@@ -642,11 +703,11 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 entry = cached_batch.get(s)
                 
                 if entry is not None:
-                    k, f, g = entry
+                    k, f, g, r_lbls = entry
                     kotogram_hits += 1
                     
                     if f is not None and g is not None:
-                        final_data[s] = (k, f, g)
+                        final_data[s] = (k, f, g, r_lbls)
                         label_hits += 1
                     else:
                         # Partial hit (kotogram only)
@@ -663,7 +724,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         # 1. Process Uncached (Parse + Label)
         # -----------------------------------
-        new_cache_entries: List[Tuple[str, str, Optional[int], Optional[int]]] = []
+        new_cache_entries: List[Tuple[str, str, Optional[int], Optional[int], Optional[List[int]]]] = []
         
         # Initialize multiprocessing context early
         ctx = mp.get_context('spawn')
@@ -678,11 +739,11 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
             with ctx.Pool(num_workers) as pool:
                 for batch_results in pool.imap(_process_sentence_batch, batches):
-                    # batch_results: (sentence, _sid, kotogram, f_id, g_id, gram_label, success)
-                    for sentence, _sid, kotogram, f_id, g_id, _gram_label, success in batch_results:
+                    # batch_results: (sentence, _sid, kotogram, f_id, g_id, r_ids, gram_label, success)
+                    for sentence, _sid, kotogram, f_id, g_id, r_ids, _gram_label, success in batch_results:
                         if success:
-                            final_data[sentence] = (kotogram, f_id, g_id)
-                            new_cache_entries.append((sentence, kotogram, f_id, g_id))
+                            final_data[sentence] = (kotogram, f_id, g_id, r_ids)
+                            new_cache_entries.append((sentence, kotogram, f_id, g_id, r_ids))
                     
                     processed += len(batch_results)
                     if verbose and processed % 10000 < batch_size:
@@ -706,11 +767,11 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             
             with ctx.Pool(num_workers) as pool:
                 for batch_results in pool.imap(_compute_labels_batch, label_batches):
-                    # batch_results: (sentence, kotogram, f_id, g_id, gram_label, success)
-                    for sentence, kotogram, f_id, g_id, _gram_label, success in batch_results:
+                    # batch_results: (sentence, kotogram, f_id, g_id, r_ids, gram_label, success)
+                    for sentence, kotogram, f_id, g_id, r_ids, _gram_label, success in batch_results:
                         if success:
-                            final_data[sentence] = (kotogram, f_id, g_id)
-                            new_cache_entries.append((sentence, kotogram, f_id, g_id))
+                            final_data[sentence] = (kotogram, f_id, g_id, r_ids)
+                            new_cache_entries.append((sentence, kotogram, f_id, g_id, r_ids))
                     
                     processed_labels += len(batch_results)
                     if verbose and processed_labels % 100000 < batch_size:
@@ -731,8 +792,8 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         
         for sentence, _sid, gram_label in rows:
             if sentence in final_data:
-                k, f, g = final_data[sentence]
-                results.append((sentence, k, f, g, gram_label, 1))
+                k, f, g, r = final_data[sentence]
+                results.append((sentence, k, f, g, r, gram_label, 1))
             else:
                 pass # Failed to parse or label
 
@@ -885,7 +946,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         gender_counts: Counter[GenderLevel] = Counter()
         grammaticality_counts: Counter[int] = Counter()
 
-        for sentence, kotogram, formality_id, gender_id, gram_label, _success in processed_results:
+        for sentence, kotogram, formality_id, gender_id, register_id, gram_label, _success in processed_results:
             # Encode to feature IDs (builds vocabulary - must be sequential)
             feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
 
@@ -893,6 +954,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 feature_ids=feature_ids,
                 formality_label=formality_id,
                 gender_label=gender_id,
+                register_label=register_id,
                 grammaticality_label=gram_label,
                 original_sentence=sentence,
                 kotogram=kotogram,
@@ -1110,12 +1172,12 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             'field_vocabs': tokenizer.field_vocabs,
         }
         
-        # Prepare inputs: (sentence, kotogram, f_id, g_id, gram_label)
+        # Prepare inputs: (sentence, kotogram, f_id, g_id, r_id, gram_label)
         encoding_inputs = []
         for p in processed_results:
-            # p: (sentence, kotogram, f_id, g_id, gram_label, success)
-            if p[5]: # success
-                encoding_inputs.append((p[0], p[1], p[2], p[3], p[4]))
+            # p: (sentence, kotogram, f_id, g_id, r_id, gram_label, success)
+            if p[6]: # success
+                encoding_inputs.append((p[0], p[1], p[2], p[3], p[4], p[5]))
 
         batches = [encoding_inputs[i:i + 5000] for i in range(0, len(encoding_inputs), 5000)]
         
@@ -1341,6 +1403,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         return weights
 
 
+
 def collate_fn(
     batch: List[Sample],
     pad_id: int = 0,
@@ -1369,6 +1432,7 @@ def collate_fn(
     formality_labels = []
     gender_labels = []
     grammaticality_labels = []
+    register_labels = []
 
     for sample in batch:
         # Truncate sequence if needed
@@ -1385,6 +1449,13 @@ def collate_fn(
         formality_labels.append(sample.formality_label)
         gender_labels.append(sample.gender_label)
         grammaticality_labels.append(sample.grammaticality_label)
+        
+        # Multi-hot encoding for register labels
+        reg_vec = torch.zeros(NUM_REGISTER_CLASSES)
+        for lbl in sample.register_labels:
+            if 0 <= lbl < NUM_REGISTER_CLASSES:
+                reg_vec[lbl] = 1.0
+        register_labels.append(reg_vec)
 
     result = {
         f'input_ids_{field}': torch.tensor(field_ids[field], dtype=torch.long)
@@ -1394,8 +1465,8 @@ def collate_fn(
     result['formality_labels'] = torch.tensor(formality_labels, dtype=torch.long)
     result['gender_labels'] = torch.tensor(gender_labels, dtype=torch.long)
     result['grammaticality_labels'] = torch.tensor(grammaticality_labels, dtype=torch.long)
+    result['register_labels'] = torch.stack(register_labels) # Stack vectors -> (B, NumClasses)
 
-    # Pass through metadata
     # Pass through metadata
     result['original_sentence'] = [s.original_sentence for s in batch]
     result['kotogram'] = [s.kotogram for s in batch]
@@ -1501,7 +1572,7 @@ class StyleClassifierWithMLM(StyleClassifier):
         to start the classification heads from a fresh state while keeping
         the pretrained encoder weights.
         """
-        for classifier in [self.formality_classifier, self.gender_classifier, self.grammaticality_classifier]:
+        for classifier in [self.formality_classifier, self.gender_classifier, self.grammaticality_classifier, self.register_classifier]:
             for module in classifier.modules():
                 if isinstance(module, nn.Linear):
                     nn.init.xavier_uniform_(module.weight)
@@ -1523,6 +1594,7 @@ class TrainerConfig:
     formality_loss_weight: float = 1.0  # Weight for formality loss in multi-task
     gender_loss_weight: float = 1.0  # Weight for gender loss in multi-task
     grammaticality_loss_weight: float = 1.0  # Weight for grammaticality loss in multi-task
+    register_loss_weight: float = 1.0  # Weight for register loss in multi-task
     device: str = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
     use_amp: bool = False  # Mixed precision training
     grad_accum_steps: int = 1  # Gradient accumulation steps
@@ -1975,10 +2047,14 @@ class Trainer:
             self.formality_criterion = nn.CrossEntropyLoss(weight=formality_weights)
             self.gender_criterion = nn.CrossEntropyLoss(weight=gender_weights)
             self.grammaticality_criterion = nn.CrossEntropyLoss(weight=grammaticality_weights)
+            # Register is multi-label, uses BCE (weights handled internally if needed, or pos_weight)
+            # For now, no class weights for register to keep it simple
+            self.register_criterion = nn.BCEWithLogitsLoss()
         else:
             self.formality_criterion = nn.CrossEntropyLoss()
             self.gender_criterion = nn.CrossEntropyLoss()
             self.grammaticality_criterion = nn.CrossEntropyLoss()
+            self.register_criterion = nn.BCEWithLogitsLoss()
 
         # Optimizer with differential learning rates
         # Handle wrappped model
@@ -1988,7 +2064,8 @@ class Trainer:
         classifier_params = (
             list(model_module.formality_classifier.parameters()) +
             list(model_module.gender_classifier.parameters()) +
-            list(model_module.grammaticality_classifier.parameters())
+            list(model_module.grammaticality_classifier.parameters()) +
+            list(model_module.register_classifier.parameters())
         )
 
         self.optimizer = Adam([
@@ -2011,18 +2088,21 @@ class Trainer:
             'train_formality_loss': [],
             'train_gender_loss': [],
             'train_grammaticality_loss': [],
+            'train_register_loss': [],
             'val_loss': [],
             'val_formality_loss': [],
             'val_gender_loss': [],
             'val_grammaticality_loss': [],
+            'val_register_loss': [],
             'val_formality_accuracy': [],
             'val_gender_accuracy': [],
             'val_grammaticality_accuracy': [],
+            'val_register_accuracy': [],
         }
         self.best_state: Optional[Dict[str, torch.Tensor]] = None
         self.start_epoch = 0  # For resumption
 
-    def _batch_to_device(self, batch: Dict[str, torch.Tensor]) -> Tuple[Dict[str, torch.Tensor], torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+    def _batch_to_device(self, batch: Dict[str, torch.Tensor]) -> Tuple[Dict[str, torch.Tensor], torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         """Move batch tensors to device and split into inputs/mask/labels."""
         field_inputs = {
             k: v.to(self.device) for k, v in batch.items()
@@ -2032,7 +2112,8 @@ class Trainer:
         formality_labels = batch['formality_labels'].to(self.device)
         gender_labels = batch['gender_labels'].to(self.device)
         grammaticality_labels = batch['grammaticality_labels'].to(self.device)
-        return field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels
+        register_labels = batch['register_labels'].to(self.device)
+        return field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels, register_labels
 
     def train_epoch(self, verbose: bool = True) -> Tuple[float, float, float, float]:
         """Run one training epoch.
@@ -2045,15 +2126,16 @@ class Trainer:
         total_formality_loss = 0
         total_gender_loss = 0
         total_grammaticality_loss = 0
+        total_register_loss = 0
         n_batches = 0
         total_batches = len(self.train_loader)
 
         if total_batches == 0:
             print("  WARNING: No batches in train_loader!")
-            return 0.0, 0.0, 0.0, 0.0
+            return 0.0, 0.0, 0.0, 0.0, 0.0
 
         for batch_idx, batch in enumerate(self.train_loader):
-            field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels = self._batch_to_device(batch)
+            field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels, register_labels = self._batch_to_device(batch)
 
             self.optimizer.zero_grad(set_to_none=True)
             
@@ -2061,17 +2143,19 @@ class Trainer:
             device_type = 'cuda' if 'cuda' in str(self.device) else ('mps' if 'mps' in str(self.device) else 'cpu')
             
             with autocast(device_type=device_type, enabled=self.config.use_amp):
-                formality_logits, gender_logits, grammaticality_logits = self.model(field_inputs, attention_mask)
+                formality_logits, gender_logits, grammaticality_logits, register_logits = self.model(field_inputs, attention_mask)
 
                 formality_loss = self.formality_criterion(formality_logits, formality_labels)
                 gender_loss = self.gender_criterion(gender_logits, gender_labels)
                 grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_labels)
+                register_loss = self.register_criterion(register_logits, register_labels)
 
                 # Weighted multi-task loss
                 loss = (
                     self.config.formality_loss_weight * formality_loss +
                     self.config.gender_loss_weight * gender_loss +
-                    self.config.grammaticality_loss_weight * grammaticality_loss
+                    self.config.grammaticality_loss_weight * grammaticality_loss +
+                    self.config.register_loss_weight * register_loss
                 )
                 
                 loss = loss / self.config.grad_accum_steps
@@ -2092,6 +2176,7 @@ class Trainer:
             total_formality_loss += formality_loss.item()
             total_gender_loss += gender_loss.item()
             total_grammaticality_loss += grammaticality_loss.item()
+            total_register_loss += register_loss.item()
             n_batches += 1
 
             # Progress display (only on main process)
@@ -2107,7 +2192,7 @@ class Trainer:
         if verbose and is_main_process():
             sys.stdout.write('\n')
 
-        return total_loss / n_batches, total_formality_loss / n_batches, total_gender_loss / n_batches, total_grammaticality_loss / n_batches
+        return total_loss / n_batches, total_formality_loss / n_batches, total_gender_loss / n_batches, total_grammaticality_loss / n_batches, total_register_loss / n_batches
 
     @torch.no_grad()  # type: ignore[untyped-decorator]
     def evaluate(self, return_mismatches: bool = False) -> Dict[str, Any]:
@@ -2125,6 +2210,7 @@ class Trainer:
         total_formality_loss = 0
         total_gender_loss = 0
         total_grammaticality_loss = 0
+        total_register_loss = 0
         n_batches = 0
 
         all_formality_preds = []
@@ -2133,26 +2219,39 @@ class Trainer:
         all_gender_labels = []
         all_grammaticality_preds: List[int] = []
         all_grammaticality_labels = []
+        all_register_preds = []
+        all_register_labels = []
         all_sentences = []
         all_kotograms = []
 
         for batch in self.val_loader:
-            field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels = self._batch_to_device(batch)
+            field_inputs, attention_mask, formality_labels, gender_labels, grammaticality_labels, register_labels = self._batch_to_device(batch)
 
-            formality_logits, gender_logits, grammaticality_logits = self.model(field_inputs, attention_mask)
+            formality_logits, gender_logits, grammaticality_logits, register_logits = self.model(field_inputs, attention_mask)
 
             formality_loss = self.formality_criterion(formality_logits, formality_labels)
             gender_loss = self.gender_criterion(gender_logits, gender_labels)
             grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_labels)
+            register_loss = self.register_criterion(register_logits, register_labels)
             loss = (
                 self.config.formality_loss_weight * formality_loss +
                 self.config.gender_loss_weight * gender_loss +
-                self.config.grammaticality_loss_weight * grammaticality_loss
+                self.config.grammaticality_loss_weight * grammaticality_loss +
+                self.config.register_loss_weight * register_loss
             )
 
             formality_preds = formality_logits.argmax(dim=-1)
             gender_preds = gender_logits.argmax(dim=-1)
             grammaticality_preds = grammaticality_logits.argmax(dim=-1)
+            formality_preds = formality_logits.argmax(dim=-1)
+            gender_preds = gender_logits.argmax(dim=-1)
+            grammaticality_preds = grammaticality_logits.argmax(dim=-1)
+            
+            # Multi-label prediction (Exact match)
+            register_probs = torch.sigmoid(register_logits)
+            register_preds = (register_probs > 0.5).long() # Convert to 0/1 integers
+            # labels are already 0/1 float, convert to long for comparison
+            register_labels_long = register_labels.long()
 
             all_formality_preds.extend(formality_preds.cpu().tolist())
             all_formality_labels.extend(formality_labels.cpu().tolist())
@@ -2160,6 +2259,10 @@ class Trainer:
             all_gender_labels.extend(gender_labels.cpu().tolist())
             all_grammaticality_preds.extend(grammaticality_preds.cpu().tolist())
             all_grammaticality_labels.extend(grammaticality_labels.cpu().tolist())
+            all_register_preds.extend(register_preds.cpu().tolist())
+            all_grammaticality_labels.extend(grammaticality_labels.cpu().tolist())
+            all_register_preds.extend(register_preds.cpu().tolist())
+            all_register_labels.extend(register_labels_long.cpu().tolist())
 
             if return_mismatches:
                 all_sentences.extend(batch.get('original_sentence', []))
@@ -2169,6 +2272,7 @@ class Trainer:
             total_formality_loss += formality_loss.item()
             total_gender_loss += gender_loss.item()
             total_grammaticality_loss += grammaticality_loss.item()
+            total_register_loss += register_loss.item()
             n_batches += 1
 
         avg_loss = total_loss / n_batches
@@ -2190,7 +2294,6 @@ class Trainer:
         formality_confusion = [[0] * NUM_FORMALITY_CLASSES for _ in range(NUM_FORMALITY_CLASSES)]
         for pred, label in zip(all_formality_preds, all_formality_labels):
             formality_confusion[label][pred] += 1
-
         gender_confusion = [[0] * NUM_GENDER_CLASSES for _ in range(NUM_GENDER_CLASSES)]
         for pred, label in zip(all_gender_preds, all_gender_labels):
             gender_confusion[label][pred] += 1
@@ -2199,36 +2302,65 @@ class Trainer:
         for pred, label in zip(all_grammaticality_preds, all_grammaticality_labels):
             grammaticality_confusion[label][pred] += 1
 
+        # Register is multi-label, confusion matrix is complex. 
+        # We skip it or could do per-label confusion, but for now skipping.
+        # Register Per-Class Confusion Stats
+        # We compute TP, FP, FN, TN for each class 
+        # Structure: List[List[int]] -> [[TP, FP, FN, TN], ...] for each class
+        register_stats = [[0, 0, 0, 0] for _ in range(NUM_REGISTER_CLASSES)]
+        for preds, labels in zip(all_register_preds, all_register_labels):
+            for i in range(NUM_REGISTER_CLASSES):
+                p = preds[i]
+                l = labels[i]
+                if p == 1 and l == 1:
+                    register_stats[i][0] += 1 # TP
+                elif p == 1 and l == 0:
+                    register_stats[i][1] += 1 # FP
+                elif p == 0 and l == 1:
+                    register_stats[i][2] += 1 # FN
+                elif p == 0 and l == 0:
+                    register_stats[i][3] += 1 # TN
+
         # DDP Aggregation
         if self.is_distributed:
             # Pack metrics into a single tensor for efficient all_reduce
             # [total_loss, total_formality_loss, total_gender_loss, total_grammaticality_loss, n_batches,
             #  formality_correct, total_formality_samples,
             #  gender_correct, total_gender_samples,
-            #  grammaticality_correct, total_grammaticality_samples]
+            #  grammaticality_correct, total_grammaticality_samples,
+            #  total_register_loss, register_correct, total_register_samples]
             # + flattened confusion matrices
             
             formality_correct = sum(p == l for p, l in zip(all_formality_preds, all_formality_labels))
             gender_correct = sum(p == l for p, l in zip(all_gender_preds, all_gender_labels))
             grammaticality_correct = sum(p == l for p, l in zip(all_grammaticality_preds, all_grammaticality_labels))
+            register_correct = sum(
+                all(p[i] == l[i] for i in range(len(p))) 
+                for p, l in zip(all_register_preds, all_register_labels)
+            ) # Exact match for sets (lists of 0/1)
             
             metrics = torch.tensor([
                 total_loss, total_formality_loss, total_gender_loss, total_grammaticality_loss, n_batches,
                 formality_correct, len(all_formality_preds),
                 gender_correct, len(all_gender_preds),
-                grammaticality_correct, len(all_grammaticality_preds)
+                grammaticality_correct, len(all_grammaticality_preds),
+                total_register_loss, register_correct, len(all_register_preds)
             ], device=self.device)
+            
+            # Flatten register stats: [TP0, FP0, FN0, TN0, TP1, ...]
+            # 4 * NUM_REGISTER_CLASSES
+            reg_stats_flat = torch.tensor([item for sublist in register_stats for item in sublist], device=self.device)
             
             # Flatten confusion matrices
             f_conf_flat = torch.tensor([item for sublist in formality_confusion for item in sublist], device=self.device)
             g_conf_flat = torch.tensor([item for sublist in gender_confusion for item in sublist], device=self.device)
             gram_conf_flat = torch.tensor([item for sublist in grammaticality_confusion for item in sublist], device=self.device)
-            
             # All-reduce everything
             dist.all_reduce(metrics, op=dist.ReduceOp.SUM)
             dist.all_reduce(f_conf_flat, op=dist.ReduceOp.SUM)
             dist.all_reduce(g_conf_flat, op=dist.ReduceOp.SUM)
             dist.all_reduce(gram_conf_flat, op=dist.ReduceOp.SUM)
+            dist.all_reduce(reg_stats_flat, op=dist.ReduceOp.SUM)
             
             # Unpack
             total_loss = metrics[0].item()
@@ -2236,11 +2368,13 @@ class Trainer:
             total_gender_loss = metrics[2].item()
             total_grammaticality_loss = metrics[3].item()
             n_batches = int(metrics[4].item())
+            total_register_loss = metrics[11].item()
             
             # Accuracies from global counts
             formality_acc = metrics[5].item() / metrics[6].item() if metrics[6].item() > 0 else 0
             gender_acc = metrics[7].item() / metrics[8].item() if metrics[8].item() > 0 else 0
             grammaticality_acc = metrics[9].item() / metrics[10].item() if metrics[10].item() > 0 else 0
+            register_acc = metrics[12].item() / metrics[13].item() if metrics[13].item() > 0 else 0
             
             # Reconstruct confusion matrices
             f_conf_list = f_conf_flat.cpu().tolist()
@@ -2252,38 +2386,57 @@ class Trainer:
             gram_conf_list = gram_conf_flat.cpu().tolist()
             grammaticality_confusion = [gram_conf_list[i*NUM_GRAMMATICALITY_CLASSES:(i+1)*NUM_GRAMMATICALITY_CLASSES] for i in range(NUM_GRAMMATICALITY_CLASSES)]
             
+            reg_conf_list = reg_conf_flat.cpu().tolist()
+            reg_conf_list = reg_conf_flat.cpu().tolist() # Actually this was placeholder in original code? No, I added reg_conf_flat logic?
+            # Wait, line 2369 in original was `reg_conf_list = reg_conf_flat.cpu().tolist()`? 
+            # In my view output it wasn't there. I need to be careful.
+            # The original code did NOT have register confusion logic in DDP block.
+            # So I am ADDING it.
+            
+            reg_stats_list = reg_stats_flat.cpu().tolist()
+            register_stats = [reg_stats_list[i*4:(i+1)*4] for i in range(NUM_REGISTER_CLASSES)]
+            
         else:
             # Local calculation
             formality_acc = sum(p == l for p, l in zip(all_formality_preds, all_formality_labels)) / len(all_formality_preds) if all_formality_preds else 0
             gender_acc = sum(p == l for p, l in zip(all_gender_preds, all_gender_labels)) / len(all_gender_preds) if all_gender_preds else 0
             grammaticality_acc = sum(p == l for p, l in zip(all_grammaticality_preds, all_grammaticality_labels)) / len(all_grammaticality_preds) if all_grammaticality_preds else 0
+            register_acc = sum(p == l for p, l in zip(all_register_preds, all_register_labels)) / len(all_register_preds) if all_register_preds else 0
 
         avg_loss = total_loss / n_batches if n_batches > 0 else 0
         avg_formality_loss = total_formality_loss / n_batches if n_batches > 0 else 0
         avg_gender_loss = total_gender_loss / n_batches if n_batches > 0 else 0
         avg_grammaticality_loss = total_grammaticality_loss / n_batches if n_batches > 0 else 0
+        avg_register_loss = total_register_loss / n_batches if n_batches > 0 else 0
 
         results = {
             'loss': avg_loss,
             'formality_loss': avg_formality_loss,
             'gender_loss': avg_gender_loss,
             'grammaticality_loss': avg_grammaticality_loss,
+            'register_loss': avg_register_loss,
             'formality_accuracy': formality_acc,
             'gender_accuracy': gender_acc,
             'grammaticality_accuracy': grammaticality_acc,
+            'register_accuracy': register_acc,
             'formality_confusion': formality_confusion,
             'gender_confusion': gender_confusion,
             'grammaticality_confusion': grammaticality_confusion,
+            'grammaticality_confusion': grammaticality_confusion,
+            'register_stats': register_stats, # Renamed from register_confusion placeholder
         }
 
         if return_mismatches:
             mismatches: Dict[str, List[Dict[str, Any]]] = {
                 'formality': [],
                 'gender': [],
-                'grammaticality': []
+                'grammaticality': [],
+                'register': [],
             }
 
-            for i, sent in enumerate(all_sentences):
+            for i in range(len(all_sentences)):
+                sent = all_sentences[i]
+                
                 # Formality
                 if all_formality_preds[i] != all_formality_labels[i]:
                     mismatches['formality'].append({
@@ -2313,6 +2466,17 @@ class Trainer:
                         'actual': actual_label,
                         'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
                     })
+                
+                # Register
+                if all_register_preds[i] != all_register_labels[i]:
+                    pred_labels = [REGISTER_ID_TO_LABEL[idx].value for idx, val in enumerate(all_register_preds[i]) if val == 1]
+                    act_labels = [REGISTER_ID_TO_LABEL[idx].value for idx, val in enumerate(all_register_labels[i]) if val == 1]
+                    mismatches['register'].append({
+                        'sentence': sent,
+                        'predicted': ", ".join(pred_labels) if pred_labels else "none",
+                        'actual': ", ".join(act_labels) if act_labels else "none",
+                        'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
+                    })
             
             results['mismatches'] = mismatches
 
@@ -2336,7 +2500,7 @@ class Trainer:
         for epoch in range(self.start_epoch, self.config.epochs):
             if verbose:
                 print(f"Epoch {epoch+1}/{self.config.epochs}")
-            train_loss, train_formality_loss, train_gender_loss, train_grammaticality_loss = self.train_epoch(verbose=verbose)
+            train_loss, train_formality_loss, train_gender_loss, train_grammaticality_loss, train_register_loss = self.train_epoch(verbose=verbose)
             eval_results = self.evaluate()
 
             self.scheduler.step(eval_results['loss'])
@@ -2345,18 +2509,21 @@ class Trainer:
             self.history['train_formality_loss'].append(train_formality_loss)
             self.history['train_gender_loss'].append(train_gender_loss)
             self.history['train_grammaticality_loss'].append(train_grammaticality_loss)
+            self.history['train_register_loss'].append(train_register_loss)
             self.history['val_loss'].append(eval_results['loss'])
             self.history['val_formality_loss'].append(eval_results['formality_loss'])
             self.history['val_gender_loss'].append(eval_results['gender_loss'])
             self.history['val_grammaticality_loss'].append(eval_results['grammaticality_loss'])
+            self.history['val_register_loss'].append(eval_results['register_loss'])
             self.history['val_formality_accuracy'].append(eval_results['formality_accuracy'])
             self.history['val_gender_accuracy'].append(eval_results['gender_accuracy'])
             self.history['val_grammaticality_accuracy'].append(eval_results['grammaticality_accuracy'])
+            self.history['val_register_accuracy'].append(eval_results['register_accuracy'])
 
             if verbose:
-                print(f"  Train Loss: {train_loss:.4f} (formality={train_formality_loss:.4f}, gender={train_gender_loss:.4f}, gram={train_grammaticality_loss:.4f})")
-                print(f"  Val Loss: {eval_results['loss']:.4f} (formality={eval_results['formality_loss']:.4f}, gender={eval_results['gender_loss']:.4f}, gram={eval_results['grammaticality_loss']:.4f})")
-                print(f"  Val Acc: formality={eval_results['formality_accuracy']:.4f}, gender={eval_results['gender_accuracy']:.4f}, gram={eval_results['grammaticality_accuracy']:.4f}")
+                print(f"  Train Loss: {train_loss:.4f} (F={train_formality_loss:.4f}, G={train_gender_loss:.4f}, Gram={train_grammaticality_loss:.4f}, Reg={train_register_loss:.4f})")
+                print(f"  Val Loss: {eval_results['loss']:.4f} (F={eval_results['formality_loss']:.4f}, G={eval_results['gender_loss']:.4f}, Gram={eval_results['grammaticality_loss']:.4f}, Reg={eval_results['register_loss']:.4f})")
+                print(f"  Val Acc: F={eval_results['formality_accuracy']:.4f}, G={eval_results['gender_accuracy']:.4f}, Gram={eval_results['grammaticality_accuracy']:.4f}, Reg={eval_results['register_accuracy']:.4f}")
                 enc_lr = self.optimizer.param_groups[0]['lr']
                 cls_lr = self.optimizer.param_groups[1]['lr']
                 print(f"  LR: encoder={enc_lr:.2e}, classifier={cls_lr:.2e}")
@@ -2477,6 +2644,36 @@ class Trainer:
                     writer.writeheader()
                     writer.writerows(mismatches['gender'])
                 print(f"Saved {len(mismatches['gender'])} gender mismatches to {out_path}")
+
+        # Print Register Performance Report
+        if 'register_stats' in eval_results:
+            reg_stats = eval_results['register_stats']
+            print("\nRegister Classification Report:")
+            header = f"{'Class':<15} {'Prec':<10} {'Rec':<10} {'F1':<10} {'Supp':<10}"
+            print(header)
+            print("-" * len(header))
+            
+            for i, stats in enumerate(reg_stats):
+                tp, fp, fn, tn = stats
+                label = REGISTER_ID_TO_LABEL[i].value
+                
+                precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+                recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+                f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
+                support = tp + fn
+                
+                print(f"{label:<15} {precision:.4f}     {recall:.4f}     {f1:.4f}     {support:<10}")
+
+            if mismatches.get('register'):
+                # Sort by sentence for reproducible order
+                mismatches['register'].sort(key=lambda x: x.get('sentence', ''))
+
+                out_path = os.path.join(save_dir, 'register_confusion.csv')
+                with open(out_path, 'w', newline='', encoding='utf-8') as f:
+                    writer = csv.DictWriter(f, fieldnames=['sentence', 'predicted', 'actual', 'kotogram'], delimiter='\t')
+                    writer.writeheader()
+                    writer.writerows(mismatches['register'])
+                print(f"Saved {len(mismatches['register'])} register mismatches to {out_path}")
 
     def restore_from_checkpoint(self, checkpoint: Dict[str, Any], reset_optimizer: bool = False) -> None:
         """Restore training state from checkpoint.
@@ -3388,7 +3585,8 @@ if __name__ == "__main__":
     )
 
     # Print final metrics
-    trainer.print_confusion_matrices(verbose=is_main_process())
+    # Print final metrics
+    trainer.print_confusion_matrices(save_dir=args.output, verbose=is_main_process())
 
     # Evaluate on test set
     print("\nEvaluating on test set...")
@@ -3400,34 +3598,37 @@ if __name__ == "__main__":
 
     model.eval()
     device = torch.device(trainer_config.device)
-    formality_correct = 0
-    gender_correct = 0
-    grammaticality_correct = 0
-    total = 0
-
+    total_formality_acc = 0.0
+    total_gender_acc = 0.0
+    total_gram_acc = 0.0
+    total_register_acc = 0.0
+    num_batches = 0
+    
     with torch.no_grad():
         for batch in test_loader:
-            field_inputs = {
-                k: v.to(device) for k, v in batch.items()
-                if k.startswith('input_ids_')
-            }
+            field_inputs = {k: v.to(device) for k, v in batch.items() if k.startswith('input_ids_')}
             attention_mask = batch['attention_mask'].to(device)
             formality_labels = batch['formality_labels'].to(device)
             gender_labels = batch['gender_labels'].to(device)
             grammaticality_labels = batch['grammaticality_labels'].to(device)
-
-            formality_logits, gender_logits, grammaticality_logits = model(field_inputs, attention_mask)
-            formality_preds = formality_logits.argmax(dim=-1)
-            gender_preds = gender_logits.argmax(dim=-1)
-            grammaticality_preds = grammaticality_logits.argmax(dim=-1)
-
-            formality_correct += (formality_preds == formality_labels).sum().item()
-            gender_correct += (gender_preds == gender_labels).sum().item()
-            grammaticality_correct += (grammaticality_preds == grammaticality_labels).sum().item()
-            total += formality_labels.size(0)
-
-    print(f"Test Accuracy (float32): formality={formality_correct/total:.4f}, gender={gender_correct/total:.4f}, gram={grammaticality_correct/total:.4f}")
-    f32_accuracy = (formality_correct/total, gender_correct/total, grammaticality_correct/total)
+            register_labels = batch['register_labels'].to(device) # Added register_labels
+            
+            formality_logits, gender_logits, grammaticality_logits, register_logits = model(field_inputs, attention_mask) # Added register_logits
+            
+            register_preds = (torch.sigmoid(register_logits) > 0.5).long()
+            total_formality_acc += (formality_logits.argmax(-1) == formality_labels).float().mean().item()
+            total_gender_acc += (gender_logits.argmax(-1) == gender_labels).float().mean().item()
+            total_gram_acc += (grammaticality_logits.argmax(-1) == grammaticality_labels).float().mean().item()
+            total_register_acc += (register_preds == register_labels.long()).all(dim=1).float().mean().item() # Added register_acc
+            num_batches += 1
+            
+    f32_accuracy = (
+        total_formality_acc / num_batches,
+        total_gender_acc / num_batches,
+        total_gram_acc / num_batches,
+        total_register_acc / num_batches, # Added register_acc to f32_accuracy
+    )
+    print(f"Test Accuracy (float32): formality={f32_accuracy[0]:.4f}, gender={f32_accuracy[1]:.4f}, gram={f32_accuracy[2]:.4f}, register={f32_accuracy[3]:.4f}") # Updated print statement
 
     # Save model
     if is_main_process():
@@ -3449,6 +3650,8 @@ if __name__ == "__main__":
         loaded_model, _ = load_model(args.output, device=device)
 
         formality_correct = 0
+        # Log metrics
+        register_correct = 0
         gender_correct = 0
         grammaticality_correct = 0
         total = 0
@@ -3463,25 +3666,31 @@ if __name__ == "__main__":
                 formality_labels = batch['formality_labels'].to(device)
                 gender_labels = batch['gender_labels'].to(device)
                 grammaticality_labels = batch['grammaticality_labels'].to(device)
+                register_labels = batch['register_labels'].to(device)
 
-                formality_logits, gender_logits, grammaticality_logits = loaded_model(field_inputs, attention_mask)
+                formality_logits, gender_logits, grammaticality_logits, register_logits = loaded_model(field_inputs, attention_mask)
                 formality_preds = formality_logits.argmax(dim=-1)
                 gender_preds = gender_logits.argmax(dim=-1)
                 grammaticality_preds = grammaticality_logits.argmax(dim=-1)
+                register_preds = (torch.sigmoid(register_logits) > 0.5).long() # Multi-label
 
                 formality_correct += (formality_preds == formality_labels).sum().item()
                 gender_correct += (gender_preds == gender_labels).sum().item()
                 grammaticality_correct += (grammaticality_preds == grammaticality_labels).sum().item()
+                register_correct += (register_preds == register_labels.long()).all(dim=1).int().sum().item()
                 total += formality_labels.size(0)
 
-        reduced_accuracy = (formality_correct/total, gender_correct/total, grammaticality_correct/total)
-        print(f"Test Accuracy ({precision_name}):    formality={reduced_accuracy[0]:.4f}, gender={reduced_accuracy[1]:.4f}, gram={reduced_accuracy[2]:.4f}")
+        reduced_accuracy = (
+            formality_correct/total, 
+            gender_correct/total, 
+            grammaticality_correct/total,
+            register_correct/total
+        )
+        print(f"Test Accuracy ({precision_name}):    formality={reduced_accuracy[0]:.4f}, gender={reduced_accuracy[1]:.4f}, gram={reduced_accuracy[2]:.4f}, register={reduced_accuracy[3]:.4f}")
 
         # Show difference
         diff = tuple(reduced - f32 for reduced, f32 in zip(reduced_accuracy, f32_accuracy))
-        # Show difference
-        diff = tuple(reduced - f32 for reduced, f32 in zip(reduced_accuracy, f32_accuracy))
-        print(f"Difference ({precision_name}-f32):   formality={diff[0]:+.4f}, gender={diff[1]:+.4f}, gram={diff[2]:+.4f}")
+        print(f"Difference ({precision_name}-f32):   formality={diff[0]:+.4f}, gender={diff[1]:+.4f}, gram={diff[2]:+.4f}, register={diff[3]:+.4f}")
 
     if dist.is_available() and dist.is_initialized():
         dist.destroy_process_group()

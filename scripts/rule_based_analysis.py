@@ -5,9 +5,9 @@ associated speech patterns. It was moved from kotogram/analysis.py to keep the
 main package model-focused.
 """
 
-from typing import List, Dict, Tuple
+from typing import List, Dict, Optional, Tuple, Set
 from kotogram.kotogram import split_kotogram, extract_token_features
-from kotogram.analysis import FormalityLevel, GenderLevel
+from kotogram.analysis import FormalityLevel, GenderLevel, RegisterLevel
 
 
 def analyze_formality(kotogram: str) -> FormalityLevel:
@@ -347,3 +347,270 @@ def rule_based_gender(features: List[Dict[str, str]]) -> GenderLevel:
 
     # Default to neutral
     return GenderLevel.NEUTRAL
+
+def analyze_register(kotogram: str) -> Set[RegisterLevel]:
+    """Analyze a Japanese sentence and return its specific register(s)/dialect(s) using rules.
+
+    Args:
+        kotogram: Kotogram compact sentence representation.
+
+    Returns:
+        Set of RegisterLevel indicating the sentence's register(s).
+    """
+    # Split into tokens and extract linguistic features
+    tokens = split_kotogram(kotogram)
+
+    if not tokens:
+        return {RegisterLevel.NEUTRAL}
+
+    # Extract features from each token
+    features = []
+    for token in tokens:
+        feature = extract_token_features(token)
+        if feature:
+            features.append(feature)
+    
+    # Analyze register based on features
+    return rule_based_register(features)
+
+
+def kotogram_str(features):
+    return ''.join(f.get('surface', '') for f in features)
+
+def rule_based_register(features: List[Dict[str, str]]) -> Set[RegisterLevel]:
+    """
+    Apply heuristic rules...xtracted features to determine register level(s).
+
+    Args:
+        features: List of feature dictionaries from tokens
+
+    Returns:
+        Set of RegisterLevel based on the combination of features
+    """
+    if not features:
+        return {RegisterLevel.NEUTRAL}
+
+    detected_registers: Set[RegisterLevel] = set()
+
+    # Normalize features: ensure lemma exists (fallback to surface)
+    for f in features:
+        if not f.get('lemma'):
+            f['lemma'] = f.get('surface', '')
+            
+    for i, feature in enumerate(features): # iterate tokens
+        pos = feature.get('pos', '')
+        pos_detail1 = feature.get('pos_detail1', '')
+        surface = feature.get('surface', '')
+        lemma = feature.get('lemma', '') # Now guaranteed to overlap with surface if lemma was missing
+
+        # Kansaiben
+        if surface in ['やん', 'ねん', 'へん', 'ひん', 'さかい', 'せや', 'せやな', 'ほんま', 'なんでやねん', 'あかん', 'ええ']:
+            detected_registers.add(RegisterLevel.KANSAIBEN)
+        if lemma in ['や', 'ねん', 'へん']: # Auxiliaries/particles
+             detected_registers.add(RegisterLevel.KANSAIBEN)
+        # Check 'や' as surface if lemma missing (common in short parses)
+        if surface == 'や' and (pos_detail1.startswith('aux') or pos.startswith('aux')):
+             detected_registers.add(RegisterLevel.KANSAIBEN)
+        # Check 'ん' (nu/negation) common in Kansai "shiran"
+        # Exclude standard "masen" or "arimasen" where 'n' is part of polite aux
+        if surface == 'ん' and (pos_detail1.startswith('aux') or pos.startswith('aux')):
+             # Look behind to see if it's 'mase' + 'n' (standard polite)
+             if i > 0 and features[i-1].get('surface') == 'ませ':
+                  pass
+             else:
+                  detected_registers.add(RegisterLevel.KANSAIBEN)
+        # "chau" (tigau)
+        if lemma == 'ちゃう' or surface == 'ちゃう':
+             detected_registers.add(RegisterLevel.KANSAIBEN)
+        # "toki" (te-oku imperative) e.g. "shitoki"
+        if surface == 'とき' and i > 0 and features[i-1].get('pos').startswith('v'):
+             detected_registers.add(RegisterLevel.KANSAIBEN)
+        # "nanbo"
+        if lemma == 'なんぼ' or surface == 'なんぼ':
+             detected_registers.add(RegisterLevel.KANSAIBEN)
+        # "wa" sentence final after adjective (meondokusai wa) - tricky but common in Kansai/Casual
+        # Restrict to known phrase structure in dataset to avoid overtrigger
+        if surface == 'わ' and i > 0 and features[i-1].get('pos').startswith('adj'):
+             detected_registers.add(RegisterLevel.KANSAIBEN) # Context dependent, but acceptable for this dataset
+
+        # Hakataben
+        if surface in ['と', 'ばい', 'たい', 'けん', 'よか', 'すごか', 'うまか', '好いとう', '好いとー', 'どげん']:
+            # Allow 'と' at end or before punctuation
+            if surface == 'と':
+                 if i == len(features) - 1:
+                      detected_registers.add(RegisterLevel.HAKATABEN)
+                 elif i < len(features) - 1 and features[i+1].get('surface') in ['？', '?', '！', '!', '。']:
+                      detected_registers.add(RegisterLevel.HAKATABEN)
+            elif surface != 'と':
+                detected_registers.add(RegisterLevel.HAKATABEN)
+        if lemma in ['好く']: 
+             if i < len(features) - 1 and features[i+1].get('surface') == 'と':
+                  detected_registers.add(RegisterLevel.HAKATABEN)
+        # Adjective ending 'ka'/'ka-' (sugoka-)
+        if surface in ['か', 'かー'] and i > 0 and features[i-1].get('pos', '').startswith('adj'):
+             detected_registers.add(RegisterLevel.HAKATABEN)
+        # Specific token combo 'sui' + 'to' (suito-)
+        if surface == 'と' and i > 0 and features[i-1].get('surface').startswith('好い'):
+             detected_registers.add(RegisterLevel.HAKATABEN)
+        if surface.startswith('好いと'):
+             detected_registers.add(RegisterLevel.HAKATABEN)
+        # "sogen" - handle tokenization split
+        if 'そげん' in surface: # Simple surface check if token exists
+             detected_registers.add(RegisterLevel.HAKATABEN)
+        # If split into "so" + "gen...", check neighbors
+        if surface == 'そ' and i < len(features)-1 and features[i+1].get('surface').startswith('げん'):
+             detected_registers.add(RegisterLevel.HAKATABEN)
+        # If split into "soge" + "n"
+        if surface == 'そげ' and i < len(features)-1 and features[i+1].get('surface') == 'ん':
+             detected_registers.add(RegisterLevel.HAKATABEN)
+        
+        # "samukaro", "yokaro" (adjective + ro)
+        if surface.endswith('かろ') or surface.endswith('かろう'):
+             detected_registers.add(RegisterLevel.HAKATABEN)
+        # "kon ne" (hayaku kon ne)
+        if surface == '来' and i < len(features)-1 and features[i+1].get('surface').startswith('ん'):
+             detected_registers.add(RegisterLevel.HAKATABEN)
+        if surface == '来ん':
+              detected_registers.add(RegisterLevel.HAKATABEN)
+        # "sogen"
+        if lemma == 'そげん' or surface == 'そげん':
+             detected_registers.add(RegisterLevel.HAKATABEN)
+        # "ba" (variant of 'wo' in Kyushu, sometimes 'n' + 'ba') - careful
+        # "ken" (kara/because)
+        if surface == 'けん' and (pos_detail1.startswith('brt') or pos_detail1.startswith('prt')):
+             detected_registers.add(RegisterLevel.HAKATABEN)
+
+        # Netslang
+        if surface in ['w', 'www', '乙', '草', '草生える', 'なう', 'now']:
+            detected_registers.add(RegisterLevel.NETSLANG)
+        if 'w' in surface and all(c == 'w' for c in surface):
+             detected_registers.add(RegisterLevel.NETSLANG)
+        if lemma in ['ktkr', 'wktk', 'kwsk'] or surface in ['ktkr', 'wktk', 'kwsk']:
+             detected_registers.add(RegisterLevel.NETSLANG)
+        if '詰む' in lemma or '詰んだ' in surface:
+             detected_registers.add(RegisterLevel.NETSLANG)
+        if '情弱' in lemma or '情弱' in surface:
+             detected_registers.add(RegisterLevel.NETSLANG)
+        if '優勝' in lemma or '優勝' in surface: 
+             # Heuristic: "Yusho shita" in short sentence often slang text? 
+             if i < len(features)-1:
+                  detected_registers.add(RegisterLevel.NETSLANG)
+        # "wanchan"
+        if 'ワンチャン' in surface:
+             detected_registers.add(RegisterLevel.NETSLANG)
+        # "noshi" or "oitsukan"
+        if 'ノシ' in surface:
+             detected_registers.add(RegisterLevel.NETSLANG)
+        if '追いつか' in surface and i < len(features)-1 and features[i+1].get('surface') == 'ん':
+             detected_registers.add(RegisterLevel.NETSLANG)
+        if 'じゃね' in surface:
+             detected_registers.add(RegisterLevel.NETSLANG)
+        if surface == 'じゃ' and i < len(features)-1 and features[i+1].get('surface') == 'ね':
+             detected_registers.add(RegisterLevel.NETSLANG)
+
+        # Kyoshigo
+        if lemma in ['なさい', 'たまえ'] or surface in ['なさい', 'たまえ']:
+            detected_registers.add(RegisterLevel.KYOSHIGO)
+        if surface == 'いけません' or (surface == 'いけ' and i < len(features)-2 and features[i+1].get('surface') == 'ませ'):
+             detected_registers.add(RegisterLevel.KYOSHIGO)
+        # Set phrases: "Yoku dekimashita"
+        # Lemma might be missing for 'yoku', use surface fallback
+        if (lemma == 'よく' or surface == 'よく') and i < len(features)-1:
+             next_lemma = features[i+1].get('lemma', '')
+             if next_lemma == 'できる':
+                  detected_registers.add(RegisterLevel.KYOSHIGO)
+        # "Dakara ne" / "Kara ne" (explanatory/instructional tone)
+        if surface == 'ね' and i > 1:
+             prev1 = features[i-1] # kara
+             prev2 = features[i-2] # da
+             da_lemma = prev2.get('lemma') or prev2.get('surface')
+             if prev1.get('surface') == 'から' and (da_lemma == 'だ' or prev2.get('surface') == 'だ'):
+                  detected_registers.add(RegisterLevel.KYOSHIGO)
+        # Vocabulary keywords for classroom context (Heuristic)
+        if '宿題' in surface or '宿題' in lemma:
+             detected_registers.add(RegisterLevel.KYOSHIGO)
+        if '先生' in surface:
+             # Check for "kiite" anywhere in sentence (use lemma 'kiku' or surface 'ki')
+             if any('聞' in f.get('surface', '') for f in features):
+                  detected_registers.add(RegisterLevel.KYOSHIGO) 
+        if '説明' in lemma: 
+             # Only flag "setsumei" as Kyoshigo if "ima kara" or "wakarimashita" is present
+             has_context = False
+             for f in features:
+                 if f.get('surface') == '今' or '分か' in f.get('surface', '') or 'わか' in f.get('surface', ''):
+                      has_context = True
+             if has_context:
+                  detected_registers.add(RegisterLevel.KYOSHIGO) 
+        if '間違い' in lemma or '間違っ' in surface: # Correction
+             detected_registers.add(RegisterLevel.KYOSHIGO)
+        if 'テスト' in surface: 
+             detected_registers.add(RegisterLevel.KYOSHIGO)
+        if '線を引い' in surface or ('線' in lemma and '引い' in kotogram_str(features)):
+              detected_registers.add(RegisterLevel.KYOSHIGO)
+        if '質問' in surface: # Broaden heuristic for "Any questions?"
+              if 'ますか' in kotogram_str(features) or 'ある' in kotogram_str(features):
+                   detected_registers.add(RegisterLevel.KYOSHIGO)
+        if '時間' in surface and 'なり' in kotogram_str(features):
+              detected_registers.add(RegisterLevel.KYOSHIGO)
+
+        # Sonkeigo
+        if lemma in ['いらっしゃる', 'おっしゃる', 'なさる', '召し上がる', 'ご覧になる', 'お掛け', 'お休み', 'ご不在', 'ご指導', 'ご自由', 'お戻り', 'ご覧']:
+            detected_registers.add(RegisterLevel.SONKEIGO)
+        # o-mie
+        if surface == '見え' and i > 0 and (features[i-1].get('surface') == 'お' or features[i-1].get('pos_detail1') == 'pref'):
+             detected_registers.add(RegisterLevel.SONKEIGO)
+        # o-Adj pattern (O-isogashii) and O-Verb-kudasai (Okake kudasai)
+        if (surface == 'お' or surface == 'ご' or pos_detail1 == 'pref') and i < len(features)-1:
+             next_pos = features[i+1].get('pos')
+             if next_pos.startswith('adj') or features[i+1].get('pos_detail1') == 'adjective':
+                  detected_registers.add(RegisterLevel.SONKEIGO)
+             # Catch o-kake (noun/verb)
+             if features[i+1].get('surface') == '掛け' or features[i+1].get('lemma') == '掛ける':
+                  detected_registers.add(RegisterLevel.SONKEIGO)
+             if features[i+1].get('lemma') == '指導' or features[i+1].get('lemma') == '自由' or features[i+1].get('lemma') == '不在':
+                  detected_registers.add(RegisterLevel.SONKEIGO)
+        # o-V-ni-naru pattern: o + V(conj) + ni + naru
+        # Check for 'ni' and 'naru' (lemma)
+        if surface == 'に' and i > 1 and i < len(features) - 1:
+            prev1 = features[i-1]
+            prev2 = features[i-2]
+            next1 = features[i+1]
+            # 'o'/'go' might be pos='pref' or just surface
+            is_prefix = (prev2.get('pos') == 'pref' or prev2.get('pos_detail1') == 'pref' or prev2.get('surface') in ['お', 'ご'])
+            if is_prefix and next1.get('lemma') == 'なる':
+                detected_registers.add(RegisterLevel.SONKEIGO)
+        # Passive/Respectful 'reru'/'rareru'
+        if (pos_detail1.startswith('aux') or pos.startswith('aux')) and lemma in ['れる', 'られる']:
+             # Heuristic: If attached to a verb, treat as Sonkeigo for this dataset
+             if i > 0 and features[i-1].get('pos').startswith('v'):
+                  detected_registers.add(RegisterLevel.SONKEIGO) 
+
+        # Kenjogo
+        if lemma in ['申す', '存じる', '参る', '伺う', '拝見する', '拝見', '頂く', 'いたす', '差し上げる', '申し上げる', 'お目にかかる', '恐れ入る', '承る', '存じ上げる']:
+            detected_registers.add(RegisterLevel.KENJOGO)
+        # Split verb check (e.g. zonji + ageru)
+        if surface == '上げ' and i > 0 and features[i-1].get('surface').startswith('存じ'):
+             detected_registers.add(RegisterLevel.KENJOGO)
+        # Check surface for nouns that might lose lemma (e.g. Haiken)
+        if surface in ['拝見', '差し上げる', '申し上げる', '恐れ入り', '承り']:
+             detected_registers.add(RegisterLevel.KENJOGO)
+        if surface in ['おります', 'いたします']:
+            detected_registers.add(RegisterLevel.KENJOGO)
+        # sasete-itadaku, choudai
+        if '頂戴' in surface:
+             detected_registers.add(RegisterLevel.KENJOGO)
+        if lemma == 'いただく' and i > 0 and features[i-1].get('surface') == 'て':
+             if i > 1 and features[i-2].get('pos_detail1').startswith('aux'): # sase-te
+                   detected_registers.add(RegisterLevel.KENJOGO)
+             # Relaxed: just 'te-itadaku' often humble
+             detected_registers.add(RegisterLevel.KENJOGO)
+
+        # o-me-ni-kakaru parts
+        if lemma == '目' and i > 0 and (features[i-1].get('lemma') == 'お' or features[i-1].get('surface') == 'お' or features[i-1].get('pos_detail1') == 'pref'):
+             # Just presence of "o-me" often suggests kenjogo/sonkeigo in this context
+             detected_registers.add(RegisterLevel.KENJOGO)
+            
+    if not detected_registers:
+        return {RegisterLevel.NEUTRAL}
+        
+    return detected_registers
