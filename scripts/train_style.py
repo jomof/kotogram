@@ -2263,8 +2263,6 @@ class Trainer:
             all_grammaticality_preds.extend(grammaticality_preds.cpu().tolist())
             all_grammaticality_labels.extend(grammaticality_labels.cpu().tolist())
             all_register_preds.extend(register_preds.cpu().tolist())
-            all_grammaticality_labels.extend(grammaticality_labels.cpu().tolist())
-            all_register_preds.extend(register_preds.cpu().tolist())
             all_register_labels.extend(register_labels_long.cpu().tolist())
 
             if return_mismatches:
