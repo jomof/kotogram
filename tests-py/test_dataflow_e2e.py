@@ -506,6 +506,149 @@ def test_step7_evaluate_list_consistency():
     return True
 
 
+def test_step8_trace_register_mislabel():
+    """Step 8: Trace a specific mislabeled sentence from register_confusion.csv.
+    
+    This test follows a sentence that was mislabeled as 'netslang' when it should
+    have been 'hakataben' to find where the labeling goes wrong.
+    """
+    print("\n" + "="*60)
+    print("STEP 8: Trace Register Mislabeling")
+    print("="*60)
+    
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    from scripts.rule_based_analysis import analyze_register, RegisterLevel
+    from scripts.train_style import _process_sentence_batch, StyleDataset, _encode_samples_batch
+    from kotogram.model import Tokenizer, NUM_REGISTER_CLASSES
+    
+    # Pick a sentence from register_confusion.csv that was mislabeled
+    # This one was labeled hakataben but predicted as netslang
+    test_sentence = "A:本当に全部食べるの？B:それはお腹ペコペコだからね！"
+    expected_register = "hakataben"
+    
+    print(f"\nTest sentence: '{test_sentence}'")
+    print(f"Expected register: {expected_register}")
+    
+    # Step 8.1: Parse the sentence
+    print("\n--- Step 8.1: Parsing ---")
+    parser = SudachiJapaneseParser()
+    kotogram = parser.japanese_to_kotogram(test_sentence)
+    print(f"Kotogram: '{kotogram[:80]}...'")
+    
+    # Step 8.2: Run analyze_register 
+    print("\n--- Step 8.2: Rule-based analyze_register ---")
+    registers = analyze_register(kotogram)
+    print(f"analyze_register result: {registers}")
+    print(f"Register names: {[r.name for r in registers]}")
+    register_ids = [r.value for r in registers]
+    print(f"Register IDs: {register_ids}")
+    
+    # Check: Does analyze_register correctly identify hakataben?
+    has_hakataben = any(r.name.lower() == 'hakataben' for r in registers)
+    has_netslang = any(r.name.lower() == 'netslang' for r in registers)
+    print(f"\\nContains HAKATABEN? {has_hakataben}")
+    print(f"Contains NETSLANG? {has_netslang}")
+    
+    # Step 8.3: Run through _process_sentence_batch
+    print("\n--- Step 8.3: _process_sentence_batch ---")
+    batch = [(test_sentence, "test_001", 1)]
+    results = _process_sentence_batch(batch)
+    
+    for result in results:
+        sentence, sentence_id, kotogram_out, f_id, g_id, r_ids, gram_label, success = result
+        print(f"Output register_ids: {r_ids}")
+        print(f"Register IDs type: {type(r_ids)}")
+        
+        # Decode register IDs back to names
+        register_names = []
+        for rid in r_ids:
+            for member in RegisterLevel:
+                if member.value == rid:
+                    register_names.append(member.name)
+                    break
+        print(f"Register names from IDs: {register_names}")
+    
+    # Step 8.4: Run through _process_parallel
+    print("\n--- Step 8.4: _process_parallel ---")
+    rows = [(test_sentence, "test_001", 1)]
+    processed = StyleDataset._process_parallel(
+        rows, num_workers=1, batch_size=100, verbose=False, use_kotogram_cache=False
+    )
+    
+    for p in processed:
+        print(f"Processed tuple length: {len(p)}")
+        print(f"register_ids (p[4]): {p[4]}")
+        print(f"gram_label (p[5]): {p[5]}")
+    
+    # Step 8.5: Run through _encode_samples_batch
+    print("\n--- Step 8.5: _encode_samples_batch ---")
+    encoding_inputs = [(p[0], p[1], p[2], p[3], p[4], p[5]) for p in processed if p[6]]
+    
+    tokenizer = Tokenizer()
+    for ei in encoding_inputs:
+        tokenizer.encode(ei[1], add_cls=True, add_to_vocab=True)
+    tokenizer.freeze()
+    
+    samples = _encode_samples_batch(encoding_inputs, {'field_vocabs': tokenizer.field_vocabs})
+    
+    for s in samples:
+        print(f"Sample.register_labels: {s.register_labels}")
+        
+        # Decode back to names
+        register_names = []
+        for rid in s.register_labels:
+            for member in RegisterLevel:
+                if member.value == rid:
+                    register_names.append(member.name)
+                    break
+        print(f"Register names from Sample: {register_names}")
+    
+    # Step 8.6: Check collate_fn multi-hot encoding
+    print("\n--- Step 8.6: collate_fn multi-hot encoding ---")
+    from scripts.train_style import collate_fn
+    batch = collate_fn(samples, tokenizer.pad_id)
+    
+    print(f"register_labels tensor shape: {batch['register_labels'].shape}")
+    print(f"register_labels tensor:\\n{batch['register_labels']}")
+    
+    # Decode the multi-hot back to register names
+    register_tensor = batch['register_labels'][0]  # First (only) sample
+    active_indices = (register_tensor > 0.5).nonzero(as_tuple=True)[0].tolist()
+    print(f"Active register indices: {active_indices}")
+    
+    active_names = []
+    for idx in active_indices:
+        for member in RegisterLevel:
+            if member.value == idx:
+                active_names.append(member.name)
+                break
+    print(f"Active register names: {active_names}")
+    
+    # Final check
+    print("\n--- FINAL ANALYSIS ---")
+    if has_hakataben:
+        print("✓ analyze_register correctly identifies HAKATABEN")
+    else:
+        print("❌ analyze_register DOES NOT identify HAKATABEN - rule-based logic issue!")
+        
+    if has_netslang:
+        print("⚠ analyze_register also identifies NETSLANG")
+    else:
+        print("✓ analyze_register does NOT identify NETSLANG")
+    
+    print(f"\nThe label that reaches the model: {active_names}")
+    
+    if 'HAKATABEN' in active_names and 'NETSLANG' not in active_names:
+        print("✓ Step 8 PASSED: Labels are correctly propagated")
+    elif 'HAKATABEN' not in active_names:
+        print("❌ Step 8 FAILED: HAKATABEN was lost somewhere in the pipeline!")
+    elif 'NETSLANG' in active_names:
+        print("❌ Step 8 FAILED: NETSLANG was incorrectly added!")
+    
+    return True
+
+
+
 if __name__ == "__main__":
     print("\n" + "#"*60)
     print("# END-TO-END DATA FLOW TESTS")
@@ -519,6 +662,7 @@ if __name__ == "__main__":
         test_step5_encode_samples_batch,
         test_step6_collate_fn,
         test_step7_evaluate_list_consistency,
+        test_step8_trace_register_mislabel,
     ]
     
     passed = 0
