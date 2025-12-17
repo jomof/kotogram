@@ -242,31 +242,23 @@ class ShardedKotogramCache:
             hash_to_sentence = {h: s for h, s in items}
             hashes = list(hash_to_sentence.keys())
             
-            try:
-                conn = sqlite3.connect(shard_path)
-                placeholders = ",".join("?" * len(hashes))
-                cursor = conn.execute(
-                    f"SELECT sentence_hash, kotogram, formality_label, gender_label, register_labels FROM cache_entries WHERE sentence_hash IN ({placeholders})",
-                    hashes
-                )
+            conn = sqlite3.connect(shard_path)
+            placeholders = ",".join("?" * len(hashes))
+            cursor = conn.execute(
+                f"SELECT sentence_hash, kotogram, formality_label, gender_label, register_labels FROM cache_entries WHERE sentence_hash IN ({placeholders})",
+                hashes
+            )
+            
+            for row in cursor:
+                if len(row) == 5:
+                        h, k, f_lbl, g_lbl, r_lbls_json = row
+                        r_lbls = json.loads(r_lbls_json) if r_lbls_json else None
+                else:
+                        pass
                 
-                for row in cursor:
-                    if len(row) == 5:
-                         h, k, f_lbl, g_lbl, r_lbls_json = row
-                         r_lbls = json.loads(r_lbls_json) if r_lbls_json else None
-                    else:
-                         # Backward compact if column missing? (sqlite * expands to avail cols)
-                         # Safe to select explicit cols but if schema old it fails.
-                         # Assuming schema update handled or recreation.
-                         # For now assuming updated schema or new file.
-                         pass
-                    
-                    sent = hash_to_sentence[h]
-                    results[sent] = (k, f_lbl, g_lbl, r_lbls)
-                conn.close()
-            except sqlite3.Error:
-                # If shard is corrupt or locked, just treat as miss
-                pass
+                sent = hash_to_sentence[h]
+                results[sent] = (k, f_lbl, g_lbl, r_lbls)
+            conn.close()
 
         return results
 
@@ -300,19 +292,15 @@ class ShardedKotogramCache:
             self._init_shard(shard_path) # Ensure exists
             
             conn = sqlite3.connect(shard_path)
-            try:
-                conn.executemany(
-                    """INSERT OR REPLACE INTO cache_entries 
-                       (sentence_hash, sentence, kotogram, formality_label, gender_label, register_labels) 
-                       VALUES (?, ?, ?, ?, ?, ?)""",
-                    data
-                )
-                conn.commit()
-            except sqlite3.Error as e:
-                if verbose:
-                    print(f"Error writing to cache shard {shard_path}: {e}")
-            finally:
-                conn.close()
+            conn = sqlite3.connect(shard_path)
+            conn.executemany(
+                """INSERT OR REPLACE INTO cache_entries 
+                   (sentence_hash, sentence, kotogram, formality_label, gender_label, register_labels) 
+                   VALUES (?, ?, ?, ?, ?, ?)""",
+                data
+            )
+            conn.commit()
+            conn.close()
 
     def __len__(self) -> int:
         """Return approximate number of cached entries (expensive to count all)."""
@@ -321,12 +309,10 @@ class ShardedKotogramCache:
         total = 0
         for fname in os.listdir(self.shards_dir):
             if fname.endswith(".db"):
-                try:
-                    conn = sqlite3.connect(os.path.join(self.shards_dir, fname))
-                    cursor = conn.execute("SELECT COUNT(*) FROM cache_entries")
-                    total += int(cursor.fetchone()[0])
-                    conn.close()
-                except: pass
+                conn = sqlite3.connect(os.path.join(self.shards_dir, fname))
+                cursor = conn.execute("SELECT COUNT(*) FROM cache_entries")
+                total += int(cursor.fetchone()[0])
+                conn.close()
         return total
 
 
@@ -532,26 +518,23 @@ def _process_sentence_batch(
     }
 
     for sentence, sentence_id, gram_label in batch:
-        try:
-            kotogram = parser.japanese_to_kotogram(sentence)
-            formality_enum = analyze_formality(kotogram)
-            gender_enum = analyze_gender(kotogram)
-            register_enums = analyze_register(kotogram) # returns Set
-            
-            formality_id = formality_to_id[formality_enum]
-            gender_id = gender_to_id[gender_enum]
-            
-            register_ids = []
-            for r_enum in register_enums:
-                 if r_enum in register_to_id:
-                      register_ids.append(register_to_id[r_enum])
-            
-            if not register_ids:
-                 register_ids.append(register_to_id[RegisterLevel.NEUTRAL])
+        kotogram = parser.japanese_to_kotogram(sentence)
+        formality_enum = analyze_formality(kotogram)
+        gender_enum = analyze_gender(kotogram)
+        register_enums = analyze_register(kotogram) # returns Set
+        
+        formality_id = formality_to_id[formality_enum]
+        gender_id = gender_to_id[gender_enum]
+        
+        register_ids = []
+        for r_enum in register_enums:
+                if r_enum in register_to_id:
+                    register_ids.append(register_to_id[r_enum])
+        
+        if not register_ids:
+                register_ids.append(register_to_id[RegisterLevel.NEUTRAL])
 
-            results.append((sentence, sentence_id, kotogram, formality_id, gender_id, register_ids, gram_label, 1))
-        except Exception:
-            results.append((sentence, sentence_id, "", 0, 0, [], gram_label, 0))
+        results.append((sentence, sentence_id, kotogram, formality_id, gender_id, register_ids, gram_label, 1))
 
     return results
 
@@ -565,7 +548,7 @@ class Sample:
     feature_ids: Dict[str, List[int]]  # field -> list of token IDs
     formality_label: int
     gender_label: int
-    register_labels: List[int] = field(default_factory=lambda: [6]) # Default neutral
+    register_labels: List[int] = field(default_factory=lambda: [0]) # Default neutral
     grammaticality_label: int = 1  # 1 = grammatic (default), 0 = agrammatic
     original_sentence: str = ""
     kotogram: str = ""
@@ -831,25 +814,26 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         if not os.path.exists(cache_path):
             return None
 
-        try:
-            with open(cache_path, 'rb') as f:
-                cache_data: Dict[str, Any] = pickle.load(f)
 
-            # Check cache version
-            cached_version = cache_data.get('version', 1)
-            if cached_version != CACHE_VERSION:
-                print(f"  Cache version mismatch (found v{cached_version}, need v{CACHE_VERSION}), rebuilding...")
-                return None
 
-            # Restore tokenizer state
-            tokenizer.field_vocabs = cache_data['field_vocabs']
-            tokenizer._frozen = cache_data.get('frozen', False)
-
-            samples: List[Sample] = cache_data['samples']
-            return samples
-        except Exception:
-            # Cache corrupted or incompatible, ignore it
+        if not os.path.exists(cache_path):
             return None
+
+        with open(cache_path, 'rb') as f:
+            cache_data: Dict[str, Any] = pickle.load(f)
+
+        # Check cache version
+        cached_version = cache_data.get('version', 1)
+        if cached_version != CACHE_VERSION:
+            print(f"  Cache version mismatch (found v{cached_version}, need v{CACHE_VERSION}), rebuilding...")
+            return None
+
+        # Restore tokenizer state
+        tokenizer.field_vocabs = cache_data['field_vocabs']
+        tokenizer._frozen = cache_data.get('frozen', False)
+
+        samples: List[Sample] = cache_data['samples']
+        return samples
 
     @classmethod
     def from_tsv(
@@ -954,7 +938,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 feature_ids=feature_ids,
                 formality_label=formality_id,
                 gender_label=gender_id,
-                register_label=register_id,
+                register_labels=register_id,
                 grammaticality_label=gram_label,
                 original_sentence=sentence,
                 kotogram=kotogram,
