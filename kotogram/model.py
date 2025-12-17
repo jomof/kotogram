@@ -262,7 +262,6 @@ class ModelConfig:
     vocab_sizes: Dict[str, int]  # Field name -> vocabulary size
     num_formality_classes: int = NUM_FORMALITY_CLASSES
     num_gender_classes: int = NUM_GENDER_CLASSES
-    num_gender_classes: int = NUM_GENDER_CLASSES
     num_grammaticality_classes: int = NUM_GRAMMATICALITY_CLASSES
     num_register_classes: int = NUM_REGISTER_CLASSES
     field_embed_dims: Dict[str, int] = field(default_factory=lambda: {
@@ -371,12 +370,14 @@ class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
     def resize_embeddings(self, new_vocab_sizes: Dict[str, int]) -> Dict[str, int]:
         resized = {}
         for field_name in FEATURE_FIELDS:
-            old_size = self.embeddings[field_name].num_embeddings
+            embedding = self.embeddings[field_name]
+            assert isinstance(embedding, nn.Embedding)  # Type hint for mypy
+            old_size = embedding.num_embeddings
             new_size = new_vocab_sizes.get(field_name, old_size)
 
             if new_size > old_size:
-                embed_dim = self.embeddings[field_name].embedding_dim
-                old_weight = self.embeddings[field_name].weight.data
+                embed_dim = embedding.embedding_dim
+                old_weight = embedding.weight.data
 
                 new_embedding = nn.Embedding(new_size, embed_dim, padding_idx=0)
                 new_embedding.weight.data[:old_size] = old_weight
@@ -489,7 +490,7 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         self,
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
-    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         pooled = self._get_pooled_output(field_inputs, attention_mask)
         return (
             self.formality_classifier(pooled),
@@ -610,7 +611,7 @@ def predict_style(
 
     model.eval()
     with torch.no_grad():
-        formality_probs, gender_probs, grammaticality_probs = model.predict(field_inputs, attention_mask)
+        formality_probs, gender_probs, grammaticality_probs, _ = model.predict(field_inputs, attention_mask)
         formality_probs = formality_probs[0]
         gender_probs = gender_probs[0]
         grammaticality_probs = grammaticality_probs[0]

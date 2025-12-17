@@ -356,7 +356,7 @@ def grammaticality(kotogram: str) -> bool:
     """
     # Use the trained neural model for prediction
     import torch
-    from kotogram.style_classifier import FEATURE_FIELDS
+    from kotogram.model import FEATURE_FIELDS
 
     model, tokenizer = _load_style_model()
 
