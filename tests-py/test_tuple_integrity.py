@@ -64,22 +64,16 @@ class TestTupleCardinality(unittest.TestCase):
         assert isinstance(result.success, int), f"success should be int, got {type(result.success)}"
 
     def test_process_parallel_returns_7_tuple(self):
-        """Verify _process_parallel returns 7-element tuples."""
-        from scripts.train_style import StyleDataset
-
+        """Verify _process_sentence_batch returns 9-element tuples."""
+        from scripts.label import _process_sentence_batch
+        
         # Simple test rows
         rows = [
             ("これはテストです", "id_001", 1),
             ("お元気ですか", "id_002", 1),
         ]
 
-        results = StyleDataset._process_parallel(
-            rows, 
-            num_workers=1, 
-            batch_size=100, 
-            verbose=False,
-            use_kotogram_cache=False  # Don't use cache for test isolation
-        )
+        results = _process_sentence_batch(rows)
 
         assert len(results) > 0, "Expected at least some results"
         
