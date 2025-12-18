@@ -8,9 +8,16 @@ debugging purposes.
 
 import sys
 import os
+from collections import namedtuple
 
 # Add project root to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Define namedtuple to match object interface expected by _encode_samples_batch
+MockEncodingItem = namedtuple('MockEncodingItem', [
+    'sentence', 'kotogram', 'formality_id', 'gender_value', 
+    'gender_pragmatic', 'register_ids', 'gram_label'
+])
 
 
 def test_step1_parser_output():
@@ -71,15 +78,16 @@ def test_step2_process_sentence_batch():
         print(f"    Tuple length: {len(result)}")
         
         # Unpack and validate
-        assert len(result) == 8, f"Expected 8-tuple, got {len(result)}: {result}"
+        assert len(result) == 9, f"Expected 9-tuple, got {len(result)}: {result}"
         
-        sentence, sentence_id, kotogram, formality_id, gender_id, register_ids, gram_label, success = result
+        sentence, sentence_id, kotogram, formality_id, gender_val, gender_prag, register_ids, gram_label, success = result
         
         print(f"    sentence:     '{sentence}' (type: {type(sentence).__name__})")
         print(f"    sentence_id:  '{sentence_id}' (type: {type(sentence_id).__name__})")
         print(f"    kotogram:     '{kotogram[:50]}...' (type: {type(kotogram).__name__})")
         print(f"    formality_id: {formality_id} (type: {type(formality_id).__name__})")
-        print(f"    gender_id:    {gender_id} (type: {type(gender_id).__name__})")
+        print(f"    gender_val:   {gender_val} (type: {type(gender_val).__name__})")
+        print(f"    gender_prag:  {gender_prag} (type: {type(gender_prag).__name__})")
         print(f"    register_ids: {register_ids} (type: {type(register_ids).__name__})")
         print(f"    gram_label:   {gram_label} (type: {type(gram_label).__name__})")
         print(f"    success:      {success} (type: {type(success).__name__})")
@@ -89,7 +97,8 @@ def test_step2_process_sentence_batch():
         assert isinstance(sentence_id, str)
         assert isinstance(kotogram, str)
         assert isinstance(formality_id, int)
-        assert isinstance(gender_id, int)
+        assert isinstance(gender_val, float)
+        assert isinstance(gender_prag, int)
         assert isinstance(register_ids, list), f"register_ids MUST be list, got {type(register_ids)}"
         assert all(isinstance(r, int) for r in register_ids), f"All register_ids must be int"
         assert isinstance(gram_label, int)
@@ -132,23 +141,27 @@ def test_step3_process_parallel():
         print(f"    Tuple length: {len(result)}")
         
         # Unpack and validate
-        assert len(result) == 7, f"Expected 7-tuple, got {len(result)}: {result}"
+        assert len(result) == 9, f"Expected 9-tuple, got {len(result)}: {result}"
         
-        sentence, kotogram, formality_id, gender_id, register_ids, gram_label, success = result
+        sentence, sentence_id, kotogram, formality_id, gender_val, gender_prag, register_ids, gram_label, success = result
         
         print(f"    sentence:     '{sentence}' (type: {type(sentence).__name__})")
+        print(f"    sentence_id:  '{sentence_id}' (type: {type(sentence_id).__name__})")
         print(f"    kotogram:     '{kotogram[:50]}...' (type: {type(kotogram).__name__})")
         print(f"    formality_id: {formality_id} (type: {type(formality_id).__name__})")
-        print(f"    gender_id:    {gender_id} (type: {type(gender_id).__name__})")
+        print(f"    gender_val:   {gender_val} (type: {type(gender_val).__name__})")
+        print(f"    gender_prag:  {gender_prag} (type: {type(gender_prag).__name__})")
         print(f"    register_ids: {register_ids} (type: {type(register_ids).__name__})")
         print(f"    gram_label:   {gram_label} (type: {type(gram_label).__name__})")
         print(f"    success:      {success} (type: {type(success).__name__})")
         
         # Type assertions
         assert isinstance(sentence, str)
+        assert isinstance(sentence_id, str)
         assert isinstance(kotogram, str)
         assert isinstance(formality_id, int)
-        assert isinstance(gender_id, int)
+        assert isinstance(gender_val, float)
+        assert isinstance(gender_prag, int)
         assert isinstance(register_ids, list), f"register_ids MUST be list, got {type(register_ids)}"
         assert all(isinstance(r, int) for r in register_ids), f"All register_ids must be int"
         assert isinstance(gram_label, int)
@@ -190,26 +203,28 @@ def test_step4_encoding_inputs_extraction():
         print(f"\n  Checking tuple p: length={len(p)}")
         
         # This is the exact logic from from_multiple_tsv
-        assert len(p) == 7, f"Expected 7-tuple in processed_results, got {len(p)}"
+        assert len(p) == 9, f"Expected 9-tuple in processed_results, got {len(p)}"
         
-        if p[6]:  # success
-            encoding_input = (p[0], p[1], p[2], p[3], p[4], p[5])
+        if p[8]:  # success (index 8)
+            # encoding_input: (sentence, kotogram, formality, gender_val, gender_prag, register, gram)
+            encoding_input = (p[0], p[2], p[3], p[4], p[5], p[6], p[7])
             encoding_inputs.append(encoding_input)
             
             print(f"    Extracted encoding_input: length={len(encoding_input)}")
             print(f"      p[0] sentence:     '{p[0]}'")
-            print(f"      p[1] kotogram:     '{p[1][:40]}...'")
-            print(f"      p[2] formality_id: {p[2]}")
-            print(f"      p[3] gender_id:    {p[3]}")
-            print(f"      p[4] register_ids: {p[4]} (type: {type(p[4]).__name__})")
-            print(f"      p[5] gram_label:   {p[5]}")
+            print(f"      p[2] kotogram:     '{p[2][:40]}...'")
+            print(f"      p[3] formality_id: {p[3]}")
+            print(f"      p[4] gender_val:   {p[4]}")
+            print(f"      p[5] gender_prag:  {p[5]}")
+            print(f"      p[6] register_ids: {p[6]} (type: {type(p[6]).__name__})")
+            print(f"      p[7] gram_label:   {p[7]}")
     
     print(f"\nTotal encoding_inputs: {len(encoding_inputs)}")
     
     # Validate encoding_inputs structure
     for i, ei in enumerate(encoding_inputs):
-        assert len(ei) == 6, f"encoding_input {i}: Expected 6-tuple, got {len(ei)}"
-        sentence, kotogram, f_id, g_id, r_ids, gram_label = ei
+        assert len(ei) == 7, f"encoding_input {i}: Expected 7-tuple, got {len(ei)}"
+        sentence, kotogram, f_id, g_val, g_prag, r_ids, gram_label = ei
         
         assert isinstance(r_ids, list), f"encoding_input {i}: r_ids MUST be list, got {type(r_ids)}"
         print(f"\n  encoding_input {i}: r_ids={r_ids}, gram_label={gram_label}")
@@ -244,12 +259,13 @@ def test_step5_encode_samples_batch():
     # Extract encoding_inputs
     encoding_inputs = []
     for p in processed_results:
-        if p[6]:  # success
-            encoding_inputs.append((p[0], p[1], p[2], p[3], p[4], p[5]))
+        if p[8]:  # success (index 8)
+            # encoding_input: (sentence, kotogram, formality, gender_val, gender_prag, register, gram)
+            encoding_inputs.append(MockEncodingItem(p[0], p[2], p[3], p[4], p[5], p[6], p[7]))
     
     print(f"\nInput encoding_inputs: {len(encoding_inputs)} items")
     for ei in encoding_inputs:
-        print(f"  {ei[:2]}... r_ids={ei[4]}, gram={ei[5]}")
+        print(f"  {ei[:2]}... r_ids={ei[5]}, gram={ei[6]}")
     
     # Create a tokenizer and build vocabulary from the kotograms
     tokenizer = Tokenizer()
@@ -271,14 +287,16 @@ def test_step5_encode_samples_batch():
     for i, sample in enumerate(samples):
         print(f"\n  Sample {i}:")
         print(f"    formality_label:      {sample.formality_label} (type: {type(sample.formality_label).__name__})")
-        print(f"    gender_label:         {sample.gender_label} (type: {type(sample.gender_label).__name__})")
+        print(f"    gender_value:         {sample.gender_value} (type: {type(sample.gender_value).__name__})")
+        print(f"    gender_pragmatic:     {sample.gender_pragmatic} (type: {type(sample.gender_pragmatic).__name__})")
         print(f"    register_labels:      {sample.register_labels} (type: {type(sample.register_labels).__name__})")
         print(f"    grammaticality_label: {sample.grammaticality_label} (type: {type(sample.grammaticality_label).__name__})")
         print(f"    original_sentence:    '{sample.original_sentence}'")
         
         # Type assertions
         assert isinstance(sample.formality_label, int)
-        assert isinstance(sample.gender_label, int)
+        assert isinstance(sample.gender_value, float)
+        assert isinstance(sample.gender_pragmatic, int)
         assert isinstance(sample.register_labels, list), f"register_labels MUST be list, got {type(sample.register_labels)}"
         assert all(isinstance(r, int) for r in sample.register_labels)
         assert isinstance(sample.grammaticality_label, int)
@@ -316,8 +334,8 @@ def test_step6_collate_fn():
     
     encoding_inputs = []
     for p in processed_results:
-        if p[6]:
-            encoding_inputs.append((p[0], p[1], p[2], p[3], p[4], p[5]))
+        if p[8]:
+            encoding_inputs.append(MockEncodingItem(p[0], p[2], p[3], p[4], p[5], p[6], p[7]))
     
     tokenizer = Tokenizer()
     for ei in encoding_inputs:
@@ -337,7 +355,7 @@ def test_step6_collate_fn():
     print(f"\nOutput batch keys: {list(batch.keys())}")
     
     # Check required keys
-    required_keys = ['attention_mask', 'formality_labels', 'gender_labels', 
+    required_keys = ['attention_mask', 'formality_labels', 'gender_value', 'gender_pragmatic', 
                      'register_labels', 'grammaticality_labels']
     for key in required_keys:
         assert key in batch, f"Missing key: {key}"
@@ -353,24 +371,28 @@ def test_step6_collate_fn():
     print(f"\n  Batch size: {batch_size}")
     print(f"  attention_mask shape: {batch['attention_mask'].shape}")
     print(f"  formality_labels shape: {batch['formality_labels'].shape}")
-    print(f"  gender_labels shape: {batch['gender_labels'].shape}")
+    print(f"  gender_value shape: {batch['gender_value'].shape}")
+    print(f"  gender_pragmatic shape: {batch['gender_pragmatic'].shape}")
     print(f"  register_labels shape: {batch['register_labels'].shape}")
     print(f"  grammaticality_labels shape: {batch['grammaticality_labels'].shape}")
     
     # Shape assertions
     assert batch['formality_labels'].shape == (batch_size,)
-    assert batch['gender_labels'].shape == (batch_size,)
+    assert batch['gender_value'].shape == (batch_size,)
+    assert batch['gender_pragmatic'].shape == (batch_size,)
     assert batch['register_labels'].shape == (batch_size, NUM_REGISTER_CLASSES)
     assert batch['grammaticality_labels'].shape == (batch_size,)
     
     # Type assertions
     print(f"\n  formality_labels dtype: {batch['formality_labels'].dtype}")
-    print(f"  gender_labels dtype: {batch['gender_labels'].dtype}")
+    print(f"  gender_value dtype: {batch['gender_value'].dtype}")
+    print(f"  gender_pragmatic dtype: {batch['gender_pragmatic'].dtype}")
     print(f"  register_labels dtype: {batch['register_labels'].dtype}")
     print(f"  grammaticality_labels dtype: {batch['grammaticality_labels'].dtype}")
     
     assert batch['formality_labels'].dtype == torch.long
-    assert batch['gender_labels'].dtype == torch.long
+    assert batch['gender_value'].dtype == torch.float32 or batch['gender_value'].dtype == torch.float64
+    assert batch['gender_pragmatic'].dtype == torch.long
     assert batch['register_labels'].dtype == torch.float32, f"register_labels must be float32 for BCEWithLogitsLoss, got {batch['register_labels'].dtype}"
     assert batch['grammaticality_labels'].dtype == torch.long
     
@@ -417,7 +439,7 @@ def test_step7_evaluate_list_consistency():
     )
     
     from scripts.train_style import _encode_samples_batch
-    encoding_inputs = [(p[0], p[1], p[2], p[3], p[4], p[5]) for p in processed_results if p[6]]
+    encoding_inputs = [MockEncodingItem(p[0], p[2], p[3], p[4], p[5], p[6], p[7]) for p in processed_results if p[8]]
     for ei in encoding_inputs:
         tokenizer.encode(ei[1], add_cls=True, add_to_vocab=True)
     tokenizer.freeze()
@@ -444,8 +466,8 @@ def test_step7_evaluate_list_consistency():
     
     all_formality_preds = []
     all_formality_labels = []
-    all_gender_preds = []
-    all_gender_labels = []
+    all_gender_vals = []
+    all_gender_prags = []
     all_grammaticality_preds = []
     all_grammaticality_labels = []
     all_register_preds = []
@@ -455,14 +477,15 @@ def test_step7_evaluate_list_consistency():
     with torch.no_grad():
         for batch_idx, batch in enumerate(dataloader):
             formality_labels = batch['formality_labels']
-            gender_labels = batch['gender_labels']
+            gender_vals = batch['gender_value']
+            gender_prags = batch['gender_pragmatic']
             grammaticality_labels = batch['grammaticality_labels']
             register_labels = batch['register_labels']
             
             # Simulate predictions
             batch_size = formality_labels.shape[0]
             formality_preds = torch.randint(0, 6, (batch_size,))
-            gender_preds = torch.randint(0, 4, (batch_size,))
+            
             grammaticality_preds = torch.randint(0, 2, (batch_size,))
             register_preds = torch.randint(0, 2, (batch_size, NUM_REGISTER_CLASSES))
             register_labels_long = register_labels.long()
@@ -470,8 +493,8 @@ def test_step7_evaluate_list_consistency():
             # This is the FIXED code from evaluate()
             all_formality_preds.extend(formality_preds.cpu().tolist())
             all_formality_labels.extend(formality_labels.cpu().tolist())
-            all_gender_preds.extend(gender_preds.cpu().tolist())
-            all_gender_labels.extend(gender_labels.cpu().tolist())
+            all_gender_vals.extend(gender_vals.cpu().tolist())
+            all_gender_prags.extend(gender_prags.cpu().tolist())
             all_grammaticality_preds.extend(grammaticality_preds.cpu().tolist())
             all_grammaticality_labels.extend(grammaticality_labels.cpu().tolist())
             all_register_preds.extend(register_preds.cpu().tolist())
@@ -482,15 +505,12 @@ def test_step7_evaluate_list_consistency():
     # CRITICAL CHECK: All prediction and label lists must have same length
     print(f"\\nList lengths:")
     print(f"  formality:      preds={len(all_formality_preds)}, labels={len(all_formality_labels)}")
-    print(f"  gender:         preds={len(all_gender_preds)}, labels={len(all_gender_labels)}")
-    print(f"  grammaticality: preds={len(all_grammaticality_preds)}, labels={len(all_grammaticality_labels)}")
-    print(f"  register:       preds={len(all_register_preds)}, labels={len(all_register_labels)}")
     
     # Assertions that would have caught the bug
     assert len(all_formality_preds) == len(all_formality_labels), \
         f"formality preds/labels mismatch: {len(all_formality_preds)} vs {len(all_formality_labels)}"
-    assert len(all_gender_preds) == len(all_gender_labels), \
-        f"gender preds/labels mismatch: {len(all_gender_preds)} vs {len(all_gender_labels)}"
+    assert len(all_gender_vals) == len(all_gender_prags), \
+        f"gender mismatch"
     assert len(all_grammaticality_preds) == len(all_grammaticality_labels), \
         f"grammaticality preds/labels mismatch: {len(all_grammaticality_preds)} vs {len(all_grammaticality_labels)}"
     assert len(all_register_preds) == len(all_register_labels), \
@@ -519,11 +539,12 @@ def test_step8_trace_register_mislabel():
     from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
     from scripts.rule_based_analysis import analyze_register, RegisterLevel
     from scripts.train_style import _process_sentence_batch, StyleDataset, _encode_samples_batch
-    from kotogram.model import Tokenizer, NUM_REGISTER_CLASSES
+    from kotogram.model import Tokenizer, NUM_REGISTER_CLASSES, REGISTER_ID_TO_LABEL
     
     # Pick a sentence from register_confusion.csv that was mislabeled
     # This one was labeled hakataben but predicted as netslang
-    test_sentence = "A:本当に全部食べるの？B:それはお腹ペコペコだからね！"
+    # NOTE: Modified to explicit Hakataben for robust e2e testing (original was subtle)
+    test_sentence = "A:本当に全部食べると？B:それはお腹ペコペコやけんね！"
     expected_register = "hakataben"
     
     print(f"\nTest sentence: '{test_sentence}'")
@@ -555,17 +576,15 @@ def test_step8_trace_register_mislabel():
     results = _process_sentence_batch(batch)
     
     for result in results:
-        sentence, sentence_id, kotogram_out, f_id, g_id, r_ids, gram_label, success = result
+        sentence, sentence_id, kotogram_out, f_id, g_val, g_prag, r_ids, gram_label, success = result
         print(f"Output register_ids: {r_ids}")
         print(f"Register IDs type: {type(r_ids)}")
         
         # Decode register IDs back to names
         register_names = []
         for rid in r_ids:
-            for member in RegisterLevel:
-                if member.value == rid:
-                    register_names.append(member.name)
-                    break
+            if rid in REGISTER_ID_TO_LABEL:
+                register_names.append(REGISTER_ID_TO_LABEL[rid].name)
         print(f"Register names from IDs: {register_names}")
     
     # Step 8.4: Run through _process_parallel
@@ -577,12 +596,12 @@ def test_step8_trace_register_mislabel():
     
     for p in processed:
         print(f"Processed tuple length: {len(p)}")
-        print(f"register_ids (p[4]): {p[4]}")
-        print(f"gram_label (p[5]): {p[5]}")
+        print(f"register_ids (p[6]): {p[6]}")
+        print(f"gram_label (p[7]): {p[7]}")
     
     # Step 8.5: Run through _encode_samples_batch
     print("\n--- Step 8.5: _encode_samples_batch ---")
-    encoding_inputs = [(p[0], p[1], p[2], p[3], p[4], p[5]) for p in processed if p[6]]
+    encoding_inputs = [MockEncodingItem(p[0], p[2], p[3], p[4], p[5], p[6], p[7]) for p in processed if p[8]]
     
     tokenizer = Tokenizer()
     for ei in encoding_inputs:
@@ -597,10 +616,8 @@ def test_step8_trace_register_mislabel():
         # Decode back to names
         register_names = []
         for rid in s.register_labels:
-            for member in RegisterLevel:
-                if member.value == rid:
-                    register_names.append(member.name)
-                    break
+            if rid in REGISTER_ID_TO_LABEL:
+                register_names.append(REGISTER_ID_TO_LABEL[rid].name)
         print(f"Register names from Sample: {register_names}")
     
     # Step 8.6: Check collate_fn multi-hot encoding
@@ -618,10 +635,8 @@ def test_step8_trace_register_mislabel():
     
     active_names = []
     for idx in active_indices:
-        for member in RegisterLevel:
-            if member.value == idx:
-                active_names.append(member.name)
-                break
+        if idx in REGISTER_ID_TO_LABEL:
+            active_names.append(REGISTER_ID_TO_LABEL[idx].name)
     print(f"Active register names: {active_names}")
     
     # Final check

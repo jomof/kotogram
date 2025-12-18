@@ -545,30 +545,8 @@ def _process_sentence_batch(
     parser = SudachiJapaneseParser()
     results = []
 
-    # Local copies of label mappings
-    formality_to_id = {
-        FormalityLevel.VERY_FORMAL: 0,
-        FormalityLevel.FORMAL: 1,
-        FormalityLevel.NEUTRAL: 2,
-        FormalityLevel.CASUAL: 3,
-        FormalityLevel.VERY_CASUAL: 4,
-        FormalityLevel.UNPRAGMATIC_FORMALITY: 5,
-    }
-    gender_to_id = {
-        GenderLevel.MASCULINE: 0,
-        GenderLevel.FEMININE: 1,
-        GenderLevel.NEUTRAL: 2,
-        GenderLevel.UNPRAGMATIC_GENDER: 3,
-    }
-    register_to_id = {
-        RegisterLevel.SONKEIGO: 0,
-        RegisterLevel.KENJOGO: 1,
-        RegisterLevel.KANSAIBEN: 2,
-        RegisterLevel.HAKATABEN: 3,
-        RegisterLevel.KYOSHIGO: 4,
-        RegisterLevel.NETSLANG: 5,
-        RegisterLevel.NEUTRAL: 6,
-    }
+    # Import centralized label mappings
+    from kotogram.model import FORMALITY_LABEL_TO_ID, REGISTER_LABEL_TO_ID
 
     for sentence, sentence_id, gram_label in batch:
         kotogram = parser.japanese_to_kotogram(sentence)
@@ -576,7 +554,12 @@ def _process_sentence_batch(
         gender_enum = analyze_gender(kotogram)
         register_enums = analyze_register(kotogram) # returns Set
         
-        formality_id = formality_to_id[formality_enum]
+        # Use centralized mapping
+        if formality_enum in FORMALITY_LABEL_TO_ID:
+            formality_id = FORMALITY_LABEL_TO_ID[formality_enum]
+        else:
+            # Fallback (should not happen if enum covers all)
+            formality_id = FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL]
             
         # Map gender enum to (value, pragmatic)
         if gender_enum == GenderLevel.MASCULINE:
@@ -594,11 +577,11 @@ def _process_sentence_batch(
         
         register_ids = []
         for r_enum in register_enums:
-                if r_enum in register_to_id:
-                    register_ids.append(register_to_id[r_enum])
+                if r_enum in REGISTER_LABEL_TO_ID:
+                    register_ids.append(REGISTER_LABEL_TO_ID[r_enum])
         
         if not register_ids:
-                register_ids.append(register_to_id[RegisterLevel.NEUTRAL])
+                register_ids.append(REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL])
 
         results.append(ProcessedSample(
             sentence=sentence,
