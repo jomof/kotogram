@@ -134,18 +134,12 @@ def main():
     print("This may take a while...\n")
 
     # Validate with Sudachi
-    try:
-        from kotogram import SudachiJapaneseParser
-        parser = SudachiJapaneseParser(dict_type='full', validate=True)
-        print(f"\n{'#'*80}")
-        print(f"# VALIDATING WITH SUDACHI")
-        print(f"{'#'*80}")
-        validate_sentences(parser, "Sudachi", tsv_file, max_sentences)
-    except ImportError:
-        print("⚠️  Sudachi parser not available (kotogram.SudachiJapaneseParser not found)")
-    except Exception as e:
-        print(f"⚠️  Could not initialize Sudachi parser: {e}")
-        print("SudachiPy and sudachidict_full may not be installed.")
+    from kotogram import SudachiJapaneseParser
+    parser = SudachiJapaneseParser(dict_type='full', validate=True)
+    print(f"\n{'#'*80}")
+    print(f"# VALIDATING WITH SUDACHI")
+    print(f"{'#'*80}")
+    validate_sentences(parser, "Sudachi", tsv_file, max_sentences)
 
 
 if __name__ == "__main__":

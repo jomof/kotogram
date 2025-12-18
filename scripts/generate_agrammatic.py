@@ -1504,13 +1504,8 @@ def main():
     random.seed(args.seed)
 
     # Import kotogram parser
-    try:
-        from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-        parser_instance = SudachiJapaneseParser()
-    except ImportError:
-        print("Error: Could not import SudachiJapaneseParser")
-        print("Make sure kotogram is installed: pip install -e .")
-        return
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    parser_instance = SudachiJapaneseParser()
 
     # Validation mode: check generated sentences against grammaticality model
     if args.validate:

@@ -15,9 +15,9 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 class TestTupleCardinality(unittest.TestCase):
     """Tests for tuple structure validation."""
 
-    def test_process_sentence_batch_returns_8_tuple(self):
-        """Verify _process_sentence_batch returns 8-element tuples."""
-        from scripts.train_style import _process_sentence_batch
+    def test_process_sentence_batch_returns_9_tuple(self):
+        """Verify _process_sentence_batch returns 9-element tuples."""
+        from scripts.label import _process_sentence_batch
 
         # Single-element batch
         batch = [("これはテストです", "id_001", 1)]  # (sentence, sentence_id, gram_label)
@@ -39,9 +39,10 @@ class TestTupleCardinality(unittest.TestCase):
         assert isinstance(result.gram_label, int), f"gram_label should be int, got {type(result.gram_label)}"
         assert isinstance(result.success, int), f"success should be int, got {type(result.success)}"
 
-    def test_compute_labels_batch_returns_7_tuple(self):
-        """Verify _compute_labels_batch returns 7-element tuples."""
-        from scripts.train_style import _compute_labels_batch
+    def test_compute_labels_batch_returns_9_tuple(self):
+        """Verify _compute_labels_batch returns 9-element tuples."""
+        from scripts.label import _compute_labels_batch
+
 
         # Single-element batch with pre-computed kotogram
         batch = [("テスト", "テスト[*]", 1)]  # (sentence, kotogram, gram_label)
@@ -99,7 +100,7 @@ class TestTupleCardinality(unittest.TestCase):
 
     def test_register_ids_contains_valid_integers(self):
         """Verify register_ids list contains valid integer IDs."""
-        from scripts.train_style import _process_sentence_batch
+        from scripts.label import _process_sentence_batch
 
         batch = [("お嬢様はごきげんよう", "id_003", 1)]  # Ojousama register
         results = _process_sentence_batch(batch)
@@ -122,17 +123,17 @@ class TestEncodingInputs(unittest.TestCase):
         """Verify encoding_inputs are extracted correctly from processed_results."""
         # Simulate processed_results from _process_parallel
         processed_results = [
-            ("sentence1", "kotogram1", 0, 0.0, 0, [0], 1, 1),  # 8-tuple: success=1
-            ("sentence2", "kotogram2", 1, 1.0, 1, [1, 2], 0, 1),  # Multi-label register
-            ("sentence3", "kotogram3", 2, 2.0, 2, [6], 1, 0),  # success=0 (should be skipped)
+            ("sentence1", "id_001", "kotogram1", 0, 0.0, 0, [0], 1, 1),  # 9-tuple: success=1
+            ("sentence2", "id_002", "kotogram2", 1, 1.0, 1, [1, 2], 0, 1),  # Multi-label register
+            ("sentence3", "id_003", "kotogram3", 2, 2.0, 2, [6], 1, 0),  # success=0 (should be skipped)
         ]
 
         # Extract encoding_inputs as done in from_multiple_tsv
         encoding_inputs = []
         for p in processed_results:
-            assert len(p) == 8, f"Expected 8-tuple, got {len(p)}"
-            if p[7]:  # success
-                encoding_inputs.append((p[0], p[1], p[2], p[3], p[4], p[5], p[6]))
+            assert len(p) == 9, f"Expected 9-tuple, got {len(p)}"
+            if p[8]:  # success
+                encoding_inputs.append((p[0], p[2], p[3], p[4], p[5], p[6], p[7]))
 
         assert len(encoding_inputs) == 2, "Should have 2 successful items"
         

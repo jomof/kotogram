@@ -7,26 +7,16 @@ import os
 import sys
 import csv
 import json
-try:
-    import torch
-    import torch.nn as nn
-    import torch.nn.functional as F
-    from torch.utils.data import DataLoader
-except ImportError:
-    print("Error: PyTorch not found. Please run this script via './train_style.sh --confusion'")
-    print("or activate your virtual environment (source .venv/bin/activate).")
-    sys.exit(1)
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.utils.data import DataLoader
 
-try:
-    from rich.console import Console
-    from rich.table import Table
-    from rich.panel import Panel
-    from rich.live import Live
-    from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn
-except ImportError:
-    print("Error: 'rich' library not found. Please run this script via './train_style.sh --confusion'")
-    print("or install it with 'pip install rich'.")
-    sys.exit(1)
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
+from rich.live import Live
+from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn
 
 # Add project root to path to allow imports from kotogram
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -236,7 +226,7 @@ def main():
     parser = argparse.ArgumentParser(description="Evaluate model confusion and generate reports.")
     parser.add_argument("--output", type=str, required=True, help="Model directory containing checkpoint")
     parser.add_argument("--data", type=str, required=True, help="Path to evaluation data TSV")
-    parser.add_argument("--extra-data", type=str, help="Path to extra evaluation data TSV")
+    parser.add_argument("--agrammatic-sentences", type=str, help="Path to agrammatic sentences TSV (label 0)")
     parser.add_argument("--agrammatic-data", type=str, help="Path to agrammatic evaluation data TSV")
     parser.add_argument("--batch-size", type=int, default=512, help="Batch size for evaluation")
     parser.add_argument("--num-workers", type=int, help="Number of workers for DataLoader (default: 0 on MPS/CPU, 4 on CUDA)")
@@ -272,9 +262,9 @@ def main():
              grammaticality_labels.append(0 if is_agrammatic else 1)
 
     add_file(args.data, force_label=1) # Main data is always assumed grammatic (or 1)
-    # Be more flexible with extra data
-    if args.extra_data:
-        add_file(args.extra_data) 
+    # Add agrammatic sentences if provided
+    if args.agrammatic_sentences:
+        add_file(args.agrammatic_sentences, force_label=0) 
     if args.agrammatic_data:
         add_file(args.agrammatic_data, force_label=0)
 
@@ -290,7 +280,8 @@ def main():
             grammaticality_labels=grammaticality_labels,
             max_samples=args.max_samples,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-            verbose=True
+            verbose=True,
+            cache_dir=".cache/dataset_cache"
         )
     else:
         dataset = StyleDataset.from_tsv(
@@ -299,7 +290,8 @@ def main():
             labeled=True,
             max_samples=args.max_samples,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-            verbose=True
+            verbose=True,
+            cache_dir=".cache/dataset_cache"
         )
     
     # Determine num_workers: 0 is much faster for in-memory datasets on macOS (avoid spawn overhead)
