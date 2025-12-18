@@ -54,8 +54,8 @@ def set_excluded_features(excluded: List[str]) -> None:
 
 # Number of classes for each task
 NUM_FORMALITY_CLASSES = 6
-NUM_GENDER_CLASSES = 4
 NUM_GRAMMATICALITY_CLASSES = 2  # grammatic (1) vs agrammatic (0)
+NUM_GENDER_PRAGMATIC_CLASSES = 2 # pragmatic (1) vs unpragmatic (0)
 
 # Label mappings
 FORMALITY_LABEL_TO_ID = {
@@ -261,7 +261,7 @@ class ModelConfig:
     """Configuration for StyleClassifier model."""
     vocab_sizes: Dict[str, int]  # Field name -> vocabulary size
     num_formality_classes: int = NUM_FORMALITY_CLASSES
-    num_gender_classes: int = NUM_GENDER_CLASSES
+    num_gender_pragmatic_classes: int = NUM_GENDER_PRAGMATIC_CLASSES
     num_grammaticality_classes: int = NUM_GRAMMATICALITY_CLASSES
     num_register_classes: int = NUM_REGISTER_CLASSES
     field_embed_dims: Dict[str, int] = field(default_factory=lambda: {
@@ -286,7 +286,7 @@ class ModelConfig:
         return {
             'vocab_sizes': self.vocab_sizes,
             'num_formality_classes': self.num_formality_classes,
-            'num_gender_classes': self.num_gender_classes,
+            'num_gender_pragmatic_classes': self.num_gender_pragmatic_classes,
             'num_grammaticality_classes': self.num_grammaticality_classes,
             'num_register_classes': self.num_register_classes,
             'field_embed_dims': self.field_embed_dims,
@@ -302,9 +302,14 @@ class ModelConfig:
 
     @classmethod
     def from_dict(cls, d: Dict[str, Any]) -> 'ModelConfig':
+        d = dict(d)
         if 'excluded_features' not in d:
-            d = dict(d)
             d['excluded_features'] = []
+        
+        # Legacy compatibility: remove old fields
+        if 'num_gender_classes' in d:
+            d.pop('num_gender_classes')
+            
         return cls(**d)
 
 
@@ -423,11 +428,19 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             nn.Linear(config.hidden_dim, config.num_formality_classes),
         )
 
-        self.gender_classifier = nn.Sequential(
+        self.gender_value_head = nn.Sequential(
             nn.Linear(config.d_model, config.hidden_dim),
             nn.GELU(),
             nn.Dropout(config.dropout),
-            nn.Linear(config.hidden_dim, config.num_gender_classes),
+            nn.Linear(config.hidden_dim, 1),
+            nn.Tanh(),
+        )
+
+        self.gender_pragmatic_head = nn.Sequential(
+            nn.Linear(config.d_model, config.hidden_dim),
+            nn.GELU(),
+            nn.Dropout(config.dropout),
+            nn.Linear(config.hidden_dim, config.num_gender_pragmatic_classes),
         )
 
         self.grammaticality_classifier = nn.Sequential(
@@ -490,11 +503,12 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         self,
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
-    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         pooled = self._get_pooled_output(field_inputs, attention_mask)
         return (
             self.formality_classifier(pooled),
-            self.gender_classifier(pooled),
+            self.gender_value_head(pooled),
+            self.gender_pragmatic_head(pooled),
             self.grammaticality_classifier(pooled),
             self.register_classifier(pooled),
         )
@@ -503,11 +517,12 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         self,
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
-    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
-        formality_logits, gender_logits, grammaticality_logits, register_logits = self(field_inputs, attention_mask)
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+        formality_logits, gender_val, gender_prag_logits, grammaticality_logits, register_logits = self(field_inputs, attention_mask)
         return (
             F.softmax(formality_logits, dim=-1),
-            F.softmax(gender_logits, dim=-1),
+            gender_val, # Already Tanh
+            F.softmax(gender_prag_logits, dim=-1),
             F.softmax(grammaticality_logits, dim=-1),
             torch.sigmoid(register_logits),
         )
@@ -552,7 +567,13 @@ def load_model(
     # Filter out MLM head weights if present
     state_dict = {k: v for k, v in state_dict.items() if not k.startswith('mlm_head.')}
 
-    model.load_state_dict(state_dict)
+    # Load with strict=False to allow architecture changes (e.g. gender head refactor)
+    # We catch the error/warning to report relevant mismatches
+    incompatible = model.load_state_dict(state_dict, strict=False)
+    if incompatible.missing_keys:
+        print(f"WARNING: Missing keys in state_dict: {incompatible.missing_keys}")
+    if incompatible.unexpected_keys:
+        print(f"WARNING: Unexpected keys in state_dict: {incompatible.unexpected_keys}")
 
     if device:
         model.to(device)
@@ -589,7 +610,7 @@ def predict_style(
     tokenizer: Tokenizer,
     parser: Optional[JapaneseParser] = None,
     device: Optional[str] = None,
-) -> Tuple[FormalityLevel, GenderLevel, bool, Dict[str, Dict[str, float]]]:
+) -> Tuple[FormalityLevel, GenderLevel, bool, Dict[str, Any]]:
     """Predict formality, gender, and grammaticality for a Japanese sentence."""
     if parser is None:
         from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
@@ -611,13 +632,27 @@ def predict_style(
 
     model.eval()
     with torch.no_grad():
-        formality_probs, gender_probs, grammaticality_probs, _ = model.predict(field_inputs, attention_mask)
+        formality_probs, gender_val, gender_prag_probs, grammaticality_probs, _ = model.predict(field_inputs, attention_mask)
         formality_probs = formality_probs[0]
-        gender_probs = gender_probs[0]
+        gender_val = gender_val[0]
+        gender_prag_probs = gender_prag_probs[0]
         grammaticality_probs = grammaticality_probs[0]
 
     formality_id = int(formality_probs.argmax().item())
-    gender_id = int(gender_probs.argmax().item())
+    
+    # Map continuous gender to label for legacy support logic
+    is_pragmatic = gender_prag_probs[1].item() > 0.5
+    if not is_pragmatic:
+        gender_id = 3 # UNPRAGMATIC_GENDER
+    else:
+        val = gender_val.item()
+        if val < -0.33:
+            gender_id = 0 # MASCULINE
+        elif val > 0.33:
+            gender_id = 1 # FEMININE
+        else:
+            gender_id = 2 # NEUTRAL
+
     grammaticality_id = int(grammaticality_probs.argmax().item())
 
     formality_label = FORMALITY_ID_TO_LABEL[formality_id]
@@ -630,8 +665,9 @@ def predict_style(
             for i in range(NUM_FORMALITY_CLASSES)
         },
         'gender': {
-            GENDER_ID_TO_LABEL[i].value: gender_probs[i].item()
-            for i in range(NUM_GENDER_CLASSES)
+            'value': gender_val.item(),
+            'pragmatic_prob': gender_prag_probs[1].item(),
+            'label': GENDER_ID_TO_LABEL[gender_id].value
         },
         'grammaticality': {
             'grammatical': grammaticality_probs[1].item(),
