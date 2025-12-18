@@ -1914,10 +1914,8 @@ class Trainer:
                 grammaticality_correct, len(all_grammaticality_preds),
                 total_register_loss, register_correct, len(all_register_preds)
             ], device=self.device)
-            
-            # Flatten register stats: [TP0, FP0, FN0, TN0, TP1, ...]
-            # 4 * NUM_REGISTER_CLASSES
-            reg_stats_flat = torch.tensor([item for sublist in register_stats for item in sublist], device=self.device)
+            # Note: Per-class register statistics could be added here in the future
+            # For now, we only track overall register accuracy
             
             
         else:
