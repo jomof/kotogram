@@ -52,24 +52,20 @@ class Evaluator:
         self.model = model
         self.device = device
         self.verbose = verbose
-        try:
-            from rich.console import Console
-            self.console: Optional[Console] = Console()
-            self.has_rich = True
-        except ImportError:
-            self.console = None
-            self.has_rich = False
+        
+        from rich.console import Console
+        self.console = Console()
 
     def evaluate(self, loader: DataLoader) -> EvalResult:
         """Run inference on the loader and return results."""
         self.model.eval()
         result = EvalResult()
         
-        # Setup progress bar if rich is available and verbose
+        # Setup progress bar if verbose
         progress_context = None
         task_id = None
         
-        if self.verbose and self.has_rich:
+        if self.verbose:
             from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn
             progress = Progress(
                 SpinnerColumn(),
@@ -81,8 +77,10 @@ class Evaluator:
             progress_context = progress
             task_id = progress.add_task("Evaluating...", total=len(loader))
             progress.start()
+
         elif self.verbose:
-            print(f"Evaluating on {len(loader)} batches...")
+            # Fallback not needed as rich is required
+            pass
 
         try:
             with torch.no_grad():
@@ -133,15 +131,9 @@ class Evaluator:
                     
                     if progress_context and task_id is not None:
                         progress_context.update(task_id, advance=1)
-                    elif self.verbose and i % 10 == 0:
-                        # Simple print progress
-                        pass
                         
         except KeyboardInterrupt:
-            if self.console:
-                self.console.print("\n[bold red]Evaluation interrupted by user.[/bold red]")
-            else:
-                print("\nEvaluation interrupted by user.")
+            self.console.print("\n[bold red]Evaluation interrupted by user.[/bold red]")
             import sys
             sys.exit(130)
         finally:
