@@ -454,13 +454,8 @@ def main():
     random.seed(args.seed)
 
     # We need to import kotogram parser to convert sentences
-    try:
-        from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-        parser_instance = SudachiJapaneseParser()
-    except ImportError:
-        print("Error: Could not import SudachiJapaneseParser")
-        print("Make sure kotogram is installed: pip install -e .")
-        return
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    parser_instance = SudachiJapaneseParser()
 
     generated = []
     processed = 0

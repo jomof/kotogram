@@ -58,7 +58,7 @@ setup_environment
 
 # Default configuration
 DATA_PATH="data/jpn_sentences*.tsv"  # Filtered to exclude known errors
-EXTRA_DATA_PATH=""
+AGRAMMATIC_SENTENCES_PATH=""
 AGRAMMATIC_PATTERN="data/jpn_agrammatic*.tsv"
 OUTPUT_DIR="models/style"
 EPOCHS=20
@@ -84,6 +84,7 @@ FP8=""
 RESUME=""
 RETRAIN=""
 CONFUSION=""
+LABEL_ONLY=""
 
 EXCLUDE_FEATURES=""
 PERCENT=""
@@ -95,12 +96,12 @@ while [[ $# -gt 0 ]]; do
             DATA_PATH="$2"
             shift 2
             ;;
-        --extra-data)
-            EXTRA_DATA_PATH="$2"
+        --agrammatic-sentences)
+            AGRAMMATIC_SENTENCES_PATH="$2"
             shift 2
             ;;
-        --no-extra-data)
-            EXTRA_DATA_PATH=""
+        --no-agrammatic-sentences)
+            AGRAMMATIC_SENTENCES_PATH=""
             shift
             ;;
         --agrammatic-pattern)
@@ -191,6 +192,10 @@ while [[ $# -gt 0 ]]; do
             CONFUSION="--confusion"
             shift
             ;;
+        --label)
+            LABEL_ONLY=1
+            shift
+            ;;
         --exclude-features)
             EXCLUDE_FEATURES="$2"
             shift 2
@@ -215,8 +220,8 @@ while [[ $# -gt 0 ]]; do
             echo ""
             echo "Data Options:"
             echo "  --data PATH           Path to primary TSV file (default: data/jpn_sentences.tsv)"
-            echo "  --extra-data PATH     Path to extra TSV file (default: data/unpragmatic_sentences.tsv)"
-            echo "  --no-extra-data       Disable loading extra data file"
+            echo "  --agrammatic-sentences PATH Path to agrammatic TSV file (default: data/unpragmatic_sentences.tsv)"
+            echo "  --no-agrammatic-sentences   Disable loading agrammatic sentences file"
             echo "  --agrammatic-pattern PATTERN Pattern for agrammatic TSV files (default: data/jpn_agrammatic*.tsv)"
             echo "  --no-agrammatic-data  Disable loading agrammatic data file"
             echo "  --output DIR          Output directory (default: models/style)"
@@ -245,6 +250,7 @@ while [[ $# -gt 0 ]]; do
             echo "  --resume              Resume training from checkpoint in output directory"
             echo "  --retrain             Retrain from scratch using parameters from checkpoint"
             echo "  --confusion           Print confusion matrices for existing model and exit"
+            echo "  --label               Run ONLY the labeling/preprocessing phase and exit"
             echo ""
             echo "Feature Ablation:"
             echo "  --exclude-features F  Comma-separated features to exclude (for ablation study)"
@@ -268,8 +274,8 @@ echo "========================================================"
 echo "Style Classifier Training (Formality + Gender + Grammaticality)"
 echo "========================================================"
 echo "Data:           $DATA_PATH"
-if [ -n "$EXTRA_DATA_PATH" ]; then
-    echo "Extra data:     $EXTRA_DATA_PATH"
+if [ -n "$AGRAMMATIC_SENTENCES_PATH" ]; then
+    echo "Agrammatic sentences: $AGRAMMATIC_SENTENCES_PATH"
 fi
 if [ -n "$AGRAMMATIC_PATTERN" ]; then
     echo "Agrammatic pattern: $AGRAMMATIC_PATTERN"
@@ -306,6 +312,9 @@ fi
 if [ -n "$CONFUSION" ]; then
     echo "Action:         Print confusion matrices (no training)"
 fi
+if [ -n "$LABEL_ONLY" ]; then
+    echo "Action:         Preprocessing/Labeling only"
+fi
 
 
 if [ -n "$PERCENT" ]; then
@@ -317,62 +326,16 @@ echo ""
 # Create output directory
 mkdir -p "$OUTPUT_DIR"
 
-# Process grammatical data (from pattern)
-if ls $DATA_PATH 1> /dev/null 2>&1; then
-    mkdir -p .cache
-    
-    COMBINED_GRAM_FILE=".cache/grammatic_combined.tsv"
-    TEMP_GRAM_FILE="${COMBINED_GRAM_FILE}.tmp"
-    
-    # Combine and deduplicate by 3rd column (sentence) called from pattern
-    awk -F'\t' '!seen[$3]++' $DATA_PATH > "$TEMP_GRAM_FILE"
-    
-    # Only update if content changed
-    if [ -f "$COMBINED_GRAM_FILE" ] && cmp -s "$TEMP_GRAM_FILE" "$COMBINED_GRAM_FILE"; then
-        echo "Grammatic data unchanged, using cached file."
-        rm "$TEMP_GRAM_FILE"
-    else
-        echo "Updating combined grammatic data..."
-        mv "$TEMP_GRAM_FILE" "$COMBINED_GRAM_FILE"
-    fi
-    
-    DATA_PATH="$COMBINED_GRAM_FILE"
-    echo "Combined grammatic data: $DATA_PATH ($(wc -l < "$DATA_PATH" | xargs) lines)"
-else
-    echo "Error: No files matched grammatic data pattern: $DATA_PATH"
-    exit 1
-fi
+# Combined output files in cache
+COMBINED_GRAM_FILE=".cache/grammatic_combined.tsv"
+COMBINED_AGRAM_FILE=".cache/agrammatic_combined.tsv"
+mkdir -p .cache
 
-# Process agrammatic data
-AGRAMMATIC_DATA_PATH=""
-if [ -n "$AGRAMMATIC_PATTERN" ]; then
-    # Check if any files match the pattern
-    if ls $AGRAMMATIC_PATTERN 1> /dev/null 2>&1; then
-        echo "Processing agrammatic data from: $AGRAMMATIC_PATTERN"
-        mkdir -p .cache
-        
-        COMBINED_FILE=".cache/agrammatic_combined.tsv"
-        TEMP_FILE="${COMBINED_FILE}.tmp"
-        
-        # Combine and deduplicate by 3rd column (sentence), keeping the first occurrence
-        # We assume files are TSV and 3rd column is the sentence
-        awk -F'\t' '!seen[$3]++' $AGRAMMATIC_PATTERN > "$TEMP_FILE"
-        
-        # Only update if content has changed (preserves mtime for caching)
-        if [ -f "$COMBINED_FILE" ] && cmp -s "$TEMP_FILE" "$COMBINED_FILE"; then
-            echo "Agrammatic data unchanged, using cached file."
-            rm "$TEMP_FILE"
-        else
-            echo "Updating combined agrammatic data..."
-            mv "$TEMP_FILE" "$COMBINED_FILE"
-        fi
-        
-        AGRAMMATIC_DATA_PATH="$COMBINED_FILE"
-        echo "Combined agrammatic data: $AGRAMMATIC_DATA_PATH ($(wc -l < "$AGRAMMATIC_DATA_PATH" | xargs) lines)"
-    else
-        echo "Warning: No files matched agrammatic pattern: $AGRAMMATIC_PATTERN"
-    fi
-fi
+# Store patterns for later use
+GRAM_DATA_PATTERN="$DATA_PATH"
+# Note: we use the combined files for the train_style.py call
+DATA_PATH="$COMBINED_GRAM_FILE"
+AGRAMMATIC_DATA_PATH="$COMBINED_AGRAM_FILE"
 
 # Enable MPS fallback for unsupported ops (Mac Apple Silicon)
 # Enable MPS fallback for unsupported ops (Mac Apple Silicon)
@@ -471,8 +434,8 @@ if [ -n "$MAX_SAMPLES" ]; then
     CMD="$CMD $MAX_SAMPLES"
 fi
 
-if [ -n "$EXTRA_DATA_PATH" ]; then
-    CMD="$CMD --extra-data \"$EXTRA_DATA_PATH\""
+if [ -n "$AGRAMMATIC_SENTENCES_PATH" ]; then
+    CMD="$CMD --agrammatic-sentences \"$AGRAMMATIC_SENTENCES_PATH\""
 fi
 
 if [ -n "$AGRAMMATIC_DATA_PATH" ]; then
@@ -493,20 +456,6 @@ if [ -n "$RETRAIN" ]; then
     CMD="$CMD --retrain"
 fi
 
-if [ -n "$CONFUSION" ]; then
-    echo "=============================================="
-    echo "Running Confusion Matrix Evaluation..."
-    echo "=============================================="
-    python scripts/confusion.py \
-        --output "$OUTPUT_DIR" \
-        --data "$DATA_PATH" \
-        ${EXTRA_DATA_PATH:+--extra-data "$EXTRA_DATA_PATH"} \
-        ${AGRAMMATIC_DATA_PATH:+--agrammatic-data "$AGRAMMATIC_DATA_PATH"} \
-        ${PERCENT:+--percent ${PERCENT#--percent }} \
-        ${MAX_SAMPLES:+--max-samples ${MAX_SAMPLES#--max-samples }}
-    exit 0
-fi
-
 if [ -n "$EXCLUDE_FEATURES" ]; then
     CMD="$CMD --exclude-features \"$EXCLUDE_FEATURES\""
 fi
@@ -525,34 +474,18 @@ echo "=============================================="
 echo "Running Preprocessing Phase..."
 echo "=============================================="
 # Construct preprocessing command (always use python, single process)
-    PREPROC_CMD="python scripts/train_style.py \
-        --data \"$DATA_PATH\" \
-        --output \"$OUTPUT_DIR\" \
-        --epochs 1 \
-        --batch-size $BATCH_SIZE \
-        --embed-dim $EMBED_DIM \
-        --hidden-dim $HIDDEN_DIM \
-        --num-layers $NUM_LAYERS \
-        --num-heads $NUM_HEADS \
-        --learning-rate $LEARNING_RATE \
-        --pretrain-epochs $PRETRAIN_EPOCHS \
-        --encoder-lr-factor $ENCODER_LR_FACTOR \
-        --formality-weight $FORMALITY_WEIGHT \
-        --gender-weight $GENDER_WEIGHT \
-        --grammaticality-weight $GRAMMATICALITY_WEIGHT \
-        --preprocess-only"
+    # Construct labeling command
+    PREPROC_CMD="python scripts/label.py --data \"$GRAM_DATA_PATTERN\" \
+        --output-grammatic \"$COMBINED_GRAM_FILE\""
 
-    # Append all optional flags
-    if [ -n "$PRETRAIN_MLM" ]; then PREPROC_CMD="$PREPROC_CMD --pretrain-mlm"; fi
-    if [ -n "$MAX_SAMPLES" ]; then PREPROC_CMD="$PREPROC_CMD $MAX_SAMPLES"; fi
-    if [ -n "$EXTRA_DATA_PATH" ]; then PREPROC_CMD="$PREPROC_CMD --extra-data \"$EXTRA_DATA_PATH\""; fi
-    if [ -n "$AGRAMMATIC_DATA_PATH" ]; then PREPROC_CMD="$PREPROC_CMD --agrammatic-data \"$AGRAMMATIC_DATA_PATH\""; fi
-    if [ -n "$FP8" ]; then PREPROC_CMD="$PREPROC_CMD --fp8";
-    elif [ -n "$FP16" ]; then PREPROC_CMD="$PREPROC_CMD --fp16"; fi
-    if [ -n "$RESUME" ]; then PREPROC_CMD="$PREPROC_CMD --resume"; fi
-    if [ -n "$RETRAIN" ]; then PREPROC_CMD="$PREPROC_CMD --retrain"; fi
-    if [ -n "$EXCLUDE_FEATURES" ]; then PREPROC_CMD="$PREPROC_CMD --exclude-features \"$EXCLUDE_FEATURES\""; fi
-    if [ -n "$PERCENT" ]; then PREPROC_CMD="$PREPROC_CMD $PERCENT"; fi
+    if [ -n "$AGRAMMATIC_SENTENCES_PATH" ]; then 
+        PREPROC_CMD="$PREPROC_CMD --agrammatic-sentences \"$AGRAMMATIC_SENTENCES_PATH\""
+    fi
+    
+    if [ -n "$AGRAMMATIC_PATTERN" ]; then 
+        PREPROC_CMD="$PREPROC_CMD --agrammatic-pattern \"$AGRAMMATIC_PATTERN\" \
+            --output-agrammatic \"$COMBINED_AGRAM_FILE\""
+    fi
 
 if [ -n "$DEBUG" ]; then
     echo "Command: $PREPROC_CMD"
@@ -560,8 +493,35 @@ else
     echo "Executing preprocessing script..."
 fi
 eval $PREPROC_CMD || exit 1
+
+# Update line counts for log display
+echo "Combined grammatic data: $DATA_PATH ($(wc -l <"$DATA_PATH" | xargs) lines)"
+if [ -f "$AGRAMMATIC_DATA_PATH" ]; then
+    echo "Combined agrammatic data: $AGRAMMATIC_DATA_PATH ($(wc -l <"$AGRAMMATIC_DATA_PATH" | xargs) lines)"
+fi
 echo "Preprocessing complete."
+
+if [ -n "$LABEL_ONLY" ]; then
+    echo "Labeling only requested. Exiting."
+    exit 0
+fi
 echo ""
+
+# Confusion evaluation (runs after preprocessing)
+if [ -n "$CONFUSION" ]; then
+    echo "=============================================="
+    echo "Running Confusion Matrix Evaluation..."
+    echo "=============================================="
+    python scripts/confusion.py \
+        --output "$OUTPUT_DIR" \
+        --data "$DATA_PATH" \
+        ${AGRAMMATIC_SENTENCES_PATH:+--agrammatic-sentences "$AGRAMMATIC_SENTENCES_PATH"} \
+        ${AGRAMMATIC_DATA_PATH:+--agrammatic-data "$AGRAMMATIC_DATA_PATH"} \
+        ${PERCENT:+--percent ${PERCENT#--percent }} \
+        ${MAX_SAMPLES:+--max-samples ${MAX_SAMPLES#--max-samples }}
+    exit 0
+fi
+
 
 # Run training
 if [ -n "$DEBUG" ]; then

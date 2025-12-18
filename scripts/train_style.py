@@ -96,12 +96,6 @@ from kotogram.kotogram import split_kotogram
 from kotogram.analysis import FormalityLevel, GenderLevel
 from kotogram.kotogram import extract_token_features
 
-# Import rule-based analysis functions
-try:
-    from rule_based_analysis import analyze_formality, analyze_gender, analyze_register
-except ImportError:
-    from scripts.rule_based_analysis import analyze_formality, analyze_gender, analyze_register
-
 from kotogram.japanese_parser import JapaneseParser
 
 from kotogram.model import (
@@ -115,220 +109,9 @@ from kotogram.model import (
     load_model, Sample
 )
 
-# Record import time
-timings['imports'] = time.time() - script_start_time
+from scripts.cache import get_kotogram_cache, ProcessedSample
 
-GENDER_LOSS_WEIGHT = 0.5 # Relative weight for continuous gender loss versus pragmatic classification loss
-# Note: load_model is imported but we might need to adjust logic if training script uses custom loading.
-# Actually, the training script has its own save_model function (if I recall).
-
-
-
-class ShardedKotogramCache:
-    """Durable sharded cache for Japanese → kotogram + label conversions.
-
-    This cache stores processing results in multiple small SQLite databases (shards)
-    to keep file sizes manageable (~1MB) and avoid lock contention.
-    
-    It accepts a legacy monolithic database path for migration purposes.
-    
-    Keyed by sentence hash.
-    Schema: (sentence, kotogram, formality_label, gender_label)
-    """
-
-    DEFAULT_SHARDS_DIR = ".cache/kotogram_shards"
-    LEGACY_DB_PATH = ".cache/kotogram.db"
-    SHARD_PREFIX_LEN = 3 # 3 hex chars = 4096 shards
-
-    def __init__(self, shards_dir: str = DEFAULT_SHARDS_DIR):
-        """Initialize the sharded cache.
-        
-        Args:
-            shards_dir: Directory to store shard database files
-        """
-        self.shards_dir = shards_dir
-        os.makedirs(shards_dir, exist_ok=True)
-        
-        # Check for legacy DB and migrate if needed
-        if os.path.exists(self.LEGACY_DB_PATH):
-            print(f"Found legacy cache at {self.LEGACY_DB_PATH}. Migrating to shards...")
-            self._migrate_legacy_cache(self.LEGACY_DB_PATH)
-
-    def _get_shard_path(self, sentence_hash: str) -> str:
-        """Get path to the shard file for a given hash."""
-        shard_key = sentence_hash[:self.SHARD_PREFIX_LEN]
-        return os.path.join(self.shards_dir, f"{shard_key}.db")
-
-    def _init_shard(self, shard_path: str) -> None:
-        """Initialize a single shard database (if not exists)."""
-        conn = sqlite3.connect(shard_path)
-        try:
-            conn.execute("""
-                CREATE TABLE IF NOT EXISTS cache_entries (
-                    sentence_hash TEXT PRIMARY KEY,
-                    sentence TEXT NOT NULL,
-                    kotogram TEXT NOT NULL,
-                    formality_label INTEGER,
-                    gender_value REAL,
-                    gender_pragmatic INTEGER,
-                    register_labels TEXT
-                )
-            """)
-            conn.execute("CREATE INDEX IF NOT EXISTS idx_hash ON cache_entries(sentence_hash)")
-            conn.commit()
-        finally:
-            conn.close()
-
-    def _migrate_legacy_cache(self, legacy_path: str) -> None:
-        """Migrate entries from legacy monolithic DB to shards."""
-        try:
-            conn = sqlite3.connect(legacy_path)
-            cursor = conn.execute("SELECT sentence, kotogram FROM kotogram_cache")
-            
-            # Batch read to avoid memory issues (though 1.2GB might fit in RAM, safer to stream)
-            batch = []
-            count = 0
-            while True:
-                rows = cursor.fetchmany(10000)
-                if not rows:
-                    break
-                
-                # Convert to format expected by put_batch (sentence, kotogram, formality, gender)
-                # Legacy cache has no labels, so None
-                # Convert to format expected by put_batch (sentence, kotogram, formality, gender, register)
-                # Legacy cache has no labels, so None
-                items = [(r[0], r[1], None, None, None) for r in rows]
-                self.put_batch(items, verbose=False) # Verbose False to avoid spam
-                count += len(rows)
-                print(f"  Migrated {count} entries...")
-            
-            conn.close()
-            
-            # Rename legacy file to prevent re-migration
-            os.rename(legacy_path, legacy_path + ".bak")
-            print(f"Migration complete. Legacy cache moved to {legacy_path}.bak")
-            
-        except sqlite3.Error as e:
-            print(f"Error migrating legacy cache: {e}")
-            # Don't crash, just continue with empty shards
-
-    @staticmethod
-    def _hash_sentence(sentence: str) -> str:
-        """Create a hash key for a sentence."""
-        return hashlib.sha256(sentence.encode('utf-8')).hexdigest()
-
-    def get_batch(self, sentences: List[str]) -> Dict[str, Optional[Tuple[str, Optional[int], Optional[int], Optional[List[int]]]]]:
-        """Get cached entries for multiple sentences.
-
-        Returns:
-            Dict mapping sentence → (kotogram, formality, gender_val, gender_prag, register) OR None
-        """
-        if not sentences:
-            return {}
-
-        # Group by shard
-        shard_to_hashes: Dict[str, List[Tuple[str, str]]] = {} # shard_path -> [(hash, sentence)]
-        results: Dict[str, Optional[Tuple[str, Optional[int], Optional[float], Optional[int], Optional[List[int]]]]] = {s: None for s in sentences}
-        
-        for s in sentences:
-            h = self._hash_sentence(s)
-            path = self._get_shard_path(h)
-            if path not in shard_to_hashes:
-                shard_to_hashes[path] = []
-            shard_to_hashes[path].append((h, s))
-
-        # Query each shard
-        for shard_path, items in shard_to_hashes.items():
-            if not os.path.exists(shard_path):
-                continue
-                
-            hash_to_sentence = {h: s for h, s in items}
-            hashes = list(hash_to_sentence.keys())
-            
-            conn = sqlite3.connect(shard_path)
-            placeholders = ",".join("?" * len(hashes))
-            cursor = conn.execute(
-                f"SELECT sentence_hash, kotogram, formality_label, gender_value, gender_pragmatic, register_labels FROM cache_entries WHERE sentence_hash IN ({placeholders})",
-                hashes
-            )
-            
-            for row in cursor:
-                if len(row) == 6:
-                        h, k, f_lbl, g_val, g_prag, r_lbls_json = row
-                        r_lbls = json.loads(r_lbls_json) if r_lbls_json else None
-                else:
-                        pass
-                
-                sent = hash_to_sentence[h]
-                results[sent] = (k, f_lbl, g_val, g_prag, r_lbls)
-            conn.close()
-
-        return results
-
-    def put_batch(
-        self, 
-        items: List[Tuple[str, str, Optional[int], Optional[float], Optional[int], Optional[List[int]]]],
-        verbose: bool = False
-    ) -> None:
-        """Cache multiple entries.
-        
-        Args:
-            items: List of (sentence, kotogram, formality_label, gender_value, gender_pragmatic, register_labels)
-        """
-        if not items:
-            return
-
-        # Group by shard
-        shard_to_data: Dict[str, List[Tuple[str, str, str, Optional[int], Optional[float], Optional[int], Optional[str]]]] = {}
-        
-        for s, k, f_lbl, g_val, g_prag, r_lbls in items:
-            h = self._hash_sentence(s)
-            path = self._get_shard_path(h)
-            if path not in shard_to_data:
-                shard_to_data[path] = []
-            
-            r_lbls_json = json.dumps(r_lbls) if r_lbls is not None else None
-            shard_to_data[path].append((h, s, k, f_lbl, g_val, g_prag, r_lbls_json))
-
-        # Write to each shard
-        for shard_path, data in shard_to_data.items():
-            self._init_shard(shard_path) # Ensure exists
-            
-            conn = sqlite3.connect(shard_path)
-            conn.executemany(
-                """INSERT OR REPLACE INTO cache_entries 
-                   (sentence_hash, sentence, kotogram, formality_label, gender_value, gender_pragmatic, register_labels) 
-                   VALUES (?, ?, ?, ?, ?, ?, ?)""",
-                data
-            )
-            conn.commit()
-            conn.close()
-
-    def __len__(self) -> int:
-        """Return approximate number of cached entries (expensive to count all)."""
-        # For speed, we might just estimate or skip. 
-        # But if needed, we iterate all shards.
-        total = 0
-        for fname in os.listdir(self.shards_dir):
-            if fname.endswith(".db"):
-                conn = sqlite3.connect(os.path.join(self.shards_dir, fname))
-                cursor = conn.execute("SELECT COUNT(*) FROM cache_entries")
-                total += int(cursor.fetchone()[0])
-                conn.close()
-        return total
-
-
-# Global kotogram cache instance
-# Global kotogram cache instance
-_kotogram_cache: Optional[ShardedKotogramCache] = None
-
-
-def get_kotogram_cache(shards_dir: str = ShardedKotogramCache.DEFAULT_SHARDS_DIR) -> ShardedKotogramCache:
-    """Get the global sharded kotogram cache instance."""
-    global _kotogram_cache
-    if _kotogram_cache is None or _kotogram_cache.shards_dir != shards_dir:
-        _kotogram_cache = ShardedKotogramCache(shards_dir)
-    return _kotogram_cache
+GENDER_LOSS_WEIGHT = 10.0
 
 
 def setup_distributed() -> Tuple[int, int, int]:
@@ -360,106 +143,6 @@ def is_main_process() -> bool:
     if dist.is_available() and dist.is_initialized():
         return dist.get_rank() == 0
     return True
-
-class ProcessedSample(NamedTuple):
-    sentence: str
-    sentence_id: str
-    kotogram: str
-    formality_id: int
-    gender_value: float
-    gender_pragmatic: int
-    register_ids: List[int]
-    gram_label: int
-    success: int
-
-
-def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List['ProcessedSample']:
-    """Compute labels for a batch of sentences."""
-    # Import in worker process to avoid pickling issues
-    from kotogram.analysis import FormalityLevel, GenderLevel, RegisterLevel
-    
-    # ProcessedSample is defined below but used here as type hint. 
-    # At runtime inside function it will be available if defined at module level.
-    # We will ensure it is defined at module level.
-
-    try:
-        from rule_based_analysis import analyze_formality, analyze_gender, analyze_register
-    except ImportError:
-        from scripts.rule_based_analysis import analyze_formality, analyze_gender, analyze_register
-
-    results = []
-    
-    formality_to_id = {
-        FormalityLevel.VERY_FORMAL: 0,
-        FormalityLevel.FORMAL: 1,
-        FormalityLevel.NEUTRAL: 2,
-        FormalityLevel.CASUAL: 3,
-        FormalityLevel.VERY_CASUAL: 4,
-        FormalityLevel.UNPRAGMATIC_FORMALITY: 5,
-    }
-    gender_to_id = {
-        GenderLevel.MASCULINE: 0,
-        GenderLevel.FEMININE: 1,
-        GenderLevel.NEUTRAL: 2,
-        GenderLevel.UNPRAGMATIC_GENDER: 3,
-    }
-    register_to_id = {
-        RegisterLevel.SONKEIGO: 0,
-        RegisterLevel.KENJOGO: 1,
-        RegisterLevel.KANSAIBEN: 2,
-        RegisterLevel.HAKATABEN: 3,
-        RegisterLevel.KYOSHIGO: 4,
-        RegisterLevel.NETSLANG: 5,
-        RegisterLevel.NEUTRAL: 6,
-    }
-    
-    for sentence, kotogram, gram_label in batch:
-        try:
-            formality_enum = analyze_formality(kotogram)
-            gender_enum = analyze_gender(kotogram)
-            register_enums = analyze_register(kotogram) # returns Set
-            
-            formality_id = formality_to_id[formality_enum]
-            
-            # Map gender enum to (value, pragmatic)
-            if gender_enum == GenderLevel.MASCULINE:
-                gender_val = -1.0
-                gender_prag = 1
-            elif gender_enum == GenderLevel.FEMININE:
-                gender_val = 1.0
-                gender_prag = 1
-            elif gender_enum == GenderLevel.NEUTRAL:
-                gender_val = 0.0
-                gender_prag = 1
-            else: # UNPRAGMATIC_GENDER
-                gender_val = 0.0
-                gender_prag = 0
-            
-            register_ids = []
-            for r_enum in register_enums:
-                if r_enum in register_to_id:
-                     register_ids.append(register_to_id[r_enum])
-            
-            # Default to neutral if empty
-            if not register_ids:
-                 register_ids.append(register_to_id[RegisterLevel.NEUTRAL])
-
-            # Use dummy ID for batch processing
-            results.append(ProcessedSample(
-                sentence=sentence,
-                sentence_id="", # Not available in this context
-                kotogram=kotogram,
-                formality_id=formality_id,
-                gender_value=gender_val,
-                gender_pragmatic=gender_prag,
-                register_ids=register_ids,
-                gram_label=gram_label,
-                success=1
-            ))
-        except Exception:
-            pass # Skip failed
-            
-    return results
 
 
 def _collect_tokens_batch(kotograms: List[str]) -> Dict[str, Counter]:
@@ -526,75 +209,6 @@ def _encode_samples_batch(
         samples.append(sample)
         
     return samples
-
-
-def _process_sentence_batch(
-    batch: List[Tuple[str, str, int]],  # (sentence, sentence_id, gram_label)
-) -> List['ProcessedSample']:
-    """Process a batch of sentences in a worker process."""
-    # Import parser in worker process to avoid pickling issues
-    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-    from kotogram.analysis import FormalityLevel, GenderLevel, RegisterLevel
-    # ProcessedSample is defined at module level
-    # Try importing from local directory first, then package
-    try:
-        from rule_based_analysis import analyze_formality, analyze_gender, analyze_register
-    except ImportError:
-        from scripts.rule_based_analysis import analyze_formality, analyze_gender, analyze_register
-
-    parser = SudachiJapaneseParser()
-    results = []
-
-    # Import centralized label mappings
-    from kotogram.model import FORMALITY_LABEL_TO_ID, REGISTER_LABEL_TO_ID
-
-    for sentence, sentence_id, gram_label in batch:
-        kotogram = parser.japanese_to_kotogram(sentence)
-        formality_enum = analyze_formality(kotogram)
-        gender_enum = analyze_gender(kotogram)
-        register_enums = analyze_register(kotogram) # returns Set
-        
-        # Use centralized mapping
-        if formality_enum in FORMALITY_LABEL_TO_ID:
-            formality_id = FORMALITY_LABEL_TO_ID[formality_enum]
-        else:
-            # Fallback (should not happen if enum covers all)
-            formality_id = FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL]
-            
-        # Map gender enum to (value, pragmatic)
-        if gender_enum == GenderLevel.MASCULINE:
-            gender_val = -1.0
-            gender_prag = 1
-        elif gender_enum == GenderLevel.FEMININE:
-            gender_val = 1.0
-            gender_prag = 1
-        elif gender_enum == GenderLevel.NEUTRAL:
-            gender_val = 0.0
-            gender_prag = 1
-        else: # UNPRAGMATIC_GENDER
-            gender_val = 0.0
-            gender_prag = 0
-        
-        register_ids = []
-        for r_enum in register_enums:
-                if r_enum in REGISTER_LABEL_TO_ID:
-                    register_ids.append(REGISTER_LABEL_TO_ID[r_enum])
-        
-        if not register_ids:
-                register_ids.append(REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL])
-
-        results.append(ProcessedSample(
-            sentence=sentence,
-            sentence_id=sentence_id,
-            kotogram=kotogram,
-            formality_id=formality_id,
-            gender_value=gender_val,
-            gender_pragmatic=gender_prag,
-            register_ids=register_ids,
-            gram_label=gram_label,
-            success=1
-        ))
-    return results
 
 
 
@@ -665,7 +279,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 mtime = os.path.getmtime(tsv_path)
                 hash_parts.append(str(mtime))
 
-        hash_parts.append(f"max_samples={max_samples}")
+        # Note: max_samples is NOT part of cache key - we cache full dataset
+        # and subsample after loading if needed
+        # hash_parts.append(f"max_samples={max_samples}")  # Intentionally excluded
         hash_parts.append(f"labeled={labeled}")
         hash_parts.append(f"gram_labels={grammaticality_labels}")
 
@@ -680,164 +296,44 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         batch_size: int = 1000,
         verbose: bool = True,
         use_kotogram_cache: bool = True,
-    ) -> List['ProcessedSample']:
-        """Process sentences in parallel using multiprocessing.
-
-        Uses a durable kotogram cache to avoid re-parsing sentences that have
-        already been processed in previous runs. The cache is keyed only by
-        sentence content, so it persists across changes to model architecture,
-        training parameters, etc.
-
-        Args:
-            rows: List of (sentence, sentence_id, gram_label, source_id) tuples
-            num_workers: Number of worker processes (default: CPU count)
-            batch_size: Sentences per batch sent to workers
-            verbose: Print progress
-            use_kotogram_cache: If True, use durable kotogram cache
-
-        Returns:
-            List of ProcessedSample objects
+    ) -> List[ProcessedSample]:
+        """Fetch pre-computed labels from the shared cache.
+        
+        Labels should have been computed by scripts/label.py.
         """
-        # Import local ProcessedSample in method to avoid circular import issues if any
-        # from processed_sample import ProcessedSample - Inlined now
-        pass
-        if num_workers is None:
-            num_workers = max(1, mp.cpu_count() - 1)
-
-        if len(rows) == 0:
+        if not rows:
             return []
 
-        # Check kotogram cache for already-parsed sentences
-        # Check kotogram cache for already-parsed sentences
-        cache = get_kotogram_cache() if use_kotogram_cache else None
+        cache = get_kotogram_cache()
+        sentences = [r[0] for r in rows]
+        cached_batch = cache.get_batch(sentences)
         
-        # Results storage
-        # We need final list of (sentence, kotogram, f_id, g_val, g_prag, r_ids, gram_label, success)
-        # We can store intermediate results in a dict or build list at the end
-        final_data: Dict[str, Tuple[str, int, float, int, List[int]]] = {} # sentence -> (kotogram, f, g_val, g_prag, r_ids)
-        
-        uncached_rows: List[Tuple[str, str, int]] = [] # Need parsing
-        unlabeled_rows: List[Tuple[str, str, int]] = [] # Have kotogram, need labels
-
-        if cache is not None:
-            sentences = [r[0] for r in rows]
-            cached_batch = cache.get_batch(sentences)
-            
-            kotogram_hits = 0
-            label_hits = 0
-
-            for row in rows:
-                s = row[0]
-                entry = cached_batch.get(s)
-                
-                if entry is not None:
-                    k, f, g_val, g_prag, r_lbls = entry
-                    kotogram_hits += 1
-                    
-                    # Treat None register labels as a partial hit (needs re-labeling)
-                    if f is not None and g_val is not None and g_prag is not None and r_lbls is not None:
-                        final_data[s] = (k, f, g_val, g_prag, r_lbls)
-                        label_hits += 1
-                    else:
-                        # Partial hit (kotogram only, or missing register labels)
-                        unlabeled_rows.append((s, k, row[2]))
-                else:
-                    uncached_rows.append(row)
-
-            if verbose:
-                print(f"Kotogram cache: {kotogram_hits}/{len(rows)} hits ({100*kotogram_hits/len(rows):.1f}%)")
-                print(f"Label cache:    {label_hits}/{len(rows)} hits ({100*label_hits/len(rows):.1f}%)")
-        else:
-            uncached_rows = list(rows)
-
-
-        # 1. Process Uncached (Parse + Label)
-        # -----------------------------------
-        new_cache_entries: List[Tuple[str, str, Optional[int], Optional[float], Optional[int], Optional[List[int]]]] = []
-        
-        # Initialize multiprocessing context early
-        ctx = mp.get_context('spawn')
-
-        if uncached_rows:
-            batches = [uncached_rows[i:i + batch_size] for i in range(0, len(uncached_rows), batch_size)]
-
-            if verbose:
-                print(f"Parsing {len(uncached_rows)} uncached sentences with {num_workers} workers...")
-
-            processed = 0
-
-            with ctx.Pool(num_workers) as pool:
-                for batch_results in pool.imap(_process_sentence_batch, batches):
-                    # batch_results: List[ProcessedSample]
-                    for item in batch_results:
-                        # item is ProcessedSample
-                        if item.success:
-                            final_data[item.sentence] = (item.kotogram, item.formality_id, item.gender_value, item.gender_pragmatic, item.register_ids)
-                            new_cache_entries.append((item.sentence, item.kotogram, item.formality_id, item.gender_value, item.gender_pragmatic, item.register_ids))
-                    
-                    processed += len(batch_results)
-                    if verbose and processed % 10000 < batch_size:
-                        print(f"\r  Parsed {processed}/{len(uncached_rows)} sentences...", end="", flush=True)
-
-            if verbose:
-                print() # Newline after progress bar
-                print(f"  Completed: {len(new_cache_entries)} new kotograms parsed")
-
-
-        # 2. Process Unlabeled (Label only)
-        # ---------------------------------
-        # These are partial cache hits (legacy cache data)
-        if unlabeled_rows:
-            if verbose:
-                print(f"Computing labels for {len(unlabeled_rows)} partial-hit sentences...")
-            
-            # Batching
-            label_batches = [unlabeled_rows[i:i + batch_size] for i in range(0, len(unlabeled_rows), batch_size)]
-            processed_labels = 0
-            
-            with ctx.Pool(num_workers) as pool:
-                for batch_results in pool.imap(_compute_labels_batch, label_batches):
-                    for item in batch_results:
-                        if item.success:
-                            final_data[item.sentence] = (item.kotogram, item.formality_id, item.gender_value, item.gender_pragmatic, item.register_ids)
-                            new_cache_entries.append((item.sentence, item.kotogram, item.formality_id, item.gender_value, item.gender_pragmatic, item.register_ids))
-                    
-                    processed_labels += len(batch_results)
-                    if verbose and processed_labels % 100000 < batch_size:
-                         print(f"  Labeled {processed_labels}/{len(unlabeled_rows)} sentences...")
-
-        # 3. Update Cache
-        # ---------------
-        if cache is not None and new_cache_entries:
-            cache.put_batch(new_cache_entries, verbose=verbose)
-            if verbose:
-                print(f"  Saved {len(new_cache_entries)} new entries to sharded cache")
-
-
-        # 4. Assemble Final Results
-        # -------------------------
-        # Match original rows to preserve order/grammar label
         results: List[ProcessedSample] = []
-        
-        for sentence, _sid, gram_label in rows:
-            if sentence in final_data:
-                k, f, g_val, g_prag, r = final_data[sentence]
-                results.append(ProcessedSample(
-                    sentence=sentence,
-                    sentence_id=_sid, 
-                    kotogram=k,
-                    formality_id=f,
-                    gender_value=g_val,
-                    gender_pragmatic=g_prag,
-                    register_ids=r,
-                    gram_label=gram_label,
-                    success=1
-                ))
-            else:
-                pass # Failed to parse or label
+        missing = 0
+
+        for sentence, sentence_id, gram_label in rows:
+            entry = cached_batch.get(sentence)
+            if entry:
+                k, f, g_val, g_prag, r = entry
+                if f is not None:
+                    results.append(ProcessedSample(
+                        sentence=sentence,
+                        sentence_id=sentence_id,
+                        kotogram=k,
+                        formality_id=f,
+                        gender_value=g_val,
+                        gender_pragmatic=g_prag,
+                        register_ids=r,
+                        gram_label=gram_label,
+                        success=1
+                    ))
+                    continue
+            missing += 1
 
         if verbose:
-            print(f"  Total: {len(results)} sentences ready for training")
+            print(f"Loaded {len(results)} labeled samples from cache.")
+            if missing > 0:
+                print(f"WARNING: {missing} samples were missing from cache. Run scripts/label.py first.")
 
         return results
 
@@ -2668,7 +2164,7 @@ def save_checkpoint(
         'best_state': best_state,
         'args': {
             'data': args.data,
-            'extra_data': args.extra_data,
+            'agrammatic_sentences': args.agrammatic_sentences,
             'agrammatic_data': args.agrammatic_data,
             'epochs': args.epochs,
             'batch_size': args.batch_size,
@@ -2764,6 +2260,10 @@ if __name__ == "__main__":
                         help="Maximum samples to use (for testing)")
     parser.add_argument("--epochs", type=int, default=10,
                         help="Number of training epochs")
+    parser.add_argument("--agrammatic-sentences", type=str, default=None,
+                        help="Path to additional TSV file with agrammatic sentences (e.g., unpragmatic examples)")
+    parser.add_argument("--agrammatic-data", type=str, default=None,
+                        help="Path to TSV file with agrammatic sentences (for grammaticality training)")
     parser.add_argument("--batch-size", type=int, default=32,
                         help="Batch size")
     parser.add_argument("--embed-dim", type=int, default=192,
@@ -2788,10 +2288,6 @@ if __name__ == "__main__":
                         help="Loss weight for gender task")
     parser.add_argument("--grammaticality-weight", type=float, default=1.0,
                         help="Loss weight for grammaticality task")
-    parser.add_argument("--extra-data", type=str, default=None,
-                        help="Path to additional TSV file with training data (e.g., unpragmatic examples)")
-    parser.add_argument("--agrammatic-data", type=str, default=None,
-                        help="Path to TSV file with agrammatic sentences (for grammaticality training)")
     parser.add_argument("--exclude-features", type=str, default="",
                         help="Comma-separated list of features to exclude (for ablation study). "
                              f"Valid: {','.join(ALL_FEATURE_FIELDS)}")
@@ -2895,7 +2391,7 @@ if __name__ == "__main__":
                 print(f"  Retraining from epoch 0 to {args.epochs}")
 
             # Update args with saved values (except epochs which can be extended)
-            # Note: We do NOT restore data paths (data, extra_data, agrammatic_data) to allow
+            # Note: We do NOT restore data paths (data, agrammatic_sentences, agrammatic_data) to allow
             # resuming training even if data files have moved or been reorganized, provided
             # valid paths are passed via command line.
             args.embed_dim = saved_args['embed_dim']
@@ -2958,8 +2454,8 @@ if __name__ == "__main__":
     # grammatic (1) = normal sentences, agrammatic (0) = ungrammatical sentences
     data_files = [args.data]
     grammaticality_labels = [1]  # jpn_sentences.tsv is grammatic
-    if args.extra_data:
-        data_files.append(args.extra_data)
+    if args.agrammatic_sentences:
+        data_files.append(args.agrammatic_sentences)
         grammaticality_labels.append(0)  # unpragmatic_sentences.tsv is agrammatic (unpragmatic = ungrammatical)
     if args.agrammatic_data:
         data_files.append(args.agrammatic_data)
@@ -2994,7 +2490,7 @@ if __name__ == "__main__":
     # Current state
     current_state = {
         'data': get_file_fingerprint(args.data),
-        'extra_data': get_file_fingerprint(args.extra_data) if args.extra_data else None,
+        'agrammatic_sentences': get_file_fingerprint(args.agrammatic_sentences) if args.agrammatic_sentences else None,
         'agrammatic_data': get_file_fingerprint(args.agrammatic_data) if args.agrammatic_data else None,
     }
 
@@ -3024,8 +2520,8 @@ if __name__ == "__main__":
             read_sentences_to_set(args.data, grammatic_sentences)
             
             # Read agrammatic
-            if args.extra_data:
-                read_sentences_to_set(args.extra_data, agrammatic_sentences)
+            if args.agrammatic_sentences:
+                read_sentences_to_set(args.agrammatic_sentences, agrammatic_sentences)
             if args.agrammatic_data:
                 read_sentences_to_set(args.agrammatic_data, agrammatic_sentences)
                 
