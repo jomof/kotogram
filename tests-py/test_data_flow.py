@@ -17,7 +17,8 @@ class TestDataFlow(unittest.TestCase):
                 'lemma': [1, 2, 3]
             },
             formality_label=0,
-            gender_label=0,
+            gender_value=0.0,
+            gender_pragmatic=0,
             register_labels=[0], # Neutral
             grammaticality_label=1,
             original_sentence="Test 1",
@@ -34,7 +35,8 @@ class TestDataFlow(unittest.TestCase):
                 'lemma': [4, 5]
             },
             formality_label=1,
-            gender_label=1,
+            gender_value=1.0,
+            gender_pragmatic=1,
             register_labels=[1, 2], # Sonkeigo + Kenjogo (example)
             grammaticality_label=0, # Agrammatic
             original_sentence="Test 2",
@@ -72,7 +74,7 @@ class TestDataFlow(unittest.TestCase):
         form_labels = collated['formality_labels']
         self.assertEqual(form_labels.dtype, torch.long)
         
-        gender_labels = collated['gender_labels']
+        gender_labels = collated['gender_pragmatic']
         self.assertEqual(gender_labels.dtype, torch.long)
 
     def test_sample_defaults(self):
@@ -88,7 +90,8 @@ class TestDataFlow(unittest.TestCase):
                 'lemma': [1]
             },
             formality_label=0,
-            gender_label=0
+            gender_value=0.0,
+            gender_pragmatic=0
             # Missing register_labels, grammaticality_label
         )
         # Should default to Neutral ([0]) and Grammatic (1)

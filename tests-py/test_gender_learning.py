@@ -1,0 +1,51 @@
+
+import unittest
+import torch
+import torch.nn as nn
+from kotogram.model import StyleClassifier, ModelConfig
+
+class TestGenderLearning(unittest.TestCase):
+    def test_gradient_flow(self):
+        """Verify that gradients flow to gender heads."""
+        config = ModelConfig(
+            vocab_sizes={'surface': 100},
+            hidden_dim=32,
+            num_formality_classes=6,
+            num_gender_pragmatic_classes=2,
+            num_grammaticality_classes=2,
+            num_register_classes=7
+        )
+        model = StyleClassifier(config)
+        
+        # Dummy input
+        batch_size = 4
+        # Default model uses all features: surface, pos, pos_detail1, pos_detail2, conjugated_type, conjugated_form, lemma
+        field_inputs = {}
+        for field in ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma']:
+             field_inputs[f'input_ids_{field}'] = torch.randint(0, 100, (batch_size, 10))
+        attention_mask = torch.ones((batch_size, 10))
+        
+        # Forward pass
+        formality, gender_val, gender_prag, gram, register = model(field_inputs, attention_mask)
+        
+        # Dummy targets
+        gender_val_targets = torch.randn(batch_size)
+        gender_prag_targets = torch.randint(0, 2, (batch_size,))
+        
+        # Compute loss
+        loss_val = nn.functional.mse_loss(gender_val.squeeze(-1), gender_val_targets)
+        loss_prag = nn.functional.cross_entropy(gender_prag, gender_prag_targets)
+        total_loss = loss_val + loss_prag
+        
+        # Backward
+        total_loss.backward()
+        
+        # Check gradients on the first Linear layer of the Sequential head
+        self.assertIsNotNone(model.gender_value_head[0].weight.grad)
+        self.assertNotEqual(model.gender_value_head[0].weight.grad.abs().sum().item(), 0.0)
+        
+        self.assertIsNotNone(model.gender_pragmatic_head[0].weight.grad)
+        self.assertNotEqual(model.gender_pragmatic_head[0].weight.grad.abs().sum().item(), 0.0)
+
+if __name__ == '__main__':
+    unittest.main()

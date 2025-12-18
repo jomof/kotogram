@@ -37,7 +37,8 @@ class TestModelRegisterIntegration(unittest.TestCase):
         # model.predict returns 4 tensors (probabilities)
         self.mock_model.predict.return_value = (
             torch.zeros(1, 6), # formality
-            torch.zeros(1, 4), # gender
+            torch.zeros(1, 1), # gender_val
+            torch.zeros(1, 2), # gender_prag
             torch.zeros(1, 2), # grammaticality
             register_probs     # register
         )
@@ -51,7 +52,8 @@ class TestModelRegisterIntegration(unittest.TestCase):
         register_probs[0, 3] = 0.9
         self.mock_model.predict.return_value = (
             torch.zeros(1, 6), 
-            torch.zeros(1, 4), 
+            torch.zeros(1, 1), 
+            torch.zeros(1, 2), 
             torch.zeros(1, 2), 
             register_probs
         )
@@ -66,7 +68,8 @@ class TestModelRegisterIntegration(unittest.TestCase):
         register_probs[0, 0] = 0.1 # even if neutral logit is low, it falls back
         self.mock_model.predict.return_value = (
             torch.zeros(1, 6), 
-            torch.zeros(1, 4), 
+            torch.zeros(1, 1), 
+            torch.zeros(1, 2), 
             torch.zeros(1, 2), 
             register_probs
         )
@@ -78,7 +81,8 @@ class TestModelRegisterIntegration(unittest.TestCase):
         register_probs[0, 3] = 0.9 # KANSAIBEN
         self.mock_model.predict.return_value = (
             torch.zeros(1, 6), 
-            torch.zeros(1, 4), 
+            torch.zeros(1, 1), 
+            torch.zeros(1, 2), 
             torch.zeros(1, 2), 
             register_probs
         )
@@ -102,9 +106,14 @@ class TestModelRegisterIntegration(unittest.TestCase):
         register_probs = torch.zeros(1, 9)
         register_probs[0, 3] = 0.9 # KANSAIBEN
         
+        gender_val = torch.tensor([-1.0])
+        gender_prag = torch.zeros(1, 2)
+        gender_prag[0, 1] = 5.0 # Pragmatic
+
         self.mock_model.predict.return_value = (
             formality_logits,
-            gender_logits,
+            gender_val,
+            gender_prag,
             gram_logits,
             register_probs
         )
@@ -114,7 +123,7 @@ class TestModelRegisterIntegration(unittest.TestCase):
         f, g, r, is_gram = style("dummy kotogram")
         
         self.assertEqual(f, FormalityLevel.FORMAL)
-        self.assertEqual(g, GenderLevel.MASCULINE)
+        self.assertEqual(g, -1.0)
         self.assertEqual(r, {RegisterLevel.KANSAIBEN})
         self.assertTrue(is_gram)
 

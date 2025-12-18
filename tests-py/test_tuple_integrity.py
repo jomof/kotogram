@@ -27,18 +27,17 @@ class TestTupleCardinality(unittest.TestCase):
         result = results[0]
         
         # Validate cardinality
-        assert len(result) == 8, f"Expected 8-tuple, got {len(result)}-tuple: {result}"
-
         # Validate types
-        sentence, sentence_id, kotogram, formality_id, gender_id, register_ids, gram_label, success = result
-        assert isinstance(sentence, str), f"sentence should be str, got {type(sentence)}"
-        assert isinstance(sentence_id, str), f"sentence_id should be str, got {type(sentence_id)}"
-        assert isinstance(kotogram, str), f"kotogram should be str, got {type(kotogram)}"
-        assert isinstance(formality_id, int), f"formality_id should be int, got {type(formality_id)}"
-        assert isinstance(gender_id, int), f"gender_id should be int, got {type(gender_id)}"
-        assert isinstance(register_ids, list), f"register_ids should be list, got {type(register_ids)}"
-        assert isinstance(gram_label, int), f"gram_label should be int, got {type(gram_label)}"
-        assert isinstance(success, int), f"success should be int, got {type(success)}"
+        self.assertTrue(hasattr(result, 'sentence'), "Missing sentence attribute")
+        assert isinstance(result.sentence, str), f"sentence should be str, got {type(result.sentence)}"
+        assert isinstance(result.sentence_id, str), f"sentence_id should be str, got {type(result.sentence_id)}"
+        assert isinstance(result.kotogram, str), f"kotogram should be str, got {type(result.kotogram)}"
+        assert isinstance(result.formality_id, int), f"formality_id should be int, got {type(result.formality_id)}"
+        assert isinstance(result.gender_value, float), f"gender_value should be float, got {type(result.gender_value)}"
+        assert isinstance(result.gender_pragmatic, int), f"gender_pragmatic should be int, got {type(result.gender_pragmatic)}"
+        assert isinstance(result.register_ids, list), f"register_ids should be list, got {type(result.register_ids)}"
+        assert isinstance(result.gram_label, int), f"gram_label should be int, got {type(result.gram_label)}"
+        assert isinstance(result.success, int), f"success should be int, got {type(result.success)}"
 
     def test_compute_labels_batch_returns_7_tuple(self):
         """Verify _compute_labels_batch returns 7-element tuples."""
@@ -52,17 +51,16 @@ class TestTupleCardinality(unittest.TestCase):
         result = results[0]
         
         # Validate cardinality
-        assert len(result) == 7, f"Expected 7-tuple, got {len(result)}-tuple: {result}"
-
         # Validate types
-        sentence, kotogram, formality_id, gender_id, register_ids, gram_label, success = result
-        assert isinstance(sentence, str), f"sentence should be str, got {type(sentence)}"
-        assert isinstance(kotogram, str), f"kotogram should be str, got {type(kotogram)}"
-        assert isinstance(formality_id, int), f"formality_id should be int, got {type(formality_id)}"
-        assert isinstance(gender_id, int), f"gender_id should be int, got {type(gender_id)}"
-        assert isinstance(register_ids, list), f"register_ids should be list, got {type(register_ids)}"
-        assert isinstance(gram_label, int), f"gram_label should be int, got {type(gram_label)}"
-        assert isinstance(success, int), f"success should be int, got {type(success)}"
+        self.assertTrue(hasattr(result, 'sentence'))
+        assert isinstance(result.sentence, str), f"sentence should be str, got {type(result.sentence)}"
+        assert isinstance(result.kotogram, str), f"kotogram should be str, got {type(result.kotogram)}"
+        assert isinstance(result.formality_id, int), f"formality_id should be int, got {type(result.formality_id)}"
+        assert isinstance(result.gender_value, float), f"gender_value should be float, got {type(result.gender_value)}"
+        assert isinstance(result.gender_pragmatic, int), f"gender_pragmatic should be int, got {type(result.gender_pragmatic)}"
+        assert isinstance(result.register_ids, list), f"register_ids should be list, got {type(result.register_ids)}"
+        assert isinstance(result.gram_label, int), f"gram_label should be int, got {type(result.gram_label)}"
+        assert isinstance(result.success, int), f"success should be int, got {type(result.success)}"
 
     def test_process_parallel_returns_7_tuple(self):
         """Verify _process_parallel returns 7-element tuples."""
@@ -86,17 +84,18 @@ class TestTupleCardinality(unittest.TestCase):
         
         for i, result in enumerate(results):
             # Validate cardinality
-            assert len(result) == 7, f"Result {i}: Expected 7-tuple, got {len(result)}-tuple: {result}"
+            assert len(result) == 9, f"Result {i}: Expected 9-tuple, got {len(result)}-tuple: {result}"
 
             # Validate types
-            sentence, kotogram, f_id, g_id, r_ids, gram_label, success = result
-            assert isinstance(sentence, str), f"Result {i}: sentence should be str"
-            assert isinstance(kotogram, str), f"Result {i}: kotogram should be str"
-            assert isinstance(f_id, int), f"Result {i}: f_id should be int"
-            assert isinstance(g_id, int), f"Result {i}: g_id should be int"
-            assert isinstance(r_ids, list), f"Result {i}: r_ids should be list, got {type(r_ids)}"
-            assert isinstance(gram_label, int), f"Result {i}: gram_label should be int"
-            assert isinstance(success, int), f"Result {i}: success should be int"
+            self.assertTrue(hasattr(result, 'sentence'))
+            assert isinstance(result.sentence, str), f"Result {i}: sentence should be str"
+            assert isinstance(result.kotogram, str), f"Result {i}: kotogram should be str"
+            assert isinstance(result.formality_id, int), f"Result {i}: f_id should be int"
+            assert isinstance(result.gender_value, float), f"Result {i}: g_val should be float"
+            assert isinstance(result.gender_pragmatic, int), f"Result {i}: g_prag should be int"
+            assert isinstance(result.register_ids, list), f"Result {i}: r_ids should be list, got {type(result.register_ids)}"
+            assert isinstance(result.gram_label, int), f"Result {i}: gram_label should be int"
+            assert isinstance(result.success, int), f"Result {i}: success should be int"
 
     def test_register_ids_contains_valid_integers(self):
         """Verify register_ids list contains valid integer IDs."""
@@ -106,7 +105,8 @@ class TestTupleCardinality(unittest.TestCase):
         results = _process_sentence_batch(batch)
 
         assert len(results) == 1
-        _, _, _, _, _, register_ids, _, _ = results[0]
+        result = results[0]
+        register_ids = result.register_ids
 
         assert isinstance(register_ids, list), f"register_ids should be list, got {type(register_ids)}"
         assert len(register_ids) > 0, "register_ids should not be empty"
@@ -122,31 +122,32 @@ class TestEncodingInputs(unittest.TestCase):
         """Verify encoding_inputs are extracted correctly from processed_results."""
         # Simulate processed_results from _process_parallel
         processed_results = [
-            ("sentence1", "kotogram1", 0, 0, [0], 1, 1),  # 7-tuple: success=1
-            ("sentence2", "kotogram2", 1, 1, [1, 2], 0, 1),  # Multi-label register
-            ("sentence3", "kotogram3", 2, 2, [6], 1, 0),  # success=0 (should be skipped)
+            ("sentence1", "kotogram1", 0, 0.0, 0, [0], 1, 1),  # 8-tuple: success=1
+            ("sentence2", "kotogram2", 1, 1.0, 1, [1, 2], 0, 1),  # Multi-label register
+            ("sentence3", "kotogram3", 2, 2.0, 2, [6], 1, 0),  # success=0 (should be skipped)
         ]
 
         # Extract encoding_inputs as done in from_multiple_tsv
         encoding_inputs = []
         for p in processed_results:
-            assert len(p) == 7, f"Expected 7-tuple, got {len(p)}"
-            if p[6]:  # success
-                encoding_inputs.append((p[0], p[1], p[2], p[3], p[4], p[5]))
+            assert len(p) == 8, f"Expected 8-tuple, got {len(p)}"
+            if p[7]:  # success
+                encoding_inputs.append((p[0], p[1], p[2], p[3], p[4], p[5], p[6]))
 
         assert len(encoding_inputs) == 2, "Should have 2 successful items"
         
         # Validate first item
-        sent, koto, f_id, g_id, r_ids, gram = encoding_inputs[0]
+        sent, koto, f_id, g_val, g_prag, r_ids, gram = encoding_inputs[0]
         assert sent == "sentence1"
         assert koto == "kotogram1"
         assert f_id == 0
-        assert g_id == 0
+        assert g_val == 0.0
+        assert g_prag == 0
         assert r_ids == [0]
         assert gram == 1
 
         # Validate second item (multi-label register)
-        sent, koto, f_id, g_id, r_ids, gram = encoding_inputs[1]
+        sent, koto, f_id, g_val, g_prag, r_ids, gram = encoding_inputs[1]
         assert r_ids == [1, 2], f"Expected [1, 2], got {r_ids}"
 
 

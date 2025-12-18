@@ -119,7 +119,7 @@ def formality(kotogram: str) -> FormalityLevel:
     # Predict
     model.eval()
     with torch.no_grad():
-        formality_probs, _, _, _ = model.predict(field_inputs, attention_mask)
+        formality_probs, _, _, _, _ = model.predict(field_inputs, attention_mask)
         formality_idx = int(formality_probs[0].argmax().item())
 
     # Map model output index to FormalityLevel
@@ -139,7 +139,7 @@ def formality(kotogram: str) -> FormalityLevel:
 
 
 
-def style(kotogram: str) -> Tuple[FormalityLevel, GenderLevel, Set[RegisterLevel], bool]:
+def style(kotogram: str) -> Tuple[FormalityLevel, Optional[float], Set[RegisterLevel], bool]:
     """Analyze a Japanese sentence and return formality, gender, register, and grammaticality.
 
     This is more efficient than calling formality(), gender(), register(), and grammaticality()
@@ -150,7 +150,8 @@ def style(kotogram: str) -> Tuple[FormalityLevel, GenderLevel, Set[RegisterLevel
                  linguistic information with POS tags and conjugation forms.
 
     Returns:
-        Tuple of (FormalityLevel, GenderLevel, Set[RegisterLevel], is_grammatic) for the sentence.
+        Tuple of (FormalityLevel, Optional[float], Set[RegisterLevel], is_grammatic) for the sentence.
+        Gender is float [-1, 1] or None if unpragmatic.
 
     Examples:
         >>> # Formal, neutral sentence: 食べます (I eat - polite)
@@ -180,9 +181,10 @@ def style(kotogram: str) -> Tuple[FormalityLevel, GenderLevel, Set[RegisterLevel
     # Predict
     model.eval()
     with torch.no_grad():
-        formality_probs, gender_probs, grammaticality_probs, register_probs = model.predict(field_inputs, attention_mask)
+        formality_probs, gender_val, gender_prag_probs, grammaticality_probs, register_probs = model.predict(field_inputs, attention_mask)
         formality_idx = int(formality_probs[0].argmax().item())
-        gender_idx = int(gender_probs[0].argmax().item())
+        gender_value = float(gender_val[0].item())
+        gender_prag_idx = int(gender_prag_probs[0].argmax().item())
         grammaticality_idx = int(grammaticality_probs[0].argmax().item())
         register_idx = int(register_probs[0].argmax().item())
 
@@ -217,9 +219,14 @@ def style(kotogram: str) -> Tuple[FormalityLevel, GenderLevel, Set[RegisterLevel
     if not detected_registers:
         detected_registers.add(RegisterLevel.NEUTRAL)
 
+    # Determine gender result
+    gender_res: Optional[float] = None
+    if gender_prag_idx == 1: # Pragmatic
+        gender_res = gender_value
+
     return (
         formality_map.get(formality_idx, FormalityLevel.NEUTRAL),
-        gender_map.get(gender_idx, GenderLevel.NEUTRAL),
+        gender_res,
         detected_registers,
         is_grammatic,
     )
@@ -254,7 +261,7 @@ def register(kotogram: str) -> Set[RegisterLevel]:
     # Predict
     model.eval()
     with torch.no_grad():
-        _, _, _, register_probs = model.predict(field_inputs, attention_mask)
+        _, _, _, _, register_probs = model.predict(field_inputs, attention_mask)
     
     # Process register probabilities (multi-label)
     detected_registers = set()
@@ -273,7 +280,7 @@ def register(kotogram: str) -> Set[RegisterLevel]:
     return detected_registers
 
 
-def gender(kotogram: str) -> GenderLevel:
+def gender(kotogram: str) -> Optional[float]:
     """Analyze a Japanese sentence and return its gender-associated speech level.
 
     This function examines the linguistic features encoded in a kotogram
@@ -284,9 +291,9 @@ def gender(kotogram: str) -> GenderLevel:
                  linguistic information with POS tags and conjugation forms.
 
     Returns:
-        GenderLevel indicating the sentence's gender-associated speech level,
-        including UNPRAGMATIC_GENDER if the sentence has an awkward combination
-        of different gender markers.
+        Float value between -1.0 (Masculine) and 1.0 (Feminine), or None if
+        the sentence is unpragmatic (awkward gender markers).
+        0.0 represents Neutral.
 
     Examples:
         >>> # Masculine sentence: 俺が行くぜ (I'll go - masculine)
@@ -321,18 +328,16 @@ def gender(kotogram: str) -> GenderLevel:
     # Predict
     model.eval()
     with torch.no_grad():
-        _, gender_probs, _, _ = model.predict(field_inputs, attention_mask)
-        gender_idx = int(gender_probs[0].argmax().item())
-
-    # Map model output index to GenderLevel
-    # Model uses: 0=masculine, 1=feminine, 2=neutral, 3=unpragmatic
-    gender_map = {
-        0: GenderLevel.MASCULINE,
-        1: GenderLevel.FEMININE,
-        2: GenderLevel.NEUTRAL,
-        3: GenderLevel.UNPRAGMATIC_GENDER,
-    }
-    return gender_map.get(gender_idx, GenderLevel.NEUTRAL)
+        _, gender_val, gender_prag_probs, _, _ = model.predict(field_inputs, attention_mask)
+        
+        # Check pragmatic probability (index 1 is pragmatic, 0 is unpragmatic)
+        is_pragmatic = gender_prag_probs[0][1].item() > 0.5
+        
+        if not is_pragmatic:
+            return None
+            
+        # Return value describing gender (-1=M, 0=N, 1=F)
+        return float(gender_val[0].item())
 
 
 
@@ -386,7 +391,7 @@ def grammaticality(kotogram: str) -> bool:
     # Predict
     model.eval()
     with torch.no_grad():
-        _, _, grammaticality_probs, _ = model.predict(field_inputs, attention_mask)
+        _, _, _, grammaticality_probs, _ = model.predict(field_inputs, attention_mask)
         grammaticality_idx = int(grammaticality_probs[0].argmax().item())
 
     # 1 = grammatic, 0 = agrammatic
