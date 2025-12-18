@@ -10,6 +10,7 @@ from scripts.train_style import create_mlm_batch
 
 def test_mlm_grammar_only():
     """Test that surface/lemma are potentially hidden and others are standard MLM."""
+    torch.manual_seed(42)
     
     # Mock batch
     batch_size = 2

@@ -48,7 +48,6 @@ def test_step1_parser_output():
         assert '⌈' in kotogram, "kotogram should contain token markers"
     
     print("\n✓ Step 1 PASSED: Parser produces valid kotograms")
-    return True
 
 
 def test_step2_process_sentence_batch():
@@ -104,8 +103,7 @@ def test_step2_process_sentence_batch():
         assert isinstance(gram_label, int)
         assert isinstance(success, int)
     
-    print("\n✓ Step 2 PASSED: _process_sentence_batch returns correct 8-tuple structure")
-    return True
+    print("\n✓ Step 2 PASSED: _process_sentence_batch produces valid tuples")
 
 
 def test_step3_process_parallel():
@@ -167,8 +165,7 @@ def test_step3_process_parallel():
         assert isinstance(gram_label, int)
         assert isinstance(success, int)
     
-    print("\n✓ Step 3 PASSED: _process_parallel returns correct 7-tuple structure")
-    return True
+    print("\n✓ Step 3 PASSED: _process_parallel produces valid tuples")
 
 
 def test_step4_encoding_inputs_extraction():
@@ -230,7 +227,6 @@ def test_step4_encoding_inputs_extraction():
         print(f"\n  encoding_input {i}: r_ids={r_ids}, gram_label={gram_label}")
     
     print("\n✓ Step 4 PASSED: Encoding inputs correctly extracted")
-    return True
 
 
 def test_step5_encode_samples_batch():
@@ -304,7 +300,6 @@ def test_step5_encode_samples_batch():
         assert isinstance(sample.feature_ids, dict)
     
     print("\n✓ Step 5 PASSED: _encode_samples_batch creates valid Sample objects")
-    return True
 
 
 def test_step6_collate_fn():
@@ -405,7 +400,6 @@ def test_step6_collate_fn():
         assert row_sum >= 1.0, f"Sample {i}: register_labels row sum should be >= 1.0, got {row_sum}"
     
     print("\n✓ Step 6 PASSED: collate_fn produces correct tensor shapes and types")
-    return True
 
 
 def test_step7_evaluate_list_consistency():
@@ -462,7 +456,7 @@ def test_step7_evaluate_list_consistency():
     )
     
     # Simulate what evaluate() does - check list lengths
-    print("\\nSimulating evaluate() list accumulation...")
+    print("\nSimulating evaluate() list accumulation...")
     
     all_formality_preds = []
     all_formality_labels = []
@@ -503,7 +497,7 @@ def test_step7_evaluate_list_consistency():
             print(f"  Batch {batch_idx}: size={batch_size}")
     
     # CRITICAL CHECK: All prediction and label lists must have same length
-    print(f"\\nList lengths:")
+    print("\nList lengths:")
     print(f"  formality:      preds={len(all_formality_preds)}, labels={len(all_formality_labels)}")
     
     # Assertions that would have caught the bug
@@ -521,9 +515,8 @@ def test_step7_evaluate_list_consistency():
     assert len(all_grammaticality_preds) == expected_size, \
         f"Expected {expected_size} predictions, got {len(all_grammaticality_preds)}"
     
-    print(f"\\n✓ All lists have correct length: {expected_size}")
-    print("\\n✓ Step 7 PASSED: evaluate() list lengths are consistent")
-    return True
+    print(f"\n✓ All lists have correct length: {expected_size}")
+    print("\n✓ Step 7 PASSED: evaluate() list accumulation is correct")
 
 
 def test_step8_trace_register_mislabel():
@@ -567,7 +560,7 @@ def test_step8_trace_register_mislabel():
     # Check: Does analyze_register correctly identify hakataben?
     has_hakataben = any(r.name.lower() == 'hakataben' for r in registers)
     has_netslang = any(r.name.lower() == 'netslang' for r in registers)
-    print(f"\\nContains HAKATABEN? {has_hakataben}")
+    print(f"\nContains HAKATABEN? {has_hakataben}")
     print(f"Contains NETSLANG? {has_netslang}")
     
     # Step 8.3: Run through _process_sentence_batch
@@ -626,7 +619,7 @@ def test_step8_trace_register_mislabel():
     batch = collate_fn(samples, tokenizer.pad_id)
     
     print(f"register_labels tensor shape: {batch['register_labels'].shape}")
-    print(f"register_labels tensor:\\n{batch['register_labels']}")
+    print(f"register_labels tensor:\n{batch['register_labels']}")
     
     # Decode the multi-hot back to register names
     register_tensor = batch['register_labels'][0]  # First (only) sample
@@ -654,14 +647,12 @@ def test_step8_trace_register_mislabel():
     print(f"\nThe label that reaches the model: {active_names}")
     
     if 'HAKATABEN' in active_names and 'NETSLANG' not in active_names:
-        print("✓ Step 8 PASSED: Labels are correctly propagated")
+        print("\n✓ Step 8 PASSED: Labels are correctly propagated")
     elif 'HAKATABEN' not in active_names:
         print("❌ Step 8 FAILED: HAKATABEN was lost somewhere in the pipeline!")
     elif 'NETSLANG' in active_names:
         print("❌ Step 8 FAILED: NETSLANG was incorrectly added!")
     
-    return True
-
 
 
 if __name__ == "__main__":
