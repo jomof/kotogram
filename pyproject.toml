@@ -30,6 +30,7 @@ dependencies = [
     "sudachidict-full",
     "PyYAML",
     "torch",
+    "rich",
 ]
 
 [project.urls]
@@ -62,3 +63,5 @@ disallow_untyped_defs = true
 module = "sudachipy.*"
 ignore_missing_imports = true
 disable_error_code = ["import-untyped"]
+
+
