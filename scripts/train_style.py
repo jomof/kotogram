@@ -98,6 +98,12 @@ from kotogram.kotogram import extract_token_features
 
 from kotogram.japanese_parser import JapaneseParser
 
+# Add project root to Python path for imports
+# This ensures 'scripts' module can be found when running with torchrun
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 from kotogram.model import (
     StyleClassifier, Tokenizer, ModelConfig,
     FEATURE_FIELDS, ALL_FEATURE_FIELDS, set_excluded_features,
