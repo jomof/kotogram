@@ -1917,6 +1917,14 @@ class Trainer:
             # Note: Per-class register statistics could be added here in the future
             # For now, we only track overall register accuracy
             
+            # Calculate accuracy percentages from the packed metrics
+            # (In distributed mode, these are local metrics from this rank;
+            # they could be aggregated across ranks if needed, but for now we use local)
+            formality_acc = formality_correct / len(all_formality_preds) if all_formality_preds else 0
+            gender_prag_acc = gender_prag_correct / len(all_gender_prag_preds) if all_gender_prag_preds else 0
+            gender_mse = gender_val_sq_error / len(all_gender_val_preds) if all_gender_val_preds else 0
+            grammaticality_acc = grammaticality_correct / len(all_grammaticality_preds) if all_grammaticality_preds else 0
+            register_acc = register_correct / len(all_register_preds) if all_register_preds else 0
             
         else:
             # Local calculation
