@@ -39,6 +39,11 @@ setup_environment() {
         python -m pip install sudachipy sudachidict_full
     fi
 
+    if ! python -c "import rich" 2>/dev/null; then
+        echo "Rich library not found. Installing..."
+        python -m pip install rich
+    fi
+
     # Check if kotogram is installed in the environment (ignoring CWD)
     if ! python -c "import sys; sys.path = [p for p in sys.path if p != '']; import kotogram" 2>/dev/null; then
         echo "Kotogram not found in site-packages. Installing from current directory..."
@@ -390,10 +395,24 @@ else
     NUM_DEVICES=$NUM_GPUS
 fi
 
+# Calculate workers (for DataLoader/Preprocessing)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    CPU_COUNT=$(sysctl -n hw.ncpu)
+else
+    CPU_COUNT=$(nproc 2>/dev/null || echo "4")
+fi
+NUM_WORKERS=$((CPU_COUNT > 1 ? CPU_COUNT - 1 : 1))
+
 # Calculate Gradient Accumulation to match Target Global Batch
 # Formula: GradAccum = Target / (Devices * MicroBatch)
 TOTAL_CURRENT_BATCH=$((NUM_DEVICES * MICRO_BATCH_SIZE))
-GRAD_ACCUM_STEPS=$((TARGET_GLOBAL_BATCH_SIZE / TOTAL_CURRENT_BATCH))
+
+# Gradient Accumulation check
+if [ "$TOTAL_CURRENT_BATCH" -lt "$TARGET_GLOBAL_BATCH_SIZE" ]; then
+    GRAD_ACCUM_STEPS=$((TARGET_GLOBAL_BATCH_SIZE / TOTAL_CURRENT_BATCH))
+else
+    GRAD_ACCUM_STEPS=1 # No accumulation needed if micro batch >= target global batch
+fi
 
 # Ensure at least 1 step
 if [ "$GRAD_ACCUM_STEPS" -lt 1 ]; then
@@ -475,7 +494,17 @@ if [ -n "$RETRAIN" ]; then
 fi
 
 if [ -n "$CONFUSION" ]; then
-    CMD="$CMD --confusion"
+    echo "=============================================="
+    echo "Running Confusion Matrix Evaluation..."
+    echo "=============================================="
+    python scripts/confusion.py \
+        --output "$OUTPUT_DIR" \
+        --data "$DATA_PATH" \
+        ${EXTRA_DATA_PATH:+--extra-data "$EXTRA_DATA_PATH"} \
+        ${AGRAMMATIC_DATA_PATH:+--agrammatic-data "$AGRAMMATIC_DATA_PATH"} \
+        ${PERCENT:+--percent ${PERCENT#--percent }} \
+        ${MAX_SAMPLES:+--max-samples ${MAX_SAMPLES#--max-samples }}
+    exit 0
 fi
 
 if [ -n "$EXCLUDE_FEATURES" ]; then
@@ -548,3 +577,12 @@ echo "Training complete!"
 echo "Model saved to: $OUTPUT_DIR"
 echo "Training log:   $OUTPUT_DIR/training.log"
 echo "=============================================="
+echo ""
+echo "Generating confusion report..."
+python scripts/confusion.py \
+    --output "$OUTPUT_DIR" \
+    --data "$DATA_PATH" \
+    ${EXTRA_DATA_PATH:+--extra-data "$EXTRA_DATA_PATH"} \
+    ${AGRAMMATIC_DATA_PATH:+--agrammatic-data "$AGRAMMATIC_DATA_PATH"} \
+    ${PERCENT:+--percent ${PERCENT#--percent }} \
+    ${MAX_SAMPLES:+--max-samples ${MAX_SAMPLES#--max-samples }}

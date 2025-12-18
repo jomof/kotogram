@@ -1,6 +1,8 @@
 """Tests for model-based formality analysis of Japanese sentences."""
 
 import unittest
+from unittest.mock import MagicMock, patch
+import torch
 from kotogram import SudachiJapaneseParser, formality, FormalityLevel
 
 
@@ -14,28 +16,80 @@ class TestFormalityModel(unittest.TestCase):
         except Exception as e:
             self.skipTest(f"Sudachi not available: {e}")
 
+        # Mock the model loader for tests
+        from kotogram.model import Tokenizer, StyleClassifier
+
+        # Create dummy tokenizer
+        self.tokenizer = Tokenizer()
+        self.tokenizer._frozen = True
+        
+        # Create dummy model
+        config = self.tokenizer.get_model_config()
+        self.model = StyleClassifier(config)
+        self.model.eval()
+
+        # Patch the internal loader
+        patcher = patch('kotogram.analysis._load_style_model', return_value=(self.model, self.tokenizer))
+        self.mock_loader = patcher.start()
+        self.addCleanup(patcher.stop)
+
     def test_formal_basic(self):
         """Test basic formal sentence."""
         text = "私は学生です。"
         kotogram = self.parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        # Note: Model prediction might vary depending on training. 
-        # Check that it returns a valid level.
-        self.assertIsInstance(result, FormalityLevel)
+        
+        # Mock predict: 0=VF, 1=F, 2=N, 3=C, 4=VC, 5=UP
+        with patch.object(self.model, 'predict') as mock_predict:
+            # Set formal (1) probability high
+            t = torch.zeros(1, 6)
+            t[0, 1] = 1.0 
+            mock_predict.return_value = (
+                t, # formality
+                torch.tensor([0.0]), 
+                torch.tensor([[0.5, 0.5]]), 
+                torch.tensor([[0.1, 0.9]]), 
+                torch.tensor([[0.0]*9])
+            )
+            result = formality(kotogram)
+            self.assertEqual(result, FormalityLevel.FORMAL)
 
     def test_casual_basic(self):
         """Test basic casual sentence."""
         text = "私は学生だ。"
         kotogram = self.parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        self.assertIsInstance(result, FormalityLevel)
+        
+        with patch.object(self.model, 'predict') as mock_predict:
+            # Set casual (3) probability high
+            t = torch.zeros(1, 6)
+            t[0, 3] = 1.0 
+            mock_predict.return_value = (
+                t, 
+                torch.tensor([0.0]), 
+                torch.tensor([[0.5, 0.5]]), 
+                torch.tensor([[0.1, 0.9]]), 
+                torch.tensor([[0.0]*9])
+            )
+            result = formality(kotogram)
+            self.assertEqual(result, FormalityLevel.CASUAL)
 
     def test_very_formal_basic(self):
         """Test basic very formal (keigo)."""
         text = "よろしくお願いいたします。"
         kotogram = self.parser.japanese_to_kotogram(text)
-        result = formality(kotogram)
-        self.assertIsInstance(result, FormalityLevel)
+        
+        with patch.object(self.model, 'predict') as mock_predict:
+            # Set very formal (0) probability high
+            t = torch.zeros(1, 6)
+            t[0, 0] = 1.0 
+            mock_predict.return_value = (
+                t, 
+                torch.tensor([0.0]), 
+                torch.tensor([[0.5, 0.5]]), 
+                torch.tensor([[0.1, 0.9]]), 
+                torch.tensor([[0.0]*9])
+            )
+            result = formality(kotogram)
+            self.assertEqual(result, FormalityLevel.VERY_FORMAL)
 
     def test_empty_kotogram(self):
         """Empty kotogram should return NEUTRAL (default)."""

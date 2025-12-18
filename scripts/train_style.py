@@ -112,7 +112,7 @@ from kotogram.model import (
     GENDER_LABEL_TO_ID, GENDER_ID_TO_LABEL,
     REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL,
     PAD_TOKEN, UNK_TOKEN, CLS_TOKEN, MASK_TOKEN,
-    load_model
+    load_model, Sample
 )
 
 # Record import time
@@ -617,23 +617,6 @@ def _process_sentence_batch(
 
 
 
-@dataclass
-class Sample:
-    """Single data sample with per-field feature IDs and labels for all tasks."""
-    feature_ids: Dict[str, List[int]]  # field -> list of token IDs
-    formality_label: int
-    gender_value: float
-    gender_pragmatic: int # 1=pragmatic, 0=unpragmatic
-    register_labels: List[int] = field(default_factory=lambda: [0]) # Default neutral
-    grammaticality_label: int = 1  # 1 = grammatic (default), 0 = agrammatic
-    original_sentence: str = ""
-    kotogram: str = ""
-
-    @property
-    def seq_len(self) -> int:
-        """Get sequence length (same for all fields)."""
-        first_field = next(iter(self.feature_ids.keys()))
-        return len(self.feature_ids[first_field])
 
 
 
@@ -646,8 +629,7 @@ class Sample:
 # v4: Added register labeling
 # v6: Added register_label to Sample
 # v7: Changed register_label to register_labels (multi-label)
-# v8: Fixed register_labels defaults and instantiation bug
-CACHE_VERSION = 8
+CACHE_VERSION = 9
 
 
 class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
@@ -2415,60 +2397,9 @@ class Trainer:
         avg_gender_loss = total_gender_loss / n_batches
         avg_grammaticality_loss = total_grammaticality_loss / n_batches
 
-        formality_accuracy = sum(
-            p == l for p, l in zip(all_formality_preds, all_formality_labels)
-        ) / len(all_formality_preds)
-        
-        gender_prag_accuracy = sum(
-            p == l for p, l in zip(all_gender_prag_preds, all_gender_prag_labels)
-        ) / len(all_gender_prag_preds) if all_gender_prag_preds else 0.0
-        if all_gender_prag_labels:
-            # Calculate MSE only on pragmatic samples
-            val_preds = torch.tensor(all_gender_val_preds)
-            val_labels = torch.tensor(all_gender_val_labels)
-            prag_labels = torch.tensor(all_gender_prag_labels)
-            
-            prag_mask = (prag_labels == 1)
-            if prag_mask.sum() > 0:
-                gender_mse = F.mse_loss(val_preds[prag_mask], val_labels[prag_mask]).item()
-            else:
-                gender_mse = 0.0
-        else:
-            gender_mse = 0.0
         grammaticality_accuracy = sum(
             p == l for p, l in zip(all_grammaticality_preds, all_grammaticality_labels)
         ) / len(all_grammaticality_preds)
-
-        # Build confusion matrices locally
-        formality_confusion = [[0] * NUM_FORMALITY_CLASSES for _ in range(NUM_FORMALITY_CLASSES)]
-        for pred, label in zip(all_formality_preds, all_formality_labels):
-            formality_confusion[label][pred] += 1
-        gender_confusion = [[0] * NUM_GENDER_PRAGMATIC_CLASSES for _ in range(NUM_GENDER_PRAGMATIC_CLASSES)]
-        for pred, label in zip(all_gender_prag_preds, all_gender_prag_labels):
-            gender_confusion[label][pred] += 1
-
-        grammaticality_confusion = [[0] * NUM_GRAMMATICALITY_CLASSES for _ in range(NUM_GRAMMATICALITY_CLASSES)]
-        for pred, label in zip(all_grammaticality_preds, all_grammaticality_labels):
-            grammaticality_confusion[label][pred] += 1
-
-        # Register is multi-label, confusion matrix is complex. 
-        # We skip it or could do per-label confusion, but for now skipping.
-        # Register Per-Class Confusion Stats
-        # We compute TP, FP, FN, TN for each class 
-        # Structure: List[List[int]] -> [[TP, FP, FN, TN], ...] for each class
-        register_stats = [[0, 0, 0, 0] for _ in range(NUM_REGISTER_CLASSES)]
-        for preds, labels in zip(all_register_preds, all_register_labels):
-            for i in range(NUM_REGISTER_CLASSES):
-                p = preds[i]
-                l = labels[i]
-                if p == 1 and l == 1:
-                    register_stats[i][0] += 1 # TP
-                elif p == 1 and l == 0:
-                    register_stats[i][1] += 1 # FP
-                elif p == 0 and l == 1:
-                    register_stats[i][2] += 1 # FN
-                elif p == 0 and l == 0:
-                    register_stats[i][3] += 1 # TN
 
         # DDP Aggregation
         if self.is_distributed:
@@ -2503,45 +2434,6 @@ class Trainer:
             # 4 * NUM_REGISTER_CLASSES
             reg_stats_flat = torch.tensor([item for sublist in register_stats for item in sublist], device=self.device)
             
-            # Flatten confusion matrices
-            f_conf_flat = torch.tensor([item for sublist in formality_confusion for item in sublist], device=self.device)
-            g_conf_flat = torch.tensor([item for sublist in gender_confusion for item in sublist], device=self.device)
-            gram_conf_flat = torch.tensor([item for sublist in grammaticality_confusion for item in sublist], device=self.device)
-            # All-reduce everything
-            dist.all_reduce(metrics, op=dist.ReduceOp.SUM)
-            dist.all_reduce(f_conf_flat, op=dist.ReduceOp.SUM)
-            dist.all_reduce(g_conf_flat, op=dist.ReduceOp.SUM)
-            dist.all_reduce(gram_conf_flat, op=dist.ReduceOp.SUM)
-            dist.all_reduce(reg_stats_flat, op=dist.ReduceOp.SUM)
-            
-            # Unpack
-            total_loss = metrics[0].item()
-            total_formality_loss = metrics[1].item()
-            total_gender_loss = metrics[2].item()
-            total_grammaticality_loss = metrics[3].item()
-            n_batches = int(metrics[4].item())
-            total_register_loss = metrics[13].item()
-            
-            # Accuracies from global counts
-            formality_acc = metrics[5].item() / metrics[6].item() if metrics[6].item() > 0 else 0
-            gender_prag_acc = metrics[7].item() / metrics[8].item() if metrics[8].item() > 0 else 0
-            gender_mse = metrics[9].item() / metrics[10].item() if metrics[10].item() > 0 else 0
-            grammaticality_acc = metrics[11].item() / metrics[12].item() if metrics[12].item() > 0 else 0
-            register_acc = metrics[14].item() / metrics[15].item() if metrics[15].item() > 0 else 0
-            
-            # Reconstruct confusion matrices
-            f_conf_list = f_conf_flat.cpu().tolist()
-            formality_confusion = [f_conf_list[i*NUM_FORMALITY_CLASSES:(i+1)*NUM_FORMALITY_CLASSES] for i in range(NUM_FORMALITY_CLASSES)]
-            
-            g_conf_list = g_conf_flat.cpu().tolist()
-            gender_confusion = [g_conf_list[i*NUM_GENDER_PRAGMATIC_CLASSES:(i+1)*NUM_GENDER_PRAGMATIC_CLASSES] for i in range(NUM_GENDER_PRAGMATIC_CLASSES)]
-            
-            gram_conf_list = gram_conf_flat.cpu().tolist()
-            grammaticality_confusion = [gram_conf_list[i*NUM_GRAMMATICALITY_CLASSES:(i+1)*NUM_GRAMMATICALITY_CLASSES] for i in range(NUM_GRAMMATICALITY_CLASSES)]
-            
-            
-            reg_stats_list = reg_stats_flat.cpu().tolist()
-            register_stats = [reg_stats_list[i*4:(i+1)*4] for i in range(NUM_REGISTER_CLASSES)]
             
         else:
             # Local calculation
@@ -2557,7 +2449,7 @@ class Trainer:
         avg_grammaticality_loss = total_grammaticality_loss / n_batches if n_batches > 0 else 0
         avg_register_loss = total_register_loss / n_batches if n_batches > 0 else 0
 
-        results = {
+        return {
             'loss': avg_loss,
             'formality_loss': avg_formality_loss,
             'gender_loss': avg_gender_loss,
@@ -2568,84 +2460,7 @@ class Trainer:
             'gender_value_mse': gender_mse,
             'grammaticality_accuracy': grammaticality_acc,
             'register_accuracy': register_acc,
-            'formality_confusion': formality_confusion,
-            'gender_confusion': gender_confusion,
-            'grammaticality_confusion': grammaticality_confusion,
-            'grammaticality_confusion': grammaticality_confusion,
-            'register_stats': register_stats, # Renamed from register_confusion placeholder
         }
-
-        if return_mismatches:
-            mismatches: Dict[str, List[Dict[str, Any]]] = {
-                'formality': [],
-                'gender': [],
-                'grammaticality': [],
-                'grammaticality': [],
-                'register': [],
-                'gender_mse': [], # New list for MSE errors
-            }
-
-            for i in range(len(all_sentences)):
-                sent = all_sentences[i]
-                
-                # Formality
-                if all_formality_preds[i] != all_formality_labels[i]:
-                    mismatches['formality'].append({
-                        'sentence': sent,
-                        'predicted': FORMALITY_ID_TO_LABEL[all_formality_preds[i]].value,
-                        'actual': FORMALITY_ID_TO_LABEL[all_formality_labels[i]].value,
-                        'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
-                    })
-                
-                # Gender
-                # Gender
-                if all_gender_prag_preds[i] != all_gender_prag_labels[i]:
-                    mismatches['gender'].append({
-                        'sentence': sent,
-                        'predicted': "Pragmatic" if all_gender_prag_preds[i] == 1 else "Unpragmatic",
-                        'actual': "Pragmatic" if all_gender_prag_labels[i] == 1 else "Unpragmatic",
-                        'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
-                    })
-
-                # Gender Value MSE (only for pragmatic samples)
-                if all_gender_prag_labels[i] == 1:
-                    diff = all_gender_val_preds[i] - all_gender_val_labels[i]
-                    sq_err = diff * diff
-                    # Store all pragmatic samples to sort by error later
-                    mismatches['gender_mse'].append({
-                        'sentence': sent,
-                        'predicted': float(all_gender_val_preds[i]),
-                        'actual': float(all_gender_val_labels[i]),
-                        'error': float(sq_err),
-                        'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
-                    })
-
-                # Grammaticality
-                if all_grammaticality_preds[i] != all_grammaticality_labels[i]:
-                    # Map 0/1 to labels
-                    pred_label = "grammatic" if all_grammaticality_preds[i] == 1 else "agrammatic"
-                    actual_label = "grammatic" if all_grammaticality_labels[i] == 1 else "agrammatic"
-                    mismatches['grammaticality'].append({
-                        'sentence': sent,
-                        'predicted': pred_label,
-                        'actual': actual_label,
-                        'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
-                    })
-                
-                # Register
-                if all_register_preds[i] != all_register_labels[i]:
-                    pred_labels = [REGISTER_ID_TO_LABEL[idx].value for idx, val in enumerate(all_register_preds[i]) if val == 1]
-                    act_labels = [REGISTER_ID_TO_LABEL[idx].value for idx, val in enumerate(all_register_labels[i]) if val == 1]
-                    mismatches['register'].append({
-                        'sentence': sent,
-                        'predicted': ", ".join(pred_labels) if pred_labels else "none",
-                        'actual': ", ".join(act_labels) if act_labels else "none",
-                        'kotogram': all_kotograms[i] if i < len(all_kotograms) else '',
-                    })
-            
-            results['mismatches'] = mismatches
-
-        return results
 
     def train(
         self,
@@ -2730,130 +2545,6 @@ class Trainer:
 
         return self.history
 
-    def print_confusion_matrices(self, save_dir: Optional[str] = None, verbose: bool = True) -> None:
-        """Print confusion matrices for all tasks and optionally save mismatches."""
-        eval_results = self.evaluate(return_mismatches=True)
-
-        if not verbose:
-            return
-
-        # Formality confusion matrix
-        formality_labels = [FORMALITY_ID_TO_LABEL[i].value for i in range(NUM_FORMALITY_CLASSES)]
-        print("\nFormality Confusion Matrix:")
-        header = "True\\Pred".ljust(25) + " ".join(l[:8].ljust(10) for l in formality_labels)
-        print(header)
-        print("-" * len(header))
-        for i, row in enumerate(eval_results['formality_confusion']):
-            row_label = formality_labels[i].ljust(25)
-            row_values = " ".join(str(v).ljust(10) for v in row)
-            print(f"{row_label}{row_values}")
-
-        # Gender confusion matrix
-        gender_labels = ["Unpragmatic", "Pragmatic"]
-        print("\nGender Confusion Matrix:")
-        header = "True\\Pred".ljust(25) + " ".join(l[:8].ljust(10) for l in gender_labels)
-        print(header)
-        print("-" * len(header))
-        for i, row in enumerate(eval_results['gender_confusion']):
-            row_label = gender_labels[i].ljust(25)
-            row_values = " ".join(str(v).ljust(10) for v in row)
-            print(f"{row_label}{row_values}")
-
-        # Grammaticality confusion matrix
-        grammaticality_labels = ["agrammatic", "grammatic"]
-        print("\nGrammaticality Confusion Matrix:")
-        header = "True\\Pred".ljust(25) + " ".join(l[:10].ljust(12) for l in grammaticality_labels)
-        print(header)
-        print("-" * len(header))
-        for i, row in enumerate(eval_results['grammaticality_confusion']):
-            row_label = grammaticality_labels[i].ljust(25)
-            row_values = " ".join(str(v).ljust(12) for v in row)
-            print(f"{row_label}{row_values}")
-
-        # Save mismatches if requested
-        if save_dir and 'mismatches' in eval_results:
-            import csv
-            import os
-            
-            # Save Grammaticality Mismatches
-            mismatches = eval_results['mismatches']
-            if mismatches['grammaticality']:
-                # Sort by sentence for reproducible order
-                mismatches['grammaticality'].sort(key=lambda x: x.get('sentence', ''))
-                
-                out_path = os.path.join(save_dir, 'grammaticality_confusion.csv')
-                with open(out_path, 'w', newline='', encoding='utf-8') as f:
-                    writer = csv.DictWriter(f, fieldnames=['sentence', 'predicted', 'actual', 'kotogram'], delimiter='\t')
-                    writer.writeheader()
-                    writer.writerows(mismatches['grammaticality'])
-                print(f"\nSaved {len(mismatches['grammaticality'])} grammaticality mismatches to {out_path}")
-
-            # Save Other Mismatches (optional, maybe just formality/gender if they have many errors)
-            if mismatches['formality']:
-                # Sort by sentence for reproducible order
-                mismatches['formality'].sort(key=lambda x: x.get('sentence', ''))
-                
-                out_path = os.path.join(save_dir, 'formality_confusion.csv')
-                with open(out_path, 'w', newline='', encoding='utf-8') as f:
-                    writer = csv.DictWriter(f, fieldnames=['sentence', 'predicted', 'actual', 'kotogram'], delimiter='\t')
-                    writer.writeheader()
-                    writer.writerows(mismatches['formality'])
-                print(f"Saved {len(mismatches['formality'])} formality mismatches to {out_path}")
-                
-            if mismatches['gender']:
-                # Sort by sentence for reproducible order
-                mismatches['gender'].sort(key=lambda x: x.get('sentence', ''))
-
-                out_path = os.path.join(save_dir, 'gender_confusion.csv')
-                with open(out_path, 'w', newline='', encoding='utf-8') as f:
-                    writer = csv.DictWriter(f, fieldnames=['sentence', 'predicted', 'actual', 'kotogram'], delimiter='\t')
-                    writer.writeheader()
-                    writer.writerows(mismatches['gender'])
-                print(f"Saved {len(mismatches['gender'])} gender mismatches to {out_path}")
-
-            if mismatches.get('gender_mse'):
-                # Sort by error descending (worst matches first)
-                mismatches['gender_mse'].sort(key=lambda x: x['error'], reverse=True)
-                
-                # Take top 50 worst matches
-                worst_matches = mismatches['gender_mse'][:50]
-
-                out_path = os.path.join(save_dir, 'gender_mse_confusion.csv')
-                with open(out_path, 'w', newline='', encoding='utf-8') as f:
-                    writer = csv.DictWriter(f, fieldnames=['sentence', 'predicted', 'actual', 'error', 'kotogram'], delimiter='\t')
-                    writer.writeheader()
-                    writer.writerows(worst_matches)
-                print(f"Saved {len(worst_matches)} worst gender MSE mismatches to {out_path}")
-
-        # Print Register Performance Report
-        if 'register_stats' in eval_results:
-            reg_stats = eval_results['register_stats']
-            print("\nRegister Classification Report:")
-            header = f"{'Class':<15} {'Prec':<10} {'Rec':<10} {'F1':<10} {'Supp':<10}"
-            print(header)
-            print("-" * len(header))
-            
-            for i, stats in enumerate(reg_stats):
-                tp, fp, fn, tn = stats
-                label = REGISTER_ID_TO_LABEL[i].value
-                
-                precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
-                recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
-                f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
-                support = tp + fn
-                
-                print(f"{label:<15} {precision:.4f}     {recall:.4f}     {f1:.4f}     {support:<10}")
-
-            if mismatches.get('register'):
-                # Sort by sentence for reproducible order
-                mismatches['register'].sort(key=lambda x: x.get('sentence', ''))
-
-                out_path = os.path.join(save_dir, 'register_confusion.csv')
-                with open(out_path, 'w', newline='', encoding='utf-8') as f:
-                    writer = csv.DictWriter(f, fieldnames=['sentence', 'predicted', 'actual', 'kotogram'], delimiter='\t')
-                    writer.writeheader()
-                    writer.writerows(mismatches['register'])
-                print(f"Saved {len(mismatches['register'])} register mismatches to {out_path}")
 
     def restore_from_checkpoint(self, checkpoint: Dict[str, Any], reset_optimizer: bool = False) -> None:
         """Restore training state from checkpoint.
@@ -3129,8 +2820,6 @@ if __name__ == "__main__":
                         help="Resume training from checkpoint in output directory")
     parser.add_argument("--retrain", action="store_true",
                         help="Retrain from scratch using parameters from existing checkpoint")
-    parser.add_argument("--confusion", action="store_true",
-                        help="Print confusion matrices for existing model and exit")
     parser.add_argument("--percent", type=float, default=None,
                         help="Percentage of data to use for training (1-100)")
     parser.add_argument("--grad-accum-steps", type=int, default=1,
@@ -3174,9 +2863,9 @@ if __name__ == "__main__":
             print(f"Process started: Rank {rank}/{world_size}")
 
 
-    # Handle resume from checkpoint or retrain or confusion logic
+    # Handle resume from checkpoint or retrain logic
     checkpoint = None
-    if args.resume or args.retrain or args.confusion:
+    if args.resume or args.retrain:
         import os
         checkpoint_path = os.path.join(args.output, 'checkpoint.pt')
         import os
@@ -3200,10 +2889,6 @@ if __name__ == "__main__":
                 if is_main_process():
                     print(f"Resuming from checkpoint in {args.output}...")
                 model, tokenizer, checkpoint, strict_load_failed = load_checkpoint(args.output)
-            elif args.confusion:
-                print(f"Loading best model for evaluation from {args.output}...")
-                model, tokenizer = load_model(args.output)
-                checkpoint = checkpoint_data
             else:
                 if is_main_process():
                     print(f"Retraining from scratch using parameters from {args.output}...")
@@ -3223,8 +2908,6 @@ if __name__ == "__main__":
             if args.resume:
                 assert checkpoint is not None
                 print(f"  Resuming from epoch {checkpoint['epoch'] + 1}, training to epoch {args.epochs}")
-            elif args.confusion:
-                print(f"  Evaluating best model from {args.output}")
             else:
                 print(f"  Retraining from epoch 0 to {args.epochs}")
 
@@ -3274,10 +2957,6 @@ if __name__ == "__main__":
             if args.fp16 is None: args.fp16 = False
             if args.fp8 is None: args.fp8 = False
         else:
-            if args.confusion:
-                print(f"Error: No checkpoint found at {checkpoint_path}, cannot print confusion matrix.")
-                import sys
-                sys.exit(1)
 
             print(f"No checkpoint found at {checkpoint_path}, starting fresh training")
             args.resume = False
@@ -3397,7 +3076,7 @@ if __name__ == "__main__":
 
     # Skip model creation if resuming (model already loaded)
     t_data_start = time.time()
-    if (args.resume or args.confusion) and checkpoint is not None:
+    if args.resume and checkpoint is not None:
         # Load datasets with existing tokenizer
         # Unfreeze tokenizer to allow new vocabulary
         old_vocab_sizes = tokenizer.get_vocab_sizes()
@@ -3699,27 +3378,6 @@ if __name__ == "__main__":
             dist.destroy_process_group()
         sys.exit(0)
 
-    if args.confusion:
-        print("\nLoading model for confusion matrix evaluation...")
-        # Since we are not training, we can just load the model state we already set up?
-        # But we need to make sure the model architecture matches.
-        # If we came from 'resume' path (checkpoint detected), model is already loaded with correct config.
-        # If we are here, we MUST have loaded from checkpoint because of the check above.
-
-        print("\nEvaluating on validation set...")
-        # Need trainer to run evaluation easily
-        trainer_config = TrainerConfig(
-            batch_size=args.batch_size,
-            device="cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
-        )
-        trainer = Trainer(model, train_data, val_data, trainer_config)
-
-        trainer.print_confusion_matrices(save_dir=args.output, verbose=is_main_process())
-        print("\nConfusion matrix evaluation complete.")
-        if dist.is_available() and dist.is_initialized():
-            dist.destroy_process_group()
-        import sys
-        sys.exit(0)
 
     if is_main_process():
         print(f"\nSplit: {len(train_data)} train, {len(val_data)} val, {len(test_data)} test")
@@ -3778,9 +3436,6 @@ if __name__ == "__main__":
         verbose=is_main_process(),
     )
 
-    # Print final metrics
-    # Print final metrics
-    trainer.print_confusion_matrices(save_dir=args.output, verbose=is_main_process())
 
     # Evaluate on test set
     print("\nEvaluating on test set...")

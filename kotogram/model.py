@@ -103,6 +103,24 @@ REGISTER_ID_TO_LABEL = {
 }
 
 
+@dataclass
+class Sample:
+    """Single data sample with features and labels."""
+    feature_ids: Dict[str, List[int]]
+    formality_label: int
+    gender_value: float
+    gender_pragmatic: int
+    register_labels: List[int] = field(default_factory=lambda: [0])
+    grammaticality_label: int = 1
+    original_sentence: str = ""
+    kotogram: str = ""
+
+    @property
+    def seq_len(self) -> int:
+        """Get sequence length."""
+        first = next(iter(self.feature_ids.values()))
+        return len(first)
+
 class Tokenizer:
     """Tokenizer that extracts morphological features from Kotogram tokens.
 
