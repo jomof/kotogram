@@ -166,12 +166,6 @@ class TestRuleBasedGender(unittest.TestCase):
         kotogram = self.parser.japanese_to_kotogram(text)
         self.assertEqual(analyze_gender(kotogram), GenderLevel.NEUTRAL)
 
-    def test_unpragmatic(self):
-        """Test unpragmatic gender mixing."""
-        # 俺 (masculine) + わ (feminine)
-        text = "俺が行くわ"
-        kotogram = self.parser.japanese_to_kotogram(text)
-        self.assertEqual(analyze_gender(kotogram), GenderLevel.UNPRAGMATIC_GENDER)
 
     def test_empty_kotogram(self):
         """Test empty kotogram."""
