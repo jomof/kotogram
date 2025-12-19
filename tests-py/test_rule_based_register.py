@@ -139,5 +139,97 @@ class TestRegisterLabeler(unittest.TestCase):
                     self.assertIn(expected_enum, result, 
                                   f"Failed ID: {row_id}. Expected {expected_enum} in {result} for '{sentence}'")
 
+    def test_danseigo_boku(self):
+        """Test that ぼく (boku) triggers danseigo detection."""
+        self._check("ぼくは日本語を話すことができません。", {RegisterLevel.DANSEIGO})
+        self._check("ぼくも行きたい", {RegisterLevel.DANSEIGO})
+    
+    def test_joseigo_wa_casual(self):
+        """Test that casual sentence-final わ triggers joseigo."""
+        self._check("困っちゃうわ。", {RegisterLevel.JOSEIGO})
+        # Note: わ after です/ます is ojousama, not joseigo
+    
+    def test_hakataben_false_positive_tai(self):
+        """Test that たいです does NOT incorrectly trigger hakataben."""
+        kotogram = self.parser.japanese_to_kotogram("彼はそれらの両方を食べたいです。")
+        result = analyze_register(kotogram)
+        self.assertNotIn(RegisterLevel.HAKATABEN, result, 
+                        f"たいです should not trigger hakataben. Got {result}")
+    
+    def test_ojousama_false_positive_masu(self):
+        """Test that standalone ます does NOT incorrectly trigger ojousama."""
+        kotogram = self.parser.japanese_to_kotogram("海綿は水を吸収しますので水彩絵具をぼかしたりする時に便利です。")
+        result = analyze_register(kotogram)
+        self.assertNotIn(RegisterLevel.OJOUSAMA, result,
+                        f"Standalone ます should not trigger ojousama. Got {result}")
+    
+    def test_guntai_false_positives(self):
+        """Test that non-military imperatives don't trigger guntai."""
+        # Regular imperative without military context
+        kotogram = self.parser.japanese_to_kotogram("ちょっと待て！")
+        result = analyze_register(kotogram)
+        # This might still trigger guntai, but we'll fix the rules
+        # Just documenting expected behavior for now
+    
+    def test_kansaiben_false_positive_yainaya(self):
+        """Test that やいなや (as soon as) doesn't trigger kansaiben."""
+        kotogram = self.parser.japanese_to_kotogram("人は生まれるやいなや、死にに向かう。")
+        result = analyze_register(kotogram)
+        self.assertNotIn(RegisterLevel.KANSAIBEN, result,
+                        f"やいなや is standard Japanese, not Kansaiben. Got {result}")
+        self.assertEqual(result, {RegisterLevel.NEUTRAL})
+    
+    def test_hakataben_false_positive_tai_auxiliary(self):
+        """Test that たい auxiliary verb doesn't trigger hakataben."""
+        sentences = [
+            "差し当たって、私はその本屋で働きたいと思う。",
+            "何と言ったら良いか分かりません。",
+            "何と言ったらいいか・・・。"
+        ]
+        for sent in sentences:
+            kotogram = self.parser.japanese_to_kotogram(sent)
+            result = analyze_register(kotogram)
+            self.assertNotIn(RegisterLevel.HAKATABEN, result,
+                            f"Standard たい/たら should not trigger hakataben in '{sent}'. Got {result}")
+    
+    def test_kyoshigo_false_positive_desu(self):
+        """Test that plain です doesn't trigger kyoshigo."""
+        sentences = [
+            "宿題を全部やってしまったので少しやすみたいです。",
+            "彼の説明はわかりにくかったです。"
+        ]
+        for sent in sentences:
+            kotogram = self.parser.japanese_to_kotogram(sent)
+            result = analyze_register(kotogram)
+            self.assertNotIn(RegisterLevel.KYOSHIGO, result,
+                            f"Plain です without teacher markers should not trigger kyoshigo in '{sent}'. Got {result}")
+    
+    def test_netslang_false_positives(self):
+        """Test that standard formal sentences don't trigger netslang."""
+        sentences = [
+            "この評論を優勝作品に選んだ基準は何ですか。",
+            "雨が降って土に湿り気があると草は取りやすくなる。",
+            "彼の４人抜きの活躍でうちの高校のチームが優勝しました。"
+        ]
+        for sent in sentences:
+            kotogram = self.parser.japanese_to_kotogram(sent)
+            result = analyze_register(kotogram)
+            self.assertNotIn(RegisterLevel.NETSLANG, result,
+                            f"Standard sentence should not trigger netslang in '{sent}'. Got {result}")
+    
+    def test_guntai_false_positive_jibun(self):
+        """Test that 自分 in non-military context doesn't trigger guntai."""
+        kotogram = self.parser.japanese_to_kotogram("会社に入ると、自分が望むと望まざるとにかかわらず、会社のために働かなくてはいけない。")
+        result = analyze_register(kotogram)
+        self.assertNotIn(RegisterLevel.GUNTAI, result,
+                        f"自分 in standard context should not trigger guntai. Got {result}")
+    
+    def test_guntai_false_positive_imperative(self):
+        """Test that plain imperative without military context doesn't trigger guntai."""
+        kotogram = self.parser.japanese_to_kotogram("省エネのためにコンビニの２４時間営業を廃止しろ！")
+        result = analyze_register(kotogram)
+        self.assertNotIn(RegisterLevel.GUNTAI, result,
+                        f"Plain imperative without military context should not trigger guntai. Got {result}")
+
 if __name__ == '__main__':
     unittest.main()

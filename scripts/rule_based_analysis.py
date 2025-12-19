@@ -407,10 +407,32 @@ def rule_based_register(features: List[Dict[str, str]]) -> Set[RegisterLevel]:
         if surface in ['やん', 'ねん', 'へん', 'ひん', 'さかい', 'せや', 'せやな', 'ほんま', 'なんでやねん', 'あかん', 'ええ']:
             detected_registers.add(RegisterLevel.KANSAIBEN)
         if lemma in ['や', 'ねん', 'へん']: # Auxiliaries/particles
-             detected_registers.add(RegisterLevel.KANSAIBEN)
+             # Exclude やいなや pattern (standard Japanese "as soon as")
+             if lemma == 'や':
+                 # Check if this is part of やいなや - could be first や or second や
+                 # First や: followed by いな
+                 # Second や: preceded by いな or いなや
+                 is_yainaya = False
+                 if i < len(features) - 1 and features[i+1].get('surface') in ['いな', 'いなや']:
+                     is_yainaya = True
+                 elif i > 0 and features[i-1].get('surface') in ['いな', 'いなや']:
+                     is_yainaya = True
+                 
+                 if not is_yainaya:
+                     detected_registers.add(RegisterLevel.KANSAIBEN)
+             else:
+                 detected_registers.add(RegisterLevel.KANSAIBEN)
         # Check 'や' as surface if lemma missing (common in short parses)
         if surface == 'や' and (pos_detail1.startswith('aux') or pos.startswith('aux')):
-             detected_registers.add(RegisterLevel.KANSAIBEN)
+             # Exclude やいなや pattern
+             is_yainaya = False
+             if i < len(features) - 1 and features[i+1].get('surface') in ['いな', 'いなや']:
+                 is_yainaya = True
+             elif i > 0 and features[i-1].get('surface') in ['いな', 'いなや']:
+                 is_yainaya = True
+             
+             if not is_yainaya:
+                 detected_registers.add(RegisterLevel.KANSAIBEN)
         # Check 'ん' (nu/negation) common in Kansai "shiran"
         # Exclude standard "masen" or "arimasen" where 'n' is part of polite aux
         if surface == 'ん' and (pos_detail1.startswith('aux') or pos.startswith('aux')):
@@ -434,21 +456,42 @@ def rule_based_register(features: List[Dict[str, str]]) -> Set[RegisterLevel]:
              detected_registers.add(RegisterLevel.KANSAIBEN) # Context dependent, but acceptable for this dataset
 
         # Hakataben
-        if surface in ['と', 'ばい', 'たい', 'けん', 'よか', 'すごか', 'うまか', '好いとう', '好いとー', 'どげん']:
+        if surface in ['と', 'ばい', 'けん', 'よか', 'すごか', 'うまか', '好いとう', '好いとー', 'どげん']:
             # Allow 'と' at end or before punctuation
             if surface == 'と':
-                 if i == len(features) - 1:
-                      detected_registers.add(RegisterLevel.HAKATABEN)
-                 elif i < len(features) - 1 and features[i+1].get('surface') in ['？', '?', '！', '!', '。']:
-                      detected_registers.add(RegisterLevel.HAKATABEN)
-            elif surface != 'と':
+                if i == len(features) - 1:
+                    detected_registers.add(RegisterLevel.HAKATABEN)
+                elif i < len(features) - 1 and features[i+1].get('surface') in ['？', '?', '！', '!', '。']:
+                    detected_registers.add(RegisterLevel.HAKATABEN)
+            else:
                 detected_registers.add(RegisterLevel.HAKATABEN)
+        
+        # たい (tai) - Hakataben particle, but ONLY at sentence end or before punctuation
+        # NOT the auxiliary verb たい (want to) which appears with です or と (quotative)
+        if surface == 'たい':
+            # Check if it's the auxiliary verb (adj-aux) "want to" or the Hakataben particle
+            # Hakataben 'tai' is usually parsed as a final particle or distinct from adj-aux
+            is_dialect = True
+            if feature.get('pos') == 'adj-aux' or feature.get('lemma') == 'たい':
+                 is_dialect = False
+
+            if is_dialect:
+                # Check if it's at the end or before punctuation
+                if i == len(features) - 1:
+                    detected_registers.add(RegisterLevel.HAKATABEN)
+                elif i < len(features) - 1:
+                    next_surface = features[i+1].get('surface', '')
+                    # Only trigger if followed by punctuation, NOT by です/ます/と
+                    if next_surface in ['？', '?', '！', '!', '。']:
+                        detected_registers.add(RegisterLevel.HAKATABEN)
         if lemma in ['好く']: 
              if i < len(features) - 1 and features[i+1].get('surface') == 'と':
                   detected_registers.add(RegisterLevel.HAKATABEN)
-        # Adjective ending 'ka'/'ka-' (sugoka-)
+        # Adjective ending 'ka'/'ka-' (sugoka-) - Only at sentence end to avoid question particle か
         if surface in ['か', 'かー'] and i > 0 and features[i-1].get('pos', '').startswith('adj'):
-             detected_registers.add(RegisterLevel.HAKATABEN)
+             # Only trigger at sentence end or before terminal punctuation
+             if i == len(features) - 1 or (i < len(features) - 1 and features[i+1].get('surface') in ['。', '！', '!', '？', '?']):
+                 detected_registers.add(RegisterLevel.HAKATABEN)
         # Specific token combo 'sui' + 'to' (suito-)
         if surface == 'と' and i > 0 and features[i-1].get('surface').startswith('好い'):
              detected_registers.add(RegisterLevel.HAKATABEN)
@@ -495,13 +538,14 @@ def rule_based_register(features: List[Dict[str, str]]) -> Set[RegisterLevel]:
              detected_registers.add(RegisterLevel.OJOUSAMA)
         
         # "masu no"
-        if surface == 'の' and i > 0 and features[i-1].get('surface') == 'ます':
+        if surface == 'の' and pos == 'prt' and pos_detail1 == 'sentence_final_particle' and i > 0 and features[i-1].get('surface') == 'ます':
              detected_registers.add(RegisterLevel.OJOUSAMA)
         # "desu no" (could be question or assertion)
-        if surface == 'の' and i > 0 and features[i-1].get('surface') == 'です':
+        if surface == 'の' and pos == 'prt' and pos_detail1 == 'sentence_final_particle' and i > 0 and features[i-1].get('surface') == 'です':
              detected_registers.add(RegisterLevel.OJOUSAMA)
         # "masen no"
-        if surface == 'の' and i > 1 and features[i-1].get('surface') == 'ん' and features[i-2].get('surface') == 'ませ':
+        if surface == 'の' and pos == 'prt' and pos_detail1 == 'sentence_final_particle' and i > 1 and features[i-1].get('surface') == 'ん' and features[i-2].get('surface') == 'ませ':
+             # Already restricted by context, this is fine
              detected_registers.add(RegisterLevel.OJOUSAMA)
 
         # "deshita no" / "mashita no"
@@ -557,14 +601,30 @@ def rule_based_register(features: List[Dict[str, str]]) -> Set[RegisterLevel]:
         
         # "Jibun" (First person)
         if surface == '自分':
-             # "Jibun wa" or "Jibun ga" (Strict military "I")
-             # "Jibun no", "Jibun to", etc are common.
-             if i < len(features)-1 and features[i+1].get('surface') in ['は', 'が']:
-                 detected_registers.add(RegisterLevel.GUNTAI)
-             # "Jibun" at start, still require 'wa' or 'ga' to be safe?
-             # Or "Jibun, ..." (comma). Guntai: "Jibun, ikimasu!"
-             if i == 0 and i < len(features)-1 and features[i+1].get('surface') in ['、', ',', 'は', 'が', 'で']: # "Jibun de"
-                 detected_registers.add(RegisterLevel.GUNTAI)
+             # "Jibun wa" or "Jibun ga" (Military "I" or standard reflexive)
+             # To reduce false positives, only flag as Guntai if there are OTHER military words
+             # or if it's at the very start of a sentence in a formal, non-desire context.
+             military_context = False
+             for f in features:
+                  if f.get('surface') in ['了解', '任務', '作戦', '前進', '報告', '異常', 'あります', 'あります！']:
+                       military_context = True
+             
+             if military_context:
+                  if i < len(features)-1 and features[i+1].get('surface') in ['は', 'が']:
+                       detected_registers.add(RegisterLevel.GUNTAI)
+                  if i == 0 and i < len(features)-1 and features[i+1].get('surface') in ['、', ',', 'は', 'が', 'で']:
+                       detected_registers.add(RegisterLevel.GUNTAI)
+             elif i == 0 and i < len(features)-1 and features[i+1].get('surface') in ['は', 'が']:
+                  # "Jibun wa..." at start is strongly indicative of military "I" 
+                  # even without other explicit military words, BUT only in formal/stern context.
+                  # Exclude if it has desire forms ("tai") or soft polite markers ("desu/masu")
+                  # which are more common in neutral self-reflection.
+                  has_soft = False
+                  for f in features:
+                       if f.get('surface') in ['たい', 'です', 'ます']:
+                            has_soft = True
+                  if not has_soft:
+                       detected_registers.add(RegisterLevel.GUNTAI)
 
         # "Shuugou!" (imperative noun usage)
         if '集合' in surface or '集合' in lemma:
@@ -622,7 +682,13 @@ def rule_based_register(features: List[Dict[str, str]]) -> Set[RegisterLevel]:
              # Exclude "Kudasai", "Nasai" (polite request/command)
              if lemma not in ['ください', '下さい', '下さる', 'なさい', '為さる'] and surface not in ['ください', '下さい', 'kudasai', 'なさい', 'nasai']:
                  if i < len(features)-1 and features[i+1].get('surface') in ['！', '!']:
-                     detected_registers.add(RegisterLevel.GUNTAI)
+                      # Require military context for generic imperatives
+                      military_context = False
+                      for f in features:
+                           if f.get('surface') in ['了解', '任務', '作戦', '前進', '報告', '異常', 'あります', 'あります！', '自分']:
+                                military_context = True
+                      if military_context or lemma in ['待つ', '止まる', '撃つ', '伏せる', '戻る']:
+                           detected_registers.add(RegisterLevel.GUNTAI)
                  # "seyo" specifiically
                  if surface == 'せよ':
                      # Exclude "ni seyo" (even if)
@@ -647,9 +713,46 @@ def rule_based_register(features: List[Dict[str, str]]) -> Set[RegisterLevel]:
                  detected_registers.add(RegisterLevel.GUNTAI)
 
         # Netslang
-        if surface in ['w', 'www', '乙', '草', '草生える', 'なう', 'now']:
+        if surface in ['w', 'www', '草生える', 'now']:
             detected_registers.add(RegisterLevel.NETSLANG)
-        if 'w' in surface and all(c == 'w' for c in surface):
+        if surface == 'なう' and feature.get('pos') != 'v': # Slang 'now' is usually not a verb
+             detected_registers.add(RegisterLevel.NETSLANG)
+        if surface == '乙':
+             # Slang usage usually stand-alone or exclamation
+             is_slang = True
+             # Pos check: if it's a common noun, check for ordinals (A vs B)
+             if feature.get('pos_detail1') == 'common_noun':
+                  # Check if it looks like an ordinal (mostly near 'の' or '甲')
+                  if i > 0 and features[i-1].get('surface') == 'の':
+                       is_slang = False
+                  if i < len(features)-1 and features[i+1].get('surface') == 'の':
+                       is_slang = False
+                  if any('甲' in f.get('surface', '') for f in features):
+                       is_slang = False
+             
+             if is_slang:
+                  # Strongly favor slang if at end or with punctuation/w
+                  if i == len(features)-1 or (i < len(features)-1 and features[i+1].get('surface') in ['。', 'w', 'W', '！', '!', 'ｗ']):
+                       detected_registers.add(RegisterLevel.NETSLANG)
+                  elif any(f.get('surface') in ['w', 'www', '乙'] for f in features):
+                       detected_registers.add(RegisterLevel.NETSLANG)
+        if surface in ['w', 'W'] and len(surface) == 1:
+             # Exclude middle initials: Check if surrounded by dots or spaces
+             is_initial = False
+             if i > 0 and features[i-1].get('surface') in ['.', '．', ' ']:
+                  is_initial = True
+             if i < len(features)-1 and features[i+1].get('surface') in ['.', '．', ' ']:
+                  is_initial = True
+             
+             if not is_initial:
+                  # Strongly favor slang if at end or with punctuation/w
+                  if i == len(features)-1 or (i < len(features)-1 and features[i+1].get('surface') in ['。', '！', '!', 'ｗ']):
+                       detected_registers.add(RegisterLevel.NETSLANG)
+                  elif any(f.get('surface') in ['www', '乙'] for f in features):
+                       detected_registers.add(RegisterLevel.NETSLANG)
+        if 'w' in surface and len(surface) > 1 and all(c == 'w' for c in surface):
+             detected_registers.add(RegisterLevel.NETSLANG)
+        if 'W' in surface and len(surface) > 1 and all(c == 'W' for c in surface):
              detected_registers.add(RegisterLevel.NETSLANG)
         if lemma in ['ktkr', 'wktk', 'kwsk'] or surface in ['ktkr', 'wktk', 'kwsk']:
              detected_registers.add(RegisterLevel.NETSLANG)
@@ -657,9 +760,49 @@ def rule_based_register(features: List[Dict[str, str]]) -> Set[RegisterLevel]:
              detected_registers.add(RegisterLevel.NETSLANG)
         if '情弱' in lemma or '情弱' in surface:
              detected_registers.add(RegisterLevel.NETSLANG)
-        if '優勝' in lemma or '優勝' in surface: 
-             # Heuristic: "Yusho shita" in short sentence often slang text? 
-             if i < len(features)-1:
+
+        # "Yuushuu" for winning/LOL
+        if surface == '優勝': 
+             # Slang usage usually stand-alone or small context
+             is_slang = True
+             # Exclude if direct object of competition words or part of formal titles
+             if any(w in s for f in features for s in [f.get('surface', '')] for w in ['チーム', '選手', '大会', '試合', '個人', '団体', '作品', '候補', '選ぶ', '選び', '高校', '大学', '競技', '基準', '程遠い', '幾度', 'コンテスト', 'タイトル', 'おめでとう', '獲得', '決定', 'トーナメント', '優勝者', 'だろう']):
+                  is_slang = False
+             
+             if is_slang:
+                  # Strongly favor slang if followed by 'w' or at end
+                  next_s = features[i+1].get('surface') if i < len(features)-1 else None
+                  if i == len(features)-1 or next_s in ['。', 'w', 'W', '！', '!', 'ｗ']:
+                       detected_registers.add(RegisterLevel.NETSLANG)
+                  elif next_s in ['し', 'する', 'した', 'して'] and len(features) < 8:
+                       # Exclude "shisou" (looks like) - often formal prediction
+                       if i < len(features)-2 and features[i+2].get('surface') == 'そう':
+                            pass
+                       else:
+                            detected_registers.add(RegisterLevel.NETSLANG)
+                  elif any(f.get('surface') in ['w', 'www', '乙'] for f in features):
+                       detected_registers.add(RegisterLevel.NETSLANG)
+        # "Kusa" for LOL
+        if '草生える' in surface or '草不可避' in surface: # Caught by substring
+             detected_registers.add(RegisterLevel.NETSLANG)
+        elif surface == '草' and feature.get('pos') == 'suff': # NEVER slang as a suffix
+             pass
+        elif surface == '草' and feature.get('pos_detail1') != 'common_noun': # In slang context, it's often not parsed as a normal noun
+             detected_registers.add(RegisterLevel.NETSLANG)
+        elif surface == '草' and (i == len(features)-1 or (i < len(features)-1 and features[i+1].get('surface') in ['。', 'w', 'W', '！', '!', 'ｗ', 'ｗｗ'])):
+             # "Kusa" at the end of a sentence
+             # Check if preceded by a particle? Standard "kusa wo hiku" (pull grass)
+             is_slang = True
+             if i > 0 and features[i-1].get('surface') in ['を', 'の', 'に']:
+                  is_slang = False
+                  # Exception: "sasuga ni kusa" (Indeed grass/LOL) is a common slang pattern
+                  if i > 1 and features[i-1].get('surface') == 'に' and features[i-2].get('surface') == '流石':
+                       is_slang = True
+             # Exclude if followed by 'wa' (Topic marker usually means real grass)
+             if i < len(features)-1 and features[i+1].get('surface') == 'は':
+                  is_slang = False
+             
+             if is_slang:
                   detected_registers.add(RegisterLevel.NETSLANG)
         # "wanchan"
         if 'ワンチャン' in surface:
@@ -694,19 +837,47 @@ def rule_based_register(features: List[Dict[str, str]]) -> Set[RegisterLevel]:
                   detected_registers.add(RegisterLevel.KYOSHIGO)
         # Vocabulary keywords for classroom context (Heuristic)
         if '宿題' in surface or '宿題' in lemma:
-             detected_registers.add(RegisterLevel.KYOSHIGO)
+             # Teachers talk about homework as a topic/rule. 
+             # Distinguish "Shukudai WA ..." (Teacher/Instructional) from "Shukudai WO ..." (Student/Reportive)
+             is_kyoshigo = False
+             # Check if this specific '宿題' token is followed by 'は'
+             if i < len(features)-1 and features[i+1].get('surface') == 'は':
+                  # Topic 'wa' + formal 'desu/masu' is likely teacher setting a rule
+                  has_formal = False
+                  for f in features:
+                       if f.get('surface') in ['です', 'ます']:
+                            has_formal = True
+                  if has_formal:
+                       is_kyoshigo = True
+             
+             # Command forms always trigger
+             for f in features:
+                  if f.get('surface') in ['なさい', 'ください', 'たまえ', 'なさい！', 'なさいよ']:
+                       is_kyoshigo = True
+             
+             if is_kyoshigo:
+                  detected_registers.add(RegisterLevel.KYOSHIGO)
         if '先生' in surface:
              # Check for "kiite" anywhere in sentence (use lemma 'kiku' or surface 'ki')
              if any('聞' in f.get('surface', '') for f in features):
-                  detected_registers.add(RegisterLevel.KYOSHIGO) 
+                  detected_registers.add(RegisterLevel.KYOSHIGO)
         if '説明' in lemma: 
-             # Only flag "setsumei" as Kyoshigo if "ima kara" or "wakarimashita" is present
              has_context = False
              for f in features:
-                 if f.get('surface') == '今' or '分か' in f.get('surface', '') or 'わか' in f.get('surface', ''):
-                      has_context = True
+                  if f.get('surface') in ['なさい', 'たまえ'] or '聞' in f.get('surface', ''):
+                       has_context = True
+             # Instructional "ima kara" or "kara" combined with intent
+             if any(f.get('surface') == '今' for f in features) and any(f.get('surface') == 'から' for f in features):
+                  if any(f.get('surface') in ['ます', 'ましょう'] for f in features):
+                       has_context = True
+             # Understanding checks ("Wakarimashita ka?") often follow explanations in teaching
+             if any(v in f.get('surface', '') for f in features for v in ['分か', 'わか']):
+                  if any(f.get('surface') in ['まし', 'ます'] for f in features):
+                       if any(f.get('surface') in ['か', 'か？', '？', '?'] for f in features):
+                            has_context = True
+             
              if has_context:
-                  detected_registers.add(RegisterLevel.KYOSHIGO) 
+                  detected_registers.add(RegisterLevel.KYOSHIGO)
         # "Machigai" (mistake/correction) - but exclude "machigainaku" and casual usage
         if '間違い' in lemma or '間違っ' in surface:
              # Exclude "間違いなく" (undoubtedly) which is not a correction context
@@ -766,11 +937,79 @@ def rule_based_register(features: List[Dict[str, str]]) -> Set[RegisterLevel]:
             is_prefix = (prev2.get('pos') == 'pref' or prev2.get('pos_detail1') == 'pref' or prev2.get('surface') in ['お', 'ご'])
             if is_prefix and next1.get('lemma') == 'なる':
                 detected_registers.add(RegisterLevel.SONKEIGO)
-        # Passive/Respectful 'reru'/'rareru'
+         # Passive/Respectful 'reru'/'rareru'
         if (pos_detail1.startswith('aux') or pos.startswith('aux')) and lemma in ['れる', 'られる']:
              # Heuristic: If attached to a verb, treat as Sonkeigo for this dataset
              if i > 0 and features[i-1].get('pos').startswith('v'):
                   detected_registers.add(RegisterLevel.SONKEIGO) 
+
+        # JOSEIGO (Feminine Register - 女性語)
+        # Sentence-final わ (feminine marker)
+        # Must be at sentence end to distinguish from other 'wa' uses
+        if surface == 'わ' and pos == 'prt' and pos_detail1 == 'sentence_final_particle':
+            # Exclude if already marked as OJOUSAMA (which uses わ after desu/masu)
+            if not (i > 0 and features[i-1].get('surface') in ['です', 'ます']):
+                detected_registers.add(RegisterLevel.JOSEIGO)
+        
+        # Sentence-final の (feminine question marker)
+        if surface == 'の' and pos == 'prt' and pos_detail1 == 'sentence_final_particle':
+            # Exclude OJOUSAMA patterns (after masu/desu)
+            if not (i > 0 and features[i-1].get('surface') in ['です', 'ます']):
+                detected_registers.add(RegisterLevel.JOSEIGO)
+        
+        # かしら (feminine wondering marker)
+        if surface in ['かしら', 'カシラ']:
+            detected_registers.add(RegisterLevel.JOSEIGO)
+        
+        # Softer speech markers
+        if surface in ['困っちゃう', '困っちゃ']:
+            detected_registers.add(RegisterLevel.JOSEIGO)
+
+        # DANSEIGO (Masculine Register - 男性語)
+        # 俺 (ore) - strong masculine pronoun (already caught in gender analysis, but register too)
+        if pos == 'pron' and (surface in ['俺', 'おれ', 'オレ'] or lemma in ['俺', 'おれ', 'オレ']):
+            detected_registers.add(RegisterLevel.DANSEIGO)
+        
+        # 僕 (boku) - masculine pronoun (softer than ore, but still masculine)
+        if pos == 'pron' and (surface in ['僕', 'ぼく', 'ボク'] or lemma in ['僕', 'ぼく', 'ボク', '僕-代名詞']):
+            detected_registers.add(RegisterLevel.DANSEIGO)
+        
+        # Sentence-final だぞ / ぞ
+        if surface in ['ぞ', 'だぞ']:
+            detected_registers.add(RegisterLevel.DANSEIGO)
+        
+        # Sentence-final ぜ
+        if surface in ['ぜ', 'だぜ']:
+            detected_registers.add(RegisterLevel.DANSEIGO)
+        
+        # Blunt imperatives with masculine pronouns or markers
+        if pos_detail1 and 'imperative' in pos_detail1:
+            # Check if accompanied by masculine markers
+            if any(f.get('surface') in ['俺', 'お前', '僕', 'ぼく'] for f in features):
+                detected_registers.add(RegisterLevel.DANSEIGO)
+
+        # BURIKKO (Exaggerated Cuteness - ぶりっ子言葉)
+        # え〜 (prolonged え)
+        if surface in ['え〜', 'えー', 'え～']:
+            detected_registers.add(RegisterLevel.BURIKKO)
+        
+        # やだ〜 (prolonged negative)
+        if surface in ['やだ〜', 'やだー', 'やだ～', 'いやだ〜']:
+            detected_registers.add(RegisterLevel.BURIKKO)
+        
+        # わかんな〜い (わからない in cutesy form)
+        if 'わかんな' in surface and ('い' in surface or (i < len(features)-1 and features[i+1].get('surface') in ['い', '〜い'])):
+            detected_registers.add(RegisterLevel.BURIKKO)
+        
+        # Diminutive/cutesy verb forms
+        if surface in ['ちゃった', 'ちゃう'] and i > 0:
+            # Could be dialect too (Kansaiben), but in specific contexts it's burikko
+            # Only mark as burikko if not already marked as Kansaiben
+            pass  # Will be caught by context later
+        
+        # 〇〇くん pattern followed by ってば / 〇〇さん followed by ってば
+        if surface in ['ってば', 'ってばー']:
+            detected_registers.add(RegisterLevel.BURIKKO)
 
         # Kenjogo
         if lemma in ['申す', '存じる', '参る', '伺う', '拝見する', '拝見', '頂く', 'いたす', '差し上げる', '申し上げる', 'お目にかかる', '恐れ入る', '承る', '存じ上げる']:

@@ -13,6 +13,7 @@ import glob
 import hashlib
 import json
 import time
+import random
 import multiprocessing as mp
 from collections import Counter
 from typing import Dict, List, Optional, Tuple, Set, NamedTuple, Any
@@ -26,7 +27,51 @@ from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn, MofNCompleteColumn
 
 from scripts.cache import get_kotogram_cache
-from kotogram.model import FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL, REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL
+from kotogram.model import FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL, REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL, NUM_REGISTER_CLASSES
+
+# Global override map: sentence -> List[RegisterLevel]
+_REGISTER_OVERRIDES: Dict[str, List[Any]] = {}
+
+def load_register_overrides():
+    """Load manual register overrides from data/jpn_sentences_<register>.tsv."""
+    global _REGISTER_OVERRIDES
+    from kotogram.analysis import RegisterLevel
+    
+    # Map register string to RegisterLevel
+    reg_map = {r.value: r for r in RegisterLevel}
+    
+    overrides = {}
+    
+    # Pattern to match individual register files
+    pattern = "data/jpn_sentences_*.tsv"
+    for file_path in glob.glob(pattern):
+        basename = os.path.basename(file_path)
+            
+        reg_str = basename.replace("jpn_sentences_", "").replace(".tsv", "")
+        if reg_str not in reg_map:
+            continue
+            
+        reg_level = reg_map[reg_str]
+        
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                for line in f:
+                    parts = line.strip().split('\t')
+                    if len(parts) < 3:
+                        continue
+                    sentence = parts[2]
+                    if sentence not in overrides:
+                        overrides[sentence] = set()
+                    overrides[sentence].add(reg_level)
+        except Exception as e:
+            console.print(f"[yellow]Warning: Could not load override file {file_path}: {e}[/yellow]")
+
+    # Convert sets to sorted lists
+    _REGISTER_OVERRIDES = {k: sorted(list(v), key=lambda x: str(x)) for k, v in overrides.items()}
+
+def init_worker():
+    """Initialize worker process with register overrides."""
+    load_register_overrides()
 
 console = Console()
 
@@ -70,6 +115,12 @@ def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[Processed
             else: # UNPRAGMATIC_GENDER
                 gender_val, gender_prag = 0.0, 0
             
+            # Check for overrides
+            if sentence in _REGISTER_OVERRIDES:
+                register_enums = _REGISTER_OVERRIDES[sentence]
+            else:
+                register_enums = analyze_register(kotogram)
+                
             register_ids = [REGISTER_LABEL_TO_ID[r] for r in register_enums if r in REGISTER_LABEL_TO_ID]
             if not register_ids:
                 register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
@@ -115,6 +166,12 @@ def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSa
             else: # UNPRAGMATIC_GENDER
                 gender_val, gender_prag = 0.0, 0
             
+            # Check for overrides
+            if sentence in _REGISTER_OVERRIDES:
+                register_enums = _REGISTER_OVERRIDES[sentence]
+            else:
+                register_enums = analyze_register(kotogram)
+
             register_ids = [REGISTER_LABEL_TO_ID[r] for r in register_enums if r in REGISTER_LABEL_TO_ID]
             if not register_ids:
                 register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
@@ -199,6 +256,66 @@ def print_stats(results: List[ProcessedSample]):
     console.print(Panel.fit(r_table, border_style="yellow"))
     console.print(Panel.fit(gram_table, border_style="green"))
 
+def save_register_samples(results: List[ProcessedSample], output_grammatic_path: Optional[str]):
+    """Save 3 examples of each register from grammatic sentences to CSV."""
+    if not output_grammatic_path:
+        return
+    
+    # Get output directory from the grammatic output path
+    output_dir = os.path.dirname(output_grammatic_path)
+    if not output_dir:
+        output_dir = "models/style"
+    else:
+        # Replace .cache with models/style
+        if ".cache" in output_dir:
+            output_dir = "models/style"
+    
+    output_file = os.path.join(output_dir, "register_samples.csv")
+    
+    # Collect ALL samples by register (only grammatic sentences)
+    all_by_register = {}
+    for result in results:
+        if not result.success or result.gram_label != 1:  # Only grammatic
+            continue
+        
+        for reg_id in result.register_ids:
+            if reg_id not in all_by_register:
+                all_by_register[reg_id] = []
+            all_by_register[reg_id].append(result)
+            
+    # Randomly sample 3 from each
+    random.seed(int(time.time() * 1000)) # Precision seed
+    register_samples = {}
+    for reg_id, samples in all_by_register.items():
+        if len(samples) <= 3:
+            register_samples[reg_id] = samples
+        else:
+            register_samples[reg_id] = random.sample(samples, 3)
+    
+    # Write to CSV
+    os.makedirs(output_dir, exist_ok=True)
+    with open(output_file, 'w', encoding='utf-8', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(['register', 'register_id', 'sentence', 'formality', 'gender_value'])
+        
+        for reg_id in sorted(register_samples.keys()):
+            register_name = REGISTER_ID_TO_LABEL[reg_id].value
+            formality_map = {v: k.value for k, v in FORMALITY_LABEL_TO_ID.items()}
+            
+            for sample in register_samples[reg_id]:
+                formality_name = formality_map.get(sample.formality_id, "unknown")
+                writer.writerow([
+                    register_name,
+                    reg_id,
+                    sample.sentence,
+                    formality_name,
+                    f"{sample.gender_value:.2f}"
+                ])
+    
+    console.print(f"\n[bold cyan]Saved register samples to:[/bold cyan] {output_file}")
+    console.print(f"  Registers with samples: {len(register_samples)}")
+
+
 def main():
     import argparse
     parser = argparse.ArgumentParser(description="Label and cache Japanese sentences.")
@@ -244,7 +361,22 @@ def main():
                         seen.add(sentence)
                         unique_rows.append((sentence, row[0], gram_label))
                         raw_rows.append(row)
+                    
+                    if args.max_samples and len(unique_rows) >= args.max_samples:
+                        break
+                if args.max_samples and len(unique_rows) >= args.max_samples:
+                    break
         
+        # Apply percentage if requested
+        if args.percent and args.percent < 100.0:
+            count = int(len(unique_rows) * (args.percent / 100.0))
+            if count < len(unique_rows):
+                # Use fixed seed for consistency
+                random.seed(42)
+                indices = random.sample(range(len(unique_rows)), count)
+                unique_rows = [unique_rows[i] for i in sorted(indices)]
+                raw_rows = [raw_rows[i] for i in sorted(indices)]
+
         if output_path:
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
             import io
@@ -305,8 +437,23 @@ def main():
     unlabeled_rows = []
     final_results = []
     
+    # Pre-load overrides in main process
+    load_register_overrides()
+    if _REGISTER_OVERRIDES:
+        console.print(f"Loaded [bold cyan]{len(_REGISTER_OVERRIDES):,}[/bold cyan] register overrides.")
+    
     for sentence, sentence_id, gram_label in all_rows:
         entry = cached_batch.get(sentence)
+        k = entry[0] if entry else None
+        
+        # If sentence is in overrides, we MUST force re-labeling to ensure correct register labels
+        if sentence in _REGISTER_OVERRIDES:
+            if k:
+                unlabeled_rows.append((sentence, k, gram_label))
+            else:
+                uncached_rows.append((sentence, sentence_id, gram_label))
+            continue
+
         if entry:
             k, f, g_val, g_prag, r_lbls = entry
             if f is not None and g_val is not None and g_prag is not None and r_lbls is not None:
@@ -335,7 +482,7 @@ def main():
                 batches = [uncached_rows[i:i + args.batch_size] for i in range(0, len(uncached_rows), args.batch_size)]
                 
                 new_entries = []
-                with ctx.Pool(num_workers) as pool:
+                with ctx.Pool(num_workers, initializer=init_worker) as pool:
                     for batch_results in pool.imap(_process_sentence_batch, batches):
                         for res in batch_results:
                             if res.success:
@@ -351,7 +498,7 @@ def main():
                 batches = [unlabeled_rows[i:i + args.batch_size] for i in range(0, len(unlabeled_rows), args.batch_size)]
                 
                 new_entries = []
-                with ctx.Pool(num_workers) as pool:
+                with ctx.Pool(num_workers, initializer=init_worker) as pool:
                     for batch_results in pool.imap(_compute_labels_batch, batches):
                         for res in batch_results:
                             if res.success:
@@ -364,6 +511,9 @@ def main():
 
     console.print(f"\n[bold green]Processing complete![/bold green] Total processed: {len(final_results):,}")
     print_stats(final_results)
+    
+    # Save register samples to CSV
+    save_register_samples(final_results, args.output_grammatic)
 
     # Phase 3: Build vocabulary and encode samples (Warming the StyleDataset cache)
     # Only run if we have output paths (meaning we're running in preprocessing mode)
