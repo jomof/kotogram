@@ -21,13 +21,14 @@ from typing import Dict, List, Optional, Tuple, Set, NamedTuple, Any
 # Add project root to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from rich.console import Console
-from rich.table import Table
-from rich.panel import Panel
-from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn, MofNCompleteColumn
+# Lazy load rich components to avoid top-level dependency
+# from rich.console import Console
+# from rich.table import Table
+# from rich.panel import Panel
+# from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn, MofNCompleteColumn
 
 from scripts.cache import get_kotogram_cache
-from kotogram.model import FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL, REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL, NUM_REGISTER_CLASSES
+from kotogram.constants import FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL, REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL, NUM_REGISTER_CLASSES
 
 # Global override map: sentence -> List[RegisterLevel]
 _REGISTER_OVERRIDES: Dict[str, List[Any]] = {}
@@ -64,7 +65,7 @@ def load_register_overrides():
                         overrides[sentence] = set()
                     overrides[sentence].add(reg_level)
         except Exception as e:
-            console.print(f"[yellow]Warning: Could not load override file {file_path}: {e}[/yellow]")
+            get_console().print(f"[yellow]Warning: Could not load override file {file_path}: {e}[/yellow]")
 
     # Convert sets to sorted lists
     _REGISTER_OVERRIDES = {k: sorted(list(v), key=lambda x: str(x)) for k, v in overrides.items()}
@@ -73,7 +74,14 @@ def init_worker():
     """Initialize worker process with register overrides."""
     load_register_overrides()
 
-console = Console()
+_CONSOLE = None
+def get_console():
+    """Lazy init console."""
+    global _CONSOLE
+    if _CONSOLE is None:
+        from rich.console import Console
+        _CONSOLE = Console()
+    return _CONSOLE
 
 class ProcessedSample(NamedTuple):
     sentence: str
@@ -85,6 +93,69 @@ class ProcessedSample(NamedTuple):
     register_ids: List[int]
     gram_label: int
     success: int
+
+def compute_labels(kotogram: str, sentence: str = "", register_overrides: Optional[List[Any]] = None) -> ProcessedSample:
+    """Compute all labels for a given kotogram."""
+    from kotogram.analysis import FormalityLevel, GenderLevel, RegisterLevel
+    from scripts.rule_based_analysis import analyze_formality, analyze_gender, analyze_register
+    
+    try:
+        formality_enum = analyze_formality(kotogram)
+        gender_enum = analyze_gender(kotogram)
+
+        # Check for overrides
+        if register_overrides is not None:
+             register_enums = register_overrides
+        elif sentence in _REGISTER_OVERRIDES:
+            register_enums = _REGISTER_OVERRIDES[sentence]
+        else:
+            register_enums = analyze_register(kotogram)
+        
+        formality_id = FORMALITY_LABEL_TO_ID.get(formality_enum, FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL])
+        
+        if gender_enum == GenderLevel.MASCULINE:
+            gender_val, gender_prag = -1.0, 1
+        elif gender_enum == GenderLevel.FEMININE:
+            gender_val, gender_prag = 1.0, 1
+        elif gender_enum == GenderLevel.NEUTRAL:
+            gender_val, gender_prag = 0.0, 1
+            
+            # Infer gender from register if neutral
+            masculine_registers = {RegisterLevel.DANSEIGO, RegisterLevel.GUNTAI, RegisterLevel.BUSHI, RegisterLevel.KYOSHIGO}
+            feminine_registers = {RegisterLevel.JOSEIGO, RegisterLevel.OJOUSAMA, RegisterLevel.BURIKKO}
+            
+            is_masc = any(r in masculine_registers for r in register_enums)
+            is_fem = any(r in feminine_registers for r in register_enums)
+            
+            if is_masc and is_fem:
+                # Mixed gender markers = Unpragmatic
+                gender_val, gender_prag = 0.0, 0
+            elif is_masc:
+                gender_val = -1.0
+            elif is_fem:
+                gender_val = 1.0
+        else: # UNPRAGMATIC_GENDER
+            gender_val, gender_prag = 0.0, 0
+        
+
+            
+        register_ids = [REGISTER_LABEL_TO_ID[r] for r in register_enums if r in REGISTER_LABEL_TO_ID]
+        if not register_ids:
+            register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
+
+        return ProcessedSample(
+            sentence=sentence,
+            sentence_id="",
+            kotogram=kotogram,
+            formality_id=formality_id,
+            gender_value=gender_val,
+            gender_pragmatic=gender_prag,
+            register_ids=register_ids,
+            gram_label=1, # Default, caller handles this
+            success=1
+        )
+    except Exception:
+         return ProcessedSample(sentence, "", kotogram, 0, 0.0, 0, [], 0, 0)
 
 def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSample]:
     """Process a batch of sentences in a worker process."""
@@ -100,54 +171,12 @@ def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[Processed
     for sentence, sentence_id, gram_label in batch:
         try:
             kotogram = parser.japanese_to_kotogram(sentence)
-            formality_enum = analyze_formality(kotogram)
-            gender_enum = analyze_gender(kotogram)
-
-            # Check for overrides
-            if sentence in _REGISTER_OVERRIDES:
-                register_enums = _REGISTER_OVERRIDES[sentence]
-            else:
-                register_enums = analyze_register(kotogram)
+            sample = compute_labels(kotogram, sentence)
             
-            formality_id = FORMALITY_LABEL_TO_ID.get(formality_enum, FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL])
-            
-            if gender_enum == GenderLevel.MASCULINE:
-                gender_val, gender_prag = -1.0, 1
-            elif gender_enum == GenderLevel.FEMININE:
-                gender_val, gender_prag = 1.0, 1
-            elif gender_enum == GenderLevel.NEUTRAL:
-                gender_val, gender_prag = 0.0, 1
-                
-                # Infer gender from register if neutral
-                masculine_registers = {RegisterLevel.DANSEIGO, RegisterLevel.GUNTAI, RegisterLevel.BUSHI, RegisterLevel.KYOSHIGO}
-                feminine_registers = {RegisterLevel.JOSEIGO, RegisterLevel.OJOUSAMA, RegisterLevel.BURIKKO}
-                
-                is_masc = any(r in masculine_registers for r in register_enums)
-                is_fem = any(r in feminine_registers for r in register_enums)
-                
-                if is_masc and not is_fem:
-                    gender_val = -1.0
-                elif is_fem and not is_masc:
-                    gender_val = 1.0
-            else: # UNPRAGMATIC_GENDER
-                gender_val, gender_prag = 0.0, 0
-            
-
-                
-            register_ids = [REGISTER_LABEL_TO_ID[r] for r in register_enums if r in REGISTER_LABEL_TO_ID]
-            if not register_ids:
-                register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
-
-            results.append(ProcessedSample(
-                sentence=sentence,
+            # Update specific fields
+            results.append(sample._replace(
                 sentence_id=sentence_id,
-                kotogram=kotogram,
-                formality_id=formality_id,
-                gender_value=gender_val,
-                gender_pragmatic=gender_prag,
-                register_ids=register_ids,
-                gram_label=gram_label,
-                success=1
+                gram_label=gram_label
             ))
         except Exception:
             results.append(ProcessedSample(sentence, sentence_id, "", 0, 0.0, 0, [], gram_label, 0))
@@ -163,57 +192,12 @@ def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSa
     results = []
     
     for sentence, kotogram, gram_label in batch:
-        try:
-            formality_enum = analyze_formality(kotogram)
-            gender_enum = analyze_gender(kotogram)
-            register_enums = analyze_register(kotogram)
-            
-            formality_id = FORMALITY_LABEL_TO_ID.get(formality_enum, FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL])
-            
-            if gender_enum == GenderLevel.MASCULINE:
-                gender_val, gender_prag = -1.0, 1
-            elif gender_enum == GenderLevel.FEMININE:
-                gender_val, gender_prag = 1.0, 1
-            elif gender_enum == GenderLevel.NEUTRAL:
-                gender_val, gender_prag = 0.0, 1
-                
-                # Infer gender from register if neutral
-                masculine_registers = {RegisterLevel.DANSEIGO, RegisterLevel.GUNTAI, RegisterLevel.BUSHI, RegisterLevel.KYOSHIGO}
-                feminine_registers = {RegisterLevel.JOSEIGO, RegisterLevel.OJOUSAMA, RegisterLevel.BURIKKO}
-                
-                is_masc = any(r in masculine_registers for r in register_enums)
-                is_fem = any(r in feminine_registers for r in register_enums)
-                
-                if is_masc and not is_fem:
-                    gender_val = -1.0
-                elif is_fem and not is_masc:
-                    gender_val = 1.0
-            else: # UNPRAGMATIC_GENDER
-                gender_val, gender_prag = 0.0, 0
-            
-            # Check for overrides
-            if sentence in _REGISTER_OVERRIDES:
-                register_enums = _REGISTER_OVERRIDES[sentence]
-            else:
-                register_enums = analyze_register(kotogram)
-
-            register_ids = [REGISTER_LABEL_TO_ID[r] for r in register_enums if r in REGISTER_LABEL_TO_ID]
-            if not register_ids:
-                register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
-
-            results.append(ProcessedSample(
-                sentence=sentence,
-                sentence_id="",
-                kotogram=kotogram,
-                formality_id=formality_id,
-                gender_value=gender_val,
-                gender_pragmatic=gender_prag,
-                register_ids=register_ids,
-                gram_label=gram_label,
-                success=1
-            ))
-        except Exception:
-            results.append(ProcessedSample(sentence, "", kotogram, 0, 0.0, 0, [], gram_label, 0))
+        # Pre-computed kotogram, but we can re-compute labels
+        sample = compute_labels(kotogram, sentence)
+         # Update specific fields
+        results.append(sample._replace(
+            gram_label=gram_label
+        ))
             
     return results
 
@@ -223,6 +207,9 @@ def print_stats(results: List[ProcessedSample]):
         return
 
     # Formality Stats
+    from rich.table import Table
+    from rich.panel import Panel
+    
     formality_counts = Counter(r.formality_id for r in results if r.success)
     f_table = Table(title="Formality Distribution", show_header=True, header_style="bold magenta")
     f_table.add_column("Level", style="dim")
@@ -276,10 +263,10 @@ def print_stats(results: List[ProcessedSample]):
         count = gram_counts[gid]
         gram_table.add_row(gram_map[gid], f"{count:,}", f"{100*count/total:.1f}%")
 
-    console.print(Panel.fit(f_table, border_style="magenta"))
-    console.print(Panel.fit(g_table, border_style="cyan"))
-    console.print(Panel.fit(r_table, border_style="yellow"))
-    console.print(Panel.fit(gram_table, border_style="green"))
+    get_console().print(Panel.fit(f_table, border_style="magenta"))
+    get_console().print(Panel.fit(g_table, border_style="cyan"))
+    get_console().print(Panel.fit(r_table, border_style="yellow"))
+    get_console().print(Panel.fit(gram_table, border_style="green"))
 
 def save_register_samples(results: List[ProcessedSample], output_grammatic_path: Optional[str]):
     """Save 3 examples of each register from grammatic sentences to CSV."""
@@ -337,8 +324,8 @@ def save_register_samples(results: List[ProcessedSample], output_grammatic_path:
                     f"{sample.gender_value:.2f}"
                 ])
     
-    console.print(f"\n[bold cyan]Saved register samples to:[/bold cyan] {output_file}")
-    console.print(f"  Registers with samples: {len(register_samples)}")
+    get_console().print(f"\n[bold cyan]Saved register samples to:[/bold cyan] {output_file}")
+    get_console().print(f"  Registers with samples: {len(register_samples)}")
 
 
 def main():
@@ -414,11 +401,11 @@ def main():
             if os.path.exists(output_path):
                 with open(output_path, 'r', encoding='utf-8') as f:
                     if f.read() == new_content:
-                        console.print(f"  [dim]{os.path.basename(output_path)} unchanged, skipping write.[/dim]")
+                        get_console().print(f"  [dim]{os.path.basename(output_path)} unchanged, skipping write.[/dim]")
                         should_write = False
             
             if should_write:
-                console.print(f"  Writing {len(raw_rows):,} unique rows to [bold]{output_path}[/bold]...")
+                get_console().print(f"  Writing {len(raw_rows):,} unique rows to [bold]{output_path}[/bold]...")
                 with open(output_path, 'w', encoding='utf-8') as f:
                     f.write(new_content)
                     
@@ -429,11 +416,11 @@ def main():
     # Process grammatic (only primary data)
     gram_patterns = [args.data]
     
-    console.print(f"Processing [bold]grammatic[/bold] data ({len(gram_patterns)} patterns) with {num_workers} workers...")
+    get_console().print(f"Processing [bold]grammatic[/bold] data ({len(gram_patterns)} patterns) with {num_workers} workers...")
     rows, count = process_file_group(gram_patterns, 1, args.output_grammatic)
     all_rows.extend(rows)
     if count > 0:
-        console.print(f"  Matched {count} grammatic files.")
+        get_console().print(f"  Matched {count} grammatic files.")
     
     # Process agrammatic (agrammatic-sentences + agrammatic-pattern)
     agram_patterns = []
@@ -443,17 +430,17 @@ def main():
         agram_patterns.append(args.agrammatic_pattern)
         
     if agram_patterns:
-        console.print(f"Processing [bold]agrammatic[/bold] data ({len(agram_patterns)} patterns)...")
+        get_console().print(f"Processing [bold]agrammatic[/bold] data ({len(agram_patterns)} patterns)...")
         rows, count = process_file_group(agram_patterns, 0, args.output_agrammatic)
         all_rows.extend(rows)
         if count > 0:
-            console.print(f"  Matched {count} agrammatic files.")
+            get_console().print(f"  Matched {count} agrammatic files.")
 
     if not all_rows:
-        console.print("[red]No data sentences found. Check your patterns.[/red]")
+        get_console().print("[red]No data sentences found. Check your patterns.[/red]")
         sys.exit(1)
         
-    console.print(f"Total unique sentences to check: [bold]{len(all_rows):,}[/bold]")
+    get_console().print(f"Total unique sentences to check: [bold]{len(all_rows):,}[/bold]")
     
     cache = get_kotogram_cache()
     cached_batch = cache.get_batch([r[0] for r in all_rows])
@@ -465,7 +452,7 @@ def main():
     # Pre-load overrides in main process
     load_register_overrides()
     if _REGISTER_OVERRIDES:
-        console.print(f"Loaded [bold cyan]{len(_REGISTER_OVERRIDES):,}[/bold cyan] register overrides.")
+        get_console().print(f"Loaded [bold cyan]{len(_REGISTER_OVERRIDES):,}[/bold cyan] register overrides.")
     
     for sentence, sentence_id, gram_label in all_rows:
         entry = cached_batch.get(sentence)
@@ -488,18 +475,19 @@ def main():
         else:
             uncached_rows.append((sentence, sentence_id, gram_label))
             
-    console.print(f"Cache status: {len(final_results):,} hits, {len(unlabeled_rows):,} partial, {len(uncached_rows):,} misses")
+    get_console().print(f"Cache status: {len(final_results):,} hits, {len(unlabeled_rows):,} partial, {len(uncached_rows):,} misses")
     
     ctx = mp.get_context('spawn')
     
     if uncached_rows or unlabeled_rows:
+        from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn, MofNCompleteColumn
         with Progress(
             SpinnerColumn(),
             TextColumn("[progress.description]{task.description}"),
             BarColumn(),
             TaskProgressColumn(),
             MofNCompleteColumn(),
-            console=console
+            console=get_console()
         ) as progress:
             
             if uncached_rows:
@@ -534,7 +522,7 @@ def main():
                 if new_entries:
                     cache.put_batch(new_entries)
 
-    console.print(f"\n[bold green]Processing complete![/bold green] Total processed: {len(final_results):,}")
+    get_console().print(f"\n[bold green]Processing complete![/bold green] Total processed: {len(final_results):,}")
     print_stats(final_results)
     
     # Save register samples to CSV
@@ -545,7 +533,7 @@ def main():
     if args.output_grammatic:
         from scripts.train_style import StyleDataset, Tokenizer
         
-        console.print("\n[bold blue]Phase 3: Building vocabulary and encoding samples...[/bold blue]")
+        get_console().print("\n[bold blue]Phase 3: Building vocabulary and encoding samples...[/bold blue]")
         # We pass the combined files generated earlier
         eval_files = [args.output_grammatic]
         eval_labels = [1]
@@ -571,16 +559,16 @@ def main():
         
         # Print Phase 3-specific statistics
         vocab_sizes = tokenizer.get_vocab_sizes()
-        console.print(f"\n[bold cyan]Phase 3 Statistics:[/bold cyan]")
-        console.print(f"  Encoded samples: [bold]{len(dataset)}[/bold]")
-        console.print(f"  Vocabulary sizes:")
-        console.print(f"    Surface forms: {vocab_sizes['surface']:,}")
-        console.print(f"    Lemmas: {vocab_sizes['lemma']:,}")
-        console.print(f"    POS tags: {vocab_sizes['pos']}")
-        console.print(f"    Conjugation types: {vocab_sizes['conjugated_type']}")
-        console.print(f"    Conjugation forms: {vocab_sizes['conjugated_form']}")
-        console.print(f"  Binary cache: [cyan]{os.path.join(args.output_dir, 'dataset_cache')}[/cyan]")
-        console.print(f"\n[bold green]Preprocessing Phase 3 complete.[/bold green]")
+        get_console().print(f"\n[bold cyan]Phase 3 Statistics:[/bold cyan]")
+        get_console().print(f"  Encoded samples: [bold]{len(dataset)}[/bold]")
+        get_console().print(f"  Vocabulary sizes:")
+        get_console().print(f"    Surface forms: {vocab_sizes['surface']:,}")
+        get_console().print(f"    Lemmas: {vocab_sizes['lemma']:,}")
+        get_console().print(f"    POS tags: {vocab_sizes['pos']}")
+        get_console().print(f"    Conjugation types: {vocab_sizes['conjugated_type']}")
+        get_console().print(f"    Conjugation forms: {vocab_sizes['conjugated_form']}")
+        get_console().print(f"  Binary cache: [cyan]{os.path.join(args.output_dir, 'dataset_cache')}[/cyan]")
+        get_console().print(f"\n[bold green]Preprocessing Phase 3 complete.[/bold green]")
 
 if __name__ == "__main__":
     main()

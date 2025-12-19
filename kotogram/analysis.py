@@ -112,7 +112,7 @@ def formality(kotogram: str) -> FormalityLevel:
     model, tokenizer = _load_style_model()
 
     # Encode the kotogram
-    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
+    feature_ids = tokenizer.encode(kotogram, add_cls=True)
 
     # Create batch tensors
     field_inputs = {
@@ -174,7 +174,7 @@ def style(kotogram: str) -> Tuple[FormalityLevel, Optional[float], Set[RegisterL
     model, tokenizer = _load_style_model()
 
     # Encode the kotogram
-    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
+    feature_ids = tokenizer.encode(kotogram, add_cls=True)
 
     # Create batch tensors
     field_inputs = {
@@ -254,7 +254,7 @@ def register(kotogram: str) -> Set[RegisterLevel]:
     model, tokenizer = _load_style_model()
 
     # Encode the kotogram
-    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
+    feature_ids = tokenizer.encode(kotogram, add_cls=True)
 
     # Create batch tensors
     field_inputs = {
@@ -321,7 +321,7 @@ def gender(kotogram: str) -> Optional[float]:
     model, tokenizer = _load_style_model()
 
     # Encode the kotogram
-    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
+    feature_ids = tokenizer.encode(kotogram, add_cls=True)
 
     # Create batch tensors
     field_inputs = {
@@ -384,7 +384,7 @@ def grammaticality(kotogram: str) -> bool:
     model, tokenizer = _load_style_model()
 
     # Encode the kotogram
-    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
+    feature_ids = tokenizer.encode(kotogram, add_cls=True)
 
     # Create batch tensors
     field_inputs = {
