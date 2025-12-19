@@ -1269,7 +1269,6 @@ class MLMTrainer:
         """
         self.model = model
         self.dataset = dataset
-        self.dataset = dataset
         self.config = config or TrainerConfig()
         self.mask_prob = mask_prob
 

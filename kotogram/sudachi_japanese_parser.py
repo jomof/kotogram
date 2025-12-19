@@ -7,6 +7,9 @@ from .japanese_parser import (
     POS_MAP,
     POS1_MAP,
     POS2_MAP,
+    POS1_MAP,
+    POS2_MAP,
+    POS3_MAP,
     CONJUGATED_TYPE_MAP,
     CONJUGATED_FORM_MAP,
 )
@@ -85,7 +88,7 @@ class SudachiJapaneseParser(JapaneseParser):
 
             def validated_lookup(mapping: Dict[str, str], key: str, map_name: str) -> Optional[str]:
                 """Lookup with validation support."""
-                if key == "" or key == "*":
+                if key == "*":
                     return mapping.get(key, None)
 
                 result = mapping.get(key)
@@ -98,20 +101,14 @@ class SudachiJapaneseParser(JapaneseParser):
                 return result
 
             # Part of Speech (0, 1, 2 are POS levels, 3 is detail)
-            if len(pos_tuple) >= 1:
-                add("pos", validated_lookup(POS_MAP, pos_tuple[0], "POS_MAP"))
-            if len(pos_tuple) >= 2:
-                add("pos_detail_1", validated_lookup(POS1_MAP, pos_tuple[1], "POS1_MAP"))
-            if len(pos_tuple) >= 3:
-                add("pos_detail_2", validated_lookup(POS2_MAP, pos_tuple[2], "POS2_MAP"))
-            if len(pos_tuple) >= 4:
-                add("pos_detail_3", pos_tuple[3] if pos_tuple[3] != "*" else None)
+            add("pos", validated_lookup(POS_MAP, pos_tuple[0], "POS_MAP"))
+            add("pos_detail_1", validated_lookup(POS1_MAP, pos_tuple[1], "POS1_MAP"))
+            add("pos_detail_2", validated_lookup(POS2_MAP, pos_tuple[2], "POS2_MAP"))
+            add("pos_detail_3", validated_lookup(POS3_MAP, pos_tuple[3], "POS3_MAP"))
 
             # Conjugation (4 is conjugation type, 5 is conjugation form)
-            if len(pos_tuple) >= 5:
-                add("conjugated_type", validated_lookup(CONJUGATED_TYPE_MAP, pos_tuple[4], "CONJUGATED_TYPE_MAP"))
-            if len(pos_tuple) >= 6:
-                add("conjugated_form", validated_lookup(CONJUGATED_FORM_MAP, pos_tuple[5], "CONJUGATED_FORM_MAP"))
+            add("conjugated_type", validated_lookup(CONJUGATED_TYPE_MAP, pos_tuple[4], "CONJUGATED_TYPE_MAP"))
+            add("conjugated_form", validated_lookup(CONJUGATED_FORM_MAP, pos_tuple[5], "CONJUGATED_FORM_MAP"))
 
             # Lexical information
             add("lemma", dictionary_form if dictionary_form != surface else None)
@@ -137,6 +134,7 @@ class SudachiJapaneseParser(JapaneseParser):
         pos = token.get("pos", "")
         pos_detail_1 = token.get("pos_detail_1")
         pos_detail_2 = token.get("pos_detail_2")
+        pos_detail_3 = token.get("pos_detail_3")
 
         conjugated_type = token.get("conjugated_type")
         conjugated_form = token.get("conjugated_form")
@@ -151,6 +149,8 @@ class SudachiJapaneseParser(JapaneseParser):
             recombined += f":{pos_detail_1}"
         if pos_detail_2 and pos_detail_2 != "general":
             recombined += f":{pos_detail_2}"
+        if pos_detail_3 and pos_detail_3 != "general":
+            recombined += f":{pos_detail_3}"
         if conjugated_type:
             recombined += f":{conjugated_type}"
         if conjugated_form:

@@ -249,7 +249,7 @@ def extract_token_features(token: str) -> Dict[str, str]:
     - ʳ : Reading/pronunciation
 
     The POS field (ᵖ) contains colon-separated values in a specific semantic order:
-    `pos:pos_detail_1:pos_detail_2:conjugated_type:conjugated_form`
+    `pos:pos_detail_1:pos_detail_2:pos_detail_3:conjugated_type:conjugated_form`
 
     However, the parser omits empty fields, so this function identifies each field
     semantically by checking which mapping it belongs to, rather than relying on
@@ -264,6 +264,7 @@ def extract_token_features(token: str) -> Dict[str, str]:
         - pos: Part of speech main category (e.g., 'v', 'n', 'auxv', 'prt')
         - pos_detail1: First POS detail level (e.g., 'general', 'common_noun')
         - pos_detail2: Second POS detail level (e.g., 'general')
+        - pos_detail3: Third POS detail level (e.g., 'country')
         - conjugated_type: Conjugation type (e.g., 'e-ichidan-ba', 'auxv-masu')
         - conjugated_form: Conjugation form (e.g., 'conjunctive', 'terminal')
         - base_orth: Base orthography (dictionary form spelling)
@@ -301,7 +302,7 @@ def extract_token_features(token: str) -> Dict[str, str]:
     ensure_string(token, "token")
 
     from .japanese_parser import (
-        POS1_MAP, POS2_MAP,
+        POS1_MAP, POS2_MAP, POS3_MAP,
         CONJUGATED_TYPE_MAP, CONJUGATED_FORM_MAP
     )
 
@@ -310,6 +311,7 @@ def extract_token_features(token: str) -> Dict[str, str]:
         'pos': '',
         'pos_detail1': '',
         'pos_detail2': '',
+        'pos_detail3': '',
         'conjugated_type': '',
         'conjugated_form': '',
         'base_orth': '',
@@ -346,6 +348,25 @@ def extract_token_features(token: str) -> Dict[str, str]:
                 feature['conjugated_form'] = value
             elif value in CONJUGATED_TYPE_MAP.values():
                 feature['conjugated_type'] = value
+            elif value in POS3_MAP.values():
+                # Handling for pos_detail3 with ambiguity resolution
+                is_p2 = value in POS2_MAP.values()
+                is_p1 = value in POS1_MAP.values()
+                
+                if feature.get('pos_detail2'):
+                    feature['pos_detail3'] = value
+                elif feature.get('pos_detail1'):
+                    if is_p2:
+                        feature['pos_detail2'] = value
+                    else:
+                        feature['pos_detail3'] = value
+                else:
+                    if is_p1:
+                         feature['pos_detail1'] = value
+                    elif is_p2:
+                         feature['pos_detail2'] = value
+                    else:
+                         feature['pos_detail3'] = value
             elif value in POS2_MAP.values():
                 # pos_detail_2 comes after pos_detail_1, so check if we already have pos_detail_1
                 if feature.get('pos_detail1'):
@@ -364,6 +385,8 @@ def extract_token_features(token: str) -> Dict[str, str]:
                     feature['pos_detail1'] = value
                 elif not feature.get('pos_detail2'):
                     feature['pos_detail2'] = value
+                elif not feature.get('pos_detail3'):
+                    feature['pos_detail3'] = value
                 elif not feature.get('conjugated_type'):
                     feature['conjugated_type'] = value
                 elif not feature.get('conjugated_form'):
