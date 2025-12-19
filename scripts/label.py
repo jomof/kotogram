@@ -102,7 +102,12 @@ def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[Processed
             kotogram = parser.japanese_to_kotogram(sentence)
             formality_enum = analyze_formality(kotogram)
             gender_enum = analyze_gender(kotogram)
-            register_enums = analyze_register(kotogram)
+
+            # Check for overrides
+            if sentence in _REGISTER_OVERRIDES:
+                register_enums = _REGISTER_OVERRIDES[sentence]
+            else:
+                register_enums = analyze_register(kotogram)
             
             formality_id = FORMALITY_LABEL_TO_ID.get(formality_enum, FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL])
             
@@ -112,14 +117,22 @@ def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[Processed
                 gender_val, gender_prag = 1.0, 1
             elif gender_enum == GenderLevel.NEUTRAL:
                 gender_val, gender_prag = 0.0, 1
+                
+                # Infer gender from register if neutral
+                masculine_registers = {RegisterLevel.DANSEIGO, RegisterLevel.GUNTAI, RegisterLevel.BUSHI, RegisterLevel.KYOSHIGO}
+                feminine_registers = {RegisterLevel.JOSEIGO, RegisterLevel.OJOUSAMA, RegisterLevel.BURIKKO}
+                
+                is_masc = any(r in masculine_registers for r in register_enums)
+                is_fem = any(r in feminine_registers for r in register_enums)
+                
+                if is_masc and not is_fem:
+                    gender_val = -1.0
+                elif is_fem and not is_masc:
+                    gender_val = 1.0
             else: # UNPRAGMATIC_GENDER
                 gender_val, gender_prag = 0.0, 0
             
-            # Check for overrides
-            if sentence in _REGISTER_OVERRIDES:
-                register_enums = _REGISTER_OVERRIDES[sentence]
-            else:
-                register_enums = analyze_register(kotogram)
+
                 
             register_ids = [REGISTER_LABEL_TO_ID[r] for r in register_enums if r in REGISTER_LABEL_TO_ID]
             if not register_ids:
@@ -163,6 +176,18 @@ def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSa
                 gender_val, gender_prag = 1.0, 1
             elif gender_enum == GenderLevel.NEUTRAL:
                 gender_val, gender_prag = 0.0, 1
+                
+                # Infer gender from register if neutral
+                masculine_registers = {RegisterLevel.DANSEIGO, RegisterLevel.GUNTAI, RegisterLevel.BUSHI, RegisterLevel.KYOSHIGO}
+                feminine_registers = {RegisterLevel.JOSEIGO, RegisterLevel.OJOUSAMA, RegisterLevel.BURIKKO}
+                
+                is_masc = any(r in masculine_registers for r in register_enums)
+                is_fem = any(r in feminine_registers for r in register_enums)
+                
+                if is_masc and not is_fem:
+                    gender_val = -1.0
+                elif is_fem and not is_masc:
+                    gender_val = 1.0
             else: # UNPRAGMATIC_GENDER
                 gender_val, gender_prag = 0.0, 0
             
