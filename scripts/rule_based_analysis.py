@@ -232,7 +232,18 @@ def analyze_gender(kotogram: str) -> GenderLevel:
         if feature:
             features.append(feature)
 
-    # Analyze gender based on features
+    # Check register first - some registers have inherent gender associations
+    registers = rule_based_register(features)
+    
+    # Masculine registers
+    if RegisterLevel.DANSEIGO in registers:
+        return GenderLevel.MASCULINE
+    
+    # Feminine registers
+    if RegisterLevel.JOSEIGO in registers or RegisterLevel.OJOUSAMA in registers or RegisterLevel.BURIKKO in registers:
+        return GenderLevel.FEMININE
+
+    # Fall through to feature-based gender analysis
     return rule_based_gender(features)
 
 
