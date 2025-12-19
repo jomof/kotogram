@@ -31,13 +31,14 @@ Execute this loop repeatedly until `register_samples.csv` shows 100% accurate cl
         ```
     *   **TSV Format**: Always include the `jpn` column. `sentence_id` TAB `jpn` TAB `sentence`.
     *   **TSV Format**: Always include the `jpn` column. `sentence_id` TAB `jpn` TAB `sentence`.
-    *   **EXPANSION RULE (NON-OPTIONAL)**: In **EVERY** iteration, you **MUST** add at least 2 new paired sentences (4 total) to specific register TSVs (e.g., `jpn_sentences_hakataben.tsv`).
+    *   **EXPANSION RULE (NON-OPTIONAL)**: In **EVERY** iteration, you **MUST** add at least 2 new paired sentences (4 sentences) to **EACH** of the 13 register TSV files.
+        *   **This means 52 total sentences per iteration** (4 per register × 13 registers).
         *   *Reinforce patterns*: Even if you are mostly neutralizing, add strong positive examples to balance the data.
         *   **DO NOT DELETE THIS INSTRUCTION.** It is critical for preventing model collapse.
 
     *   **Target Registers (13 Total)**:
         *   `burikko`, `bushi`, `danseigo`, `guntai`, `hakataben`, `joseigo`, `kansaiben`, `kenjogo`, `kyoshigo`, `netslang`, `ojousama`, `sonkeigo`, `tohoku`.
-        *   Ensure each of these files (`data/jpn_sentences_<register>.tsv`) receives attention.
+        *   **Each of these files** (`data/jpn_sentences_<register>.tsv`) **must receive exactly 2 pairs (4 sentences) in every iteration**.
 
 4.  **Verify**
     *   Run the labeling script to refresh the samples:
