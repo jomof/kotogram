@@ -71,6 +71,8 @@ class RegisterLevel(Enum):
     DANSEIGO = "danseigo"                 # Masculine register
     BURIKKO = "burikko"                   # Burikko (exaggerated cuteness)
     NEUTRAL = "neutral"                   # Standard/Neutral
+    TOHOKU = "tohoku"                     # Tohoku dialect
+    BUSHI = "bushi"                       # Samurai/Archaic register
 
 
 

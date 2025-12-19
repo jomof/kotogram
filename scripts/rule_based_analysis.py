@@ -798,6 +798,98 @@ def rule_based_register(features: List[Dict[str, str]]) -> Set[RegisterLevel]:
                   # Exception: "sasuga ni kusa" (Indeed grass/LOL) is a common slang pattern
                   if i > 1 and features[i-1].get('surface') == 'に' and features[i-2].get('surface') == '流石':
                        is_slang = True
+
+        # TOHOKU
+        # "dabe" (Copula)
+        if surface.endswith('だべ'):
+             detected_registers.add(RegisterLevel.TOHOKU)
+        if surface == 'べ' and i > 0:
+             # Check previous token
+             # "ikube", "surube"
+             detected_registers.add(RegisterLevel.TOHOKU)
+        
+        # "nda" (It is so / Yes)
+        if surface == 'んだ':
+             # Often "n" + "da", so check split
+             detected_registers.add(RegisterLevel.TOHOKU)
+        if surface == 'ん' and i < len(features)-1 and features[i+1].get('surface') == 'だ':
+             # "sou na n da" -> Standard
+             # "n da" at start or short answer -> Tohoku
+             if i == 0:
+                 detected_registers.add(RegisterLevel.TOHOKU)
+
+        # "keppare"
+        if 'けっぱれ' in surface:
+             detected_registers.add(RegisterLevel.TOHOKU)
+        # "menkoi"
+        if 'めんこい' in surface or 'めんこい' in lemma:
+             detected_registers.add(RegisterLevel.TOHOKU)
+        # "warashi"
+        if 'わらし' in surface: 
+             # Check if it means child (not zashiki-warashi context specifically, but general)
+             detected_registers.add(RegisterLevel.TOHOKU)
+        # "ora" (I) - Tohoku version of Ore
+        # Be careful of standard "Ora!" (Hey!)
+        if surface == 'おら' and pos == 'pron':
+             detected_registers.add(RegisterLevel.TOHOKU)
+
+        # BUSHI
+        # "gozaru"
+        if 'ござる' in surface or 'ござる' in lemma:
+             # Exclude standard polite "gozaimasu" / "gozaimashita"
+             is_bushi_gozaru = True
+             
+             # Check current token (rarely contains masu if tokenized, but possible if unnormalized)
+             if 'ます' in surface or 'ませ' in surface or 'まし' in surface:
+                  is_bushi_gozaru = False
+             
+             # Check NEXT token for 'masu' / 'mase' / 'mashi' / 'mashita'
+             if i < len(features) - 1:
+                 next_surf = features[i+1].get('surface', '')
+                 if next_surf.startswith('ま') or next_surf.startswith('マ'): # masu, mase, mashi
+                      is_bushi_gozaru = False
+                 if next_surf == 'て' and i < len(features) - 2:
+                      # gozai mashi te -> gozai + mashi + te ? 
+                      # actually check i+1 'mashi'.
+                      pass
+                      
+             # Double check "de gozaru" (positive trigger)
+             # If "de" precedes, and no "masu" follows, it's likely Bushi/Formal-Archaic
+             # "de gozaimasu" (Standard) vs "de gozaru" (Bushi/Archaic)
+             
+             if is_bushi_gozaru:
+                  detected_registers.add(RegisterLevel.BUSHI)
+        # "katajikenai"
+        if 'かたじけない' in surface:
+             detected_registers.add(RegisterLevel.BUSHI)
+        # "sessha" (I)
+        if surface == '拙者':
+             detected_registers.add(RegisterLevel.BUSHI)
+        # "soregashi" (I)
+        if surface == '某':
+             detected_registers.add(RegisterLevel.BUSHI)
+        # "onushi" (You)
+        if surface == 'お主':
+             detected_registers.add(RegisterLevel.BUSHI)
+        # "mairu" (Come/Go - archaic/humble)
+        # Needs context to distinguish from standard Kenjogo "Mairimasu"
+        if lemma == '参る':
+             # "Iza, mairu" (Let's go/en garde) -> Bushi
+             # "Mairimashita" (I gave up / I came) -> Standard/Kenjogo
+             if surface == '参る': # Dictionary form often archaic imperative/volitional
+                 detected_registers.add(RegisterLevel.BUSHI)
+        
+        # "n" / "nu" (Negative archaic)
+        if surface == 'ぬ' and pos_detail1.startswith('aux'):
+             detected_registers.add(RegisterLevel.BUSHI)
+        if surface == 'ん' and pos_detail1.startswith('aux'):
+             # Too common ("imasen"), need constraints
+             pass
+        
+        # "ran" (Speculative archaic)
+        if surface == 'らん' and pos_detail1.startswith('aux'):
+             detected_registers.add(RegisterLevel.BUSHI)
+
              # Exclude if followed by 'wa' (Topic marker usually means real grass)
              if i < len(features)-1 and features[i+1].get('surface') == 'は':
                   is_slang = False

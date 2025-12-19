@@ -78,7 +78,7 @@ GENDER_ID_TO_LABEL = {v: k for k, v in GENDER_LABEL_TO_ID.items()}
 
 from kotogram.analysis import RegisterLevel
 # Register classes
-NUM_REGISTER_CLASSES = 12
+NUM_REGISTER_CLASSES = 14
 REGISTER_LABEL_TO_ID = {
     RegisterLevel.NEUTRAL: 0,
     RegisterLevel.SONKEIGO: 1,
@@ -92,6 +92,8 @@ REGISTER_LABEL_TO_ID = {
     RegisterLevel.JOSEIGO: 9,
     RegisterLevel.DANSEIGO: 10,
     RegisterLevel.BURIKKO: 11,
+    RegisterLevel.TOHOKU: 12,
+    RegisterLevel.BUSHI: 13,
 }
 REGISTER_ID_TO_LABEL = {
     0: RegisterLevel.NEUTRAL,
@@ -106,6 +108,8 @@ REGISTER_ID_TO_LABEL = {
     9: RegisterLevel.JOSEIGO,
     10: RegisterLevel.DANSEIGO,
     11: RegisterLevel.BURIKKO,
+    12: RegisterLevel.TOHOKU,
+    13: RegisterLevel.BUSHI,
 }
 
 
