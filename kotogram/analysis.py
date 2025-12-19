@@ -67,6 +67,9 @@ class RegisterLevel(Enum):
     NETSLANG = "netslang"                 # Internet slang
     OJOUSAMA = "ojousama"                 # Refined lady style
     GUNTAI = "guntai"                     # Military style
+    JOSEIGO = "joseigo"                   # Feminine register
+    DANSEIGO = "danseigo"                 # Masculine register
+    BURIKKO = "burikko"                   # Burikko (exaggerated cuteness)
     NEUTRAL = "neutral"                   # Standard/Neutral
 
 

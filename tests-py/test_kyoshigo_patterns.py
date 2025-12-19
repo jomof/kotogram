@@ -100,11 +100,17 @@ class TestKyoshigoReliablePatterns(unittest.TestCase):
         assert has_kyoshigo(sentence), \
             "'なさい' is a reliable KYOSHIGO marker"
     
-    def test_shukudai_homework(self):
-        """'宿題' (homework) should trigger KYOSHIGO."""
+    def test_shukudai_report_not_kyoshigo(self):
+        """'宿題' (homework) in reportive context should NOT trigger KYOSHIGO."""
         sentence = "ベスは怠け者の彼氏に、歴史の宿題をやってくれと頼まれました。"
+        assert not has_kyoshigo(sentence), \
+            "'宿題' in reportive context is not instructional"
+    
+    def test_shukudai_instruction_is_kyoshigo(self):
+        """'宿題' as instruction should trigger KYOSHIGO."""
+        sentence = "今日の宿題はこれです。"
         assert has_kyoshigo(sentence), \
-            "'宿題' indicates classroom/learning context"
+            "'宿題は' + formal ending is instructional"
     
     def test_sensei_teacher(self):
         """'先生' (teacher) should trigger KYOSHIGO."""
