@@ -1,64 +1,52 @@
-# Instruction: Refining Register Overrides
+# Instruction: The Register Audit Loop
 
-The objective is to iteratively audit the style classification model's grounding data and provide high-quality manual overrides to correct misclassifications.
+Your primary goal is to iteratively audit the style classification model and improve its accuracy by updating grounding data.
 
-## The Iterative Loop (Learnings from Dec 2025)
+**Target File**: `models/style/register_samples.csv`
+**Action Files**: `data/jpn_sentences_<register>.tsv`
 
-1.  **Examine Samples**: Open `models/style/register_samples.csv`. This file contains ~36 sampled sentences across 12 registers.
-2.  **Evaluate Accuracy**: Check if the `register` column correctly describes the `sentence`.
-3.  **Create Paired Overrides**:
-    -   **Neutralization (The Primary Fix)**: Most "False Positives" should be moved to `data/jpn_sentences_neutral.tsv`.
-        -   *Example*: If a standard formal sentence is labeled as `hakataben`, verify it contains NO dialect markers (like `~to`, `~ken`). If it's standard Japanese, move it to Neutral.
-    -   **Positive Discriminators**: When adding to `data/jpn_sentences_<register>.tsv`, use **unambiguous** examples.
-        -   *Good Hakataben*: "なんばしよっと？" (Strong dialect grammar)
-        -   *Bad Hakataben*: "雨が降るけん" (Standard causal "ken" vs dialect "ken", ambiguous without context)
-    -   **Balance**: Always add an `_a` and `_b` pair to keep training data balanced.
+## The Iterative Workflow
 
-4.  **Verification**:
-    ```bash
-    rm -rf .cache/kotogram_shards && ./train_style.sh --label
-    ```
+Execute this loop repeatedly until `register_samples.csv` shows 100% accurate classifications.
 
-## Specific Linguistic Challenges
+1.  **Analyze Samples**
+    *   Open `models/style/register_samples.csv`.
+    *   This file lists ~3 samples per register. Check the `register` column against the `sentence`.
+    *   Identify **False Positives** (e.g., a standard sentence labeled as `hakataben`).
 
-### 1. Passive vs. Sonkeigo (Critical)
-The model consistently confuses the Passive verb form (`~reru`/`~rareru`) with Sonkeigo (Honorific) because they are morphologically identical.
--   **Symptom**: "彼は説得された" (He was persuaded) -> Classifies as Sonkeigo.
--   **Fix**: Add these specifically to `jpn_sentences_neutral.tsv`.
--   **Advice**: You cannot fix this completely without semantic understanding. Focus on "Neutralizing" obvious Passives.
+2.  **Apply Fixes (The Two Strategies)**
+    *   **Strategy A: Neutralize (Most Common)**
+        *   If a sentence is standard/formal but labeled as a dialect/register, add it to `data/jpn_sentences_neutral.tsv`.
+        *   *Why?* The model excessively associates common words (like `desu`, `masu`, `janai`) with specific registers. You must teach it that these are Neutral.
+    *   **Strategy B: Reinforce (Positive Examples)**
+        *   If a specific register is weak, add **strong, unambiguous** examples to `data/jpn_sentences_<register>.tsv`.
+        *   *Avoid Ambiguity*: Do not add sentences that "could" be standard. Use the strongest dialect/register markers available (e.g., `~dabe` for Tohoku, `~de gozaru` for Bushi).
 
-### 2. Dialect vs. Casual
-The model often hallucinates Kansaiben or Hakataben on standard Casual speech (`~janai ka`, `~darou`, `~ya`).
--   **Fix**: Move these "False Dialect" samples to `jpn_sentences_neutral.tsv`.
--   **Positive Examples**: Ensure the *actual* dialect files contain only strongest dialect markers (`~yan`, `~hen` for Kansai; `~to`, `~bai`, `~tai` for Hakata).
+3.  **Strict Data Rules**
+    *   **Paired Sentences**: You MUST add sentences in pairs (`_a` and `_b`).
+        ```tsv
+        sentence_id	jpn	sentence
+        register_001_a	jpn	Example sentence A.
+        register_001_b	jpn	Example sentence B.
+        ```
+    *   **TSV Format**: Always include the `jpn` column. `sentence_id` TAB `jpn` TAB `sentence`.
+    *   **TSV Format**: Always include the `jpn` column. `sentence_id` TAB `jpn` TAB `sentence`.
+    *   **EXPANSION RULE (NON-OPTIONAL)**: In **EVERY** iteration, you **MUST** add at least 2 new paired sentences (4 total) to specific register TSVs (e.g., `jpn_sentences_hakataben.tsv`).
+        *   *Reinforce patterns*: Even if you are mostly neutralizing, add strong positive examples to balance the data.
+        *   **DO NOT DELETE THIS INSTRUCTION.** It is critical for preventing model collapse.
 
-### 3. Character Registers (Success Story)
-Registers like **Ojousama**, **Kyoshigo**, **Netslang**, **Burikko** are highly distinct.
--   **Strategy**: These are driven by sentence-final particles and specific vocabulary.
--   *Ojousama*: `~desu wa`, `~masu no` (NOT just polite `desu/masu`).
--   *Kyoshigo*: `~nasai`, `~ikemasen` (Imperative/Prohibitive).
--   *Burikko*: `~mon`, `~cham`, `~o`.
+    *   **Target Registers (13 Total)**:
+        *   `burikko`, `bushi`, `danseigo`, `guntai`, `hakataben`, `joseigo`, `kansaiben`, `kenjogo`, `kyoshigo`, `netslang`, `ojousama`, `sonkeigo`, `tohoku`.
+        *   Ensure each of these files (`data/jpn_sentences_<register>.tsv`) receives attention.
 
-## Implementing New Registers (Learnings from Round 7)
+4.  **Verify**
+    *   Run the labeling script to refresh the samples:
+        ```bash
+        rm -rf .cache/kotogram_shards && ./train_style.sh --label
+        ```
+    *   Return to Step 1.
 
-If asked to implement a new register from `register-catalog.txt`:
-
-1.  **Code Changes Required**:
-    -   `kotogram/analysis.py`: Add to `RegisterLevel` Enum.
-    -   `kotogram/model.py`: Update `NUM_REGISTER_CLASSES` and ID mappings.
-    -   `scripts/rule_based_analysis.py`: Add detection rules in `rule_based_register`.
-
-2.  **Dataset Creation Pitfall (CRITICAL)**:
-    -   The TSV format for `data/jpn_sentences_<register>.tsv` MUST be:
-        `sentence_id` TAB `jpn` TAB `sentence`
-    -   *Do NOT forget the `jpn` column!*
-
-3.  **Rule-Based Logic Tip**:
-    -   **Avoid Over-Triggering**: Standard polite forms often overlap with archaic/formal registers.
-        -   *Fail*: `if 'gozaru' in surface: return BUSHI` (Triggers on "arigatou gozaimasu")
-        -   *Success*: Check *following* tokens. If `gozaru` is followed by polite aux (`masu`, `mase`), it is NOT Bushi.
-
-## Summary of Commands
--   **Labeling**: `./train_style.sh --label` (clears cache and re-processes)
--   **Check Samples**: `head -n 40 models/style/register_samples.csv`
--   **Confusion Matrix**: `./train_style.sh --confusion` (use after large data updates to see impact)
+## Common Pitfalls
+*   **Passive vs Sonkeigo**: The model often confuses passive verbs (`~reru`) with Sonkeigo. Add passive sentences to `Neutral` to fix this.
+*   **Dialect Hallucinations**: Standard casual endings (`~janai`, `~darou`) often trigger Kansaiben/Hakataben. Move these to `Neutral`.
+*   **Over-Triggering**: Avoid simple keyword matches in your head. Context matters. If you see a failure, add that *specific* sentence to the grounding data.
