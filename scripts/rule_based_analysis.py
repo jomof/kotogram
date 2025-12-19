@@ -443,7 +443,10 @@ def rule_based_register(features: List[Dict[str, str]]) -> Set[RegisterLevel]:
                   detected_registers.add(RegisterLevel.KANSAIBEN)
         # "chau" (tigau)
         if lemma == 'ちゃう' or surface == 'ちゃう':
-             detected_registers.add(RegisterLevel.KANSAIBEN)
+             # Only trigger if it's a verb (meaning 'chigau'/wrong). 
+             # If it's an auxiliary (auxv), it's likely standard casual 'te-shimau' -> 'chau'.
+             if pos.startswith('v'):
+                 detected_registers.add(RegisterLevel.KANSAIBEN)
         # "toki" (te-oku imperative) e.g. "shitoki"
         if surface == 'とき' and i > 0 and features[i-1].get('pos').startswith('v'):
              detected_registers.add(RegisterLevel.KANSAIBEN)
