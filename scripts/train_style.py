@@ -1753,8 +1753,8 @@ class Trainer:
             total_register_loss += register_loss.item()
             n_batches += 1
 
-            # Progress display (only on main process)
-            if verbose and is_main_process():
+            # Progress display (only on main process, updated every 100 batches to reduce I/O overhead)
+            if verbose and is_main_process() and ((batch_idx + 1) % 100 == 0 or (batch_idx + 1) == total_batches):
                 avg_loss_so_far = total_loss / n_batches
                 progress = (batch_idx + 1) / total_batches
                 bar_len = 30
@@ -1993,15 +1993,45 @@ class Trainer:
             self.history['val_register_accuracy'].append(eval_results['register_accuracy'])
 
             if verbose:
-                print(f"  Train Loss: {train_loss:.4f} (F={train_formality_loss:.4f}, G={train_gender_loss:.4f}, Gram={train_grammaticality_loss:.4f}, Reg={train_register_loss:.4f})")
-                print(f"  Val Loss: {eval_results['loss']:.4f} (F={eval_results['formality_loss']:.4f}, G={eval_results['gender_loss']:.4f}, Gram={eval_results['grammaticality_loss']:.4f}, Reg={eval_results['register_loss']:.4f})")
-                print(f"  Val Metrics: F={eval_results['formality_accuracy']:.4f}, G_Prag={eval_results['gender_pragmatic_accuracy']:.4f}, G_MSE={eval_results['gender_value_mse']:.4f}, Gram={eval_results['grammaticality_accuracy']:.4f}, Reg={eval_results['register_accuracy']:.4f}")
+                # Beautiful epoch summary with better formatting
+                print(f"\n{'='*80}")
+                print(f"📊 EPOCH {epoch+1}/{self.config.epochs} SUMMARY")
+                print(f"{'='*80}")
+                
+                # Training metrics
+                print(f"\n🔥 Training:")
+                print(f"   Overall Loss:         {train_loss:.4f}")
+                print(f"   ├─ Formality:         {train_formality_loss:.4f}")
+                print(f"   ├─ Gender:            {train_gender_loss:.4f}")
+                print(f"   ├─ Grammaticality:    {train_grammaticality_loss:.4f}")
+                print(f"   └─ Register:          {train_register_loss:.4f}")
+                
+                # Validation metrics
+                print(f"\n✅ Validation:")
+                print(f"   Overall Loss:         {eval_results['loss']:.4f}")
+                print(f"   ├─ Formality:         {eval_results['formality_loss']:.4f}")
+                print(f"   ├─ Gender:            {eval_results['gender_loss']:.4f}")
+                print(f"   ├─ Grammaticality:    {eval_results['grammaticality_loss']:.4f}")
+                print(f"   └─ Register:          {eval_results['register_loss']:.4f}")
+                
+                # Accuracy metrics (as percentages)
+                print(f"\n🎯 Accuracy:")
+                print(f"   Formality:            {eval_results['formality_accuracy']*100:6.2f}%")
+                print(f"   Gender (Pragmatic):   {eval_results['gender_pragmatic_accuracy']*100:6.2f}%")
+                print(f"   Gender (Value MSE):   {eval_results['gender_value_mse']:.4f}")
+                print(f"   Grammaticality:       {eval_results['grammaticality_accuracy']*100:6.2f}%")
+                print(f"   Register:             {eval_results['register_accuracy']*100:6.2f}%")
+                
+                # Learning rates
                 enc_lr = self.optimizer.param_groups[0]['lr']
                 cls_lr = self.optimizer.param_groups[1]['lr']
-                print(f"  LR: encoder={enc_lr:.2e}, classifier={cls_lr:.2e}")
+                print(f"\n📉 Learning Rates:")
+                print(f"   Encoder:              {enc_lr:.2e}")
+                print(f"   Classifier:           {cls_lr:.2e}")
 
             # Early stopping
-            if eval_results['loss'] < self.best_val_loss:
+            is_best_epoch = eval_results['loss'] < self.best_val_loss
+            if is_best_epoch:
                 self.best_val_loss = eval_results['loss']
                 self.patience_counter = 0
                 self.best_state = {k: v.cpu().clone() for k, v in self.model.state_dict().items()}
@@ -2027,6 +2057,7 @@ class Trainer:
                     self.best_state,
                     checkpoint_args,
                     model_config,
+                    is_best=is_best_epoch,
                 )
 
         # Restore best model
@@ -2142,6 +2173,7 @@ def save_checkpoint(
     best_state: Optional[Dict[str, torch.Tensor]],
     args: Any,
     model_config: ModelConfig,
+    is_best: bool = False,
 ) -> None:
     """Save training checkpoint for resumption.
 
@@ -2202,7 +2234,11 @@ def save_checkpoint(
     with open(os.path.join(path, 'config.json'), 'w') as f:
         json.dump(model_config.to_dict(), f, indent=2)
 
-    print(f"  Checkpoint saved at epoch {epoch + 1}")
+    if is_best:
+        print(f"\n⭐ NEW BEST MODEL! Checkpoint saved at epoch {epoch + 1} (val_loss={best_val_loss:.4f})")
+    else:
+        print(f"\n💾 Checkpoint saved at epoch {epoch + 1}")
+    print(f"{'='*80}\n")
 
 
 def load_checkpoint(
