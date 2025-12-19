@@ -1823,7 +1823,7 @@ class Trainer:
             pragmatic_mask = (gender_prag_targets == 1)
             if pragmatic_mask.sum() > 0:
                  gender_val_loss = F.mse_loss(
-                     gender_val.squeeze()[pragmatic_mask], 
+                     gender_val.squeeze(-1)[pragmatic_mask], 
                      gender_value_targets[pragmatic_mask]
                  )
             else:
@@ -1862,7 +1862,7 @@ class Trainer:
             all_formality_labels.extend(formality_targets.cpu().tolist())
             
             # Store raw values for all samples (filtering happens during metric calc)
-            all_gender_val_preds.extend(gender_val.squeeze().detach().cpu().tolist())
+            all_gender_val_preds.extend(gender_val.squeeze(-1).detach().cpu().tolist())
             all_gender_val_labels.extend(gender_value_targets.cpu().tolist())
             
             all_gender_prag_preds.extend(gender_prag_preds.cpu().tolist())
@@ -3001,7 +3001,7 @@ if __name__ == "__main__":
             
             prag_mask = (gender_prag_targets == 1)
             if prag_mask.sum() > 0:
-                 sq_err = F.mse_loss(gender_val.squeeze()[prag_mask], gender_value_targets[prag_mask], reduction='sum').item()
+                 sq_err = F.mse_loss(gender_val.squeeze(-1)[prag_mask], gender_value_targets[prag_mask], reduction='sum').item()
                  total_gender_val_sq_err += sq_err
                  total_pragmatic_samples += prag_mask.sum().item()
 
@@ -3072,7 +3072,7 @@ if __name__ == "__main__":
                 gender_prag_correct += (gender_prag_preds == gender_prag_targets).sum().item()
                 prag_mask = (gender_prag_targets == 1)
                 if prag_mask.size(0) > 0 and prag_mask.sum() > 0:
-                     sq_err = F.mse_loss(gender_val.squeeze()[prag_mask], gender_value_targets[prag_mask], reduction='sum').item()
+                     sq_err = F.mse_loss(gender_val.squeeze(-1)[prag_mask], gender_value_targets[prag_mask], reduction='sum').item()
                      gender_val_sq_err += sq_err
                      pragmatic_samples += prag_mask.sum().item()
 

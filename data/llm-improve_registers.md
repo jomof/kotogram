@@ -15,6 +15,8 @@ The objective is to iteratively audit the style classification model's grounding
         -   `data/jpn_sentences_sonkeigo.tsv`
         -   `data/jpn_sentences_kansaiben.tsv`
         -   ... etc.
+    - You must add at least 2 sentences for every register, even if not overriding a false positive.
+      Add creative, diverse,grammatically correct sentences the are examplars of the the register.
 4.  **Verification**: After updating the TSV files, run the labeling script to refresh the samples:
     ```bash
     rm -rf .cache/kotogram_shards && ./train_style.sh --label

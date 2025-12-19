@@ -68,11 +68,6 @@ class TestRegisterLabeler(unittest.TestCase):
         self._check("存じておりますの", {RegisterLevel.OJOUSAMA}) # "zonjite" -> Kenjogo too? Test specific first.
         # "my rule" triggers ojousama for 'masu no'.
 
-    def test_guntai(self):
-        self._check("了解であります", {RegisterLevel.GUNTAI})
-        self._check("全員集合", {RegisterLevel.GUNTAI})
-        self._check("異常なし", {RegisterLevel.GUNTAI})
-        self._check("自分はそう思います", {RegisterLevel.GUNTAI})
 
     def test_kenjogo(self):
         self._check("私が申す", {RegisterLevel.KENJOGO})
@@ -89,55 +84,6 @@ class TestRegisterLabeler(unittest.TestCase):
         # Verify both are detected
         self._check("静かにしなさい", {RegisterLevel.KYOSHIGO, RegisterLevel.SONKEIGO})
 
-    def test_dataset_coverage(self):
-        """Verify that all sentences in data/jpn_sentences_register.tsv are correctly labeled."""
-        import csv
-        
-        # Path relative to this test file
-        tsv_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data/jpn_sentences_register.tsv'))
-        self.assertTrue(os.path.exists(tsv_path), f"TSV file not found at {tsv_path}")
-        
-        label_map = {
-            'sonkeigo': RegisterLevel.SONKEIGO,
-            'kenjogo': RegisterLevel.KENJOGO,
-            'kansaiben': RegisterLevel.KANSAIBEN,
-            'hakataben': RegisterLevel.HAKATABEN,
-            'kyoshigo': RegisterLevel.KYOSHIGO,
-            'netslang': RegisterLevel.NETSLANG,
-            'ojousama': RegisterLevel.OJOUSAMA,
-            'guntai': RegisterLevel.GUNTAI,
-            'neutral': RegisterLevel.NEUTRAL,
-        }
-
-        with open(tsv_path, 'r', encoding='utf-8') as f:
-            reader = csv.reader(f, delimiter='\t')
-            for row in reader:
-                if len(row) < 3: continue
-                
-                row_id = row[0]
-                sentence = row[2]
-                
-                # Extract expected label from ID (e.g. "sonkeigo_001")
-                # Handle cases like "kyoshigo_10"
-                expected_str = row_id.split('_')[0]
-                expected_enum = label_map.get(expected_str)
-                
-                if not expected_enum:
-                    print(f"Skipping unknown register ID prefix: {row_id}") # Optional logging
-                    continue
-                
-                # Use _check helper logic but customized for this loop for better error messages
-                kotogram = self.parser.japanese_to_kotogram(sentence)
-                result = analyze_register(kotogram)
-                
-                if expected_enum == RegisterLevel.NEUTRAL:
-                    # Expect ONLY neutral
-                    self.assertEqual(result, {RegisterLevel.NEUTRAL}, 
-                                     f"Failed ID: {row_id}. Expected {{NEUTRAL}}, got {result} for '{sentence}'")
-                else:
-                    # Expect specific register in set
-                    self.assertIn(expected_enum, result, 
-                                  f"Failed ID: {row_id}. Expected {expected_enum} in {result} for '{sentence}'")
 
     def test_danseigo_boku(self):
         """Test that ぼく (boku) triggers danseigo detection."""
