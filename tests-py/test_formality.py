@@ -4,6 +4,7 @@ import unittest
 from unittest.mock import patch
 import torch
 from kotogram import SudachiJapaneseParser, formality, FormalityLevel
+from kotogram.model import StylePrediction
 
 
 class TestFormalityModel(unittest.TestCase):
@@ -37,15 +38,19 @@ class TestFormalityModel(unittest.TestCase):
         
         # Mock predict: 0=VF, 1=F, 2=N, 3=C, 4=VC, 5=UP
         with patch.object(self.model, 'predict') as mock_predict:
-            # Set formal (1) probability high
-            t = torch.zeros(1, 6)
-            t[0, 1] = 1.0 
-            mock_predict.return_value = (
-                t, # formality
-                torch.tensor([0.0]), 
-                torch.tensor([[0.5, 0.5]]), 
-                torch.tensor([[0.1, 0.9]]), 
-                torch.tensor([[0.0]*9])
+            # Set formal (0.5) probability
+            # Buckets: VF>=0.75, F>=0.25, N>=-0.25, C>=-0.75, VC<-0.75
+            formality_val = torch.tensor([0.5]) 
+            formality_prag = torch.zeros(1, 2)
+            formality_prag[0, 1] = 5.0 # Pragmatic
+
+            mock_predict.return_value = StylePrediction(
+                formality_value=formality_val,
+                formality_pragmatic_probs=formality_prag,
+                gender_value=torch.tensor([0.0]), 
+                gender_pragmatic_probs=torch.tensor([[0.5, 0.5]]), 
+                grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
+                register_probs=torch.tensor([[0.0]*9])
             )
             result = formality(kotogram)
             self.assertEqual(result, FormalityLevel.FORMAL)
@@ -56,15 +61,18 @@ class TestFormalityModel(unittest.TestCase):
         kotogram = self.parser.japanese_to_kotogram(text)
         
         with patch.object(self.model, 'predict') as mock_predict:
-            # Set casual (3) probability high
-            t = torch.zeros(1, 6)
-            t[0, 3] = 1.0 
-            mock_predict.return_value = (
-                t, 
-                torch.tensor([0.0]), 
-                torch.tensor([[0.5, 0.5]]), 
-                torch.tensor([[0.1, 0.9]]), 
-                torch.tensor([[0.0]*9])
+            # Set casual (-0.5) probability
+            formality_val = torch.tensor([-0.5]) 
+            formality_prag = torch.zeros(1, 2)
+            formality_prag[0, 1] = 5.0 # Pragmatic
+
+            mock_predict.return_value = StylePrediction(
+                formality_value=formality_val,
+                formality_pragmatic_probs=formality_prag, 
+                gender_value=torch.tensor([0.0]), 
+                gender_pragmatic_probs=torch.tensor([[0.5, 0.5]]), 
+                grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
+                register_probs=torch.tensor([[0.0]*9])
             )
             result = formality(kotogram)
             self.assertEqual(result, FormalityLevel.CASUAL)
@@ -75,15 +83,18 @@ class TestFormalityModel(unittest.TestCase):
         kotogram = self.parser.japanese_to_kotogram(text)
         
         with patch.object(self.model, 'predict') as mock_predict:
-            # Set very formal (0) probability high
-            t = torch.zeros(1, 6)
-            t[0, 0] = 1.0 
-            mock_predict.return_value = (
-                t, 
-                torch.tensor([0.0]), 
-                torch.tensor([[0.5, 0.5]]), 
-                torch.tensor([[0.1, 0.9]]), 
-                torch.tensor([[0.0]*9])
+            # Set very formal (1.0) probability
+            formality_val = torch.tensor([1.0]) 
+            formality_prag = torch.zeros(1, 2)
+            formality_prag[0, 1] = 5.0 # Pragmatic
+
+            mock_predict.return_value = StylePrediction(
+                formality_value=formality_val,
+                formality_pragmatic_probs=formality_prag,
+                gender_value=torch.tensor([0.0]), 
+                gender_pragmatic_probs=torch.tensor([[0.5, 0.5]]), 
+                grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
+                register_probs=torch.tensor([[0.0]*9])
             )
             result = formality(kotogram)
             self.assertEqual(result, FormalityLevel.VERY_FORMAL)

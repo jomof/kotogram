@@ -1,9 +1,9 @@
-"""Unit tests for tuple integrity in train_style.py data pipeline.
+"""Unit tests for result integrity in train_style.py data pipeline.
 
-These tests validate that tuples returned by the processing functions have
-the correct cardinality and field types, ensuring the data flow is correct.
+These tests validate that objects returned by the processing functions have
+the correct attributes and types, ensuring the data flow is correct.
 """
-
+from scripts.style_data import ProcessedSample
 import unittest
 import sys
 import os
@@ -12,11 +12,11 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
-class TestTupleCardinality(unittest.TestCase):
-    """Tests for tuple structure validation."""
+class TestResultIntegrity(unittest.TestCase):
+    """Tests for result structure validation."""
 
-    def test_process_sentence_batch_returns_9_tuple(self):
-        """Verify _process_sentence_batch returns 9-element tuples."""
+    def test_process_sentence_batch_returns_objects(self):
+        """Verify _process_sentence_batch returns ProcessedSample objects."""
         from scripts.label import _process_sentence_batch
 
         # Single-element batch
@@ -26,8 +26,10 @@ class TestTupleCardinality(unittest.TestCase):
         assert len(results) == 1, "Expected 1 result"
         result = results[0]
         
-        # Validate cardinality
-        # Validate types
+        # Validate type
+        assert isinstance(result, ProcessedSample), f"Result should be ProcessedSample, got {type(result)}"
+        
+        # Validate attributes
         self.assertTrue(hasattr(result, 'sentence'), "Missing sentence attribute")
         assert isinstance(result.sentence, str), f"sentence should be str, got {type(result.sentence)}"
         assert isinstance(result.sentence_id, str), f"sentence_id should be str, got {type(result.sentence_id)}"
@@ -39,10 +41,10 @@ class TestTupleCardinality(unittest.TestCase):
         assert isinstance(result.gram_label, int), f"gram_label should be int, got {type(result.gram_label)}"
         assert isinstance(result.success, int), f"success should be int, got {type(result.success)}"
 
-    def test_compute_labels_batch_returns_9_tuple(self):
-        """Verify _compute_labels_batch returns 9-element tuples."""
-        from scripts.label import _compute_labels_batch
 
+    def test_compute_labels_batch_returns_objects(self):
+        """Verify _compute_labels_batch returns ProcessedSample objects."""
+        from scripts.label import _compute_labels_batch
 
         # Single-element batch with pre-computed kotogram
         batch = [("テスト", "テスト[*]", 1)]  # (sentence, kotogram, gram_label)
@@ -51,8 +53,10 @@ class TestTupleCardinality(unittest.TestCase):
         assert len(results) == 1, "Expected 1 result"
         result = results[0]
         
-        # Validate cardinality
-        # Validate types
+        # Validate type
+        assert isinstance(result, ProcessedSample), f"Result should be ProcessedSample, got {type(result)}"
+        
+        # Validate attributes
         self.assertTrue(hasattr(result, 'sentence'))
         assert isinstance(result.sentence, str), f"sentence should be str, got {type(result.sentence)}"
         assert isinstance(result.kotogram, str), f"kotogram should be str, got {type(result.kotogram)}"
@@ -63,8 +67,8 @@ class TestTupleCardinality(unittest.TestCase):
         assert isinstance(result.gram_label, int), f"gram_label should be int, got {type(result.gram_label)}"
         assert isinstance(result.success, int), f"success should be int, got {type(result.success)}"
 
-    def test_process_parallel_returns_7_tuple(self):
-        """Verify _process_sentence_batch returns 9-element tuples."""
+    def test_process_parallel_returns_objects(self):
+        """Verify _process_sentence_batch returns ProcessedSample objects."""
         from scripts.label import _process_sentence_batch
         
         # Simple test rows
@@ -78,10 +82,10 @@ class TestTupleCardinality(unittest.TestCase):
         assert len(results) > 0, "Expected at least some results"
         
         for i, result in enumerate(results):
-            # Validate cardinality
-            assert len(result) == 9, f"Result {i}: Expected 9-tuple, got {len(result)}-tuple: {result}"
+            # Validate type
+            assert isinstance(result, ProcessedSample), f"Result {i} should be ProcessedSample"
 
-            # Validate types
+            # Validate attributes
             self.assertTrue(hasattr(result, 'sentence'))
             assert isinstance(result.sentence, str), f"Result {i}: sentence should be str"
             assert isinstance(result.kotogram, str), f"Result {i}: kotogram should be str"
@@ -117,17 +121,17 @@ class TestEncodingInputs(unittest.TestCase):
         """Verify encoding_inputs are extracted correctly from processed_results."""
         # Simulate processed_results from _process_parallel
         processed_results = [
-            ("sentence1", "id_001", "kotogram1", 0, 0.0, 0, [0], 1, 1),  # 9-tuple: success=1
-            ("sentence2", "id_002", "kotogram2", 1, 1.0, 1, [1, 2], 0, 1),  # Multi-label register
-            ("sentence3", "id_003", "kotogram3", 2, 2.0, 2, [6], 1, 0),  # success=0 (should be skipped)
+            ProcessedSample("sentence1", "id_001", "kotogram1", 0, 0.0, 0, [0], 1, 1),  # success=1
+            ProcessedSample("sentence2", "id_002", "kotogram2", 1, 1.0, 1, [1, 2], 0, 1),  # Multi-label register
+            ProcessedSample("sentence3", "id_003", "kotogram3", 2, 2.0, 2, [6], 1, 0),  # success=0 (should be skipped)
         ]
 
         # Extract encoding_inputs as done in from_multiple_tsv
         encoding_inputs = []
         for p in processed_results:
-            assert len(p) == 9, f"Expected 9-tuple, got {len(p)}"
-            if p[8]:  # success
-                encoding_inputs.append((p[0], p[2], p[3], p[4], p[5], p[6], p[7]))
+            # Object result
+            if p.success:
+                encoding_inputs.append((p.sentence, p.kotogram, p.formality_id, p.gender_value, p.gender_pragmatic, p.register_ids, p.gram_label))
 
         assert len(encoding_inputs) == 2, "Should have 2 successful items"
         

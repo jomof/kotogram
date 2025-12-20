@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 import torch
 from torch.utils.data import DataLoader
 from kotogram.evaluator import Evaluator, EvalResult
-from kotogram.model import Tokenizer, StyleClassifier
+from kotogram.model import Tokenizer, StyleClassifier, StylePrediction
 
 class TestEvaluator(unittest.TestCase):
     def setUp(self):
@@ -18,17 +18,18 @@ class TestEvaluator(unittest.TestCase):
         self.model.eval.return_value = None
         self.model.to.return_value = self.model
         
-        # Setup mock return values for model()
-        # Returns: (formality_logits, gender_val, gender_prag, grammaticality, register_logits)
+        # Setup mock return values for predict()
         batch_size = 2
-        self.model.return_value = (
-            torch.randn(batch_size, 6),  # formality: 6 classes
-            torch.randn(batch_size, 1),  # gender_val: continuous
-            torch.randn(batch_size, 4),  # gender_prag: 4 classes (0-3: M, F, N, U) - Wait, prags are specific classes? 
-            # Actually gender_pragmatic is trained as classification?
-            # Creating dummy outputs
-            torch.randn(batch_size, 2),  # grammaticality: 2 classes
-            torch.randn(batch_size, 9)   # register: ~9 classes
+        
+        # StylePrediction fields are tensors, not logits inside the prediction object (usually)
+        # But predict() returns StylePrediction with *probs* and *values*.
+        self.model.predict.return_value = StylePrediction(
+            formality_value=torch.randn(batch_size, 1),
+            formality_pragmatic_probs=torch.randn(batch_size, 2),
+            gender_value=torch.randn(batch_size, 1),
+            gender_pragmatic_probs=torch.randn(batch_size, 2),
+            grammaticality_probs=torch.randn(batch_size, 2),
+            register_probs=torch.randn(batch_size, 9)
         )
 
     def test_initialization(self):
@@ -43,7 +44,7 @@ class TestEvaluator(unittest.TestCase):
         loader = DataLoader([], batch_size=1)
         result = evaluator.evaluate(loader)
         self.assertIsInstance(result, EvalResult)
-        self.assertEqual(len(result.formality_preds), 0)
+        self.assertEqual(len(result.formality_val_preds), 0)
 
     def test_evaluate_batch(self):
         # Create a dummy batch
@@ -59,14 +60,16 @@ class TestEvaluator(unittest.TestCase):
             'input_ids_reading': torch.tensor([[1, 2], [3, 4]]),
             'attention_mask': torch.tensor([[1, 1], [1, 1]]),
             
-            'formality_labels': torch.tensor([0, 1]),
+            'formality_value': torch.tensor([0.0, 1.0]),
+            'formality_pragmatic': torch.tensor([0, 1]),
+            
             'gender_value': torch.tensor([0.0, 1.0]),
             'gender_pragmatic': torch.tensor([0, 1]),
             'grammaticality_labels': torch.tensor([1, 1]),
             'register_labels': torch.zeros(2, 9),
             
             'original_sentence': ['Sentence 1', 'Sentence 2'],
-            'kotogram': ['K1', 'K2']
+            'kotogram': ['私/代名詞/ワタシ/ワタシ', '彼/代名詞/カレ/カレ'] # Realistic dummy kotograms
         }
         
         # Mock DataLoader
@@ -75,13 +78,13 @@ class TestEvaluator(unittest.TestCase):
         evaluator = Evaluator(self.model, self.device, verbose=True)
         result = evaluator.evaluate(loader)
         
-        self.assertEqual(len(result.formality_preds), 2)
+        self.assertEqual(len(result.formality_val_preds), 2)
         self.assertEqual(len(result.sentences), 2)
         self.assertEqual(result.sentences[0], 'Sentence 1')
-        self.assertEqual(result.kotograms[0], 'K1')
+        self.assertEqual(result.kotograms[0], '私/代名詞/ワタシ/ワタシ')
         
         # Check model call
-        self.model.assert_called()
+        self.model.predict.assert_called()
 
     def test_keyboard_interrupt(self):
         # Simulate KeyboardInterrupt during iteration

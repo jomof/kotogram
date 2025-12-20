@@ -122,22 +122,29 @@ def formality(kotogram: str) -> FormalityLevel:
     attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
 
     # Predict
+    # Predict
     model.eval()
     with torch.no_grad():
-        formality_probs, _, _, _, _ = model.predict(field_inputs, attention_mask)
-        formality_idx = int(formality_probs[0].argmax().item())
+        prediction = model.predict(field_inputs, attention_mask)
+        # Check pragmatic first (class 1 is pragmatic)
+        is_pragmatic = prediction.formality_pragmatic_probs[0][1].item() > 0.5
+        f_val = float(prediction.formality_value[0].item())
 
-    # Map model output index to FormalityLevel
-    # Model uses: 0=very_formal, 1=formal, 2=neutral, 3=casual, 4=very_casual, 5=unpragmatic
-    formality_map = {
-        0: FormalityLevel.VERY_FORMAL,
-        1: FormalityLevel.FORMAL,
-        2: FormalityLevel.NEUTRAL,
-        3: FormalityLevel.CASUAL,
-        4: FormalityLevel.VERY_CASUAL,
-        5: FormalityLevel.UNPRAGMATIC_FORMALITY,
-    }
-    return formality_map.get(formality_idx, FormalityLevel.NEUTRAL)
+    if not is_pragmatic:
+        return FormalityLevel.UNPRAGMATIC_FORMALITY
+
+    # Bucket continuous value to discrete level
+    # 1.0=VF, 0.5=F, 0.0=N, -0.5=C, -1.0=VC
+    if f_val >= 0.75:
+        return FormalityLevel.VERY_FORMAL
+    elif f_val >= 0.25:
+        return FormalityLevel.FORMAL
+    elif f_val >= -0.25:
+        return FormalityLevel.NEUTRAL
+    elif f_val >= -0.75:
+        return FormalityLevel.CASUAL
+    else:
+        return FormalityLevel.VERY_CASUAL
 
 
 
@@ -184,30 +191,37 @@ def style(kotogram: str) -> Tuple[FormalityLevel, Optional[float], Set[RegisterL
     attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
 
     # Predict
+    # Predict
     model.eval()
     with torch.no_grad():
-        formality_probs, gender_val, gender_prag_probs, grammaticality_probs, register_probs = model.predict(field_inputs, attention_mask)
-        formality_idx = int(formality_probs[0].argmax().item())
-        gender_value = float(gender_val[0].item())
-        gender_prag_idx = int(gender_prag_probs[0].argmax().item())
-        grammaticality_idx = int(grammaticality_probs[0].argmax().item())
+        prediction = model.predict(field_inputs, attention_mask)
+        
+        # Formality Logic
+        is_f_pragmatic = prediction.formality_pragmatic_probs[0][1].item() > 0.5
+        f_val = float(prediction.formality_value[0].item())
+        
+        if not is_f_pragmatic:
+            formality_res = FormalityLevel.UNPRAGMATIC_FORMALITY
+        elif f_val >= 0.75:
+            formality_res = FormalityLevel.VERY_FORMAL
+        elif f_val >= 0.25:
+            formality_res = FormalityLevel.FORMAL
+        elif f_val >= -0.25:
+            formality_res = FormalityLevel.NEUTRAL
+        elif f_val >= -0.75:
+            formality_res = FormalityLevel.CASUAL
+        else:
+            formality_res = FormalityLevel.VERY_CASUAL
 
-
-    # Map model output indices to enum values
-    formality_map = {
-        0: FormalityLevel.VERY_FORMAL,
-        1: FormalityLevel.FORMAL,
-        2: FormalityLevel.NEUTRAL,
-        3: FormalityLevel.CASUAL,
-        4: FormalityLevel.VERY_CASUAL,
-        5: FormalityLevel.UNPRAGMATIC_FORMALITY,
-    }
+        gender_value = float(prediction.gender_value[0].item())
+        gender_prag_idx = int(prediction.gender_pragmatic_probs[0].argmax().item())
+        grammaticality_idx = int(prediction.grammaticality_probs[0].argmax().item())
 
     is_grammatic = grammaticality_idx == 1  # 1 = grammatic, 0 = agrammatic
     
     # Process register probabilities (multi-label)
     detected_registers = set()
-    register_probs_list = register_probs[0].tolist()
+    register_probs_list = prediction.register_probs[0].tolist()
     threshold = 0.5
     
     for i, prob in enumerate(register_probs_list):
@@ -225,7 +239,7 @@ def style(kotogram: str) -> Tuple[FormalityLevel, Optional[float], Set[RegisterL
         gender_res = gender_value
 
     return (
-        formality_map.get(formality_idx, FormalityLevel.NEUTRAL),
+        formality_res,
         gender_res,
         detected_registers,
         is_grammatic,
@@ -259,13 +273,14 @@ def register(kotogram: str) -> Set[RegisterLevel]:
     attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
 
     # Predict
+    # Predict
     model.eval()
     with torch.no_grad():
-        _, _, _, _, register_probs = model.predict(field_inputs, attention_mask)
+        prediction = model.predict(field_inputs, attention_mask)
     
     # Process register probabilities (multi-label)
     detected_registers = set()
-    register_probs_list = register_probs[0].tolist()
+    register_probs_list = prediction.register_probs[0].tolist()
     threshold = 0.5
     
     for i, prob in enumerate(register_probs_list):
@@ -326,23 +341,19 @@ def gender(kotogram: str) -> Optional[float]:
     attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
 
     # Predict
+    # Predict
     model.eval()
     with torch.no_grad():
-        _, gender_val, gender_prag_probs, _, _ = model.predict(field_inputs, attention_mask)
+        prediction = model.predict(field_inputs, attention_mask)
         
         # Check pragmatic probability (index 1 is pragmatic, 0 is unpragmatic)
-        is_pragmatic = gender_prag_probs[0][1].item() > 0.5
+        is_pragmatic = prediction.gender_pragmatic_probs[0][1].item() > 0.5
         
         if not is_pragmatic:
             return None
             
         # Return value describing gender (-1=M, 0=N, 1=F)
-        return float(gender_val[0].item())
-
-
-
-
-
+        return float(prediction.gender_value[0].item())
 
 def grammaticality(kotogram: str) -> bool:
     """Analyze a Japanese sentence and return whether it is grammatically correct.
@@ -389,10 +400,11 @@ def grammaticality(kotogram: str) -> bool:
     attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
 
     # Predict
+    # Predict
     model.eval()
     with torch.no_grad():
-        _, _, _, grammaticality_probs, _ = model.predict(field_inputs, attention_mask)
-        grammaticality_idx = int(grammaticality_probs[0].argmax().item())
+        prediction = model.predict(field_inputs, attention_mask)
+        grammaticality_idx = int(prediction.grammaticality_probs[0].argmax().item())
 
     # 1 = grammatic, 0 = agrammatic
     return grammaticality_idx == 1

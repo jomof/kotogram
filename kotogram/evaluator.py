@@ -7,8 +7,11 @@ from kotogram.model import StyleClassifier, FEATURE_FIELDS
 @dataclass
 class EvalResult:
     """Container for evaluation results."""
-    formality_preds: List[int] = field(default_factory=list)
-    formality_labels: List[int] = field(default_factory=list)
+    formality_val_preds: List[float] = field(default_factory=list)
+    formality_val_labels: List[float] = field(default_factory=list)
+    
+    formality_prag_preds: List[int] = field(default_factory=list)
+    formality_prag_labels: List[int] = field(default_factory=list)
     
     gender_val_preds: List[float] = field(default_factory=list)
     gender_val_labels: List[float] = field(default_factory=list)
@@ -30,8 +33,10 @@ class EvalResult:
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for backward compatibility."""
         return {
-            'formality_preds': self.formality_preds,
-            'formality_labels': self.formality_labels,
+            'formality_val_preds': self.formality_val_preds,
+            'formality_val_labels': self.formality_val_labels,
+            'formality_prag_preds': self.formality_prag_preds,
+            'formality_prag_labels': self.formality_prag_labels,
             'gender_val_preds': self.gender_val_preds,
             'gender_val_labels': self.gender_val_labels,
             'gender_prag_preds': self.gender_prag_preds,
@@ -90,30 +95,34 @@ class Evaluator:
                     }
                     attention_mask = batch['attention_mask'].to(self.device)
                     
-                    formality_targets = batch['formality_labels'].to(self.device)
+                    formality_value_targets = batch['formality_value'].to(self.device)
+                    formality_prag_targets = batch['formality_pragmatic'].to(self.device)
                     gender_value_targets = batch['gender_value'].to(self.device)
                     gender_prag_targets = batch['gender_pragmatic'].to(self.device)
                     grammaticality_targets = batch['grammaticality_labels'].to(self.device)
                     register_targets = batch['register_labels'].to(self.device)
 
-                    formality_logits, gender_val, gender_prag_logits, grammaticality_logits, register_logits = self.model(
+                    prediction = self.model.predict(
                         field_inputs, attention_mask
                     )
 
                     # Predictions
-                    formality_preds = formality_logits.argmax(dim=-1)
-                    gender_prag_preds = gender_prag_logits.argmax(dim=-1)
-                    grammaticality_preds = grammaticality_logits.argmax(dim=-1)
+                    formality_prag_preds = prediction.formality_pragmatic_probs.argmax(dim=-1)
+                    gender_prag_preds = prediction.gender_pragmatic_probs.argmax(dim=-1)
+                    grammaticality_preds = prediction.grammaticality_probs.argmax(dim=-1)
                     
                     # Multi-label prediction (Exact match threshold 0.5)
-                    register_probs = torch.sigmoid(register_logits)
+                    register_probs = prediction.register_probs
                     register_preds = (register_probs > 0.5).long()
 
                     # Accumulate
-                    result.formality_preds.extend(formality_preds.cpu().tolist())
-                    result.formality_labels.extend(formality_targets.cpu().tolist())
+                    result.formality_val_preds.extend(prediction.formality_value.squeeze(-1).cpu().tolist())
+                    result.formality_val_labels.extend(formality_value_targets.cpu().tolist())
+
+                    result.formality_prag_preds.extend(formality_prag_preds.cpu().tolist())
+                    result.formality_prag_labels.extend(formality_prag_targets.cpu().tolist())
                     
-                    result.gender_val_preds.extend(gender_val.squeeze(-1).cpu().tolist())
+                    result.gender_val_preds.extend(prediction.gender_value.squeeze(-1).cpu().tolist())
                     result.gender_val_labels.extend(gender_value_targets.cpu().tolist())
                     
                     result.gender_prag_preds.extend(gender_prag_preds.cpu().tolist())

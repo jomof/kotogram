@@ -14,10 +14,10 @@ import time
 import random
 import multiprocessing as mp
 from collections import Counter
-from typing import Dict, List, Optional, Tuple, NamedTuple, Any
+from typing import Dict, List, Optional, Tuple, Any
 
-# Add project root to path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
 
 from rich.console import Console
 from rich.table import Table
@@ -25,14 +25,15 @@ from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn, MofNCompleteColumn
 
 from scripts.cache import get_kotogram_cache
+from scripts.style_data import ProcessedSample
+
 from kotogram.model import FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL, REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL
 
-# Global override map: sentence -> List[RegisterLevel]
-_REGISTER_OVERRIDES: Dict[str, List[Any]] = {}
+# Global variable for worker processes only
+_worker_overrides: Optional[Dict[str, List[Any]]] = None
 
-def load_register_overrides():
+def load_register_overrides() -> Dict[str, List[Any]]:
     """Load manual register overrides from data/jpn_sentences_<register>.tsv."""
-    global _REGISTER_OVERRIDES
     from kotogram.analysis import RegisterLevel
     
     # Map register string to RegisterLevel
@@ -62,24 +63,16 @@ def load_register_overrides():
                 overrides[sentence].add(reg_level)
 
     # Convert sets to sorted lists
-    _REGISTER_OVERRIDES = {k: sorted(list(v), key=lambda x: str(x)) for k, v in overrides.items()}
+    return {k: sorted(list(v), key=lambda x: str(x)) for k, v in overrides.items()}
 
-def init_worker():
+def init_worker(overrides: Dict[str, List[Any]]):
     """Initialize worker process with register overrides."""
-    load_register_overrides()
+    global _worker_overrides
+    _worker_overrides = overrides
 
 console = Console()
 
-class ProcessedSample(NamedTuple):
-    sentence: str
-    sentence_id: str
-    kotogram: str
-    formality_id: int
-    gender_value: float
-    gender_pragmatic: int
-    register_ids: List[int]
-    gram_label: int
-    success: int
+
 
 def infer_gender_from_register(gender_enum, register_enums) -> Tuple[float, int]:
     """Infer gender value and pragmatic flag from gender enum and registers.
@@ -135,8 +128,9 @@ def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[Processed
         gender_enum = analyze_gender(kotogram)
 
         # Check for overrides
-        if sentence in _REGISTER_OVERRIDES:
-            register_enums = _REGISTER_OVERRIDES[sentence]
+        overrides = _worker_overrides or {}
+        if sentence in overrides:
+            register_enums = overrides[sentence]
         else:
             register_enums = analyze_register(kotogram)
         
@@ -182,8 +176,9 @@ def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSa
         gender_val, gender_prag = infer_gender_from_register(gender_enum, register_enums)
         
         # Check for overrides
-        if sentence in _REGISTER_OVERRIDES:
-            register_enums = _REGISTER_OVERRIDES[sentence]
+        overrides = _worker_overrides or {}
+        if sentence in overrides:
+            register_enums = overrides[sentence]
         else:
             register_enums = analyze_register(kotogram)
 
@@ -454,16 +449,17 @@ def main():
     final_results = []
     
     # Pre-load overrides in main process
-    load_register_overrides()
-    if _REGISTER_OVERRIDES:
-        console.print(f"Loaded [bold cyan]{len(_REGISTER_OVERRIDES):,}[/bold cyan] register overrides.")
+    # Pre-load overrides in main process
+    register_overrides = load_register_overrides()
+    if register_overrides:
+        console.print(f"Loaded [bold cyan]{len(register_overrides):,}[/bold cyan] register overrides.")
     
     for sentence, sentence_id, gram_label in all_rows:
         entry = cached_batch.get(sentence)
         k = entry[0] if entry else None
         
         # If sentence is in overrides, we MUST force re-labeling to ensure correct register labels
-        if sentence in _REGISTER_OVERRIDES:
+        if sentence in register_overrides:
             if k:
                 unlabeled_rows.append((sentence, k, gram_label))
             else:
@@ -473,7 +469,17 @@ def main():
         if entry:
             k, f, g_val, g_prag, r_lbls = entry
             if not args.force_relabel and f is not None and g_val is not None and g_prag is not None and r_lbls is not None:
-                final_results.append(ProcessedSample(sentence, sentence_id, k, f, g_val, g_prag, r_lbls, gram_label, 1))
+                final_results.append(ProcessedSample(
+                    sentence=sentence,
+                    sentence_id=sentence_id, # Use actual sentence_id from loop
+                    kotogram=k,
+                    formality_id=f,
+                    gender_value=g_val,
+                    gender_pragmatic=g_prag,
+                    register_ids=r_lbls,
+                    gram_label=gram_label,
+                    success=1
+                ))
             else:
                 unlabeled_rows.append((sentence, k, gram_label))
         else:
@@ -498,7 +504,7 @@ def main():
                 batches = [uncached_rows[i:i + args.batch_size] for i in range(0, len(uncached_rows), args.batch_size)]
                 
                 new_entries = []
-                with ctx.Pool(num_workers, initializer=init_worker) as pool:
+                with ctx.Pool(num_workers, initializer=init_worker, initargs=(register_overrides,)) as pool:
                     for batch_results in pool.imap(_process_sentence_batch, batches):
                         for res in batch_results:
                             if res.success:
@@ -514,7 +520,7 @@ def main():
                 batches = [unlabeled_rows[i:i + args.batch_size] for i in range(0, len(unlabeled_rows), args.batch_size)]
                 
                 new_entries = []
-                with ctx.Pool(num_workers, initializer=init_worker) as pool:
+                with ctx.Pool(num_workers, initializer=init_worker, initargs=(register_overrides,)) as pool:
                     for batch_results in pool.imap(_compute_labels_batch, batches):
                         for res in batch_results:
                             if res.success:

@@ -25,7 +25,8 @@ class TestDataFlow(unittest.TestCase):
                 'base_orth': [1, 2, 3],
                 'reading': [1, 2, 3]
             },
-            formality_label=0,
+            formality_value=-1.0, # Very Casual
+            formality_pragmatic=1,
             gender_value=0.0,
             gender_pragmatic=0,
             register_labels=[0], # Neutral
@@ -45,7 +46,8 @@ class TestDataFlow(unittest.TestCase):
                 'base_orth': [4, 5],
                 'reading': [4, 5]
             },
-            formality_label=1,
+            formality_value=1.0, # Very Formal
+            formality_pragmatic=1,
             gender_value=1.0,
             gender_pragmatic=1,
             register_labels=[1, 2], # Sonkeigo + Kenjogo (example)
@@ -82,8 +84,10 @@ class TestDataFlow(unittest.TestCase):
         self.assertEqual(gram_labels[1].item(), 0)
         
         # Check Formality/Gender Labels
-        form_labels = collated['formality_labels']
-        self.assertEqual(form_labels.dtype, torch.long)
+        form_val = collated['formality_value']
+        form_prag = collated['formality_pragmatic']
+        self.assertEqual(form_val.dtype, torch.float32)
+        self.assertEqual(form_prag.dtype, torch.long)
         
         gender_labels = collated['gender_pragmatic']
         self.assertEqual(gender_labels.dtype, torch.long)
@@ -102,7 +106,8 @@ class TestDataFlow(unittest.TestCase):
                 'base_orth': [1],
                 'reading': [1]
             },
-            formality_label=0,
+            formality_value=0.0,
+            formality_pragmatic=1,
             gender_value=0.0,
             gender_pragmatic=0
             # Missing register_labels, grammaticality_label

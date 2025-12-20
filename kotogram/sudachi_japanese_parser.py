@@ -1,6 +1,7 @@
 """Sudachi-based implementation of Japanese parser."""
 
 from typing import Any, Dict, List, Optional
+from kotogram.exceptions import MissingMappingError
 
 from .japanese_parser import (
     JapaneseParser,
@@ -90,10 +91,10 @@ class SudachiJapaneseParser(JapaneseParser):
 
                 result = mapping.get(key)
                 if self.validate and result is None and key != "" and key != "*":
-                    raise KeyError(
-                        f"Missing mapping in {map_name}: "
-                        f"key='{key}' not found. "
-                        f"Sudachi token: surface='{surface}', pos={pos_tuple}"
+                    raise MissingMappingError(
+                        map_name=map_name,
+                        key=key,
+                        context=f"Sudachi token: surface='{surface}', pos={pos_tuple}"
                     )
                 return result
 
