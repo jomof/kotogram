@@ -2820,7 +2820,7 @@ if __name__ == "__main__":
             model_config = ModelConfig(
                 vocab_sizes=new_vocab_sizes,
                 num_formality_classes=NUM_FORMALITY_CLASSES,
-                num_gender_classes=NUM_GENDER_CLASSES,
+                num_gender_pragmatic_classes=NUM_GENDER_PRAGMATIC_CLASSES,
                 num_grammaticality_classes=NUM_GRAMMATICALITY_CLASSES,
                 d_model=args.embed_dim,
                 hidden_dim=args.hidden_dim,
