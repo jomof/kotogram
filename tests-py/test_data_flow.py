@@ -91,7 +91,6 @@ class TestDataFlow(unittest.TestCase):
                 'pos_detail2': [1],
                 'conjugated_type': [1],
                 'conjugated_form': [1],
-                'conjugated_form': [1],
                 'lemma': [1],
                 'base_orth': [1],
                 'reading': [1]

@@ -95,7 +95,7 @@ class TestLabelScript(unittest.TestCase):
                 self.fail("No shard files created")
                 
             shard_path = os.path.join(self.shards_dir, files[0])
-            mtime1 = os.path.getmtime(shard_path)
+            os.path.getmtime(shard_path)
             
             # Second run with same data
             with patch.object(sys, 'argv', test_args):

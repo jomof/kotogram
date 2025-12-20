@@ -54,7 +54,7 @@ def validate_sentences(
                 continue
 
             try:
-                kotogram = parser.japanese_to_kotogram(text)
+                parser.japanese_to_kotogram(text)
                 successful_count += 1
             except KeyError as e:
                 # Get the actual error message - args[0] is the message passed to KeyError()

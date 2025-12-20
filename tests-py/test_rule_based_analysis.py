@@ -93,7 +93,7 @@ class TestRuleBasedFormality(unittest.TestCase):
         # ます + ぜ (formal verb + rough particle)
         # Note: Parsing might vary, but logic checks for this combination
         text = "食べますぜ"
-        kotogram = self.parser.japanese_to_kotogram(text)
+        self.parser.japanese_to_kotogram(text)
         # Depending on parser, might be UNPRAGMATIC or FORMAL via other rules,
         # but rule-based logic explicitly checks for mix.
         # Let's verify the logic exists by checking the function code or running this.
