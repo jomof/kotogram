@@ -23,8 +23,8 @@ class TestExtractTokenFeaturesSudachi(unittest.TestCase):
         features = extract_token_features(tokens[0])
 
         self.assertEqual(features.surface, '食べる')
-        self.assertEqual(features.pos, 'v')
-        self.assertIn(features.conjugated_type, ['e-ichidan-ba', 'ichidan'])
+        self.assertEqual(features.pos, 'verb')
+        self.assertIn(features.conjugated_type, ['lower-ichidan-ba', 'ichidan'])
 
     def test_auxv_masu_sudachi(self):
         """Test auxv-masu extraction with Sudachi."""
@@ -37,8 +37,8 @@ class TestExtractTokenFeaturesSudachi(unittest.TestCase):
         features = extract_token_features(masu_token)
 
         self.assertEqual(features.surface, 'ます')
-        self.assertEqual(features.pos, 'auxv')
-        self.assertEqual(features.conjugated_type, 'auxv-masu')
+        self.assertEqual(features.pos, 'aux-verb')
+        self.assertEqual(features.conjugated_type, 'aux-masu')
         self.assertEqual(features.conjugated_form, 'terminal')
 
     def test_auxv_desu(self):
@@ -52,8 +52,8 @@ class TestExtractTokenFeaturesSudachi(unittest.TestCase):
         features = extract_token_features(desu_token)
 
         self.assertEqual(features.surface, 'です')
-        self.assertEqual(features.pos, 'auxv')
-        self.assertEqual(features.conjugated_type, 'auxv-desu')
+        self.assertEqual(features.pos, 'aux-verb')
+        self.assertEqual(features.conjugated_type, 'aux-desu')
         self.assertEqual(features.conjugated_form, 'terminal')
 
     def test_auxv_da_plain_copula(self):
@@ -67,8 +67,8 @@ class TestExtractTokenFeaturesSudachi(unittest.TestCase):
         features = extract_token_features(da_token)
 
         self.assertEqual(features.surface, 'だ')
-        self.assertEqual(features.pos, 'auxv')
-        self.assertEqual(features.conjugated_type, 'auxv-da')
+        self.assertEqual(features.pos, 'aux-verb')
+        self.assertEqual(features.conjugated_type, 'aux-da')
         self.assertEqual(features.conjugated_form, 'terminal')
 
     def test_particle_extraction(self):
@@ -82,7 +82,7 @@ class TestExtractTokenFeaturesSudachi(unittest.TestCase):
         features = extract_token_features(wa_token)
 
         self.assertEqual(features.surface, 'は')
-        self.assertEqual(features.pos, 'prt')
+        self.assertEqual(features.pos, 'particle')
         self.assertIn('particle', features.pos_detail1)
 
     def test_noun_extraction(self):
@@ -95,8 +95,8 @@ class TestExtractTokenFeaturesSudachi(unittest.TestCase):
         features = extract_token_features(tokens[0])
 
         self.assertEqual(features.surface, '学生')
-        self.assertEqual(features.pos, 'n')
-        self.assertEqual(features.pos_detail1, 'common_noun')
+        self.assertEqual(features.pos, 'noun')
+        self.assertEqual(features.pos_detail1, 'common-noun')
         # Nouns don't have conjugation
         self.assertEqual(features.conjugated_type, '')
         self.assertEqual(features.conjugated_form, '')
@@ -113,7 +113,7 @@ class TestExtractTokenFeaturesSudachi(unittest.TestCase):
         self.assertEqual(features.surface, '高い')
         self.assertEqual(features.pos, 'adj')
         self.assertEqual(features.pos_detail1, 'general')
-        self.assertEqual(features.conjugated_type, 'adjective')
+        self.assertEqual(features.conjugated_type, 'i-adjective')
 
     def test_empty_fields_default_to_empty_string(self):
         """Test that irrelevant fields are empty strings for a noun."""
@@ -123,7 +123,7 @@ class TestExtractTokenFeaturesSudachi(unittest.TestCase):
         features = extract_token_features(tokens[0])
 
         self.assertEqual(features.surface, 'テスト')
-        self.assertEqual(features.pos, 'n')
+        self.assertEqual(features.pos, 'noun')
         
         # Nouns should have empty conjugation fields
         self.assertEqual(features.conjugated_type, '')
@@ -168,10 +168,10 @@ class TestExtractTokenFeaturesEdgeCases(unittest.TestCase):
         features = extract_token_features(token)
 
         self.assertEqual(features.surface, '食べ')
-        self.assertEqual(features.pos, 'v')
+        self.assertEqual(features.pos, 'verb')
         # Check expected values for distinct fields
-        self.assertIn('ichidan', features.conjugated_type)  # e.g., ichidan or e-ichidan-ba
-        self.assertEqual(features.conjugated_form, 'conjunctive')
+        self.assertIn('ichidan', features.conjugated_type)  # e.g., ichidan or lower-ichidan-ba
+        self.assertEqual(features.conjugated_form, 'continuative')
         self.assertEqual(features.lemma, '食べる')
 
 
