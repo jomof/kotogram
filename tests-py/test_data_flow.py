@@ -7,7 +7,7 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from scripts.train_style import collate_fn, Sample, NUM_REGISTER_CLASSES
+from scripts.train_style import collate_fn, Sample, NUM_REGISTER_CLASSES  # noqa: E402
 
 class TestDataFlow(unittest.TestCase):
     def test_collate_fn_types_and_shapes(self):
