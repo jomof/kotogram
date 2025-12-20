@@ -31,5 +31,7 @@ You should provide:
 - Actionable codereview comments if changes are needed.
 - Otherwise, a '+2' (means okay to check in) and a suitable git commit message for the changes.
 
+DON'T EXPAND THE CHANGE TO THINGS OUTSIDE THE CONTEXT OF THE CURRENT PATH.
+
 
 

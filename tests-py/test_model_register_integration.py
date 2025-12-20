@@ -16,6 +16,7 @@ class TestModelRegisterIntegration(unittest.TestCase):
             'pos': [4, 5, 6],
             'pos_detail1': [7, 8, 9],
             'pos_detail2': [10, 11, 12],
+            'pos_detail3': [10, 11, 12],
             'conjugated_type': [13, 14, 15],
             'conjugated_form': [16, 17, 18],
             'lemma': [19, 20, 21],
