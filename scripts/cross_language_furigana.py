@@ -119,7 +119,7 @@ def compare_results(
     return matches, total, mismatches
 
 
-def main():
+def main() -> None:
     project_root = Path(__file__).parent.parent
     data_path = project_root / "data" / "jpn_sentences.tsv"
 
@@ -134,8 +134,8 @@ def main():
     print(f"  Generated {len(kotograms)} kotograms")
     print()
 
-    with tempfile.TemporaryDirectory() as tmpdir:
-        tmpdir = Path(tmpdir)
+    with tempfile.TemporaryDirectory() as tmpdir_str:
+        tmpdir = Path(tmpdir_str)
 
         print("Step 2: Converting kotograms with Python...")
         python_results = python_convert_furigana(kotograms)

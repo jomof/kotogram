@@ -87,7 +87,7 @@ from kotogram.japanese_parser import JapaneseParser
 from kotogram.model import (
     StyleClassifier, Tokenizer, ModelConfig,
     FEATURE_FIELDS, ALL_FEATURE_FIELDS, set_excluded_features,
-    NUM_FORMALITY_CLASSES, NUM_FORMALITY_PRAGMATIC_CLASSES, NUM_GENDER_PRAGMATIC_CLASSES, NUM_GRAMMATICALITY_CLASSES, NUM_REGISTER_CLASSES,
+    NUM_FORMALITY_PRAGMATIC_CLASSES, NUM_GENDER_PRAGMATIC_CLASSES, NUM_GRAMMATICALITY_CLASSES, NUM_REGISTER_CLASSES,
     FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL,
     GENDER_LABEL_TO_ID, load_model
 )
@@ -146,7 +146,7 @@ def _collect_tokens_batch(kotograms: List[str]) -> Dict[str, Counter]:
     """
     from kotogram.model import FEATURE_FIELDS
     
-    counters = {f: Counter() for f in FEATURE_FIELDS}
+    counters: Dict[str, Counter[Any]] = {f: Counter() for f in FEATURE_FIELDS}
     
     for k in kotograms:
         tokens = split_kotogram(k)
@@ -323,9 +323,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                         sentence_id=sentence_id,
                         kotogram=k,
                         formality_id=f,
-                        gender_value=g_val,
-                        gender_pragmatic=g_prag,
-                        register_ids=r,
+                        gender_value=cast(float, g_val),
+                        gender_pragmatic=cast(int, g_prag),
+                        register_ids=cast(List[int], r),
                         gram_label=gram_label,
                         success=1
                     ))
@@ -484,8 +484,16 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         gender_counts: Counter[int] = Counter()
         grammaticality_counts: Counter[int] = Counter()
 
-        for sentence, sentence_id, kotogram, formality_id, gender_val, gender_prag, register_id, gram_label, _success in processed_results:
+        for res in processed_results:
             # Encode to feature IDs (builds vocabulary - must be sequential)
+            kotogram = res.kotogram
+            sentence = res.sentence
+            formality_id = res.formality_id
+            gender_val = res.gender_value
+            gender_prag = res.gender_pragmatic
+            register_id = res.register_ids
+            gram_label = res.gram_label
+
             feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
 
             # Map formality_id to value/pragmatic
@@ -689,22 +697,22 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         if verbose:
             print(f"  Collecting tokens from {len(kotograms)} sentences with {num_workers} workers...")
             
-        merged_counters = {f: Counter() for f in tokenizer.field_vocabs.keys()}
+        merged_counters: Dict[str, Counter[Any]] = {f: Counter() for f in tokenizer.field_vocabs.keys()}
         
         with ctx.Pool(num_workers) as pool:
             for batch_counters in pool.imap(_collect_tokens_batch, token_batches):
-                for f, counter in batch_counters.items():
-                    if f in merged_counters:
-                        merged_counters[f].update(counter)
+                for field_name, counter in batch_counters.items():
+                    if field_name in merged_counters:
+                        merged_counters[field_name].update(counter)
 
         # Update tokenizer sequentially (fast dict updates)
         if verbose:
             print("  Updating tokenizer vocabulary...")
             
-        for f, counter in merged_counters.items():
+        for field_name, counter in merged_counters.items():
             # Add tokens sorted by frequency (optional, but good for stability)
             for token, _count in counter.most_common():
-                tokenizer._add_value(f, token)
+                tokenizer._add_value(field_name, token)
         
         # Freeze vocabulary
         tokenizer.freeze()
@@ -795,7 +803,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             os.makedirs(os.path.dirname(timing_path), exist_ok=True)
             
             if yaml:
-                current_timing = {}
+                current_timing: Dict[str, float] = {}
                 if os.path.exists(timing_path):
                     with open(timing_path, 'r') as f:
                         current_timing = yaml.safe_load(f) or {}
@@ -1014,7 +1022,7 @@ def collate_fn(
                 reg_vec[lbl] = 1.0
         register_labels.append(reg_vec)
 
-    result = {
+    result: Dict[str, Any] = {
         f'input_ids_{field}': torch.tensor(field_ids[field], dtype=torch.long)
         for field in FEATURE_FIELDS
     }
@@ -1092,9 +1100,9 @@ class StyleClassifierWithMLM(StyleClassifier):
 
     def forward(
         self,
-        *args,
+        *args: Any,
         mode: str = "classification",
-        **kwargs,
+        **kwargs: Any,
     ) -> Any:
         """Forward pass dispatch.
         
@@ -1132,11 +1140,12 @@ class StyleClassifierWithMLM(StyleClassifier):
         the pretrained encoder weights.
         """
         for classifier in [self.formality_classifier, self.gender_value_head, self.gender_pragmatic_head, self.grammaticality_classifier, self.register_classifier]:
-            for module in classifier.modules():
-                if isinstance(module, nn.Linear):
-                    nn.init.xavier_uniform_(module.weight)
-                    if module.bias is not None:
-                        nn.init.zeros_(module.bias)
+            if isinstance(classifier, nn.Module):
+                for module in classifier.modules():
+                    if isinstance(module, nn.Linear):
+                        nn.init.xavier_uniform_(module.weight)
+                        if module.bias is not None:
+                            nn.init.zeros_(module.bias)
 
 
 @dataclass
@@ -1314,11 +1323,12 @@ class MLMTrainer:
         self.scaler = GradScaler(device=scaler_device, enabled=self.config.use_amp)
 
         pad_id = dataset.tokenizer.pad_id
-        max_seq_len = self.model.module.config.max_seq_len if self.is_distributed else self.model.config.max_seq_len
+        max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
 
         # Data sampler
+        sampler: Optional[DistributedSampler] = None
         if self.is_distributed:
-            self.sampler = DistributedSampler(
+            sampler = DistributedSampler(
                 dataset,
                 num_replicas=self.config.world_size,
                 rank=dist.get_rank(),
@@ -1326,15 +1336,17 @@ class MLMTrainer:
             )
             shuffle = False
         else:
-            self.sampler = None
+            sampler = None
             shuffle = True
+
+        self.sampler = sampler
 
         self.data_loader = DataLoader(
             dataset,
             batch_size=self.config.batch_size,
             shuffle=shuffle, # False if using sampler
             sampler=self.sampler,
-            collate_fn=lambda b: collate_fn(b, pad_id, max_seq_len),
+            collate_fn=lambda b: collate_fn(b, pad_id, cast(Optional[int], max_seq_len)),
             pin_memory=True if self.config.device == "cuda" else False,
             num_workers=4 if self.config.device == "cuda" else 0,
         )
@@ -1555,17 +1567,17 @@ class Trainer:
         # Data loaders with max_seq_len truncation
 
         pad_id = train_dataset.tokenizer.pad_id
-        max_seq_len = self.model.module.config.max_seq_len if self.is_distributed else self.model.config.max_seq_len
+        max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
 
         # Data samplers
         if self.is_distributed:
-            self.train_sampler = DistributedSampler(
+            self.train_sampler: Optional[DistributedSampler[Any]] = DistributedSampler(
                 train_dataset,
                 num_replicas=self.config.world_size,
                 rank=dist.get_rank(),
                 shuffle=True,
             )
-            self.val_sampler = DistributedSampler(
+            self.val_sampler: Optional[DistributedSampler[Any]] = DistributedSampler(
                 val_dataset,
                 num_replicas=self.config.world_size,
                 rank=dist.get_rank(),
@@ -1584,7 +1596,7 @@ class Trainer:
             batch_size=self.config.batch_size,
             shuffle=train_shuffle,
             sampler=self.train_sampler,
-            collate_fn=lambda b: collate_fn(b, pad_id, max_seq_len),
+            collate_fn=lambda b: collate_fn(b, pad_id, cast(Optional[int], max_seq_len)),
             pin_memory=True if self.config.device == "cuda" else False,
             num_workers=4 if self.config.device == "cuda" else 0,
         )
@@ -1593,7 +1605,7 @@ class Trainer:
             batch_size=self.config.batch_size,
             shuffle=val_shuffle,
             sampler=self.val_sampler,
-            collate_fn=lambda b: collate_fn(b, pad_id, max_seq_len),
+            collate_fn=lambda b: collate_fn(b, pad_id, cast(Optional[int], max_seq_len)),
             pin_memory=True if self.config.device == "cuda" else False,
             num_workers=4 if self.config.device == "cuda" else 0,
         )
@@ -1617,7 +1629,7 @@ class Trainer:
 
         # Optimizer with differential learning rates
         # Handle wrappped model
-        model_module = self.model.module if self.is_distributed else self.model
+        model_module = cast(StyleClassifier, self.model.module if self.is_distributed else self.model)
         
         encoder_params = list(model_module.embedding.parameters()) + list(model_module.encoder.parameters())
         classifier_params = (
@@ -2368,7 +2380,6 @@ def load_checkpoint(
     model_state = {k.replace('module.', ''): v for k, v in model_state.items()}
     
     model_state = {k: v for k, v in model_state.items() if not k.startswith('mlm_head.')}
-    model_state = {k: v for k, v in model_state.items() if not k.startswith('mlm_head.')}
     
     try:
         missing_keys, unexpected_keys = model.load_state_dict(model_state, strict=False)
@@ -2647,7 +2658,7 @@ if __name__ == "__main__":
         return {'mtime': stat.st_mtime, 'size': stat.st_size}
 
     # Helper to clean read sentences
-    def read_sentences_to_set(path: str, target_set: set):
+    def read_sentences_to_set(path: str, target_set: set) -> None:
         if not path or not os.path.exists(path):
             return
         with open(path, 'r', encoding='utf-8') as f:
@@ -2679,8 +2690,8 @@ if __name__ == "__main__":
         # This prevents race conditions on the cache file and printing
         if is_main_process():
             print("Data validation: Checking for sentence overlap...")
-            grammatic_sentences = set()
-            agrammatic_sentences = set()
+            grammatic_sentences: set[str] = set()
+            agrammatic_sentences: set[str] = set()
 
             # Read grammatic
             read_sentences_to_set(args.data, grammatic_sentences)
@@ -2829,7 +2840,7 @@ if __name__ == "__main__":
         excluded = [f.strip() for f in args.exclude_features.split(',') if f.strip()] if args.exclude_features else []
         model_config = ModelConfig(
             vocab_sizes=tokenizer.get_vocab_sizes(),
-            num_formality_classes=NUM_FORMALITY_CLASSES,
+            num_formality_pragmatic_classes=NUM_FORMALITY_PRAGMATIC_CLASSES,
             num_gender_pragmatic_classes=NUM_GENDER_PRAGMATIC_CLASSES,
             num_grammaticality_classes=NUM_GRAMMATICALITY_CLASSES,
             d_model=args.embed_dim,
@@ -2933,7 +2944,7 @@ if __name__ == "__main__":
             # Update model config
             model_config = ModelConfig(
                 vocab_sizes=new_vocab_sizes,
-                num_formality_classes=NUM_FORMALITY_CLASSES,
+                num_formality_pragmatic_classes=NUM_FORMALITY_PRAGMATIC_CLASSES,
                 num_gender_pragmatic_classes=NUM_GENDER_PRAGMATIC_CLASSES,
                 num_grammaticality_classes=NUM_GRAMMATICALITY_CLASSES,
                 d_model=args.embed_dim,
@@ -3033,7 +3044,7 @@ if __name__ == "__main__":
     if is_main_process():
         os.makedirs(args.output, exist_ok=True)
         timing_path = os.path.join(args.output, "timing.yml")
-        existing_timings = {}
+        existing_timings: Dict[str, float] = {}
         if os.path.exists(timing_path):
             with open(timing_path, "r") as f:
                 existing_timings = yaml.safe_load(f) or {}
@@ -3160,14 +3171,14 @@ if __name__ == "__main__":
         
         # Unwrap model if distributed
         model_to_save = model.module if hasattr(model, 'module') else model
-        save_model(model_to_save, tokenizer, args.output, model_config, fp16=args.fp16, fp8=args.fp8)
+        save_model(cast(StyleClassifier, model_to_save), tokenizer, args.output, model_config, fp16=args.fp16, fp8=args.fp8)
         print("Done!")
 
     # Verify reduced precision model accuracy if applicable
     if (args.fp16 or args.fp8) and is_main_process():
         precision_name = "fp8" if args.fp8 else "fp16"
         print(f"\nVerifying loaded {precision_name} model accuracy...")
-        loaded_model, _ = load_model(args.output, device=device)
+        loaded_model, _ = load_model(args.output, device=device.type)
 
         formality_prag_correct = 0
         formality_val_sq_err = 0.0

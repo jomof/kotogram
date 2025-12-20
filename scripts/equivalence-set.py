@@ -16,7 +16,7 @@ from collections import defaultdict
 from kotogram.augment import augment
 
 
-def main():
+def main() -> None:
     resources_dir = Path(".tmp-inspiration/cloze-data/resources/processed/ai-cleaned-merge-grammars")
     output_file = Path("data/equivalence-set.yml")
 

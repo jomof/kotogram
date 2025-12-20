@@ -103,7 +103,7 @@ def validate_sentences(
     return unmapped_features, failed_sentences
 
 
-def main():
+def main() -> None:
     """Main validation function."""
     
     # Use path relative to script location (scripts/) -> data/ is in sibling or parent?
@@ -118,7 +118,7 @@ def main():
     tsv_file = os.path.join(project_root, "data", "jpn_sentences.tsv")
 
     # Parse command line arguments
-    max_sentences = 100  # Default
+    max_sentences: Optional[int] = 100  # Default
 
     if len(sys.argv) > 1:
         if sys.argv[1] == "all":
