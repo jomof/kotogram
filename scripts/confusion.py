@@ -155,15 +155,11 @@ def generate_reports(data, save_dir):
         for name, preds, labels, formatter in tasks_mismatches:
             mismatches = []
             for i in range(len(preds)):
-                # Filter out agrammatic sentences for style reports
-                if data['grammaticality_labels'][i] == 0:
-                    continue
-                    
                 if preds[i] != labels[i]:
                     mismatches.append({
                         'sentence': data['sentences'][i],
                         'predicted': formatter(preds[i]),
-                        'label': formatter(labels[i]),
+                        'actual': formatter(labels[i]),
                         'kotogram': data['kotograms'][i] if i < len(data['kotograms']) else ''
                     })
             
@@ -172,7 +168,7 @@ def generate_reports(data, save_dir):
                 mismatches.sort(key=lambda x: (x['kotogram'], x['sentence']))
                 out_path = os.path.join(save_dir, f'{name}_confusion.csv')
                 with open(out_path, 'w', newline='', encoding='utf-8') as f:
-                    writer = csv.DictWriter(f, fieldnames=['sentence', 'predicted', 'label', 'kotogram'], delimiter='\t')
+                    writer = csv.DictWriter(f, fieldnames=['sentence', 'predicted', 'actual', 'kotogram'], delimiter='\t')
                     writer.writeheader()
                     writer.writerows(mismatches)
                 console.print(f"[green]Saved {len(mismatches)} {name} mismatches to {out_path}[/green]")
@@ -182,16 +178,12 @@ def generate_reports(data, save_dir):
         if prag_labels:
             mse_errors = []
             for i in range(len(data['gender_val_preds'])):
-                # Filter out agrammatic sentences
-                if data['grammaticality_labels'][i] == 0:
-                    continue
-                    
                 if prag_mask[i]:
                     error = (data['gender_val_preds'][i] - data['gender_val_labels'][i]) ** 2
                     mse_errors.append({
                         'sentence': data['sentences'][i],
                         'predicted': f"{data['gender_val_preds'][i]:.4f}",
-                        'label': f"{data['gender_val_labels'][i]:.4f}",
+                        'actual': f"{data['gender_val_labels'][i]:.4f}",
                         'error': error,
                         'kotogram': data['kotograms'][i] if i < len(data['kotograms']) else ''
                     })
@@ -201,7 +193,7 @@ def generate_reports(data, save_dir):
                 top_mse = mse_errors[:50]
                 out_path = os.path.join(save_dir, 'gender_mse_confusion.csv')
                 with open(out_path, 'w', newline='', encoding='utf-8') as f:
-                    writer = csv.DictWriter(f, fieldnames=['sentence', 'predicted', 'label', 'error', 'kotogram'], delimiter='\t')
+                    writer = csv.DictWriter(f, fieldnames=['sentence', 'predicted', 'actual', 'error', 'kotogram'], delimiter='\t')
                     writer.writeheader()
                     writer.writerows(top_mse)
                 console.print(f"[green]Saved top 50 gender MSE errors to {out_path}[/green]")
@@ -209,17 +201,13 @@ def generate_reports(data, save_dir):
         # Register mismatches
         reg_mismatches = []
         for i in range(len(data['register_preds'])):
-            # Filter out agrammatic sentences
-            if data['grammaticality_labels'][i] == 0:
-                continue
-                
             if any(data['register_preds'][i][j] != data['register_labels'][i][j] for j in range(NUM_REGISTER_CLASSES)):
                 p_names = [REGISTER_ID_TO_LABEL[j].value for j, val in enumerate(data['register_preds'][i]) if val == 1]
                 l_names = [REGISTER_ID_TO_LABEL[j].value for j, val in enumerate(data['register_labels'][i]) if val == 1]
                 reg_mismatches.append({
                     'sentence': data['sentences'][i],
                     'predicted': ",".join(p_names),
-                    'label': ",".join(l_names),
+                    'actual': ",".join(l_names),
                     'kotogram': data['kotograms'][i] if i < len(data['kotograms']) else ''
                 })
         
@@ -228,7 +216,7 @@ def generate_reports(data, save_dir):
             reg_mismatches.sort(key=lambda x: (x['kotogram'], x['sentence']))
             out_path = os.path.join(save_dir, 'register_confusion.csv')
             with open(out_path, 'w', newline='', encoding='utf-8') as f:
-                writer = csv.DictWriter(f, fieldnames=['sentence', 'predicted', 'label', 'kotogram'], delimiter='\t')
+                writer = csv.DictWriter(f, fieldnames=['sentence', 'predicted', 'actual', 'kotogram'], delimiter='\t')
                 writer.writeheader()
                 writer.writerows(reg_mismatches)
             console.print(f"[green]Saved {len(reg_mismatches)} register mismatches to {out_path}[/green]")
