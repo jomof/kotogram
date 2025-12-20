@@ -2534,8 +2534,9 @@ if __name__ == "__main__":
                 cached_state = json.load(f)
             if cached_state == current_state:
                 files_changed = False
-        except Exception:
-            pass  # Ignore cache read errors
+        except Exception as e:
+            if is_main_process():
+                print(f"Warning: Failed to read validation cache: {e}")
 
     if not files_changed:
         if is_main_process():

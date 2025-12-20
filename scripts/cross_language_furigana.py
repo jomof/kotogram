@@ -38,11 +38,7 @@ def generate_kotograms(data_path: Path) -> list[str]:
                 continue
             sentence = row[2]
 
-            try:
-                kotograms.append(parser.japanese_to_kotogram(sentence))
-            except Exception as e:
-                print(f"Sudachi error for '{sentence[:30]}...': {e}", file=sys.stderr)
-                kotograms.append("")
+            kotograms.append(parser.japanese_to_kotogram(sentence))
 
     return kotograms
 
@@ -54,11 +50,7 @@ def python_convert_furigana(kotograms: list[str]) -> list[str]:
         if not kotogram:
             results.append("")
             continue
-        try:
-            results.append(kotogram_to_japanese(kotogram, furigana=True))
-        except Exception as e:
-            print(f"Python error: {e}", file=sys.stderr)
-            results.append(f"ERROR: {e}")
+        results.append(kotogram_to_japanese(kotogram, furigana=True))
     return results
 
 

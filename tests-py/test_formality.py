@@ -11,10 +11,7 @@ class TestFormalityModel(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        try:
-            self.parser = SudachiJapaneseParser(dict_type='full')
-        except Exception as e:
-            self.skipTest(f"Sudachi not available: {e}")
+        self.parser = SudachiJapaneseParser(dict_type='full')
 
         # Mock the model loader for tests
         from kotogram.model import Tokenizer, StyleClassifier, ModelConfig

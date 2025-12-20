@@ -13,10 +13,7 @@ class TestKotogramToJapanese(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        try:
-            self.parser = SudachiJapaneseParser(dict_type='full')
-        except Exception as e:
-            self.skipTest(f"Sudachi not available: {e}")
+        self.parser = SudachiJapaneseParser(dict_type='full')
 
     def test_basic_conversion(self):
         """Convert basic kotogram to Japanese."""
@@ -49,10 +46,7 @@ class TestFurigana(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        try:
-            self.parser = SudachiJapaneseParser(dict_type='full')
-        except Exception as e:
-            self.skipTest(f"Sudachi not available: {e}")
+        self.parser = SudachiJapaneseParser(dict_type='full')
 
     def test_kanji_gets_furigana(self):
         """Kanji should get hiragana furigana."""
@@ -159,10 +153,7 @@ class TestSplitKotogram(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        try:
-            self.parser = SudachiJapaneseParser(dict_type='full')
-        except Exception as e:
-            self.skipTest(f"Sudachi not available: {e}")
+        self.parser = SudachiJapaneseParser(dict_type='full')
 
     def test_split_single_token(self):
         """Split kotogram with single token."""

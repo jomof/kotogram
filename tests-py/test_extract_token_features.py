@@ -10,10 +10,7 @@ class TestExtractTokenFeaturesSudachi(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        try:
-            self.parser = SudachiJapaneseParser(dict_type='full')
-        except Exception as e:
-            self.skipTest(f"Sudachi not available: {e}")
+        self.parser = SudachiJapaneseParser(dict_type='full')
 
     def test_verb_extraction_sudachi(self):
         """Test extracting verb features with Sudachi."""

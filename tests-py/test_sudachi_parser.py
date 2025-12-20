@@ -9,10 +9,7 @@ class TestSudachiJapaneseParser(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        try:
-            self.parser = SudachiJapaneseParser(dict_type='full')
-        except Exception as e:
-            self.skipTest(f"SudachiPy not available: {e}")
+        self.parser = SudachiJapaneseParser(dict_type='full')
 
     def test_is_japanese_parser_subclass(self):
         """SudachiJapaneseParser inherits from JapaneseParser."""
@@ -67,10 +64,7 @@ class TestSudachiJapaneseParser(unittest.TestCase):
 
     def test_validation_mode_enabled(self):
         """Validation mode raises descriptive errors for unmapped keys."""
-        try:
-            parser_strict = SudachiJapaneseParser(dict_type='full', validate=True)
-        except Exception as e:
-            self.skipTest(f"SudachiPy not available: {e}")
+        parser_strict = SudachiJapaneseParser(dict_type='full', validate=True)
 
         # Should parse without errors for normal text
         result = parser_strict.japanese_to_kotogram("これはテストです")
@@ -79,10 +73,7 @@ class TestSudachiJapaneseParser(unittest.TestCase):
 
     def test_validation_mode_disabled(self):
         """Validation mode disabled silently ignores unmapped keys."""
-        try:
-            parser = SudachiJapaneseParser(dict_type='full', validate=False)
-        except Exception as e:
-            self.skipTest(f"SudachiPy not available: {e}")
+        parser = SudachiJapaneseParser(dict_type='full', validate=False)
 
         # Should not raise an error
         result = parser.japanese_to_kotogram("テスト")
@@ -112,17 +103,9 @@ class TestSudachiJapaneseParser(unittest.TestCase):
 
     def test_dict_type_parameter(self):
         """Can initialize with different dictionary types."""
-        try:
-            parser_small = SudachiJapaneseParser(dict_type='small')
-            parser_core = SudachiJapaneseParser(dict_type='core')
-            parser_full = SudachiJapaneseParser(dict_type='full')
-
-            # All should work
-            for parser in [parser_small, parser_core, parser_full]:
-                result = parser.japanese_to_kotogram("テスト")
-                self.assertIn("⌈", result)
-        except Exception as e:
-            self.skipTest(f"Not all dictionary types available: {e}")
+        # We only care about the full dictionary being available
+        parser_full = SudachiJapaneseParser(dict_type='full')
+        self.assertIn("⌈", parser_full.japanese_to_kotogram("テスト"))
 
 if __name__ == "__main__":
     unittest.main()

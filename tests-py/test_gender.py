@@ -11,10 +11,7 @@ class TestGenderModel(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        try:
-            self.parser = SudachiJapaneseParser(dict_type='full')
-        except Exception as e:
-            self.skipTest(f"Sudachi not available: {e}")
+        self.parser = SudachiJapaneseParser(dict_type='full')
 
         # Mock the model loader for tests to avoid needing a real model file
         from unittest.mock import patch
