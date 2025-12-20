@@ -129,6 +129,8 @@ def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[Processed
                     gender_val = -1.0
                 elif is_fem and not is_masc:
                     gender_val = 1.0
+                else:
+                    gender_val, gender_prag = 0.0, 0
             else: # UNPRAGMATIC_GENDER
                 gender_val, gender_prag = 0.0, 0
             
