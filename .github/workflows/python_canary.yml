@@ -41,7 +41,7 @@ jobs:
     - name: Validate Tatoeba sentences with Sudachi
       run: |
         echo "Validating all 195,143 Japanese sentences from Tatoeba corpus with Sudachi..."
-        python validate_tatoeba.py all
+        python scripts/validate_tatoeba.py all
       continue-on-error: false
 
     - name: Run tests with pytest
