@@ -489,7 +489,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         gender_counts: Counter[int] = Counter()
         grammaticality_counts: Counter[int] = Counter()
 
-        for sentence, kotogram, formality_id, gender_val, gender_prag, register_id, gram_label, _success in processed_results:
+        for sentence, sentence_id, kotogram, formality_id, gender_val, gender_prag, register_id, gram_label, _success in processed_results:
             # Encode to feature IDs (builds vocabulary - must be sequential)
             feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
 
