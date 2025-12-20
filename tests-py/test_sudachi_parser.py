@@ -26,7 +26,7 @@ class TestSudachiJapaneseParser(unittest.TestCase):
         self.assertIn("⌈", result)
         self.assertIn("⌉", result)
         self.assertIn("ˢ猫", result)
-        self.assertIn("ᵖnoun", result)  # noun
+        self.assertIn("ᵖn", result)  # n for noun
 
     def test_japanese_to_kotogram_with_verb(self):
         """Convert Japanese verb to kotogram format."""
@@ -35,15 +35,15 @@ class TestSudachiJapaneseParser(unittest.TestCase):
         self.assertIn("⌈", result)
         self.assertIn("⌉", result)
         self.assertIn("ˢ食べる", result)
-        self.assertIn("ᵖverb", result)  # verb
+        self.assertIn("ᵖv", result)  # v for verb
 
     def test_japanese_to_kotogram_with_particle(self):
         """Convert Japanese particle to kotogram format."""
         result = self.parser.japanese_to_kotogram("を")
 
         self.assertIn("ˢを", result)
-        self.assertIn("ᵖparticle", result)  # particle
-        self.assertIn("case-particle", result)
+        self.assertIn("ᵖprt", result)  # prt for particle
+        self.assertIn("case_particle", result)
 
     def test_japanese_to_kotogram_multiple_tokens(self):
         """Convert multiple Japanese tokens to kotogram format."""
@@ -106,9 +106,9 @@ class TestSudachiJapaneseParser(unittest.TestCase):
         self.assertGreater(token_count, 5)
 
         # Should have various POS markers
-        self.assertIn("ᵖnoun", result)  # noun
-        self.assertIn("ᵖparticle", result)  # particle
-        self.assertIn("ᵖverb", result)  # verb
+        self.assertIn("ᵖn", result)  # noun
+        self.assertIn("ᵖprt", result)  # particle
+        self.assertIn("ᵖv", result)  # verb
 
     def test_dict_type_parameter(self):
         """Can initialize with different dictionary types."""
