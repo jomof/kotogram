@@ -2472,7 +2472,7 @@ if __name__ == "__main__":
     parser.add_argument("--fp16", action="store_true", default=None,
                         help="Save model in float16 precision (half size, minimal accuracy loss)")
     parser.add_argument("--fp8", action="store_true", default=None,
-                        help="Save model in float8 precision (quarter size, requires PyTorch 2.1+)")
+                        help="Save model in float8 precision (quarter size, requires PyTorch 2.1+). Default is True unless --fp16 is specified.")
     parser.add_argument("--resume", action="store_true",
                         help="Resume training from checkpoint in output directory")
     parser.add_argument("--retrain", action="store_true",
@@ -2610,16 +2610,30 @@ if __name__ == "__main__":
                 if args.fp8:
                     print("  Restored flag: --fp8")
 
-            # Ensure they are boolean False if still None (and not restored to True)
+            # Ensure they are boolean False if still None (and not restored to True from checkpoint)
             if args.fp16 is None:
                 args.fp16 = False
             if args.fp8 is None:
-                args.fp8 = False
+                # If neither was specified on CLI nor found in checkpoint, default to FP8
+                if not args.fp16:
+                    args.fp8 = True
+                else:
+                    args.fp8 = False
+
         else:
 
             print(f"No checkpoint found at {checkpoint_path}, starting fresh training")
             args.resume = False
             # args.retrain = False # If no checkpoint, retrain just means train normally
+
+    # Handle defaults for precision if not set via CLI or restored from checkpoint
+    if args.fp16 is None:
+        args.fp16 = False
+    if args.fp8 is None:
+        if not args.fp16:
+            args.fp8 = True
+        else:
+            args.fp8 = False
 
 
     # Handle feature exclusion (for new training, not resume)
