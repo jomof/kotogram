@@ -16,7 +16,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from kotogram.kotogram import split_kotogram
-from kotogram.analysis import FormalityLevel, GenderLevel
+from kotogram.analysis import FormalityLevel, GenderLevel, RegisterLevel
 from kotogram.kotogram import extract_token_features
 
 # Special token values for vocabulary
@@ -73,7 +73,7 @@ GENDER_LABEL_TO_ID = {
 }
 GENDER_ID_TO_LABEL = {v: k for k, v in GENDER_LABEL_TO_ID.items()}
 
-from kotogram.analysis import RegisterLevel
+
 # Register classes
 NUM_REGISTER_CLASSES = 14
 REGISTER_LABEL_TO_ID = {

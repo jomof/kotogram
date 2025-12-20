@@ -11,8 +11,8 @@ from typing import List, Set, Tuple
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from kotogram.analysis import RegisterLevel
-from scripts.register_stats import load_sentences_from_tsv, analyze_sentence
+from kotogram.analysis import RegisterLevel  # noqa: E402
+from scripts.register_stats import load_sentences_from_tsv, analyze_sentence  # noqa: E402
 
 
 def find_register_sentences(tsv_files: List[str], target_register: str, sample_size: int = 10) -> List[Tuple[str, Set[RegisterLevel]]]:
