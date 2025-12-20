@@ -15,7 +15,7 @@ from torch.utils.data import DataLoader
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
-from rich.live import Live
+
 from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn
 
 # Add project root to path to allow imports from kotogram

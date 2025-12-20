@@ -127,7 +127,8 @@ def test_step3_process_parallel():
         num_workers=1,
         batch_size=100,
         verbose=True,
-        use_kotogram_cache=True
+
+
     )
     
     print(f"\nOutput ({len(results)} results):")
@@ -154,7 +155,8 @@ def test_step4_encoding_inputs_extraction():
     populate_test_cache(rows)
     
     processed_results = StyleDataset._process_parallel(
-        rows, num_workers=1, batch_size=100, verbose=False, use_kotogram_cache=True
+        rows, num_workers=1, batch_size=100, verbose=False
+
     )
     
     encoding_inputs = []
@@ -190,7 +192,8 @@ def test_step5_encode_samples_batch():
     populate_test_cache(rows)
     
     processed_results = StyleDataset._process_parallel(
-        rows, num_workers=1, batch_size=100, verbose=False, use_kotogram_cache=True
+        rows, num_workers=1, batch_size=100, verbose=False
+
     )
     
     # Create a tokenizer and build vocabulary
@@ -229,7 +232,8 @@ def test_step6_collate_fn():
     populate_test_cache(rows)
     
     processed_results = StyleDataset._process_parallel(
-        rows, num_workers=1, batch_size=100, verbose=False, use_kotogram_cache=True
+        rows, num_workers=1, batch_size=100, verbose=False
+
     )
     
     tokenizer = Tokenizer()
@@ -271,7 +275,8 @@ def test_step7_evaluate_list_consistency():
     
     tokenizer = Tokenizer()
     processed_results = StyleDataset._process_parallel(
-        rows, num_workers=1, batch_size=100, verbose=False, use_kotogram_cache=True
+        rows, num_workers=1, batch_size=100, verbose=False
+
     )
     
     for p in processed_results:
@@ -304,7 +309,8 @@ def test_step8_trace_register_mislabel():
     populate_test_cache(rows)
     
     processed = StyleDataset._process_parallel(
-        rows, num_workers=1, batch_size=100, verbose=False, use_kotogram_cache=True
+        rows, num_workers=1, batch_size=100, verbose=False
+
     )
     
     result = processed[0]

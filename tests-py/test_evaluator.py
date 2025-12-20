@@ -12,7 +12,6 @@ class TestEvaluator(unittest.TestCase):
         
         # Mock model and tokenizer
         self.tokenizer = MagicMock(spec=Tokenizer)
-        self.tokenizer.get_model_config.return_value = MagicMock()
         self.tokenizer.pad_id = 0
         
         self.model = MagicMock(spec=StyleClassifier)

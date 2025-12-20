@@ -175,9 +175,7 @@ class Tokenizer:
     def mask_id(self) -> int:
         return 3
 
-    def get_vocab_size(self, field: str) -> int:
-        """Get vocabulary size for a specific field."""
-        return len(self.field_vocabs[field])
+
 
     def get_vocab_sizes(self) -> Dict[str, int]:
         """Get vocabulary sizes for all fields."""
@@ -207,7 +205,19 @@ class Tokenizer:
         for token in tokens:
             features = extract_token_features(token)
             # Only keep the fields we use
-            filtered = {field: getattr(features, field) for field in FEATURE_FIELDS}
+            # Explicit access avoids vulture flagging fields as unused
+            all_features = {
+                'surface': features.surface,
+                'pos': features.pos,
+                'pos_detail1': features.pos_detail1,
+                'pos_detail2': features.pos_detail2,
+                'conjugated_type': features.conjugated_type,
+                'conjugated_form': features.conjugated_form,
+                'lemma': features.lemma,
+                'base_orth': features.base_orth,
+                'reading': features.reading,
+            }
+            filtered = {field: all_features[field] for field in FEATURE_FIELDS}
             features_list.append(filtered)
 
         return features_list
@@ -252,16 +262,9 @@ class Tokenizer:
         """Freeze vocabulary - new values will map to UNK."""
         self._frozen = True
 
-    def unfreeze(self) -> None:
-        """Unfreeze vocabulary."""
-        self._frozen = False
 
-    def get_model_config(self, **kwargs: Any) -> 'ModelConfig':
-        """Create a ModelConfig with vocabulary sizes from this tokenizer."""
-        return ModelConfig(
-            vocab_sizes=self.get_vocab_sizes(),
-            **kwargs
-        )
+
+
 
     def save(self, path: str) -> None:
         """Save tokenizer vocabularies to JSON file."""
@@ -635,75 +638,7 @@ def load_default_style_model(
         raise ImportError("Could not load default model. Ensure 'kotogram.model_data' package is installed and contains model files.")
 
 
-def predict_style(
-    sentence: str,
-    model: StyleClassifier,
-    tokenizer: Tokenizer,
-    parser: Optional[JapaneseParser] = None,
-    device: Optional[str] = None,
-) -> Tuple[FormalityLevel, GenderLevel, bool, Dict[str, Any]]:
-    """Predict formality, gender, and grammaticality for a Japanese sentence."""
-    if parser is None:
-        from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-        parser = SudachiJapaneseParser()
 
-    kotogram = parser.japanese_to_kotogram(sentence)
-    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
 
-    field_inputs = {
-        f'input_ids_{field}': torch.tensor([feature_ids[field]], dtype=torch.long)
-        for field in FEATURE_FIELDS
-    }
-    attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
 
-    if device:
-        field_inputs = {k: v.to(device) for k, v in field_inputs.items()}
-        attention_mask = attention_mask.to(device)
-        model.to(device)
 
-    model.eval()
-    with torch.no_grad():
-        formality_probs, gender_val, gender_prag_probs, grammaticality_probs, _ = model.predict(field_inputs, attention_mask)
-        formality_probs = formality_probs[0]
-        gender_val = gender_val[0]
-        gender_prag_probs = gender_prag_probs[0]
-        grammaticality_probs = grammaticality_probs[0]
-
-    formality_id = int(formality_probs.argmax().item())
-    
-    # Map continuous gender to label for legacy support logic
-    is_pragmatic = gender_prag_probs[1].item() > 0.5
-    if not is_pragmatic:
-        gender_id = 3 # UNPRAGMATIC_GENDER
-    else:
-        val = gender_val.item()
-        if val < -0.33:
-            gender_id = 0 # MASCULINE
-        elif val > 0.33:
-            gender_id = 1 # FEMININE
-        else:
-            gender_id = 2 # NEUTRAL
-
-    grammaticality_id = int(grammaticality_probs.argmax().item())
-
-    formality_label = FORMALITY_ID_TO_LABEL[formality_id]
-    gender_label = GENDER_ID_TO_LABEL[gender_id]
-    is_grammatic = grammaticality_id == 1
-
-    prob_dicts = {
-        'formality': {
-            FORMALITY_ID_TO_LABEL[i].value: formality_probs[i].item()
-            for i in range(NUM_FORMALITY_CLASSES)
-        },
-        'gender': {
-            'value': gender_val.item(),
-            'pragmatic_prob': gender_prag_probs[1].item(),
-            'label': GENDER_ID_TO_LABEL[gender_id].value
-        },
-        'grammaticality': {
-            'grammatical': grammaticality_probs[1].item(),
-            'agrammatical': grammaticality_probs[0].item(),
-        }
-    }
-
-    return formality_label, gender_label, is_grammatic, prob_dicts

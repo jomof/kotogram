@@ -26,7 +26,7 @@ class TestGenderModel(unittest.TestCase):
         self.tokenizer._frozen = True
         
         # Create dummy model
-        config = self.tokenizer.get_model_config()
+        config = ModelConfig(vocab_sizes=self.tokenizer.get_vocab_sizes())
         self.model = StyleClassifier(config)
         self.model.eval()
 

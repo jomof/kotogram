@@ -26,7 +26,8 @@ Pipeline:
 Usage:
     from kotogram.style_classifier import (
         StyleDataset, Tokenizer, StyleClassifier,
-        StyleClassifierWithMLM, MLMTrainer, Trainer, predict_style
+        StyleClassifierWithMLM, MLMTrainer, Trainer
+
     )
 
     # Build vocabulary with unlabeled data
@@ -66,7 +67,7 @@ import sys
 import time
 from collections import Counter
 from dataclasses import dataclass, field
-from datetime import datetime
+
 from functools import partial
 from typing import Dict, List, Optional, Tuple, Any, cast, Set, Union, NamedTuple
 
@@ -89,8 +90,7 @@ from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 
-import sudachipy
-import sudachidict_full
+
 
 from kotogram.kotogram import split_kotogram
 from kotogram.analysis import FormalityLevel, GenderLevel
@@ -302,7 +302,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         num_workers: Optional[int] = None,
         batch_size: int = 1000,
         verbose: bool = True,
-        use_kotogram_cache: bool = True,
+
     ) -> List[ProcessedSample]:
         """Fetch pre-computed labels from the shared cache.
         
@@ -1883,9 +1883,7 @@ class Trainer:
         avg_gender_loss = total_gender_loss / n_batches
         avg_grammaticality_loss = total_grammaticality_loss / n_batches
 
-        grammaticality_accuracy = sum(
-            p == l for p, l in zip(all_grammaticality_preds, all_grammaticality_labels)
-        ) / len(all_grammaticality_preds)
+
 
         # DDP Aggregation
         if self.is_distributed:
@@ -1907,14 +1905,7 @@ class Trainer:
                 for p, l in zip(all_register_preds, all_register_labels)
             ) # Exact match for sets (lists of 0/1)
             
-            metrics = torch.tensor([
-                total_loss, total_formality_loss, total_gender_loss, total_grammaticality_loss, n_batches,
-                formality_correct, len(all_formality_preds),
-                gender_prag_correct, len(all_gender_prag_preds),
-                gender_val_sq_error, len(all_gender_val_preds),
-                grammaticality_correct, len(all_grammaticality_preds),
-                total_register_loss, register_correct, len(all_register_preds)
-            ], device=self.device)
+
             # Note: Per-class register statistics could be added here in the future
             # For now, we only track overall register accuracy
             
