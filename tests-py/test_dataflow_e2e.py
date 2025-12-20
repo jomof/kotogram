@@ -24,7 +24,7 @@ def populate_test_cache(rows):
     memo = []
     for p in processed:
         if p.success:
-            memo.append((p.sentence, p.kotogram, p.formality_id, p.gender_value, p.gender_pragmatic, p.register_ids))
+            memo.append((p.sentence, p.kotogram, p.formality_id, p.gender_value, p.gender_pragmatic, p.register_ids, p.gram_label))
     cache.put_batch(memo)
     return processed
 

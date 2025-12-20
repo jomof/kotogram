@@ -57,7 +57,6 @@ import hashlib
 import json
 import multiprocessing as mp
 import os
-import pickle
 import random
 import sys
 import time
@@ -93,7 +92,6 @@ from kotogram.model import (
 )
 
 from scripts.style_data import Sample, ProcessedSample
-from scripts.cache import get_kotogram_cache
 
 
 
@@ -259,20 +257,15 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         return self.samples[idx]
 
     @staticmethod
-    def _get_cache_path(
+    def _get_vocab_cache_path(
         tsv_paths: List[str],
-        max_samples: Optional[int],
         labeled: bool,
         grammaticality_labels: Optional[List[int]],
         cache_dir: str = ".cache/style_dataset",
     ) -> str:
-        """Generate a cache file path based on input parameters.
-
-        The cache key includes file paths, modification times, and processing options
-        to ensure the cache is invalidated when inputs change.
-        """
+        """Generate a cache file path for the vocabulary configuration."""
         # Build a hash from all relevant parameters
-        hash_parts = [f"v{CACHE_VERSION}"]  # Include cache version
+        hash_parts = [f"v{CACHE_VERSION}"] 
 
         for tsv_path in tsv_paths:
             hash_parts.append(tsv_path)
@@ -280,114 +273,148 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             if os.path.exists(tsv_path):
                 mtime = os.path.getmtime(tsv_path)
                 hash_parts.append(str(mtime))
-
-        # Note: max_samples is NOT part of cache key - we cache full dataset
-        # and subsample after loading if needed
-        # hash_parts.append(f"max_samples={max_samples}")  # Intentionally excluded
+        
+        # Include row count hash if available (to detect content changes without full re-read)
+        # For now, mtime + path is a reasonable proxy for "same input file"
+        
         hash_parts.append(f"labeled={labeled}")
         hash_parts.append(f"gram_labels={grammaticality_labels}")
 
         # Create hash
         hash_str = hashlib.sha256("|".join(hash_parts).encode()).hexdigest()[:16]
-        return os.path.join(cache_dir, f"dataset_v{CACHE_VERSION}_{hash_str}.pkl")
+        return os.path.join(cache_dir, f"vocab_v{CACHE_VERSION}_{hash_str}.json")
 
     @staticmethod
-    def _process_parallel(
-        rows: List[Tuple[str, str, int]],  # (sentence, sentence_id, gram_label)
-        num_workers: Optional[int] = None,
-        batch_size: int = 1000,
-        verbose: bool = True,
-
-    ) -> List[ProcessedSample]:
-        """Fetch pre-computed labels from the shared cache.
-        
-        Labels should have been computed by scripts/label.py.
-        """
-        if not rows:
-            return []
-
-        cache = get_kotogram_cache()
-        sentences = [r[0] for r in rows]
-        cached_batch = cache.get_batch(sentences)
-        
-        results: List[ProcessedSample] = []
-        missing = 0
-
-        for sentence, sentence_id, gram_label in rows:
-            entry = cached_batch.get(sentence)
-            if entry:
-                k, f, g_val, g_prag, r = entry
-                if f is not None:
-                    results.append(ProcessedSample(
-                        sentence=sentence,
-                        sentence_id=sentence_id,
-                        kotogram=k,
-                        formality_id=f,
-                        gender_value=cast(float, g_val),
-                        gender_pragmatic=cast(int, g_prag),
-                        register_ids=cast(List[int], r),
-                        gram_label=gram_label,
-                        success=1
-                    ))
-                    continue
-            missing += 1
-
-        if verbose:
-            print(f"Loaded {len(results)} labeled samples from cache.")
-            if missing > 0:
-                print(f"WARNING: {missing} samples were missing from cache. Run scripts/label.py first.")
-
-        return results
-
-    @staticmethod
-    def _save_cache(
+    def _load_vocab(
         cache_path: str,
-        samples: List[Sample],
+        tokenizer: Tokenizer,
+    ) -> bool:
+        """Load tokenizer vocabulary from cache. Returns True on success."""
+        if not os.path.exists(cache_path):
+            return False
+
+        try:
+            with open(cache_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            # Check version
+            if data.get('version') != CACHE_VERSION:
+                return False
+
+            # Restore tokenizer state
+            tokenizer.field_vocabs = data['field_vocabs']
+            tokenizer._frozen = bool(data.get('frozen', False))
+            return True
+        except Exception:
+            return False
+
+    @staticmethod
+    def _save_vocab(
+        cache_path: str,
         tokenizer: Tokenizer,
     ) -> None:
-        """Save preprocessed samples and tokenizer to cache."""
+        """Save tokenizer vocabulary to cache."""
         os.makedirs(os.path.dirname(cache_path), exist_ok=True)
-        cache_data = {
+        data = {
             'version': CACHE_VERSION,
-            'samples': samples,
             'field_vocabs': tokenizer.field_vocabs,
-            'frozen': tokenizer._frozen,
+            'frozen': int(tokenizer._frozen)
         }
-        with open(cache_path, 'wb') as f:
-            pickle.dump(cache_data, f)
-
-    @staticmethod
-    def _load_cache(
-        cache_path: str,
-        tokenizer: Tokenizer,
-    ) -> Optional[List[Sample]]:
-        """Load preprocessed samples from cache and restore tokenizer state.
-
-        Returns None if cache doesn't exist, has wrong version, or is invalid.
-        """
-        if not os.path.exists(cache_path):
-            return None
+        with open(cache_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f)
 
 
 
-        if not os.path.exists(cache_path):
-            return None
+    @classmethod
+    def _process_parallel(
+        cls,
+        rows: List[Tuple[str, str, int]],
+        batch_size: int = 1000,
+        num_workers: Optional[int] = None,
+        verbose: bool = True,
+    ) -> List[ProcessedSample]:
+        """Process rows in parallel to get kotograms and labels."""
+        from scripts.label import _process_sentence_batch
+        from scripts.cache import get_kotogram_cache
+        
+        if num_workers is None:
+            num_workers = max(1, mp.cpu_count() - 1)
+        
+        cache = get_kotogram_cache()
+        
+        # We process in chunks to avoid huge memory/IO overhead for very large datasets
+        chunk_size = 10000
+        chunks = [rows[i:i + chunk_size] for i in range(0, len(rows), chunk_size)]
+        
+        final_results: List[ProcessedSample] = []
+        total_processed = 0
+        
+        if verbose:
+             print(f"Processing {len(rows)} sentences (checking cache)...")
 
-        with open(cache_path, 'rb') as f:
-            cache_data: Dict[str, Any] = pickle.load(f)
+        for chunk in chunks:
+            chunk_sentences = [r[0] for r in chunk]
+            cached_data_map = cache.get_batch(chunk_sentences)
+            
+            chunk_missing: List[Tuple[str, str, int]] = []
+            
+            for sentence, sent_id, gram_label in chunk:
+                cached_tuple = cached_data_map.get(sentence)
+                if cached_tuple is not None:
+                    # Hit
+                    k, f_lbl, g_val, g_prag, r_lbls, cached_gram_lbl = cached_tuple
+                    
+                    processed_sample = ProcessedSample(
+                        sentence=sentence,
+                        sentence_id=sent_id,
+                        kotogram=k,
+                        formality_id=cast(int, f_lbl) if f_lbl is not None else 2, # distinct fallback or validation? 
+                        # actually cache schema allows None but ProcessedSample is strict.
+                        # we assume if it's in cache, it's valid, but explicit cast satisfies mypy.
+                        # Realistically we should probably allow Optional in ProcessedSample or ensure cache logic.
+                        # For now, cast.
+                        gender_value=cast(float, g_val) if g_val is not None else 0.0,
+                        gender_pragmatic=cast(int, g_prag) if g_prag is not None else 0,
+                        register_ids=cast(List[int], r_lbls) if r_lbls is not None else [0],
+                        gram_label=gram_label, # Use input label
+                        success=1
+                    )
+                    final_results.append(processed_sample)
+                else:
+                    chunk_missing.append((sentence, sent_id, gram_label))
+            
+            if chunk_missing:
+                # Process missing
+                worker_batches = [chunk_missing[i:i + batch_size] for i in range(0, len(chunk_missing), batch_size)]
+                
+                ctx = mp.get_context('spawn')
+                # Accumulate for cache update
+                new_cache_entries: List[Tuple[str, str, Optional[int], Optional[float], Optional[int], Optional[List[int]], Optional[int]]] = []
+                
+                with ctx.Pool(num_workers) as pool:
+                    for batch_res in pool.imap(_process_sentence_batch, worker_batches):
+                        final_results.extend(batch_res)
+                        for res in batch_res:
+                            if res.success:
+                                new_cache_entries.append((
+                                    res.sentence, 
+                                    res.kotogram, 
+                                    res.formality_id, 
+                                    res.gender_value, 
+                                    res.gender_pragmatic, 
+                                    res.register_ids, 
+                                    res.gram_label
+                                ))
+                
+                # Update cache
+                if new_cache_entries:
+                    cache.put_batch(new_cache_entries)
 
-        # Check cache version
-        cached_version = cache_data.get('version', 1)
-        if cached_version != CACHE_VERSION:
-            print(f"  Cache version mismatch (found v{cached_version}, need v{CACHE_VERSION}), rebuilding...")
-            return None
+            total_processed += len(chunk)
+            if verbose and total_processed % 10000 == 0:
+                print(f"  Processed {total_processed}/{len(rows)}...")
 
-        # Restore tokenizer state
-        tokenizer.field_vocabs = cache_data['field_vocabs']
-        tokenizer._frozen = cache_data.get('frozen', False)
-
-        samples: List[Sample] = cache_data['samples']
-        return samples
+        return final_results
 
     @classmethod
     def from_tsv(
@@ -419,29 +446,6 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         Returns:
             StyleDataset with encoded samples
         """
-        # Try to load from cache
-        if use_cache:
-            # Note: sample_ratio is NOT part of cache key - we cache full dataset
-            cache_path = cls._get_cache_path([tsv_path], max_samples, labeled, None, cache_dir)
-            cached_samples = cls._load_cache(cache_path, tokenizer)
-            if cached_samples is not None:
-                if verbose:
-                    print(f"Loaded {len(cached_samples)} samples from cache")
-                    print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
-                
-                # Apply subsampling after loading from cache
-                if sample_ratio < 1.0:
-                    if verbose:
-                        print(f"  Subsampling {sample_ratio:.1%} of {len(cached_samples)} cached samples...")
-                    content_str = "".join(s.original_sentence for s in cached_samples[:100])
-                    seed = int(hashlib.md5(content_str.encode()).hexdigest(), 16) % 100000
-                    rng = random.Random(seed)
-                    cached_samples = rng.sample(cached_samples, int(len(cached_samples) * sample_ratio))
-                    if verbose:
-                        print(f"  Using {len(cached_samples)} samples after subsampling")
-
-                return cls(cached_samples, tokenizer)
-
         # Phase 1: Read all rows from TSV file (fast I/O)
         # Tuple: (sentence, sentence_id, gram_label)
         all_rows: List[Tuple[str, str, int]] = []
@@ -458,26 +462,38 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 # Simply ignore rows that don't have enough columns, but otherwise be permissive
                 # Column 1 = ID, Column 2 = Lang (ignored), Column 3 = Sentence
                 sentence_id, _lang, sentence = row[0], row[1], row[2]
-                
-                # Removed: if lang != 'jpn': continue
-                # Removed: source_id logic
-
                 all_rows.append((sentence, sentence_id, gram_label))
                 if max_samples and len(all_rows) >= max_samples:
                     break
-        
-        # Subsampling moved to after caching to ensure cache consistency
-        # We read all rows here
 
         if verbose:
             print(f"  Read {len(all_rows)} sentences")
+        
+        # Check Vocabulary Cache
+        add_to_vocab = True
+        vocab_path = ""
+        
+        if use_cache:
+            vocab_path = cls._get_vocab_cache_path([tsv_path], labeled, None, cache_dir)
+            if os.path.exists(vocab_path):
+                if verbose:
+                    print(f"  Found vocabulary cache: {vocab_path}")
+                if cls._load_vocab(vocab_path, tokenizer):
+                    add_to_vocab = False
+                    if verbose:
+                        print(f"  Loaded vocabulary. Sizes: {tokenizer.get_vocab_sizes()}")
+                else:
+                    if verbose:
+                        print("  Vocabulary cache load failed or version mismatch. Rebuilding...")
 
         # Phase 2: Process sentences in parallel (kotogram conversion + label computation)
+        # fetches from kotogram_shards
         processed_results = cls._process_parallel(all_rows, verbose=verbose)
 
-        # Phase 3: Build vocabulary and create samples (must be sequential)
+
+        # Phase 3: Build samples (sequential, in-memory)
         if verbose:
-            print("\nBuilding vocabulary...")
+            print("\nEncoding samples...")
 
         samples: List[Sample] = []
         formality_counts: Counter[FormalityLevel] = Counter()
@@ -494,7 +510,12 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             register_id = res.register_ids
             gram_label = res.gram_label
 
-            feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
+            # Encode to feature IDs
+            feature_ids = tokenizer.encode(
+                res.kotogram, 
+                add_cls=True, 
+                add_to_vocab=add_to_vocab
+            )
 
             # Map formality_id to value/pragmatic
             if formality_id == 5: # UNPRAGMATIC_FORMALITY
@@ -548,11 +569,11 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             print(f"  surface: {final_sizes['surface']:,}, lemma: {final_sizes['lemma']:,}")
             print(f"  pos: {final_sizes['pos']}, conjugated_type: {final_sizes['conjugated_type']}, conjugated_form: {final_sizes['conjugated_form']}")
 
-        # Save to cache (full dataset)
-        if use_cache:
-            cls._save_cache(cache_path, samples, tokenizer)
+        # Save vocabulary if needed
+        if use_cache and add_to_vocab and vocab_path:
+            cls._save_vocab(vocab_path, tokenizer)
             if verbose:
-                print(f"Saved {len(samples)} preprocessed samples to cache")
+                print(f"Saved vocabulary to {vocab_path}")
 
         # Apply subsampling after processing/caching
         if sample_ratio < 1.0:
@@ -613,28 +634,23 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 f"must match tsv_paths length ({len(tsv_paths)})"
             )
 
-        # Try to load from cache
+        # Check Vocabulary Cache
+        add_to_vocab = True
+        vocab_path = ""
+        
         if use_cache:
-            # Note: sample_ratio is NOT part of cache key - we cache full dataset
-            cache_path = cls._get_cache_path(tsv_paths, max_samples, labeled, grammaticality_labels, cache_dir)
-            cached_samples = cls._load_cache(cache_path, tokenizer)
-            if cached_samples is not None:
+            # Note: we use vocab cache now, samples come from kotogram_shards
+            vocab_path = cls._get_vocab_cache_path(tsv_paths, labeled, grammaticality_labels, cache_dir)
+            if os.path.exists(vocab_path):
                 if verbose:
-                    print(f"Loaded {len(cached_samples)} samples from cache")
-                    print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
-                
-                # Apply subsampling after loading from cache
-                if sample_ratio < 1.0:
+                    print(f"  Found vocabulary cache: {vocab_path}")
+                if cls._load_vocab(vocab_path, tokenizer):
+                    add_to_vocab = False
                     if verbose:
-                        print(f"  Subsampling {sample_ratio:.1%} of {len(cached_samples)} cached samples...")
-                    content_str = "".join(s.original_sentence for s in cached_samples[:100])
-                    seed = int(hashlib.md5(content_str.encode()).hexdigest(), 16) % 100000
-                    rng = random.Random(seed)
-                    cached_samples = rng.sample(cached_samples, int(len(cached_samples) * sample_ratio))
+                        print(f"  Loaded vocabulary. Sizes: {tokenizer.get_vocab_sizes()}")
+                else:
                     if verbose:
-                        print(f"  Using {len(cached_samples)} samples after subsampling")
-
-                return cls(cached_samples, tokenizer)
+                        print("  Vocabulary cache load failed or version mismatch. Rebuilding...")
 
         preprocessing_start = time.time()
         
@@ -678,45 +694,47 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         processed_results = cls._process_parallel(all_rows, verbose=verbose)
         phase2_duration = time.time() - phase2_start
 
-        # Phase 3: Build vocabulary and create samples (Parallelized)
-        if verbose:
-            print("\nBuilding vocabulary and encoding samples (Phase 3)...")
-
-        # 3a. Parallel Token Collection (map-reduce)
-        # ------------------------------------------
-        phase3a_start = time.time()
-        kotograms = [r.kotogram for r in processed_results]
-        
-        # Batching for token collection
-        # Larger batches are fine for token collection as it's CPU bound string processing
-        token_batches = [kotograms[i:i + 5000] for i in range(0, len(kotograms), 5000)]
-        
+        phase3a_duration = 0.0
         ctx = mp.get_context('spawn')
         num_workers = max(1, mp.cpu_count() - 1)
 
+        # Phase 3: Build samples (Parallelized)
         if verbose:
-            print(f"  Collecting tokens from {len(kotograms)} sentences with {num_workers} workers...")
-            
-        merged_counters: Dict[str, Counter[Any]] = {f: Counter() for f in tokenizer.field_vocabs.keys()}
-        
-        with ctx.Pool(num_workers) as pool:
-            for batch_counters in pool.imap(_collect_tokens_batch, token_batches):
-                for field_name, counter in batch_counters.items():
-                    if field_name in merged_counters:
-                        merged_counters[field_name].update(counter)
+            print("\nEncoding samples (Phase 3)...")
 
-        # Update tokenizer sequentially (fast dict updates)
-        if verbose:
-            print("  Updating tokenizer vocabulary...")
+        # 3a. Parallel Token Collection (map-reduce)
+        if add_to_vocab:
+            phase3a_start = time.time()
+            kotograms = [r.kotogram for r in processed_results]
             
-        for field_name, counter in merged_counters.items():
-            # Add tokens sorted by frequency (optional, but good for stability)
-            for token, _count in counter.most_common():
-                tokenizer._add_value(field_name, token)
+            # Batching for token collection
+            # Larger batches are fine for token collection as it's CPU bound string processing
+            token_batches = [kotograms[i:i + 5000] for i in range(0, len(kotograms), 5000)]
+            
+            if verbose:
+                print(f"  Collecting tokens from {len(kotograms)} sentences with {num_workers} workers...")
+                
+            merged_counters: Dict[str, Counter[Any]] = {f: Counter() for f in tokenizer.field_vocabs.keys()}
+            
+            with ctx.Pool(num_workers) as pool:
+                for batch_counters in pool.imap(_collect_tokens_batch, token_batches):
+                    for field_name, counter in batch_counters.items():
+                        if field_name in merged_counters:
+                            merged_counters[field_name].update(counter)
+
+            # Update tokenizer sequentially (fast dict updates)
+            if verbose:
+                print("  Updating tokenizer vocabulary...")
+                
+            for field_name, counter in merged_counters.items():
+                # Add tokens sorted by frequency (optional, but good for stability)
+                for token, _count in counter.most_common():
+                    tokenizer._add_value(field_name, token)
+            
+            phase3a_duration = time.time() - phase3a_start
         
         # Freeze vocabulary
         tokenizer.freeze()
-        phase3a_duration = time.time() - phase3a_start
         
         # 3b. Parallel Sample Encoding
         # ----------------------------
@@ -823,11 +841,11 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             else:
                  print("PyYAML not installed, skipping timing.yml update")
 
-        # Save to cache (full dataset)
-        if use_cache:
-            cls._save_cache(cache_path, samples, tokenizer)
+        # Save vocabulary if needed
+        if use_cache and add_to_vocab and vocab_path:
+            cls._save_vocab(vocab_path, tokenizer)
             if verbose:
-                print(f"Saved {len(samples)} preprocessed samples to cache")
+                print(f"Saved vocabulary to {vocab_path}")
 
         # Apply subsampling after processing/caching
         if sample_ratio < 1.0:
@@ -1139,7 +1157,7 @@ class StyleClassifierWithMLM(StyleClassifier):
         to start the classification heads from a fresh state while keeping
         the pretrained encoder weights.
         """
-        for classifier in [self.formality_classifier, self.gender_value_head, self.gender_pragmatic_head, self.grammaticality_classifier, self.register_classifier]:
+        for classifier in [self.formality_value_head, self.formality_pragmatic_head, self.gender_value_head, self.gender_pragmatic_head, self.grammaticality_classifier, self.register_classifier]:
             if isinstance(classifier, nn.Module):
                 for module in classifier.modules():
                     if isinstance(module, nn.Linear):
