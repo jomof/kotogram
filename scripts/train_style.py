@@ -581,7 +581,10 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     continue
                 # Simply ignore rows that don't have enough columns, but otherwise be permissive
                 # Column 1 = ID, Column 2 = Lang (ignored), Column 3 = Sentence
-                sentence_id, _lang, sentence = row[0], row[1], row[2]
+                from kotogram.preprocess import preprocess
+                _raw_sentence = row[2]
+                sentence, _types = preprocess(_raw_sentence)
+                sentence_id, _lang = row[0], row[1]
                 
                 # Removed: if lang != 'jpn': continue
                 # Removed: source_id logic
@@ -761,7 +764,10 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 for row in reader:
                     if len(row) < 3:
                         continue
-                    sentence_id, _lang, sentence = row[0], row[1], row[2]
+                    from kotogram.preprocess import preprocess
+                    _raw_sentence = row[2]
+                    sentence, _types = preprocess(_raw_sentence)
+                    sentence_id, _lang = row[0], row[1]
                     file_rows.append((sentence, sentence_id, gram_label))
                     if max_samples and len(all_rows) + len(file_rows) >= max_samples:
                         break

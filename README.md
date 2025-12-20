@@ -63,6 +63,8 @@ parser = SudachiJapaneseParser(dict_type='full')
 # Convert Japanese to kotogram
 japanese = "猫を食べる"
 kotogram = parser.japanese_to_kotogram(japanese)
+# Note: For automatic preprocessing (stripping quotes, name replacement), 
+# call kotogram.preprocess(japanese)[0] first.
 # Result: ⌈ˢ猫ᵖn:common_noun⌉⌈ˢをᵖprt:case_particle⌉⌈ˢ食べるᵖv:general:e-ichidan-ba:terminal⌉
 
 # Convert back to Japanese
