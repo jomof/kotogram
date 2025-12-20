@@ -11,6 +11,7 @@ from itertools import product
 from kotogram.kotogram import split_kotogram, extract_token_features
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 from kotogram.analysis import grammaticality, _load_style_model
+from dataclasses import asdict
 
 # Type alias for tokens (either surface string or feature dict wrapper)
 # Forward declaration issue? Just use class name strings or object
@@ -533,14 +534,14 @@ class Augmenter:
             # This gives us a Tuple[Token, ...]
             token_features = []
             for t in tokens_kotogram:
-                f = extract_token_features(t) or {}
+                f = extract_token_features(t)
                 # Ensure surface is set
-                if 'surface' not in f:
+                if not f.surface:
                      import re
                      match = re.search(r'ˢ(.*?)ᵖ', t)
-                     f['surface'] = match.group(1) if match else t
+                     f.surface = match.group(1) if match else t
                 
-                token_features.append(Token(f['surface'], f))
+                token_features.append(Token(f.surface, asdict(f)))
             
             if not token_features:
                  return {clean_sentence}

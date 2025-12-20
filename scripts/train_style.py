@@ -166,7 +166,8 @@ def _collect_tokens_batch(kotograms: List[str]) -> Dict[str, Counter]:
         tokens = split_kotogram(k)
         for token in tokens:
             token_feat = extract_token_features(token)
-            for field, value in token_feat.items():
+            for field in FEATURE_FIELDS:
+                value = getattr(token_feat, field)
                 if field in counters: # Only track active features
                     counters[field][value] += 1
                     

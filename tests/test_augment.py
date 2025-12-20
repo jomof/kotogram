@@ -4,6 +4,7 @@ from kotogram.augment import (
     Augmenter, augment,
     PronounRule, CopulaRule, ContractionRule, TopicDropRule, ProgressiveRule, PluralRule
 )
+from kotogram.kotogram import TokenFeatures
 
 from kotogram.augment import (
     Augmenter, augment,
@@ -182,8 +183,9 @@ def test_process_sentence(mock_extract, mock_split, mock_parser):
     mock_split.return_value = ['t1', 't2', 't3', 't4', 't5']
     
     # Map tokens to surface forms
+    # Map tokens to surface forms
     surfaces = ['私', 'は', '学生', 'だ', '。']
-    mock_extract.side_effect = [{'surface': s} for s in surfaces]
+    mock_extract.side_effect = [TokenFeatures(surface=s) for s in surfaces]
     
     augmenter = Augmenter()
     # Override parser with our mock
@@ -226,7 +228,7 @@ def test_augment_full_flow(mock_load, mock_gram, mock_parser_cls, mock_extract, 
     # 1. Tokenization Setup for "私 は 学生 だ 。"
     mock_split.return_value = ['t1', 't2', 't3', 't4', 't5']
     surfaces = ['私', 'は', '学生', 'だ', '。']
-    mock_extract.side_effect = [{'surface': s} for s in surfaces] * 100 # ample iterator
+    mock_extract.side_effect = [TokenFeatures(surface=s) for s in surfaces] * 100 # ample iterator
     
     # 2. Grammaticality Setup
     # Accept everything except "俺は学生だ。"

@@ -50,17 +50,18 @@ from kotogram import split_kotogram, extract_token_features, kotogram_to_japanes
 
 def extract_surface(token: str) -> str:
     """Extract surface form from a kotogram token."""
-    return extract_token_features(token)['surface']
+    features = extract_token_features(token)
+    return features.surface
 
 
 def extract_pos(token: str) -> str:
     """Extract main POS from a kotogram token."""
-    return extract_token_features(token)['pos']
+    return extract_token_features(token).pos
 
 
 def extract_conjugation_form(token: str) -> str:
     """Extract conjugation form from a kotogram token."""
-    return extract_token_features(token)['conjugated_form']
+    return extract_token_features(token).conjugated_form
 
 
 def make_particle_token(surface: str, detail: str = 'case_particle') -> str:

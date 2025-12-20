@@ -12,9 +12,16 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from scripts.register_stats import analyze_sentence
-from kotogram.analysis import RegisterLevel
+from scripts.rule_based_analysis import analyze_register
+from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 
+# Initialize parser once
+_parser = SudachiJapaneseParser()
+
+def analyze_sentence(sentence: str):
+    """Analyze a raw Japanese sentence and return detected registers."""
+    kotogram = _parser.japanese_to_kotogram(sentence)
+    return analyze_register(kotogram)
 
 def has_kyoshigo(sentence: str) -> bool:
     """Helper to check if a sentence is detected as KYOSHIGO."""

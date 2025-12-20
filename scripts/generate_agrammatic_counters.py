@@ -231,13 +231,13 @@ def generate_grammatic_candidates(kotogram: str, num_variations: int = 1) -> Lis
 
 def extract_surface(token: str) -> str:
     """Extract surface form from a kotogram token."""
-    return extract_token_features(token)['surface']
+    return extract_token_features(token).surface
 
 
 def extract_pos_details(token: str) -> Tuple[str, str, str]:
     """Extract POS details from a kotogram token."""
     features = extract_token_features(token)
-    return features.get('pos', ''), features.get('pos_detail1', ''), features.get('pos_detail2', '')
+    return features.pos, features.pos_detail1, features.pos_detail2
 
 
 def is_counter(token: str) -> bool:
@@ -269,7 +269,7 @@ def replace_surface_in_token(token: str, new_surface: str) -> str:
 def is_numeral(token: str) -> bool:
     """Check if a token is a numeral."""
     features = extract_token_features(token)
-    return features.get('pos_detail1') == 'numeral'
+    return features.pos_detail1 == 'numeral'
 
 
 def generate_agrammatic_candidates(kotogram: str, num_variations: int = 1) -> List[Tuple[str, str]]:
