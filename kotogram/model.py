@@ -21,6 +21,7 @@ from kotogram.kotogram import split_kotogram
 from kotogram.analysis import FormalityLevel, GenderLevel
 from kotogram.kotogram import extract_token_features
 from kotogram.japanese_parser import JapaneseParser
+from kotogram.preprocess import preprocess
 
 # Special token values for vocabulary
 PAD_TOKEN = "<PAD>"
@@ -544,6 +545,9 @@ def predict_style(
         from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
         parser = SudachiJapaneseParser()
 
+    # Preprocess the sentence before parsing
+    sentence, _ = preprocess(sentence, parser=parser)
+    
     kotogram = parser.japanese_to_kotogram(sentence)
     feature_ids = tokenizer.encode(kotogram, add_cls=True)
 

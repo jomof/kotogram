@@ -60,7 +60,8 @@ def load_register_overrides():
                     parts = line.strip().split('\t')
                     if len(parts) < 3:
                         continue
-                    sentence = parts[2]
+                    from kotogram.preprocess import preprocess
+                    sentence, _types = preprocess(parts[2])
                     if sentence not in overrides:
                         overrides[sentence] = set()
                     overrides[sentence].add(reg_level)
@@ -368,7 +369,8 @@ def main():
                 reader = csv.reader(f, delimiter='\t')
                 for row in reader:
                     if len(row) < 3: continue
-                    sentence = row[2]
+                    from kotogram.preprocess import preprocess
+                    sentence, _types = preprocess(row[2])
                     if sentence not in seen:
                         seen.add(sentence)
                         unique_rows.append((sentence, row[0], gram_label))
