@@ -86,6 +86,43 @@ class ProcessedSample(NamedTuple):
     gram_label: int
     success: int
 
+def infer_gender_from_register(gender_enum, register_enums) -> Tuple[float, int]:
+    """Infer gender value and pragmatic flag from gender enum and registers.
+    
+    Refined logic:
+    1. If gender is explicitly MASCULINE/FEMININE, use that.
+    2. If gender is NEUTRAL, infer from registers:
+       - Masculine registers: DANSEIGO, GUNTAI, BUSHI (Excluded KYOSHIGO)
+       - Feminine registers: JOSEIGO, OJOUSAMA, BURIKKO
+    3. If registers have both masculine and feminine markers, return UNPRAGMATIC (0.0, 0).
+    4. Otherwise return NEUTRAL (0.0, 1) or the inferred gender.
+    """
+    from kotogram.analysis import GenderLevel, RegisterLevel
+    
+    if gender_enum == GenderLevel.MASCULINE:
+        return -1.0, 1
+    elif gender_enum == GenderLevel.FEMININE:
+        return 1.0, 1
+    elif gender_enum == GenderLevel.NEUTRAL:
+        # Infer gender from register if neutral
+        masculine_registers = {RegisterLevel.DANSEIGO, RegisterLevel.GUNTAI, RegisterLevel.BUSHI}
+        feminine_registers = {RegisterLevel.JOSEIGO, RegisterLevel.OJOUSAMA, RegisterLevel.BURIKKO}
+        
+        is_masc = any(r in masculine_registers for r in register_enums)
+        is_fem = any(r in feminine_registers for r in register_enums)
+        
+        if is_masc and is_fem:
+            # Conflicting registers -> Unpragmatic
+            return 0.0, 0
+        elif is_masc:
+            return -1.0, 1
+        elif is_fem:
+            return 1.0, 1
+        else:
+            return 0.0, 1
+    else: # UNPRAGMATIC_GENDER
+        return 0.0, 0
+
 def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSample]:
     """Process a batch of sentences in a worker process."""
     from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
@@ -111,28 +148,7 @@ def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[Processed
             
             formality_id = FORMALITY_LABEL_TO_ID.get(formality_enum, FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL])
             
-            if gender_enum == GenderLevel.MASCULINE:
-                gender_val, gender_prag = -1.0, 1
-            elif gender_enum == GenderLevel.FEMININE:
-                gender_val, gender_prag = 1.0, 1
-            elif gender_enum == GenderLevel.NEUTRAL:
-                gender_val, gender_prag = 0.0, 1
-                
-                # Infer gender from register if neutral
-                masculine_registers = {RegisterLevel.DANSEIGO, RegisterLevel.GUNTAI, RegisterLevel.BUSHI, RegisterLevel.KYOSHIGO}
-                feminine_registers = {RegisterLevel.JOSEIGO, RegisterLevel.OJOUSAMA, RegisterLevel.BURIKKO}
-                
-                is_masc = any(r in masculine_registers for r in register_enums)
-                is_fem = any(r in feminine_registers for r in register_enums)
-                
-                if is_masc and not is_fem:
-                    gender_val = -1.0
-                elif is_fem and not is_masc:
-                    gender_val = 1.0
-                else:
-                    gender_val, gender_prag = 0.0, 0
-            else: # UNPRAGMATIC_GENDER
-                gender_val, gender_prag = 0.0, 0
+            gender_val, gender_prag = infer_gender_from_register(gender_enum, register_enums)
             
 
                 
@@ -172,26 +188,7 @@ def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSa
             
             formality_id = FORMALITY_LABEL_TO_ID.get(formality_enum, FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL])
             
-            if gender_enum == GenderLevel.MASCULINE:
-                gender_val, gender_prag = -1.0, 1
-            elif gender_enum == GenderLevel.FEMININE:
-                gender_val, gender_prag = 1.0, 1
-            elif gender_enum == GenderLevel.NEUTRAL:
-                gender_val, gender_prag = 0.0, 1
-                
-                # Infer gender from register if neutral
-                masculine_registers = {RegisterLevel.DANSEIGO, RegisterLevel.GUNTAI, RegisterLevel.BUSHI, RegisterLevel.KYOSHIGO}
-                feminine_registers = {RegisterLevel.JOSEIGO, RegisterLevel.OJOUSAMA, RegisterLevel.BURIKKO}
-                
-                is_masc = any(r in masculine_registers for r in register_enums)
-                is_fem = any(r in feminine_registers for r in register_enums)
-                
-                if is_masc and not is_fem:
-                    gender_val = -1.0
-                elif is_fem and not is_masc:
-                    gender_val = 1.0
-            else: # UNPRAGMATIC_GENDER
-                gender_val, gender_prag = 0.0, 0
+            gender_val, gender_prag = infer_gender_from_register(gender_enum, register_enums)
             
             # Check for overrides
             if sentence in _REGISTER_OVERRIDES:
@@ -356,6 +353,7 @@ def main():
     parser.add_argument("--max-samples", type=int, help="Maximum samples to process")
     parser.add_argument("--percent", type=float, help="Percentage of data to use")
     parser.add_argument("--output-dir", type=str, default=".cache", help="Output directory for dataset cache")
+    parser.add_argument("--force-relabel", action="store_true", help="Force re-computation of labels even if cached")
     
     args = parser.parse_args()
     
@@ -483,7 +481,7 @@ def main():
 
         if entry:
             k, f, g_val, g_prag, r_lbls = entry
-            if f is not None and g_val is not None and g_prag is not None and r_lbls is not None:
+            if not args.force_relabel and f is not None and g_val is not None and g_prag is not None and r_lbls is not None:
                 final_results.append(ProcessedSample(sentence, sentence_id, k, f, g_val, g_prag, r_lbls, gram_label, 1))
             else:
                 unlabeled_rows.append((sentence, k, gram_label))
