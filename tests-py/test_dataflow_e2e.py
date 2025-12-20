@@ -175,7 +175,8 @@ def test_step4_encoding_inputs_extraction():
 
 def test_step5_encode_samples_batch():
     """Step 5: Verify _encode_samples_batch creates valid Sample objects."""
-    from scripts.train_style import _encode_samples_batch, StyleDataset, Tokenizer
+    from scripts.train_style import _encode_samples_batch, StyleDataset
+    from kotogram.model import Tokenizer
     
     print("\n" + "="*60)
     print("STEP 5: _encode_samples_batch Output")
@@ -211,8 +212,8 @@ def test_step5_encode_samples_batch():
 
 def test_step6_collate_fn():
     """Step 6: Verify collate_fn produces correct tensor shapes and types."""
-    from scripts.train_style import collate_fn, _encode_samples_batch, StyleDataset, Sample, Tokenizer
-    from kotogram.model import FEATURE_FIELDS, NUM_REGISTER_CLASSES
+    from scripts.train_style import collate_fn, _encode_samples_batch, StyleDataset, Sample
+    from kotogram.model import Tokenizer, FEATURE_FIELDS, NUM_REGISTER_CLASSES
     import torch
     
     print("\n" + "="*60)
@@ -250,8 +251,8 @@ def test_step6_collate_fn():
 
 def test_step7_evaluate_list_consistency():
     """Step 7: Verify evaluate() maintains list length consistency."""
-    from scripts.train_style import StyleDataset, collate_fn, _encode_samples_batch, Tokenizer
-    from kotogram.model import StyleClassifier, ModelConfig, NUM_REGISTER_CLASSES
+    from scripts.train_style import StyleDataset, collate_fn, _encode_samples_batch
+    from kotogram.model import Tokenizer, StyleClassifier, ModelConfig, NUM_REGISTER_CLASSES
     from torch.utils.data import DataLoader
     import torch
     
@@ -290,8 +291,8 @@ def test_step8_trace_register_mislabel():
     """Step 8: Trace a specific mislabeled sentence."""
     from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
     from scripts.rule_based_analysis import analyze_register, RegisterLevel
-    from scripts.train_style import StyleDataset, _encode_samples_batch, Tokenizer
-    from kotogram.model import NUM_REGISTER_CLASSES, REGISTER_ID_TO_LABEL
+    from scripts.train_style import StyleDataset, _encode_samples_batch
+    from kotogram.model import Tokenizer, NUM_REGISTER_CLASSES, REGISTER_ID_TO_LABEL
     
     print("\n" + "="*60)
     print("STEP 8: Trace Register Mislabeling")
