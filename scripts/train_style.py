@@ -226,7 +226,7 @@ def _encode_samples_batch(
 # v4: Added register labeling
 # v6: Added register_label to Sample
 # v7: Changed register_label to register_labels (multi-label)
-CACHE_VERSION = 9
+CACHE_VERSION = 10
 
 
 class StyleDataset(Dataset[Sample]):  # type: ignore[misc]

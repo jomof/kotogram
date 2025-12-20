@@ -15,7 +15,7 @@ def test_mlm_grammar_only():
     # Mock batch
     batch_size = 2
     seq_len = 50
-    feature_fields = ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma', 'base_orth', 'reading']
+    feature_fields = ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'pos_detail3', 'conjugated_type', 'conjugated_form', 'lemma', 'base_orth', 'reading']
     
     batch = {
         'attention_mask': torch.ones(batch_size, seq_len, dtype=torch.long)

@@ -34,6 +34,7 @@ class TokenFeatures:
     pos: str = ''
     pos_detail1: str = ''
     pos_detail2: str = ''
+    pos_detail3: str = ''
     conjugated_type: str = ''
     conjugated_form: str = ''
     base_orth: str = ''
@@ -279,6 +280,7 @@ def extract_token_features(token: str) -> TokenFeatures:
         - pos: Part of speech main category (e.g., 'v', 'n', 'auxv', 'prt')
         - pos_detail1: First POS detail level (e.g., 'general', 'common_noun')
         - pos_detail2: Second POS detail level (e.g., 'general')
+        - pos_detail3: Third POS detail level (e.g., 'general')
         - conjugated_type: Conjugation type (e.g., 'lower-ichidan-ba', 'auxv-masu')
         - conjugated_form: Conjugation form (e.g., 'conjunctive', 'terminal')
         - base_orth: Base orthography (dictionary form spelling)
@@ -316,7 +318,7 @@ def extract_token_features(token: str) -> TokenFeatures:
     ensure_string(token, "token")
 
     from .japanese_parser import (
-        POS1_MAP, POS2_MAP,
+        POS1_MAP, POS2_MAP, POS3_MAP,
         CONJUGATED_TYPE_MAP, CONJUGATED_FORM_MAP
     )
 
@@ -357,6 +359,9 @@ def extract_token_features(token: str) -> TokenFeatures:
                     feature.pos_detail2 = value
                 else:
                     feature.pos_detail1 = value
+            elif value in POS3_MAP.values():
+                 # pos_detail_3 usually comes last for details
+                 feature.pos_detail3 = value
             elif value in POS1_MAP.values():
                 # pos_detail_1 comes before pos_detail_2
                 if not feature.pos_detail1:
@@ -369,6 +374,8 @@ def extract_token_features(token: str) -> TokenFeatures:
                     feature.pos_detail1 = value
                 elif not feature.pos_detail2:
                     feature.pos_detail2 = value
+                elif not feature.pos_detail3:
+                    feature.pos_detail3 = value
                 elif not feature.conjugated_type:
                     feature.conjugated_type = value
                 elif not feature.conjugated_form:
