@@ -8,7 +8,7 @@ import os
 import sqlite3
 import hashlib
 import json
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, cast
 
 
 
@@ -84,7 +84,7 @@ class ShardedKotogramCache:
                 # Convert to format expected by put_batch (sentence, kotogram, formality, gender, register)
                 # Legacy cache has no labels, so None
                 items = [(r[0], r[1], None, None, None, None) for r in rows]
-                self.put_batch(items, verbose=False) # Verbose False to avoid spam
+                self.put_batch(cast(List[Tuple[str, str, Optional[int], Optional[float], Optional[int], Optional[List[int]]]], items), verbose=False) # Verbose False to avoid spam
                 count += len(rows)
                 print(f"  Migrated {count} entries...")
             

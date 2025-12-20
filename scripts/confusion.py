@@ -7,6 +7,8 @@ import os
 import sys
 import csv
 import torch
+import torch.nn as nn
+from typing import Dict, List, Optional, Any, cast
 from torch.utils.data import DataLoader
 
 from rich.console import Console
@@ -17,7 +19,7 @@ from rich.panel import Panel
 # Add project root to path to allow imports from kotogram
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from kotogram.model import (
+from kotogram.model import (StyleClassifier, 
     NUM_REGISTER_CLASSES,
     REGISTER_ID_TO_LABEL,
     load_model
@@ -30,13 +32,13 @@ console = Console()
 
 
 
-def calculate_metrics(model, loader, device):
+def calculate_metrics(model: nn.Module, loader: DataLoader, device: torch.device) -> Dict[str, Any]:
     """Run inference using Evaluator."""
-    evaluator = Evaluator(model, device, verbose=True)
+    evaluator = Evaluator(cast(StyleClassifier, model), device)
     result = evaluator.evaluate(loader)
     return result.to_dict()
 
-def print_confusion_matrix(title, labels, matrix):
+def print_confusion_matrix(title: str, labels: List[str], matrix: List[List[int]]) -> None:
     """Print a confusion matrix using Rich Table."""
     table = Table(title=title, show_header=True, header_style="bold magenta")
     table.add_column("True \\ Pred", style="dim")
@@ -54,7 +56,7 @@ def print_confusion_matrix(title, labels, matrix):
     console.print(table)
     console.print()
 
-def generate_reports(data, save_dir):
+def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
     """Calculate and display reports."""
     # Summary Table
     summary = Table(title="Overall Model Performance", show_header=True, header_style="bold cyan")
@@ -225,7 +227,7 @@ def generate_reports(data, save_dir):
                 writer.writerows(reg_mismatches)
             console.print(f"[green]Saved {len(reg_mismatches)} register mismatches to {out_path}[/green]")
 
-def main():
+def main() -> None:
     import argparse
     parser = argparse.ArgumentParser(description="Evaluate model confusion and generate reports.")
     parser.add_argument("--output", type=str, required=True, help="Model directory containing checkpoint")
@@ -246,13 +248,13 @@ def main():
     
     # Load model and tokenizer
     # Load model and tokenizer
-    model, tokenizer = load_model(args.output, device=device)
+    model, tokenizer = load_model(args.output, device=device_name)
     
     # Building evaluation files list
     data_files = []
     grammaticality_labels = []
 
-    def add_file(path, force_label=None):
+    def add_file(path: Optional[str], force_label: Optional[int] = None) -> None:
         if not path:
             return
         data_files.append(path)

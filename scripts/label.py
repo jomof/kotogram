@@ -14,7 +14,7 @@ import time
 import random
 import multiprocessing as mp
 from collections import Counter
-from typing import Dict, List, Optional, Tuple, Any
+from typing import Dict, List, Optional, Tuple, Any, cast
 
 
 
@@ -39,7 +39,7 @@ def load_register_overrides() -> Dict[str, List[Any]]:
     # Map register string to RegisterLevel
     reg_map = {r.value: r for r in RegisterLevel}
     
-    overrides = {}
+    overrides: Dict[str, Any] = {}
     
     # Pattern to match individual register files
     pattern = "data/jpn_sentences_*.tsv"
@@ -65,7 +65,7 @@ def load_register_overrides() -> Dict[str, List[Any]]:
     # Convert sets to sorted lists
     return {k: sorted(list(v), key=lambda x: str(x)) for k, v in overrides.items()}
 
-def init_worker(overrides: Dict[str, List[Any]]):
+def init_worker(overrides: Dict[str, List[Any]]) -> None:
     """Initialize worker process with register overrides."""
     global _worker_overrides
     _worker_overrides = overrides
@@ -74,7 +74,7 @@ console = Console()
 
 
 
-def infer_gender_from_register(gender_enum, register_enums) -> Tuple[float, int]:
+def infer_gender_from_register(gender_enum: Any, register_enums: List[Any]) -> Tuple[float, int]:
     """Infer gender value and pragmatic flag from gender enum and registers.
     
     Refined logic:
@@ -132,7 +132,7 @@ def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[Processed
         if sentence in overrides:
             register_enums = overrides[sentence]
         else:
-            register_enums = analyze_register(kotogram)
+            register_enums = list(analyze_register(kotogram))
         
         formality_id = FORMALITY_LABEL_TO_ID.get(formality_enum, FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL])
         
@@ -169,7 +169,7 @@ def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSa
     for sentence, kotogram, gram_label in batch:
         formality_enum = analyze_formality(kotogram)
         gender_enum = analyze_gender(kotogram)
-        register_enums = analyze_register(kotogram)
+        register_enums = list(analyze_register(kotogram))
         
         formality_id = FORMALITY_LABEL_TO_ID.get(formality_enum, FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL])
         
@@ -180,7 +180,7 @@ def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSa
         if sentence in overrides:
             register_enums = overrides[sentence]
         else:
-            register_enums = analyze_register(kotogram)
+            register_enums = list(analyze_register(kotogram))
 
         register_ids = [REGISTER_LABEL_TO_ID[r] for r in register_enums if r in REGISTER_LABEL_TO_ID]
         if not register_ids:
@@ -200,7 +200,7 @@ def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSa
             
     return results
 
-def print_stats(results: List[ProcessedSample]):
+def print_stats(results: List[ProcessedSample]) -> None:
     """Print attractive statistics about the labeling results."""
     if not results:
         return
@@ -231,7 +231,7 @@ def print_stats(results: List[ProcessedSample]):
         g_table.add_row(g_map[gid], f"{count:,}", f"{100*count/total:.1f}%")
 
     # Register Stats
-    register_counts = Counter()
+    register_counts: Counter[int] = Counter()
     for r in results:
         if r.success:
             for rid in r.register_ids:
@@ -264,7 +264,7 @@ def print_stats(results: List[ProcessedSample]):
     console.print(Panel.fit(r_table, border_style="yellow"))
     console.print(Panel.fit(gram_table, border_style="green"))
 
-def save_register_samples(results: List[ProcessedSample], output_grammatic_path: Optional[str]):
+def save_register_samples(results: List[ProcessedSample], output_grammatic_path: Optional[str]) -> None:
     """Save 3 examples of each register from grammatic sentences to CSV."""
     if not output_grammatic_path:
         return
@@ -281,7 +281,7 @@ def save_register_samples(results: List[ProcessedSample], output_grammatic_path:
     output_file = os.path.join(output_dir, "register_samples.csv")
     
     # Collect ALL samples by register (only grammatic sentences)
-    all_by_register = {}
+    all_by_register: Dict[int, List[ProcessedSample]] = {}
     for result in results:
         if not result.success or result.gram_label != 1:  # Only grammatic
             continue
@@ -324,7 +324,7 @@ def save_register_samples(results: List[ProcessedSample], output_grammatic_path:
     console.print(f"  Registers with samples: {len(register_samples)}")
 
 
-def main():
+def main() -> None:
     import argparse
     parser = argparse.ArgumentParser(description="Label and cache Japanese sentences.")
     parser.add_argument("--data", type=str, required=True, help="Primary TSV data file(s) (glob pattern)")
@@ -343,7 +343,7 @@ def main():
     
     num_workers = args.num_workers or max(1, mp.cpu_count() - 1)
     
-    def process_file_group(patterns, gram_label, output_path=None):
+    def process_file_group(patterns: Any, gram_label: int, output_path: Optional[str] = None) -> Tuple[List[Any], int]:
         if not patterns:
             return [], 0
         
@@ -509,7 +509,7 @@ def main():
                         for res in batch_results:
                             if res.success:
                                 final_results.append(res)
-                                new_entries.append((res.sentence, res.kotogram, res.formality_id, res.gender_value, res.gender_pragmatic, res.register_ids))
+                                new_entries.append((cast(str, res.sentence), cast(str, res.kotogram), cast(Optional[int], res.formality_id), cast(Optional[float], res.gender_value), cast(Optional[int], res.gender_pragmatic), cast(Optional[List[int]], res.register_ids)))
                         progress.update(task, advance=len(batch_results))
                 
                 if new_entries:
@@ -525,7 +525,7 @@ def main():
                         for res in batch_results:
                             if res.success:
                                 final_results.append(res)
-                                new_entries.append((res.sentence, res.kotogram, res.formality_id, res.gender_value, res.gender_pragmatic, res.register_ids))
+                                new_entries.append((cast(str, res.sentence), cast(str, res.kotogram), cast(Optional[int], res.formality_id), cast(Optional[float], res.gender_value), cast(Optional[int], res.gender_pragmatic), cast(Optional[List[int]], res.register_ids)))
                         progress.update(task, advance=len(batch_results))
                 
                 if new_entries:
