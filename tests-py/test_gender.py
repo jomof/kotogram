@@ -1,7 +1,7 @@
 """Tests for model-based gender analysis of Japanese sentences."""
 
 import unittest
-from kotogram import SudachiJapaneseParser, gender
+from kotogram import SudachiJapaneseParser, grammar, GenderLevel
 from unittest.mock import patch
 import torch
 from kotogram.model import StylePrediction
@@ -47,13 +47,13 @@ class TestGenderModel(unittest.TestCase):
                 gender_value=torch.tensor([-0.9]),    # gender_val
                 gender_pragmatic_probs=torch.tensor([[0.1, 0.9]]), # gender_prag (pragmatic)
                 grammaticality_probs=torch.tensor([[0.1, 0.9]]), # grammatic
-                register_probs=torch.tensor([[0.0]*9])  # register
+                register_probs=torch.tensor([[0.0]*14])  # register
             )
             
-            result = gender(kotogram)
-            if result is not None:
-                self.assertIsInstance(result, float)
-                self.assertLess(result, -0.5)
+            result = grammar(kotogram)
+            self.assertEqual(result.gender, GenderLevel.MASCULINE)
+            self.assertAlmostEqual(result.gender_score, -0.9)
+            self.assertTrue(result.gender_is_pragmatic)
 
     def test_feminine_basic(self):
         """Test basic feminine sentence."""
@@ -67,13 +67,13 @@ class TestGenderModel(unittest.TestCase):
                 gender_value=torch.tensor([0.9]),     # gender_val (feminine)
                 gender_pragmatic_probs=torch.tensor([[0.1, 0.9]]), 
                 grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
-                register_probs=torch.tensor([[0.0]*9])
+                register_probs=torch.tensor([[0.0]*14])
             )
              
-            result = gender(kotogram)
-            if result is not None:
-                self.assertIsInstance(result, float)
-                self.assertGreater(result, 0.5)
+            result = grammar(kotogram)
+            self.assertEqual(result.gender, GenderLevel.FEMININE)
+            self.assertAlmostEqual(result.gender_score, 0.9)
+            self.assertTrue(result.gender_is_pragmatic)
 
     def test_neutral_basic(self):
         """Test basic neutral sentence."""
@@ -87,13 +87,13 @@ class TestGenderModel(unittest.TestCase):
                 gender_value=torch.tensor([0.0]),     # gender_val (neutral)
                 gender_pragmatic_probs=torch.tensor([[0.1, 0.9]]), 
                 grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
-                register_probs=torch.tensor([[0.0]*9])
+                register_probs=torch.tensor([[0.0]*14])
             )
 
-            result = gender(kotogram)
-            if result is not None:
-                self.assertIsInstance(result, float)
-                self.assertTrue(-0.5 <= result <= 0.5)
+            result = grammar(kotogram)
+            self.assertEqual(result.gender, GenderLevel.NEUTRAL)
+            self.assertAlmostEqual(result.gender_score, 0.0)
+            self.assertTrue(result.gender_is_pragmatic)
 
     def test_unpragmatic(self):
         """Test unpragmatic sentence (might return None)."""
@@ -107,11 +107,12 @@ class TestGenderModel(unittest.TestCase):
                 gender_value=torch.tensor([0.0]), 
                 gender_pragmatic_probs=torch.tensor([[0.9, 0.1]]), # gender_prag (UNPRAGMATIC)
                 grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
-                register_probs=torch.tensor([[0.0]*9])
+                register_probs=torch.tensor([[0.0]*14])
             )
 
-            result = gender(kotogram)
-            self.assertIsNone(result)
+            result = grammar(kotogram)
+            self.assertEqual(result.gender, GenderLevel.UNPRAGMATIC_GENDER)
+            self.assertFalse(result.gender_is_pragmatic)
 
 if __name__ == "__main__":
     unittest.main()

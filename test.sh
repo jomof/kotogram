@@ -55,6 +55,7 @@ python -m pytest tests-py/ || FAILED=1
 
 if [ -f "package.json" ]; then
     log "Running TypeScript unittests..."
+    npm run build
     npm test || FAILED=1
 fi
 

@@ -3,7 +3,7 @@
 import unittest
 from unittest.mock import patch
 import torch
-from kotogram import SudachiJapaneseParser, formality, FormalityLevel
+from kotogram import SudachiJapaneseParser, grammar, FormalityLevel, RegisterLevel
 from kotogram.model import StylePrediction
 
 
@@ -36,10 +36,9 @@ class TestFormalityModel(unittest.TestCase):
         text = "私は学生です。"
         kotogram = self.parser.japanese_to_kotogram(text)
         
-        # Mock predict: 0=VF, 1=F, 2=N, 3=C, 4=VC, 5=UP
+        # Mock predict
         with patch.object(self.model, 'predict') as mock_predict:
             # Set formal (0.5) probability
-            # Buckets: VF>=0.75, F>=0.25, N>=-0.25, C>=-0.75, VC<-0.75
             formality_val = torch.tensor([0.5]) 
             formality_prag = torch.zeros(1, 2)
             formality_prag[0, 1] = 5.0 # Pragmatic
@@ -50,10 +49,15 @@ class TestFormalityModel(unittest.TestCase):
                 gender_value=torch.tensor([0.0]), 
                 gender_pragmatic_probs=torch.tensor([[0.5, 0.5]]), 
                 grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
-                register_probs=torch.tensor([[0.0]*9])
+                register_probs=torch.tensor([[0.0]*14])
             )
-            result = formality(kotogram)
-            self.assertEqual(result, FormalityLevel.FORMAL)
+            result = grammar(kotogram)
+            self.assertEqual(result.formality, FormalityLevel.FORMAL)
+            self.assertAlmostEqual(result.formality_score, 0.5)
+            self.assertTrue(result.formality_is_pragmatic)
+            self.assertEqual(result.kotogram, kotogram)
+            self.assertEqual(result.registers, {RegisterLevel.NEUTRAL})
+            self.assertIn(FormalityLevel.FORMAL, [result.formality])
 
     def test_casual_basic(self):
         """Test basic casual sentence."""
@@ -72,10 +76,11 @@ class TestFormalityModel(unittest.TestCase):
                 gender_value=torch.tensor([0.0]), 
                 gender_pragmatic_probs=torch.tensor([[0.5, 0.5]]), 
                 grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
-                register_probs=torch.tensor([[0.0]*9])
+                register_probs=torch.tensor([[0.0]*14])
             )
-            result = formality(kotogram)
-            self.assertEqual(result, FormalityLevel.CASUAL)
+            result = grammar(kotogram)
+            self.assertEqual(result.formality, FormalityLevel.CASUAL)
+            self.assertAlmostEqual(result.formality_score, -0.5)
 
     def test_very_formal_basic(self):
         """Test basic very formal (keigo)."""
@@ -94,10 +99,11 @@ class TestFormalityModel(unittest.TestCase):
                 gender_value=torch.tensor([0.0]), 
                 gender_pragmatic_probs=torch.tensor([[0.5, 0.5]]), 
                 grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
-                register_probs=torch.tensor([[0.0]*9])
+                register_probs=torch.tensor([[0.0]*14])
             )
-            result = formality(kotogram)
-            self.assertEqual(result, FormalityLevel.VERY_FORMAL)
+            result = grammar(kotogram)
+            self.assertEqual(result.formality, FormalityLevel.VERY_FORMAL)
+            self.assertAlmostEqual(result.formality_score, 1.0)
 
     def test_empty_kotogram(self):
         """Empty kotogram should return NEUTRAL (default)."""

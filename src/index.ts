@@ -7,3 +7,11 @@ export {
   splitKotogram,
   type KotogramToJapaneseOptions,
 } from "./kotogram.js";
+
+export {
+  FormalityLevel,
+  GenderLevel,
+  RegisterLevel,
+  GrammarAnalysis,
+  type GrammarAnalysisData,
+} from "./analysis.js";

@@ -10,7 +10,7 @@ from typing import Set, Tuple, List, Optional, Dict, Union, Any
 from itertools import product
 from kotogram.kotogram import split_kotogram, extract_token_features
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-from kotogram.analysis import grammaticality, _load_style_model
+from kotogram.analysis import grammar
 from dataclasses import asdict
 
 # Type alias for tokens (either surface string or feature dict wrapper)
@@ -558,13 +558,12 @@ class Augmenter:
     def filter_grammatical(self, sentences: Set[str]) -> List[str]:
         """Filter input sentences using the cached grammaticality model."""
         parser = self.get_parser()
-        # Pre-load model if not loaded (warmup)
-        _load_style_model()
         
         valid_sentences = []
         for sent in sentences:
             k = parser.japanese_to_kotogram(sent)
-            if grammaticality(k):
+            # Use consolidated grammar() function
+            if grammar(k).is_grammatic:
                 valid_sentences.append(sent)
                 
         return sorted(list(set(valid_sentences)))

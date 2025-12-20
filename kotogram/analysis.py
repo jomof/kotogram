@@ -4,13 +4,11 @@ This module provides tools to analyze the formality level of Japanese sentences
 by examining linguistic features such as verb forms, particles, and auxiliary verbs.
 """
 
-from enum import Enum
-from typing import Optional, Tuple, TYPE_CHECKING, Set
-
-
-
-if TYPE_CHECKING:
-    from kotogram.model import StyleClassifier, Tokenizer
+import json
+from dataclasses import dataclass, asdict
+from typing import Optional, Tuple, Dict, Set
+from kotogram.model import StyleClassifier, Tokenizer
+from kotogram.constants import FormalityLevel, GenderLevel, RegisterLevel
 
 # Global cache for loaded model (lazy loading)
 _style_model: Optional['StyleClassifier'] = None
@@ -36,145 +34,84 @@ def _load_style_model() -> Tuple['StyleClassifier', 'Tokenizer']:
     return _style_model, _style_tokenizer
 
 
-class FormalityLevel(Enum):
-    """Formality levels for Japanese sentences."""
+@dataclass
+class GrammarAnalysis:
+    """Consolidated analysis result for a Japanese sentence."""
 
-    VERY_FORMAL = "very_formal"           # Keigo, honorific language (敬語)
-    FORMAL = "formal"                     # Polite/formal (-ます/-です forms)
-    NEUTRAL = "neutral"                   # Plain/dictionary form, balanced
-    CASUAL = "casual"                     # Colloquial, informal contractions
-    VERY_CASUAL = "very_casual"          # Highly casual, slang
-    UNPRAGMATIC_FORMALITY = "unpragmatic_formality"  # Mixed/awkward formality
+    # Input
+    kotogram: str
+
+    # Formality
+    formality: FormalityLevel
+    formality_score: float  # -1.0 to 1.0 (continuous prediction)
+    formality_is_pragmatic: bool
+
+    # Gender
+    gender: GenderLevel
+    gender_score: float  # -1.0 (Masculine) to 1.0 (Feminine)
+    gender_is_pragmatic: bool
+
+    # Register
+    registers: Set[RegisterLevel]  # Set of detected registers
+    register_scores: Dict[RegisterLevel, float]  # All registers and their scores
+
+    # Grammaticality
+    is_grammatic: bool
+    grammaticality_score: float  # Probability of being grammatic
+
+    def to_json(self) -> str:
+        """Serialize analysis result to JSON string."""
+        d = asdict(self)
+        # Convert Enums to strings
+        d['formality'] = self.formality.value
+        d['gender'] = self.gender.value
+        # Convert Sets to sorted lists of strings
+        d['registers'] = sorted([r.value for r in self.registers])
+        # Convert Dict keys from Enums to strings
+        d['register_scores'] = {k.value: v for k, v in self.register_scores.items()}
+        return json.dumps(d, ensure_ascii=False)
+
+    @classmethod
+    def from_json(cls, json_str: str) -> "GrammarAnalysis":
+        """Deserialize analysis result from JSON string."""
+        d = json.loads(json_str)
+
+        # Map strings back to Enums
+        d['formality'] = FormalityLevel(d['formality'])
+        d['gender'] = GenderLevel(d['gender'])
+        d['registers'] = {RegisterLevel(r) for r in d['registers']}
+        d['register_scores'] = {RegisterLevel(k): v for k, v in d['register_scores'].items()}
+
+        return cls(**d)
 
 
-class GenderLevel(Enum):
-    """Gender-associated speech patterns for Japanese sentences."""
+def grammar(kotogram: str) -> GrammarAnalysis:
+    """Analyze a Japanese sentence and return a consolidated GrammarAnalysis.
 
-    MASCULINE = "masculine"               # Male-associated speech (俺, ぜ, ぞ, etc.)
-    FEMININE = "feminine"                 # Female-associated speech (わ, の, あたし, etc.)
-    NEUTRAL = "neutral"                   # Gender-neutral speech
-    UNPRAGMATIC_GENDER = "unpragmatic_gender"  # Mixed/awkward gender markers
-
-
-class RegisterLevel(Enum):
-    """Specific register/dialect classifications."""
-
-    SONKEIGO = "sonkeigo"                 # Honorific (respectful)
-    KENJOGO = "kenjogo"                   # Humble
-    KANSAIBEN = "kansaiben"               # Kansai dialect
-    HAKATABEN = "hakataben"               # Hakata dialect
-    KYOSHIGO = "kyoshigo"                 # Teacher style
-    NETSLANG = "netslang"                 # Internet slang
-    OJOUSAMA = "ojousama"                 # Refined lady style
-    GUNTAI = "guntai"                     # Military style
-    JOSEIGO = "joseigo"                   # Feminine register
-    DANSEIGO = "danseigo"                 # Masculine register
-    BURIKKO = "burikko"                   # Burikko (exaggerated cuteness)
-    NEUTRAL = "neutral"                   # Standard/Neutral
-    TOHOKU = "tohoku"                     # Tohoku dialect
-    BUSHI = "bushi"                       # Samurai/Archaic register
-
-
-
-def formality(kotogram: str) -> FormalityLevel:
-    """Analyze a Japanese sentence and return its formality level.
-
-    This function examines the linguistic features encoded in a kotogram
-    representation to determine the overall formality level of the sentence.
+    This function runs a single inference pass through the neural model to
+    determine formality, gender association, specific registers, and
+    grammaticality.
 
     Args:
         kotogram: Kotogram compact sentence representation containing encoded
                  linguistic information with POS tags and conjugation forms.
 
     Returns:
-        FormalityLevel indicating the sentence's formality level, including
-        UNPRAGMATIC_FORMALITY if the sentence has an awkward combination
-        of different formality levels.
+        GrammarAnalysis object containing all linguistic analysis results.
 
     Examples:
         >>> # Formal sentence: 食べます (I eat - polite)
         >>> kotogram1 = "⌈ˢ食べᵖv:e-ichidan-ba:conjunctive⌉⌈ˢますᵖauxv-masu:terminal⌉"
-        >>> formality(kotogram1)  # doctest: +SKIP
+        >>> res = grammar(kotogram1)  # doctest: +SKIP
+        >>> res.formality
         <FormalityLevel.FORMAL: 'formal'>
-
-        >>> # Casual sentence: 食べる (I eat - plain)
-        >>> kotogram2 = "⌈ˢ食べるᵖv:e-ichidan-ba:terminal⌉"
-        >>> formality(kotogram2)  # doctest: +SKIP
-        <FormalityLevel.NEUTRAL: 'neutral'>
+        >>> res.is_grammatic
+        True
     """
     from kotogram.validation import ensure_string
     ensure_string(kotogram, "kotogram")
 
     # Use the trained neural model for prediction
-    import torch
-    from kotogram.model import FEATURE_FIELDS
-
-    model, tokenizer = _load_style_model()
-
-    # Encode the kotogram
-    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
-
-    # Create batch tensors
-    field_inputs = {
-        f'input_ids_{field}': torch.tensor([feature_ids[field]], dtype=torch.long)
-        for field in FEATURE_FIELDS
-    }
-    attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
-
-    # Predict
-    # Predict
-    model.eval()
-    with torch.no_grad():
-        prediction = model.predict(field_inputs, attention_mask)
-        # Check pragmatic first (class 1 is pragmatic)
-        is_pragmatic = prediction.formality_pragmatic_probs[0][1].item() > 0.5
-        f_val = float(prediction.formality_value[0].item())
-
-    if not is_pragmatic:
-        return FormalityLevel.UNPRAGMATIC_FORMALITY
-
-    # Bucket continuous value to discrete level
-    # 1.0=VF, 0.5=F, 0.0=N, -0.5=C, -1.0=VC
-    if f_val >= 0.75:
-        return FormalityLevel.VERY_FORMAL
-    elif f_val >= 0.25:
-        return FormalityLevel.FORMAL
-    elif f_val >= -0.25:
-        return FormalityLevel.NEUTRAL
-    elif f_val >= -0.75:
-        return FormalityLevel.CASUAL
-    else:
-        return FormalityLevel.VERY_CASUAL
-
-
-
-
-
-
-def style(kotogram: str) -> Tuple[FormalityLevel, Optional[float], Set[RegisterLevel], bool]:
-    """Analyze a Japanese sentence and return formality, gender, register, and grammaticality.
-
-    This is more efficient than calling formality(), gender(), register(), and grammaticality()
-    separately, as it only runs inference once.
-
-    Args:
-        kotogram: Kotogram compact sentence representation containing encoded
-                 linguistic information with POS tags and conjugation forms.
-
-    Returns:
-        Tuple of (FormalityLevel, Optional[float], Set[RegisterLevel], is_grammatic) for the sentence.
-        Gender is float [-1, 1] or None if unpragmatic.
-
-    Examples:
-        >>> # Formal, neutral sentence: 食べます (I eat - polite)
-        >>> kotogram1 = "⌈ˢ食べᵖv:e-ichidan-ba:conjunctive⌉⌈ˢますᵖauxv-masu:terminal⌉"
-        >>> style(kotogram1)  # doctest: +SKIP
-        (<FormalityLevel.FORMAL: 'formal'>, <GenderLevel.NEUTRAL: 'neutral'>, <RegisterLevel.NEUTRAL: 'neutral'>, True)
-    """
-    from kotogram.validation import ensure_string
-    ensure_string(kotogram, "kotogram")
-
-    # Use the trained neural model for prediction (single inference for all)
     import torch
     from kotogram.model import FEATURE_FIELDS, REGISTER_ID_TO_LABEL
 
@@ -191,16 +128,15 @@ def style(kotogram: str) -> Tuple[FormalityLevel, Optional[float], Set[RegisterL
     attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
 
     # Predict
-    # Predict
     model.eval()
     with torch.no_grad():
         prediction = model.predict(field_inputs, attention_mask)
-        
-        # Formality Logic
-        is_f_pragmatic = prediction.formality_pragmatic_probs[0][1].item() > 0.5
+
+        # 1. Formality
         f_val = float(prediction.formality_value[0].item())
-        
-        if not is_f_pragmatic:
+        f_is_pragmatic = prediction.formality_pragmatic_probs[0][1].item() > 0.5
+
+        if not f_is_pragmatic:
             formality_res = FormalityLevel.UNPRAGMATIC_FORMALITY
         elif f_val >= 0.75:
             formality_res = FormalityLevel.VERY_FORMAL
@@ -213,198 +149,48 @@ def style(kotogram: str) -> Tuple[FormalityLevel, Optional[float], Set[RegisterL
         else:
             formality_res = FormalityLevel.VERY_CASUAL
 
-        gender_value = float(prediction.gender_value[0].item())
-        gender_prag_idx = int(prediction.gender_pragmatic_probs[0].argmax().item())
-        grammaticality_idx = int(prediction.grammaticality_probs[0].argmax().item())
+        # 2. Gender
+        g_val = float(prediction.gender_value[0].item())
+        g_is_pragmatic = prediction.gender_pragmatic_probs[0][1].item() > 0.5
 
-    is_grammatic = grammaticality_idx == 1  # 1 = grammatic, 0 = agrammatic
-    
-    # Process register probabilities (multi-label)
-    detected_registers = set()
-    register_probs_list = prediction.register_probs[0].tolist()
-    threshold = 0.5
-    
-    for i, prob in enumerate(register_probs_list):
-        if prob > threshold:
-            label = REGISTER_ID_TO_LABEL.get(i)
+        if not g_is_pragmatic:
+            gender_res = GenderLevel.UNPRAGMATIC_GENDER
+        elif g_val <= -0.5:
+            gender_res = GenderLevel.MASCULINE
+        elif g_val >= 0.5:
+            gender_res = GenderLevel.FEMININE
+        else:
+            gender_res = GenderLevel.NEUTRAL
+
+        # 3. Register
+        # All scores
+        all_register_scores = {}
+        for reg_id, score in enumerate(prediction.register_probs[0]):
+            label = REGISTER_ID_TO_LABEL.get(reg_id)
             if label:
-                detected_registers.add(label)
-                
-    if not detected_registers:
-        detected_registers.add(RegisterLevel.NEUTRAL)
+                all_register_scores[label] = float(score.item())
 
-    # Determine gender result
-    gender_res: Optional[float] = None
-    if gender_prag_idx == 1: # Pragmatic
-        gender_res = gender_value
+        # Detected registers (score > 0.5)
+        detected_registers = {
+            label for label, score in all_register_scores.items() if score > 0.5
+        }
+        if not detected_registers:
+            detected_registers.add(RegisterLevel.NEUTRAL)
 
-    return (
-        formality_res,
-        gender_res,
-        detected_registers,
-        is_grammatic,
+        # 4. Grammaticality
+        gram_score = float(prediction.grammaticality_probs[0][1].item())
+        is_grammatic = gram_score > 0.5
+
+    return GrammarAnalysis(
+        kotogram=kotogram,
+        formality=formality_res,
+        formality_score=f_val,
+        formality_is_pragmatic=f_is_pragmatic,
+        gender=gender_res,
+        gender_score=g_val,
+        gender_is_pragmatic=g_is_pragmatic,
+        registers=detected_registers,
+        register_scores=all_register_scores,
+        is_grammatic=is_grammatic,
+        grammaticality_score=gram_score,
     )
-
-
-def register(kotogram: str) -> Set[RegisterLevel]:
-    """Analyze a Japanese sentence and return its specific register/dialect.
-
-    Args:
-        kotogram: Kotogram compact sentence representation.
-
-    """
-    from kotogram.validation import ensure_string
-    ensure_string(kotogram, "kotogram")
-
-    # Use the trained neural model for prediction
-    import torch
-    from kotogram.model import FEATURE_FIELDS, REGISTER_ID_TO_LABEL
-
-    model, tokenizer = _load_style_model()
-
-    # Encode the kotogram
-    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
-
-    # Create batch tensors
-    field_inputs = {
-        f'input_ids_{field}': torch.tensor([feature_ids[field]], dtype=torch.long)
-        for field in FEATURE_FIELDS
-    }
-    attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
-
-    # Predict
-    # Predict
-    model.eval()
-    with torch.no_grad():
-        prediction = model.predict(field_inputs, attention_mask)
-    
-    # Process register probabilities (multi-label)
-    detected_registers = set()
-    register_probs_list = prediction.register_probs[0].tolist()
-    threshold = 0.5
-    
-    for i, prob in enumerate(register_probs_list):
-        if prob > threshold:
-            label = REGISTER_ID_TO_LABEL.get(i)
-            if label:
-                detected_registers.add(label)
-
-    if not detected_registers:
-        detected_registers.add(RegisterLevel.NEUTRAL)
-
-    return detected_registers
-
-
-def gender(kotogram: str) -> Optional[float]:
-    """Analyze a Japanese sentence and return its gender-associated speech level.
-
-    This function examines the linguistic features encoded in a kotogram
-    representation to determine the gender association of the speech style.
-
-    Args:
-        kotogram: Kotogram compact sentence representation containing encoded
-                 linguistic information with POS tags and conjugation forms.
-
-    Returns:
-        Float value between -1.0 (Masculine) and 1.0 (Feminine), or None if
-        the sentence is unpragmatic (awkward gender markers).
-        0.0 represents Neutral.
-
-    Examples:
-        >>> # Masculine sentence: 俺が行くぜ (I'll go - masculine)
-        >>> kotogram1 = "⌈ˢ俺ᵖpn⌉⌈ˢがᵖprt⌉⌈ˢ行くᵖv:u-godan-ka:terminal⌉⌈ˢぜᵖprt:sentence_final_particle⌉"
-        >>> gender(kotogram1)  # doctest: +SKIP
-        <GenderLevel.MASCULINE: 'masculine'>
-
-        >>> # Feminine sentence: あたしが行くわ (I'll go - feminine)
-        >>> kotogram2 = "⌈ˢあたしᵖpn⌉⌈ˢがᵖprt⌉⌈ˢ行くᵖv:u-godan-ka:terminal⌉⌈ˢわᵖprt:sentence_final_particle⌉"
-        >>> gender(kotogram2)  # doctest: +SKIP
-        <GenderLevel.FEMININE: 'feminine'>
-    """
-    from kotogram.validation import ensure_string
-    ensure_string(kotogram, "kotogram")
-
-    # Use the trained neural model for prediction
-    import torch
-    from kotogram.model import FEATURE_FIELDS
-
-    model, tokenizer = _load_style_model()
-
-    # Encode the kotogram
-    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
-
-    # Create batch tensors
-    field_inputs = {
-        f'input_ids_{field}': torch.tensor([feature_ids[field]], dtype=torch.long)
-        for field in FEATURE_FIELDS
-    }
-    attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
-
-    # Predict
-    # Predict
-    model.eval()
-    with torch.no_grad():
-        prediction = model.predict(field_inputs, attention_mask)
-        
-        # Check pragmatic probability (index 1 is pragmatic, 0 is unpragmatic)
-        is_pragmatic = prediction.gender_pragmatic_probs[0][1].item() > 0.5
-        
-        if not is_pragmatic:
-            return None
-            
-        # Return value describing gender (-1=M, 0=N, 1=F)
-        return float(prediction.gender_value[0].item())
-
-def grammaticality(kotogram: str) -> bool:
-    """Analyze a Japanese sentence and return whether it is grammatically correct.
-
-    This function uses a trained neural model to predict whether a sentence is
-    grammatically correct.
-
-    Args:
-        kotogram: Kotogram compact sentence representation containing encoded
-                 linguistic information with POS tags and conjugation forms.
-
-    Returns:
-        True if the sentence is predicted to be grammatically correct,
-        False if predicted to be agrammatic (has grammatical errors).
-
-    Examples:
-        >>> # A grammatically correct sentence
-        >>> kotogram1 = "⌈ˢ食べᵖv:e-ichidan-ba:conjunctive⌉⌈ˢますᵖauxv-masu:terminal⌉"
-        >>> grammaticality(kotogram1)  # doctest: +SKIP
-        True
-
-        >>> # An agrammatic sentence (detected by model)
-        >>> kotogram2 = "⌈ˢ食べᵖv:e-ichidan-ba:terminal⌉⌈ˢますᵖauxv-masu:terminal⌉"  # invalid
-        >>> grammaticality(kotogram2)  # doctest: +SKIP
-        False
-    """
-    from kotogram.validation import ensure_string
-    ensure_string(kotogram, "kotogram")
-
-    # Use the trained neural model for prediction
-    import torch
-    from kotogram.model import FEATURE_FIELDS
-
-    model, tokenizer = _load_style_model()
-
-    # Encode the kotogram
-    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
-
-    # Create batch tensors
-    field_inputs = {
-        f'input_ids_{field}': torch.tensor([feature_ids[field]], dtype=torch.long)
-        for field in FEATURE_FIELDS
-    }
-    attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
-
-    # Predict
-    # Predict
-    model.eval()
-    with torch.no_grad():
-        prediction = model.predict(field_inputs, attention_mask)
-        grammaticality_idx = int(prediction.grammaticality_probs[0].argmax().item())
-
-    # 1 = grammatic, 0 = agrammatic
-    return grammaticality_idx == 1
