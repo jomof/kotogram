@@ -14,7 +14,9 @@ class TestDataFlow(unittest.TestCase):
                 'pos_detail2': [1, 2, 3],
                 'conjugated_type': [1, 2, 3],
                 'conjugated_form': [1, 2, 3],
-                'lemma': [1, 2, 3]
+                'lemma': [1, 2, 3],
+                'base_orth': [1, 2, 3],
+                'reading': [1, 2, 3]
             },
             formality_label=0,
             gender_value=0.0,
@@ -32,7 +34,9 @@ class TestDataFlow(unittest.TestCase):
                 'pos_detail2': [4, 5],
                 'conjugated_type': [4, 5],
                 'conjugated_form': [4, 5],
-                'lemma': [4, 5]
+                'lemma': [4, 5],
+                'base_orth': [4, 5],
+                'reading': [4, 5]
             },
             formality_label=1,
             gender_value=1.0,
@@ -87,7 +91,10 @@ class TestDataFlow(unittest.TestCase):
                 'pos_detail2': [1],
                 'conjugated_type': [1],
                 'conjugated_form': [1],
-                'lemma': [1]
+                'conjugated_form': [1],
+                'lemma': [1],
+                'base_orth': [1],
+                'reading': [1]
             },
             formality_label=0,
             gender_value=0.0,

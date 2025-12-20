@@ -21,7 +21,7 @@ class TestGenderLearning(unittest.TestCase):
         batch_size = 4
         # Default model uses all features: surface, pos, pos_detail1, pos_detail2, conjugated_type, conjugated_form, lemma
         field_inputs = {}
-        for field in ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma']:
+        for field in ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma', 'base_orth', 'reading']:
              field_inputs[f'input_ids_{field}'] = torch.randint(0, 100, (batch_size, 10))
         attention_mask = torch.ones((batch_size, 10))
         

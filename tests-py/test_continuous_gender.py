@@ -73,9 +73,9 @@ class TestContinuousGender(unittest.TestCase):
         
         # Check forward pass shapes
         bs = 2
-        # FEATURE_FIELDS: ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma']
+        # FEATURE_FIELDS: ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma', 'base_orth', 'reading']
         inputs = {}
-        for field in ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma']:
+        for field in ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma', 'base_orth', 'reading']:
             inputs[f'input_ids_{field}'] = torch.randint(0, 10, (bs, 10))
             
         mask = torch.ones(bs, 10)

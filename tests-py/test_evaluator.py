@@ -56,6 +56,8 @@ class TestEvaluator(unittest.TestCase):
             'input_ids_pos_detail2': torch.tensor([[1, 2], [3, 4]]),
             'input_ids_conjugated_type': torch.tensor([[1, 2], [3, 4]]),
             'input_ids_conjugated_form': torch.tensor([[1, 2], [3, 4]]),
+            'input_ids_base_orth': torch.tensor([[1, 2], [3, 4]]),
+            'input_ids_reading': torch.tensor([[1, 2], [3, 4]]),
             'attention_mask': torch.tensor([[1, 1], [1, 1]]),
             
             'formality_labels': torch.tensor([0, 1]),
