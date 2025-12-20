@@ -12,8 +12,8 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from scripts.rule_based_analysis import analyze_register
-from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+from scripts.rule_based_analysis import analyze_register  # noqa: E402
+from kotogram.sudachi_japanese_parser import SudachiJapaneseParser  # noqa: E402
 
 # Initialize parser once
 _parser = SudachiJapaneseParser()

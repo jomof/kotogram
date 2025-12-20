@@ -358,7 +358,8 @@ def main():
     num_workers = args.num_workers or max(1, mp.cpu_count() - 1)
     
     def process_file_group(patterns, gram_label, output_path=None):
-        if not patterns: return [], 0
+        if not patterns:
+            return [], 0
         
         file_list = []
         if isinstance(patterns, str):
@@ -378,7 +379,8 @@ def main():
             with open(f_path, 'r', encoding='utf-8') as f:
                 reader = csv.reader(f, delimiter='\t')
                 for row in reader:
-                    if len(row) < 3: continue
+                    if len(row) < 3:
+                        continue
                     sentence = row[2]
                     if sentence not in seen:
                         seen.add(sentence)

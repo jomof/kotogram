@@ -1,5 +1,12 @@
 import torch
 import unittest
+import sys
+from pathlib import Path
+
+# Add project root to path
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
+
 from scripts.train_style import collate_fn, Sample, NUM_REGISTER_CLASSES
 
 class TestDataFlow(unittest.TestCase):

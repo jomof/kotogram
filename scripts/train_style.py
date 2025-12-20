@@ -68,10 +68,6 @@ from typing import Dict, List, Optional, Tuple, Any, cast
 
 import yaml
 
-# Start timing immediately
-script_start_time = time.time()
-timings = {}
-
 import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data.distributed import DistributedSampler
@@ -84,14 +80,20 @@ from torch.utils.data import Dataset, DataLoader
 from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
+# Start timing immediately
+script_start_time = time.time()
+timings = {}
 
 
 
-from kotogram.kotogram import split_kotogram
-from kotogram.analysis import FormalityLevel
-from kotogram.kotogram import extract_token_features
 
-from kotogram.japanese_parser import JapaneseParser
+
+
+from kotogram.kotogram import split_kotogram  # noqa: E402
+from kotogram.analysis import FormalityLevel  # noqa: E402
+from kotogram.kotogram import extract_token_features  # noqa: E402
+
+from kotogram.japanese_parser import JapaneseParser  # noqa: E402
 
 # Add project root to Python path for imports
 # This ensures 'scripts' module can be found when running with torchrun
@@ -99,15 +101,15 @@ project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-from kotogram.model import (
+from kotogram.model import (  # noqa: E402
     StyleClassifier, Tokenizer, ModelConfig,
     FEATURE_FIELDS, ALL_FEATURE_FIELDS, set_excluded_features,
     NUM_FORMALITY_CLASSES, NUM_GENDER_PRAGMATIC_CLASSES, NUM_GRAMMATICALITY_CLASSES, NUM_REGISTER_CLASSES,
     FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL,
     GENDER_LABEL_TO_ID, load_model, Sample
-)
+)  # noqa: E402
 
-from scripts.cache import get_kotogram_cache, ProcessedSample
+from scripts.cache import get_kotogram_cache, ProcessedSample  # noqa: E402
 
 GENDER_LOSS_WEIGHT = 10.0
 
@@ -1465,7 +1467,7 @@ class MLMTrainer:
 
             if verbose and is_main_process():
                 print(f"  MLM Loss: {mlm_loss:.4f}")
-                field_str = ", ".join(f"{f}={l:.3f}" for f, l in field_loss_dict.items())
+                field_str = ", ".join(f"{f}={loss:.3f}" for f, loss in field_loss_dict.items())
                 print(f"  Field losses: {field_str}")
 
         return self.history
@@ -1883,14 +1885,14 @@ class Trainer:
             #  total_register_loss, register_correct, total_register_samples]
             # + flattened confusion matrices
             
-            formality_correct = sum(p == l for p, l in zip(all_formality_preds, all_formality_labels))
-            gender_prag_correct = sum(p == l for p, l in zip(all_gender_prag_preds, all_gender_prag_labels))
-            gender_val_sq_error = sum((p - l) ** 2 for p, l in zip(all_gender_val_preds, all_gender_val_labels))
+            formality_correct = sum(p == label for p, label in zip(all_formality_preds, all_formality_labels))
+            gender_prag_correct = sum(p == label for p, label in zip(all_gender_prag_preds, all_gender_prag_labels))
+            gender_val_sq_error = sum((p - label) ** 2 for p, label in zip(all_gender_val_preds, all_gender_val_labels))
             
-            grammaticality_correct = sum(p == l for p, l in zip(all_grammaticality_preds, all_grammaticality_labels))
+            grammaticality_correct = sum(p == label for p, label in zip(all_grammaticality_preds, all_grammaticality_labels))
             register_correct = sum(
-                all(p[i] == l[i] for i in range(len(p))) 
-                for p, l in zip(all_register_preds, all_register_labels)
+                all(p[i] == label[i] for i in range(len(p))) 
+                for p, label in zip(all_register_preds, all_register_labels)
             ) # Exact match for sets (lists of 0/1)
             
 
@@ -1908,10 +1910,10 @@ class Trainer:
             
         else:
             # Local calculation
-            formality_acc = sum(p == l for p, l in zip(all_formality_preds, all_formality_labels)) / len(all_formality_preds) if all_formality_preds else 0
-            gender_prag_acc = sum(p == l for p, l in zip(all_gender_prag_preds, all_gender_prag_labels)) / len(all_gender_prag_preds) if all_gender_prag_preds else 0
-            gender_mse = sum((p - l) ** 2 for p, l in zip(all_gender_val_preds, all_gender_val_labels)) / len(all_gender_val_preds) if all_gender_val_preds else 0
-            grammaticality_acc = sum(p == l for p, l in zip(all_grammaticality_preds, all_grammaticality_labels)) / len(all_grammaticality_preds) if all_grammaticality_preds else 0
+            formality_acc = sum(p == label for p, label in zip(all_formality_preds, all_formality_labels)) / len(all_formality_preds) if all_formality_preds else 0
+            gender_prag_acc = sum(p == label for p, label in zip(all_gender_prag_preds, all_gender_prag_labels)) / len(all_gender_prag_preds) if all_gender_prag_preds else 0
+            gender_mse = sum((p - label) ** 2 for p, label in zip(all_gender_val_preds, all_gender_val_labels)) / len(all_gender_val_preds) if all_gender_val_preds else 0
+            grammaticality_acc = sum(p == label for p, label in zip(all_grammaticality_preds, all_grammaticality_labels)) / len(all_grammaticality_preds) if all_grammaticality_preds else 0
             register_acc = sum([1 for idx in range(len(all_register_preds)) if all(all_register_preds[idx][i] == all_register_labels[idx][i] for i in range(len(all_register_preds[idx])))]) / len(all_register_preds) if all_register_preds else 0
 
         avg_loss = total_loss / n_batches if n_batches > 0 else 0
@@ -2461,8 +2463,10 @@ if __name__ == "__main__":
                     print("  Restored flag: --fp8")
 
             # Ensure they are boolean False if still None (and not restored to True)
-            if args.fp16 is None: args.fp16 = False
-            if args.fp8 is None: args.fp8 = False
+            if args.fp16 is None:
+                args.fp16 = False
+            if args.fp8 is None:
+                args.fp8 = False
         else:
 
             print(f"No checkpoint found at {checkpoint_path}, starting fresh training")

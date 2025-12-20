@@ -23,11 +23,12 @@ from kotogram.model import (
     load_model
 )
 from scripts.train_style import StyleDataset, collate_fn
+from kotogram.evaluator import Evaluator
 
 console = Console()
 
 
-from kotogram.evaluator import Evaluator
+
 
 def calculate_metrics(model, loader, device):
     """Run inference using Evaluator."""
@@ -61,26 +62,26 @@ def generate_reports(data, save_dir):
     summary.add_column("Accuracy/MSE")
     
     # Formality
-    f_acc = sum(p == l for p, l in zip(data['formality_preds'], data['formality_labels'])) / len(data['formality_preds'])
+    f_acc = sum(p == label for p, label in zip(data['formality_preds'], data['formality_labels'])) / len(data['formality_preds'])
     summary.add_row("Formality Accuracy", f"{f_acc:.4%}")
     
     # Gender
-    g_prag_acc = sum(p == l for p, l in zip(data['gender_prag_preds'], data['gender_prag_labels'])) / len(data['gender_prag_preds'])
+    g_prag_acc = sum(p == label for p, label in zip(data['gender_prag_preds'], data['gender_prag_labels'])) / len(data['gender_prag_preds'])
     summary.add_row("Gender Pragmatic Accuracy", f"{g_prag_acc:.4%}")
     
-    prag_mask = [l == 1 for l in data['gender_prag_labels']]
+    prag_mask = [label == 1 for label in data['gender_prag_labels']]
     prag_preds = [p for p, m in zip(data['gender_val_preds'], prag_mask) if m]
-    prag_labels = [l for l, m in zip(data['gender_val_labels'], prag_mask) if m]
+    prag_labels = [label for label, m in zip(data['gender_val_labels'], prag_mask) if m]
     if prag_labels:
-        g_mse = sum((p - l) ** 2 for p, l in zip(prag_preds, prag_labels)) / len(prag_labels)
+        g_mse = sum((p - label) ** 2 for p, label in zip(prag_preds, prag_labels)) / len(prag_labels)
         summary.add_row("Gender Value MSE (Pragmatic samples)", f"{g_mse:.4f}")
     
     # Grammaticality
-    gram_acc = sum(p == l for p, l in zip(data['grammaticality_preds'], data['grammaticality_labels'])) / len(data['grammaticality_preds'])
+    gram_acc = sum(p == label for p, label in zip(data['grammaticality_preds'], data['grammaticality_labels'])) / len(data['grammaticality_preds'])
     summary.add_row("Grammaticality Accuracy", f"{gram_acc:.4%}")
     
     # Register (Exact Match)
-    reg_acc = sum(all(p[i] == l[i] for i in range(len(p))) for p, l in zip(data['register_preds'], data['register_labels'])) / len(data['register_preds'])
+    reg_acc = sum(all(p[i] == label[i] for i in range(len(p))) for p, label in zip(data['register_preds'], data['register_labels'])) / len(data['register_preds'])
     summary.add_row("Register Exact Match Accuracy", f"{reg_acc:.4%}")
     
     console.print(Panel(summary, expand=False))
@@ -89,22 +90,22 @@ def generate_reports(data, save_dir):
     # Formality
     f_labels = [FORMALITY_ID_TO_LABEL[i].value for i in range(NUM_FORMALITY_CLASSES)]
     f_confusion = [[0] * NUM_FORMALITY_CLASSES for _ in range(NUM_FORMALITY_CLASSES)]
-    for p, l in zip(data['formality_preds'], data['formality_labels']):
-        f_confusion[l][p] += 1
+    for p, label in zip(data['formality_preds'], data['formality_labels']):
+        f_confusion[label][p] += 1
     print_confusion_matrix("Formality Confusion Matrix", f_labels, f_confusion)
     
     # Gender Pragmatic
     g_labels = ["Unpragmatic", "Pragmatic"]
     g_confusion = [[0] * 2 for _ in range(2)]
-    for p, l in zip(data['gender_prag_preds'], data['gender_prag_labels']):
-        g_confusion[l][p] += 1
+    for p, label in zip(data['gender_prag_preds'], data['gender_prag_labels']):
+        g_confusion[label][p] += 1
     print_confusion_matrix("Gender Pragmatic Confusion Matrix", g_labels, g_confusion)
     
     # Grammaticality
     gram_labels = ["Agrammatic", "Grammatic"]
     gram_confusion = [[0] * 2 for _ in range(2)]
-    for p, l in zip(data['grammaticality_preds'], data['grammaticality_labels']):
-        gram_confusion[l][p] += 1
+    for p, label in zip(data['grammaticality_preds'], data['grammaticality_labels']):
+        gram_confusion[label][p] += 1
     print_confusion_matrix("Grammaticality Confusion Matrix", gram_labels, gram_confusion)
 
     # Register Report
@@ -117,9 +118,9 @@ def generate_reports(data, save_dir):
     
     for i in range(NUM_REGISTER_CLASSES):
         label = REGISTER_ID_TO_LABEL[i].value
-        tp = sum(1 for p, l in zip(data['register_preds'], data['register_labels']) if p[i] == 1 and l[i] == 1)
-        fp = sum(1 for p, l in zip(data['register_preds'], data['register_labels']) if p[i] == 1 and l[i] == 0)
-        fn = sum(1 for p, l in zip(data['register_preds'], data['register_labels']) if p[i] == 0 and l[i] == 1)
+        tp = sum(1 for p, label in zip(data['register_preds'], data['register_labels']) if p[i] == 1 and label[i] == 1)
+        fp = sum(1 for p, label in zip(data['register_preds'], data['register_labels']) if p[i] == 1 and label[i] == 0)
+        fn = sum(1 for p, label in zip(data['register_preds'], data['register_labels']) if p[i] == 0 and label[i] == 1)
         
         precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
         recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
@@ -246,7 +247,8 @@ def main():
     grammaticality_labels = []
 
     def add_file(path, force_label=None):
-        if not path: return
+        if not path:
+            return
         data_files.append(path)
         if force_label is not None:
              grammaticality_labels.append(force_label)
