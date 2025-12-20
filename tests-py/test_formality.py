@@ -17,14 +17,14 @@ class TestFormalityModel(unittest.TestCase):
             self.skipTest(f"Sudachi not available: {e}")
 
         # Mock the model loader for tests
-        from kotogram.model import Tokenizer, StyleClassifier
+        from kotogram.model import Tokenizer, StyleClassifier, ModelConfig
 
         # Create dummy tokenizer
         self.tokenizer = Tokenizer()
         self.tokenizer._frozen = True
         
         # Create dummy model
-        config = self.tokenizer.get_model_config()
+        config = ModelConfig(vocab_sizes=self.tokenizer.get_vocab_sizes())
         self.model = StyleClassifier(config)
         self.model.eval()
 

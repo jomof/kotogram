@@ -130,7 +130,9 @@ class TestExtractTokenFeaturesSudachi(unittest.TestCase):
         self.assertEqual(features.pos_detail2, '')
         self.assertEqual(features.conjugated_type, '')
         self.assertEqual(features.conjugated_form, '')
+        self.assertEqual(features.conjugated_form, '')
         self.assertEqual(features.base_orth, '')
+        self.assertEqual(features.lemma, '')
         self.assertEqual(features.lemma, '')
         self.assertEqual(features.reading, '')
 

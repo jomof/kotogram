@@ -191,7 +191,7 @@ def style(kotogram: str) -> Tuple[FormalityLevel, Optional[float], Set[RegisterL
         gender_value = float(gender_val[0].item())
         gender_prag_idx = int(gender_prag_probs[0].argmax().item())
         grammaticality_idx = int(grammaticality_probs[0].argmax().item())
-        register_idx = int(register_probs[0].argmax().item())
+
 
     # Map model output indices to enum values
     formality_map = {
@@ -202,12 +202,7 @@ def style(kotogram: str) -> Tuple[FormalityLevel, Optional[float], Set[RegisterL
         4: FormalityLevel.VERY_CASUAL,
         5: FormalityLevel.UNPRAGMATIC_FORMALITY,
     }
-    gender_map = {
-        0: GenderLevel.MASCULINE,
-        1: GenderLevel.FEMININE,
-        2: GenderLevel.NEUTRAL,
-        3: GenderLevel.UNPRAGMATIC_GENDER,
-    }
+
     is_grammatic = grammaticality_idx == 1  # 1 = grammatic, 0 = agrammatic
     
     # Process register probabilities (multi-label)
