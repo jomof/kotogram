@@ -24,6 +24,21 @@ Functions:
 
 import re
 from typing import List, Dict
+from dataclasses import dataclass, field
+
+
+@dataclass
+class TokenFeatures:
+    """Linguistic features extracted from a kotogram token."""
+    surface: str = ''
+    pos: str = ''
+    pos_detail1: str = ''
+    pos_detail2: str = ''
+    conjugated_type: str = ''
+    conjugated_form: str = ''
+    base_orth: str = ''
+    lemma: str = ''
+    reading: str = ''
 
 
 def kotogram_to_japanese(
@@ -233,7 +248,7 @@ def split_kotogram(kotogram: str) -> List[str]:
     return re.findall(r'⌈[^⌉]*⌉', kotogram)
 
 
-def extract_token_features(token: str) -> Dict[str, str]:
+def extract_token_features(token: str) -> TokenFeatures:
     """Extract linguistic features from a single kotogram token.
 
     Parses a kotogram token to extract all encoded linguistic information including
@@ -259,7 +274,7 @@ def extract_token_features(token: str) -> Dict[str, str]:
         token: A single kotogram token string (⌈...⌉)
 
     Returns:
-        Dictionary with extracted features:
+        TokenFeatures object with extracted features:
         - surface: The surface form of the token (actual text)
         - pos: Part of speech main category (e.g., 'v', 'n', 'auxv', 'prt')
         - pos_detail1: First POS detail level (e.g., 'general', 'common_noun')
@@ -274,27 +289,27 @@ def extract_token_features(token: str) -> Dict[str, str]:
         >>> # Extract features from a verb token
         >>> token = "⌈ˢ食べᵖv:general:e-ichidan-ba:conjunctiveᵇ食べるᵈ食べるʳタベ⌉"
         >>> features = extract_token_features(token)
-        >>> features['pos']
+        >>> features.pos
         'v'
-        >>> features['conjugated_type']
+        >>> features.conjugated_type
         'e-ichidan-ba'
-        >>> features['conjugated_form']
+        >>> features.conjugated_form
         'conjunctive'
 
         >>> # Extract features from an auxiliary verb (note: empty fields omitted)
         >>> token = "⌈ˢますᵖauxv:auxv-masu:terminalᵇますʳマス⌉"
         >>> features = extract_token_features(token)
-        >>> features['pos']
+        >>> features.pos
         'auxv'
-        >>> features['conjugated_type']
+        >>> features.conjugated_type
         'auxv-masu'
-        >>> features['conjugated_form']
+        >>> features.conjugated_form
         'terminal'
-        >>> features['pos_detail1']  # Empty because parser omitted it
+        >>> features.pos_detail1  # Empty because parser omitted it
         ''
 
     Note:
-        All returned dictionary values are strings. Fields that are not present
+        All returned attributes are strings. Fields that are not present
         in the token will have empty string values ('').
     """
     from kotogram.validation import ensure_string
@@ -305,22 +320,12 @@ def extract_token_features(token: str) -> Dict[str, str]:
         CONJUGATED_TYPE_MAP, CONJUGATED_FORM_MAP
     )
 
-    feature = {
-        'surface': '',
-        'pos': '',
-        'pos_detail1': '',
-        'pos_detail2': '',
-        'conjugated_type': '',
-        'conjugated_form': '',
-        'base_orth': '',
-        'lemma': '',
-        'reading': ''
-    }
+    feature = TokenFeatures()
 
     # Extract surface form (ˢ...ᵖ)
     surface_match = re.search(r'ˢ(.*?)ᵖ', token, re.DOTALL)
     if surface_match:
-        feature['surface'] = surface_match.group(1)
+        feature.surface = surface_match.group(1)
 
     # Extract POS data (ᵖ...ᵇ|ᵈ|ʳ|⌉)
     pos_match = re.search(r'ᵖ([^⌉ᵇᵈʳ]+)', token)
@@ -329,7 +334,7 @@ def extract_token_features(token: str) -> Dict[str, str]:
         parts = pos_data.split(':')
 
         # Main POS code (always first)
-        feature['pos'] = parts[0] if len(parts) > 0 else ''
+        feature.pos = parts[0] if len(parts) > 0 else ''
 
         # Parse remaining fields semantically by checking which map they belong to
         # The parser skips empty fields, so we can't rely on position alone
@@ -343,45 +348,45 @@ def extract_token_features(token: str) -> Dict[str, str]:
 
             # Check which map this value belongs to
             if value in CONJUGATED_FORM_MAP.values():
-                feature['conjugated_form'] = value
+                feature.conjugated_form = value
             elif value in CONJUGATED_TYPE_MAP.values():
-                feature['conjugated_type'] = value
+                feature.conjugated_type = value
             elif value in POS2_MAP.values():
                 # pos_detail_2 comes after pos_detail_1, so check if we already have pos_detail_1
-                if feature.get('pos_detail1'):
-                    feature['pos_detail2'] = value
+                if feature.pos_detail1:
+                    feature.pos_detail2 = value
                 else:
-                    feature['pos_detail1'] = value
+                    feature.pos_detail1 = value
             elif value in POS1_MAP.values():
                 # pos_detail_1 comes before pos_detail_2
-                if not feature.get('pos_detail1'):
-                    feature['pos_detail1'] = value
+                if not feature.pos_detail1:
+                    feature.pos_detail1 = value
                 else:
-                    feature['pos_detail2'] = value
+                    feature.pos_detail2 = value
             else:
                 # Unknown value - try to assign by position as fallback
-                if not feature.get('pos_detail1'):
-                    feature['pos_detail1'] = value
-                elif not feature.get('pos_detail2'):
-                    feature['pos_detail2'] = value
-                elif not feature.get('conjugated_type'):
-                    feature['conjugated_type'] = value
-                elif not feature.get('conjugated_form'):
-                    feature['conjugated_form'] = value
+                if not feature.pos_detail1:
+                    feature.pos_detail1 = value
+                elif not feature.pos_detail2:
+                    feature.pos_detail2 = value
+                elif not feature.conjugated_type:
+                    feature.conjugated_type = value
+                elif not feature.conjugated_form:
+                    feature.conjugated_form = value
 
     # Extract base orthography (ᵇ...ᵈ|ʳ|⌉)
     base_match = re.search(r'ᵇ([^⌉ᵈʳ]+)', token)
     if base_match:
-        feature['base_orth'] = base_match.group(1)
+        feature.base_orth = base_match.group(1)
 
     # Extract lemma/dictionary form (ᵈ...ʳ|⌉)
     lemma_match = re.search(r'ᵈ([^⌉ʳ]+)', token)
     if lemma_match:
-        feature['lemma'] = lemma_match.group(1)
+        feature.lemma = lemma_match.group(1)
 
     # Extract reading (ʳ...⌉)
     reading_match = re.search(r'ʳ([^⌉]+)', token)
     if reading_match:
-        feature['reading'] = reading_match.group(1)
+        feature.reading = reading_match.group(1)
 
     return feature

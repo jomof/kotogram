@@ -207,7 +207,7 @@ class Tokenizer:
         for token in tokens:
             features = extract_token_features(token)
             # Only keep the fields we use
-            filtered = {field: features.get(field, '') for field in FEATURE_FIELDS}
+            filtered = {field: getattr(features, field) for field in FEATURE_FIELDS}
             features_list.append(filtered)
 
         return features_list
