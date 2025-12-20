@@ -84,8 +84,7 @@ def validate_sentences(
                     })
                 else:
                     print(f"Unexpected error format: {error_msg}")
-            except Exception as e:
-                print(f"Unexpected error processing sentence {sentence_id}: {e}")
+
 
     # Print summary
     print(f"\n{'='*80}")

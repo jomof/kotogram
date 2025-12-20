@@ -776,26 +776,23 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             os.makedirs(os.path.dirname(timing_path), exist_ok=True)
             
             if yaml:
-                try:
-                    current_timing = {}
-                    if os.path.exists(timing_path):
-                        with open(timing_path, 'r') as f:
-                            current_timing = yaml.safe_load(f) or {}
-                    
-                    current_timing.update({
-                        'preprocessing_phase1_io': phase1_duration,
-                        'preprocessing_phase2_parsing': phase2_duration,
-                        'preprocessing_phase3a_token_collection': phase3a_duration,
-                        'preprocessing_phase3b_encoding': phase3b_duration,
-                        'preprocessing_total': total_preprocessing_duration
-                    })
-                    
-                    with open(timing_path, 'w') as f:
-                        yaml.dump(current_timing, f, default_flow_style=False)
-                    if verbose:
-                        print(f"Detailed preprocessing timing saved to {timing_path}")
-                except Exception as e:
-                    print(f"Error updating timing.yml: {e}")
+                current_timing = {}
+                if os.path.exists(timing_path):
+                    with open(timing_path, 'r') as f:
+                        current_timing = yaml.safe_load(f) or {}
+                
+                current_timing.update({
+                    'preprocessing_phase1_io': phase1_duration,
+                    'preprocessing_phase2_parsing': phase2_duration,
+                    'preprocessing_phase3a_token_collection': phase3a_duration,
+                    'preprocessing_phase3b_encoding': phase3b_duration,
+                    'preprocessing_total': total_preprocessing_duration
+                })
+                
+                with open(timing_path, 'w') as f:
+                    yaml.dump(current_timing, f, default_flow_style=False)
+                if verbose:
+                    print(f"Detailed preprocessing timing saved to {timing_path}")
             else:
                  print("PyYAML not installed, skipping timing.yml update")
 
@@ -2529,14 +2526,10 @@ if __name__ == "__main__":
     # Check cache
     files_changed = True
     if os.path.exists(validation_cache_path):
-        try:
-            with open(validation_cache_path, 'r') as f:
-                cached_state = json.load(f)
-            if cached_state == current_state:
-                files_changed = False
-        except Exception as e:
-            if is_main_process():
-                print(f"Warning: Failed to read validation cache: {e}")
+        with open(validation_cache_path, 'r') as f:
+            cached_state = json.load(f)
+        if cached_state == current_state:
+            files_changed = False
 
     if not files_changed:
         if is_main_process():
@@ -2569,12 +2562,9 @@ if __name__ == "__main__":
                 sys.exit(1) # This will kill rank 0. Other ranks will likely timeout or die.
             
             # Save state if successful
-            try:
-                with open(validation_cache_path, 'w') as f:
-                    json.dump(current_state, f)
-                print("Data validation: Passed and cached.")
-            except Exception as e:
-                print(f"Warning: Failed to cache validation state: {e}")
+            with open(validation_cache_path, 'w') as f:
+                json.dump(current_state, f)
+            print("Data validation: Passed and cached.")
         
         # Wait for rank 0 to complete validation
         if torch.distributed.is_available() and torch.distributed.is_initialized():
@@ -2901,21 +2891,18 @@ if __name__ == "__main__":
     # Save timings
     timings['total_startup'] = time.time() - script_start_time
     if is_main_process():
-        try:
-            os.makedirs(args.output, exist_ok=True)
-            timing_path = os.path.join(args.output, "timing.yml")
-            existing_timings = {}
-            if os.path.exists(timing_path):
-                with open(timing_path, "r") as f:
-                    existing_timings = yaml.safe_load(f) or {}
-            
-            existing_timings.update(timings)
-            
-            with open(timing_path, "w") as f:
-                yaml.dump(existing_timings, f)
-            print(f"Startup timings saved to {timing_path}")
-        except Exception as e:
-            print(f"Warning: Failed to save timings: {e}")
+        os.makedirs(args.output, exist_ok=True)
+        timing_path = os.path.join(args.output, "timing.yml")
+        existing_timings = {}
+        if os.path.exists(timing_path):
+            with open(timing_path, "r") as f:
+                existing_timings = yaml.safe_load(f) or {}
+        
+        existing_timings.update(timings)
+        
+        with open(timing_path, "w") as f:
+            yaml.dump(existing_timings, f)
+        print(f"Startup timings saved to {timing_path}")
 
     trainer_config = TrainerConfig(
         epochs=args.epochs,

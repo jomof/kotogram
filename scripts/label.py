@@ -51,18 +51,15 @@ def load_register_overrides():
             
         reg_level = reg_map[reg_str]
         
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                for line in f:
-                    parts = line.strip().split('\t')
-                    if len(parts) < 3:
-                        continue
-                    sentence = parts[2]
-                    if sentence not in overrides:
-                        overrides[sentence] = set()
-                    overrides[sentence].add(reg_level)
-        except Exception as e:
-            console.print(f"[yellow]Warning: Could not load override file {file_path}: {e}[/yellow]")
+        with open(file_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                parts = line.strip().split('\t')
+                if len(parts) < 3:
+                    continue
+                sentence = parts[2]
+                if sentence not in overrides:
+                    overrides[sentence] = set()
+                overrides[sentence].add(reg_level)
 
     # Convert sets to sorted lists
     _REGISTER_OVERRIDES = {k: sorted(list(v), key=lambda x: str(x)) for k, v in overrides.items()}

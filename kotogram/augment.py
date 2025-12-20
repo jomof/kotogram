@@ -525,43 +525,35 @@ class Augmenter:
             
         parser = self.get_parser()
         
-        try:
-            kotogram = parser.japanese_to_kotogram(clean_sentence)
-            tokens_kotogram = split_kotogram(kotogram)
+        kotogram = parser.japanese_to_kotogram(clean_sentence)
+        tokens_kotogram = split_kotogram(kotogram)
+        
+        # Extract features for all tokens
+        # This gives us a Tuple[Token, ...]
+        token_features = []
+        for t in tokens_kotogram:
+            f = extract_token_features(t)
+            # Ensure surface is set
+            if not f.surface:
+                 import re
+                 match = re.search(r'ˢ(.*?)ᵖ', t)
+                 f.surface = match.group(1) if match else t
             
-            # Extract features for all tokens
-            # This gives us a Tuple[Token, ...]
-            token_features = []
-            for t in tokens_kotogram:
-                f = extract_token_features(t)
-                # Ensure surface is set
-                if not f.surface:
-                     import re
-                     match = re.search(r'ˢ(.*?)ᵖ', t)
-                     f.surface = match.group(1) if match else t
-                
-                token_features.append(Token(f.surface, asdict(f)))
+            token_features.append(Token(f.surface, asdict(f)))
+        
+        if not token_features:
+             return {clean_sentence}
+        
+        token_tuple = tuple(token_features)
+        augmented_tuples = self.augment_tokens(token_tuple)
+        
+        # Join back surfaces
+        results = set()
+        for aug_tuple in augmented_tuples:
+            surface_list = [get_surface(token) for token in aug_tuple]
+            results.add("".join(surface_list))
             
-            if not token_features:
-                 return {clean_sentence}
-            
-            token_tuple = tuple(token_features)
-            augmented_tuples = self.augment_tokens(token_tuple)
-            
-            # Join back surfaces
-            results = set()
-            for aug_tuple in augmented_tuples:
-                surface_list = [get_surface(token) for token in aug_tuple]
-                results.add("".join(surface_list))
-                
-            return results
-            
-        except Exception as e:
-            # Fallback on parsing error
-            print(f"Error in process_sentence: {e}")
-            import traceback
-            traceback.print_exc()
-            return {clean_sentence}
+        return results
 
     def filter_grammatical(self, sentences: Set[str]) -> List[str]:
         """Filter input sentences using the cached grammaticality model."""
@@ -571,13 +563,8 @@ class Augmenter:
         
         valid_sentences = []
         for sent in sentences:
-            try:
-                k = parser.japanese_to_kotogram(sent)
-                if grammaticality(k):
-                    valid_sentences.append(sent)
-            except Exception:
-                # Be conservative: assume valid if parse fails? Or drop?
-                # Previous logic kept them. Let's keep them to be safe.
+            k = parser.japanese_to_kotogram(sent)
+            if grammaticality(k):
                 valid_sentences.append(sent)
                 
         return sorted(list(set(valid_sentences)))
