@@ -68,12 +68,13 @@ class TestLabelScript(unittest.TestCase):
         self.assertIsNotNone(results["走る。"])
         
         # Check if fields are populated
-        k, f, g_val, g_prag, r_lbls = results["これはテストです。"]
+        k, f, g_val, g_prag, r_lbls, g_lbl = results["これはテストです。"]
         self.assertTrue(len(k) > 0)
         self.assertIsNotNone(f)
         self.assertIsNotNone(g_val)
         self.assertIsNotNone(g_prag)
         self.assertIsNotNone(r_lbls)
+        self.assertIsNotNone(g_lbl)
 
     def test_incremental_labeling(self):
          # First run

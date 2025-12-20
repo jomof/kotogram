@@ -21,6 +21,7 @@ You are reviewing changes from a relatively inexperienced engineer who doesn't n
 - Over-use of mocks in unittests when it would be stronger to use the real code.
 - Explicitly constructing kotogram strings (bad in tests, completely unacceptable in production code). Should use sudachi_japanese_parser.py japanese_to_kotogram.
 - Disables 'ruff' and 'mypy' checks inline. Uses 'if TYPE_CHECKING:' to skirt mypy. But don't complain about cases in files that he hasn't modified.
+- Forgetting to update tests/python_package_baseline.txt when package contents change. Also, the typescript one.
 
 Checks to perform:
 - Run './test.sh'

@@ -461,18 +461,18 @@ def main() -> None:
         # If sentence is in overrides, we MUST force re-labeling to ensure correct register labels
         if sentence in register_overrides:
             if k:
-                unlabeled_rows.append((sentence, k, gram_label))
+                unlabeled_rows.append((sentence, cast(str, k), gram_label))
             else:
                 uncached_rows.append((sentence, sentence_id, gram_label))
             continue
 
         if entry:
-            k, f, g_val, g_prag, r_lbls = entry
+            k, f, g_val, g_prag, r_lbls, _ = entry
             if not args.force_relabel and f is not None and g_val is not None and g_prag is not None and r_lbls is not None:
                 final_results.append(ProcessedSample(
                     sentence=sentence,
-                    sentence_id=sentence_id, # Use actual sentence_id from loop
-                    kotogram=k,
+                    sentence_id=sentence_id,
+                    kotogram=cast(str, k),
                     formality_id=f,
                     gender_value=g_val,
                     gender_pragmatic=g_prag,
@@ -481,7 +481,7 @@ def main() -> None:
                     success=1
                 ))
             else:
-                unlabeled_rows.append((sentence, k, gram_label))
+                unlabeled_rows.append((sentence, cast(str, k), gram_label))
         else:
             uncached_rows.append((sentence, sentence_id, gram_label))
             
@@ -509,7 +509,15 @@ def main() -> None:
                         for res in batch_results:
                             if res.success:
                                 final_results.append(res)
-                                new_entries.append((cast(str, res.sentence), cast(str, res.kotogram), cast(Optional[int], res.formality_id), cast(Optional[float], res.gender_value), cast(Optional[int], res.gender_pragmatic), cast(Optional[List[int]], res.register_ids)))
+                                new_entries.append((
+                                    cast(str, res.sentence), 
+                                    cast(str, res.kotogram), 
+                                    cast(Optional[int], res.formality_id), 
+                                    cast(Optional[float], res.gender_value), 
+                                    cast(Optional[int], res.gender_pragmatic), 
+                                    cast(Optional[List[int]], res.register_ids),
+                                    cast(Optional[int], res.gram_label)
+                                ))
                         progress.update(task, advance=len(batch_results))
                 
                 if new_entries:
@@ -525,7 +533,15 @@ def main() -> None:
                         for res in batch_results:
                             if res.success:
                                 final_results.append(res)
-                                new_entries.append((cast(str, res.sentence), cast(str, res.kotogram), cast(Optional[int], res.formality_id), cast(Optional[float], res.gender_value), cast(Optional[int], res.gender_pragmatic), cast(Optional[List[int]], res.register_ids)))
+                                new_entries.append((
+                                    cast(str, res.sentence), 
+                                    cast(str, res.kotogram), 
+                                    cast(Optional[int], res.formality_id), 
+                                    cast(Optional[float], res.gender_value), 
+                                    cast(Optional[int], res.gender_pragmatic), 
+                                    cast(Optional[List[int]], res.register_ids),
+                                    cast(Optional[int], res.gram_label)
+                                ))
                         progress.update(task, advance=len(batch_results))
                 
                 if new_entries:
@@ -563,7 +579,7 @@ def main() -> None:
             sample_ratio=1.0,
             grammaticality_labels=eval_labels,
             verbose=False,  # Suppress redundant distribution stats
-            cache_dir=os.path.join(args.output_dir, "dataset_cache")
+            cache_dir=".cache/style_dataset"
         )
         
         # Print Phase 3-specific statistics
@@ -576,7 +592,7 @@ def main() -> None:
         console.print(f"    POS tags: {vocab_sizes['pos']}")
         console.print(f"    Conjugation types: {vocab_sizes['conjugated_type']}")
         console.print(f"    Conjugation forms: {vocab_sizes['conjugated_form']}")
-        console.print(f"  Binary cache: [cyan]{os.path.join(args.output_dir, 'dataset_cache')}[/cyan]")
+        console.print("  Binary cache: [cyan].cache/style_dataset[/cyan]")
         console.print("\n[bold green]Preprocessing Phase 3 complete.[/bold green]")
 
 if __name__ == "__main__":
