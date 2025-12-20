@@ -15,7 +15,6 @@ def preprocess(text: str, parser: Any = None) -> Tuple[str, List[str]]:
     Returns:
         Tuple of (preprocessed sentence, list of preprocessing types applied)
     """
-    return text, []
     if not text:
         return text, []
         
