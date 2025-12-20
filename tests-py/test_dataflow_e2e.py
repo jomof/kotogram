@@ -12,7 +12,9 @@ import os
 # Add project root to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from scripts.cache import ProcessedSample, get_kotogram_cache
+from scripts.cache import get_kotogram_cache
+from scripts.style_data import ProcessedSample
+
 
 def populate_test_cache(rows):
     """Helper to populate the cache for testing."""
@@ -161,9 +163,10 @@ def test_step4_encoding_inputs_extraction():
     encoding_inputs = []
     for p in processed_results:
         if p.success:
-            # Re-pack into the 7-tuple expected by legacy/internal logic if needed, 
+            # Re-pack into the tuple expected by legacy/internal logic if needed, 
             # or just use the object. 
-            # Based on actual code in train_style.py:
+            # Based on actual code in train_style.py, we deal with Samples directly now.
+            # But just checking that we can access the ID needed for conversion
             ei = (p.sentence, p.kotogram, p.formality_id, p.gender_value, p.gender_pragmatic, p.register_ids, p.gram_label)
             encoding_inputs.append(ei)
     
@@ -206,7 +209,8 @@ def test_step5_encode_samples_batch():
     
     assert len(samples) == 2
     for sample in samples:
-        assert isinstance(sample.formality_label, int)
+        assert isinstance(sample.formality_value, float)
+        assert isinstance(sample.formality_pragmatic, int)
         assert isinstance(sample.register_labels, list)
     
     print("\n✓ Step 5 PASSED: _encode_samples_batch creates valid Sample objects")
@@ -245,7 +249,8 @@ def test_step6_collate_fn():
     batch = collate_fn(samples, tokenizer.pad_id)
     
     assert 'attention_mask' in batch
-    assert batch['formality_labels'].shape == (3,)
+    assert batch['formality_value'].shape == (3,)
+    assert batch['formality_pragmatic'].shape == (3,)
     assert batch['register_labels'].shape == (3, NUM_REGISTER_CLASSES)
     
     print("\n✓ Step 6 PASSED: collate_fn produces correct tensor shapes and types")

@@ -29,7 +29,7 @@ class TestCrossLanguageBugs(unittest.TestCase):
         because 'っ' at the end of a token should attach to the following particle.
         """
         # Kotogram for "もって" (motte) - verb stem + te particle
-        kotogram = "⌈ˢもっᵖv:general:godan-ta:conjunctive-geminateᵇもつᵈもつʳモッ⌉⌈ˢてᵖprt:conjunctive_particleʳテ⌉"
+        kotogram = self.parser.japanese_to_kotogram("もって")
 
         # With collapse_punctuation=True, small tsu should attach to following て
         collapsed = kotogram_to_japanese(kotogram, spaces=True, collapse_punctuation=True)
@@ -41,7 +41,7 @@ class TestCrossLanguageBugs(unittest.TestCase):
 
     def test_bug1_period_collapses(self):
         """Period 。 should collapse when collapse_punctuation=True."""
-        kotogram = "⌈ˢこんにちはᵖint⌉⌈ˢ。ᵖauxs:period⌉"
+        kotogram = self.parser.japanese_to_kotogram("こんにちは。")
 
         collapsed = kotogram_to_japanese(kotogram, spaces=True, collapse_punctuation=True)
         self.assertEqual(collapsed, "こんにちは。")
@@ -51,7 +51,7 @@ class TestCrossLanguageBugs(unittest.TestCase):
 
     def test_bug1_question_mark_collapses(self):
         """Question mark ？ should collapse when collapse_punctuation=True."""
-        kotogram = "⌈ˢ何ᵖpronʳナン⌉⌈ˢ？ᵖauxs:period⌉"
+        kotogram = self.parser.japanese_to_kotogram("何？")
 
         collapsed = kotogram_to_japanese(kotogram, spaces=True, collapse_punctuation=True)
         self.assertEqual(collapsed, "何？")
@@ -67,17 +67,7 @@ class TestCrossLanguageBugs(unittest.TestCase):
         Sentence: "きみにちょっとしたものをもってきたよ。"
         Meaning: "I brought you a little something."
         """
-        kotogram = (
-            "⌈ˢきみᵖpronʳキミ⌉⌈ˢにᵖprt:case_particleʳニ⌉⌈ˢちょっとᵖadvʳチョット⌉"
-            "⌈ˢしᵖv:non_self_reliant:sa-irregular:conjunctiveᵇするᵈするʳシ⌉"
-            "⌈ˢたᵖauxv:auxv-ta:attributiveʳタ⌉⌈ˢものᵖn:common_noun:suru-possibleʳモノ⌉"
-            "⌈ˢをᵖprt:case_particleʳヲ⌉"
-            "⌈ˢもっᵖv:general:godan-ta:conjunctive-geminateᵇもつᵈもつʳモッ⌉"
-            "⌈ˢてᵖprt:conjunctive_particleʳテ⌉"
-            "⌈ˢきᵖv:non_self_reliant:ka-irregular:conjunctiveᵇくるᵈくるʳキ⌉"
-            "⌈ˢたᵖauxv:auxv-ta:terminalʳタ⌉⌈ˢよᵖprt:sentence_final_particleʳヨ⌉"
-            "⌈ˢ。ᵖauxs:period⌉"
-        )
+        kotogram = self.parser.japanese_to_kotogram("きみにちょっとしたものをもってきたよ。")
 
         # Default: no spaces, punctuation naturally attached
         default_result = kotogram_to_japanese(kotogram)
@@ -97,17 +87,7 @@ class TestCrossLanguageBugs(unittest.TestCase):
 
     def test_integration_sentence_with_furigana_and_compound_verbs(self):
         """Same sentence with furigana mode."""
-        kotogram = (
-            "⌈ˢきみᵖpronʳキミ⌉⌈ˢにᵖprt:case_particleʳニ⌉⌈ˢちょっとᵖadvʳチョット⌉"
-            "⌈ˢしᵖv:non_self_reliant:sa-irregular:conjunctiveᵇするᵈするʳシ⌉"
-            "⌈ˢたᵖauxv:auxv-ta:attributiveʳタ⌉⌈ˢものᵖn:common_noun:suru-possibleʳモノ⌉"
-            "⌈ˢをᵖprt:case_particleʳヲ⌉"
-            "⌈ˢもっᵖv:general:godan-ta:conjunctive-geminateᵇもつᵈもつʳモッ⌉"
-            "⌈ˢてᵖprt:conjunctive_particleʳテ⌉"
-            "⌈ˢきᵖv:non_self_reliant:ka-irregular:conjunctiveᵇくるᵈくるʳキ⌉"
-            "⌈ˢたᵖauxv:auxv-ta:terminalʳタ⌉⌈ˢよᵖprt:sentence_final_particleʳヨ⌉"
-            "⌈ˢ。ᵖauxs:period⌉"
-        )
+        kotogram = self.parser.japanese_to_kotogram("きみにちょっとしたものをもってきたよ。")
 
         result = kotogram_to_japanese(
             kotogram, spaces=True, furigana=True, collapse_punctuation=True

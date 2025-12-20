@@ -9,7 +9,7 @@ import math
 import os
 from collections import Counter
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Tuple, Any, cast
+from typing import Dict, List, Optional, Tuple, Any, cast, NamedTuple
 
 import torch
 import torch.nn as nn
@@ -51,6 +51,7 @@ def set_excluded_features(excluded: List[str]) -> None:
 
 # Number of classes for each task
 NUM_FORMALITY_CLASSES = 6
+NUM_FORMALITY_PRAGMATIC_CLASSES = 2
 NUM_GRAMMATICALITY_CLASSES = 2  # grammatic (1) vs agrammatic (0)
 NUM_GENDER_PRAGMATIC_CLASSES = 2 # pragmatic (1) vs unpragmatic (0)
 
@@ -109,24 +110,14 @@ REGISTER_ID_TO_LABEL = {
     13: RegisterLevel.BUSHI,
 }
 
-
-@dataclass
-class Sample:
-    """Single data sample with features and labels."""
-    feature_ids: Dict[str, List[int]]
-    formality_label: int
-    gender_value: float
-    gender_pragmatic: int
-    register_labels: List[int] = field(default_factory=lambda: [0])
-    grammaticality_label: int = 1
-    original_sentence: str = ""
-    kotogram: str = ""
-
-    @property
-    def seq_len(self) -> int:
-        """Get sequence length."""
-        first = next(iter(self.feature_ids.values()))
-        return len(first)
+class StylePrediction(NamedTuple):
+    """Output prediction from the style classifier."""
+    formality_value: torch.Tensor
+    formality_pragmatic_probs: torch.Tensor
+    gender_value: torch.Tensor
+    gender_pragmatic_probs: torch.Tensor
+    grammaticality_probs: torch.Tensor
+    register_probs: torch.Tensor
 
 class Tokenizer:
     """Tokenizer that extracts morphological features from Kotogram tokens.
@@ -291,7 +282,7 @@ class Tokenizer:
 class ModelConfig:
     """Configuration for StyleClassifier model."""
     vocab_sizes: Dict[str, int]  # Field name -> vocabulary size
-    num_formality_classes: int = NUM_FORMALITY_CLASSES
+    num_formality_pragmatic_classes: int = NUM_FORMALITY_PRAGMATIC_CLASSES
     num_gender_pragmatic_classes: int = NUM_GENDER_PRAGMATIC_CLASSES
     num_grammaticality_classes: int = NUM_GRAMMATICALITY_CLASSES
     num_register_classes: int = NUM_REGISTER_CLASSES
@@ -316,7 +307,7 @@ class ModelConfig:
     def to_dict(self) -> Dict[str, Any]:
         return {
             'vocab_sizes': self.vocab_sizes,
-            'num_formality_classes': self.num_formality_classes,
+            'num_formality_pragmatic_classes': self.num_formality_pragmatic_classes,
             'num_gender_pragmatic_classes': self.num_gender_pragmatic_classes,
             'num_grammaticality_classes': self.num_grammaticality_classes,
             'num_register_classes': self.num_register_classes,
@@ -340,6 +331,8 @@ class ModelConfig:
         # Legacy compatibility: remove old fields
         if 'num_gender_classes' in d:
             d.pop('num_gender_classes')
+        if 'num_formality_classes' in d:
+            d.pop('num_formality_classes')
             
         return cls(**d)
 
@@ -452,11 +445,19 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             encoder_layer, config.num_layers, enable_nested_tensor=False
         )
 
-        self.formality_classifier = nn.Sequential(
+        self.formality_value_head = nn.Sequential(
             nn.Linear(config.d_model, config.hidden_dim),
             nn.GELU(),
             nn.Dropout(config.dropout),
-            nn.Linear(config.hidden_dim, config.num_formality_classes),
+            nn.Linear(config.hidden_dim, 1),
+            nn.Tanh(),
+        )
+
+        self.formality_pragmatic_head = nn.Sequential(
+            nn.Linear(config.d_model, config.hidden_dim),
+            nn.GELU(),
+            nn.Dropout(config.dropout),
+            nn.Linear(config.hidden_dim, config.num_formality_pragmatic_classes),
         )
 
         self.gender_value_head = nn.Sequential(
@@ -534,10 +535,11 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         self,
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
-    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         pooled = self._get_pooled_output(field_inputs, attention_mask)
         return (
-            self.formality_classifier(pooled),
+            self.formality_value_head(pooled),
+            self.formality_pragmatic_head(pooled),
             self.gender_value_head(pooled),
             self.gender_pragmatic_head(pooled),
             self.grammaticality_classifier(pooled),
@@ -548,14 +550,15 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         self,
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
-    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
-        formality_logits, gender_val, gender_prag_logits, grammaticality_logits, register_logits = self(field_inputs, attention_mask)
-        return (
-            F.softmax(formality_logits, dim=-1),
-            gender_val, # Already Tanh
-            F.softmax(gender_prag_logits, dim=-1),
-            F.softmax(grammaticality_logits, dim=-1),
-            torch.sigmoid(register_logits),
+    ) -> StylePrediction:
+        formality_val, formality_prag, gender_val, gender_prag, gram, reg = self(field_inputs, attention_mask)
+        return StylePrediction(
+            formality_value=formality_val, # Already Tanh
+            formality_pragmatic_probs=F.softmax(formality_prag, dim=-1),
+            gender_value=gender_val, # Already Tanh
+            gender_pragmatic_probs=F.softmax(gender_prag, dim=-1),
+            grammaticality_probs=F.softmax(gram, dim=-1),
+            register_probs=torch.sigmoid(reg),
         )
 
     def resize_embeddings(self, new_vocab_sizes: Dict[str, int]) -> Dict[str, int]:

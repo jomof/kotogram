@@ -8,18 +8,10 @@ import os
 import sqlite3
 import hashlib
 import json
-from typing import Dict, List, Optional, Tuple, NamedTuple
+from typing import Dict, List, Optional, Tuple
 
-class ProcessedSample(NamedTuple):
-    sentence: str
-    sentence_id: str
-    kotogram: str
-    formality_id: int
-    gender_value: float
-    gender_pragmatic: int
-    register_ids: List[int]
-    gram_label: int
-    success: int
+
+
 
 class ShardedKotogramCache:
     """Durable sharded cache for Japanese → kotogram + label conversions.

@@ -2,25 +2,31 @@
 """Script to validate all Tatoeba sentences and find unmapped features.
 
 Usage:
-    python validate_tatoeba.py [count]
+    python scripts/validate_tatoeba.py [count]
 
     count: Number of sentences to validate (default: 100, use 'all' for all sentences)
 
 Examples:
-    python validate_tatoeba.py 100          # Validate first 100 sentences
-    python validate_tatoeba.py all          # Validate all sentences
+    python scripts/validate_tatoeba.py 100          # Validate first 100 sentences
+    python scripts/validate_tatoeba.py all          # Validate all sentences
 """
 
 import sys
+import os
 from collections import defaultdict
-from typing import Tuple, Dict, List, Set
+from typing import Tuple, Dict, List, Set, Optional
+
+
+
+from kotogram import SudachiJapaneseParser  # noqa: E402
+from kotogram.exceptions import MissingMappingError  # noqa: E402
 
 
 def validate_sentences(
-    parser,
+    parser: SudachiJapaneseParser,
     parser_name: str,
     tsv_file: str,
-    max_sentences: int = None
+    max_sentences: Optional[int] = None
 ) -> Tuple[Dict[str, Set[str]], List[Dict[str, str]]]:
     """Validate sentences and collect unmapped features.
 
@@ -56,34 +62,16 @@ def validate_sentences(
             try:
                 parser.japanese_to_kotogram(text)
                 successful_count += 1
-            except KeyError as e:
-                # Get the actual error message - args[0] is the message passed to KeyError()
-                error_msg = e.args[0] if e.args else str(e)
+            except MissingMappingError as e:
+                unmapped_features[e.map_name].add(e.key)
+                failed_sentences.append({
+                    'id': sentence_id,
+                    'text': text,
+                    'map': e.map_name,
+                    'key': e.key,
+                    'error': str(e)
+                })
 
-                # Parse the error message to extract map name and key
-                if "Missing mapping in" in error_msg:
-                    # Extract map name
-                    map_start = error_msg.find("Missing mapping in ") + len("Missing mapping in ")
-                    map_end = error_msg.find(":", map_start)
-                    map_name = error_msg[map_start:map_end]
-
-                    # Extract key - find the text between key=' and ' not found
-                    key_start = error_msg.find("key='") + len("key='")
-                    key_end = error_msg.find("' not found", key_start)
-                    if key_end == -1:
-                        key_end = error_msg.find("'", key_start)
-                    key = error_msg[key_start:key_end]
-
-                    unmapped_features[map_name].add(key)
-                    failed_sentences.append({
-                        'id': sentence_id,
-                        'text': text,
-                        'map': map_name,
-                        'key': key,
-                        'error': error_msg
-                    })
-                else:
-                    print(f"Unexpected error format: {error_msg}")
 
 
     # Print summary
@@ -117,23 +105,34 @@ def validate_sentences(
 
 def main():
     """Main validation function."""
-    import os
-
-    # Use path relative to script location
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    tsv_file = os.path.join(script_dir, "data", "jpn_sentences.tsv")
+    
+    # Use path relative to script location (scripts/) -> data/ is in sibling or parent?
+    # data is in project_root/data
+    # script_dir is project/scripts
+    # project_root is project
+    # Assumes run from project root or scripts dir
+    
+    # Try to find data dir relative to current script
+    current_script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(current_script_dir)
+    tsv_file = os.path.join(project_root, "data", "jpn_sentences.tsv")
 
     # Parse command line arguments
     max_sentences = 100  # Default
 
     if len(sys.argv) > 1:
-        max_sentences = int(sys.argv[1]) if sys.argv[1] != "all" else None
+        if sys.argv[1] == "all":
+            max_sentences = None
+        else:
+            try:
+                max_sentences = int(sys.argv[1])
+            except ValueError:
+                print("Usage: python scripts/validate_tatoeba.py [count]")
+                sys.exit(1)
 
     print(f"Validating {'all' if max_sentences is None else max_sentences} sentences from {tsv_file}")
     print("This may take a while...\n")
 
-    # Validate with Sudachi
-    from kotogram import SudachiJapaneseParser
     parser = SudachiJapaneseParser(dict_type='full', validate=True)
     print(f"\n{'#'*80}")
     print("# VALIDATING WITH SUDACHI")

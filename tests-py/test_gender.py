@@ -4,6 +4,7 @@ import unittest
 from kotogram import SudachiJapaneseParser, gender
 from unittest.mock import patch
 import torch
+from kotogram.model import StylePrediction
 
 
 class TestGenderModel(unittest.TestCase):
@@ -40,12 +41,13 @@ class TestGenderModel(unittest.TestCase):
         # Mock predict output: (formality, gender_val, gender_prag, gram, register)
         # gender_val = -0.9 (masculine), gender_prag = [0.1, 0.9] (pragmatic)
         with patch.object(self.model, 'predict') as mock_predict:
-            mock_predict.return_value = (
-                torch.tensor([[0.0]*6]), # formality
-                torch.tensor([-0.9]),    # gender_val
-                torch.tensor([[0.1, 0.9]]), # gender_prag (pragmatic)
-                torch.tensor([[0.1, 0.9]]), # grammatic
-                torch.tensor([[0.0]*9])  # register
+            mock_predict.return_value = StylePrediction(
+                formality_value=torch.tensor([-0.9]),    # formality_value
+                formality_pragmatic_probs=torch.tensor([[0.1, 0.9]]), # formality_prag (pragmatic)
+                gender_value=torch.tensor([-0.9]),    # gender_val
+                gender_pragmatic_probs=torch.tensor([[0.1, 0.9]]), # gender_prag (pragmatic)
+                grammaticality_probs=torch.tensor([[0.1, 0.9]]), # grammatic
+                register_probs=torch.tensor([[0.0]*9])  # register
             )
             
             result = gender(kotogram)
@@ -59,16 +61,17 @@ class TestGenderModel(unittest.TestCase):
         kotogram = self.parser.japanese_to_kotogram(text)
         
         with patch.object(self.model, 'predict') as mock_predict:
-             mock_predict.return_value = (
-                torch.tensor([[0.0]*6]), 
-                torch.tensor([0.9]),     # gender_val (feminine)
-                torch.tensor([[0.1, 0.9]]), 
-                torch.tensor([[0.1, 0.9]]), 
-                torch.tensor([[0.0]*9])
+            mock_predict.return_value = StylePrediction(
+                formality_value=torch.tensor([0.9]),      # formality_value
+                formality_pragmatic_probs=torch.tensor([[0.1, 0.9]]), # formality_prag
+                gender_value=torch.tensor([0.9]),     # gender_val (feminine)
+                gender_pragmatic_probs=torch.tensor([[0.1, 0.9]]), 
+                grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
+                register_probs=torch.tensor([[0.0]*9])
             )
              
-             result = gender(kotogram)
-             if result is not None:
+            result = gender(kotogram)
+            if result is not None:
                 self.assertIsInstance(result, float)
                 self.assertGreater(result, 0.5)
 
@@ -78,16 +81,17 @@ class TestGenderModel(unittest.TestCase):
         kotogram = self.parser.japanese_to_kotogram(text)
         
         with patch.object(self.model, 'predict') as mock_predict:
-             mock_predict.return_value = (
-                torch.tensor([[0.0]*6]), 
-                torch.tensor([0.0]),     # gender_val (neutral)
-                torch.tensor([[0.1, 0.9]]), 
-                torch.tensor([[0.1, 0.9]]), 
-                torch.tensor([[0.0]*9])
+            mock_predict.return_value = StylePrediction(
+                formality_value=torch.tensor([0.0]),      # formality_value
+                formality_pragmatic_probs=torch.tensor([[0.1, 0.9]]), # formality_prag
+                gender_value=torch.tensor([0.0]),     # gender_val (neutral)
+                gender_pragmatic_probs=torch.tensor([[0.1, 0.9]]), 
+                grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
+                register_probs=torch.tensor([[0.0]*9])
             )
 
-             result = gender(kotogram)
-             if result is not None:
+            result = gender(kotogram)
+            if result is not None:
                 self.assertIsInstance(result, float)
                 self.assertTrue(-0.5 <= result <= 0.5)
 
@@ -97,16 +101,17 @@ class TestGenderModel(unittest.TestCase):
         kotogram = self.parser.japanese_to_kotogram(text)
         
         with patch.object(self.model, 'predict') as mock_predict:
-             mock_predict.return_value = (
-                torch.tensor([[0.0]*6]), 
-                torch.tensor([0.0]), 
-                torch.tensor([[0.9, 0.1]]), # gender_prag (UNPRAGMATIC)
-                torch.tensor([[0.1, 0.9]]), 
-                torch.tensor([[0.0]*9])
+            mock_predict.return_value = StylePrediction(
+                formality_value=torch.tensor([0.0]), 
+                formality_pragmatic_probs=torch.tensor([[0.9, 0.1]]), # formality unpragmatic 
+                gender_value=torch.tensor([0.0]), 
+                gender_pragmatic_probs=torch.tensor([[0.9, 0.1]]), # gender_prag (UNPRAGMATIC)
+                grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
+                register_probs=torch.tensor([[0.0]*9])
             )
 
-             result = gender(kotogram)
-             self.assertIsNone(result)
+            result = gender(kotogram)
+            self.assertIsNone(result)
 
 if __name__ == "__main__":
     unittest.main()

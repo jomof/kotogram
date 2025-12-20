@@ -18,8 +18,8 @@ from rich.panel import Panel
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from kotogram.model import (
-    NUM_FORMALITY_CLASSES, NUM_REGISTER_CLASSES,
-    FORMALITY_ID_TO_LABEL, REGISTER_ID_TO_LABEL,
+    NUM_REGISTER_CLASSES,
+    REGISTER_ID_TO_LABEL,
     load_model
 )
 from scripts.train_style import StyleDataset, collate_fn
@@ -62,8 +62,16 @@ def generate_reports(data, save_dir):
     summary.add_column("Accuracy/MSE")
     
     # Formality
-    f_acc = sum(p == label for p, label in zip(data['formality_preds'], data['formality_labels'])) / len(data['formality_preds'])
-    summary.add_row("Formality Accuracy", f"{f_acc:.4%}")
+    # Formality
+    f_prag_acc = sum(p == label for p, label in zip(data['formality_prag_preds'], data['formality_prag_labels'])) / len(data['formality_prag_preds'])
+    summary.add_row("Formality Pragmatic Accuracy", f"{f_prag_acc:.4%}")
+
+    f_prag_mask = [label == 1 for label in data['formality_prag_labels']]
+    f_prag_preds = [p for p, m in zip(data['formality_val_preds'], f_prag_mask) if m]
+    f_prag_labels = [label for label, m in zip(data['formality_val_labels'], f_prag_mask) if m]
+    if f_prag_labels:
+        f_mse = sum((p - label) ** 2 for p, label in zip(f_prag_preds, f_prag_labels)) / len(f_prag_labels)
+        summary.add_row("Formality Value MSE (Pragmatic samples)", f"{f_mse:.4f}")
     
     # Gender
     g_prag_acc = sum(p == label for p, label in zip(data['gender_prag_preds'], data['gender_prag_labels'])) / len(data['gender_prag_preds'])
@@ -87,12 +95,12 @@ def generate_reports(data, save_dir):
     console.print(Panel(summary, expand=False))
 
     # Confusion Matrices
-    # Formality
-    f_labels = [FORMALITY_ID_TO_LABEL[i].value for i in range(NUM_FORMALITY_CLASSES)]
-    f_confusion = [[0] * NUM_FORMALITY_CLASSES for _ in range(NUM_FORMALITY_CLASSES)]
-    for p, label in zip(data['formality_preds'], data['formality_labels']):
+    # Formality Pragmatic
+    f_labels = ["Unpragmatic", "Pragmatic"]
+    f_confusion = [[0] * 2 for _ in range(2)]
+    for p, label in zip(data['formality_prag_preds'], data['formality_prag_labels']):
         f_confusion[label][p] += 1
-    print_confusion_matrix("Formality Confusion Matrix", f_labels, f_confusion)
+    print_confusion_matrix("Formality Pragmatic Confusion Matrix", f_labels, f_confusion)
     
     # Gender Pragmatic
     g_labels = ["Unpragmatic", "Pragmatic"]
@@ -142,7 +150,8 @@ def generate_reports(data, save_dir):
         os.makedirs(save_dir, exist_ok=True)
         
         tasks_mismatches = [
-            ('formality', data['formality_preds'], data['formality_labels'], lambda x: FORMALITY_ID_TO_LABEL[x].value),
+
+            ('formality', data['formality_prag_preds'], data['formality_prag_labels'], lambda x: f_labels[x]),
             ('gender', data['gender_prag_preds'], data['gender_prag_labels'], lambda x: g_labels[x]),
             ('grammaticality', data['grammaticality_preds'], data['grammaticality_labels'], lambda x: gram_labels[x].lower()),
         ]

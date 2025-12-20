@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import MagicMock, patch
 import torch
 from kotogram.analysis import register, style, RegisterLevel, FormalityLevel
+from kotogram.model import StylePrediction
 
 class TestModelRegisterIntegration(unittest.TestCase):
     def setUp(self):
@@ -37,12 +38,13 @@ class TestModelRegisterIntegration(unittest.TestCase):
         register_probs[0, 1] = 0.9
         
         # model.predict returns 4 tensors (probabilities)
-        self.mock_model.predict.return_value = (
-            torch.zeros(1, 6), # formality
-            torch.zeros(1, 1), # gender_val
-            torch.zeros(1, 2), # gender_prag
-            torch.zeros(1, 2), # grammaticality
-            register_probs     # register
+        self.mock_model.predict.return_value = StylePrediction(
+            formality_value=torch.zeros(1, 1), # formality_val
+            formality_pragmatic_probs=torch.zeros(1, 2), # formality_prag
+            gender_value=torch.zeros(1, 1), # gender_val
+            gender_pragmatic_probs=torch.zeros(1, 2), # gender_prag
+            grammaticality_probs=torch.zeros(1, 2), # grammaticality
+            register_probs=register_probs     # register
         )
         
         # Test 1: Expect {SONKEIGO}
@@ -52,12 +54,13 @@ class TestModelRegisterIntegration(unittest.TestCase):
         # Test 2: Expect {KANSAIBEN} (index 3)
         register_probs[0, 1] = 0.1
         register_probs[0, 3] = 0.9
-        self.mock_model.predict.return_value = (
-            torch.zeros(1, 6), 
-            torch.zeros(1, 1), 
-            torch.zeros(1, 2), 
-            torch.zeros(1, 2), 
-            register_probs
+        self.mock_model.predict.return_value = StylePrediction(
+            formality_value=torch.zeros(1, 1), 
+            formality_pragmatic_probs=torch.zeros(1, 2), 
+            gender_value=torch.zeros(1, 1), 
+            gender_pragmatic_probs=torch.zeros(1, 2), 
+            grammaticality_probs=torch.zeros(1, 2), 
+            register_probs=register_probs
         )
         result = register("dummy kotogram")
         self.assertEqual(result, {RegisterLevel.KANSAIBEN})
@@ -68,12 +71,13 @@ class TestModelRegisterIntegration(unittest.TestCase):
         # So even if all are 0.1, it should return {NEUTRAL}
         register_probs[0, 3] = 0.1
         register_probs[0, 0] = 0.1 # even if neutral logit is low, it falls back
-        self.mock_model.predict.return_value = (
-            torch.zeros(1, 6), 
-            torch.zeros(1, 1), 
-            torch.zeros(1, 2), 
-            torch.zeros(1, 2), 
-            register_probs
+        self.mock_model.predict.return_value = StylePrediction(
+            formality_value=torch.zeros(1, 1), 
+            formality_pragmatic_probs=torch.zeros(1, 2), 
+            gender_value=torch.zeros(1, 1), 
+            gender_pragmatic_probs=torch.zeros(1, 2), 
+            grammaticality_probs=torch.zeros(1, 2), 
+            register_probs=register_probs
         )
         result = register("dummy kotogram")
         self.assertEqual(result, {RegisterLevel.NEUTRAL})
@@ -81,12 +85,13 @@ class TestModelRegisterIntegration(unittest.TestCase):
         # Test 4: Expect {SONKEIGO, KANSAIBEN} (multi-label)
         register_probs[0, 1] = 0.9 # SONKEIGO
         register_probs[0, 3] = 0.9 # KANSAIBEN
-        self.mock_model.predict.return_value = (
-            torch.zeros(1, 6), 
-            torch.zeros(1, 1), 
-            torch.zeros(1, 2), 
-            torch.zeros(1, 2), 
-            register_probs
+        self.mock_model.predict.return_value = StylePrediction(
+            formality_value=torch.zeros(1, 1), 
+            formality_pragmatic_probs=torch.zeros(1, 2), 
+            gender_value=torch.zeros(1, 1), 
+            gender_pragmatic_probs=torch.zeros(1, 2), 
+            grammaticality_probs=torch.zeros(1, 2), 
+            register_probs=register_probs
         )
         result = register("dummy kotogram")
         self.assertEqual(result, {RegisterLevel.SONKEIGO, RegisterLevel.KANSAIBEN})
@@ -96,8 +101,12 @@ class TestModelRegisterIntegration(unittest.TestCase):
         mock_load.return_value = (self.mock_model, self.mock_tokenizer)
         
         # Mock predictions
-        formality_logits = torch.zeros(1, 6)
-        formality_logits[0, 1] = 5.0 # FORMAL
+        formality_val = torch.tensor([1.0]) # Formal (0.5 actually, 1.0 is very formal)
+        # Using 0.5 because style() logic buckets: >=0.25 is Formal
+        formality_val = torch.tensor([0.5])
+        
+        formality_prag = torch.zeros(1, 2)
+        formality_prag[0, 1] = 5.0 # Pragmatic
         
         gender_logits = torch.zeros(1, 4)
         gender_logits[0, 0] = 5.0 # MASCULINE
@@ -112,12 +121,13 @@ class TestModelRegisterIntegration(unittest.TestCase):
         gender_prag = torch.zeros(1, 2)
         gender_prag[0, 1] = 5.0 # Pragmatic
 
-        self.mock_model.predict.return_value = (
-            formality_logits,
-            gender_val,
-            gender_prag,
-            gram_logits,
-            register_probs
+        self.mock_model.predict.return_value = StylePrediction(
+            formality_value=formality_val,
+            formality_pragmatic_probs=formality_prag,
+            gender_value=gender_val,
+            gender_pragmatic_probs=gender_prag,
+            grammaticality_probs=gram_logits,
+            register_probs=register_probs
         )
         
         f, g, r, is_gram = style("dummy kotogram")

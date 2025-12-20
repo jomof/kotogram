@@ -10,8 +10,8 @@ class TestGenderLearning(unittest.TestCase):
         config = ModelConfig(
             vocab_sizes={'surface': 100},
             hidden_dim=32,
-            num_formality_classes=6,
-            num_gender_pragmatic_classes=2,
+            # num_formality_classes deprecated/removed from init
+            num_formality_pragmatic_classes=2,
             num_grammaticality_classes=2,
             num_register_classes=7
         )
@@ -26,7 +26,7 @@ class TestGenderLearning(unittest.TestCase):
         attention_mask = torch.ones((batch_size, 10))
         
         # Forward pass
-        formality, gender_val, gender_prag, gram, register = model(field_inputs, attention_mask)
+        formality_val, formality_prag, gender_val, gender_prag, gram, register = model(field_inputs, attention_mask)
         
         # Dummy targets
         gender_val_targets = torch.randn(batch_size)

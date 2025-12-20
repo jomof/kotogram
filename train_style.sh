@@ -410,7 +410,7 @@ if [ -n "$DEBUG" ]; then
 fi
 
 # Build command
-CMD="$LAUNCHER scripts/train_style.py \
+CMD="$LAUNCHER -m scripts.train_style \
     --data \"$DATA_PATH\" \
     --output \"$OUTPUT_DIR\" \
     --epochs $EPOCHS \
@@ -475,7 +475,7 @@ echo "Running Preprocessing Phase..."
 echo "=============================================="
 # Construct preprocessing command (always use python, single process)
     # Construct labeling command
-    PREPROC_CMD="python scripts/label.py --data \"$GRAM_DATA_PATTERN\" \
+    PREPROC_CMD="python -m scripts.label --data \"$GRAM_DATA_PATTERN\" \
         --output-grammatic \"$COMBINED_GRAM_FILE\""
 
     if [ -n "$AGRAMMATIC_SENTENCES_PATH" ]; then 
@@ -512,7 +512,7 @@ if [ -n "$CONFUSION" ]; then
     echo "=============================================="
     echo "Running Confusion Matrix Evaluation..."
     echo "=============================================="
-    python scripts/confusion.py \
+    python -m scripts.confusion \
         --output "$OUTPUT_DIR" \
         --data "$DATA_PATH" \
         ${AGRAMMATIC_SENTENCES_PATH:+--agrammatic-sentences "$AGRAMMATIC_SENTENCES_PATH"} \
@@ -539,7 +539,7 @@ echo "Training log:   $OUTPUT_DIR/training.log"
 echo "=============================================="
 echo ""
 echo "Generating confusion report..."
-python scripts/confusion.py \
+python -m scripts.confusion \
     --output "$OUTPUT_DIR" \
     --data "$DATA_PATH" \
     ${EXTRA_DATA_PATH:+--extra-data "$EXTRA_DATA_PATH"} \

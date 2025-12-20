@@ -80,6 +80,23 @@ from torch.utils.data import Dataset, DataLoader
 from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
+from kotogram.kotogram import split_kotogram, extract_token_features
+from kotogram.analysis import FormalityLevel
+from kotogram.japanese_parser import JapaneseParser
+
+from kotogram.model import (
+    StyleClassifier, Tokenizer, ModelConfig,
+    FEATURE_FIELDS, ALL_FEATURE_FIELDS, set_excluded_features,
+    NUM_FORMALITY_CLASSES, NUM_FORMALITY_PRAGMATIC_CLASSES, NUM_GENDER_PRAGMATIC_CLASSES, NUM_GRAMMATICALITY_CLASSES, NUM_REGISTER_CLASSES,
+    FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL,
+    GENDER_LABEL_TO_ID, load_model
+)
+
+from scripts.style_data import Sample, ProcessedSample
+from scripts.cache import get_kotogram_cache
+
+
+
 # Start timing immediately
 script_start_time = time.time()
 timings = {}
@@ -89,27 +106,6 @@ timings = {}
 
 
 
-from kotogram.kotogram import split_kotogram  # noqa: E402
-from kotogram.analysis import FormalityLevel  # noqa: E402
-from kotogram.kotogram import extract_token_features  # noqa: E402
-
-from kotogram.japanese_parser import JapaneseParser  # noqa: E402
-
-# Add project root to Python path for imports
-# This ensures 'scripts' module can be found when running with torchrun
-project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
-
-from kotogram.model import (  # noqa: E402
-    StyleClassifier, Tokenizer, ModelConfig,
-    FEATURE_FIELDS, ALL_FEATURE_FIELDS, set_excluded_features,
-    NUM_FORMALITY_CLASSES, NUM_GENDER_PRAGMATIC_CLASSES, NUM_GRAMMATICALITY_CLASSES, NUM_REGISTER_CLASSES,
-    FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL,
-    GENDER_LABEL_TO_ID, load_model, Sample
-)  # noqa: E402
-
-from scripts.cache import get_kotogram_cache, ProcessedSample  # noqa: E402
 
 GENDER_LOSS_WEIGHT = 10.0
 
@@ -121,18 +117,15 @@ def setup_distributed() -> Tuple[int, int, int]:
         Tuple of (rank, world_size, local_rank)
     """
     if "RANK" in os.environ and "WORLD_SIZE" in os.environ:
-        try:
-            rank = int(os.environ["RANK"])
-            world_size = int(os.environ["WORLD_SIZE"])
-            local_rank = int(os.environ.get("LOCAL_RANK", "0"))
+        rank = int(os.environ["RANK"])
+        world_size = int(os.environ["WORLD_SIZE"])
+        local_rank = int(os.environ.get("LOCAL_RANK", "0"))
 
-            if torch.cuda.is_available():
-                torch.cuda.set_device(local_rank)
-                dist.init_process_group(backend="nccl", init_method="env://", device_id=torch.device(f"cuda:{local_rank}"))
-                print(f"Distributed init: Rank {rank}/{world_size} (Local {local_rank})")
-                return rank, world_size, local_rank
-        except ValueError:
-            pass
+        if torch.cuda.is_available():
+            torch.cuda.set_device(local_rank)
+            dist.init_process_group(backend="nccl", init_method="env://", device_id=torch.device(f"cuda:{local_rank}"))
+            print(f"Distributed init: Rank {rank}/{world_size} (Local {local_rank})")
+            return rank, world_size, local_rank
 
     # Default to single process
     return 0, 1, 0
@@ -189,9 +182,21 @@ def _encode_samples_batch(
         # or just use tokenizer.encode. tokenizer.encode is fast if frozen.
         feature_ids = tokenizer.encode(item.kotogram, add_cls=True, add_to_vocab=False)
         
+        # Map formality_id to value/pragmatic
+        # 0=VeryFormal(1.0), 1=Formal(0.5), 2=Neutral(0.0), 3=Casual(-0.5), 4=VeryCasual(-1.0)
+        # 5=Unpragmatic -> Value=0.0, Pragmatic=0
+        f_id = item.formality_id
+        if f_id == 5: # UNPRAGMATIC_FORMALITY
+            f_val = 0.0
+            f_prag = 0
+        else:
+            f_val = {0: 1.0, 1: 0.5, 2: 0.0, 3: -0.5, 4: -1.0}.get(f_id, 0.0)
+            f_prag = 1
+
         sample = Sample(
             feature_ids=feature_ids,
-            formality_label=item.formality_id,
+            formality_value=f_val,
+            formality_pragmatic=f_prag,
             gender_value=item.gender_value,
             gender_pragmatic=item.gender_pragmatic,
             register_labels=item.register_ids,
@@ -483,9 +488,18 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             # Encode to feature IDs (builds vocabulary - must be sequential)
             feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=True)
 
+            # Map formality_id to value/pragmatic
+            if formality_id == 5: # UNPRAGMATIC_FORMALITY
+                f_val = 0.0
+                f_prag = 0
+            else:
+                f_val = {0: 1.0, 1: 0.5, 2: 0.0, 3: -0.5, 4: -1.0}.get(formality_id, 0.0)
+                f_prag = 1
+
             sample = Sample(
                 feature_ids=feature_ids,
-                formality_label=formality_id,
+                formality_value=f_val,
+                formality_pragmatic=f_prag,
                 gender_value=gender_val,
                 gender_pragmatic=gender_prag,
                 register_labels=register_id,
@@ -733,7 +747,12 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 
                 # Update stats locally (fast)
                 for s in batch_samples:
-                    formality_counts[FORMALITY_ID_TO_LABEL[s.formality_label]] += 1
+                    # Reverse map value/prag to ID for stats (approximate)
+                    # This is just for logging so exact roundtrip isn't critical, but useful
+                    # actually we don't have the original ID easily available in Sample anymore
+                    # so we might skip detailed formality breakdown or approximate it
+                    # formality_counts[FORMALITY_ID_TO_LABEL[s.formality_label]] += 1
+                    pass # Skipping detailed formality stats during loading to save time
                     gender_counts[s.gender_pragmatic] += 1
                     grammaticality_counts[s.grammaticality_label] += 1
                     
@@ -867,7 +886,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             # Group samples by combined label
             label_to_indices: Dict[Tuple[int, int, int], List[int]] = {}
             for i, sample in enumerate(self.samples):
-                combined_label = (sample.formality_label, sample.gender_pragmatic, sample.grammaticality_label)
+                combined_label = (sample.formality_pragmatic, sample.gender_pragmatic, sample.grammaticality_label)
                 if combined_label not in label_to_indices:
                     label_to_indices[combined_label] = []
                 label_to_indices[combined_label].append(i)
@@ -905,12 +924,12 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
     def get_formality_class_weights(self) -> torch.Tensor:
         """Compute inverse frequency class weights for imbalanced formality data."""
-        counts = Counter(s.formality_label for s in self.samples)
+        counts = Counter(s.formality_pragmatic for s in self.samples)
         total = len(self.samples)
-        weights = torch.zeros(NUM_FORMALITY_CLASSES)
+        weights = torch.zeros(NUM_FORMALITY_PRAGMATIC_CLASSES)
 
         for label_id, count in counts.items():
-            weights[label_id] = total / (NUM_FORMALITY_CLASSES * count) if count > 0 else 0.0
+            weights[label_id] = total / (NUM_FORMALITY_PRAGMATIC_CLASSES * count) if count > 0 else 0.0
 
         return weights
 
@@ -963,7 +982,8 @@ def collate_fn(
     # Initialize per-field lists
     field_ids: Dict[str, List[List[int]]] = {f: [] for f in FEATURE_FIELDS}
     attention_mask = []
-    formality_labels = []
+    formality_values = []
+    formality_pragmatics = []
     gender_values = []
     gender_pragmatics = []
     grammaticality_labels = []
@@ -981,7 +1001,8 @@ def collate_fn(
             field_ids[field].append(padded)
 
         attention_mask.append([1] * seq_len + [0] * padding_len)
-        formality_labels.append(sample.formality_label)
+        formality_values.append(sample.formality_value)
+        formality_pragmatics.append(sample.formality_pragmatic)
         gender_values.append(sample.gender_value)
         gender_pragmatics.append(sample.gender_pragmatic)
         grammaticality_labels.append(sample.grammaticality_label)
@@ -998,7 +1019,8 @@ def collate_fn(
         for field in FEATURE_FIELDS
     }
     result['attention_mask'] = torch.tensor(attention_mask, dtype=torch.long)
-    result['formality_labels'] = torch.tensor(formality_labels, dtype=torch.long)
+    result['formality_value'] = torch.tensor(formality_values, dtype=torch.float)
+    result['formality_pragmatic'] = torch.tensor(formality_pragmatics, dtype=torch.long)
     result['gender_value'] = torch.tensor(gender_values, dtype=torch.float)
     result['gender_pragmatic'] = torch.tensor(gender_pragmatics, dtype=torch.long)
     result['grammaticality_labels'] = torch.tensor(grammaticality_labels, dtype=torch.long)
@@ -1599,7 +1621,8 @@ class Trainer:
         
         encoder_params = list(model_module.embedding.parameters()) + list(model_module.encoder.parameters())
         classifier_params = (
-            list(model_module.formality_classifier.parameters()) +
+            list(model_module.formality_value_head.parameters()) +
+            list(model_module.formality_pragmatic_head.parameters()) +
             list(model_module.gender_value_head.parameters()) +
             list(model_module.gender_pragmatic_head.parameters()) +
             list(model_module.grammaticality_classifier.parameters()) +
@@ -1632,7 +1655,8 @@ class Trainer:
             'val_gender_loss': [],
             'val_grammaticality_loss': [],
             'val_register_loss': [],
-            'val_formality_accuracy': [],
+            'val_formality_accuracy': [], # Pragmatic accuracy
+            'val_formality_mse': [], # Value MSE
             'val_gender_pragmatic_accuracy': [],
             'val_gender_value_mse': [],
             'val_grammaticality_accuracy': [],
@@ -1670,7 +1694,8 @@ class Trainer:
                 for f in FEATURE_FIELDS
             }
             attention_mask = batch['attention_mask'].to(self.device)
-            formality_targets = batch['formality_labels'].to(self.device)
+            formality_value_targets = batch['formality_value'].to(self.device)
+            formality_prag_targets = batch['formality_pragmatic'].to(self.device)
             gender_value_targets = batch['gender_value'].to(self.device)
             gender_prag_targets = batch['gender_pragmatic'].to(self.device)
             grammaticality_targets = batch['grammaticality_labels'].to(self.device)
@@ -1683,34 +1708,57 @@ class Trainer:
             
             with autocast(device_type=device_type, enabled=self.config.use_amp):
                 # Forward pass
-                formality_logits, gender_val, gender_prag_logits, grammaticality_logits, register_logits = self.model(
+                # formality_value, formality_pragmatic, gender_value, gender_pragmatic, grammaticality, register
+                formality_val_logits, formality_prag_logits, gender_val, gender_prag_logits, grammaticality_logits, register_logits = self.model(
                     field_inputs, attention_mask
                 )
 
-                formality_loss = self.formality_criterion(formality_logits, formality_targets)
+                # --- HYBRID TRAINING LOGIC ---
+                # Masks
+                is_grammatic = (grammaticality_targets == 1)
+                is_formality_pragmatic = (formality_prag_targets == 1)
+                is_gender_pragmatic = (gender_prag_targets == 1)
                 
-                # Gender Loss (Value MSE + Pragmatic CrossEntropy)
-                # Value loss: only for pragmatic sentences
-                pragmatic_mask = (gender_prag_targets == 1)
+                # Valid style mask: fully valid sentence for training specific style values
+                is_valid_style = is_grammatic & is_formality_pragmatic & is_gender_pragmatic
+
+                # 1. Formality Loss (Value MSE + Pragmatic CrossEntropy)
+                formality_prag_loss = self.formality_criterion(formality_prag_logits, formality_prag_targets)
                 
-                # Fix tensor shape mismatch: gender_val is (B, 1), targets is (B)
+                formality_val_squeezed = formality_val_logits.squeeze(-1)
+                if is_valid_style.sum() > 0:
+                     formality_val_loss = F.mse_loss(
+                         formality_val_squeezed[is_valid_style], 
+                         formality_value_targets[is_valid_style]
+                     )
+                else:
+                     formality_val_loss = torch.tensor(0.0, device=self.device)
+
+                formality_loss = formality_val_loss + formality_prag_loss # Equal weight 1.0 each inside formality
+
+                # 2. Gender Loss (Value MSE + Pragmatic CrossEntropy)
+                gender_prag_loss = self.gender_pragmatic_criterion(gender_prag_logits, gender_prag_targets)
+                
                 gender_val_squeezed = gender_val.squeeze(-1)
-                
-                if pragmatic_mask.sum() > 0:
+                if is_valid_style.sum() > 0:
                      gender_val_loss = F.mse_loss(
-                         gender_val_squeezed[pragmatic_mask], 
-                         gender_value_targets[pragmatic_mask]
+                         gender_val_squeezed[is_valid_style], 
+                         gender_value_targets[is_valid_style]
                      )
                 else:
                      gender_val_loss = torch.tensor(0.0, device=self.device)
-
-                gender_prag_loss = self.gender_pragmatic_criterion(gender_prag_logits, gender_prag_targets)
                 
-                # Weighted combination of gender losses
                 gender_loss = (gender_val_loss * GENDER_LOSS_WEIGHT) + gender_prag_loss
 
+                # 3. Grammaticality Loss (All samples)
                 grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_targets)
-                register_loss = self.register_criterion(register_logits, register_targets)
+                
+                # 4. Register Loss (Only valid style samples)
+                # We interpret agrammatic/unpragmatic as noise for register training
+                if is_valid_style.sum() > 0:
+                    register_loss = self.register_criterion(register_logits[is_valid_style], register_targets[is_valid_style])
+                else:
+                    register_loss = torch.tensor(0.0, device=self.device)
 
                 # Weighted multi-task loss
                 loss = (
@@ -1775,16 +1823,25 @@ class Trainer:
         total_register_loss = 0
         n_batches = 0
 
-        all_formality_preds = []
-        all_formality_labels = []
+        # Storage for metrics
+        all_formality_val_preds = []
+        all_formality_val_labels = []
+        all_formality_prag_preds = []
+        all_formality_prag_labels = []
+        
         all_gender_val_preds = []
         all_gender_val_labels = []
         all_gender_prag_preds = []
         all_gender_prag_labels = []
-        all_grammaticality_preds: List[int] = []
+        
+        all_grammaticality_preds = []
         all_grammaticality_labels = []
+        
         all_register_preds = []
         all_register_labels = []
+        
+        all_valid_style_mask = [] # To filter specific metrics later
+
         all_sentences = []
         all_kotograms = []
 
@@ -1795,33 +1852,55 @@ class Trainer:
                 for f in FEATURE_FIELDS
             }
             attention_mask = batch['attention_mask'].to(self.device)
-            formality_targets = batch['formality_labels'].to(self.device)
+            formality_value_targets = batch['formality_value'].to(self.device)
+            formality_prag_targets = batch['formality_pragmatic'].to(self.device)
             gender_value_targets = batch['gender_value'].to(self.device)
             gender_prag_targets = batch['gender_pragmatic'].to(self.device)
             grammaticality_targets = batch['grammaticality_labels'].to(self.device)
             register_targets = batch['register_labels'].to(self.device)
 
-            formality_logits, gender_val, gender_prag_logits, grammaticality_logits, register_logits = self.model(
+            formality_val_logits, formality_prag_logits, gender_val, gender_prag_logits, grammaticality_logits, register_logits = self.model(
                 field_inputs, attention_mask
             )
 
-            formality_loss = self.formality_criterion(formality_logits, formality_targets)
-            
-            # Gender Loss
-            pragmatic_mask = (gender_prag_targets == 1)
-            if pragmatic_mask.sum() > 0:
+            # Masks
+            is_grammatic = (grammaticality_targets == 1)
+            is_formality_pragmatic = (formality_prag_targets == 1)
+            is_gender_pragmatic = (gender_prag_targets == 1)
+            is_valid_style = is_grammatic & is_formality_pragmatic & is_gender_pragmatic
+
+            # 1. Formality Loss
+            formality_prag_loss = self.formality_criterion(formality_prag_logits, formality_prag_targets)
+            formality_val_squeezed = formality_val_logits.squeeze(-1)
+            if is_valid_style.sum() > 0:
+                 formality_val_loss = F.mse_loss(
+                     formality_val_squeezed[is_valid_style], 
+                     formality_value_targets[is_valid_style]
+                 )
+            else:
+                 formality_val_loss = torch.tensor(0.0, device=self.device)
+            formality_loss = formality_val_loss + formality_prag_loss
+
+            # 2. Gender Loss
+            gender_prag_loss = self.gender_pragmatic_criterion(gender_prag_logits, gender_prag_targets)
+            gender_val_squeezed = gender_val.squeeze(-1)
+            if is_valid_style.sum() > 0:
                  gender_val_loss = F.mse_loss(
-                     gender_val.squeeze(-1)[pragmatic_mask], 
-                     gender_value_targets[pragmatic_mask]
+                     gender_val_squeezed[is_valid_style], 
+                     gender_value_targets[is_valid_style]
                  )
             else:
                  gender_val_loss = torch.tensor(0.0, device=self.device)
+            gender_loss = (gender_val_loss * GENDER_LOSS_WEIGHT) + gender_prag_loss
 
-            gender_prag_loss = F.cross_entropy(gender_prag_logits, gender_prag_targets)
-            gender_loss = gender_val_loss + gender_prag_loss
-
+            # 3. Grammaticality Loss
             grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_targets)
-            register_loss = self.register_criterion(register_logits, register_targets)
+            
+            # 4. Register Loss
+            if is_valid_style.sum() > 0:
+                register_loss = self.register_criterion(register_logits[is_valid_style], register_targets[is_valid_style])
+            else:
+                register_loss = torch.tensor(0.0, device=self.device)
             
             loss = (
                 self.config.formality_loss_weight * formality_loss +
@@ -1837,20 +1916,22 @@ class Trainer:
             total_register_loss += register_loss.item()
             n_batches += 1
 
-            formality_preds = formality_logits.argmax(dim=-1)
+            formality_prag_preds = formality_prag_logits.argmax(dim=-1)
             gender_prag_preds = gender_prag_logits.argmax(dim=-1)
             grammaticality_preds = grammaticality_logits.argmax(dim=-1)
             
-            # Multi-label prediction (Exact match)
+            # Multi-label prediction
             register_probs = torch.sigmoid(register_logits)
             register_preds = (register_probs > 0.5).long()
             register_labels_long = register_targets.long()
 
-            all_formality_preds.extend(formality_preds.cpu().tolist())
-            all_formality_labels.extend(formality_targets.cpu().tolist())
+            # Store predictions
+            all_formality_val_preds.extend(formality_val_squeezed.detach().cpu().tolist())
+            all_formality_val_labels.extend(formality_value_targets.cpu().tolist())
+            all_formality_prag_preds.extend(formality_prag_preds.cpu().tolist())
+            all_formality_prag_labels.extend(formality_prag_targets.cpu().tolist())
             
-            # Store raw values for all samples (filtering happens during metric calc)
-            all_gender_val_preds.extend(gender_val.squeeze(-1).detach().cpu().tolist())
+            all_gender_val_preds.extend(gender_val_squeezed.detach().cpu().tolist())
             all_gender_val_labels.extend(gender_value_targets.cpu().tolist())
             
             all_gender_prag_preds.extend(gender_prag_preds.cpu().tolist())
@@ -1860,64 +1941,89 @@ class Trainer:
             all_grammaticality_labels.extend(grammaticality_targets.cpu().tolist())
             all_register_preds.extend(register_preds.cpu().tolist())
             all_register_labels.extend(register_labels_long.cpu().tolist())
+            
+            all_valid_style_mask.extend(is_valid_style.cpu().tolist())
 
-            if return_mismatches:
+            if return_mismatches or True: # Always collect sentences for confusion matrices
                 all_sentences.extend(batch.get('original_sentence', []))
                 all_kotograms.extend(batch.get('kotogram', []))
-
-        avg_loss = total_loss / n_batches
-        avg_formality_loss = total_formality_loss / n_batches
-        avg_gender_loss = total_gender_loss / n_batches
-        avg_grammaticality_loss = total_grammaticality_loss / n_batches
-
-
-
-        # DDP Aggregation
-        if self.is_distributed:
-            # Pack metrics into a single tensor for efficient all_reduce
-            # [total_loss, total_formality_loss, total_gender_loss, total_grammaticality_loss, n_batches,
-            #  formality_correct, total_formality_samples,
-            #  gender_correct, total_gender_samples,
-            #  grammaticality_correct, total_grammaticality_samples,
-            #  total_register_loss, register_correct, total_register_samples]
-            # + flattened confusion matrices
-            
-            formality_correct = sum(p == label for p, label in zip(all_formality_preds, all_formality_labels))
-            gender_prag_correct = sum(p == label for p, label in zip(all_gender_prag_preds, all_gender_prag_labels))
-            gender_val_sq_error = sum((p - label) ** 2 for p, label in zip(all_gender_val_preds, all_gender_val_labels))
-            
-            grammaticality_correct = sum(p == label for p, label in zip(all_grammaticality_preds, all_grammaticality_labels))
-            register_correct = sum(
-                all(p[i] == label[i] for i in range(len(p))) 
-                for p, label in zip(all_register_preds, all_register_labels)
-            ) # Exact match for sets (lists of 0/1)
-            
-
-            # Note: Per-class register statistics could be added here in the future
-            # For now, we only track overall register accuracy
-            
-            # Calculate accuracy percentages from the packed metrics
-            # (In distributed mode, these are local metrics from this rank;
-            # they could be aggregated across ranks if needed, but for now we use local)
-            formality_acc = formality_correct / len(all_formality_preds) if all_formality_preds else 0
-            gender_prag_acc = gender_prag_correct / len(all_gender_prag_preds) if all_gender_prag_preds else 0
-            gender_mse = gender_val_sq_error / len(all_gender_val_preds) if all_gender_val_preds else 0
-            grammaticality_acc = grammaticality_correct / len(all_grammaticality_preds) if all_grammaticality_preds else 0
-            register_acc = register_correct / len(all_register_preds) if all_register_preds else 0
-            
-        else:
-            # Local calculation
-            formality_acc = sum(p == label for p, label in zip(all_formality_preds, all_formality_labels)) / len(all_formality_preds) if all_formality_preds else 0
-            gender_prag_acc = sum(p == label for p, label in zip(all_gender_prag_preds, all_gender_prag_labels)) / len(all_gender_prag_preds) if all_gender_prag_preds else 0
-            gender_mse = sum((p - label) ** 2 for p, label in zip(all_gender_val_preds, all_gender_val_labels)) / len(all_gender_val_preds) if all_gender_val_preds else 0
-            grammaticality_acc = sum(p == label for p, label in zip(all_grammaticality_preds, all_grammaticality_labels)) / len(all_grammaticality_preds) if all_grammaticality_preds else 0
-            register_acc = sum([1 for idx in range(len(all_register_preds)) if all(all_register_preds[idx][i] == all_register_labels[idx][i] for i in range(len(all_register_preds[idx])))]) / len(all_register_preds) if all_register_preds else 0
 
         avg_loss = total_loss / n_batches if n_batches > 0 else 0
         avg_formality_loss = total_formality_loss / n_batches if n_batches > 0 else 0
         avg_gender_loss = total_gender_loss / n_batches if n_batches > 0 else 0
         avg_grammaticality_loss = total_grammaticality_loss / n_batches if n_batches > 0 else 0
         avg_register_loss = total_register_loss / n_batches if n_batches > 0 else 0
+
+
+        # Calculate metrics (local)
+        # Formality Pragmatic Accuracy (All)
+        formality_acc = sum(p == label for p, label in zip(all_formality_prag_preds, all_formality_prag_labels)) / len(all_formality_prag_labels) if all_formality_prag_labels else 0
+        
+        # Gender Pragmatic Accuracy (All)
+        gender_prag_acc = sum(p == label for p, label in zip(all_gender_prag_preds, all_gender_prag_labels)) / len(all_gender_prag_labels) if all_gender_prag_labels else 0
+        
+        # Grammaticality Accuracy (All)
+        grammaticality_acc = sum(p == label for p, label in zip(all_grammaticality_preds, all_grammaticality_labels)) / len(all_grammaticality_labels) if all_grammaticality_labels else 0
+
+        # Filtered Metrics (Only valid style)
+        valid_indices = [i for i, m in enumerate(all_valid_style_mask) if m]
+        
+        # Formality Value MSE (Filtered)
+        if valid_indices:
+            f_mse = sum((all_formality_val_preds[i] - all_formality_val_labels[i]) ** 2 for i in valid_indices) / len(valid_indices)
+            g_mse = sum((all_gender_val_preds[i] - all_gender_val_labels[i]) ** 2 for i in valid_indices) / len(valid_indices)
+            
+            valid_reg_preds = [all_register_preds[i] for i in valid_indices]
+            valid_reg_labels = [all_register_labels[i] for i in valid_indices]
+            
+            # Register Exact Match (Filtered)
+            register_acc = sum([1 for idx in range(len(valid_reg_preds)) if all(valid_reg_preds[idx][i] == valid_reg_labels[idx][i] for i in range(len(valid_reg_preds[idx])))]) / len(valid_reg_preds)
+        else:
+            f_mse = 0.0
+            g_mse = 0.0
+            register_acc = 0.0
+
+        # Output Confusion Matrices (TSV)
+        if is_main_process():
+            # Create a dedicated directory for confusion matrices
+            confusion_dir = os.path.join(self.config.output if hasattr(self.config, 'output') else 'models/style', 'confusion_matrices') # Hacky access to output dir
+            # But config doesn't have output. TrainerConfig doesn't.
+            # We will use 'models/style' or just current directory if not available.
+            confusion_dir = "models/style/confusion_matrices"
+            os.makedirs(confusion_dir, exist_ok=True)
+            
+            # 1. Formality Pragmatic Confusion (TSV)
+            # Row: Actual, Col: Predicted
+            with open(os.path.join(confusion_dir, 'formality_confusion.tsv'), 'w') as f:
+                f.write('sentence\tactual_pragmatic\tpredicted_pragmatic\tactual_value\tpredicted_value\tis_valid_style\n')
+                for i in range(len(all_sentences)):
+                    f.write(f"{all_sentences[i]}\t{all_formality_prag_labels[i]}\t{all_formality_prag_preds[i]}\t{all_formality_val_labels[i]:.4f}\t{all_formality_val_preds[i]:.4f}\t{all_valid_style_mask[i]}\n")
+            
+            # 2. Gender Value MSE Confusion (TSV) - Top errors
+            # Filtered by valid style
+            mse_errors = []
+            for i in valid_indices:
+                error = (all_gender_val_preds[i] - all_gender_val_labels[i]) ** 2
+                mse_errors.append((error, all_sentences[i], all_gender_val_preds[i], all_gender_val_labels[i]))
+            
+            mse_errors.sort(key=lambda x: x[0], reverse=True)
+            
+            with open(os.path.join(confusion_dir, 'gender_mse_confusion.tsv'), 'w') as f:
+                f.write('sentence\terror\tpredicted_value\tactual_value\n')
+                for err, sent, pred, act in mse_errors: # Dump all, let user filter top N
+                    f.write(f"{sent}\t{err:.6f}\t{pred:.4f}\t{act:.4f}\n")
+            
+            # 3. Register Confusion (TSV) - Mismatches only, filtered by valid style
+            with open(os.path.join(confusion_dir, 'register_confusion.tsv'), 'w') as f:
+                f.write('sentence\tactual_labels\tpredicted_labels\n')
+                for i in valid_indices:
+                    # Check for mismatch
+                    if any(all_register_preds[i][j] != all_register_labels[i][j] for j in range(NUM_REGISTER_CLASSES)):
+                         # Convert to strings
+                         act_str = ",".join(str(j) for j, val in enumerate(all_register_labels[i]) if val == 1)
+                         pred_str = ",".join(str(j) for j, val in enumerate(all_register_preds[i]) if val == 1)
+                         f.write(f"{all_sentences[i]}\t{act_str}\t{pred_str}\n")
+
 
         return {
             'loss': avg_loss,
@@ -1926,8 +2032,9 @@ class Trainer:
             'grammaticality_loss': avg_grammaticality_loss,
             'register_loss': avg_register_loss,
             'formality_accuracy': formality_acc,
+            'formality_value_mse': f_mse,
             'gender_pragmatic_accuracy': gender_prag_acc,
-            'gender_value_mse': gender_mse,
+            'gender_value_mse': g_mse,
             'grammaticality_accuracy': grammaticality_acc,
             'register_accuracy': register_acc,
         }
@@ -1966,6 +2073,7 @@ class Trainer:
             self.history['val_grammaticality_loss'].append(eval_results['grammaticality_loss'])
             self.history['val_register_loss'].append(eval_results['register_loss'])
             self.history['val_formality_accuracy'].append(eval_results['formality_accuracy'])
+            self.history['val_formality_mse'].append(eval_results['formality_value_mse'])
             self.history['val_gender_pragmatic_accuracy'].append(eval_results['gender_pragmatic_accuracy'])
             self.history['val_gender_value_mse'].append(eval_results['gender_value_mse'])
             self.history['val_grammaticality_accuracy'].append(eval_results['grammaticality_accuracy'])
@@ -1995,7 +2103,8 @@ class Trainer:
                 
                 # Accuracy metrics (as percentages)
                 print("\n🎯 Accuracy:")
-                print(f"   Formality:            {eval_results['formality_accuracy']*100:6.2f}%")
+                print(f"   Formality (Pragmatic): {eval_results['formality_accuracy']*100:6.2f}%")
+                print(f"   Formality (Value MSE): {eval_results['formality_value_mse']:.4f}")
                 print(f"   Gender (Pragmatic):   {eval_results['gender_pragmatic_accuracy']*100:6.2f}%")
                 print(f"   Gender (Value MSE):   {eval_results['gender_value_mse']:.4f}")
                 print(f"   Grammaticality:       {eval_results['grammaticality_accuracy']*100:6.2f}%")
@@ -2259,7 +2368,38 @@ def load_checkpoint(
     model_state = {k.replace('module.', ''): v for k, v in model_state.items()}
     
     model_state = {k: v for k, v in model_state.items() if not k.startswith('mlm_head.')}
-    missing_keys, unexpected_keys = model.load_state_dict(model_state, strict=False)
+    model_state = {k: v for k, v in model_state.items() if not k.startswith('mlm_head.')}
+    
+    try:
+        missing_keys, unexpected_keys = model.load_state_dict(model_state, strict=False)
+    except RuntimeError as e:
+        if "size mismatch" in str(e):
+            print("WARNING: Size mismatch detected (likely due to feature set changes). Reloading with loose matching.")
+            # Filter out incompatible keys by attempting to load one by one or filtering based on logic?
+            # Easiest is to filter out keys that cause size mismatch.
+            # But load_state_dict doesn't return the specific mismatching keys in a nice way unless we catch the error.
+            # Actually, the best way: iterate over model_state, check shape against model.state_dict().
+            
+            compatible_state = {}
+            current_state = model.state_dict()
+            mismatched_keys = []
+            
+            for k, v in model_state.items():
+                if k in current_state:
+                    if v.shape == current_state[k].shape:
+                        compatible_state[k] = v
+                    else:
+                        mismatched_keys.append(k)
+                else:
+                    # Unexpected keys will be handled by strict=False anyway
+                    compatible_state[k] = v 
+            
+            print(f"Skipping mismatched keys: {mismatched_keys}")
+            missing_keys, unexpected_keys = model.load_state_dict(compatible_state, strict=False)
+            
+            # Since we dropped keys, they will be in missing_keys now.
+        else:
+            raise e
     
     if missing_keys:
         print(f"WARNING: Missing keys in state_dict: {missing_keys}")
@@ -2856,7 +2996,7 @@ if __name__ == "__main__":
         excluded = [f.strip() for f in args.exclude_features.split(',') if f.strip()] if args.exclude_features else []
         model_config = ModelConfig(
             vocab_sizes=tokenizer.get_vocab_sizes(),
-            num_formality_classes=NUM_FORMALITY_CLASSES,
+            num_formality_pragmatic_classes=NUM_FORMALITY_PRAGMATIC_CLASSES,
             num_gender_pragmatic_classes=NUM_GENDER_PRAGMATIC_CLASSES,
             num_grammaticality_classes=NUM_GRAMMATICALITY_CLASSES,
             d_model=args.embed_dim,
@@ -2946,7 +3086,9 @@ if __name__ == "__main__":
 
     model.eval()
     device = torch.device(trainer_config.device)
-    total_formality_acc = 0.0
+    total_formality_prag_acc = 0.0
+    total_formality_val_sq_err = 0.0
+    total_formality_prag_samples = 0
     total_gender_prag_acc = 0.0
     total_gender_val_sq_err = 0.0
     total_pragmatic_samples = 0
@@ -2958,37 +3100,55 @@ if __name__ == "__main__":
         for batch in test_loader:
             field_inputs = {k: v.to(device) for k, v in batch.items() if k.startswith('input_ids_')}
             attention_mask = batch['attention_mask'].to(device)
-            formality_labels = batch['formality_labels'].to(device)
+            formality_val_targets = batch['formality_value'].to(device)
+            formality_prag_targets = batch['formality_pragmatic'].to(device)
             gender_value_targets = batch['gender_value'].to(device)
             gender_prag_targets = batch['gender_pragmatic'].to(device)
             grammaticality_labels = batch['grammaticality_labels'].to(device)
-            register_labels = batch['register_labels'].to(device) # Added register_labels
+            register_labels = batch['register_labels'].to(device)
             
-            formality_logits, gender_val, gender_prag_logits, grammaticality_logits, register_logits = model(field_inputs, attention_mask) # Added register_logits
+            formality_val_preds, formality_prag_logits, gender_val_preds, gender_prag_logits, grammaticality_logits, register_logits = model(field_inputs, attention_mask)
             
             register_preds = (torch.sigmoid(register_logits) > 0.5).long()
-            total_formality_acc += (formality_logits.argmax(-1) == formality_labels).float().mean().item()
+
+            # Formality Pragmatic Acc
+            total_formality_prag_acc += (formality_prag_logits.argmax(-1) == formality_prag_targets).float().mean().item()
             
+            # Formality Value MSE (masked by pragmatic)
+            # Actually we use is_valid_style which includes gender_prag/gram too, but simpler here: 
+            # just match how we report gender?
+            # Or use the same logic as Trainer.evaluate?
+            # Let's use simple logic: calculate MSE on ALL pragmatic samples for reporting here.
+            # Mask: where formality_prag_targets == 1
+            f_prag_mask = (formality_prag_targets == 1)
+            if f_prag_mask.sum() > 0:
+                 sq_err = F.mse_loss(formality_val_preds.squeeze(-1)[f_prag_mask], formality_val_targets[f_prag_mask], reduction='sum').item()
+                 total_formality_val_sq_err += sq_err
+                 total_formality_prag_samples += f_prag_mask.sum().item()
+            
+            # Gender Pragmatic Acc
             total_gender_prag_acc += (gender_prag_logits.argmax(-1) == gender_prag_targets).float().mean().item()
             
+            # Gender Value MSE (masked)
             prag_mask = (gender_prag_targets == 1)
             if prag_mask.sum() > 0:
-                 sq_err = F.mse_loss(gender_val.squeeze(-1)[prag_mask], gender_value_targets[prag_mask], reduction='sum').item()
+                 sq_err = F.mse_loss(gender_val_preds.squeeze(-1)[prag_mask], gender_value_targets[prag_mask], reduction='sum').item()
                  total_gender_val_sq_err += sq_err
                  total_pragmatic_samples += prag_mask.sum().item()
 
             total_gram_acc += (grammaticality_logits.argmax(-1) == grammaticality_labels).float().mean().item()
-            total_register_acc += (register_preds == register_labels.long()).all(dim=1).float().mean().item() # Added register_acc
+            total_register_acc += (register_preds == register_labels.long()).all(dim=1).float().mean().item()
             num_batches += 1
             
     f32_accuracy = (
-        total_formality_acc / num_batches,
+        total_formality_prag_acc / num_batches,
+        total_formality_val_sq_err / total_formality_prag_samples if total_formality_prag_samples > 0 else 0.0,
         total_gender_prag_acc / num_batches,
         total_gender_val_sq_err / total_pragmatic_samples if total_pragmatic_samples > 0 else 0.0,
         total_gram_acc / num_batches,
-        total_register_acc / num_batches, # Added register_acc to f32_accuracy
+        total_register_acc / num_batches,
     )
-    print(f"Test Accuracy (float32): formality={f32_accuracy[0]:.4f}, gender_prag={f32_accuracy[1]:.4f}, gender_mse={f32_accuracy[2]:.4f}, gram={f32_accuracy[3]:.4f}, register={f32_accuracy[4]:.4f}") # Updated print statement
+    print(f"Test Accuracy (float32): form_prag={f32_accuracy[0]:.4f}, form_mse={f32_accuracy[1]:.4f}, gender_prag={f32_accuracy[2]:.4f}, gender_mse={f32_accuracy[3]:.4f}, gram={f32_accuracy[4]:.4f}, register={f32_accuracy[5]:.4f}")
 
     # Save model
     if is_main_process():
@@ -3009,14 +3169,13 @@ if __name__ == "__main__":
         print(f"\nVerifying loaded {precision_name} model accuracy...")
         loaded_model, _ = load_model(args.output, device=device)
 
-        formality_correct = 0
-        # Log metrics
-        register_correct = 0
+        formality_prag_correct = 0
+        formality_val_sq_err = 0.0
+        form_pragmatic_samples = 0
         register_correct = 0
         gender_prag_correct = 0
         gender_val_sq_err = 0.0
-        pragmatic_samples = 0
-        grammaticality_correct = 0
+        gender_pragmatic_samples = 0
         grammaticality_correct = 0
         total = 0
 
@@ -3027,36 +3186,51 @@ if __name__ == "__main__":
                     if k.startswith('input_ids_')
                 }
                 attention_mask = batch['attention_mask'].to(device)
-                formality_labels = batch['formality_labels'].to(device)
+                
+                # Targets
+                formality_value_targets = batch['formality_value'].to(device)
+                formality_prag_targets = batch['formality_pragmatic'].to(device)
                 gender_value_targets = batch['gender_value'].to(device)
                 gender_prag_targets = batch['gender_pragmatic'].to(device)
                 grammaticality_labels = batch['grammaticality_labels'].to(device)
                 register_labels = batch['register_labels'].to(device)
 
-                formality_logits, gender_val, gender_prag_logits, grammaticality_logits, register_logits = loaded_model(field_inputs, attention_mask)
-                formality_preds = formality_logits.argmax(dim=-1)
-                gender_prag_preds = gender_prag_logits.argmax(dim=-1)
-                grammaticality_preds = grammaticality_logits.argmax(dim=-1)
-                register_preds = (torch.sigmoid(register_logits) > 0.5).long() # Multi-label
-
-                formality_correct += (formality_preds == formality_labels).sum().item()
+                prediction = loaded_model.predict(field_inputs, attention_mask)
                 
+                # Predictions
+                formality_prag_preds = prediction.formality_pragmatic_probs.argmax(dim=-1)
+                gender_prag_preds = prediction.gender_pragmatic_probs.argmax(dim=-1)
+                grammaticality_preds = prediction.grammaticality_probs.argmax(dim=-1)
+                register_preds = (torch.sigmoid(prediction.register_probs) > 0.5).long() # Multi-label
+
+
+                # Formality Metrics
+                formality_prag_correct += (formality_prag_preds == formality_prag_targets).sum().item()
+                f_prag_mask = (formality_prag_targets == 1)
+                if f_prag_mask.size(0) > 0 and f_prag_mask.sum() > 0:
+                     sq_err = F.mse_loss(prediction.formality_value.squeeze(-1)[f_prag_mask], formality_value_targets[f_prag_mask], reduction='sum').item()
+                     formality_val_sq_err += sq_err
+                     form_pragmatic_samples += f_prag_mask.sum().item()
+
+                # Gender Metrics
                 gender_prag_correct += (gender_prag_preds == gender_prag_targets).sum().item()
-                prag_mask = (gender_prag_targets == 1)
-                if prag_mask.size(0) > 0 and prag_mask.sum() > 0:
-                     sq_err = F.mse_loss(gender_val.squeeze(-1)[prag_mask], gender_value_targets[prag_mask], reduction='sum').item()
+                g_prag_mask = (gender_prag_targets == 1)
+                if g_prag_mask.size(0) > 0 and g_prag_mask.sum() > 0:
+                     sq_err = F.mse_loss(prediction.gender_value.squeeze(-1)[g_prag_mask], gender_value_targets[g_prag_mask], reduction='sum').item()
                      gender_val_sq_err += sq_err
-                     pragmatic_samples += prag_mask.sum().item()
+                     gender_pragmatic_samples += g_prag_mask.sum().item()
 
                 grammaticality_correct += (grammaticality_preds == grammaticality_labels).sum().item()
                 register_correct += (register_preds == register_labels.long()).all(dim=1).int().sum().item()
-                total += formality_labels.size(0)
+                total += formality_prag_targets.size(0)
 
         print(f"Test Accuracy ({precision_name}):")
-        print(f"  Formality: {formality_correct/total:.4f}")
+        print(f"  Formality Prag: {formality_prag_correct/total:.4f}")
+        if form_pragmatic_samples > 0:
+             print(f"  Formality MSE: {formality_val_sq_err/form_pragmatic_samples:.4f}")
         print(f"  Gender Prag: {gender_prag_correct/total:.4f}")
-        if pragmatic_samples > 0:
-            print(f"  Gender MSE: {gender_val_sq_err/pragmatic_samples:.4f}")
+        if gender_pragmatic_samples > 0:
+            print(f"  Gender MSE: {gender_val_sq_err/gender_pragmatic_samples:.4f}")
         print(f"  Grammaticality: {grammaticality_correct/total:.4f}")
         print(f"  Register: {register_correct/total:.4f}")
 

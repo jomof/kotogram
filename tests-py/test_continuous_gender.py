@@ -80,10 +80,10 @@ class TestContinuousGender(unittest.TestCase):
         mask = torch.ones(bs, 10)
         
         out = model(inputs, mask)
-        # Expect 5 outputs: formality, gender_val, gender_prag, gram, register
-        self.assertEqual(len(out), 5) 
+        # Now expecting 6 outputs: formality_val, formality_prag, gender_val, gender_prag, gram, register
+        self.assertEqual(len(out), 6) 
         
-        formality, gender_val, gender_prag, gram, register = out
+        formality_val, formality_prag, gender_val, gender_prag, gram, register = out
         
         self.assertEqual(gender_val.shape, (bs, 1))
         self.assertEqual(gender_prag.shape, (bs, 2))
