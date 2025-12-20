@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 from kotogram.augment import (
     Augmenter, augment,
     PronounRule, CopulaRule, ContractionRule, TopicDropRule, ProgressiveRule, PluralRule
@@ -7,8 +7,6 @@ from kotogram.augment import (
 from kotogram.kotogram import TokenFeatures
 
 from kotogram.augment import (
-    Augmenter, augment,
-    PronounRule, CopulaRule, ContractionRule, TopicDropRule, ProgressiveRule, PluralRule,
     VerbPolitenessRule, Token
 )
 

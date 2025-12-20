@@ -53,23 +53,18 @@ Usage:
 """
 
 import csv
-import glob
 import hashlib
 import json
-import math
-import logging
 import multiprocessing as mp
 import os
 import pickle
 import random
-import sqlite3
 import sys
 import time
 from collections import Counter
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
-from functools import partial
-from typing import Dict, List, Optional, Tuple, Any, cast, Set, Union, NamedTuple
+from typing import Dict, List, Optional, Tuple, Any, cast
 
 import yaml
 
@@ -93,7 +88,7 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 
 from kotogram.kotogram import split_kotogram
-from kotogram.analysis import FormalityLevel, GenderLevel
+from kotogram.analysis import FormalityLevel
 from kotogram.kotogram import extract_token_features
 
 from kotogram.japanese_parser import JapaneseParser
@@ -109,10 +104,7 @@ from kotogram.model import (
     FEATURE_FIELDS, ALL_FEATURE_FIELDS, set_excluded_features,
     NUM_FORMALITY_CLASSES, NUM_GENDER_PRAGMATIC_CLASSES, NUM_GRAMMATICALITY_CLASSES, NUM_REGISTER_CLASSES,
     FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL,
-    GENDER_LABEL_TO_ID, GENDER_ID_TO_LABEL,
-    REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL,
-    PAD_TOKEN, UNK_TOKEN, CLS_TOKEN, MASK_TOKEN,
-    load_model, Sample
+    GENDER_LABEL_TO_ID, load_model, Sample
 )
 
 from scripts.cache import get_kotogram_cache, ProcessedSample
@@ -157,7 +149,6 @@ def _collect_tokens_batch(kotograms: List[str]) -> Dict[str, Counter]:
     Returns:
         Dict mapping field_name -> Counter of token values
     """
-    from kotogram.kotogram import extract_token_features, split_kotogram
     from kotogram.model import FEATURE_FIELDS
     
     counters = {f: Counter() for f in FEATURE_FIELDS}
@@ -1991,7 +1982,7 @@ class Trainer:
                 print(f"{'='*80}")
                 
                 # Training metrics
-                print(f"\n🔥 Training:")
+                print("\n🔥 Training:")
                 print(f"   Overall Loss:         {train_loss:.4f}")
                 print(f"   ├─ Formality:         {train_formality_loss:.4f}")
                 print(f"   ├─ Gender:            {train_gender_loss:.4f}")
@@ -1999,7 +1990,7 @@ class Trainer:
                 print(f"   └─ Register:          {train_register_loss:.4f}")
                 
                 # Validation metrics
-                print(f"\n✅ Validation:")
+                print("\n✅ Validation:")
                 print(f"   Overall Loss:         {eval_results['loss']:.4f}")
                 print(f"   ├─ Formality:         {eval_results['formality_loss']:.4f}")
                 print(f"   ├─ Gender:            {eval_results['gender_loss']:.4f}")
@@ -2007,7 +1998,7 @@ class Trainer:
                 print(f"   └─ Register:          {eval_results['register_loss']:.4f}")
                 
                 # Accuracy metrics (as percentages)
-                print(f"\n🎯 Accuracy:")
+                print("\n🎯 Accuracy:")
                 print(f"   Formality:            {eval_results['formality_accuracy']*100:6.2f}%")
                 print(f"   Gender (Pragmatic):   {eval_results['gender_pragmatic_accuracy']*100:6.2f}%")
                 print(f"   Gender (Value MSE):   {eval_results['gender_value_mse']:.4f}")
@@ -2017,7 +2008,7 @@ class Trainer:
                 # Learning rates
                 enc_lr = self.optimizer.param_groups[0]['lr']
                 cls_lr = self.optimizer.param_groups[1]['lr']
-                print(f"\n📉 Learning Rates:")
+                print("\n📉 Learning Rates:")
                 print(f"   Encoder:              {enc_lr:.2e}")
                 print(f"   Classifier:           {cls_lr:.2e}")
 
@@ -2372,10 +2363,10 @@ if __name__ == "__main__":
                 print(f"  Distributed:  d_model=DDP, {world_size} gpus, global_batch={args.batch_size * world_size * args.grad_accum_steps}")
                 print(f"  Mixed Prec:   {'On' if args.fp16 else 'Off'}")
         elif torch.backends.mps.is_available():
-             print(f"\nDevice:         MPS (Apple Silicon)")
+             print("\nDevice:         MPS (Apple Silicon)")
         else:
-             print(f"\nDevice:         CPU")
-             print(f"  Info:         Training will be slow. CUDA or MPS not found.")
+             print("\nDevice:         CPU")
+             print("  Info:         Training will be slow. CUDA or MPS not found.")
     else:
         # Non-main processes should still print that they started if in debug mode
         if os.environ.get("DEBUG"):
@@ -2415,7 +2406,7 @@ if __name__ == "__main__":
 
             # Override args with saved args (but keep epochs from command line to allow extending)
             if is_main_process():
-                print(f"  Using saved parameters:")
+                print("  Using saved parameters:")
                 print(f"    data: {saved_args['data']}")
             # ... skipping full print for brevity in DDP
 
@@ -2456,7 +2447,7 @@ if __name__ == "__main__":
             if args.fp16 is None:
                 args.fp16 = saved_args.get('fp16', False)
                 if args.fp16:
-                    print(f"  Restored flag: --fp16")
+                    print("  Restored flag: --fp16")
             elif args.fp16 is False:
                  # argparse 'store_true' with default=None sets False if not provided?
                  # No, 'store_true' only stores True if present.
@@ -2470,7 +2461,7 @@ if __name__ == "__main__":
             if args.fp8 is None:
                 args.fp8 = saved_args.get('fp8', False)
                 if args.fp8:
-                    print(f"  Restored flag: --fp8")
+                    print("  Restored flag: --fp8")
 
             # Ensure they are boolean False if still None (and not restored to True)
             if args.fp16 is None: args.fp16 = False
@@ -2676,7 +2667,7 @@ if __name__ == "__main__":
         # Agrammatic data is only used during fine-tuning for classification
         grammatic_files = [args.data]  # Only primary data file (grammatical)
         print("Loading grammatical data for MLM pretraining...")
-        print(f"  (agrammatic data excluded from pretraining, will be used in fine-tuning)")
+        print("  (agrammatic data excluded from pretraining, will be used in fine-tuning)")
         tokenizer = Tokenizer()
         if is_main_process():
             unlabeled_dataset = StyleDataset.from_tsv(

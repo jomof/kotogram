@@ -96,7 +96,7 @@ def validate_sentences(
     print()
 
     if unmapped_features:
-        print(f"UNMAPPED FEATURES BY MAP:")
+        print("UNMAPPED FEATURES BY MAP:")
         print(f"{'-'*80}")
         for map_name, keys in sorted(unmapped_features.items()):
             print(f"\n{map_name}: {len(keys)} unmapped keys")
@@ -104,7 +104,7 @@ def validate_sentences(
                 print(f"  '{key}'")
 
         print(f"\n{'='*80}")
-        print(f"FIRST 10 FAILED SENTENCES:")
+        print("FIRST 10 FAILED SENTENCES:")
         print(f"{'='*80}")
         for failure in failed_sentences[:10]:
             print(f"\nID: {failure['id']}")
@@ -137,7 +137,7 @@ def main():
     from kotogram import SudachiJapaneseParser
     parser = SudachiJapaneseParser(dict_type='full', validate=True)
     print(f"\n{'#'*80}")
-    print(f"# VALIDATING WITH SUDACHI")
+    print("# VALIDATING WITH SUDACHI")
     print(f"{'#'*80}")
     validate_sentences(parser, "Sudachi", tsv_file, max_sentences)
 

@@ -227,7 +227,6 @@ class VerbPolitenessRule(AugmentationRule):
                     potential_swaps.append((i, 2, replacement))
 
         if potential_swaps:
-            import itertools
             # Generate sub-combinations? 
             # Similar to ContractionRule, let's just generate "Original" and "All Swapped".
             # Mixing politeness levels in one sentence is usually grammatically weird.

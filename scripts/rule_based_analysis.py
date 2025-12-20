@@ -5,7 +5,7 @@ associated speech patterns. It was moved from kotogram/analysis.py to keep the
 main package model-focused.
 """
 
-from typing import List, Dict, Optional, Tuple, Set
+from typing import List, Set
 from kotogram.kotogram import split_kotogram, extract_token_features, TokenFeatures
 from kotogram.analysis import FormalityLevel, GenderLevel, RegisterLevel
 

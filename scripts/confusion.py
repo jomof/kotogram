@@ -6,26 +6,20 @@ Extracted from train_style.py.
 import os
 import sys
 import csv
-import json
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
 
-from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn
 
 # Add project root to path to allow imports from kotogram
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from kotogram.model import (
-    StyleClassifier, Tokenizer, ModelConfig,
-    FEATURE_FIELDS, 
-    NUM_FORMALITY_CLASSES, NUM_GENDER_PRAGMATIC_CLASSES, NUM_GRAMMATICALITY_CLASSES, NUM_REGISTER_CLASSES,
-    FORMALITY_ID_TO_LABEL, GENDER_ID_TO_LABEL, REGISTER_ID_TO_LABEL,
+    NUM_FORMALITY_CLASSES, NUM_REGISTER_CLASSES,
+    FORMALITY_ID_TO_LABEL, REGISTER_ID_TO_LABEL,
     load_model
 )
 from scripts.train_style import StyleDataset, collate_fn

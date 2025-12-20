@@ -70,7 +70,7 @@ with open('data/jpn_sentences.tsv', 'r', encoding='utf-8') as f:
         try:
             kotogram = parser.japanese_to_kotogram(text)
             level = formality(kotogram)
-        except Exception as e:
+        except Exception:
             continue
 
         # Check if unpragmatic
@@ -103,7 +103,7 @@ with open('data/jpn_sentences.tsv', 'r', encoding='utf-8') as f:
             print(f"Processed {line_count} lines ({total_sentences} Japanese)...", end='\r')
 
 print(f"\n\n{'=' * 80}")
-print(f"SUMMARY:")
+print("SUMMARY:")
 print(f"  Processed {line_count} lines ({total_sentences} Japanese sentences)")
 print(f"  Blacklisted (skipped): {blacklisted_count}")
 print(f"  Unpragmatic found: {len(unpragmatic_found)}")

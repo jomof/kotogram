@@ -1,7 +1,6 @@
 from dataclasses import dataclass, field
-from typing import List, Dict, Any, Optional, Union
+from typing import List, Dict, Any
 import torch
-import torch.nn as nn
 from torch.utils.data import DataLoader
 from kotogram.model import StyleClassifier, FEATURE_FIELDS
 

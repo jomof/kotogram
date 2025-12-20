@@ -29,7 +29,7 @@ class SudachiJapaneseParser(JapaneseParser):
                      Useful for debugging unmapped linguistic features.
         """
         # Lazy import to avoid requiring Sudachi for the abstract interface
-        from sudachipy import tokenizer, dictionary
+        from sudachipy import dictionary
 
         self.dict_obj = dictionary.Dictionary(dict=dict_type)
         self.tokenizer = self.dict_obj.create()
