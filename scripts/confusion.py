@@ -236,11 +236,8 @@ def main():
     console.print(f"Using device: [bold blue]{device_name}[/bold blue]")
     
     # Load model and tokenizer
-    try:
-        model, tokenizer = load_model(args.output, device=device)
-    except Exception as e:
-        console.print(f"[bold red]Error loading model from {args.output}: {e}[/bold red]")
-        sys.exit(1)
+    # Load model and tokenizer
+    model, tokenizer = load_model(args.output, device=device)
     
     # Building evaluation files list
     data_files = []

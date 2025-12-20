@@ -133,40 +133,37 @@ def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[Processed
     results = []
 
     for sentence, sentence_id, gram_label in batch:
-        try:
-            kotogram = parser.japanese_to_kotogram(sentence)
-            formality_enum = analyze_formality(kotogram)
-            gender_enum = analyze_gender(kotogram)
+        kotogram = parser.japanese_to_kotogram(sentence)
+        formality_enum = analyze_formality(kotogram)
+        gender_enum = analyze_gender(kotogram)
 
-            # Check for overrides
-            if sentence in _REGISTER_OVERRIDES:
-                register_enums = _REGISTER_OVERRIDES[sentence]
-            else:
-                register_enums = analyze_register(kotogram)
-            
-            formality_id = FORMALITY_LABEL_TO_ID.get(formality_enum, FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL])
-            
-            gender_val, gender_prag = infer_gender_from_register(gender_enum, register_enums)
-            
+        # Check for overrides
+        if sentence in _REGISTER_OVERRIDES:
+            register_enums = _REGISTER_OVERRIDES[sentence]
+        else:
+            register_enums = analyze_register(kotogram)
+        
+        formality_id = FORMALITY_LABEL_TO_ID.get(formality_enum, FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL])
+        
+        gender_val, gender_prag = infer_gender_from_register(gender_enum, register_enums)
+        
 
-                
-            register_ids = [REGISTER_LABEL_TO_ID[r] for r in register_enums if r in REGISTER_LABEL_TO_ID]
-            if not register_ids:
-                register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
+            
+        register_ids = [REGISTER_LABEL_TO_ID[r] for r in register_enums if r in REGISTER_LABEL_TO_ID]
+        if not register_ids:
+            register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
 
-            results.append(ProcessedSample(
-                sentence=sentence,
-                sentence_id=sentence_id,
-                kotogram=kotogram,
-                formality_id=formality_id,
-                gender_value=gender_val,
-                gender_pragmatic=gender_prag,
-                register_ids=register_ids,
-                gram_label=gram_label,
-                success=1
-            ))
-        except Exception:
-            results.append(ProcessedSample(sentence, sentence_id, "", 0, 0.0, 0, [], gram_label, 0))
+        results.append(ProcessedSample(
+            sentence=sentence,
+            sentence_id=sentence_id,
+            kotogram=kotogram,
+            formality_id=formality_id,
+            gender_value=gender_val,
+            gender_pragmatic=gender_prag,
+            register_ids=register_ids,
+            gram_label=gram_label,
+            success=1
+        ))
     return results
 
 def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSample]:
@@ -179,38 +176,35 @@ def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSa
     results = []
     
     for sentence, kotogram, gram_label in batch:
-        try:
-            formality_enum = analyze_formality(kotogram)
-            gender_enum = analyze_gender(kotogram)
+        formality_enum = analyze_formality(kotogram)
+        gender_enum = analyze_gender(kotogram)
+        register_enums = analyze_register(kotogram)
+        
+        formality_id = FORMALITY_LABEL_TO_ID.get(formality_enum, FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL])
+        
+        gender_val, gender_prag = infer_gender_from_register(gender_enum, register_enums)
+        
+        # Check for overrides
+        if sentence in _REGISTER_OVERRIDES:
+            register_enums = _REGISTER_OVERRIDES[sentence]
+        else:
             register_enums = analyze_register(kotogram)
-            
-            formality_id = FORMALITY_LABEL_TO_ID.get(formality_enum, FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL])
-            
-            gender_val, gender_prag = infer_gender_from_register(gender_enum, register_enums)
-            
-            # Check for overrides
-            if sentence in _REGISTER_OVERRIDES:
-                register_enums = _REGISTER_OVERRIDES[sentence]
-            else:
-                register_enums = analyze_register(kotogram)
 
-            register_ids = [REGISTER_LABEL_TO_ID[r] for r in register_enums if r in REGISTER_LABEL_TO_ID]
-            if not register_ids:
-                register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
+        register_ids = [REGISTER_LABEL_TO_ID[r] for r in register_enums if r in REGISTER_LABEL_TO_ID]
+        if not register_ids:
+            register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
 
-            results.append(ProcessedSample(
-                sentence=sentence,
-                sentence_id="",
-                kotogram=kotogram,
-                formality_id=formality_id,
-                gender_value=gender_val,
-                gender_pragmatic=gender_prag,
-                register_ids=register_ids,
-                gram_label=gram_label,
-                success=1
-            ))
-        except Exception:
-            results.append(ProcessedSample(sentence, "", kotogram, 0, 0.0, 0, [], gram_label, 0))
+        results.append(ProcessedSample(
+            sentence=sentence,
+            sentence_id="",
+            kotogram=kotogram,
+            formality_id=formality_id,
+            gender_value=gender_val,
+            gender_pragmatic=gender_prag,
+            register_ids=register_ids,
+            gram_label=gram_label,
+            success=1
+        ))
             
     return results
 

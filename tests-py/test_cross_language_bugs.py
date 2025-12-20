@@ -14,10 +14,8 @@ class TestCrossLanguageBugs(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        try:
-            self.parser = SudachiJapaneseParser(dict_type='full')
-        except Exception as e:
-            self.skipTest(f"Sudachi not available: {e}")
+        # Initialize Sudachi parser
+        self.parser = SudachiJapaneseParser(dict_type='full')
 
     def test_bug1_small_tsu_collapses_with_particle(self):
         """

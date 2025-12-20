@@ -12,7 +12,8 @@ from pathlib import Path
 # Add parent to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from kotogram import SudachiJapaneseParser, gender
+from kotogram import SudachiJapaneseParser, gender, GenderLevel
+from scripts.rule_based_analysis import analyze_gender as rule_based_gender
 
 # Sentences where the MODEL is known to be incorrect
 # (rule-based is correct for these)
@@ -113,40 +114,45 @@ def main():
             if sentence in MODEL_INCORRECT_SENTENCES or sentence in DESIGN_DIFFERENCE_SENTENCES:
                 continue
 
-            try:
-                kotogram = parser.japanese_to_kotogram(sentence)
+            kotogram = parser.japanese_to_kotogram(sentence)
 
-                rule_result = gender(kotogram, use_model=False)
-                model_result = gender(kotogram, use_model=True)
+            rule_result = rule_based_gender(kotogram)
+            
+            # Map model float result to GenderLevel
+            model_val = gender(kotogram)
+            if model_val is None:
+                model_result = GenderLevel.UNPRAGMATIC_GENDER
+            elif model_val > 0.1:
+                model_result = GenderLevel.FEMININE
+            elif model_val < -0.1:
+                model_result = GenderLevel.MASCULINE
+            else:
+                model_result = GenderLevel.NEUTRAL
 
-                total_checked += 1
+            total_checked += 1
 
-                if rule_result != model_result:
-                    disagreements.append({
-                        'id': sentence_id,
-                        'sentence': sentence,
-                        'kotogram': kotogram,
-                        'rule': rule_result,
-                        'model': model_result,
-                    })
+            if rule_result != model_result:
+                disagreements.append({
+                    'id': sentence_id,
+                    'sentence': sentence,
+                    'kotogram': kotogram,
+                    'rule': rule_result,
+                    'model': model_result,
+                })
 
-                    print(f"Disagreement #{len(disagreements)}:")
-                    print(f"  ID: {sentence_id}")
-                    print(f"  Sentence: {sentence}")
-                    print(f"  Rule-based: {rule_result.value}")
-                    print(f"  Model:      {model_result.value}")
-                    print(f"  Kotogram:   {kotogram[:100]}...")
-                    print()
+                print(f"Disagreement #{len(disagreements)}:")
+                print(f"  ID: {sentence_id}")
+                print(f"  Sentence: {sentence}")
+                print(f"  Rule-based: {rule_result.value}")
+                print(f"  Model:      {model_result.value}")
+                print(f"  Kotogram:   {kotogram[:100]}...")
+                print()
 
-                    if len(disagreements) >= max_disagreements:
-                        break
+                if len(disagreements) >= max_disagreements:
+                    break
 
-                if total_checked % 1000 == 0:
-                    print(f"  Checked {total_checked} sentences, {len(disagreements)} disagreements so far...")
-
-            except Exception as e:
-                print(f"Error processing {sentence_id}: {e}")
-                continue
+            if total_checked % 1000 == 0:
+                print(f"  Checked {total_checked} sentences, {len(disagreements)} disagreements so far...")
 
     print("\nSummary:")
     print(f"  Total checked: {total_checked}")

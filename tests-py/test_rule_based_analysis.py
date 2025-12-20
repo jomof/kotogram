@@ -16,10 +16,7 @@ class TestRuleBasedFormality(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        try:
-            self.parser = SudachiJapaneseParser(dict_type='full')
-        except Exception as e:
-            self.skipTest(f"Sudachi not available: {e}")
+        self.parser = SudachiJapaneseParser(dict_type='full')
 
     def test_very_formal_humble(self):
         """Test humble verbs (keigo) -> VERY_FORMAL."""
@@ -106,10 +103,7 @@ class TestRuleBasedGender(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        try:
-            self.parser = SudachiJapaneseParser(dict_type='full')
-        except Exception as e:
-            self.skipTest(f"Sudachi not available: {e}")
+        self.parser = SudachiJapaneseParser(dict_type='full')
 
     def test_masculine_pronouns(self):
         """Test masculine pronouns."""
