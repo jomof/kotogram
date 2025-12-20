@@ -169,7 +169,8 @@ def style(kotogram: str) -> Tuple[FormalityLevel, Optional[float], Set[RegisterL
 
     # Use the trained neural model for prediction (single inference for all)
     import torch
-    from kotogram.model import FEATURE_FIELDS, REGISTER_ID_TO_LABEL
+    from kotogram.model import FEATURE_FIELDS
+    from kotogram.constants import REGISTER_ID_TO_LABEL
 
     model, tokenizer = _load_style_model()
 
@@ -249,7 +250,8 @@ def register(kotogram: str) -> Set[RegisterLevel]:
 
     # Use the trained neural model for prediction
     import torch
-    from kotogram.model import FEATURE_FIELDS, REGISTER_ID_TO_LABEL
+    from kotogram.model import FEATURE_FIELDS
+    from kotogram.constants import REGISTER_ID_TO_LABEL
 
     model, tokenizer = _load_style_model()
 
