@@ -52,19 +52,65 @@ def set_excluded_features(excluded: List[str]) -> None:
     FEATURE_FIELDS = get_active_features()
 
 
+# Number of classes for each task
+NUM_FORMALITY_CLASSES = 6
+NUM_GRAMMATICALITY_CLASSES = 2  # grammatic (1) vs agrammatic (0)
+NUM_GENDER_PRAGMATIC_CLASSES = 2 # pragmatic (1) vs unpragmatic (0)
+
+# Label mappings
+FORMALITY_LABEL_TO_ID = {
+    FormalityLevel.VERY_FORMAL: 0,
+    FormalityLevel.FORMAL: 1,
+    FormalityLevel.NEUTRAL: 2,
+    FormalityLevel.CASUAL: 3,
+    FormalityLevel.VERY_CASUAL: 4,
+    FormalityLevel.UNPRAGMATIC_FORMALITY: 5,
+}
+FORMALITY_ID_TO_LABEL = {v: k for k, v in FORMALITY_LABEL_TO_ID.items()}
+
+GENDER_LABEL_TO_ID = {
+    GenderLevel.MASCULINE: 0,
+    GenderLevel.FEMININE: 1,
+    GenderLevel.NEUTRAL: 2,
+    GenderLevel.UNPRAGMATIC_GENDER: 3,
+}
+GENDER_ID_TO_LABEL = {v: k for k, v in GENDER_LABEL_TO_ID.items()}
+
 from kotogram.analysis import RegisterLevel
-from kotogram.constants import (
-    NUM_FORMALITY_CLASSES,
-    NUM_GRAMMATICALITY_CLASSES,
-    NUM_GENDER_PRAGMATIC_CLASSES,
-    NUM_REGISTER_CLASSES,
-    FORMALITY_LABEL_TO_ID,
-    FORMALITY_ID_TO_LABEL,
-    GENDER_LABEL_TO_ID,
-    GENDER_ID_TO_LABEL,
-    REGISTER_LABEL_TO_ID,
-    REGISTER_ID_TO_LABEL,
-)
+# Register classes
+NUM_REGISTER_CLASSES = 14
+REGISTER_LABEL_TO_ID = {
+    RegisterLevel.NEUTRAL: 0,
+    RegisterLevel.SONKEIGO: 1,
+    RegisterLevel.KENJOGO: 2,
+    RegisterLevel.KANSAIBEN: 3,
+    RegisterLevel.HAKATABEN: 4,
+    RegisterLevel.KYOSHIGO: 5,
+    RegisterLevel.NETSLANG: 6,
+    RegisterLevel.OJOUSAMA: 7,
+    RegisterLevel.GUNTAI: 8,
+    RegisterLevel.JOSEIGO: 9,
+    RegisterLevel.DANSEIGO: 10,
+    RegisterLevel.BURIKKO: 11,
+    RegisterLevel.TOHOKU: 12,
+    RegisterLevel.BUSHI: 13,
+}
+REGISTER_ID_TO_LABEL = {
+    0: RegisterLevel.NEUTRAL,
+    1: RegisterLevel.SONKEIGO,
+    2: RegisterLevel.KENJOGO,
+    3: RegisterLevel.KANSAIBEN,
+    4: RegisterLevel.HAKATABEN,
+    5: RegisterLevel.KYOSHIGO,
+    6: RegisterLevel.NETSLANG,
+    7: RegisterLevel.OJOUSAMA,
+    8: RegisterLevel.GUNTAI,
+    9: RegisterLevel.JOSEIGO,
+    10: RegisterLevel.DANSEIGO,
+    11: RegisterLevel.BURIKKO,
+    12: RegisterLevel.TOHOKU,
+    13: RegisterLevel.BUSHI,
+}
 
 
 @dataclass
@@ -101,7 +147,7 @@ class Tokenizer:
         """Initialize feature tokenizer."""
         # Initialize vocabularies for each field with special tokens
         self.field_vocabs: Dict[str, Dict[str, int]] = {}
-        # self._field_counters: Dict[str, Counter[str]] = {} # Training only
+        self._field_counters: Dict[str, Counter[str]] = {}
         for f in FEATURE_FIELDS:
             self.field_vocabs[f] = {
                 PAD_TOKEN: 0,
@@ -109,9 +155,9 @@ class Tokenizer:
                 CLS_TOKEN: 2,
                 MASK_TOKEN: 3,
             }
-            # self._field_counters[f] = Counter() # Training only
+            self._field_counters[f] = Counter()
 
-        self._frozen = True # Inference tokenizer is always frozen
+        self._frozen = False
 
     @property
     def pad_id(self) -> int:
@@ -137,7 +183,21 @@ class Tokenizer:
         """Get vocabulary sizes for all fields."""
         return {field: len(vocab) for field, vocab in self.field_vocabs.items()}
 
-    # _add_value removed (training only)
+    def _add_value(self, field: str, value: str) -> int:
+        """Add a value to field vocabulary and return its ID."""
+        if not value:
+            value = UNK_TOKEN
+
+        vocab = self.field_vocabs[field]
+        if value in vocab:
+            return vocab[value]
+
+        if self._frozen:
+            return self.unk_id
+
+        new_id = len(vocab)
+        vocab[value] = new_id
+        return new_id
 
     def extract_features(self, kotogram: str) -> List[Dict[str, str]]:
         """Extract features from each token in a Kotogram string."""
@@ -156,6 +216,7 @@ class Tokenizer:
         self,
         features_list: List[Dict[str, str]],
         add_cls: bool = True,
+        add_to_vocab: bool = True,
     ) -> Dict[str, List[int]]:
         """Convert list of feature dicts to sequences of field IDs."""
         result: Dict[str, List[int]] = {f: [] for f in FEATURE_FIELDS}
@@ -167,9 +228,12 @@ class Tokenizer:
         for features in features_list:
             for field in FEATURE_FIELDS:
                 value = features.get(field, '')
-                # Inference only: just lookup
-                vocab = self.field_vocabs[field]
-                token_id = vocab.get(value, self.unk_id)
+                if add_to_vocab and not self._frozen:
+                    self._field_counters[field][value] += 1
+                    token_id = self._add_value(field, value)
+                else:
+                    vocab = self.field_vocabs[field]
+                    token_id = vocab.get(value, self.unk_id)
                 result[field].append(token_id)
 
         return result
@@ -178,12 +242,19 @@ class Tokenizer:
         self,
         kotogram: str,
         add_cls: bool = True,
+        add_to_vocab: bool = True,
     ) -> Dict[str, List[int]]:
         """Encode a Kotogram string to feature ID sequences."""
         features_list = self.extract_features(kotogram)
-        return self.encode_features(features_list, add_cls)
+        return self.encode_features(features_list, add_cls, add_to_vocab)
 
-    # freeze/unfreeze/save removed (training only)
+    def freeze(self) -> None:
+        """Freeze vocabulary - new values will map to UNK."""
+        self._frozen = True
+
+    def unfreeze(self) -> None:
+        """Unfreeze vocabulary."""
+        self._frozen = False
 
     def get_model_config(self, **kwargs: Any) -> 'ModelConfig':
         """Create a ModelConfig with vocabulary sizes from this tokenizer."""
@@ -192,6 +263,14 @@ class Tokenizer:
             **kwargs
         )
 
+    def save(self, path: str) -> None:
+        """Save tokenizer vocabularies to JSON file."""
+        data = {
+            'field_vocabs': self.field_vocabs,
+            'frozen': self._frozen,
+        }
+        with open(path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
 
     @classmethod
     def load(cls, path: str) -> 'Tokenizer':
@@ -321,7 +400,27 @@ class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
         normalized = self.layer_norm(projected)
         return cast(torch.Tensor, self.dropout(normalized))
 
-    # resize_embeddings removed (training only)
+    def resize_embeddings(self, new_vocab_sizes: Dict[str, int]) -> Dict[str, int]:
+        resized = {}
+        for field_name in FEATURE_FIELDS:
+            embedding = self.embeddings[field_name]
+            assert isinstance(embedding, nn.Embedding)  # Type hint for mypy
+            old_size = embedding.num_embeddings
+            new_size = new_vocab_sizes.get(field_name, old_size)
+
+            if new_size > old_size:
+                embed_dim = embedding.embedding_dim
+                old_weight = embedding.weight.data
+
+                new_embedding = nn.Embedding(new_size, embed_dim, padding_idx=0)
+                new_embedding.weight.data[:old_size] = old_weight
+
+                self.embeddings[field_name] = new_embedding
+                resized[field_name] = new_size - old_size
+                self.config.vocab_sizes[field_name] = new_size
+            else:
+                resized[field_name] = 0
+        return resized
 
 
 class StyleClassifier(nn.Module):  # type: ignore[misc]
@@ -456,7 +555,8 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             torch.sigmoid(register_logits),
         )
 
-    # resize_embeddings removed (training only)
+    def resize_embeddings(self, new_vocab_sizes: Dict[str, int]) -> Dict[str, int]:
+        return self.embedding.resize_embeddings(new_vocab_sizes)
 
 
 def load_model(
@@ -545,7 +645,7 @@ def predict_style(
         parser = SudachiJapaneseParser()
 
     kotogram = parser.japanese_to_kotogram(sentence)
-    feature_ids = tokenizer.encode(kotogram, add_cls=True)
+    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
 
     field_inputs = {
         f'input_ids_{field}': torch.tensor([feature_ids[field]], dtype=torch.long)
