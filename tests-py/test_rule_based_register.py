@@ -113,7 +113,7 @@ class TestRegisterLabeler(unittest.TestCase):
         """Test that non-military imperatives don't trigger guntai."""
         # Regular imperative without military context
         kotogram = self.parser.japanese_to_kotogram("ちょっと待て！")
-        result = analyze_register(kotogram)
+        analyze_register(kotogram)
         # This might still trigger guntai, but we'll fix the rules
         # Just documenting expected behavior for now
     

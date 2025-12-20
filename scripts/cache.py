@@ -83,7 +83,6 @@ class ShardedKotogramCache:
             cursor = conn.execute("SELECT sentence, kotogram FROM kotogram_cache")
             
             # Batch read to avoid memory issues (though 1.2GB might fit in RAM, safer to stream)
-            batch = []
             count = 0
             while True:
                 rows = cursor.fetchmany(10000)

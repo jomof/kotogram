@@ -179,9 +179,6 @@ def _encode_samples_batch(
     tokenizer._frozen = True
     
     samples = []
-    pad_id = tokenizer.pad_id
-    unk_id = tokenizer.unk_id
-    cls_id = tokenizer.cls_id
     
     for item in items:
         # Tuple validation handled by NamedTuple
