@@ -8,7 +8,7 @@ import csv
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from scripts.label import main as label_main
-from scripts.cache import get_kotogram_cache, ShardedKotogramCache
+from scripts.cache import get_kotogram_cache
 
 class TestLabelScript(unittest.TestCase):
     def setUp(self):

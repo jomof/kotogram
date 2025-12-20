@@ -10,13 +10,11 @@ import os
 import sys
 import csv
 import glob
-import hashlib
-import json
 import time
 import random
 import multiprocessing as mp
 from collections import Counter
-from typing import Dict, List, Optional, Tuple, Set, NamedTuple, Any
+from typing import Dict, List, Optional, Tuple, NamedTuple, Any
 
 # Add project root to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -27,7 +25,7 @@ from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn, MofNCompleteColumn
 
 from scripts.cache import get_kotogram_cache
-from kotogram.model import FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL, REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL, NUM_REGISTER_CLASSES
+from kotogram.model import FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL, REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL
 
 # Global override map: sentence -> List[RegisterLevel]
 _REGISTER_OVERRIDES: Dict[str, List[Any]] = {}
@@ -126,7 +124,7 @@ def infer_gender_from_register(gender_enum, register_enums) -> Tuple[float, int]
 def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSample]:
     """Process a batch of sentences in a worker process."""
     from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-    from kotogram.analysis import FormalityLevel, GenderLevel, RegisterLevel
+    from kotogram.analysis import FormalityLevel, RegisterLevel
     
     from scripts.rule_based_analysis import analyze_formality, analyze_gender, analyze_register
 
@@ -173,7 +171,7 @@ def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[Processed
 
 def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSample]:
     """Compute labels for a batch of sentences (where kotogram is already cached)."""
-    from kotogram.analysis import FormalityLevel, GenderLevel, RegisterLevel
+    from kotogram.analysis import FormalityLevel, RegisterLevel
     
     from scripts.rule_based_analysis import analyze_formality, analyze_gender, analyze_register
 
@@ -571,16 +569,16 @@ def main():
         
         # Print Phase 3-specific statistics
         vocab_sizes = tokenizer.get_vocab_sizes()
-        console.print(f"\n[bold cyan]Phase 3 Statistics:[/bold cyan]")
+        console.print("\n[bold cyan]Phase 3 Statistics:[/bold cyan]")
         console.print(f"  Encoded samples: [bold]{len(dataset)}[/bold]")
-        console.print(f"  Vocabulary sizes:")
+        console.print("  Vocabulary sizes:")
         console.print(f"    Surface forms: {vocab_sizes['surface']:,}")
         console.print(f"    Lemmas: {vocab_sizes['lemma']:,}")
         console.print(f"    POS tags: {vocab_sizes['pos']}")
         console.print(f"    Conjugation types: {vocab_sizes['conjugated_type']}")
         console.print(f"    Conjugation forms: {vocab_sizes['conjugated_form']}")
         console.print(f"  Binary cache: [cyan]{os.path.join(args.output_dir, 'dataset_cache')}[/cyan]")
-        console.print(f"\n[bold green]Preprocessing Phase 3 complete.[/bold green]")
+        console.print("\n[bold green]Preprocessing Phase 3 complete.[/bold green]")
 
 if __name__ == "__main__":
     main()

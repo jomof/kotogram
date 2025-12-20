@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock, patch
 import torch
-from kotogram.analysis import register, style, RegisterLevel, FormalityLevel, GenderLevel
+from kotogram.analysis import register, style, RegisterLevel, FormalityLevel
 
 class TestModelRegisterIntegration(unittest.TestCase):
     def setUp(self):

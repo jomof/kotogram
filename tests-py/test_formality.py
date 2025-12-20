@@ -1,7 +1,7 @@
 """Tests for model-based formality analysis of Japanese sentences."""
 
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 import torch
 from kotogram import SudachiJapaneseParser, formality, FormalityLevel
 

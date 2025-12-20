@@ -4,11 +4,9 @@ This module contains the model architecture, configuration, and inference functi
 for the Japanese style classifier (formality + gender + grammaticality).
 """
 
-import hashlib
 import json
 import math
 import os
-import random
 from collections import Counter
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple, Any, cast
@@ -20,7 +18,6 @@ import torch.nn.functional as F
 from kotogram.kotogram import split_kotogram
 from kotogram.analysis import FormalityLevel, GenderLevel
 from kotogram.kotogram import extract_token_features
-from kotogram.japanese_parser import JapaneseParser
 
 # Special token values for vocabulary
 PAD_TOKEN = "<PAD>"

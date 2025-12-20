@@ -10,7 +10,6 @@ import glob
 import os
 import yaml
 import csv
-import re
 import argparse
 from typing import List, Dict, Set
 

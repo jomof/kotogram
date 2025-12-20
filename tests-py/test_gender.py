@@ -1,8 +1,8 @@
 """Tests for model-based gender analysis of Japanese sentences."""
 
 import unittest
-from kotogram import SudachiJapaneseParser, gender, GenderLevel
-from unittest.mock import MagicMock, patch
+from kotogram import SudachiJapaneseParser, gender
+from unittest.mock import patch
 import torch
 
 
@@ -17,8 +17,7 @@ class TestGenderModel(unittest.TestCase):
             self.skipTest(f"Sudachi not available: {e}")
 
         # Mock the model loader for tests to avoid needing a real model file
-        from unittest.mock import MagicMock, patch
-        import torch
+        from unittest.mock import patch
         from kotogram.model import Tokenizer, ModelConfig, StyleClassifier
 
         # Create dummy tokenizer

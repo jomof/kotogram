@@ -1,7 +1,6 @@
 
 import sys
 import os
-import pytest
 from kotogram.analysis import GenderLevel, RegisterLevel
 
 # Add project root to path to allow importing scripts

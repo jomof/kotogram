@@ -3,7 +3,7 @@
 import unittest
 import torch
 import torch.nn as nn
-from kotogram.model import StyleClassifier, ModelConfig
+from kotogram.model import ModelConfig
 
 class MockStyleClassifier(nn.Module):
     """Mock StyleClassifier for testing gender output shapes."""
@@ -61,7 +61,6 @@ class TestContinuousGender(unittest.TestCase):
         # This test would ideally import the REAL StyleClassifier and check if it has the new heads.
         # But we can check if model.py was updated by importing it.
         from kotogram.model import StyleClassifier as RealStyleClassifier
-        from kotogram.model import ModelConfig
         
         config = ModelConfig(vocab_sizes={'surface': 100})
         model = RealStyleClassifier(config)

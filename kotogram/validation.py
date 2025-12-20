@@ -1,6 +1,6 @@
 """Validation utilities for runtime type checking."""
 
-from typing import Any, List
+from typing import Any
 
 def ensure_string(value: Any, name: str) -> None:
     """Ensure that the value is a string.

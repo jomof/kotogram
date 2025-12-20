@@ -161,7 +161,7 @@ def main():
     total_checked = 0
     max_disagreements = 5
 
-    print(f"Comparing rule-based vs model-based formality predictions...")
+    print("Comparing rule-based vs model-based formality predictions...")
     print(f"Data: {data_path}")
     print(f"Stopping after {max_disagreements} disagreements\n")
 
@@ -216,12 +216,12 @@ def main():
                 print(f"Error processing {sentence_id}: {e}")
                 continue
 
-    print(f"\nSummary:")
+    print("\nSummary:")
     print(f"  Total checked: {total_checked}")
     print(f"  Disagreements found: {len(disagreements)}")
 
     if disagreements:
-        print(f"\nDisagreement details for analysis:")
+        print("\nDisagreement details for analysis:")
         print("=" * 60)
         for i, d in enumerate(disagreements, 1):
             print(f"\n{i}. {d['sentence']}")

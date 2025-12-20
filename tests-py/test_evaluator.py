@@ -1,6 +1,6 @@
 
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 import torch
 from torch.utils.data import DataLoader
 from kotogram.evaluator import Evaluator, EvalResult
