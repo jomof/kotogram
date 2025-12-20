@@ -6,9 +6,13 @@ by examining linguistic features such as verb forms, particles, and auxiliary ve
 
 import json
 from dataclasses import dataclass, asdict
-from typing import Optional, Tuple, Dict, Set
-from kotogram.model import StyleClassifier, Tokenizer
+from typing import Optional, Tuple, Dict, Set, TYPE_CHECKING
 from kotogram.constants import FormalityLevel, GenderLevel, RegisterLevel
+
+# This is required for cross-language furigana support to work on typescript
+# canary CI machine without installing pytorch.
+if TYPE_CHECKING:
+    from kotogram.model import StyleClassifier, Tokenizer
 
 # Global cache for loaded model (lazy loading)
 _style_model: Optional['StyleClassifier'] = None
