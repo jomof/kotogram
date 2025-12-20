@@ -16,7 +16,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from kotogram.kotogram import split_kotogram
-from kotogram.analysis import FormalityLevel, GenderLevel, RegisterLevel
+from kotogram.constants import FormalityLevel, GenderLevel, RegisterLevel
 from kotogram.kotogram import extract_token_features
 
 # Special token values for vocabulary

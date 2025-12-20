@@ -5,7 +5,8 @@ __version__ = "0.0.16"
 from .japanese_parser import JapaneseParser
 from .sudachi_japanese_parser import SudachiJapaneseParser
 from .kotogram import kotogram_to_japanese, split_kotogram, extract_token_features
-from .analysis import formality, FormalityLevel, gender, GenderLevel, style, grammaticality
+from .analysis import grammar, GrammarAnalysis
+from .constants import FormalityLevel, GenderLevel, RegisterLevel
 from .augment import augment
 
 
@@ -14,12 +15,11 @@ __all__ = [
     "SudachiJapaneseParser",
     "kotogram_to_japanese",
     "split_kotogram",
-    "formality",
+    "grammar",
+    "GrammarAnalysis",
     "FormalityLevel",
-    "gender",
     "GenderLevel",
-    "style",
-    "grammaticality",
+    "RegisterLevel",
     "extract_token_features",
     "augment",
 ]

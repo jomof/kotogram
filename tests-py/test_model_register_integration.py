@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock, patch
 import torch
-from kotogram.analysis import register, style, RegisterLevel, FormalityLevel
+from kotogram.analysis import grammar, RegisterLevel, FormalityLevel
 from kotogram.model import StylePrediction
 
 class TestModelRegisterIntegration(unittest.TestCase):
@@ -31,70 +31,70 @@ class TestModelRegisterIntegration(unittest.TestCase):
         # REGISTER_ID_TO_LABEL mapping (from model.py):
         # 0:NEUTRAL, 1:SONKEIGO, 2:KENJOGO, 3:KANSAIBEN, 4:HAKATABEN, 5:KYOSHIGO, 6:NETSLANG, 7:OJOUSAMA, 8:GUNTAI
         
-        # Mock probabilities: Batch size 1, 9 classes.
+        # Mock probabilities: Batch size 1, 14 classes.
         # Use values > 0.5 for active, < 0.5 for inactive
-        register_probs = torch.tensor([[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]])
+        register_probs = torch.tensor([[0.1] * 14])
         # Let's make index 1 (SONKEIGO) the winner
         register_probs[0, 1] = 0.9
         
-        # model.predict returns 4 tensors (probabilities)
         self.mock_model.predict.return_value = StylePrediction(
-            formality_value=torch.zeros(1, 1), # formality_val
-            formality_pragmatic_probs=torch.zeros(1, 2), # formality_prag
-            gender_value=torch.zeros(1, 1), # gender_val
-            gender_pragmatic_probs=torch.zeros(1, 2), # gender_prag
-            grammaticality_probs=torch.zeros(1, 2), # grammaticality
-            register_probs=register_probs     # register
+            formality_value=torch.zeros(1, 1), 
+            formality_pragmatic_probs=torch.tensor([[0.1, 0.9]]), 
+            gender_value=torch.zeros(1, 1), 
+            gender_pragmatic_probs=torch.tensor([[0.1, 0.9]]), 
+            grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
+            register_probs=register_probs
         )
         
         # Test 1: Expect {SONKEIGO}
-        result = register("dummy kotogram")
-        self.assertEqual(result, {RegisterLevel.SONKEIGO})
+        result = grammar("dummy kotogram")
+        self.assertEqual(result.registers, {RegisterLevel.SONKEIGO})
+        self.assertEqual(len(result.register_scores), 14)
         
         # Test 2: Expect {KANSAIBEN} (index 3)
         register_probs[0, 1] = 0.1
         register_probs[0, 3] = 0.9
         self.mock_model.predict.return_value = StylePrediction(
             formality_value=torch.zeros(1, 1), 
-            formality_pragmatic_probs=torch.zeros(1, 2), 
+            formality_pragmatic_probs=torch.tensor([[0.1, 0.9]]), 
             gender_value=torch.zeros(1, 1), 
-            gender_pragmatic_probs=torch.zeros(1, 2), 
-            grammaticality_probs=torch.zeros(1, 2), 
+            gender_pragmatic_probs=torch.tensor([[0.1, 0.9]]), 
+            grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
             register_probs=register_probs
         )
-        result = register("dummy kotogram")
-        self.assertEqual(result, {RegisterLevel.KANSAIBEN})
+        result = grammar("dummy kotogram")
+        self.assertEqual(result.registers, {RegisterLevel.KANSAIBEN})
+        self.assertEqual(len(result.register_scores), 14)
         
         # Test 3: Expect {NEUTRAL} (all low)
-        # Using index 0 (NEUTRAL) explicit logic in analysis.py: 
-        # "if not detected_registers: detected_registers.add(RegisterLevel.NEUTRAL)"
-        # So even if all are 0.1, it should return {NEUTRAL}
         register_probs[0, 3] = 0.1
-        register_probs[0, 0] = 0.1 # even if neutral logit is low, it falls back
+        register_probs[0, 0] = 0.1 
         self.mock_model.predict.return_value = StylePrediction(
             formality_value=torch.zeros(1, 1), 
-            formality_pragmatic_probs=torch.zeros(1, 2), 
+            formality_pragmatic_probs=torch.tensor([[0.1, 0.9]]), 
             gender_value=torch.zeros(1, 1), 
-            gender_pragmatic_probs=torch.zeros(1, 2), 
-            grammaticality_probs=torch.zeros(1, 2), 
+            gender_pragmatic_probs=torch.tensor([[0.1, 0.9]]), 
+            grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
             register_probs=register_probs
         )
-        result = register("dummy kotogram")
-        self.assertEqual(result, {RegisterLevel.NEUTRAL})
+        result = grammar("dummy kotogram")
+        self.assertEqual(result.registers, {RegisterLevel.NEUTRAL})
+        self.assertEqual(len(result.register_scores), 14)
 
         # Test 4: Expect {SONKEIGO, KANSAIBEN} (multi-label)
         register_probs[0, 1] = 0.9 # SONKEIGO
         register_probs[0, 3] = 0.9 # KANSAIBEN
         self.mock_model.predict.return_value = StylePrediction(
             formality_value=torch.zeros(1, 1), 
-            formality_pragmatic_probs=torch.zeros(1, 2), 
+            formality_pragmatic_probs=torch.tensor([[0.1, 0.9]]), 
             gender_value=torch.zeros(1, 1), 
-            gender_pragmatic_probs=torch.zeros(1, 2), 
-            grammaticality_probs=torch.zeros(1, 2), 
+            gender_pragmatic_probs=torch.tensor([[0.1, 0.9]]), 
+            grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
             register_probs=register_probs
         )
-        result = register("dummy kotogram")
-        self.assertEqual(result, {RegisterLevel.SONKEIGO, RegisterLevel.KANSAIBEN})
+        result = grammar("dummy kotogram")
+        self.assertEqual(result.registers, {RegisterLevel.SONKEIGO, RegisterLevel.KANSAIBEN})
+        self.assertEqual(len(result.register_scores), 14)
 
     @patch('kotogram.analysis._load_style_model')
     def test_style_function_includes_register(self, mock_load):
@@ -114,7 +114,7 @@ class TestModelRegisterIntegration(unittest.TestCase):
         gram_logits = torch.zeros(1, 2)
         gram_logits[0, 1] = 5.0 # Grammatic
         
-        register_probs = torch.zeros(1, 9)
+        register_probs = torch.zeros(1, 14)
         register_probs[0, 3] = 0.9 # KANSAIBEN
         
         gender_val = torch.tensor([-1.0])
@@ -130,14 +130,13 @@ class TestModelRegisterIntegration(unittest.TestCase):
             register_probs=register_probs
         )
         
-        f, g, r, is_gram = style("dummy kotogram")
+        res = grammar("dummy kotogram")
         
-        f, g, r, is_gram = style("dummy kotogram")
-        
-        self.assertEqual(f, FormalityLevel.FORMAL)
-        self.assertEqual(g, -1.0)
-        self.assertEqual(r, {RegisterLevel.KANSAIBEN})
-        self.assertTrue(is_gram)
+        self.assertEqual(res.formality, FormalityLevel.FORMAL)
+        self.assertEqual(res.gender_score, -1.0)
+        self.assertEqual(res.registers, {RegisterLevel.KANSAIBEN})
+        self.assertEqual(len(res.register_scores), 14)
+        self.assertTrue(res.is_grammatic)
 
 if __name__ == '__main__':
     unittest.main()
