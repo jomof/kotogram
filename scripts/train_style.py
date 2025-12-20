@@ -117,126 +117,6 @@ from kotogram.model import (
 
 from scripts.cache import get_kotogram_cache, ProcessedSample
 
-class TrainingTokenizer(Tokenizer):
-    """Extended Tokenizer for training that supports vocabulary building."""
-
-    def __init__(self) -> None:
-        super().__init__()
-        # Training-specific counters
-        self._field_counters: Dict[str, Counter[str]] = {}
-        for f in FEATURE_FIELDS:
-            self._field_counters[f] = Counter()
-
-    def _add_value(self, field: str, value: str) -> int:
-        """Add a value to field vocabulary and return its ID."""
-        if not value:
-            value = UNK_TOKEN
-
-        vocab = self.field_vocabs[field]
-        if value in vocab:
-            return vocab[value]
-
-        if self._frozen:
-            return self.unk_id
-
-        new_id = len(vocab)
-        vocab[value] = new_id
-        return new_id
-
-    def encode_features(
-        self,
-        features_list: List[Dict[str, str]],
-        add_cls: bool = True,
-        add_to_vocab: bool = True,
-    ) -> Dict[str, List[int]]:
-        """Convert list of feature dicts to sequences of field IDs."""
-        result: Dict[str, List[int]] = {f: [] for f in FEATURE_FIELDS}
-
-        if add_cls:
-            for field in FEATURE_FIELDS:
-                result[field].append(self.cls_id)
-
-        for features in features_list:
-            for field in FEATURE_FIELDS:
-                value = features.get(field, '')
-                if add_to_vocab and not self._frozen:
-                    self._field_counters[field][value] += 1
-                    token_id = self._add_value(field, value)
-                else:
-                    vocab = self.field_vocabs[field]
-                    token_id = vocab.get(value, self.unk_id)
-                result[field].append(token_id)
-
-        return result
-
-    def encode(
-        self,
-        kotogram: str,
-        add_cls: bool = True,
-        add_to_vocab: bool = True,
-    ) -> Dict[str, List[int]]:
-        """Encode a Kotogram string to feature ID sequences."""
-        features_list = self.extract_features(kotogram)
-        return self.encode_features(features_list, add_cls, add_to_vocab)
-
-    def freeze(self) -> None:
-        """Freeze vocabulary - new values will map to UNK."""
-        self._frozen = True
-
-    def unfreeze(self) -> None:
-        """Unfreeze vocabulary."""
-        self._frozen = False
-
-    def save(self, path: str) -> None:
-        """Save tokenizer vocabularies to JSON file."""
-        data = {
-            'field_vocabs': self.field_vocabs,
-            'frozen': self._frozen,
-        }
-        with open(path, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-
-# Alias Tokenizer to TrainingTokenizer for local usage
-Tokenizer = TrainingTokenizer
-
-
-def resize_model_embeddings(model: StyleClassifier, new_vocab_sizes: Dict[str, int]) -> Dict[str, int]:
-    """Resize model embeddings to match new vocabulary sizes.
-    
-    This function handles the resizing of MultiFieldEmbedding layers in the model
-    when the vocabulary grows during training.
-    """
-    resized = {}
-    # Access internal embedding module
-    embedding_module = model.embedding
-    
-    for field_name in FEATURE_FIELDS:
-        if field_name not in embedding_module.embeddings:
-            continue
-            
-        embedding = embedding_module.embeddings[field_name]
-        old_size = embedding.num_embeddings
-        new_size = new_vocab_sizes.get(field_name, old_size)
-
-        if new_size > old_size:
-            embed_dim = embedding.embedding_dim
-            old_weight = embedding.weight.data
-
-            new_embedding = nn.Embedding(new_size, embed_dim, padding_idx=0)
-            new_embedding.weight.data[:old_size] = old_weight
-            
-            # Move to correct device
-            new_embedding.to(embedding.weight.device)
-
-            embedding_module.embeddings[field_name] = new_embedding
-            resized[field_name] = new_size - old_size
-            model.config.vocab_sizes[field_name] = new_size
-        else:
-            resized[field_name] = 0
-            
-    return resized
-
-
 GENDER_LOSS_WEIGHT = 10.0
 
 
@@ -298,7 +178,7 @@ def _encode_samples_batch(
     tokenizer_state: Dict[str, Any], # Serialization of tokenizer
 ) -> List[Any]: # List[Sample]
     """Encode samples using a frozen tokenizer state."""
-    # Tokenizer is already in scope as an alias to TrainingTokenizer
+    from kotogram.model import Tokenizer
     # Sample is defined in this module (train_style.py), so it's available in global scope
     
     # Reconstruct tokenizer
@@ -316,7 +196,7 @@ def _encode_samples_batch(
         
         # Manually encode to avoid tokenizer overhead if possible, 
         # or just use tokenizer.encode. tokenizer.encode is fast if frozen.
-        feature_ids = tokenizer.encode(item.kotogram, add_cls=True)
+        feature_ids = tokenizer.encode(item.kotogram, add_cls=True, add_to_vocab=False)
         
         sample = Sample(
             feature_ids=feature_ids,
@@ -2784,7 +2664,7 @@ if __name__ == "__main__":
 
         if vocab_grew:
             print("\nResizing embeddings for new vocabulary...")
-            resized = resize_model_embeddings(model, new_vocab_sizes)
+            resized = model.resize_embeddings(new_vocab_sizes)
             for f_name, count in resized.items():
                 if count > 0:
                     print(f"  {f_name}: +{count} tokens ({old_vocab_sizes[f_name]} -> {new_vocab_sizes[f_name]})")
@@ -2930,7 +2810,7 @@ if __name__ == "__main__":
 
         if vocab_grew:
             print("\nResizing embeddings for expanded vocabulary...")
-            resized = resize_model_embeddings(model, new_vocab_sizes)
+            resized = model.resize_embeddings(new_vocab_sizes)
             for field_name, count in resized.items():
                 if count > 0:
                     print(f"  {field_name}: +{count} tokens ({old_vocab_sizes[field_name]} -> {new_vocab_sizes[field_name]})")

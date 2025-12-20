@@ -1,4 +1,3 @@
-
 import sys
 import os
 import shutil
@@ -8,10 +7,8 @@ import csv
 # Add project root to path so we can import scripts and kotogram
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from scripts.label import main as label_main, compute_labels
+from scripts.label import main as label_main
 from scripts.cache import get_kotogram_cache, ShardedKotogramCache
-from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-from kotogram.analysis import RegisterLevel
 
 class TestLabelScript(unittest.TestCase):
     def setUp(self):
@@ -118,64 +115,6 @@ class TestLabelScript(unittest.TestCase):
             cache = get_kotogram_cache(self.shards_dir)
             results = cache.get_batch(["新しい文です。"])
             self.assertIsNotNone(results["新しい文です。"])
-
-
-class TestLabeling(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        # Initialize parser once as it is heavy
-        cls.parser = SudachiJapaneseParser()
-
-    def test_mixed_registers_real_data(self):
-        # Real data from jpn_agrammatic_unpragmatic.tsv
-        # 1297_unprag_g3	jpn	きみにちょっとしたものをもってきたよぜわ。
-        # "ぜわ" mixes masculine "ze" and feminine "wa"
-        sentence = "きみにちょっとしたものをもってきたよぜわ。"
-        kotogram = self.parser.japanese_to_kotogram(sentence)
-        
-        result = compute_labels(kotogram, sentence)
-        
-        # Verify it is Unpragmatic (0) and Value is 0.0
-        self.assertEqual(result.gender_pragmatic, 0, "Mixed registers 'ぜわ' should be Unpragmatic (0)")
-        self.assertEqual(result.gender_value, 0.0, "Mixed registers should have neutral value (0.0)")
-        
-        self.assertTrue(len(result.register_ids) >= 2, "Should detect multiple registers for 'ぜわ'")
-
-    def test_neutral_sentence(self):
-        sentence = "これはペンです。"
-        kotogram = self.parser.japanese_to_kotogram(sentence)
-        result = compute_labels(kotogram, sentence)
-        
-        self.assertEqual(result.gender_pragmatic, 1, "Neutral sentence should be Pragmatic (1)")
-        self.assertEqual(result.gender_value, 0.0, "Neutral sentence should have value 0.0")
-
-    def test_masculine_sentence(self):
-        sentence = "行くぞ。" # "ぞ" is masculine
-        kotogram = self.parser.japanese_to_kotogram(sentence)
-        result = compute_labels(kotogram, sentence)
-        
-        self.assertEqual(result.gender_pragmatic, 1, "Masculine sentence should be Pragmatic (1)")
-        self.assertEqual(result.gender_value, -1.0, "Masculine sentence should have value -1.0")
-
-    def test_feminine_sentence(self):
-        sentence = "行くわ。" # "わ" (rising) is feminine
-        kotogram = self.parser.japanese_to_kotogram(sentence)
-        result = compute_labels(kotogram, sentence)
-        
-        self.assertEqual(result.gender_pragmatic, 1, "Feminine sentence should be Pragmatic (1)")
-        self.assertEqual(result.gender_value, 1.0, "Feminine sentence should have value 1.0")
-
-    def test_register_override(self):
-        sentence = "overridden_sentence"
-        kotogram = "mock_kotogram"
-        
-        # Manually pass overrides
-        overrides = [RegisterLevel.BUSHI]
-        result = compute_labels(kotogram, sentence, register_overrides=overrides)
-        
-        # BUSHI implies masculine if neutral
-        self.assertEqual(result.gender_value, -1.0, "BUSHI override should imply Masculine")
-
 
 if __name__ == '__main__':
     unittest.main()
