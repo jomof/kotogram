@@ -15,7 +15,7 @@ Kotogram Format Structure:
 
     Example:
         "猫を食べる" (The cat eats) becomes:
-        "⌈ˢ猫ᵖn⌉⌈ˢをᵖprt:case_particle⌉⌈ˢ食べるᵖv:e-ichidan-ba⌉"
+        "⌈ˢ猫ᵖnoun⌉⌈ˢをᵖparticle:case-particle⌉⌈ˢ食べるᵖverb:lower-ichidan-ba⌉"
 
 Functions:
     kotogram_to_japanese: Convert kotogram format back to plain Japanese text
@@ -77,7 +77,7 @@ def kotogram_to_japanese(
         token boundaries with spaces and/or furigana readings.
 
     Examples:
-        >>> kotogram = "⌈ˢ猫ᵖn⌉⌈ˢをᵖprt:case_particle⌉⌈ˢ食べるᵖv⌉"
+        >>> kotogram = "⌈ˢ猫ᵖnoun⌉⌈ˢをᵖparticle:case-particle⌉⌈ˢ食べるᵖverb⌉"
         >>> kotogram_to_japanese(kotogram)
         '猫を食べる'
 
@@ -88,12 +88,12 @@ def kotogram_to_japanese(
         >>> kotogram_to_japanese(kotogram, spaces=True, collapse_punctuation=True)
         'こんにちは。'
 
-        >>> kotogram = "⌈ˢ漢字ᵖnʳカンジ⌉⌈ˢですᵖauxv⌉"
+        >>> kotogram = "⌈ˢ漢字ᵖnounʳカンジ⌉⌈ˢですᵖaux-verb⌉"
         >>> kotogram_to_japanese(kotogram, furigana=True)
         '漢字[かんじ]です'
 
         >>> # Redundant readings are omitted (hiragana surface = hiragana reading)
-        >>> kotogram = "⌈ˢひらがなᵖnʳヒラガナ⌉"
+        >>> kotogram = "⌈ˢひらがなᵖnounʳヒラガナ⌉"
         >>> kotogram_to_japanese(kotogram, furigana=True)
         'ひらがな'
 
@@ -118,7 +118,7 @@ def kotogram_to_japanese(
 
             if collapse_punctuation:
                 # Remove spaces around Japanese punctuation for natural formatting
-                for punc in POS_TO_CHARS['auxs']:
+                for punc in POS_TO_CHARS['aux-symbol']:
                     # Skip braces as they're handled above
                     if punc == '{' or punc == '}':
                         continue
@@ -193,7 +193,7 @@ def kotogram_to_japanese(
 
             if collapse_punctuation:
                 # Remove spaces around Japanese punctuation for natural formatting
-                for punc in POS_TO_CHARS['auxs']:
+                for punc in POS_TO_CHARS['aux-symbol']:
                     if punc == '{' or punc == '}':
                         continue
                     result = result.replace(f' {punc}', punc)
@@ -221,9 +221,9 @@ def split_kotogram(kotogram: str) -> List[str]:
         list if no tokens are found.
 
     Examples:
-        >>> kotogram = "⌈ˢ猫ᵖn⌉⌈ˢをᵖprt:case_particle⌉⌈ˢ食べるᵖv⌉"
+        >>> kotogram = "⌈ˢ猫ᵖnoun⌉⌈ˢをᵖparticle:case-particle⌉⌈ˢ食べるᵖverb⌉"
         >>> split_kotogram(kotogram)
-        ['⌈ˢ猫ᵖn⌉', '⌈ˢをᵖprt:case_particle⌉', '⌈ˢ食べるᵖv⌉']
+        ['⌈ˢ猫ᵖnoun⌉', '⌈ˢをᵖparticle:case-particle⌉', '⌈ˢ食べるᵖverb⌉']
 
         >>> kotogram = "⌈ˢこんにちはᵖintᵈこんにち‐はʳコンニチワ⌉⌈ˢ。ᵖauxs⌉"
         >>> tokens = split_kotogram(kotogram)
@@ -279,7 +279,7 @@ def extract_token_features(token: str) -> TokenFeatures:
         - pos: Part of speech main category (e.g., 'v', 'n', 'auxv', 'prt')
         - pos_detail1: First POS detail level (e.g., 'general', 'common_noun')
         - pos_detail2: Second POS detail level (e.g., 'general')
-        - conjugated_type: Conjugation type (e.g., 'e-ichidan-ba', 'auxv-masu')
+        - conjugated_type: Conjugation type (e.g., 'lower-ichidan-ba', 'auxv-masu')
         - conjugated_form: Conjugation form (e.g., 'conjunctive', 'terminal')
         - base_orth: Base orthography (dictionary form spelling)
         - lemma: Lemma/dictionary form
@@ -287,17 +287,17 @@ def extract_token_features(token: str) -> TokenFeatures:
 
     Examples:
         >>> # Extract features from a verb token
-        >>> token = "⌈ˢ食べᵖv:general:e-ichidan-ba:conjunctiveᵇ食べるᵈ食べるʳタベ⌉"
+        >>> token = "⌈ˢ食べᵖverb:general:lower-ichidan-ba:continuativeᵇ食べるᵈ食べるʳタベ⌉"
         >>> features = extract_token_features(token)
         >>> features.pos
         'v'
         >>> features.conjugated_type
-        'e-ichidan-ba'
+        'lower-ichidan-ba'
         >>> features.conjugated_form
         'conjunctive'
 
         >>> # Extract features from an auxiliary verb (note: empty fields omitted)
-        >>> token = "⌈ˢますᵖauxv:auxv-masu:terminalᵇますʳマス⌉"
+        >>> token = "⌈ˢますᵖaux-verb:aux-masu:terminalᵇますʳマス⌉"
         >>> features = extract_token_features(token)
         >>> features.pos
         'auxv'

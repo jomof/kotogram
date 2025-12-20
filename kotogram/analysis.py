@@ -105,7 +105,7 @@ def grammar(kotogram: str) -> GrammarAnalysis:
 
     Examples:
         >>> # Formal sentence: 食べます (I eat - polite)
-        >>> kotogram1 = "⌈ˢ食べᵖv:e-ichidan-ba:conjunctive⌉⌈ˢますᵖauxv-masu:terminal⌉"
+        >>> kotogram1 = "⌈ˢ食べᵖverb:lower-ichidan-ba:continuative⌉⌈ˢますᵖaux-verb-masu:terminal⌉"
         >>> res = grammar(kotogram1)  # doctest: +SKIP
         >>> res.formality
         <FormalityLevel.FORMAL: 'formal'>

@@ -8,6 +8,7 @@ from .japanese_parser import (
     POS_MAP,
     POS1_MAP,
     POS2_MAP,
+    POS3_MAP,
     CONJUGATED_TYPE_MAP,
     CONJUGATED_FORM_MAP,
 )
@@ -106,7 +107,7 @@ class SudachiJapaneseParser(JapaneseParser):
             if len(pos_tuple) >= 3:
                 add("pos_detail_2", validated_lookup(POS2_MAP, pos_tuple[2], "POS2_MAP"))
             if len(pos_tuple) >= 4:
-                add("pos_detail_3", pos_tuple[3] if pos_tuple[3] != "*" else None)
+                add("pos_detail_3", validated_lookup(POS3_MAP, pos_tuple[3], "POS3_MAP"))
 
             # Conjugation (4 is conjugation type, 5 is conjugation form)
             if len(pos_tuple) >= 5:
@@ -145,6 +146,7 @@ class SudachiJapaneseParser(JapaneseParser):
         base = token.get("base_orthography", None)
         pronunciation = token.get("surface_pronunciation", None)
 
+        pos_detail_3 = token.get("pos_detail_3")
         pos_code = pos if pos else ""
 
         recombined += f"⌈ˢ{surface}ᵖ{pos_code}"
@@ -152,6 +154,8 @@ class SudachiJapaneseParser(JapaneseParser):
             recombined += f":{pos_detail_1}"
         if pos_detail_2 and pos_detail_2 != "general":
             recombined += f":{pos_detail_2}"
+        if pos_detail_3 and pos_detail_3 != "general":
+            recombined += f":{pos_detail_3}"
         if conjugated_type:
             recombined += f":{conjugated_type}"
         if conjugated_form:
