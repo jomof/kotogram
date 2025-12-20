@@ -30,7 +30,7 @@ MASK_TOKEN = "<MASK>"  # For self-supervised pretraining
 
 # Feature fields used for token embedding
 # NOTE: 'surface' is critical for gender detection (pronouns like 僕, 俺, あたし)
-ALL_FEATURE_FIELDS = ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma']
+ALL_FEATURE_FIELDS = ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma', 'base_orth', 'reading']
 FEATURE_FIELDS = ALL_FEATURE_FIELDS  # Default: use all features
 
 # Global variable to track excluded features (set via --exclude-features)
@@ -279,7 +279,10 @@ class Tokenizer:
             data = json.load(f)
 
         tokenizer = cls()
-        tokenizer.field_vocabs = data['field_vocabs']
+        # Merge loaded vocabs, preserving defaults for any new fields not in the file
+        loaded_vocabs = data['field_vocabs']
+        tokenizer.field_vocabs.update(loaded_vocabs)
+        
         tokenizer._frozen = data.get('frozen', False)
         return tokenizer
 

@@ -18,6 +18,8 @@ class TestModelRegisterIntegration(unittest.TestCase):
             'conjugated_type': [13, 14, 15],
             'conjugated_form': [16, 17, 18],
             'lemma': [19, 20, 21],
+            'base_orth': [22, 23, 24],
+            'reading': [25, 26, 27],
         }
 
     @patch('kotogram.analysis._load_style_model')
