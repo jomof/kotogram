@@ -322,9 +322,337 @@ export function splitKotogram(kotogram: string): string[] {
   return matches || [];
 }
 
-/**
- * Escape special regex characters in a string
- */
 function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * Linguistic features extracted from a kotogram token.
+ */
+export interface TokenFeatures {
+  surface: string;
+  pos: string;
+  posDetail1: string;
+  posDetail2: string;
+  posDetail3: string;
+  conjugatedType: string;
+  conjugatedForm: string;
+  baseOrth: string;
+  lemma: string;
+  reading: string;
+}
+
+// POS detail level 1 values (from Python POS1_MAP.values())
+const POS1_MAP_VALUES = new Set([
+  "general",
+  "proper-noun",
+  "common-noun",
+  "numeral",
+  "case-particle",
+  "binding-particle",
+  "adverbial-particle",
+  "conjunctive-particle",
+  "sentence-final-particle",
+  "nominal-particle",
+  "aux-verb-stem",
+  "bound",
+  "verbal",
+  "adjectival",
+  "adjectival-noun-like",
+  "nominal",
+  "tari",
+  "filler",
+  "letter",
+  "ascii-art",
+  "period",
+  "comma",
+  "open-bracket",
+  "close-bracket",
+]);
+
+// POS detail level 2 values (from Python POS2_MAP.values())
+const POS2_MAP_VALUES = new Set([
+  "general",
+  "verbal-suru",
+  "verbal-suru-adj",
+  "adverbial",
+  "adjectival-noun-possible",
+  "counter",
+  "counter-possible",
+  "place-name",
+  "person-name",
+  "kaomoji",
+]);
+
+// POS detail level 3 values (from Python POS3_MAP.values())
+const POS3_MAP_VALUES = new Set(["general", "country", "given-name", "surname"]);
+
+// Conjugation type values (from Python CONJUGATED_TYPE_MAP.values())
+const CONJUGATED_TYPE_MAP_VALUES = new Set([
+  // Auxiliary verbs
+  "aux-ta",
+  "aux-da",
+  "aux-desu",
+  "aux-masu",
+  "aux-nai",
+  "aux-nu",
+  "aux-reru",
+  "aux-tai",
+  "aux-rashii",
+  "aux-mai",
+  "aux-ja",
+  "aux-ya",
+  "aux-nanda",
+  "aux-hen",
+  // Godan verbs
+  "godan-ra",
+  "godan-ka",
+  "godan-ga",
+  "godan-sa",
+  "godan-ta",
+  "godan-na",
+  "godan-ba",
+  "godan-ma",
+  "godan-waa",
+  // Ichidan verbs
+  "upper-ichidan-a",
+  "upper-ichidan-ka",
+  "upper-ichidan-ga",
+  "upper-ichidan-za",
+  "upper-ichidan-ta",
+  "upper-ichidan-na",
+  "upper-ichidan-ha",
+  "upper-ichidan-ba",
+  "upper-ichidan-ma",
+  "upper-ichidan-ra",
+  "lower-ichidan-a",
+  "lower-ichidan-ka",
+  "lower-ichidan-ga",
+  "lower-ichidan-sa",
+  "lower-ichidan-za",
+  "lower-ichidan-ta",
+  "lower-ichidan-da",
+  "lower-ichidan-na",
+  "lower-ichidan-ha",
+  "lower-ichidan-ba",
+  "lower-ichidan-ma",
+  "lower-ichidan-ra",
+  // Irregular verbs
+  "ka-irregular",
+  "sa-irregular",
+  // Adjectives
+  "i-adjective",
+  // Classical Japanese
+  "classical-sa-irregular",
+  "classical-ra-irregular",
+  "classical-adj-ku",
+  "classical-adj-shiku",
+  "classical-aux-tari-perfective",
+  "classical-aux-tari-assertive",
+  "classical-aux-nari",
+  "classical-aux-ri",
+  "classical-aux-beshi",
+  "classical-aux-zu",
+  "classical-aux-ki",
+  "classical-aux-keri",
+  "classical-aux-gotoshi",
+  "classical-aux-maji",
+  "classical-aux-mu",
+  "classical-aux-ji",
+  "classical-aux-nu",
+  "classical-aux-rashi",
+  "classical-aux-ramu",
+  "classical-aux-zamasu",
+  "classical-upper-nidan-ta",
+  "classical-upper-nidan-da",
+  "classical-upper-nidan-ba",
+  "classical-lower-nidan-a",
+  "classical-lower-nidan-ka",
+  "classical-lower-nidan-ga",
+  "classical-lower-nidan-sa",
+  "classical-lower-nidan-da",
+  "classical-lower-nidan-na",
+  "classical-lower-nidan-ha",
+  "classical-lower-nidan-ma",
+  "classical-lower-nidan-ra",
+  "classical-yodan-ka",
+  "classical-yodan-sa",
+  "classical-yodan-ta",
+  "classical-yodan-ha",
+  "classical-yodan-ma",
+  "classical-yodan-ra",
+]);
+
+// Conjugation form values (from Python CONJUGATED_FORM_MAP.values())
+const CONJUGATED_FORM_MAP_VALUES = new Set([
+  "terminal",
+  "terminal-nasal",
+  "terminal-geminate",
+  "terminal-fused",
+  "terminal-u-euphonic",
+  "continuative",
+  "continuative-geminate",
+  "continuative-nasal",
+  "continuative-i-euphonic",
+  "continuative-u-euphonic",
+  "continuative-ni",
+  "continuative-abbreviated",
+  "continuative-fused",
+  "continuative-auxiliary",
+  "attributive",
+  "attributive-nasal",
+  "attributive-abbreviated",
+  "attributive-auxiliary",
+  "irrealis",
+  "irrealis-sa",
+  "irrealis-se",
+  "irrealis-nasal",
+  "irrealis-auxiliary",
+  "conditional",
+  "conditional-fused",
+  "imperative",
+  "volitional-presumptive",
+  "realis",
+  "stem",
+  "stem-sa",
+  "ku-form",
+]);
+
+/**
+ * Extract linguistic features from a single kotogram token.
+ *
+ * Parses a kotogram token to extract all encoded linguistic information including
+ * part of speech, conjugation details, and orthographic forms. This function handles
+ * the variable-length POS format where empty fields are omitted by the parser.
+ *
+ * Kotogram format uses Unicode markers to encode linguistic information:
+ * - ⌈⌉ : Token boundaries
+ * - ˢ : Surface form (the actual text)
+ * - ᵖ : Part of speech and grammatical features (colon-separated)
+ * - ᵇ : Base orthography (dictionary form spelling)
+ * - ᵈ : Lemma (dictionary form)
+ * - ʳ : Reading/pronunciation
+ *
+ * The POS field (ᵖ) contains colon-separated values in a specific semantic order:
+ * `pos:pos_detail_1:pos_detail_2:conjugated_type:conjugated_form`
+ *
+ * However, the parser omits empty fields, so this function identifies each field
+ * semantically by checking which mapping it belongs to, rather than relying on
+ * positional indices.
+ *
+ * @param token - A single kotogram token string (⌈...⌉)
+ * @returns TokenFeatures object with extracted features
+ *
+ * @example
+ * ```typescript
+ * // Extract features from a verb token
+ * const token = "⌈ˢ食べᵖverb:general:lower-ichidan-ba:continuativeᵇ食べるᵈ食べるʳタベ⌉";
+ * const features = extractTokenFeatures(token);
+ * // features.pos === 'verb'
+ * // features.conjugatedType === 'lower-ichidan-ba'
+ * // features.conjugatedForm === 'continuative'
+ *
+ * // Extract features from an auxiliary verb
+ * const token2 = "⌈ˢますᵖaux-verb:aux-masu:terminalᵇますʳマス⌉";
+ * const features2 = extractTokenFeatures(token2);
+ * // features2.pos === 'aux-verb'
+ * // features2.conjugatedType === 'aux-masu'
+ * // features2.conjugatedForm === 'terminal'
+ * ```
+ */
+export function extractTokenFeatures(token: string): TokenFeatures {
+  const feature: TokenFeatures = {
+    surface: "",
+    pos: "",
+    posDetail1: "",
+    posDetail2: "",
+    posDetail3: "",
+    conjugatedType: "",
+    conjugatedForm: "",
+    baseOrth: "",
+    lemma: "",
+    reading: "",
+  };
+
+  // Extract surface form (ˢ...ᵖ)
+  const surfaceMatch = token.match(/ˢ(.*?)ᵖ/s);
+  if (surfaceMatch) {
+    feature.surface = surfaceMatch[1];
+  }
+
+  // Extract POS data (ᵖ...ᵇ|ᵈ|ʳ|⌉)
+  const posMatch = token.match(/ᵖ([^⌉ᵇᵈʳ]+)/);
+  if (posMatch) {
+    const posData = posMatch[1];
+    const parts = posData.split(":");
+
+    // Main POS code (always first)
+    feature.pos = parts.length > 0 ? parts[0] : "";
+
+    // Parse remaining fields semantically by checking which map they belong to
+    // The parser skips empty fields, so we can't rely on position alone
+    for (let i = 1; i < parts.length; i++) {
+      const value = parts[i];
+      if (!value) {
+        continue;
+      }
+
+      // Check which map this value belongs to
+      if (CONJUGATED_FORM_MAP_VALUES.has(value)) {
+        feature.conjugatedForm = value;
+      } else if (CONJUGATED_TYPE_MAP_VALUES.has(value)) {
+        feature.conjugatedType = value;
+      } else if (POS2_MAP_VALUES.has(value)) {
+        // pos_detail_2 comes after pos_detail_1, so check if we already have pos_detail_1
+        if (feature.posDetail1) {
+          feature.posDetail2 = value;
+        } else {
+          feature.posDetail1 = value;
+        }
+      } else if (POS3_MAP_VALUES.has(value)) {
+        // pos_detail_3 usually comes last for details
+        feature.posDetail3 = value;
+      } else if (POS1_MAP_VALUES.has(value)) {
+        // pos_detail_1 comes before pos_detail_2
+        if (!feature.posDetail1) {
+          feature.posDetail1 = value;
+        } else {
+          feature.posDetail2 = value;
+        }
+      } else {
+        // Unknown value - try to assign by position as fallback
+        if (!feature.posDetail1) {
+          feature.posDetail1 = value;
+        } else if (!feature.posDetail2) {
+          feature.posDetail2 = value;
+        } else if (!feature.posDetail3) {
+          feature.posDetail3 = value;
+        } else if (!feature.conjugatedType) {
+          feature.conjugatedType = value;
+        } else if (!feature.conjugatedForm) {
+          feature.conjugatedForm = value;
+        }
+      }
+    }
+  }
+
+  // Extract base orthography (ᵇ...ᵈ|ʳ|⌉)
+  const baseMatch = token.match(/ᵇ([^⌉ᵈʳ]+)/);
+  if (baseMatch) {
+    feature.baseOrth = baseMatch[1];
+  }
+
+  // Extract lemma/dictionary form (ᵈ...ʳ|⌉)
+  const lemmaMatch = token.match(/ᵈ([^⌉ʳ]+)/);
+  if (lemmaMatch) {
+    feature.lemma = lemmaMatch[1];
+  }
+
+  // Extract reading (ʳ...⌉)
+  const readingMatch = token.match(/ʳ([^⌉]+)/);
+  if (readingMatch) {
+    feature.reading = readingMatch[1];
+  }
+
+  return feature;
 }
