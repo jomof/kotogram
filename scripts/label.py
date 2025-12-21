@@ -174,6 +174,11 @@ def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> Tuple[List[Pro
 
         # Token collection for vocabulary
         tokens = split_kotogram(kotogram)
+        
+        # Skip sentences with >= 64 tokens
+        if len(tokens) >= 64:
+            continue
+            
         for token in tokens:
             token_feat = extract_token_features(token)
             for field in FEATURE_FIELDS:
@@ -226,6 +231,11 @@ def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> Tuple[List[Proce
         
         # Token collection for vocabulary
         tokens = split_kotogram(kotogram)
+        
+        # Skip sentences with >= 64 tokens
+        if len(tokens) >= 64:
+            continue
+            
         for token in tokens:
             token_feat = extract_token_features(token)
             for field in FEATURE_FIELDS:
