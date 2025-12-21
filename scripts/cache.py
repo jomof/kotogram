@@ -24,7 +24,7 @@ class ShardedKotogramCache:
     """
 
     DEFAULT_SHARDS_DIR = ".cache/kotogram_shards"
-    SHARD_PREFIX_LEN = 3 # 3 hex chars = 4096 shards
+    SHARD_PREFIX_LEN = 2 # 2 hex chars = 256 shards
 
     def __init__(self, shards_dir: str = DEFAULT_SHARDS_DIR):
         """Initialize the sharded cache.

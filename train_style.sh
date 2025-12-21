@@ -61,9 +61,8 @@ DATA_PATH="data/jpn_sentences*.tsv"  # Filtered to exclude known errors
 AGRAMMATIC_SENTENCES_PATH=""
 AGRAMMATIC_PATTERN="data/jpn_agrammatic*.tsv"
 OUTPUT_DIR="models/style"
-EPOCHS=20
 OUTPUT_DIR="models/style"
-EPOCHS=20
+EPOCHS=""
 # Batch settings
 MICRO_BATCH_SIZE=32       # Batch size per device
 TARGET_GLOBAL_BATCH_SIZE=128 # Operations per optimizer step (32 * 4 GPUs = 128)
@@ -134,6 +133,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --pretrain-mlm)
             PRETRAIN_MLM="--pretrain-mlm"
+            shift
+            ;;
+        --force-relabel)
+            FORCE_RELABEL="--force-relabel"
             shift
             ;;
         --pretrain-epochs)
@@ -272,7 +275,11 @@ if [ -n "$AGRAMMATIC_PATTERN" ]; then
     echo "Agrammatic pattern: $AGRAMMATIC_PATTERN"
 fi
 echo "Output:         $OUTPUT_DIR"
-echo "Epochs:         $EPOCHS"
+if [ -n "$EPOCHS" ]; then
+    echo "Epochs:         $EPOCHS"
+else
+    echo "Epochs:         (default or restored from checkpoint)"
+fi
 echo "Batch size:     $BATCH_SIZE"
 echo "Learning rate:  $LEARNING_RATE"
 echo "Model dim:      $EMBED_DIM"
@@ -320,7 +327,9 @@ mkdir -p "$OUTPUT_DIR"
 # Combined output files in cache
 COMBINED_GRAM_FILE=".cache/grammatic_combined.tsv"
 COMBINED_AGRAM_FILE=".cache/agrammatic_combined.tsv"
+CONFUSION_OUTPUT_DIR=".cache/style"
 mkdir -p .cache
+mkdir -p "$CONFUSION_OUTPUT_DIR"
 
 # Store patterns for later use
 GRAM_DATA_PATTERN="$DATA_PATH"
@@ -373,11 +382,6 @@ if [ "$GRAD_ACCUM_STEPS" -lt 1 ]; then
     GRAD_ACCUM_STEPS=1
 fi
 
-echo "Auto-config: Target Global Batch=$TARGET_GLOBAL_BATCH_SIZE"
-echo "             Devices=$NUM_DEVICES, MicroBatch=$MICRO_BATCH_SIZE"
-echo "             => GradAccumSteps=$GRAD_ACCUM_STEPS"
-
-
 # Set defaults if not provided
 if [ -z "$BATCH_SIZE" ]; then
     BATCH_SIZE=$MICRO_BATCH_SIZE
@@ -404,7 +408,6 @@ fi
 CMD="$LAUNCHER -m scripts.train_style \
     --data \"$DATA_PATH\" \
     --output \"$OUTPUT_DIR\" \
-    --epochs $EPOCHS \
     --batch-size $BATCH_SIZE \
     --embed-dim $EMBED_DIM \
     --hidden-dim $HIDDEN_DIM \
@@ -451,6 +454,10 @@ if [ -n "$EXCLUDE_FEATURES" ]; then
     CMD="$CMD --exclude-features \"$EXCLUDE_FEATURES\""
 fi
 
+if [ -n "$EPOCHS" ]; then
+    CMD="$CMD --epochs $EPOCHS"
+fi
+
 if [ -n "$PERCENT" ]; then
     CMD="$CMD $PERCENT"
 fi
@@ -467,15 +474,13 @@ echo "=============================================="
 # Construct preprocessing command (always use python, single process)
     # Construct labeling command
     PREPROC_CMD="python -m scripts.label --grammatic-pattern \"$GRAM_DATA_PATTERN\" \
-        --output-grammatic \"$COMBINED_GRAM_FILE\""
+        --output-grammatic \"$COMBINED_GRAM_FILE\" \
+        --output-agrammatic \"$COMBINED_AGRAM_FILE\" \
+        --cache-dir \".cache/style_dataset\" \
+        --model-dir \"$OUTPUT_DIR\" $FORCE_RELABEL"
 
-    if [ -n "$AGRAMMATIC_SENTENCES_PATH" ]; then 
+    if [ -n "$AGRAMMATIC_SENTENCES_PATH" ] || [ -n "$AGRAMMATIC_PATTERN" ]; then 
         PREPROC_CMD="$PREPROC_CMD --agrammatic-pattern \"$AGRAMMATIC_PATTERN\""
-    fi
-    
-    if [ -n "$AGRAMMATIC_PATTERN" ]; then 
-        PREPROC_CMD="$PREPROC_CMD --agrammatic-pattern \"$AGRAMMATIC_PATTERN\" \
-            --output-agrammatic \"$COMBINED_AGRAM_FILE\""
     fi
 
 if [ -n "$DEBUG" ]; then
@@ -504,7 +509,8 @@ if [ -n "$CONFUSION" ]; then
     echo "Running Confusion Matrix Evaluation..."
     echo "=============================================="
     python -m scripts.confusion \
-        --output "$OUTPUT_DIR" \
+        --output "$CONFUSION_OUTPUT_DIR" \
+        --model-dir "$OUTPUT_DIR" \
         --data "$DATA_PATH" \
         --agrammatic-data "$AGRAMMATIC_PATTERN" \
         ${AGRAMMATIC_DATA_PATH:+--agrammatic-data "$AGRAMMATIC_DATA_PATH"} \
@@ -531,7 +537,8 @@ echo "=============================================="
 echo ""
 echo "Generating confusion report..."
 python -m scripts.confusion \
-    --output "$OUTPUT_DIR" \
+    --output "$CONFUSION_OUTPUT_DIR" \
+    --model-dir "$OUTPUT_DIR" \
     --data "$DATA_PATH" \
     ${EXTRA_DATA_PATH:+--extra-data "$EXTRA_DATA_PATH"} \
     ${AGRAMMATIC_DATA_PATH:+--agrammatic-data "$AGRAMMATIC_DATA_PATH"} \

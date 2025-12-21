@@ -230,9 +230,10 @@ def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
 def main() -> None:
     import argparse
     parser = argparse.ArgumentParser(description="Evaluate model confusion and generate reports.")
-    parser.add_argument("--output", type=str, required=True, help="Model directory containing checkpoint")
+    parser.add_argument("--output", type=str, required=True, help="Output directory for CSV reports")
+    parser.add_argument("--model-dir", type=str, help="Model directory containing checkpoint (defaults to --output)")
     parser.add_argument("--data", type=str, required=True, help="Path to evaluation data TSV")
-    parser.add_argument("--agrammatic_data", type=str, help="Path to agrammatic evaluation data TSV")
+    parser.add_argument("--agrammatic-data", type=str, help="Path to agrammatic evaluation data TSV")
     parser.add_argument("--batch-size", type=int, default=512, help="Batch size for evaluation")
     parser.add_argument("--num-workers", type=int, help="Number of workers for DataLoader (default: 0 on MPS/CPU, 4 on CUDA)")
     parser.add_argument("--max-samples", type=int, default=None, help="Stop after N samples")
@@ -240,14 +241,31 @@ def main() -> None:
     
     args = parser.parse_args()
     
+    # Use model-dir if specified, otherwise fall back to output
+    model_dir = args.model_dir if args.model_dir else args.output
+    
+    # Restore percent from checkpoint if not explicitly provided
+    checkpoint_path = os.path.join(model_dir, 'checkpoint.pt')
+    if args.percent is None and os.path.exists(checkpoint_path):
+        try:
+            checkpoint_data = torch.load(checkpoint_path, map_location='cpu')
+            saved_args = checkpoint_data.get('args', {})
+            saved_percent = saved_args.get('percent')
+            if saved_percent is not None:
+                args.percent = saved_percent
+                console.print(f"[dim]Restored --percent {args.percent} from checkpoint[/dim]")
+        except Exception:
+            pass  # If checkpoint can't be read, just continue without percent
+    
     device_name = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
     device = torch.device(device_name)
-    console.print(f"Evaluating [bold cyan]model.pt[/bold cyan] in: [bold cyan]{os.path.abspath(args.output)}[/bold cyan]")
+    console.print(f"Evaluating [bold cyan]model.pt[/bold cyan] in: [bold cyan]{os.path.abspath(model_dir)}[/bold cyan]")
+    console.print(f"CSV output directory: [bold cyan]{os.path.abspath(args.output)}[/bold cyan]")
     console.print(f"Using device: [bold blue]{device_name}[/bold blue]")
     
     # Load model and tokenizer
     # Load model and tokenizer
-    model, tokenizer = load_model(args.output, device=device_name)
+    model, tokenizer = load_model(model_dir, device=device_name)
     
     # Building evaluation files list
     data_files = []
@@ -282,7 +300,7 @@ def main() -> None:
             max_samples=args.max_samples,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
             verbose=True,
-            cache_dir=".cache/dataset_cache"
+            cache_dir=".cache/style_dataset"
         )
     else:
         dataset = StyleDataset.from_tsv(
@@ -292,7 +310,7 @@ def main() -> None:
             max_samples=args.max_samples,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
             verbose=True,
-            cache_dir=".cache/dataset_cache"
+            cache_dir=".cache/style_dataset"
         )
     
     # Determine num_workers: 0 is much faster for in-memory datasets on macOS (avoid spawn overhead)
