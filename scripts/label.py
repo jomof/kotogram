@@ -45,8 +45,9 @@ def _build_and_save_vocab(tokenizer: Tokenizer, merged_counters: Dict[str, Count
         for value, _ in counter.most_common():
              tokenizer._add_value(field, value)
     
+    os.makedirs(cache_dir, exist_ok=True)
     vocab_path = os.path.join(cache_dir, cache_name)
-    tokenizer.save(vocab_path)
+    tokenizer.save(vocab_path, version=CACHE_VERSION)
 
 def load_register_overrides() -> Dict[str, List[Any]]:
     """Load manual register overrides from data/jpn_sentences_<register>.tsv."""
