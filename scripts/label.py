@@ -266,21 +266,12 @@ def print_stats(results: List[ProcessedSample]) -> None:
     console.print(Panel.fit(r_table, border_style="yellow"))
     console.print(Panel.fit(gram_table, border_style="green"))
 
-def save_register_samples(results: List[ProcessedSample], output_grammatic_path: Optional[str]) -> None:
+def save_register_samples(results: List[ProcessedSample], model_dir: Optional[str]) -> None:
     """Save 3 examples of each register from grammatic sentences to CSV."""
-    if not output_grammatic_path:
+    if not model_dir:
         return
     
-    # Get output directory from the grammatic output path
-    output_dir = os.path.dirname(output_grammatic_path)
-    if not output_dir:
-        output_dir = "models/style"
-    else:
-        # Replace .cache with models/style
-        if ".cache" in output_dir:
-            output_dir = "models/style"
-    
-    output_file = os.path.join(output_dir, "register_samples.csv")
+    output_file = os.path.join(model_dir, "register_samples.csv")
     
     # Collect ALL samples by register (only grammatic sentences)
     all_by_register: Dict[int, List[ProcessedSample]] = {}
@@ -303,7 +294,7 @@ def save_register_samples(results: List[ProcessedSample], output_grammatic_path:
             register_samples[reg_id] = random.sample(samples, 3)
     
     # Write to CSV
-    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(model_dir, exist_ok=True)
     with open(output_file, 'w', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(['register', 'register_id', 'sentence', 'formality', 'gender_value'])
@@ -333,7 +324,8 @@ def main() -> None:
     parser.add_argument("--agrammatic-pattern", type=str, help="Agrammatic TSV pattern")
     parser.add_argument("--output-grammatic", type=str, help="Path to save combined/deduplicated grammatic data")
     parser.add_argument("--output-agrammatic", type=str, help="Path to save combined/deduplicated agrammatic data")
-    parser.add_argument("--output-dir", type=str, default=".cache", help="Output directory for dataset cache")
+    parser.add_argument("--model-dir", type=str, help="Output directory for results (e.g. register samples)")
+    parser.add_argument("--cache-dir", type=str, default=".cache", help="Output directory for dataset cache")
     parser.add_argument("--force-relabel", action="store_true", help="Force re-computation of labels even if cached")
     
     args = parser.parse_args()
@@ -532,7 +524,7 @@ def main() -> None:
     print_stats(final_results)
     
     # Save register samples to CSV
-    save_register_samples(final_results, args.output_grammatic)
+    save_register_samples(final_results, args.model_dir)
 
     # Phase 3: Build vocabulary and encode samples (Warming the StyleDataset cache)
     # Only run if we have output paths (meaning we're running in preprocessing mode)

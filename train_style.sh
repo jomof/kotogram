@@ -467,7 +467,8 @@ echo "=============================================="
 # Construct preprocessing command (always use python, single process)
     # Construct labeling command
     PREPROC_CMD="python -m scripts.label --grammatic-pattern \"$GRAM_DATA_PATTERN\" \
-        --output-grammatic \"$COMBINED_GRAM_FILE\""
+        --output-grammatic \"$COMBINED_GRAM_FILE\" \
+        --model-dir \"$OUTPUT_DIR\""
 
     if [ -n "$AGRAMMATIC_SENTENCES_PATH" ]; then 
         PREPROC_CMD="$PREPROC_CMD --agrammatic-pattern \"$AGRAMMATIC_PATTERN\""
