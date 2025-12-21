@@ -392,7 +392,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 new_cache_entries: List[Tuple[str, str, Optional[int], Optional[float], Optional[int], Optional[List[int]], Optional[int]]] = []
                 
                 with ctx.Pool(num_workers) as pool:
-                    for batch_res in pool.imap(_process_sentence_batch, worker_batches):
+                    for batch_res, _batch_counters in pool.imap(_process_sentence_batch, worker_batches):
                         final_results.extend(batch_res)
                         for res in batch_res:
                             if res.success:
@@ -652,8 +652,8 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                         from scripts.label import get_dependencies_fingerprint
                         class MockArgs:
                             def __init__(self, tsv_paths: List[str], grammaticality_labels: Optional[List[int]]):
-                                self.grammatic_pattern = next((p for p, l in zip(tsv_paths, grammaticality_labels) if l == 1), None) if grammaticality_labels else tsv_paths[0]
-                                self.agrammatic_pattern = next((p for p, l in zip(tsv_paths, grammaticality_labels) if l == 0), None) if grammaticality_labels else None
+                                self.grammatic_pattern = next((p for p, lbl in zip(tsv_paths, grammaticality_labels) if lbl == 1), None) if grammaticality_labels else tsv_paths[0]
+                                self.agrammatic_pattern = next((p for p, lbl in zip(tsv_paths, grammaticality_labels) if lbl == 0), None) if grammaticality_labels else None
 
                         current_fingerprints = get_dependencies_fingerprint(MockArgs(tsv_paths, grammaticality_labels))
                         
@@ -720,40 +720,85 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         processed_results = cls._process_parallel(all_rows, verbose=verbose)
         phase2_duration = time.time() - phase2_start
 
+        return cls.from_processed_samples(
+            processed_results=processed_results,
+            tokenizer=tokenizer,
+            verbose=verbose,
+            use_cache=use_cache,
+            cache_dir=cache_dir,
+            cache_name=cache_name,
+            add_to_vocab=add_to_vocab,
+            sample_ratio=sample_ratio,
+            preprocessing_start=preprocessing_start,
+            phase1_duration=phase1_duration,
+            phase2_duration=phase2_duration,
+            vocab_path=vocab_path
+        )
+
+    @classmethod
+    def from_processed_samples(
+        cls,
+        processed_results: List[ProcessedSample],
+        tokenizer: Tokenizer,
+        verbose: bool = True,
+        use_cache: bool = True,
+        cache_dir: str = ".cache/style_dataset",
+        cache_name: Optional[str] = "vocab.json",
+        add_to_vocab: bool = True,
+        sample_ratio: float = 1.0,
+        preprocessing_start: Optional[float] = None,
+        phase1_duration: float = 0.0,
+        phase2_duration: float = 0.0,
+        vocab_path: Optional[str] = None,
+        merged_counters: Optional[Dict[str, Counter]] = None
+    ) -> 'StyleDataset':
+        """Initialize dataset from pre-processed samples (already containing kotograms and labels).
+        
+        This method handles:
+        1. Token collection (building vocabulary) if add_to_vocab=True
+        2. Sample encoding using the tokenizer
+        3. Saving the vocabulary cache
+        4. Subsampling
+        """
+        if preprocessing_start is None:
+            preprocessing_start = time.time()
+            
         phase3a_duration = 0.0
         ctx = mp.get_context('spawn')
         num_workers = max(1, mp.cpu_count() - 1)
 
         # Phase 3: Build samples (Parallelized)
         if verbose:
-            print("\nEncoding samples (Phase 3)...")
+            print("\nFinalizing dataset and building vocabulary...")
 
         # 3a. Parallel Token Collection (map-reduce)
         if add_to_vocab:
             phase3a_start = time.time()
-            kotograms = [r.kotogram for r in processed_results]
             
-            # Batching for token collection
-            # Larger batches are fine for token collection as it's CPU bound string processing
-            token_batches = [kotograms[i:i + 5000] for i in range(0, len(kotograms), 5000)]
-            
-            if verbose:
-                print(f"  Collecting tokens from {len(kotograms)} sentences with {num_workers} workers...")
+            if merged_counters is None:
+                kotograms = [r.kotogram for r in processed_results if r.success]
                 
-            merged_counters: Dict[str, Counter[Any]] = {f: Counter() for f in tokenizer.field_vocabs.keys()}
-            
-            with ctx.Pool(num_workers) as pool:
-                for batch_counters in pool.imap(_collect_tokens_batch, token_batches):
-                    for field_name, counter in batch_counters.items():
-                        if field_name in merged_counters:
-                            merged_counters[field_name].update(counter)
+                # Batching for token collection
+                token_batches = [kotograms[i:i + 5000] for i in range(0, len(kotograms), 5000)]
+                
+                if verbose:
+                    print(f"  Collecting tokens from {len(kotograms)} sentences with {num_workers} workers...")
+                    
+                merged_counters = {f: Counter() for f in tokenizer.field_vocabs.keys()}
+                
+                with ctx.Pool(num_workers) as pool:
+                    for batch_counters in pool.imap(_collect_tokens_batch, token_batches):
+                        for field_name, counter in batch_counters.items():
+                            if field_name in merged_counters:
+                                merged_counters[field_name].update(counter)
+            elif verbose:
+                print("  Using pre-collected token counters...")
 
-            # Update tokenizer sequentially (fast dict updates)
+            # Update tokenizer sequentially
             if verbose:
                 print("  Updating tokenizer vocabulary...")
                 
             for field_name, counter in merged_counters.items():
-                # Add tokens sorted by frequency (optional, but good for stability)
                 for token, _count in counter.most_common():
                     tokenizer._add_value(field_name, token)
             
@@ -763,29 +808,18 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         tokenizer.freeze()
         
         # 3b. Parallel Sample Encoding
-        # ----------------------------
         phase3b_start = time.time()
         if verbose:
             print("  Encoding samples with frozen tokenizer...")
             
-        # Serialize tokenizer state for workers
         tokenizer_state = {
             'field_vocabs': tokenizer.field_vocabs,
         }
         
-        # Prepare inputs: (sentence, kotogram, f_id, g_id, r_id, gram_label)
-        encoding_inputs = []
-        for p in processed_results:
-            # p: ProcessedSample
-            if p.success: # success
-                encoding_inputs.append(p)
-
+        encoding_inputs = [p for p in processed_results if p.success]
         batches = [encoding_inputs[i:i + 5000] for i in range(0, len(encoding_inputs), 5000)]
         
         samples: List[Sample] = []
-        # Re-initialize counters for stats
-        processed_encodings = 0
-        formality_counts: Counter[FormalityLevel] = Counter()
         gender_counts: Counter[int] = Counter()
         grammaticality_counts: Counter[int] = Counter()
 
@@ -797,27 +831,17 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 samples.extend(batch_samples)
                 processed_encodings += len(batch_samples)
                 
-                # Update stats locally (fast)
+                # Update stats
                 for s in batch_samples:
-                    # Reverse map value/prag to ID for stats (approximate)
-                    # This is just for logging so exact roundtrip isn't critical, but useful
-                    # actually we don't have the original ID easily available in Sample anymore
-                    # so we might skip detailed formality breakdown or approximate it
-                    # formality_counts[FORMALITY_ID_TO_LABEL[s.formality_label]] += 1
-                    pass # Skipping detailed formality stats during loading to save time
                     gender_counts[s.gender_pragmatic] += 1
                     grammaticality_counts[s.grammaticality_label] += 1
                     
                 if verbose and processed_encodings % 100000 < 5000:
                      print(f"  Encoded {processed_encodings}/{len(encoding_inputs)} samples...")
 
-
         if verbose:
-            print(f"\nDataset loaded: {len(samples)} samples from {len(tsv_paths)} files")
+            print(f"\nDataset loaded: {len(samples)} samples")
             print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
-            print("Formality distribution:")
-            for f_label, f_count in sorted(formality_counts.items(), key=lambda x: x[1], reverse=True):
-                print(f"  {f_label.value}: {f_count} ({100*f_count/len(samples):.1f}%)")
             print("Gender distribution (Pragmatic=1, Unpragmatic=0):")
             for g_prag, g_count in sorted(gender_counts.items(), key=lambda x: x[1], reverse=True):
                 label = "Pragmatic" if g_prag == 1 else "Unpragmatic"
@@ -828,61 +852,56 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 g_count = grammaticality_counts.get(g_id, 0)
                 print(f"  {gram_labels_map[g_id]}: {g_count} ({100*g_count/len(samples):.1f}%)")
 
-        # Freeze vocabulary after building (this finalizes lemma vocab)
+        # Freeze vocabulary again to finalize lemma vocab
         tokenizer.freeze()
 
-        if verbose:
-            final_sizes = tokenizer.get_vocab_sizes()
-            print(f"Final vocabulary sizes: {final_sizes}")
-            # Show detailed stats for key fields
-            print(f"  surface: {final_sizes['surface']:,}, lemma: {final_sizes['lemma']:,}")
-            print(f"  pos: {final_sizes['pos']}, conjugated_type: {final_sizes['conjugated_type']}, conjugated_form: {final_sizes['conjugated_form']}")
-        
         phase3b_duration = time.time() - phase3b_start
         total_preprocessing_duration = time.time() - preprocessing_start
         
-        # Write timing metrics to timing.yml (if rank 0)
+        # Write timing metrics to timing.yml
         if is_main_process():
             timing_path = "models/style/timing.yml"
             os.makedirs(os.path.dirname(timing_path), exist_ok=True)
             
-            if yaml:
+            # Use yaml from global scope
+            if 'yaml' in globals() and yaml:
                 current_timing: Dict[str, float] = {}
-                if os.path.exists(timing_path):
-                    with open(timing_path, 'r') as f:
-                        current_timing = yaml.safe_load(f) or {}
-                
-                current_timing.update({
-                    'preprocessing_phase1_io': phase1_duration,
-                    'preprocessing_phase2_parsing': phase2_duration,
-                    'preprocessing_phase3a_token_collection': phase3a_duration,
-                    'preprocessing_phase3b_encoding': phase3b_duration,
-                    'preprocessing_total': total_preprocessing_duration
-                })
-                
-                with open(timing_path, 'w') as f:
-                    yaml.dump(current_timing, f, default_flow_style=False)
-                if verbose:
-                    print(f"Detailed preprocessing timing saved to {timing_path}")
-            else:
-                 print("PyYAML not installed, skipping timing.yml update")
+                try:
+                    if os.path.exists(timing_path):
+                        with open(timing_path, 'r') as f:
+                            current_timing = yaml.safe_load(f) or {}
+                    
+                    current_timing.update({
+                        'preprocessing_phase1_io': phase1_duration,
+                        'preprocessing_phase2_parsing': phase2_duration,
+                        'preprocessing_phase3a_token_collection': phase3a_duration,
+                        'preprocessing_phase3b_encoding': phase3b_duration,
+                        'preprocessing_total': total_preprocessing_duration
+                    })
+                    
+                    with open(timing_path, 'w') as f:
+                        yaml.dump(current_timing, f, default_flow_style=False)
+                    if verbose:
+                        print(f"Detailed preprocessing timing saved to {timing_path}")
+                except Exception:
+                    pass
 
         # Save vocabulary if needed
+        if not vocab_path and use_cache and cache_name:
+            vocab_path = os.path.join(cache_dir, cache_name)
+
         if use_cache and add_to_vocab and vocab_path:
             cls._save_vocab(vocab_path, tokenizer)
             if verbose:
                 print(f"Saved vocabulary to {vocab_path}")
 
-        # Apply subsampling after processing/caching
+        # Apply subsampling
         if sample_ratio < 1.0:
             if verbose:
                 print(f"  Subsampling {sample_ratio:.1%} of {len(samples)} samples...")
-            content_str = "".join(s.original_sentence for s in samples[:100])
-            seed = int(hashlib.md5(content_str.encode()).hexdigest(), 16) % 100000
-            rng = random.Random(seed)
-            samples = rng.sample(samples, int(len(samples) * sample_ratio))
-            if verbose:
-                print(f"  Using {len(samples)} samples after subsampling")
+            import random
+            random.seed(42)
+            samples = random.sample(samples, int(len(samples) * sample_ratio))
 
         return cls(samples, tokenizer)
 
@@ -2481,7 +2500,7 @@ if __name__ == "__main__":
                         help="Maximum samples to use (for testing)")
     parser.add_argument("--epochs", type=int, default=10,
                         help="Number of training epochs")
-    parser.add_argument("--agrammatic_data", type=str, default=None,
+    parser.add_argument("--agrammatic-data", type=str, default=None,
                         help="Path to TSV file with agrammatic sentences (for grammaticality training)")
     parser.add_argument("--batch-size", type=int, default=32,
                         help="Batch size")
@@ -2524,7 +2543,7 @@ if __name__ == "__main__":
                         help="Gradient accumulation steps for larger effective batch size")
     parser.add_argument("--num-workers", type=int, default=None,
                         help="Number of data loader workers")
-    parser.add_argument("--local_rank", type=int, default=0,
+    parser.add_argument("--local-rank", type=int, default=0,
                         help="Local rank for distributed training (usually passed by torchrun)")
     parser.add_argument("--preprocess-only", action="store_true",
                         help="Exit after loading and caching data (for multi-stage pipelines)")

@@ -377,11 +377,6 @@ if [ "$GRAD_ACCUM_STEPS" -lt 1 ]; then
     GRAD_ACCUM_STEPS=1
 fi
 
-echo "Auto-config: Target Global Batch=$TARGET_GLOBAL_BATCH_SIZE"
-echo "             Devices=$NUM_DEVICES, MicroBatch=$MICRO_BATCH_SIZE"
-echo "             => GradAccumSteps=$GRAD_ACCUM_STEPS"
-
-
 # Set defaults if not provided
 if [ -z "$BATCH_SIZE" ]; then
     BATCH_SIZE=$MICRO_BATCH_SIZE
@@ -472,15 +467,11 @@ echo "=============================================="
     # Construct labeling command
     PREPROC_CMD="python -m scripts.label --grammatic-pattern \"$GRAM_DATA_PATTERN\" \
         --output-grammatic \"$COMBINED_GRAM_FILE\" \
+        --output-agrammatic \"$COMBINED_AGRAM_FILE\" \
         --model-dir \"$OUTPUT_DIR\" $FORCE_RELABEL"
 
-    if [ -n "$AGRAMMATIC_SENTENCES_PATH" ]; then 
+    if [ -n "$AGRAMMATIC_SENTENCES_PATH" ] || [ -n "$AGRAMMATIC_PATTERN" ]; then 
         PREPROC_CMD="$PREPROC_CMD --agrammatic-pattern \"$AGRAMMATIC_PATTERN\""
-    fi
-    
-    if [ -n "$AGRAMMATIC_PATTERN" ]; then 
-        PREPROC_CMD="$PREPROC_CMD --agrammatic-pattern \"$AGRAMMATIC_PATTERN\" \
-            --output-agrammatic \"$COMBINED_AGRAM_FILE\""
     fi
 
 if [ -n "$DEBUG" ]; then
