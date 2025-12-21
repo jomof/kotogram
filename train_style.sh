@@ -88,6 +88,7 @@ LABEL_ONLY=""
 
 EXCLUDE_FEATURES=""
 PERCENT=""
+PROFILE_MEMORY=""
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -213,6 +214,10 @@ while [[ $# -gt 0 ]]; do
             MAX_SAMPLES="--max-samples 100"
             shift
             ;;
+        --profile-memory)
+            PROFILE_MEMORY="--profile-memory"
+            shift
+            ;;
         --help)
             echo "Train style classifier (formality + gender + grammaticality) on Japanese sentence corpus"
             echo ""
@@ -260,6 +265,7 @@ while [[ $# -gt 0 ]]; do
             echo "  --percent N           Percentage of data to use (1-100)"
             echo ""
             echo "  --test                Run in test mode (output to models/test_style, 1 epoch, 100 samples)"
+            echo "  --profile-memory      Profile memory usage (one epoch only, skips validation)"
             echo "  --help                Show this help message"
             exit 0
             ;;
@@ -466,6 +472,10 @@ fi
 
 # Add grad accum steps 
 CMD="$CMD --grad-accum-steps $GRAD_ACCUM_STEPS"
+
+if [ -n "$PROFILE_MEMORY" ]; then
+    CMD="$CMD $PROFILE_MEMORY"
+fi
 
 # Run Preprocessing Phase (Single Process)
 # This ensures that Kotogram parsing and dataset caching happens once, cleanly,

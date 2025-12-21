@@ -302,7 +302,7 @@ class ModelConfig:
     num_layers: int = 3
     num_heads: int = 8
     dropout: float = 0.1
-    max_seq_len: int = 512
+    max_seq_len: int = 64
     pooling: str = "cls"
     excluded_features: List[str] = field(default_factory=list)
 

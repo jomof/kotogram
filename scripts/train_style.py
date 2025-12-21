@@ -412,7 +412,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
             total_processed += len(chunk)
             if verbose and total_processed % 10000 == 0:
-                print(f"  Processed {total_processed}/{len(rows)}...")
+                print(f"  Processed {total_processed}/{len(rows)}...", end='\r', flush=True)
 
         return final_results
 
@@ -783,7 +783,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     grammaticality_counts[s.grammaticality_label] += 1
                     
                 if verbose and processed_encodings % 100000 < 5000:
-                     print(f"  Encoded {processed_encodings}/{len(encoding_inputs)} samples...")
+                     print(f"  Encoded {processed_encodings}/{len(encoding_inputs)} samples...", end='\r', flush=True)
 
 
         if verbose:
@@ -948,6 +948,88 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             StyleDataset(test_samples, self.tokenizer),
         )
 
+    def to_tensor_dataset(self, max_len: int = 64) -> torch.utils.data.TensorDataset:
+        """Convert dataset to a compact TensorDataset with fixed sequence length.
+
+        This eliminates the memory overhead of Python Sample objects and allows for
+        efficient zero-copy slicing and batching.
+
+        Args:
+            max_len: Fixed sequence length for all tensors. Samples longer than this
+                     are discarded.
+
+        Returns:
+            TensorDataset containing:
+            - features: (N, max_len, num_fields) [int32]
+            - attention_mask: (N, max_len) [bool]
+            - formality_value: (N,) [float32]
+            - formality_pragmatic: (N,) [int64]
+            - gender_value: (N,) [float32]
+            - gender_pragmatic: (N,) [int64]
+            - grammaticality_label: (N,) [int64]
+            - register_labels: (N, num_classes) [float32]
+        """
+        # Filter samples that are too long
+        valid_samples = [s for s in self.samples if s.seq_len <= max_len]
+        discarded_count = len(self.samples) - len(valid_samples)
+        if discarded_count > 0:
+            print(f"Warning: Discarding {discarded_count} samples longer than {max_len} tokens ({discarded_count/len(self.samples):.2%})")
+
+        n_samples = len(valid_samples)
+        num_fields = len(FEATURE_FIELDS)
+        
+        # Pre-allocate tensors
+        # Use int32 for features to save 50% RAM (vocab size < 2B)
+        features = torch.zeros((n_samples, max_len, num_fields), dtype=torch.int32)
+        attention_mask = torch.zeros((n_samples, max_len), dtype=torch.bool)
+        
+        formality_values = torch.zeros(n_samples, dtype=torch.float32)
+        formality_pragmatics = torch.zeros(n_samples, dtype=torch.long)
+        gender_values = torch.zeros(n_samples, dtype=torch.float32)
+        gender_pragmatics = torch.zeros(n_samples, dtype=torch.long)
+        grammaticality_labels = torch.zeros(n_samples, dtype=torch.long)
+        register_labels = torch.zeros((n_samples, NUM_REGISTER_CLASSES), dtype=torch.float32)
+
+        # Fill tensors
+        for i, sample in enumerate(valid_samples):
+            seq_len = sample.seq_len
+            
+            # Fill features
+            # Order must match FEATURE_FIELDS global list
+            for f_idx, field_name in enumerate(FEATURE_FIELDS):
+                # Convert list of ints to tensor slice
+                # We can assign directly to the slice
+                seq_data = sample.feature_ids[field_name]
+                # Ensure we strictly don't exceed boundaries (though filtering should prevent this)
+                curr_len = min(len(seq_data), max_len)
+                features[i, :curr_len, f_idx] = torch.tensor(seq_data[:curr_len], dtype=torch.int32)
+
+            # Fill attention mask (1 for real tokens, 0 for padding)
+            attention_mask[i, :seq_len] = True
+
+            # Fill labels
+            formality_values[i] = sample.formality_value
+            formality_pragmatics[i] = sample.formality_pragmatic
+            gender_values[i] = sample.gender_value
+            gender_pragmatics[i] = sample.gender_pragmatic
+            grammaticality_labels[i] = sample.grammaticality_label
+            
+            # Multi-hot register labels
+            for lbl in sample.register_labels:
+                if 0 <= lbl < NUM_REGISTER_CLASSES:
+                    register_labels[i, lbl] = 1.0
+
+        return torch.utils.data.TensorDataset(
+            features,
+            attention_mask,
+            formality_values,
+            formality_pragmatics,
+            gender_values,
+            gender_pragmatics,
+            grammaticality_labels,
+            register_labels
+        )
+
     def get_formality_class_weights(self) -> torch.Tensor:
         """Compute inverse frequency class weights for imbalanced formality data."""
         counts = Counter(s.formality_pragmatic for s in self.samples)
@@ -981,6 +1063,48 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         return weights
 
+
+
+def collate_tensor_fn(
+    batch: List[Tuple[torch.Tensor, ...]],
+) -> Dict[str, Any]:
+    """Collate function for TensorDataset batches.
+
+    Since the data is already in tensors, this just stacks them (often handled by default collate)
+    and unpacks features into the dict structure expected by the model.
+    """
+    # Use default_collate to stack the batch of tuples into a tuple of stacked tensors
+    from torch.utils.data.dataloader import default_collate
+    collated = default_collate(batch)
+    
+    (
+        features,                # (B, T, NumFields)
+        attention_mask,          # (B, T)
+        formality_values,
+        formality_pragmatics,
+        gender_values,
+        gender_pragmatics,
+        grammaticality_labels,
+        register_labels,
+    ) = collated
+
+    # Unpack features tensor back into dict
+    input_ids_dict = {}
+    for i, field_name in enumerate(FEATURE_FIELDS):
+        # Slice the specific field feature (B, T)
+        # Cast to long for embedding lookups (though int32 works on CUDA usually, best to be safe if model expects long)
+        input_ids_dict[f'input_ids_{field_name}'] = features[:, :, i].long()
+
+    result = input_ids_dict
+    result['attention_mask'] = attention_mask.long()
+    result['formality_value'] = formality_values
+    result['formality_pragmatic'] = formality_pragmatics
+    result['gender_value'] = gender_values
+    result['gender_pragmatic'] = gender_pragmatics
+    result['grammaticality_labels'] = grammaticality_labels
+    result['register_labels'] = register_labels
+
+    return result
 
 
 def collate_fn(
@@ -1587,6 +1711,42 @@ class Trainer:
         pad_id = train_dataset.tokenizer.pad_id
         max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
 
+        # Calculate class weights BEFORE converting to TensorDataset
+        # TensorDataset doesn't have these methods
+        formality_weights = None
+        gender_weights = None
+        grammaticality_weights = None
+        
+        if self.config.use_class_weights and isinstance(train_dataset, StyleDataset):
+            formality_weights = train_dataset.get_formality_class_weights().to(self.device)
+            gender_weights = train_dataset.get_gender_class_weights().to(self.device)
+            grammaticality_weights = train_dataset.get_grammaticality_class_weights().to(self.device)
+
+        # Convert to TensorDataset for efficiency
+        # This moves the data from Python objects to contiguous int32 tensors
+        # We do this here (inside Trainer) to keep the main script clean
+        if isinstance(train_dataset, StyleDataset):
+            if dist.is_available() and dist.is_initialized():
+                 if is_main_process():
+                     print("Converting training dataset to tensor format...")
+            else:
+                 print("Converting training dataset to tensor format...")
+            
+            # Use fixed length of 64 based on statistical analysis (>99.9% coverage)
+            train_dataset = train_dataset.to_tensor_dataset(max_len=64)
+            
+        if isinstance(val_dataset, StyleDataset):
+            if dist.is_available() and dist.is_initialized():
+                 if is_main_process():
+                     print("Converting validation dataset to tensor format...")
+            else:
+                 print("Converting validation dataset to tensor format...")
+            val_dataset = val_dataset.to_tensor_dataset(max_len=64)
+        
+        # Check if we are using TensorDataset (optimized) or original StyleDataset
+        is_tensor_dataset = isinstance(train_dataset, torch.utils.data.TensorDataset)
+        current_collate_fn = collate_tensor_fn if is_tensor_dataset else lambda b: collate_fn(b, pad_id, cast(Optional[int], max_seq_len))
+
         # Data samplers
         if self.is_distributed:
             self.train_sampler: Optional[DistributedSampler[Any]] = DistributedSampler(
@@ -1609,12 +1769,13 @@ class Trainer:
             train_shuffle = True
             val_shuffle = False
 
+
         self.train_loader = DataLoader(
             train_dataset,
             batch_size=self.config.batch_size,
             shuffle=train_shuffle,
             sampler=self.train_sampler,
-            collate_fn=lambda b: collate_fn(b, pad_id, cast(Optional[int], max_seq_len)),
+            collate_fn=current_collate_fn,
             pin_memory=True if self.config.device == "cuda" else False,
             num_workers=4 if self.config.device == "cuda" else 0,
         )
@@ -1623,16 +1784,13 @@ class Trainer:
             batch_size=self.config.batch_size,
             shuffle=val_shuffle,
             sampler=self.val_sampler,
-            collate_fn=lambda b: collate_fn(b, pad_id, cast(Optional[int], max_seq_len)),
+            collate_fn=current_collate_fn,
             pin_memory=True if self.config.device == "cuda" else False,
-            num_workers=4 if self.config.device == "cuda" else 0,
+            num_workers=2 if self.config.device == "cuda" else 0,
         )
 
         # Loss functions with optional class weights
-        if self.config.use_class_weights:
-            formality_weights = train_dataset.get_formality_class_weights().to(self.device)
-            gender_weights = train_dataset.get_gender_class_weights().to(self.device)
-            grammaticality_weights = train_dataset.get_grammaticality_class_weights().to(self.device)
+        if self.config.use_class_weights and formality_weights is not None:
             self.formality_criterion = nn.CrossEntropyLoss(weight=formality_weights)
             self.gender_pragmatic_criterion = nn.CrossEntropyLoss(weight=gender_weights)
             self.grammaticality_criterion = nn.CrossEntropyLoss(weight=grammaticality_weights)
@@ -1697,8 +1855,12 @@ class Trainer:
 
 
 
-    def train_epoch(self, verbose: bool = True) -> Tuple[float, float, float, float, float]:
+    def train_epoch(self, verbose: bool = True, profile_memory: bool = False) -> Tuple[float, float, float, float, float]:
         """Run one training epoch.
+
+        Args:
+            verbose: Print progress bar
+            profile_memory: If True, profile memory usage using memray (requires memray installed)
 
         Returns:
             Tuple of (total_loss, formality_loss, gender_loss, grammaticality_loss, register_loss)
@@ -1716,118 +1878,133 @@ class Trainer:
             print("  WARNING: No batches in train_loader!")
             return 0.0, 0.0, 0.0, 0.0, 0.0
 
-        for batch_idx, batch in enumerate(self.train_loader):
-            # Move batch to device
-            # Reconstruct field_inputs from flat batch keys
-            field_inputs = {
-                f'input_ids_{f}': batch[f'input_ids_{f}'].to(self.device) 
-                for f in FEATURE_FIELDS
-            }
-            attention_mask = batch['attention_mask'].to(self.device)
-            formality_value_targets = batch['formality_value'].to(self.device)
-            formality_prag_targets = batch['formality_pragmatic'].to(self.device)
-            gender_value_targets = batch['gender_value'].to(self.device)
-            gender_prag_targets = batch['gender_pragmatic'].to(self.device)
-            grammaticality_targets = batch['grammaticality_labels'].to(self.device)
-            register_targets = batch['register_labels'].to(self.device)
+        # Determine context manager for profiling
+        from contextlib import nullcontext
+        
+        ctx = nullcontext()
+        if profile_memory:
+            try:
+                import memray
+                rank = dist.get_rank() if self.is_distributed else 0
+                output_file = f"memory_profile_rank{rank}.bin"
+                print(f"Profiling memory to {output_file}...")
+                ctx = memray.Tracker(output_file)
+            except ImportError:
+                print("Warning: memray not installed, skipping memory profiling")
 
-            self.optimizer.zero_grad(set_to_none=True)
-            
-            # Mixed precision context
-            device_type = 'cuda' if 'cuda' in str(self.device) else ('mps' if 'mps' in str(self.device) else 'cpu')
-            
-            with autocast(device_type=device_type, enabled=self.config.use_amp):
-                # Forward pass
-                # formality_value, formality_pragmatic, gender_value, gender_pragmatic, grammaticality, register
-                formality_val_logits, formality_prag_logits, gender_val, gender_prag_logits, grammaticality_logits, register_logits = self.model(
-                    field_inputs, attention_mask
-                )
-
-                # --- HYBRID TRAINING LOGIC ---
-                # Masks
-                is_grammatic = (grammaticality_targets == 1)
-                is_formality_pragmatic = (formality_prag_targets == 1)
-                is_gender_pragmatic = (gender_prag_targets == 1)
-                
-                # Valid style mask: fully valid sentence for training specific style values
-                is_valid_style = is_grammatic & is_formality_pragmatic & is_gender_pragmatic
-
-                # 1. Formality Loss (Value MSE + Pragmatic CrossEntropy)
-                formality_prag_loss = self.formality_criterion(formality_prag_logits, formality_prag_targets)
-                
-                formality_val_squeezed = formality_val_logits.squeeze(-1)
-                if is_valid_style.sum() > 0:
-                     formality_val_loss = F.mse_loss(
-                         formality_val_squeezed[is_valid_style], 
-                         formality_value_targets[is_valid_style]
-                     )
-                else:
-                     formality_val_loss = torch.tensor(0.0, device=self.device)
-
-                formality_loss = formality_val_loss + formality_prag_loss # Equal weight 1.0 each inside formality
-
-                # 2. Gender Loss (Value MSE + Pragmatic CrossEntropy)
-                gender_prag_loss = self.gender_pragmatic_criterion(gender_prag_logits, gender_prag_targets)
-                
-                gender_val_squeezed = gender_val.squeeze(-1)
-                if is_valid_style.sum() > 0:
-                     gender_val_loss = F.mse_loss(
-                         gender_val_squeezed[is_valid_style], 
-                         gender_value_targets[is_valid_style]
-                     )
-                else:
-                     gender_val_loss = torch.tensor(0.0, device=self.device)
-                
-                gender_loss = (gender_val_loss * GENDER_LOSS_WEIGHT) + gender_prag_loss
-
-                # 3. Grammaticality Loss (All samples)
-                grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_targets)
-                
-                # 4. Register Loss (Only valid style samples)
-                # We interpret agrammatic/unpragmatic as noise for register training
-                if is_valid_style.sum() > 0:
-                    register_loss = self.register_criterion(register_logits[is_valid_style], register_targets[is_valid_style])
-                else:
-                    register_loss = torch.tensor(0.0, device=self.device)
-
-                # Weighted multi-task loss
-                loss = (
-                    self.config.formality_loss_weight * formality_loss +
-                    self.config.gender_loss_weight * gender_loss +
-                    self.config.grammaticality_loss_weight * grammaticality_loss +
-                    self.config.register_loss_weight * register_loss
-                )
-                
-                loss = loss / self.config.grad_accum_steps
-
-            # Backward pass with scaler
-            self.scaler.scale(loss).backward()
-
-            if (batch_idx + 1) % self.config.grad_accum_steps == 0:
-                if self.config.gradient_clip > 0:
-                    self.scaler.unscale_(self.optimizer)
-                    nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
-                
-                self.scaler.step(self.optimizer)
-                self.scaler.update()
+        with ctx:
+            for batch_idx, batch in enumerate(self.train_loader):
+                # Move batch to device
+                # Reconstruct field_inputs from flat batch keys
+                field_inputs = {
+                    f'input_ids_{f}': batch[f'input_ids_{f}'].to(self.device) 
+                    for f in FEATURE_FIELDS
+                }
+                attention_mask = batch['attention_mask'].to(self.device)
+                formality_value_targets = batch['formality_value'].to(self.device)
+                formality_prag_targets = batch['formality_pragmatic'].to(self.device)
+                gender_value_targets = batch['gender_value'].to(self.device)
+                gender_prag_targets = batch['gender_pragmatic'].to(self.device)
+                grammaticality_targets = batch['grammaticality_labels'].to(self.device)
+                register_targets = batch['register_labels'].to(self.device)
+    
                 self.optimizer.zero_grad(set_to_none=True)
-
-            total_loss += loss.item() * self.config.grad_accum_steps
-            total_formality_loss += formality_loss.item()
-            total_gender_loss += gender_loss.item()
-            total_grammaticality_loss += grammaticality_loss.item()
-            total_register_loss += register_loss.item()
-            n_batches += 1
-
-            # Progress display (only on main process, updated every 100 batches to reduce I/O overhead)
-            if verbose and is_main_process() and ((batch_idx + 1) % 100 == 0 or (batch_idx + 1) == total_batches):
-                avg_loss_so_far = total_loss / n_batches
-                progress = (batch_idx + 1) / total_batches
-                bar_len = 30
-                filled = int(bar_len * progress)
-                bar = '=' * filled + '>' + '.' * (bar_len - filled - 1)
-                sys.stdout.write(f'\r  [{bar}] {batch_idx+1}/{total_batches} loss={avg_loss_so_far:.4f}')
-                sys.stdout.flush()
+                
+                # Mixed precision context
+                device_type = 'cuda' if 'cuda' in str(self.device) else ('mps' if 'mps' in str(self.device) else 'cpu')
+                
+                with autocast(device_type=device_type, enabled=self.config.use_amp):
+                    # Forward pass
+                    # formality_value, formality_pragmatic, gender_value, gender_pragmatic, grammaticality, register
+                    formality_val_logits, formality_prag_logits, gender_val, gender_prag_logits, grammaticality_logits, register_logits = self.model(
+                        field_inputs, attention_mask
+                    )
+    
+                    # --- HYBRID TRAINING LOGIC ---
+                    # Masks
+                    is_grammatic = (grammaticality_targets == 1)
+                    is_formality_pragmatic = (formality_prag_targets == 1)
+                    is_gender_pragmatic = (gender_prag_targets == 1)
+                    
+                    # Valid style mask: fully valid sentence for training specific style values
+                    is_valid_style = is_grammatic & is_formality_pragmatic & is_gender_pragmatic
+    
+                    # 1. Formality Loss (Value MSE + Pragmatic CrossEntropy)
+                    formality_prag_loss = self.formality_criterion(formality_prag_logits, formality_prag_targets)
+                    
+                    formality_val_squeezed = formality_val_logits.squeeze(-1)
+                    if is_valid_style.sum() > 0:
+                         formality_val_loss = F.mse_loss(
+                             formality_val_squeezed[is_valid_style], 
+                             formality_value_targets[is_valid_style]
+                         )
+                    else:
+                         formality_val_loss = torch.tensor(0.0, device=self.device)
+    
+                    formality_loss = formality_val_loss + formality_prag_loss # Equal weight 1.0 each inside formality
+    
+                    # 2. Gender Loss (Value MSE + Pragmatic CrossEntropy)
+                    gender_prag_loss = self.gender_pragmatic_criterion(gender_prag_logits, gender_prag_targets)
+                    
+                    gender_val_squeezed = gender_val.squeeze(-1)
+                    if is_valid_style.sum() > 0:
+                         gender_val_loss = F.mse_loss(
+                             gender_val_squeezed[is_valid_style], 
+                             gender_value_targets[is_valid_style]
+                         )
+                    else:
+                         gender_val_loss = torch.tensor(0.0, device=self.device)
+                    
+                    gender_loss = (gender_val_loss * GENDER_LOSS_WEIGHT) + gender_prag_loss
+    
+                    # 3. Grammaticality Loss (All samples)
+                    grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_targets)
+                    
+                    # 4. Register Loss (Only valid style samples)
+                    # We interpret agrammatic/unpragmatic as noise for register training
+                    if is_valid_style.sum() > 0:
+                        register_loss = self.register_criterion(register_logits[is_valid_style], register_targets[is_valid_style])
+                    else:
+                        register_loss = torch.tensor(0.0, device=self.device)
+    
+                    # Weighted multi-task loss
+                    loss = (
+                        self.config.formality_loss_weight * formality_loss +
+                        self.config.gender_loss_weight * gender_loss +
+                        self.config.grammaticality_loss_weight * grammaticality_loss +
+                        self.config.register_loss_weight * register_loss
+                    )
+                    
+                    loss = loss / self.config.grad_accum_steps
+    
+                # Backward pass with scaler
+                self.scaler.scale(loss).backward()
+    
+                if (batch_idx + 1) % self.config.grad_accum_steps == 0:
+                    if self.config.gradient_clip > 0:
+                        self.scaler.unscale_(self.optimizer)
+                        nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
+                    
+                    self.scaler.step(self.optimizer)
+                    self.scaler.update()
+                    self.optimizer.zero_grad(set_to_none=True)
+    
+                total_loss += loss.item() * self.config.grad_accum_steps
+                total_formality_loss += formality_loss.item()
+                total_gender_loss += gender_loss.item()
+                total_grammaticality_loss += grammaticality_loss.item()
+                total_register_loss += register_loss.item()
+                n_batches += 1
+    
+                # Progress display (only on main process, updated every 100 batches to reduce I/O overhead)
+                if verbose and is_main_process() and ((batch_idx + 1) % 100 == 0 or (batch_idx + 1) == total_batches):
+                    avg_loss_so_far = total_loss / n_batches
+                    progress = (batch_idx + 1) / total_batches
+                    bar_len = 30
+                    filled = int(bar_len * progress)
+                    bar = '=' * filled + '>' + '.' * (bar_len - filled - 1)
+                    sys.stdout.write(f'\r  [{bar}] {batch_idx+1}/{total_batches} loss={avg_loss_so_far:.4f}')
+                    sys.stdout.flush()
 
         if verbose and is_main_process():
             sys.stdout.write('\n')
@@ -2505,6 +2682,8 @@ if __name__ == "__main__":
                         help="Local rank for distributed training (usually passed by torchrun)")
     parser.add_argument("--preprocess-only", action="store_true",
                         help="Exit after loading and caching data (for multi-stage pipelines)")
+    parser.add_argument("--profile-memory", action="store_true",
+                        help="Profile memory usage during training (one epoch only)")
 
 
 
@@ -2817,21 +2996,31 @@ if __name__ == "__main__":
 
         train_data, val_data, test_data = dataset.split()
 
+        # RAM optimization: Clear unused strings from training data
+        if is_main_process():
+            print("Optimizing memory: clearing kotogram/sentences from training data...")
+        for sample in train_data.samples:
+            sample.kotogram = ""
+            sample.original_sentence = ""
+
         # Check if vocabulary grew and resize embeddings if needed
         new_vocab_sizes = tokenizer.get_vocab_sizes()
         vocab_grew = any(new_vocab_sizes[f] > old_vocab_sizes[f] for f in FEATURE_FIELDS)
 
         if vocab_grew:
-            print("\nResizing embeddings for new vocabulary...")
+            if is_main_process():
+                print("\nResizing embeddings for new vocabulary...")
             resized = model.resize_embeddings(new_vocab_sizes)
-            for f_name, count in resized.items():
-                if count > 0:
-                    print(f"  {f_name}: +{count} tokens ({old_vocab_sizes[f_name]} -> {new_vocab_sizes[f_name]})")
+            if is_main_process():
+                for f_name, count in resized.items():
+                    if count > 0:
+                        print(f"  {f_name}: +{count} tokens ({old_vocab_sizes[f_name]} -> {new_vocab_sizes[f_name]})")
 
             # Update model config with new vocab sizes
             model_config = model.config
         else:
-            print("\nNo new vocabulary tokens found.")
+            if is_main_process():
+                print("\nNo new vocabulary tokens found.")
             model_config = model.config
         
         timings['data_loading'] = time.time() - t_data_start
@@ -2963,16 +3152,25 @@ if __name__ == "__main__":
                 )
         train_data, val_data, test_data = labeled_dataset.split()
 
+        # RAM optimization: Clear unused strings from training data
+        if is_main_process():
+            print("Optimizing memory: clearing kotogram/sentences from training data...")
+        for sample in train_data.samples:
+            sample.kotogram = ""
+            sample.original_sentence = ""
+
         # Check if vocabulary grew and resize embeddings if needed
         new_vocab_sizes = tokenizer.get_vocab_sizes()
         vocab_grew = any(new_vocab_sizes[f] > old_vocab_sizes[f] for f in FEATURE_FIELDS)
 
         if vocab_grew:
-            print("\nResizing embeddings for expanded vocabulary...")
+            if is_main_process():
+                print("\nResizing embeddings for expanded vocabulary...")
             resized = model.resize_embeddings(new_vocab_sizes)
-            for field_name, count in resized.items():
-                if count > 0:
-                    print(f"  {field_name}: +{count} tokens ({old_vocab_sizes[field_name]} -> {new_vocab_sizes[field_name]})")
+            if is_main_process():
+                for field_name, count in resized.items():
+                    if count > 0:
+                        print(f"  {field_name}: +{count} tokens ({old_vocab_sizes[field_name]} -> {new_vocab_sizes[field_name]})")
             # Update model config
             model_config = ModelConfig(
                 vocab_sizes=new_vocab_sizes,
@@ -3033,6 +3231,13 @@ if __name__ == "__main__":
                     sample_ratio=args.percent / 100.0 if args.percent else 1.0,
                 )
         train_data, val_data, test_data = dataset.split()
+
+        # RAM optimization: Clear unused strings from training data
+        if is_main_process():
+            print("Optimizing memory: clearing kotogram/sentences from training data...")
+        for sample in train_data.samples:
+            sample.kotogram = ""
+            sample.original_sentence = ""
         timings['data_loading'] = time.time() - t_data_start
 
         # Model config
@@ -3111,12 +3316,21 @@ if __name__ == "__main__":
     if args.resume and checkpoint is not None:
         trainer.restore_from_checkpoint(checkpoint, reset_optimizer=vocab_grew or strict_load_failed)
 
-    history = trainer.train(
-        checkpoint_dir=args.output,
-        checkpoint_args=args,
-        model_config=model_config,
-        verbose=is_main_process(),
-    )
+    # If profiling memory, only run one epoch and skip validation
+    if args.profile_memory:
+        print("Memory profiling enabled: Running 1 epoch, skipping validation.")
+        trainer.train_epoch(verbose=True, profile_memory=True)
+        print("Memory profiling complete. Exiting.")
+        if is_main_process():
+            # Clean exit
+            sys.exit(0)
+    else:
+        history = trainer.train(
+            checkpoint_dir=args.output,
+            checkpoint_args=args,
+            model_config=model_config,
+            verbose=is_main_process(),
+        )
 
 
     # Evaluate on test set
