@@ -2451,7 +2451,7 @@ if __name__ == "__main__":
                         help="Output directory for trained model")
     parser.add_argument("--max-samples", type=int, default=None,
                         help="Maximum samples to use (for testing)")
-    parser.add_argument("--epochs", type=int, default=10,
+    parser.add_argument("--epochs", type=int, default=None,
                         help="Number of training epochs")
     parser.add_argument("--agrammatic-data", type=str, default=None,
                         help="Path to TSV file with agrammatic sentences (for grammaticality training)")
@@ -2587,9 +2587,10 @@ if __name__ == "__main__":
             print(f"    learning_rate: {saved_args['learning_rate']}")
             if args.resume:
                 assert checkpoint is not None
-                print(f"  Resuming from epoch {checkpoint['epoch'] + 1}, training to epoch {args.epochs}")
+                # Note: epochs count print is deferred until after restore
             else:
-                print(f"  Retraining from epoch 0 to {args.epochs}")
+                # Note: epochs count print is deferred until after restore
+                pass
 
             # Update args with saved values (except epochs which can be extended)
             # Note: We do NOT restore data paths (data, agrammatic_data) to allow
@@ -2612,6 +2613,17 @@ if __name__ == "__main__":
                 args.percent = saved_args.get('percent', None)
                 if args.percent is not None:
                     print(f"  Restored flag: --percent {args.percent}")
+
+            # Restore epochs if not explicitly set on command line
+            if args.epochs is None:
+                args.epochs = saved_args.get('epochs', 10)
+                print(f"  Restored flag: --epochs {args.epochs}")
+            
+            # Now print the resume/retrain info with correct epochs
+            if args.resume and checkpoint is not None:
+                print(f"  Resuming from epoch {checkpoint['epoch'] + 1}, training to epoch {args.epochs}")
+            else:
+                print(f"  Training from epoch 0 to {args.epochs}")
             
             # Sticky flags: restore only if not explicitly set on command line (i.e. None)
             if args.fp16 is None:
@@ -2657,6 +2669,10 @@ if __name__ == "__main__":
             args.fp8 = True
         else:
             args.fp8 = False
+    
+    # Handle epochs default if not set via CLI or restored from checkpoint
+    if args.epochs is None:
+        args.epochs = 10
 
 
     # Handle feature exclusion (for new training, not resume)
