@@ -19,7 +19,7 @@ from scripts.style_data import ProcessedSample
 def populate_test_cache(rows):
     """Helper to populate the cache for testing."""
     from scripts.label import _process_sentence_batch
-    processed = _process_sentence_batch(rows)
+    processed, counters = _process_sentence_batch(rows)
     cache = get_kotogram_cache()
     memo = []
     for p in processed:
@@ -77,7 +77,7 @@ def test_step2_process_sentence_batch():
     for item in batch:
         print(f"  {item}")
     
-    results = _process_sentence_batch(batch)
+    results, counters = _process_sentence_batch(batch)
     
     print(f"\nOutput ({len(results)} results):")
     for i, result in enumerate(results):

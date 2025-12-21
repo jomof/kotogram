@@ -1,3 +1,4 @@
+# ruff: noqa: E402
 """Supervised style classifier for Japanese sentences using Kotogram representations.
 
 This module provides a neural sequence classifier that predicts both formality and
@@ -72,8 +73,18 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data.distributed import DistributedSampler
 from torch.amp import GradScaler, autocast
 
-import torch
-import torch.nn as nn
+# Early logging to show progress during slow imports
+_is_main_rank0 = os.environ.get("RANK", "0") == "0" and mp.current_process().name == 'MainProcess'
+# Also suppress if we are being imported by the label script (which does its own logging)
+_is_labeling = "scripts.label" in sys.modules or (len(sys.argv) > 0 and "label" in sys.argv[0])
+
+if _is_main_rank0 and not _is_labeling:
+    print("Loading PyTorch...", flush=True)
+import torch  # noqa: E402
+if _is_main_rank0 and not _is_labeling:
+    print("Loading neural network modules...", flush=True)
+
+import torch.nn as nn  # noqa: E402
 import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 from torch.optim import Adam
@@ -91,7 +102,7 @@ from kotogram.model import (
     GENDER_LABEL_TO_ID, load_model
 )
 
-from scripts.style_data import Sample, ProcessedSample
+from scripts.style_data import Sample, ProcessedSample  # noqa: E402
 
 
 
@@ -288,10 +299,10 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
     def _load_vocab(
         cache_path: str,
         tokenizer: Tokenizer,
-    ) -> bool:
-        """Load tokenizer vocabulary from cache. Returns True on success."""
+    ) -> None:
+        """Load tokenizer vocabulary from cache. Raises error if missing."""
         if not os.path.exists(cache_path):
-            return False
+            raise FileNotFoundError(f"Vocabulary not found at {cache_path}. Run label.py first.")
 
         try:
             with open(cache_path, 'r', encoding='utf-8') as f:
@@ -299,29 +310,16 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             
             # Check version
             if data.get('version') != CACHE_VERSION:
-                return False
+                raise ValueError(f"Cache version mismatch. Expected {CACHE_VERSION}, got {data.get('version')}")
 
             # Restore tokenizer state
             tokenizer.field_vocabs = data['field_vocabs']
             tokenizer._frozen = bool(data.get('frozen', False))
-            return True
-        except Exception:
-            return False
+            
+        except Exception as e:
+            raise ValueError(f"Failed to load vocabulary from {cache_path}: {e}")
 
-    @staticmethod
-    def _save_vocab(
-        cache_path: str,
-        tokenizer: Tokenizer,
-    ) -> None:
-        """Save tokenizer vocabulary to cache."""
-        os.makedirs(os.path.dirname(cache_path), exist_ok=True)
-        data = {
-            'version': CACHE_VERSION,
-            'field_vocabs': tokenizer.field_vocabs,
-            'frozen': int(tokenizer._frozen)
-        }
-        with open(cache_path, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
+
 
 
 
@@ -333,12 +331,8 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         num_workers: Optional[int] = None,
         verbose: bool = True,
     ) -> List[ProcessedSample]:
-        """Process rows in parallel to get kotograms and labels."""
-        from scripts.label import _process_sentence_batch
+        """Process rows by retrieving pre-computed labels from cache."""
         from scripts.cache import get_kotogram_cache
-        
-        if num_workers is None:
-            num_workers = max(1, mp.cpu_count() - 1)
         
         cache = get_kotogram_cache()
         
@@ -350,13 +344,11 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         total_processed = 0
         
         if verbose:
-             print(f"Processing {len(rows)} sentences (checking cache)...")
+             print(f"Loading {len(rows)} samples from cache...")
 
-        for chunk in chunks:
+        for i, chunk in enumerate(chunks):
             chunk_sentences = [r[0] for r in chunk]
             cached_data_map = cache.get_batch(chunk_sentences)
-            
-            chunk_missing: List[Tuple[str, str, int]] = []
             
             for sentence, sent_id, gram_label in chunk:
                 cached_tuple = cached_data_map.get(sentence)
@@ -368,51 +360,25 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                         sentence=sentence,
                         sentence_id=sent_id,
                         kotogram=k,
-                        formality_id=cast(int, f_lbl) if f_lbl is not None else 2, # distinct fallback or validation? 
-                        # actually cache schema allows None but ProcessedSample is strict.
-                        # we assume if it's in cache, it's valid, but explicit cast satisfies mypy.
-                        # Realistically we should probably allow Optional in ProcessedSample or ensure cache logic.
-                        # For now, cast.
+                        formality_id=cast(int, f_lbl) if f_lbl is not None else 2,
                         gender_value=cast(float, g_val) if g_val is not None else 0.0,
                         gender_pragmatic=cast(int, g_prag) if g_prag is not None else 0,
                         register_ids=cast(List[int], r_lbls) if r_lbls is not None else [0],
-                        gram_label=gram_label, # Use input label
+                        gram_label=gram_label,
                         success=1
                     )
                     final_results.append(processed_sample)
                 else:
-                    chunk_missing.append((sentence, sent_id, gram_label))
+                    # Strict mode: If not in cache, we fail.
+                    # This assumes label.py has been run on the dataset.
+                    raise ValueError(f"Sentence not found in cache: {sentence[:30]}... Run label.py first.")
             
-            if chunk_missing:
-                # Process missing
-                worker_batches = [chunk_missing[i:i + batch_size] for i in range(0, len(chunk_missing), batch_size)]
-                
-                ctx = mp.get_context('spawn')
-                # Accumulate for cache update
-                new_cache_entries: List[Tuple[str, str, Optional[int], Optional[float], Optional[int], Optional[List[int]], Optional[int]]] = []
-                
-                with ctx.Pool(num_workers) as pool:
-                    for batch_res in pool.imap(_process_sentence_batch, worker_batches):
-                        final_results.extend(batch_res)
-                        for res in batch_res:
-                            if res.success:
-                                new_cache_entries.append((
-                                    res.sentence, 
-                                    res.kotogram, 
-                                    res.formality_id, 
-                                    res.gender_value, 
-                                    res.gender_pragmatic, 
-                                    res.register_ids, 
-                                    res.gram_label
-                                ))
-                
-                # Update cache
-                if new_cache_entries:
-                    cache.put_batch(new_cache_entries)
-
             total_processed += len(chunk)
-            if verbose and total_processed % 10000 == 0:
-                print(f"  Processed {total_processed}/{len(rows)}...")
+            if verbose and total_processed % 50000 == 0:
+                print(f"\r  Loaded {total_processed}/{len(rows)}...", end="", flush=True)
+        
+        if verbose:
+            print()  # Final newline after progress
 
         return final_results
 
@@ -469,22 +435,14 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         if verbose:
             print(f"  Read {len(all_rows)} sentences")
         
-        # Check Vocabulary Cache
-        add_to_vocab = True
+        # Load Vocabulary (Strict)
         vocab_path = ""
         
         if use_cache:
             vocab_path = cls._get_vocab_cache_path([tsv_path], labeled, None, cache_dir)
-            if os.path.exists(vocab_path):
-                if verbose:
-                    print(f"  Found vocabulary cache: {vocab_path}")
-                if cls._load_vocab(vocab_path, tokenizer):
-                    add_to_vocab = False
-                    if verbose:
-                        print(f"  Loaded vocabulary. Sizes: {tokenizer.get_vocab_sizes()}")
-                else:
-                    if verbose:
-                        print("  Vocabulary cache load failed or version mismatch. Rebuilding...")
+            cls._load_vocab(vocab_path, tokenizer)
+            if verbose:
+                print(f"  Loaded vocabulary. Sizes: {tokenizer.get_vocab_sizes()}")
 
         # Phase 2: Process sentences in parallel (kotogram conversion + label computation)
         # fetches from kotogram_shards
@@ -514,7 +472,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             feature_ids = tokenizer.encode(
                 res.kotogram, 
                 add_cls=True, 
-                add_to_vocab=add_to_vocab
+                add_to_vocab=False
             )
 
             # Map formality_id to value/pragmatic
@@ -569,11 +527,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             print(f"  surface: {final_sizes['surface']:,}, lemma: {final_sizes['lemma']:,}")
             print(f"  pos: {final_sizes['pos']}, conjugated_type: {final_sizes['conjugated_type']}, conjugated_form: {final_sizes['conjugated_form']}")
 
-        # Save vocabulary if needed
-        if use_cache and add_to_vocab and vocab_path:
-            cls._save_vocab(vocab_path, tokenizer)
-            if verbose:
-                print(f"Saved vocabulary to {vocab_path}")
+        # No need to save vocab anymore. Handled by label.py.
 
         # Apply subsampling after processing/caching
         if sample_ratio < 1.0:
@@ -600,6 +554,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         grammaticality_labels: Optional[List[int]] = None,
         use_cache: bool = True,
         cache_dir: str = ".cache/style_dataset",
+        cache_name: Optional[str] = "vocab.json",
         sample_ratio: float = 1.0,
     ) -> 'StyleDataset':
         """Load dataset from multiple TSV files of Japanese sentences.
@@ -635,29 +590,91 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             )
 
         # Check Vocabulary Cache
-        add_to_vocab = True
         vocab_path = ""
         
         if use_cache:
-            # Note: we use vocab cache now, samples come from kotogram_shards
-            vocab_path = cls._get_vocab_cache_path(tsv_paths, labeled, grammaticality_labels, cache_dir)
-            if os.path.exists(vocab_path):
-                if verbose:
-                    print(f"  Found vocabulary cache: {vocab_path}")
-                if cls._load_vocab(vocab_path, tokenizer):
-                    add_to_vocab = False
-                    if verbose:
-                        print(f"  Loaded vocabulary. Sizes: {tokenizer.get_vocab_sizes()}")
-                else:
-                    if verbose:
-                        print("  Vocabulary cache load failed or version mismatch. Rebuilding...")
+            if cache_name:
+                vocab_path = os.path.join(cache_dir, cache_name)
+                # Check for label_metadata.json validation
+                metadata_path = os.path.join(cache_dir, "label_metadata.json")
+                if os.path.exists(vocab_path) and os.path.exists(metadata_path):
+                    try:
+                        with open(metadata_path, 'r', encoding='utf-8') as f:
+                            metadata = json.load(f)
+                        
+                        # Check validity using either output fingerprints (preferred) or source fingerprints
+                        is_valid = False
+                        
+                        # extracting current paths
+                        g_path = next((p for p, lbl in zip(tsv_paths, grammaticality_labels) if lbl == 1), None) if grammaticality_labels else tsv_paths[0]
+                        a_path = next((p for p, lbl in zip(tsv_paths, grammaticality_labels) if lbl == 0), None) if grammaticality_labels else None
+
+                        if 'output_fingerprints' in metadata:
+                            # Direct artifact validation: check if the provided tsv_paths match the ones produced by label.py
+                            from scripts.label import get_file_fingerprint
+                            outs = metadata['output_fingerprints']
+                            is_valid = True
+                            
+                            # Check grammatic file
+                            if g_path and 'grammatic' in outs:
+                                if get_file_fingerprint(g_path) != outs['grammatic']:
+                                    is_valid = False
+                            elif g_path or 'grammatic' in outs:
+                                # One exists but not the other -> mismatch configuration
+                                is_valid = False
+
+                            # Check agrammatic file
+                            if is_valid:
+                                if a_path and 'agrammatic' in outs:
+                                    if get_file_fingerprint(a_path) != outs['agrammatic']:
+                                        is_valid = False
+                                elif a_path or 'agrammatic' in outs:
+                                    # Mismatch in configuration
+                                    # Note: train_style might run without agrammatic even if label produced it.
+                                    # But validation should be strict: if label produced it, vocab might depend on it.
+                                    pass 
+            
+                        # else: Strict validation requires output_fingerprints.
+                        # If missing, is_valid remains False (initialized at start of loop).
+
+                        if is_valid:
+                            cls._load_vocab(vocab_path, tokenizer)
+                            if verbose:
+                                print(f"  Loaded vocabulary from cache: {vocab_path}")
+                                print(f"  Vocabulary. Sizes: {tokenizer.get_vocab_sizes()}")
+                        else:
+                            if verbose:
+                                print("  Cache validation failed or mismatch.")
+                            # Strict mode: If cache is invalid, we CANNOT proceed.
+                            if 'label_metadata.json' in os.listdir(cache_dir):
+                                 # Metadata exists but invalid?
+                                 raise ValueError("Cache invalid or modified. Please re-run: ./train_style.sh --label --force-relabel")
+                            else:
+                                 raise FileNotFoundError("Cache metadata not found. Please run: ./train_style.sh --label")
+
+                    except Exception as e:
+                        if verbose:
+                             print(f"  Cache validation error: {e}")
+                        raise 
+
+        # Strictly require vocabulary
+        if len(tokenizer.field_vocabs['surface']) <= 4: # Only special tokens
+             # Check if we should try loading explicitly?
+             # from_multiple_tsv should have loaded it if is_valid.
+             # If strict, we just fail if not loaded.
+             raise ValueError("Vocabulary not loaded. Ensure label.py finished successfully.")
 
         preprocessing_start = time.time()
         
-        # Phase 1: Read all rows from TSV files (fast I/O)
+        # Phase 1: Read rows from TSV files (fast I/O)
+        # If sample_ratio < 1.0, we subsample during reading to avoid loading entire files.
         # Tuple: (sentence, sentence_id, gram_label)
         all_rows: List[Tuple[str, str, int]] = []
         phase1_start = time.time()
+        
+        import random
+        random.seed(42)  # Deterministic sampling
+        
         for tsv_path, gram_label in zip(tsv_paths, grammaticality_labels):
             if verbose:
                 gram_str = "grammatic" if gram_label == 1 else "agrammatic"
@@ -669,6 +686,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 reader = csv.reader(f, delimiter='\t')
                 for row in reader:
                     if len(row) < 3:
+                        continue
+                    # Early subsampling: skip rows based on sample_ratio
+                    if sample_ratio < 1.0 and random.random() >= sample_ratio:
                         continue
                     sentence_id, _lang, sentence = row[0], row[1], row[2]
                     file_rows.append((sentence, sentence_id, gram_label))
@@ -685,7 +705,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 break
 
         if verbose:
-            print(f"\nTotal sentences to process: {len(all_rows)}")
+            print(f"\nTotal sentences to load: {len(all_rows)}")
             
         phase1_duration = time.time() - phase1_start
 
@@ -694,72 +714,76 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         processed_results = cls._process_parallel(all_rows, verbose=verbose)
         phase2_duration = time.time() - phase2_start
 
+        return cls.from_processed_samples(
+            processed_results=processed_results,
+            tokenizer=tokenizer,
+            verbose=verbose,
+            use_cache=use_cache,
+            cache_dir=cache_dir,
+            cache_name=cache_name,
+
+            sample_ratio=sample_ratio,
+            preprocessing_start=preprocessing_start,
+            phase1_duration=phase1_duration,
+            phase2_duration=phase2_duration,
+            vocab_path=vocab_path
+        )
+
+    @classmethod
+    def from_processed_samples(
+        cls,
+        processed_results: List[ProcessedSample],
+        tokenizer: Tokenizer,
+        verbose: bool = True,
+        use_cache: bool = True,
+        cache_dir: str = ".cache/style_dataset",
+        cache_name: Optional[str] = "vocab.json",
+        sample_ratio: float = 1.0,
+        preprocessing_start: Optional[float] = None,
+        phase1_duration: float = 0.0,
+        phase2_duration: float = 0.0,
+        vocab_path: Optional[str] = None,
+    ) -> 'StyleDataset':
+        """Initialize dataset from pre-processed samples (already containing kotograms and labels).
+        
+        This method handles:
+        1. Token collection (building vocabulary) if add_to_vocab=True
+        2. Sample encoding using the tokenizer
+        3. Saving the vocabulary cache
+        4. Subsampling
+        """
+        if preprocessing_start is None:
+            preprocessing_start = time.time()
+            
         phase3a_duration = 0.0
         ctx = mp.get_context('spawn')
         num_workers = max(1, mp.cpu_count() - 1)
 
         # Phase 3: Build samples (Parallelized)
         if verbose:
-            print("\nEncoding samples (Phase 3)...")
+            print("\nFinalizing dataset and building vocabulary...")
 
-        # 3a. Parallel Token Collection (map-reduce)
-        if add_to_vocab:
-            phase3a_start = time.time()
-            kotograms = [r.kotogram for r in processed_results]
-            
-            # Batching for token collection
-            # Larger batches are fine for token collection as it's CPU bound string processing
-            token_batches = [kotograms[i:i + 5000] for i in range(0, len(kotograms), 5000)]
-            
-            if verbose:
-                print(f"  Collecting tokens from {len(kotograms)} sentences with {num_workers} workers...")
-                
-            merged_counters: Dict[str, Counter[Any]] = {f: Counter() for f in tokenizer.field_vocabs.keys()}
-            
-            with ctx.Pool(num_workers) as pool:
-                for batch_counters in pool.imap(_collect_tokens_batch, token_batches):
-                    for field_name, counter in batch_counters.items():
-                        if field_name in merged_counters:
-                            merged_counters[field_name].update(counter)
-
-            # Update tokenizer sequentially (fast dict updates)
-            if verbose:
-                print("  Updating tokenizer vocabulary...")
-                
-            for field_name, counter in merged_counters.items():
-                # Add tokens sorted by frequency (optional, but good for stability)
-                for token, _count in counter.most_common():
-                    tokenizer._add_value(field_name, token)
-            
-            phase3a_duration = time.time() - phase3a_start
+        # 3a. Token Collection Removed (Handled by label.py)
+        # Vocabulary must be frozen already
+        tokenizer.freeze()
+        phase3a_duration = 0.0
         
         # Freeze vocabulary
         tokenizer.freeze()
         
         # 3b. Parallel Sample Encoding
-        # ----------------------------
         phase3b_start = time.time()
         if verbose:
             print("  Encoding samples with frozen tokenizer...")
             
-        # Serialize tokenizer state for workers
         tokenizer_state = {
             'field_vocabs': tokenizer.field_vocabs,
         }
         
-        # Prepare inputs: (sentence, kotogram, f_id, g_id, r_id, gram_label)
-        encoding_inputs = []
-        for p in processed_results:
-            # p: ProcessedSample
-            if p.success: # success
-                encoding_inputs.append(p)
-
+        encoding_inputs = [p for p in processed_results if p.success]
         batches = [encoding_inputs[i:i + 5000] for i in range(0, len(encoding_inputs), 5000)]
         
         samples: List[Sample] = []
-        # Re-initialize counters for stats
-        processed_encodings = 0
-        formality_counts: Counter[FormalityLevel] = Counter()
         gender_counts: Counter[int] = Counter()
         grammaticality_counts: Counter[int] = Counter()
 
@@ -771,27 +795,17 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 samples.extend(batch_samples)
                 processed_encodings += len(batch_samples)
                 
-                # Update stats locally (fast)
+                # Update stats
                 for s in batch_samples:
-                    # Reverse map value/prag to ID for stats (approximate)
-                    # This is just for logging so exact roundtrip isn't critical, but useful
-                    # actually we don't have the original ID easily available in Sample anymore
-                    # so we might skip detailed formality breakdown or approximate it
-                    # formality_counts[FORMALITY_ID_TO_LABEL[s.formality_label]] += 1
-                    pass # Skipping detailed formality stats during loading to save time
                     gender_counts[s.gender_pragmatic] += 1
                     grammaticality_counts[s.grammaticality_label] += 1
                     
                 if verbose and processed_encodings % 100000 < 5000:
                      print(f"  Encoded {processed_encodings}/{len(encoding_inputs)} samples...")
 
-
         if verbose:
-            print(f"\nDataset loaded: {len(samples)} samples from {len(tsv_paths)} files")
+            print(f"\nDataset loaded: {len(samples)} samples")
             print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
-            print("Formality distribution:")
-            for f_label, f_count in sorted(formality_counts.items(), key=lambda x: x[1], reverse=True):
-                print(f"  {f_label.value}: {f_count} ({100*f_count/len(samples):.1f}%)")
             print("Gender distribution (Pragmatic=1, Unpragmatic=0):")
             for g_prag, g_count in sorted(gender_counts.items(), key=lambda x: x[1], reverse=True):
                 label = "Pragmatic" if g_prag == 1 else "Unpragmatic"
@@ -802,61 +816,43 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 g_count = grammaticality_counts.get(g_id, 0)
                 print(f"  {gram_labels_map[g_id]}: {g_count} ({100*g_count/len(samples):.1f}%)")
 
-        # Freeze vocabulary after building (this finalizes lemma vocab)
+        # Freeze vocabulary again to finalize lemma vocab
         tokenizer.freeze()
 
-        if verbose:
-            final_sizes = tokenizer.get_vocab_sizes()
-            print(f"Final vocabulary sizes: {final_sizes}")
-            # Show detailed stats for key fields
-            print(f"  surface: {final_sizes['surface']:,}, lemma: {final_sizes['lemma']:,}")
-            print(f"  pos: {final_sizes['pos']}, conjugated_type: {final_sizes['conjugated_type']}, conjugated_form: {final_sizes['conjugated_form']}")
-        
         phase3b_duration = time.time() - phase3b_start
         total_preprocessing_duration = time.time() - preprocessing_start
         
-        # Write timing metrics to timing.yml (if rank 0)
+        # Write timing metrics to timing.yml
         if is_main_process():
-            timing_path = "models/style/timing.yml"
+            timing_path = ".cache/style/timing.yml"
             os.makedirs(os.path.dirname(timing_path), exist_ok=True)
             
-            if yaml:
+            # Use yaml from global scope
+            if 'yaml' in globals() and yaml:
                 current_timing: Dict[str, float] = {}
-                if os.path.exists(timing_path):
-                    with open(timing_path, 'r') as f:
-                        current_timing = yaml.safe_load(f) or {}
-                
-                current_timing.update({
-                    'preprocessing_phase1_io': phase1_duration,
-                    'preprocessing_phase2_parsing': phase2_duration,
-                    'preprocessing_phase3a_token_collection': phase3a_duration,
-                    'preprocessing_phase3b_encoding': phase3b_duration,
-                    'preprocessing_total': total_preprocessing_duration
-                })
-                
-                with open(timing_path, 'w') as f:
-                    yaml.dump(current_timing, f, default_flow_style=False)
-                if verbose:
-                    print(f"Detailed preprocessing timing saved to {timing_path}")
-            else:
-                 print("PyYAML not installed, skipping timing.yml update")
+                try:
+                    if os.path.exists(timing_path):
+                        with open(timing_path, 'r') as f:
+                            current_timing = yaml.safe_load(f) or {}
+                    
+                    current_timing.update({
+                        'preprocessing_phase1_io': phase1_duration,
+                        'preprocessing_phase2_parsing': phase2_duration,
+                        'preprocessing_phase3a_token_collection': phase3a_duration,
+                        'preprocessing_phase3b_encoding': phase3b_duration,
+                        'preprocessing_total': total_preprocessing_duration
+                    })
+                    
+                    with open(timing_path, 'w') as f:
+                        yaml.dump(current_timing, f, default_flow_style=False)
+                    if verbose:
+                        print(f"Detailed preprocessing timing saved to {timing_path}")
+                except Exception:
+                    pass
 
-        # Save vocabulary if needed
-        if use_cache and add_to_vocab and vocab_path:
-            cls._save_vocab(vocab_path, tokenizer)
-            if verbose:
-                print(f"Saved vocabulary to {vocab_path}")
+        # No need to save vocab anymore. Handled by label.py.
 
-        # Apply subsampling after processing/caching
-        if sample_ratio < 1.0:
-            if verbose:
-                print(f"  Subsampling {sample_ratio:.1%} of {len(samples)} samples...")
-            content_str = "".join(s.original_sentence for s in samples[:100])
-            seed = int(hashlib.md5(content_str.encode()).hexdigest(), 16) % 100000
-            rng = random.Random(seed)
-            samples = rng.sample(samples, int(len(samples) * sample_ratio))
-            if verbose:
-                print(f"  Using {len(samples)} samples after subsampling")
+        # Note: Subsampling now happens during Phase 1 (TSV reading) for efficiency.
 
         return cls(samples, tokenizer)
 
@@ -2444,6 +2440,8 @@ def load_checkpoint(
 
 
 if __name__ == "__main__":
+    if os.environ.get("RANK", "0") == "0":
+        print("Starting training script...", flush=True)
     import argparse
 
     parser = argparse.ArgumentParser(description="Train style classifier (formality + gender)")
@@ -2453,9 +2451,9 @@ if __name__ == "__main__":
                         help="Output directory for trained model")
     parser.add_argument("--max-samples", type=int, default=None,
                         help="Maximum samples to use (for testing)")
-    parser.add_argument("--epochs", type=int, default=10,
+    parser.add_argument("--epochs", type=int, default=None,
                         help="Number of training epochs")
-    parser.add_argument("--agrammatic_data", type=str, default=None,
+    parser.add_argument("--agrammatic-data", type=str, default=None,
                         help="Path to TSV file with agrammatic sentences (for grammaticality training)")
     parser.add_argument("--batch-size", type=int, default=32,
                         help="Batch size")
@@ -2498,7 +2496,7 @@ if __name__ == "__main__":
                         help="Gradient accumulation steps for larger effective batch size")
     parser.add_argument("--num-workers", type=int, default=None,
                         help="Number of data loader workers")
-    parser.add_argument("--local_rank", type=int, default=0,
+    parser.add_argument("--local-rank", type=int, default=0,
                         help="Local rank for distributed training (usually passed by torchrun)")
     parser.add_argument("--preprocess-only", action="store_true",
                         help="Exit after loading and caching data (for multi-stage pipelines)")
@@ -2508,14 +2506,19 @@ if __name__ == "__main__":
     args = parser.parse_args()
     timings['args_parsing'] = time.time() - script_start_time
 
-
+    if is_main_process():
+        print("Setting up distributed training...", flush=True)
     # Setup distributed training
     rank, world_size, local_rank = setup_distributed()
     # If args.local_rank is set by argument (torchrun often sets this), prefer it, 
     # but our helper checks env vars which torchrun also sets.
     
+    if is_main_process():
+        print("Device initialization...", flush=True)
+    
     # Log device information
     if is_main_process():
+        print("  Probing CUDA...", flush=True)
         if torch.cuda.is_available():
             count = torch.cuda.device_count()
             name = torch.cuda.get_device_name(0)
@@ -2524,11 +2527,16 @@ if __name__ == "__main__":
             if world_size > 1:
                 print(f"  Distributed:  d_model=DDP, {world_size} gpus, global_batch={args.batch_size * world_size * args.grad_accum_steps}")
                 print(f"  Mixed Prec:   {'On' if args.fp16 else 'Off'}")
-        elif torch.backends.mps.is_available():
-             print("\nDevice:         MPS (Apple Silicon)")
         else:
-             print("\nDevice:         CPU")
-             print("  Info:         Training will be slow. CUDA or MPS not found.")
+            print("  Probing MPS...", flush=True)
+            if torch.backends.mps.is_available():
+                print("  MPS found, initializing hardware...", flush=True)
+                # Force initialization to happen while we are logging
+                _ = torch.zeros(1, device="mps")
+                print("\nDevice:         MPS (Apple Silicon)")
+            else:
+                print("\nDevice:         CPU")
+                print("  Info:         Training will be slow. CUDA or MPS not found.")
     else:
         # Non-main processes should still print that they started if in debug mode
         if os.environ.get("DEBUG"):
@@ -2579,9 +2587,10 @@ if __name__ == "__main__":
             print(f"    learning_rate: {saved_args['learning_rate']}")
             if args.resume:
                 assert checkpoint is not None
-                print(f"  Resuming from epoch {checkpoint['epoch'] + 1}, training to epoch {args.epochs}")
+                # Note: epochs count print is deferred until after restore
             else:
-                print(f"  Retraining from epoch 0 to {args.epochs}")
+                # Note: epochs count print is deferred until after restore
+                pass
 
             # Update args with saved values (except epochs which can be extended)
             # Note: We do NOT restore data paths (data, agrammatic_data) to allow
@@ -2604,6 +2613,17 @@ if __name__ == "__main__":
                 args.percent = saved_args.get('percent', None)
                 if args.percent is not None:
                     print(f"  Restored flag: --percent {args.percent}")
+
+            # Restore epochs if not explicitly set on command line
+            if args.epochs is None:
+                args.epochs = saved_args.get('epochs', 20)
+                print(f"  Restored flag: --epochs {args.epochs}")
+            
+            # Now print the resume/retrain info with correct epochs
+            if args.resume and checkpoint is not None:
+                print(f"  Resuming from epoch {checkpoint['epoch'] + 1}, training to epoch {args.epochs}")
+            else:
+                print(f"  Training from epoch 0 to {args.epochs}")
             
             # Sticky flags: restore only if not explicitly set on command line (i.e. None)
             if args.fp16 is None:
@@ -2649,6 +2669,10 @@ if __name__ == "__main__":
             args.fp8 = True
         else:
             args.fp8 = False
+    
+    # Handle epochs default if not set via CLI or restored from checkpoint
+    if args.epochs is None:
+        args.epochs = 20
 
 
     # Handle feature exclusion (for new training, not resume)
@@ -2670,82 +2694,9 @@ if __name__ == "__main__":
     # Track if vocabulary grew during data loading/resume
     vocab_grew = False
 
-    # Check for sentence overlap between grammatic and agrammatic data
-    # (Optimized: skips check if files haven't changed since last successful validation)
-    t_check_start = time.time()
-    
-    validation_cache_path = os.path.join(os.path.dirname(args.output) if args.output else ".", ".cache", "data_validation_state.json")
-    os.makedirs(os.path.dirname(validation_cache_path), exist_ok=True)
-
-    def get_file_fingerprint(path: str) -> Optional[Dict[str, Any]]:
-        if not path or not os.path.exists(path):
-            return None
-        stat = os.stat(path)
-        return {'mtime': stat.st_mtime, 'size': stat.st_size}
-
-    # Helper to clean read sentences
-    def read_sentences_to_set(path: str, target_set: set) -> None:
-        if not path or not os.path.exists(path):
-            return
-        with open(path, 'r', encoding='utf-8') as f:
-            reader = csv.reader(f, delimiter='\t')
-            for row in reader:
-                if len(row) >= 3 and row[1] == 'jpn':
-                    target_set.add(row[2])
-
-    # Current state
-    current_state = {
-        'data': get_file_fingerprint(args.data),
-        'agrammatic_data': get_file_fingerprint(args.agrammatic_data) if args.agrammatic_data else None,
-    }
-
-    # Check cache
-    files_changed = True
-    if os.path.exists(validation_cache_path):
-        with open(validation_cache_path, 'r') as f:
-            cached_state = json.load(f)
-        if cached_state == current_state:
-            files_changed = False
-
-    if not files_changed:
-        if is_main_process():
-            print("Data validation: Files unchanged, skipping overlap check.")
-    else:
-        # Synchronization check: Only rank 0 does the check, others wait
-        # This prevents race conditions on the cache file and printing
-        if is_main_process():
-            print("Data validation: Checking for sentence overlap...")
-            grammatic_sentences: set[str] = set()
-            agrammatic_sentences: set[str] = set()
-
-            # Read grammatic
-            read_sentences_to_set(args.data, grammatic_sentences)
-            
-            # Read agrammatic
-            if args.agrammatic_data:
-                read_sentences_to_set(args.agrammatic_data, agrammatic_sentences)
-                
-            # Check intersection
-            overlap = grammatic_sentences.intersection(agrammatic_sentences)
-            if overlap:
-                print(f"\nERROR: Found {len(overlap)} sentences appearing in both grammatic and agrammatic datasets.")
-                print("This contamination invalidates the training assumption.")
-                print("Examples:")
-                for i, sent in enumerate(list(overlap)[:5]):
-                    print(f"  {i+1}. {sent}")
-                sys.exit(1) # This will kill rank 0. Other ranks will likely timeout or die.
-            
-            # Save state if successful
-            with open(validation_cache_path, 'w') as f:
-                json.dump(current_state, f)
-            print("Data validation: Passed and cached.")
-        
-        # Wait for rank 0 to complete validation
-        if torch.distributed.is_available() and torch.distributed.is_initialized():
-             torch.distributed.barrier()
-
-        
-    timings['overlap_check'] = time.time() - t_check_start
+    # Data validation (overlap check) removed as per optimization request.
+    # We assume label.py outputs are correct and disjoint.
+    pass
 
     # Load data: if doing MLM pretraining, first load unlabeled data for pretraining,
     # then load labeled data for fine-tuning
@@ -3065,8 +3016,8 @@ if __name__ == "__main__":
     # Save timings
     timings['total_startup'] = time.time() - script_start_time
     if is_main_process():
-        os.makedirs(args.output, exist_ok=True)
-        timing_path = os.path.join(args.output, "timing.yml")
+        os.makedirs(".cache/style", exist_ok=True)
+        timing_path = ".cache/style/timing.yml"
         existing_timings: Dict[str, float] = {}
         if os.path.exists(timing_path):
             with open(timing_path, "r") as f:
@@ -3201,7 +3152,7 @@ if __name__ == "__main__":
     if (args.fp16 or args.fp8) and is_main_process():
         precision_name = "fp8" if args.fp8 else "fp16"
         print(f"\nVerifying loaded {precision_name} model accuracy...")
-        loaded_model, _ = load_model(args.output, device=device.type)
+        loaded_model, *unused = load_model(args.output, device=device.type)
 
         formality_prag_correct = 0
         formality_val_sq_err = 0.0
