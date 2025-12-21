@@ -2326,7 +2326,6 @@ def save_checkpoint(
         'best_state': best_state,
         'args': {
             'data': args.data,
-            'agrammatic_sentences': args.agrammatic_sentences,
             'agrammatic_data': args.agrammatic_data,
             'epochs': args.epochs,
             'batch_size': args.batch_size,
@@ -2456,9 +2455,7 @@ if __name__ == "__main__":
                         help="Maximum samples to use (for testing)")
     parser.add_argument("--epochs", type=int, default=10,
                         help="Number of training epochs")
-    parser.add_argument("--agrammatic-sentences", type=str, default=None,
-                        help="Path to additional TSV file with agrammatic sentences (e.g., unpragmatic examples)")
-    parser.add_argument("--agrammatic-data", type=str, default=None,
+    parser.add_argument("--agrammatic_data", type=str, default=None,
                         help="Path to TSV file with agrammatic sentences (for grammaticality training)")
     parser.add_argument("--batch-size", type=int, default=32,
                         help="Batch size")
@@ -2587,7 +2584,7 @@ if __name__ == "__main__":
                 print(f"  Retraining from epoch 0 to {args.epochs}")
 
             # Update args with saved values (except epochs which can be extended)
-            # Note: We do NOT restore data paths (data, agrammatic_sentences, agrammatic_data) to allow
+            # Note: We do NOT restore data paths (data, agrammatic_data) to allow
             # resuming training even if data files have moved or been reorganized, provided
             # valid paths are passed via command line.
             args.embed_dim = saved_args['embed_dim']
@@ -2666,9 +2663,6 @@ if __name__ == "__main__":
     # grammatic (1) = normal sentences, agrammatic (0) = ungrammatical sentences
     data_files = [args.data]
     grammaticality_labels = [1]  # jpn_sentences.tsv is grammatic
-    if args.agrammatic_sentences:
-        data_files.append(args.agrammatic_sentences)
-        grammaticality_labels.append(0)  # unpragmatic_sentences.tsv is agrammatic (unpragmatic = ungrammatical)
     if args.agrammatic_data:
         data_files.append(args.agrammatic_data)
         grammaticality_labels.append(0)  # agrammatic sentences
@@ -2702,7 +2696,6 @@ if __name__ == "__main__":
     # Current state
     current_state = {
         'data': get_file_fingerprint(args.data),
-        'agrammatic_sentences': get_file_fingerprint(args.agrammatic_sentences) if args.agrammatic_sentences else None,
         'agrammatic_data': get_file_fingerprint(args.agrammatic_data) if args.agrammatic_data else None,
     }
 
@@ -2729,8 +2722,6 @@ if __name__ == "__main__":
             read_sentences_to_set(args.data, grammatic_sentences)
             
             # Read agrammatic
-            if args.agrammatic_sentences:
-                read_sentences_to_set(args.agrammatic_sentences, agrammatic_sentences)
             if args.agrammatic_data:
                 read_sentences_to_set(args.agrammatic_data, agrammatic_sentences)
                 
