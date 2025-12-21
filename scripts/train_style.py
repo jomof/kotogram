@@ -824,7 +824,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         
         # Write timing metrics to timing.yml
         if is_main_process():
-            timing_path = "models/style/timing.yml"
+            timing_path = ".cache/style/timing.yml"
             os.makedirs(os.path.dirname(timing_path), exist_ok=True)
             
             # Use yaml from global scope
@@ -3016,8 +3016,8 @@ if __name__ == "__main__":
     # Save timings
     timings['total_startup'] = time.time() - script_start_time
     if is_main_process():
-        os.makedirs(args.output, exist_ok=True)
-        timing_path = os.path.join(args.output, "timing.yml")
+        os.makedirs(".cache/style", exist_ok=True)
+        timing_path = ".cache/style/timing.yml"
         existing_timings: Dict[str, float] = {}
         if os.path.exists(timing_path):
             with open(timing_path, "r") as f:
