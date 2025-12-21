@@ -16,8 +16,7 @@ import os
 import json
 import subprocess
 from collections import defaultdict
-from dataclasses import asdict
-from typing import Tuple, Dict, List, Set, Optional
+from typing import Tuple, Dict, List, Set, Optional, Any
 
 
 from kotogram import SudachiJapaneseParser, extract_token_features  # noqa: E402
@@ -111,7 +110,7 @@ def validate_sentences(
 def compare_token_features(
     kotograms: List[str],
     project_root: str
-) -> List[Dict[str, str]]:
+) -> List[Dict[str, Any]]:
     """Compare Python and TypeScript extract_token_features results.
     
     Args:
@@ -121,7 +120,7 @@ def compare_token_features(
     Returns:
         List of mismatch dictionaries with details
     """
-    mismatches: List[Dict[str, str]] = []
+    mismatches: List[Dict[str, Any]] = []
     
     # Collect all tokens from all kotograms
     all_tokens: List[str] = []
