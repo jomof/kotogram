@@ -327,7 +327,9 @@ mkdir -p "$OUTPUT_DIR"
 # Combined output files in cache
 COMBINED_GRAM_FILE=".cache/grammatic_combined.tsv"
 COMBINED_AGRAM_FILE=".cache/agrammatic_combined.tsv"
+CONFUSION_OUTPUT_DIR=".cache/style"
 mkdir -p .cache
+mkdir -p "$CONFUSION_OUTPUT_DIR"
 
 # Store patterns for later use
 GRAM_DATA_PATTERN="$DATA_PATH"
@@ -507,7 +509,8 @@ if [ -n "$CONFUSION" ]; then
     echo "Running Confusion Matrix Evaluation..."
     echo "=============================================="
     python -m scripts.confusion \
-        --output "$OUTPUT_DIR" \
+        --output "$CONFUSION_OUTPUT_DIR" \
+        --model-dir "$OUTPUT_DIR" \
         --data "$DATA_PATH" \
         --agrammatic-data "$AGRAMMATIC_PATTERN" \
         ${AGRAMMATIC_DATA_PATH:+--agrammatic-data "$AGRAMMATIC_DATA_PATH"} \
@@ -534,7 +537,8 @@ echo "=============================================="
 echo ""
 echo "Generating confusion report..."
 python -m scripts.confusion \
-    --output "$OUTPUT_DIR" \
+    --output "$CONFUSION_OUTPUT_DIR" \
+    --model-dir "$OUTPUT_DIR" \
     --data "$DATA_PATH" \
     ${EXTRA_DATA_PATH:+--extra-data "$EXTRA_DATA_PATH"} \
     ${AGRAMMATIC_DATA_PATH:+--agrammatic-data "$AGRAMMATIC_DATA_PATH"} \

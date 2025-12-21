@@ -339,10 +339,9 @@ def print_stats(results: List[ProcessedSample]) -> None:
 
 def save_register_samples(results: List[ProcessedSample], model_dir: Optional[str]) -> None:
     """Save 3 examples of each register from grammatic sentences to CSV."""
-    if not model_dir:
-        return
-    
-    output_file = os.path.join(model_dir, "register_samples.csv")
+    # Always write to .cache/style regardless of model_dir
+    output_dir = ".cache/style"
+    output_file = os.path.join(output_dir, "register_samples.csv")
     
     # Collect ALL samples by register (only grammatic sentences)
     all_by_register: Dict[int, List[ProcessedSample]] = {}
@@ -365,7 +364,7 @@ def save_register_samples(results: List[ProcessedSample], model_dir: Optional[st
             register_samples[reg_id] = random.sample(samples, 3)
     
     # Write to CSV
-    os.makedirs(model_dir, exist_ok=True)
+    os.makedirs(output_dir, exist_ok=True)
     with open(output_file, 'w', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(['register', 'register_id', 'sentence', 'formality', 'gender_value'])
