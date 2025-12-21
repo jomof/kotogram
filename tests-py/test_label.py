@@ -37,7 +37,10 @@ class TestLabelScript(unittest.TestCase):
         # Mock sys.argv
         test_args = [
             "scripts/label.py", 
-            "--grammatic-pattern", self.data_file, 
+            "--grammatic-pattern", self.data_file,
+            "--output-grammatic", os.path.join(self.test_dir, "grammatic.tsv"),
+            "--output-agrammatic", os.path.join(self.test_dir, "agrammatic.tsv"),
+            "--cache-dir", self.test_dir
         ]
         
         # Point the cache to our temp dir
@@ -84,7 +87,13 @@ class TestLabelScript(unittest.TestCase):
             import scripts.cache
             scripts.cache._kotogram_cache = None
             
-            test_args = ["scripts/label.py", "--grammatic-pattern", self.data_file]
+            test_args = [
+                "scripts/label.py", 
+                "--grammatic-pattern", self.data_file,
+                "--output-grammatic", os.path.join(self.test_dir, "grammatic.tsv"),
+                "--output-agrammatic", os.path.join(self.test_dir, "agrammatic.tsv"),
+                "--cache-dir", self.test_dir
+            ]
             with patch.object(sys, 'argv', test_args):
                  label_main()
             
@@ -107,7 +116,14 @@ class TestLabelScript(unittest.TestCase):
                 writer = csv.writer(f, delimiter='\t')
                 writer.writerow(["id4", "label4", "新しい文です。"])
             
-            test_args_new = ["scripts/label.py", "--grammatic-pattern", self.data_file, "--agrammatic-pattern", new_data_file]
+            test_args_new = [
+                "scripts/label.py", 
+                "--grammatic-pattern", self.data_file, 
+                "--agrammatic-pattern", new_data_file,
+                "--output-grammatic", os.path.join(self.test_dir, "grammatic.tsv"),
+                "--output-agrammatic", os.path.join(self.test_dir, "agrammatic.tsv"),
+                "--cache-dir", self.test_dir
+            ]
             with patch.object(sys, 'argv', test_args_new):
                  label_main()
             

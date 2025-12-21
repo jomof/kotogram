@@ -27,9 +27,10 @@ from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskPr
 
 from scripts.cache import get_kotogram_cache
 from scripts.style_data import ProcessedSample
-from scripts.train_style import StyleDataset, Tokenizer, CACHE_VERSION
+from scripts.train_style import StyleDataset, CACHE_VERSION
 
-from kotogram.model import FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL, REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL
+from kotogram.model import FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL, REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL, FEATURE_FIELDS
+from kotogram.kotogram import split_kotogram, extract_token_features
 
 # Global variable for worker processes only
 _worker_overrides: Optional[Dict[str, List[Any]]] = None
@@ -140,21 +141,32 @@ def infer_gender_from_register(gender_enum: Any, register_enums: List[Any]) -> T
     else: # UNPRAGMATIC_GENDER
         return 0.0, 0
 
-def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSample]:
+def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> Tuple[List[ProcessedSample], Dict[str, Counter]]:
     """Process a batch of sentences in a worker process."""
     from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
     from kotogram.analysis import FormalityLevel, RegisterLevel
+    from kotogram.kotogram import split_kotogram, extract_token_features
+    from kotogram.model import FEATURE_FIELDS
     
     from scripts.rule_based_analysis import analyze_formality, analyze_gender, analyze_register
 
 
     parser = SudachiJapaneseParser()
     results = []
+    counters: Dict[str, Counter[Any]] = {f: Counter() for f in FEATURE_FIELDS}
 
     for sentence, sentence_id, gram_label in batch:
         kotogram = parser.japanese_to_kotogram(sentence)
         formality_enum = analyze_formality(kotogram)
         gender_enum = analyze_gender(kotogram)
+
+        # Token collection for vocabulary
+        tokens = split_kotogram(kotogram)
+        for token in tokens:
+            token_feat = extract_token_features(token)
+            for field in FEATURE_FIELDS:
+                value = getattr(token_feat, field)
+                counters[field][value] += 1
 
         # Check for overrides
         overrides = _worker_overrides or {}
@@ -167,8 +179,6 @@ def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[Processed
         
         gender_val, gender_prag = infer_gender_from_register(gender_enum, register_enums)
         
-
-            
         register_ids = [REGISTER_LABEL_TO_ID[r] for r in register_enums if r in REGISTER_LABEL_TO_ID]
         if not register_ids:
             register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
@@ -184,20 +194,32 @@ def _process_sentence_batch(batch: List[Tuple[str, str, int]]) -> List[Processed
             gram_label=gram_label,
             success=1
         ))
-    return results
+    return results, counters
 
-def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSample]:
+def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> Tuple[List[ProcessedSample], Dict[str, Counter]]:
     """Compute labels for a batch of sentences (where kotogram is already cached)."""
     from kotogram.analysis import FormalityLevel, RegisterLevel
+    from kotogram.kotogram import split_kotogram, extract_token_features
+    from kotogram.model import FEATURE_FIELDS
     
     from scripts.rule_based_analysis import analyze_formality, analyze_gender, analyze_register
 
 
     results = []
+    counters: Dict[str, Counter[Any]] = {f: Counter() for f in FEATURE_FIELDS}
     
     for sentence, kotogram, gram_label in batch:
         formality_enum = analyze_formality(kotogram)
         gender_enum = analyze_gender(kotogram)
+        
+        # Token collection for vocabulary
+        tokens = split_kotogram(kotogram)
+        for token in tokens:
+            token_feat = extract_token_features(token)
+            for field in FEATURE_FIELDS:
+                value = getattr(token_feat, field)
+                counters[field][value] += 1
+
         register_enums = list(analyze_register(kotogram))
         
         formality_id = FORMALITY_LABEL_TO_ID.get(formality_enum, FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL])
@@ -227,7 +249,7 @@ def _compute_labels_batch(batch: List[Tuple[str, str, int]]) -> List[ProcessedSa
             success=1
         ))
             
-    return results
+    return results, counters
 
 def print_stats(results: List[ProcessedSample]) -> None:
     """Print attractive statistics about the labeling results."""
@@ -349,8 +371,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Label and cache Japanese sentences.")
     parser.add_argument("--grammatic-pattern", type=str, required=True, help="Primary TSV data file(s) (glob pattern)")
     parser.add_argument("--agrammatic-pattern", type=str, help="Agrammatic TSV pattern")
-    parser.add_argument("--output-grammatic", type=str, help="Path to save combined/deduplicated grammatic data")
-    parser.add_argument("--output-agrammatic", type=str, help="Path to save combined/deduplicated agrammatic data")
+    parser.add_argument("--output-grammatic", type=str, required=True, help="Path to save combined/deduplicated grammatic data")
+    parser.add_argument("--output-agrammatic", type=str, required=True, help="Path to save combined/deduplicated agrammatic data")
     parser.add_argument("--model-dir", type=str, help="Output directory for results (e.g. register samples)")
     parser.add_argument("--cache-dir", type=str, default=".cache", help="Output directory for dataset cache")
     parser.add_argument("--force-relabel", action="store_true", help="Force re-computation of labels even if cached")
@@ -466,6 +488,8 @@ def main() -> None:
     unlabeled_rows = []
     final_results = []
     
+    merged_counters: Dict[str, Counter[Any]] = {f: Counter() for f in FEATURE_FIELDS}
+    
     # Pre-load overrides in main process
     # Pre-load overrides in main process
     register_overrides = load_register_overrides()
@@ -485,19 +509,26 @@ def main() -> None:
             continue
 
         if entry:
-            k, f, g_val, g_prag, r_lbls, _ = entry
-            if not args.force_relabel and f is not None and g_val is not None and g_prag is not None and r_lbls is not None:
+            k, f_id, g_val, g_prag, r_lbls, _ = entry
+            if not args.force_relabel and f_id is not None and g_val is not None and g_prag is not None and r_lbls is not None:
                 final_results.append(ProcessedSample(
                     sentence=sentence,
                     sentence_id=sentence_id,
                     kotogram=cast(str, k),
-                    formality_id=f,
+                    formality_id=f_id,
                     gender_value=g_val,
                     gender_pragmatic=g_prag,
                     register_ids=r_lbls,
                     gram_label=gram_label,
                     success=1
                 ))
+                # Add to counters for vocabulary
+                tokens = split_kotogram(cast(str, k))
+                for token in tokens:
+                    token_feat = extract_token_features(token)
+                    for field in FEATURE_FIELDS:
+                        value = getattr(token_feat, field)
+                        merged_counters[field][value] += 1
             else:
                 unlabeled_rows.append((sentence, cast(str, k), gram_label))
         else:
@@ -523,7 +554,11 @@ def main() -> None:
                 
                 new_entries = []
                 with ctx.Pool(num_workers, initializer=init_worker, initargs=(register_overrides,)) as pool:
-                    for batch_results in pool.imap(_process_sentence_batch, batches):
+                    for batch_results, batch_counters in pool.imap(_process_sentence_batch, batches):
+                        # Merge counters
+                        for field, b_counter in batch_counters.items():
+                            merged_counters[field].update(b_counter)
+                            
                         for res in batch_results:
                             if res.success:
                                 final_results.append(res)
@@ -547,7 +582,11 @@ def main() -> None:
                 
                 new_entries = []
                 with ctx.Pool(num_workers, initializer=init_worker, initargs=(register_overrides,)) as pool:
-                    for batch_results in pool.imap(_compute_labels_batch, batches):
+                    for batch_results, batch_counters in pool.imap(_compute_labels_batch, batches):
+                        # Merge counters
+                        for field, b_counter in batch_counters.items():
+                            merged_counters[field].update(b_counter)
+                            
                         for res in batch_results:
                             if res.success:
                                 final_results.append(res)
@@ -573,34 +612,25 @@ def main() -> None:
 
     vocab_file = "vocab.json"
     if args.output_grammatic:
-        console.print("\n[bold blue]Phase 3: Building vocabulary and encoding samples...[/bold blue]")
-        # We pass the combined files generated earlier
-        eval_files = [args.output_grammatic]
-        eval_labels = [1]
-        if args.output_agrammatic and os.path.exists(args.output_agrammatic):
-            eval_files.append(args.output_agrammatic)
-            eval_labels.append(0)
+        console.print("\n[bold blue]Finalizing dataset and building vocabulary...[/bold blue]")
         
-        # Initialize tokenizer (StyleDataset will handle freezing)
+        from kotogram.model import Tokenizer
         tokenizer = Tokenizer()
         
-        # This call will build the vocabulary and save the binary cache
-        # Note: We always use max_samples=None and sample_ratio=1.0 here to create the full cache
-        # This allows training and evaluation to load from the full cache and subsample as needed
-        dataset = StyleDataset.from_multiple_tsv(
-            eval_files,
+        dataset = StyleDataset.from_processed_samples(
+            final_results,
             tokenizer,
-            max_samples=None,
-            sample_ratio=1.0,
-            grammaticality_labels=eval_labels,
             verbose=False,  # Suppress redundant distribution stats
             cache_dir=args.cache_dir,
-            cache_name=vocab_file
+            cache_name=vocab_file,
+            add_to_vocab=True,
+            sample_ratio=1.0,
+            merged_counters=merged_counters
         )
         
-        # Print Phase 3-specific statistics
+        # Print statistics
         vocab_sizes = tokenizer.get_vocab_sizes()
-        console.print("\n[bold cyan]Phase 3 Statistics:[/bold cyan]")
+        console.print("\n[bold cyan]Dataset Statistics:[/bold cyan]")
         console.print(f"  Encoded samples: [bold]{len(dataset)}[/bold]")
         console.print("  Vocabulary sizes:")
         console.print(f"    Surface forms: {vocab_sizes['surface']:,}")
@@ -609,7 +639,7 @@ def main() -> None:
         console.print(f"    Conjugation types: {vocab_sizes['conjugated_type']}")
         console.print(f"    Conjugation forms: {vocab_sizes['conjugated_form']}")
         console.print(f"  Vocabulary cache: [cyan]{os.path.join(args.cache_dir, vocab_file)}[/cyan]")
-        console.print("\n[bold green]Preprocessing Phase 3 complete.[/bold green]")
+        console.print("\n[bold green]Dataset finalization complete.[/bold green]")
 
     # Final: Save metadata for fast-skip
     metadata = {
