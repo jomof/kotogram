@@ -136,6 +136,10 @@ while [[ $# -gt 0 ]]; do
             PRETRAIN_MLM="--pretrain-mlm"
             shift
             ;;
+        --force-relabel)
+            FORCE_RELABEL="--force-relabel"
+            shift
+            ;;
         --pretrain-epochs)
             PRETRAIN_EPOCHS="$2"
             shift 2
@@ -468,7 +472,7 @@ echo "=============================================="
     # Construct labeling command
     PREPROC_CMD="python -m scripts.label --grammatic-pattern \"$GRAM_DATA_PATTERN\" \
         --output-grammatic \"$COMBINED_GRAM_FILE\" \
-        --model-dir \"$OUTPUT_DIR\""
+        --model-dir \"$OUTPUT_DIR\" $FORCE_RELABEL"
 
     if [ -n "$AGRAMMATIC_SENTENCES_PATH" ]; then 
         PREPROC_CMD="$PREPROC_CMD --agrammatic-pattern \"$AGRAMMATIC_PATTERN\""

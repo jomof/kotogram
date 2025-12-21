@@ -14,6 +14,7 @@ import time
 import random
 import multiprocessing as mp
 from collections import Counter
+import json
 from typing import Dict, List, Optional, Tuple, Any, cast
 
 
@@ -26,6 +27,7 @@ from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskPr
 
 from scripts.cache import get_kotogram_cache
 from scripts.style_data import ProcessedSample
+from scripts.train_style import StyleDataset, Tokenizer, CACHE_VERSION
 
 from kotogram.model import FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL, REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL
 
@@ -71,6 +73,31 @@ def init_worker(overrides: Dict[str, List[Any]]) -> None:
     """Initialize worker process with register overrides."""
     global _worker_overrides
     _worker_overrides = overrides
+
+def get_file_fingerprint(path: str) -> Optional[Dict[str, Any]]:
+    """Return mtime and size of a file for change detection."""
+    if not path or not os.path.exists(path):
+        return None
+    stat = os.stat(path)
+    return {'mtime': stat.st_mtime, 'size': stat.st_size}
+
+def get_dependencies_fingerprint(args: Any) -> Dict[str, Any]:
+    """Collect fingerprints of all input dependencies."""
+    fingerprints = {}
+    
+    # Primary patterns
+    for name, pattern in [('grammatic', args.grammatic_pattern), 
+                         ('agrammatic', args.agrammatic_pattern)]:
+        if not pattern:
+            continue
+        files = sorted(glob.glob(pattern))
+        fingerprints[name] = {f: get_file_fingerprint(f) for f in files}
+        
+    # Register overrides
+    override_files = sorted(glob.glob("data/jpn_sentences_*.tsv"))
+    fingerprints['overrides'] = {f: get_file_fingerprint(f) for f in override_files}
+    
+    return fingerprints
 
 console = Console()
 
@@ -330,6 +357,24 @@ def main() -> None:
     
     args = parser.parse_args()
     
+    # Fast-skip check
+    metadata_path = os.path.join(args.cache_dir, "label_metadata.json")
+    current_fingerprints = get_dependencies_fingerprint(args)
+    
+    if os.path.exists(metadata_path) and not args.force_relabel:
+        try:
+            with open(metadata_path, 'r', encoding='utf-8') as f:
+                saved_data = json.load(f)
+                
+            vocab_path = os.path.join(args.cache_dir, saved_data.get('vocab_file', 'vocab.json'))
+            if (saved_data.get('fingerprints') == current_fingerprints and 
+                saved_data.get('cache_version') == CACHE_VERSION and
+                os.path.exists(vocab_path)):
+                console.print("[green]Using cached labels[/green]")
+                return
+        except Exception:
+            pass # Fall back to processing
+            
     num_workers = max(1, mp.cpu_count() - 1)
     
     def process_file_group(patterns: Any, gram_label: int, output_path: Optional[str] = None) -> Tuple[List[Any], int]:
@@ -526,11 +571,8 @@ def main() -> None:
     # Save register samples to CSV
     save_register_samples(final_results, args.model_dir)
 
-    # Phase 3: Build vocabulary and encode samples (Warming the StyleDataset cache)
-    # Only run if we have output paths (meaning we're running in preprocessing mode)
+    vocab_file = "vocab.json"
     if args.output_grammatic:
-        from scripts.train_style import StyleDataset, Tokenizer
-        
         console.print("\n[bold blue]Phase 3: Building vocabulary and encoding samples...[/bold blue]")
         # We pass the combined files generated earlier
         eval_files = [args.output_grammatic]
@@ -552,7 +594,8 @@ def main() -> None:
             sample_ratio=1.0,
             grammaticality_labels=eval_labels,
             verbose=False,  # Suppress redundant distribution stats
-            cache_dir=".cache/style_dataset"
+            cache_dir=args.cache_dir,
+            cache_name=vocab_file
         )
         
         # Print Phase 3-specific statistics
@@ -565,8 +608,19 @@ def main() -> None:
         console.print(f"    POS tags: {vocab_sizes['pos']}")
         console.print(f"    Conjugation types: {vocab_sizes['conjugated_type']}")
         console.print(f"    Conjugation forms: {vocab_sizes['conjugated_form']}")
-        console.print("  Binary cache: [cyan].cache/style_dataset[/cyan]")
+        console.print(f"  Vocabulary cache: [cyan]{os.path.join(args.cache_dir, vocab_file)}[/cyan]")
         console.print("\n[bold green]Preprocessing Phase 3 complete.[/bold green]")
+
+    # Final: Save metadata for fast-skip
+    metadata = {
+        'timestamp': time.time(),
+        'fingerprints': current_fingerprints,
+        'cache_version': CACHE_VERSION,
+        'vocab_file': vocab_file
+    }
+    os.makedirs(args.cache_dir, exist_ok=True)
+    with open(metadata_path, 'w', encoding='utf-8') as f:
+        json.dump(metadata, f, indent=2)
 
 if __name__ == "__main__":
     main()
