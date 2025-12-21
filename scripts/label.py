@@ -334,8 +334,6 @@ def main() -> None:
     parser.add_argument("--output-agrammatic", type=str, help="Path to save combined/deduplicated agrammatic data")
     parser.add_argument("--num-workers", type=int, help="Number of workers")
     parser.add_argument("--batch-size", type=int, default=1000, help="Batch size")
-    parser.add_argument("--max-samples", type=int, help="Maximum samples to process")
-    parser.add_argument("--percent", type=float, help="Percentage of data to use")
     parser.add_argument("--output-dir", type=str, default=".cache", help="Output directory for dataset cache")
     parser.add_argument("--force-relabel", action="store_true", help="Force re-computation of labels even if cached")
     
@@ -372,21 +370,7 @@ def main() -> None:
                         seen.add(sentence)
                         unique_rows.append((sentence, row[0], gram_label))
                         raw_rows.append(row)
-                    
-                    if args.max_samples and len(unique_rows) >= args.max_samples:
-                        break
-                if args.max_samples and len(unique_rows) >= args.max_samples:
-                    break
         
-        # Apply percentage if requested
-        if args.percent and args.percent < 100.0:
-            count = int(len(unique_rows) * (args.percent / 100.0))
-            if count < len(unique_rows):
-                # Use fixed seed for consistency
-                random.seed(42)
-                indices = random.sample(range(len(unique_rows)), count)
-                unique_rows = [unique_rows[i] for i in sorted(indices)]
-                raw_rows = [raw_rows[i] for i in sorted(indices)]
 
         if output_path:
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
