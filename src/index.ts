@@ -5,7 +5,9 @@
 export {
   kotogramToJapanese,
   splitKotogram,
+  extractTokenFeatures,
   type KotogramToJapaneseOptions,
+  type TokenFeatures,
 } from "./kotogram.js";
 
 export {
