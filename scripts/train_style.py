@@ -331,12 +331,8 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         num_workers: Optional[int] = None,
         verbose: bool = True,
     ) -> List[ProcessedSample]:
-        """Process rows in parallel to get kotograms and labels."""
-        from scripts.label import _process_sentence_batch
+        """Process rows by retrieving pre-computed labels from cache."""
         from scripts.cache import get_kotogram_cache
-        
-        if num_workers is None:
-            num_workers = max(1, mp.cpu_count() - 1)
         
         cache = get_kotogram_cache()
         
@@ -348,13 +344,11 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         total_processed = 0
         
         if verbose:
-             print(f"Processing {len(rows)} sentences (checking cache)...")
+             print(f"Loading {len(rows)} samples from cache...")
 
-        for chunk in chunks:
+        for i, chunk in enumerate(chunks):
             chunk_sentences = [r[0] for r in chunk]
             cached_data_map = cache.get_batch(chunk_sentences)
-            
-            chunk_missing: List[Tuple[str, str, int]] = []
             
             for sentence, sent_id, gram_label in chunk:
                 cached_tuple = cached_data_map.get(sentence)
@@ -366,51 +360,25 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                         sentence=sentence,
                         sentence_id=sent_id,
                         kotogram=k,
-                        formality_id=cast(int, f_lbl) if f_lbl is not None else 2, # distinct fallback or validation? 
-                        # actually cache schema allows None but ProcessedSample is strict.
-                        # we assume if it's in cache, it's valid, but explicit cast satisfies mypy.
-                        # Realistically we should probably allow Optional in ProcessedSample or ensure cache logic.
-                        # For now, cast.
+                        formality_id=cast(int, f_lbl) if f_lbl is not None else 2,
                         gender_value=cast(float, g_val) if g_val is not None else 0.0,
                         gender_pragmatic=cast(int, g_prag) if g_prag is not None else 0,
                         register_ids=cast(List[int], r_lbls) if r_lbls is not None else [0],
-                        gram_label=gram_label, # Use input label
+                        gram_label=gram_label,
                         success=1
                     )
                     final_results.append(processed_sample)
                 else:
-                    chunk_missing.append((sentence, sent_id, gram_label))
+                    # Strict mode: If not in cache, we fail.
+                    # This assumes label.py has been run on the dataset.
+                    raise ValueError(f"Sentence not found in cache: {sentence[:30]}... Run label.py first.")
             
-            if chunk_missing:
-                # Process missing
-                worker_batches = [chunk_missing[i:i + batch_size] for i in range(0, len(chunk_missing), batch_size)]
-                
-                ctx = mp.get_context('spawn')
-                # Accumulate for cache update
-                new_cache_entries: List[Tuple[str, str, Optional[int], Optional[float], Optional[int], Optional[List[int]], Optional[int]]] = []
-                
-                with ctx.Pool(num_workers) as pool:
-                    for batch_res, _batch_counters in pool.imap(_process_sentence_batch, worker_batches):
-                        final_results.extend(batch_res)
-                        for res in batch_res:
-                            if res.success:
-                                new_cache_entries.append((
-                                    res.sentence, 
-                                    res.kotogram, 
-                                    res.formality_id, 
-                                    res.gender_value, 
-                                    res.gender_pragmatic, 
-                                    res.register_ids, 
-                                    res.gram_label
-                                ))
-                
-                # Update cache
-                if new_cache_entries:
-                    cache.put_batch(new_cache_entries)
-
             total_processed += len(chunk)
-            if verbose and total_processed % 10000 == 0:
-                print(f"  Processed {total_processed}/{len(rows)}...")
+            if verbose and total_processed % 50000 == 0:
+                print(f"\r  Loaded {total_processed}/{len(rows)}...", end="", flush=True)
+        
+        if verbose:
+            print()  # Final newline after progress
 
         return final_results
 
@@ -698,10 +666,15 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         preprocessing_start = time.time()
         
-        # Phase 1: Read all rows from TSV files (fast I/O)
+        # Phase 1: Read rows from TSV files (fast I/O)
+        # If sample_ratio < 1.0, we subsample during reading to avoid loading entire files.
         # Tuple: (sentence, sentence_id, gram_label)
         all_rows: List[Tuple[str, str, int]] = []
         phase1_start = time.time()
+        
+        import random
+        random.seed(42)  # Deterministic sampling
+        
         for tsv_path, gram_label in zip(tsv_paths, grammaticality_labels):
             if verbose:
                 gram_str = "grammatic" if gram_label == 1 else "agrammatic"
@@ -713,6 +686,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 reader = csv.reader(f, delimiter='\t')
                 for row in reader:
                     if len(row) < 3:
+                        continue
+                    # Early subsampling: skip rows based on sample_ratio
+                    if sample_ratio < 1.0 and random.random() >= sample_ratio:
                         continue
                     sentence_id, _lang, sentence = row[0], row[1], row[2]
                     file_rows.append((sentence, sentence_id, gram_label))
@@ -729,7 +705,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 break
 
         if verbose:
-            print(f"\nTotal sentences to process: {len(all_rows)}")
+            print(f"\nTotal sentences to load: {len(all_rows)}")
             
         phase1_duration = time.time() - phase1_start
 
@@ -876,13 +852,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         # No need to save vocab anymore. Handled by label.py.
 
-        # Apply subsampling
-        if sample_ratio < 1.0:
-            if verbose:
-                print(f"  Subsampling {sample_ratio:.1%} of {len(samples)} samples...")
-            import random
-            random.seed(42)
-            samples = random.sample(samples, int(len(samples) * sample_ratio))
+        # Note: Subsampling now happens during Phase 1 (TSV reading) for efficiency.
 
         return cls(samples, tokenizer)
 
