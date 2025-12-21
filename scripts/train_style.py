@@ -600,6 +600,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         grammaticality_labels: Optional[List[int]] = None,
         use_cache: bool = True,
         cache_dir: str = ".cache/style_dataset",
+        cache_name: Optional[str] = "vocab.json",
         sample_ratio: float = 1.0,
     ) -> 'StyleDataset':
         """Load dataset from multiple TSV files of Japanese sentences.
@@ -639,18 +640,43 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         vocab_path = ""
         
         if use_cache:
-            # Note: we use vocab cache now, samples come from kotogram_shards
-            vocab_path = cls._get_vocab_cache_path(tsv_paths, labeled, grammaticality_labels, cache_dir)
-            if os.path.exists(vocab_path):
-                if verbose:
-                    print(f"  Found vocabulary cache: {vocab_path}")
-                if cls._load_vocab(vocab_path, tokenizer):
-                    add_to_vocab = False
+            if cache_name:
+                vocab_path = os.path.join(cache_dir, cache_name)
+                # Check for label_metadata.json validation
+                metadata_path = os.path.join(cache_dir, "label_metadata.json")
+                if os.path.exists(vocab_path) and os.path.exists(metadata_path):
+                    try:
+                        with open(metadata_path, 'r', encoding='utf-8') as f:
+                            metadata = json.load(f)
+                        
+                        from scripts.label import get_dependencies_fingerprint
+                        class MockArgs:
+                            def __init__(self, tsv_paths: List[str], grammaticality_labels: Optional[List[int]]):
+                                self.grammatic_pattern = next((p for p, l in zip(tsv_paths, grammaticality_labels) if l == 1), None) if grammaticality_labels else tsv_paths[0]
+                                self.agrammatic_pattern = next((p for p, l in zip(tsv_paths, grammaticality_labels) if l == 0), None) if grammaticality_labels else None
+
+                        current_fingerprints = get_dependencies_fingerprint(MockArgs(tsv_paths, grammaticality_labels))
+                        
+                        if (metadata.get('fingerprints') != current_fingerprints or 
+                            metadata.get('cache_version') != CACHE_VERSION):
+                            # Invalid cache, will rebuild (add_to_vocab stays True)
+                            pass
+                        elif cls._load_vocab(vocab_path, tokenizer):
+                            # Valid cache and loaded successfully
+                            add_to_vocab = False
+                    except Exception:
+                        pass
+            else:
+                # Fall back to hashed path
+                vocab_path = cls._get_vocab_cache_path(tsv_paths, labeled, grammaticality_labels, cache_dir)
+                if os.path.exists(vocab_path):
                     if verbose:
-                        print(f"  Loaded vocabulary. Sizes: {tokenizer.get_vocab_sizes()}")
-                else:
-                    if verbose:
-                        print("  Vocabulary cache load failed or version mismatch. Rebuilding...")
+                        print(f"  Found vocabulary cache: {vocab_path}")
+                    if cls._load_vocab(vocab_path, tokenizer):
+                        add_to_vocab = False
+                    else:
+                        if verbose:
+                            print("  Vocabulary cache load failed or version mismatch. Rebuilding...")
 
         preprocessing_start = time.time()
         
