@@ -2616,7 +2616,7 @@ if __name__ == "__main__":
 
             # Restore epochs if not explicitly set on command line
             if args.epochs is None:
-                args.epochs = saved_args.get('epochs', 10)
+                args.epochs = saved_args.get('epochs', 20)
                 print(f"  Restored flag: --epochs {args.epochs}")
             
             # Now print the resume/retrain info with correct epochs
@@ -2672,7 +2672,7 @@ if __name__ == "__main__":
     
     # Handle epochs default if not set via CLI or restored from checkpoint
     if args.epochs is None:
-        args.epochs = 10
+        args.epochs = 20
 
 
     # Handle feature exclusion (for new training, not resume)
