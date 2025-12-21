@@ -48,7 +48,7 @@ fi
 FAILED=0
 
 log "Running ruff check..."
-ruff check . || FAILED=1
+ruff check . --config pyproject.toml || FAILED=1
 
 log "Running mypy..."
 # We run mypy on the main package and scripts. 

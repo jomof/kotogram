@@ -29,13 +29,24 @@ from scripts.cache import get_kotogram_cache
 from scripts.style_data import ProcessedSample
 from scripts.train_style import StyleDataset, CACHE_VERSION
 
-from kotogram.model import FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL, REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL, FEATURE_FIELDS
+from kotogram.model import FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL, REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL, FEATURE_FIELDS, Tokenizer
 from kotogram.kotogram import split_kotogram, extract_token_features
 
 # Global variable for worker processes only
 _worker_overrides: Optional[Dict[str, List[Any]]] = None
 
 DEFAULT_BATCH_SIZE = 1000
+
+def _build_and_save_vocab(tokenizer: Tokenizer, merged_counters: Dict[str, Counter], cache_dir: str, cache_name: str) -> None:
+    """Build vocabulary from counters and save to disk."""
+    for field in FEATURE_FIELDS:
+        counter = merged_counters.get(field, Counter())
+        # Add values sorted by frequency (descending)
+        for value, _ in counter.most_common():
+             tokenizer._add_value(field, value)
+    
+    vocab_path = os.path.join(cache_dir, cache_name)
+    tokenizer.save(vocab_path)
 
 def load_register_overrides() -> Dict[str, List[Any]]:
     """Load manual register overrides from data/jpn_sentences_<register>.tsv."""
@@ -617,15 +628,17 @@ def main() -> None:
         from kotogram.model import Tokenizer
         tokenizer = Tokenizer()
         
+        # Build and save vocabulary explicitly
+        _build_and_save_vocab(tokenizer, merged_counters, args.cache_dir, vocab_file)
+        console.print(f"  Saved vocabulary to {os.path.join(args.cache_dir, vocab_file)}")
+
         dataset = StyleDataset.from_processed_samples(
             final_results,
             tokenizer,
             verbose=False,  # Suppress redundant distribution stats
             cache_dir=args.cache_dir,
             cache_name=vocab_file,
-            add_to_vocab=True,
             sample_ratio=1.0,
-            merged_counters=merged_counters
         )
         
         # Print statistics
@@ -642,9 +655,16 @@ def main() -> None:
         console.print("\n[bold green]Dataset finalization complete.[/bold green]")
 
     # Final: Save metadata for fast-skip
+    output_fingerprints = {}
+    if args.output_grammatic and os.path.exists(args.output_grammatic):
+         output_fingerprints['grammatic'] = get_file_fingerprint(args.output_grammatic)
+    if args.output_agrammatic and os.path.exists(args.output_agrammatic):
+         output_fingerprints['agrammatic'] = get_file_fingerprint(args.output_agrammatic)
+
     metadata = {
         'timestamp': time.time(),
-        'fingerprints': current_fingerprints,
+        'fingerprints': current_fingerprints, # Source fingerprints
+        'output_fingerprints': output_fingerprints, # Output fingerprints (combined files)
         'cache_version': CACHE_VERSION,
         'vocab_file': vocab_file
     }

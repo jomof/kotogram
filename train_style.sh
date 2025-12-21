@@ -468,6 +468,7 @@ echo "=============================================="
     PREPROC_CMD="python -m scripts.label --grammatic-pattern \"$GRAM_DATA_PATTERN\" \
         --output-grammatic \"$COMBINED_GRAM_FILE\" \
         --output-agrammatic \"$COMBINED_AGRAM_FILE\" \
+        --cache-dir \".cache/style_dataset\" \
         --model-dir \"$OUTPUT_DIR\" $FORCE_RELABEL"
 
     if [ -n "$AGRAMMATIC_SENTENCES_PATH" ] || [ -n "$AGRAMMATIC_PATTERN" ]; then 

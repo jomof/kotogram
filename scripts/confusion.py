@@ -282,7 +282,7 @@ def main() -> None:
             max_samples=args.max_samples,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
             verbose=True,
-            cache_dir=".cache/dataset_cache"
+            cache_dir=".cache/style_dataset"
         )
     else:
         dataset = StyleDataset.from_tsv(
@@ -292,7 +292,7 @@ def main() -> None:
             max_samples=args.max_samples,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
             verbose=True,
-            cache_dir=".cache/dataset_cache"
+            cache_dir=".cache/style_dataset"
         )
     
     # Determine num_workers: 0 is much faster for in-memory datasets on macOS (avoid spawn overhead)
