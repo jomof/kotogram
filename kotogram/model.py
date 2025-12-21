@@ -255,12 +255,13 @@ class Tokenizer:
 
 
 
-    def save(self, path: str) -> None:
+    def save(self, path: str, **kwargs: Any) -> None:
         """Save tokenizer vocabularies to JSON file."""
         data = {
             'field_vocabs': self.field_vocabs,
             'frozen': self._frozen,
         }
+        data.update(kwargs)
         with open(path, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
 
