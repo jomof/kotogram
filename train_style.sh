@@ -61,9 +61,8 @@ DATA_PATH="data/jpn_sentences*.tsv"  # Filtered to exclude known errors
 AGRAMMATIC_SENTENCES_PATH=""
 AGRAMMATIC_PATTERN="data/jpn_agrammatic*.tsv"
 OUTPUT_DIR="models/style"
-EPOCHS=20
 OUTPUT_DIR="models/style"
-EPOCHS=20
+EPOCHS=""
 # Batch settings
 MICRO_BATCH_SIZE=32       # Batch size per device
 TARGET_GLOBAL_BATCH_SIZE=128 # Operations per optimizer step (32 * 4 GPUs = 128)
@@ -276,7 +275,11 @@ if [ -n "$AGRAMMATIC_PATTERN" ]; then
     echo "Agrammatic pattern: $AGRAMMATIC_PATTERN"
 fi
 echo "Output:         $OUTPUT_DIR"
-echo "Epochs:         $EPOCHS"
+if [ -n "$EPOCHS" ]; then
+    echo "Epochs:         $EPOCHS"
+else
+    echo "Epochs:         (default or restored from checkpoint)"
+fi
 echo "Batch size:     $BATCH_SIZE"
 echo "Learning rate:  $LEARNING_RATE"
 echo "Model dim:      $EMBED_DIM"
@@ -403,7 +406,6 @@ fi
 CMD="$LAUNCHER -m scripts.train_style \
     --data \"$DATA_PATH\" \
     --output \"$OUTPUT_DIR\" \
-    --epochs $EPOCHS \
     --batch-size $BATCH_SIZE \
     --embed-dim $EMBED_DIM \
     --hidden-dim $HIDDEN_DIM \
@@ -448,6 +450,10 @@ fi
 
 if [ -n "$EXCLUDE_FEATURES" ]; then
     CMD="$CMD --exclude-features \"$EXCLUDE_FEATURES\""
+fi
+
+if [ -n "$EPOCHS" ]; then
+    CMD="$CMD --epochs $EPOCHS"
 fi
 
 if [ -n "$PERCENT" ]; then
