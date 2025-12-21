@@ -96,14 +96,6 @@ while [[ $# -gt 0 ]]; do
             DATA_PATH="$2"
             shift 2
             ;;
-        --agrammatic-sentences)
-            AGRAMMATIC_SENTENCES_PATH="$2"
-            shift 2
-            ;;
-        --no-agrammatic-sentences)
-            AGRAMMATIC_SENTENCES_PATH=""
-            shift
-            ;;
         --agrammatic-pattern)
             AGRAMMATIC_PATTERN="$2"
             shift 2
@@ -220,8 +212,7 @@ while [[ $# -gt 0 ]]; do
             echo ""
             echo "Data Options:"
             echo "  --data PATH           Path to primary TSV file (default: data/jpn_sentences.tsv)"
-            echo "  --agrammatic-sentences PATH Path to agrammatic TSV file (default: data/unpragmatic_sentences.tsv)"
-            echo "  --no-agrammatic-sentences   Disable loading agrammatic sentences file"
+            echo "  --agrammatic-pattern PATTERN Pattern for agrammatic TSV files (default: data/jpn_agrammatic*.tsv)"
             echo "  --agrammatic-pattern PATTERN Pattern for agrammatic TSV files (default: data/jpn_agrammatic*.tsv)"
             echo "  --no-agrammatic-data  Disable loading agrammatic data file"
             echo "  --output DIR          Output directory (default: models/style)"
@@ -435,7 +426,7 @@ if [ -n "$MAX_SAMPLES" ]; then
 fi
 
 if [ -n "$AGRAMMATIC_SENTENCES_PATH" ]; then
-    CMD="$CMD --agrammatic-sentences \"$AGRAMMATIC_SENTENCES_PATH\""
+    CMD="$CMD --agrammatic-data \"$AGRAMMATIC_PATTERN\""
 fi
 
 if [ -n "$AGRAMMATIC_DATA_PATH" ]; then
@@ -475,11 +466,11 @@ echo "Running Preprocessing Phase..."
 echo "=============================================="
 # Construct preprocessing command (always use python, single process)
     # Construct labeling command
-    PREPROC_CMD="python -m scripts.label --data \"$GRAM_DATA_PATTERN\" \
+    PREPROC_CMD="python -m scripts.label --grammatic-pattern \"$GRAM_DATA_PATTERN\" \
         --output-grammatic \"$COMBINED_GRAM_FILE\""
 
     if [ -n "$AGRAMMATIC_SENTENCES_PATH" ]; then 
-        PREPROC_CMD="$PREPROC_CMD --agrammatic-sentences \"$AGRAMMATIC_SENTENCES_PATH\""
+        PREPROC_CMD="$PREPROC_CMD --agrammatic-pattern \"$AGRAMMATIC_PATTERN\""
     fi
     
     if [ -n "$AGRAMMATIC_PATTERN" ]; then 
@@ -515,7 +506,7 @@ if [ -n "$CONFUSION" ]; then
     python -m scripts.confusion \
         --output "$OUTPUT_DIR" \
         --data "$DATA_PATH" \
-        ${AGRAMMATIC_SENTENCES_PATH:+--agrammatic-sentences "$AGRAMMATIC_SENTENCES_PATH"} \
+        --agrammatic-data "$AGRAMMATIC_PATTERN" \
         ${AGRAMMATIC_DATA_PATH:+--agrammatic-data "$AGRAMMATIC_DATA_PATH"} \
         ${PERCENT:+--percent ${PERCENT#--percent }} \
         ${MAX_SAMPLES:+--max-samples ${MAX_SAMPLES#--max-samples }}

@@ -32,6 +32,8 @@ from kotogram.model import FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL, REGISTE
 # Global variable for worker processes only
 _worker_overrides: Optional[Dict[str, List[Any]]] = None
 
+DEFAULT_BATCH_SIZE = 1000
+
 def load_register_overrides() -> Dict[str, List[Any]]:
     """Load manual register overrides from data/jpn_sentences_<register>.tsv."""
     from kotogram.analysis import RegisterLevel
@@ -327,19 +329,16 @@ def save_register_samples(results: List[ProcessedSample], output_grammatic_path:
 def main() -> None:
     import argparse
     parser = argparse.ArgumentParser(description="Label and cache Japanese sentences.")
-    parser.add_argument("--data", type=str, required=True, help="Primary TSV data file(s) (glob pattern)")
-    parser.add_argument("--agrammatic-sentences", type=str, help="Path to agrammatic TSV file (label 0)")
+    parser.add_argument("--grammatic-pattern", type=str, required=True, help="Primary TSV data file(s) (glob pattern)")
     parser.add_argument("--agrammatic-pattern", type=str, help="Agrammatic TSV pattern")
     parser.add_argument("--output-grammatic", type=str, help="Path to save combined/deduplicated grammatic data")
     parser.add_argument("--output-agrammatic", type=str, help="Path to save combined/deduplicated agrammatic data")
-    parser.add_argument("--num-workers", type=int, help="Number of workers")
-    parser.add_argument("--batch-size", type=int, default=1000, help="Batch size")
     parser.add_argument("--output-dir", type=str, default=".cache", help="Output directory for dataset cache")
     parser.add_argument("--force-relabel", action="store_true", help="Force re-computation of labels even if cached")
     
     args = parser.parse_args()
     
-    num_workers = args.num_workers or max(1, mp.cpu_count() - 1)
+    num_workers = max(1, mp.cpu_count() - 1)
     
     def process_file_group(patterns: Any, gram_label: int, output_path: Optional[str] = None) -> Tuple[List[Any], int]:
         if not patterns:
@@ -397,7 +396,7 @@ def main() -> None:
     all_rows = []
     
     # Process grammatic (only primary data)
-    gram_patterns = [args.data]
+    gram_patterns = [args.grammatic_pattern]
     
     console.print(f"Processing [bold]grammatic[/bold] data ({len(gram_patterns)} patterns) with {num_workers} workers...")
     rows, count = process_file_group(gram_patterns, 1, args.output_grammatic)
@@ -405,10 +404,8 @@ def main() -> None:
     if count > 0:
         console.print(f"  Matched {count} grammatic files.")
     
-    # Process agrammatic (agrammatic-sentences + agrammatic-pattern)
+    # Process agrammatic (agrammatic-pattern)
     agram_patterns = []
-    if args.agrammatic_sentences:
-        agram_patterns.append(args.agrammatic_sentences)
     if args.agrammatic_pattern:
         agram_patterns.append(args.agrammatic_pattern)
         
@@ -485,7 +482,7 @@ def main() -> None:
             
             if uncached_rows:
                 task = progress.add_task("[green]Parsing & Labeling...", total=len(uncached_rows))
-                batches = [uncached_rows[i:i + args.batch_size] for i in range(0, len(uncached_rows), args.batch_size)]
+                batches = [uncached_rows[i:i + DEFAULT_BATCH_SIZE] for i in range(0, len(uncached_rows), DEFAULT_BATCH_SIZE)]
                 
                 new_entries = []
                 with ctx.Pool(num_workers, initializer=init_worker, initargs=(register_overrides,)) as pool:
@@ -509,7 +506,7 @@ def main() -> None:
                     
             if unlabeled_rows:
                 task = progress.add_task("[cyan]Re-labeling...", total=len(unlabeled_rows))
-                batches = [unlabeled_rows[i:i + args.batch_size] for i in range(0, len(unlabeled_rows), args.batch_size)]
+                batches = [unlabeled_rows[i:i + DEFAULT_BATCH_SIZE] for i in range(0, len(unlabeled_rows), DEFAULT_BATCH_SIZE)]
                 
                 new_entries = []
                 with ctx.Pool(num_workers, initializer=init_worker, initargs=(register_overrides,)) as pool:

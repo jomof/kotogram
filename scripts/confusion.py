@@ -232,8 +232,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Evaluate model confusion and generate reports.")
     parser.add_argument("--output", type=str, required=True, help="Model directory containing checkpoint")
     parser.add_argument("--data", type=str, required=True, help="Path to evaluation data TSV")
-    parser.add_argument("--agrammatic-sentences", type=str, help="Path to agrammatic sentences TSV (label 0)")
-    parser.add_argument("--agrammatic-data", type=str, help="Path to agrammatic evaluation data TSV")
+    parser.add_argument("--agrammatic_data", type=str, help="Path to agrammatic evaluation data TSV")
     parser.add_argument("--batch-size", type=int, default=512, help="Batch size for evaluation")
     parser.add_argument("--num-workers", type=int, help="Number of workers for DataLoader (default: 0 on MPS/CPU, 4 on CUDA)")
     parser.add_argument("--max-samples", type=int, default=None, help="Stop after N samples")
@@ -267,8 +266,6 @@ def main() -> None:
 
     add_file(args.data, force_label=1) # Main data is always assumed grammatic (or 1)
     # Add agrammatic sentences if provided
-    if args.agrammatic_sentences:
-        add_file(args.agrammatic_sentences, force_label=0) 
     if args.agrammatic_data:
         add_file(args.agrammatic_data, force_label=0)
 

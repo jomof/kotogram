@@ -15,28 +15,33 @@ error() {
     exit 1
 }
 
+# Run a command quietly, only showing output on failure
+run_quiet() {
+    local tmpfile
+    tmpfile=$(mktemp /tmp/kotogram_setup_XXXXXX)
+    if ! "$@" > "$tmpfile" 2>&1; then
+        cat "$tmpfile"
+        rm "$tmpfile"
+        return 1
+    fi
+    rm "$tmpfile"
+    return 0
+}
+
 # --- Setup Python Environment ---
 if [ ! -d "$VENV_DIR" ]; then
-    log "Creating virtual environment..."
-    $PYTHON_CMD -m venv "$VENV_DIR"
+    run_quiet $PYTHON_CMD -m venv "$VENV_DIR"
 fi
 
-log "Activating virtual environment..."
 source "$VENV_DIR/bin/activate"
 
-log "Ensuring pip is up to date..."
-pip install --upgrade pip
-
-log "Installing dependencies (including dev tools)..."
-pip install -e .
-pip install ruff mypy pytest
+run_quiet pip install --upgrade pip
+run_quiet pip install -e .
+run_quiet pip install ruff mypy pytest
 
 # --- Setup TypeScript Environment ---
 if [ -f "package.json" ]; then
-    log "Running npm install..."
-    npm install
-else
-    log "Skipping npm install (package.json not found)."
+    run_quiet npm install
 fi
 
 # --- Run Checks ---
@@ -55,7 +60,7 @@ python -m pytest tests-py/ || FAILED=1
 
 if [ -f "package.json" ]; then
     log "Running TypeScript unittests..."
-    npm run build
+    run_quiet npm run build
     npm test || FAILED=1
 fi
 
