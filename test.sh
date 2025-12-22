@@ -15,6 +15,10 @@ error() {
     exit 1
 }
 
+success() {
+    echo -e "\033[1;32m✅\033[0m $1"
+}
+
 # Run a command quietly, only showing output on failure
 run_quiet() {
     local tmpfile
@@ -49,43 +53,28 @@ fi
 # Record initial git status
 INITIAL_GIT_STATUS=$(git status --short)
 
-log "Running ruff check and format..."
-ruff check --fix . --config pyproject.toml
-ruff format .
+run_quiet ruff check --fix . --config pyproject.toml && run_quiet ruff format .
+success "Ruff check and format passed"
 
-log "Running mypy..."
-# We run mypy on the main package and scripts. 
-# We use --explicit-package-bases to handle the 'scripts' directory without __init__.py.
-mypy kotogram scripts --explicit-package-bases
+run_quiet mypy kotogram scripts --explicit-package-bases
+success "Mypy passed"
 
-log "Running vulture..."
-vulture kotogram scripts tests-py scripts/vulture_whitelist.py
+run_quiet vulture kotogram scripts tests-py scripts/vulture_whitelist.py
+success "Vulture passed"
 
 if [ -f "package.json" ]; then
-    log "Running TypeScript checks..."
-    run_quiet npm run fix
-    npm test
+    run_quiet npm run fix && run_quiet npm test
+    success "TypeScript checks passed"
 fi
 
-log "Running Python unittests..."
-python -m pytest tests-py/
 
 
-
-# Verify git status hasn't changed
-FINAL_GIT_STATUS=$(git status --short)
-if [ "$INITIAL_GIT_STATUS" != "$FINAL_GIT_STATUS" ]; then
-    log "Comparing git status..."
-    diff <(echo "$INITIAL_GIT_STATUS") <(echo "$FINAL_GIT_STATUS") || true
-    error "git status changed during tests. New/changed files detected in repository."
-fi
-
-log "Verifying package contents..."
+# Clean dist to ensure fresh builds
+rm -rf dist
 run_quiet $PYTHON_CMD -m build
 
-echo "Comparing package contents against baseline..."
 # Extract filenames, remove header/footer, sort, and normalize version
-unzip -l dist/*.whl | \
+unzip -l dist/*.whl 2>/dev/null | \
 awk '{print $4}' | \
 grep -v "Name" | \
 grep -v "\-\-\-\-" | \
@@ -93,10 +82,39 @@ grep -v "^\s*$" | \
 sed 's/kotogram-.*\.dist-info/kotogram-*.dist-info/g' | \
 LC_ALL=C sort > /tmp/package_files.txt
 
-if diff -u tests/python_package_baseline.txt /tmp/package_files.txt; then
-    log "Package contents match baseline"
-else
-    error "Package contents do not match baseline!"
+if ! diff -u tests/python_package_baseline.txt /tmp/package_files.txt > /dev/null; then
+    diff -u tests/python_package_baseline.txt /tmp/package_files.txt
+    error "Python package contents do not match baseline!"
+fi
+success "Python package verification passed"
+
+if [ -f "package.json" ]; then
+    # Ensure fresh dist for TS build
+    rm -rf dist
+    run_quiet npm run build
+
+    # Create package and list contents (quietly to get just filename)
+    PACK_FILE=$(npm pack --quiet | tail -n 1)
+
+    # List files, strip 'package/' prefix, sort
+    tar -tf "$PACK_FILE" | sed 's/^package\///' | LC_ALL=C sort > /tmp/ts_package_files.txt
+
+    if ! diff -u tests/typescript_package_baseline.txt /tmp/ts_package_files.txt > /dev/null; then
+        diff -u tests/typescript_package_baseline.txt /tmp/ts_package_files.txt
+        error "TypeScript package contents do not match baseline!"
+    fi
+    rm "$PACK_FILE"
+    success "TypeScript package verification passed"
 fi
 
-log "All checks passed successfully!"
+python -m pytest --no-header tests-py/
+
+# Verify git status hasn't changed
+FINAL_GIT_STATUS=$(git status --short)
+if [ "$INITIAL_GIT_STATUS" != "$FINAL_GIT_STATUS" ]; then
+    diff <(echo "$INITIAL_GIT_STATUS") <(echo "$FINAL_GIT_STATUS") || true
+    error "git status changed during tests. New/changed files detected in repository."
+fi
+success "Git status clean"
+
+success "All checks passed successfully!"
