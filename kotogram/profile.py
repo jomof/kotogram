@@ -26,8 +26,6 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Dict, Optional
 
-import yaml
-
 from kotogram.locations import get_profile_dir, ensure_dir
 
 # Module-level state for thread safety within a process
@@ -194,14 +192,14 @@ def get_profile_report(profile_dir: Optional[str] = None) -> ProfileReport:
 
     report = ProfileReport(counters=counters, timestamp=timestamp)
 
-    # Write to YAML file
+    # Write to JSON file
     ensure_dir(profile_dir)
-    report_path = os.path.join(profile_dir, "report.yml")
+    report_path = os.path.join(profile_dir, "report.json")
 
     report_dict = {"counters": report.counters, "timestamp": report.timestamp}
 
     with open(report_path, "w", encoding="utf-8") as f:
-        yaml.dump(report_dict, f, default_flow_style=False, allow_unicode=True)
+        json.dump(report_dict, f, indent=2, ensure_ascii=False)
 
     return report
 
