@@ -425,7 +425,7 @@ def main() -> None:
             
     num_workers = max(1, mp.cpu_count() - 1)
     
-    def process_file_group(patterns: Any, gram_label: int, output_path: Optional[str] = None) -> Tuple[List[Any], int]:
+    def process_file_group(patterns: Any, gram_label: int) -> Tuple[List[Any], int]:
         if not patterns:
             return [], 0
         
@@ -469,7 +469,7 @@ def main() -> None:
     gram_patterns = [args.grammatic_pattern]
     
     console.print(f"Processing [bold]grammatic[/bold] data ({len(gram_patterns)} patterns) with {num_workers} workers...")
-    rows, count = process_file_group(gram_patterns, 1, output_path=args.output_grammatic)
+    rows, count = process_file_group(gram_patterns, 1)
     all_rows.extend(rows)
     if count > 0:
         console.print(f"  Matched {count} grammatic files.")
@@ -481,7 +481,7 @@ def main() -> None:
         
     if agram_patterns:
         console.print(f"Processing [bold]agrammatic[/bold] data ({len(agram_patterns)} patterns)...")
-        rows, count = process_file_group(agram_patterns, 0, output_path=args.output_agrammatic)
+        rows, count = process_file_group(agram_patterns, 0)
         all_rows.extend(rows)
         if count > 0:
             console.print(f"  Matched {count} agrammatic files.")

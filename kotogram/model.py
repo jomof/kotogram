@@ -50,7 +50,7 @@ def set_excluded_features(excluded: List[str]) -> None:
 
 
 # Number of classes for each task
-NUM_FORMALITY_CLASSES = 6
+
 NUM_FORMALITY_PRAGMATIC_CLASSES = 2
 NUM_GRAMMATICALITY_CLASSES = 2  # grammatic (1) vs agrammatic (0)
 NUM_GENDER_PRAGMATIC_CLASSES = 2 # pragmatic (1) vs unpragmatic (0)
@@ -72,7 +72,7 @@ GENDER_LABEL_TO_ID = {
     GenderLevel.NEUTRAL: 2,
     GenderLevel.UNPRAGMATIC_GENDER: 3,
 }
-GENDER_ID_TO_LABEL = {v: k for k, v in GENDER_LABEL_TO_ID.items()}
+
 
 
 # Register classes

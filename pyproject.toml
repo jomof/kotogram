@@ -28,6 +28,7 @@ dependencies = [
     "sudachipy",
     "sudachidict-core",
     "sudachidict-full",
+    "PyYaml",
     "torch",
     "rich",
 ]
@@ -57,10 +58,14 @@ python_version = "3.9"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
+exclude = ["scripts/vulture_whitelist.py"]
 
 [[tool.mypy.overrides]]
 module = "sudachipy.*"
 ignore_missing_imports = true
 disable_error_code = ["import-untyped"]
+
+[tool.ruff]
+exclude = ["scripts/vulture_whitelist.py"]
 
 

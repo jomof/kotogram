@@ -393,7 +393,7 @@ from kotogram.japanese_parser import (
     CONJUGATED_TYPE_MAP,  # Conjugation type mappings
     CONJUGATED_FORM_MAP,  # Conjugation form mappings
     POS_TO_CHARS,         # POS to character mappings
-    CHAR_TO_POS,          # Character to POS mappings
+
 )
 ```
 

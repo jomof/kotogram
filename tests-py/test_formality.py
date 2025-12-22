@@ -28,7 +28,7 @@ class TestFormalityModel(unittest.TestCase):
 
         # Patch the internal loader
         patcher = patch('kotogram.analysis._load_style_model', return_value=(self.model, self.tokenizer))
-        self.mock_loader = patcher.start()
+        patcher.start()
         self.addCleanup(patcher.stop)
 
     def test_formal_basic(self):
