@@ -2079,8 +2079,9 @@ class Trainer:
                 dist.barrier()
 
         # Restore best model
+        # Use strict=False to handle architecture changes (e.g., MLM head removal after pretraining)
         if self.best_state is not None:
-            self.model.load_state_dict(self.best_state)
+            self.model.load_state_dict(self.best_state, strict=False)
             self.model.to(self.device)
 
         return self.history
@@ -2690,6 +2691,17 @@ if __name__ == "__main__":
         print("Loading grammatical data for MLM pretraining...")
         print("  (agrammatic data excluded from pretraining, will be used in fine-tuning)")
         tokenizer = Tokenizer()
+        
+        # Pre-load vocabulary from labeled cache (created by label.py)
+        from kotogram import locations
+        cache_dir = locations.get_style_dataset_cache_dir()
+        vocab_path = os.path.join(cache_dir, 'vocab.json')
+        if os.path.exists(vocab_path):
+            StyleDataset._load_vocab(vocab_path, tokenizer)
+            print(f"  Loaded vocabulary from {vocab_path}")
+        else:
+            raise ValueError(f"Vocabulary not found at {vocab_path}. Run: ./train_style.sh --label")
+        
         if is_main_process():
             unlabeled_dataset = StyleDataset.from_tsv(
                 grammatic_files[0],
@@ -2698,6 +2710,7 @@ if __name__ == "__main__":
                 verbose=True,
                 labeled=False,  # No labels needed for pretraining
                 sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                use_cache=False,  # Skip cache for unlabeled MLM data
             )
         
         if dist.is_available() and dist.is_initialized():
@@ -2711,6 +2724,7 @@ if __name__ == "__main__":
                 verbose=False,
                 labeled=False,  # No labels needed for pretraining
                 sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                use_cache=False,  # Skip cache for unlabeled MLM data
             )
         # Note: tokenizer is frozen after from_tsv
 

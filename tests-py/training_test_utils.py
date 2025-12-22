@@ -271,6 +271,26 @@ class Bottle:
         has_fp8 = any(hasattr(torch, 'float8_e4m3fn') and v.dtype == torch.float8_e4m3fn for v in state_dict.values())
         self.test_case.assertTrue(has_fp8, f"Model state_dict in {model_path} contains no FP8 (float8_e4m3fn) tensors.")
 
+    def assertEpochsTrained(self, result, expected_epochs: List[int]):
+        """Asserts that specific epoch numbers were trained.
+        
+        Args:
+            result: The subprocess result from train_style.
+            expected_epochs: List of epoch numbers expected (1-indexed), e.g. [1] or [2].
+        """
+        import re
+        # Find all 'Epoch N/M' patterns in output
+        epoch_pattern = re.compile(r'Epoch (\d+)/(\d+)')
+        matches = epoch_pattern.findall(result.stdout)
+        
+        # Extract actual epochs trained
+        trained = [int(m[0]) for m in matches]
+        
+        self.test_case.assertEqual(
+            trained, expected_epochs,
+            f"Expected epochs {expected_epochs} but found {trained}"
+        )
+
     def assert_dir_diff(self, snap_name: str, expected_diffs: List[str]):
         """Asserts that the differences between the current state and a snapshot match expected_diffs.
 
