@@ -11,7 +11,6 @@ import time
 from itertools import product
 from kotogram.kotogram import split_kotogram, extract_token_features
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-from kotogram.analysis import grammar
 from dataclasses import asdict
 
 # Type alias for tokens (either surface string or feature dict wrapper)

@@ -1,4 +1,5 @@
-from kotogram.augment import Augmenter, grammar
+from kotogram.augment import Augmenter
+from kotogram.analysis import grammar
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 
 sentences = [
