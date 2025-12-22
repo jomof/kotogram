@@ -210,16 +210,15 @@ jobs:
       run: npm ci
 
     - name: Build package
-      run: npm run build
-
+      run: |
+        npm run build
         echo "✅ TypeScript package is clean - no Python files in dist/"
-        echo ""
 
     - name: Check against baseline
       run: |
         echo "Comparing package contents against baseline..."
         # Create package and list contents
-        PACK_FILE=$(npm pack)
+        PACK_FILE=$(npm pack --quiet | tail -n 1)
         
         # List files, strip 'package/' prefix, sort
         tar -tf "$PACK_FILE" | sed 's/^package\///' | LC_ALL=C sort > /tmp/package_files.txt
