@@ -5,9 +5,11 @@ by examining linguistic features such as verb forms, particles, and auxiliary ve
 """
 
 import json
+import os
 from dataclasses import dataclass, asdict
 from typing import Optional, Tuple, Dict, Set, List, TYPE_CHECKING
 from kotogram.constants import FormalityLevel, GenderLevel, RegisterLevel
+from kotogram import locations
 
 # This is required for cross-language furigana support to work on typescript
 # canary CI machine without installing pytorch.
@@ -32,8 +34,15 @@ def _load_style_model() -> Tuple['StyleClassifier', 'Tokenizer']:
     global _style_model, _style_tokenizer
 
     if _style_model is None or _style_tokenizer is None:
-        from kotogram.model import load_default_style_model
-        _style_model, _style_tokenizer = load_default_style_model()
+        from kotogram.model import load_default_style_model, load_model
+        
+        # Priority 1: Check for local model in style-output dir (handles TRAIN_ROOT)
+        model_dir = locations.get_style_output_dir()
+        if os.path.exists(os.path.join(model_dir, "model.pt")):
+            _style_model, _style_tokenizer = load_model(model_dir)
+        else:
+            # Priority 2: Fall back to package-default model
+            _style_model, _style_tokenizer = load_default_style_model()
 
     return _style_model, _style_tokenizer
 

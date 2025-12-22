@@ -8,9 +8,21 @@
 set -e
 set -o pipefail
 
+# Resolve TRAIN_ROOT
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ -z "$TRAIN_ROOT" ]; then
+    TRAIN_ROOT="."
+elif [[ "$TRAIN_ROOT" != /* ]]; then
+    # If relative, make it relative to the script directory
+    TRAIN_ROOT="$SCRIPT_DIR/$TRAIN_ROOT"
+fi
+export TRAIN_ROOT
+
+
 # Setup virtual environment and dependencies
 setup_environment() {
-    VENV_DIR=".venv"
+    # VENV always stays with the script/project, not the TRAIN_ROOT
+    VENV_DIR="$SCRIPT_DIR/.venv"
 
     # Create venv if it doesn't exist
     if [ ! -d "$VENV_DIR" ]; then
@@ -47,7 +59,7 @@ setup_environment() {
     # Check if kotogram is installed in the environment (ignoring CWD)
     if ! python -c "import sys; sys.path = [p for p in sys.path if p != '']; import kotogram" 2>/dev/null; then
         echo "Kotogram not found in site-packages. Installing from current directory..."
-        python -m pip install -e .
+        python -m pip install -e "$SCRIPT_DIR"
     fi
 
     echo "Dependencies OK (using venv: $VENV_DIR)"
@@ -57,11 +69,13 @@ setup_environment() {
 setup_environment
 
 # Default configuration
-DATA_PATH="data/jpn_sentences*.tsv"  # Filtered to exclude known errors
+DATA_DIR=$(python3 -m kotogram.locations data)
+MODELS_DIR=$(python3 -m kotogram.locations models)
+
+DATA_PATH="$DATA_DIR/jpn_sentences*.tsv"  # Filtered to exclude known errors
 AGRAMMATIC_SENTENCES_PATH=""
-AGRAMMATIC_PATTERN="data/jpn_agrammatic*.tsv"
-OUTPUT_DIR="models/style"
-OUTPUT_DIR="models/style"
+AGRAMMATIC_PATTERN="$DATA_DIR/jpn_agrammatic*.tsv"
+OUTPUT_DIR="$MODELS_DIR/style"
 EPOCHS=""
 # Batch settings
 MICRO_BATCH_SIZE=32       # Batch size per device
@@ -91,10 +105,7 @@ PERCENT=""
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
-        --data)
-            DATA_PATH="$2"
-            shift 2
-            ;;
+
         --agrammatic-pattern)
             AGRAMMATIC_PATTERN="$2"
             shift 2
@@ -103,10 +114,7 @@ while [[ $# -gt 0 ]]; do
             AGRAMMATIC_PATTERN=""
             shift
             ;;
-        --output)
-            OUTPUT_DIR="$2"
-            shift 2
-            ;;
+
         --epochs)
             EPOCHS="$2"
             shift 2
@@ -201,7 +209,7 @@ while [[ $# -gt 0 ]]; do
             ;;
         --test)
             IS_TEST=1
-            OUTPUT_DIR="models/test_style"
+            OUTPUT_DIR="$MODELS_DIR/test_style"
             # Set defaults for test mode if not already specified (simple approach: just set them)
             # Users can override by passing --epochs N after --test if they really want
             EPOCHS=1
@@ -213,12 +221,7 @@ while [[ $# -gt 0 ]]; do
             echo ""
             echo "Usage: $0 [OPTIONS]"
             echo ""
-            echo "Data Options:"
-            echo "  --data PATH           Path to primary TSV file (default: data/jpn_sentences.tsv)"
-            echo "  --agrammatic-pattern PATTERN Pattern for agrammatic TSV files (default: data/jpn_agrammatic*.tsv)"
-            echo "  --agrammatic-pattern PATTERN Pattern for agrammatic TSV files (default: data/jpn_agrammatic*.tsv)"
-            echo "  --no-agrammatic-data  Disable loading agrammatic data file"
-            echo "  --output DIR          Output directory (default: models/style)"
+
             echo "  --max-samples N       Limit samples (for testing)"
             echo ""
             echo "Training Options:"
@@ -228,6 +231,10 @@ while [[ $# -gt 0 ]]; do
             echo "  --pretrain-mlm        Enable masked LM pretraining"
             echo "  --pretrain-epochs N   MLM pretraining epochs (default: 5)"
             echo "  --encoder-lr-factor F LR factor for encoder in fine-tuning (default: 0.1)"
+            echo ""
+            echo "Data Options:"
+            echo "  --agrammatic-pattern PATTERN Pattern for agrammatic TSV files (default: $TRAIN_ROOT/data/jpn_agrammatic*.tsv)"
+            echo "  --no-agrammatic-data  Disable loading agrammatic data file"
             echo ""
             echo "Multi-task Loss Weights:"
             echo "  --formality-weight F  Weight for formality loss (default: 1.0)"
@@ -253,7 +260,7 @@ while [[ $# -gt 0 ]]; do
             echo ""
             echo "  --percent N           Percentage of data to use (1-100)"
             echo ""
-            echo "  --test                Run in test mode (output to models/test_style, 1 epoch, 100 samples)"
+            echo "  --test                Run in test mode (output to $TRAIN_ROOT/models/test_style, 1 epoch, 100 samples)"
             echo "  --help                Show this help message"
             exit 0
             ;;
@@ -325,11 +332,14 @@ echo ""
 mkdir -p "$OUTPUT_DIR"
 
 # Combined output files in cache
-COMBINED_GRAM_FILE=".cache/grammatic_combined.tsv"
-COMBINED_AGRAM_FILE=".cache/agrammatic_combined.tsv"
-CONFUSION_OUTPUT_DIR=".cache/style"
-mkdir -p .cache
-mkdir -p "$CONFUSION_OUTPUT_DIR"
+CACHE_DIR=$(python3 -m kotogram.locations cache)
+SUPPORT_DIR=$(python3 -m kotogram.locations style-support)
+
+COMBINED_GRAM_FILE="$CACHE_DIR/grammatic_combined.tsv"
+COMBINED_AGRAM_FILE="$CACHE_DIR/agrammatic_combined.tsv"
+
+mkdir -p "$CACHE_DIR"
+mkdir -p "$SUPPORT_DIR"
 
 # Store patterns for later use
 GRAM_DATA_PATTERN="$DATA_PATH"
@@ -387,10 +397,7 @@ if [ -z "$BATCH_SIZE" ]; then
     BATCH_SIZE=$MICRO_BATCH_SIZE
 fi
 
-# Auto-enable FP16 globally for alignment (unless FP8 or user specified otherwise)
-if [ -z "$FP16" ] && [ -z "$FP8" ]; then
-    FP16="--fp16"
-fi
+# Defaults for precision are handled in scripts/train_style.py
 
 # Build command definition
 if [ "$NUM_GPUS" -gt 1 ]; then
@@ -406,8 +413,6 @@ fi
 
 # Build command
 CMD="$LAUNCHER -m scripts.train_style \
-    --data \"$DATA_PATH\" \
-    --output \"$OUTPUT_DIR\" \
     --batch-size $BATCH_SIZE \
     --embed-dim $EMBED_DIM \
     --hidden-dim $HIDDEN_DIM \
@@ -416,7 +421,6 @@ CMD="$LAUNCHER -m scripts.train_style \
     --learning-rate $LEARNING_RATE \
     --pretrain-epochs $PRETRAIN_EPOCHS \
     --encoder-lr-factor $ENCODER_LR_FACTOR \
-    --formality-weight $FORMALITY_WEIGHT \
     --gender-weight $GENDER_WEIGHT \
     --grammaticality-weight $GRAMMATICALITY_WEIGHT"
 
@@ -428,13 +432,7 @@ if [ -n "$MAX_SAMPLES" ]; then
     CMD="$CMD $MAX_SAMPLES"
 fi
 
-if [ -n "$AGRAMMATIC_SENTENCES_PATH" ]; then
-    CMD="$CMD --agrammatic-data \"$AGRAMMATIC_PATTERN\""
-fi
 
-if [ -n "$AGRAMMATIC_DATA_PATH" ]; then
-    CMD="$CMD --agrammatic-data \"$AGRAMMATIC_DATA_PATH\""
-fi
 
 if [ -n "$FP8" ]; then
     CMD="$CMD --fp8"
@@ -473,11 +471,7 @@ echo "Running Preprocessing Phase..."
 echo "=============================================="
 # Construct preprocessing command (always use python, single process)
     # Construct labeling command
-    PREPROC_CMD="python -m scripts.label --grammatic-pattern \"$GRAM_DATA_PATTERN\" \
-        --output-grammatic \"$COMBINED_GRAM_FILE\" \
-        --output-agrammatic \"$COMBINED_AGRAM_FILE\" \
-        --cache-dir \".cache/style_dataset\" \
-        --model-dir \"$OUTPUT_DIR\" $FORCE_RELABEL"
+    PREPROC_CMD="python -m scripts.label --grammatic-pattern \"$GRAM_DATA_PATTERN\" $FORCE_RELABEL"
 
     if [ -n "$AGRAMMATIC_SENTENCES_PATH" ] || [ -n "$AGRAMMATIC_PATTERN" ]; then 
         PREPROC_CMD="$PREPROC_CMD --agrammatic-pattern \"$AGRAMMATIC_PATTERN\""
@@ -509,11 +503,6 @@ if [ -n "$CONFUSION" ]; then
     echo "Running Confusion Matrix Evaluation..."
     echo "=============================================="
     python -m scripts.confusion \
-        --output "$CONFUSION_OUTPUT_DIR" \
-        --model-dir "$OUTPUT_DIR" \
-        --data "$DATA_PATH" \
-        --agrammatic-data "$AGRAMMATIC_PATTERN" \
-        ${AGRAMMATIC_DATA_PATH:+--agrammatic-data "$AGRAMMATIC_DATA_PATH"} \
         ${PERCENT:+--percent ${PERCENT#--percent }} \
         ${MAX_SAMPLES:+--max-samples ${MAX_SAMPLES#--max-samples }}
     exit 0
@@ -526,21 +515,16 @@ if [ -n "$DEBUG" ]; then
 else
     echo "Starting training run..."
 fi
-eval $CMD 2>&1 | tee "$OUTPUT_DIR/training.log"
+eval $CMD 2>&1 | tee "$SUPPORT_DIR/training.log"
 
 echo ""
 echo "=============================================="
 echo "Training complete!"
 echo "Model saved to: $OUTPUT_DIR"
-echo "Training log:   $OUTPUT_DIR/training.log"
+echo "Training log:   $SUPPORT_DIR/training.log"
 echo "=============================================="
 echo ""
 echo "Generating confusion report..."
 python -m scripts.confusion \
-    --output "$CONFUSION_OUTPUT_DIR" \
-    --model-dir "$OUTPUT_DIR" \
-    --data "$DATA_PATH" \
-    ${EXTRA_DATA_PATH:+--extra-data "$EXTRA_DATA_PATH"} \
-    ${AGRAMMATIC_DATA_PATH:+--agrammatic-data "$AGRAMMATIC_DATA_PATH"} \
     ${PERCENT:+--percent ${PERCENT#--percent }} \
     ${MAX_SAMPLES:+--max-samples ${MAX_SAMPLES#--max-samples }}
