@@ -35,23 +35,3 @@ def get_style_support_dir() -> str:
 def ensure_dir(path: str) -> None:
     """Ensures the directory exists."""
     os.makedirs(path, exist_ok=True)
-
-if __name__ == "__main__":
-    import sys
-    if len(sys.argv) > 1:
-        if sys.argv[1] == "cache":
-            print(get_cache_dir())
-        elif sys.argv[1] == "data":
-            print(get_data_dir())
-        elif sys.argv[1] == "models":
-            print(get_models_dir())
-        elif sys.argv[1] == "shards":
-            print(get_shards_cache_dir())
-        elif sys.argv[1] == "style-dataset":
-            print(get_style_dataset_cache_dir())
-        elif sys.argv[1] == "style-output":
-            print(get_style_output_dir())
-        elif sys.argv[1] == "style-support":
-            print(get_style_support_dir())
-        elif sys.argv[1] == "train-root":
-            print(get_train_root())

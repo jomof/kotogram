@@ -191,10 +191,24 @@ class Bottle:
 
     def train_style(self, args: str, env_overrides: Optional[Dict[str, str]] = None):
         """Runs train_style.sh inside the bottle."""
+        import re
         overrides = {"TRAIN_ROOT": self.root_dir}
         if env_overrides:
             overrides.update(env_overrides)
-        return train_style(self.test_case, self.script_path, self.project_root, args, overrides)
+        result = train_style(self.test_case, self.script_path, self.project_root, args, overrides)
+        
+        # Assert no warnings or errors in output
+        # Use word boundary regex to avoid false positives like "mse_errors"
+        combined = result.stdout + result.stderr
+        warning_match = re.search(r'\bwarning\b', combined, re.IGNORECASE)
+        error_match = re.search(r'\berror\b', combined, re.IGNORECASE)
+        
+        self.test_case.assertIsNone(warning_match, 
+            f"Found 'warning' in output:\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}")
+        self.test_case.assertIsNone(error_match, 
+            f"Found 'error' in output:\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}")
+        
+        return result
 
     def kotogram_cli(self, *args: str, env_overrides: Optional[Dict[str, str]] = None):
         """Runs bin/kotogram inside the bottle."""

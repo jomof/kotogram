@@ -9,7 +9,7 @@ import os
 from dataclasses import dataclass, asdict
 from typing import Optional, Tuple, Dict, Set, List, TYPE_CHECKING
 from kotogram.constants import FormalityLevel, GenderLevel, RegisterLevel
-from kotogram import locations
+from . import locations
 
 # This is required for cross-language furigana support to work on typescript
 # canary CI machine without installing pytorch.

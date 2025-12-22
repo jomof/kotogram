@@ -69,8 +69,8 @@ setup_environment() {
 setup_environment
 
 # Default configuration
-DATA_DIR=$(python3 -m kotogram.locations data)
-MODELS_DIR=$(python3 -m kotogram.locations models)
+DATA_DIR=$(python3 -m scripts.locations data)
+MODELS_DIR=$(python3 -m scripts.locations models)
 
 DATA_PATH="$DATA_DIR/jpn_sentences*.tsv"  # Filtered to exclude known errors
 AGRAMMATIC_SENTENCES_PATH=""
@@ -332,8 +332,8 @@ echo ""
 mkdir -p "$OUTPUT_DIR"
 
 # Combined output files in cache
-CACHE_DIR=$(python3 -m kotogram.locations cache)
-SUPPORT_DIR=$(python3 -m kotogram.locations style-support)
+CACHE_DIR=$(python3 -m scripts.locations cache)
+SUPPORT_DIR=$(python3 -m scripts.locations style-support)
 
 COMBINED_GRAM_FILE="$CACHE_DIR/grammatic_combined.tsv"
 COMBINED_AGRAM_FILE="$CACHE_DIR/agrammatic_combined.tsv"
