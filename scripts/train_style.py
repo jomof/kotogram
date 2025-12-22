@@ -93,6 +93,7 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 from kotogram.kotogram import split_kotogram, extract_token_features
 from kotogram.japanese_parser import JapaneseParser
+from kotogram import locations
 
 from kotogram.model import (
     StyleClassifier, Tokenizer, ModelConfig,
@@ -277,7 +278,6 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         tsv_paths: List[str],
         labeled: bool,
         grammaticality_labels: Optional[List[int]],
-        cache_dir: str = ".cache/style_dataset",
     ) -> str:
         """Generate a cache file path for the vocabulary configuration."""
         # Build a hash from all relevant parameters
@@ -298,6 +298,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         # Create hash
         hash_str = hashlib.sha256("|".join(hash_parts).encode()).hexdigest()[:16]
+        
+        from kotogram import locations
+        cache_dir = locations.get_style_dataset_cache_dir()
         return os.path.join(cache_dir, f"vocab_v{CACHE_VERSION}_{hash_str}.json")
 
     @staticmethod
@@ -397,26 +400,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         verbose: bool = True,
         labeled: bool = True,
         use_cache: bool = True,
-        cache_dir: str = ".cache/style_dataset",
         sample_ratio: float = 1.0,
     ) -> 'StyleDataset':
-        """Load dataset from TSV file of Japanese sentences.
-
-        Args:
-            tsv_path: Path to TSV file with Japanese sentences
-            tokenizer: Tokenizer to build vocabulary
-            parser: JapaneseParser instance (defaults to SudachiJapaneseParser)
-            max_samples: Optional limit on number of samples
-            verbose: If True, print progress
-            labeled: If True, compute formality and gender labels. If False, use dummy labels
-                    (for pretraining on unlabeled data).
-            use_cache: If True, cache preprocessed data to disk for faster subsequent loads
-            cache_dir: Directory for cache files
-            sample_ratio: Ratio of data to use (0.0 to 1.0)
-
-        Returns:
-            StyleDataset with encoded samples
-        """
+        """Load dataset from a single TSV file."""
         return cls.from_multiple_tsv(
             tsv_paths=[tsv_path],
             tokenizer=tokenizer,
@@ -424,11 +410,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             max_samples=max_samples,
             verbose=verbose,
             labeled=labeled,
-            # Single file implies grammatic (1) unless otherwise specified, 
-            # but from_multiple_tsv defaults to [1] * len(paths) so we can omit grammaticality_labels
             use_cache=use_cache,
-            cache_dir=cache_dir,
-            # from_multiple_tsv defaults to cache_name="vocab.json", which is what we want
             sample_ratio=sample_ratio
         )
 
@@ -446,7 +428,6 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         labeled: bool = True,
         grammaticality_labels: Optional[List[int]] = None,
         use_cache: bool = True,
-        cache_dir: str = ".cache/style_dataset",
         cache_name: Optional[str] = "vocab.json",
         sample_ratio: float = 1.0,
     ) -> 'StyleDataset':
@@ -467,12 +448,15 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                                   TSV file. If provided, must have same length as tsv_paths.
                                   1 = grammatic (default), 0 = agrammatic.
             use_cache: If True, cache preprocessed data to disk for faster subsequent loads
-            cache_dir: Directory for cache files
             sample_ratio: Ratio of data to use (0.0 to 1.0)
 
         Returns:
             StyleDataset with encoded samples from all files
         """
+        # Derive cache directory
+        from kotogram import locations
+        cache_dir = locations.get_style_dataset_cache_dir()
+
         # Default all files to grammatic if not specified
         if grammaticality_labels is None:
             grammaticality_labels = [1] * len(tsv_paths)
@@ -510,7 +494,15 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                             
                             # Check grammatic file
                             if g_path and 'grammatic' in outs:
-                                if get_file_fingerprint(g_path) != outs['grammatic']:
+                                fp_current = get_file_fingerprint(g_path)
+                                fp_stored = outs['grammatic']
+                                # Robust comparison for mtime (JSON float precision issues)
+                                if fp_current and fp_stored and (fp_current['size'] != fp_stored['size'] or 
+                                    abs(fp_current['mtime'] - fp_stored['mtime']) > 0.001):
+                                    if verbose:
+                                        print(f"  Fingerprint mismatch (Grammatic): Current {fp_current} != Stored {fp_stored}")
+                                    is_valid = False
+                                elif not fp_current:
                                     is_valid = False
                             elif g_path or 'grammatic' in outs:
                                 # One exists but not the other -> mismatch configuration
@@ -519,13 +511,18 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                             # Check agrammatic file
                             if is_valid:
                                 if a_path and 'agrammatic' in outs:
-                                    if get_file_fingerprint(a_path) != outs['agrammatic']:
+                                    fp_current = get_file_fingerprint(a_path)
+                                    fp_stored = outs['agrammatic']
+                                    if fp_current and fp_stored and (fp_current['size'] != fp_stored['size'] or 
+                                        abs(fp_current['mtime'] - fp_stored['mtime']) > 0.001):
+                                        if verbose:
+                                            print(f"  Fingerprint mismatch (Arawmatic): Current {fp_current} != Stored {fp_stored}")
+                                        is_valid = False
+                                    elif not fp_current:
                                         is_valid = False
                                 elif a_path or 'agrammatic' in outs:
                                     # Mismatch in configuration
-                                    # Note: train_style might run without agrammatic even if label produced it.
-                                    # But validation should be strict: if label produced it, vocab might depend on it.
-                                    pass 
+                                    is_valid = False 
             
                         # else: Strict validation requires output_fingerprints.
                         # If missing, is_valid remains False (initialized at start of loop).
@@ -614,6 +611,8 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         # Phase 2: Process sentences in parallel (kotogram conversion + label computation)
         phase2_start = time.time()
+        # Phase 2: Process sentences in parallel (kotogram conversion + label computation)
+        phase2_start = time.time()
         processed_results = cls._process_parallel(all_rows, verbose=verbose)
         phase2_duration = time.time() - phase2_start
 
@@ -622,7 +621,6 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             tokenizer=tokenizer,
             verbose=verbose,
             use_cache=use_cache,
-            cache_dir=cache_dir,
             cache_name=cache_name,
 
             sample_ratio=sample_ratio,
@@ -639,7 +637,6 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         tokenizer: Tokenizer,
         verbose: bool = True,
         use_cache: bool = True,
-        cache_dir: str = ".cache/style_dataset",
         cache_name: Optional[str] = "vocab.json",
         sample_ratio: float = 1.0,
         preprocessing_start: Optional[float] = None,
@@ -727,7 +724,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         
         # Write timing metrics to timing.yml
         if is_main_process():
-            timing_path = ".cache/style/timing.yml"
+            timing_path = os.path.join(locations.get_style_support_dir(), "timing.yml")
             os.makedirs(os.path.dirname(timing_path), exist_ok=True)
             
             # Use yaml from global scope
@@ -1431,6 +1428,7 @@ class Trainer:
         val_dataset: StyleDataset,
         config: Optional[TrainerConfig] = None,
         encoder_lr_factor: float = 0.1,
+        support_dir: Optional[str] = None,
     ):
         """Initialize trainer.
 
@@ -1447,6 +1445,7 @@ class Trainer:
         self.val_dataset = val_dataset
         self.config = config or TrainerConfig()
         self.encoder_lr_factor = encoder_lr_factor
+        self.support_dir = support_dir or locations.get_style_support_dir()
 
         self.config = config or TrainerConfig()
         self.encoder_lr_factor = encoder_lr_factor
@@ -1914,11 +1913,8 @@ class Trainer:
 
         # Output Confusion Matrices (TSV)
         if is_main_process():
-            # Create a dedicated directory for confusion matrices
-            confusion_dir = os.path.join(self.config.output if hasattr(self.config, 'output') else 'models/style', 'confusion_matrices') # Hacky access to output dir
-            # But config doesn't have output. TrainerConfig doesn't.
-            # We will use 'models/style' or just current directory if not available.
-            confusion_dir = "models/style/confusion_matrices"
+            # Create a dedicated directory for confusion matrices in style-support
+            confusion_dir = os.path.join(self.support_dir, 'confusion_matrices')
             os.makedirs(confusion_dir, exist_ok=True)
             
             # 1. Formality Pragmatic Confusion (TSV)
@@ -2353,16 +2349,10 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description="Train style classifier (formality + gender)")
-    parser.add_argument("--data", type=str, default="data/jpn_sentences.tsv",
-                        help="Path to TSV file with Japanese sentences")
-    parser.add_argument("--output", type=str, default="models/style",
-                        help="Output directory for trained model")
     parser.add_argument("--max-samples", type=int, default=None,
                         help="Maximum samples to use (for testing)")
     parser.add_argument("--epochs", type=int, default=None,
                         help="Number of training epochs")
-    parser.add_argument("--agrammatic-data", type=str, default=None,
-                        help="Path to TSV file with agrammatic sentences (for grammaticality training)")
     parser.add_argument("--batch-size", type=int, default=32,
                         help="Batch size")
     parser.add_argument("--embed-dim", type=int, default=192,
@@ -2408,10 +2398,19 @@ if __name__ == "__main__":
                         help="Local rank for distributed training (usually passed by torchrun)")
     parser.add_argument("--preprocess-only", action="store_true",
                         help="Exit after loading and caching data (for multi-stage pipelines)")
+    # parser.add_argument("--cache-dir", type=str, default=".cache", help="Base directory for cache (default: .cache)") # Removed
 
 
 
     args = parser.parse_args()
+    
+    # Resolve and inject paths from locations.py into args namespace
+    cache_dir = locations.get_cache_dir()
+    args.data = os.path.join(cache_dir, "grammatic_combined.tsv")
+    args.agrammatic_data = os.path.join(cache_dir, "agrammatic_combined.tsv")
+    args.output = locations.get_style_output_dir()
+    args.support_dir = locations.get_style_support_dir()
+
     timings['args_parsing'] = time.time() - script_start_time
 
     if is_main_process():
@@ -2454,10 +2453,7 @@ if __name__ == "__main__":
     # Handle resume from checkpoint or retrain logic
     checkpoint = None
     if args.resume or args.retrain:
-        import os
-        checkpoint_path = os.path.join(args.output, 'checkpoint.pt')
-        import os
-        checkpoint_path = os.path.join(args.output, 'checkpoint.pt')
+        checkpoint_path = os.path.join(args.support_dir, 'checkpoint.pt')
         if os.path.exists(checkpoint_path):
             # First, peek at saved args to restore feature exclusion before loading model
             checkpoint_data = torch.load(checkpoint_path, map_location='cpu')
@@ -2475,11 +2471,11 @@ if __name__ == "__main__":
             strict_load_failed = False
             if args.resume:
                 if is_main_process():
-                    print(f"Resuming from checkpoint in {args.output}...")
-                model, tokenizer, checkpoint, strict_load_failed = load_checkpoint(args.output)
+                    print(f"Resuming from checkpoint in {args.support_dir}...")
+                model, tokenizer, checkpoint, strict_load_failed = load_checkpoint(args.support_dir)
             else:
                 if is_main_process():
-                    print(f"Retraining from scratch using parameters from {args.output}...")
+                    print(f"Retraining from scratch using parameters from {args.support_dir}...")
                 pass
 
             # Override args with saved args (but keep epochs from command line to allow extending)
@@ -2595,7 +2591,7 @@ if __name__ == "__main__":
     # grammatic (1) = normal sentences, agrammatic (0) = ungrammatical sentences
     data_files = [args.data]
     grammaticality_labels = [1]  # jpn_sentences.tsv is grammatic
-    if args.agrammatic_data:
+    if os.path.exists(args.agrammatic_data):
         data_files.append(args.agrammatic_data)
         grammaticality_labels.append(0)  # agrammatic sentences
 
@@ -2955,6 +2951,7 @@ if __name__ == "__main__":
     trainer = Trainer(
         model, train_data, val_data, trainer_config,
         encoder_lr_factor=encoder_lr_factor,
+        support_dir=args.support_dir,
     )
 
     # Restore training state if resuming
@@ -2962,7 +2959,7 @@ if __name__ == "__main__":
         trainer.restore_from_checkpoint(checkpoint, reset_optimizer=vocab_grew or strict_load_failed)
 
     history = trainer.train(
-        checkpoint_dir=args.output,
+        checkpoint_dir=args.support_dir,
         checkpoint_args=args,
         model_config=model_config,
         verbose=is_main_process(),

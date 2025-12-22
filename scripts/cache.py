@@ -13,6 +13,8 @@ from typing import Dict, List, Optional, Tuple
 
 
 
+from kotogram import locations
+
 class ShardedKotogramCache:
     """Durable sharded cache for Japanese → kotogram + label conversions.
 
@@ -23,17 +25,15 @@ class ShardedKotogramCache:
     Schema: (sentence, kotogram, formality_label, gender_value, gender_pragmatic, register_labels, grammaticality_label)
     """
 
-    DEFAULT_SHARDS_DIR = ".cache/kotogram_shards"
     SHARD_PREFIX_LEN = 2 # 2 hex chars = 256 shards
 
-    def __init__(self, shards_dir: str = DEFAULT_SHARDS_DIR):
+    def __init__(self) -> None:
         """Initialize the sharded cache.
         
-        Args:
-            shards_dir: Directory to store shard database files
+        Shards will be in locations.get_shards_cache_dir()
         """
-        self.shards_dir = shards_dir
-        os.makedirs(shards_dir, exist_ok=True)
+        self.shards_dir = locations.get_shards_cache_dir()
+        os.makedirs(self.shards_dir, exist_ok=True)
 
     def _get_shard_path(self, sentence_hash: str) -> str:
         """Get path to the shard file for a given hash."""
@@ -166,11 +166,12 @@ class ShardedKotogramCache:
 
 _kotogram_cache: Optional[ShardedKotogramCache] = None
 
-def get_kotogram_cache(shards_dir: Optional[str] = None) -> ShardedKotogramCache:
+def get_kotogram_cache() -> ShardedKotogramCache:
     """Get the global sharded kotogram cache instance."""
     global _kotogram_cache
-    if shards_dir is None:
-        shards_dir = ShardedKotogramCache.DEFAULT_SHARDS_DIR
-    if _kotogram_cache is None or _kotogram_cache.shards_dir != shards_dir:
-        _kotogram_cache = ShardedKotogramCache(shards_dir)
+    
+    expected_shards_dir = locations.get_shards_cache_dir()
+    
+    if _kotogram_cache is None or _kotogram_cache.shards_dir != expected_shards_dir:
+        _kotogram_cache = ShardedKotogramCache()
     return _kotogram_cache

@@ -47,6 +47,9 @@ fi
 # --- Run Checks ---
 FAILED=0
 
+# Record initial git status
+INITIAL_GIT_STATUS=$(git status --short)
+
 log "Running ruff check..."
 ruff check . --config pyproject.toml || FAILED=1
 
@@ -65,6 +68,14 @@ if [ -f "package.json" ]; then
 fi
 
 if [ $FAILED -eq 0 ]; then
+    # Verify git status hasn't changed
+    FINAL_GIT_STATUS=$(git status --short)
+    if [ "$INITIAL_GIT_STATUS" != "$FINAL_GIT_STATUS" ]; then
+        log "Comparing git status..."
+        diff <(echo "$INITIAL_GIT_STATUS") <(echo "$FINAL_GIT_STATUS") || true
+        error "git status changed during tests. New/changed files detected in repository."
+    fi
+
     log "All checks passed successfully!"
     exit 0
 else

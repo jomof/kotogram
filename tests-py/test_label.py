@@ -9,11 +9,14 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from scripts.label import main as label_main
 from scripts.cache import get_kotogram_cache
+from kotogram import locations
+from unittest.mock import patch
 
 class TestLabelScript(unittest.TestCase):
     def setUp(self):
         self.test_dir = tempfile.mkdtemp()
-        self.shards_dir = os.path.join(self.test_dir, "shards")
+        with patch.dict(os.environ, {"TRAIN_ROOT": self.test_dir}):
+            self.shards_dir = locations.get_shards_cache_dir()
         self.data_file = os.path.join(self.test_dir, "test_data.tsv")
         
         # Create dummy data
@@ -38,65 +41,61 @@ class TestLabelScript(unittest.TestCase):
         test_args = [
             "scripts/label.py", 
             "--grammatic-pattern", self.data_file,
-            "--output-grammatic", os.path.join(self.test_dir, "grammatic.tsv"),
-            "--output-agrammatic", os.path.join(self.test_dir, "agrammatic.tsv"),
-            "--cache-dir", self.test_dir
+            # "--cache-dir", self.test_dir # Removed
         ]
         
         # Point the cache to our temp dir
-        with patch('scripts.cache.ShardedKotogramCache.DEFAULT_SHARDS_DIR', self.shards_dir):
-             # Ensure the global cache is reset to use the new DEFAULT_SHARDS_DIR
-             import scripts.cache
-             scripts.cache._kotogram_cache = None
-             
-             with patch.object(sys, 'argv', test_args):
-                 label_main()
-        
-        # Verify cache was created and populated
-        # Re-initialize to see what happened
+        # Ensure the global cache is reset
         import scripts.cache
         scripts.cache._kotogram_cache = None
-        cache = get_kotogram_cache(self.shards_dir)
         
-        print(f"Checking results in {self.shards_dir}...")
-        results = cache.get_batch(["これはテストです。", "美味しいですね。", "走る。"])
-        
-        for k_sent, v in results.items():
-            if v is None:
-                print(f"MISSING: {k_sent}")
-        
-        self.assertIsNotNone(results["これはテストです。"])
-        self.assertIsNotNone(results["美味しいですね。"])
-        self.assertIsNotNone(results["走る。"])
-        
-        # Check if fields are populated
-        k, f, g_val, g_prag, r_lbls, g_lbl = results["これはテストです。"]
-        self.assertTrue(len(k) > 0)
-        self.assertIsNotNone(f)
-        self.assertIsNotNone(g_val)
-        self.assertIsNotNone(g_prag)
-        self.assertIsNotNone(r_lbls)
-        self.assertIsNotNone(g_lbl)
+        with patch.dict(os.environ, {"TRAIN_ROOT": self.test_dir}):
+            with patch.object(sys, 'argv', test_args):
+                 label_main()
+            
+            # Verify cache was created and populated
+            # Re-initialize to see what happened
+            scripts.cache._kotogram_cache = None
+            cache = get_kotogram_cache()
+            
+            print(f"Checking results in {self.shards_dir}...")
+            results = cache.get_batch(["これはテストです。", "美味しいですね。", "走る。"])
+            
+            for k_sent, v in results.items():
+                if v is None:
+                    print(f"MISSING: {k_sent}")
+            
+            self.assertIsNotNone(results["これはテストです。"])
+            self.assertIsNotNone(results["美味しいですね。"])
+            self.assertIsNotNone(results["走る。"])
+            
+            # Check if fields are populated
+            k, f, g_val, g_prag, r_lbls, g_lbl = results["これはテストです。"]
+            self.assertTrue(len(k) > 0)
+            self.assertIsNotNone(f)
+            self.assertIsNotNone(g_val)
+            self.assertIsNotNone(g_prag)
+            self.assertIsNotNone(r_lbls)
+            self.assertIsNotNone(g_lbl)
 
     def test_incremental_labeling(self):
          # First run
         import sys
         from unittest.mock import patch
         
-        with patch('scripts.cache.ShardedKotogramCache.DEFAULT_SHARDS_DIR', self.shards_dir):
-            import scripts.cache
-            scripts.cache._kotogram_cache = None
-            
-            test_args = [
-                "scripts/label.py", 
-                "--grammatic-pattern", self.data_file,
-                "--output-grammatic", os.path.join(self.test_dir, "grammatic.tsv"),
-                "--output-agrammatic", os.path.join(self.test_dir, "agrammatic.tsv"),
-                "--cache-dir", self.test_dir
-            ]
+        import scripts.cache
+        scripts.cache._kotogram_cache = None
+        
+        test_args = [
+            "scripts/label.py", 
+            "--grammatic-pattern", self.data_file,
+            # "--cache-dir", self.test_dir # Removed
+        ]
+        
+        with patch.dict(os.environ, {"TRAIN_ROOT": self.test_dir}):
             with patch.object(sys, 'argv', test_args):
                  label_main()
-            
+                
             # Verify something was written
             files = os.listdir(self.shards_dir)
             print(f"Shard files: {files}")
@@ -108,7 +107,7 @@ class TestLabelScript(unittest.TestCase):
             
             # Second run with same data
             with patch.object(sys, 'argv', test_args):
-                 label_main()
+                label_main()
             
             # Add a new file
             new_data_file = os.path.join(self.test_dir, "new_data.tsv")
@@ -120,15 +119,13 @@ class TestLabelScript(unittest.TestCase):
                 "scripts/label.py", 
                 "--grammatic-pattern", self.data_file, 
                 "--agrammatic-pattern", new_data_file,
-                "--output-grammatic", os.path.join(self.test_dir, "grammatic.tsv"),
-                "--output-agrammatic", os.path.join(self.test_dir, "agrammatic.tsv"),
-                "--cache-dir", self.test_dir
+                # "--cache-dir", self.test_dir
             ]
             with patch.object(sys, 'argv', test_args_new):
-                 label_main()
+                label_main()
             
             scripts.cache._kotogram_cache = None
-            cache = get_kotogram_cache(self.shards_dir)
+            cache = get_kotogram_cache()
             results = cache.get_batch(["新しい文です。"])
             self.assertIsNotNone(results["新しい文です。"])
 

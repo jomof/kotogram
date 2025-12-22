@@ -24,6 +24,7 @@ from kotogram.model import (StyleClassifier,
     REGISTER_ID_TO_LABEL,
     load_model
 )
+from kotogram import locations
 from scripts.train_style import StyleDataset, collate_fn
 from kotogram.evaluator import Evaluator
 
@@ -230,22 +231,24 @@ def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
 def main() -> None:
     import argparse
     parser = argparse.ArgumentParser(description="Evaluate model confusion and generate reports.")
-    parser.add_argument("--output", type=str, required=True, help="Output directory for CSV reports")
-    parser.add_argument("--model-dir", type=str, help="Model directory containing checkpoint (defaults to --output)")
-    parser.add_argument("--data", type=str, required=True, help="Path to evaluation data TSV")
-    parser.add_argument("--agrammatic-data", type=str, help="Path to agrammatic evaluation data TSV")
     parser.add_argument("--batch-size", type=int, default=512, help="Batch size for evaluation")
     parser.add_argument("--num-workers", type=int, help="Number of workers for DataLoader (default: 0 on MPS/CPU, 4 on CUDA)")
     parser.add_argument("--max-samples", type=int, default=None, help="Stop after N samples")
     parser.add_argument("--percent", type=float, help="Percentage of data to use")
+    # parser.add_argument("--cache-dir", type=str, default=".cache", help="Base directory for dataset cache") # Removed
     
     args = parser.parse_args()
     
-    # Use model-dir if specified, otherwise fall back to output
-    model_dir = args.model_dir if args.model_dir else args.output
+    # Resolve and inject paths from locations.py into args namespace
+    cache_dir = locations.get_cache_dir()
+    args.output = locations.get_style_support_dir()
+    args.support_dir = args.output
+    args.model_dir = locations.get_style_output_dir()
+    args.data = os.path.join(cache_dir, "grammatic_combined.tsv")
+    args.agrammatic_data = os.path.join(cache_dir, "agrammatic_combined.tsv")
     
     # Restore percent from checkpoint if not explicitly provided
-    checkpoint_path = os.path.join(model_dir, 'checkpoint.pt')
+    checkpoint_path = os.path.join(args.support_dir, 'checkpoint.pt')
     if args.percent is None and os.path.exists(checkpoint_path):
         try:
             checkpoint_data = torch.load(checkpoint_path, map_location='cpu')
@@ -259,13 +262,13 @@ def main() -> None:
     
     device_name = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
     device = torch.device(device_name)
-    console.print(f"Evaluating [bold cyan]model.pt[/bold cyan] in: [bold cyan]{os.path.abspath(model_dir)}[/bold cyan]")
+    console.print(f"Evaluating [bold cyan]model.pt[/bold cyan] in: [bold cyan]{os.path.abspath(args.model_dir)}[/bold cyan]")
     console.print(f"CSV output directory: [bold cyan]{os.path.abspath(args.output)}[/bold cyan]")
     console.print(f"Using device: [bold blue]{device_name}[/bold blue]")
     
     # Load model and tokenizer
     # Load model and tokenizer
-    model, tokenizer = load_model(model_dir, device=device_name)
+    model, tokenizer = load_model(args.model_dir, device=device_name)
     
     # Building evaluation files list
     data_files = []
@@ -284,7 +287,7 @@ def main() -> None:
 
     add_file(args.data, force_label=1) # Main data is always assumed grammatic (or 1)
     # Add agrammatic sentences if provided
-    if args.agrammatic_data:
+    if os.path.exists(args.agrammatic_data):
         add_file(args.agrammatic_data, force_label=0)
 
         
@@ -300,7 +303,6 @@ def main() -> None:
             max_samples=args.max_samples,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
             verbose=True,
-            cache_dir=".cache/style_dataset"
         )
     else:
         dataset = StyleDataset.from_tsv(
@@ -310,7 +312,6 @@ def main() -> None:
             max_samples=args.max_samples,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
             verbose=True,
-            cache_dir=".cache/style_dataset"
         )
     
     # Determine num_workers: 0 is much faster for in-memory datasets on macOS (avoid spawn overhead)

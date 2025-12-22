@@ -31,6 +31,7 @@ from scripts.train_style import StyleDataset, CACHE_VERSION
 
 from kotogram.model import FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL, REGISTER_LABEL_TO_ID, REGISTER_ID_TO_LABEL, FEATURE_FIELDS, Tokenizer
 from kotogram.kotogram import split_kotogram, extract_token_features
+from kotogram import locations
 
 # Global variable for worker processes only
 _worker_overrides: Optional[Dict[str, List[Any]]] = None
@@ -337,10 +338,9 @@ def print_stats(results: List[ProcessedSample]) -> None:
     console.print(Panel.fit(r_table, border_style="yellow"))
     console.print(Panel.fit(gram_table, border_style="green"))
 
-def save_register_samples(results: List[ProcessedSample], model_dir: Optional[str]) -> None:
+def save_register_samples(results: List[ProcessedSample]) -> None:
     """Save 3 examples of each register from grammatic sentences to CSV."""
-    # Always write to .cache/style regardless of model_dir
-    output_dir = ".cache/style"
+    output_dir = locations.get_style_support_dir()
     output_file = os.path.join(output_dir, "register_samples.csv")
     
     # Collect ALL samples by register (only grammatic sentences)
@@ -392,16 +392,21 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Label and cache Japanese sentences.")
     parser.add_argument("--grammatic-pattern", type=str, required=True, help="Primary TSV data file(s) (glob pattern)")
     parser.add_argument("--agrammatic-pattern", type=str, help="Agrammatic TSV pattern")
-    parser.add_argument("--output-grammatic", type=str, required=True, help="Path to save combined/deduplicated grammatic data")
-    parser.add_argument("--output-agrammatic", type=str, required=True, help="Path to save combined/deduplicated agrammatic data")
-    parser.add_argument("--model-dir", type=str, help="Output directory for results (e.g. register samples)")
-    parser.add_argument("--cache-dir", type=str, default=".cache", help="Output directory for dataset cache")
+    # parser.add_argument("--cache-dir", type=str, default=".cache", help="Base directory for cache") # Removed
     parser.add_argument("--force-relabel", action="store_true", help="Force re-computation of labels even if cached")
     
     args = parser.parse_args()
     
+    # Resolve and inject paths from locations.py into args namespace
+    cache_dir = locations.get_cache_dir()
+    args.output_grammatic = os.path.join(cache_dir, "grammatic_combined.tsv")
+    args.output_agrammatic = os.path.join(cache_dir, "agrammatic_combined.tsv")
+    args.model_dir = locations.get_style_output_dir()
+    args.support_dir = locations.get_style_support_dir()
+    
     # Fast-skip check
-    metadata_path = os.path.join(args.cache_dir, "label_metadata.json")
+    dataset_cache_dir = locations.get_style_dataset_cache_dir()
+    metadata_path = os.path.join(dataset_cache_dir, "label_metadata.json")
     current_fingerprints = get_dependencies_fingerprint(args)
     
     if os.path.exists(metadata_path) and not args.force_relabel:
@@ -409,7 +414,7 @@ def main() -> None:
             with open(metadata_path, 'r', encoding='utf-8') as f:
                 saved_data = json.load(f)
                 
-            vocab_path = os.path.join(args.cache_dir, saved_data.get('vocab_file', 'vocab.json'))
+            vocab_path = os.path.join(dataset_cache_dir, saved_data.get('vocab_file', 'vocab.json'))
             if (saved_data.get('fingerprints') == current_fingerprints and 
                 saved_data.get('cache_version') == CACHE_VERSION and
                 os.path.exists(vocab_path)):
@@ -464,7 +469,7 @@ def main() -> None:
     gram_patterns = [args.grammatic_pattern]
     
     console.print(f"Processing [bold]grammatic[/bold] data ({len(gram_patterns)} patterns) with {num_workers} workers...")
-    rows, count = process_file_group(gram_patterns, 1, args.output_grammatic)
+    rows, count = process_file_group(gram_patterns, 1, output_path=args.output_grammatic)
     all_rows.extend(rows)
     if count > 0:
         console.print(f"  Matched {count} grammatic files.")
@@ -476,7 +481,7 @@ def main() -> None:
         
     if agram_patterns:
         console.print(f"Processing [bold]agrammatic[/bold] data ({len(agram_patterns)} patterns)...")
-        rows, count = process_file_group(agram_patterns, 0, args.output_agrammatic)
+        rows, count = process_file_group(agram_patterns, 0, output_path=args.output_agrammatic)
         all_rows.extend(rows)
         if count > 0:
             console.print(f"  Matched {count} agrammatic files.")
@@ -627,7 +632,7 @@ def main() -> None:
             with open(args.output_grammatic, 'w', encoding='utf-8') as f:
                 for s in gram_sent:
                     f.write(s + "\n")
-
+ 
     # 2. Agrammatic
     if args.output_agrammatic:
         agram_sent = [r.sentence for r in display_results if r.gram_label == 0]
@@ -639,7 +644,7 @@ def main() -> None:
                      f.write(s + "\n")
     
     # Save register samples to CSV
-    save_register_samples(final_results, args.model_dir)
+    save_register_samples(final_results)
 
     vocab_file = "vocab.json"
     if args.output_grammatic:
@@ -649,14 +654,15 @@ def main() -> None:
         tokenizer = Tokenizer()
         
         # Build and save vocabulary explicitly
-        _build_and_save_vocab(tokenizer, merged_counters, args.cache_dir, vocab_file)
-        console.print(f"  Saved vocabulary to {os.path.join(args.cache_dir, vocab_file)}")
+        # Build and save vocabulary explicitly
+        _build_and_save_vocab(tokenizer, merged_counters, dataset_cache_dir, vocab_file)
+        console.print(f"  Saved vocabulary to {os.path.join(dataset_cache_dir, vocab_file)}")
 
         dataset = StyleDataset.from_processed_samples(
             final_results,
             tokenizer,
             verbose=False,  # Suppress redundant distribution stats
-            cache_dir=args.cache_dir,
+            # base_cache_dir removed, handled by StyleDataset via locations
             cache_name=vocab_file,
             sample_ratio=1.0,
         )
@@ -671,7 +677,7 @@ def main() -> None:
         console.print(f"    POS tags: {vocab_sizes['pos']}")
         console.print(f"    Conjugation types: {vocab_sizes['conjugated_type']}")
         console.print(f"    Conjugation forms: {vocab_sizes['conjugated_form']}")
-        console.print(f"  Vocabulary cache: [cyan]{os.path.join(args.cache_dir, vocab_file)}[/cyan]")
+        console.print(f"  Vocabulary cache: [cyan]{os.path.join(dataset_cache_dir, vocab_file)}[/cyan]")
         console.print("\n[bold green]Dataset finalization complete.[/bold green]")
 
     # Final: Save metadata for fast-skip
@@ -688,7 +694,7 @@ def main() -> None:
         'cache_version': CACHE_VERSION,
         'vocab_file': vocab_file
     }
-    os.makedirs(args.cache_dir, exist_ok=True)
+    os.makedirs(dataset_cache_dir, exist_ok=True)
     with open(metadata_path, 'w', encoding='utf-8') as f:
         json.dump(metadata, f, indent=2)
 
