@@ -62,6 +62,7 @@ import random
 import sys
 import time
 from collections import Counter
+from datetime import timedelta
 from dataclasses import dataclass
 
 from typing import Dict, List, Optional, Tuple, Any, cast
@@ -132,7 +133,12 @@ def setup_distributed() -> Tuple[int, int, int]:
 
         if torch.cuda.is_available():
             torch.cuda.set_device(local_rank)
-            dist.init_process_group(backend="nccl", init_method="env://", device_id=torch.device(f"cuda:{local_rank}"))
+            dist.init_process_group(
+                backend="nccl", 
+                init_method="env://", 
+                device_id=torch.device(f"cuda:{local_rank}"),
+                timeout=timedelta(minutes=60)
+            )
             print(f"Distributed init: Rank {rank}/{world_size} (Local {local_rank})")
             return rank, world_size, local_rank
 
@@ -2183,6 +2189,11 @@ class Trainer:
                     model_config,
                     is_best=is_best_epoch,
                 )
+
+            # Synchronize all ranks after checkpoint saving to prevent desync
+            # (Rank 0 might take time to save, causing others to timeout on next backward)
+            if self.is_distributed:
+                dist.barrier()
 
         # Restore best model
         if self.best_state is not None:
