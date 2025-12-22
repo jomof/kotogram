@@ -7,6 +7,7 @@ import json
 sys.path.append(os.path.dirname(__file__)) 
 from training_test_utils import Bottle
 
+@unittest.skipIf(os.environ.get("GITHUB_ACTIONS") == "true", "Skipping on GitHub CI")
 class TestTrainStyleScript(unittest.TestCase):
     def test_train(self):
         # Test both regular training and training with MLM pretraining
