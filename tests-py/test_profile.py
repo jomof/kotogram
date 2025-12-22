@@ -157,20 +157,20 @@ class TestSudachiParserProfileIntegration(unittest.TestCase):
 
         self.assertTrue(found, f"Counter not found. Keys: {list(report.counters.keys())}")
 
-    def test_report_writes_yaml_file(self) -> None:
-        """get_profile_report writes report to .profile/report.yml."""
+    def test_report_writes_json_file(self) -> None:
+        """get_profile_report writes report to .profile/report.json."""
         increment_profile_counter()
 
         get_profile_report()
 
-        report_path = os.path.join(self.temp_dir, ".profile", "report.yml")
+        report_path = os.path.join(self.temp_dir, ".profile", "report.json")
         self.assertTrue(os.path.exists(report_path))
 
-        # Verify YAML content
-        import yaml
+        # Verify JSON content
+        import json
 
         with open(report_path, "r", encoding="utf-8") as f:
-            data = yaml.safe_load(f)
+            data = json.load(f)
 
         self.assertIn("counters", data)
         self.assertIn("timestamp", data)
