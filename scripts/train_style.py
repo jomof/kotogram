@@ -418,135 +418,23 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         Returns:
             StyleDataset with encoded samples
         """
-        # Phase 1: Read all rows from TSV file (fast I/O)
-        # Tuple: (sentence, sentence_id, gram_label)
-        all_rows: List[Tuple[str, str, int]] = []
-        gram_label = 1  # Single-file load assumes grammatic
-
-        if verbose:
-            print(f"Reading {tsv_path}...")
-
-        with open(tsv_path, 'r', encoding='utf-8') as f:
-            reader = csv.reader(f, delimiter='\t')
-            for row in reader:
-                if len(row) < 3:
-                    continue
-                # Simply ignore rows that don't have enough columns, but otherwise be permissive
-                # Column 1 = ID, Column 2 = Lang (ignored), Column 3 = Sentence
-                sentence_id, _lang, sentence = row[0], row[1], row[2]
-                all_rows.append((sentence, sentence_id, gram_label))
-                if max_samples and len(all_rows) >= max_samples:
-                    break
-
-        if verbose:
-            print(f"  Read {len(all_rows)} sentences")
-        
-        # Load Vocabulary (Strict)
-        vocab_path = ""
-        
-        if use_cache:
-            vocab_path = cls._get_vocab_cache_path([tsv_path], labeled, None, cache_dir)
-            cls._load_vocab(vocab_path, tokenizer)
-            if verbose:
-                print(f"  Loaded vocabulary. Sizes: {tokenizer.get_vocab_sizes()}")
-
-        # Phase 2: Process sentences in parallel (kotogram conversion + label computation)
-        # fetches from kotogram_shards
-        processed_results = cls._process_parallel(all_rows, verbose=verbose)
+        return cls.from_multiple_tsv(
+            tsv_paths=[tsv_path],
+            tokenizer=tokenizer,
+            parser=parser,
+            max_samples=max_samples,
+            verbose=verbose,
+            labeled=labeled,
+            # Single file implies grammatic (1) unless otherwise specified, 
+            # but from_multiple_tsv defaults to [1] * len(paths) so we can omit grammaticality_labels
+            use_cache=use_cache,
+            cache_dir=cache_dir,
+            # from_multiple_tsv defaults to cache_name="vocab.json", which is what we want
+            sample_ratio=sample_ratio
+        )
 
 
-        # Phase 3: Build samples (sequential, in-memory)
-        if verbose:
-            print("\nEncoding samples...")
 
-        samples: List[Sample] = []
-        formality_counts: Counter[FormalityLevel] = Counter()
-        gender_counts: Counter[int] = Counter()
-        grammaticality_counts: Counter[int] = Counter()
-
-        for res in processed_results:
-            # Encode to feature IDs (builds vocabulary - must be sequential)
-            kotogram = res.kotogram
-            sentence = res.sentence
-            formality_id = res.formality_id
-            gender_val = res.gender_value
-            gender_prag = res.gender_pragmatic
-            register_id = res.register_ids
-            gram_label = res.gram_label
-
-            # Encode to feature IDs
-            feature_ids = tokenizer.encode(
-                res.kotogram, 
-                add_cls=True, 
-                add_to_vocab=False
-            )
-
-            # Map formality_id to value/pragmatic
-            if formality_id == 5: # UNPRAGMATIC_FORMALITY
-                f_val = 0.0
-                f_prag = 0
-            else:
-                f_val = {0: 1.0, 1: 0.5, 2: 0.0, 3: -0.5, 4: -1.0}.get(formality_id, 0.0)
-                f_prag = 1
-
-            sample = Sample(
-                feature_ids=feature_ids,
-                formality_value=f_val,
-                formality_pragmatic=f_prag,
-                gender_value=gender_val,
-                gender_pragmatic=gender_prag,
-                register_labels=register_id,
-                grammaticality_label=gram_label,
-                original_sentence=sentence,
-                kotogram=kotogram,
-            )
-            samples.append(sample)
-
-            # Track counts using IDs (enums were converted in workers)
-            formality_counts[FORMALITY_ID_TO_LABEL[formality_id]] += 1
-            gender_counts[gender_prag] += 1
-            grammaticality_counts[gram_label] += 1
-
-        if verbose:
-            print(f"\nDataset loaded: {len(samples)} samples")
-            print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
-            print("Formality distribution:")
-            for f_label, f_count in sorted(formality_counts.items(), key=lambda x: x[1], reverse=True):
-                print(f"  {f_label.value}: {f_count} ({100*f_count/len(samples):.1f}%)")
-            print("Gender distribution (Pragmatic=1, Unpragmatic=0):")
-            for g_prag, g_count in sorted(gender_counts.items(), key=lambda x: x[1], reverse=True):
-                label = "Pragmatic" if g_prag == 1 else "Unpragmatic"
-                print(f"  {label}: {g_count} ({100*g_count/len(samples):.1f}%)")
-            print("Grammaticality distribution:")
-            gram_labels_map = {1: "grammatic", 0: "agrammatic"}
-            for g_id in [1, 0]:
-                g_count = grammaticality_counts.get(g_id, 0)
-                print(f"  {gram_labels_map[g_id]}: {g_count} ({100*g_count/len(samples):.1f}%)")
-
-        # Freeze vocabulary after building (this finalizes lemma vocab)
-        tokenizer.freeze()
-
-        if verbose:
-            final_sizes = tokenizer.get_vocab_sizes()
-            print(f"Final vocabulary sizes: {final_sizes}")
-            # Show detailed stats for key fields
-            print(f"  surface: {final_sizes['surface']:,}, lemma: {final_sizes['lemma']:,}")
-            print(f"  pos: {final_sizes['pos']}, conjugated_type: {final_sizes['conjugated_type']}, conjugated_form: {final_sizes['conjugated_form']}")
-
-        # No need to save vocab anymore. Handled by label.py.
-
-        # Apply subsampling after processing/caching
-        if sample_ratio < 1.0:
-            if verbose:
-                print(f"  Subsampling {sample_ratio:.1%} of {len(samples)} samples...")
-            content_str = "".join(s.original_sentence for s in samples[:100])
-            seed = int(hashlib.md5(content_str.encode()).hexdigest(), 16) % 100000
-            rng = random.Random(seed)
-            samples = rng.sample(samples, int(len(samples) * sample_ratio))
-            if verbose:
-                print(f"  Using {len(samples)} samples after subsampling")
-
-        return cls(samples, tokenizer)
 
     @classmethod
     def from_multiple_tsv(
