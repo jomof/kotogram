@@ -32,6 +32,10 @@ def get_style_support_dir() -> str:
     """Returns the directory for style model training support artifacts (checkpoints, logs)."""
     return os.path.join(get_models_dir(), "style-support")
 
+def get_profile_dir() -> str:
+    """Returns the profile directory (.profile inside TRAIN_ROOT)."""
+    return os.path.join(get_train_root(), ".profile")
+
 def ensure_dir(path: str) -> None:
     """Ensures the directory exists."""
     os.makedirs(path, exist_ok=True)
