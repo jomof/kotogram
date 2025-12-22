@@ -9,15 +9,14 @@ import math
 import os
 from collections import Counter
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Tuple, Any, cast, NamedTuple
+from typing import Any, Dict, List, NamedTuple, Optional, Tuple, cast
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from kotogram.kotogram import split_kotogram
 from kotogram.constants import FormalityLevel, GenderLevel, RegisterLevel
-from kotogram.kotogram import extract_token_features
+from kotogram.kotogram import extract_token_features, split_kotogram
 
 # Special token values for vocabulary
 PAD_TOKEN = "<PAD>"
@@ -27,7 +26,18 @@ MASK_TOKEN = "<MASK>"  # For self-supervised pretraining
 
 # Feature fields used for token embedding
 # NOTE: 'surface' is critical for gender detection (pronouns like 僕, 俺, あたし)
-ALL_FEATURE_FIELDS = ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'pos_detail3', 'conjugated_type', 'conjugated_form', 'lemma', 'base_orth', 'reading']
+ALL_FEATURE_FIELDS = [
+    "surface",
+    "pos",
+    "pos_detail1",
+    "pos_detail2",
+    "pos_detail3",
+    "conjugated_type",
+    "conjugated_form",
+    "lemma",
+    "base_orth",
+    "reading",
+]
 FEATURE_FIELDS = ALL_FEATURE_FIELDS  # Default: use all features
 
 # Global variable to track excluded features (set via --exclude-features)
@@ -44,7 +54,9 @@ def set_excluded_features(excluded: List[str]) -> None:
     global _EXCLUDED_FEATURES, FEATURE_FIELDS
     invalid = [f for f in excluded if f not in ALL_FEATURE_FIELDS]
     if invalid:
-        raise ValueError(f"Invalid feature names: {invalid}. Valid: {ALL_FEATURE_FIELDS}")
+        raise ValueError(
+            f"Invalid feature names: {invalid}. Valid: {ALL_FEATURE_FIELDS}"
+        )
     _EXCLUDED_FEATURES = excluded
     FEATURE_FIELDS = get_active_features()
 
@@ -53,7 +65,7 @@ def set_excluded_features(excluded: List[str]) -> None:
 
 NUM_FORMALITY_PRAGMATIC_CLASSES = 2
 NUM_GRAMMATICALITY_CLASSES = 2  # grammatic (1) vs agrammatic (0)
-NUM_GENDER_PRAGMATIC_CLASSES = 2 # pragmatic (1) vs unpragmatic (0)
+NUM_GENDER_PRAGMATIC_CLASSES = 2  # pragmatic (1) vs unpragmatic (0)
 
 # Label mappings
 FORMALITY_LABEL_TO_ID = {
@@ -72,7 +84,6 @@ GENDER_LABEL_TO_ID = {
     GenderLevel.NEUTRAL: 2,
     GenderLevel.UNPRAGMATIC_GENDER: 3,
 }
-
 
 
 # Register classes
@@ -110,14 +121,17 @@ REGISTER_ID_TO_LABEL = {
     13: RegisterLevel.BUSHI,
 }
 
+
 class StylePrediction(NamedTuple):
     """Output prediction from the style classifier."""
+
     formality_value: torch.Tensor
     formality_pragmatic_probs: torch.Tensor
     gender_value: torch.Tensor
     gender_pragmatic_probs: torch.Tensor
     grammaticality_probs: torch.Tensor
     register_probs: torch.Tensor
+
 
 class Tokenizer:
     """Tokenizer that extracts morphological features from Kotogram tokens.
@@ -163,8 +177,6 @@ class Tokenizer:
     def mask_id(self) -> int:
         return 3
 
-
-
     def get_vocab_sizes(self) -> Dict[str, int]:
         """Get vocabulary sizes for all fields."""
         return {field: len(vocab) for field, vocab in self.field_vocabs.items()}
@@ -195,16 +207,16 @@ class Tokenizer:
             # Only keep the fields we use
             # Explicit access avoids vulture flagging fields as unused
             all_features = {
-                'surface': features.surface,
-                'pos': features.pos,
-                'pos_detail1': features.pos_detail1,
-                'pos_detail2': features.pos_detail2,
-                'pos_detail3': features.pos_detail3,
-                'conjugated_type': features.conjugated_type,
-                'conjugated_form': features.conjugated_form,
-                'lemma': features.lemma,
-                'base_orth': features.base_orth,
-                'reading': features.reading,
+                "surface": features.surface,
+                "pos": features.pos,
+                "pos_detail1": features.pos_detail1,
+                "pos_detail2": features.pos_detail2,
+                "pos_detail3": features.pos_detail3,
+                "conjugated_type": features.conjugated_type,
+                "conjugated_form": features.conjugated_form,
+                "lemma": features.lemma,
+                "base_orth": features.base_orth,
+                "reading": features.reading,
             }
             filtered = {field: all_features[field] for field in FEATURE_FIELDS}
             features_list.append(filtered)
@@ -226,7 +238,7 @@ class Tokenizer:
 
         for features in features_list:
             for field in FEATURE_FIELDS:
-                value = features.get(field, '')
+                value = features.get(field, "")
                 if add_to_vocab and not self._frozen:
                     self._field_counters[field][value] += 1
                     token_id = self._add_value(field, value)
@@ -251,53 +263,52 @@ class Tokenizer:
         """Freeze vocabulary - new values will map to UNK."""
         self._frozen = True
 
-
-
-
-
     def save(self, path: str, **kwargs: Any) -> None:
         """Save tokenizer vocabularies to JSON file."""
         data = {
-            'field_vocabs': self.field_vocabs,
-            'frozen': self._frozen,
+            "field_vocabs": self.field_vocabs,
+            "frozen": self._frozen,
         }
         data.update(kwargs)
-        with open(path, 'w', encoding='utf-8') as f:
+        with open(path, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
 
     @classmethod
-    def load(cls, path: str) -> 'Tokenizer':
+    def load(cls, path: str) -> "Tokenizer":
         """Load tokenizer from JSON file."""
-        with open(path, 'r', encoding='utf-8') as f:
+        with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
 
         tokenizer = cls()
         # Merge loaded vocabs, preserving defaults for any new fields not in the file
-        loaded_vocabs = data['field_vocabs']
+        loaded_vocabs = data["field_vocabs"]
         tokenizer.field_vocabs.update(loaded_vocabs)
-        
-        tokenizer._frozen = data.get('frozen', False)
+
+        tokenizer._frozen = data.get("frozen", False)
         return tokenizer
 
 
 @dataclass
 class ModelConfig:
     """Configuration for StyleClassifier model."""
+
     vocab_sizes: Dict[str, int]  # Field name -> vocabulary size
     num_formality_pragmatic_classes: int = NUM_FORMALITY_PRAGMATIC_CLASSES
     num_gender_pragmatic_classes: int = NUM_GENDER_PRAGMATIC_CLASSES
     num_grammaticality_classes: int = NUM_GRAMMATICALITY_CLASSES
     num_register_classes: int = NUM_REGISTER_CLASSES
-    field_embed_dims: Dict[str, int] = field(default_factory=lambda: {
-        'surface': 64,
-        'pos': 32,
-        'pos_detail1': 32,
-        'pos_detail2': 16,
-        'pos_detail3': 16,
-        'conjugated_type': 32,
-        'conjugated_form': 32,
-        'lemma': 64,
-    })
+    field_embed_dims: Dict[str, int] = field(
+        default_factory=lambda: {
+            "surface": 64,
+            "pos": 32,
+            "pos_detail1": 32,
+            "pos_detail2": 16,
+            "pos_detail3": 16,
+            "conjugated_type": 32,
+            "conjugated_form": 32,
+            "lemma": 64,
+        }
+    )
     d_model: int = 256
     hidden_dim: int = 512
     num_layers: int = 3
@@ -309,34 +320,34 @@ class ModelConfig:
 
     def to_dict(self) -> Dict[str, Any]:
         return {
-            'vocab_sizes': self.vocab_sizes,
-            'num_formality_pragmatic_classes': self.num_formality_pragmatic_classes,
-            'num_gender_pragmatic_classes': self.num_gender_pragmatic_classes,
-            'num_grammaticality_classes': self.num_grammaticality_classes,
-            'num_register_classes': self.num_register_classes,
-            'field_embed_dims': self.field_embed_dims,
-            'd_model': self.d_model,
-            'hidden_dim': self.hidden_dim,
-            'num_layers': self.num_layers,
-            'num_heads': self.num_heads,
-            'dropout': self.dropout,
-            'max_seq_len': self.max_seq_len,
-            'pooling': self.pooling,
-            'excluded_features': self.excluded_features,
+            "vocab_sizes": self.vocab_sizes,
+            "num_formality_pragmatic_classes": self.num_formality_pragmatic_classes,
+            "num_gender_pragmatic_classes": self.num_gender_pragmatic_classes,
+            "num_grammaticality_classes": self.num_grammaticality_classes,
+            "num_register_classes": self.num_register_classes,
+            "field_embed_dims": self.field_embed_dims,
+            "d_model": self.d_model,
+            "hidden_dim": self.hidden_dim,
+            "num_layers": self.num_layers,
+            "num_heads": self.num_heads,
+            "dropout": self.dropout,
+            "max_seq_len": self.max_seq_len,
+            "pooling": self.pooling,
+            "excluded_features": self.excluded_features,
         }
 
     @classmethod
-    def from_dict(cls, d: Dict[str, Any]) -> 'ModelConfig':
+    def from_dict(cls, d: Dict[str, Any]) -> "ModelConfig":
         d = dict(d)
-        if 'excluded_features' not in d:
-            d['excluded_features'] = []
-        
+        if "excluded_features" not in d:
+            d["excluded_features"] = []
+
         # Legacy compatibility: remove old fields
-        if 'num_gender_classes' in d:
-            d.pop('num_gender_classes')
-        if 'num_formality_classes' in d:
-            d.pop('num_formality_classes')
-            
+        if "num_gender_classes" in d:
+            d.pop("num_gender_classes")
+        if "num_formality_classes" in d:
+            d.pop("num_formality_classes")
+
         return cls(**d)
 
 
@@ -349,17 +360,19 @@ class PositionalEncoding(nn.Module):  # type: ignore[misc]
 
         pe = torch.zeros(max_len, d_model)
         position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
-        div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model))
+        div_term = torch.exp(
+            torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model)
+        )
 
         pe[:, 0::2] = torch.sin(position * div_term)
         pe[:, 1::2] = torch.cos(position * div_term)
         pe = pe.unsqueeze(0)  # (1, max_len, d_model)
 
-        self.register_buffer('pe', pe)
+        self.register_buffer("pe", pe)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         pe = cast(torch.Tensor, self.pe)
-        x = x + pe[:, :x.size(1), :]
+        x = x + pe[:, : x.size(1), :]
         return cast(torch.Tensor, self.dropout(x))
 
 
@@ -390,7 +403,7 @@ class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
     def forward(self, field_inputs: Dict[str, torch.Tensor]) -> torch.Tensor:
         field_embeds = []
         for field_name in FEATURE_FIELDS:
-            input_ids = field_inputs[f'input_ids_{field_name}']
+            input_ids = field_inputs[f"input_ids_{field_name}"]
             embed = self.embeddings[field_name](input_ids)
             field_embeds.append(embed)
 
@@ -442,7 +455,7 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             dim_feedforward=config.hidden_dim,
             dropout=config.dropout,
             batch_first=True,
-            activation='gelu',
+            activation="gelu",
         )
         self.encoder = nn.TransformerEncoder(
             encoder_layer, config.num_layers, enable_nested_tensor=False
@@ -506,7 +519,9 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         else:
             src_key_padding_mask = None
 
-        x = cast(torch.Tensor, self.encoder(x, src_key_padding_mask=src_key_padding_mask))
+        x = cast(
+            torch.Tensor, self.encoder(x, src_key_padding_mask=src_key_padding_mask)
+        )
         return x
 
     def _get_pooled_output(
@@ -527,7 +542,7 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         elif self.config.pooling == "max":
             if attention_mask is not None:
                 mask = attention_mask.unsqueeze(-1).float()
-                x = x.masked_fill(mask == 0, float('-inf'))
+                x = x.masked_fill(mask == 0, float("-inf"))
             pooled = x.max(dim=1)[0]
         else:
             raise ValueError(f"Unknown pooling: {self.config.pooling}")
@@ -538,7 +553,14 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         self,
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
-    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+    ) -> Tuple[
+        torch.Tensor,
+        torch.Tensor,
+        torch.Tensor,
+        torch.Tensor,
+        torch.Tensor,
+        torch.Tensor,
+    ]:
         pooled = self._get_pooled_output(field_inputs, attention_mask)
         return (
             self.formality_value_head(pooled),
@@ -554,11 +576,13 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
     ) -> StylePrediction:
-        formality_val, formality_prag, gender_val, gender_prag, gram, reg = self(field_inputs, attention_mask)
+        formality_val, formality_prag, gender_val, gender_prag, gram, reg = self(
+            field_inputs, attention_mask
+        )
         return StylePrediction(
-            formality_value=formality_val, # Already Tanh
+            formality_value=formality_val,  # Already Tanh
             formality_pragmatic_probs=F.softmax(formality_prag, dim=-1),
-            gender_value=gender_val, # Already Tanh
+            gender_value=gender_val,  # Already Tanh
             gender_pragmatic_probs=F.softmax(gender_prag, dim=-1),
             grammaticality_probs=F.softmax(gram, dim=-1),
             register_probs=torch.sigmoid(reg),
@@ -576,7 +600,7 @@ def load_model(
     import os
 
     # Load config
-    with open(os.path.join(path, 'config.json'), 'r') as f:
+    with open(os.path.join(path, "config.json"), "r") as f:
         config_dict = json.load(f)
     config = ModelConfig.from_dict(config_dict)
 
@@ -585,24 +609,25 @@ def load_model(
         set_excluded_features(config.excluded_features)
 
     # Load tokenizer
-    tokenizer = Tokenizer.load(os.path.join(path, 'tokenizer.json'))
+    tokenizer = Tokenizer.load(os.path.join(path, "tokenizer.json"))
 
     # Load model
     model = StyleClassifier(config)
     # Always load to CPU first
-    state_dict = torch.load(os.path.join(path, 'model.pt'), map_location='cpu')
+    state_dict = torch.load(os.path.join(path, "model.pt"), map_location="cpu")
 
     # Convert weights back to float32
     def to_float32(v: torch.Tensor) -> torch.Tensor:
         if v.dtype == torch.float16:
             return v.float()
-        if hasattr(torch, 'float8_e4m3fn') and v.dtype == torch.float8_e4m3fn:
+        if hasattr(torch, "float8_e4m3fn") and v.dtype == torch.float8_e4m3fn:
             return v.float()
         return v
+
     state_dict = {k: to_float32(v) for k, v in state_dict.items()}
 
     # Filter out MLM head weights if present
-    state_dict = {k: v for k, v in state_dict.items() if not k.startswith('mlm_head.')}
+    state_dict = {k: v for k, v in state_dict.items() if not k.startswith("mlm_head.")}
 
     # Load with strict=False to allow architecture changes (e.g. gender head refactor)
     # We catch the error/warning to report relevant mismatches
@@ -620,7 +645,7 @@ def load_model(
 
 
 def load_default_style_model(
-    device: Optional[str] = None
+    device: Optional[str] = None,
 ) -> Tuple[StyleClassifier, Tokenizer]:
     """Load the default trained style classification model included in the package."""
     import importlib.resources
@@ -628,20 +653,19 @@ def load_default_style_model(
 
     try:
         if sys.version_info >= (3, 9):
-            from importlib.resources import files, as_file
-            ref = files('kotogram.model_data').joinpath('model.pt')
+            from importlib.resources import as_file, files
+
+            ref = files("kotogram.model_data").joinpath("model.pt")
             with as_file(ref) as model_file:
-                 model_dir = os.path.dirname(model_file)
-                 return load_model(model_dir, device=device)
+                model_dir = os.path.dirname(model_file)
+                return load_model(model_dir, device=device)
         else:
-            with importlib.resources.path('kotogram.model_data', 'model.pt') as model_file:
-                 model_dir = os.path.dirname(model_file)
-                 return load_model(model_dir, device=device)
+            with importlib.resources.path(
+                "kotogram.model_data", "model.pt"
+            ) as model_file:
+                model_dir = os.path.dirname(model_file)
+                return load_model(model_dir, device=device)
     except (ImportError, ModuleNotFoundError):
-        raise ImportError("Could not load default model. Ensure 'kotogram.model_data' package is installed and contains model files.")
-
-
-
-
-
-
+        raise ImportError(
+            "Could not load default model. Ensure 'kotogram.model_data' package is installed and contains model files."
+        )

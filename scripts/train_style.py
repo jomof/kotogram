@@ -61,58 +61,60 @@ import random
 import sys
 import time
 from collections import Counter
-from datetime import timedelta
 from dataclasses import dataclass
-
-from typing import Dict, List, Optional, Tuple, Any, cast
-
-import yaml
+from datetime import timedelta
+from typing import Any, Dict, List, Optional, Tuple, cast
 
 import torch.distributed as dist
+import yaml
+from torch.amp import GradScaler, autocast
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data.distributed import DistributedSampler
-from torch.amp import GradScaler, autocast
 
 # Early logging to show progress during slow imports
-_is_main_rank0 = os.environ.get("RANK", "0") == "0" and mp.current_process().name == 'MainProcess'
+_is_main_rank0 = (
+    os.environ.get("RANK", "0") == "0" and mp.current_process().name == "MainProcess"
+)
 # Also suppress if we are being imported by the label script (which does its own logging)
-_is_labeling = "scripts.label" in sys.modules or (len(sys.argv) > 0 and "label" in sys.argv[0])
+_is_labeling = "scripts.label" in sys.modules or (
+    len(sys.argv) > 0 and "label" in sys.argv[0]
+)
 
 if _is_main_rank0 and not _is_labeling:
     print("Loading PyTorch...", flush=True)
 import torch  # noqa: E402
+
 if _is_main_rank0 and not _is_labeling:
     print("Loading neural network modules...", flush=True)
 
 import torch.nn as nn  # noqa: E402
 import torch.nn.functional as F
-from torch.utils.data import Dataset, DataLoader
 from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
+from torch.utils.data import DataLoader, Dataset
 
-from kotogram.japanese_parser import JapaneseParser
 from kotogram import locations
-
+from kotogram.japanese_parser import JapaneseParser
 from kotogram.model import (
-    StyleClassifier, Tokenizer, ModelConfig,
-    FEATURE_FIELDS, ALL_FEATURE_FIELDS, set_excluded_features,
-    NUM_FORMALITY_PRAGMATIC_CLASSES, NUM_GENDER_PRAGMATIC_CLASSES, NUM_GRAMMATICALITY_CLASSES, NUM_REGISTER_CLASSES,
+    ALL_FEATURE_FIELDS,
+    FEATURE_FIELDS,
     FORMALITY_LABEL_TO_ID,
-    GENDER_LABEL_TO_ID, load_model
+    GENDER_LABEL_TO_ID,
+    NUM_FORMALITY_PRAGMATIC_CLASSES,
+    NUM_GENDER_PRAGMATIC_CLASSES,
+    NUM_GRAMMATICALITY_CLASSES,
+    NUM_REGISTER_CLASSES,
+    ModelConfig,
+    StyleClassifier,
+    Tokenizer,
+    load_model,
+    set_excluded_features,
 )
-
-from scripts.style_data import Sample, ProcessedSample  # noqa: E402
-
-
+from scripts.style_data import ProcessedSample, Sample  # noqa: E402
 
 # Start timing immediately
 script_start_time = time.time()
 timings = {}
-
-
-
-
-
 
 
 GENDER_LOSS_WEIGHT = 10.0
@@ -132,10 +134,10 @@ def setup_distributed() -> Tuple[int, int, int]:
         if torch.cuda.is_available():
             torch.cuda.set_device(local_rank)
             dist.init_process_group(
-                backend="nccl", 
-                init_method="env://", 
+                backend="nccl",
+                init_method="env://",
                 device_id=torch.device(f"cuda:{local_rank}"),
-                timeout=timedelta(minutes=60)
+                timeout=timedelta(minutes=60),
             )
             print(f"Distributed init: Rank {rank}/{world_size} (Local {local_rank})")
             return rank, world_size, local_rank
@@ -151,36 +153,33 @@ def is_main_process() -> bool:
     return True
 
 
-
-
-
 def _encode_samples_batch(
-    items: List['ProcessedSample'], 
-    tokenizer_state: Dict[str, Any], # Serialization of tokenizer
-) -> List[Any]: # List[Sample]
+    items: List["ProcessedSample"],
+    tokenizer_state: Dict[str, Any],  # Serialization of tokenizer
+) -> List[Any]:  # List[Sample]
     """Encode samples using a frozen tokenizer state."""
     from kotogram.model import Tokenizer
     # Sample is defined in this module (train_style.py), so it's available in global scope
-    
+
     # Reconstruct tokenizer
     tokenizer = Tokenizer()
-    tokenizer.field_vocabs = tokenizer_state['field_vocabs']
+    tokenizer.field_vocabs = tokenizer_state["field_vocabs"]
     tokenizer._frozen = True
-    
+
     samples = []
-    
+
     for item in items:
         # Tuple validation handled by NamedTuple
-        
-        # Manually encode to avoid tokenizer overhead if possible, 
+
+        # Manually encode to avoid tokenizer overhead if possible,
         # or just use tokenizer.encode. tokenizer.encode is fast if frozen.
         feature_ids = tokenizer.encode(item.kotogram, add_cls=True, add_to_vocab=False)
-        
+
         # Map formality_id to value/pragmatic
         # 0=VeryFormal(1.0), 1=Formal(0.5), 2=Neutral(0.0), 3=Casual(-0.5), 4=VeryCasual(-1.0)
         # 5=Unpragmatic -> Value=0.0, Pragmatic=0
         f_id = item.formality_id
-        if f_id == 5: # UNPRAGMATIC_FORMALITY
+        if f_id == 5:  # UNPRAGMATIC_FORMALITY
             f_val = 0.0
             f_prag = 0
         else:
@@ -195,7 +194,7 @@ def _encode_samples_batch(
             gender_pragmatic=item.gender_pragmatic,
             register_labels=item.register_ids,
             grammaticality_label=item.gram_label,
-            # original_sentence=item.sentence_id, # Actually using sentence_id not sentence string in some cases? 
+            # original_sentence=item.sentence_id, # Actually using sentence_id not sentence string in some cases?
             # Wait, item.sentence is the text. item.sentence_id is ID. Sample.original_sentence should probably be sentence.
             # Checking previous code: for sentence, kotogram... -> original_sentence=sentence
             # So item.sentence is correct.
@@ -203,16 +202,8 @@ def _encode_samples_batch(
             kotogram=item.kotogram,
         )
         samples.append(sample)
-        
+
     return samples
-
-
-
-
-
-
-
-
 
 
 # Cache version - bump this when cache format changes to invalidate old caches
@@ -259,26 +250,26 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
     ) -> None:
         """Load tokenizer vocabulary from cache. Raises error if missing."""
         if not os.path.exists(cache_path):
-            raise FileNotFoundError(f"Vocabulary not found at {cache_path}. Run label.py first.")
+            raise FileNotFoundError(
+                f"Vocabulary not found at {cache_path}. Run label.py first."
+            )
 
         try:
-            with open(cache_path, 'r', encoding='utf-8') as f:
+            with open(cache_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
-            
+
             # Check version
-            if data.get('version') != CACHE_VERSION:
-                raise ValueError(f"Cache version mismatch. Expected {CACHE_VERSION}, got {data.get('version')}")
+            if data.get("version") != CACHE_VERSION:
+                raise ValueError(
+                    f"Cache version mismatch. Expected {CACHE_VERSION}, got {data.get('version')}"
+                )
 
             # Restore tokenizer state
-            tokenizer.field_vocabs = data['field_vocabs']
-            tokenizer._frozen = bool(data.get('frozen', False))
-            
+            tokenizer.field_vocabs = data["field_vocabs"]
+            tokenizer._frozen = bool(data.get("frozen", False))
+
         except Exception as e:
             raise ValueError(f"Failed to load vocabulary from {cache_path}: {e}")
-
-
-
-
 
     @classmethod
     def _process_parallel(
@@ -290,29 +281,29 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
     ) -> List[ProcessedSample]:
         """Process rows by retrieving pre-computed labels from cache."""
         from scripts.cache import get_kotogram_cache
-        
+
         cache = get_kotogram_cache()
-        
+
         # We process in chunks to avoid huge memory/IO overhead for very large datasets
         chunk_size = 10000
-        chunks = [rows[i:i + chunk_size] for i in range(0, len(rows), chunk_size)]
-        
+        chunks = [rows[i : i + chunk_size] for i in range(0, len(rows), chunk_size)]
+
         final_results: List[ProcessedSample] = []
         total_processed = 0
-        
+
         if verbose:
-             print(f"Loading {len(rows)} samples from cache...")
+            print(f"Loading {len(rows)} samples from cache...")
 
         for i, chunk in enumerate(chunks):
             chunk_sentences = [r[0] for r in chunk]
             cached_data_map = cache.get_batch(chunk_sentences)
-            
+
             for sentence, sent_id, gram_label in chunk:
                 cached_tuple = cached_data_map.get(sentence)
                 if cached_tuple is not None:
                     # Hit
                     k, f_lbl, g_val, g_prag, r_lbls, _ = cached_tuple
-                    
+
                     processed_sample = ProcessedSample(
                         sentence=sentence,
                         sentence_id=sent_id,
@@ -320,20 +311,26 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                         formality_id=cast(int, f_lbl) if f_lbl is not None else 2,
                         gender_value=cast(float, g_val) if g_val is not None else 0.0,
                         gender_pragmatic=cast(int, g_prag) if g_prag is not None else 0,
-                        register_ids=cast(List[int], r_lbls) if r_lbls is not None else [0],
+                        register_ids=cast(List[int], r_lbls)
+                        if r_lbls is not None
+                        else [0],
                         gram_label=gram_label,
-                        success=1
+                        success=1,
                     )
                     final_results.append(processed_sample)
                 else:
                     # Strict mode: If not in cache, we fail.
                     # This assumes label.py has been run on the dataset.
-                    raise ValueError(f"Sentence not found in cache: {sentence[:30]}... Run label.py first.")
-            
+                    raise ValueError(
+                        f"Sentence not found in cache: {sentence[:30]}... Run label.py first."
+                    )
+
             total_processed += len(chunk)
             if verbose and total_processed % 50000 == 0:
-                print(f"\r  Loaded {total_processed}/{len(rows)}...", end="", flush=True)
-        
+                print(
+                    f"\r  Loaded {total_processed}/{len(rows)}...", end="", flush=True
+                )
+
         if verbose:
             print()  # Final newline after progress
 
@@ -350,7 +347,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         labeled: bool = True,
         use_cache: bool = True,
         sample_ratio: float = 1.0,
-    ) -> 'StyleDataset':
+    ) -> "StyleDataset":
         """Load dataset from a single TSV file."""
         return cls.from_multiple_tsv(
             tsv_paths=[tsv_path],
@@ -360,11 +357,8 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             verbose=verbose,
             labeled=labeled,
             use_cache=use_cache,
-            sample_ratio=sample_ratio
+            sample_ratio=sample_ratio,
         )
-
-
-
 
     @classmethod
     def from_multiple_tsv(
@@ -379,7 +373,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         use_cache: bool = True,
         cache_name: Optional[str] = "vocab.json",
         sample_ratio: float = 1.0,
-    ) -> 'StyleDataset':
+    ) -> "StyleDataset":
         """Load dataset from multiple TSV files of Japanese sentences.
 
         This method loads samples from multiple TSV files, combining them into
@@ -404,6 +398,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         """
         # Derive cache directory
         from kotogram import locations
+
         cache_dir = locations.get_style_dataset_cache_dir()
 
         # Default all files to grammatic if not specified
@@ -417,7 +412,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         # Check Vocabulary Cache
         vocab_path = ""
-        
+
         if use_cache:
             if cache_name:
                 vocab_path = os.path.join(cache_dir, cache_name)
@@ -425,54 +420,97 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 metadata_path = os.path.join(cache_dir, "label_metadata.json")
                 if os.path.exists(vocab_path) and os.path.exists(metadata_path):
                     try:
-                        with open(metadata_path, 'r', encoding='utf-8') as f:
+                        with open(metadata_path, "r", encoding="utf-8") as f:
                             metadata = json.load(f)
-                        
+
                         # Check validity using either output fingerprints (preferred) or source fingerprints
                         is_valid = False
-                        
-                        # extracting current paths
-                        g_path = next((p for p, lbl in zip(tsv_paths, grammaticality_labels) if lbl == 1), None) if grammaticality_labels else tsv_paths[0]
-                        a_path = next((p for p, lbl in zip(tsv_paths, grammaticality_labels) if lbl == 0), None) if grammaticality_labels else None
 
-                        if 'output_fingerprints' in metadata:
+                        # extracting current paths
+                        g_path = (
+                            next(
+                                (
+                                    p
+                                    for p, lbl in zip(tsv_paths, grammaticality_labels)
+                                    if lbl == 1
+                                ),
+                                None,
+                            )
+                            if grammaticality_labels
+                            else tsv_paths[0]
+                        )
+                        a_path = (
+                            next(
+                                (
+                                    p
+                                    for p, lbl in zip(tsv_paths, grammaticality_labels)
+                                    if lbl == 0
+                                ),
+                                None,
+                            )
+                            if grammaticality_labels
+                            else None
+                        )
+
+                        if "output_fingerprints" in metadata:
                             # Direct artifact validation: check if the provided tsv_paths match the ones produced by label.py
                             from scripts.label import get_file_fingerprint
-                            outs = metadata['output_fingerprints']
+
+                            outs = metadata["output_fingerprints"]
                             is_valid = True
-                            
+
                             # Check grammatic file
-                            if g_path and 'grammatic' in outs:
+                            if g_path and "grammatic" in outs:
                                 fp_current = get_file_fingerprint(g_path)
-                                fp_stored = outs['grammatic']
+                                fp_stored = outs["grammatic"]
                                 # Robust comparison for mtime (JSON float precision issues)
-                                if fp_current and fp_stored and (fp_current['size'] != fp_stored['size'] or 
-                                    abs(fp_current['mtime'] - fp_stored['mtime']) > 0.001):
+                                if (
+                                    fp_current
+                                    and fp_stored
+                                    and (
+                                        fp_current["size"] != fp_stored["size"]
+                                        or abs(fp_current["mtime"] - fp_stored["mtime"])
+                                        > 0.001
+                                    )
+                                ):
                                     if verbose:
-                                        print(f"  Fingerprint mismatch (Grammatic): Current {fp_current} != Stored {fp_stored}")
+                                        print(
+                                            f"  Fingerprint mismatch (Grammatic): Current {fp_current} != Stored {fp_stored}"
+                                        )
                                     is_valid = False
                                 elif not fp_current:
                                     is_valid = False
-                            elif g_path or 'grammatic' in outs:
+                            elif g_path or "grammatic" in outs:
                                 # One exists but not the other -> mismatch configuration
                                 is_valid = False
 
                             # Check agrammatic file
                             if is_valid:
-                                if a_path and 'agrammatic' in outs:
+                                if a_path and "agrammatic" in outs:
                                     fp_current = get_file_fingerprint(a_path)
-                                    fp_stored = outs['agrammatic']
-                                    if fp_current and fp_stored and (fp_current['size'] != fp_stored['size'] or 
-                                        abs(fp_current['mtime'] - fp_stored['mtime']) > 0.001):
+                                    fp_stored = outs["agrammatic"]
+                                    if (
+                                        fp_current
+                                        and fp_stored
+                                        and (
+                                            fp_current["size"] != fp_stored["size"]
+                                            or abs(
+                                                fp_current["mtime"] - fp_stored["mtime"]
+                                            )
+                                            > 0.001
+                                        )
+                                    ):
                                         if verbose:
-                                            print(f"  Fingerprint mismatch (Arawmatic): Current {fp_current} != Stored {fp_stored}")
+                                            print(
+                                                f"  Fingerprint mismatch (Arawmatic): Current {fp_current} != Stored {fp_stored}"
+                                            )
                                         is_valid = False
                                     elif not fp_current:
                                         is_valid = False
-                                elif a_path or 'agrammatic' in outs:
+                                elif a_path or "agrammatic" in outs:
                                     # Mismatch in configuration
-                                    is_valid = False 
-            
+                                    is_valid = False
+
                         # else: Strict validation requires output_fingerprints.
                         # If missing, is_valid remains False (initialized at start of loop).
 
@@ -480,40 +518,49 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                             cls._load_vocab(vocab_path, tokenizer)
                             if verbose:
                                 print(f"  Loaded vocabulary from cache: {vocab_path}")
-                                print(f"  Vocabulary. Sizes: {tokenizer.get_vocab_sizes()}")
+                                print(
+                                    f"  Vocabulary. Sizes: {tokenizer.get_vocab_sizes()}"
+                                )
                         else:
                             if verbose:
                                 print("  Cache validation failed or mismatch.")
                             # Strict mode: If cache is invalid, we CANNOT proceed.
-                            if 'label_metadata.json' in os.listdir(cache_dir):
-                                 # Metadata exists but invalid?
-                                 raise ValueError("Cache invalid or modified. Please re-run: ./train_style.sh --label --force-relabel")
+                            if "label_metadata.json" in os.listdir(cache_dir):
+                                # Metadata exists but invalid?
+                                raise ValueError(
+                                    "Cache invalid or modified. Please re-run: ./train_style.sh --label --force-relabel"
+                                )
                             else:
-                                 raise FileNotFoundError("Cache metadata not found. Please run: ./train_style.sh --label")
+                                raise FileNotFoundError(
+                                    "Cache metadata not found. Please run: ./train_style.sh --label"
+                                )
 
                     except Exception as e:
                         if verbose:
-                             print(f"  Cache validation error: {e}")
-                        raise 
+                            print(f"  Cache validation error: {e}")
+                        raise
 
         # Strictly require vocabulary
-        if len(tokenizer.field_vocabs['surface']) <= 4: # Only special tokens
-             # Check if we should try loading explicitly?
-             # from_multiple_tsv should have loaded it if is_valid.
-             # If strict, we just fail if not loaded.
-             raise ValueError("Vocabulary not loaded. Ensure label.py finished successfully.")
+        if len(tokenizer.field_vocabs["surface"]) <= 4:  # Only special tokens
+            # Check if we should try loading explicitly?
+            # from_multiple_tsv should have loaded it if is_valid.
+            # If strict, we just fail if not loaded.
+            raise ValueError(
+                "Vocabulary not loaded. Ensure label.py finished successfully."
+            )
 
         preprocessing_start = time.time()
-        
+
         # Phase 1: Read rows from TSV files (fast I/O)
         # If sample_ratio < 1.0, we subsample during reading to avoid loading entire files.
         # Tuple: (sentence, sentence_id, gram_label)
         all_rows: List[Tuple[str, str, int]] = []
         phase1_start = time.time()
-        
+
         import random
+
         random.seed(42)  # Deterministic sampling
-        
+
         for tsv_path, gram_label in zip(tsv_paths, grammaticality_labels):
             if verbose:
                 gram_str = "grammatic" if gram_label == 1 else "agrammatic"
@@ -521,12 +568,12 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
             file_count = 0
             file_rows: List[Tuple[str, str, int]] = []
-            with open(tsv_path, 'r', encoding='utf-8') as f:
-                reader = csv.reader(f, delimiter='\t')
+            with open(tsv_path, "r", encoding="utf-8") as f:
+                reader = csv.reader(f, delimiter="\t")
                 for row in reader:
                     if not row:
                         continue
-                    
+
                     # Support both 3-column (ID, Lang, Sentence) and 1-column (Sentence only)
                     if len(row) >= 3:
                         sentence_id, _lang, sentence = row[0], row[1], row[2]
@@ -535,7 +582,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                         sentence = row[0]
                     else:
                         continue
-                        
+
                     # Early subsampling: skip rows based on sample_ratio
                     if sample_ratio < 1.0 and random.random() >= sample_ratio:
                         continue
@@ -543,7 +590,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     file_rows.append((sentence, sentence_id, gram_label))
                     if max_samples and len(all_rows) + len(file_rows) >= max_samples:
                         break
-            
+
             all_rows.extend(file_rows)
             file_count = len(file_rows)
 
@@ -555,7 +602,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         if verbose:
             print(f"\nTotal sentences to load: {len(all_rows)}")
-            
+
         phase1_duration = time.time() - phase1_start
 
         # Phase 2: Process sentences in parallel (kotogram conversion + label computation)
@@ -571,12 +618,11 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             verbose=verbose,
             use_cache=use_cache,
             cache_name=cache_name,
-
             sample_ratio=sample_ratio,
             preprocessing_start=preprocessing_start,
             phase1_duration=phase1_duration,
             phase2_duration=phase2_duration,
-            vocab_path=vocab_path
+            vocab_path=vocab_path,
         )
 
     @classmethod
@@ -592,9 +638,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         phase1_duration: float = 0.0,
         phase2_duration: float = 0.0,
         vocab_path: Optional[str] = None,
-    ) -> 'StyleDataset':
+    ) -> "StyleDataset":
         """Initialize dataset from pre-processed samples (already containing kotograms and labels).
-        
+
         This method handles:
         1. Token collection (building vocabulary) if add_to_vocab=True
         2. Sample encoding using the tokenizer
@@ -603,9 +649,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         """
         if preprocessing_start is None:
             preprocessing_start = time.time()
-            
+
         phase3a_duration = 0.0
-        ctx = mp.get_context('spawn')
+        ctx = mp.get_context("spawn")
         num_workers = max(1, mp.cpu_count() - 1)
 
         # Phase 3: Build samples (Parallelized)
@@ -616,22 +662,24 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         # Vocabulary must be frozen already
         tokenizer.freeze()
         phase3a_duration = 0.0
-        
+
         # Freeze vocabulary
         tokenizer.freeze()
-        
+
         # 3b. Parallel Sample Encoding
         phase3b_start = time.time()
         if verbose:
             print("  Encoding samples with frozen tokenizer...")
-            
+
         tokenizer_state = {
-            'field_vocabs': tokenizer.field_vocabs,
+            "field_vocabs": tokenizer.field_vocabs,
         }
-        
+
         encoding_inputs = [p for p in processed_results if p.success]
-        batches = [encoding_inputs[i:i + 5000] for i in range(0, len(encoding_inputs), 5000)]
-        
+        batches = [
+            encoding_inputs[i : i + 5000] for i in range(0, len(encoding_inputs), 5000)
+        ]
+
         samples: List[Sample] = []
         gender_counts: Counter[int] = Counter()
         grammaticality_counts: Counter[int] = Counter()
@@ -639,60 +687,68 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         processed_encodings = 0
         with ctx.Pool(num_workers) as pool:
             pool_args = [(b, tokenizer_state) for b in batches]
-            
+
             for batch_samples in pool.starmap(_encode_samples_batch, pool_args):
                 samples.extend(batch_samples)
                 processed_encodings += len(batch_samples)
-                
+
                 # Update stats
                 for s in batch_samples:
                     gender_counts[s.gender_pragmatic] += 1
                     grammaticality_counts[s.grammaticality_label] += 1
-                    
+
                 if verbose and processed_encodings % 100000 < 5000:
-                     print(f"  Encoded {processed_encodings}/{len(encoding_inputs)} samples...")
+                    print(
+                        f"  Encoded {processed_encodings}/{len(encoding_inputs)} samples..."
+                    )
 
         if verbose:
             print(f"\nDataset loaded: {len(samples)} samples")
             print(f"Vocabulary sizes: {tokenizer.get_vocab_sizes()}")
             print("Gender distribution (Pragmatic=1, Unpragmatic=0):")
-            for g_prag, g_count in sorted(gender_counts.items(), key=lambda x: x[1], reverse=True):
+            for g_prag, g_count in sorted(
+                gender_counts.items(), key=lambda x: x[1], reverse=True
+            ):
                 label = "Pragmatic" if g_prag == 1 else "Unpragmatic"
-                print(f"  {label}: {g_count} ({100*g_count/len(samples):.1f}%)")
+                print(f"  {label}: {g_count} ({100 * g_count / len(samples):.1f}%)")
             print("Grammaticality distribution:")
             gram_labels_map = {1: "grammatic", 0: "agrammatic"}
             for g_id in [1, 0]:
                 g_count = grammaticality_counts.get(g_id, 0)
-                print(f"  {gram_labels_map[g_id]}: {g_count} ({100*g_count/len(samples):.1f}%)")
+                print(
+                    f"  {gram_labels_map[g_id]}: {g_count} ({100 * g_count / len(samples):.1f}%)"
+                )
 
         # Freeze vocabulary again to finalize lemma vocab
         tokenizer.freeze()
 
         phase3b_duration = time.time() - phase3b_start
         total_preprocessing_duration = time.time() - preprocessing_start
-        
+
         # Write timing metrics to timing.yml
         if is_main_process():
             timing_path = os.path.join(locations.get_style_support_dir(), "timing.yml")
             os.makedirs(os.path.dirname(timing_path), exist_ok=True)
-            
+
             # Use yaml from global scope
-            if 'yaml' in globals() and yaml:
+            if "yaml" in globals() and yaml:
                 current_timing: Dict[str, float] = {}
                 try:
                     if os.path.exists(timing_path):
-                        with open(timing_path, 'r') as f:
+                        with open(timing_path, "r") as f:
                             current_timing = yaml.safe_load(f) or {}
-                    
-                    current_timing.update({
-                        'preprocessing_phase1_io': phase1_duration,
-                        'preprocessing_phase2_parsing': phase2_duration,
-                        'preprocessing_phase3a_token_collection': phase3a_duration,
-                        'preprocessing_phase3b_encoding': phase3b_duration,
-                        'preprocessing_total': total_preprocessing_duration
-                    })
-                    
-                    with open(timing_path, 'w') as f:
+
+                    current_timing.update(
+                        {
+                            "preprocessing_phase1_io": phase1_duration,
+                            "preprocessing_phase2_parsing": phase2_duration,
+                            "preprocessing_phase3a_token_collection": phase3a_duration,
+                            "preprocessing_phase3b_encoding": phase3b_duration,
+                            "preprocessing_total": total_preprocessing_duration,
+                        }
+                    )
+
+                    with open(timing_path, "w") as f:
                         yaml.dump(current_timing, f, default_flow_style=False)
                     if verbose:
                         print(f"Detailed preprocessing timing saved to {timing_path}")
@@ -711,7 +767,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         val_ratio: float = 0.1,
         seed: int = 42,
         stratify: bool = True,
-    ) -> Tuple['StyleDataset', 'StyleDataset', 'StyleDataset']:
+    ) -> Tuple["StyleDataset", "StyleDataset", "StyleDataset"]:
         """Split dataset into train/validation/test sets.
 
         Args:
@@ -740,8 +796,8 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             n_val = int(len(indices) * val_ratio)
 
             train_indices = indices[:n_train]
-            val_indices = indices[n_train:n_train + n_val]
-            test_indices = indices[n_train + n_val:]
+            val_indices = indices[n_train : n_train + n_val]
+            test_indices = indices[n_train + n_val :]
             # Original random splitting
             indices = list(range(len(self.samples)))
             random.shuffle(indices)
@@ -750,14 +806,18 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             n_val = int(len(indices) * val_ratio)
 
             train_indices = indices[:n_train]
-            val_indices = indices[n_train:n_train + n_val]
-            test_indices = indices[n_train + n_val:]
+            val_indices = indices[n_train : n_train + n_val]
+            test_indices = indices[n_train + n_val :]
         else:
             # Stratified splitting using combined (formality, gender, grammaticality) labels
             # Group samples by combined label
             label_to_indices: Dict[Tuple[int, int, int], List[int]] = {}
             for i, sample in enumerate(self.samples):
-                combined_label = (sample.formality_pragmatic, sample.gender_pragmatic, sample.grammaticality_label)
+                combined_label = (
+                    sample.formality_pragmatic,
+                    sample.gender_pragmatic,
+                    sample.grammaticality_label,
+                )
                 if combined_label not in label_to_indices:
                     label_to_indices[combined_label] = []
                 label_to_indices[combined_label].append(i)
@@ -775,8 +835,8 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     n_train = max(1, n - n_val - 1)
 
                 train_indices.extend(group_indices[:n_train])
-                val_indices.extend(group_indices[n_train:n_train + n_val])
-                test_indices.extend(group_indices[n_train + n_val:])
+                val_indices.extend(group_indices[n_train : n_train + n_val])
+                test_indices.extend(group_indices[n_train + n_val :])
 
             # Shuffle the combined indices
             random.shuffle(train_indices)
@@ -800,7 +860,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         weights = torch.zeros(NUM_FORMALITY_PRAGMATIC_CLASSES)
 
         for label_id, count in counts.items():
-            weights[label_id] = total / (NUM_FORMALITY_PRAGMATIC_CLASSES * count) if count > 0 else 0.0
+            weights[label_id] = (
+                total / (NUM_FORMALITY_PRAGMATIC_CLASSES * count) if count > 0 else 0.0
+            )
 
         return weights
 
@@ -811,7 +873,9 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         weights = torch.zeros(NUM_GENDER_PRAGMATIC_CLASSES)
 
         for label_id, count in counts.items():
-            weights[label_id] = total / (NUM_GENDER_PRAGMATIC_CLASSES * count) if count > 0 else 0.0
+            weights[label_id] = (
+                total / (NUM_GENDER_PRAGMATIC_CLASSES * count) if count > 0 else 0.0
+            )
 
         return weights
 
@@ -822,10 +886,11 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         weights = torch.zeros(NUM_GRAMMATICALITY_CLASSES)
 
         for label_id, count in counts.items():
-            weights[label_id] = total / (NUM_GRAMMATICALITY_CLASSES * count) if count > 0 else 0.0
+            weights[label_id] = (
+                total / (NUM_GRAMMATICALITY_CLASSES * count) if count > 0 else 0.0
+            )
 
         return weights
-
 
 
 def collate_fn(
@@ -877,7 +942,7 @@ def collate_fn(
         gender_values.append(sample.gender_value)
         gender_pragmatics.append(sample.gender_pragmatic)
         grammaticality_labels.append(sample.grammaticality_label)
-        
+
         # Multi-hot encoding for register labels
         reg_vec = torch.zeros(NUM_REGISTER_CLASSES)
         for lbl in sample.register_labels:
@@ -886,25 +951,26 @@ def collate_fn(
         register_labels.append(reg_vec)
 
     result: Dict[str, Any] = {
-        f'input_ids_{field}': torch.tensor(field_ids[field], dtype=torch.long)
+        f"input_ids_{field}": torch.tensor(field_ids[field], dtype=torch.long)
         for field in FEATURE_FIELDS
     }
-    result['attention_mask'] = torch.tensor(attention_mask, dtype=torch.long)
-    result['formality_value'] = torch.tensor(formality_values, dtype=torch.float)
-    result['formality_pragmatic'] = torch.tensor(formality_pragmatics, dtype=torch.long)
-    result['gender_value'] = torch.tensor(gender_values, dtype=torch.float)
-    result['gender_pragmatic'] = torch.tensor(gender_pragmatics, dtype=torch.long)
-    result['grammaticality_labels'] = torch.tensor(grammaticality_labels, dtype=torch.long)
-    result['register_labels'] = torch.stack(register_labels) # Stack vectors -> (B, NumClasses)
+    result["attention_mask"] = torch.tensor(attention_mask, dtype=torch.long)
+    result["formality_value"] = torch.tensor(formality_values, dtype=torch.float)
+    result["formality_pragmatic"] = torch.tensor(formality_pragmatics, dtype=torch.long)
+    result["gender_value"] = torch.tensor(gender_values, dtype=torch.float)
+    result["gender_pragmatic"] = torch.tensor(gender_pragmatics, dtype=torch.long)
+    result["grammaticality_labels"] = torch.tensor(
+        grammaticality_labels, dtype=torch.long
+    )
+    result["register_labels"] = torch.stack(
+        register_labels
+    )  # Stack vectors -> (B, NumClasses)
 
     # Pass through metadata
-    result['original_sentence'] = [s.original_sentence for s in batch]
-    result['kotogram'] = [s.kotogram for s in batch]
+    result["original_sentence"] = [s.original_sentence for s in batch]
+    result["kotogram"] = [s.kotogram for s in batch]
 
     return result
-
-
-
 
 
 class MLMHead(nn.Module):  # type: ignore[misc]
@@ -968,7 +1034,7 @@ class StyleClassifierWithMLM(StyleClassifier):
         **kwargs: Any,
     ) -> Any:
         """Forward pass dispatch.
-        
+
         Args:
             *args: Positional arguments for the specific forward method
             mode: 'classification' (default) or 'mlm'
@@ -1002,7 +1068,14 @@ class StyleClassifierWithMLM(StyleClassifier):
         to start the classification heads from a fresh state while keeping
         the pretrained encoder weights.
         """
-        for classifier in [self.formality_value_head, self.formality_pragmatic_head, self.gender_value_head, self.gender_pragmatic_head, self.grammaticality_classifier, self.register_classifier]:
+        for classifier in [
+            self.formality_value_head,
+            self.formality_pragmatic_head,
+            self.gender_value_head,
+            self.gender_pragmatic_head,
+            self.grammaticality_classifier,
+            self.register_classifier,
+        ]:
             if isinstance(classifier, nn.Module):
                 for module in classifier.modules():
                     if isinstance(module, nn.Linear):
@@ -1014,6 +1087,7 @@ class StyleClassifierWithMLM(StyleClassifier):
 @dataclass
 class TrainerConfig:
     """Configuration for model training."""
+
     learning_rate: float = 1e-4
     batch_size: int = 32
     epochs: int = 10
@@ -1024,14 +1098,19 @@ class TrainerConfig:
     use_class_weights: bool = True
     formality_loss_weight: float = 1.0  # Weight for formality loss in multi-task
     gender_loss_weight: float = 1.0  # Weight for gender loss in multi-task
-    grammaticality_loss_weight: float = 1.0  # Weight for grammaticality loss in multi-task
+    grammaticality_loss_weight: float = (
+        1.0  # Weight for grammaticality loss in multi-task
+    )
     register_loss_weight: float = 1.0  # Weight for register loss in multi-task
-    device: str = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
+    device: str = (
+        "cuda"
+        if torch.cuda.is_available()
+        else ("mps" if torch.backends.mps.is_available() else "cpu")
+    )
     use_amp: bool = False  # Mixed precision training
     grad_accum_steps: int = 1  # Gradient accumulation steps
     local_rank: int = 0  # Local rank for distributed training
     world_size: int = 1  # World size for distributed training
-
 
 
 def create_mlm_batch(
@@ -1062,16 +1141,16 @@ def create_mlm_batch(
 
     # Define fields that should be completely HIDDEN (100% masked, no prediction)
     # This forces the model to learn grammar structure without lexical cues.
-    HIDDEN_FIELDS = ['surface', 'lemma']
+    HIDDEN_FIELDS = ["surface", "lemma"]
 
     # Use 'pos' field as the primary for determining mask positions for NON-HIDDEN fields
-    primary_field = 'pos'
-    primary_ids = batch[f'input_ids_{primary_field}'].clone()
+    primary_field = "pos"
+    primary_ids = batch[f"input_ids_{primary_field}"].clone()
 
     # Create mask for tokens that can be masked
-    maskable = batch['attention_mask'].bool()
+    maskable = batch["attention_mask"].bool()
     for special_id in special_token_ids:
-        maskable &= (primary_ids != special_id)
+        maskable &= primary_ids != special_id
 
     # Random mask for standard MLM fields
     probs = torch.rand_like(primary_ids.float())
@@ -1079,32 +1158,34 @@ def create_mlm_batch(
 
     # 80% MASK, 10% random, 10% unchanged
     mask_token_positions = mask & (probs < mask_prob * 0.8)
-    random_token_positions = mask & (probs >= mask_prob * 0.8) & (probs < mask_prob * 0.9)
+    random_token_positions = (
+        mask & (probs >= mask_prob * 0.8) & (probs < mask_prob * 0.9)
+    )
 
     # Clone all field IDs and apply masking, create labels for each field
-    result = {'attention_mask': batch['attention_mask']}
+    result = {"attention_mask": batch["attention_mask"]}
 
     for field in FEATURE_FIELDS:
-        field_ids = batch[f'input_ids_{field}'].clone()
+        field_ids = batch[f"input_ids_{field}"].clone()
         mlm_labels = torch.full_like(field_ids, -100)
 
         if field in HIDDEN_FIELDS:
             # For hidden fields:
             # 1. Mask ALL non-padding tokens (100% hidden)
             # 2. Labels remain -100 (never predict them)
-            
+
             # Apply MASK token to all attended positions
             # We respect the attention mask (0 = padding)
-            active_tokens = batch['attention_mask'].bool()
+            active_tokens = batch["attention_mask"].bool()
             field_ids[active_tokens] = mask_token_id
-            
+
         else:
             # For standard fields (Grammar):
             # Apply standard MLM logic
-            
+
             # Create labels for this field (ignore non-masked positions)
             mlm_labels[mask] = field_ids[mask]
-            
+
             # Apply MASK token
             field_ids[mask_token_positions] = mask_token_id
 
@@ -1116,9 +1197,9 @@ def create_mlm_batch(
                     field_ids[random_token_positions] = torch.randint(
                         len(special_token_ids), field_vocab_size, (num_random,)
                     )
-        
-        result[f'mlm_labels_{field}'] = mlm_labels
-        result[f'input_ids_{field}'] = field_ids
+
+        result[f"mlm_labels_{field}"] = mlm_labels
+        result[f"input_ids_{field}"] = field_ids
 
     return result
 
@@ -1157,7 +1238,7 @@ class MLMTrainer:
 
         # Setup device and distributed
         if self.config.world_size > 1:
-            self.device = torch.device('cuda', self.config.local_rank)
+            self.device = torch.device("cuda", self.config.local_rank)
             self.is_distributed = True
         else:
             self.device = torch.device(self.config.device)
@@ -1171,18 +1252,18 @@ class MLMTrainer:
                 self.model,
                 device_ids=[self.config.local_rank],
                 output_device=self.config.local_rank,
-                find_unused_parameters=True # MLM might have unused params depending on implementation
+                find_unused_parameters=True,  # MLM might have unused params depending on implementation
             )  # type: ignore
 
         # Mixed precision scaler
         # Mixed precision scaler
         if torch.cuda.is_available():
-            scaler_device = 'cuda'
+            scaler_device = "cuda"
         elif torch.backends.mps.is_available():
-            scaler_device = 'mps'
+            scaler_device = "mps"
         else:
-            scaler_device = 'cpu'
-            
+            scaler_device = "cpu"
+
         self.scaler = GradScaler(device=scaler_device, enabled=self.config.use_amp)
 
         pad_id = dataset.tokenizer.pad_id
@@ -1207,9 +1288,11 @@ class MLMTrainer:
         self.data_loader = DataLoader(
             dataset,
             batch_size=self.config.batch_size,
-            shuffle=shuffle, # False if using sampler
+            shuffle=shuffle,  # False if using sampler
             sampler=self.sampler,
-            collate_fn=lambda b: collate_fn(b, pad_id, cast(Optional[int], max_seq_len)),
+            collate_fn=lambda b: collate_fn(
+                b, pad_id, cast(Optional[int], max_seq_len)
+            ),
             pin_memory=True if self.config.device == "cuda" else False,
             num_workers=4 if self.config.device == "cuda" else 0,
         )
@@ -1223,7 +1306,10 @@ class MLMTrainer:
         # Initialize field weights (default to 1.0 for all fields during pre-training)
         self.field_weights = {f: 1.0 for f in FEATURE_FIELDS}
 
-        self.history: Dict[str, Any] = {'mlm_loss': [], 'field_losses': {f: [] for f in FEATURE_FIELDS}}
+        self.history: Dict[str, Any] = {
+            "mlm_loss": [],
+            "field_losses": {f: [] for f in FEATURE_FIELDS},
+        }
 
     def train_epoch(self, verbose: bool = True) -> Tuple[float, Dict[str, float]]:
         """Run one MLM pretraining epoch.
@@ -1248,24 +1334,31 @@ class MLMTrainer:
 
             # Move to device
             field_inputs = {
-                k: v.to(self.device) for k, v in mlm_batch.items()
-                if k.startswith('input_ids_')
+                k: v.to(self.device)
+                for k, v in mlm_batch.items()
+                if k.startswith("input_ids_")
             }
-            attention_mask = mlm_batch['attention_mask'].to(self.device)
+            attention_mask = mlm_batch["attention_mask"].to(self.device)
 
             self.optimizer.zero_grad(set_to_none=True)
 
             # Mixed precision context
             # Determine device type string for autocast (e.g., 'cuda', 'mps', 'cpu')
-            device_type = 'cuda' if 'cuda' in str(self.device) else ('mps' if 'mps' in str(self.device) else 'cpu')
-            
+            device_type = (
+                "cuda"
+                if "cuda" in str(self.device)
+                else ("mps" if "mps" in str(self.device) else "cpu")
+            )
+
             with autocast(device_type=device_type, enabled=self.config.use_amp):
                 # Get logits for all fields
 
                 # Note: if DDP, model is wrapped, so we call directly or check hierarchy
                 # mlm_logits_dict = self.model.forward_mlm(field_inputs, attention_mask) if not self.is_distributed else self.model.module.forward_mlm(field_inputs, attention_mask)
                 # FIX: Call forward() with mode='mlm' so DDP wrapper works
-                mlm_logits_dict = self.model(field_inputs, attention_mask=attention_mask, mode='mlm')
+                mlm_logits_dict = self.model(
+                    field_inputs, attention_mask=attention_mask, mode="mlm"
+                )
 
                 # Compute weighted sum of losses across all fields
                 batch_loss: torch.Tensor = torch.tensor(0.0, device=self.device)
@@ -1273,8 +1366,8 @@ class MLMTrainer:
 
                 for f in FEATURE_FIELDS:
                     logits = mlm_logits_dict[f]
-                    labels = mlm_batch[f'mlm_labels_{f}'].to(self.device)
-                    
+                    labels = mlm_batch[f"mlm_labels_{f}"].to(self.device)
+
                     # Skip if all labels are ignore_index (-100)
                     if (labels != -100).sum() == 0:
                         continue
@@ -1283,7 +1376,7 @@ class MLMTrainer:
                         logits.view(-1, logits.size(-1)),
                         labels.view(-1),
                     )
-                    
+
                     if torch.isnan(field_loss):
                         continue
 
@@ -1307,13 +1400,17 @@ class MLMTrainer:
             if (batch_idx + 1) % self.config.grad_accum_steps == 0:
                 if self.config.gradient_clip > 0:
                     self.scaler.unscale_(self.optimizer)
-                    nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
-                
+                    nn.utils.clip_grad_norm_(
+                        self.model.parameters(), self.config.gradient_clip
+                    )
+
                 self.scaler.step(self.optimizer)
                 self.scaler.update()
                 self.optimizer.zero_grad(set_to_none=True)
 
-            total_loss += loss.item() * self.config.grad_accum_steps # Scale back up for reporting
+            total_loss += (
+                loss.item() * self.config.grad_accum_steps
+            )  # Scale back up for reporting
             n_batches += 1
 
             # Progress display (only on rank 0)
@@ -1323,19 +1420,25 @@ class MLMTrainer:
                 progress = (batch_idx + 1) / total_batches
                 bar_len = 30
                 filled = int(bar_len * progress)
-                bar = '=' * filled + '>' + '.' * (bar_len - filled - 1)
-                sys.stdout.write(f'\r  [{bar}] {batch_idx+1}/{total_batches} loss={avg_loss_so_far:.4f}')
+                bar = "=" * filled + ">" + "." * (bar_len - filled - 1)
+                sys.stdout.write(
+                    f"\r  [{bar}] {batch_idx + 1}/{total_batches} loss={avg_loss_so_far:.4f}"
+                )
                 sys.stdout.flush()
 
         if verbose and is_main_process():
-            sys.stdout.write('\n')
+            sys.stdout.write("\n")
             sys.stdout.flush()
 
         avg_loss = total_loss / n_batches
-        avg_field_losses = {field: loss / n_batches for field, loss in field_losses.items()}
+        avg_field_losses = {
+            field: loss / n_batches for field, loss in field_losses.items()
+        }
         return avg_loss, avg_field_losses
 
-    def train(self, epochs: Optional[int] = None, verbose: bool = True) -> Dict[str, Any]:
+    def train(
+        self, epochs: Optional[int] = None, verbose: bool = True
+    ) -> Dict[str, Any]:
         """Run MLM pretraining.
 
         Args:
@@ -1350,18 +1453,20 @@ class MLMTrainer:
         for epoch in range(actual_epochs):
             # Update sampler epoch for shuffling
             if self.dataset and self.is_distributed:
-                 cast(DistributedSampler, self.sampler).set_epoch(epoch)
+                cast(DistributedSampler, self.sampler).set_epoch(epoch)
 
             if verbose and is_main_process():
-                print(f"Epoch {epoch+1}/{actual_epochs}")
+                print(f"Epoch {epoch + 1}/{actual_epochs}")
             mlm_loss, field_loss_dict = self.train_epoch(verbose=verbose)
-            self.history['mlm_loss'].append(mlm_loss)
+            self.history["mlm_loss"].append(mlm_loss)
             for f, loss_val in field_loss_dict.items():
-                self.history['field_losses'][f].append(loss_val)
+                self.history["field_losses"][f].append(loss_val)
 
             if verbose and is_main_process():
                 print(f"  MLM Loss: {mlm_loss:.4f}")
-                field_str = ", ".join(f"{f}={loss:.3f}" for f, loss in field_loss_dict.items())
+                field_str = ", ".join(
+                    f"{f}={loss:.3f}" for f, loss in field_loss_dict.items()
+                )
                 print(f"  Field losses: {field_str}")
 
         return self.history
@@ -1401,7 +1506,7 @@ class Trainer:
 
         # Setup device and distributed
         if self.config.world_size > 1:
-            self.device = torch.device('cuda', self.config.local_rank)
+            self.device = torch.device("cuda", self.config.local_rank)
             self.is_distributed = True
         else:
             self.device = torch.device(self.config.device)
@@ -1415,18 +1520,18 @@ class Trainer:
                 self.model,
                 device_ids=[self.config.local_rank],
                 output_device=self.config.local_rank,
-                find_unused_parameters=True
-            ) # type: ignore
+                find_unused_parameters=True,
+            )  # type: ignore
 
         # Mixed precision scaler
         # Mixed precision scaler
         if torch.cuda.is_available():
-            scaler_device = 'cuda'
+            scaler_device = "cuda"
         elif torch.backends.mps.is_available():
-            scaler_device = 'mps'
+            scaler_device = "mps"
         else:
-            scaler_device = 'cpu'
-            
+            scaler_device = "cpu"
+
         self.scaler = GradScaler(device=scaler_device, enabled=self.config.use_amp)
 
         # Data loaders with max_seq_len truncation
@@ -1446,7 +1551,7 @@ class Trainer:
                 val_dataset,
                 num_replicas=self.config.world_size,
                 rank=dist.get_rank(),
-                shuffle=False, # Validation doesn't need shuffle, but distributing it speeds it up
+                shuffle=False,  # Validation doesn't need shuffle, but distributing it speeds it up
             )
             train_shuffle = False
             val_shuffle = False
@@ -1461,7 +1566,9 @@ class Trainer:
             batch_size=self.config.batch_size,
             shuffle=train_shuffle,
             sampler=self.train_sampler,
-            collate_fn=lambda b: collate_fn(b, pad_id, cast(Optional[int], max_seq_len)),
+            collate_fn=lambda b: collate_fn(
+                b, pad_id, cast(Optional[int], max_seq_len)
+            ),
             pin_memory=True if self.config.device == "cuda" else False,
             num_workers=4 if self.config.device == "cuda" else 0,
         )
@@ -1470,19 +1577,27 @@ class Trainer:
             batch_size=self.config.batch_size,
             shuffle=val_shuffle,
             sampler=self.val_sampler,
-            collate_fn=lambda b: collate_fn(b, pad_id, cast(Optional[int], max_seq_len)),
+            collate_fn=lambda b: collate_fn(
+                b, pad_id, cast(Optional[int], max_seq_len)
+            ),
             pin_memory=True if self.config.device == "cuda" else False,
             num_workers=4 if self.config.device == "cuda" else 0,
         )
 
         # Loss functions with optional class weights
         if self.config.use_class_weights:
-            formality_weights = train_dataset.get_formality_class_weights().to(self.device)
+            formality_weights = train_dataset.get_formality_class_weights().to(
+                self.device
+            )
             gender_weights = train_dataset.get_gender_class_weights().to(self.device)
-            grammaticality_weights = train_dataset.get_grammaticality_class_weights().to(self.device)
+            grammaticality_weights = (
+                train_dataset.get_grammaticality_class_weights().to(self.device)
+            )
             self.formality_criterion = nn.CrossEntropyLoss(weight=formality_weights)
             self.gender_pragmatic_criterion = nn.CrossEntropyLoss(weight=gender_weights)
-            self.grammaticality_criterion = nn.CrossEntropyLoss(weight=grammaticality_weights)
+            self.grammaticality_criterion = nn.CrossEntropyLoss(
+                weight=grammaticality_weights
+            )
             # Register is multi-label, uses BCE (weights handled internally if needed, or pos_weight)
             # For now, no class weights for register to keep it simple
             self.register_criterion = nn.BCEWithLogitsLoss()
@@ -1494,57 +1609,66 @@ class Trainer:
 
         # Optimizer with differential learning rates
         # Handle wrappped model
-        model_module = cast(StyleClassifier, self.model.module if self.is_distributed else self.model)
-        
-        encoder_params = list(model_module.embedding.parameters()) + list(model_module.encoder.parameters())
-        classifier_params = (
-            list(model_module.formality_value_head.parameters()) +
-            list(model_module.formality_pragmatic_head.parameters()) +
-            list(model_module.gender_value_head.parameters()) +
-            list(model_module.gender_pragmatic_head.parameters()) +
-            list(model_module.grammaticality_classifier.parameters()) +
-            list(model_module.register_classifier.parameters())
+        model_module = cast(
+            StyleClassifier, self.model.module if self.is_distributed else self.model
         )
 
-        self.optimizer = Adam([
-            {'params': encoder_params, 'lr': self.config.learning_rate * encoder_lr_factor},
-            {'params': classifier_params, 'lr': self.config.learning_rate},
-        ])
+        encoder_params = list(model_module.embedding.parameters()) + list(
+            model_module.encoder.parameters()
+        )
+        classifier_params = (
+            list(model_module.formality_value_head.parameters())
+            + list(model_module.formality_pragmatic_head.parameters())
+            + list(model_module.gender_value_head.parameters())
+            + list(model_module.gender_pragmatic_head.parameters())
+            + list(model_module.grammaticality_classifier.parameters())
+            + list(model_module.register_classifier.parameters())
+        )
+
+        self.optimizer = Adam(
+            [
+                {
+                    "params": encoder_params,
+                    "lr": self.config.learning_rate * encoder_lr_factor,
+                },
+                {"params": classifier_params, "lr": self.config.learning_rate},
+            ]
+        )
 
         self.scheduler = ReduceLROnPlateau(
             self.optimizer,
-            mode='min',
+            mode="min",
             factor=self.config.lr_scheduler_factor,
             patience=self.config.lr_scheduler_patience,
         )
 
         # Training state
-        self.best_val_loss = float('inf')
+        self.best_val_loss = float("inf")
         self.patience_counter = 0
         self.history: Dict[str, List[float]] = {
-            'train_loss': [],
-            'train_formality_loss': [],
-            'train_gender_loss': [],
-            'train_grammaticality_loss': [],
-            'train_register_loss': [],
-            'val_loss': [],
-            'val_formality_loss': [],
-            'val_gender_loss': [],
-            'val_grammaticality_loss': [],
-            'val_register_loss': [],
-            'val_formality_accuracy': [], # Pragmatic accuracy
-            'val_formality_mse': [], # Value MSE
-            'val_gender_pragmatic_accuracy': [],
-            'val_gender_value_mse': [],
-            'val_grammaticality_accuracy': [],
-            'val_register_accuracy': [],
+            "train_loss": [],
+            "train_formality_loss": [],
+            "train_gender_loss": [],
+            "train_grammaticality_loss": [],
+            "train_register_loss": [],
+            "val_loss": [],
+            "val_formality_loss": [],
+            "val_gender_loss": [],
+            "val_grammaticality_loss": [],
+            "val_register_loss": [],
+            "val_formality_accuracy": [],  # Pragmatic accuracy
+            "val_formality_mse": [],  # Value MSE
+            "val_gender_pragmatic_accuracy": [],
+            "val_gender_value_mse": [],
+            "val_grammaticality_accuracy": [],
+            "val_register_accuracy": [],
         }
         self.best_state: Optional[Dict[str, torch.Tensor]] = None
         self.start_epoch = 0  # For resumption
 
-
-
-    def train_epoch(self, verbose: bool = True) -> Tuple[float, float, float, float, float]:
+    def train_epoch(
+        self, verbose: bool = True
+    ) -> Tuple[float, float, float, float, float]:
         """Run one training epoch.
 
         Returns:
@@ -1567,84 +1691,106 @@ class Trainer:
             # Move batch to device
             # Reconstruct field_inputs from flat batch keys
             field_inputs = {
-                f'input_ids_{f}': batch[f'input_ids_{f}'].to(self.device) 
+                f"input_ids_{f}": batch[f"input_ids_{f}"].to(self.device)
                 for f in FEATURE_FIELDS
             }
-            attention_mask = batch['attention_mask'].to(self.device)
-            formality_value_targets = batch['formality_value'].to(self.device)
-            formality_prag_targets = batch['formality_pragmatic'].to(self.device)
-            gender_value_targets = batch['gender_value'].to(self.device)
-            gender_prag_targets = batch['gender_pragmatic'].to(self.device)
-            grammaticality_targets = batch['grammaticality_labels'].to(self.device)
-            register_targets = batch['register_labels'].to(self.device)
+            attention_mask = batch["attention_mask"].to(self.device)
+            formality_value_targets = batch["formality_value"].to(self.device)
+            formality_prag_targets = batch["formality_pragmatic"].to(self.device)
+            gender_value_targets = batch["gender_value"].to(self.device)
+            gender_prag_targets = batch["gender_pragmatic"].to(self.device)
+            grammaticality_targets = batch["grammaticality_labels"].to(self.device)
+            register_targets = batch["register_labels"].to(self.device)
 
             self.optimizer.zero_grad(set_to_none=True)
-            
+
             # Mixed precision context
-            device_type = 'cuda' if 'cuda' in str(self.device) else ('mps' if 'mps' in str(self.device) else 'cpu')
-            
+            device_type = (
+                "cuda"
+                if "cuda" in str(self.device)
+                else ("mps" if "mps" in str(self.device) else "cpu")
+            )
+
             with autocast(device_type=device_type, enabled=self.config.use_amp):
                 # Forward pass
                 # formality_value, formality_pragmatic, gender_value, gender_pragmatic, grammaticality, register
-                formality_val_logits, formality_prag_logits, gender_val, gender_prag_logits, grammaticality_logits, register_logits = self.model(
-                    field_inputs, attention_mask
-                )
+                (
+                    formality_val_logits,
+                    formality_prag_logits,
+                    gender_val,
+                    gender_prag_logits,
+                    grammaticality_logits,
+                    register_logits,
+                ) = self.model(field_inputs, attention_mask)
 
                 # --- HYBRID TRAINING LOGIC ---
                 # Masks
-                is_grammatic = (grammaticality_targets == 1)
-                is_formality_pragmatic = (formality_prag_targets == 1)
-                is_gender_pragmatic = (gender_prag_targets == 1)
-                
+                is_grammatic = grammaticality_targets == 1
+                is_formality_pragmatic = formality_prag_targets == 1
+                is_gender_pragmatic = gender_prag_targets == 1
+
                 # Valid style mask: fully valid sentence for training specific style values
-                is_valid_style = is_grammatic & is_formality_pragmatic & is_gender_pragmatic
+                is_valid_style = (
+                    is_grammatic & is_formality_pragmatic & is_gender_pragmatic
+                )
 
                 # 1. Formality Loss (Value MSE + Pragmatic CrossEntropy)
-                formality_prag_loss = self.formality_criterion(formality_prag_logits, formality_prag_targets)
-                
+                formality_prag_loss = self.formality_criterion(
+                    formality_prag_logits, formality_prag_targets
+                )
+
                 formality_val_squeezed = formality_val_logits.squeeze(-1)
                 if is_valid_style.sum() > 0:
-                     formality_val_loss = F.mse_loss(
-                         formality_val_squeezed[is_valid_style], 
-                         formality_value_targets[is_valid_style]
-                     )
+                    formality_val_loss = F.mse_loss(
+                        formality_val_squeezed[is_valid_style],
+                        formality_value_targets[is_valid_style],
+                    )
                 else:
-                     formality_val_loss = torch.tensor(0.0, device=self.device)
+                    formality_val_loss = torch.tensor(0.0, device=self.device)
 
-                formality_loss = formality_val_loss + formality_prag_loss # Equal weight 1.0 each inside formality
+                formality_loss = (
+                    formality_val_loss + formality_prag_loss
+                )  # Equal weight 1.0 each inside formality
 
                 # 2. Gender Loss (Value MSE + Pragmatic CrossEntropy)
-                gender_prag_loss = self.gender_pragmatic_criterion(gender_prag_logits, gender_prag_targets)
-                
+                gender_prag_loss = self.gender_pragmatic_criterion(
+                    gender_prag_logits, gender_prag_targets
+                )
+
                 gender_val_squeezed = gender_val.squeeze(-1)
                 if is_valid_style.sum() > 0:
-                     gender_val_loss = F.mse_loss(
-                         gender_val_squeezed[is_valid_style], 
-                         gender_value_targets[is_valid_style]
-                     )
+                    gender_val_loss = F.mse_loss(
+                        gender_val_squeezed[is_valid_style],
+                        gender_value_targets[is_valid_style],
+                    )
                 else:
-                     gender_val_loss = torch.tensor(0.0, device=self.device)
-                
+                    gender_val_loss = torch.tensor(0.0, device=self.device)
+
                 gender_loss = (gender_val_loss * GENDER_LOSS_WEIGHT) + gender_prag_loss
 
                 # 3. Grammaticality Loss (All samples)
-                grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_targets)
-                
+                grammaticality_loss = self.grammaticality_criterion(
+                    grammaticality_logits, grammaticality_targets
+                )
+
                 # 4. Register Loss (Only valid style samples)
                 # We interpret agrammatic/unpragmatic as noise for register training
                 if is_valid_style.sum() > 0:
-                    register_loss = self.register_criterion(register_logits[is_valid_style], register_targets[is_valid_style])
+                    register_loss = self.register_criterion(
+                        register_logits[is_valid_style],
+                        register_targets[is_valid_style],
+                    )
                 else:
                     register_loss = torch.tensor(0.0, device=self.device)
 
                 # Weighted multi-task loss
                 loss = (
-                    self.config.formality_loss_weight * formality_loss +
-                    self.config.gender_loss_weight * gender_loss +
-                    self.config.grammaticality_loss_weight * grammaticality_loss +
-                    self.config.register_loss_weight * register_loss
+                    self.config.formality_loss_weight * formality_loss
+                    + self.config.gender_loss_weight * gender_loss
+                    + self.config.grammaticality_loss_weight * grammaticality_loss
+                    + self.config.register_loss_weight * register_loss
                 )
-                
+
                 loss = loss / self.config.grad_accum_steps
 
             # Backward pass with scaler
@@ -1653,8 +1799,10 @@ class Trainer:
             if (batch_idx + 1) % self.config.grad_accum_steps == 0:
                 if self.config.gradient_clip > 0:
                     self.scaler.unscale_(self.optimizer)
-                    nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
-                
+                    nn.utils.clip_grad_norm_(
+                        self.model.parameters(), self.config.gradient_clip
+                    )
+
                 self.scaler.step(self.optimizer)
                 self.scaler.update()
                 self.optimizer.zero_grad(set_to_none=True)
@@ -1667,19 +1815,31 @@ class Trainer:
             n_batches += 1
 
             # Progress display (only on main process, updated every 100 batches to reduce I/O overhead)
-            if verbose and is_main_process() and ((batch_idx + 1) % 100 == 0 or (batch_idx + 1) == total_batches):
+            if (
+                verbose
+                and is_main_process()
+                and ((batch_idx + 1) % 100 == 0 or (batch_idx + 1) == total_batches)
+            ):
                 avg_loss_so_far = total_loss / n_batches
                 progress = (batch_idx + 1) / total_batches
                 bar_len = 30
                 filled = int(bar_len * progress)
-                bar = '=' * filled + '>' + '.' * (bar_len - filled - 1)
-                sys.stdout.write(f'\r  [{bar}] {batch_idx+1}/{total_batches} loss={avg_loss_so_far:.4f}')
+                bar = "=" * filled + ">" + "." * (bar_len - filled - 1)
+                sys.stdout.write(
+                    f"\r  [{bar}] {batch_idx + 1}/{total_batches} loss={avg_loss_so_far:.4f}"
+                )
                 sys.stdout.flush()
 
         if verbose and is_main_process():
-            sys.stdout.write('\n')
+            sys.stdout.write("\n")
 
-        return total_loss / n_batches, total_formality_loss / n_batches, total_gender_loss / n_batches, total_grammaticality_loss / n_batches, total_register_loss / n_batches
+        return (
+            total_loss / n_batches,
+            total_formality_loss / n_batches,
+            total_gender_loss / n_batches,
+            total_grammaticality_loss / n_batches,
+            total_register_loss / n_batches,
+        )
 
     @torch.no_grad()  # type: ignore[untyped-decorator]
     def evaluate(self, return_mismatches: bool = False) -> Dict[str, Any]:
@@ -1705,85 +1865,98 @@ class Trainer:
         all_formality_val_labels = []
         all_formality_prag_preds = []
         all_formality_prag_labels = []
-        
+
         all_gender_val_preds = []
         all_gender_val_labels = []
         all_gender_prag_preds = []
         all_gender_prag_labels = []
-        
+
         all_grammaticality_preds = []
         all_grammaticality_labels = []
-        
+
         all_register_preds = []
         all_register_labels = []
-        
-        all_valid_style_mask = [] # To filter specific metrics later
+
+        all_valid_style_mask = []  # To filter specific metrics later
 
         all_sentences = []
         all_kotograms = []
 
         for batch in self.val_loader:
-             # Move batch to device
+            # Move batch to device
             field_inputs = {
-                f'input_ids_{f}': batch[f'input_ids_{f}'].to(self.device) 
+                f"input_ids_{f}": batch[f"input_ids_{f}"].to(self.device)
                 for f in FEATURE_FIELDS
             }
-            attention_mask = batch['attention_mask'].to(self.device)
-            formality_value_targets = batch['formality_value'].to(self.device)
-            formality_prag_targets = batch['formality_pragmatic'].to(self.device)
-            gender_value_targets = batch['gender_value'].to(self.device)
-            gender_prag_targets = batch['gender_pragmatic'].to(self.device)
-            grammaticality_targets = batch['grammaticality_labels'].to(self.device)
-            register_targets = batch['register_labels'].to(self.device)
+            attention_mask = batch["attention_mask"].to(self.device)
+            formality_value_targets = batch["formality_value"].to(self.device)
+            formality_prag_targets = batch["formality_pragmatic"].to(self.device)
+            gender_value_targets = batch["gender_value"].to(self.device)
+            gender_prag_targets = batch["gender_pragmatic"].to(self.device)
+            grammaticality_targets = batch["grammaticality_labels"].to(self.device)
+            register_targets = batch["register_labels"].to(self.device)
 
-            formality_val_logits, formality_prag_logits, gender_val, gender_prag_logits, grammaticality_logits, register_logits = self.model(
-                field_inputs, attention_mask
-            )
+            (
+                formality_val_logits,
+                formality_prag_logits,
+                gender_val,
+                gender_prag_logits,
+                grammaticality_logits,
+                register_logits,
+            ) = self.model(field_inputs, attention_mask)
 
             # Masks
-            is_grammatic = (grammaticality_targets == 1)
-            is_formality_pragmatic = (formality_prag_targets == 1)
-            is_gender_pragmatic = (gender_prag_targets == 1)
+            is_grammatic = grammaticality_targets == 1
+            is_formality_pragmatic = formality_prag_targets == 1
+            is_gender_pragmatic = gender_prag_targets == 1
             is_valid_style = is_grammatic & is_formality_pragmatic & is_gender_pragmatic
 
             # 1. Formality Loss
-            formality_prag_loss = self.formality_criterion(formality_prag_logits, formality_prag_targets)
+            formality_prag_loss = self.formality_criterion(
+                formality_prag_logits, formality_prag_targets
+            )
             formality_val_squeezed = formality_val_logits.squeeze(-1)
             if is_valid_style.sum() > 0:
-                 formality_val_loss = F.mse_loss(
-                     formality_val_squeezed[is_valid_style], 
-                     formality_value_targets[is_valid_style]
-                 )
+                formality_val_loss = F.mse_loss(
+                    formality_val_squeezed[is_valid_style],
+                    formality_value_targets[is_valid_style],
+                )
             else:
-                 formality_val_loss = torch.tensor(0.0, device=self.device)
+                formality_val_loss = torch.tensor(0.0, device=self.device)
             formality_loss = formality_val_loss + formality_prag_loss
 
             # 2. Gender Loss
-            gender_prag_loss = self.gender_pragmatic_criterion(gender_prag_logits, gender_prag_targets)
+            gender_prag_loss = self.gender_pragmatic_criterion(
+                gender_prag_logits, gender_prag_targets
+            )
             gender_val_squeezed = gender_val.squeeze(-1)
             if is_valid_style.sum() > 0:
-                 gender_val_loss = F.mse_loss(
-                     gender_val_squeezed[is_valid_style], 
-                     gender_value_targets[is_valid_style]
-                 )
+                gender_val_loss = F.mse_loss(
+                    gender_val_squeezed[is_valid_style],
+                    gender_value_targets[is_valid_style],
+                )
             else:
-                 gender_val_loss = torch.tensor(0.0, device=self.device)
+                gender_val_loss = torch.tensor(0.0, device=self.device)
             gender_loss = (gender_val_loss * GENDER_LOSS_WEIGHT) + gender_prag_loss
 
             # 3. Grammaticality Loss
-            grammaticality_loss = self.grammaticality_criterion(grammaticality_logits, grammaticality_targets)
-            
+            grammaticality_loss = self.grammaticality_criterion(
+                grammaticality_logits, grammaticality_targets
+            )
+
             # 4. Register Loss
             if is_valid_style.sum() > 0:
-                register_loss = self.register_criterion(register_logits[is_valid_style], register_targets[is_valid_style])
+                register_loss = self.register_criterion(
+                    register_logits[is_valid_style], register_targets[is_valid_style]
+                )
             else:
                 register_loss = torch.tensor(0.0, device=self.device)
-            
+
             loss = (
-                self.config.formality_loss_weight * formality_loss +
-                self.config.gender_loss_weight * gender_loss +
-                self.config.grammaticality_loss_weight * grammaticality_loss +
-                self.config.register_loss_weight * register_loss
+                self.config.formality_loss_weight * formality_loss
+                + self.config.gender_loss_weight * gender_loss
+                + self.config.grammaticality_loss_weight * grammaticality_loss
+                + self.config.register_loss_weight * register_loss
             )
 
             total_loss += loss.item()
@@ -1796,21 +1969,23 @@ class Trainer:
             formality_prag_preds = formality_prag_logits.argmax(dim=-1)
             gender_prag_preds = gender_prag_logits.argmax(dim=-1)
             grammaticality_preds = grammaticality_logits.argmax(dim=-1)
-            
+
             # Multi-label prediction
             register_probs = torch.sigmoid(register_logits)
             register_preds = (register_probs > 0.5).long()
             register_labels_long = register_targets.long()
 
             # Store predictions
-            all_formality_val_preds.extend(formality_val_squeezed.detach().cpu().tolist())
+            all_formality_val_preds.extend(
+                formality_val_squeezed.detach().cpu().tolist()
+            )
             all_formality_val_labels.extend(formality_value_targets.cpu().tolist())
             all_formality_prag_preds.extend(formality_prag_preds.cpu().tolist())
             all_formality_prag_labels.extend(formality_prag_targets.cpu().tolist())
-            
+
             all_gender_val_preds.extend(gender_val_squeezed.detach().cpu().tolist())
             all_gender_val_labels.extend(gender_value_targets.cpu().tolist())
-            
+
             all_gender_prag_preds.extend(gender_prag_preds.cpu().tolist())
             all_gender_prag_labels.extend(gender_prag_targets.cpu().tolist())
 
@@ -1818,44 +1993,84 @@ class Trainer:
             all_grammaticality_labels.extend(grammaticality_targets.cpu().tolist())
             all_register_preds.extend(register_preds.cpu().tolist())
             all_register_labels.extend(register_labels_long.cpu().tolist())
-            
+
             all_valid_style_mask.extend(is_valid_style.cpu().tolist())
 
             # Always collect sentences for confusion matrices
             _ = return_mismatches
-            all_sentences.extend(batch.get('original_sentence', []))
-            all_kotograms.extend(batch.get('kotogram', []))
+            all_sentences.extend(batch.get("original_sentence", []))
+            all_kotograms.extend(batch.get("kotogram", []))
 
         avg_loss = total_loss / n_batches if n_batches > 0 else 0
         avg_formality_loss = total_formality_loss / n_batches if n_batches > 0 else 0
         avg_gender_loss = total_gender_loss / n_batches if n_batches > 0 else 0
-        avg_grammaticality_loss = total_grammaticality_loss / n_batches if n_batches > 0 else 0
+        avg_grammaticality_loss = (
+            total_grammaticality_loss / n_batches if n_batches > 0 else 0
+        )
         avg_register_loss = total_register_loss / n_batches if n_batches > 0 else 0
-
 
         # Calculate metrics (local)
         # Formality Pragmatic Accuracy (All)
-        formality_acc = sum(p == label for p, label in zip(all_formality_prag_preds, all_formality_prag_labels)) / len(all_formality_prag_labels) if all_formality_prag_labels else 0
-        
+        formality_acc = (
+            sum(
+                p == label
+                for p, label in zip(all_formality_prag_preds, all_formality_prag_labels)
+            )
+            / len(all_formality_prag_labels)
+            if all_formality_prag_labels
+            else 0
+        )
+
         # Gender Pragmatic Accuracy (All)
-        gender_prag_acc = sum(p == label for p, label in zip(all_gender_prag_preds, all_gender_prag_labels)) / len(all_gender_prag_labels) if all_gender_prag_labels else 0
-        
+        gender_prag_acc = (
+            sum(
+                p == label
+                for p, label in zip(all_gender_prag_preds, all_gender_prag_labels)
+            )
+            / len(all_gender_prag_labels)
+            if all_gender_prag_labels
+            else 0
+        )
+
         # Grammaticality Accuracy (All)
-        grammaticality_acc = sum(p == label for p, label in zip(all_grammaticality_preds, all_grammaticality_labels)) / len(all_grammaticality_labels) if all_grammaticality_labels else 0
+        grammaticality_acc = (
+            sum(
+                p == label
+                for p, label in zip(all_grammaticality_preds, all_grammaticality_labels)
+            )
+            / len(all_grammaticality_labels)
+            if all_grammaticality_labels
+            else 0
+        )
 
         # Filtered Metrics (Only valid style)
         valid_indices = [i for i, m in enumerate(all_valid_style_mask) if m]
-        
+
         # Formality Value MSE (Filtered)
         if valid_indices:
-            f_mse = sum((all_formality_val_preds[i] - all_formality_val_labels[i]) ** 2 for i in valid_indices) / len(valid_indices)
-            g_mse = sum((all_gender_val_preds[i] - all_gender_val_labels[i]) ** 2 for i in valid_indices) / len(valid_indices)
-            
+            f_mse = sum(
+                (all_formality_val_preds[i] - all_formality_val_labels[i]) ** 2
+                for i in valid_indices
+            ) / len(valid_indices)
+            g_mse = sum(
+                (all_gender_val_preds[i] - all_gender_val_labels[i]) ** 2
+                for i in valid_indices
+            ) / len(valid_indices)
+
             valid_reg_preds = [all_register_preds[i] for i in valid_indices]
             valid_reg_labels = [all_register_labels[i] for i in valid_indices]
-            
+
             # Register Exact Match (Filtered)
-            register_acc = sum([1 for idx in range(len(valid_reg_preds)) if all(valid_reg_preds[idx][i] == valid_reg_labels[idx][i] for i in range(len(valid_reg_preds[idx])))]) / len(valid_reg_preds)
+            register_acc = sum(
+                [
+                    1
+                    for idx in range(len(valid_reg_preds))
+                    if all(
+                        valid_reg_preds[idx][i] == valid_reg_labels[idx][i]
+                        for i in range(len(valid_reg_preds[idx]))
+                    )
+                ]
+            ) / len(valid_reg_preds)
         else:
             f_mse = 0.0
             g_mse = 0.0
@@ -1864,54 +2079,82 @@ class Trainer:
         # Output Confusion Matrices (TSV)
         if is_main_process():
             # Create a dedicated directory for confusion matrices in style-support
-            confusion_dir = os.path.join(self.support_dir, 'confusion_matrices')
+            confusion_dir = os.path.join(self.support_dir, "confusion_matrices")
             os.makedirs(confusion_dir, exist_ok=True)
-            
+
             # 1. Formality Pragmatic Confusion (TSV)
             # Row: Actual, Col: Predicted
-            with open(os.path.join(confusion_dir, 'formality_confusion.tsv'), 'w') as f:
-                f.write('sentence\tactual_pragmatic\tpredicted_pragmatic\tactual_value\tpredicted_value\tis_valid_style\n')
+            with open(os.path.join(confusion_dir, "formality_confusion.tsv"), "w") as f:
+                f.write(
+                    "sentence\tactual_pragmatic\tpredicted_pragmatic\tactual_value\tpredicted_value\tis_valid_style\n"
+                )
                 for i in range(len(all_sentences)):
-                    f.write(f"{all_sentences[i]}\t{all_formality_prag_labels[i]}\t{all_formality_prag_preds[i]}\t{all_formality_val_labels[i]:.4f}\t{all_formality_val_preds[i]:.4f}\t{all_valid_style_mask[i]}\n")
-            
+                    f.write(
+                        f"{all_sentences[i]}\t{all_formality_prag_labels[i]}\t{all_formality_prag_preds[i]}\t{all_formality_val_labels[i]:.4f}\t{all_formality_val_preds[i]:.4f}\t{all_valid_style_mask[i]}\n"
+                    )
+
             # 2. Gender Value MSE Confusion (TSV) - Top errors
             # Filtered by valid style
             mse_errors = []
             for i in valid_indices:
                 error = (all_gender_val_preds[i] - all_gender_val_labels[i]) ** 2
-                mse_errors.append((error, all_sentences[i], all_gender_val_preds[i], all_gender_val_labels[i]))
-            
+                mse_errors.append(
+                    (
+                        error,
+                        all_sentences[i],
+                        all_gender_val_preds[i],
+                        all_gender_val_labels[i],
+                    )
+                )
+
             mse_errors.sort(key=lambda x: x[0], reverse=True)
-            
-            with open(os.path.join(confusion_dir, 'gender_mse_confusion.tsv'), 'w') as f:
-                f.write('sentence\terror\tpredicted_value\tactual_value\n')
-                for err, sent, pred, act in mse_errors: # Dump all, let user filter top N
+
+            with open(
+                os.path.join(confusion_dir, "gender_mse_confusion.tsv"), "w"
+            ) as f:
+                f.write("sentence\terror\tpredicted_value\tactual_value\n")
+                for (
+                    err,
+                    sent,
+                    pred,
+                    act,
+                ) in mse_errors:  # Dump all, let user filter top N
                     f.write(f"{sent}\t{err:.6f}\t{pred:.4f}\t{act:.4f}\n")
-            
+
             # 3. Register Confusion (TSV) - Mismatches only, filtered by valid style
-            with open(os.path.join(confusion_dir, 'register_confusion.tsv'), 'w') as f:
-                f.write('sentence\tactual_labels\tpredicted_labels\n')
+            with open(os.path.join(confusion_dir, "register_confusion.tsv"), "w") as f:
+                f.write("sentence\tactual_labels\tpredicted_labels\n")
                 for i in valid_indices:
                     # Check for mismatch
-                    if any(all_register_preds[i][j] != all_register_labels[i][j] for j in range(NUM_REGISTER_CLASSES)):
-                         # Convert to strings
-                         act_str = ",".join(str(j) for j, val in enumerate(all_register_labels[i]) if val == 1)
-                         pred_str = ",".join(str(j) for j, val in enumerate(all_register_preds[i]) if val == 1)
-                         f.write(f"{all_sentences[i]}\t{act_str}\t{pred_str}\n")
-
+                    if any(
+                        all_register_preds[i][j] != all_register_labels[i][j]
+                        for j in range(NUM_REGISTER_CLASSES)
+                    ):
+                        # Convert to strings
+                        act_str = ",".join(
+                            str(j)
+                            for j, val in enumerate(all_register_labels[i])
+                            if val == 1
+                        )
+                        pred_str = ",".join(
+                            str(j)
+                            for j, val in enumerate(all_register_preds[i])
+                            if val == 1
+                        )
+                        f.write(f"{all_sentences[i]}\t{act_str}\t{pred_str}\n")
 
         return {
-            'loss': avg_loss,
-            'formality_loss': avg_formality_loss,
-            'gender_loss': avg_gender_loss,
-            'grammaticality_loss': avg_grammaticality_loss,
-            'register_loss': avg_register_loss,
-            'formality_accuracy': formality_acc,
-            'formality_value_mse': f_mse,
-            'gender_pragmatic_accuracy': gender_prag_acc,
-            'gender_value_mse': g_mse,
-            'grammaticality_accuracy': grammaticality_acc,
-            'register_accuracy': register_acc,
+            "loss": avg_loss,
+            "formality_loss": avg_formality_loss,
+            "gender_loss": avg_gender_loss,
+            "grammaticality_loss": avg_grammaticality_loss,
+            "register_loss": avg_register_loss,
+            "formality_accuracy": formality_acc,
+            "formality_value_mse": f_mse,
+            "gender_pragmatic_accuracy": gender_prag_acc,
+            "gender_value_mse": g_mse,
+            "grammaticality_accuracy": grammaticality_acc,
+            "register_accuracy": register_acc,
         }
 
     def train(
@@ -1931,35 +2174,55 @@ class Trainer:
         """
         for epoch in range(self.start_epoch, self.config.epochs):
             if verbose:
-                print(f"Epoch {epoch+1}/{self.config.epochs}")
-            train_loss, train_formality_loss, train_gender_loss, train_grammaticality_loss, train_register_loss = self.train_epoch(verbose=verbose)
+                print(f"Epoch {epoch + 1}/{self.config.epochs}")
+            (
+                train_loss,
+                train_formality_loss,
+                train_gender_loss,
+                train_grammaticality_loss,
+                train_register_loss,
+            ) = self.train_epoch(verbose=verbose)
             eval_results = self.evaluate()
 
-            self.scheduler.step(eval_results['loss'])
+            self.scheduler.step(eval_results["loss"])
 
-            self.history['train_loss'].append(train_loss)
-            self.history['train_formality_loss'].append(train_formality_loss)
-            self.history['train_gender_loss'].append(train_gender_loss)
-            self.history['train_grammaticality_loss'].append(train_grammaticality_loss)
-            self.history['train_register_loss'].append(train_register_loss)
-            self.history['val_loss'].append(eval_results['loss'])
-            self.history['val_formality_loss'].append(eval_results['formality_loss'])
-            self.history['val_gender_loss'].append(eval_results['gender_loss'])
-            self.history['val_grammaticality_loss'].append(eval_results['grammaticality_loss'])
-            self.history['val_register_loss'].append(eval_results['register_loss'])
-            self.history['val_formality_accuracy'].append(eval_results['formality_accuracy'])
-            self.history['val_formality_mse'].append(eval_results['formality_value_mse'])
-            self.history['val_gender_pragmatic_accuracy'].append(eval_results['gender_pragmatic_accuracy'])
-            self.history['val_gender_value_mse'].append(eval_results['gender_value_mse'])
-            self.history['val_grammaticality_accuracy'].append(eval_results['grammaticality_accuracy'])
-            self.history['val_register_accuracy'].append(eval_results['register_accuracy'])
+            self.history["train_loss"].append(train_loss)
+            self.history["train_formality_loss"].append(train_formality_loss)
+            self.history["train_gender_loss"].append(train_gender_loss)
+            self.history["train_grammaticality_loss"].append(train_grammaticality_loss)
+            self.history["train_register_loss"].append(train_register_loss)
+            self.history["val_loss"].append(eval_results["loss"])
+            self.history["val_formality_loss"].append(eval_results["formality_loss"])
+            self.history["val_gender_loss"].append(eval_results["gender_loss"])
+            self.history["val_grammaticality_loss"].append(
+                eval_results["grammaticality_loss"]
+            )
+            self.history["val_register_loss"].append(eval_results["register_loss"])
+            self.history["val_formality_accuracy"].append(
+                eval_results["formality_accuracy"]
+            )
+            self.history["val_formality_mse"].append(
+                eval_results["formality_value_mse"]
+            )
+            self.history["val_gender_pragmatic_accuracy"].append(
+                eval_results["gender_pragmatic_accuracy"]
+            )
+            self.history["val_gender_value_mse"].append(
+                eval_results["gender_value_mse"]
+            )
+            self.history["val_grammaticality_accuracy"].append(
+                eval_results["grammaticality_accuracy"]
+            )
+            self.history["val_register_accuracy"].append(
+                eval_results["register_accuracy"]
+            )
 
             if verbose:
                 # Beautiful epoch summary with better formatting
-                print(f"\n{'='*80}")
-                print(f"📊 EPOCH {epoch+1}/{self.config.epochs} SUMMARY")
-                print(f"{'='*80}")
-                
+                print(f"\n{'=' * 80}")
+                print(f"📊 EPOCH {epoch + 1}/{self.config.epochs} SUMMARY")
+                print(f"{'=' * 80}")
+
                 # Training metrics
                 print("\n🔥 Training:")
                 print(f"   Overall Loss:         {train_loss:.4f}")
@@ -1967,42 +2230,58 @@ class Trainer:
                 print(f"   ├─ Gender:            {train_gender_loss:.4f}")
                 print(f"   ├─ Grammaticality:    {train_grammaticality_loss:.4f}")
                 print(f"   └─ Register:          {train_register_loss:.4f}")
-                
+
                 # Validation metrics
                 print("\n✅ Validation:")
                 print(f"   Overall Loss:         {eval_results['loss']:.4f}")
                 print(f"   ├─ Formality:         {eval_results['formality_loss']:.4f}")
                 print(f"   ├─ Gender:            {eval_results['gender_loss']:.4f}")
-                print(f"   ├─ Grammaticality:    {eval_results['grammaticality_loss']:.4f}")
+                print(
+                    f"   ├─ Grammaticality:    {eval_results['grammaticality_loss']:.4f}"
+                )
                 print(f"   └─ Register:          {eval_results['register_loss']:.4f}")
-                
+
                 # Accuracy metrics (as percentages)
                 print("\n🎯 Accuracy:")
-                print(f"   Formality (Pragmatic): {eval_results['formality_accuracy']*100:6.2f}%")
-                print(f"   Formality (Value MSE): {eval_results['formality_value_mse']:.4f}")
-                print(f"   Gender (Pragmatic):   {eval_results['gender_pragmatic_accuracy']*100:6.2f}%")
-                print(f"   Gender (Value MSE):   {eval_results['gender_value_mse']:.4f}")
-                print(f"   Grammaticality:       {eval_results['grammaticality_accuracy']*100:6.2f}%")
-                print(f"   Register:             {eval_results['register_accuracy']*100:6.2f}%")
-                
+                print(
+                    f"   Formality (Pragmatic): {eval_results['formality_accuracy'] * 100:6.2f}%"
+                )
+                print(
+                    f"   Formality (Value MSE): {eval_results['formality_value_mse']:.4f}"
+                )
+                print(
+                    f"   Gender (Pragmatic):   {eval_results['gender_pragmatic_accuracy'] * 100:6.2f}%"
+                )
+                print(
+                    f"   Gender (Value MSE):   {eval_results['gender_value_mse']:.4f}"
+                )
+                print(
+                    f"   Grammaticality:       {eval_results['grammaticality_accuracy'] * 100:6.2f}%"
+                )
+                print(
+                    f"   Register:             {eval_results['register_accuracy'] * 100:6.2f}%"
+                )
+
                 # Learning rates
-                enc_lr = self.optimizer.param_groups[0]['lr']
-                cls_lr = self.optimizer.param_groups[1]['lr']
+                enc_lr = self.optimizer.param_groups[0]["lr"]
+                cls_lr = self.optimizer.param_groups[1]["lr"]
                 print("\n📉 Learning Rates:")
                 print(f"   Encoder:              {enc_lr:.2e}")
                 print(f"   Classifier:           {cls_lr:.2e}")
 
             # Early stopping
-            is_best_epoch = eval_results['loss'] < self.best_val_loss
+            is_best_epoch = eval_results["loss"] < self.best_val_loss
             if is_best_epoch:
-                self.best_val_loss = eval_results['loss']
+                self.best_val_loss = eval_results["loss"]
                 self.patience_counter = 0
-                self.best_state = {k: v.cpu().clone() for k, v in self.model.state_dict().items()}
+                self.best_state = {
+                    k: v.cpu().clone() for k, v in self.model.state_dict().items()
+                }
             else:
                 self.patience_counter += 1
                 if self.patience_counter >= self.config.patience:
                     if verbose:
-                        print(f"Early stopping at epoch {epoch+1}")
+                        print(f"Early stopping at epoch {epoch + 1}")
                     break
 
             # Save checkpoint after each epoch
@@ -2036,8 +2315,9 @@ class Trainer:
 
         return self.history
 
-
-    def restore_from_checkpoint(self, checkpoint: Dict[str, Any], reset_optimizer: bool = False) -> None:
+    def restore_from_checkpoint(
+        self, checkpoint: Dict[str, Any], reset_optimizer: bool = False
+    ) -> None:
         """Restore training state from checkpoint.
 
         Args:
@@ -2045,20 +2325,22 @@ class Trainer:
             reset_optimizer: If True, do not load optimizer/scheduler state (useful if model architecture changed)
         """
         if not reset_optimizer:
-            self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-            self.scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+            self.optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
+            self.scheduler.load_state_dict(checkpoint["scheduler_state_dict"])
         else:
-            print("  Note: Resetting optimizer and scheduler state due to model architecture change (vocabulary expansion)")
-        
-        self.history = checkpoint['history']
-        self.best_val_loss = checkpoint['best_val_loss']
-        self.patience_counter = checkpoint['patience_counter']
+            print(
+                "  Note: Resetting optimizer and scheduler state due to model architecture change (vocabulary expansion)"
+            )
+
+        self.history = checkpoint["history"]
+        self.best_val_loss = checkpoint["best_val_loss"]
+        self.patience_counter = checkpoint["patience_counter"]
         if reset_optimizer:
             self.best_state = None
             print("  Note: Cleared best_state due to architecture change")
         else:
-            self.best_state = checkpoint['best_state']
-        self.start_epoch = checkpoint['epoch'] + 1  # Resume from next epoch
+            self.best_state = checkpoint["best_state"]
+        self.start_epoch = checkpoint["epoch"] + 1  # Resume from next epoch
 
         print(f"Restored training state from epoch {checkpoint['epoch'] + 1}")
         print(f"  Best val loss: {self.best_val_loss:.4f}")
@@ -2085,48 +2367,57 @@ def save_model(
              (requires PyTorch 2.1+, experimental)
     """
     import os
+
     os.makedirs(path, exist_ok=True)
 
     # Save model weights
     if fp8:
         # Convert to float8 for smallest model size
-        if not hasattr(torch, 'float8_e4m3fn'):
+        if not hasattr(torch, "float8_e4m3fn"):
             raise RuntimeError("FP8 requires PyTorch 2.1+. Use --fp16 instead.")
         # MPS doesn not support float8, so move to CPU first
-        state_dict = {k: v.cpu().to(torch.float8_e4m3fn) if v.dtype == torch.float32 else v.cpu()
-                      for k, v in model.state_dict().items()}
-        torch.save(state_dict, os.path.join(path, 'model.pt'))
+        state_dict = {
+            k: v.cpu().to(torch.float8_e4m3fn) if v.dtype == torch.float32 else v.cpu()
+            for k, v in model.state_dict().items()
+        }
+        torch.save(state_dict, os.path.join(path, "model.pt"))
     elif fp16:
         # Convert to float16 for smaller model size
-        state_dict = {k: v.cpu().half() if v.dtype == torch.float32 else v.cpu()
-                      for k, v in model.state_dict().items()}
-        torch.save(state_dict, os.path.join(path, 'model.pt'))
+        state_dict = {
+            k: v.cpu().half() if v.dtype == torch.float32 else v.cpu()
+            for k, v in model.state_dict().items()
+        }
+        torch.save(state_dict, os.path.join(path, "model.pt"))
     else:
         state_dict = {k: v.cpu() for k, v in model.state_dict().items()}
-        torch.save(state_dict, os.path.join(path, 'model.pt'))
+        torch.save(state_dict, os.path.join(path, "model.pt"))
 
     # Save tokenizer
-    tokenizer.save(os.path.join(path, 'tokenizer.json'))
+    tokenizer.save(os.path.join(path, "tokenizer.json"))
 
     # Save config
     config = config or model.config
-    with open(os.path.join(path, 'config.json'), 'w') as f:
+    with open(os.path.join(path, "config.json"), "w") as f:
         json.dump(config.to_dict(), f, indent=2)
 
     # Save label mappings
     formality_label_map = {k.value: v for k, v in FORMALITY_LABEL_TO_ID.items()}
     gender_label_map = {k.value: v for k, v in GENDER_LABEL_TO_ID.items()}
-    grammaticality_label_map = {'agrammatic': 0, 'grammatic': 1}
-    with open(os.path.join(path, 'labels.json'), 'w') as f:
-        json.dump({
-            'formality': formality_label_map,
-            'gender': gender_label_map,
-            'grammaticality': grammaticality_label_map,
-        }, f, indent=2)
+    grammaticality_label_map = {"agrammatic": 0, "grammatic": 1}
+    with open(os.path.join(path, "labels.json"), "w") as f:
+        json.dump(
+            {
+                "formality": formality_label_map,
+                "gender": gender_label_map,
+                "grammaticality": grammaticality_label_map,
+            },
+            f,
+            indent=2,
+        )
 
     # Mark as feature-based multi-task model
-    with open(os.path.join(path, 'model_type.txt'), 'w') as f:
-        f.write('style-multitask')
+    with open(os.path.join(path, "model_type.txt"), "w") as f:
+        f.write("style-multitask")
 
 
 def save_checkpoint(
@@ -2164,49 +2455,52 @@ def save_checkpoint(
         return
 
     import os
+
     os.makedirs(path, exist_ok=True)
 
     checkpoint = {
-        'epoch': epoch,
-        'model_state_dict': model.state_dict(),
-        'optimizer_state_dict': optimizer.state_dict(),
-        'scheduler_state_dict': scheduler.state_dict(),
-        'history': history,
-        'best_val_loss': best_val_loss,
-        'patience_counter': patience_counter,
-        'best_state': best_state,
-        'args': {
-            'data': args.data,
-            'agrammatic_data': args.agrammatic_data,
-            'epochs': args.epochs,
-            'batch_size': args.batch_size,
-            'embed_dim': args.embed_dim,
-            'hidden_dim': args.hidden_dim,
-            'num_layers': args.num_layers,
-            'num_heads': args.num_heads,
-            'learning_rate': args.learning_rate,
-            'encoder_lr_factor': args.encoder_lr_factor,
-            'formality_weight': args.formality_weight,
-            'gender_weight': args.gender_weight,
-            'grammaticality_weight': args.grammaticality_weight,
-            'fp16': args.fp16,
-            'fp8': args.fp8,
-            'exclude_features': args.exclude_features,
-            'percent': args.percent,
+        "epoch": epoch,
+        "model_state_dict": model.state_dict(),
+        "optimizer_state_dict": optimizer.state_dict(),
+        "scheduler_state_dict": scheduler.state_dict(),
+        "history": history,
+        "best_val_loss": best_val_loss,
+        "patience_counter": patience_counter,
+        "best_state": best_state,
+        "args": {
+            "data": args.data,
+            "agrammatic_data": args.agrammatic_data,
+            "epochs": args.epochs,
+            "batch_size": args.batch_size,
+            "embed_dim": args.embed_dim,
+            "hidden_dim": args.hidden_dim,
+            "num_layers": args.num_layers,
+            "num_heads": args.num_heads,
+            "learning_rate": args.learning_rate,
+            "encoder_lr_factor": args.encoder_lr_factor,
+            "formality_weight": args.formality_weight,
+            "gender_weight": args.gender_weight,
+            "grammaticality_weight": args.grammaticality_weight,
+            "fp16": args.fp16,
+            "fp8": args.fp8,
+            "exclude_features": args.exclude_features,
+            "percent": args.percent,
         },
     }
-    torch.save(checkpoint, os.path.join(path, 'checkpoint.pt'))
+    torch.save(checkpoint, os.path.join(path, "checkpoint.pt"))
 
     # Also save tokenizer and config (needed to reconstruct model)
-    tokenizer.save(os.path.join(path, 'tokenizer.json'))
-    with open(os.path.join(path, 'config.json'), 'w') as f:
+    tokenizer.save(os.path.join(path, "tokenizer.json"))
+    with open(os.path.join(path, "config.json"), "w") as f:
         json.dump(model_config.to_dict(), f, indent=2)
 
     if is_best:
-        print(f"\n⭐ NEW BEST MODEL! Checkpoint saved at epoch {epoch + 1} (val_loss={best_val_loss:.4f})")
+        print(
+            f"\n⭐ NEW BEST MODEL! Checkpoint saved at epoch {epoch + 1} (val_loss={best_val_loss:.4f})"
+        )
     else:
         print(f"\n💾 Checkpoint saved at epoch {epoch + 1}")
-    print(f"{'='*80}\n")
+    print(f"{'=' * 80}\n")
 
 
 def load_checkpoint(
@@ -2226,43 +2520,47 @@ def load_checkpoint(
     """
     import os
 
-    checkpoint_path = os.path.join(path, 'checkpoint.pt')
+    checkpoint_path = os.path.join(path, "checkpoint.pt")
     if not os.path.exists(checkpoint_path):
         raise FileNotFoundError(f"No checkpoint found at {checkpoint_path}")
 
     # Load config and tokenizer
-    with open(os.path.join(path, 'config.json'), 'r') as f:
+    with open(os.path.join(path, "config.json"), "r") as f:
         config_dict = json.load(f)
     config = ModelConfig.from_dict(config_dict)
-    tokenizer = Tokenizer.load(os.path.join(path, 'tokenizer.json'))
+    tokenizer = Tokenizer.load(os.path.join(path, "tokenizer.json"))
 
     # Load checkpoint
-    checkpoint = torch.load(checkpoint_path, map_location=device or 'cpu')
+    checkpoint = torch.load(checkpoint_path, map_location=device or "cpu")
 
     # Reconstruct model
     model = StyleClassifier(config)
 
     # Filter out MLM head weights (present when model was trained with --pretrain-mlm)
-    model_state = checkpoint['model_state_dict']
+    model_state = checkpoint["model_state_dict"]
     # Strip 'module.' prefix if present (from DDP training)
-    model_state = {k.replace('module.', ''): v for k, v in model_state.items()}
-    
-    model_state = {k: v for k, v in model_state.items() if not k.startswith('mlm_head.')}
-    
+    model_state = {k.replace("module.", ""): v for k, v in model_state.items()}
+
+    model_state = {
+        k: v for k, v in model_state.items() if not k.startswith("mlm_head.")
+    }
+
     try:
         missing_keys, unexpected_keys = model.load_state_dict(model_state, strict=False)
     except RuntimeError as e:
         if "size mismatch" in str(e):
-            print("WARNING: Size mismatch detected (likely due to feature set changes). Reloading with loose matching.")
+            print(
+                "WARNING: Size mismatch detected (likely due to feature set changes). Reloading with loose matching."
+            )
             # Filter out incompatible keys by attempting to load one by one or filtering based on logic?
             # Easiest is to filter out keys that cause size mismatch.
             # But load_state_dict doesn't return the specific mismatching keys in a nice way unless we catch the error.
             # Actually, the best way: iterate over model_state, check shape against model.state_dict().
-            
+
             compatible_state = {}
             current_state = model.state_dict()
             mismatched_keys = []
-            
+
             for k, v in model_state.items():
                 if k in current_state:
                     if v.shape == current_state[k].shape:
@@ -2271,15 +2569,17 @@ def load_checkpoint(
                         mismatched_keys.append(k)
                 else:
                     # Unexpected keys will be handled by strict=False anyway
-                    compatible_state[k] = v 
-            
+                    compatible_state[k] = v
+
             print(f"Skipping mismatched keys: {mismatched_keys}")
-            missing_keys, unexpected_keys = model.load_state_dict(compatible_state, strict=False)
-            
+            missing_keys, unexpected_keys = model.load_state_dict(
+                compatible_state, strict=False
+            )
+
             # Since we dropped keys, they will be in missing_keys now.
         else:
             raise e
-    
+
     if missing_keys:
         print(f"WARNING: Missing keys in state_dict: {missing_keys}")
     if unexpected_keys:
@@ -2291,70 +2591,127 @@ def load_checkpoint(
     return model, tokenizer, checkpoint, bool(missing_keys or unexpected_keys)
 
 
-
-
-
 if __name__ == "__main__":
     if os.environ.get("RANK", "0") == "0":
         print("Starting training script...", flush=True)
     import argparse
 
-    parser = argparse.ArgumentParser(description="Train style classifier (formality + gender)")
-    parser.add_argument("--max-samples", type=int, default=None,
-                        help="Maximum samples to use (for testing)")
-    parser.add_argument("--epochs", type=int, default=None,
-                        help="Number of training epochs")
-    parser.add_argument("--batch-size", type=int, default=32,
-                        help="Batch size")
-    parser.add_argument("--embed-dim", type=int, default=192,
-                        help="Model dimension (d_model)")
-    parser.add_argument("--hidden-dim", type=int, default=384,
-                        help="Hidden layer dimension")
-    parser.add_argument("--num-layers", type=int, default=3,
-                        help="Number of encoder layers")
-    parser.add_argument("--num-heads", type=int, default=6,
-                        help="Number of attention heads")
-    parser.add_argument("--pretrain-mlm", action="store_true",
-                        help="Pre-train with masked language modeling")
-    parser.add_argument("--pretrain-epochs", type=int, default=5,
-                        help="MLM pretraining epochs")
-    parser.add_argument("--encoder-lr-factor", type=float, default=0.1,
-                        help="Learning rate factor for encoder during fine-tuning")
-    parser.add_argument("--learning-rate", type=float, default=1e-4,
-                        help="Base learning rate")
-    parser.add_argument("--formality-weight", type=float, default=1.0,
-                        help="Loss weight for formality task")
-    parser.add_argument("--gender-weight", type=float, default=1.0,
-                        help="Loss weight for gender task")
-    parser.add_argument("--grammaticality-weight", type=float, default=1.0,
-                        help="Loss weight for grammaticality task")
-    parser.add_argument("--exclude-features", type=str, default="",
-                        help="Comma-separated list of features to exclude (for ablation study). "
-                             f"Valid: {','.join(ALL_FEATURE_FIELDS)}")
-    parser.add_argument("--fp16", action="store_true", default=None,
-                        help="Save model in float16 precision (half size, minimal accuracy loss)")
-    parser.add_argument("--fp8", action="store_true", default=None,
-                        help="Save model in float8 precision (quarter size, requires PyTorch 2.1+). Default is True unless --fp16 is specified.")
-    parser.add_argument("--resume", action="store_true",
-                        help="Resume training from checkpoint in output directory")
-    parser.add_argument("--retrain", action="store_true",
-                        help="Retrain from scratch using parameters from existing checkpoint")
-    parser.add_argument("--percent", type=float, default=None,
-                        help="Percentage of data to use for training (1-100)")
-    parser.add_argument("--grad-accum-steps", type=int, default=1,
-                        help="Gradient accumulation steps for larger effective batch size")
-    parser.add_argument("--num-workers", type=int, default=None,
-                        help="Number of data loader workers")
-    parser.add_argument("--local-rank", type=int, default=0,
-                        help="Local rank for distributed training (usually passed by torchrun)")
-    parser.add_argument("--preprocess-only", action="store_true",
-                        help="Exit after loading and caching data (for multi-stage pipelines)")
+    parser = argparse.ArgumentParser(
+        description="Train style classifier (formality + gender)"
+    )
+    parser.add_argument(
+        "--max-samples",
+        type=int,
+        default=None,
+        help="Maximum samples to use (for testing)",
+    )
+    parser.add_argument(
+        "--epochs", type=int, default=None, help="Number of training epochs"
+    )
+    parser.add_argument("--batch-size", type=int, default=32, help="Batch size")
+    parser.add_argument(
+        "--embed-dim", type=int, default=192, help="Model dimension (d_model)"
+    )
+    parser.add_argument(
+        "--hidden-dim", type=int, default=384, help="Hidden layer dimension"
+    )
+    parser.add_argument(
+        "--num-layers", type=int, default=3, help="Number of encoder layers"
+    )
+    parser.add_argument(
+        "--num-heads", type=int, default=6, help="Number of attention heads"
+    )
+    parser.add_argument(
+        "--pretrain-mlm",
+        action="store_true",
+        help="Pre-train with masked language modeling",
+    )
+    parser.add_argument(
+        "--pretrain-epochs", type=int, default=5, help="MLM pretraining epochs"
+    )
+    parser.add_argument(
+        "--encoder-lr-factor",
+        type=float,
+        default=0.1,
+        help="Learning rate factor for encoder during fine-tuning",
+    )
+    parser.add_argument(
+        "--learning-rate", type=float, default=1e-4, help="Base learning rate"
+    )
+    parser.add_argument(
+        "--formality-weight",
+        type=float,
+        default=1.0,
+        help="Loss weight for formality task",
+    )
+    parser.add_argument(
+        "--gender-weight", type=float, default=1.0, help="Loss weight for gender task"
+    )
+    parser.add_argument(
+        "--grammaticality-weight",
+        type=float,
+        default=1.0,
+        help="Loss weight for grammaticality task",
+    )
+    parser.add_argument(
+        "--exclude-features",
+        type=str,
+        default="",
+        help="Comma-separated list of features to exclude (for ablation study). "
+        f"Valid: {','.join(ALL_FEATURE_FIELDS)}",
+    )
+    parser.add_argument(
+        "--fp16",
+        action="store_true",
+        default=None,
+        help="Save model in float16 precision (half size, minimal accuracy loss)",
+    )
+    parser.add_argument(
+        "--fp8",
+        action="store_true",
+        default=None,
+        help="Save model in float8 precision (quarter size, requires PyTorch 2.1+). Default is True unless --fp16 is specified.",
+    )
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Resume training from checkpoint in output directory",
+    )
+    parser.add_argument(
+        "--retrain",
+        action="store_true",
+        help="Retrain from scratch using parameters from existing checkpoint",
+    )
+    parser.add_argument(
+        "--percent",
+        type=float,
+        default=None,
+        help="Percentage of data to use for training (1-100)",
+    )
+    parser.add_argument(
+        "--grad-accum-steps",
+        type=int,
+        default=1,
+        help="Gradient accumulation steps for larger effective batch size",
+    )
+    parser.add_argument(
+        "--num-workers", type=int, default=None, help="Number of data loader workers"
+    )
+    parser.add_argument(
+        "--local-rank",
+        type=int,
+        default=0,
+        help="Local rank for distributed training (usually passed by torchrun)",
+    )
+    parser.add_argument(
+        "--preprocess-only",
+        action="store_true",
+        help="Exit after loading and caching data (for multi-stage pipelines)",
+    )
     # parser.add_argument("--cache-dir", type=str, default=".cache", help="Base directory for cache (default: .cache)") # Removed
 
-
-
     args = parser.parse_args()
-    
+
     # Resolve and inject paths from locations.py into args namespace
     cache_dir = locations.get_cache_dir()
     args.data = os.path.join(cache_dir, "grammatic_combined.tsv")
@@ -2362,18 +2719,18 @@ if __name__ == "__main__":
     args.output = locations.get_style_output_dir()
     args.support_dir = locations.get_style_support_dir()
 
-    timings['args_parsing'] = time.time() - script_start_time
+    timings["args_parsing"] = time.time() - script_start_time
 
     if is_main_process():
         print("Setting up distributed training...", flush=True)
     # Setup distributed training
     rank, world_size, local_rank = setup_distributed()
-    # If args.local_rank is set by argument (torchrun often sets this), prefer it, 
+    # If args.local_rank is set by argument (torchrun often sets this), prefer it,
     # but our helper checks env vars which torchrun also sets.
-    
+
     if is_main_process():
         print("Device initialization...", flush=True)
-    
+
     # Log device information
     if is_main_process():
         print("  Probing CUDA...", flush=True)
@@ -2383,7 +2740,9 @@ if __name__ == "__main__":
             print(f"\nDevice:         CUDA ({count} devices available)")
             print(f"  Name:         {name}")
             if world_size > 1:
-                print(f"  Distributed:  d_model=DDP, {world_size} gpus, global_batch={args.batch_size * world_size * args.grad_accum_steps}")
+                print(
+                    f"  Distributed:  d_model=DDP, {world_size} gpus, global_batch={args.batch_size * world_size * args.grad_accum_steps}"
+                )
                 print(f"  Mixed Prec:   {'On' if args.fp16 else 'Off'}")
         else:
             print("  Probing MPS...", flush=True)
@@ -2400,20 +2759,19 @@ if __name__ == "__main__":
         if os.environ.get("DEBUG"):
             print(f"Process started: Rank {rank}/{world_size}")
 
-
     # Handle resume from checkpoint or retrain logic
     checkpoint = None
     if args.resume or args.retrain:
-        checkpoint_path = os.path.join(args.support_dir, 'checkpoint.pt')
+        checkpoint_path = os.path.join(args.support_dir, "checkpoint.pt")
         if os.path.exists(checkpoint_path):
             # First, peek at saved args to restore feature exclusion before loading model
-            checkpoint_data = torch.load(checkpoint_path, map_location='cpu')
-            saved_args = checkpoint_data['args']
+            checkpoint_data = torch.load(checkpoint_path, map_location="cpu")
+            saved_args = checkpoint_data["args"]
 
             # Restore feature exclusion BEFORE loading model
-            saved_exclude = saved_args.get('exclude_features', '')
+            saved_exclude = saved_args.get("exclude_features", "")
             if saved_exclude:
-                excluded = [f.strip() for f in saved_exclude.split(',') if f.strip()]
+                excluded = [f.strip() for f in saved_exclude.split(",") if f.strip()]
                 set_excluded_features(excluded)
                 if is_main_process():
                     print(f"Restored feature exclusion: {excluded}")
@@ -2423,10 +2781,14 @@ if __name__ == "__main__":
             if args.resume:
                 if is_main_process():
                     print(f"Resuming from checkpoint in {args.support_dir}...")
-                model, tokenizer, checkpoint, strict_load_failed = load_checkpoint(args.support_dir)
+                model, tokenizer, checkpoint, strict_load_failed = load_checkpoint(
+                    args.support_dir
+                )
             else:
                 if is_main_process():
-                    print(f"Retraining from scratch using parameters from {args.support_dir}...")
+                    print(
+                        f"Retraining from scratch using parameters from {args.support_dir}..."
+                    )
                 pass
 
             # Override args with saved args (but keep epochs from command line to allow extending)
@@ -2451,52 +2813,54 @@ if __name__ == "__main__":
             # Note: We do NOT restore data paths (data, agrammatic_data) to allow
             # resuming training even if data files have moved or been reorganized, provided
             # valid paths are passed via command line.
-            args.embed_dim = saved_args['embed_dim']
-            args.hidden_dim = saved_args['hidden_dim']
-            args.num_layers = saved_args['num_layers']
-            args.num_heads = saved_args['num_heads']
-            args.learning_rate = saved_args['learning_rate']
-            args.encoder_lr_factor = saved_args['encoder_lr_factor']
-            args.formality_weight = saved_args['formality_weight']
-            args.gender_weight = saved_args['gender_weight']
-            args.grammaticality_weight = saved_args['grammaticality_weight']
-            args.grammaticality_weight = saved_args['grammaticality_weight']
+            args.embed_dim = saved_args["embed_dim"]
+            args.hidden_dim = saved_args["hidden_dim"]
+            args.num_layers = saved_args["num_layers"]
+            args.num_heads = saved_args["num_heads"]
+            args.learning_rate = saved_args["learning_rate"]
+            args.encoder_lr_factor = saved_args["encoder_lr_factor"]
+            args.formality_weight = saved_args["formality_weight"]
+            args.gender_weight = saved_args["gender_weight"]
+            args.grammaticality_weight = saved_args["grammaticality_weight"]
+            args.grammaticality_weight = saved_args["grammaticality_weight"]
             args.exclude_features = saved_exclude
-            
+
             # Sticky flags: restore only if not explicitly set on command line
             if args.percent is None:
-                args.percent = saved_args.get('percent', None)
+                args.percent = saved_args.get("percent", None)
                 if args.percent is not None:
                     print(f"  Restored flag: --percent {args.percent}")
 
             # Restore epochs if not explicitly set on command line
             if args.epochs is None:
-                args.epochs = saved_args.get('epochs', 20)
+                args.epochs = saved_args.get("epochs", 20)
                 print(f"  Restored flag: --epochs {args.epochs}")
-            
+
             # Now print the resume/retrain info with correct epochs
             if args.resume and checkpoint is not None:
-                print(f"  Resuming from epoch {checkpoint['epoch'] + 1}, training to epoch {args.epochs}")
+                print(
+                    f"  Resuming from epoch {checkpoint['epoch'] + 1}, training to epoch {args.epochs}"
+                )
             else:
                 print(f"  Training from epoch 0 to {args.epochs}")
-            
+
             # Sticky flags: restore only if not explicitly set on command line (i.e. None)
             if args.fp16 is None:
-                args.fp16 = saved_args.get('fp16', False)
+                args.fp16 = saved_args.get("fp16", False)
                 if args.fp16:
                     print("  Restored flag: --fp16")
             elif args.fp16 is False:
-                 # argparse 'store_true' with default=None sets False if not provided?
-                 # No, 'store_true' only stores True if present.
-                 # If default is None, and flag is absent, it remains None.
-                 # Wait, let's verify argparse behavior.
-                 # parser.add_argument('--foo', action='store_true', default=None)
-                 # args = parser.parse_args([]) -> args.foo is None
-                 # args = parser.parse_args(['--foo']) -> args.foo is True
-                 pass
+                # argparse 'store_true' with default=None sets False if not provided?
+                # No, 'store_true' only stores True if present.
+                # If default is None, and flag is absent, it remains None.
+                # Wait, let's verify argparse behavior.
+                # parser.add_argument('--foo', action='store_true', default=None)
+                # args = parser.parse_args([]) -> args.foo is None
+                # args = parser.parse_args(['--foo']) -> args.foo is True
+                pass
 
             if args.fp8 is None:
-                args.fp8 = saved_args.get('fp8', False)
+                args.fp8 = saved_args.get("fp8", False)
                 if args.fp8:
                     print("  Restored flag: --fp8")
 
@@ -2511,7 +2875,6 @@ if __name__ == "__main__":
                     args.fp8 = False
 
         else:
-
             print(f"No checkpoint found at {checkpoint_path}, starting fresh training")
             args.resume = False
             # args.retrain = False # If no checkpoint, retrain just means train normally
@@ -2524,15 +2887,14 @@ if __name__ == "__main__":
             args.fp8 = True
         else:
             args.fp8 = False
-    
+
     # Handle epochs default if not set via CLI or restored from checkpoint
     if args.epochs is None:
         args.epochs = 20
 
-
     # Handle feature exclusion (for new training, not resume)
     if args.exclude_features and not checkpoint:
-        excluded = [f.strip() for f in args.exclude_features.split(',') if f.strip()]
+        excluded = [f.strip() for f in args.exclude_features.split(",") if f.strip()]
         set_excluded_features(excluded)
         if is_main_process():
             print(f"Feature ablation: excluding {excluded}")
@@ -2575,10 +2937,10 @@ if __name__ == "__main__":
                     max_samples=args.max_samples,
                     sample_ratio=args.percent / 100.0 if args.percent else 1.0,
                 )
-            
+
             if dist.is_available() and dist.is_initialized():
                 dist.barrier()
-                
+
             if not is_main_process():
                 dataset = StyleDataset.from_multiple_tsv(
                     data_files,
@@ -2598,10 +2960,10 @@ if __name__ == "__main__":
                     max_samples=args.max_samples,
                     sample_ratio=args.percent / 100.0 if args.percent else 1.0,
                 )
-            
+
             if dist.is_available() and dist.is_initialized():
                 dist.barrier()
-                
+
             if not is_main_process():
                 dataset = StyleDataset.from_tsv(
                     data_files[0],
@@ -2616,22 +2978,26 @@ if __name__ == "__main__":
 
         # Check if vocabulary grew and resize embeddings if needed
         new_vocab_sizes = tokenizer.get_vocab_sizes()
-        vocab_grew = any(new_vocab_sizes[f] > old_vocab_sizes[f] for f in FEATURE_FIELDS)
+        vocab_grew = any(
+            new_vocab_sizes[f] > old_vocab_sizes[f] for f in FEATURE_FIELDS
+        )
 
         if vocab_grew:
             print("\nResizing embeddings for new vocabulary...")
             resized = model.resize_embeddings(new_vocab_sizes)
             for f_name, count in resized.items():
                 if count > 0:
-                    print(f"  {f_name}: +{count} tokens ({old_vocab_sizes[f_name]} -> {new_vocab_sizes[f_name]})")
+                    print(
+                        f"  {f_name}: +{count} tokens ({old_vocab_sizes[f_name]} -> {new_vocab_sizes[f_name]})"
+                    )
 
             # Update model config with new vocab sizes
             model_config = model.config
         else:
             print("\nNo new vocabulary tokens found.")
             model_config = model.config
-        
-        timings['data_loading'] = time.time() - t_data_start
+
+        timings["data_loading"] = time.time() - t_data_start
 
     elif args.pretrain_mlm:
         # MLM pretraining should only use grammatical sentences
@@ -2639,19 +3005,24 @@ if __name__ == "__main__":
         # Agrammatic data is only used during fine-tuning for classification
         grammatic_files = [args.data]  # Only primary data file (grammatical)
         print("Loading grammatical data for MLM pretraining...")
-        print("  (agrammatic data excluded from pretraining, will be used in fine-tuning)")
+        print(
+            "  (agrammatic data excluded from pretraining, will be used in fine-tuning)"
+        )
         tokenizer = Tokenizer()
-        
+
         # Pre-load vocabulary from labeled cache (created by label.py)
         from kotogram import locations
+
         cache_dir = locations.get_style_dataset_cache_dir()
-        vocab_path = os.path.join(cache_dir, 'vocab.json')
+        vocab_path = os.path.join(cache_dir, "vocab.json")
         if os.path.exists(vocab_path):
             StyleDataset._load_vocab(vocab_path, tokenizer)
             print(f"  Loaded vocabulary from {vocab_path}")
         else:
-            raise ValueError(f"Vocabulary not found at {vocab_path}. Run: ./train_style.sh --label")
-        
+            raise ValueError(
+                f"Vocabulary not found at {vocab_path}. Run: ./train_style.sh --label"
+            )
+
         if is_main_process():
             unlabeled_dataset = StyleDataset.from_tsv(
                 grammatic_files[0],
@@ -2662,10 +3033,10 @@ if __name__ == "__main__":
                 sample_ratio=args.percent / 100.0 if args.percent else 1.0,
                 use_cache=False,  # Skip cache for unlabeled MLM data
             )
-        
+
         if dist.is_available() and dist.is_initialized():
             dist.barrier(device_ids=[local_rank])
-            
+
         if not is_main_process():
             unlabeled_dataset = StyleDataset.from_tsv(
                 grammatic_files[0],
@@ -2679,7 +3050,11 @@ if __name__ == "__main__":
         # Note: tokenizer is frozen after from_tsv
 
         # Model config (vocab is now fixed)
-        excluded = [f.strip() for f in args.exclude_features.split(',') if f.strip()] if args.exclude_features else []
+        excluded = (
+            [f.strip() for f in args.exclude_features.split(",") if f.strip()]
+            if args.exclude_features
+            else []
+        )
         model_config = ModelConfig(
             vocab_sizes=tokenizer.get_vocab_sizes(),
             num_formality_pragmatic_classes=NUM_FORMALITY_PRAGMATIC_CLASSES,
@@ -2699,16 +3074,20 @@ if __name__ == "__main__":
         if not args.preprocess_only:
             if is_main_process():
                 print("\nStarting MLM pretraining on unlabeled data...")
-            
+
             pretrain_config = TrainerConfig(
                 epochs=args.pretrain_epochs,
                 batch_size=args.batch_size,
                 learning_rate=args.learning_rate,
-                device="cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu",
+                device="cuda"
+                if torch.cuda.is_available()
+                else "mps"
+                if torch.backends.mps.is_available()
+                else "cpu",
                 use_amp=args.fp16 if args.fp16 is not None else False,
                 local_rank=local_rank,
                 world_size=world_size,
-                grad_accum_steps=args.grad_accum_steps
+                grad_accum_steps=args.grad_accum_steps,
             )
             mlm_trainer = MLMTrainer(model, unlabeled_dataset, pretrain_config)
             mlm_trainer.train(epochs=args.pretrain_epochs, verbose=is_main_process())
@@ -2734,10 +3113,10 @@ if __name__ == "__main__":
                     grammaticality_labels=grammaticality_labels,
                     sample_ratio=args.percent / 100.0 if args.percent else 1.0,
                 )
-            
+
             if dist.is_available() and dist.is_initialized():
                 dist.barrier(device_ids=[local_rank])
-                
+
             if not is_main_process():
                 labeled_dataset = StyleDataset.from_multiple_tsv(
                     data_files,
@@ -2758,10 +3137,10 @@ if __name__ == "__main__":
                     labeled=True,
                     sample_ratio=args.percent / 100.0 if args.percent else 1.0,
                 )
-            
+
             if dist.is_available() and dist.is_initialized():
                 dist.barrier(device_ids=[local_rank])
-                
+
             if not is_main_process():
                 labeled_dataset = StyleDataset.from_tsv(
                     args.data,
@@ -2775,14 +3154,18 @@ if __name__ == "__main__":
 
         # Check if vocabulary grew and resize embeddings if needed
         new_vocab_sizes = tokenizer.get_vocab_sizes()
-        vocab_grew = any(new_vocab_sizes[f] > old_vocab_sizes[f] for f in FEATURE_FIELDS)
+        vocab_grew = any(
+            new_vocab_sizes[f] > old_vocab_sizes[f] for f in FEATURE_FIELDS
+        )
 
         if vocab_grew:
             print("\nResizing embeddings for expanded vocabulary...")
             resized = model.resize_embeddings(new_vocab_sizes)
             for field_name, count in resized.items():
                 if count > 0:
-                    print(f"  {field_name}: +{count} tokens ({old_vocab_sizes[field_name]} -> {new_vocab_sizes[field_name]})")
+                    print(
+                        f"  {field_name}: +{count} tokens ({old_vocab_sizes[field_name]} -> {new_vocab_sizes[field_name]})"
+                    )
             # Update model config
             model_config = ModelConfig(
                 vocab_sizes=new_vocab_sizes,
@@ -2808,10 +3191,10 @@ if __name__ == "__main__":
                     grammaticality_labels=grammaticality_labels,
                     sample_ratio=args.percent / 100.0 if args.percent else 1.0,
                 )
-            
+
             if dist.is_available() and dist.is_initialized():
                 dist.barrier(device_ids=[local_rank])
-            
+
             if not is_main_process():
                 dataset = StyleDataset.from_multiple_tsv(
                     data_files,
@@ -2830,10 +3213,10 @@ if __name__ == "__main__":
                     verbose=True,
                     sample_ratio=args.percent / 100.0 if args.percent else 1.0,
                 )
-            
+
             if dist.is_available() and dist.is_initialized():
                 dist.barrier(device_ids=[local_rank])
-                
+
             if not is_main_process():
                 dataset = StyleDataset.from_tsv(
                     args.data,
@@ -2843,10 +3226,14 @@ if __name__ == "__main__":
                     sample_ratio=args.percent / 100.0 if args.percent else 1.0,
                 )
         train_data, val_data, test_data = dataset.split()
-        timings['data_loading'] = time.time() - t_data_start
+        timings["data_loading"] = time.time() - t_data_start
 
         # Model config
-        excluded = [f.strip() for f in args.exclude_features.split(',') if f.strip()] if args.exclude_features else []
+        excluded = (
+            [f.strip() for f in args.exclude_features.split(",") if f.strip()]
+            if args.exclude_features
+            else []
+        )
         model_config = ModelConfig(
             vocab_sizes=tokenizer.get_vocab_sizes(),
             num_formality_pragmatic_classes=NUM_FORMALITY_PRAGMATIC_CLASSES,
@@ -2863,7 +3250,7 @@ if __name__ == "__main__":
             print("\nCreating model...")
         t_model_start = time.time()
         model = StyleClassifier(model_config)
-        timings['model_creation'] = time.time() - t_model_start
+        timings["model_creation"] = time.time() - t_model_start
 
     # Preprocessing only mode: Exit after data is loaded and cached
     if args.preprocess_only:
@@ -2873,16 +3260,17 @@ if __name__ == "__main__":
             dist.destroy_process_group()
         sys.exit(0)
 
-
     if is_main_process():
-        print(f"\nSplit: {len(train_data)} train, {len(val_data)} val, {len(test_data)} test")
+        print(
+            f"\nSplit: {len(train_data)} train, {len(val_data)} val, {len(test_data)} test"
+        )
 
     # Supervised training with differential learning rates
     if is_main_process():
         print("\nStarting supervised training...")
-    
+
     # Save timings
-    timings['total_startup'] = time.time() - script_start_time
+    timings["total_startup"] = time.time() - script_start_time
     if is_main_process():
         os.makedirs(".cache/style", exist_ok=True)
         timing_path = ".cache/style/timing.yml"
@@ -2890,9 +3278,9 @@ if __name__ == "__main__":
         if os.path.exists(timing_path):
             with open(timing_path, "r") as f:
                 existing_timings = yaml.safe_load(f) or {}
-        
+
         existing_timings.update(timings)
-        
+
         with open(timing_path, "w") as f:
             yaml.dump(existing_timings, f)
         print(f"Startup timings saved to {timing_path}")
@@ -2904,23 +3292,32 @@ if __name__ == "__main__":
         formality_loss_weight=args.formality_weight,
         gender_loss_weight=args.gender_weight,
         grammaticality_loss_weight=args.grammaticality_weight,
-        device="cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu",
+        device="cuda"
+        if torch.cuda.is_available()
+        else "mps"
+        if torch.backends.mps.is_available()
+        else "cpu",
         use_amp=args.fp16 if args.fp16 is not None else False,
         local_rank=local_rank,
         world_size=world_size,
-        grad_accum_steps=args.grad_accum_steps
+        grad_accum_steps=args.grad_accum_steps,
     )
     # Use smaller LR for encoder if pretrained
     encoder_lr_factor = args.encoder_lr_factor if args.pretrain_mlm else 1.0
     trainer = Trainer(
-        model, train_data, val_data, trainer_config,
+        model,
+        train_data,
+        val_data,
+        trainer_config,
         encoder_lr_factor=encoder_lr_factor,
         support_dir=args.support_dir,
     )
 
     # Restore training state if resuming
     if args.resume and checkpoint is not None:
-        trainer.restore_from_checkpoint(checkpoint, reset_optimizer=vocab_grew or strict_load_failed)
+        trainer.restore_from_checkpoint(
+            checkpoint, reset_optimizer=vocab_grew or strict_load_failed
+        )
 
     history = trainer.train(
         checkpoint_dir=args.support_dir,
@@ -2928,7 +3325,6 @@ if __name__ == "__main__":
         model_config=model_config,
         verbose=is_main_process(),
     )
-
 
     # Evaluate on test set
     print("\nEvaluating on test set...")
@@ -2949,60 +3345,104 @@ if __name__ == "__main__":
     total_gram_acc = 0.0
     total_register_acc = 0.0
     num_batches = 0
-    
+
     with torch.no_grad():
         for batch in test_loader:
-            field_inputs = {k: v.to(device) for k, v in batch.items() if k.startswith('input_ids_')}
-            attention_mask = batch['attention_mask'].to(device)
-            formality_val_targets = batch['formality_value'].to(device)
-            formality_prag_targets = batch['formality_pragmatic'].to(device)
-            gender_value_targets = batch['gender_value'].to(device)
-            gender_prag_targets = batch['gender_pragmatic'].to(device)
-            grammaticality_labels = batch['grammaticality_labels'].to(device)
-            register_labels = batch['register_labels'].to(device)
-            
-            formality_val_preds, formality_prag_logits, gender_val_preds, gender_prag_logits, grammaticality_logits, register_logits = model(field_inputs, attention_mask)
-            
+            field_inputs = {
+                k: v.to(device) for k, v in batch.items() if k.startswith("input_ids_")
+            }
+            attention_mask = batch["attention_mask"].to(device)
+            formality_val_targets = batch["formality_value"].to(device)
+            formality_prag_targets = batch["formality_pragmatic"].to(device)
+            gender_value_targets = batch["gender_value"].to(device)
+            gender_prag_targets = batch["gender_pragmatic"].to(device)
+            grammaticality_labels = batch["grammaticality_labels"].to(device)
+            register_labels = batch["register_labels"].to(device)
+
+            (
+                formality_val_preds,
+                formality_prag_logits,
+                gender_val_preds,
+                gender_prag_logits,
+                grammaticality_logits,
+                register_logits,
+            ) = model(field_inputs, attention_mask)
+
             register_preds = (torch.sigmoid(register_logits) > 0.5).long()
 
             # Formality Pragmatic Acc
-            total_formality_prag_acc += (formality_prag_logits.argmax(-1) == formality_prag_targets).float().mean().item()
-            
+            total_formality_prag_acc += (
+                (formality_prag_logits.argmax(-1) == formality_prag_targets)
+                .float()
+                .mean()
+                .item()
+            )
+
             # Formality Value MSE (masked by pragmatic)
-            # Actually we use is_valid_style which includes gender_prag/gram too, but simpler here: 
+            # Actually we use is_valid_style which includes gender_prag/gram too, but simpler here:
             # just match how we report gender?
             # Or use the same logic as Trainer.evaluate?
             # Let's use simple logic: calculate MSE on ALL pragmatic samples for reporting here.
             # Mask: where formality_prag_targets == 1
-            f_prag_mask = (formality_prag_targets == 1)
+            f_prag_mask = formality_prag_targets == 1
             if f_prag_mask.sum() > 0:
-                 sq_err = F.mse_loss(formality_val_preds.squeeze(-1)[f_prag_mask], formality_val_targets[f_prag_mask], reduction='sum').item()
-                 total_formality_val_sq_err += sq_err
-                 total_formality_prag_samples += f_prag_mask.sum().item()
-            
-            # Gender Pragmatic Acc
-            total_gender_prag_acc += (gender_prag_logits.argmax(-1) == gender_prag_targets).float().mean().item()
-            
-            # Gender Value MSE (masked)
-            prag_mask = (gender_prag_targets == 1)
-            if prag_mask.sum() > 0:
-                 sq_err = F.mse_loss(gender_val_preds.squeeze(-1)[prag_mask], gender_value_targets[prag_mask], reduction='sum').item()
-                 total_gender_val_sq_err += sq_err
-                 total_pragmatic_samples += prag_mask.sum().item()
+                sq_err = F.mse_loss(
+                    formality_val_preds.squeeze(-1)[f_prag_mask],
+                    formality_val_targets[f_prag_mask],
+                    reduction="sum",
+                ).item()
+                total_formality_val_sq_err += sq_err
+                total_formality_prag_samples += f_prag_mask.sum().item()
 
-            total_gram_acc += (grammaticality_logits.argmax(-1) == grammaticality_labels).float().mean().item()
-            total_register_acc += (register_preds == register_labels.long()).all(dim=1).float().mean().item()
+            # Gender Pragmatic Acc
+            total_gender_prag_acc += (
+                (gender_prag_logits.argmax(-1) == gender_prag_targets)
+                .float()
+                .mean()
+                .item()
+            )
+
+            # Gender Value MSE (masked)
+            prag_mask = gender_prag_targets == 1
+            if prag_mask.sum() > 0:
+                sq_err = F.mse_loss(
+                    gender_val_preds.squeeze(-1)[prag_mask],
+                    gender_value_targets[prag_mask],
+                    reduction="sum",
+                ).item()
+                total_gender_val_sq_err += sq_err
+                total_pragmatic_samples += prag_mask.sum().item()
+
+            total_gram_acc += (
+                (grammaticality_logits.argmax(-1) == grammaticality_labels)
+                .float()
+                .mean()
+                .item()
+            )
+            total_register_acc += (
+                (register_preds == register_labels.long())
+                .all(dim=1)
+                .float()
+                .mean()
+                .item()
+            )
             num_batches += 1
-            
+
     f32_accuracy = (
         total_formality_prag_acc / num_batches,
-        total_formality_val_sq_err / total_formality_prag_samples if total_formality_prag_samples > 0 else 0.0,
+        total_formality_val_sq_err / total_formality_prag_samples
+        if total_formality_prag_samples > 0
+        else 0.0,
         total_gender_prag_acc / num_batches,
-        total_gender_val_sq_err / total_pragmatic_samples if total_pragmatic_samples > 0 else 0.0,
+        total_gender_val_sq_err / total_pragmatic_samples
+        if total_pragmatic_samples > 0
+        else 0.0,
         total_gram_acc / num_batches,
         total_register_acc / num_batches,
     )
-    print(f"Test Accuracy (float32): form_prag={f32_accuracy[0]:.4f}, form_mse={f32_accuracy[1]:.4f}, gender_prag={f32_accuracy[2]:.4f}, gender_mse={f32_accuracy[3]:.4f}, gram={f32_accuracy[4]:.4f}, register={f32_accuracy[5]:.4f}")
+    print(
+        f"Test Accuracy (float32): form_prag={f32_accuracy[0]:.4f}, form_mse={f32_accuracy[1]:.4f}, gender_prag={f32_accuracy[2]:.4f}, gender_mse={f32_accuracy[3]:.4f}, gram={f32_accuracy[4]:.4f}, register={f32_accuracy[5]:.4f}"
+    )
 
     # Save model
     if is_main_process():
@@ -3011,10 +3451,17 @@ if __name__ == "__main__":
             print("  (converting to float8 for smallest size)")
         elif args.fp16:
             print("  (converting to float16 for smaller size)")
-        
+
         # Unwrap model if distributed
-        model_to_save = model.module if hasattr(model, 'module') else model
-        save_model(cast(StyleClassifier, model_to_save), tokenizer, args.output, model_config, fp16=args.fp16, fp8=args.fp8)
+        model_to_save = model.module if hasattr(model, "module") else model
+        save_model(
+            cast(StyleClassifier, model_to_save),
+            tokenizer,
+            args.output,
+            model_config,
+            fp16=args.fp16,
+            fp8=args.fp8,
+        )
         print("Done!")
 
     # Verify reduced precision model accuracy if applicable
@@ -3036,59 +3483,83 @@ if __name__ == "__main__":
         with torch.no_grad():
             for batch in test_loader:
                 field_inputs = {
-                    k: v.to(device) for k, v in batch.items()
-                    if k.startswith('input_ids_')
+                    k: v.to(device)
+                    for k, v in batch.items()
+                    if k.startswith("input_ids_")
                 }
-                attention_mask = batch['attention_mask'].to(device)
-                
+                attention_mask = batch["attention_mask"].to(device)
+
                 # Targets
-                formality_value_targets = batch['formality_value'].to(device)
-                formality_prag_targets = batch['formality_pragmatic'].to(device)
-                gender_value_targets = batch['gender_value'].to(device)
-                gender_prag_targets = batch['gender_pragmatic'].to(device)
-                grammaticality_labels = batch['grammaticality_labels'].to(device)
-                register_labels = batch['register_labels'].to(device)
+                formality_value_targets = batch["formality_value"].to(device)
+                formality_prag_targets = batch["formality_pragmatic"].to(device)
+                gender_value_targets = batch["gender_value"].to(device)
+                gender_prag_targets = batch["gender_pragmatic"].to(device)
+                grammaticality_labels = batch["grammaticality_labels"].to(device)
+                register_labels = batch["register_labels"].to(device)
 
                 prediction = loaded_model.predict(field_inputs, attention_mask)
-                
+
                 # Predictions
-                formality_prag_preds = prediction.formality_pragmatic_probs.argmax(dim=-1)
+                formality_prag_preds = prediction.formality_pragmatic_probs.argmax(
+                    dim=-1
+                )
                 gender_prag_preds = prediction.gender_pragmatic_probs.argmax(dim=-1)
                 grammaticality_preds = prediction.grammaticality_probs.argmax(dim=-1)
-                register_preds = (torch.sigmoid(prediction.register_probs) > 0.5).long() # Multi-label
-
+                register_preds = (
+                    torch.sigmoid(prediction.register_probs) > 0.5
+                ).long()  # Multi-label
 
                 # Formality Metrics
-                formality_prag_correct += (formality_prag_preds == formality_prag_targets).sum().item()
-                f_prag_mask = (formality_prag_targets == 1)
+                formality_prag_correct += (
+                    (formality_prag_preds == formality_prag_targets).sum().item()
+                )
+                f_prag_mask = formality_prag_targets == 1
                 if f_prag_mask.size(0) > 0 and f_prag_mask.sum() > 0:
-                     sq_err = F.mse_loss(prediction.formality_value.squeeze(-1)[f_prag_mask], formality_value_targets[f_prag_mask], reduction='sum').item()
-                     formality_val_sq_err += sq_err
-                     form_pragmatic_samples += f_prag_mask.sum().item()
+                    sq_err = F.mse_loss(
+                        prediction.formality_value.squeeze(-1)[f_prag_mask],
+                        formality_value_targets[f_prag_mask],
+                        reduction="sum",
+                    ).item()
+                    formality_val_sq_err += sq_err
+                    form_pragmatic_samples += f_prag_mask.sum().item()
 
                 # Gender Metrics
-                gender_prag_correct += (gender_prag_preds == gender_prag_targets).sum().item()
-                g_prag_mask = (gender_prag_targets == 1)
+                gender_prag_correct += (
+                    (gender_prag_preds == gender_prag_targets).sum().item()
+                )
+                g_prag_mask = gender_prag_targets == 1
                 if g_prag_mask.size(0) > 0 and g_prag_mask.sum() > 0:
-                     sq_err = F.mse_loss(prediction.gender_value.squeeze(-1)[g_prag_mask], gender_value_targets[g_prag_mask], reduction='sum').item()
-                     gender_val_sq_err += sq_err
-                     gender_pragmatic_samples += g_prag_mask.sum().item()
+                    sq_err = F.mse_loss(
+                        prediction.gender_value.squeeze(-1)[g_prag_mask],
+                        gender_value_targets[g_prag_mask],
+                        reduction="sum",
+                    ).item()
+                    gender_val_sq_err += sq_err
+                    gender_pragmatic_samples += g_prag_mask.sum().item()
 
-                grammaticality_correct += (grammaticality_preds == grammaticality_labels).sum().item()
-                register_correct += (register_preds == register_labels.long()).all(dim=1).int().sum().item()
+                grammaticality_correct += (
+                    (grammaticality_preds == grammaticality_labels).sum().item()
+                )
+                register_correct += (
+                    (register_preds == register_labels.long())
+                    .all(dim=1)
+                    .int()
+                    .sum()
+                    .item()
+                )
                 total += formality_prag_targets.size(0)
 
         print(f"Test Accuracy ({precision_name}):")
-        print(f"  Formality Prag: {formality_prag_correct/total:.4f}")
+        print(f"  Formality Prag: {formality_prag_correct / total:.4f}")
         if form_pragmatic_samples > 0:
-             print(f"  Formality MSE: {formality_val_sq_err/form_pragmatic_samples:.4f}")
-        print(f"  Gender Prag: {gender_prag_correct/total:.4f}")
+            print(
+                f"  Formality MSE: {formality_val_sq_err / form_pragmatic_samples:.4f}"
+            )
+        print(f"  Gender Prag: {gender_prag_correct / total:.4f}")
         if gender_pragmatic_samples > 0:
-            print(f"  Gender MSE: {gender_val_sq_err/gender_pragmatic_samples:.4f}")
-        print(f"  Grammaticality: {grammaticality_correct/total:.4f}")
-        print(f"  Register: {register_correct/total:.4f}")
-
-
+            print(f"  Gender MSE: {gender_val_sq_err / gender_pragmatic_samples:.4f}")
+        print(f"  Grammaticality: {grammaticality_correct / total:.4f}")
+        print(f"  Register: {register_correct / total:.4f}")
 
     if dist.is_available() and dist.is_initialized():
         dist.destroy_process_group()

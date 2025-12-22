@@ -1,6 +1,7 @@
 """Tests for Japanese parser implementations."""
 
 import unittest
+
 from kotogram import JapaneseParser, kotogram_to_japanese, split_kotogram
 
 

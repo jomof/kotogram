@@ -1,9 +1,11 @@
 from dataclasses import dataclass, field
 from typing import Dict, List
 
+
 @dataclass
 class Sample:
     """Single data sample with features and labels."""
+
     feature_ids: Dict[str, List[int]]
     formality_value: float
     formality_pragmatic: int
@@ -20,9 +22,11 @@ class Sample:
         first = next(iter(self.feature_ids.values()))
         return len(first)
 
+
 @dataclass
 class ProcessedSample:
     """Processed sample result from labeling stage."""
+
     sentence: str
     sentence_id: str
     kotogram: str

@@ -23,30 +23,31 @@ Functions:
 """
 
 import re
-from typing import List
 from dataclasses import dataclass
+from typing import List
 
 
 @dataclass
 class TokenFeatures:
     """Linguistic features extracted from a kotogram token."""
-    surface: str = ''
-    pos: str = ''
-    pos_detail1: str = ''
-    pos_detail2: str = ''
-    pos_detail3: str = ''
-    conjugated_type: str = ''
-    conjugated_form: str = ''
-    base_orth: str = ''
-    lemma: str = ''
-    reading: str = ''
+
+    surface: str = ""
+    pos: str = ""
+    pos_detail1: str = ""
+    pos_detail2: str = ""
+    pos_detail3: str = ""
+    conjugated_type: str = ""
+    conjugated_form: str = ""
+    base_orth: str = ""
+    lemma: str = ""
+    reading: str = ""
 
 
 def kotogram_to_japanese(
     kotogram: str,
     spaces: bool = False,
     collapse_punctuation: bool = True,
-    furigana: bool = False
+    furigana: bool = False,
 ) -> str:
     """Convert kotogram compact representation back to Japanese text.
 
@@ -104,33 +105,34 @@ def kotogram_to_japanese(
         etc.). To preserve full information, keep the original kotogram string.
     """
     from kotogram.validation import ensure_string
+
     ensure_string(kotogram, "kotogram")
 
     from .japanese_parser import POS_TO_CHARS
 
     if not furigana:
         # Original implementation - extract surface forms only
-        pattern = r'ˢ(.*?)ᵖ'
+        pattern = r"ˢ(.*?)ᵖ"
         matches = re.findall(pattern, kotogram, re.DOTALL)
 
         if spaces:
             # Join tokens with spaces
-            result = ' '.join(matches).replace('{ ', '{').replace(' }', '}')
+            result = " ".join(matches).replace("{ ", "{").replace(" }", "}")
 
             if collapse_punctuation:
                 # Remove spaces around Japanese punctuation for natural formatting
-                for punc in POS_TO_CHARS['aux-symbol']:
+                for punc in POS_TO_CHARS["aux-symbol"]:
                     # Skip braces as they're handled above
-                    if punc == '{' or punc == '}':
+                    if punc == "{" or punc == "}":
                         continue
                     # Remove space before and after punctuation
-                    result = result.replace(f' {punc}', punc)
-                    result = result.replace(f'{punc} ', punc)
+                    result = result.replace(f" {punc}", punc)
+                    result = result.replace(f"{punc} ", punc)
 
             return result
         else:
             # Concatenate all surface forms without spaces (natural Japanese)
-            return ''.join(matches)
+            return "".join(matches)
     else:
         # Furigana mode - extract surface forms and IME readings (hiragana)
         tokens = split_kotogram(kotogram)
@@ -146,11 +148,11 @@ def kotogram_to_japanese(
                     # Convert to hiragana by subtracting offset
                     result.append(chr(code - 0x60))
                 # Keep katakana length marker as hiragana equivalent
-                elif char == 'ー':
-                    result.append('ー')
+                elif char == "ー":
+                    result.append("ー")
                 else:
                     result.append(char)
-            return ''.join(result)
+            return "".join(result)
 
         def is_kana_only(text: str) -> bool:
             """Check if text contains only hiragana and katakana characters."""
@@ -166,7 +168,7 @@ def kotogram_to_japanese(
 
         for token in tokens:
             # Extract surface form
-            surface_match = re.search(r'ˢ(.*?)ᵖ', token, re.DOTALL)
+            surface_match = re.search(r"ˢ(.*?)ᵖ", token, re.DOTALL)
             if not surface_match:
                 continue
             surface = surface_match.group(1)
@@ -178,7 +180,7 @@ def kotogram_to_japanese(
                 result_parts.append(surface)
             else:
                 # Surface contains kanji - extract reading for IME input
-                reading_match = re.search(r'ʳ(.*?)(?:⌉|ᵇ|ᵈ)', token)
+                reading_match = re.search(r"ʳ(.*?)(?:⌉|ᵇ|ᵈ)", token)
                 reading_katakana = reading_match.group(1) if reading_match else None
 
                 if reading_katakana:
@@ -190,19 +192,19 @@ def kotogram_to_japanese(
                     result_parts.append(surface)
 
         if spaces:
-            result = ' '.join(result_parts).replace('{ ', '{').replace(' }', '}')
+            result = " ".join(result_parts).replace("{ ", "{").replace(" }", "}")
 
             if collapse_punctuation:
                 # Remove spaces around Japanese punctuation for natural formatting
-                for punc in POS_TO_CHARS['aux-symbol']:
-                    if punc == '{' or punc == '}':
+                for punc in POS_TO_CHARS["aux-symbol"]:
+                    if punc == "{" or punc == "}":
                         continue
-                    result = result.replace(f' {punc}', punc)
-                    result = result.replace(f'{punc} ', punc)
+                    result = result.replace(f" {punc}", punc)
+                    result = result.replace(f"{punc} ", punc)
 
             return result
         else:
-            return ''.join(result_parts)
+            return "".join(result_parts)
 
 
 def split_kotogram(kotogram: str) -> List[str]:
@@ -242,11 +244,12 @@ def split_kotogram(kotogram: str) -> List[str]:
         kotogram_to_japanese: Extract surface forms from tokens
     """
     from kotogram.validation import ensure_string
+
     ensure_string(kotogram, "kotogram")
 
     # Find all complete token annotations enclosed in ⌈⌉
     # Pattern matches: ⌈ followed by any chars (non-greedy) until ⌉
-    return re.findall(r'⌈[^⌉]*⌉', kotogram)
+    return re.findall(r"⌈[^⌉]*⌉", kotogram)
 
 
 def extract_token_features(token: str) -> TokenFeatures:
@@ -315,28 +318,32 @@ def extract_token_features(token: str) -> TokenFeatures:
         in the token will have empty string values ('').
     """
     from kotogram.validation import ensure_string
+
     ensure_string(token, "token")
 
     from .japanese_parser import (
-        POS1_MAP, POS2_MAP, POS3_MAP,
-        CONJUGATED_TYPE_MAP, CONJUGATED_FORM_MAP
+        CONJUGATED_FORM_MAP,
+        CONJUGATED_TYPE_MAP,
+        POS1_MAP,
+        POS2_MAP,
+        POS3_MAP,
     )
 
     feature = TokenFeatures()
 
     # Extract surface form (ˢ...ᵖ)
-    surface_match = re.search(r'ˢ(.*?)ᵖ', token, re.DOTALL)
+    surface_match = re.search(r"ˢ(.*?)ᵖ", token, re.DOTALL)
     if surface_match:
         feature.surface = surface_match.group(1)
 
     # Extract POS data (ᵖ...ᵇ|ᵈ|ʳ|⌉)
-    pos_match = re.search(r'ᵖ([^⌉ᵇᵈʳ]+)', token)
+    pos_match = re.search(r"ᵖ([^⌉ᵇᵈʳ]+)", token)
     if pos_match:
         pos_data = pos_match.group(1)
-        parts = pos_data.split(':')
+        parts = pos_data.split(":")
 
         # Main POS code (always first)
-        feature.pos = parts[0] if len(parts) > 0 else ''
+        feature.pos = parts[0] if len(parts) > 0 else ""
 
         # Parse remaining fields semantically by checking which map they belong to
         # The parser skips empty fields, so we can't rely on position alone
@@ -360,8 +367,8 @@ def extract_token_features(token: str) -> TokenFeatures:
                 else:
                     feature.pos_detail1 = value
             elif value in POS3_MAP.values():
-                 # pos_detail_3 usually comes last for details
-                 feature.pos_detail3 = value
+                # pos_detail_3 usually comes last for details
+                feature.pos_detail3 = value
             elif value in POS1_MAP.values():
                 # pos_detail_1 comes before pos_detail_2
                 if not feature.pos_detail1:
@@ -382,17 +389,17 @@ def extract_token_features(token: str) -> TokenFeatures:
                     feature.conjugated_form = value
 
     # Extract base orthography (ᵇ...ᵈ|ʳ|⌉)
-    base_match = re.search(r'ᵇ([^⌉ᵈʳ]+)', token)
+    base_match = re.search(r"ᵇ([^⌉ᵈʳ]+)", token)
     if base_match:
         feature.base_orth = base_match.group(1)
 
     # Extract lemma/dictionary form (ᵈ...ʳ|⌉)
-    lemma_match = re.search(r'ᵈ([^⌉ʳ]+)', token)
+    lemma_match = re.search(r"ᵈ([^⌉ʳ]+)", token)
     if lemma_match:
         feature.lemma = lemma_match.group(1)
 
     # Extract reading (ʳ...⌉)
-    reading_match = re.search(r'ʳ([^⌉]+)', token)
+    reading_match = re.search(r"ʳ([^⌉]+)", token)
     if reading_match:
         feature.reading = reading_match.group(1)
 

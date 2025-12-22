@@ -26,7 +26,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Dict, Optional
 
-from kotogram.locations import get_profile_dir, ensure_dir
+from kotogram.locations import ensure_dir, get_profile_dir
 
 # Module-level state for thread safety within a process
 _thread_lock = threading.Lock()
@@ -107,9 +107,6 @@ def _read_counters_from_file(file_path: str) -> Dict[str, int]:
         return {}
 
 
-
-
-
 def increment_profile_counter() -> None:
     """Increment the counter for the calling function.
 
@@ -183,7 +180,7 @@ def get_profile_report(profile_dir: Optional[str] = None) -> ProfileReport:
         if not _is_profiling_enabled():
             return ProfileReport(counters={}, timestamp=timestamp)
         profile_dir = get_profile_dir()
-    
+
     file_path = os.path.join(profile_dir, "counters.json")
     counters = _read_counters_from_file(file_path)
 

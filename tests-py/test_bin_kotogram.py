@@ -1,9 +1,9 @@
-
 import os
 import subprocess
 import sys
 import unittest
 from pathlib import Path
+
 
 class TestBinKotogram(unittest.TestCase):
     """Integration tests for bin/kotogram CLI."""
@@ -20,13 +20,8 @@ class TestBinKotogram(unittest.TestCase):
     def run_script(self, args, input_text=None):
         """Run the script as a subprocess."""
         cmd = [sys.executable, str(self.script_path)] + args
-        
-        result = subprocess.run(
-            cmd,
-            input=input_text,
-            text=True,
-            capture_output=True
-        )
+
+        result = subprocess.run(cmd, input=input_text, text=True, capture_output=True)
         return result
 
     def test_help(self):
@@ -42,7 +37,7 @@ class TestBinKotogram(unittest.TestCase):
         if result.returncode != 0:
             print(f"Stdout: {result.stdout}")
             print(f"Stderr: {result.stderr}")
-        
+
         self.assertEqual(result.returncode, 0)
         # Check for kotogram output (should contain delimiters)
         self.assertIn("⌈", result.stdout)
@@ -52,14 +47,14 @@ class TestBinKotogram(unittest.TestCase):
         """Test 'parse' command with stdin input."""
         input_text = "猫"
         result = self.run_script(["parse", "-"], input_text=input_text)
-        
+
         self.assertEqual(result.returncode, 0)
         self.assertIn("⌈", result.stdout)
 
     def test_raw_argument(self):
         """Test 'raw' command."""
         result = self.run_script(["raw", "猫"])
-        
+
         self.assertEqual(result.returncode, 0)
         self.assertIn("Sudachi raw output:", result.stdout)
         self.assertIn("Surface: 猫", result.stdout)
@@ -68,27 +63,26 @@ class TestBinKotogram(unittest.TestCase):
         """Test 'grammar' command with JSON output."""
         input_text = "私は猫です"
         result = self.run_script(["grammar", input_text])
-        
+
         self.assertEqual(result.returncode, 0)
-        
-        
+
         # Verify result is valid JSON
         import json
-        
+
         # Output might contain warnings/logs, so find the start of JSON
         # Pretty-printed JSON spans multiple lines
         stdout = result.stdout
         json_start = stdout.find("{")
-        
+
         if json_start == -1:
-             self.fail(f"No JSON output found. Full output:\n{stdout}")
+            self.fail(f"No JSON output found. Full output:\n{stdout}")
 
         json_str = stdout[json_start:]
         try:
             data = json.loads(json_str)
         except json.JSONDecodeError:
             self.fail(f"Output not valid JSON: {json_str[:100]}...")
-            
+
         # Verify required fields
         self.assertIn("is_grammatic", data)
         self.assertIn("formality_score", data)
