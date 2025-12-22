@@ -8,7 +8,7 @@ export {
   extractTokenFeatures,
   type KotogramToJapaneseOptions,
   type TokenFeatures,
-} from "./kotogram.js";
+} from './kotogram.js';
 
 export {
   FormalityLevel,
@@ -16,4 +16,4 @@ export {
   RegisterLevel,
   GrammarAnalysis,
   type GrammarAnalysisData,
-} from "./analysis.js";
+} from './analysis.js';

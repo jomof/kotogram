@@ -5,9 +5,9 @@
  * to prevent regression.
  */
 
-import { test } from "node:test";
-import assert from "node:assert";
-import { kotogramToJapanese } from "../dist/kotogram.js";
+import {test} from 'node:test';
+import assert from 'node:assert';
+import {kotogramToJapanese} from '../src/kotogram.js';
 
 /**
  * Bug 1: Missing POS_TO_CHARS.auxs entries
@@ -20,78 +20,77 @@ import { kotogramToJapanese } from "../dist/kotogram.js";
  * because 'っ' at the end of a token should attach to the following particle.
  */
 
-test("Bug 1: Small tsu っ collapses with following particle", () => {
+test('Bug 1: Small tsu っ collapses with following particle', () => {
   // Kotogram for "もって" (motte) - verb stem + te particle
   // ⌈もっ⌉ = verb stem "mots-" with geminate
   // ⌈て⌉ = te particle
   const kotogram =
-    "⌈ˢもっᵖv:general:godan-ta:conjunctive-geminateᵇもつᵈもつʳモッ⌉⌈ˢてᵖprt:conjunctive_particleʳテ⌉";
+    '⌈ˢもっᵖv:general:godan-ta:conjunctive-geminateᵇもつᵈもつʳモッ⌉⌈ˢてᵖprt:conjunctive_particleʳテ⌉';
 
   // With collapsePunctuation=true, small tsu should attach to following て
   const collapsed = kotogramToJapanese(kotogram, {
     spaces: true,
     collapsePunctuation: true,
   });
-  assert.strictEqual(collapsed, "もって");
+  assert.strictEqual(collapsed, 'もって');
 
   // With collapsePunctuation=false, should keep space
   const notCollapsed = kotogramToJapanese(kotogram, {
     spaces: true,
     collapsePunctuation: false,
   });
-  assert.strictEqual(notCollapsed, "もっ て");
+  assert.strictEqual(notCollapsed, 'もっ て');
 });
 
-test("Bug 1: Period 。 collapses when collapsePunctuation=true", () => {
+test('Bug 1: Period 。 collapses when collapsePunctuation=true', () => {
   // Sentence ending with period
-  const kotogram =
-    "⌈ˢこんにちはᵖint⌉⌈ˢ。ᵖauxs:period⌉";
+  const kotogram = '⌈ˢこんにちはᵖint⌉⌈ˢ。ᵖauxs:period⌉';
 
   const collapsed = kotogramToJapanese(kotogram, {
     spaces: true,
     collapsePunctuation: true,
   });
-  assert.strictEqual(collapsed, "こんにちは。");
+  assert.strictEqual(collapsed, 'こんにちは。');
 
   const notCollapsed = kotogramToJapanese(kotogram, {
     spaces: true,
     collapsePunctuation: false,
   });
-  assert.strictEqual(notCollapsed, "こんにちは 。");
+  assert.strictEqual(notCollapsed, 'こんにちは 。');
 });
 
-test("Bug 1: Question mark ？ collapses when collapsePunctuation=true", () => {
-  const kotogram = "⌈ˢ何ᵖpronʳナン⌉⌈ˢ？ᵖauxs:period⌉";
+test('Bug 1: Question mark ？ collapses when collapsePunctuation=true', () => {
+  const kotogram = '⌈ˢ何ᵖpronʳナン⌉⌈ˢ？ᵖauxs:period⌉';
 
   const collapsed = kotogramToJapanese(kotogram, {
     spaces: true,
     collapsePunctuation: true,
   });
-  assert.strictEqual(collapsed, "何？");
+  assert.strictEqual(collapsed, '何？');
 
   const notCollapsed = kotogramToJapanese(kotogram, {
     spaces: true,
     collapsePunctuation: false,
   });
-  assert.strictEqual(notCollapsed, "何 ？");
+  assert.strictEqual(notCollapsed, '何 ？');
 });
 
-test("Bug 1: All punctuation characters collapse correctly", () => {
+test('Bug 1: All punctuation characters collapse correctly', () => {
   // Test that all POS_TO_CHARS.auxs characters are handled
   // Key characters that were missing: っ, ー, 々, ぇ, etc.
 
   // Test with 々 (iteration mark)
-  const kotogram1 = "⌈ˢ時ᵖnʳトキ⌉⌈ˢ々ᵖauxsʳドキドキ⌉";
+  const kotogram1 = '⌈ˢ時ᵖnʳトキ⌉⌈ˢ々ᵖauxsʳドキドキ⌉';
   const result1 = kotogramToJapanese(kotogram1, {
     spaces: true,
     collapsePunctuation: true,
   });
-  assert.strictEqual(result1, "時々");
+  assert.strictEqual(result1, '時々');
 
   // Test with ー (long vowel mark)
-  const kotogram2 = "⌈ˢコーヒーᵖnʳコーヒー⌉";
+  const kotogram2 = '⌈ˢコーヒーᵖnʳコーヒー⌉';
   const result2 = kotogramToJapanese(kotogram2);
-  assert.strictEqual(result2, "コーヒー");
+  assert.strictEqual(result2, 'コーヒー');
 });
 
 /**
@@ -105,20 +104,20 @@ test("Bug 1: All punctuation characters collapse correctly", () => {
  * naming conventions work as expected.
  */
 
-test("Bug 2: collapsePunctuation parameter works (camelCase)", () => {
-  const kotogram = "⌈ˢこんにちはᵖint⌉⌈ˢ。ᵖauxs:period⌉";
+test('Bug 2: collapsePunctuation parameter works (camelCase)', () => {
+  const kotogram = '⌈ˢこんにちはᵖint⌉⌈ˢ。ᵖauxs:period⌉';
 
   // Test camelCase parameter
   const result = kotogramToJapanese(kotogram, {
     spaces: true,
     collapsePunctuation: false,
   });
-  assert.strictEqual(result, "こんにちは 。");
+  assert.strictEqual(result, 'こんにちは 。');
 });
 
-test("Bug 2: Verify all parameters use camelCase", () => {
+test('Bug 2: Verify all parameters use camelCase', () => {
   const kotogram =
-    "⌈ˢ猫ᵖn:common_nounᵇ猫ʳネコ⌉⌈ˢをᵖprt:case_particleᵇをʳオ⌉⌈ˢ食べるᵖv:general:e-ichidan-ba:attributiveᵇ食べるʳタベル⌉";
+    '⌈ˢ猫ᵖn:common_nounᵇ猫ʳネコ⌉⌈ˢをᵖprt:case_particleᵇをʳオ⌉⌈ˢ食べるᵖv:general:e-ichidan-ba:attributiveᵇ食べるʳタベル⌉';
 
   // All three parameters should be camelCase
   const result = kotogramToJapanese(kotogram, {
@@ -127,8 +126,8 @@ test("Bug 2: Verify all parameters use camelCase", () => {
     furigana: true, // camelCase
   });
 
-  assert.ok(result.includes(" "));
-  assert.ok(result.includes("["));
+  assert.ok(result.includes(' '));
+  assert.ok(result.includes('['));
 });
 
 /**
@@ -137,26 +136,23 @@ test("Bug 2: Verify all parameters use camelCase", () => {
  * This was one of the actual failing test cases that revealed the bugs.
  */
 
-test("Integration: Full sentence with compound verbs and particles", () => {
+test('Integration: Full sentence with compound verbs and particles', () => {
   // "きみにちょっとしたものをもってきたよ。"
   // "I brought you a little something."
   const kotogram =
-    "⌈ˢきみᵖpronʳキミ⌉⌈ˢにᵖprt:case_particleʳニ⌉⌈ˢちょっとᵖadvʳチョット⌉" +
-    "⌈ˢしᵖv:non_self_reliant:sa-irregular:conjunctiveᵇするᵈするʳシ⌉" +
-    "⌈ˢたᵖauxv:auxv-ta:attributiveʳタ⌉⌈ˢものᵖn:common_noun:suru-possibleʳモノ⌉" +
-    "⌈ˢをᵖprt:case_particleʳヲ⌉" +
-    "⌈ˢもっᵖv:general:godan-ta:conjunctive-geminateᵇもつᵈもつʳモッ⌉" +
-    "⌈ˢてᵖprt:conjunctive_particleʳテ⌉" +
-    "⌈ˢきᵖv:non_self_reliant:ka-irregular:conjunctiveᵇくるᵈくるʳキ⌉" +
-    "⌈ˢたᵖauxv:auxv-ta:terminalʳタ⌉⌈ˢよᵖprt:sentence_final_particleʳヨ⌉" +
-    "⌈ˢ。ᵖauxs:period⌉";
+    '⌈ˢきみᵖpronʳキミ⌉⌈ˢにᵖprt:case_particleʳニ⌉⌈ˢちょっとᵖadvʳチョット⌉' +
+    '⌈ˢしᵖv:non_self_reliant:sa-irregular:conjunctiveᵇするᵈするʳシ⌉' +
+    '⌈ˢたᵖauxv:auxv-ta:attributiveʳタ⌉⌈ˢものᵖn:common_noun:suru-possibleʳモノ⌉' +
+    '⌈ˢをᵖprt:case_particleʳヲ⌉' +
+    '⌈ˢもっᵖv:general:godan-ta:conjunctive-geminateᵇもつᵈもつʳモッ⌉' +
+    '⌈ˢてᵖprt:conjunctive_particleʳテ⌉' +
+    '⌈ˢきᵖv:non_self_reliant:ka-irregular:conjunctiveᵇくるᵈくるʳキ⌉' +
+    '⌈ˢたᵖauxv:auxv-ta:terminalʳタ⌉⌈ˢよᵖprt:sentence_final_particleʳヨ⌉' +
+    '⌈ˢ。ᵖauxs:period⌉';
 
   // Default: no spaces, punctuation naturally attached
   const default_result = kotogramToJapanese(kotogram);
-  assert.strictEqual(
-    default_result,
-    "きみにちょっとしたものをもってきたよ。"
-  );
+  assert.strictEqual(default_result, 'きみにちょっとしたものをもってきたよ。');
 
   // With spaces + collapse: should collapse もっ+て and attach period
   const collapsed = kotogramToJapanese(kotogram, {
@@ -165,10 +161,10 @@ test("Integration: Full sentence with compound verbs and particles", () => {
   });
   assert.strictEqual(
     collapsed,
-    "きみ に ちょっと し た もの を もって き た よ。"
+    'きみ に ちょっと し た もの を もって き た よ。',
   );
-  assert.ok(collapsed.includes("もって")); // Should be collapsed
-  assert.ok(!collapsed.includes(" 。")); // Period should be attached
+  assert.ok(collapsed.includes('もって')); // Should be collapsed
+  assert.ok(!collapsed.includes(' 。')); // Period should be attached
 
   // With spaces but no collapse: should keep もっ て separated and space before period
   const notCollapsed = kotogramToJapanese(kotogram, {
@@ -177,24 +173,24 @@ test("Integration: Full sentence with compound verbs and particles", () => {
   });
   assert.strictEqual(
     notCollapsed,
-    "きみ に ちょっと し た もの を もっ て き た よ 。"
+    'きみ に ちょっと し た もの を もっ て き た よ 。',
   );
-  assert.ok(notCollapsed.includes("もっ て")); // Should be separated
-  assert.ok(notCollapsed.includes(" 。")); // Period should have space before it
+  assert.ok(notCollapsed.includes('もっ て')); // Should be separated
+  assert.ok(notCollapsed.includes(' 。')); // Period should have space before it
 });
 
-test("Integration: Sentence with furigana and compound verbs", () => {
+test('Integration: Sentence with furigana and compound verbs', () => {
   // Same sentence with furigana
   const kotogram =
-    "⌈ˢきみᵖpronʳキミ⌉⌈ˢにᵖprt:case_particleʳニ⌉⌈ˢちょっとᵖadvʳチョット⌉" +
-    "⌈ˢしᵖv:non_self_reliant:sa-irregular:conjunctiveᵇするᵈするʳシ⌉" +
-    "⌈ˢたᵖauxv:auxv-ta:attributiveʳタ⌉⌈ˢものᵖn:common_noun:suru-possibleʳモノ⌉" +
-    "⌈ˢをᵖprt:case_particleʳヲ⌉" +
-    "⌈ˢもっᵖv:general:godan-ta:conjunctive-geminateᵇもつᵈもつʳモッ⌉" +
-    "⌈ˢてᵖprt:conjunctive_particleʳテ⌉" +
-    "⌈ˢきᵖv:non_self_reliant:ka-irregular:conjunctiveᵇくるᵈくるʳキ⌉" +
-    "⌈ˢたᵖauxv:auxv-ta:terminalʳタ⌉⌈ˢよᵖprt:sentence_final_particleʳヨ⌉" +
-    "⌈ˢ。ᵖauxs:period⌉";
+    '⌈ˢきみᵖpronʳキミ⌉⌈ˢにᵖprt:case_particleʳニ⌉⌈ˢちょっとᵖadvʳチョット⌉' +
+    '⌈ˢしᵖv:non_self_reliant:sa-irregular:conjunctiveᵇするᵈするʳシ⌉' +
+    '⌈ˢたᵖauxv:auxv-ta:attributiveʳタ⌉⌈ˢものᵖn:common_noun:suru-possibleʳモノ⌉' +
+    '⌈ˢをᵖprt:case_particleʳヲ⌉' +
+    '⌈ˢもっᵖv:general:godan-ta:conjunctive-geminateᵇもつᵈもつʳモッ⌉' +
+    '⌈ˢてᵖprt:conjunctive_particleʳテ⌉' +
+    '⌈ˢきᵖv:non_self_reliant:ka-irregular:conjunctiveᵇくるᵈくるʳキ⌉' +
+    '⌈ˢたᵖauxv:auxv-ta:terminalʳタ⌉⌈ˢよᵖprt:sentence_final_particleʳヨ⌉' +
+    '⌈ˢ。ᵖauxs:period⌉';
 
   const result = kotogramToJapanese(kotogram, {
     spaces: true,
@@ -203,8 +199,8 @@ test("Integration: Sentence with furigana and compound verbs", () => {
   });
 
   // Should have furigana, spaces, and proper collapsing
-  assert.ok(result.includes("もって")); // Collapsed
-  assert.ok(!result.includes(" 。")); // Period attached
+  assert.ok(result.includes('もって')); // Collapsed
+  assert.ok(!result.includes(' 。')); // Period attached
   // Pure kana tokens shouldn't get furigana, but check it doesn't break
   assert.ok(result.length > 0);
 });
