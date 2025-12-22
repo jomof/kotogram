@@ -2,13 +2,41 @@
 """Command-line tool for working with kotograms."""
 
 import argparse
+import os
 import sys
+
+# Ensure we can import kotogram from project root if running from source
+# This allows running ./bin/kotogram without pip installing the package
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+
+def restart_with_venv():
+    """Attempt to restart the script using the project virtual environment."""
+    # Check if we are arguably already in a venv (simple heuristic)
+    if sys.prefix != sys.base_prefix:
+        return
+
+    venv_python = os.path.join(project_root, ".venv", "bin", "python")
+    if os.path.exists(venv_python):
+        # sys.stderr.write(f"Restarting with virtual environment: {venv_python}\n")
+        try:
+            os.execv(venv_python, [venv_python] + sys.argv)
+        except OSError as e:
+            sys.stderr.write(f"Failed to restart with venv: {e}\n")
 
 
 def get_parser():
     """Get the Sudachi parser instance."""
-    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-    return SudachiJapaneseParser()
+    try:
+        from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+        return SudachiJapaneseParser()
+    except ImportError as e:
+        restart_with_venv()
+        sys.stderr.write(f"Error: Failed to import kotogram components: {e}\n")
+        sys.stderr.write("Make sure dependencies are installed (pip install -r backend/requirements.txt)\n")
+        sys.exit(1)
 
 
 def cmd_parse(args) -> int:
@@ -35,7 +63,13 @@ def cmd_raw(args) -> int:
     print(f"Input: {text}")
     print()
 
-    from sudachipy import dictionary
+    try:
+        from sudachipy import dictionary
+    except ImportError:
+        restart_with_venv()
+        sys.stderr.write("Error: sudachipy is required for 'raw' command but not found.\n")
+        sys.stderr.write("Please install it: pip install sudachipy\n")
+        sys.exit(1)
 
     dict_obj = dictionary.Dictionary(dict='full')
     tokenizer = dict_obj.create()
@@ -50,6 +84,36 @@ def cmd_raw(args) -> int:
         print(f"  Normalized form: {token.normalized_form()}")
         print()
 
+    return 0
+
+
+def cmd_grammar(args) -> int:
+    """Analyze grammar of Japanese text."""
+    text = args.text
+
+    if text == "-":
+        text = sys.stdin.read().strip()
+
+    # If it doesn't look like a kotogram, parse it first
+    if not text.startswith("⌈"):
+        parser = get_parser()
+        kotogram = parser.japanese_to_kotogram(text)
+    else:
+        kotogram = text
+
+    try:
+        from kotogram.analysis import grammar
+    except ImportError as e:
+        restart_with_venv()
+        sys.stderr.write(f"Error: Failed to import grammar analysis: {e}\n")
+        sys.exit(1)
+
+    result = grammar(kotogram)
+    
+    # Use to_json() then load/dump for pretty printing
+    import json
+    data = json.loads(result.to_json())
+    print(json.dumps(data, indent=2, ensure_ascii=False))
     return 0
 
 
@@ -82,6 +146,17 @@ def main() -> int:
         help="Japanese text to parse (use '-' to read from stdin)",
     )
     raw_parser.set_defaults(func=cmd_raw)
+
+    # grammar command
+    grammar_parser = subparsers.add_parser(
+        "grammar",
+        help="Analyze grammar of Japanese text",
+    )
+    grammar_parser.add_argument(
+        "text",
+        help="Japanese text or kotogram to analyze (use '-' to read from stdin)",
+    )
+    grammar_parser.set_defaults(func=cmd_grammar)
 
     args = parser.parse_args()
 

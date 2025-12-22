@@ -4,7 +4,7 @@ import os
 import sys
 import torch
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description="Convert checkpoint to model file (optionally fp8).")
     parser.add_argument("--checkpoint", default="models/style/checkpoint.pt", help="Path to input checkpoint")
     parser.add_argument("--output", default="models/style/model.pt", help="Path to output model file")
