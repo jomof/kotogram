@@ -6,7 +6,7 @@ by examining linguistic features such as verb forms, particles, and auxiliary ve
 
 import json
 from dataclasses import dataclass, asdict
-from typing import Optional, Tuple, Dict, Set, TYPE_CHECKING
+from typing import Optional, Tuple, Dict, Set, List, TYPE_CHECKING
 from kotogram.constants import FormalityLevel, GenderLevel, RegisterLevel
 
 # This is required for cross-language furigana support to work on typescript
@@ -89,6 +89,122 @@ class GrammarAnalysis:
         return cls(**d)
 
 
+def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
+    """Analyze a list of Japanese sentences in batch and return results.
+
+    This function is significantly more efficient than calling grammar() 
+    repeatedly for multiple sentences as it performs single model inference pass.
+
+    Args:
+        kotograms: List of kotogram compact sentence representations.
+
+    Returns:
+        List of GrammarAnalysis objects.
+    """
+    if not kotograms:
+        return []
+
+    from kotogram.validation import ensure_string
+    for k in kotograms:
+        ensure_string(k, "kotogram")
+
+    # Use the trained neural model for prediction
+    import torch
+    from kotogram.model import FEATURE_FIELDS, REGISTER_ID_TO_LABEL
+
+    model, tokenizer = _load_style_model()
+
+    # Encode all kotograms
+    encoded_list = [tokenizer.encode(k, add_cls=True, add_to_vocab=False) for k in kotograms]
+    
+    # Padding logic to handle variable lengths in batch
+    max_len = max(len(e[FEATURE_FIELDS[0]]) for e in encoded_list)
+    batch_size = len(kotograms)
+    
+    field_inputs = {}
+    for field in FEATURE_FIELDS:
+        # 0 is the PAD_TOKEN id
+        batch_ids = torch.zeros((batch_size, max_len), dtype=torch.long)
+        for i, encoded in enumerate(encoded_list):
+            ids = encoded[field]
+            batch_ids[i, :len(ids)] = torch.tensor(ids, dtype=torch.long)
+        field_inputs[f'input_ids_{field}'] = batch_ids
+    
+    attention_mask = torch.zeros((batch_size, max_len), dtype=torch.long)
+    for i, encoded in enumerate(encoded_list):
+        attention_mask[i, :len(encoded[FEATURE_FIELDS[0]])] = 1
+
+    # Predict
+    model.eval()
+    with torch.no_grad():
+        prediction = model.predict(field_inputs, attention_mask)
+
+    results = []
+    for i in range(batch_size):
+        # 1. Formality
+        f_val = float(prediction.formality_value[i].item())
+        f_is_pragmatic = prediction.formality_pragmatic_probs[i][1].item() > 0.5
+
+        if not f_is_pragmatic:
+            formality_res = FormalityLevel.UNPRAGMATIC_FORMALITY
+        elif f_val >= 0.75:
+            formality_res = FormalityLevel.VERY_FORMAL
+        elif f_val >= 0.25:
+            formality_res = FormalityLevel.FORMAL
+        elif f_val >= -0.25:
+            formality_res = FormalityLevel.NEUTRAL
+        elif f_val >= -0.75:
+            formality_res = FormalityLevel.CASUAL
+        else:
+            formality_res = FormalityLevel.VERY_CASUAL
+
+        # 2. Gender
+        g_val = float(prediction.gender_value[i].item())
+        g_is_pragmatic = prediction.gender_pragmatic_probs[i][1].item() > 0.5
+
+        if not g_is_pragmatic:
+            gender_res = GenderLevel.UNPRAGMATIC_GENDER
+        elif g_val <= -0.5:
+            gender_res = GenderLevel.MASCULINE
+        elif g_val >= 0.5:
+            gender_res = GenderLevel.FEMININE
+        else:
+            gender_res = GenderLevel.NEUTRAL
+
+        # 3. Register
+        all_register_scores = {}
+        for reg_id, score in enumerate(prediction.register_probs[i]):
+            label = REGISTER_ID_TO_LABEL.get(reg_id)
+            if label:
+                all_register_scores[label] = float(score.item())
+
+        detected_registers = {
+            label for label, score in all_register_scores.items() if score > 0.5
+        }
+        if not detected_registers:
+            detected_registers.add(RegisterLevel.NEUTRAL)
+
+        # 4. Grammaticality
+        gram_score = float(prediction.grammaticality_probs[i][1].item())
+        is_grammatic = gram_score > 0.5
+
+        results.append(GrammarAnalysis(
+            kotogram=kotograms[i],
+            formality=formality_res,
+            formality_score=f_val,
+            formality_is_pragmatic=f_is_pragmatic,
+            gender=gender_res,
+            gender_score=g_val,
+            gender_is_pragmatic=g_is_pragmatic,
+            registers=detected_registers,
+            register_scores=all_register_scores,
+            is_grammatic=is_grammatic,
+            grammaticality_score=gram_score,
+        ))
+
+    return results
+
+
 def grammar(kotogram: str) -> GrammarAnalysis:
     """Analyze a Japanese sentence and return a consolidated GrammarAnalysis.
 
@@ -112,89 +228,4 @@ def grammar(kotogram: str) -> GrammarAnalysis:
         >>> res.is_grammatic
         True
     """
-    from kotogram.validation import ensure_string
-    ensure_string(kotogram, "kotogram")
-
-    # Use the trained neural model for prediction
-    import torch
-    from kotogram.model import FEATURE_FIELDS, REGISTER_ID_TO_LABEL
-
-    model, tokenizer = _load_style_model()
-
-    # Encode the kotogram
-    feature_ids = tokenizer.encode(kotogram, add_cls=True, add_to_vocab=False)
-
-    # Create batch tensors
-    field_inputs = {
-        f'input_ids_{field}': torch.tensor([feature_ids[field]], dtype=torch.long)
-        for field in FEATURE_FIELDS
-    }
-    attention_mask = torch.ones(1, len(feature_ids[FEATURE_FIELDS[0]]), dtype=torch.long)
-
-    # Predict
-    model.eval()
-    with torch.no_grad():
-        prediction = model.predict(field_inputs, attention_mask)
-
-        # 1. Formality
-        f_val = float(prediction.formality_value[0].item())
-        f_is_pragmatic = prediction.formality_pragmatic_probs[0][1].item() > 0.5
-
-        if not f_is_pragmatic:
-            formality_res = FormalityLevel.UNPRAGMATIC_FORMALITY
-        elif f_val >= 0.75:
-            formality_res = FormalityLevel.VERY_FORMAL
-        elif f_val >= 0.25:
-            formality_res = FormalityLevel.FORMAL
-        elif f_val >= -0.25:
-            formality_res = FormalityLevel.NEUTRAL
-        elif f_val >= -0.75:
-            formality_res = FormalityLevel.CASUAL
-        else:
-            formality_res = FormalityLevel.VERY_CASUAL
-
-        # 2. Gender
-        g_val = float(prediction.gender_value[0].item())
-        g_is_pragmatic = prediction.gender_pragmatic_probs[0][1].item() > 0.5
-
-        if not g_is_pragmatic:
-            gender_res = GenderLevel.UNPRAGMATIC_GENDER
-        elif g_val <= -0.5:
-            gender_res = GenderLevel.MASCULINE
-        elif g_val >= 0.5:
-            gender_res = GenderLevel.FEMININE
-        else:
-            gender_res = GenderLevel.NEUTRAL
-
-        # 3. Register
-        # All scores
-        all_register_scores = {}
-        for reg_id, score in enumerate(prediction.register_probs[0]):
-            label = REGISTER_ID_TO_LABEL.get(reg_id)
-            if label:
-                all_register_scores[label] = float(score.item())
-
-        # Detected registers (score > 0.5)
-        detected_registers = {
-            label for label, score in all_register_scores.items() if score > 0.5
-        }
-        if not detected_registers:
-            detected_registers.add(RegisterLevel.NEUTRAL)
-
-        # 4. Grammaticality
-        gram_score = float(prediction.grammaticality_probs[0][1].item())
-        is_grammatic = gram_score > 0.5
-
-    return GrammarAnalysis(
-        kotogram=kotogram,
-        formality=formality_res,
-        formality_score=f_val,
-        formality_is_pragmatic=f_is_pragmatic,
-        gender=gender_res,
-        gender_score=g_val,
-        gender_is_pragmatic=g_is_pragmatic,
-        registers=detected_registers,
-        register_scores=all_register_scores,
-        is_grammatic=is_grammatic,
-        grammaticality_score=gram_score,
-    )
+    return grammars([kotogram])[0]
