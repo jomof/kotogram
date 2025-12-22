@@ -37,7 +37,7 @@ source "$VENV_DIR/bin/activate"
 
 run_quiet pip install --upgrade pip
 run_quiet pip install -e .
-run_quiet pip install ruff mypy pytest vulture
+run_quiet pip install ruff mypy pytest vulture build
 
 # --- Setup TypeScript Environment ---
 if [ -f "package.json" ]; then
@@ -78,6 +78,25 @@ if [ "$INITIAL_GIT_STATUS" != "$FINAL_GIT_STATUS" ]; then
     log "Comparing git status..."
     diff <(echo "$INITIAL_GIT_STATUS") <(echo "$FINAL_GIT_STATUS") || true
     error "git status changed during tests. New/changed files detected in repository."
+fi
+
+log "Verifying package contents..."
+run_quiet $PYTHON_CMD -m build
+
+echo "Comparing package contents against baseline..."
+# Extract filenames, remove header/footer, sort, and normalize version
+unzip -l dist/*.whl | \
+awk '{print $4}' | \
+grep -v "Name" | \
+grep -v "\-\-\-\-" | \
+grep -v "^\s*$" | \
+sed 's/kotogram-.*\.dist-info/kotogram-*.dist-info/g' | \
+LC_ALL=C sort > /tmp/package_files.txt
+
+if diff -u tests/python_package_baseline.txt /tmp/package_files.txt; then
+    log "Package contents match baseline"
+else
+    error "Package contents do not match baseline!"
 fi
 
 log "All checks passed successfully!"
