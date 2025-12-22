@@ -46,7 +46,9 @@ class SudachiJapaneseParser(JapaneseParser):
         Returns:
             Kotogram compact sentence representation with encoded linguistic features
         """
+        from kotogram.profile import increment_profile_counter
         from kotogram.validation import ensure_string
+        increment_profile_counter()
         ensure_string(text, "text")
 
         # Fix for special case with っ character

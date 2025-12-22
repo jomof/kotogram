@@ -110,10 +110,18 @@ def assert_dir_layout(test_case, root_dir: str, expected_manifest: List[str]):
         for file in files:
             if file == ".DS_Store":
                 continue
+            
+            # Construct path to check for exclusions
             if rel_root:
-                actual_paths.append(os.path.join(rel_root, file))
+                path_to_check = os.path.join(rel_root, file)
             else:
-                actual_paths.append(file)
+                path_to_check = file
+                
+            # Ignore profiling counters
+            if path_to_check == ".profile/counters.json":
+                continue
+                
+            actual_paths.append(path_to_check)
         
         # Add directory IF it is empty (and no files except .DS_Store)
         visible_files = [f for f in files if f != ".DS_Store"]
@@ -167,6 +175,11 @@ class Bottle:
                     continue
                 abs_path = os.path.join(root, file)
                 rel_path = os.path.relpath(abs_path, self.root_dir)
+                
+                # Ignore profiling counters
+                if rel_path == ".profile/counters.json":
+                    continue
+                    
                 try:
                     stat = os.stat(abs_path)
                     state[rel_path] = (stat.st_mtime, stat.st_size)
@@ -175,9 +188,14 @@ class Bottle:
                     pass
         return state
 
-    def snapshot(self, name: str):
-        """Captures the current directory state as a named snapshot."""
+    def snapshot(self, name: str) -> None:
+        """Captures the current directory state as a named snapshot.
+        
+        Also resets profile counters so that subsequent profiling starts fresh.
+        """
+        from kotogram.profile import reset_profile_counters
         self._snapshots[name] = self._get_current_state()
+        reset_profile_counters(profile_dir=self.get_file(".profile"))
 
     def __enter__(self):
         return self
@@ -192,7 +210,7 @@ class Bottle:
     def train_style(self, args: str, env_overrides: Optional[Dict[str, str]] = None):
         """Runs train_style.sh inside the bottle."""
         import re
-        overrides = {"TRAIN_ROOT": self.root_dir}
+        overrides = {"TRAIN_ROOT": self.root_dir, "PROFILE_KOTOGRAM": "1"}
         if env_overrides:
             overrides.update(env_overrides)
         result = train_style(self.test_case, self.script_path, self.project_root, args, overrides)

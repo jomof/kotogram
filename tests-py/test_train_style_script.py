@@ -20,6 +20,11 @@ class TestTrainStyleScript(unittest.TestCase):
                 with Bottle(self) as bottle:
                     bottle.populate_test_data()
                     
+                    # Take initial snapshot (also resets profile counters)
+                    from kotogram.profile import get_profile_report
+                    profile_dir = bottle.get_file(".profile")
+                    bottle.snapshot("initial")
+                    
                     # Step 1: Pre-run labeling to setup cache/data
                     bottle.train_style("--label")
                     
@@ -46,6 +51,14 @@ class TestTrainStyleScript(unittest.TestCase):
                         '[models]/style',
                     ]
                     bottle.assert_dir_layout(EXPECTED_LABEL_MANIFEST)
+                    
+                    # Verify profiling captured japanese_to_kotogram calls
+                    report = get_profile_report(profile_dir=profile_dir)
+                    # Exact count based on test data: 5 lines from each TSV file
+                    self.assertEqual(
+                        report.get_counter("japanese_to_kotogram"), 95,
+                        f"Expected exactly 95 japanese_to_kotogram calls, got: {report.counters}"
+                    )
                     
                     bottle.snapshot("after_label")
                     
@@ -80,6 +93,14 @@ class TestTrainStyleScript(unittest.TestCase):
                     
                     bottle.assert_dir_diff("after_label", EXPECTED_TRAIN_DIFFERENCES)
                     
+                    # Verify profiling captured japanese_to_kotogram calls during training
+                    # Should be 0 because training uses the cached dataset and doesn't re-parse raw text
+                    report = get_profile_report(profile_dir=profile_dir)
+                    self.assertEqual(
+                        report.get_counter("japanese_to_kotogram"), 0,
+                        f"Expected 0 japanese_to_kotogram calls during training (should use cache), got: {report.counters}"
+                    )
+                    
                     # Step 3: Take snapshot after first training pass
                     bottle.snapshot("after_epoch_1")
                     
@@ -109,6 +130,14 @@ class TestTrainStyleScript(unittest.TestCase):
                     ]
                     
                     bottle.assert_dir_diff("after_epoch_1", EXPECTED_RESUME_DIFFERENCES)
+                    
+                    # Verify profiling captured japanese_to_kotogram calls during resume training
+                    # Should be 0 because training uses the cached dataset
+                    report = get_profile_report(profile_dir=profile_dir)
+                    self.assertEqual(
+                        report.get_counter("japanese_to_kotogram"), 0,
+                        f"Expected 0 japanese_to_kotogram calls during resume (should use cache), got: {report.counters}"
+                    )
                     
                     # Verify CLI tool works with the newly trained model
                     result = bottle.kotogram_cli("grammar", "こんにちは")

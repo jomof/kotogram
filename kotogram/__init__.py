@@ -8,6 +8,7 @@ from .kotogram import kotogram_to_japanese, split_kotogram, extract_token_featur
 from .analysis import grammar, GrammarAnalysis
 from .constants import FormalityLevel, GenderLevel, RegisterLevel
 from .augment import augment
+from .profile import increment_profile_counter, get_profile_report, ProfileReport
 
 
 __all__ = [
@@ -22,4 +23,7 @@ __all__ = [
     "RegisterLevel",
     "extract_token_features",
     "augment",
+    "increment_profile_counter",
+    "get_profile_report",
+    "ProfileReport",
 ]
