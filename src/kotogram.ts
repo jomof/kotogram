@@ -48,54 +48,54 @@ export interface KotogramToJapaneseOptions {
 
 // Part-of-speech to character mappings for punctuation
 // Must match Python's POS_TO_CHARS['auxs'] exactly for cross-language compatibility
-const POS_TO_CHARS: { [key: string]: string[] } = {
+const POS_TO_CHARS: {[key: string]: string[]} = {
   auxs: [
-    "。",
-    "、",
-    "・",
-    "：",
-    "；",
-    "？",
-    "！",
-    "…",
-    "「",
-    "」",
-    "『",
-    "』",
-    "{",
-    "}",
-    ".",
-    "ー",
-    ":",
-    "?",
-    "っ",
-    "-",
-    "々",
-    "(",
-    ")",
-    "[",
-    "]",
-    "<",
-    ">",
-    "／",
-    "＼",
-    "＊",
-    "＋",
-    "＝",
-    "＠",
-    "＃",
-    "％",
-    "＆",
-    "＊",
-    "ぇ",
-    "〇",
-    "（",
-    "）",
-    "* ",
-    "*",
-    "～",
+    '。',
+    '、',
+    '・',
+    '：',
+    '；',
+    '？',
+    '！',
+    '…',
+    '「',
+    '」',
+    '『',
+    '』',
+    '{',
+    '}',
+    '.',
+    'ー',
+    ':',
+    '?',
+    'っ',
+    '-',
+    '々',
+    '(',
+    ')',
+    '[',
+    ']',
+    '<',
+    '>',
+    '／',
+    '＼',
+    '＊',
+    '＋',
+    '＝',
+    '＠',
+    '＃',
+    '％',
+    '＆',
+    '＊',
+    'ぇ',
+    '〇',
+    '（',
+    '）',
+    '* ',
+    '*',
+    '～',
     '"',
-    "◯",
+    '◯',
   ],
 };
 
@@ -145,7 +145,7 @@ const POS_TO_CHARS: { [key: string]: string[] } = {
  */
 export function kotogramToJapanese(
   kotogram: string,
-  options: KotogramToJapaneseOptions = {}
+  options: KotogramToJapaneseOptions = {},
 ): string {
   const {
     spaces = false,
@@ -165,25 +165,31 @@ export function kotogramToJapanese(
 
     if (spaces) {
       // Join tokens with spaces
-      let result = matches.join(" ").replace(/{ /g, "{").replace(/ }/g, "}");
+      let result = matches.join(' ').replace(/{ /g, '{').replace(/ }/g, '}');
 
       if (collapsePunctuation) {
         // Remove spaces around Japanese punctuation for natural formatting
         for (const punc of POS_TO_CHARS.auxs) {
           // Skip braces as they're handled above
-          if (punc === "{" || punc === "}") {
+          if (punc === '{' || punc === '}') {
             continue;
           }
           // Remove space before and after punctuation
-          result = result.replace(new RegExp(` ${escapeRegExp(punc)}`, "g"), punc);
-          result = result.replace(new RegExp(`${escapeRegExp(punc)} `, "g"), punc);
+          result = result.replace(
+            new RegExp(` ${escapeRegExp(punc)}`, 'g'),
+            punc,
+          );
+          result = result.replace(
+            new RegExp(`${escapeRegExp(punc)} `, 'g'),
+            punc,
+          );
         }
       }
 
       return result;
     } else {
       // Concatenate all surface forms without spaces (natural Japanese)
-      return matches.join("");
+      return matches.join('');
     }
   } else {
     // Furigana mode - extract surface forms and IME readings (hiragana)
@@ -203,13 +209,13 @@ export function kotogramToJapanese(
           result.push(String.fromCharCode(code - 0x60));
         }
         // Keep katakana length marker as hiragana equivalent
-        else if (char === "ー") {
-          result.push("ー");
+        else if (char === 'ー') {
+          result.push('ー');
         } else {
           result.push(char);
         }
       }
-      return result.join("");
+      return result.join('');
     }
 
     /**
@@ -260,24 +266,30 @@ export function kotogramToJapanese(
 
     if (spaces) {
       let result = resultParts
-        .join(" ")
-        .replace(/{ /g, "{")
-        .replace(/ }/g, "}");
+        .join(' ')
+        .replace(/{ /g, '{')
+        .replace(/ }/g, '}');
 
       if (collapsePunctuation) {
         // Remove spaces around Japanese punctuation for natural formatting
         for (const punc of POS_TO_CHARS.auxs) {
-          if (punc === "{" || punc === "}") {
+          if (punc === '{' || punc === '}') {
             continue;
           }
-          result = result.replace(new RegExp(` ${escapeRegExp(punc)}`, "g"), punc);
-          result = result.replace(new RegExp(`${escapeRegExp(punc)} `, "g"), punc);
+          result = result.replace(
+            new RegExp(` ${escapeRegExp(punc)}`, 'g'),
+            punc,
+          );
+          result = result.replace(
+            new RegExp(`${escapeRegExp(punc)} `, 'g'),
+            punc,
+          );
         }
       }
 
       return result;
     } else {
-      return resultParts.join("");
+      return resultParts.join('');
     }
   }
 }
@@ -323,7 +335,7 @@ export function splitKotogram(kotogram: string): string[] {
 }
 
 function escapeRegExp(string: string): string {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 /**
@@ -344,178 +356,183 @@ export interface TokenFeatures {
 
 // POS detail level 1 values (from Python POS1_MAP.values())
 const POS1_MAP_VALUES = new Set([
-  "general",
-  "proper-noun",
-  "common-noun",
-  "numeral",
-  "case-particle",
-  "binding-particle",
-  "adverbial-particle",
-  "conjunctive-particle",
-  "sentence-final-particle",
-  "nominal-particle",
-  "aux-verb-stem",
-  "bound",
-  "verbal",
-  "adjectival",
-  "adjectival-noun-like",
-  "nominal",
-  "tari",
-  "filler",
-  "letter",
-  "ascii-art",
-  "period",
-  "comma",
-  "open-bracket",
-  "close-bracket",
+  'general',
+  'proper-noun',
+  'common-noun',
+  'numeral',
+  'case-particle',
+  'binding-particle',
+  'adverbial-particle',
+  'conjunctive-particle',
+  'sentence-final-particle',
+  'nominal-particle',
+  'aux-verb-stem',
+  'bound',
+  'verbal',
+  'adjectival',
+  'adjectival-noun-like',
+  'nominal',
+  'tari',
+  'filler',
+  'letter',
+  'ascii-art',
+  'period',
+  'comma',
+  'open-bracket',
+  'close-bracket',
 ]);
 
 // POS detail level 2 values (from Python POS2_MAP.values())
 const POS2_MAP_VALUES = new Set([
-  "general",
-  "verbal-suru",
-  "verbal-suru-adj",
-  "adverbial",
-  "adjectival-noun-possible",
-  "counter",
-  "counter-possible",
-  "place-name",
-  "person-name",
-  "kaomoji",
+  'general',
+  'verbal-suru',
+  'verbal-suru-adj',
+  'adverbial',
+  'adjectival-noun-possible',
+  'counter',
+  'counter-possible',
+  'place-name',
+  'person-name',
+  'kaomoji',
 ]);
 
 // POS detail level 3 values (from Python POS3_MAP.values())
-const POS3_MAP_VALUES = new Set(["general", "country", "given-name", "surname"]);
+const POS3_MAP_VALUES = new Set([
+  'general',
+  'country',
+  'given-name',
+  'surname',
+]);
 
 // Conjugation type values (from Python CONJUGATED_TYPE_MAP.values())
 const CONJUGATED_TYPE_MAP_VALUES = new Set([
   // Auxiliary verbs
-  "aux-ta",
-  "aux-da",
-  "aux-desu",
-  "aux-masu",
-  "aux-nai",
-  "aux-nu",
-  "aux-reru",
-  "aux-tai",
-  "aux-rashii",
-  "aux-mai",
-  "aux-ja",
-  "aux-ya",
-  "aux-nanda",
-  "aux-hen",
+  'aux-ta',
+  'aux-da',
+  'aux-desu',
+  'aux-masu',
+  'aux-nai',
+  'aux-nu',
+  'aux-reru',
+  'aux-tai',
+  'aux-rashii',
+  'aux-mai',
+  'aux-ja',
+  'aux-ya',
+  'aux-nanda',
+  'aux-hen',
   // Godan verbs
-  "godan-ra",
-  "godan-ka",
-  "godan-ga",
-  "godan-sa",
-  "godan-ta",
-  "godan-na",
-  "godan-ba",
-  "godan-ma",
-  "godan-waa",
+  'godan-ra',
+  'godan-ka',
+  'godan-ga',
+  'godan-sa',
+  'godan-ta',
+  'godan-na',
+  'godan-ba',
+  'godan-ma',
+  'godan-waa',
   // Ichidan verbs
-  "upper-ichidan-a",
-  "upper-ichidan-ka",
-  "upper-ichidan-ga",
-  "upper-ichidan-za",
-  "upper-ichidan-ta",
-  "upper-ichidan-na",
-  "upper-ichidan-ha",
-  "upper-ichidan-ba",
-  "upper-ichidan-ma",
-  "upper-ichidan-ra",
-  "lower-ichidan-a",
-  "lower-ichidan-ka",
-  "lower-ichidan-ga",
-  "lower-ichidan-sa",
-  "lower-ichidan-za",
-  "lower-ichidan-ta",
-  "lower-ichidan-da",
-  "lower-ichidan-na",
-  "lower-ichidan-ha",
-  "lower-ichidan-ba",
-  "lower-ichidan-ma",
-  "lower-ichidan-ra",
+  'upper-ichidan-a',
+  'upper-ichidan-ka',
+  'upper-ichidan-ga',
+  'upper-ichidan-za',
+  'upper-ichidan-ta',
+  'upper-ichidan-na',
+  'upper-ichidan-ha',
+  'upper-ichidan-ba',
+  'upper-ichidan-ma',
+  'upper-ichidan-ra',
+  'lower-ichidan-a',
+  'lower-ichidan-ka',
+  'lower-ichidan-ga',
+  'lower-ichidan-sa',
+  'lower-ichidan-za',
+  'lower-ichidan-ta',
+  'lower-ichidan-da',
+  'lower-ichidan-na',
+  'lower-ichidan-ha',
+  'lower-ichidan-ba',
+  'lower-ichidan-ma',
+  'lower-ichidan-ra',
   // Irregular verbs
-  "ka-irregular",
-  "sa-irregular",
+  'ka-irregular',
+  'sa-irregular',
   // Adjectives
-  "i-adjective",
+  'i-adjective',
   // Classical Japanese
-  "classical-sa-irregular",
-  "classical-ra-irregular",
-  "classical-adj-ku",
-  "classical-adj-shiku",
-  "classical-aux-tari-perfective",
-  "classical-aux-tari-assertive",
-  "classical-aux-nari",
-  "classical-aux-ri",
-  "classical-aux-beshi",
-  "classical-aux-zu",
-  "classical-aux-ki",
-  "classical-aux-keri",
-  "classical-aux-gotoshi",
-  "classical-aux-maji",
-  "classical-aux-mu",
-  "classical-aux-ji",
-  "classical-aux-nu",
-  "classical-aux-rashi",
-  "classical-aux-ramu",
-  "classical-aux-zamasu",
-  "classical-upper-nidan-ta",
-  "classical-upper-nidan-da",
-  "classical-upper-nidan-ba",
-  "classical-lower-nidan-a",
-  "classical-lower-nidan-ka",
-  "classical-lower-nidan-ga",
-  "classical-lower-nidan-sa",
-  "classical-lower-nidan-da",
-  "classical-lower-nidan-na",
-  "classical-lower-nidan-ha",
-  "classical-lower-nidan-ma",
-  "classical-lower-nidan-ra",
-  "classical-yodan-ka",
-  "classical-yodan-sa",
-  "classical-yodan-ta",
-  "classical-yodan-ha",
-  "classical-yodan-ma",
-  "classical-yodan-ra",
+  'classical-sa-irregular',
+  'classical-ra-irregular',
+  'classical-adj-ku',
+  'classical-adj-shiku',
+  'classical-aux-tari-perfective',
+  'classical-aux-tari-assertive',
+  'classical-aux-nari',
+  'classical-aux-ri',
+  'classical-aux-beshi',
+  'classical-aux-zu',
+  'classical-aux-ki',
+  'classical-aux-keri',
+  'classical-aux-gotoshi',
+  'classical-aux-maji',
+  'classical-aux-mu',
+  'classical-aux-ji',
+  'classical-aux-nu',
+  'classical-aux-rashi',
+  'classical-aux-ramu',
+  'classical-aux-zamasu',
+  'classical-upper-nidan-ta',
+  'classical-upper-nidan-da',
+  'classical-upper-nidan-ba',
+  'classical-lower-nidan-a',
+  'classical-lower-nidan-ka',
+  'classical-lower-nidan-ga',
+  'classical-lower-nidan-sa',
+  'classical-lower-nidan-da',
+  'classical-lower-nidan-na',
+  'classical-lower-nidan-ha',
+  'classical-lower-nidan-ma',
+  'classical-lower-nidan-ra',
+  'classical-yodan-ka',
+  'classical-yodan-sa',
+  'classical-yodan-ta',
+  'classical-yodan-ha',
+  'classical-yodan-ma',
+  'classical-yodan-ra',
 ]);
 
 // Conjugation form values (from Python CONJUGATED_FORM_MAP.values())
 const CONJUGATED_FORM_MAP_VALUES = new Set([
-  "terminal",
-  "terminal-nasal",
-  "terminal-geminate",
-  "terminal-fused",
-  "terminal-u-euphonic",
-  "continuative",
-  "continuative-geminate",
-  "continuative-nasal",
-  "continuative-i-euphonic",
-  "continuative-u-euphonic",
-  "continuative-ni",
-  "continuative-abbreviated",
-  "continuative-fused",
-  "continuative-auxiliary",
-  "attributive",
-  "attributive-nasal",
-  "attributive-abbreviated",
-  "attributive-auxiliary",
-  "irrealis",
-  "irrealis-sa",
-  "irrealis-se",
-  "irrealis-nasal",
-  "irrealis-auxiliary",
-  "conditional",
-  "conditional-fused",
-  "imperative",
-  "volitional-presumptive",
-  "realis",
-  "stem",
-  "stem-sa",
-  "ku-form",
+  'terminal',
+  'terminal-nasal',
+  'terminal-geminate',
+  'terminal-fused',
+  'terminal-u-euphonic',
+  'continuative',
+  'continuative-geminate',
+  'continuative-nasal',
+  'continuative-i-euphonic',
+  'continuative-u-euphonic',
+  'continuative-ni',
+  'continuative-abbreviated',
+  'continuative-fused',
+  'continuative-auxiliary',
+  'attributive',
+  'attributive-nasal',
+  'attributive-abbreviated',
+  'attributive-auxiliary',
+  'irrealis',
+  'irrealis-sa',
+  'irrealis-se',
+  'irrealis-nasal',
+  'irrealis-auxiliary',
+  'conditional',
+  'conditional-fused',
+  'imperative',
+  'volitional-presumptive',
+  'realis',
+  'stem',
+  'stem-sa',
+  'ku-form',
 ]);
 
 /**
@@ -562,16 +579,16 @@ const CONJUGATED_FORM_MAP_VALUES = new Set([
  */
 export function extractTokenFeatures(token: string): TokenFeatures {
   const feature: TokenFeatures = {
-    surface: "",
-    pos: "",
-    posDetail1: "",
-    posDetail2: "",
-    posDetail3: "",
-    conjugatedType: "",
-    conjugatedForm: "",
-    baseOrth: "",
-    lemma: "",
-    reading: "",
+    surface: '',
+    pos: '',
+    posDetail1: '',
+    posDetail2: '',
+    posDetail3: '',
+    conjugatedType: '',
+    conjugatedForm: '',
+    baseOrth: '',
+    lemma: '',
+    reading: '',
   };
 
   // Extract surface form (ˢ...ᵖ)
@@ -584,10 +601,10 @@ export function extractTokenFeatures(token: string): TokenFeatures {
   const posMatch = token.match(/ᵖ([^⌉ᵇᵈʳ]+)/);
   if (posMatch) {
     const posData = posMatch[1];
-    const parts = posData.split(":");
+    const parts = posData.split(':');
 
     // Main POS code (always first)
-    feature.pos = parts.length > 0 ? parts[0] : "";
+    feature.pos = parts.length > 0 ? parts[0] : '';
 
     // Parse remaining fields semantically by checking which map they belong to
     // The parser skips empty fields, so we can't rely on position alone

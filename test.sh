@@ -61,14 +61,16 @@ mypy kotogram scripts --explicit-package-bases
 log "Running vulture..."
 vulture kotogram scripts tests-py scripts/vulture_whitelist.py
 
+if [ -f "package.json" ]; then
+    log "Running TypeScript checks..."
+    run_quiet npm run fix
+    npm test
+fi
+
 log "Running Python unittests..."
 python -m pytest tests-py/
 
-if [ -f "package.json" ]; then
-    log "Running TypeScript unittests..."
-    run_quiet npm run build
-    npm test
-fi
+
 
 # Verify git status hasn't changed
 FINAL_GIT_STATUS=$(git status --short)

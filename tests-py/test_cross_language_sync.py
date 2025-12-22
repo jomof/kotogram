@@ -23,8 +23,8 @@ class TestCrossLanguageSync(unittest.TestCase):
             self.fail(f"Could not find TS enum {enum_name}")
 
         enum_body = match.group(1)
-        # Match KEY = "value"
-        pairs = re.findall(r'(\w+)\s*=\s*"([^"]+)"', enum_body)
+        # Match KEY = "value" or KEY = 'value'
+        pairs = re.findall(r"(\w+)\s*=\s*['\"]([^'\"]+)['\"]", enum_body)
         return {key: val for key, val in pairs}
 
     def test_formality_level_sync(self):
