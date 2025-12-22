@@ -92,14 +92,13 @@ from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 from kotogram.kotogram import split_kotogram, extract_token_features
-from kotogram.analysis import FormalityLevel
 from kotogram.japanese_parser import JapaneseParser
 
 from kotogram.model import (
     StyleClassifier, Tokenizer, ModelConfig,
     FEATURE_FIELDS, ALL_FEATURE_FIELDS, set_excluded_features,
     NUM_FORMALITY_PRAGMATIC_CLASSES, NUM_GENDER_PRAGMATIC_CLASSES, NUM_GRAMMATICALITY_CLASSES, NUM_REGISTER_CLASSES,
-    FORMALITY_LABEL_TO_ID, FORMALITY_ID_TO_LABEL,
+    FORMALITY_LABEL_TO_ID,
     GENDER_LABEL_TO_ID, load_model
 )
 
