@@ -45,40 +45,33 @@ if [ -f "package.json" ]; then
 fi
 
 # --- Run Checks ---
-FAILED=0
 
 # Record initial git status
 INITIAL_GIT_STATUS=$(git status --short)
 
 log "Running ruff check..."
-ruff check . --config pyproject.toml || FAILED=1
+ruff check . --config pyproject.toml
 
 log "Running mypy..."
 # We run mypy on the main package and scripts. 
 # We use --explicit-package-bases to handle the 'scripts' directory without __init__.py.
-mypy kotogram scripts --explicit-package-bases || FAILED=1
+mypy kotogram scripts --explicit-package-bases
 
 log "Running Python unittests..."
-python -m pytest tests-py/ || FAILED=1
+python -m pytest tests-py/
 
 if [ -f "package.json" ]; then
     log "Running TypeScript unittests..."
     run_quiet npm run build
-    npm test || FAILED=1
+    npm test
 fi
 
-if [ $FAILED -eq 0 ]; then
-    # Verify git status hasn't changed
-    FINAL_GIT_STATUS=$(git status --short)
-    if [ "$INITIAL_GIT_STATUS" != "$FINAL_GIT_STATUS" ]; then
-        log "Comparing git status..."
-        diff <(echo "$INITIAL_GIT_STATUS") <(echo "$FINAL_GIT_STATUS") || true
-        error "git status changed during tests. New/changed files detected in repository."
-    fi
-
-    log "All checks passed successfully!"
-    exit 0
-else
-    error "Some checks failed. Please see the output above."
-    exit 1
+# Verify git status hasn't changed
+FINAL_GIT_STATUS=$(git status --short)
+if [ "$INITIAL_GIT_STATUS" != "$FINAL_GIT_STATUS" ]; then
+    log "Comparing git status..."
+    diff <(echo "$INITIAL_GIT_STATUS") <(echo "$FINAL_GIT_STATUS") || true
+    error "git status changed during tests. New/changed files detected in repository."
 fi
+
+log "All checks passed successfully!"
