@@ -49,8 +49,9 @@ fi
 # Record initial git status
 INITIAL_GIT_STATUS=$(git status --short)
 
-log "Running ruff check..."
-ruff check . --config pyproject.toml
+log "Running ruff check and format..."
+ruff check --fix . --config pyproject.toml
+ruff format .
 
 log "Running mypy..."
 # We run mypy on the main package and scripts. 

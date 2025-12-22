@@ -15,13 +15,13 @@ class TestMypy(unittest.TestCase):
             capture_output=True,
             text=True,
         )
-        
+
         # If mypy fails, print the output for debugging
         if result.returncode != 0:
             print("\n--- mypy output for kotogram ---")
             print(result.stdout)
             print(result.stderr)
-        
+
         self.assertEqual(
             result.returncode,
             0,

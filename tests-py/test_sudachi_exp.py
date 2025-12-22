@@ -1,9 +1,14 @@
-
-
 import textwrap
-from sudachipy import tokenizer, dictionary
+
+from sudachipy import dictionary, tokenizer
+
 from kotogram.japanese_parser import (
-    POS_MAP, POS1_MAP, POS2_MAP, POS3_MAP, CONJUGATED_TYPE_MAP, CONJUGATED_FORM_MAP
+    CONJUGATED_FORM_MAP,
+    CONJUGATED_TYPE_MAP,
+    POS1_MAP,
+    POS2_MAP,
+    POS3_MAP,
+    POS_MAP,
 )
 
 """
@@ -37,9 +42,10 @@ We have empirically verified (via `tests-py/test_japanese_parser.py`) that:
 This confirms that these are not orthogonal attributes but represent increasing levels of detail.
 """
 
+
 def test_splitmode_a():
     # Initialize Sudachi (similar to SudachiJapaneseParser)
-    dict_obj = dictionary.Dictionary(dict='full')
+    dict_obj = dictionary.Dictionary(dict="full")
     sudachi_tokenizer = dict_obj.create()
     mode = tokenizer.Tokenizer.SplitMode.A
 
@@ -47,8 +53,10 @@ def test_splitmode_a():
     tokens = sudachi_tokenizer.tokenize(text, mode)
 
     result_string = _tokens_to_yaml(tokens)
-    
-    check(result_string, """
+
+    check(
+        result_string,
+        """
         Token 0:
           begin: 0
           dictionary_form: 日本
@@ -154,11 +162,13 @@ def test_splitmode_a():
           surface: ます
           synonym_group_ids: []
           word_id: 148491
-    """)
+    """,
+    )
+
 
 def test_splitmode_b():
     # Initialize Sudachi (similar to SudachiJapaneseParser)
-    dict_obj = dictionary.Dictionary(dict='full')
+    dict_obj = dictionary.Dictionary(dict="full")
     sudachi_tokenizer = dict_obj.create()
     mode = tokenizer.Tokenizer.SplitMode.B
 
@@ -166,9 +176,11 @@ def test_splitmode_b():
     tokens = sudachi_tokenizer.tokenize(text, mode)
 
     result_string = _tokens_to_yaml(tokens)
-    
+
     # Placeholder expected output (will be updated after run)
-    check(result_string, """
+    check(
+        result_string,
+        """
         Token 0:
           begin: 0
           dictionary_form: 日本語
@@ -253,11 +265,13 @@ def test_splitmode_b():
           surface: ます
           synonym_group_ids: []
           word_id: 148491
-    """)
+    """,
+    )
+
 
 def test_splitmode_c():
     # Initialize Sudachi (similar to SudachiJapaneseParser)
-    dict_obj = dictionary.Dictionary(dict='full')
+    dict_obj = dictionary.Dictionary(dict="full")
     sudachi_tokenizer = dict_obj.create()
     mode = tokenizer.Tokenizer.SplitMode.C
 
@@ -265,9 +279,11 @@ def test_splitmode_c():
     tokens = sudachi_tokenizer.tokenize(text, mode)
 
     result_string = _tokens_to_yaml(tokens)
-    
+
     # Placeholder expected output (will be updated after run)
-    check(result_string, """
+    check(
+        result_string,
+        """
         Token 0:
           begin: 0
           dictionary_form: 日本語
@@ -352,25 +368,26 @@ def test_splitmode_c():
           surface: ます
           synonym_group_ids: []
           word_id: 148491
-    """)
+    """,
+    )
 
 
 def token_to_yaml(token) -> str:
     """Reflect against the token object to dump all public no-arg properties."""
     lines = []
-    
+
     # Get all public attributes
     attributes = [attr for attr in dir(token) if not attr.startswith("_")]
-    
+
     collected_data = {}
-    
+
     for attr_name in attributes:
         # Skip unstable or deprecated attributes
-        if attr_name == 'get_word_info':
+        if attr_name == "get_word_info":
             continue
-            
+
         attr = getattr(token, attr_name)
-        
+
         # We only care about methods that return values (getters) or properties
         # SudachiPy tokens mostly use methods for accessors
         if callable(attr):
@@ -380,7 +397,7 @@ def token_to_yaml(token) -> str:
                 collected_data[attr_name] = val
             except TypeError:
                 # Requires arguments, skip
-                pass 
+                pass
             except Exception as e:
                 collected_data[attr_name] = f"<Error: {e}>"
         else:
@@ -388,43 +405,55 @@ def token_to_yaml(token) -> str:
             collected_data[attr_name] = attr
 
     # Special handling for decomposing part_of_speech
-    if 'part_of_speech' in collected_data:
-        pos_tuple = collected_data['part_of_speech']
-        
+    if "part_of_speech" in collected_data:
+        pos_tuple = collected_data["part_of_speech"]
+
         # Build the nested list representation
         pos_lines = []
         pos_lines.append(f"- raw: {pos_tuple}")
-        
+
         # Decompose tuple elements:
         # (POS, POS1, POS2, POS3, conjugated_type, conjugated_form)
         if len(pos_tuple) >= 1:
-            pos_lines.append(f"- pos: {pos_tuple[0]} -> {POS_MAP.get(pos_tuple[0], '')}")
+            pos_lines.append(
+                f"- pos: {pos_tuple[0]} -> {POS_MAP.get(pos_tuple[0], '')}"
+            )
         if len(pos_tuple) >= 2:
-            pos_lines.append(f"- pos1: {pos_tuple[1]} -> {POS1_MAP.get(pos_tuple[1], '')}")
+            pos_lines.append(
+                f"- pos1: {pos_tuple[1]} -> {POS1_MAP.get(pos_tuple[1], '')}"
+            )
         if len(pos_tuple) >= 3:
-            pos_lines.append(f"- pos2: {pos_tuple[2]} -> {POS2_MAP.get(pos_tuple[2], '')}")
+            pos_lines.append(
+                f"- pos2: {pos_tuple[2]} -> {POS2_MAP.get(pos_tuple[2], '')}"
+            )
         if len(pos_tuple) >= 4:
-            pos_lines.append(f"- pos3: {pos_tuple[3]} -> {POS3_MAP.get(pos_tuple[3], '')}")
+            pos_lines.append(
+                f"- pos3: {pos_tuple[3]} -> {POS3_MAP.get(pos_tuple[3], '')}"
+            )
         if len(pos_tuple) >= 5:
-            pos_lines.append(f"- conjugated_type: {pos_tuple[4]} -> {CONJUGATED_TYPE_MAP.get(pos_tuple[4], '')}")
+            pos_lines.append(
+                f"- conjugated_type: {pos_tuple[4]} -> {CONJUGATED_TYPE_MAP.get(pos_tuple[4], '')}"
+            )
         if len(pos_tuple) >= 6:
-            pos_lines.append(f"- conjugated_form: {pos_tuple[5]} -> {CONJUGATED_FORM_MAP.get(pos_tuple[5], '')}")
-            
+            pos_lines.append(
+                f"- conjugated_form: {pos_tuple[5]} -> {CONJUGATED_FORM_MAP.get(pos_tuple[5], '')}"
+            )
+
         # Format as a multi-line string indented safely for the YAML-like output
         # The key is printed as "  {key}: {value}"
         # We want:
-        #   part_of_speech: 
+        #   part_of_speech:
         #   - raw: ...
         # So we prepend a newline and indent the list items by 2 spaces (to match 'part_of_speech')
-        collected_data['part_of_speech'] = "\n  " + "\n  ".join(pos_lines)
-
+        collected_data["part_of_speech"] = "\n  " + "\n  ".join(pos_lines)
 
     # Sort keys for deterministic output
     for key in sorted(collected_data.keys()):
         value = collected_data[key]
         lines.append(f"  {key}: {value}")
-        
+
     return "\n".join(lines)
+
 
 def _tokens_to_yaml(tokens) -> str:
     output_lines = []
@@ -433,9 +462,9 @@ def _tokens_to_yaml(tokens) -> str:
         output_lines.append(token_to_yaml(token))
     return "\n".join(output_lines)
 
+
 def check(actual: str, expected: str):
     """Helper to verify output matches expected string (dedented)."""
     expected = textwrap.dedent(expected).strip()
     print("\n--- Actual Output ---\n" + actual + "\n---------------------")
     assert actual == expected
-

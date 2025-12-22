@@ -5,8 +5,8 @@ This script provides CLI access to kotogram.locations without triggering
 the full kotogram package import, avoiding RuntimeWarnings.
 """
 
-import sys
 import os
+import sys
 
 # Import locations module directly without triggering kotogram/__init__.py
 # We add the parent directory to path and import the module file directly
@@ -15,7 +15,6 @@ sys.path.insert(0, _kotogram_dir)
 
 # Import all functions from the canonical locations module
 from kotogram.locations import (  # noqa: E402
-    get_train_root,
     get_cache_dir,
     get_data_dir,
     get_models_dir,
@@ -23,6 +22,7 @@ from kotogram.locations import (  # noqa: E402
     get_style_dataset_cache_dir,
     get_style_output_dir,
     get_style_support_dir,
+    get_train_root,
 )
 
 if __name__ == "__main__":

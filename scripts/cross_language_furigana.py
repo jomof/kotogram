@@ -27,12 +27,12 @@ from kotogram import SudachiJapaneseParser, kotogram_to_japanese
 
 def generate_kotograms(data_path: Path) -> list[str]:
     """Generate kotograms for all sentences using Sudachi parser."""
-    parser = SudachiJapaneseParser(dict_type='full')
+    parser = SudachiJapaneseParser(dict_type="full")
 
     kotograms = []
 
-    with open(data_path, 'r', encoding='utf-8') as f:
-        reader = csv.reader(f, delimiter='\t')
+    with open(data_path, "r", encoding="utf-8") as f:
+        reader = csv.reader(f, delimiter="\t")
         for row in reader:
             if len(row) < 3:
                 continue
@@ -58,7 +58,7 @@ def typescript_convert_furigana(kotograms_file: Path, output_file: Path) -> bool
     """Convert kotograms to Japanese with furigana using TypeScript."""
     project_root = Path(__file__).parent.parent
 
-    script = f'''
+    script = f"""
 import {{ kotogramToJapanese }} from './dist/kotogram.js';
 import {{ readFileSync, writeFileSync }} from 'fs';
 
@@ -72,18 +72,15 @@ const results = kotograms.map(k => {{
     }}
 }});
 writeFileSync('{output_file}', results.join('\\n'));
-'''
+"""
 
     # Script must be in project root to find dist/kotogram.js
-    script_file = project_root / 'ts_convert_temp.mjs'
+    script_file = project_root / "ts_convert_temp.mjs"
     script_file.write_text(script)
 
     try:
         result = subprocess.run(
-            ['node', str(script_file)],
-            cwd=project_root,
-            capture_output=True,
-            text=True
+            ["node", str(script_file)], cwd=project_root, capture_output=True, text=True
         )
         if result.returncode != 0:
             print(f"TypeScript error: {result.stderr}", file=sys.stderr)
@@ -103,18 +100,22 @@ def compare_results(
     matches = 0
     mismatches = []
 
-    for i, (py, ts, kg) in enumerate(zip(python_results, typescript_results, kotograms)):
+    for i, (py, ts, kg) in enumerate(
+        zip(python_results, typescript_results, kotograms)
+    ):
         if not kg:  # Skip empty kotograms
             continue
         if py == ts:
             matches += 1
         else:
-            mismatches.append({
-                'line': i + 1,
-                'kotogram': kg[:100] + ('...' if len(kg) > 100 else ''),
-                'python': py,
-                'typescript': ts,
-            })
+            mismatches.append(
+                {
+                    "line": i + 1,
+                    "kotogram": kg[:100] + ("..." if len(kg) > 100 else ""),
+                    "python": py,
+                    "typescript": ts,
+                }
+            )
 
     return matches, total, mismatches
 
@@ -142,17 +143,17 @@ def main() -> None:
         print(f"  Converted {len(python_results)} kotograms")
 
         # Write kotograms to temp file for TypeScript
-        kotograms_file = tmpdir / 'kotograms.txt'
-        kotograms_file.write_text('\n'.join(kotograms))
+        kotograms_file = tmpdir / "kotograms.txt"
+        kotograms_file.write_text("\n".join(kotograms))
 
-        ts_output_file = tmpdir / 'ts_results.txt'
+        ts_output_file = tmpdir / "ts_results.txt"
 
         print("Step 3: Converting kotograms with TypeScript...")
         if not typescript_convert_furigana(kotograms_file, ts_output_file):
             print("  ❌ TypeScript conversion failed")
             sys.exit(1)
 
-        typescript_results = ts_output_file.read_text().split('\n')
+        typescript_results = ts_output_file.read_text().split("\n")
         print(f"  Converted {len(typescript_results)} kotograms")
 
         # Step 4: Compare results

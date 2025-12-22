@@ -11,24 +11,23 @@ Examples:
     python scripts/validate_tatoeba.py all          # Validate all sentences
 """
 
-import sys
-import os
 import json
+import os
 import subprocess
+import sys
 from collections import defaultdict
-from typing import Tuple, Dict, List, Set, Optional, Any
-
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 from kotogram import SudachiJapaneseParser, extract_token_features  # noqa: E402
-from kotogram.kotogram import split_kotogram  # noqa: E402
 from kotogram.exceptions import MissingMappingError  # noqa: E402
+from kotogram.kotogram import split_kotogram  # noqa: E402
 
 
 def validate_sentences(
     parser: SudachiJapaneseParser,
     parser_name: str,
     tsv_file: str,
-    max_sentences: Optional[int] = None
+    max_sentences: Optional[int] = None,
 ) -> Tuple[Dict[str, Set[str]], List[Dict[str, str]], List[str]]:
     """Validate sentences and collect unmapped features.
 
@@ -46,12 +45,12 @@ def validate_sentences(
     successful_count = 0
     kotograms: List[str] = []
 
-    with open(tsv_file, 'r', encoding='utf-8') as f:
+    with open(tsv_file, "r", encoding="utf-8") as f:
         for i, line in enumerate(f):
             if max_sentences and i >= max_sentences:
                 break
 
-            parts = line.strip().split('\t')
+            parts = line.strip().split("\t")
             if len(parts) < 3:
                 continue
 
@@ -59,7 +58,7 @@ def validate_sentences(
             language = parts[1]
             text = parts[2]
 
-            if language != 'jpn':
+            if language != "jpn":
                 continue
 
             try:
@@ -68,35 +67,35 @@ def validate_sentences(
                 successful_count += 1
             except MissingMappingError as e:
                 unmapped_features[e.map_name].add(e.key)
-                failed_sentences.append({
-                    'id': sentence_id,
-                    'text': text,
-                    'map': e.map_name,
-                    'key': e.key,
-                    'error': str(e)
-                })
-
-
+                failed_sentences.append(
+                    {
+                        "id": sentence_id,
+                        "text": text,
+                        "map": e.map_name,
+                        "key": e.key,
+                        "error": str(e),
+                    }
+                )
 
     # Print summary
-    print(f"\n{'='*80}")
+    print(f"\n{'=' * 80}")
     print(f"{parser_name.upper()} VALIDATION SUMMARY")
-    print(f"{'='*80}")
+    print(f"{'=' * 80}")
     print(f"Successful: {successful_count}")
     print(f"Failed: {len(failed_sentences)}")
     print()
 
     if unmapped_features:
         print("UNMAPPED FEATURES BY MAP:")
-        print(f"{'-'*80}")
+        print(f"{'-' * 80}")
         for map_name, keys in sorted(unmapped_features.items()):
             print(f"\n{map_name}: {len(keys)} unmapped keys")
             for key in sorted(keys):
                 print(f"  '{key}'")
 
-        print(f"\n{'='*80}")
+        print(f"\n{'=' * 80}")
         print("FIRST 10 FAILED SENTENCES:")
-        print(f"{'='*80}")
+        print(f"{'=' * 80}")
         for failure in failed_sentences[:10]:
             print(f"\nID: {failure['id']}")
             print(f"Text: {failure['text']}")
@@ -108,103 +107,104 @@ def validate_sentences(
 
 
 def compare_token_features(
-    kotograms: List[str],
-    project_root: str
+    kotograms: List[str], project_root: str
 ) -> List[Dict[str, Any]]:
     """Compare Python and TypeScript extract_token_features results.
-    
+
     Args:
         kotograms: List of kotogram strings to validate
         project_root: Path to project root for calling Node.js script
-        
+
     Returns:
         List of mismatch dictionaries with details
     """
     mismatches: List[Dict[str, Any]] = []
-    
+
     # Collect all tokens from all kotograms
     all_tokens: List[str] = []
     token_to_kotogram: List[int] = []  # Track which kotogram each token came from
-    
+
     for idx, kotogram in enumerate(kotograms):
         tokens = split_kotogram(kotogram)
         for token in tokens:
             all_tokens.append(token)
             token_to_kotogram.append(idx)
-    
+
     if not all_tokens:
         return mismatches
-    
+
     # Call TypeScript in batches to avoid command line limits
     BATCH_SIZE = 1000
     ts_results: List[Dict[str, str]] = []
-    
+
     for batch_start in range(0, len(all_tokens), BATCH_SIZE):
         batch_end = min(batch_start + BATCH_SIZE, len(all_tokens))
         batch_tokens = all_tokens[batch_start:batch_end]
-        
+
         # Call Node.js script with tokens as JSON via stdin
-        script_path = os.path.join(project_root, 'scripts', 'extract_features_ts.mjs')
+        script_path = os.path.join(project_root, "scripts", "extract_features_ts.mjs")
         result = subprocess.run(
-            ['node', script_path],
+            ["node", script_path],
             input=json.dumps(batch_tokens),
             capture_output=True,
             text=True,
-            cwd=project_root
+            cwd=project_root,
         )
-        
+
         if result.returncode != 0:
             print(f"TypeScript script failed: {result.stderr}")
             return mismatches
-        
+
         batch_results = json.loads(result.stdout)
         ts_results.extend(batch_results)
-    
+
     # Compare Python vs TypeScript for each token
     # Map Python field names to TypeScript field names
     field_mapping = {
-        'surface': 'surface',
-        'pos': 'pos',
-        'pos_detail1': 'posDetail1',
-        'pos_detail2': 'posDetail2',
-        'pos_detail3': 'posDetail3',
-        'conjugated_type': 'conjugatedType',
-        'conjugated_form': 'conjugatedForm',
-        'base_orth': 'baseOrth',
-        'lemma': 'lemma',
-        'reading': 'reading',
+        "surface": "surface",
+        "pos": "pos",
+        "pos_detail1": "posDetail1",
+        "pos_detail2": "posDetail2",
+        "pos_detail3": "posDetail3",
+        "conjugated_type": "conjugatedType",
+        "conjugated_form": "conjugatedForm",
+        "base_orth": "baseOrth",
+        "lemma": "lemma",
+        "reading": "reading",
     }
-    
+
     for i, token in enumerate(all_tokens):
         py_features = extract_token_features(token)
         ts_features = ts_results[i]
-        
+
         # Compare all fields
         for py_field, ts_field in field_mapping.items():
             py_val = getattr(py_features, py_field)
-            ts_val = ts_features.get(ts_field, '')
-            
+            ts_val = ts_features.get(ts_field, "")
+
             if py_val != ts_val:
-                mismatches.append({
-                    'token': token,
-                    'field': py_field,
-                    'python_value': py_val,
-                    'typescript_value': ts_val,
-                    'kotogram_idx': token_to_kotogram[i]
-                })
-    
+                mismatches.append(
+                    {
+                        "token": token,
+                        "field": py_field,
+                        "python_value": py_val,
+                        "typescript_value": ts_val,
+                        "kotogram_idx": token_to_kotogram[i],
+                    }
+                )
+
     return mismatches
 
 
 def main() -> None:
     """Main validation function."""
-    
+
     # Use path relative to script location (scripts/) -> data/ is in sibling or parent?
     # data is in project_root/data
     # script_dir is project/scripts
     # project_root is project
     # Assumes run from project root or scripts dir
-    
+
     # Try to find data dir relative to current script
     current_script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(current_script_dir)
@@ -223,27 +223,29 @@ def main() -> None:
                 print("Usage: python scripts/validate_tatoeba.py [count]")
                 sys.exit(1)
 
-    print(f"Validating {'all' if max_sentences is None else max_sentences} sentences from {tsv_file}")
+    print(
+        f"Validating {'all' if max_sentences is None else max_sentences} sentences from {tsv_file}"
+    )
     print("This may take a while...\n")
 
-    parser = SudachiJapaneseParser(dict_type='full', validate=True)
-    print(f"\n{'#'*80}")
+    parser = SudachiJapaneseParser(dict_type="full", validate=True)
+    print(f"\n{'#' * 80}")
     print("# VALIDATING WITH SUDACHI")
-    print(f"{'#'*80}")
+    print(f"{'#' * 80}")
     _, _, kotograms = validate_sentences(parser, "Sudachi", tsv_file, max_sentences)
-    
+
     # Cross-language validation
-    print(f"\n{'#'*80}")
+    print(f"\n{'#' * 80}")
     print("# CROSS-LANGUAGE VALIDATION (Python vs TypeScript)")
-    print(f"{'#'*80}")
-    
+    print(f"{'#' * 80}")
+
     mismatches = compare_token_features(kotograms, project_root)
-    
+
     if mismatches:
         print(f"\n❌ Found {len(mismatches)} mismatches between Python and TypeScript!")
-        print(f"\n{'='*80}")
+        print(f"\n{'=' * 80}")
         print("FIRST 20 MISMATCHES:")
-        print(f"{'='*80}")
+        print(f"{'=' * 80}")
         for m in mismatches[:20]:
             print(f"\nToken: {m['token'][:60]}...")
             print(f"Field: {m['field']}")
@@ -256,4 +258,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

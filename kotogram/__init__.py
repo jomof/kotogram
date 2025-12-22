@@ -2,14 +2,13 @@
 
 __version__ = "0.0.20"
 
-from .japanese_parser import JapaneseParser
-from .sudachi_japanese_parser import SudachiJapaneseParser
-from .kotogram import kotogram_to_japanese, split_kotogram, extract_token_features
-from .analysis import grammar, GrammarAnalysis
-from .constants import FormalityLevel, GenderLevel, RegisterLevel
+from .analysis import GrammarAnalysis, grammar
 from .augment import augment
-from .profile import increment_profile_counter, get_profile_report, ProfileReport
-
+from .constants import FormalityLevel, GenderLevel, RegisterLevel
+from .japanese_parser import JapaneseParser
+from .kotogram import extract_token_features, kotogram_to_japanese, split_kotogram
+from .profile import ProfileReport, get_profile_report, increment_profile_counter
+from .sudachi_japanese_parser import SudachiJapaneseParser
 
 __all__ = [
     "JapaneseParser",

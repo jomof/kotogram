@@ -6,9 +6,11 @@ by examining linguistic features such as verb forms, particles, and auxiliary ve
 
 import json
 import os
-from dataclasses import dataclass, asdict
-from typing import Optional, Tuple, Dict, Set, List, TYPE_CHECKING
+from dataclasses import asdict, dataclass
+from typing import TYPE_CHECKING, Dict, List, Optional, Set, Tuple
+
 from kotogram.constants import FormalityLevel, GenderLevel, RegisterLevel
+
 from . import locations
 
 # This is required for cross-language furigana support to work on typescript
@@ -17,12 +19,12 @@ if TYPE_CHECKING:
     from kotogram.model import StyleClassifier, Tokenizer
 
 # Global cache for loaded model (lazy loading)
-_style_model: Optional['StyleClassifier'] = None
-_style_tokenizer: Optional['Tokenizer'] = None
+_style_model: Optional["StyleClassifier"] = None
+_style_tokenizer: Optional["Tokenizer"] = None
 _style_model_path: str = "models/style"
 
 
-def _load_style_model() -> Tuple['StyleClassifier', 'Tokenizer']:
+def _load_style_model() -> Tuple["StyleClassifier", "Tokenizer"]:
     """Load and cache the style classifier model.
 
     Returns:
@@ -35,7 +37,7 @@ def _load_style_model() -> Tuple['StyleClassifier', 'Tokenizer']:
 
     if _style_model is None or _style_tokenizer is None:
         from kotogram.model import load_default_style_model, load_model
-        
+
         # Priority 1: Check for local model in style-output dir (handles TRAIN_ROOT)
         model_dir = locations.get_style_output_dir()
         if os.path.exists(os.path.join(model_dir, "model.pt")):
@@ -76,12 +78,12 @@ class GrammarAnalysis:
         """Serialize analysis result to JSON string."""
         d = asdict(self)
         # Convert Enums to strings
-        d['formality'] = self.formality.value
-        d['gender'] = self.gender.value
+        d["formality"] = self.formality.value
+        d["gender"] = self.gender.value
         # Convert Sets to sorted lists of strings
-        d['registers'] = sorted([r.value for r in self.registers])
+        d["registers"] = sorted([r.value for r in self.registers])
         # Convert Dict keys from Enums to strings
-        d['register_scores'] = {k.value: v for k, v in self.register_scores.items()}
+        d["register_scores"] = {k.value: v for k, v in self.register_scores.items()}
         return json.dumps(d, ensure_ascii=False)
 
     @classmethod
@@ -90,10 +92,12 @@ class GrammarAnalysis:
         d = json.loads(json_str)
 
         # Map strings back to Enums
-        d['formality'] = FormalityLevel(d['formality'])
-        d['gender'] = GenderLevel(d['gender'])
-        d['registers'] = {RegisterLevel(r) for r in d['registers']}
-        d['register_scores'] = {RegisterLevel(k): v for k, v in d['register_scores'].items()}
+        d["formality"] = FormalityLevel(d["formality"])
+        d["gender"] = GenderLevel(d["gender"])
+        d["registers"] = {RegisterLevel(r) for r in d["registers"]}
+        d["register_scores"] = {
+            RegisterLevel(k): v for k, v in d["register_scores"].items()
+        }
 
         return cls(**d)
 
@@ -101,7 +105,7 @@ class GrammarAnalysis:
 def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     """Analyze a list of Japanese sentences in batch and return results.
 
-    This function is significantly more efficient than calling grammar() 
+    This function is significantly more efficient than calling grammar()
     repeatedly for multiple sentences as it performs single model inference pass.
 
     Args:
@@ -114,34 +118,38 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
         return []
 
     from kotogram.validation import ensure_string
+
     for k in kotograms:
         ensure_string(k, "kotogram")
 
     # Use the trained neural model for prediction
     import torch
+
     from kotogram.model import FEATURE_FIELDS, REGISTER_ID_TO_LABEL
 
     model, tokenizer = _load_style_model()
 
     # Encode all kotograms
-    encoded_list = [tokenizer.encode(k, add_cls=True, add_to_vocab=False) for k in kotograms]
-    
+    encoded_list = [
+        tokenizer.encode(k, add_cls=True, add_to_vocab=False) for k in kotograms
+    ]
+
     # Padding logic to handle variable lengths in batch
     max_len = max(len(e[FEATURE_FIELDS[0]]) for e in encoded_list)
     batch_size = len(kotograms)
-    
+
     field_inputs = {}
     for field in FEATURE_FIELDS:
         # 0 is the PAD_TOKEN id
         batch_ids = torch.zeros((batch_size, max_len), dtype=torch.long)
         for i, encoded in enumerate(encoded_list):
             ids = encoded[field]
-            batch_ids[i, :len(ids)] = torch.tensor(ids, dtype=torch.long)
-        field_inputs[f'input_ids_{field}'] = batch_ids
-    
+            batch_ids[i, : len(ids)] = torch.tensor(ids, dtype=torch.long)
+        field_inputs[f"input_ids_{field}"] = batch_ids
+
     attention_mask = torch.zeros((batch_size, max_len), dtype=torch.long)
     for i, encoded in enumerate(encoded_list):
-        attention_mask[i, :len(encoded[FEATURE_FIELDS[0]])] = 1
+        attention_mask[i, : len(encoded[FEATURE_FIELDS[0]])] = 1
 
     # Predict
     model.eval()
@@ -197,19 +205,21 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
         gram_score = float(prediction.grammaticality_probs[i][1].item())
         is_grammatic = gram_score > 0.5
 
-        results.append(GrammarAnalysis(
-            kotogram=kotograms[i],
-            formality=formality_res,
-            formality_score=f_val,
-            formality_is_pragmatic=f_is_pragmatic,
-            gender=gender_res,
-            gender_score=g_val,
-            gender_is_pragmatic=g_is_pragmatic,
-            registers=detected_registers,
-            register_scores=all_register_scores,
-            is_grammatic=is_grammatic,
-            grammaticality_score=gram_score,
-        ))
+        results.append(
+            GrammarAnalysis(
+                kotogram=kotograms[i],
+                formality=formality_res,
+                formality_score=f_val,
+                formality_is_pragmatic=f_is_pragmatic,
+                gender=gender_res,
+                gender_score=g_val,
+                gender_is_pragmatic=g_is_pragmatic,
+                registers=detected_registers,
+                register_scores=all_register_scores,
+                is_grammatic=is_grammatic,
+                grammaticality_score=gram_score,
+            )
+        )
 
     return results
 

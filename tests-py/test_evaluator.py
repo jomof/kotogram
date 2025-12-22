@@ -1,26 +1,28 @@
-
 import unittest
 from unittest.mock import MagicMock
+
 import torch
 from torch.utils.data import DataLoader
-from kotogram.evaluator import Evaluator, EvalResult
-from kotogram.model import Tokenizer, StyleClassifier, StylePrediction
+
+from kotogram.evaluator import EvalResult, Evaluator
+from kotogram.model import StyleClassifier, StylePrediction, Tokenizer
+
 
 class TestEvaluator(unittest.TestCase):
     def setUp(self):
-        self.device = torch.device('cpu')
-        
+        self.device = torch.device("cpu")
+
         # Mock model and tokenizer
         self.tokenizer = MagicMock(spec=Tokenizer)
         self.tokenizer.pad_id = 0
-        
+
         self.model = MagicMock(spec=StyleClassifier)
         self.model.eval.return_value = None
         self.model.to.return_value = self.model
-        
+
         # Setup mock return values for predict()
         batch_size = 2
-        
+
         # StylePrediction fields are tensors, not logits inside the prediction object (usually)
         # But predict() returns StylePrediction with *probs* and *values*.
         self.model.predict.return_value = StylePrediction(
@@ -29,7 +31,7 @@ class TestEvaluator(unittest.TestCase):
             gender_value=torch.randn(batch_size, 1),
             gender_pragmatic_probs=torch.randn(batch_size, 2),
             grammaticality_probs=torch.randn(batch_size, 2),
-            register_probs=torch.randn(batch_size, 9)
+            register_probs=torch.randn(batch_size, 9),
         )
 
     def test_initialization(self):
@@ -37,7 +39,7 @@ class TestEvaluator(unittest.TestCase):
         self.assertEqual(evaluator.model, self.model)
         self.assertEqual(evaluator.device, self.device)
         self.assertFalse(evaluator.verbose)
-        self.assertIsNotNone(evaluator.console) # Rich is mandatory now
+        self.assertIsNotNone(evaluator.console)  # Rich is mandatory now
 
     def test_evaluate_empty_loader(self):
         evaluator = Evaluator(self.model, self.device, verbose=False)
@@ -49,54 +51,55 @@ class TestEvaluator(unittest.TestCase):
     def test_evaluate_batch(self):
         # Create a dummy batch
         batch = {
-            'input_ids_surface': torch.tensor([[1, 2], [3, 4]]),
-            'input_ids_lemma': torch.tensor([[1, 2], [3, 4]]),
-            'input_ids_pos': torch.tensor([[1, 2], [3, 4]]),
-            'input_ids_pos_detail1': torch.tensor([[1, 2], [3, 4]]),
-            'input_ids_pos_detail2': torch.tensor([[1, 2], [3, 4]]),
-            'input_ids_pos_detail3': torch.tensor([[1, 2], [3, 4]]),
-            'input_ids_conjugated_type': torch.tensor([[1, 2], [3, 4]]),
-            'input_ids_conjugated_form': torch.tensor([[1, 2], [3, 4]]),
-            'input_ids_base_orth': torch.tensor([[1, 2], [3, 4]]),
-            'input_ids_reading': torch.tensor([[1, 2], [3, 4]]),
-            'attention_mask': torch.tensor([[1, 1], [1, 1]]),
-            
-            'formality_value': torch.tensor([0.0, 1.0]),
-            'formality_pragmatic': torch.tensor([0, 1]),
-            
-            'gender_value': torch.tensor([0.0, 1.0]),
-            'gender_pragmatic': torch.tensor([0, 1]),
-            'grammaticality_labels': torch.tensor([1, 1]),
-            'register_labels': torch.zeros(2, 9),
-            
-            'original_sentence': ['Sentence 1', 'Sentence 2'],
-            'kotogram': ['私/代名詞/ワタシ/ワタシ', '彼/代名詞/カレ/カレ'] # Realistic dummy kotograms
+            "input_ids_surface": torch.tensor([[1, 2], [3, 4]]),
+            "input_ids_lemma": torch.tensor([[1, 2], [3, 4]]),
+            "input_ids_pos": torch.tensor([[1, 2], [3, 4]]),
+            "input_ids_pos_detail1": torch.tensor([[1, 2], [3, 4]]),
+            "input_ids_pos_detail2": torch.tensor([[1, 2], [3, 4]]),
+            "input_ids_pos_detail3": torch.tensor([[1, 2], [3, 4]]),
+            "input_ids_conjugated_type": torch.tensor([[1, 2], [3, 4]]),
+            "input_ids_conjugated_form": torch.tensor([[1, 2], [3, 4]]),
+            "input_ids_base_orth": torch.tensor([[1, 2], [3, 4]]),
+            "input_ids_reading": torch.tensor([[1, 2], [3, 4]]),
+            "attention_mask": torch.tensor([[1, 1], [1, 1]]),
+            "formality_value": torch.tensor([0.0, 1.0]),
+            "formality_pragmatic": torch.tensor([0, 1]),
+            "gender_value": torch.tensor([0.0, 1.0]),
+            "gender_pragmatic": torch.tensor([0, 1]),
+            "grammaticality_labels": torch.tensor([1, 1]),
+            "register_labels": torch.zeros(2, 9),
+            "original_sentence": ["Sentence 1", "Sentence 2"],
+            "kotogram": [
+                "私/代名詞/ワタシ/ワタシ",
+                "彼/代名詞/カレ/カレ",
+            ],  # Realistic dummy kotograms
         }
-        
+
         # Mock DataLoader
         loader = [batch]
-        
+
         evaluator = Evaluator(self.model, self.device, verbose=True)
         result = evaluator.evaluate(loader)
-        
+
         self.assertEqual(len(result.formality_val_preds), 2)
         self.assertEqual(len(result.sentences), 2)
-        self.assertEqual(result.sentences[0], 'Sentence 1')
-        self.assertEqual(result.kotograms[0], '私/代名詞/ワタシ/ワタシ')
-        
+        self.assertEqual(result.sentences[0], "Sentence 1")
+        self.assertEqual(result.kotograms[0], "私/代名詞/ワタシ/ワタシ")
+
         # Check model call
         self.model.predict.assert_called()
 
     def test_keyboard_interrupt(self):
         # Simulate KeyboardInterrupt during iteration
         evaluator = Evaluator(self.model, self.device, verbose=False)
-        
+
         # Mock loader that raises KeyboardInterrupt
         loader = MagicMock()
         loader.__iter__.side_effect = KeyboardInterrupt()
-        
+
         with self.assertRaises(SystemExit):
             evaluator.evaluate(loader)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

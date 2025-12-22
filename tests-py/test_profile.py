@@ -21,10 +21,9 @@ class TestProfileCounter(unittest.TestCase):
     def setUp(self) -> None:
         """Set up test with profiling enabled and temp directory."""
         self.temp_dir = tempfile.mkdtemp()
-        self.env_patcher = mock.patch.dict(os.environ, {
-            "PROFILE_KOTOGRAM": "1",
-            "TRAIN_ROOT": self.temp_dir
-        })
+        self.env_patcher = mock.patch.dict(
+            os.environ, {"PROFILE_KOTOGRAM": "1", "TRAIN_ROOT": self.temp_dir}
+        )
         self.env_patcher.start()
         reset_profile_counters()
 
@@ -127,10 +126,9 @@ class TestSudachiParserProfileIntegration(unittest.TestCase):
     def setUp(self) -> None:
         """Set up test with profiling enabled and temp directory."""
         self.temp_dir = tempfile.mkdtemp()
-        self.env_patcher = mock.patch.dict(os.environ, {
-            "PROFILE_KOTOGRAM": "1",
-            "TRAIN_ROOT": self.temp_dir
-        })
+        self.env_patcher = mock.patch.dict(
+            os.environ, {"PROFILE_KOTOGRAM": "1", "TRAIN_ROOT": self.temp_dir}
+        )
         self.env_patcher.start()
         reset_profile_counters()
 
@@ -155,7 +153,9 @@ class TestSudachiParserProfileIntegration(unittest.TestCase):
                 found = True
                 break
 
-        self.assertTrue(found, f"Counter not found. Keys: {list(report.counters.keys())}")
+        self.assertTrue(
+            found, f"Counter not found. Keys: {list(report.counters.keys())}"
+        )
 
     def test_report_writes_json_file(self) -> None:
         """get_profile_report writes report to .profile/report.json."""

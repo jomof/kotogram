@@ -2,8 +2,10 @@
 
 import unittest
 from unittest.mock import patch
+
 import torch
-from kotogram import SudachiJapaneseParser, grammar, FormalityLevel, RegisterLevel
+
+from kotogram import FormalityLevel, RegisterLevel, SudachiJapaneseParser, grammar
 from kotogram.model import StylePrediction
 
 
@@ -12,22 +14,25 @@ class TestFormalityModel(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        self.parser = SudachiJapaneseParser(dict_type='full')
+        self.parser = SudachiJapaneseParser(dict_type="full")
 
         # Mock the model loader for tests
-        from kotogram.model import Tokenizer, StyleClassifier, ModelConfig
+        from kotogram.model import ModelConfig, StyleClassifier, Tokenizer
 
         # Create dummy tokenizer
         self.tokenizer = Tokenizer()
         self.tokenizer._frozen = True
-        
+
         # Create dummy model
         config = ModelConfig(vocab_sizes=self.tokenizer.get_vocab_sizes())
         self.model = StyleClassifier(config)
         self.model.eval()
 
         # Patch the internal loader
-        patcher = patch('kotogram.analysis._load_style_model', return_value=(self.model, self.tokenizer))
+        patcher = patch(
+            "kotogram.analysis._load_style_model",
+            return_value=(self.model, self.tokenizer),
+        )
         patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -35,21 +40,21 @@ class TestFormalityModel(unittest.TestCase):
         """Test basic formal sentence."""
         text = "私は学生です。"
         kotogram = self.parser.japanese_to_kotogram(text)
-        
+
         # Mock predict
-        with patch.object(self.model, 'predict') as mock_predict:
+        with patch.object(self.model, "predict") as mock_predict:
             # Set formal (0.5) probability
-            formality_val = torch.tensor([0.5]) 
+            formality_val = torch.tensor([0.5])
             formality_prag = torch.zeros(1, 2)
-            formality_prag[0, 1] = 5.0 # Pragmatic
+            formality_prag[0, 1] = 5.0  # Pragmatic
 
             mock_predict.return_value = StylePrediction(
                 formality_value=formality_val,
                 formality_pragmatic_probs=formality_prag,
-                gender_value=torch.tensor([0.0]), 
-                gender_pragmatic_probs=torch.tensor([[0.5, 0.5]]), 
-                grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
-                register_probs=torch.tensor([[0.0]*14])
+                gender_value=torch.tensor([0.0]),
+                gender_pragmatic_probs=torch.tensor([[0.5, 0.5]]),
+                grammaticality_probs=torch.tensor([[0.1, 0.9]]),
+                register_probs=torch.tensor([[0.0] * 14]),
             )
             result = grammar(kotogram)
             self.assertEqual(result.formality, FormalityLevel.FORMAL)
@@ -63,20 +68,20 @@ class TestFormalityModel(unittest.TestCase):
         """Test basic casual sentence."""
         text = "私は学生だ。"
         kotogram = self.parser.japanese_to_kotogram(text)
-        
-        with patch.object(self.model, 'predict') as mock_predict:
+
+        with patch.object(self.model, "predict") as mock_predict:
             # Set casual (-0.5) probability
-            formality_val = torch.tensor([-0.5]) 
+            formality_val = torch.tensor([-0.5])
             formality_prag = torch.zeros(1, 2)
-            formality_prag[0, 1] = 5.0 # Pragmatic
+            formality_prag[0, 1] = 5.0  # Pragmatic
 
             mock_predict.return_value = StylePrediction(
                 formality_value=formality_val,
-                formality_pragmatic_probs=formality_prag, 
-                gender_value=torch.tensor([0.0]), 
-                gender_pragmatic_probs=torch.tensor([[0.5, 0.5]]), 
-                grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
-                register_probs=torch.tensor([[0.0]*14])
+                formality_pragmatic_probs=formality_prag,
+                gender_value=torch.tensor([0.0]),
+                gender_pragmatic_probs=torch.tensor([[0.5, 0.5]]),
+                grammaticality_probs=torch.tensor([[0.1, 0.9]]),
+                register_probs=torch.tensor([[0.0] * 14]),
             )
             result = grammar(kotogram)
             self.assertEqual(result.formality, FormalityLevel.CASUAL)
@@ -86,20 +91,20 @@ class TestFormalityModel(unittest.TestCase):
         """Test basic very formal (keigo)."""
         text = "よろしくお願いいたします。"
         kotogram = self.parser.japanese_to_kotogram(text)
-        
-        with patch.object(self.model, 'predict') as mock_predict:
+
+        with patch.object(self.model, "predict") as mock_predict:
             # Set very formal (1.0) probability
-            formality_val = torch.tensor([1.0]) 
+            formality_val = torch.tensor([1.0])
             formality_prag = torch.zeros(1, 2)
-            formality_prag[0, 1] = 5.0 # Pragmatic
+            formality_prag[0, 1] = 5.0  # Pragmatic
 
             mock_predict.return_value = StylePrediction(
                 formality_value=formality_val,
                 formality_pragmatic_probs=formality_prag,
-                gender_value=torch.tensor([0.0]), 
-                gender_pragmatic_probs=torch.tensor([[0.5, 0.5]]), 
-                grammaticality_probs=torch.tensor([[0.1, 0.9]]), 
-                register_probs=torch.tensor([[0.0]*14])
+                gender_value=torch.tensor([0.0]),
+                gender_pragmatic_probs=torch.tensor([[0.5, 0.5]]),
+                grammaticality_probs=torch.tensor([[0.1, 0.9]]),
+                register_probs=torch.tensor([[0.0] * 14]),
             )
             result = grammar(kotogram)
             self.assertEqual(result.formality, FormalityLevel.VERY_FORMAL)
@@ -118,6 +123,7 @@ class TestFormalityModel(unittest.TestCase):
         # If tokenizer handles empty string fine, model will predict something.
         # Let's skip this test if I'm unsure, OR I'll add the check back in analysis.py if it fails.
         pass
+
 
 if __name__ == "__main__":
     unittest.main()

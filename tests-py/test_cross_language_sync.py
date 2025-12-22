@@ -1,8 +1,10 @@
 """Test to ensure TypeScript Enums are in sync with Python Enums."""
 
-import unittest
 import re
+import unittest
+
 from kotogram.constants import FormalityLevel, GenderLevel, RegisterLevel
+
 
 class TestCrossLanguageSync(unittest.TestCase):
     """Verifies that TypeScript Enums match Python Enums."""
@@ -19,7 +21,7 @@ class TestCrossLanguageSync(unittest.TestCase):
         match = re.search(pattern, self.ts_content, re.DOTALL)
         if not match:
             self.fail(f"Could not find TS enum {enum_name}")
-        
+
         enum_body = match.group(1)
         # Match KEY = "value"
         pairs = re.findall(r'(\w+)\s*=\s*"([^"]+)"', enum_body)
@@ -45,8 +47,9 @@ class TestCrossLanguageSync(unittest.TestCase):
 
     def test_grammar_analysis_fields_sync(self):
         """Verify GrammarAnalysis public fields sync."""
-        from kotogram.analysis import GrammarAnalysis
         from dataclasses import fields
+
+        from kotogram.analysis import GrammarAnalysis
 
         # Extract Python fields
         py_fields = {f.name for f in fields(GrammarAnalysis)}
@@ -56,12 +59,17 @@ class TestCrossLanguageSync(unittest.TestCase):
         match = re.search(pattern, self.ts_content, re.DOTALL)
         if not match:
             self.fail("Could not find TS interface GrammarAnalysisData")
-        
+
         interface_body = match.group(1)
         # Match fieldName: type;
         ts_fields = set(re.findall(r"(\w+)\s*:", interface_body))
 
-        self.assertEqual(ts_fields, py_fields, f"GrammarAnalysis fields are out of sync. TS has {ts_fields}, Py has {py_fields}")
+        self.assertEqual(
+            ts_fields,
+            py_fields,
+            f"GrammarAnalysis fields are out of sync. TS has {ts_fields}, Py has {py_fields}",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

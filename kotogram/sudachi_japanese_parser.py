@@ -1,16 +1,17 @@
 """Sudachi-based implementation of Japanese parser."""
 
 from typing import Any, Dict, List, Optional
+
 from kotogram.exceptions import MissingMappingError
 
 from .japanese_parser import (
-    JapaneseParser,
-    POS_MAP,
+    CONJUGATED_FORM_MAP,
+    CONJUGATED_TYPE_MAP,
     POS1_MAP,
     POS2_MAP,
     POS3_MAP,
-    CONJUGATED_TYPE_MAP,
-    CONJUGATED_FORM_MAP,
+    POS_MAP,
+    JapaneseParser,
 )
 
 
@@ -21,7 +22,7 @@ class SudachiJapaneseParser(JapaneseParser):
     Japanese text, converting it into kotogram compact format.
     """
 
-    def __init__(self, dict_type: str = 'full', validate: bool = False) -> None:
+    def __init__(self, dict_type: str = "full", validate: bool = False) -> None:
         """Initialize the Sudachi Japanese parser.
 
         Args:
@@ -48,11 +49,12 @@ class SudachiJapaneseParser(JapaneseParser):
         """
         from kotogram.profile import increment_profile_counter
         from kotogram.validation import ensure_string
+
         increment_profile_counter()
         ensure_string(text, "text")
 
         # Fix for special case with っ character
-        text = text.replace(' っ', 'っ').replace('っ ', 'っ')
+        text = text.replace(" っ", "っ").replace("っ ", "っ")
 
         tokens = self.tokenizer.tokenize(text)
         return self._tokens_to_kotogram(tokens)
@@ -87,7 +89,9 @@ class SudachiJapaneseParser(JapaneseParser):
                     return
                 parsed_token[field] = value
 
-            def validated_lookup(mapping: Dict[str, str], key: str, map_name: str) -> Optional[str]:
+            def validated_lookup(
+                mapping: Dict[str, str], key: str, map_name: str
+            ) -> Optional[str]:
                 """Lookup with validation support."""
                 if key == "" or key == "*":
                     return mapping.get(key, None)
@@ -97,7 +101,7 @@ class SudachiJapaneseParser(JapaneseParser):
                     raise MissingMappingError(
                         map_name=map_name,
                         key=key,
-                        context=f"Sudachi token: surface='{surface}', pos={pos_tuple}"
+                        context=f"Sudachi token: surface='{surface}', pos={pos_tuple}",
                     )
                 return result
 
@@ -105,22 +109,44 @@ class SudachiJapaneseParser(JapaneseParser):
             if len(pos_tuple) >= 1:
                 add("pos", validated_lookup(POS_MAP, pos_tuple[0], "POS_MAP"))
             if len(pos_tuple) >= 2:
-                add("pos_detail_1", validated_lookup(POS1_MAP, pos_tuple[1], "POS1_MAP"))
+                add(
+                    "pos_detail_1", validated_lookup(POS1_MAP, pos_tuple[1], "POS1_MAP")
+                )
             if len(pos_tuple) >= 3:
-                add("pos_detail_2", validated_lookup(POS2_MAP, pos_tuple[2], "POS2_MAP"))
+                add(
+                    "pos_detail_2", validated_lookup(POS2_MAP, pos_tuple[2], "POS2_MAP")
+                )
             if len(pos_tuple) >= 4:
-                add("pos_detail_3", validated_lookup(POS3_MAP, pos_tuple[3], "POS3_MAP"))
+                add(
+                    "pos_detail_3", validated_lookup(POS3_MAP, pos_tuple[3], "POS3_MAP")
+                )
 
             # Conjugation (4 is conjugation type, 5 is conjugation form)
             if len(pos_tuple) >= 5:
-                add("conjugated_type", validated_lookup(CONJUGATED_TYPE_MAP, pos_tuple[4], "CONJUGATED_TYPE_MAP"))
+                add(
+                    "conjugated_type",
+                    validated_lookup(
+                        CONJUGATED_TYPE_MAP, pos_tuple[4], "CONJUGATED_TYPE_MAP"
+                    ),
+                )
             if len(pos_tuple) >= 6:
-                add("conjugated_form", validated_lookup(CONJUGATED_FORM_MAP, pos_tuple[5], "CONJUGATED_FORM_MAP"))
+                add(
+                    "conjugated_form",
+                    validated_lookup(
+                        CONJUGATED_FORM_MAP, pos_tuple[5], "CONJUGATED_FORM_MAP"
+                    ),
+                )
 
             # Lexical information
             add("lemma", dictionary_form if dictionary_form != surface else None)
-            add("base_orthography", dictionary_form if dictionary_form != surface else None)
-            add("surface_pronunciation", reading_form if reading_form != surface else None)
+            add(
+                "base_orthography",
+                dictionary_form if dictionary_form != surface else None,
+            )
+            add(
+                "surface_pronunciation",
+                reading_form if reading_form != surface else None,
+            )
 
             parsed_tokens.append(parsed_token)
 

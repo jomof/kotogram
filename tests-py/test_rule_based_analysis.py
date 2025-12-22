@@ -1,13 +1,13 @@
 """Tests for rule-based formality and gender analysis in scripts."""
 
-import unittest
-import sys
 import os
+import sys
+import unittest
 
 # Add project root to path to allow importing from scripts
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from kotogram import SudachiJapaneseParser, FormalityLevel, GenderLevel
+from kotogram import FormalityLevel, GenderLevel, SudachiJapaneseParser
 from scripts.rule_based_analysis import analyze_formality, analyze_gender
 
 
@@ -16,7 +16,7 @@ class TestRuleBasedFormality(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        self.parser = SudachiJapaneseParser(dict_type='full')
+        self.parser = SudachiJapaneseParser(dict_type="full")
 
     def test_very_formal_humble(self):
         """Test humble verbs (keigo) -> VERY_FORMAL."""
@@ -103,7 +103,7 @@ class TestRuleBasedGender(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        self.parser = SudachiJapaneseParser(dict_type='full')
+        self.parser = SudachiJapaneseParser(dict_type="full")
 
     def test_masculine_pronouns(self):
         """Test masculine pronouns."""
@@ -159,7 +159,6 @@ class TestRuleBasedGender(unittest.TestCase):
         text = "私は学生です"
         kotogram = self.parser.japanese_to_kotogram(text)
         self.assertEqual(analyze_gender(kotogram), GenderLevel.NEUTRAL)
-
 
     def test_empty_kotogram(self):
         """Test empty kotogram."""
