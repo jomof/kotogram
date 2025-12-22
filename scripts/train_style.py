@@ -685,12 +685,22 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             with open(tsv_path, 'r', encoding='utf-8') as f:
                 reader = csv.reader(f, delimiter='\t')
                 for row in reader:
-                    if len(row) < 3:
+                    if not row:
                         continue
+                    
+                    # Support both 3-column (ID, Lang, Sentence) and 1-column (Sentence only)
+                    if len(row) >= 3:
+                        sentence_id, _lang, sentence = row[0], row[1], row[2]
+                    elif len(row) == 1:
+                        sentence_id = ""
+                        sentence = row[0]
+                    else:
+                        continue
+                        
                     # Early subsampling: skip rows based on sample_ratio
                     if sample_ratio < 1.0 and random.random() >= sample_ratio:
                         continue
-                    sentence_id, _lang, sentence = row[0], row[1], row[2]
+
                     file_rows.append((sentence, sentence_id, gram_label))
                     if max_samples and len(all_rows) + len(file_rows) >= max_samples:
                         break

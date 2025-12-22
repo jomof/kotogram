@@ -451,25 +451,10 @@ def main() -> None:
                         raw_rows.append(row)
         
 
-        if output_path:
-            os.makedirs(os.path.dirname(output_path), exist_ok=True)
-            import io
-            out = io.StringIO()
-            writer = csv.writer(out, delimiter='\t', lineterminator='\n')
-            writer.writerows(raw_rows)
-            new_content = out.getvalue()
-            
-            should_write = True
-            if os.path.exists(output_path):
-                with open(output_path, 'r', encoding='utf-8') as f:
-                    if f.read() == new_content:
-                        console.print(f"  [dim]{os.path.basename(output_path)} unchanged, skipping write.[/dim]")
-                        should_write = False
-            
-            if should_write:
-                console.print(f"  Writing {len(raw_rows):,} unique rows to [bold]{output_path}[/bold]...")
-                with open(output_path, 'w', encoding='utf-8') as f:
-                    f.write(new_content)
+        # Writing is now handled in main() after filtering
+        #
+        # if output_path:
+        #     ... (removed)
                     
         return unique_rows, len(file_list)
 
@@ -626,7 +611,32 @@ def main() -> None:
                     cache.put_batch(new_entries)
 
     console.print(f"\n[bold green]Processing complete![/bold green] Total processed: {len(final_results):,}")
-    print_stats(final_results)
+    display_results = [r for r in final_results if r.success]
+    print_stats(display_results)
+    
+    # Write filtered, valid sentences to output files (single column)
+    # This ensures consistency: The file on disk ONLY contains sentences that are 
+    # guaranteed to be in the cache.
+    
+    # 1. Grammatic
+    if args.output_grammatic:
+        gram_sent = [r.sentence for r in display_results if r.gram_label == 1]
+        if gram_sent:
+            console.print(f"Writing {len(gram_sent):,} grammatic sentences to [bold]{args.output_grammatic}[/bold]...")
+            os.makedirs(os.path.dirname(args.output_grammatic), exist_ok=True)
+            with open(args.output_grammatic, 'w', encoding='utf-8') as f:
+                for s in gram_sent:
+                    f.write(s + "\n")
+
+    # 2. Agrammatic
+    if args.output_agrammatic:
+        agram_sent = [r.sentence for r in display_results if r.gram_label == 0]
+        if agram_sent:
+             console.print(f"Writing {len(agram_sent):,} agrammatic sentences to [bold]{args.output_agrammatic}[/bold]...")
+             os.makedirs(os.path.dirname(args.output_agrammatic), exist_ok=True)
+             with open(args.output_agrammatic, 'w', encoding='utf-8') as f:
+                 for s in agram_sent:
+                     f.write(s + "\n")
     
     # Save register samples to CSV
     save_register_samples(final_results, args.model_dir)
