@@ -2,58 +2,9 @@
 
 import unittest
 import torch
-import torch.nn as nn
 from kotogram.model import ModelConfig
 
-class MockStyleClassifier(nn.Module):
-    """Mock StyleClassifier for testing gender output shapes."""
-    def __init__(self, config):
-        super().__init__()
-        self.config = config
-        self.gender_value_head = nn.Sequential(
-            nn.Linear(config.d_model, config.hidden_dim),
-            nn.GELU(),
-            nn.Linear(config.hidden_dim, 1),
-            nn.Tanh(),
-        )
-        self.gender_pragmatic_head = nn.Sequential(
-            nn.Linear(config.d_model, config.hidden_dim),
-            nn.GELU(),
-            nn.Linear(config.hidden_dim, 2), # 0=unpragmatic, 1=pragmatic
-        )
 
-    def forward(self, inputs, mask=None):
-        # Fake output
-        bs = list(inputs.values())[0].shape[0] if inputs else 1
-        return (
-            torch.randn(bs, 6), # formality (6 classes)
-            torch.randn(bs, 1), # gender_val
-            torch.randn(bs, 2), # gender_prag
-            torch.randn(bs, 2), # grammaticality
-            torch.randn(bs, 8)  # register
-        )
-        
-    def predict(self, inputs, mask=None):
-        bs = list(inputs.values())[0].shape[0] if inputs else 1
-        # Mock prediction logic from model.py
-        # formality_logits, gender_val, gender_prag_logits, grammaticality_logits, register_logits = self(inputs, mask)
-        # return softmax/sigmoid...
-        
-        # We just return random tensors matching shapes expected by analysis.py
-        # analysis.gender() expects:
-        # _, gender_val, gender_prag_probs, _, _ = model.predict(...)
-        
-        # Mock values:
-        # gender_val: float [-1, 1]
-        # gender_prag_probs: softmax output
-        
-        return (
-            torch.randn(bs, 6),
-            torch.tensor([[-0.8]]), # gender_val: very masculine
-            torch.tensor([[0.1, 0.9]]), # gender_prag: highly pragmatic (index 1)
-            torch.randn(bs, 2),
-            torch.randn(bs, 8)
-        )
 
 class TestContinuousGender(unittest.TestCase):
     def test_model_output_shapes(self):
@@ -83,7 +34,7 @@ class TestContinuousGender(unittest.TestCase):
         # Now expecting 6 outputs: formality_val, formality_prag, gender_val, gender_prag, gram, register
         self.assertEqual(len(out), 6) 
         
-        formality_val, formality_prag, gender_val, gender_prag, gram, register = out
+        formality_val, formality_prag, gender_val, gender_prag, gram, _ = out
         
         self.assertEqual(gender_val.shape, (bs, 1))
         self.assertEqual(gender_prag.shape, (bs, 2))

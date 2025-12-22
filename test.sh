@@ -37,7 +37,7 @@ source "$VENV_DIR/bin/activate"
 
 run_quiet pip install --upgrade pip
 run_quiet pip install -e .
-run_quiet pip install ruff mypy pytest
+run_quiet pip install ruff mypy pytest vulture
 
 # --- Setup TypeScript Environment ---
 if [ -f "package.json" ]; then
@@ -56,6 +56,9 @@ log "Running mypy..."
 # We run mypy on the main package and scripts. 
 # We use --explicit-package-bases to handle the 'scripts' directory without __init__.py.
 mypy kotogram scripts --explicit-package-bases
+
+log "Running vulture..."
+vulture kotogram scripts tests-py scripts/vulture_whitelist.py
 
 log "Running Python unittests..."
 python -m pytest tests-py/

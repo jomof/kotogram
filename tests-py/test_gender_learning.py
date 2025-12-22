@@ -26,7 +26,7 @@ class TestGenderLearning(unittest.TestCase):
         attention_mask = torch.ones((batch_size, 10))
         
         # Forward pass
-        formality_val, formality_prag, gender_val, gender_prag, gram, register = model(field_inputs, attention_mask)
+        formality_val, formality_prag, gender_val, gender_prag, gram, _ = model(field_inputs, attention_mask)
         
         # Dummy targets
         gender_val_targets = torch.randn(batch_size)

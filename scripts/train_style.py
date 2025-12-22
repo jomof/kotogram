@@ -54,7 +54,6 @@ Usage:
 """
 
 import csv
-import hashlib
 import json
 import multiprocessing as mp
 import os
@@ -91,7 +90,6 @@ from torch.utils.data import Dataset, DataLoader
 from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
-from kotogram.kotogram import split_kotogram, extract_token_features
 from kotogram.japanese_parser import JapaneseParser
 from kotogram import locations
 
@@ -153,26 +151,7 @@ def is_main_process() -> bool:
     return True
 
 
-def _collect_tokens_batch(kotograms: List[str]) -> Dict[str, Counter]:
-    """Collect token counts from a batch of kotograms in parallel.
-    
-    Returns:
-        Dict mapping field_name -> Counter of token values
-    """
-    from kotogram.model import FEATURE_FIELDS
-    
-    counters: Dict[str, Counter[Any]] = {f: Counter() for f in FEATURE_FIELDS}
-    
-    for k in kotograms:
-        tokens = split_kotogram(k)
-        for token in tokens:
-            token_feat = extract_token_features(token)
-            for field in FEATURE_FIELDS:
-                value = getattr(token_feat, field)
-                if field in counters: # Only track active features
-                    counters[field][value] += 1
-                    
-    return counters
+
 
 
 def _encode_samples_batch(
@@ -274,36 +253,6 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         return self.samples[idx]
 
     @staticmethod
-    def _get_vocab_cache_path(
-        tsv_paths: List[str],
-        labeled: bool,
-        grammaticality_labels: Optional[List[int]],
-    ) -> str:
-        """Generate a cache file path for the vocabulary configuration."""
-        # Build a hash from all relevant parameters
-        hash_parts = [f"v{CACHE_VERSION}"] 
-
-        for tsv_path in tsv_paths:
-            hash_parts.append(tsv_path)
-            # Include file modification time
-            if os.path.exists(tsv_path):
-                mtime = os.path.getmtime(tsv_path)
-                hash_parts.append(str(mtime))
-        
-        # Include row count hash if available (to detect content changes without full re-read)
-        # For now, mtime + path is a reasonable proxy for "same input file"
-        
-        hash_parts.append(f"labeled={labeled}")
-        hash_parts.append(f"gram_labels={grammaticality_labels}")
-
-        # Create hash
-        hash_str = hashlib.sha256("|".join(hash_parts).encode()).hexdigest()[:16]
-        
-        from kotogram import locations
-        cache_dir = locations.get_style_dataset_cache_dir()
-        return os.path.join(cache_dir, f"vocab_v{CACHE_VERSION}_{hash_str}.json")
-
-    @staticmethod
     def _load_vocab(
         cache_path: str,
         tokenizer: Tokenizer,
@@ -362,7 +311,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 cached_tuple = cached_data_map.get(sentence)
                 if cached_tuple is not None:
                     # Hit
-                    k, f_lbl, g_val, g_prag, r_lbls, cached_gram_lbl = cached_tuple
+                    k, f_lbl, g_val, g_prag, r_lbls, _ = cached_tuple
                     
                     processed_sample = ProcessedSample(
                         sentence=sentence,
@@ -1872,9 +1821,10 @@ class Trainer:
             
             all_valid_style_mask.extend(is_valid_style.cpu().tolist())
 
-            if return_mismatches or True: # Always collect sentences for confusion matrices
-                all_sentences.extend(batch.get('original_sentence', []))
-                all_kotograms.extend(batch.get('kotogram', []))
+            # Always collect sentences for confusion matrices
+            _ = return_mismatches
+            all_sentences.extend(batch.get('original_sentence', []))
+            all_kotograms.extend(batch.get('kotogram', []))
 
         avg_loss = total_loss / n_batches if n_batches > 0 else 0
         avg_formality_loss = total_formality_loss / n_batches if n_batches > 0 else 0
@@ -3071,7 +3021,7 @@ if __name__ == "__main__":
     if (args.fp16 or args.fp8) and is_main_process():
         precision_name = "fp8" if args.fp8 else "fp16"
         print(f"\nVerifying loaded {precision_name} model accuracy...")
-        loaded_model, *unused = load_model(args.output, device=device.type)
+        loaded_model, *_unused = load_model(args.output, device=device.type)
 
         formality_prag_correct = 0
         formality_val_sq_err = 0.0

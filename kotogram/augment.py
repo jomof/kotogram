@@ -657,7 +657,7 @@ class PronunciationRule(AugmentationRule):
         return result
 
 
-        return result
+
 
 
 class RaNukiRule(AugmentationRule):

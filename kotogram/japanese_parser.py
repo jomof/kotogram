@@ -3,6 +3,17 @@
 from abc import ABC, abstractmethod
 
 # Global mapping constants shared across all Japanese parser implementations
+__all__ = [
+    "POS_MAP",
+    "POS1_MAP",
+    "POS2_MAP",
+    "POS3_MAP",
+    "CONJUGATED_TYPE_MAP",
+    "CONJUGATED_FORM_MAP",
+    "POS_TO_CHARS",
+
+    "JapaneseParser",
+]
 
 # Part-of-speech mappings
 POS_MAP = {
@@ -234,12 +245,7 @@ POS_TO_CHARS = {
              'ぇ', '〇', '（', '）', '* ', '*', '～', '"', '◯']
 }
 
-# Character to part-of-speech reverse mapping
-CHAR_TO_POS = {
-    ch: pos
-    for pos, chars in POS_TO_CHARS.items()
-    for ch in chars
-}
+
 
 
 class JapaneseParser(ABC):

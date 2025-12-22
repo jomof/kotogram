@@ -107,10 +107,7 @@ def _read_counters_from_file(file_path: str) -> Dict[str, int]:
         return {}
 
 
-def _write_counters_to_file(file_path: str, counters: Dict[str, int]) -> None:
-    """Write counters to file."""
-    with open(file_path, "w", encoding="utf-8") as f:
-        json.dump(counters, f)
+
 
 
 def increment_profile_counter() -> None:
