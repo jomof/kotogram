@@ -7,8 +7,8 @@ os.environ["OMP_NUM_THREADS"] = "1"
 
 import time
 import csv
-import csv
 import random
+from typing import Dict, List, Any
 from statistics import mean
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from kotogram.augment import Augmenter, split_kotogram, extract_token_features, get_surface, Token
@@ -25,17 +25,18 @@ def get_augmenter() -> Augmenter:
 
 def process_single_sentence(
     sentence: str,
-    augmenter: Augmenter,
-    limit_per_sentence: int, # This argument is added but not used in the current logic
+    limit_per_sentence: int,
     timeout: float = 1.0
 ) -> Dict[str, Any]:
     try:
+        augmenter = get_augmenter()
         parser = augmenter.get_parser()
         start_s = time.time()
 
         # 0. Check initial grammaticality
+        from kotogram.analysis import grammar # Import locally if needed or at top level
         k_orig = parser.japanese_to_kotogram(sentence)
-        analysis_orig = augmenter.grammar(k_orig)
+        analysis_orig = grammar(k_orig)
         is_orig_gramm = analysis_orig.is_grammatic
         is_orig_pragm = (analysis_orig.formality.value != 'unpragmatic_formality' and
                         analysis_orig.gender.value != 'unpragmatic_gender')
@@ -56,28 +57,33 @@ def process_single_sentence(
 
         # 2. Augment (respecting timeout)
         start_aug = time.time()
+        
         aug_result = augmenter.augment_tokens(token_tuple, deadline=deadline)
+        
+        # 2. Extract surface forms
         candidate_surfaces = set()
-        surface_to_rules = {}
+        # surface_to_rules is no longer relevant as provenance is not returned by augment_tokens
+        # surface_to_rules = {} 
 
-        for aug_tuple in aug_result.candidates:
+        # aug_result is now just Set[Tuple[AugmentationToken, ...]]
+        for aug_tuple in aug_result:
             surface = "".join(get_surface(token) for token in aug_tuple)
             candidate_surfaces.add(surface)
-            surface_to_rules[surface] = aug_result.provenance.get(aug_tuple, set())
-
+            
         num_candidates = len(candidate_surfaces)
         aug_duration = time.time() - start_aug
 
         # 3. Filter (if time remains)
         timed_out = False
         start_filter = time.time()
-        rule_total = {} # rule -> count of candidates
-        rule_valid = {} # rule -> count of valid
+        # Rule aggregation is removed as provenance is no longer available
+        rule_total: Dict[str, int] = {} # rule -> count of candidates
+        rule_valid: Dict[str, int] = {} # rule -> count of valid
 
-        # Pre-aggregate rule totals for this sentence
-        for rules in surface_to_rules.values():
-            for r in rules:
-                rule_total[r] = rule_total.get(r, 0) + 1
+        # Pre-aggregate rule totals for this sentence (no longer possible without provenance)
+        # for rules in surface_to_rules.values():
+        #     for r in rules:
+        #         rule_total[r] = rule_total.get(r, 0) + 1
 
         if time.time() < deadline:
             valid_sentences = augmenter.filter_grammatical(candidate_surfaces, deadline=deadline)
@@ -85,11 +91,11 @@ def process_single_sentence(
             if time.time() > deadline:
                 timed_out = True
 
-            # Aggregate valid rules
-            for s_valid in valid_sentences:
-                rules = surface_to_rules.get(s_valid, set())
-                for r in rules:
-                    rule_valid[r] = rule_valid.get(r, 0) + 1
+            # Aggregate valid rules - Cannot do this anymore without provenance
+            # for s_valid in valid_sentences:
+            #     rules = surface_to_rules.get(s_valid, set())
+            #     for r in rules:
+            #         rule_valid[r] = rule_valid.get(r, 0) + 1
         else:
             timed_out = True
             num_valid = 0
@@ -175,12 +181,13 @@ def main(limit: int = 1000) -> None:
     num_cpus = os.cpu_count()
     print(f"Using {num_cpus} parallel processes...")
 
-    timeout_count = 0
-    global_rule_total = {}
-    global_rule_valid = {}
+    timeout_count: int = 0
+    global_rule_total: Dict[str, int] = {}
+    global_rule_valid: Dict[str, int] = {}
 
     with ProcessPoolExecutor(max_workers=num_cpus) as executor:
-        futures = {executor.submit(process_single_sentence, s): s for s in sentences}
+        # Pass limit_per_sentence (e.g., 100) to the wrapper function
+        futures: Dict[Any, str] = {executor.submit(process_single_sentence, s, 100): s for s in sentences}
         
         try:
             for i, future in enumerate(as_completed(futures, timeout=300)):
@@ -243,11 +250,11 @@ def main(limit: int = 1000) -> None:
     print(f"  - Filtration:      {mean(filter_durations):.4f}s")
     print(f"Crashes:             {len(crashes)}")
     
-    print_percentiles("Candidate Generation", [s['candidates'] for s in stats])
-    print_percentiles("Valid Variations", [s['valid'] for s in stats])
-    print_percentiles("Total Duration (s)", total_durations)
-    print_percentiles("Augmentation Duration (s)", aug_durations)
-    print_percentiles("Filtration Duration (s)", filter_durations)
+    print_stats("Candidate Generation", [s['candidates'] for s in stats])
+    print_stats("Valid Variations", [s['valid'] for s in stats])
+    print_stats("Total Duration (s)", total_durations)
+    print_stats("Augmentation Duration (s)", aug_durations)
+    print_stats("Filtration Duration (s)", filter_durations)
 
     if zero_valid:
         print("\nShortest sentences with 0 valid variations (post-filter):")

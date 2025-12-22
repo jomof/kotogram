@@ -31,4 +31,4 @@ def test_timeout_mechanism() -> None:
     print(f"Results: {len(results_complex)}, Duration: {duration_complex:.4f}s")
 
 if __name__ == "__main__":
-    test_timeout()
+    test_timeout_mechanism()
