@@ -22,9 +22,7 @@ class TestResultIntegrity(unittest.TestCase):
         from scripts.label import _process_sentence_batch
 
         # Single-element batch
-        batch = [
-            ("これはテストです", "id_001", 1)
-        ]  # (sentence, sentence_id, gram_label)
+        batch = [("これはテストです", 1)]  # (sentence, gram_label)
         results, counters = _process_sentence_batch(batch)
 
         assert len(results) == 1, "Expected 1 result"
@@ -39,9 +37,6 @@ class TestResultIntegrity(unittest.TestCase):
         self.assertTrue(hasattr(result, "sentence"), "Missing sentence attribute")
         assert isinstance(result.sentence, str), (
             f"sentence should be str, got {type(result.sentence)}"
-        )
-        assert isinstance(result.sentence_id, str), (
-            f"sentence_id should be str, got {type(result.sentence_id)}"
         )
         assert isinstance(result.kotogram, str), (
             f"kotogram should be str, got {type(result.kotogram)}"
@@ -114,8 +109,8 @@ class TestResultIntegrity(unittest.TestCase):
 
         # Simple test rows
         rows = [
-            ("これはテストです", "id_001", 1),
-            ("お元気ですか", "id_002", 1),
+            ("これはテストです", 1),
+            ("お元気ですか", 1),
         ]
 
         results, counters = _process_sentence_batch(rows)
@@ -157,7 +152,7 @@ class TestResultIntegrity(unittest.TestCase):
         """Verify register_ids list contains valid integer IDs."""
         from scripts.label import _process_sentence_batch
 
-        batch = [("お嬢様はごきげんよう", "id_003", 1)]  # Ojousama register
+        batch = [("お嬢様はごきげんよう", 1)]  # Ojousama register
         results, counters = _process_sentence_batch(batch)
 
         assert len(results) == 1
@@ -181,13 +176,13 @@ class TestEncodingInputs(unittest.TestCase):
         # Simulate processed_results from _process_parallel
         processed_results = [
             ProcessedSample(
-                "sentence1", "id_001", "kotogram1", 0, 0.0, 0, [0], 1, 1
+                "sentence1", "kotogram1", 0, 0.0, 0, [0], 1, 1
             ),  # success=1
             ProcessedSample(
-                "sentence2", "id_002", "kotogram2", 1, 1.0, 1, [1, 2], 0, 1
+                "sentence2", "kotogram2", 1, 1.0, 1, [1, 2], 0, 1
             ),  # Multi-label register
             ProcessedSample(
-                "sentence3", "id_003", "kotogram3", 2, 2.0, 2, [6], 1, 0
+                "sentence3", "kotogram3", 2, 2.0, 2, [6], 1, 0
             ),  # success=0 (should be skipped)
         ]
 

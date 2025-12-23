@@ -80,11 +80,11 @@ def test_step2_process_sentence_batch():
     print("STEP 2: _process_sentence_batch Output")
     print("=" * 60)
 
-    # Input format: (sentence, sentence_id, gram_label)
+    # Input format: (sentence, gram_label)
     batch = [
-        ("これはテストです", "id_001", 1),
-        ("お元気ですか", "id_002", 1),
-        ("行くぜ", "id_003", 1),
+        ("これはテストです", 1),
+        ("お元気ですか", 1),
+        ("行くぜ", 1),
     ]
 
     print(f"\nInput batch ({len(batch)} items):")
@@ -129,11 +129,11 @@ def test_step3_process_parallel():
     print("STEP 3: _process_parallel Output")
     print("=" * 60)
 
-    # Input format: (sentence, sentence_id, gram_label)
+    # Input format: (sentence, gram_label)
     rows = [
-        ("これはテストです", "id_001", 1),
-        ("お元気ですか", "id_002", 1),
-        ("行くぜ", "id_003", 1),
+        ("これはテストです", 1),
+        ("お元気ですか", 1),
+        ("行くぜ", 1),
     ]
 
     # Populate cache
@@ -161,12 +161,13 @@ def test_step4_encoding_inputs_extraction():
     from scripts.train_style import StyleDataset
 
     print("\n" + "=" * 60)
+    print("=" * 60)
     print("STEP 4: Encoding Inputs Extraction")
     print("=" * 60)
 
     rows = [
-        ("これはテストです", "id_001", 1),
-        ("お元気ですか", "id_002", 1),
+        ("これはテストです", 1),
+        ("お元気ですか", 1),
     ]
 
     populate_test_cache(rows)
@@ -210,8 +211,8 @@ def test_step5_encode_samples_batch():
     print("=" * 60)
 
     rows = [
-        ("これはテストです", "id_001", 1),
-        ("お元気ですか", "id_002", 1),
+        ("これはテストです", 1),
+        ("お元気ですか", 1),
     ]
 
     populate_test_cache(rows)
@@ -250,9 +251,9 @@ def test_step6_collate_fn():
     print("=" * 60)
 
     rows = [
-        ("これはテストです", "id_001", 1),
-        ("お元気ですか", "id_002", 1),
-        ("行くぜ", "id_003", 0),
+        ("これはテストです", 1),
+        ("お元気ですか", 1),
+        ("行くぜ", 0),
     ]
 
     populate_test_cache(rows)
@@ -291,10 +292,10 @@ def test_step7_evaluate_list_consistency():
     print("=" * 60)
 
     rows = [
-        ("これはテストです", "id_001", 1),
-        ("お元気ですか", "id_002", 0),
-        ("行くぜ", "id_003", 1),
-        ("食べますた", "id_004", 0),
+        ("これはテストです", 1),
+        ("お元気ですか", 0),
+        ("行くぜ", 1),
+        ("食べますた", 0),
     ]
 
     populate_test_cache(rows)
@@ -329,7 +330,7 @@ def test_step8_trace_register_mislabel():
     print("=" * 60)
 
     test_sentence = "A:本当に全部食べると？B:それはお腹ペコペコやけんね！"
-    rows = [(test_sentence, "test_001", 1)]
+    rows = [(test_sentence, 1)]
 
     populate_test_cache(rows)
 

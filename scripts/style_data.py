@@ -28,7 +28,6 @@ class ProcessedSample:
     """Processed sample result from labeling stage."""
 
     sentence: str
-    sentence_id: str
     kotogram: str
     formality_id: int
     gender_value: float
