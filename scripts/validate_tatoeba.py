@@ -16,11 +16,18 @@ import os
 import subprocess
 import sys
 from collections import defaultdict
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
+
+# Add project root to sys.path to allow imports from scripts and kotogram
+project_root = str(Path(__file__).resolve().parent.parent)
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 
 from kotogram import SudachiJapaneseParser, extract_token_features  # noqa: E402
 from kotogram.exceptions import MissingMappingError  # noqa: E402
 from kotogram.kotogram import split_kotogram  # noqa: E402
+from scripts.jpn_tsv import parse_tsv  # noqa: E402
 
 
 def validate_sentences(
@@ -49,8 +56,6 @@ def validate_sentences(
         for i, line in enumerate(f):
             if max_sentences and i >= max_sentences:
                 break
-
-            from scripts.jpn_tsv import parse_tsv
 
             text = parse_tsv(line)
 

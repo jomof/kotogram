@@ -21,37 +21,19 @@ Pipeline:
 2. Convert sentences to Kotogram strings using japanese_to_kotogram()
 3. Extract token features using extract_token_features()
 4. Build vocabulary for each categorical field
-5. Pretrain encoder with multi-field MLM on unlabeled data
-6. Reinitialize classifier heads, then fine-tune with formality and gender labels
-
-Usage:
-    from kotogram.style_classifier import (
-        StyleDataset, Tokenizer, StyleClassifier,
-        StyleClassifierWithMLM, MLMTrainer, Trainer
-
-    )
-
-    # Build vocabulary with unlabeled data
-    tokenizer = Tokenizer()
-    unlabeled = StyleDataset.from_tsv("data/sentences.tsv", tokenizer, labeled=False)
-
-    # Pretrain with multi-field MLM
-    model = StyleClassifierWithMLM(tokenizer.get_model_config())
-    mlm_trainer = MLMTrainer(model, unlabeled)
-    mlm_trainer.train(epochs=5)
-
-    # Reset classifier and load labeled data
-    model.reset_classifier()
-    labeled = StyleDataset.from_tsv("data/sentences.tsv", tokenizer, labeled=True)
-    train_data, val_data, test_data = labeled.split()
-
-    # Fine-tune for classification
-    trainer = Trainer(model, train_data, val_data)
-    trainer.train(epochs=10)
-
-    # Inference
-    formality_label, gender_label, probs = predict_style("何かしてみましょう。", model, tokenizer)
+5. Pretrain classifier using MLM on unlabeled data (optional but recommended)
+6. Fine-tune classifier on labeled data (formality, gender, etc.)
+7. Save model and tokenizer
 """
+
+import sys
+from pathlib import Path
+
+# Add project root to sys.path to allow imports from scripts and kotogram
+project_root = str(Path(__file__).resolve().parent.parent)
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 
 import json
 import multiprocessing as mp
