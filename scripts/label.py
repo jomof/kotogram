@@ -15,17 +15,16 @@ import random
 import sys
 import time
 from collections import Counter
-from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, cast
 
-# Add project root to sys.path to allow imports from scripts and kotogram
-project_root = str(Path(__file__).resolve().parent.parent)
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
+try:
+    import _setup_path  # type: ignore # noqa: F401
+except ImportError:
+    from scripts import _setup_path  # type: ignore # noqa: F401
 
-from rich.console import Console  # noqa: E402
-from rich.panel import Panel  # noqa: E402
-from rich.progress import (  # noqa: E402
+from rich.console import Console
+from rich.panel import Panel
+from rich.progress import (
     BarColumn,
     MofNCompleteColumn,
     Progress,
@@ -33,11 +32,11 @@ from rich.progress import (  # noqa: E402
     TaskProgressColumn,
     TextColumn,
 )
-from rich.table import Table  # noqa: E402
+from rich.table import Table
 
-from kotogram import locations  # noqa: E402
-from kotogram.kotogram import extract_token_features, split_kotogram  # noqa: E402
-from kotogram.model import (  # noqa: E402
+from kotogram import locations
+from kotogram.kotogram import extract_token_features, split_kotogram
+from kotogram.model import (
     FEATURE_FIELDS,
     FORMALITY_ID_TO_LABEL,
     FORMALITY_LABEL_TO_ID,
@@ -45,10 +44,10 @@ from kotogram.model import (  # noqa: E402
     REGISTER_LABEL_TO_ID,
     Tokenizer,
 )
-from scripts.cache import get_kotogram_cache  # noqa: E402
-from scripts.jpn_tsv import parse_tsv  # noqa: E402
-from scripts.style_data import ProcessedSample  # noqa: E402
-from scripts.train_style import CACHE_VERSION, StyleDataset  # noqa: E402
+from scripts.cache import get_kotogram_cache
+from scripts.jpn_tsv import parse_tsv
+from scripts.style_data import ProcessedSample
+from scripts.train_style import CACHE_VERSION, StyleDataset
 
 # Global variable for worker processes only
 _worker_overrides: Optional[Dict[str, List[Any]]] = None

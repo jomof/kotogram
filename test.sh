@@ -53,6 +53,13 @@ fi
 # Record initial git status
 INITIAL_GIT_STATUS=$(git status --short)
 
+# Check for forbidden "# noqa: E402" comments
+echo "Checking for forbidden '# noqa: E402' comments..."
+if grep -rn "# noqa: E402" kotogram scripts tests-py; then
+    error "Found forbidden '# noqa: E402' comments! (See above)"
+fi
+success "No '# noqa: E402' comments found"
+
 run_quiet ruff check --fix . --config pyproject.toml && run_quiet ruff format .
 success "Ruff check and format passed"
 

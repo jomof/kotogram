@@ -1,14 +1,8 @@
-import sys
 import unittest
-from pathlib import Path
 
 import torch
 
-# Add project root to path
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-
-from scripts.train_style import NUM_REGISTER_CLASSES, Sample, collate_fn  # noqa: E402
+from scripts.train_style import NUM_REGISTER_CLASSES, Sample, collate_fn
 
 
 class TestDataFlow(unittest.TestCase):
