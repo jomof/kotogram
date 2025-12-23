@@ -36,6 +36,12 @@ def parse_tsv(line: str) -> str:
     if " " in sentence:
         raise ValueError(f"Sentence contains space (not allowed): {sentence!r}")
 
+    if len(sentence) <= 2:
+        raise ValueError(f"Sentence is too short (<=2 chars): {sentence!r}")
+
+    if "〇〇" in sentence:
+        raise ValueError(f"Sentence contains placeholder '〇〇': {sentence!r}")
+
     if " jpn " in sentence:
         raise ValueError(f"Sentence contains ' jpn ' (likely malformed): {sentence!r}")
 
