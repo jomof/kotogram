@@ -1,4 +1,3 @@
-# ruff: noqa: E402
 """Supervised style classifier for Japanese sentences using Kotogram representations.
 
 This module provides a neural sequence classifier that predicts both formality and
@@ -26,14 +25,10 @@ Pipeline:
 7. Save model and tokenizer
 """
 
-import sys
-from pathlib import Path
-
-# Add project root to sys.path to allow imports from scripts and kotogram
-project_root = str(Path(__file__).resolve().parent.parent)
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
-
+try:
+    import _setup_path  # type: ignore # noqa: F401
+except ImportError:
+    from scripts import _setup_path  # type: ignore # noqa: F401
 
 import json
 import multiprocessing as mp
@@ -46,33 +41,17 @@ from dataclasses import dataclass
 from datetime import timedelta
 from typing import Any, Dict, List, Optional, Tuple, cast
 
+import torch
 import torch.distributed as dist
+import torch.nn as nn
+import torch.nn.functional as F
 import yaml
 from torch.amp import GradScaler, autocast
 from torch.nn.parallel import DistributedDataParallel as DDP
-from torch.utils.data.distributed import DistributedSampler
-
-# Early logging to show progress during slow imports
-_is_main_rank0 = (
-    os.environ.get("RANK", "0") == "0" and mp.current_process().name == "MainProcess"
-)
-# Also suppress if we are being imported by the label script (which does its own logging)
-_is_labeling = "scripts.label" in sys.modules or (
-    len(sys.argv) > 0 and "label" in sys.argv[0]
-)
-
-if _is_main_rank0 and not _is_labeling:
-    print("Loading PyTorch...", flush=True)
-import torch  # noqa: E402
-
-if _is_main_rank0 and not _is_labeling:
-    print("Loading neural network modules...", flush=True)
-
-import torch.nn as nn  # noqa: E402
-import torch.nn.functional as F
 from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 from torch.utils.data import DataLoader, Dataset
+from torch.utils.data.distributed import DistributedSampler
 
 from kotogram import locations
 from kotogram.japanese_parser import JapaneseParser
@@ -91,7 +70,7 @@ from kotogram.model import (
     load_model,
     set_excluded_features,
 )
-from scripts.style_data import ProcessedSample, Sample  # noqa: E402
+from scripts.style_data import ProcessedSample, Sample
 
 # Start timing immediately
 script_start_time = time.time()

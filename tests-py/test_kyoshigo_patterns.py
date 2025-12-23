@@ -4,16 +4,10 @@ This test file verifies the refined KYOSHIGO detection rules that were fixed
 to reduce false positives from overly broad patterns.
 """
 
-import sys
 import unittest
-from pathlib import Path
 
-# Add project root to path
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-
-from kotogram.sudachi_japanese_parser import SudachiJapaneseParser  # noqa: E402
-from scripts.rule_based_analysis import analyze_register  # noqa: E402
+from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+from scripts.rule_based_analysis import analyze_register
 
 # Initialize parser once
 _parser = SudachiJapaneseParser()
