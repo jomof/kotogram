@@ -89,10 +89,9 @@ def load_register_overrides() -> Dict[str, List[Any]]:
 
         with open(file_path, "r", encoding="utf-8") as f:
             for line in f:
-                parts = line.strip().split("\t")
-                if len(parts) < 3:
-                    continue
-                sentence = parts[2]
+                from scripts.jpn_tsv import parse_tsv
+
+                sentence = parse_tsv(line)
                 if sentence not in overrides:
                     overrides[sentence] = set()
                 overrides[sentence].add(reg_level)
@@ -188,7 +187,7 @@ def infer_gender_from_register(
 
 
 def _process_sentence_batch(
-    batch: List[Tuple[str, str, int]],
+    batch: List[Tuple[str, int]],
 ) -> Tuple[List[ProcessedSample], Dict[str, Counter]]:
     """Process a batch of sentences in a worker process."""
     from kotogram.analysis import FormalityLevel, RegisterLevel
@@ -205,7 +204,7 @@ def _process_sentence_batch(
     results = []
     counters: Dict[str, Counter[Any]] = {f: Counter() for f in FEATURE_FIELDS}
 
-    for sentence, sentence_id, gram_label in batch:
+    for sentence, gram_label in batch:
         kotogram = parser.japanese_to_kotogram(sentence)
         formality_enum = analyze_formality(kotogram)
         gender_enum = analyze_gender(kotogram)
@@ -247,7 +246,6 @@ def _process_sentence_batch(
         results.append(
             ProcessedSample(
                 sentence=sentence,
-                sentence_id=sentence_id,
                 kotogram=kotogram,
                 formality_id=formality_id,
                 gender_value=gender_val,
@@ -319,7 +317,6 @@ def _compute_labels_batch(
         results.append(
             ProcessedSample(
                 sentence=sentence,
-                sentence_id="",
                 kotogram=kotogram,
                 formality_id=formality_id,
                 gender_value=gender_val,
@@ -527,21 +524,19 @@ def main() -> None:
         if not file_list:
             return [], 0
 
-        unique_rows = []  # (sentence, id, gram_label)
+        unique_rows = []  # (sentence, gram_label)
         seen = set()
-        raw_rows = []  # (id, lang, sentence) to be written to output
 
         for f_path in sorted(file_list):
             with open(f_path, "r", encoding="utf-8") as f:
-                reader = csv.reader(f, delimiter="\t")
-                for row in reader:
-                    if len(row) < 3:
-                        continue
-                    sentence = row[2]
+                for line in f:
+                    from scripts.jpn_tsv import parse_tsv
+
+                    sentence = parse_tsv(line)
+
                     if sentence not in seen:
                         seen.add(sentence)
-                        unique_rows.append((sentence, row[0], gram_label))
-                        raw_rows.append(row)
+                        unique_rows.append((sentence, gram_label))
 
         # Writing is now handled in main() after filtering
         #
@@ -600,7 +595,7 @@ def main() -> None:
             f"Loaded [bold cyan]{len(register_overrides):,}[/bold cyan] register overrides."
         )
 
-    for sentence, sentence_id, gram_label in all_rows:
+    for sentence, gram_label in all_rows:
         entry = cached_batch.get(sentence)
         k = entry[0] if entry else None
 
@@ -609,7 +604,7 @@ def main() -> None:
             if k:
                 unlabeled_rows.append((sentence, cast(str, k), gram_label))
             else:
-                uncached_rows.append((sentence, sentence_id, gram_label))
+                uncached_rows.append((sentence, gram_label))
             continue
 
         if entry:
@@ -624,7 +619,6 @@ def main() -> None:
                 final_results.append(
                     ProcessedSample(
                         sentence=sentence,
-                        sentence_id=sentence_id,
                         kotogram=cast(str, k),
                         formality_id=f_id,
                         gender_value=g_val,
@@ -644,7 +638,7 @@ def main() -> None:
             else:
                 unlabeled_rows.append((sentence, cast(str, k), gram_label))
         else:
-            uncached_rows.append((sentence, sentence_id, gram_label))
+            uncached_rows.append((sentence, gram_label))
 
     console.print(
         f"Cache status: {len(final_results):,} hits, {len(unlabeled_rows):,} partial, {len(uncached_rows):,} misses"
@@ -704,7 +698,7 @@ def main() -> None:
                 task = progress.add_task(
                     "[cyan]Re-labeling...", total=len(unlabeled_rows)
                 )
-                batches = [
+                batches_unlabeled = [
                     unlabeled_rows[i : i + DEFAULT_BATCH_SIZE]
                     for i in range(0, len(unlabeled_rows), DEFAULT_BATCH_SIZE)
                 ]
@@ -714,7 +708,7 @@ def main() -> None:
                     num_workers, initializer=init_worker, initargs=(register_overrides,)
                 ) as pool:
                     for batch_results, batch_counters in pool.imap(
-                        _compute_labels_batch, batches
+                        _compute_labels_batch, batches_unlabeled
                     ):
                         # Merge counters
                         for field, b_counter in batch_counters.items():

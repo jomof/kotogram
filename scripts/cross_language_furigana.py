@@ -13,7 +13,6 @@ Process:
 6. Compare results line by line
 """
 
-import csv
 import subprocess
 import sys
 import tempfile
@@ -32,11 +31,10 @@ def generate_kotograms(data_path: Path) -> list[str]:
     kotograms = []
 
     with open(data_path, "r", encoding="utf-8") as f:
-        reader = csv.reader(f, delimiter="\t")
-        for row in reader:
-            if len(row) < 3:
-                continue
-            sentence = row[2]
+        from scripts.jpn_tsv import parse_tsv
+
+        for line in f:
+            sentence = parse_tsv(line)
 
             kotograms.append(parser.japanese_to_kotogram(sentence))
 

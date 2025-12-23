@@ -53,7 +53,6 @@ Usage:
     formality_label, gender_label, probs = predict_style("何かしてみましょう。", model, tokenizer)
 """
 
-import csv
 import json
 import multiprocessing as mp
 import os
@@ -213,7 +212,7 @@ def _encode_samples_batch(
 # v4: Added register labeling
 # v6: Added register_label to Sample
 # v7: Changed register_label to register_labels (multi-label)
-CACHE_VERSION = 10
+CACHE_VERSION = 11
 
 
 class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
@@ -274,7 +273,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
     @classmethod
     def _process_parallel(
         cls,
-        rows: List[Tuple[str, str, int]],
+        rows: List[Tuple[str, int]],
         batch_size: int = 1000,
         num_workers: Optional[int] = None,
         verbose: bool = True,
@@ -298,7 +297,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             chunk_sentences = [r[0] for r in chunk]
             cached_data_map = cache.get_batch(chunk_sentences)
 
-            for sentence, sent_id, gram_label in chunk:
+            for sentence, gram_label in chunk:
                 cached_tuple = cached_data_map.get(sentence)
                 if cached_tuple is not None:
                     # Hit
@@ -306,7 +305,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
                     processed_sample = ProcessedSample(
                         sentence=sentence,
-                        sentence_id=sent_id,
+                        # sentence_id removed
                         kotogram=k,
                         formality_id=cast(int, f_lbl) if f_lbl is not None else 2,
                         gender_value=cast(float, g_val) if g_val is not None else 0.0,
@@ -553,8 +552,8 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         # Phase 1: Read rows from TSV files (fast I/O)
         # If sample_ratio < 1.0, we subsample during reading to avoid loading entire files.
-        # Tuple: (sentence, sentence_id, gram_label)
-        all_rows: List[Tuple[str, str, int]] = []
+        # Tuple: (sentence, gram_label)
+        all_rows: List[Tuple[str, int]] = []
         phase1_start = time.time()
 
         import random
@@ -567,27 +566,14 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 print(f"Reading {tsv_path} ({gram_str})...")
 
             file_count = 0
-            file_rows: List[Tuple[str, str, int]] = []
+            file_rows: List[Tuple[str, int]] = []
             with open(tsv_path, "r", encoding="utf-8") as f:
-                reader = csv.reader(f, delimiter="\t")
-                for row in reader:
-                    if not row:
-                        continue
+                for line in f:
+                    from scripts.jpn_tsv import parse_tsv
 
-                    # Support both 3-column (ID, Lang, Sentence) and 1-column (Sentence only)
-                    if len(row) >= 3:
-                        sentence_id, _lang, sentence = row[0], row[1], row[2]
-                    elif len(row) == 1:
-                        sentence_id = ""
-                        sentence = row[0]
-                    else:
-                        continue
+                    sentence = parse_tsv(line)
 
-                    # Early subsampling: skip rows based on sample_ratio
-                    if sample_ratio < 1.0 and random.random() >= sample_ratio:
-                        continue
-
-                    file_rows.append((sentence, sentence_id, gram_label))
+                    file_rows.append((sentence, gram_label))
                     if max_samples and len(all_rows) + len(file_rows) >= max_samples:
                         break
 

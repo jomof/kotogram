@@ -50,16 +50,9 @@ def validate_sentences(
             if max_sentences and i >= max_sentences:
                 break
 
-            parts = line.strip().split("\t")
-            if len(parts) < 3:
-                continue
+            from scripts.jpn_tsv import parse_tsv
 
-            sentence_id = parts[0]
-            language = parts[1]
-            text = parts[2]
-
-            if language != "jpn":
-                continue
+            text = parse_tsv(line)
 
             try:
                 kotogram = parser.japanese_to_kotogram(text)
@@ -69,7 +62,6 @@ def validate_sentences(
                 unmapped_features[e.map_name].add(e.key)
                 failed_sentences.append(
                     {
-                        "id": sentence_id,
                         "text": text,
                         "map": e.map_name,
                         "key": e.key,
@@ -97,8 +89,7 @@ def validate_sentences(
         print("FIRST 10 FAILED SENTENCES:")
         print(f"{'=' * 80}")
         for failure in failed_sentences[:10]:
-            print(f"\nID: {failure['id']}")
-            print(f"Text: {failure['text']}")
+            print(f"\nText: {failure['text']}")
             print(f"Map: {failure['map']}, Key: '{failure['key']}'")
     else:
         print(f"✅ All sentences validated successfully with {parser_name}!")
