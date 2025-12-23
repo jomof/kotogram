@@ -181,3 +181,8 @@ jobs:
         assert len(augmented) > 0
         print('✅ Augmentation verified successfully')
         "
+    - name: Verify kotogram command
+      run: |
+        kotogram grammar "猫を食べる"
+        kotogram --help
+        echo "✅ kotogram command verified successfully"
