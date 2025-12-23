@@ -1179,9 +1179,11 @@ def create_mlm_batch(
             field_vocab_size = vocab_sizes.get(field)
             if field_vocab_size:
                 num_random = int(random_token_positions.sum().item())
-                if num_random > 0:
+                low = len(special_token_ids)
+                high = field_vocab_size
+                if num_random > 0 and high > low:
                     field_ids[random_token_positions] = torch.randint(
-                        len(special_token_ids), field_vocab_size, (num_random,)
+                        low, high, (num_random,)
                     )
 
         result[f"mlm_labels_{field}"] = mlm_labels
