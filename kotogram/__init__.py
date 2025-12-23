@@ -1,6 +1,6 @@
 """Kotogram - A dual Python/TypeScript library for Japanese text parsing and encoding."""
 
-__version__ = "0.0.20"
+__version__ = "0.0.21"
 
 from .analysis import GrammarAnalysis, grammar
 from .augment import augment
