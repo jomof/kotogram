@@ -15,11 +15,17 @@ import random
 import sys
 import time
 from collections import Counter
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, cast
 
-from rich.console import Console
-from rich.panel import Panel
-from rich.progress import (
+# Add project root to sys.path to allow imports from scripts and kotogram
+project_root = str(Path(__file__).resolve().parent.parent)
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+from rich.console import Console  # noqa: E402
+from rich.panel import Panel  # noqa: E402
+from rich.progress import (  # noqa: E402
     BarColumn,
     MofNCompleteColumn,
     Progress,
@@ -27,11 +33,11 @@ from rich.progress import (
     TaskProgressColumn,
     TextColumn,
 )
-from rich.table import Table
+from rich.table import Table  # noqa: E402
 
-from kotogram import locations
-from kotogram.kotogram import extract_token_features, split_kotogram
-from kotogram.model import (
+from kotogram import locations  # noqa: E402
+from kotogram.kotogram import extract_token_features, split_kotogram  # noqa: E402
+from kotogram.model import (  # noqa: E402
     FEATURE_FIELDS,
     FORMALITY_ID_TO_LABEL,
     FORMALITY_LABEL_TO_ID,
@@ -39,9 +45,10 @@ from kotogram.model import (
     REGISTER_LABEL_TO_ID,
     Tokenizer,
 )
-from scripts.cache import get_kotogram_cache
-from scripts.style_data import ProcessedSample
-from scripts.train_style import CACHE_VERSION, StyleDataset
+from scripts.cache import get_kotogram_cache  # noqa: E402
+from scripts.jpn_tsv import parse_tsv  # noqa: E402
+from scripts.style_data import ProcessedSample  # noqa: E402
+from scripts.train_style import CACHE_VERSION, StyleDataset  # noqa: E402
 
 # Global variable for worker processes only
 _worker_overrides: Optional[Dict[str, List[Any]]] = None
@@ -89,8 +96,6 @@ def load_register_overrides() -> Dict[str, List[Any]]:
 
         with open(file_path, "r", encoding="utf-8") as f:
             for line in f:
-                from scripts.jpn_tsv import parse_tsv
-
                 sentence = parse_tsv(line)
                 if sentence not in overrides:
                     overrides[sentence] = set()
@@ -530,8 +535,6 @@ def main() -> None:
         for f_path in sorted(file_list):
             with open(f_path, "r", encoding="utf-8") as f:
                 for line in f:
-                    from scripts.jpn_tsv import parse_tsv
-
                     sentence = parse_tsv(line)
 
                     if sentence not in seen:

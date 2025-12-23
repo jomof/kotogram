@@ -4,6 +4,14 @@ import glob
 import os
 import re
 import sys
+from pathlib import Path
+
+# Add project root to sys.path to allow imports from scripts
+project_root_path = str(Path(__file__).resolve().parent.parent)
+if project_root_path not in sys.path:
+    sys.path.insert(0, project_root_path)
+
+from scripts.jpn_tsv import parse_tsv
 
 def setup_args():
     parser = argparse.ArgumentParser(description="Move sentences between Japanese dataset files.")
@@ -40,7 +48,7 @@ def move_sentence(sentence: str, source_pattern: str, target_file: str):
         
         new_lines = []
         file_matches = []
-        from scripts.jpn_tsv import parse_tsv
+        
         for line in lines:
             # Strict parsing: invalid lines will raise ValueError and stop the script
             s = parse_tsv(line)
