@@ -87,36 +87,38 @@ $ bin/kotogram grammar "あら、素敵ですわ"
 
 The model picks up on that sentence-final わ (*wa*) and correctly identifies this as ojousama-style speech (refined, upper-class feminine Japanese). The gender score of 0.9999998 means the model is extremely confident about the feminine markers.
 
-### Catching Learner Mistakes
+### Catching Subtle Awkwardness
 
-Here's a classic intermediate Japanese mistake — mixing the dictionary form with the polite past tense:
+Here's a more subtle issue — a sentence that's technically parseable but semantically awkward:
 
 ```bash
-$ bin/kotogram grammar "食べるました"
+$ bin/kotogram grammar "大きくない小さい"
 {
-  "kotogram": "⌈ˢ食べるᵖverb:general:lower-ichidan-ba:terminalʳタベル⌉⌈ˢましᵖaux-verb:aux-masu:continuativeᵇますᵈますʳマシ⌉⌈ˢたᵖaux-verb:aux-ta:terminalʳタ⌉",
-  "formality": "formal",
-  "formality_score": 0.4452589154243469,
+  "kotogram": "⌈ˢ大きくᵖadj:general:i-adjective:continuativeᵇ大きいᵈ大きいʳオオキク⌉⌈ˢないᵖadj:bound:i-adjective:terminalʳナイ⌉⌈ˢ小さいᵖadj:general:i-adjective:terminalʳチイサイ⌉",
+  "formality": "neutral",
+  "formality_score": -0.00582164479419589,
   "formality_is_pragmatic": true,
   "gender": "neutral",
-  "gender_score": 0.008438648656010628,
+  "gender_score": -0.0024029570631682873,
   "gender_is_pragmatic": true,
   "registers": [
     "neutral"
   ],
   "register_scores": {
-    "neutral": 0.9035218954086304
+    "neutral": 0.9790019989013672
   },
   "is_grammatic": false,
-  "grammaticality_score": 0.009288009256124496
+  "grammaticality_score": 0.1085873544216156
 }
 ```
 
-**What went wrong?** The sentence tries to say "I ate" but incorrectly combines 食べる (*taberu*, dictionary form) with ました (*mashita*, polite past). You need to drop the る first! The correct forms are:
-- **Polite**: 食べました (*tabemashita*) — verb stem (食べ) + polite past (ました)
-- **Casual**: 食べた (*tabeta*) — verb stem (食べ) + plain past (た)
+**Why this is awkward:** This literally means "not-big small" — grammatically parseable, but semantically redundant. While you *can* stack adjectives in Japanese, saying "not big small" is unnatural because 小さい (*chiisai*, small) already implies "not big." 
 
-This is super common among learners who memorize dictionary forms but forget that Japanese verbs conjugate from their stem, not their dictionary form.
+Japanese highly values **concision** (簡潔さ). The natural way to express this would be simply:
+- **Concise**: 小さい (*chiisai*) — "small"  
+- **Or with emphasis**: 大きくない (*ookikunai*) — "not big"
+
+This kind of redundant negation occasionally appears in learner speech when they're trying to be emphatic but end up being unnecessarily verbose. The model's grammaticality score of 0.108 (pretty low, but not zero) reflects that while the syntax parses, the semantic redundancy makes it sound distinctly non-native.
 
 ### Detecting Unpragmatic Mixing
 
