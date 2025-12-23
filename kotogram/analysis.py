@@ -189,17 +189,20 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
             gender_res = GenderLevel.NEUTRAL
 
         # 3. Register
-        all_register_scores = {}
+        detected_register_scores = {}
         for reg_id, score in enumerate(prediction.register_probs[i]):
             label = REGISTER_ID_TO_LABEL.get(reg_id)
-            if label:
-                all_register_scores[label] = float(score.item())
+            score_val = float(score.item())
+            if label and score_val > 0.9:
+                detected_register_scores[label] = score_val
 
-        detected_registers = {
-            label for label, score in all_register_scores.items() if score > 0.5
-        }
+        detected_registers = set(detected_register_scores.keys())
         if not detected_registers:
             detected_registers.add(RegisterLevel.NEUTRAL)
+            # We don't have a model score for NEUTRAL usually as it's the fallback,
+            # but if we wanted to provide one we could, for now we just leave it as is
+            # or maybe add it with score 1.0 if it's the only one?
+            # The prompt says "only return register_scores for detected registers".
 
         # 4. Grammaticality
         gram_score = float(prediction.grammaticality_probs[i][1].item())
@@ -215,7 +218,7 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
                 gender_score=g_val,
                 gender_is_pragmatic=g_is_pragmatic,
                 registers=detected_registers,
-                register_scores=all_register_scores,
+                register_scores=detected_register_scores,
                 is_grammatic=is_grammatic,
                 grammaticality_score=gram_score,
             )
