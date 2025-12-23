@@ -33,6 +33,9 @@ dependencies = [
     "rich",
 ]
 
+[project.scripts]
+kotogram = "kotogram.cli:main"
+
 [project.urls]
 "Homepage" = "https://github.com/jomof/kotogram"
 "Bug Reports" = "https://github.com/jomof/kotogram/issues"
