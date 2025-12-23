@@ -7,395 +7,311 @@
 [![Python Support](https://img.shields.io/pypi/pyversions/kotogram.svg)](https://pypi.org/project/kotogram/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-A dual Python/TypeScript library for Japanese text parsing and encoding using the kotogram compact format.
-
 ## Overview
 
-Kotogram provides tools for parsing Japanese text into a compact, linguistically-rich format that encodes part-of-speech, conjugation, and pronunciation information. The library features:
+Kotogram is a lightweight Japanese NLP library that analyzes grammatical style, formality, gender markers, and register. It goes beyond traditional morphological analyzers like MeCab and Sudachi by providing **high-level linguistic analysis** powered by a compact 7MB neural model.
 
-- **Abstract parser interface** (`JapaneseParser`) for backend implementations
-- **Sudachi implementation** (`SudachiJapaneseParser`) using SudachiPy with full dictionary
-- **Kotogram format** - compact representation preserving linguistic features
-- **Bidirectional conversion** between Japanese text and kotogram format
-- **Dual-language support** - Python and TypeScript implementations (TypeScript coming soon)
-- **Production-quality CI/CD** with comprehensive testing and publishing workflows
+**Key Features:**
+- **Grammar Analysis**: Detect formality levels, gender markers, dialectal registers (Kansai-ben, Hakata-ben, etc.), and grammaticality
+- **Compact Representation**: Kotogram format encodes rich linguistic features (POS, conjugation, pronunciation) in a space-efficient format
+- **Small Neural Model**: 7MB PyTorch model trained on curated Japanese corpora for style classification
+- **Dual-Language Support**: Python for model inference and analysis; TypeScript for kotogram manipulation and rendering
+- **Production-Ready**: Comprehensive CI/CD with testing across Python 3.9-3.12 and Node.js 18-22
 
-## Project Structure
+**What Makes Kotogram Different:**
 
-```
-kotogram/
-├── kotogram/                    # Python package
-│   ├── __init__.py             # Package exports and version
-│   ├── japanese_parser.py      # Abstract JapaneseParser interface
-│   └── sudachi_japanese_parser.py # Sudachi implementation
-├── src/                         # TypeScript source
-│   ├── kotogram.ts             # Kotogram conversion functions
-│   └── index.ts                # Package exports
-├── tests-py/                    # Python tests
-│   └── test_japanese_parser.py # Japanese parser tests
-├── tests-ts/                    # TypeScript tests
-│   └── kotogram.test.ts
-├── .github/workflows/           # CI/CD workflows
-│   ├── python_canary.yml       # Python build & test
-│   ├── typescript_canary.yml   # TypeScript build & test
-│   ├── python_publish.yml      # Publish to PyPI
-│   └── typescript_publish.yml  # Publish to npm
-├── version.txt                  # Single source of truth for version
-├── publish.sh                  # Version bump and publish script
-├── pyproject.toml              # Python package configuration
-├── package.json                # TypeScript package configuration
-└── tsconfig.json               # TypeScript compiler configuration
-```
+While tools like Sudachi and MeCab excel at morphological analysis (tokenization and POS tagging), Kotogram operates at a **higher linguistic level**, analyzing:
+- **Formality** (casual ↔ formal)
+- **Gender** (masculine ↔ feminine speech patterns)
+- **Register** (dialect, honorifics, internet slang, etc.)
+- **Grammaticality** (well-formed vs. malformed)
 
-## Quick Start
+This makes Kotogram ideal for applications requiring nuanced understanding of Japanese text style and appropriateness.
 
-### Japanese Text Parsing
+## CLI Examples
 
-Parse Japanese text into kotogram format with full linguistic information:
+The `kotogram` command-line tool provides instant access to grammar analysis:
 
-**Python**:
-```python
-from kotogram import SudachiJapaneseParser, kotogram_to_japanese
+### Analyzing Formality
 
-# Initialize parser (requires sudachipy and sudachidict_full)
-parser = SudachiJapaneseParser(dict_type='full')
-
-# Convert Japanese to kotogram
-japanese = "猫を食べる"
-kotogram = parser.japanese_to_kotogram(japanese)
-# Result: ⌈ˢ猫ᵖn:common_noun⌉⌈ˢをᵖprt:case_particle⌉⌈ˢ食べるᵖv:general:e-ichidan-ba:terminal⌉
-
-# Convert back to Japanese
-reconstructed = kotogram_to_japanese(kotogram)
-# Result: "猫を食べる"
-
-# With spaces between tokens
-spaced = kotogram_to_japanese(kotogram, spaces=True)
-# Result: "猫 を 食べる"
-
-# With furigana (IME-style readings in brackets)
-with_furigana = kotogram_to_japanese(kotogram, furigana=True)
-# Result: "猫[ねこ]を食べる[たべる]"
-
-# Combine options
-spaced_furigana = kotogram_to_japanese(kotogram, spaces=True, furigana=True)
-# Result: "猫[ねこ] を 食べる[たべる]"
+```bash
+$ bin/kotogram grammar "お疲れ様でございます"
+{
+  "kotogram": "⌈ˢお疲れ様ᵖnoun:common-noun:adjectival-noun-possibleʳオツカレサマ⌉⌈ˢでᵖaux-verb:aux-da:continuativeᵇだᵈだʳデ⌉⌈ˢございᵖverb:bound:godan-ra:continuative-i-euphonicᵇござるᵈござるʳゴザイ⌉⌈ˢますᵖaux-verb:aux-masu:terminalʳマス⌉",
+  "formality": "formal",
+  "formality_score": 0.5010958909988403,
+  "formality_is_pragmatic": true,
+  "gender": "neutral",
+  "gender_score": 0.0007681779679842293,
+  "gender_is_pragmatic": true,
+  "registers": [
+    "neutral"
+  ],
+  "register_scores": {
+    "neutral": 0.9213598966598511
+  },
+  "is_grammatic": true,
+  "grammaticality_score": 0.9999127388000488
+}
 ```
 
-**TypeScript**:
-```typescript
-import { kotogramToJapanese, splitKotogram } from 'kotogram';
-
-// Convert Japanese to kotogram (requires Python parser)
-const kotogram = "⌈ˢ猫ᵖn:common_noun⌉⌈ˢをᵖprt:case_particle⌉⌈ˢ食べるᵖv:general:e-ichidan-ba:terminal⌉";
-
-// Convert back to Japanese
-const reconstructed = kotogramToJapanese(kotogram);
-// Result: "猫を食べる"
-
-// With spaces between tokens
-const spaced = kotogramToJapanese(kotogram, { spaces: true });
-// Result: "猫 を 食べる"
-
-// With furigana (IME-style readings in brackets)
-const withFurigana = kotogramToJapanese(kotogram, { furigana: true });
-// Result: "猫[ねこ]を食べる[たべる]"
-
-// Split into tokens
-const tokens = splitKotogram(kotogram);
-// Result: ["⌈ˢ猫ᵖn:common_noun⌉", "⌈ˢをᵖprt:case_particle⌉", "⌈ˢ食べるᵖv:general:e-ichidan-ba:terminal⌉"]
-```
-
-### Kotogram Format
-
-The kotogram format encodes rich linguistic information in a compact representation:
+The `kotogram` field shows the compact linguistic representation. Let's deconstruct one token:
 
 ```
-⌈ˢ食べるᵖv:general:e-ichidan-ba:terminalᵇ食べるᵈ食べるʳタベル⌉
-  │  │    │ │       │            │         │      │      │
-  │  │    │ │       │            │         │      │      └─ pronunciation (ʳ)
-  │  │    │ │       │            │         │      └─ lemma (ᵈ)
-  │  │    │ │       │            │         └─ base form (ᵇ)
-  │  │    │ │       │            └─ conjugation form
-  │  │    │ │       └─ conjugation type
-  │  │    │ └─ POS detail
-  │  │    └─ part-of-speech (ᵖ)
+⌈ˢございᵖverb:bound:godan-ra:continuative-i-euphonicᵇござるᵈござるʳゴザイ⌉
+  │  │     │                                        │      │      │
+  │  │     │                                        │      │      └─ pronunciation (ʳ)
+  │  │     │                                        │      └─ lemma (ᵈ)
+  │  │     │                                        └─ base form (ᵇ)
+  │  │     └─ part-of-speech + conjugation details (ᵖ)
   │  └─ surface form (ˢ)
   └─ token boundary markers (⌈⌉)
 ```
 
-## Development
-
-### Python Development
+### Detecting Gender Markers
 
 ```bash
-# Install in development mode
-pip install -e .
-
-# Run tests
-python -m pytest tests-py/
-
-# Run type checking
-mypy kotogram/
-
-# Build package
-python -m build
+$ bin/kotogram grammar "あら、素敵ですわ"
+{
+  "kotogram": "⌈ˢあらᵖinterj:generalʳアラ⌉⌈ˢ、ᵖaux-symbol:comma⌉⌈ˢ素敵ᵖadjectival-noun:generalʳステキ⌉⌈ˢですᵖaux-verb:aux-desu:terminalʳデス⌉⌈ˢわᵖparticle:sentence-final-particleʳワ⌉",
+  "formality": "formal",
+  "formality_score": 0.5490256547927856,
+  "formality_is_pragmatic": true,
+  "gender": "feminine",
+  "gender_score": 0.9999998211860657,
+  "gender_is_pragmatic": true,
+  "registers": [
+    "ojousama"
+  ],
+  "register_scores": {
+    "ojousama": 0.9900707602500916
+  },
+  "is_grammatic": true,
+  "grammaticality_score": 0.999970555305481
+}
 ```
 
-### TypeScript Development
+### Checking Grammaticality
 
 ```bash
-# Install dependencies
-npm install
-
-# Build
-npm run build
-
-# Run tests
-npm test
-
-# Type check
-npx tsc --noEmit
+$ bin/kotogram grammar "猫を食べる"
+{
+  "kotogram": "⌈ˢ猫ᵖnoun:common-nounʳネコ⌉⌈ˢをᵖparticle:case-particleʳヲ⌉⌈ˢ食べるᵖverb:general:lower-ichidan-ba:terminalʳタベル⌉",
+  "formality": "neutral",
+  "formality_score": -0.005069365259259939,
+  "formality_is_pragmatic": true,
+  "gender": "neutral",
+  "gender_score": -0.009396958164870739,
+  "gender_is_pragmatic": true,
+  "registers": [
+    "neutral"
+  ],
+  "register_scores": {
+    "neutral": 0.9672769904136658
+  },
+  "is_grammatic": true,
+  "grammaticality_score": 0.9998162388801575
+}
 ```
 
-## Testing
-
-### Python Tests
-
-Tests are located in [tests-py/](tests-py/) and use the `unittest` framework. They are also compatible with `pytest`.
-
-Run tests:
-```bash
-python -m unittest discover -s tests-py -p 'test_*.py' -v
-# or
-python -m pytest tests-py/ -v
-```
-
-### TypeScript Tests
-
-Tests are located in [tests-ts/](tests-ts/) and use Node.js built-in test runner.
-
-Run tests:
-```bash
-npm test
-```
-
-## GitHub Workflows
-
-### Canary Builds
-
-These workflows run on every push, pull request, and daily at 2 AM UTC:
-
-- **[.github/workflows/python_canary.yml](.github/workflows/python_canary.yml)**
-  - **Testing**: Runs on Python 3.8, 3.9, 3.10, 3.11, 3.12 with unittest and pytest
-  - **Code Coverage**: Tracks test coverage and uploads to Codecov
-  - **Code Quality**:
-    - Black for code formatting
-    - isort for import sorting
-    - flake8 for linting (complexity limit: 10)
-    - pylint for advanced code quality (minimum score: 8.0)
-    - mypy for strict type checking
-  - **Security**:
-    - bandit for security vulnerability scanning
-    - safety for dependency vulnerability checks
-  - **Best Practices**:
-    - Checks for print() statements (should use logging)
-    - Detects TODO/FIXME comments
-    - Validates README.md and LICENSE files exist
-  - **Package Validation**:
-    - Ensures no TypeScript/JavaScript files leak into Python package
-    - Verifies package contents and structure
-
-- **[.github/workflows/typescript_canary.yml](.github/workflows/typescript_canary.yml)**
-  - **Testing**: Runs on Node.js 18, 20, 22
-  - **Type Checking**: Strict TypeScript type checking with --noEmit
-  - **Code Quality**:
-    - ESLint for linting (if configured)
-    - Prettier for code formatting (if configured)
-    - Circular dependency detection with madge
-  - **Performance**:
-    - Bundle size analysis (warns if >100KB)
-  - **Security**:
-    - npm audit for dependency vulnerabilities
-  - **Best Practices**:
-    - Checks for console.log() statements
-    - Detects TODO/FIXME comments
-    - Warns about `any` types (encourages type safety)
-    - Validates package.json metadata (description, keywords, repository, license)
-    - Validates README.md and LICENSE files exist
-  - **Package Validation**:
-    - Ensures no Python files leak into TypeScript package
-    - Verifies dist/ directory contents
-
-### Publishing Workflows
-
-These workflows are triggered when a version tag (e.g., `v0.0.1`) is pushed:
-
-- **[.github/workflows/python_publish.yml](.github/workflows/python_publish.yml)**
-  - Verifies version consistency across [version.txt](version.txt), [kotogram/__init__.py](kotogram/__init__.py), and [pyproject.toml](pyproject.toml)
-  - Builds and publishes to PyPI using trusted publishing
-  - Verifies installation from PyPI
-
-- **[.github/workflows/typescript_publish.yml](.github/workflows/typescript_publish.yml)**
-  - Verifies version consistency across [version.txt](version.txt) and [package.json](package.json)
-  - Builds and publishes to npm with provenance
-  - Verifies installation from npm
-
-## Version Management
-
-### Single Source of Truth
-
-The file [version.txt](version.txt) contains the current version number (e.g., `0.0.1`). This version must be kept in sync across:
-- [version.txt](version.txt)
-- [kotogram/__init__.py](kotogram/__init__.py) (`__version__` variable)
-- [pyproject.toml](pyproject.toml) (`version` field)
-- [package.json](package.json) (`version` field)
-
-The publish workflows automatically verify this consistency before publishing.
-
-### Publishing a New Version
-
-Use the [publish.sh](publish.sh) script to bump the version and trigger publication:
+**Non-grammatic Example** (common intermediate learner mistake):
 
 ```bash
-# Bump patch version (0.0.1 -> 0.0.2)
-./publish.sh patch
-
-# Bump minor version (0.0.1 -> 0.1.0)
-./publish.sh minor
-
-# Bump major version (0.0.1 -> 1.0.0)
-./publish.sh major
+$ bin/kotogram grammar "食べるました"
+{
+  "kotogram": "⌈ˢ食べるᵖverb:general:lower-ichidan-ba:terminalʳタベル⌉⌈ˢましᵖaux-verb:aux-masu:continuativeᵇますᵈますʳマシ⌉⌈ˢたᵖaux-verb:aux-ta:terminalʳタ⌉",
+  "formality": "formal",
+  "formality_score": 0.4452589154243469,
+  "formality_is_pragmatic": true,
+  "gender": "neutral",
+  "gender_score": 0.008438648656010628,
+  "gender_is_pragmatic": true,
+  "registers": [
+    "neutral"
+  ],
+  "register_scores": {
+    "neutral": 0.9035218954086304
+  },
+  "is_grammatic": false,
+  "grammaticality_score": 0.009288009256124496
+}
 ```
 
-The script will:
-1. Increment the version number
-2. Update all version files
-3. Commit the changes
-4. Create a git tag (e.g., `v0.0.2`)
-5. Push the commit and tag to GitHub
+**Why this is ungrammatical:** This sentence attempts "I ate" but incorrectly mixes the **dictionary form** (食べる *taberu*) with the **polite past suffix** (ました *mashita*). In Japanese, you must conjugate the verb stem before adding polite forms. The correct form is either:
+- **Polite**: 食べました (*tabemashita*) — verb stem (食べ) + polite past (ました)
+- **Casual**: 食べた (*tabeta*) — verb stem (食べ) + plain past (た)
 
-This triggers both [python_publish.yml](.github/workflows/python_publish.yml) and [typescript_publish.yml](.github/workflows/typescript_publish.yml) workflows.
+This error is common among learners who memorize the dictionary form (食べる) but forget to drop the る before adding conjugations.
 
-## Badges
+**Unpragmatic Formality Example** (mixing casual and formal inappropriately):
 
-The README includes status badges for build status, package versions, and license:
-
-```markdown
-[![Python Canary](https://github.com/jomof/kotogram/actions/workflows/python_canary.yml/badge.svg?branch=main)](https://github.com/jomof/kotogram/actions/workflows/python_canary.yml)
-[![TypeScript Canary](https://github.com/jomof/kotogram/actions/workflows/typescript_canary.yml/badge.svg?branch=main)](https://github.com/jomof/kotogram/actions/workflows/typescript_canary.yml)
-[![PyPI Version](https://img.shields.io/pypi/v/kotogram.svg)](https://pypi.org/project/kotogram/)
-[![npm Version](https://img.shields.io/npm/v/kotogram.svg)](https://www.npmjs.com/package/kotogram)
-[![Python Support](https://img.shields.io/pypi/pyversions/kotogram.svg)](https://pypi.org/project/kotogram/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+```bash
+$ bin/kotogram grammar "食べたんだぜです"
+{
+  "kotogram": "⌈ˢ食べᵖverb:general:lower-ichidan-ba:continuativeᵇ食べるᵈ食べるʳタベ⌉⌈ˢたᵖaux-verb:aux-ta:attributiveʳタ⌉⌈ˢんᵖparticle:nominal-particleʳン⌉⌈ˢだᵖaux-verb:aux-da:terminalʳダ⌉⌈ˢぜᵖparticle:sentence-final-particleʳゼ⌉⌈ˢですᵖaux-verb:aux-desu:terminalʳデス⌉",
+  "formality": "unpragmatic_formality",
+  "formality_score": 0.3184594213962555,
+  "formality_is_pragmatic": false,
+  "gender": "masculine",
+  "gender_score": -0.9999995827674866,
+  "gender_is_pragmatic": true,
+  "registers": [
+    "danseigo"
+  ],
+  "register_scores": {
+    "danseigo": 0.9998853206634521
+  },
+  "is_grammatic": false,
+  "grammaticality_score": 2.01202964879299e-12
+}
 ```
 
-**Note**: Update the username in badge URLs if you fork this to your own repository.
+**Why formality is unpragmatic:** This sentence mixes **casual masculine speech** (ぜ *ze* - a rough, masculine sentence-ending particle) with a **formal copula** (です *desu*). In Japanese, formality must be consistent throughout an utterance. You cannot combine:
+- Casual markers like ぜ, よ (casual), だ (plain copula)
+- With formal endings like です, ます
 
-## Configuration Requirements
+The correct forms maintain consistency:
+- **Casual masculine**: 食べたんだぜ (*tabetan da ze*) - "I ate, you know!" (rough/masculine)
+- **Formal neutral**: 食べたんです (*tabetan desu*) - "I ate." (polite explanation)
 
-### PyPI Publishing
+This kind of formality clash sounds jarring to native speakers, like mixing "ain't" with "indeed" in English.
 
-To publish to PyPI, configure trusted publishing:
+### Parsing to Kotogram Format
 
-1. Go to PyPI → Your Account → Publishing
-2. Add a new publisher with:
-   - Repository: `jomof/kotogram`
-   - Workflow: `python_publish.yml`
-   - Environment: `pypi`
+```bash
+$ kotogram parse "猫を食べる"
+⌈ˢ猫ᵖn:common_noun⌉⌈ˢをᵖprt:case_particle⌉⌈ˢ食べるᵖv:general:e-ichidan-ba:terminal⌉
+```
 
-### npm Publishing
+## Install and Use Python Library
 
-To publish to npm, you need an npm access token:
+### Installation
 
-1. Create an automation token on npmjs.com
-2. Add it as a GitHub secret named `NPM_TOKEN`
-3. Configure the `npm` environment in your repository settings
+```bash
+pip install kotogram
+```
 
-## API Reference
-
-### JapaneseParser (Abstract Base Class)
-
-Abstract interface for Japanese text parsing implementations.
+### API Usage
 
 ```python
-from kotogram import JapaneseParser
+from kotogram import SudachiJapaneseParser, grammar
 
-class JapaneseParser(ABC):
-    @abstractmethod
-    def japanese_to_kotogram(self, text: str) -> str:
-        """Convert Japanese text to kotogram compact representation."""
-        pass
+# Initialize parser
+parser = SudachiJapaneseParser()
+
+# Parse Japanese text to kotogram
+text = "お疲れ様でございます"
+kotogram_str = parser.japanese_to_kotogram(text)
+
+# Analyze grammar
+analysis = grammar(kotogram_str)
+
+print(f"Formality: {analysis.formality}")
+print(f"Gender: {analysis.gender}")
+print(f"Registers: {analysis.registers}")
+print(f"Is Grammatic: {analysis.is_grammatic}")
+
+# Access detailed scores
+print(f"Formality Score: {analysis.formality_score:.2f}")
+print(f"Grammaticality Score: {analysis.grammaticality_score:.2f}")
 ```
 
-### SudachiJapaneseParser
-
-Sudachi-based implementation using SudachiPy with the full dictionary.
-
-```python
-from kotogram import SudachiJapaneseParser
-
-# Initialize with full dictionary (recommended)
-parser = SudachiJapaneseParser(dict_type='full')
-
-# Or use smaller dictionaries for faster loading
-parser_small = SudachiJapaneseParser(dict_type='small')
-parser_core = SudachiJapaneseParser(dict_type='core')
-
-# Enable validation mode for debugging unmapped features
-parser_strict = SudachiJapaneseParser(dict_type='full', validate=True)
-# This will raise descriptive KeyError if any Sudachi features
-# are missing from the mapping dictionaries
-
-# Parse Japanese text
-kotogram = parser.japanese_to_kotogram("今日は良い天気です")
-```
-
-**Parameters**:
-- `dict_type` (default: `'full'`): Dictionary type to use ('small', 'core', or 'full')
-- `validate` (default: `False`): When `True`, raises descriptive `KeyError` exceptions when encountering unmapped linguistic features. The error message includes:
-  - The name of the mapping dictionary (e.g., `POS_MAP`, `CONJUGATED_TYPE_MAP`)
-  - The unmapped key value
-
-**Validation Mode Example**:
-```python
-# With validate=True, unmapped features raise detailed errors
-parser = SudachiJapaneseParser(dict_type='full', validate=True)
-try:
-    kotogram = parser.japanese_to_kotogram("未知の単語")
-except KeyError as e:
-    # Error message: "Missing mapping in POS_MAP: key='未知品詞' not found."
-    print(f"Unmapped feature detected: {e}")
-```
-
-### Helper Functions
+### Working with Kotograms
 
 ```python
 from kotogram import kotogram_to_japanese, split_kotogram
 
-# Convert kotogram back to Japanese
+# Convert back to Japanese
 japanese = kotogram_to_japanese(kotogram_str)
-japanese_with_spaces = kotogram_to_japanese(kotogram_str, spaces=True)
 
-# Split kotogram into individual tokens
+# Add furigana (readings)
+with_furigana = kotogram_to_japanese(kotogram_str, furigana=True)
+# Result: "お疲れ様[おつかれさま]で御座います[ございます]"
+
+# Add spaces between tokens
+spaced = kotogram_to_japanese(kotogram_str, spaces=True)
+
+# Split into individual tokens
 tokens = split_kotogram(kotogram_str)
+for token in tokens:
+    print(token)
 ```
 
-### Mapping Constants
+## Install and Use TypeScript Library
 
-Global mapping constants are available in `japanese_parser` module:
+### Installation
 
-```python
-from kotogram.japanese_parser import (
-    POS_MAP,              # Part-of-speech mappings
-    POS1_MAP,             # POS detail level 1
-    POS2_MAP,             # POS detail level 2
-    CONJUGATED_TYPE_MAP,  # Conjugation type mappings
-    CONJUGATED_FORM_MAP,  # Conjugation form mappings
-    POS_TO_CHARS,         # POS to character mappings
-
-)
+```bash
+npm install kotogram
 ```
+
+### API Usage
+
+```typescript
+import { kotogramToJapanese, splitKotogram, GrammarAnalysis } from 'kotogram';
+
+// Work with kotogram format (parsing requires Python library)
+const kotogram = "⌈ˢ猫ᵖn:common_noun⌉⌈ˢをᵖprt:case_particle⌉⌈ˢ食べるᵖv:general:e-ichidan-ba:terminal⌉";
+
+// Convert to Japanese
+const japanese = kotogramToJapanese(kotogram);
+console.log(japanese);  // "猫を食べる"
+
+// Add furigana
+const withFurigana = kotogramToJapanese(kotogram, { furigana: true });
+console.log(withFurigana);  // "猫[ねこ]を食べる[たべる]"
+
+// Split into tokens
+const tokens = splitKotogram(kotogram);
+tokens.forEach(token => console.log(token));
+
+// Deserialize grammar analysis from JSON
+const analysisJson = '{"formality":"Formal","gender":"Neutral",...}';
+const analysis = GrammarAnalysis.fromJson(analysisJson);
+console.log(analysis.formality);  // FormalityLevel.Formal
+```
+
+## Neural Architecture
+
+Kotogram's grammar analysis leverages a **compact transformer-based architecture** optimized for Japanese style classification. The model demonstrates strong performance despite its constrained parameter budget:
+
+**Model Characteristics:**
+- **Architecture**: Multi-head attention over linguistic feature embeddings
+- **Size**: ~7MB (PyTorch checkpoint)
+- **Input**: Kotogram token sequences (POS, conjugation, surface forms)
+- **Tasks**: Multi-task learning over formality, gender, register detection, and grammaticality classification
+
+**Training Approach:**
+- **Data**: Curated corpus of ~270+ hand-verified examples per register, focusing on edge cases and dialectal variations
+- **Features**: Extracted from kotogram tokens including POS tags, conjugation forms, and lexical markers
+- **Loss**: Weighted multi-task objective balancing formality regression, gender regression, register multi-label classification, and grammaticality binary classification
+- **Optimization**: AdamW with linear warmup and cosine annealing
+
+**Design Philosophy:**
+
+The model prioritizes **sample efficiency** and **generalization** over raw scale. By operating on structured linguistic features (kotogram format) rather than raw text, the model learns meaningful abstractions with minimal data. The compact architecture enables:
+- **Fast inference**: < 10ms on CPU for typical sentences
+- **Deployment-friendly**: Embeddable in web applications, mobile apps, and serverless functions
+- **Interpretable**: Feature-based representations facilitate debugging and error analysis
+
+This approach reflects modern NLP best practices: leveraging domain knowledge (linguistic structure) to build efficient, task-specific models rather than relying solely on massive pre-training.
+
+## Citation
+
+If you use Kotogram in your research or project, please cite:
+
+```bibtex
+@software{kotogram2024,
+  author = {Fisher, Jomo},
+  title = {Kotogram: A Lightweight Japanese NLP Library for Grammar Analysis},
+  year = {2024},
+  publisher = {GitHub},
+  url = {https://github.com/jomof/kotogram},
+  note = {Python and TypeScript library for Japanese formality, gender, and register detection}
+}
+```
+
+---
 
 ## License
 
@@ -403,4 +319,4 @@ MIT
 
 ## Contributing
 
-This is a template project. Feel free to fork and adapt it for your own dual-language libraries!
+Contributions are welcome! Please feel free to submit issues or pull requests.
