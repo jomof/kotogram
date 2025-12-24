@@ -16,7 +16,8 @@ from . import locations
 # This is required for cross-language furigana support to work on typescript
 # canary CI machine without installing pytorch.
 if TYPE_CHECKING:
-    from kotogram.model import StyleClassifier, Tokenizer
+    from kotogram.model import StyleClassifier
+    from kotogram.tokenizer import Tokenizer
 
 # Global cache for loaded model (lazy loading)
 _style_model: Optional["StyleClassifier"] = None
@@ -131,7 +132,8 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     # Use the trained neural model for prediction
     import torch
 
-    from kotogram.model import FEATURE_FIELDS, REGISTER_ID_TO_LABEL
+    from kotogram.model import REGISTER_ID_TO_LABEL
+    from kotogram.tokenizer import FEATURE_FIELDS
 
     model, tokenizer = _load_style_model()
 

@@ -4,7 +4,8 @@ from typing import Any, Dict, List
 import torch
 from torch.utils.data import DataLoader
 
-from kotogram.model import FEATURE_FIELDS, StyleClassifier
+from kotogram.model import StyleClassifier
+from kotogram.tokenizer import FEATURE_FIELDS
 
 
 @dataclass
