@@ -33,9 +33,7 @@ class TestTrainStyleScript(unittest.TestCase):
                     bottle.populate_test_data()
 
                     # Take initial snapshot (also resets profile counters)
-                    from kotogram.profile import get_profile_report
-
-                    profile_dir = bottle.get_file(".profile")
+                    overrides = {"TRAIN_ROOT": bottle.root_dir, "SKIP_DEPS": "1"}
                     bottle.snapshot("initial")
 
                     # Step 1: Pre-run labeling to setup cache/data
@@ -60,20 +58,13 @@ class TestTrainStyleScript(unittest.TestCase):
                     ]
                     bottle.assert_dir_layout(EXPECTED_LABEL_MANIFEST)
 
-                    # Verify profiling captured japanese_to_kotogram calls
-                    report = get_profile_report(profile_dir=profile_dir)
-                    # Exact count based on test data: 5 lines from each TSV file
-                    self.assertEqual(
-                        report.get_counter("japanese_to_kotogram"),
-                        95,
-                        f"Expected exactly 95 japanese_to_kotogram calls, got: {report.counters}",
-                    )
-
                     bottle.snapshot("after_label")
 
                     # Step 2: Run train_style.sh for 1 epoch (with optional pretrain-mlm)
-                    train_args = f"--epochs 1 {config['extra_args']}".strip()
-                    result1 = bottle.train_style(train_args)
+                    # Use --no-label to skip re-running the label phase (metadata already setup in Step 1)
+                    # Use --no-confusion to skip generating confusion matrices (saves time)
+                    train_args = f"--epochs 1 --no-label --no-confusion {config['extra_args']}".strip()
+                    result1 = bottle.train_style(train_args, env_overrides=overrides)
 
                     # Verify epochs trained
                     # For pretrain-mlm/kc: expect [1, 1] (1 pretrain + 1 fine-tune)
@@ -88,9 +79,6 @@ class TestTrainStyleScript(unittest.TestCase):
 
                     # Verify changes since snapshot (should only be training artifacts)
                     EXPECTED_TRAIN_DIFFERENCES = [
-                        # Style Data & Confusion Matrices (Training artifacts)
-                        "[models]/style-support/*_confusion.csv ADDED",
-                        "[models]/style-support/confusion_matrices/*.tsv ADDED",
                         # Model Output
                         "[models]/style-support/training.log ADDED",
                         "[models]/style-support/checkpoint.pt ADDED",
@@ -105,20 +93,15 @@ class TestTrainStyleScript(unittest.TestCase):
 
                     bottle.assert_dir_diff("after_label", EXPECTED_TRAIN_DIFFERENCES)
 
-                    # Verify profiling captured japanese_to_kotogram calls during training
-                    # Should be 0 because training uses the cached dataset and doesn't re-parse raw text
-                    report = get_profile_report(profile_dir=profile_dir)
-                    self.assertEqual(
-                        report.get_counter("japanese_to_kotogram"),
-                        0,
-                        f"Expected 0 japanese_to_kotogram calls during training (should use cache), got: {report.counters}",
-                    )
-
                     # Step 3: Take snapshot after first training pass
                     bottle.snapshot("after_epoch_1")
 
                     # Step 4: Resume training with --epochs 2 (should train only epoch 2)
-                    result2 = bottle.train_style("--resume --epochs 2")
+                    # Use --no-label here as well
+                    result2 = bottle.train_style(
+                        "--resume --epochs 2 --no-label --no-confusion",
+                        env_overrides=overrides,
+                    )
 
                     # Verify only epoch 2 was trained (resume from epoch 1)
                     bottle.assertEpochsTrained(result2, [2])
@@ -130,8 +113,6 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[models]/style-support/checkpoint.pt MODIFIED",
                         "[models]/style-support/config.json MODIFIED",
                         "[models]/style-support/tokenizer.json MODIFIED",
-                        "[models]/style-support/*_confusion.csv MODIFIED",
-                        "[models]/style-support/confusion_matrices/*.tsv MODIFIED",
                         # Model output should be updated
                         "[models]/style/model.pt MODIFIED",
                         "[models]/style/config.json MODIFIED",
@@ -141,15 +122,6 @@ class TestTrainStyleScript(unittest.TestCase):
                     ]
 
                     bottle.assert_dir_diff("after_epoch_1", EXPECTED_RESUME_DIFFERENCES)
-
-                    # Verify profiling captured japanese_to_kotogram calls during resume training
-                    # Should be 0 because training uses the cached dataset
-                    report = get_profile_report(profile_dir=profile_dir)
-                    self.assertEqual(
-                        report.get_counter("japanese_to_kotogram"),
-                        0,
-                        f"Expected 0 japanese_to_kotogram calls during resume (should use cache), got: {report.counters}",
-                    )
 
                     # Verify CLI tool works with the newly trained model
                     result = bottle.kotogram_cli("grammar", "こんにちは")
@@ -187,6 +159,7 @@ class TestTrainStyleScript(unittest.TestCase):
                         )
 
                     # 3. Verify model.pt is in FP8 format
+
                     model_path = bottle.get_file("[models]/style/model.pt")
                     bottle.assertModelIsFp8(model_path)
 

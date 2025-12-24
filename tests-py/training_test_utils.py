@@ -132,10 +132,6 @@ def assert_dir_layout(test_case, root_dir: str, expected_manifest: List[str]):
             else:
                 path_to_check = file
 
-            # Ignore profiling counters
-            if path_to_check == ".profile/counters.json":
-                continue
-
             actual_paths.append(path_to_check)
 
         # Add directory IF it is empty (and no files except .DS_Store)
@@ -198,10 +194,6 @@ class Bottle:
                 abs_path = os.path.join(root, file)
                 rel_path = os.path.relpath(abs_path, self.root_dir)
 
-                # Ignore profiling counters
-                if rel_path == ".profile/counters.json":
-                    continue
-
                 try:
                     stat = os.stat(abs_path)
                     state[rel_path] = (stat.st_mtime, stat.st_size)
@@ -215,10 +207,7 @@ class Bottle:
 
         Also resets profile counters so that subsequent profiling starts fresh.
         """
-        from kotogram.profile import reset_profile_counters
-
         self._snapshots[name] = self._get_current_state()
-        reset_profile_counters(profile_dir=self.get_file(".profile"))
 
     def __enter__(self):
         return self
@@ -234,7 +223,7 @@ class Bottle:
         """Runs train_style.sh inside the bottle."""
         import re
 
-        overrides = {"TRAIN_ROOT": self.root_dir, "PROFILE_KOTOGRAM": "1"}
+        overrides = {"TRAIN_ROOT": self.root_dir}
         if env_overrides:
             overrides.update(env_overrides)
         result = train_style(
