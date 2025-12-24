@@ -31,7 +31,7 @@ def generate_kotograms(data_path: Path) -> list[str]:
     kotograms = []
 
     with open(data_path, "r", encoding="utf-8") as f:
-        from train.dataset import parse_tsv
+        from train.tsv import parse_tsv
 
         for line in f:
             sentence = parse_tsv(line)

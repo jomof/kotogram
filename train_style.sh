@@ -86,7 +86,6 @@ NUM_LAYERS=3
 NUM_HEADS=8
 PRETRAIN_MLM=""
 PRETRAIN_EPOCHS=5
-MAX_SAMPLES=""
 ENCODER_LR_FACTOR=0.1
 LEARNING_RATE=1e-4
 FORMALITY_WEIGHT=1.0
@@ -99,7 +98,6 @@ RETRAIN=""
 CONFUSION=""
 LABEL_ONLY=""
 
-EXCLUDE_FEATURES=""
 PERCENT=""
 
 # KC Training Defaults
@@ -188,10 +186,6 @@ while [[ $# -gt 0 ]]; do
             PRETRAIN_EPOCHS="$2"
             shift 2
             ;;
-        --max-samples)
-            MAX_SAMPLES="--max-samples $2"
-            shift 2
-            ;;
         --encoder-lr-factor)
             ENCODER_LR_FACTOR="$2"
             shift 2
@@ -236,22 +230,10 @@ while [[ $# -gt 0 ]]; do
             LABEL_ONLY=1
             shift
             ;;
-        --exclude-features)
-            EXCLUDE_FEATURES="$2"
-            shift 2
-            ;;
+
         --percent)
             PERCENT="--percent $2"
             shift 2
-            ;;
-        --test)
-            IS_TEST=1
-            OUTPUT_DIR="$MODELS_DIR/test_style"
-            # Set defaults for test mode if not already specified (simple approach: just set them)
-            # Users can override by passing --epochs N after --test if they really want
-            EPOCHS=1
-            MAX_SAMPLES="--max-samples 100"
-            shift
             ;;
         --help)
             echo "Train style classifier (formality + gender + grammaticality) on Japanese sentence corpus"
@@ -259,7 +241,6 @@ while [[ $# -gt 0 ]]; do
             echo "Usage: $0 [OPTIONS]"
             echo ""
 
-            echo "  --max-samples N       Limit samples (for testing)"
             echo ""
             echo "Training Options:"
             echo "  --epochs N            Training epochs (default: 20)"
@@ -289,15 +270,10 @@ while [[ $# -gt 0 ]]; do
             echo "  --retrain             Retrain from scratch using parameters from checkpoint"
             echo "  --confusion           Print confusion matrices for existing model and exit"
             echo "  --label               Run ONLY the labeling/preprocessing phase and exit"
-            echo ""
-            echo "Feature Ablation:"
-            echo "  --exclude-features F  Comma-separated features to exclude (for ablation study)"
-            echo "                        Valid: surface,pos,pos_detail1,pos_detail2,conjugated_type,conjugated_form,lemma"
 
             echo ""
             echo "  --percent N           Percentage of data to use (1-100)"
             echo ""
-            echo "  --test                Run in test mode (output to $TRAIN_ROOT/models/test_style, 1 epoch, 100 samples)"
             echo "  --help                Show this help message"
             exit 0
             ;;
@@ -336,9 +312,6 @@ echo "Grammatic wt:   $GRAMMATICALITY_WEIGHT"
 if [ -n "$PRETRAIN_MLM" ]; then
     echo "MLM pretrain:   $PRETRAIN_EPOCHS epochs"
     echo "Encoder LR:     ${ENCODER_LR_FACTOR}x base LR during fine-tuning"
-fi
-if [ -n "$MAX_SAMPLES" ]; then
-    echo "Max samples:    ${MAX_SAMPLES#--max-samples }"
 fi
 if [ -n "$FP8" ]; then
     echo "Precision:      float8 (quarter size)"
@@ -476,9 +449,7 @@ CMD="$CMD --kc-epochs $KC_EPOCHS \
     --kc-sparsity-weight $KC_SPARSITY_WEIGHT \
     --kc-target-heads \"$KC_TARGET_HEADS\""
 
-if [ -n "$MAX_SAMPLES" ]; then
-    CMD="$CMD $MAX_SAMPLES"
-fi
+
 
 
 
@@ -496,9 +467,7 @@ if [ -n "$RETRAIN" ]; then
     CMD="$CMD --retrain"
 fi
 
-if [ -n "$EXCLUDE_FEATURES" ]; then
-    CMD="$CMD --exclude-features \"$EXCLUDE_FEATURES\""
-fi
+
 
 if [ -n "$EPOCHS" ]; then
     CMD="$CMD --epochs $EPOCHS"
@@ -551,8 +520,7 @@ if [ -n "$CONFUSION" ]; then
     echo "Running Confusion Matrix Evaluation..."
     echo "=============================================="
     python -m scripts.confusion \
-        ${PERCENT:+--percent ${PERCENT#--percent }} \
-        ${MAX_SAMPLES:+--max-samples ${MAX_SAMPLES#--max-samples }}
+        ${PERCENT:+--percent ${PERCENT#--percent }}
     exit 0
 fi
 
@@ -574,5 +542,4 @@ echo "=============================================="
 echo ""
 echo "Generating confusion report..."
 python -m scripts.confusion \
-    ${PERCENT:+--percent ${PERCENT#--percent }} \
-    ${MAX_SAMPLES:+--max-samples ${MAX_SAMPLES#--max-samples }}
+    ${PERCENT:+--percent ${PERCENT#--percent }}
