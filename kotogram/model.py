@@ -8,7 +8,7 @@ import json
 import math
 import os
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, NamedTuple, Optional, Tuple, cast
+from typing import Any, Dict, NamedTuple, Optional, Tuple, cast
 
 import torch
 import torch.nn as nn
@@ -18,7 +18,6 @@ from kotogram.constants import FormalityLevel, GenderLevel, RegisterLevel
 from kotogram.tokenizer import (
     FEATURE_FIELDS,
     Tokenizer,
-    set_excluded_features,
 )
 
 # Number of classes for each task
@@ -122,7 +121,6 @@ class ModelConfig:
     dropout: float = 0.1
     max_seq_len: int = 512
     pooling: str = "cls"
-    excluded_features: List[str] = field(default_factory=list)
 
     # KC Learning configuration
     kc_enabled: bool = False
@@ -148,7 +146,6 @@ class ModelConfig:
             "dropout": self.dropout,
             "max_seq_len": self.max_seq_len,
             "pooling": self.pooling,
-            "excluded_features": self.excluded_features,
             "kc_enabled": self.kc_enabled,
             "kc_vocab_size": self.kc_vocab_size,
             "kc_topk": self.kc_topk,
@@ -159,8 +156,9 @@ class ModelConfig:
     @classmethod
     def from_dict(cls, d: Dict[str, Any]) -> "ModelConfig":
         d = dict(d)
-        if "excluded_features" not in d:
-            d["excluded_features"] = []
+        # Legacy compatibility: remove deprecated fields
+        if "excluded_features" in d:
+            d.pop("excluded_features")
 
         # Legacy compatibility: remove old fields
         if "num_gender_classes" in d:
@@ -483,10 +481,6 @@ def load_model(
     with open(os.path.join(path, "config.json"), "r") as f:
         config_dict = json.load(f)
     config = ModelConfig.from_dict(config_dict)
-
-    # Restore excluded features BEFORE creating model or using tokenizer
-    if config.excluded_features:
-        set_excluded_features(config.excluded_features)
 
     # Load tokenizer
     tokenizer = Tokenizer.load(os.path.join(path, "tokenizer.json"))

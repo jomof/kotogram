@@ -33,26 +33,6 @@ ALL_FEATURE_FIELDS = [
 ]
 FEATURE_FIELDS = ALL_FEATURE_FIELDS  # Default: use all features
 
-# Global variable to track excluded features (set via --exclude-features)
-_EXCLUDED_FEATURES: List[str] = []
-
-
-def get_active_features() -> List[str]:
-    """Get the list of active feature fields (excluding any disabled ones)."""
-    return [f for f in ALL_FEATURE_FIELDS if f not in _EXCLUDED_FEATURES]
-
-
-def set_excluded_features(excluded: List[str]) -> None:
-    """Set the list of features to exclude from training/inference."""
-    global _EXCLUDED_FEATURES, FEATURE_FIELDS
-    invalid = [f for f in excluded if f not in ALL_FEATURE_FIELDS]
-    if invalid:
-        raise ValueError(
-            f"Invalid feature names: {invalid}. Valid: {ALL_FEATURE_FIELDS}"
-        )
-    _EXCLUDED_FEATURES = excluded
-    FEATURE_FIELDS = get_active_features()
-
 
 class Tokenizer:
     """Tokenizer that extracts morphological features from Kotogram tokens.
@@ -101,11 +81,6 @@ class Tokenizer:
     def get_vocab_sizes(self) -> Dict[str, int]:
         """Get vocabulary sizes for all fields."""
         return {field: len(vocab) for field, vocab in self.field_vocabs.items()}
-
-    @property
-    def excluded_features(self) -> List[str]:
-        """Get the list of excluded feature fields."""
-        return _EXCLUDED_FEATURES
 
     def _add_value(self, field: str, value: str) -> int:
         """Add a value to field vocabulary and return its ID."""

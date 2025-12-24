@@ -4,7 +4,6 @@ import json
 import multiprocessing as mp
 import os
 import random
-import re
 import time
 from collections import Counter
 from typing import Any, Dict, List, Optional, Tuple, cast
@@ -22,46 +21,12 @@ from kotogram.model import (
 )
 from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
 from train.cache import get_kotogram_cache
+from train.tsv import parse_tsv  # Re-exported for backward compatibility
 from train.types import ProcessedSample, Sample
 from train.worker import _encode_samples_batch, init_worker
 
 # Cache version - bump this when cache format changes to invalidate old caches
 CACHE_VERSION = 11
-
-KANA_PUNCT_PATTERN = re.compile(r"[\u3000-\u30FF\u4E00-\u9FFF]")
-
-
-def parse_tsv(line: str) -> str:
-    """Parses a line from a TSV file to extract the Japanese sentence."""
-    line = line.strip()
-    if not line:
-        raise ValueError("Empty line")
-
-    parts = line.split("\t")
-
-    if len(parts) >= 3:
-        sentence = parts[2]
-    elif len(parts) == 1 and parts[0]:
-        sentence = parts[0]
-    else:
-        raise ValueError(f"Invalid column count: {len(parts)}. Expected 1 or >=3.")
-
-    if " " in sentence:
-        raise ValueError(f"Sentence contains space (not allowed): {sentence!r}")
-
-    if len(sentence) <= 2:
-        raise ValueError(f"Sentence is too short (<=2 chars): {sentence!r}")
-
-    if "〇〇" in sentence:
-        raise ValueError(f"Sentence contains placeholder '〇〇': {sentence!r}")
-
-    if " jpn " in sentence:
-        raise ValueError(f"Sentence contains ' jpn ' (likely malformed): {sentence!r}")
-
-    if not KANA_PUNCT_PATTERN.search(sentence):
-        raise ValueError(f"No Kana or Japanese punctuation found in: {sentence!r}")
-
-    return sentence
 
 
 # Types moved to types.py
@@ -161,7 +126,6 @@ class StyleDataset(Dataset[Sample]):
         tsv_path: str,
         tokenizer: Tokenizer,
         parser: Optional[JapaneseParser] = None,
-        max_samples: Optional[int] = None,
         verbose: bool = True,
         labeled: bool = True,
         use_cache: bool = True,
@@ -171,7 +135,6 @@ class StyleDataset(Dataset[Sample]):
             tsv_paths=[tsv_path],
             tokenizer=tokenizer,
             parser=parser,
-            max_samples=max_samples,
             verbose=verbose,
             labeled=labeled,
             use_cache=use_cache,
@@ -184,7 +147,6 @@ class StyleDataset(Dataset[Sample]):
         tsv_paths: List[str],
         tokenizer: Tokenizer,
         parser: Optional[JapaneseParser] = None,
-        max_samples: Optional[int] = None,
         verbose: bool = True,
         labeled: bool = True,
         grammaticality_labels: Optional[List[int]] = None,
@@ -225,16 +187,9 @@ class StyleDataset(Dataset[Sample]):
                     try:
                         sentence = parse_tsv(line)
                         file_rows.append((sentence, gram_label))
-                        if (
-                            max_samples
-                            and len(all_rows) + len(file_rows) >= max_samples
-                        ):
-                            break
                     except ValueError:
                         continue
             all_rows.extend(file_rows)
-            if max_samples and len(all_rows) >= max_samples:
-                break
 
         if sample_ratio < 1.0:
             random.seed(42)

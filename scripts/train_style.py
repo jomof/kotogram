@@ -27,7 +27,6 @@ from kotogram.model import (
 from kotogram.tokenizer import (
     FEATURE_FIELDS,
     Tokenizer,
-    set_excluded_features,
 )
 from train.config import TrainerConfig
 from train.dataset import StyleDataset
@@ -48,12 +47,6 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
         description="Train style classifier (formality + gender)"
-    )
-    parser.add_argument(
-        "--max-samples",
-        type=int,
-        default=None,
-        help="Maximum samples to use (for testing)",
     )
     parser.add_argument(
         "--epochs", type=int, default=None, help="Number of training epochs"
@@ -103,12 +96,7 @@ if __name__ == "__main__":
         default=1.0,
         help="Loss weight for grammaticality task",
     )
-    parser.add_argument(
-        "--exclude-features",
-        type=str,
-        default="",
-        help="Comma-separated list of features to exclude.",
-    )
+
     parser.add_argument(
         "--fp16",
         action="store_true",
@@ -203,11 +191,6 @@ if __name__ == "__main__":
             checkpoint_data = torch.load(checkpoint_path, map_location="cpu")
             saved_args = checkpoint_data["args"]
 
-            saved_exclude = saved_args.get("exclude_features", "")
-            if saved_exclude:
-                excluded = [f.strip() for f in saved_exclude.split(",") if f.strip()]
-                set_excluded_features(excluded)
-
             if args.resume:
                 model, tokenizer, checkpoint, strict_load_failed = load_checkpoint(
                     args.support_dir
@@ -222,7 +205,6 @@ if __name__ == "__main__":
             args.formality_weight = saved_args.get("formality_weight", 1.0)
             args.gender_weight = saved_args.get("gender_weight", 1.0)
             args.grammaticality_weight = saved_args.get("grammaticality_weight", 1.0)
-            args.exclude_features = saved_exclude
 
             if args.percent is None:
                 args.percent = saved_args.get("percent", None)
@@ -239,10 +221,6 @@ if __name__ == "__main__":
         args.fp8 = not args.fp16
     if args.epochs is None:
         args.epochs = 20
-
-    if args.exclude_features and not checkpoint:
-        excluded = [f.strip() for f in args.exclude_features.split(",") if f.strip()]
-        set_excluded_features(excluded)
 
     data_files = [args.data]
     grammaticality_labels = [1]
@@ -265,7 +243,6 @@ if __name__ == "__main__":
             data_files,
             tokenizer,
             grammaticality_labels=grammaticality_labels,
-            max_samples=args.max_samples,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
             verbose=is_main_process(),
         )
@@ -283,7 +260,6 @@ if __name__ == "__main__":
         unlabeled_dataset = StyleDataset.from_tsv(
             args.data,
             tokenizer,
-            max_samples=args.max_samples,
             verbose=is_main_process(),
             labeled=False,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
@@ -298,7 +274,6 @@ if __name__ == "__main__":
             hidden_dim=args.hidden_dim,
             num_layers=args.num_layers,
             num_heads=args.num_heads,
-            excluded_features=tokenizer.excluded_features,
             kc_enabled=args.pretrain_kc,
             kc_vocab_size=args.kc_k,
             kc_topk=args.kc_topk,
@@ -331,7 +306,6 @@ if __name__ == "__main__":
         labeled_dataset = StyleDataset.from_multiple_tsv(
             data_files,
             tokenizer,
-            max_samples=args.max_samples,
             verbose=is_main_process(),
             grammaticality_labels=grammaticality_labels,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
@@ -345,7 +319,6 @@ if __name__ == "__main__":
         dataset = StyleDataset.from_multiple_tsv(
             data_files,
             tokenizer,
-            max_samples=args.max_samples,
             verbose=is_main_process(),
             grammaticality_labels=grammaticality_labels,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
@@ -360,7 +333,6 @@ if __name__ == "__main__":
             hidden_dim=args.hidden_dim,
             num_layers=args.num_layers,
             num_heads=args.num_heads,
-            excluded_features=tokenizer.excluded_features,
             kc_enabled=args.pretrain_kc,
             kc_vocab_size=args.kc_k,
             kc_topk=args.kc_topk,

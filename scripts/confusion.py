@@ -365,9 +365,6 @@ def main() -> None:
         type=int,
         help="Number of workers for DataLoader (default: 0 on MPS/CPU, 4 on CUDA)",
     )
-    parser.add_argument(
-        "--max-samples", type=int, default=None, help="Stop after N samples"
-    )
     parser.add_argument("--percent", type=float, help="Percentage of data to use")
     # parser.add_argument("--cache-dir", type=str, default=".cache", help="Base directory for dataset cache") # Removed
 
@@ -448,7 +445,6 @@ def main() -> None:
             tokenizer,
             labeled=True,
             grammaticality_labels=grammaticality_labels,
-            max_samples=args.max_samples,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
             verbose=True,
         )
@@ -457,7 +453,6 @@ def main() -> None:
             data_files[0],
             tokenizer,
             labeled=True,
-            max_samples=args.max_samples,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
             verbose=True,
         )
