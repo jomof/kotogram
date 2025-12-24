@@ -74,7 +74,7 @@ class GrammarAnalysis:
     # Grammaticality
     is_grammatic: bool
     grammaticality_score: float  # Probability of being grammatic
-    kcs: Optional[List[float]] = None  # Knowledge Component activations
+    kc_top: Optional[Dict[int, float]] = None  # Top-K KC {id: prob}
 
     def to_json(self) -> str:
         """Serialize analysis result to JSON string."""
@@ -86,8 +86,9 @@ class GrammarAnalysis:
         d["registers"] = sorted([r.value for r in self.registers])
         # Convert Dict keys from Enums to strings
         d["register_scores"] = {k.value: v for k, v in self.register_scores.items()}
-        if self.kcs is None:
-            del d["kcs"]
+        # kc_top: Dict[int, float] -> json.dump will convert int keys to strings automatically
+        if self.kc_top is None:
+            del d["kc_top"]
         return json.dumps(d, ensure_ascii=False)
 
     @classmethod
@@ -103,8 +104,11 @@ class GrammarAnalysis:
             RegisterLevel(k): v for k, v in d["register_scores"].items()
         }
 
-        if "kcs" not in d:
-            d["kcs"] = None
+        if "kc_top" not in d:
+            d["kc_top"] = None
+        else:
+            # JSON keys are always strings, map back to int
+            d["kc_top"] = {int(k): v for k, v in d["kc_top"].items()}
 
         return cls(**d)
 
@@ -163,6 +167,12 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     model.eval()
     with torch.no_grad():
         prediction = model.predict(field_inputs, attention_mask)
+        # Get Interpretable KCs separately
+        kc_top_results = None
+        if model.config.kc_enabled:
+            kc_top_results = model.predict_kcs_top(
+                field_inputs, attention_mask, min_prob=0.0
+            )
 
     results = []
     for i in range(batch_size):
@@ -216,10 +226,11 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
         gram_score = float(prediction.grammaticality_probs[i][1].item())
         is_grammatic = gram_score > 0.5
 
-        kcs_list = None
-        if prediction.kcs is not None:
-            kcs_list = prediction.kcs[i].tolist()
-
+        kc_top_sample = None
+        if kc_top_results is not None:
+            # Convert list of (int, float) tuples to {int: float} dict
+            # We strictly cast int(k_id) to ensure it's an int.
+            kc_top_sample = {int(k_id): prob for k_id, prob in kc_top_results[i]}
         results.append(
             GrammarAnalysis(
                 kotogram=kotograms[i],
@@ -233,7 +244,7 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
                 register_scores=detected_register_scores,
                 is_grammatic=is_grammatic,
                 grammaticality_score=gram_score,
-                kcs=kcs_list,
+                kc_top=kc_top_sample,
             )
         )
 
