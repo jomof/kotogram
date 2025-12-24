@@ -127,6 +127,10 @@ class StyleClassifierWithMLM(StyleClassifier):
         k = getattr(self.config, "kc_topk", 8)
         topk_vals, topk_inds = torch.topk(kc_probs, k, dim=-1)
 
+        # Normalize so each sample distributes 1.0 mass across KCs
+        topk_sum = topk_vals.sum(dim=-1, keepdim=True) + 1e-9
+        topk_vals = topk_vals / topk_sum
+
         # Create sparse activation (everything else zero)
         # We start with zeros and scatter the top-k values back
         sparse_activations = torch.zeros_like(kc_probs)
@@ -584,8 +588,10 @@ class KCTrainer:
 
                 loss = torch.tensor(0.0, device=self.device)
                 batch_kc_losses = {}
-                recon_loss = torch.tensor(0.0, device=self.device)
-                num_recon_targets = 0
+                structural_loss = torch.tensor(0.0, device=self.device)
+                num_struct = 0
+                label_loss = torch.tensor(0.0, device=self.device)
+                num_label = 0
 
                 # Compute losses for each target present in target_logits AND batch
                 # Check for structural targets (bags, hashes)
@@ -597,57 +603,61 @@ class KCTrainer:
                         targets = batch[target_key].to(self.device)
                         # logits: (B, V), targets: (B, V) float multi-hot
                         task_loss = self.bce_loss(logits, targets)
-                        recon_loss += task_loss
-                        num_recon_targets += 1
+                        structural_loss += task_loss
+                        num_struct += 1
                         batch_kc_losses[name] = task_loss.item()
 
                     # Auxiliary Label Targets
                     elif name == "formality_value":
                         targets = batch["formality_value"].to(self.device)
                         task_loss = self.mse_loss(logits.squeeze(-1), targets)
-                        recon_loss += task_loss
-                        num_recon_targets += 1
+                        label_loss += task_loss
+                        num_label += 1
                         batch_kc_losses[name] = task_loss.item()
                     elif name == "formality_pragmatic":
                         targets = batch["formality_pragmatic"].to(self.device)
                         task_loss = self.ce_loss(logits, targets)
-                        recon_loss += task_loss
-                        num_recon_targets += 1
+                        label_loss += task_loss
+                        num_label += 1
                         batch_kc_losses[name] = task_loss.item()
                     elif name == "gender_value":
                         targets = batch["gender_value"].to(self.device)
                         task_loss = self.mse_loss(logits.squeeze(-1), targets)
-                        recon_loss += task_loss
-                        num_recon_targets += 1
+                        label_loss += task_loss
+                        num_label += 1
                         batch_kc_losses[name] = task_loss.item()
                     elif name == "gender_pragmatic":
                         targets = batch["gender_pragmatic"].to(self.device)
                         task_loss = self.ce_loss(logits, targets)
-                        recon_loss += task_loss
-                        num_recon_targets += 1
+                        label_loss += task_loss
+                        num_label += 1
                         batch_kc_losses[name] = task_loss.item()
                     elif name == "grammaticality":
                         targets = batch["grammaticality_labels"].to(self.device)
                         task_loss = self.ce_loss(logits, targets)
-                        recon_loss += task_loss
-                        num_recon_targets += 1
+                        label_loss += task_loss
+                        num_label += 1
                         batch_kc_losses[name] = task_loss.item()
                     elif name == "register":
                         targets = batch["register_labels"].to(self.device)
                         task_loss = self.bce_loss(logits, targets)
-                        recon_loss += task_loss
-                        num_recon_targets += 1
+                        label_loss += task_loss
+                        num_label += 1
                         batch_kc_losses[name] = task_loss.item()
 
-                if num_recon_targets > 0:
-                    recon_loss /= num_recon_targets
+                # Weighted Loss Combination
+                combined_loss = torch.tensor(0.0, device=self.device)
+                if num_struct > 0:
+                    combined_loss += 0.7 * (structural_loss / num_struct)
+                if num_label > 0:
+                    combined_loss += 0.3 * (label_loss / num_label)
 
-                # Sparsity Loss
-                sparsity = outputs["kc_probs"].mean()
+                # Sparsity Loss (on ACTUAL sparse activations)
+                sparsity = outputs["sparse_activations"].mean()
                 total_sparsity += sparsity.item()
 
                 loss = (
-                    recon_loss + self.kc_sparsity_weight * sparsity
+                    combined_loss + self.kc_sparsity_weight * sparsity
                 ) / self.config.grad_accum_steps
 
                 if loss.item() == 0.0 and loss.requires_grad:

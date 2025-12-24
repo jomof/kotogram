@@ -21,6 +21,7 @@ from kotogram.model import (
     NUM_FORMALITY_PRAGMATIC_CLASSES,
     NUM_GENDER_PRAGMATIC_CLASSES,
     NUM_GRAMMATICALITY_CLASSES,
+    NUM_REGISTER_CLASSES,
     ModelConfig,
     StyleClassifier,
 )
@@ -375,9 +376,18 @@ if __name__ == "__main__":
             kc_vocab_size=args.kc_k,
             kc_topk=args.kc_topk,
             kc_target_specs={
-                h.strip(): tokenizer.get_vocab_sizes().get(h.strip(), 100)
-                for h in args.kc_target_heads.split(",")
-                if h.strip()
+                **{
+                    h.strip(): tokenizer.get_vocab_sizes().get(h.strip(), 100)
+                    for h in args.kc_target_heads.split(",")
+                    if h.strip()
+                },
+                # Add label targets explicitly with correct dimensions
+                "formality_value": 1,
+                "gender_value": 1,
+                "formality_pragmatic": 2,
+                "gender_pragmatic": 2,
+                "grammaticality": 2,
+                "register": NUM_REGISTER_CLASSES,
             }
             if args.pretrain_kc
             else {},
