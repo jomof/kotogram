@@ -232,11 +232,14 @@ By working with structured linguistic features instead of raw characters, the mo
 - **~270K unpragmatic examples** showing inappropriate formality/gender mixing
 
 **What the model learns:**
-- **Formality** as a continuous scale (-1.0 = very casual → +1.0 = very formal)
-- **Gender** as a continuous scale (-1.0 = masculine → +1.0 = feminine)
-- **Register detection** as a multi-label problem (sentences can have multiple registers!)
-- **Grammaticality** as binary classification
-- **Pragmatic consistency** — does this sentence maintain appropriate formality/gender?
+- **Knowledge Components (KCs)**: A set of sparse, unsupervised latent units that serve as the "atoms" of Japanese style.
+    - **How they're built**: The model creates these by compressing sentences into a small set of active KCs (e.g., top 8) and trying to **reconstruct** the original sentence's structural features (lemmas, POS tags, n-grams) from them.
+    - **What they do**: Each KC specializes in capturing a reusable linguistic pattern—for example, one KC might learn to fire for "formal verb endings" (masu/desu), another for "feminine sentence-final particles" (wa/no), and another for "Kansai dialect markers".
+    - **Why this matters**: Instead of just predicting a black-box "formality" score, the model builds its understanding from these interpretable components, making its decisions more robust and explainable.
+- **Formality**: Modeled as a continuous scale (-1.0 to +1.0) via regression heads on top of the KCs.
+- **Gender**: Modeled as a continuous scale (-1.0 to +1.0).
+- **Register**: Multi-label classification (detecting specific dialects/styles).
+- **Grammaticality**: Binary classification for error detection.
 
 The architecture uses multi-head attention over linguistic feature embeddings, trained with AdamW and cosine annealing — pretty standard modern NLP techniques, but applied to a focused domain-specific problem.
 
