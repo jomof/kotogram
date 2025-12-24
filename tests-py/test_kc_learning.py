@@ -12,6 +12,7 @@ from train.config import TrainerConfig
 from train.trainer import (
     KCDecoder,
     KCTrainer,
+    StyleClassifier,
     StyleClassifierWithMLM,
     create_kc_batch,
 )
@@ -172,3 +173,44 @@ def test_kc_trainer_init():
     trainer = KCTrainer(model, dataset, trainer_config)
     # Check simple property if any, or just successful init
     assert trainer.config.batch_size == 2
+
+
+def test_predict_kcs_top():
+    vocab_sizes = {f: 100 for f in ALL_FEATURE_FIELDS}
+    config = ModelConfig(
+        vocab_sizes=vocab_sizes,
+        kc_enabled=True,
+        kc_vocab_size=10,
+        kc_topk=3,
+        kc_temperature=1.0,  # Default
+    )
+    model = StyleClassifier(config)
+
+    batch_size = 2
+    seq_len = 5
+    field_inputs = {}
+    for f in ALL_FEATURE_FIELDS:
+        field_inputs[f"input_ids_{f}"] = torch.randint(0, 100, (batch_size, seq_len))
+
+    attention_mask = torch.ones(batch_size, seq_len)
+
+    results = model.predict_kcs_top(field_inputs, attention_mask, min_prob=0.0)
+
+    assert len(results) == batch_size
+    assert len(results[0]) <= 3  # kc_topk
+    for item in results[0]:
+        assert isinstance(item, tuple)
+        assert len(item) == 2
+        assert isinstance(item[0], int)
+        assert isinstance(item[1], float)
+        assert 0.0 <= item[1] <= 1.0
+
+    # Test K override
+    results_k2 = model.predict_kcs_top(field_inputs, attention_mask, topk=2)
+    assert len(results_k2[0]) <= 2
+
+    # Test filtering
+    results_filtered = model.predict_kcs_top(
+        field_inputs, attention_mask, min_prob=0.99
+    )
+    assert isinstance(results_filtered, list)

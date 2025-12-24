@@ -141,21 +141,28 @@ class TestTrainStyleScript(unittest.TestCase):
                     # Check for kcs if this is the KC model
                     if "pretrain-kc" in config["extra_args"]:
                         self.assertIn(
-                            "kcs",
+                            "kc_top",
                             data,
-                            "KC-trained model should output 'kcs' field",
+                            "KC-trained model should output 'kc_top' field",
                         )
-                        # Verify KCs structure (should be a list of floats)
-                        kcs = data["kcs"]
-                        self.assertIsInstance(kcs, list)
-                        self.assertTrue(len(kcs) > 0)
-                        self.assertIsInstance(kcs[0], float)
+                        # Verify KC structure (should be a dict of {str(id): prob})
+                        # IMPORTANT: json.loads converts keys to strings!
+                        kc_top = data["kc_top"]
+                        self.assertIsInstance(kc_top, dict)
+
+                        if len(kc_top) > 0:
+                            # Get first key/val
+                            k_id_str, prob = next(iter(kc_top.items()))
+                            # Key should be convertible to int
+                            self.assertTrue(
+                                k_id_str.isdigit(), f"Key {k_id_str} should be digits"
+                            )
+                            self.assertIsInstance(prob, float)
                     else:
                         self.assertNotIn(
-                            "kcs",
+                            "kc_top",
                             data,
-                            "Non-KC model should usually not output 'kcs' (unless explicitly enabled/requested, "
-                            "but currently it's None per implementation)",
+                            "Non-KC model should usually not output 'kc_top' (unless enabled)",
                         )
 
                     # 3. Verify model.pt is in FP8 format

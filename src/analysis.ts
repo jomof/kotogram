@@ -47,7 +47,7 @@ export interface GrammarAnalysisData {
   register_scores: Record<string, number>;
   is_grammatic: boolean;
   grammaticality_score: number;
-  kcs?: number[];
+  kc_top?: Record<string, number>;
 }
 
 export class GrammarAnalysis {
@@ -63,7 +63,7 @@ export class GrammarAnalysis {
     public readonly register_scores: Map<RegisterLevel, number>,
     public readonly is_grammatic: boolean,
     public readonly grammaticality_score: number,
-    public readonly kcs?: number[],
+    public readonly kc_top?: Record<string, number>,
   ) {}
 
   /**
@@ -84,7 +84,7 @@ export class GrammarAnalysis {
       ),
       is_grammatic: this.is_grammatic,
       grammaticality_score: this.grammaticality_score,
-      kcs: this.kcs,
+      kc_top: this.kc_top,
     };
     return JSON.stringify(data);
   }
@@ -111,7 +111,7 @@ export class GrammarAnalysis {
       ),
       data.is_grammatic,
       data.grammaticality_score,
-      data.kcs,
+      data.kc_top,
     );
   }
 }

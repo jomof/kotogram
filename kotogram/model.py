@@ -8,7 +8,7 @@ import json
 import math
 import os
 from dataclasses import dataclass, field
-from typing import Any, Dict, NamedTuple, Optional, Tuple, cast
+from typing import Any, Dict, List, NamedTuple, Optional, Tuple, cast
 
 import torch
 import torch.nn as nn
@@ -468,6 +468,55 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
 
         pooled = self._get_pooled_output(field_inputs, attention_mask)
         return cast(torch.Tensor, self.kc_head(pooled))
+
+    def predict_kcs_top(
+        self,
+        field_inputs: Dict[str, torch.Tensor],
+        attention_mask: Optional[torch.Tensor] = None,
+        topk: Optional[int] = None,
+        min_prob: float = 0.0,
+    ) -> List[List[Tuple[int, float]]]:
+        """Predict top-K Knowledge Components with probabilities.
+
+        Args:
+            field_inputs: Input features
+            attention_mask: Attention mask
+            topk: Number of KCs to return (defaults to filtered by config.kc_topk)
+            min_prob: Minimum probability threshold
+
+        Returns:
+            List of lists, where each inner list contains (kc_id, probability) tuples
+            for a sample in the batch.
+        """
+        # Get dense logits
+        if not self.config.kc_enabled:
+            return []
+
+        logits = self.predict_kcs(field_inputs, attention_mask)
+        cur_temp = getattr(self.config, "kc_temperature", 1.0)
+        probs = torch.sigmoid(logits / cur_temp)
+
+        # Determine K
+        k = topk if topk is not None else getattr(self.config, "kc_topk", 8)
+        k = min(k, probs.size(-1))
+
+        # Get top-k
+        topk_vals, topk_inds = torch.topk(probs, k, dim=-1)
+
+        results = []
+        # Convert to python lists
+        probs_list = topk_vals.tolist()
+        inds_list = topk_inds.tolist()
+
+        for i in range(len(probs_list)):
+            sample_res = []
+            for j in range(k):
+                p = probs_list[i][j]
+                if p >= min_prob:
+                    sample_res.append((int(inds_list[i][j]), float(p)))
+            results.append(sample_res)
+
+        return results
 
 
 def load_model(
