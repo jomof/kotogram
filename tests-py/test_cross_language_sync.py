@@ -62,7 +62,7 @@ class TestCrossLanguageSync(unittest.TestCase):
 
         interface_body = match.group(1)
         # Match fieldName: type;
-        ts_fields = set(re.findall(r"(\w+)\s*:", interface_body))
+        ts_fields = set(re.findall(r"(\w+)\??\s*:", interface_body))
 
         self.assertEqual(
             ts_fields,

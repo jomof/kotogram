@@ -102,6 +102,15 @@ LABEL_ONLY=""
 EXCLUDE_FEATURES=""
 PERCENT=""
 
+# KC Training Defaults
+PRETRAIN_KC=""
+KC_EPOCHS=3
+KC_K=1024
+KC_TOPK=8
+KC_FREEZE_ENCODER_EPOCHS=1
+KC_SPARSITY_WEIGHT=1e-3
+KC_TARGET_HEADS="lemma,pos,conjugated_form"
+
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -142,6 +151,34 @@ while [[ $# -gt 0 ]]; do
         --pretrain-mlm)
             PRETRAIN_MLM="--pretrain-mlm"
             shift
+            ;;
+        --pretrain-kc)
+            PRETRAIN_KC="--pretrain-kc"
+            shift
+            ;;
+        --kc-epochs)
+            KC_EPOCHS="$2"
+            shift 2
+            ;;
+        --kc-k)
+            KC_K="$2"
+            shift 2
+            ;;
+        --kc-topk)
+            KC_TOPK="$2"
+            shift 2
+            ;;
+        --kc-freeze-encoder-epochs)
+            KC_FREEZE_ENCODER_EPOCHS="$2"
+            shift 2
+            ;;
+        --kc-sparsity-weight)
+            KC_SPARSITY_WEIGHT="$2"
+            shift 2
+            ;;
+        --kc-target-heads)
+            KC_TARGET_HEADS="$2"
+            shift 2
             ;;
         --force-relabel)
             FORCE_RELABEL="--force-relabel"
@@ -427,6 +464,17 @@ CMD="$LAUNCHER -m scripts.train_style \
 if [ -n "$PRETRAIN_MLM" ]; then
     CMD="$CMD --pretrain-mlm"
 fi
+
+if [ -n "$PRETRAIN_KC" ]; then
+    CMD="$CMD --pretrain-kc"
+fi
+
+CMD="$CMD --kc-epochs $KC_EPOCHS \
+    --kc-k $KC_K \
+    --kc-topk $KC_TOPK \
+    --kc-freeze-encoder-epochs $KC_FREEZE_ENCODER_EPOCHS \
+    --kc-sparsity-weight $KC_SPARSITY_WEIGHT \
+    --kc-target-heads \"$KC_TARGET_HEADS\""
 
 if [ -n "$MAX_SAMPLES" ]; then
     CMD="$CMD $MAX_SAMPLES"

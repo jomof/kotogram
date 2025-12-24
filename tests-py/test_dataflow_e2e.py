@@ -34,6 +34,7 @@ def populate_test_cache(rows):
                     p.gender_pragmatic,
                     p.register_ids,
                     p.gram_label,
+                    None,  # feature_ids
                 )
             )
     cache.put_batch(memo)
@@ -191,19 +192,21 @@ def test_step4_encoding_inputs_extraction():
                 p.gender_pragmatic,
                 p.register_ids,
                 p.gram_label,
+                None,  # feature_ids
             )
             encoding_inputs.append(ei)
 
     assert len(encoding_inputs) == 2
     for ei in encoding_inputs:
-        assert len(ei) == 7
+        assert len(ei) == 8
 
     print("\n✓ Step 4 PASSED: Encoding inputs correctly extracted")
 
 
 def test_step5_encode_samples_batch():
     """Step 5: Verify _encode_samples_batch creates valid Sample objects."""
-    from kotogram.model import Tokenizer
+    from kotogram.tokenizer import Tokenizer
+    from scripts.style_worker import init_worker
     from scripts.train_style import StyleDataset, _encode_samples_batch
 
     print("\n" + "=" * 60)
@@ -228,9 +231,8 @@ def test_step5_encode_samples_batch():
     tokenizer.freeze()
 
     # Call _encode_samples_batch
-    samples = _encode_samples_batch(
-        processed_results, {"field_vocabs": tokenizer.field_vocabs}
-    )
+    init_worker({"field_vocabs": tokenizer.field_vocabs})
+    samples = _encode_samples_batch(processed_results)
 
     assert len(samples) == 2
     for sample in samples:
@@ -243,7 +245,9 @@ def test_step5_encode_samples_batch():
 
 def test_step6_collate_fn():
     """Step 6: Verify collate_fn produces correct tensor shapes and types."""
-    from kotogram.model import NUM_REGISTER_CLASSES, Tokenizer
+    from kotogram.model import NUM_REGISTER_CLASSES
+    from kotogram.tokenizer import Tokenizer
+    from scripts.style_worker import init_worker
     from scripts.train_style import StyleDataset, _encode_samples_batch, collate_fn
 
     print("\n" + "=" * 60)
@@ -267,9 +271,8 @@ def test_step6_collate_fn():
         tokenizer.encode(p.kotogram, add_cls=True, add_to_vocab=True)
     tokenizer.freeze()
 
-    samples = _encode_samples_batch(
-        processed_results, {"field_vocabs": tokenizer.field_vocabs}
-    )
+    init_worker({"field_vocabs": tokenizer.field_vocabs})
+    samples = _encode_samples_batch(processed_results)
 
     # Call collate_fn
     batch = collate_fn(samples, tokenizer.pad_id)
@@ -284,7 +287,8 @@ def test_step6_collate_fn():
 
 def test_step7_evaluate_list_consistency():
     """Step 7: Verify evaluate() maintains list length consistency."""
-    from kotogram.model import Tokenizer
+    from kotogram.tokenizer import Tokenizer
+    from scripts.style_worker import init_worker
     from scripts.train_style import StyleDataset, _encode_samples_batch
 
     print("\n" + "=" * 60)
@@ -309,9 +313,8 @@ def test_step7_evaluate_list_consistency():
         tokenizer.encode(p.kotogram, add_cls=True, add_to_vocab=True)
     tokenizer.freeze()
 
-    samples = _encode_samples_batch(
-        processed_results, {"field_vocabs": tokenizer.field_vocabs}
-    )
+    init_worker({"field_vocabs": tokenizer.field_vocabs})
+    samples = _encode_samples_batch(processed_results)
     dataset = StyleDataset(samples, tokenizer)
 
     expected_size = len(dataset)

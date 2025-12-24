@@ -19,7 +19,8 @@ class TestGenderModel(unittest.TestCase):
         # Mock the model loader for tests to avoid needing a real model file
         from unittest.mock import patch
 
-        from kotogram.model import ModelConfig, StyleClassifier, Tokenizer
+        from kotogram.model import ModelConfig, StyleClassifier
+        from kotogram.tokenizer import Tokenizer
 
         # Create dummy tokenizer
         self.tokenizer = Tokenizer()

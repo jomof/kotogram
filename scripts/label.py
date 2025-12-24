@@ -610,7 +610,7 @@ def main() -> None:
             continue
 
         if entry:
-            k, f_id, g_val, g_prag, r_lbls, _ = entry
+            k, f_id, g_val, g_prag, r_lbls, _, f_ids = entry
             if (
                 not args.force_relabel
                 and f_id is not None
@@ -628,6 +628,7 @@ def main() -> None:
                         register_ids=r_lbls,
                         gram_label=gram_label,
                         success=1,
+                        feature_ids=f_ids,
                     )
                 )
                 # Add to counters for vocabulary
@@ -689,12 +690,15 @@ def main() -> None:
                                         cast(Optional[int], res.gender_pragmatic),
                                         cast(Optional[List[int]], res.register_ids),
                                         cast(Optional[int], res.gram_label),
+                                        None,  # feature_ids (computed later)
                                     )
                                 )
                         progress.update(task, advance=len(batch_results))
 
                 if new_entries:
-                    cache.put_batch(new_entries)
+                    from scripts.cache import CacheEntryType
+
+                    cache.put_batch(cast(List[CacheEntryType], new_entries))
 
             if unlabeled_rows:
                 task = progress.add_task(
@@ -728,12 +732,15 @@ def main() -> None:
                                         cast(Optional[int], res.gender_pragmatic),
                                         cast(Optional[List[int]], res.register_ids),
                                         cast(Optional[int], res.gram_label),
+                                        None,  # feature_ids (computed later)
                                     )
                                 )
                         progress.update(task, advance=len(batch_results))
 
                 if new_entries:
-                    cache.put_batch(new_entries)
+                    from scripts.cache import CacheEntryType
+
+                    cache.put_batch(cast(List[CacheEntryType], new_entries))
 
     console.print(
         f"\n[bold green]Processing complete![/bold green] Total processed: {len(final_results):,}"
