@@ -272,6 +272,16 @@ while [[ $# -gt 0 ]]; do
 
             echo ""
             echo "  --percent N           Percentage of data to use (1-100)"
+            echo "  --force-relabel       Force re-running labeling phase"
+            echo ""
+            echo "KC Pretraining Options:"
+            echo "  --pretrain-kc         Enable Knowledge Component (KC) sparse concept pretraining"
+            echo "  --kc-epochs N         KC pretraining epochs (default: 3)"
+            echo "  --kc-k N              KC vocabulary size (default: 1024)"
+            echo "  --kc-topk N           Number of active KCs per sample (default: 8)"
+            echo "  --kc-freeze-encoder-epochs N Epochs to freeze encoder during KC training (default: 1)"
+            echo "  --kc-sparsity-weight F Sparsity regularization weight (default: 1e-3)"
+            echo "  --kc-target-heads S   Comma-separated target heads (default: lemma,pos,conjugated_form)"
             echo ""
             echo "  --help                Show this help message"
             exit 0
