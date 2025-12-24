@@ -7,7 +7,9 @@ import torch
 # Add project root to path to allow importing scripts
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from scripts.train_style import NUM_REGISTER_CLASSES, Sample, collate_fn
+from kotogram.model import NUM_REGISTER_CLASSES
+from train.dataset import collate_fn
+from train.types import Sample
 
 
 class TestDataFlow(unittest.TestCase):

@@ -6,7 +6,7 @@ import torch
 # Add project root to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from scripts.train_style import create_mlm_batch
+from train.trainer import create_mlm_batch
 
 
 def test_mlm_grammar_only():

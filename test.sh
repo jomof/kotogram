@@ -55,7 +55,7 @@ INITIAL_GIT_STATUS=$(git status --short)
 
 # Check for forbidden "# noqa: E402" comments
 echo "Checking for forbidden '# noqa: E402' comments..."
-if grep -rn "# noqa: E402" kotogram scripts tests-py; then
+if grep -rn "# noqa: E402" kotogram scripts tests-py train; then
     error "Found forbidden '# noqa: E402' comments! (See above)"
 fi
 success "No '# noqa: E402' comments found"
@@ -63,10 +63,10 @@ success "No '# noqa: E402' comments found"
 run_quiet ruff check --fix . --config pyproject.toml && run_quiet ruff format .
 success "Ruff check and format passed"
 
-run_quiet mypy kotogram scripts --explicit-package-bases
+run_quiet mypy kotogram scripts train --explicit-package-bases
 success "Mypy passed"
 
-run_quiet vulture kotogram scripts tests-py scripts/vulture_whitelist.py
+run_quiet vulture kotogram scripts train tests-py scripts/vulture_whitelist.py
 success "Vulture passed"
 
 if [ -f "package.json" ]; then

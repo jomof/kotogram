@@ -12,8 +12,8 @@ import sys
 # Add project root to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from scripts.cache import get_kotogram_cache
-from scripts.style_data import ProcessedSample
+from train.cache import get_kotogram_cache
+from train.types import ProcessedSample
 
 
 def populate_test_cache(rows):
@@ -124,7 +124,7 @@ def test_step2_process_sentence_batch():
 
 def test_step3_process_parallel():
     """Step 3: Verify StyleDataset._process_parallel uses cache correctly."""
-    from scripts.train_style import StyleDataset
+    from train.dataset import StyleDataset
 
     print("\n" + "=" * 60)
     print("STEP 3: _process_parallel Output")
@@ -159,7 +159,7 @@ def test_step3_process_parallel():
 
 def test_step4_encoding_inputs_extraction():
     """Step 4: Verify encoding_inputs are extracted from ProcessedSample."""
-    from scripts.train_style import StyleDataset
+    from train.dataset import StyleDataset
 
     print("\n" + "=" * 60)
     print("=" * 60)
@@ -206,8 +206,8 @@ def test_step4_encoding_inputs_extraction():
 def test_step5_encode_samples_batch():
     """Step 5: Verify _encode_samples_batch creates valid Sample objects."""
     from kotogram.tokenizer import Tokenizer
-    from scripts.style_worker import init_worker
-    from scripts.train_style import StyleDataset, _encode_samples_batch
+    from train.dataset import StyleDataset
+    from train.worker import _encode_samples_batch, init_worker
 
     print("\n" + "=" * 60)
     print("STEP 5: _encode_samples_batch Output")
@@ -247,8 +247,8 @@ def test_step6_collate_fn():
     """Step 6: Verify collate_fn produces correct tensor shapes and types."""
     from kotogram.model import NUM_REGISTER_CLASSES
     from kotogram.tokenizer import Tokenizer
-    from scripts.style_worker import init_worker
-    from scripts.train_style import StyleDataset, _encode_samples_batch, collate_fn
+    from train.dataset import StyleDataset, collate_fn
+    from train.worker import _encode_samples_batch, init_worker
 
     print("\n" + "=" * 60)
     print("STEP 6: collate_fn Output")
@@ -288,8 +288,8 @@ def test_step6_collate_fn():
 def test_step7_evaluate_list_consistency():
     """Step 7: Verify evaluate() maintains list length consistency."""
     from kotogram.tokenizer import Tokenizer
-    from scripts.style_worker import init_worker
-    from scripts.train_style import StyleDataset, _encode_samples_batch
+    from train.dataset import StyleDataset
+    from train.worker import _encode_samples_batch, init_worker
 
     print("\n" + "=" * 60)
     print("STEP 7: Evaluate List Length Consistency")
@@ -326,7 +326,7 @@ def test_step7_evaluate_list_consistency():
 def test_step8_trace_register_mislabel():
     """Step 8: Trace a specific mislabeled sentence."""
     from kotogram.model import REGISTER_ID_TO_LABEL
-    from scripts.train_style import StyleDataset
+    from train.dataset import StyleDataset
 
     print("\n" + "=" * 60)
     print("STEP 8: Trace Register Mislabeling")

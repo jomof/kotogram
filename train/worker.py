@@ -1,14 +1,9 @@
-"""Worker script for style training data encoding.
-
-This module runs in a separate process to encode samples using the Tokenizer.
-It is designed to be lightweight and avoid importing heavy dependencies like PyTorch,
-which is crucial for avoiding slow startup times with 'spawn' multiprocessing context.
-"""
+"""Worker logic for style training data encoding."""
 
 from typing import Any, Dict, List, Optional
 
 from kotogram.tokenizer import Tokenizer
-from scripts.style_data import ProcessedSample, Sample
+from train.types import ProcessedSample, Sample
 
 _tokenizer: Optional[Tokenizer] = None
 
@@ -29,24 +24,12 @@ def _encode_samples_batch(
     if _tokenizer is None:
         raise RuntimeError("Worker not initialized. Call init_worker first.")
 
-    # Batch extract features first to minimize overhead?
-    # Actually tokenizer.encode does extraction + encoding.
-    # Let's just use the global tokenizer directly.
-
     samples = []
 
     for item in items:
-        # Tuple validation handled by NamedTuple
-
-        # Manually encode to avoid tokenizer overhead if possible,
-        # or just use tokenizer.encode. tokenizer.encode is fast if frozen.
-        # Manually encode to avoid tokenizer overhead if possible,
-        # or just use tokenizer.encode. tokenizer.encode is fast if frozen.
         feature_ids = _tokenizer.encode(item.kotogram, add_cls=True, add_to_vocab=False)
 
         # Map formality_id to value/pragmatic
-        # 0=VeryFormal(1.0), 1=Formal(0.5), 2=Neutral(0.0), 3=Casual(-0.5), 4=VeryCasual(-1.0)
-        # 5=Unpragmatic -> Value=0.0, Pragmatic=0
         f_id = item.formality_id
         if f_id == 5:  # UNPRAGMATIC_FORMALITY
             f_val = 0.0

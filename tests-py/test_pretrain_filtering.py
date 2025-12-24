@@ -5,16 +5,16 @@ import unittest
 # Add project root to path to allow importing scripts
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from scripts.train_style import (
+from kotogram.model import ModelConfig
+from kotogram.tokenizer import Tokenizer
+from train.config import TrainerConfig
+from train.dataset import StyleDataset
+from train.trainer import (
     KCTrainer,
     MLMTrainer,
-    ModelConfig,
-    Sample,
     StyleClassifierWithMLM,
-    StyleDataset,
-    Tokenizer,
-    TrainerConfig,
 )
+from train.types import Sample
 
 
 class TestPretrainDataFiltering(unittest.TestCase):

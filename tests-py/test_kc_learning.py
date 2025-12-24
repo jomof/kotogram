@@ -8,11 +8,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from kotogram.model import KCHead, ModelConfig
 from kotogram.tokenizer import ALL_FEATURE_FIELDS
-from scripts.train_style import (
+from train.config import TrainerConfig
+from train.trainer import (
     KCDecoder,
     KCTrainer,
     StyleClassifierWithMLM,
-    TrainerConfig,
     create_kc_batch,
 )
 
