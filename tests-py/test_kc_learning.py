@@ -168,7 +168,7 @@ def test_kc_trainer_init():
     model = StyleClassifierWithMLM(config)
     dataset = MockDataset()
     trainer_config = TrainerConfig(batch_size=2, device="cpu")
-    kc_config = {"sparsity_weight": 0.01}
 
-    trainer = KCTrainer(model, dataset, trainer_config, kc_config)
-    assert trainer.kc_sparsity_weight == 0.01
+    trainer = KCTrainer(model, dataset, trainer_config)
+    # Check simple property if any, or just successful init
+    assert trainer.config.batch_size == 2

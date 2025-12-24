@@ -17,6 +17,7 @@ class Sample:
     register_labels: List[int] = field(default_factory=lambda: [0])
     original_sentence: str = ""
     kotogram: str = ""
+    kc_targets: Dict[str, Any] = field(default_factory=dict)
 
     @property
     def seq_len(self) -> int:
