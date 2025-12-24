@@ -78,7 +78,7 @@ class TestLabelScript(unittest.TestCase):
             self.assertIsNotNone(results["走る。"])
 
             # Check if fields are populated
-            k, f, g_val, g_prag, r_lbls, g_lbl = results["これはテストです。"]
+            k, f, g_val, g_prag, r_lbls, g_lbl, f_ids = results["これはテストです。"]
             self.assertTrue(len(k) > 0)
             self.assertIsNotNone(f)
             self.assertIsNotNone(g_val)

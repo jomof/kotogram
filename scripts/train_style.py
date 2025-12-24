@@ -30,6 +30,7 @@ try:
 except ImportError:
     from scripts import _setup_path  # type: ignore # noqa: F401
 
+import gc
 import json
 import multiprocessing as mp
 import os
@@ -56,8 +57,6 @@ from torch.utils.data.distributed import DistributedSampler
 from kotogram import locations
 from kotogram.japanese_parser import JapaneseParser
 from kotogram.model import (
-    ALL_FEATURE_FIELDS,
-    FEATURE_FIELDS,
     FORMALITY_LABEL_TO_ID,
     GENDER_LABEL_TO_ID,
     NUM_FORMALITY_PRAGMATIC_CLASSES,
@@ -66,11 +65,16 @@ from kotogram.model import (
     NUM_REGISTER_CLASSES,
     ModelConfig,
     StyleClassifier,
-    Tokenizer,
     load_model,
+)
+from kotogram.tokenizer import (
+    ALL_FEATURE_FIELDS,
+    FEATURE_FIELDS,
+    Tokenizer,
     set_excluded_features,
 )
 from scripts.style_data import ProcessedSample, Sample
+from scripts.style_worker import _encode_samples_batch, init_worker
 
 # Start timing immediately
 script_start_time = time.time()
@@ -111,59 +115,6 @@ def is_main_process() -> bool:
     if dist.is_available() and dist.is_initialized():
         return dist.get_rank() == 0
     return True
-
-
-def _encode_samples_batch(
-    items: List["ProcessedSample"],
-    tokenizer_state: Dict[str, Any],  # Serialization of tokenizer
-) -> List[Any]:  # List[Sample]
-    """Encode samples using a frozen tokenizer state."""
-    from kotogram.model import Tokenizer
-    # Sample is defined in this module (train_style.py), so it's available in global scope
-
-    # Reconstruct tokenizer
-    tokenizer = Tokenizer()
-    tokenizer.field_vocabs = tokenizer_state["field_vocabs"]
-    tokenizer._frozen = True
-
-    samples = []
-
-    for item in items:
-        # Tuple validation handled by NamedTuple
-
-        # Manually encode to avoid tokenizer overhead if possible,
-        # or just use tokenizer.encode. tokenizer.encode is fast if frozen.
-        feature_ids = tokenizer.encode(item.kotogram, add_cls=True, add_to_vocab=False)
-
-        # Map formality_id to value/pragmatic
-        # 0=VeryFormal(1.0), 1=Formal(0.5), 2=Neutral(0.0), 3=Casual(-0.5), 4=VeryCasual(-1.0)
-        # 5=Unpragmatic -> Value=0.0, Pragmatic=0
-        f_id = item.formality_id
-        if f_id == 5:  # UNPRAGMATIC_FORMALITY
-            f_val = 0.0
-            f_prag = 0
-        else:
-            f_val = {0: 1.0, 1: 0.5, 2: 0.0, 3: -0.5, 4: -1.0}.get(f_id, 0.0)
-            f_prag = 1
-
-        sample = Sample(
-            feature_ids=feature_ids,
-            formality_value=f_val,
-            formality_pragmatic=f_prag,
-            gender_value=item.gender_value,
-            gender_pragmatic=item.gender_pragmatic,
-            register_labels=item.register_ids,
-            grammaticality_label=item.gram_label,
-            # original_sentence=item.sentence_id, # Actually using sentence_id not sentence string in some cases?
-            # Wait, item.sentence is the text. item.sentence_id is ID. Sample.original_sentence should probably be sentence.
-            # Checking previous code: for sentence, kotogram... -> original_sentence=sentence
-            # So item.sentence is correct.
-            original_sentence=item.sentence,
-            kotogram=item.kotogram,
-        )
-        samples.append(sample)
-
-    return samples
 
 
 # Cache version - bump this when cache format changes to invalidate old caches
@@ -262,7 +213,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 cached_tuple = cached_data_map.get(sentence)
                 if cached_tuple is not None:
                     # Hit
-                    k, f_lbl, g_val, g_prag, r_lbls, _ = cached_tuple
+                    k, f_lbl, g_val, g_prag, r_lbls, _, f_ids = cached_tuple
 
                     processed_sample = ProcessedSample(
                         sentence=sentence,
@@ -276,6 +227,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                         else [0],
                         gram_label=gram_label,
                         success=1,
+                        feature_ids=f_ids,
                     )
                     final_results.append(processed_sample)
                 else:
@@ -548,7 +500,23 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 break
 
         if verbose:
-            print(f"\nTotal sentences to load: {len(all_rows)}")
+            print(f"\nTotal sentences reading from TSV: {len(all_rows)}", flush=True)
+
+        # Apply sample_ratio early to avoid unnecessary processing in Phase 2 and 3
+        if sample_ratio < 1.0:
+            import random
+
+            random.seed(42)
+            n_samples = max(1, int(len(all_rows) * sample_ratio))
+            if verbose:
+                print(
+                    f"  Subsampling to {sample_ratio * 100:.2f}% ({n_samples} samples)...",
+                    flush=True,
+                )
+            all_rows = random.sample(all_rows, n_samples)
+
+        if verbose:
+            print(f"Total sentences to process: {len(all_rows)}", flush=True)
 
         phase1_duration = time.time() - phase1_start
 
@@ -600,6 +568,10 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         phase3a_duration = 0.0
         ctx = mp.get_context("spawn")
         num_workers = max(1, mp.cpu_count() - 1)
+        if dist.is_available() and dist.is_initialized():
+            # In distributed mode, each rank should use only 1 worker to avoid
+            # oversubscribing the CPU (n_ranks * n_workers).
+            num_workers = 1
 
         # Phase 3: Build samples (Parallelized)
         if verbose:
@@ -607,47 +579,167 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         # 3a. Token Collection Removed (Handled by label.py)
         # Vocabulary must be frozen already
+        if verbose:
+            print("  Freezing tokenizer...", flush=True)
         tokenizer.freeze()
+        if verbose:
+            print("  Tokenizer frozen.", flush=True)
         phase3a_duration = 0.0
-
-        # Freeze vocabulary
-        tokenizer.freeze()
 
         # 3b. Parallel Sample Encoding
         phase3b_start = time.time()
-        if verbose:
-            print("  Encoding samples with frozen tokenizer...")
 
-        tokenizer_state = {
-            "field_vocabs": tokenizer.field_vocabs,
-        }
-
-        encoding_inputs = [p for p in processed_results if p.success]
-        batches = [
-            encoding_inputs[i : i + 5000] for i in range(0, len(encoding_inputs), 5000)
+        # Separate samples that already have feature_ids from those that don't
+        precomputed_results = [
+            p for p in processed_results if p.success and p.feature_ids is not None
+        ]
+        missing_results = [
+            p for p in processed_results if p.success and p.feature_ids is None
         ]
 
         samples: List[Sample] = []
         gender_counts: Counter[int] = Counter()
         grammaticality_counts: Counter[int] = Counter()
 
-        processed_encodings = 0
-        with ctx.Pool(num_workers) as pool:
-            pool_args = [(b, tokenizer_state) for b in batches]
+        # Convert precomputed results directly to Samples
+        if precomputed_results:
+            if verbose:
+                print(
+                    f"  Using {len(precomputed_results)} pre-encoded samples from cache..."
+                )
+            for p in precomputed_results:
+                # Map formality_id to value/pragmatic (logic duplicated from worker for performance)
+                f_id = p.formality_id
+                if f_id == 5:  # UNPRAGMATIC_FORMALITY
+                    f_val = 0.0
+                    f_prag = 0
+                else:
+                    f_val = {0: 1.0, 1: 0.5, 2: 0.0, 3: -0.5, 4: -1.0}.get(f_id, 0.0)
+                    f_prag = 1
 
-            for batch_samples in pool.starmap(_encode_samples_batch, pool_args):
-                samples.extend(batch_samples)
-                processed_encodings += len(batch_samples)
-
-                # Update stats
-                for s in batch_samples:
-                    gender_counts[s.gender_pragmatic] += 1
-                    grammaticality_counts[s.grammaticality_label] += 1
-
-                if verbose and processed_encodings % 100000 < 5000:
-                    print(
-                        f"  Encoded {processed_encodings}/{len(encoding_inputs)} samples..."
+                samples.append(
+                    Sample(
+                        feature_ids=cast(Dict[str, List[int]], p.feature_ids),
+                        formality_value=f_val,
+                        formality_pragmatic=f_prag,
+                        gender_value=p.gender_value,
+                        gender_pragmatic=p.gender_pragmatic,
+                        register_labels=p.register_ids,
+                        grammaticality_label=p.gram_label,
+                        original_sentence=p.sentence,
+                        kotogram=p.kotogram,
                     )
+                )
+                gender_counts[p.gender_pragmatic] += 1
+                grammaticality_counts[p.gram_label] += 1
+
+        if missing_results:
+            if verbose:
+                print(
+                    f"  Encoding {len(missing_results)} samples with frozen tokenizer..."
+                )
+
+            tokenizer_state = {
+                "field_vocabs": tokenizer.field_vocabs,
+            }
+
+            batches = [
+                missing_results[i : i + 5000]
+                for i in range(0, len(missing_results), 5000)
+            ]
+
+            processed_encodings = 0
+            if verbose:
+                print(
+                    f"  Starting multiprocessing pool with {num_workers} workers...",
+                    flush=True,
+                )
+
+            # Use explicit pool management for better hang diagnosis
+            pool = ctx.Pool(
+                num_workers, initializer=init_worker, initargs=(tokenizer_state,)
+            )
+            try:
+                # Use imap to process batches lazily and update progress in real-time
+                if verbose:
+                    print(f"  Encoding {len(batches)} batches...", flush=True)
+
+                newly_encoded_samples: List[Sample] = []
+                for batch_samples in pool.imap(_encode_samples_batch, batches):
+                    newly_encoded_samples.extend(batch_samples)
+                    processed_encodings += len(batch_samples)
+
+                    for s in batch_samples:
+                        gender_counts[s.gender_pragmatic] += 1
+                        grammaticality_counts[s.grammaticality_label] += 1
+
+                    if verbose:
+                        print(
+                            f"\r  Encoded {processed_encodings}/{len(missing_results)} samples...",
+                            end="",
+                            flush=True,
+                        )
+
+                if newly_encoded_samples:
+                    # Save newly encoded feature_ids back to cache
+                    if verbose:
+                        print(
+                            "\n  Saving newly encoded samples to cache...", flush=True
+                        )
+
+                    from scripts.cache import get_kotogram_cache
+
+                    cache = get_kotogram_cache()
+
+                    update_items = []
+                    for p, s in zip(missing_results, newly_encoded_samples):
+                        update_items.append(
+                            (
+                                p.sentence,
+                                p.kotogram,
+                                p.formality_id,
+                                p.gender_value,
+                                p.gender_pragmatic,
+                                p.register_ids,
+                                p.gram_label,
+                                s.feature_ids,
+                            )
+                        )
+
+                    if is_main_process():
+                        from scripts.cache import CacheEntryType
+
+                        cache.put_batch(cast(List[CacheEntryType], update_items))
+                        if verbose:
+                            print(
+                                f"  Cached {len(update_items)} newly encoded results.",
+                                flush=True,
+                            )
+
+                samples.extend(newly_encoded_samples)
+
+                if verbose:
+                    print(
+                        "\n  All samples received from workers. Closing pool...",
+                        flush=True,
+                    )
+
+                pool.close()
+                if verbose:
+                    print("  Pool closed. Joining workers...", flush=True)
+                pool.join()
+                if verbose:
+                    print("  Pool joined successfully.", flush=True)
+
+            except Exception as e:
+                if verbose:
+                    print(f"\n  Error during encoding: {e}", flush=True)
+                pool.terminate()
+                pool.join()
+                raise
+            finally:
+                if verbose:
+                    print("  Encoding pool finished.", flush=True)
 
         if verbose:
             print(f"\nDataset loaded: {len(samples)} samples")
@@ -666,8 +758,12 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                     f"  {gram_labels_map[g_id]}: {g_count} ({100 * g_count / len(samples):.1f}%)"
                 )
 
+        if verbose:
+            print("  Finalizing stats and freezing vocabulary...", flush=True)
         # Freeze vocabulary again to finalize lemma vocab
         tokenizer.freeze()
+        if verbose:
+            print("  Vocabulary frozen.", flush=True)
 
         phase3b_duration = time.time() - phase3b_start
         total_preprocessing_duration = time.time() - preprocessing_start
@@ -706,6 +802,11 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
 
         # Note: Subsampling now happens during Phase 1 (TSV reading) for efficiency.
 
+        if verbose:
+            print(
+                f"  Dataset creation complete. Total samples: {len(samples)}",
+                flush=True,
+            )
         return cls(samples, tokenizer)
 
     def split(
@@ -714,6 +815,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
         val_ratio: float = 0.1,
         seed: int = 42,
         stratify: bool = True,
+        verbose: bool = True,
     ) -> Tuple["StyleDataset", "StyleDataset", "StyleDataset"]:
         """Split dataset into train/validation/test sets.
 
@@ -724,6 +826,7 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             stratify: If True, use stratified splitting to ensure proportional
                      representation of all class combinations in each split.
                      Uses combined (formality, gender, grammaticality) labels for stratification.
+            verbose: If True, print progress
 
         Returns:
             Tuple of (train, validation, test) StyleDataset instances
@@ -745,21 +848,24 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             train_indices = indices[:n_train]
             val_indices = indices[n_train : n_train + n_val]
             test_indices = indices[n_train + n_val :]
-            # Original random splitting
-            indices = list(range(len(self.samples)))
-            random.shuffle(indices)
-
-            n_train = int(len(indices) * train_ratio)
-            n_val = int(len(indices) * val_ratio)
-
-            train_indices = indices[:n_train]
-            val_indices = indices[n_train : n_train + n_val]
-            test_indices = indices[n_train + n_val :]
         else:
             # Stratified splitting using combined (formality, gender, grammaticality) labels
             # Group samples by combined label
+            rank = (
+                dist.get_rank() if dist.is_available() and dist.is_initialized() else 0
+            )
+            if verbose:
+                print(
+                    f"  [Rank {rank}] Grouping samples for stratification...",
+                    flush=True,
+                )
             label_to_indices: Dict[Tuple[int, int, int], List[int]] = {}
             for i, sample in enumerate(self.samples):
+                if verbose and i % 100000 == 0 and i > 0:
+                    print(
+                        f"    [Rank {rank}] Processed {i}/{len(self.samples)} samples...",
+                        flush=True,
+                    )
                 combined_label = (
                     sample.formality_pragmatic,
                     sample.gender_pragmatic,
@@ -770,6 +876,11 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
                 label_to_indices[combined_label].append(i)
 
             # Split each group proportionally
+            if verbose:
+                print(
+                    f"  [Rank {rank}] Splitting {len(label_to_indices)} label groups...",
+                    flush=True,
+                )
             for combined_label, group_indices in label_to_indices.items():
                 random.shuffle(group_indices)
                 n = len(group_indices)
@@ -789,6 +900,10 @@ class StyleDataset(Dataset[Sample]):  # type: ignore[misc]
             random.shuffle(train_indices)
             random.shuffle(val_indices)
             random.shuffle(test_indices)
+            if verbose:
+                print(
+                    f"  [Rank {rank}] Creating split dataset instances...", flush=True
+                )
 
         train_samples = [self.samples[i] for i in train_indices]
         val_samples = [self.samples[i] for i in val_indices]
@@ -920,6 +1035,59 @@ def collate_fn(
     return result
 
 
+def create_kc_batch(
+    batch: Dict[str, torch.Tensor],
+    tokenizer: Tokenizer,
+    target_specs: Dict[str, int],
+    field_maps: Optional[Dict[str, str]] = None,
+) -> Dict[str, torch.Tensor]:
+    """Create batch of multi-hot targets for KC training (sentence-level).
+
+    Args:
+        batch: Input batch from collate_fn
+        tokenizer: Tokenizer for vocab mapping
+        target_specs: Dict of target head names -> vocab sizes
+        field_maps: Map from target head name to feature field name
+
+    Returns:
+        Dict with 'kc_target_<head>': (B, V) multi-hot float tensors
+    """
+    if field_maps is None:
+        field_maps = {
+            "lemma": "lemma",
+            "pos": "pos",
+            "conjugated_form": "conjugated_form",
+        }
+    targets = {}
+    batch_size = batch["input_ids_surface"].size(0)
+    device = batch["input_ids_surface"].device
+
+    for head_name, vocab_size in target_specs.items():
+        field = field_maps.get(head_name)
+        if not field:
+            continue
+
+        input_ids = batch[f"input_ids_{field}"]  # (B, S)
+        mask = batch["attention_mask"]  # (B, S)
+
+        # Create multi-hot (B, V)
+        multi_hot = torch.zeros(batch_size, vocab_size, device=device)
+
+        # Mask out padding/special tokens (0,1,2,3)
+        valid_mask = (input_ids > 3) & (mask > 0)
+
+        valid_indices = torch.nonzero(valid_mask, as_tuple=True)
+        batch_indices = valid_indices[0]  # Row indices
+
+        values = input_ids[valid_mask]  # Values at these positions
+
+        multi_hot.index_put_((batch_indices, values), torch.tensor(1.0, device=device))
+
+        targets[f"kc_targets_{head_name}"] = multi_hot
+
+    return targets
+
+
 class MLMHead(nn.Module):  # type: ignore[misc]
     """Masked language modeling head for feature-based tokens.
 
@@ -962,6 +1130,27 @@ class MLMHead(nn.Module):  # type: ignore[misc]
         return {field: decoder(x) for field, decoder in self.decoders.items()}
 
 
+class KCDecoder(nn.Module):
+    """Decoder for predicting sentence-level attributes from KC activations."""
+
+    def __init__(self, kc_vocab_size: int, target_specs: Dict[str, int]):
+        super().__init__()
+        self.decoders = nn.ModuleDict()
+        for name, vocab_size in target_specs.items():
+            self.decoders[name] = nn.Linear(kc_vocab_size, vocab_size)
+
+    def forward(self, kc_activations: torch.Tensor) -> Dict[str, torch.Tensor]:
+        """
+        Args:
+            kc_activations: (B, K) activations (probabilities or logits)
+        Returns:
+            Dict target_name -> logits (B, V_target)
+        """
+        return {
+            name: decoder(kc_activations) for name, decoder in self.decoders.items()
+        }
+
+
 class StyleClassifierWithMLM(StyleClassifier):
     """Multi-task style classifier with MLM pretraining head.
 
@@ -974,10 +1163,13 @@ class StyleClassifierWithMLM(StyleClassifier):
         super().__init__(config)
         self.mlm_head = MLMHead(config)
 
+        if config.kc_enabled:
+            self.kc_decoders = KCDecoder(config.kc_vocab_size, config.kc_target_specs)
+
     def forward(
         self,
         *args: Any,
-        mode: str = "classification",
+        mode: str = "classification",  # 'classification', 'mlm', 'kc'
         **kwargs: Any,
     ) -> Any:
         """Forward pass dispatch.
@@ -989,7 +1181,43 @@ class StyleClassifierWithMLM(StyleClassifier):
         """
         if mode == "mlm":
             return self.forward_mlm(*args, **kwargs)
+        if mode == "kc":
+            return self.forward_kc(*args, **kwargs)
         return super().forward(*args, **kwargs)
+
+    def forward_kc(
+        self,
+        field_inputs: Dict[str, torch.Tensor],
+        attention_mask: Optional[torch.Tensor] = None,
+    ) -> Dict[str, Any]:
+        """Forward pass for KC learning.
+
+        Returns:
+            dict with:
+            - kc_logits: (B, K)
+            - kc_probs: (B, K)  (sigmoid applied)
+            - target_logits: Dict[str, Tensor] (B, V_target)
+        """
+        # 1. Get embedding
+        pooled = self._get_pooled_output(field_inputs, attention_mask)
+
+        # 2. Predict KCs
+        kc_logits = self.kc_head(pooled)
+
+        # 3. Apply activation (sigmoid for sparse multi-label)
+        # Using temperature
+        cur_temp = getattr(self.config, "kc_temperature", 1.0)
+        kc_probs = torch.sigmoid(kc_logits / cur_temp)
+
+        # 4. Decode to targets
+        # We pass probs to decoder usually to encourage KCs to act as "features"
+        target_logits = self.kc_decoders(kc_probs)
+
+        return {
+            "kc_logits": kc_logits,
+            "kc_probs": kc_probs,
+            "target_logits": target_logits,
+        }
 
     def forward_mlm(
         self,
@@ -1179,8 +1407,16 @@ class MLMTrainer:
             field_weights: Optional weights for each field's loss contribution.
                           Defaults to equal weights for all fields.
         """
+        # MLM Pretraining MUST ONLY use grammatical samples
+        agrammatic = [s for s in dataset.samples if s.grammaticality_label == 0]
+        if agrammatic:
+            # Filter to only grammatic samples
+            dataset = StyleDataset(
+                [s for s in dataset.samples if s.grammaticality_label == 1],
+                dataset.tokenizer,
+            )
+
         self.model = model
-        self.dataset = dataset
         self.dataset = dataset
         self.config = config or TrainerConfig()
         self.mask_prob = mask_prob
@@ -2324,10 +2560,11 @@ def save_model(
         # Convert to float8 for smallest model size
         if not hasattr(torch, "float8_e4m3fn"):
             raise RuntimeError("FP8 requires PyTorch 2.1+. Use --fp16 instead.")
-        # MPS doesn not support float8, so move to CPU first
+        # MPS does not support float8, so move to CPU first
         state_dict = {
             k: v.cpu().to(torch.float8_e4m3fn) if v.dtype == torch.float32 else v.cpu()
             for k, v in model.state_dict().items()
+            if not k.startswith("mlm_head.") and not k.startswith("kc_decoders.")
         }
         torch.save(state_dict, os.path.join(path, "model.pt"))
     elif fp16:
@@ -2335,10 +2572,15 @@ def save_model(
         state_dict = {
             k: v.cpu().half() if v.dtype == torch.float32 else v.cpu()
             for k, v in model.state_dict().items()
+            if not k.startswith("mlm_head.") and not k.startswith("kc_decoders.")
         }
         torch.save(state_dict, os.path.join(path, "model.pt"))
     else:
-        state_dict = {k: v.cpu() for k, v in model.state_dict().items()}
+        state_dict = {
+            k: v.cpu()
+            for k, v in model.state_dict().items()
+            if not k.startswith("mlm_head.") and not k.startswith("kc_decoders.")
+        }
         torch.save(state_dict, os.path.join(path, "model.pt"))
 
     # Save tokenizer
@@ -2491,7 +2733,9 @@ def load_checkpoint(
     model_state = {k.replace("module.", ""): v for k, v in model_state.items()}
 
     model_state = {
-        k: v for k, v in model_state.items() if not k.startswith("mlm_head.")
+        k: v
+        for k, v in model_state.items()
+        if not k.startswith("mlm_head.") and not k.startswith("kc_decoders.")
     }
 
     try:
@@ -2540,6 +2784,255 @@ def load_checkpoint(
     return model, tokenizer, checkpoint, bool(missing_keys or unexpected_keys)
 
 
+class KCTrainer:
+    """Trainer for Knowledge Component (KC) learning."""
+
+    def __init__(
+        self,
+        model: StyleClassifierWithMLM,
+        dataset: StyleDataset,
+        config: TrainerConfig,
+        kc_config: Dict[str, Any],  # sparsity weight, etc
+    ):
+        # KC Pretraining MUST ONLY use grammatical samples
+        agrammatic = [s for s in dataset.samples if s.grammaticality_label == 0]
+        if agrammatic:
+            # Filter to only grammatic samples
+            dataset = StyleDataset(
+                [s for s in dataset.samples if s.grammaticality_label == 1],
+                dataset.tokenizer,
+            )
+
+        self.model = model
+        self.dataset = dataset
+        self.config = config
+
+        # KC specific config
+        self.kc_sparsity_weight = kc_config.get("sparsity_weight", 1e-3)
+        self.freeze_encoder_epochs = kc_config.get("freeze_encoder_epochs", 1)
+
+        # Setup standard stuff
+        if config.world_size > 1:
+            self.device = torch.device("cuda", config.local_rank)
+            self.is_distributed = True
+        else:
+            self.device = torch.device(config.device)
+            self.is_distributed = False
+
+        if is_main_process():
+            print(f"  [KCTrainer] Moving model to {self.device}...", flush=True)
+        self.model.to(self.device)
+
+        if self.is_distributed:
+            if is_main_process():
+                print("  [KCTrainer] Initializing DDP...", flush=True)
+            self.model = DDP(
+                self.model,
+                device_ids=[config.local_rank],
+                output_device=config.local_rank,
+                find_unused_parameters=True,
+            )  # type: ignore
+
+        if is_main_process():
+            print("  [KCTrainer] Setting up DataLoader...", flush=True)
+        # Mixed precision
+        device_type = "cuda" if "cuda" in str(self.device).lower() else "cpu"
+        if "mps" in str(self.device).lower():
+            device_type = "mps"
+
+        self.scaler = GradScaler(device=device_type, enabled=config.use_amp)
+
+        pad_id = dataset.tokenizer.pad_id
+        max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
+
+        # Sampler
+        sampler: Optional[Any] = None
+        if self.is_distributed:
+            sampler = DistributedSampler(
+                dataset,
+                num_replicas=config.world_size,
+                rank=dist.get_rank(),
+                shuffle=True,
+            )
+
+        self.sampler = sampler
+        self.data_loader = DataLoader(
+            dataset,
+            batch_size=config.batch_size,
+            shuffle=(sampler is None),
+            sampler=sampler,
+            collate_fn=lambda b: collate_fn(
+                b, pad_id, cast(Optional[int], max_seq_len)
+            ),
+            pin_memory=True if "cuda" in str(self.device).lower() else False,
+            num_workers=4 if "cuda" in str(self.device).lower() else 0,
+        )
+
+        if is_main_process():
+            print("  [KCTrainer] Creating optimizer...", flush=True)
+        # Optimizers
+        self._create_optimizer(freeze_encoder=True)
+
+        # Losses
+        self.recon_criterion = nn.BCEWithLogitsLoss()
+
+        self.history: Dict[str, List[float]] = {"kc_loss": [], "kc_sparsity": []}
+        if is_main_process():
+            print("  [KCTrainer] Initialization complete.", flush=True)
+
+    def _create_optimizer(self, freeze_encoder: bool) -> None:
+        raw_model = self.model.module if self.is_distributed else self.model
+        model = cast(StyleClassifierWithMLM, raw_model)
+        param_groups = []
+
+        # Always learn KC head and decoders
+        kc_params = list(model.kc_head.parameters())
+        if hasattr(model, "kc_decoders"):
+            kc_params += list(model.kc_decoders.parameters())
+
+        param_groups.append({"params": kc_params, "lr": self.config.learning_rate})
+
+        if not freeze_encoder:
+            # Add encoder params with lower LR? Or same?
+            encoder_params = list(model.embedding.parameters()) + list(
+                model.encoder.parameters()
+            )
+            param_groups.append(
+                {"params": encoder_params, "lr": self.config.learning_rate * 0.1}
+            )
+        else:
+            # Explicitly require grad = False? The optimizer won't update them if not in param_groups.
+            pass
+
+        self.optimizer = Adam(param_groups)
+
+    def train(self, epochs: int, verbose: bool = True) -> Dict[str, List[float]]:
+        for epoch in range(epochs):
+            if self.sampler:
+                self.sampler.set_epoch(epoch)
+
+            # Freezing logic
+            should_freeze = epoch < self.freeze_encoder_epochs
+            self._create_optimizer(freeze_encoder=should_freeze)
+
+            if verbose and is_main_process():
+                print(
+                    f"KC Epoch {epoch + 1}/{epochs} (Encoder {'Frozen' if should_freeze else 'Thawed'})",
+                    flush=True,
+                )
+
+            self.model.train()
+            total_loss = 0.0
+            total_sparsity = 0.0
+            n_batches = 0
+
+            if verbose:
+                total_batches = len(self.data_loader)
+
+            for batch_idx, batch in enumerate(self.data_loader):
+                # Prepare inputs
+                field_inputs = {
+                    k: v.to(self.device)
+                    for k, v in batch.items()
+                    if k.startswith("input_ids_")
+                }
+                attention_mask = batch["attention_mask"].to(self.device)
+
+                # Create targets
+                kc_targets = create_kc_batch(
+                    batch,
+                    self.dataset.tokenizer,
+                    getattr(self.model, "module", self.model).config.kc_target_specs,
+                )
+
+                # Move targets
+                kc_targets = {k: v.to(self.device) for k, v in kc_targets.items()}
+
+                self.optimizer.zero_grad(set_to_none=True)
+
+                # Autocast
+                device_type = "cuda" if "cuda" in str(self.device).lower() else "cpu"
+                if "mps" in str(self.device).lower():
+                    device_type = "mps"
+
+                with autocast(device_type=device_type, enabled=self.config.use_amp):
+                    out = self.model(
+                        field_inputs, attention_mask=attention_mask, mode="kc"
+                    )
+
+                    # Losses
+                    # Reconstruction
+                    recon_loss = torch.tensor(0.0, device=self.device)
+                    n_targets = 0
+                    if out.get("target_logits"):
+                        for name, logits in out["target_logits"].items():
+                            target_key = f"kc_targets_{name}"
+                            if target_key in kc_targets:
+                                # Targets are multi-hot float suitable for BCE
+                                loss = self.recon_criterion(
+                                    logits, kc_targets[target_key]
+                                )
+                                recon_loss += loss
+                                n_targets += 1
+
+                    if n_targets > 0:
+                        recon_loss /= n_targets
+
+                    # Sparsity (L1 on probs)
+                    # p shape (B, K)
+                    p = out["kc_probs"]
+                    # Average activation per sample
+                    sparsity = p.mean()  # Mean across batch and K
+
+                    loss = recon_loss + self.kc_sparsity_weight * sparsity
+
+                    # Gradient accumulation normalization
+                    loss = loss / self.config.grad_accum_steps
+
+                self.scaler.scale(loss).backward()
+
+                if (batch_idx + 1) % self.config.grad_accum_steps == 0:
+                    if self.config.gradient_clip > 0:
+                        self.scaler.unscale_(self.optimizer)
+                        nn.utils.clip_grad_norm_(
+                            self.model.parameters(), self.config.gradient_clip
+                        )
+                    self.scaler.step(self.optimizer)
+                    self.scaler.update()
+                    self.optimizer.zero_grad()
+
+                total_loss += loss.item() * self.config.grad_accum_steps
+                total_sparsity += sparsity.item()
+                n_batches += 1
+
+                if verbose and is_main_process():
+                    # Progress display (only on rank 0)
+                    avg_loss_so_far = total_loss / max(1, n_batches)
+                    progress = (batch_idx + 1) / total_batches
+                    bar_len = 30
+                    filled = int(bar_len * progress)
+                    bar = "=" * filled + ">" + "." * (bar_len - filled - 1)
+                    sys.stdout.write(
+                        f"\r  [{bar}] {batch_idx + 1}/{total_batches} loss={avg_loss_so_far:.4f} sparsity={sparsity.item():.4f}"
+                    )
+                    sys.stdout.flush()
+
+            avg_loss = total_loss / max(1, n_batches)
+            avg_sparsity = total_sparsity / max(1, n_batches)
+
+            self.history["kc_loss"].append(avg_loss)
+            self.history["kc_sparsity"].append(avg_sparsity)
+
+            if verbose and is_main_process():
+                sys.stdout.write("\n")
+                print(
+                    f"  Epoch End: Avg Loss={avg_loss:.4f}, Avg Sparsity={avg_sparsity:.4f}",
+                    flush=True,
+                )
+
+        return self.history
+
+
 if __name__ == "__main__":
     if os.environ.get("RANK", "0") == "0":
         print("Starting training script...", flush=True)
@@ -2582,7 +3075,7 @@ if __name__ == "__main__":
         "--encoder-lr-factor",
         type=float,
         default=0.1,
-        help="Learning rate factor for encoder during fine-tuning",
+        help="Learning rate multiplier for encoder during fine-tuning",
     )
     parser.add_argument(
         "--learning-rate", type=float, default=1e-4, help="Base learning rate"
@@ -2636,6 +3129,38 @@ if __name__ == "__main__":
         type=float,
         default=None,
         help="Percentage of data to use for training (1-100)",
+    )
+    parser.add_argument(
+        "--pretrain-kc",
+        action="store_true",
+        help="Run Knowledge Component (KC) sparse concept pretraining",
+    )
+    parser.add_argument(
+        "--kc-epochs", type=int, default=3, help="Number of KC pretraining epochs"
+    )
+    parser.add_argument(
+        "--kc-k", type=int, default=1024, help="KC vocabulary size (number of concepts)"
+    )
+    parser.add_argument(
+        "--kc-topk", type=int, default=8, help="Number of active KCs per sample"
+    )
+    parser.add_argument(
+        "--kc-freeze-encoder-epochs",
+        type=int,
+        default=1,
+        help="Number of epochs to freeze encoder during KC training",
+    )
+    parser.add_argument(
+        "--kc-sparsity-weight",
+        type=float,
+        default=1e-3,
+        help="Sparsity regularization weight for KC activations",
+    )
+    parser.add_argument(
+        "--kc-target-heads",
+        type=str,
+        default="lemma,pos,conjugated_form",
+        help="Comma-separated list of target heads for KC supervision",
     )
     parser.add_argument(
         "--grad-accum-steps",
@@ -2869,61 +3394,72 @@ if __name__ == "__main__":
 
     # Skip model creation if resuming (model already loaded)
     t_data_start = time.time()
+
+    # Initialize tokenizer for all fresh/MLM paths
+    if not args.resume or checkpoint is None:
+        tokenizer = Tokenizer()
+        # Pre-load vocabulary from labeled cache (created by label.py)
+        from kotogram import locations
+
+        cache_dir = locations.get_style_dataset_cache_dir()
+        vocab_path = os.path.join(cache_dir, "vocab.json")
+        if os.path.exists(vocab_path):
+            StyleDataset._load_vocab(vocab_path, tokenizer)
+            if is_main_process():
+                print(f"Loaded vocabulary from {vocab_path}")
+        else:
+            # Vocabulary is mandatory for style training
+            raise ValueError(
+                f"Vocabulary not found at {vocab_path}. Run: ./train_style.sh --label"
+            )
+
     if args.resume and checkpoint is not None:
         # Load datasets with existing tokenizer
         # Unfreeze tokenizer to allow new vocabulary
         old_vocab_sizes = tokenizer.get_vocab_sizes()
         tokenizer._frozen = False
 
-        print("\nLoading data (tokenizer unfrozen for new vocabulary)...")
-        if len(data_files) > 1:
-            if is_main_process():
-                dataset = StyleDataset.from_multiple_tsv(
-                    data_files,
-                    tokenizer,
-                    labeled=True,
-                    grammaticality_labels=grammaticality_labels,
-                    max_samples=args.max_samples,
-                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+        # Load and split sequentially across ranks
+        for r in range(world_size):
+            if rank == r:
+                if is_main_process():
+                    print(
+                        "\nLoading data (tokenizer unfrozen for new vocabulary)...",
+                        flush=True,
+                    )
+
+                if len(data_files) > 1:
+                    dataset = StyleDataset.from_multiple_tsv(
+                        data_files,
+                        tokenizer,
+                        labeled=True,
+                        grammaticality_labels=grammaticality_labels,
+                        max_samples=args.max_samples,
+                        sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                        verbose=is_main_process(),
+                    )
+                else:
+                    dataset = StyleDataset.from_tsv(
+                        data_files[0],
+                        tokenizer,
+                        labeled=True,
+                        max_samples=args.max_samples,
+                        sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                        verbose=is_main_process(),
+                    )
+
+                if is_main_process():
+                    print("\nSplitting dataset...", flush=True)
+                train_data, val_data, test_data = dataset.split(
+                    verbose=is_main_process()
                 )
+                if is_main_process():
+                    print("Splitting complete.", flush=True)
+
+                gc.collect()
 
             if dist.is_available() and dist.is_initialized():
                 dist.barrier()
-
-            if not is_main_process():
-                dataset = StyleDataset.from_multiple_tsv(
-                    data_files,
-                    tokenizer,
-                    labeled=True,
-                    grammaticality_labels=grammaticality_labels,
-                    max_samples=args.max_samples,
-                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                    verbose=False,
-                )
-        else:
-            if is_main_process():
-                dataset = StyleDataset.from_tsv(
-                    data_files[0],
-                    tokenizer,
-                    labeled=True,
-                    max_samples=args.max_samples,
-                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                )
-
-            if dist.is_available() and dist.is_initialized():
-                dist.barrier()
-
-            if not is_main_process():
-                dataset = StyleDataset.from_tsv(
-                    data_files[0],
-                    tokenizer,
-                    labeled=True,
-                    max_samples=args.max_samples,
-                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                    verbose=False,
-                )
-
-        train_data, val_data, test_data = dataset.split()
 
         # Check if vocabulary grew and resize embeddings if needed
         new_vocab_sizes = tokenizer.get_vocab_sizes()
@@ -2957,45 +3493,16 @@ if __name__ == "__main__":
         print(
             "  (agrammatic data excluded from pretraining, will be used in fine-tuning)"
         )
-        tokenizer = Tokenizer()
 
-        # Pre-load vocabulary from labeled cache (created by label.py)
-        from kotogram import locations
-
-        cache_dir = locations.get_style_dataset_cache_dir()
-        vocab_path = os.path.join(cache_dir, "vocab.json")
-        if os.path.exists(vocab_path):
-            StyleDataset._load_vocab(vocab_path, tokenizer)
-            print(f"  Loaded vocabulary from {vocab_path}")
-        else:
-            raise ValueError(
-                f"Vocabulary not found at {vocab_path}. Run: ./train_style.sh --label"
-            )
-
-        if is_main_process():
-            unlabeled_dataset = StyleDataset.from_tsv(
-                grammatic_files[0],
-                tokenizer,
-                max_samples=args.max_samples,
-                verbose=True,
-                labeled=False,  # No labels needed for pretraining
-                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                use_cache=False,  # Skip cache for unlabeled MLM data
-            )
-
-        if dist.is_available() and dist.is_initialized():
-            dist.barrier(device_ids=[local_rank])
-
-        if not is_main_process():
-            unlabeled_dataset = StyleDataset.from_tsv(
-                grammatic_files[0],
-                tokenizer,
-                max_samples=args.max_samples,
-                verbose=False,
-                labeled=False,  # No labels needed for pretraining
-                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                use_cache=False,  # Skip cache for unlabeled MLM data
-            )
+        unlabeled_dataset = StyleDataset.from_tsv(
+            grammatic_files[0],
+            tokenizer,
+            max_samples=args.max_samples,
+            verbose=is_main_process(),
+            labeled=False,  # No labels needed for pretraining
+            sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+            use_cache=False,  # Skip cache for unlabeled MLM data
+        )
         # Note: tokenizer is frozen after from_tsv
 
         # Model config (vocab is now fixed)
@@ -3014,6 +3521,16 @@ if __name__ == "__main__":
             num_layers=args.num_layers,
             num_heads=args.num_heads,
             excluded_features=excluded,
+            kc_enabled=args.pretrain_kc,
+            kc_vocab_size=args.kc_k,
+            kc_topk=args.kc_topk,
+            kc_target_specs={
+                h.strip(): tokenizer.get_vocab_sizes().get(h.strip(), 100)
+                for h in args.kc_target_heads.split(",")
+                if h.strip()
+            }
+            if args.pretrain_kc
+            else {},
         )
 
         print("\nCreating model with MLM head...")
@@ -3051,55 +3568,40 @@ if __name__ == "__main__":
         old_vocab_sizes = tokenizer.get_vocab_sizes()
         # Unfreeze tokenizer to allow vocabulary expansion
         tokenizer._frozen = False
-        if len(data_files) > 1:
-            if is_main_process():
-                labeled_dataset = StyleDataset.from_multiple_tsv(
-                    data_files,
-                    tokenizer,
-                    max_samples=args.max_samples,
-                    verbose=True,
-                    labeled=True,
-                    grammaticality_labels=grammaticality_labels,
-                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+        # Load sequentially across ranks
+        for r in range(world_size):
+            if rank == r:
+                if len(data_files) > 1:
+                    labeled_dataset = StyleDataset.from_multiple_tsv(
+                        data_files,
+                        tokenizer,
+                        max_samples=args.max_samples,
+                        verbose=is_main_process(),
+                        labeled=True,
+                        grammaticality_labels=grammaticality_labels,
+                        sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                    )
+                else:
+                    labeled_dataset = StyleDataset.from_tsv(
+                        args.data,
+                        tokenizer,
+                        max_samples=args.max_samples,
+                        verbose=is_main_process(),
+                        labeled=True,
+                        sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                    )
+                if is_main_process():
+                    print("\nSplitting labeled dataset...", flush=True)
+                train_data, val_data, test_data = labeled_dataset.split(
+                    verbose=is_main_process()
                 )
+                if is_main_process():
+                    print("Splitting complete.", flush=True)
+
+                gc.collect()
 
             if dist.is_available() and dist.is_initialized():
-                dist.barrier(device_ids=[local_rank])
-
-            if not is_main_process():
-                labeled_dataset = StyleDataset.from_multiple_tsv(
-                    data_files,
-                    tokenizer,
-                    max_samples=args.max_samples,
-                    verbose=False,
-                    labeled=True,
-                    grammaticality_labels=grammaticality_labels,
-                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                )
-        else:
-            if is_main_process():
-                labeled_dataset = StyleDataset.from_tsv(
-                    args.data,
-                    tokenizer,
-                    max_samples=args.max_samples,
-                    verbose=True,
-                    labeled=True,
-                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                )
-
-            if dist.is_available() and dist.is_initialized():
-                dist.barrier(device_ids=[local_rank])
-
-            if not is_main_process():
-                labeled_dataset = StyleDataset.from_tsv(
-                    args.data,
-                    tokenizer,
-                    max_samples=args.max_samples,
-                    verbose=False,
-                    labeled=True,
-                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                )
-        train_data, val_data, test_data = labeled_dataset.split()
+                dist.barrier()
 
         # Check if vocabulary grew and resize embeddings if needed
         new_vocab_sizes = tokenizer.get_vocab_sizes()
@@ -3126,58 +3628,73 @@ if __name__ == "__main__":
                 num_layers=args.num_layers,
                 num_heads=args.num_heads,
                 excluded_features=excluded,
+                kc_enabled=args.pretrain_kc,
+                kc_vocab_size=args.kc_k,
+                kc_topk=args.kc_topk,
+                kc_target_specs={
+                    h.strip(): tokenizer.get_vocab_sizes().get(h.strip(), 100)
+                    for h in args.kc_target_heads.split(",")
+                    if h.strip()
+                }
+                if args.pretrain_kc
+                else {},
             )
+
     else:
-        print("Loading data...")
-        tokenizer = Tokenizer()
-        if len(data_files) > 1:
-            if is_main_process():
-                dataset = StyleDataset.from_multiple_tsv(
-                    data_files,
-                    tokenizer,
-                    max_samples=args.max_samples,
-                    verbose=True,
-                    grammaticality_labels=grammaticality_labels,
-                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+        rank = dist.get_rank() if dist.is_available() and dist.is_initialized() else 0
+        world_size = (
+            dist.get_world_size()
+            if dist.is_available() and dist.is_initialized()
+            else 1
+        )
+
+        # Load and split sequentially across ranks to avoid memory spikes
+        # For 1.1M samples * world_size, this is critical to avoid swapping.
+        for r in range(world_size):
+            if rank == r:
+                if is_main_process():
+                    print("\nLoading dataset...", flush=True)
+
+                if len(data_files) > 1:
+                    dataset = StyleDataset.from_multiple_tsv(
+                        data_files,
+                        tokenizer,
+                        max_samples=args.max_samples,
+                        verbose=is_main_process(),
+                        grammaticality_labels=grammaticality_labels,
+                        sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                    )
+                else:
+                    dataset = StyleDataset.from_tsv(
+                        args.data,
+                        tokenizer,
+                        max_samples=args.max_samples,
+                        verbose=is_main_process(),
+                        sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                    )
+
+                if is_main_process():
+                    print("\nSplitting dataset...", flush=True)
+                train_data, val_data, test_data = dataset.split(
+                    verbose=is_main_process()
                 )
+
+                if is_main_process():
+                    print("Splitting complete.", flush=True)
+
+                gc.collect()
 
             if dist.is_available() and dist.is_initialized():
-                dist.barrier(device_ids=[local_rank])
+                dist.barrier()
 
-            if not is_main_process():
-                dataset = StyleDataset.from_multiple_tsv(
-                    data_files,
-                    tokenizer,
-                    max_samples=args.max_samples,
-                    verbose=False,
-                    grammaticality_labels=grammaticality_labels,
-                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                )
-        else:
-            if is_main_process():
-                dataset = StyleDataset.from_tsv(
-                    args.data,
-                    tokenizer,
-                    max_samples=args.max_samples,
-                    verbose=True,
-                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                )
+        gc.collect()
 
-            if dist.is_available() and dist.is_initialized():
-                dist.barrier(device_ids=[local_rank])
-
-            if not is_main_process():
-                dataset = StyleDataset.from_tsv(
-                    args.data,
-                    tokenizer,
-                    max_samples=args.max_samples,
-                    verbose=False,
-                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                )
-        train_data, val_data, test_data = dataset.split()
         timings["data_loading"] = time.time() - t_data_start
 
         # Model config
+        if is_main_process():
+            print("\nConfiguring model...", flush=True)
+        t_config_start = time.time()
         excluded = (
             [f.strip() for f in args.exclude_features.split(",") if f.strip()]
             if args.exclude_features
@@ -3193,12 +3710,37 @@ if __name__ == "__main__":
             num_layers=args.num_layers,
             num_heads=args.num_heads,
             excluded_features=excluded,
+            kc_enabled=args.pretrain_kc,
+            kc_vocab_size=args.kc_k,
+            kc_topk=args.kc_topk,
+            kc_target_specs={
+                h.strip(): tokenizer.get_vocab_sizes().get(h.strip(), 100)
+                for h in args.kc_target_heads.split(",")
+                if h.strip()
+            }
+            if args.pretrain_kc
+            else {},
         )
+        if is_main_process():
+            print(
+                f"Model configuration complete ({time.time() - t_config_start:.2f}s).",
+                flush=True,
+            )
 
         if is_main_process():
-            print("\nCreating model...")
+            print("\nCreating model...", flush=True)
         t_model_start = time.time()
-        model = StyleClassifier(model_config)
+        if args.pretrain_kc:
+            model = StyleClassifierWithMLM(model_config)
+        else:
+            model = StyleClassifier(model_config)
+
+        if is_main_process():
+            print(
+                f"Model created successfully ({time.time() - t_model_start:.2f}s).",
+                flush=True,
+            )
+
         timings["model_creation"] = time.time() - t_model_start
 
     # Preprocessing only mode: Exit after data is loaded and cached
@@ -3209,14 +3751,56 @@ if __name__ == "__main__":
             dist.destroy_process_group()
         sys.exit(0)
 
-    if is_main_process():
-        print(
-            f"\nSplit: {len(train_data)} train, {len(val_data)} val, {len(test_data)} test"
+        if is_main_process():
+            print(
+                f"\nSplit: {len(train_data)} train, {len(val_data)} val, {len(test_data)} test"
+            )
+
+    # KC Pretraining Stage
+    if args.pretrain_kc:
+        if is_main_process():
+            print("\nStage 2: KC Pretraining...", flush=True)
+            print(f"  Target heads: {args.kc_target_heads}", flush=True)
+            print(f"  KC Vocab: {args.kc_k}, Top-K: {args.kc_topk}", flush=True)
+
+        kc_trainer_config = TrainerConfig(
+            learning_rate=args.learning_rate,
+            batch_size=args.batch_size,
+            epochs=args.kc_epochs,
+            grad_accum_steps=args.grad_accum_steps,
+            device="cuda"
+            if torch.cuda.is_available()
+            else "mps"
+            if torch.backends.mps.is_available()
+            else "cpu",
+            use_amp=args.fp16 if args.fp16 is not None else False,
+            gradient_clip=1.0,
+            world_size=world_size,
+            local_rank=local_rank,
         )
+
+        kc_config = {
+            "sparsity_weight": args.kc_sparsity_weight,
+            "freeze_encoder_epochs": args.kc_freeze_encoder_epochs,
+        }
+
+        kc_trainer = KCTrainer(
+            cast(StyleClassifierWithMLM, model),
+            train_data,
+            kc_trainer_config,
+            kc_config,
+        )
+        kc_trainer.train(epochs=args.kc_epochs)
+
+        if is_main_process():
+            print("KC Pretraining complete.", flush=True)
+
+        # Reset classifier heads for fine-tuning
+        cast(StyleClassifier, getattr(model, "module", model)).reset_classifier()
 
     # Supervised training with differential learning rates
     if is_main_process():
-        print("\nStarting supervised training...")
+        print("\nStarting supervised training...", flush=True)
 
     # Save timings
     timings["total_startup"] = time.time() - script_start_time

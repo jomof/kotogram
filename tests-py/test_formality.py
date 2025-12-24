@@ -17,7 +17,8 @@ class TestFormalityModel(unittest.TestCase):
         self.parser = SudachiJapaneseParser(dict_type="full")
 
         # Mock the model loader for tests
-        from kotogram.model import ModelConfig, StyleClassifier, Tokenizer
+        from kotogram.model import ModelConfig, StyleClassifier
+        from kotogram.tokenizer import Tokenizer
 
         # Create dummy tokenizer
         self.tokenizer = Tokenizer()

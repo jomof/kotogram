@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 
 @dataclass
@@ -35,3 +35,4 @@ class ProcessedSample:
     register_ids: List[int]
     gram_label: int
     success: int
+    feature_ids: Optional[Dict[str, List[int]]] = None

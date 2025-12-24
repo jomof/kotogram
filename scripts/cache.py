@@ -12,6 +12,17 @@ from typing import Dict, List, Optional, Tuple
 
 from kotogram import locations
 
+CacheEntryType = Tuple[
+    str,
+    str,
+    Optional[int],
+    Optional[float],
+    Optional[int],
+    Optional[List[int]],
+    Optional[int],
+    Optional[Dict[str, List[int]]],
+]
+
 
 class ShardedKotogramCache:
     """Durable sharded cache for Japanese → kotogram + label conversions.
@@ -51,9 +62,15 @@ class ShardedKotogramCache:
                     gender_value REAL,
                     gender_pragmatic INTEGER,
                     register_labels TEXT,
-                    grammaticality_label INTEGER
+                    grammaticality_label INTEGER,
+                    feature_ids TEXT
                 )
             """)
+            # Schema migration: add feature_ids if it doesn't exist
+            try:
+                conn.execute("ALTER TABLE cache_entries ADD COLUMN feature_ids TEXT")
+            except sqlite3.OperationalError:
+                pass  # Already exists
             conn.execute(
                 "CREATE INDEX IF NOT EXISTS idx_hash ON cache_entries(sentence_hash)"
             )
@@ -78,6 +95,7 @@ class ShardedKotogramCache:
                 Optional[int],
                 Optional[List[int]],
                 Optional[int],
+                Optional[Dict[str, List[int]]],
             ]
         ],
     ]:
@@ -103,6 +121,7 @@ class ShardedKotogramCache:
                     Optional[int],
                     Optional[List[int]],
                     Optional[int],
+                    Optional[Dict[str, List[int]]],
                 ]
             ],
         ] = {s: None for s in sentences}
@@ -124,18 +143,19 @@ class ShardedKotogramCache:
 
             conn = sqlite3.connect(shard_path)
             placeholders = ",".join("?" * len(hashes))
-            # We select all 7 columns (excluding sentence_hash which we already know)
+            # We select all 8 columns (excluding sentence_hash which we already know)
             cursor = conn.execute(
-                f"SELECT sentence_hash, kotogram, formality_label, gender_value, gender_pragmatic, register_labels, grammaticality_label FROM cache_entries WHERE sentence_hash IN ({placeholders})",
+                f"SELECT sentence_hash, kotogram, formality_label, gender_value, gender_pragmatic, register_labels, grammaticality_label, feature_ids FROM cache_entries WHERE sentence_hash IN ({placeholders})",
                 hashes,
             )
 
             for row in cursor:
-                h, k, f_lbl, g_val, g_prag, r_lbls_json, gram_lbl = row
+                h, k, f_lbl, g_val, g_prag, r_lbls_json, gram_lbl, f_ids_json = row
                 r_lbls = json.loads(r_lbls_json) if r_lbls_json else None
+                f_ids = json.loads(f_ids_json) if f_ids_json else None
 
                 sent = hash_to_sentence[h]
-                results[sent] = (k, f_lbl, g_val, g_prag, r_lbls, gram_lbl)
+                results[sent] = (k, f_lbl, g_val, g_prag, r_lbls, gram_lbl, f_ids)
             conn.close()
 
         return results
@@ -151,6 +171,7 @@ class ShardedKotogramCache:
                 Optional[int],
                 Optional[List[int]],
                 Optional[int],
+                Optional[Dict[str, List[int]]],
             ]
         ],
         verbose: bool = False,
@@ -158,7 +179,7 @@ class ShardedKotogramCache:
         """Cache multiple entries.
 
         Args:
-            items: List of (sentence, kotogram, formality_label, gender_value, gender_pragmatic, register_labels, grammaticality_label)
+            items: List of (sentence, kotogram, formality_label, gender_value, gender_pragmatic, register_labels, grammaticality_label, feature_ids)
         """
         if not items:
             return
@@ -176,19 +197,21 @@ class ShardedKotogramCache:
                     Optional[int],
                     Optional[str],
                     Optional[int],
+                    Optional[str],
                 ]
             ],
         ] = {}
 
-        for s, k, f_lbl, g_val, g_prag, r_lbls, gram_lbl in items:
+        for s, k, f_lbl, g_val, g_prag, r_lbls, gram_lbl, f_ids in items:
             h = self._hash_sentence(s)
             path = self._get_shard_path(h)
             if path not in shard_to_data:
                 shard_to_data[path] = []
 
             r_lbls_json = json.dumps(r_lbls) if r_lbls is not None else None
+            f_ids_json = json.dumps(f_ids) if f_ids is not None else None
             shard_to_data[path].append(
-                (h, s, k, f_lbl, g_val, g_prag, r_lbls_json, gram_lbl)
+                (h, s, k, f_lbl, g_val, g_prag, r_lbls_json, gram_lbl, f_ids_json)
             )
 
         # Write to each shard
@@ -198,8 +221,8 @@ class ShardedKotogramCache:
             conn = sqlite3.connect(shard_path)
             conn.executemany(
                 """INSERT OR REPLACE INTO cache_entries 
-                   (sentence_hash, sentence, kotogram, formality_label, gender_value, gender_pragmatic, register_labels, grammaticality_label) 
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+                   (sentence_hash, sentence, kotogram, formality_label, gender_value, gender_pragmatic, register_labels, grammaticality_label, feature_ids) 
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                 data,
             )
             conn.commit()

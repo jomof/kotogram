@@ -11,12 +11,19 @@ from training_test_utils import Bottle
 @unittest.skipIf(os.environ.get("GITHUB_ACTIONS") == "true", "Skipping on GitHub CI")
 class TestTrainStyleScript(unittest.TestCase):
     def test_train(self):
+        # Common arguments to reduce model size for faster testing
+        COMMON_ARGS = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
+
         # Test both regular training and training with MLM pretraining
         test_configs = [
-            {"name": "regular", "extra_args": ""},
+            {"name": "regular", "extra_args": f"{COMMON_ARGS}"},
             {
                 "name": "pretrain-mlm",
-                "extra_args": "--pretrain-mlm --pretrain-epochs 1",
+                "extra_args": f"{COMMON_ARGS} --pretrain-mlm --pretrain-epochs 1",
+            },
+            {
+                "name": "pretrain-kc",
+                "extra_args": f"{COMMON_ARGS} --pretrain-kc --kc-epochs 1 --kc-k 256",
             },
         ]
 
@@ -70,10 +77,13 @@ class TestTrainStyleScript(unittest.TestCase):
                     result1 = bottle.train_style(train_args)
 
                     # Verify epochs trained
-                    # For pretrain-mlm: expect [1, 1] (1 MLM pretrain + 1 fine-tune)
+                    # For pretrain-mlm/kc: expect [1, 1] (1 pretrain + 1 fine-tune)
                     # For regular: expect [1] (just 1 fine-tune)
                     expected_epochs = (
-                        [1, 1] if "pretrain-mlm" in config["extra_args"] else [1]
+                        [1, 1]
+                        if "pretrain-mlm" in config["extra_args"]
+                        or "pretrain-kc" in config["extra_args"]
+                        else [1]
                     )
                     bottle.assertEpochsTrained(result1, expected_epochs)
 
@@ -155,13 +165,28 @@ class TestTrainStyleScript(unittest.TestCase):
                     )
 
                     # 2. Verify result is valid JSON
-                    try:
-                        data = json.loads(result.stdout)
-                        self.assertIn("kotogram", data)
-                        self.assertIn("formality", data)
-                    except json.JSONDecodeError as e:
-                        self.fail(
-                            f"CLI stdout was not valid JSON: {e}\nSTDOUT:\n{result.stdout}"
+                    data = json.loads(result.stdout)
+                    self.assertIn("kotogram", data)
+                    self.assertIn("formality", data)
+
+                    # Check for kcs if this is the KC model
+                    if "pretrain-kc" in config["extra_args"]:
+                        self.assertIn(
+                            "kcs",
+                            data,
+                            "KC-trained model should output 'kcs' field",
+                        )
+                        # Verify KCs structure (should be a list of floats)
+                        kcs = data["kcs"]
+                        self.assertIsInstance(kcs, list)
+                        self.assertTrue(len(kcs) > 0)
+                        self.assertIsInstance(kcs[0], float)
+                    else:
+                        self.assertNotIn(
+                            "kcs",
+                            data,
+                            "Non-KC model should usually not output 'kcs' (unless explicitly enabled/requested, "
+                            "but currently it's None per implementation)",
                         )
 
                     # 3. Verify model.pt is in FP8 format

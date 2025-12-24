@@ -73,6 +73,7 @@ class GrammarAnalysis:
     # Grammaticality
     is_grammatic: bool
     grammaticality_score: float  # Probability of being grammatic
+    kcs: Optional[List[float]] = None  # Knowledge Component activations
 
     def to_json(self) -> str:
         """Serialize analysis result to JSON string."""
@@ -84,6 +85,8 @@ class GrammarAnalysis:
         d["registers"] = sorted([r.value for r in self.registers])
         # Convert Dict keys from Enums to strings
         d["register_scores"] = {k.value: v for k, v in self.register_scores.items()}
+        if self.kcs is None:
+            del d["kcs"]
         return json.dumps(d, ensure_ascii=False)
 
     @classmethod
@@ -98,6 +101,9 @@ class GrammarAnalysis:
         d["register_scores"] = {
             RegisterLevel(k): v for k, v in d["register_scores"].items()
         }
+
+        if "kcs" not in d:
+            d["kcs"] = None
 
         return cls(**d)
 
@@ -208,6 +214,10 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
         gram_score = float(prediction.grammaticality_probs[i][1].item())
         is_grammatic = gram_score > 0.5
 
+        kcs_list = None
+        if prediction.kcs is not None:
+            kcs_list = prediction.kcs[i].tolist()
+
         results.append(
             GrammarAnalysis(
                 kotogram=kotograms[i],
@@ -221,6 +231,7 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
                 register_scores=detected_register_scores,
                 is_grammatic=is_grammatic,
                 grammaticality_score=gram_score,
+                kcs=kcs_list,
             )
         )
 

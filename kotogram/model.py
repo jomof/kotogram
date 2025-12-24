@@ -7,7 +7,6 @@ for the Japanese style classifier (formality + gender + grammaticality).
 import json
 import math
 import os
-from collections import Counter
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, NamedTuple, Optional, Tuple, cast
 
@@ -16,50 +15,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from kotogram.constants import FormalityLevel, GenderLevel, RegisterLevel
-from kotogram.kotogram import extract_token_features, split_kotogram
-
-# Special token values for vocabulary
-PAD_TOKEN = "<PAD>"
-UNK_TOKEN = "<UNK>"
-CLS_TOKEN = "<CLS>"
-MASK_TOKEN = "<MASK>"  # For self-supervised pretraining
-
-# Feature fields used for token embedding
-# NOTE: 'surface' is critical for gender detection (pronouns like 僕, 俺, あたし)
-ALL_FEATURE_FIELDS = [
-    "surface",
-    "pos",
-    "pos_detail1",
-    "pos_detail2",
-    "pos_detail3",
-    "conjugated_type",
-    "conjugated_form",
-    "lemma",
-    "base_orth",
-    "reading",
-]
-FEATURE_FIELDS = ALL_FEATURE_FIELDS  # Default: use all features
-
-# Global variable to track excluded features (set via --exclude-features)
-_EXCLUDED_FEATURES: List[str] = []
-
-
-def get_active_features() -> List[str]:
-    """Get the list of active feature fields (excluding any disabled ones)."""
-    return [f for f in ALL_FEATURE_FIELDS if f not in _EXCLUDED_FEATURES]
-
-
-def set_excluded_features(excluded: List[str]) -> None:
-    """Set the list of features to exclude from training/inference."""
-    global _EXCLUDED_FEATURES, FEATURE_FIELDS
-    invalid = [f for f in excluded if f not in ALL_FEATURE_FIELDS]
-    if invalid:
-        raise ValueError(
-            f"Invalid feature names: {invalid}. Valid: {ALL_FEATURE_FIELDS}"
-        )
-    _EXCLUDED_FEATURES = excluded
-    FEATURE_FIELDS = get_active_features()
-
+from kotogram.tokenizer import (
+    FEATURE_FIELDS,
+    Tokenizer,
+    set_excluded_features,
+)
 
 # Number of classes for each task
 
@@ -131,161 +91,7 @@ class StylePrediction(NamedTuple):
     gender_pragmatic_probs: torch.Tensor
     grammaticality_probs: torch.Tensor
     register_probs: torch.Tensor
-
-
-class Tokenizer:
-    """Tokenizer that extracts morphological features from Kotogram tokens.
-
-    Instead of treating each token as a single vocabulary item, this tokenizer
-    extracts categorical features (pos, pos_detail1, conjugated_type, conjugated_form,
-    lemma) and maintains separate vocabularies for each field.
-
-    Attributes:
-        field_vocabs: Dict mapping field name to {value: id} mapping
-        field_vocab_sizes: Dict mapping field name to vocabulary size
-    """
-
-    def __init__(self) -> None:
-        """Initialize feature tokenizer."""
-        # Initialize vocabularies for each field with special tokens
-        self.field_vocabs: Dict[str, Dict[str, int]] = {}
-        self._field_counters: Dict[str, Counter[str]] = {}
-        for f in FEATURE_FIELDS:
-            self.field_vocabs[f] = {
-                PAD_TOKEN: 0,
-                UNK_TOKEN: 1,
-                CLS_TOKEN: 2,
-                MASK_TOKEN: 3,
-            }
-            self._field_counters[f] = Counter()
-
-        self._frozen = False
-
-    @property
-    def pad_id(self) -> int:
-        return 0
-
-    @property
-    def unk_id(self) -> int:
-        return 1
-
-    @property
-    def cls_id(self) -> int:
-        return 2
-
-    @property
-    def mask_id(self) -> int:
-        return 3
-
-    def get_vocab_sizes(self) -> Dict[str, int]:
-        """Get vocabulary sizes for all fields."""
-        return {field: len(vocab) for field, vocab in self.field_vocabs.items()}
-
-    def _add_value(self, field: str, value: str) -> int:
-        """Add a value to field vocabulary and return its ID."""
-        if not value:
-            value = UNK_TOKEN
-
-        vocab = self.field_vocabs[field]
-        if value in vocab:
-            return vocab[value]
-
-        if self._frozen:
-            return self.unk_id
-
-        new_id = len(vocab)
-        vocab[value] = new_id
-        return new_id
-
-    def extract_features(self, kotogram: str) -> List[Dict[str, str]]:
-        """Extract features from each token in a Kotogram string."""
-        tokens = split_kotogram(kotogram)
-        features_list = []
-
-        for token in tokens:
-            features = extract_token_features(token)
-            # Only keep the fields we use
-            # Explicit access avoids vulture flagging fields as unused
-            all_features = {
-                "surface": features.surface,
-                "pos": features.pos,
-                "pos_detail1": features.pos_detail1,
-                "pos_detail2": features.pos_detail2,
-                "pos_detail3": features.pos_detail3,
-                "conjugated_type": features.conjugated_type,
-                "conjugated_form": features.conjugated_form,
-                "lemma": features.lemma,
-                "base_orth": features.base_orth,
-                "reading": features.reading,
-            }
-            filtered = {field: all_features[field] for field in FEATURE_FIELDS}
-            features_list.append(filtered)
-
-        return features_list
-
-    def encode_features(
-        self,
-        features_list: List[Dict[str, str]],
-        add_cls: bool = True,
-        add_to_vocab: bool = True,
-    ) -> Dict[str, List[int]]:
-        """Convert list of feature dicts to sequences of field IDs."""
-        result: Dict[str, List[int]] = {f: [] for f in FEATURE_FIELDS}
-
-        if add_cls:
-            for field in FEATURE_FIELDS:
-                result[field].append(self.cls_id)
-
-        for features in features_list:
-            for field in FEATURE_FIELDS:
-                value = features.get(field, "")
-                if add_to_vocab and not self._frozen:
-                    self._field_counters[field][value] += 1
-                    token_id = self._add_value(field, value)
-                else:
-                    vocab = self.field_vocabs[field]
-                    token_id = vocab.get(value, self.unk_id)
-                result[field].append(token_id)
-
-        return result
-
-    def encode(
-        self,
-        kotogram: str,
-        add_cls: bool = True,
-        add_to_vocab: bool = True,
-    ) -> Dict[str, List[int]]:
-        """Encode a Kotogram string to feature ID sequences."""
-        features_list = self.extract_features(kotogram)
-        return self.encode_features(features_list, add_cls, add_to_vocab)
-
-    def freeze(self) -> None:
-        """Freeze vocabulary - new values will map to UNK."""
-        self._frozen = True
-
-    def save(self, path: str, **kwargs: Any) -> None:
-        """Save tokenizer vocabularies to JSON file."""
-        data = {
-            "field_vocabs": self.field_vocabs,
-            "frozen": self._frozen,
-        }
-        data.update(kwargs)
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-
-    @classmethod
-    def load(cls, path: str) -> "Tokenizer":
-        """Load tokenizer from JSON file."""
-        with open(path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-
-        tokenizer = cls()
-        # Merge loaded vocabs, preserving defaults for any new fields not in the file
-        loaded_vocabs = data["field_vocabs"]
-        tokenizer.field_vocabs.update(loaded_vocabs)
-
-        tokenizer._frozen = data.get("frozen", False)
-        return tokenizer
+    kcs: Optional[torch.Tensor] = None
 
 
 @dataclass
@@ -318,6 +124,15 @@ class ModelConfig:
     pooling: str = "cls"
     excluded_features: List[str] = field(default_factory=list)
 
+    # KC Learning configuration
+    kc_enabled: bool = False
+    kc_vocab_size: int = 1024  # Size of the sparse concept, vocabulary
+    kc_topk: int = 8  # Number of active concepts to retrieve
+    kc_temperature: float = 1.0  # Sparsification temperature
+    kc_target_specs: Dict[str, int] = field(
+        default_factory=dict
+    )  # Target head name -> vocab size
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             "vocab_sizes": self.vocab_sizes,
@@ -334,6 +149,11 @@ class ModelConfig:
             "max_seq_len": self.max_seq_len,
             "pooling": self.pooling,
             "excluded_features": self.excluded_features,
+            "kc_enabled": self.kc_enabled,
+            "kc_vocab_size": self.kc_vocab_size,
+            "kc_topk": self.kc_topk,
+            "kc_temperature": self.kc_temperature,
+            "kc_target_specs": self.kc_target_specs,
         }
 
     @classmethod
@@ -345,6 +165,9 @@ class ModelConfig:
         # Legacy compatibility: remove old fields
         if "num_gender_classes" in d:
             d.pop("num_gender_classes")
+        if "num_formality_classes" in d:
+            d.pop("num_formality_classes")
+
         if "num_formality_classes" in d:
             d.pop("num_formality_classes")
 
@@ -435,6 +258,21 @@ class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
         return resized
 
 
+class KCHead(nn.Module):  # type: ignore[misc]
+    """Head for predicting Knowledge Components (sparse concepts)."""
+
+    def __init__(self, config: ModelConfig):
+        super().__init__()
+        self.config = config
+        self.linear = nn.Linear(config.d_model, config.kc_vocab_size)
+        self.layer_norm = nn.LayerNorm(config.kc_vocab_size)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        x = self.linear(x)
+        x = self.layer_norm(x)
+        return cast(torch.Tensor, x)
+
+
 class StyleClassifier(nn.Module):  # type: ignore[misc]
     """Neural sequence classifier for multi-task style prediction."""
 
@@ -504,6 +342,23 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             nn.Dropout(config.dropout),
             nn.Linear(config.hidden_dim, config.num_register_classes),
         )
+
+        if config.kc_enabled:
+            self.kc_head = KCHead(config)
+
+    def reset_classifier(self) -> None:
+        """Reset classifier heads for fine-tuning."""
+
+        def reset(m: nn.Module) -> None:
+            if isinstance(m, nn.Linear):
+                m.reset_parameters()
+
+        self.formality_value_head.apply(reset)
+        self.formality_pragmatic_head.apply(reset)
+        self.gender_value_head.apply(reset)
+        self.gender_pragmatic_head.apply(reset)
+        self.grammaticality_classifier.apply(reset)
+        self.register_classifier.apply(reset)
 
     def get_encoder_output(
         self,
@@ -579,6 +434,10 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         formality_val, formality_prag, gender_val, gender_prag, gram, reg = self(
             field_inputs, attention_mask
         )
+        kcs = None
+        if self.config.kc_enabled:
+            kcs = self.predict_kcs(field_inputs, attention_mask)
+
         return StylePrediction(
             formality_value=formality_val,  # Already Tanh
             formality_pragmatic_probs=F.softmax(formality_prag, dim=-1),
@@ -586,10 +445,31 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             gender_pragmatic_probs=F.softmax(gender_prag, dim=-1),
             grammaticality_probs=F.softmax(gram, dim=-1),
             register_probs=torch.sigmoid(reg),
+            kcs=kcs,
         )
 
     def resize_embeddings(self, new_vocab_sizes: Dict[str, int]) -> Dict[str, int]:
         return self.embedding.resize_embeddings(new_vocab_sizes)
+
+    def predict_kcs(
+        self,
+        field_inputs: Dict[str, torch.Tensor],
+        attention_mask: Optional[torch.Tensor] = None,
+    ) -> torch.Tensor:
+        """Predict Knowledge Component activations for input sentences.
+
+        Args:
+            field_inputs: Input features
+            attention_mask: Attention mask
+
+        Returns:
+            activations: (B, K) tensor of sparse KC activations (or logits)
+        """
+        if not self.config.kc_enabled:
+            raise ValueError("KC learning is not enabled for this model.")
+
+        pooled = self._get_pooled_output(field_inputs, attention_mask)
+        return cast(torch.Tensor, self.kc_head(pooled))
 
 
 def load_model(
