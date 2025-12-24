@@ -98,7 +98,7 @@ KC_K=1024
 KC_TOPK=8
 KC_FREEZE_ENCODER_EPOCHS=1
 KC_SPARSITY_WEIGHT=1e-3
-KC_TARGET_HEADS="lemma,pos,conjugated_form"
+KC_TARGET_HEADS="lemma,pos,conjugated_form,conjugated_type"
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
