@@ -44,10 +44,9 @@ from kotogram.model import (
     REGISTER_LABEL_TO_ID,
     Tokenizer,
 )
-from scripts.cache import get_kotogram_cache
-from scripts.jpn_tsv import parse_tsv
-from scripts.style_data import ProcessedSample
-from scripts.train_style import CACHE_VERSION, StyleDataset
+from train.cache import get_kotogram_cache
+from train.dataset import CACHE_VERSION, StyleDataset, parse_tsv
+from train.types import ProcessedSample
 
 # Global variable for worker processes only
 _worker_overrides: Optional[Dict[str, List[Any]]] = None
@@ -696,7 +695,7 @@ def main() -> None:
                         progress.update(task, advance=len(batch_results))
 
                 if new_entries:
-                    from scripts.cache import CacheEntryType
+                    from train.cache import CacheEntryType
 
                     cache.put_batch(cast(List[CacheEntryType], new_entries))
 
@@ -738,7 +737,7 @@ def main() -> None:
                         progress.update(task, advance=len(batch_results))
 
                 if new_entries:
-                    from scripts.cache import CacheEntryType
+                    from train.cache import CacheEntryType
 
                     cache.put_batch(cast(List[CacheEntryType], new_entries))
 

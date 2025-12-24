@@ -8,7 +8,7 @@ import os
 import sys
 import unittest
 
-from scripts.style_data import ProcessedSample
+from train.types import ProcessedSample
 
 # Add project root to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

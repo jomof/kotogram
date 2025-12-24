@@ -27,7 +27,7 @@ except ImportError:
 from kotogram import SudachiJapaneseParser, extract_token_features
 from kotogram.exceptions import MissingMappingError
 from kotogram.kotogram import split_kotogram
-from scripts.jpn_tsv import parse_tsv
+from train.dataset import parse_tsv
 
 
 def validate_sentences(

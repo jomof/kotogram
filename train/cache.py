@@ -8,7 +8,7 @@ import hashlib
 import json
 import os
 import sqlite3
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from kotogram import locations
 
@@ -25,32 +25,19 @@ CacheEntryType = Tuple[
 
 
 class ShardedKotogramCache:
-    """Durable sharded cache for Japanese → kotogram + label conversions.
-
-    This cache stores processing results in multiple small SQLite databases (shards)
-    to keep file sizes manageable (~1MB) and avoid lock contention.
-
-    Keyed by sentence hash.
-    Schema: (sentence, kotogram, formality_label, gender_value, gender_pragmatic, register_labels, grammaticality_label)
-    """
+    """Durable sharded cache for Japanese → kotogram + label conversions."""
 
     SHARD_PREFIX_LEN = 2  # 2 hex chars = 256 shards
 
     def __init__(self) -> None:
-        """Initialize the sharded cache.
-
-        Shards will be in locations.get_shards_cache_dir()
-        """
         self.shards_dir = locations.get_shards_cache_dir()
         os.makedirs(self.shards_dir, exist_ok=True)
 
     def _get_shard_path(self, sentence_hash: str) -> str:
-        """Get path to the shard file for a given hash."""
         shard_key = sentence_hash[: self.SHARD_PREFIX_LEN]
         return os.path.join(self.shards_dir, f"{shard_key}.db")
 
     def _init_shard(self, shard_path: str) -> None:
-        """Initialize a single shard database (if not exists)."""
         conn = sqlite3.connect(shard_path)
         try:
             conn.execute("""
@@ -66,11 +53,10 @@ class ShardedKotogramCache:
                     feature_ids TEXT
                 )
             """)
-            # Schema migration: add feature_ids if it doesn't exist
             try:
                 conn.execute("ALTER TABLE cache_entries ADD COLUMN feature_ids TEXT")
             except sqlite3.OperationalError:
-                pass  # Already exists
+                pass
             conn.execute(
                 "CREATE INDEX IF NOT EXISTS idx_hash ON cache_entries(sentence_hash)"
             )
@@ -80,7 +66,6 @@ class ShardedKotogramCache:
 
     @staticmethod
     def _hash_sentence(sentence: str) -> str:
-        """Create a hash key for a sentence."""
         return hashlib.sha256(sentence.encode("utf-8")).hexdigest()
 
     def get_batch(
@@ -99,32 +84,11 @@ class ShardedKotogramCache:
             ]
         ],
     ]:
-        """Get cached entries for multiple sentences.
-
-        Returns:
-            Dict mapping sentence → (kotogram, formality, gender_val, gender_prag, register, gram_label) OR None
-        """
         if not sentences:
             return {}
 
-        # Group by shard
-        shard_to_hashes: Dict[
-            str, List[Tuple[str, str]]
-        ] = {}  # shard_path -> [(hash, sentence)]
-        results: Dict[
-            str,
-            Optional[
-                Tuple[
-                    str,
-                    Optional[int],
-                    Optional[float],
-                    Optional[int],
-                    Optional[List[int]],
-                    Optional[int],
-                    Optional[Dict[str, List[int]]],
-                ]
-            ],
-        ] = {s: None for s in sentences}
+        shard_to_hashes: Dict[str, List[Tuple[str, str]]] = {}
+        results: Dict[str, Any] = {s: None for s in sentences}
 
         for s in sentences:
             h = self._hash_sentence(s)
@@ -133,7 +97,6 @@ class ShardedKotogramCache:
                 shard_to_hashes[path] = []
             shard_to_hashes[path].append((h, s))
 
-        # Query each shard
         for shard_path, items in shard_to_hashes.items():
             if not os.path.exists(shard_path):
                 continue
@@ -143,7 +106,6 @@ class ShardedKotogramCache:
 
             conn = sqlite3.connect(shard_path)
             placeholders = ",".join("?" * len(hashes))
-            # We select all 8 columns (excluding sentence_hash which we already know)
             cursor = conn.execute(
                 f"SELECT sentence_hash, kotogram, formality_label, gender_value, gender_pragmatic, register_labels, grammaticality_label, feature_ids FROM cache_entries WHERE sentence_hash IN ({placeholders})",
                 hashes,
@@ -162,45 +124,13 @@ class ShardedKotogramCache:
 
     def put_batch(
         self,
-        items: List[
-            Tuple[
-                str,
-                str,
-                Optional[int],
-                Optional[float],
-                Optional[int],
-                Optional[List[int]],
-                Optional[int],
-                Optional[Dict[str, List[int]]],
-            ]
-        ],
+        items: List[CacheEntryType],
         verbose: bool = False,
     ) -> None:
-        """Cache multiple entries.
-
-        Args:
-            items: List of (sentence, kotogram, formality_label, gender_value, gender_pragmatic, register_labels, grammaticality_label, feature_ids)
-        """
         if not items:
             return
 
-        # Group by shard
-        shard_to_data: Dict[
-            str,
-            List[
-                Tuple[
-                    str,
-                    str,
-                    str,
-                    Optional[int],
-                    Optional[float],
-                    Optional[int],
-                    Optional[str],
-                    Optional[int],
-                    Optional[str],
-                ]
-            ],
-        ] = {}
+        shard_to_data: Dict[str, List[Tuple]] = {}
 
         for s, k, f_lbl, g_val, g_prag, r_lbls, gram_lbl, f_ids in items:
             h = self._hash_sentence(s)
@@ -214,10 +144,8 @@ class ShardedKotogramCache:
                 (h, s, k, f_lbl, g_val, g_prag, r_lbls_json, gram_lbl, f_ids_json)
             )
 
-        # Write to each shard
         for shard_path, data in shard_to_data.items():
-            self._init_shard(shard_path)  # Ensure exists
-
+            self._init_shard(shard_path)
             conn = sqlite3.connect(shard_path)
             conn.executemany(
                 """INSERT OR REPLACE INTO cache_entries 
@@ -228,29 +156,13 @@ class ShardedKotogramCache:
             conn.commit()
             conn.close()
 
-    def __len__(self) -> int:
-        """Return approximate number of cached entries (expensive to count all)."""
-        total = 0
-        if not os.path.exists(self.shards_dir):
-            return 0
-        for fname in os.listdir(self.shards_dir):
-            if fname.endswith(".db"):
-                conn = sqlite3.connect(os.path.join(self.shards_dir, fname))
-                cursor = conn.execute("SELECT COUNT(*) FROM cache_entries")
-                total += int(cursor.fetchone()[0])
-                conn.close()
-        return total
-
 
 _kotogram_cache: Optional[ShardedKotogramCache] = None
 
 
 def get_kotogram_cache() -> ShardedKotogramCache:
-    """Get the global sharded kotogram cache instance."""
     global _kotogram_cache
-
     expected_shards_dir = locations.get_shards_cache_dir()
-
     if _kotogram_cache is None or _kotogram_cache.shards_dir != expected_shards_dir:
         _kotogram_cache = ShardedKotogramCache()
     return _kotogram_cache

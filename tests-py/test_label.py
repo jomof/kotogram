@@ -11,8 +11,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from unittest.mock import patch
 
 from kotogram import locations
-from scripts.cache import get_kotogram_cache
 from scripts.label import main as label_main
+from train.cache import get_kotogram_cache
 
 
 class TestLabelScript(unittest.TestCase):
@@ -32,9 +32,9 @@ class TestLabelScript(unittest.TestCase):
     def tearDown(self):
         shutil.rmtree(self.test_dir)
         # Reset global cache instance if needed
-        import scripts.cache
+        import train.cache
 
-        scripts.cache._kotogram_cache = None
+        train.cache._kotogram_cache = None
 
     def test_label_and_cache(self):
         # Run label.py via main
@@ -51,9 +51,9 @@ class TestLabelScript(unittest.TestCase):
 
         # Point the cache to our temp dir
         # Ensure the global cache is reset
-        import scripts.cache
+        import train.cache
 
-        scripts.cache._kotogram_cache = None
+        train.cache._kotogram_cache = None
 
         with patch.dict(os.environ, {"TRAIN_ROOT": self.test_dir}):
             with patch.object(sys, "argv", test_args):
@@ -61,7 +61,7 @@ class TestLabelScript(unittest.TestCase):
 
             # Verify cache was created and populated
             # Re-initialize to see what happened
-            scripts.cache._kotogram_cache = None
+            train.cache._kotogram_cache = None
             cache = get_kotogram_cache()
 
             print(f"Checking results in {self.shards_dir}...")
@@ -91,9 +91,9 @@ class TestLabelScript(unittest.TestCase):
         import sys
         from unittest.mock import patch
 
-        import scripts.cache
+        import train.cache
 
-        scripts.cache._kotogram_cache = None
+        train.cache._kotogram_cache = None
 
         test_args = [
             "scripts/label.py",
@@ -136,7 +136,7 @@ class TestLabelScript(unittest.TestCase):
             with patch.object(sys, "argv", test_args_new):
                 label_main()
 
-            scripts.cache._kotogram_cache = None
+            train.cache._kotogram_cache = None
             cache = get_kotogram_cache()
             results = cache.get_batch(["新しい文です。"])
             self.assertIsNotNone(results["新しい文です。"])

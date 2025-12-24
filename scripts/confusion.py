@@ -26,7 +26,7 @@ from kotogram.model import (
     StyleClassifier,
     load_model,
 )
-from scripts.train_style import StyleDataset, collate_fn
+from train.dataset import StyleDataset, collate_fn
 
 console = Console()
 
@@ -195,6 +195,8 @@ def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
     # Save Mismatches
     if save_dir:
         os.makedirs(save_dir, exist_ok=True)
+        sub_dir = os.path.join(save_dir, "confusion_matrices")
+        os.makedirs(sub_dir, exist_ok=True)
 
         tasks_mismatches = [
             (
@@ -235,17 +237,23 @@ def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
             if mismatches:
                 # Sort by kotogram to group similar grammatical structures, then sentence
                 mismatches.sort(key=lambda x: (x["kotogram"], x["sentence"]))
-                out_path = os.path.join(save_dir, f"{name}_confusion.csv")
-                with open(out_path, "w", newline="", encoding="utf-8") as f:
-                    writer = csv.DictWriter(
-                        f,
-                        fieldnames=["sentence", "predicted", "actual", "kotogram"],
-                        delimiter="\t",
-                    )
-                    writer.writeheader()
-                    writer.writerows(mismatches)
+
+                # Save to root as .csv
+                out_path_csv = os.path.join(save_dir, f"{name}_confusion.csv")
+                # Save to subdirectory as .tsv
+                out_path_tsv = os.path.join(sub_dir, f"{name}_confusion.tsv")
+
+                for out_path in [out_path_csv, out_path_tsv]:
+                    with open(out_path, "w", newline="", encoding="utf-8") as f:
+                        writer = csv.DictWriter(
+                            f,
+                            fieldnames=["sentence", "predicted", "actual", "kotogram"],
+                            delimiter="\t",
+                        )
+                        writer.writeheader()
+                        writer.writerows(mismatches)
                 console.print(
-                    f"[green]Saved {len(mismatches)} {name} mismatches to {out_path}[/green]"
+                    f"[green]Saved {len(mismatches)} {name} mismatches to {out_path_csv} and {out_path_tsv}[/green]"
                 )
 
         # Gender MSE worst matches
@@ -271,23 +279,27 @@ def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
             if mse_errors:
                 mse_errors.sort(key=lambda x: x["error"], reverse=True)
                 top_mse = mse_errors[:50]
-                out_path = os.path.join(save_dir, "gender_mse_confusion.csv")
-                with open(out_path, "w", newline="", encoding="utf-8") as f:
-                    writer = csv.DictWriter(
-                        f,
-                        fieldnames=[
-                            "sentence",
-                            "predicted",
-                            "actual",
-                            "error",
-                            "kotogram",
-                        ],
-                        delimiter="\t",
-                    )
-                    writer.writeheader()
-                    writer.writerows(top_mse)
+
+                out_path_csv = os.path.join(save_dir, "gender_mse_confusion.csv")
+                out_path_tsv = os.path.join(sub_dir, "gender_mse_confusion.tsv")
+
+                for out_path in [out_path_csv, out_path_tsv]:
+                    with open(out_path, "w", newline="", encoding="utf-8") as f:
+                        writer = csv.DictWriter(
+                            f,
+                            fieldnames=[
+                                "sentence",
+                                "predicted",
+                                "actual",
+                                "error",
+                                "kotogram",
+                            ],
+                            delimiter="\t",
+                        )
+                        writer.writeheader()
+                        writer.writerows(top_mse)
                 console.print(
-                    f"[green]Saved top 50 gender MSE errors to {out_path}[/green]"
+                    f"[green]Saved top 50 gender MSE errors to {out_path_csv} and {out_path_tsv}[/green]"
                 )
 
         # Register mismatches
@@ -321,17 +333,21 @@ def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
         if reg_mismatches:
             # Sort by kotogram to group similar grammatical structures, then sentence
             reg_mismatches.sort(key=lambda x: (x["kotogram"], x["sentence"]))
-            out_path = os.path.join(save_dir, "register_confusion.csv")
-            with open(out_path, "w", newline="", encoding="utf-8") as f:
-                writer = csv.DictWriter(
-                    f,
-                    fieldnames=["sentence", "predicted", "actual", "kotogram"],
-                    delimiter="\t",
-                )
-                writer.writeheader()
-                writer.writerows(reg_mismatches)
+
+            out_path_csv = os.path.join(save_dir, "register_confusion.csv")
+            out_path_tsv = os.path.join(sub_dir, "register_confusion.tsv")
+
+            for out_path in [out_path_csv, out_path_tsv]:
+                with open(out_path, "w", newline="", encoding="utf-8") as f:
+                    writer = csv.DictWriter(
+                        f,
+                        fieldnames=["sentence", "predicted", "actual", "kotogram"],
+                        delimiter="\t",
+                    )
+                    writer.writeheader()
+                    writer.writerows(reg_mismatches)
             console.print(
-                f"[green]Saved {len(reg_mismatches)} register mismatches to {out_path}[/green]"
+                f"[green]Saved {len(reg_mismatches)} register mismatches to {out_path_csv} and {out_path_tsv}[/green]"
             )
 
 

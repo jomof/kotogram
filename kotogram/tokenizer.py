@@ -102,6 +102,11 @@ class Tokenizer:
         """Get vocabulary sizes for all fields."""
         return {field: len(vocab) for field, vocab in self.field_vocabs.items()}
 
+    @property
+    def excluded_features(self) -> List[str]:
+        """Get the list of excluded feature fields."""
+        return _EXCLUDED_FEATURES
+
     def _add_value(self, field: str, value: str) -> int:
         """Add a value to field vocabulary and return its ID."""
         if not value:

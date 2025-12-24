@@ -50,7 +50,6 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[.cache]/kotogram_shards/*.db",
                         # Style Data
                         "[models]/style-support/register_samples.csv",
-                        "[models]/style-support/timing.yml",
                         "[.cache]/style_dataset/label_metadata.json",
                         "[.cache]/style_dataset/vocab.json",
                         # Source Data (using globs to be robust against adding new data files)
@@ -90,7 +89,6 @@ class TestTrainStyleScript(unittest.TestCase):
                     # Verify changes since snapshot (should only be training artifacts)
                     EXPECTED_TRAIN_DIFFERENCES = [
                         # Style Data & Confusion Matrices (Training artifacts)
-                        "[models]/style-support/timing.yml MODIFIED",
                         "[models]/style-support/*_confusion.csv ADDED",
                         "[models]/style-support/confusion_matrices/*.tsv ADDED",
                         # Model Output
@@ -130,7 +128,6 @@ class TestTrainStyleScript(unittest.TestCase):
                         # Training artifacts should be modified
                         "[models]/style-support/training.log MODIFIED",
                         "[models]/style-support/checkpoint.pt MODIFIED",
-                        "[models]/style-support/timing.yml MODIFIED",
                         "[models]/style-support/config.json MODIFIED",
                         "[models]/style-support/tokenizer.json MODIFIED",
                         "[models]/style-support/*_confusion.csv MODIFIED",
