@@ -3,7 +3,7 @@
 import os
 import sys
 from datetime import timedelta
-from typing import Any, Dict, List, Optional, Tuple, cast
+from typing import Any, Callable, Dict, List, Optional, Tuple, cast
 
 import torch
 import torch.distributed as dist
@@ -25,35 +25,9 @@ from train.config import TrainerConfig
 from train.dataset import StyleDataset, collate_fn
 from train.io import save_checkpoint
 
+from .display import print_epoch_summary
+
 GENDER_LOSS_WEIGHT = 10.0
-
-
-def setup_distributed() -> Tuple[int, int, int]:
-    """Initialize distributed training if available."""
-    if "RANK" in os.environ and "WORLD_SIZE" in os.environ:
-        rank = int(os.environ["RANK"])
-        world_size = int(os.environ["WORLD_SIZE"])
-        local_rank = int(os.environ.get("LOCAL_RANK", "0"))
-
-        if torch.cuda.is_available():
-            torch.cuda.set_device(local_rank)
-            dist.init_process_group(
-                backend="nccl",
-                init_method="env://",
-                device_id=torch.device(f"cuda:{local_rank}"),
-                timeout=timedelta(minutes=60),
-            )
-            print(f"Distributed init: Rank {rank}/{world_size} (Local {local_rank})")
-            return rank, world_size, local_rank
-
-    return 0, 1, 0
-
-
-def is_main_process() -> bool:
-    """Check if we are on the main process (rank 0)."""
-    if dist.is_available() and dist.is_initialized():
-        return dist.get_rank() == 0
-    return True
 
 
 class MLMHead(nn.Module):
@@ -169,6 +143,34 @@ class StyleClassifierWithMLM(StyleClassifier):
                         nn.init.xavier_uniform_(module.weight)
                         if module.bias is not None:
                             nn.init.zeros_(module.bias)
+
+
+def setup_distributed() -> Tuple[int, int, int]:
+    """Initialize distributed training if available."""
+    if "RANK" in os.environ and "WORLD_SIZE" in os.environ:
+        rank = int(os.environ["RANK"])
+        world_size = int(os.environ["WORLD_SIZE"])
+        local_rank = int(os.environ.get("LOCAL_RANK", "0"))
+
+        if torch.cuda.is_available():
+            torch.cuda.set_device(local_rank)
+            dist.init_process_group(
+                backend="nccl",
+                init_method="env://",
+                device_id=torch.device(f"cuda:{local_rank}"),
+                timeout=timedelta(minutes=60),
+            )
+            print(f"Distributed init: Rank {rank}/{world_size} (Local {local_rank})")
+            return rank, world_size, local_rank
+
+    return 0, 1, 0
+
+
+def is_main_process() -> bool:
+    """Check if we are on the main process (rank 0)."""
+    if dist.is_available() and dist.is_initialized():
+        return dist.get_rank() == 0
+    return True
 
 
 def create_mlm_batch(
@@ -412,23 +414,33 @@ class MLMTrainer:
         }
 
     def train(
-        self, epochs: Optional[int] = None, verbose: bool = True
+        self,
+        epochs: Optional[int] = None,
+        verbose: bool = True,
+        on_epoch_end: Optional[Callable[[Dict[str, Any]], None]] = None,
     ) -> Dict[str, Any]:
         actual_epochs = epochs or self.config.epochs
         for epoch in range(actual_epochs):
             if self.is_distributed:
                 cast(DistributedSampler, self.sampler).set_epoch(epoch)
-            if verbose and is_main_process():
-                print(f"Epoch {epoch + 1}/{actual_epochs}")
             mlm_loss, fields = self.train_epoch(verbose=verbose)
             self.history["mlm_loss"].append(mlm_loss)
             for f, v in fields.items():
                 self.history["field_losses"][f].append(v)
             if verbose and is_main_process():
-                print(f"  MLM Loss: {mlm_loss:.4f}")
-                print(
-                    f"  Field losses: {', '.join(f'{f}={loss_val:.3f}' for f, loss_val in fields.items())}"
+                print_epoch_summary(
+                    epoch + 1,
+                    actual_epochs,
+                    {"MLM Loss": mlm_loss},
+                    {
+                        f: v
+                        for f, v in fields.items()
+                        if v > 0.0001  # Only show non-trivial losses to declutter
+                    },
+                    phase="MLM",
                 )
+            if on_epoch_end and is_main_process():
+                on_epoch_end(self.history)
         return self.history
 
 
@@ -700,14 +712,15 @@ class KCTrainer:
         return total_loss / n_batches, avg_kc_losses, avg_sparsity
 
     def train(
-        self, epochs: Optional[int] = None, verbose: bool = True
+        self,
+        epochs: Optional[int] = None,
+        verbose: bool = True,
+        on_epoch_end: Optional[Callable[[Dict[str, Any]], None]] = None,
     ) -> Dict[str, Any]:
         actual_epochs = epochs or self.config.epochs
         for epoch in range(actual_epochs):
             if self.is_distributed:
                 cast(DistributedSampler, self.sampler).set_epoch(epoch)
-            if verbose and is_main_process():
-                print(f"Epoch {epoch + 1}/{actual_epochs}")
             total_loss, kc_losses, avg_sparsity = self.train_epoch(
                 epoch=epoch, verbose=verbose
             )
@@ -720,15 +733,20 @@ class KCTrainer:
                 self.history["kc_losses"][k].append(v)
 
             if verbose and is_main_process():
-                print(
-                    f"  KC Total Loss: {total_loss:.4f}, Sparsity: {avg_sparsity:.4f}"
+                # Top 5 contributors
+                top_losses = dict(
+                    sorted(kc_losses.items(), key=lambda x: x[1], reverse=True)[:5]
                 )
-                # Print top 5 contributors
-                top_losses = sorted(
-                    kc_losses.items(), key=lambda x: x[1], reverse=True
-                )[:5]
-                loss_str = ", ".join(f"{k}={v:.3f}" for k, v in top_losses)
-                print(f"  Top losses: {loss_str}")
+                print_epoch_summary(
+                    epoch + 1,
+                    actual_epochs,
+                    {"Total Loss": total_loss, "Sparsity": avg_sparsity},
+                    top_losses,
+                    phase="KC",
+                )
+
+            if on_epoch_end and is_main_process():
+                on_epoch_end(self.history)
 
         return self.history
 
@@ -1156,10 +1174,9 @@ class Trainer:
         checkpoint_dir: Optional[str] = None,
         checkpoint_args: Optional[Any] = None,
         model_config: Optional[ModelConfig] = None,
+        on_epoch_end: Optional[Callable[[Dict[str, List[float]]], None]] = None,
     ) -> Dict[str, List[float]]:
         for epoch in range(self.start_epoch, self.config.epochs):
-            if verbose:
-                print(f"Epoch {epoch + 1}/{self.config.epochs}")
             tl, tfl, tgl, tgraml, trl = self.train_epoch(verbose=verbose)
             eval_res = self.evaluate()
             self.scheduler.step(eval_res["loss"])
@@ -1213,9 +1230,35 @@ class Trainer:
                 self.history[k].append(eval_res[mk])
 
             if verbose:
-                print(f"  Train Loss: {tl:.4f}  Val Loss: {eval_res['loss']:.4f}")
-                print(
-                    f"  Formality Acc: {eval_res['formality_accuracy'] * 100:.2f}%  Gram Acc: {eval_res['grammaticality_accuracy'] * 100:.2f}%"
+                # Format metrics for nice display
+                metrics = {
+                    "Formality": {
+                        "Train": tfl,
+                        "Val": eval_res["formality_loss"],
+                        "Acc": eval_res["formality_accuracy"],
+                    },
+                    "Gender": {
+                        "Train": tgl,
+                        "Val": eval_res["gender_loss"],
+                        "Acc": eval_res["gender_pragmatic_accuracy"],
+                    },
+                    "Grammar": {
+                        "Train": tgraml,
+                        "Val": eval_res["grammaticality_loss"],
+                        "Acc": eval_res["grammaticality_accuracy"],
+                    },
+                    "Register": {
+                        "Train": trl,
+                        "Val": eval_res["register_loss"],
+                        "Acc": eval_res["register_accuracy"],
+                    },
+                }
+                print_epoch_summary(
+                    epoch + 1,
+                    self.config.epochs,
+                    {"Train Loss": tl, "Val Loss": eval_res["loss"]},
+                    metrics,
+                    phase="Style",
                 )
 
             is_best = eval_res["loss"] < self.best_val_loss
@@ -1250,6 +1293,9 @@ class Trainer:
                 )
             if self.is_distributed:
                 dist.barrier()
+
+            if on_epoch_end and is_main_process():
+                on_epoch_end(self.history)
 
         if self.best_state:
             self.model.load_state_dict(self.best_state, strict=False)

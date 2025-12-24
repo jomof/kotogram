@@ -410,7 +410,7 @@ def print_stats(results: List[ProcessedSample]) -> None:
 
 def save_register_samples(results: List[ProcessedSample]) -> None:
     """Save 3 examples of each register from grammatic sentences to CSV."""
-    output_dir = locations.get_style_support_dir()
+    output_dir = locations.get_cache_dir()
     output_file = os.path.join(output_dir, "register_samples.csv")
 
     # Collect ALL samples by register (only grammatic sentences)

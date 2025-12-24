@@ -353,18 +353,19 @@ fi
 echo "=============================================="
 echo ""
 
-# Create output directory
-mkdir -p "$OUTPUT_DIR"
+# Create directories
+mkdir -p "$CACHE_DIR"
 
-# Combined output files in cache
+if [ -z "$LABEL_ONLY" ]; then
+    mkdir -p "$OUTPUT_DIR"
+    mkdir -p "$SUPPORT_DIR"
+fi
+
 # Combined output files in cache
 # CACHE_DIR and SUPPORT_DIR are already set by shell-env above
 
 COMBINED_GRAM_FILE="$CACHE_DIR/grammatic_combined.tsv"
 COMBINED_AGRAM_FILE="$CACHE_DIR/agrammatic_combined.tsv"
-
-mkdir -p "$CACHE_DIR"
-mkdir -p "$SUPPORT_DIR"
 
 # Auto-resume if a checkpoint exists, unless user explicitly requested retrain
 CHECKPOINT_PATH="$SUPPORT_DIR/checkpoint.pt"
