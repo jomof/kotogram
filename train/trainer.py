@@ -122,11 +122,22 @@ class StyleClassifierWithMLM(StyleClassifier):
         kc_logits = self.kc_head(pooled)
         cur_temp = getattr(self.config, "kc_temperature", 1.0)
         kc_probs = torch.sigmoid(kc_logits / cur_temp)
-        target_logits = self.kc_decoders(kc_probs)
+
+        # Sparsity: Top-K Selection
+        k = getattr(self.config, "kc_topk", 8)
+        topk_vals, topk_inds = torch.topk(kc_probs, k, dim=-1)
+
+        # Create sparse activation (everything else zero)
+        # We start with zeros and scatter the top-k values back
+        sparse_activations = torch.zeros_like(kc_probs)
+        sparse_activations.scatter_(1, topk_inds, topk_vals)
+
+        target_logits = self.kc_decoders(sparse_activations)
 
         return {
             "kc_logits": kc_logits,
             "kc_probs": kc_probs,
+            "sparse_activations": sparse_activations,
             "target_logits": target_logits,
         }
 
@@ -414,6 +425,301 @@ class MLMTrainer:
                 print(
                     f"  Field losses: {', '.join(f'{f}={loss_val:.3f}' for f, loss_val in fields.items())}"
                 )
+        return self.history
+
+
+class KCTrainer:
+    """Trainer for Knowledge Component (KC) learning."""
+
+    def __init__(
+        self,
+        model: StyleClassifierWithMLM,
+        dataset: StyleDataset,
+        config: Optional[TrainerConfig] = None,
+        kc_config: Optional[Dict[str, Any]] = None,
+    ):
+        # Filter out agrammatic samples (KC training should only see valid grammar)
+        if any(s.grammaticality_label == 0 for s in dataset.samples):
+            valid_samples = [s for s in dataset.samples if s.grammaticality_label == 1]
+            dataset = StyleDataset(valid_samples, dataset.tokenizer)
+
+        self.model = model
+        self.dataset = dataset
+        self.config = config or TrainerConfig()
+
+        kc_config = kc_config or {}
+        self.kc_sparsity_weight = kc_config.get("sparsity_weight", 1e-3)
+        self.freeze_encoder_epochs = kc_config.get("freeze_encoder_epochs", 1)
+
+        if self.config.world_size > 1:
+            self.device = torch.device("cuda", self.config.local_rank)
+            self.is_distributed = True
+        else:
+            self.device = torch.device(self.config.device)
+            self.is_distributed = False
+
+        self.model.to(self.device)
+        if self.is_distributed:
+            self.model = cast(
+                StyleClassifierWithMLM,
+                DDP(
+                    self.model,
+                    device_ids=[self.config.local_rank],
+                    output_device=self.config.local_rank,
+                    find_unused_parameters=True,
+                ),
+            )
+
+        device_type = (
+            "cuda"
+            if "cuda" in str(self.device)
+            else ("mps" if "mps" in str(self.device) else "cpu")
+        )
+        self.scaler = GradScaler(device=device_type, enabled=self.config.use_amp)
+
+        pad_id = dataset.tokenizer.pad_id
+        max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
+        vocab_sizes = dataset.tokenizer.get_vocab_sizes()
+
+        self.sampler: Optional[DistributedSampler] = (
+            DistributedSampler(
+                dataset,
+                num_replicas=self.config.world_size,
+                rank=dist.get_rank(),
+                shuffle=True,
+            )
+            if self.is_distributed
+            else None
+        )
+        self.data_loader = DataLoader(
+            dataset,
+            batch_size=self.config.batch_size,
+            shuffle=(self.sampler is None),
+            sampler=self.sampler,
+            # Pass vocab_sizes to collate_fn to correctly size multi-hot targets
+            collate_fn=lambda b: collate_fn(
+                b, pad_id, cast(Optional[int], max_seq_len), vocab_sizes=vocab_sizes
+            ),
+            pin_memory=(self.config.device == "cuda"),
+            num_workers=(4 if self.config.device == "cuda" else 0),
+        )
+
+        self.optimizer = Adam(self.model.parameters(), lr=self.config.learning_rate)
+
+        # Loss functions
+        self.bce_loss = nn.BCEWithLogitsLoss()
+        self.mse_loss = nn.MSELoss()
+        self.ce_loss = nn.CrossEntropyLoss()
+
+        self.history: Dict[str, Any] = {
+            "total_loss": [],
+            "kc_loss": [],
+            "kc_sparsity": [],
+            "kc_losses": {},
+        }
+
+    def _create_optimizer(self, freeze_encoder: bool) -> None:
+        # Re-create optimizer to optionally freeze encoder
+        raw = self.model.module if self.is_distributed else self.model
+        m = cast(StyleClassifierWithMLM, raw)
+        pg = [
+            {
+                "params": list(m.kc_head.parameters())
+                + (
+                    list(m.kc_decoders.parameters())
+                    if hasattr(m, "kc_decoders")
+                    else []
+                ),
+                "lr": self.config.learning_rate,
+            }
+        ]
+        if not freeze_encoder:
+            pg.append(
+                {
+                    "params": list(m.embedding.parameters())
+                    + list(m.encoder.parameters()),
+                    "lr": self.config.learning_rate * 0.1,
+                }
+            )
+        self.optimizer = Adam(pg)
+
+    def train_epoch(
+        self, epoch: int = 0, verbose: bool = True
+    ) -> Tuple[float, Dict[str, float], float]:
+        # Handle freezing
+        should_freeze = epoch < self.freeze_encoder_epochs
+        self._create_optimizer(freeze_encoder=should_freeze)
+
+        if verbose and is_main_process():
+            print(f"KC Epoch (Encoder {'Frozen' if should_freeze else 'Thawed'})")
+
+        self.model.train()
+        total_loss, n_batches = 0.0, 0
+        kc_losses: Dict[str, float] = {}
+        total_sparsity = 0.0
+
+        total_batches = len(self.data_loader)
+
+        for batch_idx, batch in enumerate(self.data_loader):
+            field_inputs = {
+                k: v.to(self.device)
+                for k, v in batch.items()
+                if k.startswith("input_ids_")
+            }
+            attention_mask = batch["attention_mask"].to(self.device)
+
+            self.optimizer.zero_grad(set_to_none=True)
+            device_type = (
+                "cuda"
+                if "cuda" in str(self.device)
+                else ("mps" if "mps" in str(self.device) else "cpu")
+            )
+
+            with autocast(device_type=device_type, enabled=self.config.use_amp):
+                # Forward pass
+                outputs = self.model(
+                    field_inputs, attention_mask=attention_mask, mode="kc"
+                )
+                target_logits = outputs["target_logits"]
+
+                loss = torch.tensor(0.0, device=self.device)
+                batch_kc_losses = {}
+                recon_loss = torch.tensor(0.0, device=self.device)
+                num_recon_targets = 0
+
+                # Compute losses for each target present in target_logits AND batch
+                # Check for structural targets (bags, hashes)
+                for name, logits in target_logits.items():
+                    target_key = f"kc_targets_{name}"
+
+                    if target_key in batch:
+                        # Structural target (multi-hot)
+                        targets = batch[target_key].to(self.device)
+                        # logits: (B, V), targets: (B, V) float multi-hot
+                        task_loss = self.bce_loss(logits, targets)
+                        recon_loss += task_loss
+                        num_recon_targets += 1
+                        batch_kc_losses[name] = task_loss.item()
+
+                    # Auxiliary Label Targets
+                    elif name == "formality_value":
+                        targets = batch["formality_value"].to(self.device)
+                        task_loss = self.mse_loss(logits.squeeze(-1), targets)
+                        recon_loss += task_loss
+                        num_recon_targets += 1
+                        batch_kc_losses[name] = task_loss.item()
+                    elif name == "formality_pragmatic":
+                        targets = batch["formality_pragmatic"].to(self.device)
+                        task_loss = self.ce_loss(logits, targets)
+                        recon_loss += task_loss
+                        num_recon_targets += 1
+                        batch_kc_losses[name] = task_loss.item()
+                    elif name == "gender_value":
+                        targets = batch["gender_value"].to(self.device)
+                        task_loss = self.mse_loss(logits.squeeze(-1), targets)
+                        recon_loss += task_loss
+                        num_recon_targets += 1
+                        batch_kc_losses[name] = task_loss.item()
+                    elif name == "gender_pragmatic":
+                        targets = batch["gender_pragmatic"].to(self.device)
+                        task_loss = self.ce_loss(logits, targets)
+                        recon_loss += task_loss
+                        num_recon_targets += 1
+                        batch_kc_losses[name] = task_loss.item()
+                    elif name == "grammaticality":
+                        targets = batch["grammaticality_labels"].to(self.device)
+                        task_loss = self.ce_loss(logits, targets)
+                        recon_loss += task_loss
+                        num_recon_targets += 1
+                        batch_kc_losses[name] = task_loss.item()
+                    elif name == "register":
+                        targets = batch["register_labels"].to(self.device)
+                        task_loss = self.bce_loss(logits, targets)
+                        recon_loss += task_loss
+                        num_recon_targets += 1
+                        batch_kc_losses[name] = task_loss.item()
+
+                if num_recon_targets > 0:
+                    recon_loss /= num_recon_targets
+
+                # Sparsity Loss
+                sparsity = outputs["kc_probs"].mean()
+                total_sparsity += sparsity.item()
+
+                loss = (
+                    recon_loss + self.kc_sparsity_weight * sparsity
+                ) / self.config.grad_accum_steps
+
+                if loss.item() == 0.0 and loss.requires_grad:
+                    pass
+
+            self.scaler.scale(loss).backward()
+
+            if (batch_idx + 1) % self.config.grad_accum_steps == 0:
+                if self.config.gradient_clip > 0:
+                    self.scaler.unscale_(self.optimizer)
+                    nn.utils.clip_grad_norm_(
+                        self.model.parameters(), self.config.gradient_clip
+                    )
+                self.scaler.step(self.optimizer)
+                self.scaler.update()
+                self.optimizer.zero_grad(set_to_none=True)
+
+            total_loss += loss.item() * self.config.grad_accum_steps
+            for k, v in batch_kc_losses.items():
+                kc_losses[k] = kc_losses.get(k, 0.0) + v
+            n_batches += 1
+
+            if verbose and is_main_process():
+                avg_l = total_loss / n_batches
+                progress = (batch_idx + 1) / total_batches
+                bar = (
+                    "=" * int(30 * progress) + ">" + "." * (30 - int(30 * progress) - 1)
+                )
+                sys.stdout.write(
+                    f"\r  [{bar}] {batch_idx + 1}/{total_batches} loss={avg_l:.4f}"
+                )
+                sys.stdout.flush()
+
+        if verbose and is_main_process():
+            sys.stdout.write("\n")
+            sys.stdout.flush()
+
+        avg_kc_losses = {k: v / n_batches for k, v in kc_losses.items()}
+        avg_sparsity = total_sparsity / max(1, n_batches)
+        return total_loss / n_batches, avg_kc_losses, avg_sparsity
+
+    def train(
+        self, epochs: Optional[int] = None, verbose: bool = True
+    ) -> Dict[str, Any]:
+        actual_epochs = epochs or self.config.epochs
+        for epoch in range(actual_epochs):
+            if self.is_distributed:
+                cast(DistributedSampler, self.sampler).set_epoch(epoch)
+            if verbose and is_main_process():
+                print(f"Epoch {epoch + 1}/{actual_epochs}")
+            total_loss, kc_losses, avg_sparsity = self.train_epoch(
+                epoch=epoch, verbose=verbose
+            )
+
+            self.history["total_loss"].append(total_loss)
+            self.history["kc_sparsity"].append(avg_sparsity)
+            for k, v in kc_losses.items():
+                if k not in self.history["kc_losses"]:
+                    self.history["kc_losses"][k] = []
+                self.history["kc_losses"][k].append(v)
+
+            if verbose and is_main_process():
+                print(
+                    f"  KC Total Loss: {total_loss:.4f}, Sparsity: {avg_sparsity:.4f}"
+                )
+                # Print top 5 contributors
+                top_losses = sorted(
+                    kc_losses.items(), key=lambda x: x[1], reverse=True
+                )[:5]
+                loss_str = ", ".join(f"{k}={v:.3f}" for k, v in top_losses)
+                print(f"  Top losses: {loss_str}")
+
         return self.history
 
 
@@ -952,189 +1258,3 @@ class Trainer:
             checkpoint["best_state"],
         )
         self.start_epoch = checkpoint["epoch"] + 1
-
-
-class KCTrainer:
-    """Trainer for Knowledge Component (KC) learning."""
-
-    def __init__(
-        self,
-        model: StyleClassifierWithMLM,
-        dataset: StyleDataset,
-        config: TrainerConfig,
-        kc_config: Dict[str, Any],
-    ):
-        ngrammatic = [s for s in dataset.samples if s.grammaticality_label == 0]
-        if ngrammatic:
-            dataset = StyleDataset(
-                [s for s in dataset.samples if s.grammaticality_label == 1],
-                dataset.tokenizer,
-            )
-        self.model, self.dataset, self.config = model, dataset, config
-        self.kc_sparsity_weight = kc_config.get("sparsity_weight", 1e-3)
-        self.freeze_encoder_epochs = kc_config.get("freeze_encoder_epochs", 1)
-
-        if config.world_size > 1:
-            self.device = torch.device("cuda", config.local_rank)
-            self.is_distributed = True
-        else:
-            self.device = torch.device(config.device)
-            self.is_distributed = False
-
-        self.model.to(self.device)
-        if self.is_distributed:
-            self.model = cast(
-                StyleClassifierWithMLM,
-                DDP(
-                    self.model,
-                    device_ids=[config.local_rank],
-                    output_device=config.local_rank,
-                    find_unused_parameters=True,
-                ),
-            )
-
-        device_type = (
-            "cuda"
-            if "cuda" in str(self.device).lower()
-            else ("mps" if "mps" in str(self.device).lower() else "cpu")
-        )
-        self.scaler = GradScaler(device=device_type, enabled=config.use_amp)
-
-        pad_id = dataset.tokenizer.pad_id
-        max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
-        self.sampler: Optional[DistributedSampler] = (
-            DistributedSampler(
-                dataset,
-                num_replicas=config.world_size,
-                rank=dist.get_rank(),
-                shuffle=True,
-            )
-            if self.is_distributed
-            else None
-        )
-        self.data_loader = DataLoader(
-            dataset,
-            batch_size=config.batch_size,
-            shuffle=(self.sampler is None),
-            sampler=self.sampler,
-            collate_fn=lambda b: collate_fn(
-                b, pad_id, cast(Optional[int], max_seq_len)
-            ),
-            pin_memory=("cuda" in str(self.device).lower()),
-            num_workers=(4 if "cuda" in str(self.device).lower() else 0),
-        )
-
-        self.recon_criterion = nn.BCEWithLogitsLoss()
-        self.history: Dict[str, List[float]] = {"kc_loss": [], "kc_sparsity": []}
-        self._create_optimizer(freeze_encoder=True)
-
-    def _create_optimizer(self, freeze_encoder: bool) -> None:
-        raw = self.model.module if self.is_distributed else self.model
-        m = cast(StyleClassifierWithMLM, raw)
-        pg = [
-            {
-                "params": list(m.kc_head.parameters())
-                + (
-                    list(m.kc_decoders.parameters())
-                    if hasattr(m, "kc_decoders")
-                    else []
-                ),
-                "lr": self.config.learning_rate,
-            }
-        ]
-        if not freeze_encoder:
-            pg.append(
-                {
-                    "params": list(m.embedding.parameters())
-                    + list(m.encoder.parameters()),
-                    "lr": self.config.learning_rate * 0.1,
-                }
-            )
-        self.optimizer = Adam(pg)
-
-    def train(self, epochs: int, verbose: bool = True) -> Dict[str, List[float]]:
-        for epoch in range(epochs):
-            if self.sampler:
-                self.sampler.set_epoch(epoch)
-            should_freeze = epoch < self.freeze_encoder_epochs
-            self._create_optimizer(freeze_encoder=should_freeze)
-            if verbose and is_main_process():
-                print(
-                    f"KC Epoch {epoch + 1}/{epochs} (Encoder {'Frozen' if should_freeze else 'Thawed'})"
-                )
-
-            self.model.train()
-            tl, ts, n = 0, 0, 0
-            total_batches = len(self.data_loader)
-            for batch_idx, batch in enumerate(self.data_loader):
-                f_in = {
-                    k: v.to(self.device)
-                    for k, v in batch.items()
-                    if k.startswith("input_ids_")
-                }
-                attn = batch["attention_mask"].to(self.device)
-                kc_t = create_kc_batch(
-                    batch,
-                    self.dataset.tokenizer,
-                    getattr(self.model, "module", self.model).config.kc_target_specs,
-                )
-                kc_t = {k: v.to(self.device) for k, v in kc_t.items()}
-
-                self.optimizer.zero_grad(set_to_none=True)
-                device_type = (
-                    "cuda"
-                    if "cuda" in str(self.device).lower()
-                    else ("mps" if "mps" in str(self.device).lower() else "cpu")
-                )
-                with autocast(device_type=device_type, enabled=self.config.use_amp):
-                    out = self.model(f_in, attention_mask=attn, mode="kc")
-                    rl, nt = torch.tensor(0.0, device=self.device), 0
-                    if out.get("target_logits"):
-                        for name, logits in out["target_logits"].items():
-                            if f"kc_targets_{name}" in kc_t:
-                                rl += self.recon_criterion(
-                                    logits, kc_t[f"kc_targets_{name}"]
-                                )
-                                nt += 1
-                    if nt > 0:
-                        rl /= nt
-                    sparsity = out["kc_probs"].mean()
-                    loss = (
-                        rl + self.kc_sparsity_weight * sparsity
-                    ) / self.config.grad_accum_steps
-
-                self.scaler.scale(loss).backward()
-                if (batch_idx + 1) % self.config.grad_accum_steps == 0:
-                    if self.config.gradient_clip > 0:
-                        self.scaler.unscale_(self.optimizer)
-                        nn.utils.clip_grad_norm_(
-                            self.model.parameters(), self.config.gradient_clip
-                        )
-                    self.scaler.step(self.optimizer)
-                    self.scaler.update()
-                    self.optimizer.zero_grad()
-
-                tl += loss.item() * self.config.grad_accum_steps
-                ts += sparsity.item()
-                n += 1
-                if verbose and is_main_process():
-                    avg_l = tl / n
-                    progress = (batch_idx + 1) / total_batches
-                    bar = (
-                        "=" * int(30 * progress)
-                        + ">"
-                        + "." * (30 - int(30 * progress) - 1)
-                    )
-                    sys.stdout.write(
-                        f"\r  [{bar}] {batch_idx + 1}/{total_batches} loss={avg_l:.4f} sparsity={sparsity.item():.4f}"
-                    )
-                    sys.stdout.flush()
-
-            avg_l, avg_s = tl / max(1, n), ts / max(1, n)
-            self.history["kc_loss"].append(avg_l)
-            self.history["kc_sparsity"].append(avg_s)
-            if verbose and is_main_process():
-                sys.stdout.write("\n")
-                print(f"  Epoch End: Loss={avg_l:.4f}, Sparsity={avg_s:.4f}")
-
-        return self.history

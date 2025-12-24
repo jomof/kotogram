@@ -28,6 +28,11 @@ from train.worker import _encode_samples_batch, init_worker
 # Cache version - bump this when cache format changes to invalidate old caches
 CACHE_VERSION = 11
 
+# KC Configuration
+KC_HASH_BUCKETS = 16384
+KC_NGRAM_ORDER = 3
+KC_POS_BIASED_WINDOW = 5
+
 
 # Types moved to types.py
 
@@ -214,6 +219,62 @@ class StyleDataset(Dataset[Sample]):
             vocab_path=vocab_path,
         )
 
+    @staticmethod
+    def _compute_kc_targets(feature_ids: Dict[str, List[int]]) -> Dict[str, Any]:
+        """Compute KC targets from feature IDs."""
+        targets: Dict[str, Any] = {}
+
+        # 1. Token bags (Multi-hot)
+        # Target = unique token IDs appearing in the sentence
+        for field in ["lemma", "pos", "conjugated_form"]:
+            if field in feature_ids:
+                targets[f"bag_{field}"] = list(set(feature_ids[field]))
+
+        # 2. Position-biased token bags
+        # Target = unique token IDs appearing in the last N tokens
+        for field in ["surface", "lemma", "pos", "conjugated_form"]:
+            if field in feature_ids:
+                ids = feature_ids[field]
+                tail_ids = ids[-KC_POS_BIASED_WINDOW:] if len(ids) > 0 else []
+                targets[f"tail_{field}"] = list(set(tail_ids))
+
+        # 3. N-gram hash targets
+        # Target = hashed IDs for bigrams/trigrams
+        for field in ["pos", "conjugated_form"]:
+            if field in feature_ids:
+                ids = feature_ids[field]
+                hashes = set()
+                # Unigrams, Bigrams, Trigrams
+                # Actually user asked for Bigrams/Trigrams.
+                # Let's include unigrams too? User said: "bigrams/trigrams of pos"
+                # "Token bags" (Priority 1A) covers unigrams basically.
+                # So let's stick to n=2..Order.
+                for n in range(2, KC_NGRAM_ORDER + 1):
+                    if len(ids) >= n:
+                        for i in range(len(ids) - n + 1):
+                            ngram = tuple(ids[i : i + n])
+                            # Simple hash: polynomial rolling hash or python hash
+                            # Python hash is randomized per process, strictly we might want stable
+                            # but "Stable KC IDs across runs" is a non-goal.
+                            # Start with python hash for simplicity and speed.
+                            h = hash(ngram) % KC_HASH_BUCKETS
+                            hashes.add(h)
+                targets[f"ngram_{field}"] = list(hashes)
+
+        # 3b. (pos, conjugated_form) pairs
+        if "pos" in feature_ids and "conjugated_form" in feature_ids:
+            p_ids = feature_ids["pos"]
+            c_ids = feature_ids["conjugated_form"]
+            if len(p_ids) == len(c_ids):
+                pair_hashes = set()
+                for i in range(len(p_ids)):
+                    pair = (p_ids[i], c_ids[i])
+                    h = hash(pair) % KC_HASH_BUCKETS
+                    pair_hashes.add(h)
+                targets["pair_pos_conj"] = list(pair_hashes)
+
+        return targets
+
     @classmethod
     def from_processed_samples(
         cls,
@@ -265,6 +326,9 @@ class StyleDataset(Dataset[Sample]):
                         grammaticality_label=p.gram_label,
                         original_sentence=p.sentence,
                         kotogram=p.kotogram,
+                        kc_targets=cls._compute_kc_targets(
+                            cast(Dict[str, List[int]], p.feature_ids)
+                        ),
                     )
                 )
 
@@ -320,9 +384,14 @@ class StyleDataset(Dataset[Sample]):
                             p.register_ids,
                             p.gram_label,
                             s.feature_ids,
+                            # We don't cache KC targets yet to save complexity/space
                         )
                     )
                 cache.put_batch(cast(List[Any], update_items))
+
+            # Populate KC targets for newly encoded samples
+            for s in newly_encoded_samples:
+                s.kc_targets = cls._compute_kc_targets(s.feature_ids)
 
             samples.extend(newly_encoded_samples)
 
@@ -380,6 +449,7 @@ def collate_fn(
     batch: List[Sample],
     pad_id: int = 0,
     max_seq_len: Optional[int] = None,
+    vocab_sizes: Optional[Dict[str, int]] = None,
 ) -> Dict[str, Any]:
     """Collate samples into padded batches."""
     batch_size = len(batch)
@@ -428,5 +498,35 @@ def collate_fn(
             seq_len = min(len(ids), max_seq_len)
             tensor[i, :seq_len] = torch.tensor(ids[:seq_len], dtype=torch.long)
         result[f"input_ids_{field_name}"] = tensor
+
+    # KC Targets Collation
+    if batch[0].kc_targets:
+        # Determine all keys present in the batch
+        all_keys = set().union(*(s.kc_targets.keys() for s in batch))
+
+        for key in all_keys:
+            # Determine vocab size for this target
+            v_size = 0
+            if key.startswith("ngram_") or key.startswith("pair_"):
+                v_size = KC_HASH_BUCKETS
+            elif key.startswith("bag_") or key.startswith("tail_"):
+                # Extract field name
+                field_name = key.split("_", 1)[1]
+                if vocab_sizes and field_name in vocab_sizes:
+                    v_size = vocab_sizes[field_name]
+                else:
+                    # Fallback if vocab_size not known: inferred max (risky but acceptable for dev)
+                    # or skip. Ideally pass vocab_sizes.
+                    pass
+
+            if v_size > 0:
+                target_tensor = torch.zeros((batch_size, v_size), dtype=torch.float)
+                for i, sample in enumerate(batch):
+                    indices = sample.kc_targets.get(key, [])
+                    # Filter valid indices
+                    valid_indices = [idx for idx in indices if idx < v_size]
+                    if valid_indices:
+                        target_tensor[i, valid_indices] = 1.0
+                result[f"kc_targets_{key}"] = target_tensor
 
     return result
