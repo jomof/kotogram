@@ -41,20 +41,17 @@ class TestTrainStyleScript(unittest.TestCase):
 
                     # Verify label phase output files using glob patterns
                     EXPECTED_LABEL_MANIFEST = [
-                        # Generated Cache Files
-                        "[.cache]/agrammatic_combined.tsv",
-                        "[.cache]/grammatic_combined.tsv",
-                        # Shards (using glob to be robust against hashing changes)
-                        "[.cache]/kotogram_shards/*.db",
-                        # Style Data
-                        "[models]/style-support/register_samples.csv",
-                        "[.cache]/style_dataset/label_metadata.json",
-                        "[.cache]/style_dataset/vocab.json",
-                        # Source Data (using globs to be robust against adding new data files)
+                        # --- Source Data ---
                         "[data]/jpn_agrammatic_*.tsv",
                         "[data]/jpn_sentences*.tsv",
-                        # Empty directories created by scripts
-                        "[models]/style",
+                        # --- Generated Cache (Metadata & Vocab) ---
+                        "[.cache]/register_samples.csv",
+                        "[.cache]/style_dataset/label_metadata.json",
+                        "[.cache]/style_dataset/vocab.json",
+                        # --- Generated Cache (Databases) ---
+                        "[.cache]/agrammatic_combined.tsv",
+                        "[.cache]/grammatic_combined.tsv",
+                        "[.cache]/kotogram_shards/*.db",
                     ]
                     bottle.assert_dir_layout(EXPECTED_LABEL_MANIFEST)
 
@@ -81,6 +78,7 @@ class TestTrainStyleScript(unittest.TestCase):
                     EXPECTED_TRAIN_DIFFERENCES = [
                         # Model Output
                         "[models]/style-support/training.log ADDED",
+                        "[models]/style-support/epochs.json ADDED",
                         "[models]/style-support/checkpoint.pt ADDED",
                         "[models]/style-support/checkpoint_optim.pt ADDED",
                         "[models]/style-support/config.json ADDED",
@@ -111,6 +109,7 @@ class TestTrainStyleScript(unittest.TestCase):
                     EXPECTED_RESUME_DIFFERENCES = [
                         # Training artifacts should be modified
                         "[models]/style-support/training.log MODIFIED",
+                        "[models]/style-support/epochs.json MODIFIED",
                         "[models]/style-support/checkpoint.pt MODIFIED",
                         "[models]/style-support/checkpoint_optim.pt MODIFIED",
                         "[models]/style-support/config.json MODIFIED",
@@ -167,10 +166,41 @@ class TestTrainStyleScript(unittest.TestCase):
                             "Non-KC model should usually not output 'kc_top' (unless enabled)",
                         )
 
-                    # 3. Verify model.pt is in FP8 format
-
                     model_path = bottle.get_file("[models]/style/model.pt")
                     bottle.assertModelIsFp8(model_path)
+
+                    # 4. Verify epochs.json matches training history
+                    epochs_path = bottle.resolve_path(
+                        "[models]/style-support/epochs.json"
+                    )
+                    self.assertTrue(os.path.exists(epochs_path), "epochs.json missing")
+                    with open(epochs_path, "r") as f:
+                        history = json.load(f)
+
+                    # Check epochs count
+                    if config["name"] == "regular":
+                        # 1 epoch initially, then trained 2nd epoch on resume
+                        # Wait, snapshot was taken after epoch 1.
+                        # Then we resumed and trained epoch 2.
+                        # So history should have 2 entries: epoch 1 and epoch 2
+                        self.assertEqual(len(history), 2)
+                        self.assertEqual(history[0]["epoch"], 1)
+                        self.assertEqual(history[1]["epoch"], 2)
+                        self.assertEqual(history[0]["type"], "style")
+                        self.assertEqual(history[1]["type"], "style")
+                    elif config["name"] == "pretrain-mlm":
+                        # 1 MLM epoch + 1 style epoch (initial) + 1 style epoch (resume)
+                        # Total 3 entries
+                        self.assertEqual(len(history), 3)
+                        self.assertEqual(history[0]["type"], "pretrain-mlm")
+                        self.assertEqual(history[1]["type"], "style")
+                        self.assertEqual(history[2]["type"], "style")
+                    elif config["name"] == "pretrain-kc":
+                        # 1 KC epoch + 1 style epoch (initial) + 1 style epoch (resume)
+                        self.assertEqual(len(history), 3)
+                        self.assertEqual(history[0]["type"], "pretrain-kc")
+                        self.assertEqual(history[1]["type"], "style")
+                        self.assertEqual(history[2]["type"], "style")
 
     def test_auto_resume(self):
         """Verifies auto-resume affects *training*, not just printing."""

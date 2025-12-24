@@ -126,6 +126,7 @@ def save_checkpoint(
 def load_checkpoint(
     path: str,
     device: Optional[str] = None,
+    model_class: type = StyleClassifier,
 ) -> Tuple[StyleClassifier, Tokenizer, Dict[str, Any], bool]:
     """Load training checkpoint for resumption."""
     checkpoint_path = os.path.join(path, "checkpoint.pt")
@@ -148,7 +149,7 @@ def load_checkpoint(
         checkpoint.update(optim_checkpoint)
 
     # Reconstruct model
-    model = StyleClassifier(config)
+    model = model_class(config)
 
     # Filter out MLM/KC head weights
     model_state = checkpoint["model_state_dict"]
