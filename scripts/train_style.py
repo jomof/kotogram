@@ -41,6 +41,44 @@ from train.trainer import (
 )
 
 if __name__ == "__main__":
+    # Internal profiling when TRAIN_PROFILE is set
+    _profiler = None
+    if os.environ.get("TRAIN_PROFILE"):
+        import atexit
+        import cProfile
+
+        _profiler = cProfile.Profile()
+        _profiler.enable()
+
+        def _save_profile() -> None:
+            if _profiler:
+                _profiler.disable()
+                import pstats
+
+                profile_dir = os.path.join(
+                    os.environ.get("TRAIN_ROOT", "."), ".profile"
+                )
+                os.makedirs(profile_dir, exist_ok=True)
+
+                # Write .pstats file
+                pstats_file = os.path.join(
+                    profile_dir, f"train_style_{os.getpid()}.pstats"
+                )
+                _profiler.dump_stats(pstats_file)
+
+                # Write human-readable summary
+                summary_file = os.path.join(
+                    profile_dir, f"train_style_{os.getpid()}.txt"
+                )
+                with open(summary_file, "w") as f:
+                    stats = pstats.Stats(_profiler, stream=f)
+                    stats.sort_stats("cumulative")
+                    f.write("TOP 50 BY CUMULATIVE TIME\n")
+                    f.write("=" * 80 + "\n")
+                    stats.print_stats(50)
+
+        atexit.register(_save_profile)
+
     if os.environ.get("RANK", "0") == "0":
         print("Starting training script...", flush=True)
     import argparse

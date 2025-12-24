@@ -18,6 +18,14 @@ elif [[ "$TRAIN_ROOT" != /* ]]; then
 fi
 export TRAIN_ROOT
 
+# Profiling support: when TRAIN_PROFILE is set, wrap python scripts with cProfile
+PROFILE_DIR=""
+PROFILE_PYTHON=""
+if [ -n "$TRAIN_PROFILE" ]; then
+    PROFILE_DIR="${TRAIN_ROOT:-.}/.profile"
+    mkdir -p "$PROFILE_DIR"
+    echo "Profiling enabled. Results will be written to: $PROFILE_DIR"
+fi
 
 # Setup virtual environment and dependencies
 setup_environment() {
@@ -35,30 +43,11 @@ setup_environment() {
 
     echo "Checking dependencies..."
 
-    if ! python -c "import torch" 2>/dev/null; then
-        echo "PyTorch not found. Installing..."
+    # Combined dependency check (1 call instead of 5)
+    if ! python -c "import torch; import numpy; import sudachidict_full; import rich; import sys; sys.path = [p for p in sys.path if p != '']; import kotogram" 2>/dev/null; then
+        echo "Missing dependencies. Installing..."
         python -m pip install --upgrade pip
-        python -m pip install torch numpy
-    fi
-
-    if ! python -c "import numpy" 2>/dev/null; then
-        echo "NumPy not found. Installing..."
-        python -m pip install numpy
-    fi
-
-    if ! python -c "import sudachidict_full" 2>/dev/null; then
-        echo "SudachiPy/dictionary not found. Installing..."
-        python -m pip install sudachipy sudachidict_full
-    fi
-
-    if ! python -c "import rich" 2>/dev/null; then
-        echo "Rich library not found. Installing..."
-        python -m pip install rich
-    fi
-
-    # Check if kotogram is installed in the environment (ignoring CWD)
-    if ! python -c "import sys; sys.path = [p for p in sys.path if p != '']; import kotogram" 2>/dev/null; then
-        echo "Kotogram not found in site-packages. Installing from current directory..."
+        python -m pip install torch numpy sudachipy sudachidict_full rich
         python -m pip install -e "$SCRIPT_DIR"
     fi
 
@@ -69,8 +58,8 @@ setup_environment() {
 setup_environment
 
 # Default configuration
-DATA_DIR=$(python3 -m scripts.locations data)
-MODELS_DIR=$(python3 -m scripts.locations models)
+# Optimize: Load all locations in one python call
+eval "$(python3 -m scripts.locations shell-env)"
 
 DATA_PATH="$DATA_DIR/jpn_sentences*.tsv"  # Filtered to exclude known errors
 AGRAMMATIC_SENTENCES_PATH=""
@@ -96,7 +85,9 @@ FP8=""
 RESUME=""
 RETRAIN=""
 CONFUSION=""
+NO_CONFUSION=""
 LABEL_ONLY=""
+NO_LABEL=""
 
 PERCENT=""
 
@@ -226,8 +217,16 @@ while [[ $# -gt 0 ]]; do
             CONFUSION="--confusion"
             shift
             ;;
+        --no-confusion)
+            NO_CONFUSION=1
+            shift
+            ;;
         --label)
             LABEL_ONLY=1
+            shift
+            ;;
+        --no-label)
+            NO_LABEL=1
             shift
             ;;
 
@@ -342,8 +341,8 @@ echo ""
 mkdir -p "$OUTPUT_DIR"
 
 # Combined output files in cache
-CACHE_DIR=$(python3 -m scripts.locations cache)
-SUPPORT_DIR=$(python3 -m scripts.locations style-support)
+# Combined output files in cache
+# CACHE_DIR and SUPPORT_DIR are already set by shell-env above
 
 COMBINED_GRAM_FILE="$CACHE_DIR/grammatic_combined.tsv"
 COMBINED_AGRAM_FILE="$CACHE_DIR/agrammatic_combined.tsv"
@@ -416,6 +415,8 @@ else
     LAUNCHER="python"
 fi
 
+# (Profiling timing is done at script execution, not in launcher)
+
 # Configuration Summary
 if [ -n "$DEBUG" ]; then
     echo "Configuration: $LAUNCHER, Batch: $BATCH_SIZE, Accum: $GRAD_ACCUM_STEPS, FP16: ${FP16:-off}"
@@ -483,10 +484,12 @@ CMD="$CMD --grad-accum-steps $GRAD_ACCUM_STEPS"
 # Run Preprocessing Phase (Single Process)
 # This ensures that Kotogram parsing and dataset caching happens once, cleanly,
 # before launching training (whether single or multi-process).
-echo "=============================================="
-echo "Running Preprocessing Phase..."
-echo "=============================================="
-# Construct preprocessing command (always use python, single process)
+
+if [ -z "$NO_LABEL" ]; then
+    echo "=============================================="
+    echo "Running Preprocessing Phase..."
+    echo "=============================================="
+    # Construct preprocessing command (always use python, single process)
     # Construct labeling command
     PREPROC_CMD="python -m scripts.label --grammatic-pattern \"$GRAM_DATA_PATTERN\" $FORCE_RELABEL"
 
@@ -494,33 +497,51 @@ echo "=============================================="
         PREPROC_CMD="$PREPROC_CMD --agrammatic-pattern \"$AGRAMMATIC_PATTERN\""
     fi
 
-if [ -n "$DEBUG" ]; then
-    echo "Command: $PREPROC_CMD"
+    if [ -n "$DEBUG" ]; then
+        echo "Command: $PREPROC_CMD"
+    else
+        echo "Executing preprocessing script..."
+    fi
+
+    # Time the preprocessing if profiling enabled
+    if [ -n "$TRAIN_PROFILE" ]; then
+        LABEL_START=$(date +%s.%N)
+        eval $PREPROC_CMD || exit 1
+        LABEL_END=$(date +%s.%N)
+        echo "PROFILE: label.py took $(echo "$LABEL_END - $LABEL_START" | bc)s" | tee -a "$PROFILE_DIR/timing.txt"
+    else
+        eval $PREPROC_CMD || exit 1
+    fi
+
+    # Update line counts for log display
+    echo "Combined grammatic data: $DATA_PATH ($(wc -l <"$DATA_PATH" | xargs) lines)"
+    if [ -f "$AGRAMMATIC_DATA_PATH" ]; then
+        echo "Combined agrammatic data: $AGRAMMATIC_DATA_PATH ($(wc -l <"$AGRAMMATIC_DATA_PATH" | xargs) lines)"
+    fi
+    echo "Preprocessing complete."
+
+    if [ -n "$LABEL_ONLY" ]; then
+        echo "Labeling only requested. Exiting."
+        exit 0
+    fi
+    echo ""
 else
-    echo "Executing preprocessing script..."
+    echo "Skipping Preprocessing Phase (--no-label)"
 fi
-eval $PREPROC_CMD || exit 1
-
-# Update line counts for log display
-echo "Combined grammatic data: $DATA_PATH ($(wc -l <"$DATA_PATH" | xargs) lines)"
-if [ -f "$AGRAMMATIC_DATA_PATH" ]; then
-    echo "Combined agrammatic data: $AGRAMMATIC_DATA_PATH ($(wc -l <"$AGRAMMATIC_DATA_PATH" | xargs) lines)"
-fi
-echo "Preprocessing complete."
-
-if [ -n "$LABEL_ONLY" ]; then
-    echo "Labeling only requested. Exiting."
-    exit 0
-fi
-echo ""
 
 # Confusion evaluation (runs after preprocessing)
 if [ -n "$CONFUSION" ]; then
     echo "=============================================="
     echo "Running Confusion Matrix Evaluation..."
     echo "=============================================="
-    python -m scripts.confusion \
-        ${PERCENT:+--percent ${PERCENT#--percent }}
+    if [ -n "$TRAIN_PROFILE" ]; then
+        CONF_START=$(date +%s.%N)
+        python -m scripts.confusion ${PERCENT:+--percent ${PERCENT#--percent }}
+        CONF_END=$(date +%s.%N)
+        echo "PROFILE: confusion.py took $(echo "$CONF_END - $CONF_START" | bc)s" | tee -a "$PROFILE_DIR/timing.txt"
+    else
+        python -m scripts.confusion ${PERCENT:+--percent ${PERCENT#--percent }}
+    fi
     exit 0
 fi
 
@@ -531,7 +552,16 @@ if [ -n "$DEBUG" ]; then
 else
     echo "Starting training run..."
 fi
-eval $CMD 2>&1 | tee "$SUPPORT_DIR/training.log"
+
+# Time the training if profiling enabled
+if [ -n "$TRAIN_PROFILE" ]; then
+    TRAIN_START=$(date +%s.%N)
+    eval $CMD 2>&1 | tee "$SUPPORT_DIR/training.log"
+    TRAIN_END=$(date +%s.%N)
+    echo "PROFILE: train_style.py took $(echo "$TRAIN_END - $TRAIN_START" | bc)s" | tee -a "$PROFILE_DIR/timing.txt"
+else
+    eval $CMD 2>&1 | tee "$SUPPORT_DIR/training.log"
+fi
 
 echo ""
 echo "=============================================="
@@ -541,5 +571,15 @@ echo "Training log:   $SUPPORT_DIR/training.log"
 echo "=============================================="
 echo ""
 echo "Generating confusion report..."
-python -m scripts.confusion \
-    ${PERCENT:+--percent ${PERCENT#--percent }}
+if [ -z "$NO_CONFUSION" ]; then
+    if [ -n "$TRAIN_PROFILE" ]; then
+        CONF_START=$(date +%s.%N)
+        python -m scripts.confusion ${PERCENT:+--percent ${PERCENT#--percent }}
+        CONF_END=$(date +%s.%N)
+        echo "PROFILE: confusion.py took $(echo "$CONF_END - $CONF_START" | bc)s" | tee -a "$PROFILE_DIR/timing.txt"
+    else
+        python -m scripts.confusion ${PERCENT:+--percent ${PERCENT#--percent }}
+    fi
+else
+    echo "Skipping confusion report (--no-confusion)"
+fi

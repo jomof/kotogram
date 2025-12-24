@@ -26,7 +26,13 @@ from kotogram.locations import (
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        if sys.argv[1] == "cache":
+        if sys.argv[1] == "shell-env":
+            # Output all paths in shell-evaluable format
+            print(f"export DATA_DIR='{get_data_dir()}'")
+            print(f"export CACHE_DIR='{get_cache_dir()}'")
+            print(f"export MODELS_DIR='{get_models_dir()}'")
+            print(f"export SUPPORT_DIR='{get_style_support_dir()}'")
+        elif sys.argv[1] == "cache":
             print(get_cache_dir())
         elif sys.argv[1] == "data":
             print(get_data_dir())

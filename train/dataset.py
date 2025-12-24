@@ -270,44 +270,61 @@ class StyleDataset(Dataset[Sample]):
 
         if missing_results:
             tokenizer_state = {"field_vocabs": tokenizer.field_vocabs}
+
+            # Optimization: Run sequentially for small batches to avoid spawn overhead
+            SMALL_BATCH_THRESHOLD = 1000
+
             batches = [
                 missing_results[i : i + 5000]
                 for i in range(0, len(missing_results), 5000)
             ]
-            pool = ctx.Pool(
-                num_workers, initializer=init_worker, initargs=(tokenizer_state,)
-            )
-            try:
-                newly_encoded_samples: List[Sample] = []
-                for batch_samples in pool.imap(_encode_samples_batch, batches):
-                    newly_encoded_samples.extend(batch_samples)
 
-                if newly_encoded_samples:
-                    cache = get_kotogram_cache()
-                    update_items = []
-                    for p, s in zip(missing_results, newly_encoded_samples):
-                        # Re-map formality_id to formality_id for cache (bit annoying)
-                        update_items.append(
-                            (
-                                p.sentence,
-                                p.kotogram,
-                                p.formality_id,
-                                p.gender_value,
-                                p.gender_pragmatic,
-                                p.register_ids,
-                                p.gram_label,
-                                s.feature_ids,
-                            )
+            newly_encoded_samples: List[Sample] = []
+
+            if len(missing_results) < SMALL_BATCH_THRESHOLD:
+                if verbose:
+                    print(f"Encoding {len(missing_results)} samples sequentially...")
+
+                # Initialize worker state in main process
+                # Note: This modifies train.worker._tokenizer global in the main process
+                init_worker(tokenizer_state)
+
+                for batch_samples in batches:
+                    newly_encoded_samples.extend(_encode_samples_batch(batch_samples))
+            else:
+                pool = ctx.Pool(
+                    num_workers, initializer=init_worker, initargs=(tokenizer_state,)
+                )
+                try:
+                    for batch_encoded in pool.imap(_encode_samples_batch, batches):
+                        newly_encoded_samples.extend(batch_encoded)
+                    pool.close()
+                    pool.join()
+                except Exception:
+                    pool.terminate()
+                    pool.join()
+                    raise
+
+            if newly_encoded_samples:
+                cache = get_kotogram_cache()
+                update_items = []
+                for p, s in zip(missing_results, newly_encoded_samples):
+                    # Re-map formality_id to formality_id for cache (bit annoying)
+                    update_items.append(
+                        (
+                            p.sentence,
+                            p.kotogram,
+                            p.formality_id,
+                            p.gender_value,
+                            p.gender_pragmatic,
+                            p.register_ids,
+                            p.gram_label,
+                            s.feature_ids,
                         )
-                    cache.put_batch(cast(List[Any], update_items))
+                    )
+                cache.put_batch(cast(List[Any], update_items))
 
-                samples.extend(newly_encoded_samples)
-                pool.close()
-                pool.join()
-            except Exception:
-                pool.terminate()
-                pool.join()
-                raise
+            samples.extend(newly_encoded_samples)
 
         tokenizer.freeze()
         return cls(samples, tokenizer)

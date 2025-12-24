@@ -646,78 +646,157 @@ def main() -> None:
         f"Cache status: {len(final_results):,} hits, {len(unlabeled_rows):,} partial, {len(uncached_rows):,} misses"
     )
 
-    ctx = mp.get_context("spawn")
+    total_tasks = len(uncached_rows) + len(unlabeled_rows)
+    # Optimization: For small datasets, run sequentially in main process to avoid
+    # multiprocessing spawn overhead (which can be seconds on macOS).
+    # Threshold determined empirically (profiling small tests vs large runs).
+    SMALL_DATASET_THRESHOLD = 500
 
-    if uncached_rows or unlabeled_rows:
-        with Progress(
-            SpinnerColumn(),
-            TextColumn("[progress.description]{task.description}"),
-            BarColumn(),
-            TaskProgressColumn(),
-            MofNCompleteColumn(),
-            console=console,
-        ) as progress:
-            if uncached_rows:
-                task = progress.add_task(
-                    "[green]Parsing & Labeling...", total=len(uncached_rows)
-                )
-                batches = [
-                    uncached_rows[i : i + DEFAULT_BATCH_SIZE]
-                    for i in range(0, len(uncached_rows), DEFAULT_BATCH_SIZE)
-                ]
+    if total_tasks > 0 and total_tasks < SMALL_DATASET_THRESHOLD:
+        console.print(
+            f"[yellow]Small dataset ({total_tasks} < {SMALL_DATASET_THRESHOLD}), running sequentially...[/yellow]"
+        )
+        # Initialize worker global state in main process
+        init_worker(register_overrides)
 
-                new_entries = []
-                with ctx.Pool(
-                    num_workers, initializer=init_worker, initargs=(register_overrides,)
-                ) as pool:
-                    for batch_results, batch_counters in pool.imap(
-                        _process_sentence_batch, batches
-                    ):
-                        # Merge counters
-                        for field, b_counter in batch_counters.items():
-                            merged_counters[field].update(b_counter)
+        if uncached_rows:
+            new_entries = []
+            batches = [
+                uncached_rows[i : i + DEFAULT_BATCH_SIZE]
+                for i in range(0, len(uncached_rows), DEFAULT_BATCH_SIZE)
+            ]
+            for batch in batches:
+                batch_results, batch_counters = _process_sentence_batch(batch)
+                # Merge counters
+                for field, b_counter in batch_counters.items():
+                    merged_counters[field].update(b_counter)
 
-                        for res in batch_results:
-                            if res.success:
-                                final_results.append(res)
-                                new_entries.append(
-                                    (
-                                        cast(str, res.sentence),
-                                        cast(str, res.kotogram),
-                                        cast(Optional[int], res.formality_id),
-                                        cast(Optional[float], res.gender_value),
-                                        cast(Optional[int], res.gender_pragmatic),
-                                        cast(Optional[List[int]], res.register_ids),
-                                        cast(Optional[int], res.gram_label),
-                                        None,  # feature_ids (computed later)
+                for res in batch_results:
+                    if res.success:
+                        final_results.append(res)
+                        new_entries.append(
+                            (
+                                cast(str, res.sentence),
+                                cast(str, res.kotogram),
+                                cast(Optional[int], res.formality_id),
+                                cast(Optional[float], res.gender_value),
+                                cast(Optional[int], res.gender_pragmatic),
+                                cast(Optional[List[int]], res.register_ids),
+                                cast(Optional[int], res.gram_label),
+                                None,  # feature_ids (computed later)
+                            )
+                        )
+
+            if new_entries:
+                from train.cache import CacheEntryType
+
+                cache.put_batch(cast(List[CacheEntryType], new_entries))
+
+        if unlabeled_rows:
+            batches_unlabeled = [
+                unlabeled_rows[i : i + DEFAULT_BATCH_SIZE]
+                for i in range(0, len(unlabeled_rows), DEFAULT_BATCH_SIZE)
+            ]
+            for batch_rows in batches_unlabeled:
+                batch_results, batch_counters = _compute_labels_batch(batch_rows)
+                for field, b_counter in batch_counters.items():
+                    merged_counters[field].update(b_counter)
+
+                for res in batch_results:
+                    if res.success:
+                        final_results.append(res)
+
+    else:
+        ctx = mp.get_context("spawn")
+
+        if uncached_rows or unlabeled_rows:
+            with Progress(
+                SpinnerColumn(),
+                TextColumn("[progress.description]{task.description}"),
+                BarColumn(),
+                TaskProgressColumn(),
+                MofNCompleteColumn(),
+                console=console,
+            ) as progress:
+                if uncached_rows:
+                    task = progress.add_task(
+                        "[green]Parsing & Labeling...", total=len(uncached_rows)
+                    )
+                    batches = [
+                        uncached_rows[i : i + DEFAULT_BATCH_SIZE]
+                        for i in range(0, len(uncached_rows), DEFAULT_BATCH_SIZE)
+                    ]
+
+                    new_entries = []
+                    with ctx.Pool(
+                        num_workers,
+                        initializer=init_worker,
+                        initargs=(register_overrides,),
+                    ) as pool:
+                        for batch_results, batch_counters in pool.imap(
+                            _process_sentence_batch, batches
+                        ):
+                            # Merge counters
+                            for field, b_counter in batch_counters.items():
+                                merged_counters[field].update(b_counter)
+
+                            for res in batch_results:
+                                if res.success:
+                                    final_results.append(res)
+                                    new_entries.append(
+                                        (
+                                            cast(str, res.sentence),
+                                            cast(str, res.kotogram),
+                                            cast(Optional[int], res.formality_id),
+                                            cast(Optional[float], res.gender_value),
+                                            cast(Optional[int], res.gender_pragmatic),
+                                            cast(Optional[List[int]], res.register_ids),
+                                            cast(Optional[int], res.gram_label),
+                                            None,  # feature_ids (computed later)
+                                        )
                                     )
-                                )
-                        progress.update(task, advance=len(batch_results))
+                            progress.update(task, advance=len(batch_results))
 
-                if new_entries:
-                    from train.cache import CacheEntryType
+                    if new_entries:
+                        from train.cache import CacheEntryType
 
-                    cache.put_batch(cast(List[CacheEntryType], new_entries))
+                        cache.put_batch(cast(List[CacheEntryType], new_entries))
 
-            if unlabeled_rows:
-                task = progress.add_task(
-                    "[cyan]Re-labeling...", total=len(unlabeled_rows)
-                )
-                batches_unlabeled = [
-                    unlabeled_rows[i : i + DEFAULT_BATCH_SIZE]
-                    for i in range(0, len(unlabeled_rows), DEFAULT_BATCH_SIZE)
-                ]
+                if unlabeled_rows:
+                    task = progress.add_task(
+                        "[cyan]Re-labeling...", total=len(unlabeled_rows)
+                    )
+                    batches_unlabeled = [
+                        unlabeled_rows[i : i + DEFAULT_BATCH_SIZE]
+                        for i in range(0, len(unlabeled_rows), DEFAULT_BATCH_SIZE)
+                    ]
 
-                new_entries = []
-                with ctx.Pool(
-                    num_workers, initializer=init_worker, initargs=(register_overrides,)
-                ) as pool:
-                    for batch_results, batch_counters in pool.imap(
-                        _compute_labels_batch, batches_unlabeled
-                    ):
-                        # Merge counters
-                        for field, b_counter in batch_counters.items():
-                            merged_counters[field].update(b_counter)
+                    new_entries = []
+                    with ctx.Pool(
+                        num_workers,
+                        initializer=init_worker,
+                        initargs=(register_overrides,),
+                    ) as pool:
+                        for batch_results, batch_counters in pool.imap(
+                            _compute_labels_batch, batches_unlabeled
+                        ):
+                            # Merge counters
+                            for field, b_counter in batch_counters.items():
+                                merged_counters[field].update(b_counter)
+
+                            for res in batch_results:
+                                if res.success:
+                                    final_results.append(res)
+                                    # No need to put batch since these are just re-labeled/not cached or already cached?
+                                    # Wait, earlier loop for parallel didn't update cache for unlabeled_rows either, just final_results logic?
+                                    # Ah, unlabeled_rows are just partials being completed for final results.
+                                    # Wait, lines 712-720 didn't show what happens to results.
+                                    # Looking at previous view:
+                                    #  for res in batch_results:
+                                    #       if res.success:
+                                    #            final_results.append(res)
+                                    # It didn't put to cache. So that matches my sequential logic.
+                            progress.update(task, advance=len(batch_results))
 
                         for res in batch_results:
                             if res.success:
@@ -839,4 +918,36 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    if os.environ.get("TRAIN_PROFILE"):
+        import cProfile
+        import pstats
+
+        profiler = cProfile.Profile()
+        profiler.enable()
+        try:
+            main()
+        finally:
+            profiler.disable()
+            profile_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
+            os.makedirs(profile_dir, exist_ok=True)
+
+            # Write .pstats
+            pstats_file = os.path.join(profile_dir, f"label_{os.getpid()}.pstats")
+            profiler.dump_stats(pstats_file)
+
+            # Write summary
+            summary_file = os.path.join(profile_dir, f"label_{os.getpid()}.txt")
+            with open(summary_file, "w") as f:
+                stats = pstats.Stats(profiler, stream=f)
+                stats.sort_stats("cumulative")
+                f.write("TOP 50 BY CUMULATIVE TIME\n")
+                f.write("=" * 80 + "\n")
+                stats.print_stats(50)
+
+                f.write("\n" + "=" * 80 + "\n")
+                f.write("TOP 50 BY TOTAL TIME (self)\n")
+                f.write("=" * 80 + "\n")
+                stats.sort_stats("tottime")
+                stats.print_stats(50)
+    else:
+        main()
