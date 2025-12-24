@@ -82,6 +82,7 @@ class TestTrainStyleScript(unittest.TestCase):
                         # Model Output
                         "[models]/style-support/training.log ADDED",
                         "[models]/style-support/checkpoint.pt ADDED",
+                        "[models]/style-support/checkpoint_optim.pt ADDED",
                         "[models]/style-support/config.json ADDED",
                         "[models]/style-support/tokenizer.json ADDED",
                         "[models]/style/model.pt ADDED",
@@ -111,6 +112,7 @@ class TestTrainStyleScript(unittest.TestCase):
                         # Training artifacts should be modified
                         "[models]/style-support/training.log MODIFIED",
                         "[models]/style-support/checkpoint.pt MODIFIED",
+                        "[models]/style-support/checkpoint_optim.pt MODIFIED",
                         "[models]/style-support/config.json MODIFIED",
                         "[models]/style-support/tokenizer.json MODIFIED",
                         # Model output should be updated
@@ -169,6 +171,55 @@ class TestTrainStyleScript(unittest.TestCase):
 
                     model_path = bottle.get_file("[models]/style/model.pt")
                     bottle.assertModelIsFp8(model_path)
+
+    def test_auto_resume(self):
+        """Verifies auto-resume affects *training*, not just printing."""
+        COMMON_ARGS = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
+
+        with Bottle(self) as bottle:
+            bottle.populate_test_data()
+
+            # 0) Prepare cache/vocab once
+            bottle.train_style("--label")
+
+            checkpoint_path = bottle.resolve_path(
+                "[models]/style-support/checkpoint.pt"
+            )
+
+            # Case A: No checkpoint, no flags => train 1 epoch only
+            result = bottle.train_style(
+                f"--epochs 1 --no-label --no-confusion {COMMON_ARGS}"
+            )
+            bottle.assertEpochsTrained(result, [1])
+            self.assertNotIn("Auto-resume enabled", result.stdout)
+
+            # Case B: Checkpoint exists (epoch 1), no flags => SHOULD auto-resume to epoch 2
+            self.assertTrue(
+                os.path.exists(checkpoint_path), "Expected checkpoint after training"
+            )
+            result = bottle.train_style(
+                f"--epochs 2 --no-label --no-confusion {COMMON_ARGS}"
+            )
+            # If auto-resume works, it sees epoch 1 done, trains epoch 2.
+            bottle.assertEpochsTrained(result, [2])
+            self.assertIn("Auto-resume enabled", result.stdout)
+
+            # Case C: Checkpoint exists, --retrain => should NOT auto-resume; trains [1,2] from scratch
+            result = bottle.train_style(
+                f"--epochs 2 --no-label --no-confusion {COMMON_ARGS} --retrain"
+            )
+            bottle.assertEpochsTrained(result, [1, 2])
+            self.assertNotIn("Auto-resume enabled", result.stdout)
+            self.assertIn("Retrain:        from scratch", result.stdout)
+
+            # Case D: Checkpoint exists (epoch 2 now), explicit --resume => trains [3] if we ask for 3
+            # We must increase epochs to verify resume works from the new state
+            result = bottle.train_style(
+                f"--epochs 3 --no-label --no-confusion {COMMON_ARGS} --resume"
+            )
+            bottle.assertEpochsTrained(result, [3])
+            self.assertNotIn("Auto-resume enabled", result.stdout)
+            self.assertIn("Resume:         from checkpoint", result.stdout)
 
 
 if __name__ == "__main__":

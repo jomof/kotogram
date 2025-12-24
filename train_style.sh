@@ -61,6 +61,12 @@ setup_environment
 # Optimize: Load all locations in one python call
 eval "$(python3 -m scripts.locations shell-env)"
 
+echo "Resolved by locations.py:"
+echo "  CACHE_DIR:   $CACHE_DIR"
+echo "  SUPPORT_DIR: $SUPPORT_DIR"
+echo "  MODELS_DIR:  $MODELS_DIR"
+echo ""
+
 DATA_PATH="$DATA_DIR/jpn_sentences*.tsv"  # Filtered to exclude known errors
 AGRAMMATIC_SENTENCES_PATH=""
 AGRAMMATIC_PATTERN="$DATA_DIR/jpn_agrammatic*.tsv"
@@ -359,6 +365,13 @@ COMBINED_AGRAM_FILE="$CACHE_DIR/agrammatic_combined.tsv"
 
 mkdir -p "$CACHE_DIR"
 mkdir -p "$SUPPORT_DIR"
+
+# Auto-resume if a checkpoint exists, unless user explicitly requested retrain
+CHECKPOINT_PATH="$SUPPORT_DIR/checkpoint.pt"
+if [ -z "$RESUME" ] && [ -z "$RETRAIN" ] && [ -f "$CHECKPOINT_PATH" ]; then
+    RESUME="--resume"
+    echo "Auto-resume enabled (found checkpoint: $CHECKPOINT_PATH)"
+fi
 
 # Store patterns for later use
 GRAM_DATA_PATTERN="$DATA_PATH"

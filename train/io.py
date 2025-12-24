@@ -102,8 +102,6 @@ def save_checkpoint(
     checkpoint = {
         "epoch": epoch,
         "model_state_dict": model.state_dict(),
-        "optimizer_state_dict": optimizer.state_dict(),
-        "scheduler_state_dict": scheduler.state_dict(),
         "history": history,
         "best_val_loss": best_val_loss,
         "patience_counter": patience_counter,
@@ -111,6 +109,13 @@ def save_checkpoint(
         "args": vars(args) if hasattr(args, "__dict__") else args,
     }
     torch.save(checkpoint, os.path.join(path, "checkpoint.pt"))
+
+    # Save optimizer/scheduler state separately
+    checkpoint_optim = {
+        "optimizer_state_dict": optimizer.state_dict(),
+        "scheduler_state_dict": scheduler.state_dict(),
+    }
+    torch.save(checkpoint_optim, os.path.join(path, "checkpoint_optim.pt"))
 
     # Also save tokenizer and config
     tokenizer.save(os.path.join(path, "tokenizer.json"))
@@ -135,6 +140,12 @@ def load_checkpoint(
 
     # Load checkpoint
     checkpoint = torch.load(checkpoint_path, map_location=device or "cpu")
+
+    # Load optimizer state if available
+    optim_path = os.path.join(path, "checkpoint_optim.pt")
+    if os.path.exists(optim_path):
+        optim_checkpoint = torch.load(optim_path, map_location=device or "cpu")
+        checkpoint.update(optim_checkpoint)
 
     # Reconstruct model
     model = StyleClassifier(config)
