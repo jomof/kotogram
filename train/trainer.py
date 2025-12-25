@@ -102,6 +102,7 @@ class StyleClassifierWithMLM(StyleClassifier):
         attention_mask: Optional[torch.Tensor] = None,
         temperature: Optional[float] = None,
         gumbel_scale: Optional[float] = None,
+        grad_cap: Optional[float] = None,
     ) -> Dict[str, Any]:
         pooled = self._get_pooled_output(field_inputs, attention_mask)
 
@@ -120,18 +121,38 @@ class StyleClassifierWithMLM(StyleClassifier):
 
         # Apply Gumbel Noise for Top-K Selection (Training Only)
         # We use noisy logits for selection, but return clean logits for regularization
-        logits_for_selection = kc_logits_raw
         if gumbel_scale is not None and gumbel_scale > 0 and self.training:
             # Round 12: Clamp u away from {0,1} to prevent inf/nan in log
             u = torch.rand_like(kc_logits_raw).clamp_(1e-6, 1 - 1e-6)
             g = -torch.log(-torch.log(u))
-            logits_for_selection = kc_logits_raw + gumbel_scale * g
+            logits_select = kc_logits_raw + gumbel_scale * g
+        else:
+            logits_select = kc_logits_raw
 
-        # Round 12: Clamp logits to prevent sigmoid saturation and gradient spikes
-        logits_for_selection = logits_for_selection.clamp(min=-20.0, max=20.0)
+        # Round 14: Gradient capping via hook on primary logits Path
+        if self.training and grad_cap is not None:
+            if kc_logits_raw.requires_grad:
+                kc_logits_raw.register_hook(
+                    lambda grad: grad.clamp(min=-grad_cap, max=grad_cap)
+                )
+
+        # Round 14: Split clamping logic (Stability Hardening)
+        # 1. Path for Selection/Probabilities (Sigmoid)
+        # We want to prevent sigmoid saturation and large gradients.
+        logits_select = logits_select.clamp(min=-12.0, max=12.0)
+        
+        # 2. Path for Diversity Regularizer (Usage)
+        # We want to prevent rare large logits from dominating the softmax mean.
+        # Note: this is stored in outputs now, to be retrieved in train_epoch.
+        logits_usage = kc_logits_raw.clamp(min=-8.0, max=8.0)
 
         # Compute probs from (possibly noisy) logits
-        kc_probs = torch.sigmoid(logits_for_selection / cur_temp)
+        cur_temp = (
+            temperature
+            if temperature is not None
+            else getattr(self.config, "kc_temperature", 1.0)
+        )
+        kc_probs = torch.sigmoid(logits_select / cur_temp)
 
         # Round 12: Guard against any non-finite values before topk
         kc_probs = torch.nan_to_num(kc_probs, nan=0.0, posinf=1.0, neginf=0.0)
@@ -139,6 +160,10 @@ class StyleClassifierWithMLM(StyleClassifier):
         # Get top-k
         k = getattr(self.config, "kc_topk", 8)
         topk_vals, topk_inds = torch.topk(kc_probs, k, dim=-1)
+        
+        # Round 14: Clamp topk_vals to 0.80 (Hard ceiling on confidence)
+        # This prevents deterministic "locking" where a KC gets 1.0 and stops exploring.
+        topk_vals = topk_vals.clamp(max=0.80)
 
         # Create sparse activation (everything else zero)
         # We start with zeros and scatter the top-k values back
@@ -149,8 +174,9 @@ class StyleClassifierWithMLM(StyleClassifier):
 
         return {
             "kc_logits": kc_logits,
-            "kc_logits_raw": kc_logits_raw,  # Clean logits for usage reg
-            "kc_probs": kc_probs,  # Probabilities used for selection
+            "kc_logits_raw": kc_logits_raw,
+            "logits_usage": logits_usage,  # Round 14: Passed for use in train_epoch
+            "kc_probs": kc_probs,
             "sparse_activations": sparse_activations,
             "topk_vals": topk_vals,
             "topk_inds": topk_inds,
@@ -278,7 +304,14 @@ def create_kc_batch(
     B = int(attn.size(0))
 
     for name, vocab_size in target_specs.items():
-        input_key = f"input_ids_{name}"
+        # Strip prefixes for multi-task heads (bag_lemma -> lemma)
+        field_name = name
+        if "_" in name:
+            parts = name.split("_")
+            if parts[0] in ["bag", "tail", "ngram", "prefix"]:
+                field_name = "_".join(parts[1:])
+        
+        input_key = f"input_ids_{field_name}"
         if input_key not in batch:
             continue
 
@@ -714,6 +747,11 @@ class KCTrainer:
         self.kc_show_grad_norms = bool(kc_config.get("show_grad_norms", False))
         self.kc_show_amp_details = bool(kc_config.get("show_amp_details", False))
 
+        # Round 14 Stability Hardening Params
+        self.kc_grad_cap = float(kc_config.get("kc_grad_cap", 5.0))
+        self.kc_pos_weight_cap = float(kc_config.get("pos_weight_cap", 50.0))
+        self.kc_pos_weight_eps = float(kc_config.get("pos_weight_eps", 1e-6))
+
         # Override if global log_level is debug
         if self.kc_log_level == "debug":
             self.kc_show_epoch_table = True
@@ -885,15 +923,25 @@ class KCTrainer:
                 target_specs=m.config.kc_target_specs,
             )
 
-            for name in m.config.kc_target_specs.keys():
-                key = f"kc_targets_{name}"
-                if key not in kc_targets:
-                    continue
-                # Compute per-head, per-batch density
-                t = kc_targets[key].float()
-                p = t.mean().item()
-                sums[name] = sums.get(name, 0.0) + p
-                counts[name] = counts.get(name, 0) + 1
+            for name, vocab_size in m.config.kc_target_specs.items():
+                dense_key = f"kc_targets_{name}"
+                mask_key = f"kc_pos_mask_{name}"
+                
+                if dense_key in kc_targets:
+                    # Dense path (small heads)
+                    t = kc_targets[dense_key].float()
+                    p = t.mean().item()
+                    sums[name] = sums.get(name, 0.0) + p
+                    counts[name] = counts.get(name, 0) + 1
+                elif mask_key in kc_targets:
+                    # Sparse path (large heads like lemma)
+                    # p = (num_pos) / (B * V)
+                    pos_mask_t = kc_targets[mask_key]
+                    B = pos_mask_t.size(0)
+                    num_pos = pos_mask_t.sum().item()
+                    p = num_pos / (B * vocab_size)
+                    sums[name] = sums.get(name, 0.0) + p
+                    counts[name] = counts.get(name, 0) + 1
 
         # Apply logit initialization to biases
         # Round 6: DDP Sync
@@ -1241,6 +1289,7 @@ class KCTrainer:
                     mode="kc",
                     temperature=t_val,
                     gumbel_scale=gumbel_scale,
+                    grad_cap=self.kc_grad_cap,
                 )
 
                 # --- Round 11: Forward output NaN detection + recovery ---
@@ -1403,87 +1452,150 @@ class KCTrainer:
                             # Helper to compute single-head stats
                             def get_head_stat(name: str) -> Dict[str, Any]:
                                 logits = outputs["target_logits"][name]
-                                target_key = f"kc_targets_{name}"
-                                if target_key not in batch:
+                                
+                                # Round 15: Handle both dense and sparse target formats
+                                dense_key = f"kc_targets_{name}"
+                                pos_key = f"kc_pos_inds_{name}"
+                                mask_key = f"kc_pos_mask_{name}"
+                                
+                                if dense_key in batch:
+                                    # Dense path (small heads)
+                                    t = batch[dense_key].to(self.device).float()
+                                    is_sparse = False
+                                elif pos_key in batch and mask_key in batch:
+                                    # Sparse path (large heads like lemma)
+                                    pos_inds = batch[pos_key].to(self.device)
+                                    pos_mask_t = batch[mask_key].to(self.device)
+                                    is_sparse = True
+                                else:
                                     return {}
-                                t = batch[target_key].to(self.device).float()
+                                
                                 with torch.no_grad():
-                                    pos = t.sum()
-                                    total = t.numel()
-                                    p = (pos / (total + self.kc_pos_weight_eps)).clamp(
-                                        min=self.kc_pos_weight_eps,
-                                        max=1.0 - self.kc_pos_weight_eps,
-                                    )
-                                    pos_w = ((1.0 - p) / p).clamp(
-                                        min=1.0, max=self.kc_pos_weight_cap
-                                    )
-
-                                    probs = torch.sigmoid(logits)
-                                    p_avg = probs.mean().item()
-
-                                    # AUC (subsampled)
-                                    auc = 0.0
-                                    pos_mask = t > 0.5
-                                    neg_mask = ~pos_mask
-                                    if pos_mask.any() and neg_mask.any():
-                                        # Simple subsample for display speed
-                                        max_s = 1000
-                                        idx_p = torch.where(pos_mask.view(-1))[0]
-                                        idx_n = torch.where(neg_mask.view(-1))[0]
-                                        if idx_p.numel() > max_s:
-                                            idx_p = idx_p[:max_s]
-                                        if idx_n.numel() > max_s:
-                                            idx_n = idx_n[:max_s]
-
-                                        sp = torch.cat(
-                                            [
-                                                probs.view(-1)[idx_p],
-                                                probs.view(-1)[idx_n],
-                                            ]
+                                    if is_sparse:
+                                        # Compute stats from sparse format
+                                        B = pos_inds.size(0)
+                                        vocab_size = logits.size(1)
+                                        n_pos = pos_mask_t.sum().item()
+                                        total = B * vocab_size
+                                        p = (n_pos / (total + self.kc_pos_weight_eps))
+                                        p = max(self.kc_pos_weight_eps, min(p, 1.0 - self.kc_pos_weight_eps))
+                                        pos_w = min(self.kc_pos_weight_cap, max(1.0, (1.0 - p) / p))
+                                        
+                                        probs = torch.sigmoid(logits)
+                                        p_avg = probs.mean().item()
+                                        
+                                        # AUC from sparse indices (subsample)
+                                        auc = 0.0
+                                        pos_logits_list = []
+                                        neg_logits_list = []
+                                        for i in range(min(B, 4)):
+                                            valid_inds = pos_inds[i, pos_mask_t[i]]
+                                            if valid_inds.numel() > 0:
+                                                pos_logits_list.extend(probs[i, valid_inds].cpu().tolist())
+                                            neg_inds = torch.randint(4, vocab_size, (50,), device=self.device)
+                                            neg_logits_list.extend(probs[i, neg_inds].cpu().tolist())
+                                        
+                                        if pos_logits_list and neg_logits_list:
+                                            pos_t = torch.tensor(pos_logits_list[:500], device=self.device)
+                                            neg_t = torch.tensor(neg_logits_list[:500], device=self.device)
+                                            sp = torch.cat([pos_t, neg_t])
+                                            sl = torch.cat([
+                                                torch.ones(len(pos_t), device=self.device),
+                                                torch.zeros(len(neg_t), device=self.device)
+                                            ])
+                                            comb = torch.stack([sp, sl], dim=1)
+                                            idx = torch.argsort(comb[:, 0])
+                                            sl_s = comb[idx, 1]
+                                            ranks = torch.arange(1, sl_s.numel() + 1, device=self.device).float()
+                                            pos_rank_sum = (ranks * sl_s).sum().item()
+                                            n_pos_auc, n_neg_auc = len(pos_t), len(neg_t)
+                                            if n_pos_auc > 0 and n_neg_auc > 0:
+                                                auc = (pos_rank_sum - n_pos_auc * (n_pos_auc + 1) / 2) / (n_pos_auc * n_neg_auc)
+                                        
+                                        # Delta loss (use sampled approach)
+                                        delta = 0.0  # Skip detailed delta for sparse heads
+                                        
+                                    else:
+                                        # Dense path (original code)
+                                        pos = t.sum()
+                                        total = t.numel()
+                                        p = (pos / (total + self.kc_pos_weight_eps)).clamp(
+                                            min=self.kc_pos_weight_eps,
+                                            max=1.0 - self.kc_pos_weight_eps,
                                         )
-                                        sl = torch.cat(
-                                            [
-                                                torch.ones(
-                                                    idx_p.numel(), device=self.device
-                                                ),
-                                                torch.zeros(
-                                                    idx_n.numel(), device=self.device
-                                                ),
-                                            ]
+                                        pos_w = ((1.0 - p) / p).clamp(
+                                            min=1.0, max=self.kc_pos_weight_cap
                                         )
 
-                                        # Rank AUC
-                                        comb = torch.stack([sp, sl], dim=1)
-                                        idx = torch.argsort(comb[:, 0])
-                                        sl_s = comb[idx, 1]
-                                        ranks = torch.arange(
-                                            1, sl_s.numel() + 1, device=self.device
-                                        ).float()
-                                        pos_rank_sum = (ranks * sl_s).sum().item()
-                                        n_pos, n_neg = idx_p.numel(), idx_n.numel()
-                                        auc = (
-                                            pos_rank_sum - n_pos * (n_pos + 1) / 2
-                                        ) / (n_pos * n_neg)
+                                        probs = torch.sigmoid(logits)
+                                        p_avg = probs.mean().item()
 
-                                    # Delta Loss
-                                    bias_used = logits.mean().item()
-                                    import torch.nn.functional as F
+                                        # AUC (subsampled)
+                                        auc = 0.0
+                                        pos_mask = t > 0.5
+                                        neg_mask = ~pos_mask
+                                        if pos_mask.any() and neg_mask.any():
+                                            # Simple subsample for display speed
+                                            max_s = 1000
+                                            idx_p = torch.where(pos_mask.view(-1))[0]
+                                            idx_n = torch.where(neg_mask.view(-1))[0]
+                                            if idx_p.numel() > max_s:
+                                                idx_p = idx_p[:max_s]
+                                            if idx_n.numel() > max_s:
+                                                idx_n = idx_n[:max_s]
 
-                                    pw = torch.tensor(pos_w.item(), device=self.device)
-                                    hl = F.binary_cross_entropy_with_logits(
-                                        logits, t, pos_weight=pw
-                                    ).item()
-                                    pl = F.binary_cross_entropy_with_logits(
-                                        torch.full_like(logits, bias_used),
-                                        t,
-                                        pos_weight=pw,
-                                    ).item()
-                                    delta = hl - pl
+                                            sp = torch.cat(
+                                                [
+                                                    probs.view(-1)[idx_p],
+                                                    probs.view(-1)[idx_n],
+                                                ]
+                                            )
+                                            sl = torch.cat(
+                                                [
+                                                    torch.ones(
+                                                        idx_p.numel(), device=self.device
+                                                    ),
+                                                    torch.zeros(
+                                                        idx_n.numel(), device=self.device
+                                                    ),
+                                                ]
+                                            )
+
+                                            # Rank AUC
+                                            comb = torch.stack([sp, sl], dim=1)
+                                            idx = torch.argsort(comb[:, 0])
+                                            sl_s = comb[idx, 1]
+                                            ranks = torch.arange(
+                                                1, sl_s.numel() + 1, device=self.device
+                                            ).float()
+                                            pos_rank_sum = (ranks * sl_s).sum().item()
+                                            n_pos, n_neg = idx_p.numel(), idx_n.numel()
+                                            auc = (
+                                                pos_rank_sum - n_pos * (n_pos + 1) / 2
+                                            ) / (n_pos * n_neg)
+
+                                        # Delta Loss
+                                        bias_used = logits.mean().item()
+                                        import torch.nn.functional as F
+
+                                        pw = torch.tensor(pos_w.item(), device=self.device)
+                                        hl = F.binary_cross_entropy_with_logits(
+                                            logits, t, pos_weight=pw
+                                        ).item()
+                                        pl = F.binary_cross_entropy_with_logits(
+                                            torch.full_like(logits, bias_used),
+                                            t,
+                                            pos_weight=pw,
+                                        ).item()
+                                        delta = hl - pl
+                                        
+                                        p = p.item()
+                                        pos_w = pos_w.item()
 
                                 return {
                                     "name": name,
-                                    "p": p.item(),
-                                    "pos_w": pos_w.item(),
+                                    "p": p if isinstance(p, float) else p,
+                                    "pos_w": pos_w if isinstance(pos_w, float) else pos_w,
                                     "p_avg": p_avg,
                                     "auc": auc,
                                     "delta": delta,
@@ -1509,7 +1621,7 @@ class KCTrainer:
                                 if s:
                                     other_stats.append(s)
 
-                            other_stats.sort(key=lambda x: str(x.get("p", 0)))
+                            other_stats.sort(key=lambda x: float(x.get("p", 0.0)))
                             selected_stats.extend(other_stats[:2])  # Take 2 rarest
 
                             logits = outputs["kc_logits"]
@@ -1709,12 +1821,8 @@ class KCTrainer:
                     # ROUND 5: OPINIONATED STABILITY FIXES
                     # ------------------------------------------------------------------
                     # Step 2: Regularize USAGE (Softmax), not Probabilities (Sigmoid)
-                    logits_raw = outputs["kc_logits_raw"]
-
-                    # Round 8: Stability clamp - prevents rare large logits from dominating
-                    # the batch usage distribution. This only affects the regularizer path (q/p),
-                    # not the forward selection itself.
-                    logits_usage = logits_raw.clamp(min=-8.0, max=8.0)
+                    # Round 14: Use split-clamped logits_usage from forward_kc
+                    logits_usage = outputs.get("logits_usage", outputs["kc_logits_raw"])
 
                     tau_usage = 1.0 if epoch < self.freeze_encoder_epochs else 2.0
 
@@ -1851,12 +1959,20 @@ class KCTrainer:
                 if loss.item() == 0.0 and loss.requires_grad:
                     pass
 
-            # --- Round 10: NaN/Inf guard: never backprop a non-finite loss ---
+            # --- Round 14: NaN/Inf guard: never backprop if key tensors are non-finite ---
+            nonfinite_reason = None
             if not torch.isfinite(loss):
+                nonfinite_reason = "loss"
+            elif not torch.isfinite(outputs.get("kc_probs", torch.tensor(0.0))).all():
+                nonfinite_reason = "kc_probs"
+            elif not torch.isfinite(outputs.get("topk_vals", torch.tensor(0.0))).all():
+                nonfinite_reason = "topk_vals"
+
+            if nonfinite_reason:
                 if is_main_process():
                     kc_logits_raw = outputs.get("kc_logits_raw", None)
                     kc_probs = outputs.get("kc_probs", None)
-                    msg = f"  [KC][NON-FINITE LOSS] epoch={epoch} batch={batch_idx} loss={loss.item()}"
+                    msg = f"  [KC][NON-FINITE {nonfinite_reason.upper()}] epoch={epoch} batch={batch_idx} loss={loss.item()}"
                     if kc_logits_raw is not None:
                         msg += f" raw[min={kc_logits_raw.min().item():.3g} max={kc_logits_raw.max().item():.3g}]"
                     if kc_probs is not None:
@@ -2828,34 +2944,68 @@ class Trainer:
                         if head_name not in outputs["target_logits"]:
                             continue
                         logits_h = outputs["target_logits"][head_name]
-                        target_key = f"kc_targets_{head_name}"
-                        if target_key not in kc_targets:
-                            continue
-                        targets_h = kc_targets[target_key].to(self.device).float()
+                        
+                        # Round 15: Handle both dense and sparse target formats
+                        dense_key = f"kc_targets_{head_name}"
+                        pos_key = f"kc_pos_inds_{head_name}"
+                        mask_key = f"kc_pos_mask_{head_name}"
+                        
+                        if dense_key in kc_targets:
+                            # Dense path (small heads)
+                            targets_h = kc_targets[dense_key].to(self.device).float()
 
-                        # Update head stats
-                        hs = head_samples[head_name]
-                        hs["p_sum"] += targets_h.sum().item()
-                        hs["count"] += targets_h.numel()
+                            # Update head stats
+                            hs = head_samples[head_name]
+                            hs["p_sum"] += targets_h.sum().item()
+                            hs["count"] += targets_h.numel()
 
-                        # Sample pos and neg logits for AUC
-                        pos_mask = targets_h > 0.5
-                        neg_mask = ~pos_mask
+                            # Sample pos and neg logits for AUC
+                            pos_mask = targets_h > 0.5
+                            neg_mask = ~pos_mask
 
-                        if len(hs["pos_logits"]) < max_samples_per_head:
-                            pos_logits = logits_h[pos_mask].cpu().tolist()
-                            hs["pos_logits"].extend(
-                                pos_logits[
-                                    : max_samples_per_head - len(hs["pos_logits"])
-                                ]
-                            )
-                        if len(hs["neg_logits"]) < max_samples_per_head:
-                            neg_logits = logits_h[neg_mask].cpu().tolist()
-                            hs["neg_logits"].extend(
-                                neg_logits[
-                                    : max_samples_per_head - len(hs["neg_logits"])
-                                ]
-                            )
+                            if len(hs["pos_logits"]) < max_samples_per_head:
+                                pos_logits = logits_h[pos_mask].cpu().tolist()
+                                hs["pos_logits"].extend(
+                                    pos_logits[
+                                        : max_samples_per_head - len(hs["pos_logits"])
+                                    ]
+                                )
+                            if len(hs["neg_logits"]) < max_samples_per_head:
+                                neg_logits = logits_h[neg_mask].cpu().tolist()
+                                hs["neg_logits"].extend(
+                                    neg_logits[
+                                        : max_samples_per_head - len(hs["neg_logits"])
+                                    ]
+                                )
+                        elif pos_key in kc_targets and mask_key in kc_targets:
+                            # Sparse path (large heads like lemma)
+                            pos_inds = kc_targets[pos_key].to(self.device)
+                            pos_mask_t = kc_targets[mask_key].to(self.device)
+                            
+                            hs = head_samples[head_name]
+                            B = pos_inds.size(0)
+                            vocab_size = logits_h.size(1)
+                            
+                            # Count positives
+                            n_pos = pos_mask_t.sum().item()
+                            n_total = B * vocab_size
+                            hs["p_sum"] += n_pos
+                            hs["count"] += n_total
+                            
+                            # Sample pos logits from sparse indices
+                            if len(hs["pos_logits"]) < max_samples_per_head:
+                                for i in range(min(B, 4)):  # Sample from first 4 batch items
+                                    valid_inds = pos_inds[i, pos_mask_t[i]]
+                                    if valid_inds.numel() > 0:
+                                        pos_log = logits_h[i, valid_inds].cpu().tolist()
+                                        hs["pos_logits"].extend(pos_log[:max_samples_per_head - len(hs["pos_logits"])])
+                            
+                            # Sample neg logits (random indices not in positives)
+                            if len(hs["neg_logits"]) < max_samples_per_head:
+                                for i in range(min(B, 4)):
+                                    neg_inds = torch.randint(4, vocab_size, (50,), device=self.device)
+                                    neg_log = logits_h[i, neg_inds].cpu().tolist()
+                                    hs["neg_logits"].extend(neg_log[:max_samples_per_head - len(hs["neg_logits"])])
 
         # DDP sync if needed
         if self.is_distributed:
