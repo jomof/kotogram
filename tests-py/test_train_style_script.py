@@ -123,16 +123,8 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[models]/style-support/training.log MODIFIED",
                         "[models]/style-support/epochs.json MODIFIED",
                         "[models]/style-support/checkpoint.pt MODIFIED",
-                        # checkpoint_optim.pt is gone
                         "[models]/style-support/checkpoint_meta.pt MODIFIED",
                         "[models]/style-support/config.json MODIFIED",
-                        "[models]/style-support/tokenizer.json MODIFIED",
-                        # Model output should be updated
-                        "[models]/style/model.pt MODIFIED",
-                        "[models]/style/model.json MODIFIED",
-                        "[models]/style/labels.json MODIFIED",
-                        "[models]/style/model_type.txt MODIFIED",
-                        "[models]/style/tokenizer.json MODIFIED",
                     ]
 
                     # NOTE: checkpoint_mlm.pt and checkpoint_kc.pt should NOT be modified

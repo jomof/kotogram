@@ -330,6 +330,14 @@ if __name__ == "__main__":
     # Create a single TrainerConfig and ModelConfig
     if args.config:
         model_config, trainer_config = TrainerConfig.load_config(args.config)
+
+        # Override resume_from if --resume flag is present but not in config
+        # This handles auto-resume from the wrapper while keeping config.json stable
+        if args.resume and not trainer_config.checkpoint.resume_from:
+            # type: ignore[misc]
+            object.__setattr__(
+                trainer_config.checkpoint, "resume_from", args.support_dir
+            )
     else:
         print(
             "ERROR: --config is required. Configuration must be passed from the wrapper script.",
@@ -337,14 +345,9 @@ if __name__ == "__main__":
         )
         sys.exit(1)
 
-    # Round 17: Save unified config and tokenizer to support_dir
+    # Tokenizer may need to be saved to support_dir for checkpoint loading
     if is_main_process():
         os.makedirs(args.support_dir, exist_ok=True)
-        # Combine model and trainer config into one prettified JSON
-        combined_config = model_config.to_dict()
-        combined_config["trainer"] = trainer_config.to_dict()
-        with open(os.path.join(args.support_dir, "config.json"), "w") as f:
-            json.dump(combined_config, f, indent=2)
         tokenizer.save(os.path.join(args.support_dir, "tokenizer.json"))
 
     # Initialize model if not already loaded from checkpoint

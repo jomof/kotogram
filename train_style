@@ -250,6 +250,9 @@ def main() -> int:
     # Auto-resume logic
     checkpoint_path = os.path.join(support_dir, "checkpoint.pt")
     auto_resume = False
+    # Capture original --resume flag value before auto-resume may modify it
+    # Used for config generation to keep config stable across runs
+    explicit_resume = args.resume
     if not args.resume and not args.retrain and os.path.exists(checkpoint_path):
         args.resume = True
         auto_resume = True
@@ -447,7 +450,7 @@ def main() -> int:
         "grad_accum_steps": grad_accum_steps,
         "checkpoint": CheckpointConfig(
             dir=support_dir,
-            resume_from=support_dir if args.resume else None,
+            resume_from=support_dir if explicit_resume else None,
         ),
         "hardware": HardwareConfig(
             cpu_reserve_cores=env.get("CPU_RESERVE_CORES", 2),
