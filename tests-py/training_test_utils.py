@@ -180,7 +180,7 @@ class Bottle:
         self.project_root = os.path.abspath(
             os.path.join(os.path.dirname(__file__), "..")
         )
-        self.script_path = os.path.join(self.project_root, "train_style.sh")
+        self.script_path = os.path.join(self.project_root, "train_style")
         self.temp_dir = tempfile.TemporaryDirectory()
         self.root_dir = self.temp_dir.name
         self._snapshots: Dict[str, Dict[str, Tuple[float, int]]] = {}
