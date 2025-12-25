@@ -366,6 +366,9 @@ def main() -> None:
         help="Number of workers for DataLoader (default: 0 on MPS/CPU, 4 on CUDA)",
     )
     parser.add_argument("--percent", type=float, help="Percentage of data to use")
+    parser.add_argument(
+        "--config", type=str, default=None, help="Path to unified config.json file"
+    )
     # parser.add_argument("--cache-dir", type=str, default=".cache", help="Base directory for dataset cache") # Removed
 
     args = parser.parse_args()
@@ -377,6 +380,20 @@ def main() -> None:
     args.model_dir = locations.get_style_output_dir()
     args.data = os.path.join(cache_dir, "grammatic_combined.tsv")
     args.agrammatic_data = os.path.join(cache_dir, "agrammatic_combined.tsv")
+
+    from train.config import TrainerConfig
+
+    if args.config:
+        # Load unified config from file
+        model_config, trainer_config = TrainerConfig.load_config(args.config)
+        # Use batch size from config if not explicitly set to something else?
+        # Actually, let's just use what's in the config by default, but allow override.
+        # But if the user didn't specify --batch-size, args.batch_size will be 512.
+        # Let's check if it was changed from default.
+        # For now, let's just always prefer the config if it's there.
+        args.batch_size = trainer_config.batch_size
+        if trainer_config.dataloader.num_workers is not None:
+            args.num_workers = trainer_config.dataloader.num_workers
 
     # Restore percent from checkpoint if not explicitly provided
     checkpoint_path = os.path.join(args.support_dir, "checkpoint.pt")

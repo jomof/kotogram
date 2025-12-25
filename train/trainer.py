@@ -23,7 +23,12 @@ from kotogram.model import (
     StyleClassifier,
 )
 from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
-from train.config import TrainerConfig
+from train.config import (
+    DataLoaderConfig,
+    TrainerConfig,
+    _safe_configure_threads,
+    configure_runtime_thread_limits,
+)
 from train.dataset import StyleDataset, collate_fn
 from train.io import (
     load_training_state,
@@ -41,85 +46,6 @@ from .display import (
 )
 
 
-def detect_cpu_cores() -> int:
-    """Returns number of CPU cores available."""
-    # os.cpu_count() can return None
-    count = os.cpu_count()
-    return count if count is not None else 4
-
-
-def detect_is_cuda() -> bool:
-    """Returns True if CUDA is available."""
-    return torch.cuda.is_available()
-
-
-def choose_workers(config: TrainerConfig) -> Dict[str, Any]:
-    """Auto-tunes DataLoader settings based on config and system state."""
-    settings: Dict[str, Any] = {}
-
-    # 1. num_workers
-    if config.dataloader_num_workers is not None:
-        workers = config.dataloader_num_workers
-    else:
-        cores = detect_cpu_cores()
-        reserve = config.cpu_reserve_cores if config.interactive_mode else 0
-        usable = max(1, cores - reserve)
-
-        if config.interactive_mode:
-            # Conservative: enough to overlap I/O but not starve the box
-            workers = min(4, max(1, usable // 4))
-        else:
-            # Normal: more aggressive
-            workers = min(8, max(2, usable // 2))
-
-    settings["num_workers"] = workers
-
-    # 2. pin_memory
-    if config.dataloader_pin_memory is not None:
-        settings["pin_memory"] = config.dataloader_pin_memory
-    else:
-        settings["pin_memory"] = detect_is_cuda()
-
-    # 3. persistent_workers
-    settings["persistent_workers"] = (
-        config.dataloader_persistent_workers and workers > 0
-    )
-
-    # 4. prefetch_factor
-    if workers > 0:
-        settings["prefetch_factor"] = config.dataloader_prefetch_factor
-    else:
-        settings["prefetch_factor"] = None
-
-    return settings
-
-
-def choose_torch_threads(config: TrainerConfig) -> Tuple[int, int]:
-    """Auto-tunes PyTorch threads based on config and system state.
-
-    Returns:
-        (intra_op_threads, inter_op_threads)
-    """
-    cores = detect_cpu_cores()
-    reserve = config.cpu_reserve_cores if config.interactive_mode else 0
-    usable = max(1, cores - reserve)
-
-    if config.torch_num_threads is not None:
-        t = config.torch_num_threads
-    else:
-        # Intra-op: primary computation threads
-        # If interactive, be more conservative (share with system)
-        t = max(1, usable // (2 if config.interactive_mode else 1))
-
-    if config.torch_num_interop_threads is not None:
-        it = config.torch_num_interop_threads
-    else:
-        # Inter-op: parallelism between independent ops
-        it = max(1, min(4, usable // 4))
-
-    return t, it
-
-
 def _worker_init_fn(_: int) -> None:
     """Worker initialization function to limit per-worker threads."""
     torch.set_num_threads(1)
@@ -129,14 +55,11 @@ def _worker_init_fn(_: int) -> None:
         pass  # Already set or parallel work started
 
 
-def _safe_configure_threads(config: TrainerConfig) -> None:
-    """Configures PyTorch threads safely, ignoring errors if already set."""
-    intra_threads, inter_threads = choose_torch_threads(config)
-    torch.set_num_threads(intra_threads)
-    try:
-        torch.set_num_interop_threads(inter_threads)
-    except RuntimeError:
-        pass  # Already set or parallel work started
+def is_main_process() -> bool:
+    """Check if we are on the main process (rank 0)."""
+    if not dist.is_available() or not dist.is_initialized():
+        return True
+    return dist.get_rank() == 0
 
 
 GENDER_LOSS_WEIGHT = 10.0
@@ -333,142 +256,6 @@ def setup_distributed() -> Tuple[int, int, int]:
     return 0, 1, 0
 
 
-def configure_runtime_thread_limits(config: TrainerConfig) -> None:
-    """Set torch and environment thread limits to prevent oversubscription."""
-    try:
-        torch.set_num_threads(config.cpu_threads)
-        torch.set_num_interop_threads(config.interop_threads)
-    except RuntimeError:
-        # Already set or parallel work started, ignore
-        pass
-
-    if config.set_env_thread_limits:
-        for env_var in [
-            "OMP_NUM_THREADS",
-            "MKL_NUM_THREADS",
-            "OPENBLAS_NUM_THREADS",
-            "VECLIB_MAXIMUM_THREADS",
-            "NUMEXPR_NUM_THREADS",
-        ]:
-            if env_var not in os.environ:
-                os.environ[env_var] = str(config.cpu_threads)
-
-        if "TOKENIZERS_PARALLELISM" not in os.environ:
-            os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
-
-def is_main_process() -> bool:
-    """Check if we are on the main process (rank 0)."""
-    if not dist.is_available() or not dist.is_initialized():
-        return True
-    return dist.get_rank() == 0
-
-
-def get_safe_dataloader_config(
-    config: TrainerConfig, device: torch.device, mode: str = "train"
-) -> Dict[str, Any]:
-    """Determine safe and performant DataLoader settings based on environment and load."""
-    cpu_count = os.cpu_count() or 1
-    is_cuda = "cuda" in str(device)
-
-    # 1. Base Policy
-    if config.interactive_dataloader:
-        # Keep machine responsive in interactive sessions
-        if is_main_process() and mode == "train" and config.dataloader_show_config:
-            print(
-                "  [Safety] Interactive dataloader mode detected (SSH/tmux). Forces num_workers=0, pin_memory=False."
-            )
-        num_workers = 0
-        pin_memory = False
-        prefetch_factor = None
-        persistent_workers = False
-    elif is_cuda:
-        # Conservative defaults for CUDA
-        num_workers = min(4, max(2, cpu_count // 8))
-        if config.dataloader_num_workers_style is not None:
-            num_workers = config.dataloader_num_workers_style
-
-        pin_memory = (
-            config.dataloader_pin_memory
-            if config.dataloader_pin_memory is not None
-            else True
-        )
-        prefetch_factor = config.dataloader_prefetch_factor
-        persistent_workers = config.dataloader_persistent_workers and num_workers > 0
-    else:
-        # Avoid workers on non-CUDA to save overhead
-        num_workers = 0
-        pin_memory = False
-        prefetch_factor = None
-        persistent_workers = False
-
-    # 2. Evaluation adjustments
-    if mode == "val" and num_workers > 0:
-        num_workers = max(1, num_workers // 2)
-        prefetch_factor = 1
-
-    # 3. Safety Valve: Check system stress
-    stressed = False
-    reasons = []
-
-    # Load average check
-    try:
-        load1, _, _ = os.getloadavg()
-        if load1 > cpu_count * 1.5:
-            stressed = True
-            reasons.append(f"high load ({load1:.1f} > {cpu_count * 1.5:.1f})")
-    except (AttributeError, OSError):
-        pass
-
-    # Memory check (Linux only)
-    if os.path.exists("/proc/meminfo"):
-        try:
-            with open("/proc/meminfo", "r") as f:
-                meminfo = {
-                    line.split(":")[0]: int(line.split(":")[1].split()[0])
-                    for line in f
-                    if ":" in line
-                }
-            mem_available_kb = meminfo.get("MemAvailable", 0)
-            if mem_available_kb < 1024 * 1024:  # Less than 1GB available
-                stressed = True
-                reasons.append(f"low memory ({mem_available_kb // 1024}MB available)")
-        except Exception:
-            pass
-
-    # Downgrade if stressed
-    if stressed:
-        if num_workers > 1:
-            num_workers = max(1, num_workers // 2)
-        pin_memory = False
-        if prefetch_factor is not None:
-            prefetch_factor = 1
-
-        if is_main_process() and mode == "train":
-            reason_str = ", ".join(reasons)
-            print(
-                f"  [Safety] System stressed ({reason_str}). Downgraded DataLoader settings: "
-                f"workers={num_workers}, pin={pin_memory}, prefetch={prefetch_factor}"
-            )
-
-    settings = {
-        "num_workers": num_workers,
-        "pin_memory": pin_memory,
-        "persistent_workers": persistent_workers,
-    }
-    if prefetch_factor is not None and num_workers > 0:
-        settings["prefetch_factor"] = prefetch_factor
-
-    if config.dataloader_show_config and is_main_process() and mode == "train":
-        print(
-            f"  [Runtime] DataLoader ({mode}): workers={num_workers}, "
-            f"pin={pin_memory}, persistent={persistent_workers}, "
-            f"prefetch={prefetch_factor or 'default'}, threads={config.cpu_threads}"
-        )
-
-    return settings
-
-
 def create_mlm_batch(
     batch: Dict[str, torch.Tensor],
     mask_prob: float = 0.15,
@@ -598,6 +385,7 @@ class MLMTrainer:
         model: StyleClassifierWithMLM,
         dataset: StyleDataset,
         config: Optional[TrainerConfig] = None,
+        dl_config: Optional[DataLoaderConfig] = None,
         mask_prob: float = 0.15,
         args: Optional[Any] = None,
     ):
@@ -660,7 +448,12 @@ class MLMTrainer:
             else None
         )
 
-        dl_settings = get_safe_dataloader_config(self.config, self.device)
+        if dl_config is None:
+            # Fallback for compatibility/testing if not passed
+            dl_config = self.config.resolve_dataloader_config(
+                self.device, is_main_process()
+            )
+
         self.data_loader = DataLoader(
             dataset,
             batch_size=self.config.batch_size,
@@ -669,10 +462,10 @@ class MLMTrainer:
             collate_fn=partial(
                 collate_fn, pad_id=pad_id, max_seq_len=cast(Optional[int], max_seq_len)
             ),
-            num_workers=dl_settings["num_workers"],
-            pin_memory=dl_settings["pin_memory"],
-            persistent_workers=dl_settings["persistent_workers"],
-            prefetch_factor=dl_settings.get("prefetch_factor"),
+            num_workers=dl_config.num_workers,
+            pin_memory=dl_config.pin_memory,
+            persistent_workers=dl_config.persistent_workers,
+            prefetch_factor=dl_config.prefetch_factor,
             worker_init_fn=_worker_init_fn,
         )
 
@@ -690,11 +483,11 @@ class MLMTrainer:
 
     def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
         """Save training checkpoint."""
-        if not is_main_process() or self.config.checkpoint_dir is None:
+        if not is_main_process() or self.config.checkpoint.dir is None:
             return
 
         save_training_state(
-            path=self.config.checkpoint_dir,
+            path=self.config.checkpoint.dir,
             model=getattr(self.model, "module", self.model),
             optimizer=self.optimizer,
             epoch=epoch,
@@ -811,8 +604,8 @@ class MLMTrainer:
 
             # Round 17: Periodic checkpointing
             if (
-                self.config.checkpoint_every_n_steps
-                and self.global_step % self.config.checkpoint_every_n_steps == 0
+                self.config.checkpoint.every_n_steps
+                and self.global_step % self.config.checkpoint.every_n_steps == 0
             ):
                 self.save_checkpoint(self.start_epoch + epoch, batch_idx)
 
@@ -845,11 +638,11 @@ class MLMTrainer:
         verbose: bool = True,
         on_epoch_end: Optional[Callable[[Dict[str, Any]], None]] = None,
     ) -> Dict[str, Any]:
-        actual_epochs = epochs or self.config.epochs
+        actual_epochs = epochs or self.config.mlm_epochs
 
         # Round 17: Auto-resume
-        if self.config.resume_from:
-            self.restore_from_checkpoint(self.config.resume_from)
+        if self.config.checkpoint.resume_from:
+            self.restore_from_checkpoint(self.config.checkpoint.resume_from)
 
         for epoch in range(self.start_epoch, actual_epochs):
             if self.is_distributed:
@@ -936,6 +729,7 @@ class KCTrainer:
         model: StyleClassifierWithMLM,
         dataset: StyleDataset,
         config: Optional[TrainerConfig] = None,
+        dl_config: Optional[DataLoaderConfig] = None,
         kc_config: Optional[Dict[str, Any]] = None,
         args: Optional[Any] = None,
     ):
@@ -1012,17 +806,21 @@ class KCTrainer:
             else None
         )
 
-        dl_settings = choose_workers(self.config)
+        if dl_config is None:
+            dl_config = self.config.resolve_dataloader_config(
+                self.device, is_main_process()
+            )
+
         self.data_loader = DataLoader(
             dataset,
             batch_size=self.config.batch_size,
             shuffle=(self.sampler is None),
             sampler=self.sampler,
             collate_fn=partial(collate_fn, pad_id=pad_id, max_seq_len=max_seq_len),
-            num_workers=dl_settings["num_workers"],
-            pin_memory=dl_settings["pin_memory"],
-            persistent_workers=dl_settings["persistent_workers"],
-            prefetch_factor=dl_settings.get("prefetch_factor"),
+            num_workers=dl_config.num_workers,
+            pin_memory=dl_config.pin_memory,
+            persistent_workers=dl_config.persistent_workers,
+            prefetch_factor=dl_config.prefetch_factor,
             worker_init_fn=_worker_init_fn,
         )
         self._create_optimizer(freeze_encoder=True)
@@ -1126,11 +924,11 @@ class KCTrainer:
 
     def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
         """Save training checkpoint."""
-        if not is_main_process() or self.config.checkpoint_dir is None:
+        if not is_main_process() or self.config.checkpoint.dir is None:
             return
 
         save_training_state(
-            path=self.config.checkpoint_dir,
+            path=self.config.checkpoint.dir,
             model=getattr(self.model, "module", self.model),
             optimizer=self.optimizer,
             epoch=epoch,
@@ -1650,9 +1448,8 @@ class KCTrainer:
                 # Training-time Gumbel annealing
                 # Slower exploration anneal: keep noise higher longer to avoid early KC lock-in.
                 # 0.6 -> 0.2 over thawed epochs
-                epochs_remaining = max(
-                    1, self.config.epochs - self.freeze_encoder_epochs
-                )
+                total_kc_epochs = self.config.kc_epochs or self.config.epochs or 3
+                epochs_remaining = max(1, total_kc_epochs - self.freeze_encoder_epochs)
                 epoch_idx_thawed = max(0, epoch - self.freeze_encoder_epochs)
                 ratio = min(1.0, epoch_idx_thawed / float(epochs_remaining))
                 gumbel_scale = 0.6 * (1.0 - ratio) + 0.2 * ratio
@@ -2432,8 +2229,8 @@ class KCTrainer:
 
             # Round 17: Periodic checkpointing
             if (
-                self.config.checkpoint_every_n_steps
-                and self.global_step % self.config.checkpoint_every_n_steps == 0
+                self.config.checkpoint.every_n_steps
+                and self.global_step % self.config.checkpoint.every_n_steps == 0
             ):
                 self.save_checkpoint(epoch, batch_idx)
 
@@ -2608,11 +2405,11 @@ class KCTrainer:
         verbose: bool = True,
         on_epoch_end: Optional[Callable[[Dict[str, Any]], None]] = None,
     ) -> Dict[str, Any]:
-        actual_epochs = epochs or self.config.epochs
+        actual_epochs = epochs or self.config.kc_epochs
 
         # Round 17: Auto-resume
-        if self.config.resume_from:
-            self.restore_from_checkpoint(self.config.resume_from)
+        if self.config.checkpoint.resume_from:
+            self.restore_from_checkpoint(self.config.checkpoint.resume_from)
 
         # Initialize biases to empirical base rates before training (only if starting fresh)
         if self.start_epoch == 0 and self.start_batch == 0:
@@ -2682,18 +2479,14 @@ class Trainer:
         train_dataset: StyleDataset,
         val_dataset: StyleDataset,
         config: Optional[TrainerConfig] = None,
-        encoder_lr_factor: float = 0.1,
-        support_dir: Optional[str] = None,
-        args: Optional[Any] = None,
+        dl_config_train: Optional[DataLoaderConfig] = None,
+        dl_config_val: Optional[DataLoaderConfig] = None,
     ):
         self.model = model
         self.train_dataset = train_dataset
         self.val_dataset = val_dataset
         self.config = config or TrainerConfig()
-        self.args = args
         configure_runtime_thread_limits(self.config)
-        self.encoder_lr_factor = encoder_lr_factor
-        self.support_dir = support_dir
 
         if self.config.world_size > 1:
             self.device = torch.device("cuda", self.config.local_rank)
@@ -2744,8 +2537,11 @@ class Trainer:
             self.train_sampler, self.val_sampler = None, None
             t_shuffle, v_shuffle = True, False
 
-        # Round 18: Use tuned settings
-        dl_settings_train = choose_workers(self.config)
+        if dl_config_train is None:
+            dl_config_train = self.config.resolve_dataloader_config(
+                self.device, is_main_process(), mode="train"
+            )
+
         self.train_loader = DataLoader(
             train_dataset,
             batch_size=self.config.batch_size,
@@ -2754,17 +2550,18 @@ class Trainer:
             collate_fn=partial(
                 collate_fn, pad_id=pad_id, max_seq_len=cast(Optional[int], max_seq_len)
             ),
-            num_workers=dl_settings_train["num_workers"],
-            pin_memory=dl_settings_train["pin_memory"],
-            persistent_workers=dl_settings_train["persistent_workers"],
-            prefetch_factor=dl_settings_train.get("prefetch_factor"),
+            num_workers=dl_config_train.num_workers,
+            pin_memory=dl_config_train.pin_memory,
+            persistent_workers=dl_config_train.persistent_workers,
+            prefetch_factor=dl_config_train.prefetch_factor,
             worker_init_fn=_worker_init_fn,
         )
 
-        dl_settings_val = choose_workers(self.config)
-        # Validation might use less workers? For now use same logic or override if needed.
-        # But wait, choose_workers() doesn't take 'val' mode.
-        # Let's just use it.
+        if dl_config_val is None:
+            dl_config_val = self.config.resolve_dataloader_config(
+                self.device, is_main_process(), mode="val"
+            )
+
         self.val_loader = DataLoader(
             val_dataset,
             batch_size=self.config.batch_size,
@@ -2773,10 +2570,10 @@ class Trainer:
             collate_fn=partial(
                 collate_fn, pad_id=pad_id, max_seq_len=cast(Optional[int], max_seq_len)
             ),
-            num_workers=dl_settings_val["num_workers"],
-            pin_memory=dl_settings_val["pin_memory"],
-            persistent_workers=dl_settings_val["persistent_workers"],
-            prefetch_factor=dl_settings_val.get("prefetch_factor"),
+            num_workers=dl_config_val.num_workers,
+            pin_memory=dl_config_val.pin_memory,
+            persistent_workers=dl_config_val.persistent_workers,
+            prefetch_factor=dl_config_val.prefetch_factor,
             worker_init_fn=_worker_init_fn,
         )
 
@@ -2811,7 +2608,10 @@ class Trainer:
         )
         self.optimizer = Adam(
             [
-                {"params": enc_p, "lr": self.config.learning_rate * encoder_lr_factor},
+                {
+                    "params": enc_p,
+                    "lr": self.config.learning_rate * self.config.encoder_lr_factor,
+                },
                 {"params": cls_p, "lr": self.config.learning_rate},
             ]
         )
@@ -2858,11 +2658,11 @@ class Trainer:
 
     def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
         """Save training checkpoint."""
-        if not is_main_process() or self.config.checkpoint_dir is None:
+        if not is_main_process() or self.config.checkpoint.dir is None:
             return
 
         save_training_state(
-            path=self.config.checkpoint_dir,
+            path=self.config.checkpoint.dir,
             model=getattr(self.model, "module", self.model),
             optimizer=self.optimizer,
             epoch=epoch,
@@ -2871,7 +2671,7 @@ class Trainer:
             batch_idx=batch_idx,
             scaler=self.scaler,
             scheduler=self.scheduler,
-            config=self.args or self.config,
+            config=self.config,
             filename="checkpoint.pt",
         )
         # Extra Style-specific state (patience, best_loss) in separate file for now,
@@ -2884,7 +2684,7 @@ class Trainer:
         }
         torch.save(
             checkpoint_meta,
-            os.path.join(self.config.checkpoint_dir, "checkpoint_meta.pt"),
+            os.path.join(self.config.checkpoint.dir, "checkpoint_meta.pt"),
         )
 
     def restore_from_checkpoint(self, path: str) -> bool:
@@ -3046,8 +2846,8 @@ class Trainer:
 
             # Round 17: Periodic checkpointing
             if (
-                self.config.checkpoint_every_n_steps
-                and self.global_step % self.config.checkpoint_every_n_steps == 0
+                self.config.checkpoint.every_n_steps
+                and self.global_step % self.config.checkpoint.every_n_steps == 0
             ):
                 self.save_checkpoint(epoch, batch_idx)
 
@@ -3206,14 +3006,17 @@ class Trainer:
 
     def train(
         self,
+        epochs: Optional[int] = None,
         verbose: bool = True,
         on_epoch_end: Optional[Callable[[Dict[str, List[float]]], None]] = None,
     ) -> Dict[str, List[float]]:
         # Round 17: Auto-resume
-        if self.config.resume_from:
-            self.restore_from_checkpoint(self.config.resume_from)
+        if self.config.checkpoint.resume_from:
+            self.restore_from_checkpoint(self.config.checkpoint.resume_from)
 
-        for epoch in range(self.start_epoch, self.config.epochs):
+        actual_epochs = epochs or self.config.epochs
+
+        for epoch in range(self.start_epoch, actual_epochs):
             tl, tfl, tgl, tgraml, trl = self.train_epoch(epoch=epoch, verbose=verbose)
             eval_res = self.evaluate()
             self.scheduler.step(eval_res["loss"])

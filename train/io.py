@@ -58,7 +58,7 @@ def save_model(
 
     # Save config
     config = config or model.config
-    with open(os.path.join(path, "config.json"), "w") as f:
+    with open(os.path.join(path, "model.json"), "w") as f:
         json.dump(config.to_dict(), f, indent=2)
 
     # Save label mappings
@@ -207,7 +207,7 @@ def load_checkpoint(
         raise FileNotFoundError(f"No checkpoint found at {checkpoint_path}")
 
     # Load config and tokenizer
-    with open(os.path.join(path, "config.json"), "r") as f:
+    with open(os.path.join(path, "model.json"), "r") as f:
         config_dict = json.load(f)
     config = ModelConfig.from_dict(config_dict)
     tokenizer = Tokenizer.load(os.path.join(path, "tokenizer.json"))

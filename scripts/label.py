@@ -121,6 +121,10 @@ def get_dependencies_fingerprint(args: Any) -> Dict[str, Any]:
     """Collect fingerprints of all input dependencies."""
     fingerprints = {}
 
+    def normalize_path(p: str) -> str:
+        """Remove leading './' for consistent cache keys."""
+        return p[2:] if p.startswith("./") else p
+
     # Primary patterns
     for name, pattern in [
         ("grammatic", args.grammatic_pattern),
@@ -129,11 +133,13 @@ def get_dependencies_fingerprint(args: Any) -> Dict[str, Any]:
         if not pattern:
             continue
         files = sorted(glob.glob(pattern))
-        fingerprints[name] = {f: get_file_fingerprint(f) for f in files}
+        fingerprints[name] = {normalize_path(f): get_file_fingerprint(f) for f in files}
 
     # Register overrides
     override_files = sorted(glob.glob("data/jpn_sentences_*.tsv"))
-    fingerprints["overrides"] = {f: get_file_fingerprint(f) for f in override_files}
+    fingerprints["overrides"] = {
+        normalize_path(f): get_file_fingerprint(f) for f in override_files
+    }
 
     return fingerprints
 
@@ -215,10 +221,6 @@ def _process_sentence_batch(
         # Token collection for vocabulary
         tokens = split_kotogram(kotogram)
 
-        # Skip sentences with >= 64 tokens
-        if len(tokens) >= 64:
-            continue
-
         for token in tokens:
             token_feat = extract_token_features(token)
             for field in FEATURE_FIELDS:
@@ -283,10 +285,6 @@ def _compute_labels_batch(
 
         # Token collection for vocabulary
         tokens = split_kotogram(kotogram)
-
-        # Skip sentences with >= 64 tokens
-        if len(tokens) >= 64:
-            continue
 
         for token in tokens:
             token_feat = extract_token_features(token)
@@ -798,28 +796,6 @@ def main() -> None:
                                     # It didn't put to cache. So that matches my sequential logic.
                             progress.update(task, advance=len(batch_results))
 
-                        for res in batch_results:
-                            if res.success:
-                                final_results.append(res)
-                                new_entries.append(
-                                    (
-                                        cast(str, res.sentence),
-                                        cast(str, res.kotogram),
-                                        cast(Optional[int], res.formality_id),
-                                        cast(Optional[float], res.gender_value),
-                                        cast(Optional[int], res.gender_pragmatic),
-                                        cast(Optional[List[int]], res.register_ids),
-                                        cast(Optional[int], res.gram_label),
-                                        None,  # feature_ids (computed later)
-                                    )
-                                )
-                        progress.update(task, advance=len(batch_results))
-
-                if new_entries:
-                    from train.cache import CacheEntryType
-
-                    cache.put_batch(cast(List[CacheEntryType], new_entries))
-
     console.print(
         f"\n[bold green]Processing complete![/bold green] Total processed: {len(final_results):,}"
     )
@@ -867,7 +843,6 @@ def main() -> None:
 
         tokenizer = Tokenizer()
 
-        # Build and save vocabulary explicitly
         # Build and save vocabulary explicitly
         _build_and_save_vocab(tokenizer, merged_counters, dataset_cache_dir, vocab_file)
         console.print(

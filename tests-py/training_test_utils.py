@@ -30,6 +30,10 @@ def train_style(
 
     if result.returncode != 0:
         print(f"Command failed: {cmd}")
+        with open("/tmp/test_failure_log.txt", "w") as f:
+            f.write(result.stdout)
+            f.write("\nSTDERR:\n")
+            f.write(result.stderr)
         print("STDOUT:", result.stdout)
         print("STDERR:", result.stderr)
         # Message included in assertion failure below
