@@ -617,7 +617,21 @@ class KCTrainer:
             if "cuda" in str(self.device)
             else ("mps" if "mps" in str(self.device) else "cpu")
         )
-        self.scaler = GradScaler(device=device_type, enabled=self.config.use_amp)
+
+        # Round 14: Separate KC scaler with lower init_scale to prevent fp16 overflow
+        # Also add use_amp_kc flag: if False, KC runs without autocast even if global AMP is on
+        self.use_amp_kc = kc_config.get(
+            "use_amp_kc", False
+        )  # Default: safer without AMP
+        kc_init_scale = kc_config.get("kc_init_scale", 1024.0)  # Not 65536 (too high)
+        self.kc_scaler = GradScaler(
+            device=device_type,
+            enabled=(self.config.use_amp and self.use_amp_kc),
+            init_scale=kc_init_scale,
+            growth_interval=2000,
+        )
+        # Keep original scaler for compatibility, but use kc_scaler for KC
+        self.scaler = self.kc_scaler
 
         pad_id = dataset.tokenizer.pad_id
         max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
@@ -729,6 +743,12 @@ class KCTrainer:
         self._nonfinite_total = 0
         self._nonfinite_logged = 0  # For log spam reduction
         self._max_nonfinite_streak = 50  # Raise error if exceeded
+
+        # Round 14: Skip-loop visibility + fail-fast
+        self._consecutive_step_skips = 0
+        self._total_step_skips = 0
+        self._total_steps_applied = 0
+        self._max_consecutive_skips = int(kc_config.get("max_consecutive_skips", 25))
 
     def _save_kc_snapshot(self) -> None:
         """Save current KC params (kc_head + kc_decoders) as last-known-good state.
@@ -987,17 +1007,33 @@ class KCTrainer:
                 break
 
         if found_nonfinite:
+            # Round 14: Track consecutive skips and fail-fast
+            self._consecutive_step_skips += 1
+            self._total_step_skips += 1
+
             if is_main_process():
                 print(
-                    f"  KC Step Skipped: non-finite grad detected (scale={self.scaler.get_scale():.1f})"
+                    f"  KC Step Skipped: non-finite grad detected (scale={self.scaler.get_scale():.1f}) "
+                    f"consec={self._consecutive_step_skips}/{self._max_consecutive_skips}"
                 )
                 for pname, nnan, ninf, gmax in bad:
                     print(
                         f"    grad_nonfinite: {pname} nan={nnan} inf={ninf} |g|max={gmax:.3g}"
                     )
+
             self.optimizer.zero_grad(set_to_none=True)
-            if self.config.use_amp:
+            if self.config.use_amp and self.use_amp_kc:
                 self.scaler.update(new_scale=max(1.0, self.scaler.get_scale() / 2.0))
+
+            # Round 14: Fail-fast if too many consecutive skips
+            if self._consecutive_step_skips > self._max_consecutive_skips:
+                raise RuntimeError(
+                    f"KC training exceeded max consecutive step skips ({self._max_consecutive_skips}). "
+                    f"scale={self.scaler.get_scale():.1f}, lr={self.optimizer.param_groups[0]['lr']:.2e}, "
+                    f"total_skips={self._total_step_skips}, applied={self._total_steps_applied}. "
+                    f"Culprits: {[(p, n, i) for p, n, i, _ in bad[:3]]}"
+                )
+
             return True
 
         # Clip grads (already unscaled above when AMP enabled)
@@ -1043,6 +1079,9 @@ class KCTrainer:
             else:
                 # Save good state
                 self._save_kc_snapshot()
+                # Round 14: Reset consecutive skip counter on successful step
+                self._consecutive_step_skips = 0
+                self._total_steps_applied += 1
 
         if is_main_process() and (not has_printed_step_check or is_flush):
             if self.kc_show_amp_details:
