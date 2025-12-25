@@ -1,5 +1,6 @@
 """Core training logic and model extensions for style classification."""
 
+import math
 import os
 import sys
 from datetime import timedelta
@@ -25,7 +26,15 @@ from train.config import TrainerConfig
 from train.dataset import StyleDataset, collate_fn
 from train.io import save_checkpoint
 
-from .display import print_epoch_summary
+from .display import (
+    print_epoch_summary,
+    print_kc_epoch_compact_summary,
+    print_kc_first_batch_debug,
+    print_kc_first_batch_summary,
+    print_kc_usage_summary,
+    print_phase_header,
+    print_progress_bar,
+)
 
 GENDER_LOSS_WEIGHT = 10.0
 
@@ -91,19 +100,38 @@ class StyleClassifierWithMLM(StyleClassifier):
         self,
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: Optional[torch.Tensor] = None,
+        temperature: Optional[float] = None,
+        gumbel_scale: Optional[float] = None,
     ) -> Dict[str, Any]:
         pooled = self._get_pooled_output(field_inputs, attention_mask)
-        kc_logits = self.kc_head(pooled)
-        cur_temp = getattr(self.config, "kc_temperature", 1.0)
-        kc_probs = torch.sigmoid(kc_logits / cur_temp)
 
-        # Sparsity: Top-K Selection
+        # Get raw and normalized logits
+        if hasattr(self.kc_head, "forward_with_raw"):
+            kc_logits_raw, kc_logits = self.kc_head.forward_with_raw(pooled)
+        else:
+            kc_logits = self.kc_head(pooled)
+            kc_logits_raw = kc_logits
+
+        cur_temp = (
+            temperature
+            if temperature is not None
+            else getattr(self.config, "kc_temperature", 1.0)
+        )
+
+        # Apply Gumbel Noise for Top-K Selection (Training Only)
+        # We use noisy logits for selection, but return clean logits for regularization
+        logits_for_selection = kc_logits_raw
+        if gumbel_scale is not None and gumbel_scale > 0 and self.training:
+            u = torch.rand_like(kc_logits_raw)
+            g = -torch.log(-torch.log(u + 1e-9) + 1e-9)
+            logits_for_selection = kc_logits_raw + gumbel_scale * g
+
+        # Compute probs from (possibly noisy) logits
+        kc_probs = torch.sigmoid(logits_for_selection / cur_temp)
+
+        # Get top-k
         k = getattr(self.config, "kc_topk", 8)
         topk_vals, topk_inds = torch.topk(kc_probs, k, dim=-1)
-
-        # Normalize so each sample distributes 1.0 mass across KCs
-        topk_sum = topk_vals.sum(dim=-1, keepdim=True) + 1e-9
-        topk_vals = topk_vals / topk_sum
 
         # Create sparse activation (everything else zero)
         # We start with zeros and scatter the top-k values back
@@ -114,8 +142,11 @@ class StyleClassifierWithMLM(StyleClassifier):
 
         return {
             "kc_logits": kc_logits,
-            "kc_probs": kc_probs,
+            "kc_logits_raw": kc_logits_raw,  # Clean logits for usage reg
+            "kc_probs": kc_probs,  # Probabilities used for selection
             "sparse_activations": sparse_activations,
+            "topk_vals": topk_vals,
+            "topk_inds": topk_inds,
             "target_logits": target_logits,
         }
 
@@ -324,9 +355,13 @@ class MLMTrainer:
         self.history: Dict[str, Any] = {
             "mlm_loss": [],
             "field_losses": {f: [] for f in FEATURE_FIELDS},
+            "sentence_count": [],
         }
 
     def train_epoch(self, verbose: bool = True) -> Tuple[float, Dict[str, float]]:
+        if verbose and is_main_process():
+            print_phase_header("MLM")
+
         self.model.train()
         total_loss, n_batches = 0.0, 0
         field_losses = {f: 0.0 for f in FEATURE_FIELDS}
@@ -396,15 +431,7 @@ class MLMTrainer:
             n_batches += 1
 
             if verbose and is_main_process():
-                avg_l = total_loss / n_batches
-                progress = (batch_idx + 1) / total_batches
-                bar = (
-                    "=" * int(30 * progress) + ">" + "." * (30 - int(30 * progress) - 1)
-                )
-                sys.stdout.write(
-                    f"\r  [{bar}] {batch_idx + 1}/{total_batches} loss={avg_l:.4f}"
-                )
-                sys.stdout.flush()
+                print_progress_bar(batch_idx, total_batches, total_loss / n_batches)
 
         if verbose and is_main_process():
             sys.stdout.write("\n")
@@ -439,6 +466,7 @@ class MLMTrainer:
                     },
                     phase="MLM",
                 )
+            self.history["sentence_count"].append(len(self.dataset.samples))
             if on_epoch_end and is_main_process():
                 on_epoch_end(self.history)
         return self.history
@@ -464,7 +492,7 @@ class KCTrainer:
         self.config = config or TrainerConfig()
 
         kc_config = kc_config or {}
-        self.kc_sparsity_weight = kc_config.get("sparsity_weight", 1e-3)
+        self.kc_sparsity_weight = kc_config.get("sparsity_weight", 0.1)
         self.freeze_encoder_epochs = kc_config.get("freeze_encoder_epochs", 1)
 
         if self.config.world_size > 1:
@@ -495,7 +523,7 @@ class KCTrainer:
 
         pad_id = dataset.tokenizer.pad_id
         max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
-        vocab_sizes = dataset.tokenizer.get_vocab_sizes()
+        # vocab_sizes = dataset.tokenizer.get_vocab_sizes() # Unused
 
         self.sampler: Optional[DistributedSampler] = (
             DistributedSampler(
@@ -512,9 +540,8 @@ class KCTrainer:
             batch_size=self.config.batch_size,
             shuffle=(self.sampler is None),
             sampler=self.sampler,
-            # Pass vocab_sizes to collate_fn to correctly size multi-hot targets
             collate_fn=lambda b: collate_fn(
-                b, pad_id, cast(Optional[int], max_seq_len), vocab_sizes=vocab_sizes
+                b, pad_id, cast(Optional[int], max_seq_len)
             ),
             pin_memory=(self.config.device == "cuda"),
             num_workers=(4 if self.config.device == "cuda" else 0),
@@ -523,16 +550,219 @@ class KCTrainer:
         self.optimizer = Adam(self.model.parameters(), lr=self.config.learning_rate)
 
         # Loss functions
-        self.bce_loss = nn.BCEWithLogitsLoss()
+        self.default_bce_loss = nn.BCEWithLogitsLoss()
         self.mse_loss = nn.MSELoss()
         self.ce_loss = nn.CrossEntropyLoss()
+
+        self.kc_pos_weight_cap = kc_config.get("pos_weight_cap", 50.0)
+        self.kc_pos_weight_eps = kc_config.get("pos_weight_eps", 1e-6)
+
+        # Diversity / Regularization
+        self.kc_diversity_weight_frozen = float(kc_config.get("diversity_weight", 1e-3))
+        self.kc_diversity_weight_thawed = float(
+            kc_config.get("diversity_weight_thawed", 1e-1)
+        )
+        # self.kc_diversity_mode = "topk" (Implied)
+        self.kc_diversity_eps = float(kc_config.get("diversity_eps", 1e-9))
+        self.kc_diversity_warmup_epochs = int(
+            kc_config.get("diversity_warmup_epochs", 0)
+        )
+        self.kc_sparsity_mode = "target_density"  # New default
+
+        # Load Balancing
+        self.kc_lb_weight_frozen = float(kc_config.get("lb_weight", 0.0))
+        self.kc_lb_weight_thawed = float(kc_config.get("lb_weight_thawed", 2e-2))
+
+        # Collapse Penalty
+        self.kc_collapse_weight_thawed = float(
+            kc_config.get("collapse_weight_thawed", 1.0)
+        )
+
+        # Temperature
+        self.kc_temperature_frozen = float(
+            getattr(
+                getattr(self.model, "module", self.model).config, "kc_temperature", 1.0
+            )
+        )
+        self.kc_temperature_thawed = float(kc_config.get("temperature_thawed", 1.8))
+
+        # Logging configuration
+        self.kc_log_level = kc_config.get("log_level", "minimal")
+        self.kc_first_batch_debug_every = int(
+            kc_config.get("first_batch_debug_every", 1)
+        )
+        # Default minimal behavior: only epoch 0
+        self.kc_first_batch_debug_epochs = kc_config.get(
+            "first_batch_debug_epochs", [0]
+        )
+
+        # Visibility flags
+        self.kc_show_epoch_table = bool(kc_config.get("show_epoch_table", False))
+        self.kc_show_step_checks = bool(kc_config.get("show_step_checks", False))
+        self.kc_show_grad_norms = bool(kc_config.get("show_grad_norms", False))
+        self.kc_show_amp_details = bool(kc_config.get("show_amp_details", False))
+
+        # Override if global log_level is debug
+        if self.kc_log_level == "debug":
+            self.kc_show_epoch_table = True
+            self.kc_show_step_checks = True
+            self.kc_show_grad_norms = True
+            self.kc_show_amp_details = True
 
         self.history: Dict[str, Any] = {
             "total_loss": [],
             "kc_loss": [],
             "kc_sparsity": [],
             "kc_losses": {},
+            "avg_struct_loss": [],
+            "avg_label_loss": [],
+            "num_struct_heads_processed": [],
+            "num_label_heads_processed": [],
+            "avg_sparsity": [],
+            "sentence_count": [],
+            "first_batch_separation": [],
+            "first_batch_grad_norms": [],
         }
+        self._did_print_debug_for_epoch = -1
+
+    def _init_structural_decoder_biases(self, num_batches: int = 10) -> None:
+        raw = self.model.module if self.is_distributed else self.model
+        m = cast("StyleClassifierWithMLM", raw)
+        if not hasattr(m, "kc_decoders"):
+            return
+
+        sums: Dict[str, float] = {}
+        counts: Dict[str, int] = {}
+
+        # Scan a few batches to estimate base rates
+        for i, batch in enumerate(self.data_loader):
+            if i >= num_batches:
+                break
+
+            # MUST generate targets as they aren't pre-computed in the dataset
+            kc_targets = create_kc_batch(
+                batch=batch,
+                tokenizer=self.dataset.tokenizer,
+                target_specs=m.config.kc_target_specs,
+            )
+
+            for name in m.config.kc_target_specs.keys():
+                key = f"kc_targets_{name}"
+                if key not in kc_targets:
+                    continue
+                # Compute per-head, per-batch density
+                t = kc_targets[key].float()
+                p = t.mean().item()
+                sums[name] = sums.get(name, 0.0) + p
+                counts[name] = counts.get(name, 0) + 1
+
+        # Apply logit initialization to biases
+        # Round 6: DDP Sync
+        if self.is_distributed:
+            # Flatten to tensor for all_reduce
+            names = sorted(sums.keys())
+            # [sum_0, count_0, sum_1, count_1, ...]
+            data = []
+            for n in names:
+                data.append(sums[n])
+                data.append(float(counts[n]))
+
+            t_data = torch.tensor(data, device=self.device)
+            dist.all_reduce(t_data, op=dist.ReduceOp.SUM)
+
+            # Unpack
+            t_list = t_data.tolist()
+            for i, n in enumerate(names):
+                sums[n] = t_list[2 * i]
+                counts[n] = int(t_list[2 * i + 1])
+
+        for name, s in sums.items():
+            p = s / max(1, counts[name])
+            p = min(max(p, 1e-6), 1 - 1e-6)
+            b = math.log(p / (1 - p))
+
+            lin = cast(nn.Linear, m.kc_decoders.decoders[name])
+            with torch.no_grad():
+                if lin.bias is not None:
+                    nn.init.constant_(lin.bias, b)
+
+            if is_main_process():
+                print(
+                    f"[BiasInit] {name:20}: p_mean={p:.6g} bias={b:.4f} "
+                    f"(filled bias[{lin.bias.numel()}])"
+                )
+
+    def _grad_norm(self, module: torch.nn.Module) -> float:
+        """Compute L2 norm of gradients for a given module."""
+        total = 0.0
+        for p in module.parameters():
+            if p.grad is None:
+                continue
+            g = p.grad.detach()
+            total += (g.float().norm(2).item()) ** 2
+        return float(total**0.5)
+
+    def _perform_optimizer_step(
+        self,
+        m: StyleClassifierWithMLM,
+        verbose: bool,
+        has_printed_step_check: bool,
+        accum: int,
+        is_flush: bool = False,
+    ) -> bool:
+        """Perform one optimizer step with unscaling and clipping. Returns True if skipped."""
+        # 1. Snapshot w0 before step
+        w0_before = 0.0
+        if self.kc_show_step_checks:
+            w0 = m.kc_head.linear.weight
+            w0_before = w0.detach().flatten()[0].item()
+
+        if is_main_process() and (not has_printed_step_check or is_flush):
+            if self.kc_show_grad_norms:
+                # 2. Compute grad norms BEFORE unscale/clip/step
+                gn_kc = self._grad_norm(m.kc_head)
+                dec_name = (
+                    "pos"
+                    if "pos" in m.kc_decoders.decoders
+                    else next(iter(m.kc_decoders.decoders.keys()))
+                )
+                dec = m.kc_decoders.decoders[dec_name]
+                gn_dec = self._grad_norm(dec) if dec is not None else 0.0
+                phase = "Flush" if is_flush else "Pre-Step"
+                print(
+                    f"  KC {phase} Grad Norms: kc_head={gn_kc:.6f} decoder={gn_dec:.6f} scale={self.scaler.get_scale():.1f}"
+                    + (f" (flush_accum={accum})" if is_flush else "")
+                )
+
+        if self.config.gradient_clip > 0:
+            self.scaler.unscale_(self.optimizer)
+            nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
+
+        # 3. Detect if GradScaler skips the step
+        scale_before = float(self.scaler.get_scale())
+        self.scaler.step(self.optimizer)
+        self.scaler.update()
+        self.optimizer.zero_grad(set_to_none=True)
+        scale_after = float(self.scaler.get_scale())
+        skipped = scale_after < scale_before
+
+        if is_main_process() and (not has_printed_step_check or is_flush):
+            if self.kc_show_amp_details:
+                print(
+                    f"  KC AMP {'Flush ' if is_flush else ''}Step: scale {scale_before:.1f} -> {scale_after:.1f} skipped={skipped}"
+                )
+
+            if self.kc_show_step_checks:
+                # 4. Compute parameter delta AFTER step
+                w0 = m.kc_head.linear.weight
+                w0_after = w0.detach().flatten()[0].item()
+                print(
+                    f"  KC {'Flush ' if is_flush else ''}Step Check: kc_head.w0 {w0_before:.6f} -> {w0_after:.6f} "
+                    f"(delta={w0_after - w0_before:+.6f}, accum={accum}/{self.config.grad_accum_steps})"
+                )
+
+        self.optimizer.zero_grad(set_to_none=True)
+        return skipped
 
     def _create_optimizer(self, freeze_encoder: bool) -> None:
         # Re-create optimizer to optionally freeze encoder
@@ -554,20 +784,22 @@ class KCTrainer:
                 {
                     "params": list(m.embedding.parameters())
                     + list(m.encoder.parameters()),
-                    "lr": self.config.learning_rate * 0.1,
+                    "lr": self.config.learning_rate * 0.01,
                 }
             )
         self.optimizer = Adam(pg)
 
     def train_epoch(
         self, epoch: int = 0, verbose: bool = True
-    ) -> Tuple[float, Dict[str, float], float]:
+    ) -> Tuple[float, Dict[str, float], float, Dict[str, Any]]:
         # Handle freezing
         should_freeze = epoch < self.freeze_encoder_epochs
         self._create_optimizer(freeze_encoder=should_freeze)
 
         if verbose and is_main_process():
-            print(f"KC Epoch (Encoder {'Frozen' if should_freeze else 'Thawed'})")
+            print_phase_header(
+                "KC", info="Encoder Frozen" if should_freeze else "Encoder Thawed"
+            )
 
         self.model.train()
         total_loss, n_batches = 0.0, 0
@@ -576,7 +808,65 @@ class KCTrainer:
 
         total_batches = len(self.data_loader)
 
+        running_struct_loss, running_label_loss = 0.0, 0.0
+        running_num_struct_total, running_num_label_total = 0, 0
+        running_sparsity = 0.0
+        first_batch_separation: Dict[str, float] = {}
+        first_batch_grad_norms: Dict[str, float] = {}
+        # first_batch_debug_printed = False  # Unused
+        has_printed_step_check = False
+        amp_skips = 0
+        amp_scale_start = float(self.scaler.get_scale())
+        opt_steps = 0
+        flush_steps = 0
+        pending_accum = 0
+        did_any_backward = False
+
+        # Epoch-level KC Usage Accumulators
+        raw = self.model.module if self.is_distributed else self.model
+        kc_vocab_size = int(cast(StyleClassifierWithMLM, raw).config.kc_vocab_size)
+        topk_hist = torch.zeros(kc_vocab_size, dtype=torch.long)
+        top1_hist = torch.zeros(kc_vocab_size, dtype=torch.long)
+        kc_usage_total_samples = 0
+        kc_tv_sum = 0.0
+        kc_tv_min = float("inf")
+        kc_tv_max = float("-inf")
+        kc_gap_sum = 0.0
+        kc_gap_count = 0
+        running_entropy_norm = 0.0
+        running_kl_to_uniform = 0.0
+        running_p_max = 0.0
+        running_avg_prob = 0.0
+        running_act_dens = 0.0
+
+        running_loss_components = {
+            "base": 0.0,
+            "struct": 0.0,
+            "label": 0.0,
+            "div": 0.0,
+            "lb": 0.0,
+            "collapse": 0.0,
+            "sparsity": 0.0,
+        }
+
+        # Zero gradients before starting the epoch loop
+        self.optimizer.zero_grad(set_to_none=True)
+
         for batch_idx, batch in enumerate(self.data_loader):
+            raw = self.model.module if self.is_distributed else self.model
+            m = cast(StyleClassifierWithMLM, raw)
+
+            if batch_idx == 0:
+                pass
+
+            # Generate KC targets on-the-fly
+            kc_targets = create_kc_batch(
+                batch=batch,
+                tokenizer=self.dataset.tokenizer,
+                target_specs=m.config.kc_target_specs,
+            )
+            batch.update(kc_targets)
+
             field_inputs = {
                 k: v.to(self.device)
                 for k, v in batch.items()
@@ -584,19 +874,301 @@ class KCTrainer:
             }
             attention_mask = batch["attention_mask"].to(self.device)
 
-            self.optimizer.zero_grad(set_to_none=True)
             device_type = (
                 "cuda"
                 if "cuda" in str(self.device)
                 else ("mps" if "mps" in str(self.device) else "cpu")
             )
 
+            # Determine temperature for this sub-step (approximate)
+            gumbel_scale = 0.0
+            if epoch < self.freeze_encoder_epochs:
+                t_val = self.kc_temperature_frozen
+            else:
+                t_val = self.kc_temperature_thawed
+                # Training-time Gumbel annealing
+                # Slower exploration anneal: keep noise higher longer to avoid early KC lock-in.
+                # 0.6 -> 0.2 over thawed epochs
+                epochs_remaining = max(
+                    1, self.config.epochs - self.freeze_encoder_epochs
+                )
+                epoch_idx_thawed = max(0, epoch - self.freeze_encoder_epochs)
+                ratio = min(1.0, epoch_idx_thawed / float(epochs_remaining))
+                gumbel_scale = 0.6 * (1.0 - ratio) + 0.2 * ratio
+
             with autocast(device_type=device_type, enabled=self.config.use_amp):
                 # Forward pass
                 outputs = self.model(
-                    field_inputs, attention_mask=attention_mask, mode="kc"
+                    field_inputs,
+                    attention_mask=attention_mask,
+                    mode="kc",
+                    temperature=t_val,
+                    gumbel_scale=gumbel_scale,
                 )
+
+                # Thawed Clamping (Optional but High Impact)
+                # Training-time only tweak to limit gradient explosion from "winning" KCs
+                if epoch >= self.freeze_encoder_epochs:
+                    # Create local clamped copy
+                    topk_vals_clamped = outputs["topk_vals"].clamp(max=0.85)
+
+                    # Rebuild sparse activations for decoder targets ONLY
+                    # We can't modify outputs["sparse_activations"] in place easily if it's needed for sparsity loss
+                    # But we can re-generate target logits.
+                    sparse_clamped = torch.zeros_like(outputs["kc_probs"])
+                    sparse_clamped.scatter_(1, outputs["topk_inds"], topk_vals_clamped)
+
+                    # Run decoders directly
+                    if hasattr(m, "kc_decoders"):
+                        outputs["target_logits"] = m.kc_decoders(sparse_clamped)
+
+            # --- Accumulate KC Usage Stats ---
+            topk_inds = outputs.get("topk_inds", None)
+            topk_vals = outputs.get("topk_vals", None)
+
+            if topk_inds is not None and topk_vals is not None:
+                # Detach to avoid keeping graph
+                inds_cpu = topk_inds.detach().to("cpu")  # (B, K)
+                vals_cpu = topk_vals.detach().to("cpu")  # (B, K)
+
+                B_sz = int(inds_cpu.size(0))
+                kc_usage_total_samples += B_sz
+
+                flat = inds_cpu.reshape(-1)
+                topk_hist += torch.bincount(flat, minlength=kc_vocab_size)
+
+                top1 = inds_cpu[:, 0]
+                top1_hist += torch.bincount(top1, minlength=kc_vocab_size)
+
+                kc_tv_sum += float(vals_cpu.sum().item())
+                kc_tv_min = min(kc_tv_min, float(vals_cpu.min().item()))
+                kc_tv_max = max(kc_tv_max, float(vals_cpu.max().item()))
+
+                gap = vals_cpu[:, 0] - vals_cpu[:, -1]
+                kc_gap_sum += float(gap.sum().item())
+                kc_gap_count += int(gap.numel())
+                # ---------------------------------
                 target_logits = outputs["target_logits"]
+
+                if (
+                    batch_idx == 0
+                    and is_main_process()
+                    and epoch != self._did_print_debug_for_epoch
+                ):
+                    self._did_print_debug_for_epoch = epoch
+                    raw = self.model.module if self.is_distributed else self.model
+                    m = cast(StyleClassifierWithMLM, raw)
+
+                    # Condensed or Detailed Debug
+                    should_print_fb = (
+                        self.kc_log_level == "debug"
+                        or (
+                            "all" in self.kc_first_batch_debug_epochs
+                            or (
+                                self.kc_first_batch_debug_epochs
+                                and epoch in self.kc_first_batch_debug_epochs
+                            )
+                        )
+                        or (
+                            self.kc_first_batch_debug_every > 0
+                            and epoch % self.kc_first_batch_debug_every == 0
+                        )
+                    )
+
+                    if should_print_fb:
+                        # Prepare data for summary/debug
+                        m = cast(StyleClassifierWithMLM, raw)
+
+                        if self.kc_log_level == "debug":
+                            # Full output
+                            print_kc_first_batch_debug(
+                                epoch,
+                                outputs["kc_logits"],
+                                outputs["kc_probs"],
+                                outputs["sparse_activations"],
+                                outputs["target_logits"],
+                                batch,
+                                m.config.kc_topk,
+                                m.config.kc_vocab_size,
+                                self.device,
+                                pos_weight_cap=self.kc_pos_weight_cap,
+                                pos_weight_eps=self.kc_pos_weight_eps,
+                            )
+                        else:
+                            # Condensed output
+                            # 1. Gather head stats similar to debug tool
+                            # head_diagnostics = [] # Unused
+                            # Priority heads
+                            priority = [
+                                "lemma",
+                                "pos",
+                                "conjugated_type",
+                                "conjugated_form",
+                            ]
+                            # Gather others sorted by density
+                            all_heads = sorted(outputs["target_logits"].keys())
+
+                            # Helper to compute single-head stats
+                            def get_head_stat(name: str) -> Dict[str, Any]:
+                                logits = outputs["target_logits"][name]
+                                target_key = f"kc_targets_{name}"
+                                if target_key not in batch:
+                                    return {}
+                                t = batch[target_key].to(self.device).float()
+                                with torch.no_grad():
+                                    pos = t.sum()
+                                    total = t.numel()
+                                    p = (pos / (total + self.kc_pos_weight_eps)).clamp(
+                                        min=self.kc_pos_weight_eps,
+                                        max=1.0 - self.kc_pos_weight_eps,
+                                    )
+                                    pos_w = ((1.0 - p) / p).clamp(
+                                        min=1.0, max=self.kc_pos_weight_cap
+                                    )
+
+                                    probs = torch.sigmoid(logits)
+                                    p_avg = probs.mean().item()
+
+                                    # AUC (subsampled)
+                                    auc = 0.0
+                                    pos_mask = t > 0.5
+                                    neg_mask = ~pos_mask
+                                    if pos_mask.any() and neg_mask.any():
+                                        # Simple subsample for display speed
+                                        max_s = 1000
+                                        idx_p = torch.where(pos_mask.view(-1))[0]
+                                        idx_n = torch.where(neg_mask.view(-1))[0]
+                                        if idx_p.numel() > max_s:
+                                            idx_p = idx_p[:max_s]
+                                        if idx_n.numel() > max_s:
+                                            idx_n = idx_n[:max_s]
+
+                                        sp = torch.cat(
+                                            [
+                                                probs.view(-1)[idx_p],
+                                                probs.view(-1)[idx_n],
+                                            ]
+                                        )
+                                        sl = torch.cat(
+                                            [
+                                                torch.ones(
+                                                    idx_p.numel(), device=self.device
+                                                ),
+                                                torch.zeros(
+                                                    idx_n.numel(), device=self.device
+                                                ),
+                                            ]
+                                        )
+
+                                        # Rank AUC
+                                        comb = torch.stack([sp, sl], dim=1)
+                                        idx = torch.argsort(comb[:, 0])
+                                        sl_s = comb[idx, 1]
+                                        ranks = torch.arange(
+                                            1, sl_s.numel() + 1, device=self.device
+                                        ).float()
+                                        pos_rank_sum = (ranks * sl_s).sum().item()
+                                        n_pos, n_neg = idx_p.numel(), idx_n.numel()
+                                        auc = (
+                                            pos_rank_sum - n_pos * (n_pos + 1) / 2
+                                        ) / (n_pos * n_neg)
+
+                                    # Delta Loss
+                                    bias_used = logits.mean().item()
+                                    import torch.nn.functional as F
+
+                                    pw = torch.tensor(pos_w.item(), device=self.device)
+                                    hl = F.binary_cross_entropy_with_logits(
+                                        logits, t, pos_weight=pw
+                                    ).item()
+                                    pl = F.binary_cross_entropy_with_logits(
+                                        torch.full_like(logits, bias_used),
+                                        t,
+                                        pos_weight=pw,
+                                    ).item()
+                                    delta = hl - pl
+
+                                return {
+                                    "name": name,
+                                    "p": p.item(),
+                                    "pos_w": pos_w.item(),
+                                    "p_avg": p_avg,
+                                    "auc": auc,
+                                    "delta": delta,
+                                }
+
+                            # Collect selected heads
+                            selected_stats = []
+                            seen = set()
+                            # 1. Priority
+                            for h in priority:
+                                if h in all_heads:
+                                    s = get_head_stat(h)
+                                    if s:
+                                        selected_stats.append(s)
+                                        seen.add(h)
+
+                            # 2. Rarest others
+                            others = [h for h in all_heads if h not in seen]
+                            # Sort by rough density (we need to compute it or guess, here we compute)
+                            other_stats = []
+                            for h in others:
+                                s = get_head_stat(h)
+                                if s:
+                                    other_stats.append(s)
+
+                            other_stats.sort(key=lambda x: str(x.get("p", 0)))
+                            selected_stats.extend(other_stats[:2])  # Take 2 rarest
+
+                            logits = outputs["kc_logits"]
+                            logits_raw = (
+                                outputs.get("kc_logits_raw", logits).detach().float()
+                            )
+                            probs = outputs["kc_probs"]
+                            sp = outputs["sparse_activations"]
+
+                            kc_stats = {
+                                "logits_mean": logits.mean().item(),
+                                "logits_std": logits.std().item(),
+                                "raw_logits_mean": logits_raw.mean().item(),
+                                "raw_logits_std": logits_raw.std().item(),
+                                "raw_logits_min": logits_raw.min().item(),
+                                "raw_logits_max": logits_raw.max().item(),
+                                "probs_mean": probs.mean().item(),
+                                "probs_std": probs.std().item(),
+                                "probs_gt05": (probs > 0.5).float().mean().item(),
+                                "probs_gt09": (probs > 0.9).float().mean().item(),
+                                "topk_mean": outputs.get("topk_vals", probs)
+                                .mean()
+                                .item(),
+                                "topk_min": outputs.get("topk_vals", probs)
+                                .min()
+                                .item(),
+                                "topk_max": outputs.get("topk_vals", probs)
+                                .max()
+                                .item(),
+                                "sparse_mean": sp.mean().item(),
+                                "nonzero": (sp > 0).sum(dim=-1).float().mean().item(),
+                                "unique_kcs": len(torch.unique(outputs["topk_inds"])),
+                            }
+
+                            print_kc_first_batch_summary(kc_stats, selected_stats[:5])
+
+                    # Compute separation metrics for storage
+                    for name, logits in outputs["target_logits"].items():
+                        target_key = f"kc_targets_{name}"
+                        if target_key not in batch:
+                            continue
+                        targets = batch[target_key].to(self.device).float()
+                        with torch.no_grad():
+                            pos_mask = targets > 0.5
+                            neg_mask = ~pos_mask
+                            if pos_mask.any() and neg_mask.any():
+                                pmn = (
+                                    logits[pos_mask].mean().item()
+                                    - logits[neg_mask].mean().item()
+                                )
+                                first_batch_separation[name] = pmn
 
                 loss = torch.tensor(0.0, device=self.device)
                 batch_kc_losses = {}
@@ -612,9 +1184,39 @@ class KCTrainer:
 
                     if target_key in batch:
                         # Structural target (multi-hot)
-                        targets = batch[target_key].to(self.device)
-                        # logits: (B, V), targets: (B, V) float multi-hot
-                        task_loss = self.bce_loss(logits, targets)
+                        targets = batch[target_key].to(self.device).float()
+                        logits_f = logits.float()
+
+                        # Round 6: Optimized Negative Sampling
+                        B, V_f = logits_f.shape
+                        if V_f > 256:
+                            # Large Head: Sample 128 negatives
+                            pos_mask = targets > 0.5
+                            neg_count = 128
+
+                            # Optim: Use smaller index tensor for scatter, avoid huge boolean mask if possible?
+                            # Sticking to valid mask approach but ensuring cleaner code.
+                            neg_inds = torch.randint(
+                                0, V_f, (B, neg_count), device=self.device
+                            )
+                            mask = torch.zeros_like(logits_f, dtype=torch.bool)
+                            mask.scatter_(1, neg_inds, True)
+                            mask = mask | pos_mask
+
+                            if mask.any():
+                                task_loss = F.binary_cross_entropy_with_logits(
+                                    logits_f[mask], targets[mask]
+                                )
+                            else:
+                                task_loss = torch.tensor(
+                                    0.0, device=self.device, requires_grad=True
+                                )
+                        else:
+                            # Small Head: Full BCE
+                            task_loss = F.binary_cross_entropy_with_logits(
+                                logits_f, targets
+                            )
+
                         structural_loss += task_loss
                         num_struct += 1
                         batch_kc_losses[name] = task_loss.item()
@@ -652,10 +1254,18 @@ class KCTrainer:
                         batch_kc_losses[name] = task_loss.item()
                     elif name == "register":
                         targets = batch["register_labels"].to(self.device)
-                        task_loss = self.bce_loss(logits, targets)
+                        task_loss = self.default_bce_loss(logits, targets)
                         label_loss += task_loss
                         num_label += 1
                         batch_kc_losses[name] = task_loss.item()
+
+                # Track running stats for epoch summary
+                if num_struct > 0:
+                    running_struct_loss += structural_loss.item()
+                    running_num_struct_total += 1
+                if num_label > 0:
+                    running_label_loss += label_loss.item()
+                    running_num_label_total += 1
 
                 # Weighted Loss Combination
                 combined_loss = torch.tensor(0.0, device=self.device)
@@ -664,28 +1274,186 @@ class KCTrainer:
                 if num_label > 0:
                     combined_loss += 0.3 * (label_loss / num_label)
 
-                # Sparsity Loss (on ACTUAL sparse activations)
-                sparsity = outputs["sparse_activations"].mean()
-                total_sparsity += sparsity.item()
+                # Select Diversity Weight based on epoch
+                if epoch < self.freeze_encoder_epochs:
+                    div_weight = self.kc_diversity_weight_frozen
+                    lb_weight = self.kc_lb_weight_frozen
+                else:
+                    div_weight = self.kc_diversity_weight_thawed
+                    lb_weight = self.kc_lb_weight_thawed
+
+                # Diversity Regularization
+                diversity_loss = torch.tensor(0.0, device=self.device)
+                entropy_norm = torch.tensor(0.0, device=self.device)
+                kl_to_uniform = torch.tensor(0.0, device=self.device)
+
+                # Tracking scalars
+                loss_div_val = 0.0
+                loss_lb_val = 0.0
+                loss_coll_val = 0.0
+
+                if epoch >= self.kc_diversity_warmup_epochs:
+                    # ------------------------------------------------------------------
+                    # ROUND 5: OPINIONATED STABILITY FIXES
+                    # ------------------------------------------------------------------
+                    # Step 2: Regularize USAGE (Softmax), not Probabilities (Sigmoid)
+                    logits_raw = outputs["kc_logits_raw"]
+
+                    # Round 8: Stability clamp - prevents rare large logits from dominating
+                    # the batch usage distribution. This only affects the regularizer path (q/p),
+                    # not the forward selection itself.
+                    logits_usage = logits_raw.clamp(min=-8.0, max=8.0)
+
+                    tau_usage = 1.0 if epoch < self.freeze_encoder_epochs else 2.0
+
+                    # q: (B, V) soft assignment distribution (sums to 1 per sample)
+                    q = torch.softmax(logits_usage / tau_usage, dim=-1)
+
+                    # p: (V,) global batch usage distribution (sums to 1)
+                    p = q.mean(dim=0)
+
+                    # Ensure sum to 1 (softmax does this, but floating point drift might occur)
+                    p_sum = p.sum().clamp_min(self.kc_diversity_eps)
+                    p = p / p_sum
+
+                    # Differentiable Entropy / Diversity
+                    # Maximize entropy of p => minimize neg_entropy
+                    log_p = (p + self.kc_diversity_eps).log()
+                    entropy = -(p * log_p).sum()
+                    entropy_norm = entropy / math.log(kc_vocab_size)
+                    diversity_loss = 1.0 - entropy_norm
+
+                    # Differentiable Load Balance: KL(p || uniform)
+                    kl_val = (p * (p.clamp_min(1e-9) * kc_vocab_size).log()).sum()
+                    load_balance_loss = kl_val / math.log(kc_vocab_size)
+
+                    # Step 3: Strict Collapse Penalty (Linear, Thawed Only)
+                    p_max = p.max()
+
+                    if epoch >= self.freeze_encoder_epochs:
+                        # Threshold scale with V (approx 3x uniform)
+                        thr = max(3.0 / max(1, kc_vocab_size), 0.002)
+
+                        # Linear penalty (L1), not squared, to bite immediately
+                        diff = (p_max - thr).clamp_min(0.0)
+
+                        # Strong weight (order 1.0)
+                        if self.kc_collapse_weight_thawed > 0:
+                            # Use weight directly on linear penalty
+                            collapse_penalty = diff
+                            combined_loss += (
+                                self.kc_collapse_weight_thawed * collapse_penalty
+                            )
+                            loss_coll_val = (
+                                self.kc_collapse_weight_thawed * collapse_penalty
+                            ).item()
+
+                    # Apply Standard Regularizers
+                    if div_weight > 0:
+                        combined_loss += div_weight * diversity_loss
+                        loss_div_val = (div_weight * diversity_loss).item()
+
+                    if lb_weight > 0:
+                        combined_loss += lb_weight * load_balance_loss
+                        loss_lb_val = (lb_weight * load_balance_loss).item()
+
+                    # Metrics for logging (Overwrite with differentiable versions)
+                    kl_to_uniform = kl_val
+
+                running_entropy_norm += entropy_norm.item()
+                running_kl_to_uniform += kl_to_uniform.item()
+                running_p_max += p_max.item() if ("p_max" in locals()) else 0.0
+
+                # Sparsity Loss and New Metrics
+                if (
+                    self.kc_sparsity_weight > 0
+                    and self.kc_sparsity_mode == "target_density"
+                ):
+                    # Avg probability (soft)
+                    avg_prob = outputs["kc_probs"].mean()
+                    # Activation density (hard, post-topk)
+                    act_dens = (outputs["sparse_activations"] > 0).float().mean()
+
+                    # Sparsity loss uses soft probabilities usually for differentiability
+                    sparsity_term = avg_prob
+                else:
+                    avg_prob = outputs["kc_probs"].mean()
+                    act_dens = outputs["sparse_activations"].mean()
+                    sparsity_term = act_dens
+
+                running_avg_prob += avg_prob.item()
+                running_act_dens += act_dens.item()
+                # Round 8 Fix 1: Track what we're actually penalizing for avg_sparsity output
+                total_sparsity += float(sparsity_term.detach().item())
+                running_sparsity += sparsity_term.item()
+
+                # Round 8 Fix 5: Stage sparsity pressure - lighter early in thawed phase
+                spar_w = self.kc_sparsity_weight
+                if epoch >= self.freeze_encoder_epochs:
+                    epoch_idx_thawed = max(0, epoch - self.freeze_encoder_epochs)
+                    if epoch_idx_thawed < 3:
+                        spar_w = 0.5 * self.kc_sparsity_weight
 
                 loss = (
-                    combined_loss + self.kc_sparsity_weight * sparsity
+                    combined_loss + spar_w * sparsity_term
                 ) / self.config.grad_accum_steps
+
+                loss_spar_val = (spar_w * sparsity_term).item()
+
+                # Update loss components dict for logging
+                # Ensure we add key if missing
+                current_epoch_comp = {
+                    "base": combined_loss.item(),
+                    "struct": structural_loss.item(),
+                    "label": label_loss.item(),
+                    "div": loss_div_val,
+                    "lb": loss_lb_val,
+                    "collapse": loss_coll_val,
+                    "sparsity": loss_spar_val,
+                }
+
+                # Update loss components stats
+                running_loss_components["base"] += current_epoch_comp["base"]
+                running_loss_components["div"] += current_epoch_comp["div"]
+                running_loss_components["lb"] += current_epoch_comp["lb"]
+                running_loss_components["collapse"] += current_epoch_comp["collapse"]
+
+                # Subtract regs from base to show pure base loss?
+                # combined_loss includes regs. So base = combined - regs.
+                running_loss_components["base"] -= (
+                    current_epoch_comp["div"]
+                    + current_epoch_comp["lb"]
+                    + current_epoch_comp["collapse"]
+                )
+
+                running_loss_components["struct"] += (
+                    (current_epoch_comp["struct"] / num_struct)
+                    if num_struct > 0
+                    else 0.0
+                )
+                running_loss_components["label"] += (
+                    (current_epoch_comp["label"] / num_label) if num_label > 0 else 0.0
+                )
+                running_loss_components["sparsity"] += current_epoch_comp["sparsity"]
 
                 if loss.item() == 0.0 and loss.requires_grad:
                     pass
 
             self.scaler.scale(loss).backward()
+            did_any_backward = True
+            pending_accum += 1
+
+            # (Removed old mid-epoch inaccurate grad norm prints)
 
             if (batch_idx + 1) % self.config.grad_accum_steps == 0:
-                if self.config.gradient_clip > 0:
-                    self.scaler.unscale_(self.optimizer)
-                    nn.utils.clip_grad_norm_(
-                        self.model.parameters(), self.config.gradient_clip
-                    )
-                self.scaler.step(self.optimizer)
-                self.scaler.update()
-                self.optimizer.zero_grad(set_to_none=True)
+                is_skipped = self._perform_optimizer_step(
+                    m, verbose, has_printed_step_check, pending_accum, is_flush=False
+                )
+                if is_skipped:
+                    amp_skips += 1
+                opt_steps += 1
+                has_printed_step_check = True
+                pending_accum = 0
 
             total_loss += loss.item() * self.config.grad_accum_steps
             for k, v in batch_kc_losses.items():
@@ -693,15 +1461,17 @@ class KCTrainer:
             n_batches += 1
 
             if verbose and is_main_process():
-                avg_l = total_loss / n_batches
-                progress = (batch_idx + 1) / total_batches
-                bar = (
-                    "=" * int(30 * progress) + ">" + "." * (30 - int(30 * progress) - 1)
-                )
-                sys.stdout.write(
-                    f"\r  [{bar}] {batch_idx + 1}/{total_batches} loss={avg_l:.4f}"
-                )
-                sys.stdout.flush()
+                print_progress_bar(batch_idx, total_batches, total_loss / n_batches)
+
+        if did_any_backward and pending_accum > 0:
+            raw = self.model.module if self.is_distributed else self.model
+            m = cast(StyleClassifierWithMLM, raw)
+            self._perform_optimizer_step(
+                m, verbose, has_printed_step_check, pending_accum, is_flush=True
+            )
+            # Flush doesn't increment amp_skips usually, but we track steps
+            flush_steps += 1
+            has_printed_step_check = True
 
         if verbose and is_main_process():
             sys.stdout.write("\n")
@@ -709,7 +1479,144 @@ class KCTrainer:
 
         avg_kc_losses = {k: v / n_batches for k, v in kc_losses.items()}
         avg_sparsity = total_sparsity / max(1, n_batches)
-        return total_loss / n_batches, avg_kc_losses, avg_sparsity
+
+        # KC Usage Stats Calculation (DDP Safe)
+        if self.is_distributed and dist.is_initialized():
+            hist_dev = topk_hist.to(self.device)
+            top1_dev = top1_hist.to(self.device)
+            dist.all_reduce(hist_dev, op=dist.ReduceOp.SUM)
+            dist.all_reduce(top1_dev, op=dist.ReduceOp.SUM)
+            topk_hist = hist_dev.to("cpu")
+            top1_hist = top1_dev.to("cpu")
+
+            scal = torch.tensor(
+                [kc_usage_total_samples, kc_tv_sum, kc_gap_sum, kc_gap_count],
+                device=self.device,
+                dtype=torch.float64,
+            )
+            dist.all_reduce(scal, op=dist.ReduceOp.SUM)
+            kc_usage_total_samples = int(scal[0].item())
+            kc_tv_sum = float(scal[1].item())
+            kc_gap_sum = float(scal[2].item())
+            kc_gap_count = int(scal[3].item())
+
+        uniq_kcs_epoch = int((topk_hist > 0).sum().item())
+        max_top1 = float(top1_hist.max().item()) / max(1, kc_usage_total_samples)
+
+        k_val = (
+            int(
+                getattr(
+                    cast(StyleClassifierWithMLM, self.model.module).config, "kc_topk", 8
+                )
+            )
+            if self.is_distributed
+            else int(getattr(self.model.config, "kc_topk", 8))
+        )
+        tv_mean = kc_tv_sum / max(1, kc_usage_total_samples * k_val)
+        gap_mean = kc_gap_sum / max(1, kc_gap_count)
+        avg_entropy_norm = running_entropy_norm / max(1, n_batches)
+        avg_kl_to_uniform = running_kl_to_uniform / max(1, n_batches)
+
+        # Prepare histograms for printing
+        N = 10
+        topk_vals_hist, topk_idx_hist = torch.topk(topk_hist, k=min(N, kc_vocab_size))
+        top1_vals_hist, top1_idx_hist = torch.topk(top1_hist, k=min(N, kc_vocab_size))
+
+        topk_counts_list = []
+        for i in range(len(topk_idx_hist)):
+            topk_counts_list.append(
+                (int(topk_idx_hist[i].item()), int(topk_vals_hist[i].item()))
+            )
+
+        top1_counts_list = []
+        for i in range(len(top1_idx_hist)):
+            top1_counts_list.append(
+                (int(top1_idx_hist[i].item()), int(top1_vals_hist[i].item()))
+            )
+
+        epoch_stats = {
+            "avg_struct_loss": running_struct_loss / max(1, running_num_struct_total),
+            "avg_label_loss": running_label_loss / max(1, running_num_label_total),
+            "num_struct_heads_processed": running_num_struct_total,
+            "num_label_heads_processed": running_num_label_total,
+            "avg_sparsity": running_sparsity / max(1, n_batches),
+            "avg_prob": running_avg_prob / max(1, n_batches),
+            "act_dens": running_act_dens / max(1, n_batches),
+            "first_batch_separation": first_batch_separation,
+            "first_batch_grad_norms": first_batch_grad_norms,
+            "avg_entropy_norm": avg_entropy_norm,
+            "avg_kl_to_uniform": avg_kl_to_uniform,
+            "uniq_kcs_epoch": uniq_kcs_epoch,
+            "max_top1_epoch": max_top1,
+            "avg_p_max": running_p_max / max(1, n_batches),
+        }
+
+        avg_loss_components = {
+            k: v / max(1, n_batches) for k, v in running_loss_components.items()
+        }
+
+        if verbose and is_main_process() and not self.kc_show_epoch_table:
+            if not self.kc_show_epoch_table:
+                # Minimal mode summary
+                top_losses = sorted(
+                    avg_kc_losses.items(), key=lambda x: x[1], reverse=True
+                )[:3]
+                amp_stats = {
+                    "skips": amp_skips,
+                    "start": amp_scale_start,
+                    "end": self.scaler.get_scale(),
+                    "opt_steps": opt_steps,
+                    "flush_steps": flush_steps,
+                }
+
+                # New Loss Breakdown
+                weights_dict = {
+                    "div": div_weight if "div_weight" in locals() else 0.0,
+                    "lb": lb_weight if "lb_weight" in locals() else 0.0,
+                    "collapse": self.kc_collapse_weight_thawed
+                    if epoch >= self.freeze_encoder_epochs
+                    else 0.0,
+                }
+                from train.display import (
+                    print_kc_loss_breakdown,  # Lazy import to avoid circular issues if any (though display is usually fine)
+                )
+
+                print_kc_loss_breakdown(avg_loss_components, weights_dict)
+
+                print_kc_epoch_compact_summary(
+                    epoch + 1,
+                    self.config.epochs,
+                    total_loss / n_batches,
+                    cast(float, epoch_stats["avg_prob"]),
+                    cast(float, epoch_stats["act_dens"]),
+                    cast(float, epoch_stats["avg_struct_loss"]),
+                    top_losses,
+                    amp_stats,
+                    entropy_norm=avg_entropy_norm,
+                    avg_kl_to_uniform=avg_kl_to_uniform,
+                    uniq_kcs=uniq_kcs_epoch,
+                    avg_p_max=cast(float, epoch_stats.get("avg_p_max")),
+                )
+                print_kc_usage_summary(
+                    uniq=uniq_kcs_epoch,
+                    total=kc_usage_total_samples,
+                    max_top1=max_top1,
+                    tv_mean=tv_mean,
+                    gap_mean=gap_mean,
+                    topk_counts=topk_counts_list,
+                    top1_counts=top1_counts_list,
+                    k=k_val,
+                )
+
+        # Round 8 Fix 6: Compact health line (main process only)
+        if verbose and is_main_process():
+            print(
+                f"  KC Health: maxTop1={max_top1:.3f} uniqKCs={uniq_kcs_epoch}/{kc_vocab_size} "
+                f"avgProb={cast(float, epoch_stats['avg_prob']):.3f} actDens={cast(float, epoch_stats['act_dens']):.4f} "
+                f"entN={avg_entropy_norm:.3f} klU={avg_kl_to_uniform:.3f}"
+            )
+
+        return total_loss / n_batches, avg_kc_losses, avg_sparsity, epoch_stats
 
     def train(
         self,
@@ -718,21 +1625,41 @@ class KCTrainer:
         on_epoch_end: Optional[Callable[[Dict[str, Any]], None]] = None,
     ) -> Dict[str, Any]:
         actual_epochs = epochs or self.config.epochs
+
+        # Initialize biases to empirical base rates before training
+        self._init_structural_decoder_biases()
+
         for epoch in range(actual_epochs):
             if self.is_distributed:
                 cast(DistributedSampler, self.sampler).set_epoch(epoch)
-            total_loss, kc_losses, avg_sparsity = self.train_epoch(
+            total_loss, kc_losses, avg_sparsity, epoch_stats = self.train_epoch(
                 epoch=epoch, verbose=verbose
             )
 
             self.history["total_loss"].append(total_loss)
             self.history["kc_sparsity"].append(avg_sparsity)
+            self.history["avg_struct_loss"].append(epoch_stats["avg_struct_loss"])
+            self.history["avg_label_loss"].append(epoch_stats["avg_label_loss"])
+            self.history["num_struct_heads_processed"].append(
+                epoch_stats["num_struct_heads_processed"]
+            )
+            self.history["num_label_heads_processed"].append(
+                epoch_stats["num_label_heads_processed"]
+            )
+            self.history["avg_sparsity"].append(epoch_stats["avg_sparsity"])
+            self.history["first_batch_separation"].append(
+                epoch_stats["first_batch_separation"]
+            )
+            self.history["first_batch_grad_norms"].append(
+                epoch_stats["first_batch_grad_norms"]
+            )
+
             for k, v in kc_losses.items():
                 if k not in self.history["kc_losses"]:
                     self.history["kc_losses"][k] = []
                 self.history["kc_losses"][k].append(v)
 
-            if verbose and is_main_process():
+            if verbose and is_main_process() and self.kc_show_epoch_table:
                 # Top 5 contributors
                 top_losses = dict(
                     sorted(kc_losses.items(), key=lambda x: x[1], reverse=True)[:5]
@@ -743,8 +1670,10 @@ class KCTrainer:
                     {"Total Loss": total_loss, "Sparsity": avg_sparsity},
                     top_losses,
                     phase="KC",
+                    kc_epoch_stats=epoch_stats,
                 )
 
+            self.history["sentence_count"].append(len(self.dataset.samples))
             if on_epoch_end and is_main_process():
                 on_epoch_end(self.history)
 
@@ -795,6 +1724,8 @@ class Trainer:
             else ("mps" if "mps" in str(self.device) else "cpu")
         )
         self.scaler = GradScaler(device=device_type, enabled=self.config.use_amp)
+        self.train_dataset = train_dataset
+        self.val_dataset = val_dataset
 
         pad_id = train_dataset.tokenizer.pad_id
         max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
@@ -886,7 +1817,7 @@ class Trainer:
         self.patience_counter = 0
         self.best_state: Optional[Dict[str, torch.Tensor]] = None
         self.start_epoch = 0
-        self.history: Dict[str, List[float]] = {
+        self.history: Dict[str, Any] = {
             k: []
             for k in [
                 "train_loss",
@@ -905,12 +1836,16 @@ class Trainer:
                 "val_gender_value_mse",
                 "val_grammaticality_accuracy",
                 "val_register_accuracy",
+                "sentence_count",
             ]
         }
 
     def train_epoch(
         self, verbose: bool = True
     ) -> Tuple[float, float, float, float, float]:
+        if verbose and is_main_process():
+            print_phase_header("Style")
+
         self.model.train()
         t_loss: float = 0.0
         tf_loss: float = 0.0
@@ -1021,15 +1956,7 @@ class Trainer:
                 and is_main_process()
                 and ((batch_idx + 1) % 100 == 0 or (batch_idx + 1) == total_batches)
             ):
-                avg_l = t_loss / n
-                progress = (batch_idx + 1) / total_batches
-                bar = (
-                    "=" * int(30 * progress) + ">" + "." * (30 - int(30 * progress) - 1)
-                )
-                sys.stdout.write(
-                    f"\r  [{bar}] {batch_idx + 1}/{total_batches} loss={avg_l:.4f}"
-                )
-                sys.stdout.flush()
+                print_progress_bar(batch_idx, total_batches, t_loss / n)
         if verbose and is_main_process():
             sys.stdout.write("\n")
         return t_loss / n, tf_loss / n, tg_loss / n, tgram_loss / n, tr_loss / n
@@ -1228,6 +2155,8 @@ class Trainer:
                 ],
             ):
                 self.history[k].append(eval_res[mk])
+
+            self.history["sentence_count"].append(len(self.train_dataset.samples))
 
             if verbose:
                 # Format metrics for nice display

@@ -315,7 +315,8 @@ if [ -n "$EPOCHS" ]; then
 else
     echo "Epochs:         (default or restored from checkpoint)"
 fi
-echo "Batch size:     $BATCH_SIZE"
+# Show batch size after it's calculated (line 429)
+echo "Batch size:     (computed after env setup)"
 echo "Learning rate:  $LEARNING_RATE"
 echo "Model dim:      $EMBED_DIM"
 echo "Hidden dim:     $HIDDEN_DIM"
@@ -327,6 +328,14 @@ echo "Grammatic wt:   $GRAMMATICALITY_WEIGHT"
 if [ -n "$PRETRAIN_MLM" ]; then
     echo "MLM pretrain:   $PRETRAIN_EPOCHS epochs"
     echo "Encoder LR:     ${ENCODER_LR_FACTOR}x base LR during fine-tuning"
+fi
+if [ -n "$PRETRAIN_KC" ]; then
+    echo "KC pretrain:    $KC_EPOCHS epochs"
+    echo "KC K:           $KC_K"
+    echo "KC Top-k:       $KC_TOPK"
+    echo "KC Freeze:      $KC_FREEZE_ENCODER_EPOCHS epochs"
+    echo "KC Sparsity:    $KC_SPARSITY_WEIGHT"
+    echo "KC Targets:     $KC_TARGET_HEADS"
 fi
 if [ -n "$FP8" ]; then
     echo "Precision:      float8 (quarter size)"
@@ -445,6 +454,24 @@ fi
 if [ -n "$DEBUG" ]; then
     echo "Configuration: $LAUNCHER, Batch: $BATCH_SIZE, Accum: $GRAD_ACCUM_STEPS, FP16: ${FP16:-off}"
 fi
+
+# Display computed effective configuration
+echo "----------------------------------------------"
+echo "Effective Training Configuration:"
+echo "----------------------------------------------"
+echo "  Devices:          $NUM_DEVICES"
+echo "  Micro batch:      $BATCH_SIZE"
+echo "  Grad accum:       $GRAD_ACCUM_STEPS"
+echo "  Effective batch:  $((BATCH_SIZE * GRAD_ACCUM_STEPS * NUM_DEVICES))"
+echo "  Launcher:         $LAUNCHER"
+if [ -n "$PRETRAIN_KC" ]; then
+    echo "  KC Epochs:        $KC_EPOCHS (freeze: $KC_FREEZE_ENCODER_EPOCHS)"
+    echo "  KC Vocab (K):     $KC_K"
+    echo "  KC Top-k:         $KC_TOPK"
+    echo "  KC Targets:       $KC_TARGET_HEADS"
+fi
+echo "----------------------------------------------"
+echo ""
 
 # Build command
 CMD="$LAUNCHER -m scripts.train_style \

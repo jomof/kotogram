@@ -14,7 +14,7 @@ class TestTrainStyleScript(unittest.TestCase):
         # Common arguments to reduce model size for faster testing
         COMMON_ARGS = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
 
-        # Test both regular training and training with MLM pretraining
+        # Test both regular training and pretraining (MLM/KC)
         test_configs = [
             {"name": "regular", "extra_args": f"{COMMON_ARGS}"},
             {
@@ -32,7 +32,7 @@ class TestTrainStyleScript(unittest.TestCase):
                 with Bottle(self) as bottle:
                     bottle.populate_test_data()
 
-                    # Take initial snapshot (also resets profile counters)
+                    # Take initial snapshot
                     overrides = {"TRAIN_ROOT": bottle.root_dir, "SKIP_DEPS": "1"}
                     bottle.snapshot("initial")
 
@@ -57,7 +57,7 @@ class TestTrainStyleScript(unittest.TestCase):
 
                     bottle.snapshot("after_label")
 
-                    # Step 2: Run train_style.sh for 1 epoch (with optional pretrain-mlm)
+                    # Step 2: Run train_style.sh for 1 epoch (with optional pretraining)
                     # Use --no-label to skip re-running the label phase (metadata already setup in Step 1)
                     # Use --no-confusion to skip generating confusion matrices (saves time)
                     train_args = f"--epochs 1 --no-label --no-confusion {config['extra_args']}".strip()
@@ -169,38 +169,36 @@ class TestTrainStyleScript(unittest.TestCase):
                     model_path = bottle.get_file("[models]/style/model.pt")
                     bottle.assertModelIsFp8(model_path)
 
-                    # 4. Verify epochs.json matches training history
-                    epochs_path = bottle.resolve_path(
+                    # 4. Verify history in epochs.json
+                    epoch_json_path = bottle.get_file(
                         "[models]/style-support/epochs.json"
                     )
-                    self.assertTrue(os.path.exists(epochs_path), "epochs.json missing")
-                    with open(epochs_path, "r") as f:
+                    self.assertTrue(os.path.exists(epoch_json_path))
+                    with open(epoch_json_path) as f:
                         history = json.load(f)
 
-                    # Check epochs count
                     if config["name"] == "regular":
-                        # 1 epoch initially, then trained 2nd epoch on resume
-                        # Wait, snapshot was taken after epoch 1.
-                        # Then we resumed and trained epoch 2.
-                        # So history should have 2 entries: epoch 1 and epoch 2
                         self.assertEqual(len(history), 2)
-                        self.assertEqual(history[0]["epoch"], 1)
-                        self.assertEqual(history[1]["epoch"], 2)
                         self.assertEqual(history[0]["type"], "style")
-                        self.assertEqual(history[1]["type"], "style")
+                        self.assertEqual(history[0]["sentence_count"], 76)
                     elif config["name"] == "pretrain-mlm":
-                        # 1 MLM epoch + 1 style epoch (initial) + 1 style epoch (resume)
-                        # Total 3 entries
                         self.assertEqual(len(history), 3)
                         self.assertEqual(history[0]["type"], "pretrain-mlm")
-                        self.assertEqual(history[1]["type"], "style")
-                        self.assertEqual(history[2]["type"], "style")
+                        self.assertEqual(history[0]["sentence_count"], 85)
                     elif config["name"] == "pretrain-kc":
-                        # 1 KC epoch + 1 style epoch (initial) + 1 style epoch (resume)
                         self.assertEqual(len(history), 3)
                         self.assertEqual(history[0]["type"], "pretrain-kc")
-                        self.assertEqual(history[1]["type"], "style")
-                        self.assertEqual(history[2]["type"], "style")
+                        self.assertEqual(history[0]["sentence_count"], 68)
+                        # Spot validate KC metrics
+                        self.assertIn("avg_struct_loss", history[0])
+                        self.assertIn("avg_sparsity", history[0])
+                        self.assertIn("num_struct_heads_processed", history[0])
+                        self.assertGreater(history[0]["num_struct_heads_processed"], 0)
+
+                    # All remaining entries are always standard style fine-tuning
+                    for entry in history[1:]:
+                        self.assertEqual(entry["type"], "style")
+                        self.assertEqual(entry["sentence_count"], 76)
 
     def test_auto_resume(self):
         """Verifies auto-resume affects *training*, not just printing."""

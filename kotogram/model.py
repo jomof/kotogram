@@ -270,6 +270,11 @@ class KCHead(nn.Module):  # type: ignore[misc]
         x = self.layer_norm(x)
         return cast(torch.Tensor, x)
 
+    def forward_with_raw(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+        raw = self.linear(x)
+        out = self.layer_norm(raw)
+        return raw, cast(torch.Tensor, out)
+
 
 class StyleClassifier(nn.Module):  # type: ignore[misc]
     """Neural sequence classifier for multi-task style prediction."""
