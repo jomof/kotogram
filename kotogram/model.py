@@ -124,6 +124,7 @@ class ModelConfig:
 
     # KC Learning configuration
     kc_enabled: bool = False
+    mlm_enabled: bool = False
     kc_vocab_size: int = 1024  # Size of the sparse concept, vocabulary
     kc_topk: int = 8  # Number of active concepts to retrieve
     kc_temperature: float = 1.0  # Sparsification temperature
@@ -147,6 +148,7 @@ class ModelConfig:
             "max_seq_len": self.max_seq_len,
             "pooling": self.pooling,
             "kc_enabled": self.kc_enabled,
+            "mlm_enabled": self.mlm_enabled,
             "kc_vocab_size": self.kc_vocab_size,
             "kc_topk": self.kc_topk,
             "kc_temperature": self.kc_temperature,
@@ -168,6 +170,9 @@ class ModelConfig:
 
         if "num_formality_classes" in d:
             d.pop("num_formality_classes")
+
+        if "trainer" in d:
+            d.pop("trainer")
 
         return cls(**d)
 
@@ -532,7 +537,7 @@ def load_model(
     import os
 
     # Load config
-    with open(os.path.join(path, "config.json"), "r") as f:
+    with open(os.path.join(path, "model.json"), "r") as f:
         config_dict = json.load(f)
     config = ModelConfig.from_dict(config_dict)
 

@@ -32,14 +32,10 @@
   "dropout": 0.1,
   "max_seq_len": 512,
   "pooling": "cls",
-  "kc_enabled": true,
+  "kc_enabled": false,
+  "mlm_enabled": false,
   "kc_vocab_size": 1024,
   "kc_topk": 8,
   "kc_temperature": 1.0,
-  "kc_target_specs": {
-    "lemma": 6622,
-    "pos": 19,
-    "conjugated_form": 35,
-    "conjugated_type": 89
-  }
+  "kc_target_specs": {}
 }

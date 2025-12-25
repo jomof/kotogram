@@ -146,7 +146,7 @@ class TestPretrainDataFiltering(unittest.TestCase):
             "Dataset should contain one agrammatic sample for testing",
         )
 
-        trainer = KCTrainer(self.model, dataset, self.config, kc_config)
+        trainer = KCTrainer(self.model, dataset, self.config, kc_config=kc_config)
 
         def has_agrammatic(dataset):
             return any(s.grammaticality_label == 0 for s in dataset.samples)

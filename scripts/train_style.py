@@ -19,19 +19,17 @@ import torch.distributed as dist
 
 from kotogram import locations
 from kotogram.model import (
-    NUM_FORMALITY_PRAGMATIC_CLASSES,
-    NUM_GENDER_PRAGMATIC_CLASSES,
-    NUM_GRAMMATICALITY_CLASSES,
-    ModelConfig,
     StyleClassifier,
 )
 from kotogram.tokenizer import (
     FEATURE_FIELDS,
     Tokenizer,
 )
-from train.config import TrainerConfig
+from train.config import (
+    TrainerConfig,
+)
 from train.dataset import StyleDataset
-from train.io import load_checkpoint, save_model
+from train.io import save_model
 from train.trainer import (
     KCTrainer,
     MLMTrainer,
@@ -87,10 +85,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Train style classifier (formality + gender)"
     )
-    parser.add_argument(
-        "--epochs", type=int, default=None, help="Number of training epochs"
-    )
-    parser.add_argument("--batch-size", type=int, default=32, help="Batch size")
+    # Model architecture args (these define ModelConfig, not TrainerConfig)
     parser.add_argument(
         "--embed-dim", type=int, default=192, help="Model dimension (d_model)"
     )
@@ -103,37 +98,21 @@ if __name__ == "__main__":
     parser.add_argument(
         "--num-heads", type=int, default=6, help="Number of attention heads"
     )
+    # Training phase flags
     parser.add_argument(
         "--pretrain-mlm",
         action="store_true",
         help="Pre-train with masked language modeling",
     )
+    # Config file (required - contains TrainerConfig)
     parser.add_argument(
-        "--pretrain-epochs", type=int, default=5, help="MLM pretraining epochs"
+        "--config", type=str, required=True, help="Path to unified config.json file"
     )
     parser.add_argument(
-        "--encoder-lr-factor",
-        type=float,
-        default=0.1,
-        help="Learning rate multiplier for encoder during fine-tuning",
-    )
-    parser.add_argument(
-        "--learning-rate", type=float, default=1e-4, help="Base learning rate"
-    )
-    parser.add_argument(
-        "--formality-weight",
-        type=float,
-        default=1.0,
-        help="Loss weight for formality task",
-    )
-    parser.add_argument(
-        "--gender-weight", type=float, default=1.0, help="Loss weight for gender task"
-    )
-    parser.add_argument(
-        "--grammaticality-weight",
-        type=float,
-        default=1.0,
-        help="Loss weight for grammaticality task",
+        "--agrammatic-pattern",
+        type=str,
+        default=None,
+        help="Pattern for agrammatic data",
     )
 
     parser.add_argument(
@@ -169,9 +148,6 @@ if __name__ == "__main__":
         action="store_true",
         help="Run Knowledge Component (KC) sparse concept pretraining",
     )
-    parser.add_argument(
-        "--kc-epochs", type=int, default=3, help="Number of KC pretraining epochs"
-    )
     parser.add_argument("--kc-k", type=int, default=1024, help="KC vocabulary size")
     parser.add_argument(
         "--kc-topk", type=int, default=8, help="Number of active KCs per sample"
@@ -195,38 +171,18 @@ if __name__ == "__main__":
         help="Target heads for KC supervision",
     )
     parser.add_argument(
-        "--grad-accum-steps",
-        type=int,
-        default=1,
-        help="Gradient accumulation steps",
-    )
-    parser.add_argument(
         "--checkpoint-every",
         type=int,
         default=None,
         help="Save checkpoint every N steps",
     )
 
-    # Round 18: Interactive Mode and Performance Tuning
-    # Round 18: Interactive Mode and Performance Tuning
     parser.add_argument(
-        "--dataloader-num-workers",
-        type=int,
-        default=None,
-        help="Number of DataLoader workers (None=auto-tune).",
+        "--label",
+        action="store_true",
+        help="Run labeling/preprocessing only",
     )
-    parser.add_argument(
-        "--torch-num-threads",
-        type=int,
-        default=None,
-        help="Number of intra-op threads for PyTorch (None=auto-tune).",
-    )
-    parser.add_argument(
-        "--cpu-reserve-cores",
-        type=int,
-        default=2,
-        help="Number of CPU cores to reserve for system/OS in interactive mode.",
-    )
+
     parser.add_argument(
         "--preprocess-only",
         action="store_true",
@@ -245,6 +201,13 @@ if __name__ == "__main__":
     if is_main_process():
         print("Setting up distributed training...", flush=True)
     rank, world_size, local_rank = setup_distributed()
+    device = torch.device(
+        "cuda"
+        if torch.cuda.is_available()
+        else ("mps" if torch.backends.mps.is_available() else "cpu")
+    )
+    if world_size > 1:
+        device = torch.device("cuda", local_rank)
 
     # Epoch history logging
     epochs_json_path = os.path.join(args.support_dir, "epochs.json")
@@ -305,140 +268,92 @@ if __name__ == "__main__":
     checkpoint: Optional[Dict[str, Any]] = None
     vocab_grew = False
 
-    if args.resume or args.retrain:
-        checkpoint_path = os.path.join(args.support_dir, "checkpoint.pt")
-        if os.path.exists(checkpoint_path):
-            checkpoint_data = torch.load(
-                checkpoint_path, map_location="cpu", weights_only=False
-            )
-            saved_args = checkpoint_data["args"]
-
-            if args.resume:
-                # Restore flags needed for model reconstruction FIRST
-                args.pretrain_mlm = saved_args.get("pretrain_mlm", False)
-                args.pretrain_kc = saved_args.get("pretrain_kc", False)
-
-                # Restore epoch counts and other training hyperparams if resuming
-                if args.pretrain_epochs == 5:  # Default
-                    args.pretrain_epochs = saved_args.get("pretrain_epochs", 5)
-                if args.kc_epochs == 3:  # Default
-                    args.kc_epochs = saved_args.get("kc_epochs", 3)
-
-                # We do NOT restore args.epochs if the user provided one on command line?
-                # The script handles args.epochs overwrite later:
-                # "if args.epochs is None: args.epochs = saved_args.get('epochs', 20)"
-
-                # Use StyleClassifierWithMLM if we are doing pretraining, as it has the 'mode' argument in forward
-                model_class = (
-                    StyleClassifierWithMLM
-                    if (args.pretrain_mlm or args.pretrain_kc)
-                    else StyleClassifier
-                )
-                model, tokenizer, checkpoint, _ = load_checkpoint(
-                    args.support_dir, model_class=model_class
-                )
-
-            args.embed_dim = saved_args["embed_dim"]
-            args.hidden_dim = saved_args["hidden_dim"]
-            args.num_layers = saved_args["num_layers"]
-            args.num_heads = saved_args["num_heads"]
-            args.kc_k = saved_args.get("kc_k", 1024)
-            args.kc_topk = saved_args.get("kc_topk", 8)
-            args.kc_target_heads = saved_args.get(
-                "kc_target_heads", "lemma,pos,conjugated_form"
-            )
-            args.learning_rate = saved_args["learning_rate"]
-            args.encoder_lr_factor = saved_args.get("encoder_lr_factor", 0.1)
-            args.formality_weight = saved_args.get("formality_weight", 1.0)
-            args.gender_weight = saved_args.get("gender_weight", 1.0)
-            args.grammaticality_weight = saved_args.get("grammaticality_weight", 1.0)
-
-            if args.percent is None:
-                args.percent = saved_args.get("percent", None)
-            if args.epochs is None:
-                args.epochs = saved_args.get("epochs", 20)
-            if args.fp16 is None:
-                args.fp16 = saved_args.get("fp16", False)
-            if args.fp8 is None:
-                args.fp8 = saved_args.get("fp8", False)
-
     if args.fp16 is None:
         args.fp16 = False
     if args.fp8 is None:
         args.fp8 = not args.fp16
-    if args.epochs is None:
-        args.epochs = 20
 
     data_files = [args.data]
     grammaticality_labels = [1]
-    if os.path.exists(args.agrammatic_data):
+
+    # Always prefer cached pre-processed files if available
+    cache_dir_data = locations.get_style_dataset_cache_dir()
+    gram_cache = os.path.join(cache_dir_data, "grammatic_combined.tsv")
+    agram_cache = os.path.join(cache_dir_data, "agrammatic_combined.tsv")
+
+    if os.path.exists(gram_cache):
+        data_files = [gram_cache]
+        grammaticality_labels = [1]
+
+        if os.path.exists(agram_cache):
+            data_files.append(agram_cache)
+            grammaticality_labels.append(0)
+    elif os.path.exists(args.agrammatic_data):
         data_files.append(args.agrammatic_data)
         grammaticality_labels.append(0)
 
     # --- Model and Data Initialization ---
-    if tokenizer is None:
-        tokenizer = Tokenizer()
-        vocab_path = os.path.join(locations.get_style_dataset_cache_dir(), "vocab.json")
-        if os.path.exists(vocab_path):
-            StyleDataset._load_vocab(vocab_path, tokenizer)
-            if is_main_process():
-                print(f"  Loaded vocabulary from cache: {vocab_path}")
-        else:
-            raise ValueError(f"Vocabulary not found at {vocab_path}")
+    # Load tokenizer to get vocab sizes
+    # Priority: support_dir (training progress) > cache (labeling result)
+    tokenizer_path_support = os.path.join(args.support_dir, "tokenizer.json")
+    tokenizer_path_cache = os.path.join(cache_dir, "style_dataset", "vocab.json")
 
-    # Prepare model configuration
-    model_config = ModelConfig(
-        vocab_sizes=tokenizer.get_vocab_sizes(),
-        num_formality_pragmatic_classes=NUM_FORMALITY_PRAGMATIC_CLASSES,
-        num_gender_pragmatic_classes=NUM_GENDER_PRAGMATIC_CLASSES,
-        num_grammaticality_classes=NUM_GRAMMATICALITY_CLASSES,
-        d_model=args.embed_dim,
-        hidden_dim=args.hidden_dim,
-        num_layers=args.num_layers,
-        num_heads=args.num_heads,
-        kc_enabled=args.pretrain_kc,
-        kc_vocab_size=args.kc_k,
-        kc_topk=args.kc_topk,
-        kc_target_specs={
-            h.strip(): tokenizer.get_vocab_sizes().get(h.strip(), 100)
-            for h in args.kc_target_heads.split(",")
-            if h.strip()
-        }
-        if args.pretrain_kc
-        else {},
-    )
+    tokenizer = None
+    if os.path.exists(tokenizer_path_support):
+        try:
+            tokenizer = Tokenizer.load(tokenizer_path_support)
+            if is_main_process():
+                print(f"Loaded tokenizer from {tokenizer_path_support}")
+        except Exception as e:
+            print(f"ERROR: Failed to load tokenizer from {tokenizer_path_support}: {e}")
+
+    if tokenizer is None:
+        if os.path.exists(tokenizer_path_cache):
+            try:
+                tokenizer = Tokenizer.load(tokenizer_path_cache)
+            except Exception as e:
+                print(
+                    f"ERROR: Failed to load tokenizer from {tokenizer_path_cache}: {e}"
+                )
+                tokenizer = Tokenizer()
+        else:
+            # Fallback to loading via StyleDataset logic or empty
+            tokenizer = Tokenizer()
+            vocab_legacy = os.path.join(
+                locations.get_style_dataset_cache_dir(), "vocab.json"
+            )
+            if os.path.exists(vocab_legacy):
+                StyleDataset._load_vocab(vocab_legacy, tokenizer)
+            else:
+                raise ValueError(f"Vocabulary not found at {tokenizer_path_cache}")
+
+    # Create a single TrainerConfig and ModelConfig
+    if args.config:
+        model_config, trainer_config = TrainerConfig.load_config(args.config)
+    else:
+        print(
+            "ERROR: --config is required. Configuration must be passed from the wrapper script.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    # Round 17: Save unified config and tokenizer to support_dir
+    if is_main_process():
+        os.makedirs(args.support_dir, exist_ok=True)
+        # Combine model and trainer config into one prettified JSON
+        combined_config = model_config.to_dict()
+        combined_config["trainer"] = trainer_config.to_dict()
+        with open(os.path.join(args.support_dir, "config.json"), "w") as f:
+            json.dump(combined_config, f, indent=2)
+        tokenizer.save(os.path.join(args.support_dir, "tokenizer.json"))
 
     # Initialize model if not already loaded from checkpoint
+    # Initialize model if not already loaded from checkpoint
     if model is None:
-        if args.pretrain_mlm or args.pretrain_kc:
+        if model_config.mlm_enabled or model_config.kc_enabled:
             model = StyleClassifierWithMLM(model_config)
         else:
             model = StyleClassifier(model_config)
-
-    # Round 17: Save model config and tokenizer to support_dir for resumption compatibility
-    if is_main_process():
-        os.makedirs(args.support_dir, exist_ok=True)
-        with open(os.path.join(args.support_dir, "config.json"), "w") as f:
-            json.dump(model_config.to_dict(), f, indent=2)
-        tokenizer.save(os.path.join(args.support_dir, "tokenizer.json"))
-
-    # Load checkpoint if resuming
-    if args.resume and checkpoint is not None:
-        old_vocab_sizes = tokenizer.get_vocab_sizes()
-        # load_checkpoint already handles model_class if passed, but we already have the model.
-        # Actually, let's use the existing load_checkpoint logic to be safe, but we've already inited.
-        # Restoring state dict later.
-        pass
-
-    # Detect interactive mode
-    is_interactive = (
-        sys.stdout.isatty() or "SSH_TTY" in os.environ or "TMUX" in os.environ
-    )
-    if is_main_process() and is_interactive:
-        print(
-            "Interactive mode detected: optimizing for responsiveness over throughput.",
-            flush=True,
-        )
 
     # Phase 1: MLM Pretraining
     if args.pretrain_mlm and not args.preprocess_only:
@@ -446,7 +361,7 @@ if __name__ == "__main__":
         mlm_epochs_done = len(
             [e for e in training_history if e.get("type") == "pretrain-mlm"]
         )
-        if mlm_epochs_done < args.pretrain_epochs or args.retrain:
+        if mlm_epochs_done < trainer_config.mlm_epochs or args.retrain:
             unlabeled_dataset = StyleDataset.from_tsv(
                 args.data,
                 tokenizer,
@@ -455,29 +370,17 @@ if __name__ == "__main__":
                 sample_ratio=args.percent / 100.0 if args.percent else 1.0,
                 use_cache=False,
             )
-            pretrain_config = TrainerConfig(
-                epochs=args.pretrain_epochs,
-                batch_size=args.batch_size,
-                learning_rate=args.learning_rate,
-                use_amp=args.fp16 or args.fp8,
-                local_rank=local_rank,
-                world_size=world_size,
-                grad_accum_steps=args.grad_accum_steps,
-                checkpoint_dir=args.support_dir,
-                resume_from=args.support_dir if args.resume else None,
-                interactive_mode=is_interactive,
-                dataloader_num_workers=args.dataloader_num_workers,
-                torch_num_threads=args.torch_num_threads,
-                cpu_reserve_cores=args.cpu_reserve_cores,
-            )
             mlm_trainer = MLMTrainer(
                 cast(StyleClassifierWithMLM, model),
                 unlabeled_dataset,
-                pretrain_config,
+                trainer_config,
+                dl_config=trainer_config.resolve_dataloader_config(
+                    device, is_main_process()
+                ),
                 args=args,
             )
             mlm_history = mlm_trainer.train(
-                epochs=args.pretrain_epochs,
+                epochs=trainer_config.mlm_epochs,
                 verbose=is_main_process(),
                 on_epoch_end=lambda h: _append_history(h, "pretrain-mlm"),
             )
@@ -494,12 +397,21 @@ if __name__ == "__main__":
         verbose=is_main_process(),
         grammaticality_labels=grammaticality_labels,
         sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+        use_cache=False,
     )
     train_data, val_data = labeled_dataset.split()
     new_vocab_sizes = tokenizer.get_vocab_sizes()
     vocab_grew = any(new_vocab_sizes[f] > old_vocab_sizes[f] for f in FEATURE_FIELDS)
+
+    # Force update configuration (handles frozen dataclass if applicable)
+    object.__setattr__(model_config, "vocab_sizes", new_vocab_sizes)
+
     if vocab_grew:
         model.resize_embeddings(new_vocab_sizes)
+        model_config.vocab_sizes = new_vocab_sizes
+        # Save updated tokenizer to support_dir so resumption finds it
+        if is_main_process():
+            tokenizer.save(os.path.join(args.support_dir, "tokenizer.json"))
 
     if args.preprocess_only:
         if dist.is_available() and dist.is_initialized():
@@ -510,33 +422,21 @@ if __name__ == "__main__":
         kc_epochs_done = len(
             [e for e in training_history if e.get("type") == "pretrain-kc"]
         )
-        if kc_epochs_done < args.kc_epochs or args.retrain:
-            kc_trainer_config = TrainerConfig(
-                learning_rate=args.learning_rate,
-                batch_size=args.batch_size,
-                epochs=args.kc_epochs,
-                grad_accum_steps=args.grad_accum_steps,
-                use_amp=args.fp16 or args.fp8,
-                world_size=world_size,
-                local_rank=local_rank,
-                checkpoint_dir=args.support_dir,
-                resume_from=args.support_dir if args.resume else None,
-                interactive_mode=is_interactive,
-                dataloader_num_workers=args.dataloader_num_workers,
-                torch_num_threads=args.torch_num_threads,
-                cpu_reserve_cores=args.cpu_reserve_cores,
-            )
+        if kc_epochs_done < trainer_config.kc_epochs or args.retrain:
             kc_history = KCTrainer(
                 cast(StyleClassifierWithMLM, model),
                 train_data,
-                kc_trainer_config,
-                {
+                trainer_config,
+                dl_config=trainer_config.resolve_dataloader_config(
+                    device, is_main_process()
+                ),
+                kc_config={
                     "sparsity_weight": args.kc_sparsity_weight,
                     "freeze_encoder_epochs": args.kc_freeze_encoder_epochs,
                 },
                 args=args,
             ).train(
-                epochs=args.kc_epochs,
+                epochs=trainer_config.kc_epochs,
                 on_epoch_end=lambda h: _append_history(h, "pretrain-kc"),
             )
             if is_main_process():
@@ -544,63 +444,55 @@ if __name__ == "__main__":
             model.reset_classifier()
 
     # Final supervised training
-    trainer_config = TrainerConfig(
-        epochs=args.epochs,
-        batch_size=args.batch_size,
-        learning_rate=args.learning_rate,
-        formality_loss_weight=args.formality_weight,
-        gender_loss_weight=args.gender_weight,
-        grammaticality_loss_weight=args.grammaticality_weight,
-        use_amp=args.fp16 or args.fp8,
-        local_rank=local_rank,
-        world_size=world_size,
-        grad_accum_steps=args.grad_accum_steps,
-        checkpoint_dir=args.support_dir,
-        resume_from=args.support_dir if args.resume else None,
-        interactive_mode=is_interactive,
-        dataloader_num_workers=args.dataloader_num_workers,
-        torch_num_threads=args.torch_num_threads,
-        cpu_reserve_cores=args.cpu_reserve_cores,
-    )
-    trainer = Trainer(
+    style_trainer = Trainer(
         model,
         train_data,
         val_data,
         trainer_config,
-        encoder_lr_factor=args.encoder_lr_factor if args.pretrain_mlm else 1.0,
-        support_dir=args.support_dir,
-        args=args,
+        dl_config_train=trainer_config.resolve_dataloader_config(
+            device, is_main_process(), mode="train"
+        ),
+        dl_config_val=trainer_config.resolve_dataloader_config(
+            device, is_main_process(), mode="val"
+        ),
     )
 
     if args.resume:
         # Auto-resume handled inside trainer.train() if checkpoint_dir set
         pass
 
-    history = trainer.train(
-        verbose=is_main_process(),
+    history = style_trainer.train(
+        epochs=trainer_config.epochs,
         on_epoch_end=lambda h: _append_history(h, "style"),
     )
     if is_main_process():
         _append_history(history, "style")
 
     # Test evaluation and model saving
+    res = style_trainer.evaluate()
     if is_main_process():
-        # Simple test evaluation summary
-        res = trainer.evaluate()
+        print("-" * 34)
+        print("Final Test Results:")
+        print("-" * 34)
         print(
-            f"\nFinal Test Accuracy: form={res['formality_accuracy']:.4f}, gender={res['gender_pragmatic_accuracy']:.4f}, gram={res['grammaticality_accuracy']:.4f}, register={res['register_accuracy']:.4f}"
+            f"Accuracy: form={res['formality_accuracy']:.4f}, gender={res['gender_pragmatic_accuracy']:.4f}, gram={res['grammaticality_accuracy']:.4f}, register={res['register_accuracy']:.4f}"
         )
+        print("-" * 34)
+
+        # Save model
+        output_dir = locations.get_style_output_dir()
+        os.makedirs(output_dir, exist_ok=True)
+        from train.io import save_model
 
         save_model(
-            cast(
-                StyleClassifier, model if not hasattr(model, "module") else model.module
-            ),
+            cast(StyleClassifier, model.module if hasattr(model, "module") else model),
             tokenizer,
-            args.output,
+            output_dir,
             model_config,
-            fp16=args.fp16,
+            fp16=trainer_config.use_amp,
             fp8=args.fp8,
         )
+        print(f"Model saved to: {output_dir}")
 
     if dist.is_available() and dist.is_initialized():
         dist.destroy_process_group()
