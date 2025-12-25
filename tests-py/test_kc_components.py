@@ -225,3 +225,114 @@ def test_kc_probe_auc_calculation():
     assert 0.3 < auc_r < 0.7, (
         f"Interleaved scores should give AUC near 0.5, got {auc_r}"
     )
+
+
+def test_nan_guard_finite_loss_check():
+    """Verify torch.isfinite correctly detects NaN/Inf in loss (Round 10)."""
+    # Normal loss
+    loss_ok = torch.tensor(0.5)
+    assert torch.isfinite(loss_ok), "Normal loss should be finite"
+
+    # NaN loss
+    loss_nan = torch.tensor(float("nan"))
+    assert not torch.isfinite(loss_nan), "NaN loss should not be finite"
+
+    # Inf loss
+    loss_inf = torch.tensor(float("inf"))
+    assert not torch.isfinite(loss_inf), "Inf loss should not be finite"
+
+    # Negative Inf
+    loss_ninf = torch.tensor(float("-inf"))
+    assert not torch.isfinite(loss_ninf), "Negative inf should not be finite"
+
+
+def test_nan_guard_finite_grad_check():
+    """Verify torch.isfinite correctly detects NaN/Inf in gradients (Round 10)."""
+    # Clean gradients
+    clean_grad = torch.tensor([1.0, 2.0, 3.0])
+    assert torch.isfinite(clean_grad).all(), "Clean gradients should all be finite"
+
+    # Gradient with NaN
+    nan_grad = torch.tensor([1.0, float("nan"), 3.0])
+    assert not torch.isfinite(nan_grad).all(), "Gradient with NaN not all finite"
+
+    # Gradient with Inf
+    inf_grad = torch.tensor([1.0, float("inf"), 3.0])
+    assert not torch.isfinite(inf_grad).all(), "Gradient with Inf not all finite"
+
+
+def test_nan_guard_skip_logic():
+    """Test the NaN guard skip logic pattern used in KCTrainer (Round 10).
+
+    This tests the actual guard pattern: if loss is non-finite, we should
+    skip backward and continue to next batch.
+    """
+    # Simulate a batch loop with the guard logic
+    losses = [
+        torch.tensor(0.5),  # OK
+        torch.tensor(float("nan")),  # Should skip
+        torch.tensor(0.3),  # OK
+        torch.tensor(float("inf")),  # Should skip
+        torch.tensor(0.2),  # OK
+    ]
+
+    backward_count = 0
+    skip_count = 0
+
+    for loss in losses:
+        # This mirrors the guard logic in train_epoch
+        if not torch.isfinite(loss):
+            skip_count += 1
+            continue  # Skip backward
+
+        # Would call backward() here
+        backward_count += 1
+
+    assert backward_count == 3, f"Expected 3 backward calls, got {backward_count}"
+    assert skip_count == 2, f"Expected 2 skips, got {skip_count}"
+
+
+def test_nan_guard_grad_skip_pattern():
+    """Test the gradient NaN guard pattern used in _perform_optimizer_step (Round 10).
+
+    This tests the pattern: check all param grads, skip step if any non-finite.
+    """
+    # Create mock parameter groups like optimizer.param_groups
+    param_ok = torch.tensor([1.0, 2.0], requires_grad=True)
+    param_ok.grad = torch.tensor([0.1, 0.2])
+
+    param_nan = torch.tensor([1.0, 2.0], requires_grad=True)
+    param_nan.grad = torch.tensor([0.1, float("nan")])
+
+    param_inf = torch.tensor([1.0, 2.0], requires_grad=True)
+    param_inf.grad = torch.tensor([float("inf"), 0.2])
+
+    # Test case 1: all grads finite - should NOT skip
+    param_groups_ok = [{"params": [param_ok]}]
+    found_nonfinite = False
+    for group in param_groups_ok:
+        for p in group["params"]:
+            if p.grad is not None and not torch.isfinite(p.grad).all():
+                found_nonfinite = True
+                break
+    assert not found_nonfinite, "Clean grads should not trigger skip"
+
+    # Test case 2: one grad has NaN - should skip
+    param_groups_nan = [{"params": [param_nan]}]
+    found_nonfinite = False
+    for group in param_groups_nan:
+        for p in group["params"]:
+            if p.grad is not None and not torch.isfinite(p.grad).all():
+                found_nonfinite = True
+                break
+    assert found_nonfinite, "NaN grad should trigger skip"
+
+    # Test case 3: one grad has Inf - should skip
+    param_groups_inf = [{"params": [param_inf]}]
+    found_nonfinite = False
+    for group in param_groups_inf:
+        for p in group["params"]:
+            if p.grad is not None and not torch.isfinite(p.grad).all():
+                found_nonfinite = True
+                break
+    assert found_nonfinite, "Inf grad should trigger skip"

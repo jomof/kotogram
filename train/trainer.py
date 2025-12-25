@@ -734,8 +734,37 @@ class KCTrainer:
                     + (f" (flush_accum={accum})" if is_flush else "")
                 )
 
-        if self.config.gradient_clip > 0:
+        # --- Round 10: Guard - if any grad is non-finite, skip step and downscale ---
+        # Unscale first so we check real magnitudes
+        if self.config.use_amp:
             self.scaler.unscale_(self.optimizer)
+
+        found_nonfinite = False
+        for group in self.optimizer.param_groups:
+            for p in group["params"]:
+                if p.grad is None:
+                    continue
+                if not torch.isfinite(p.grad).all():
+                    found_nonfinite = True
+                    break
+            if found_nonfinite:
+                break
+
+        if found_nonfinite:
+            if is_main_process():
+                print(
+                    f"  KC Step Skipped: non-finite grad detected (scale={self.scaler.get_scale():.1f})"
+                )
+            self.optimizer.zero_grad(set_to_none=True)
+            if self.config.use_amp:
+                self.scaler.update(new_scale=max(1.0, self.scaler.get_scale() / 2.0))
+            return True
+
+        # Clip grads (already unscaled above when AMP enabled)
+        if self.config.gradient_clip > 0:
+            if not self.config.use_amp:
+                # Only unscale if we haven't already (non-AMP path)
+                pass
             nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
 
         # 3. Detect if GradScaler skips the step
@@ -1438,6 +1467,29 @@ class KCTrainer:
 
                 if loss.item() == 0.0 and loss.requires_grad:
                     pass
+
+            # --- Round 10: NaN/Inf guard: never backprop a non-finite loss ---
+            if not torch.isfinite(loss):
+                if is_main_process():
+                    kc_logits_raw = outputs.get("kc_logits_raw", None)
+                    kc_probs = outputs.get("kc_probs", None)
+                    msg = f"  [KC][NON-FINITE LOSS] epoch={epoch} batch={batch_idx} loss={loss.item()}"
+                    if kc_logits_raw is not None:
+                        msg += f" raw[min={kc_logits_raw.min().item():.3g} max={kc_logits_raw.max().item():.3g}]"
+                    if kc_probs is not None:
+                        msg += f" probs[min={kc_probs.min().item():.3g} max={kc_probs.max().item():.3g}]"
+                    msg += f" scaler={self.scaler.get_scale():.1f}"
+                    print(msg)
+
+                # Clear grads and reduce scaler aggressively to recover
+                self.optimizer.zero_grad(set_to_none=True)
+                if self.config.use_amp:
+                    self.scaler.update(
+                        new_scale=max(1.0, self.scaler.get_scale() / 2.0)
+                    )
+
+                amp_skips += 1
+                continue
 
             self.scaler.scale(loss).backward()
             did_any_backward = True
