@@ -1,11 +1,12 @@
 import fnmatch
 import glob
+import hashlib
 import json
 import os
 import subprocess
 import tempfile
 import unittest
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Dict, List, Optional, Set
 
 import torch
 
@@ -187,10 +188,19 @@ class Bottle:
         self.script_path = os.path.join(self.project_root, "train_style")
         self.temp_dir = tempfile.TemporaryDirectory()
         self.root_dir = self.temp_dir.name
-        self._snapshots: Dict[str, Dict[str, Tuple[float, int]]] = {}
+        # Stores snapshots as Dict[snap_name, Dict[rel_path, hash]]
+        self._snapshots: Dict[str, Dict[str, str]] = {}
 
-    def _get_current_state(self) -> Dict[str, Tuple[float, int]]:
-        """Collects the current state (mtime, size) of all files in root_dir."""
+    def _get_file_hash(self, path: str) -> str:
+        """Calculates SHA-256 hash of a file."""
+        sha256 = hashlib.sha256()
+        with open(path, "rb") as f:
+            while chunk := f.read(8192):
+                sha256.update(chunk)
+        return sha256.hexdigest()
+
+    def _get_current_state(self) -> Dict[str, str]:
+        """Collects the current state (file hashes) of all files in root_dir."""
         state = {}
         for root, dirs, files in os.walk(self.root_dir):
             for file in files:
@@ -200,10 +210,9 @@ class Bottle:
                 rel_path = os.path.relpath(abs_path, self.root_dir)
 
                 try:
-                    stat = os.stat(abs_path)
-                    state[rel_path] = (stat.st_mtime, stat.st_size)
+                    state[rel_path] = self._get_file_hash(abs_path)
                 except FileNotFoundError:
-                    # File might have been deleted between walk and stat
+                    # File might have been deleted between walk and processing
                     pass
         return state
 
@@ -410,12 +419,12 @@ class Bottle:
         actual_diffs: Set[str] = set()
 
         # Check for ADDED and MODIFIED
-        for path, (mtime, size) in new_state.items():
+        for path, current_hash in new_state.items():
             if path not in old_state:
                 actual_diffs.add(f"{path} ADDED")
             else:
-                old_mtime, old_size = old_state[path]
-                if mtime != old_mtime or size != old_size:
+                old_hash = old_state[path]
+                if current_hash != old_hash:
                     actual_diffs.add(f"{path} MODIFIED")
 
         # Check for DELETED
