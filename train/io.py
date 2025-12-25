@@ -2,7 +2,8 @@
 
 import json
 import os
-from typing import Any, Dict, List, Optional, Tuple
+import random
+from typing import Any, Dict, Optional, Tuple, cast
 
 import torch
 import torch.nn as nn
@@ -80,47 +81,119 @@ def save_model(
         f.write("style-multitask")
 
 
-def save_checkpoint(
+def get_rng_states() -> Dict[str, Any]:
+    """Capture RNG states for all relevant libraries."""
+    states = {
+        "python": random.getstate(),
+        "torch": torch.get_rng_state(),
+    }
+    if torch.cuda.is_available():
+        states["cuda"] = torch.cuda.get_rng_state_all()
+    try:
+        import numpy as np
+
+        states["numpy"] = np.random.get_state()
+    except ImportError:
+        pass
+    return states
+
+
+def set_rng_states(states: Dict[str, Any]) -> None:
+    """Restore RNG states."""
+    if "python" in states:
+        random.setstate(states["python"])
+    if "torch" in states:
+        torch.set_rng_state(states["torch"].cpu())
+    if "cuda" in states and torch.cuda.is_available():
+        # states["cuda"] is a list of tensors for CUDA
+        torch.cuda.set_rng_state_all([s.cpu() for s in states["cuda"]])
+    if "numpy" in states:
+        try:
+            import numpy as np
+
+            np.random.set_state(states["numpy"])
+        except ImportError:
+            pass
+
+
+def save_training_state(
     path: str,
     model: nn.Module,
-    tokenizer: Tokenizer,
     optimizer: torch.optim.Optimizer,
-    scheduler: Any,
     epoch: int,
-    history: Dict[str, List[float]],
-    best_val_loss: float,
-    patience_counter: int,
-    best_state: Optional[Dict[str, torch.Tensor]],
-    args: Any,
-    model_config: ModelConfig,
-    is_best: bool = False,
+    history: Dict[str, Any],
+    global_step: int = 0,
+    batch_idx: int = 0,
+    scaler: Optional[torch.amp.GradScaler] = None,
+    scheduler: Optional[Any] = None,
+    config: Optional[Any] = None,
+    filename: str = "checkpoint.pt",
 ) -> None:
-    """Save training checkpoint for resumption."""
-    # Note: caller should check is_main_process()
+    """Generic training state save."""
     os.makedirs(path, exist_ok=True)
-
     checkpoint = {
         "epoch": epoch,
+        "global_step": global_step,
+        "batch_idx": batch_idx,
         "model_state_dict": model.state_dict(),
-        "history": history,
-        "best_val_loss": best_val_loss,
-        "patience_counter": patience_counter,
-        "best_state": best_state,
-        "args": vars(args) if hasattr(args, "__dict__") else args,
-    }
-    torch.save(checkpoint, os.path.join(path, "checkpoint.pt"))
-
-    # Save optimizer/scheduler state separately
-    checkpoint_optim = {
         "optimizer_state_dict": optimizer.state_dict(),
-        "scheduler_state_dict": scheduler.state_dict(),
+        "history": history,
+        "rng_states": get_rng_states(),
     }
-    torch.save(checkpoint_optim, os.path.join(path, "checkpoint_optim.pt"))
+    if scaler is not None:
+        checkpoint["scaler_state_dict"] = scaler.state_dict()
+    if scheduler is not None:
+        checkpoint["scheduler_state_dict"] = scheduler.state_dict()
+    if config is not None:
+        # Save as 'args' for legacy compatibility with scripts/train_style.py
+        checkpoint["args"] = (
+            config.to_dict() if hasattr(config, "to_dict") else vars(config)
+        )
+        checkpoint["config"] = checkpoint["args"]
 
-    # Also save tokenizer and config
-    tokenizer.save(os.path.join(path, "tokenizer.json"))
-    with open(os.path.join(path, "config.json"), "w") as f:
-        json.dump(model_config.to_dict(), f, indent=2)
+    torch.save(checkpoint, os.path.join(path, filename))
+
+
+def load_training_state(
+    path: str,
+    model: nn.Module,
+    optimizer: Optional[torch.optim.Optimizer] = None,
+    scaler: Optional[torch.amp.GradScaler] = None,
+    scheduler: Optional[Any] = None,
+    filename: str = "checkpoint.pt",
+    device: str = "cpu",
+) -> Dict[str, Any]:
+    """Generic training state load."""
+    full_path = os.path.join(path, filename)
+    if not os.path.exists(full_path):
+        raise FileNotFoundError(f"No checkpoint at {full_path}")
+
+    checkpoint = torch.load(full_path, map_location=device, weights_only=False)
+
+    # Load model weights
+    model_state = checkpoint["model_state_dict"]
+    # Handle DDP 'module.' prefix
+    if not isinstance(model, torch.nn.parallel.DistributedDataParallel):
+        model_state = {k.replace("module.", ""): v for k, v in model_state.items()}
+    model.load_state_dict(model_state)
+
+    # Load optimizer
+    if optimizer is not None and "optimizer_state_dict" in checkpoint:
+        optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
+
+    # Load scaler
+    if scaler is not None and "scaler_state_dict" in checkpoint:
+        scaler.load_state_dict(checkpoint["scaler_state_dict"])
+
+    # Load scheduler
+    if scheduler is not None and "scheduler_state_dict" in checkpoint:
+        scheduler.load_state_dict(checkpoint["scheduler_state_dict"])
+
+    # Restore RNG
+    if "rng_states" in checkpoint:
+        set_rng_states(checkpoint["rng_states"])
+
+    return cast(Dict[str, Any], checkpoint)
 
 
 def load_checkpoint(
@@ -140,7 +213,9 @@ def load_checkpoint(
     tokenizer = Tokenizer.load(os.path.join(path, "tokenizer.json"))
 
     # Load checkpoint
-    checkpoint = torch.load(checkpoint_path, map_location=device or "cpu")
+    checkpoint = torch.load(
+        checkpoint_path, map_location=device or "cpu", weights_only=False
+    )
 
     # Load optimizer state if available
     optim_path = os.path.join(path, "checkpoint_optim.pt")

@@ -1,6 +1,7 @@
 import math
 import os
 import sys
+from typing import Any, Dict
 
 import torch
 import torch.nn.functional as F
@@ -659,10 +660,10 @@ def test_kc_scaler_init_scale_default():
     """Test that kc_scaler uses lower init_scale (1024) by default."""
     # Simulate the kc_scaler logic from KCTrainer.__init__
     kc_config: Dict[str, Any] = {}  # Empty config = use defaults
-    
+
     kc_init_scale = kc_config.get("kc_init_scale", 1024.0)
     use_amp_kc = kc_config.get("use_amp_kc", False)
-    
+
     assert kc_init_scale == 1024.0, "Default kc_init_scale should be 1024"
     assert use_amp_kc is False, "Default use_amp_kc should be False (safer without AMP)"
 
@@ -674,22 +675,22 @@ def test_consecutive_skip_counter_logic():
     total_step_skips = 0
     total_steps_applied = 0
     max_consecutive_skips = 25
-    
+
     # Simulate 10 skipped steps
     for _ in range(10):
         consecutive_step_skips += 1
         total_step_skips += 1
-    
+
     assert consecutive_step_skips == 10
     assert total_step_skips == 10
-    
+
     # Simulate a successful step -> resets consecutive counter
     consecutive_step_skips = 0
     total_steps_applied += 1
-    
+
     assert consecutive_step_skips == 0
     assert total_steps_applied == 1
-    
+
     # Simulate exceeding max consecutive skips
     consecutive_step_skips = 26
     should_raise = consecutive_step_skips > max_consecutive_skips
@@ -705,10 +706,10 @@ def test_float_sorting_not_string():
         {"p": 0.5},
         {"p": 0.05},
     ]
-    
+
     # Sort by numeric p (correct behavior)
     sorted_stats = sorted(stats, key=lambda x: float(x.get("p", 0.0)))
-    
+
     # Should be: 0.01, 0.05, 0.1, 0.5
     assert sorted_stats[0]["p"] == 0.01, "First should be 0.01"
     assert sorted_stats[1]["p"] == 0.05, "Second should be 0.05"

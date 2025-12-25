@@ -1,5 +1,6 @@
 import fnmatch
 import glob
+import json
 import os
 import subprocess
 import tempfile
@@ -29,6 +30,8 @@ def train_style(
 
     if result.returncode != 0:
         print(f"Command failed: {cmd}")
+        print("STDOUT:", result.stdout)
+        print("STDERR:", result.stderr)
         # Message included in assertion failure below
 
     test_case.assertEqual(
@@ -220,6 +223,14 @@ class Bottle:
 
         overrides = {"TRAIN_ROOT": self.root_dir}
         if env_overrides:
+            if "TRAIN_ROOT" in env_overrides:
+                raise ValueError(
+                    "TRAIN_ROOT cannot be overridden in bottle.train_style()"
+                )
+            if "SKIP_DEPS" in env_overrides:
+                raise ValueError(
+                    "SKIP_DEPS cannot be overridden in bottle.train_style()"
+                )
             overrides.update(env_overrides)
         result = train_style(
             self.test_case, self.script_path, self.project_root, args, overrides
@@ -285,6 +296,11 @@ class Bottle:
         rel_data = os.path.relpath(data_dir, self.root_dir)
         rel_models = os.path.relpath(models_dir, self.root_dir)
 
+        if path == "[models]/style-support/epochs.json":
+            raise ValueError(
+                "Use bottle.get_epoch_history() instead of resolving epochs.json directly."
+            )
+
         resolved = (
             path.replace("[.cache]", rel_cache)
             .replace("[data]", rel_data)
@@ -314,100 +330,35 @@ class Bottle:
             f"Model state_dict in {model_path} contains no FP8 (float8_e4m3fn) tensors.",
         )
 
+    def get_epoch_history(self) -> List[Dict]:
+        """Reads and returns the parsed content of epochs.json."""
+        # Use resolve_path logic internally bypassing the check
+        # We know epochs.json is in support dir.
+        from unittest.mock import patch
+
+        from kotogram import locations
+
+        with patch.dict(os.environ, {"TRAIN_ROOT": self.root_dir}):
+            support_dir = locations.get_style_support_dir()
+
+        epochs_path = os.path.join(support_dir, "epochs.json")
+        if not os.path.exists(epochs_path):
+            return []
+
+        with open(epochs_path, "r") as f:
+            return json.load(f)
+
     def assertEpochsTrained(self, result, expected_epochs: List[int]):
         """Asserts that specific epoch numbers were trained."""
-        import json
         import re
 
         # Strategy 1: Check epochs.json (Primary Source of Truth)
-        # We need to resolve the path within the bottle environment
-        epochs_path = self.resolve_path("[models]/style-support/epochs.json")
+        # Strategy 1: Check epochs.json (Primary Source of Truth)
+        history = self.get_epoch_history()
         json_epochs = []
-        if os.path.exists(epochs_path):
-            try:
-                with open(epochs_path, "r") as f:
-                    history = json.load(f)
-                    # Extract unique epochs trained in this session?
-                    # Actually, epochs.json contains cumulative history.
-                    # assertEpochsTrained is usually called after a specific run command.
-                    # It expects 'trained' epochs during THAT run.
-                    # But epochs.json stores ALL history.
-                    # Wait, checking epochs.json alone is tricky for incremental verification
-                    # unless we diff against snapshot?
-                    # The user request is: "bottle.assertEpochsTrained should use epochs.json to verify epoch count"
-                    # If I run `train --epochs 1`, json has [1].
-                    # If I then run `train --resume --epochs 2`, json has [1, 2].
-                    # But `assertEpochsTrained(result, [2])` expects only [2].
-                    # Using stdout regex is actually safer for "what happened in THIS run".
-                    # However, the user explicitly asked to use epochs.json.
-                    # Maybe checking that the LAST N entries match expected?
-                    # Or maybe assertEpochsTrained checks the FINAL state of epochs.json?
-                    # If checking final state, expected_epochs should be cumulative [1, 2]?
-                    # In test_auto_resume:
-                    #   Case B: Checkpoint exists (1), train 2. Expected: [2].
-                    #   Result stdout says "Epoch 2/2".
-                    #   If we check epochs.json, it will have [1, 2].
-                    #   If we only check the TAIL, it matches [2].
-                    #   Let's check if the set of epochs in json is a SUPERSET of expected,
-                    #   AND that the expected epochs are present at the END.
-                    #   Actually, simpler: Just verify that the epochs present in json MATCH the expected ones
-                    #   if we consider that expected_epochs might be cumulative or incremental.
-                    #   The existing tests pass `[1]` or `[2]` or `[1, 2]`.
-                    #   Let's look at `test_auto_resume` Case B: `expected=[2]`.
-                    #   If we change verification to check `epochs.json` content, we might strictly fail
-                    #   if `epochs.json` has `[1, 2]`.
-                    #   BUT, the *output* of the command only shows "Epoch 2/2".
-                    #   The user wants to verify *epoch count* using epochs.json.
-                    #   "verify epoch count" -> verify that we HAVE trained up to epoch X.
-                    #   Maybe the intention is to check if `epochs.json` *contains* the expected epochs?
-                    #   Let's try to extract epochs from json equal to the expected ones.
-
-                    # Implementation:
-                    # 1. Read all epochs from json.
-                    # 2. Filter/Find the expected ones.
-                    # 3. If found, good.
-
-                    # Wait, `assertEpochsTrained` is used to catch regression where we mistakenly retrain from scratch (1, 2 instead of just 2).
-                    # If we just check existence, [1, 2] contains [2].
-                    # We need to know what was *added* or what was the *latest* update.
-                    # Since we can't easily distinguish "old" vs "new" 1 in json (unless we check modification times, which is hard for json entries),
-                    # checking stdout is still valuable for "what did this process do".
-                    # BUT, relying on stdout is fragile.
-                    # If the user insists on epochs.json, maybe they accept checking cumulative state?
-                    # If so, test_auto_resume logic would need update to expect `[1, 2]`?
-                    # OR, we simply verify that the *latest* entries in epochs.json match.
-                    # Case B: expected [2]. json: [1, 2]. 2 is last.
-                    # Case C: expected [1, 2]. json: [1, 2].
-
-                    # If I use `self.test_case.assertTrue(all(e in json_epochs for e in expected_epochs))`?
-                    # No, that misses the "mistakenly retrained 1" case if 1 was already there.
-                    # But if we retrain, `epochs.json` is usually rewritten or appended?
-                    # In `_append_history`, we replace 'style' entries if they exist (to handle resume).
-                    # So if we resume and train 2, `epochs.json` should contain 1 (from before) and 2 (new). [1, 2].
-                    # If we incorrectly retrain 1, 2: `epochs.json` gets [1, 2] (replacing previous).
-                    # Using `epochs.json` ALONE cannot distinguish "resumed 2" vs "retrained 1, 2"
-                    # if the resulting file content is identical [1, 2].
-                    # Unless `_append_history` appends duplicates? No, I implemented strict replacement.
-
-                    # Implication: We CANNOT fully verify "what ran now" solely from `epochs.json` content if the content is identical in both cases.
-                    # We MUST use stdout to verify which epochs were *executed* by the process.
-                    # UNLESS the user implies that `epochs.json` accumulates timestamps or run IDs? It doesn't.
-
-                    # Perhaps the user simple wants to verify that `epochs.json` IS UPDATED correctly?
-                    # I will combine both:
-                    # 1. Check stdout for *execution flow* (to satisfy "only trained epoch 2").
-                    # 2. Check `epochs.json` for *data persistence* (contains expected epochs).
-
-                    # Let's read the user request again: "bottle.assertEpochsTrained should use epochs.json to verify epoch count"
-                    # Maybe checking the total count?
-                    # If expected is [2], maybe they mean "verify that epoch 2 is recorded".
-
-                    for entry in history:
-                        if "epoch" in entry:
-                            json_epochs.append(entry["epoch"])
-
-            except (json.JSONDecodeError, FileNotFoundError):
-                pass
+        for entry in history:
+            if "epoch" in entry:
+                json_epochs.append(entry["epoch"])
 
         # Fallback to stdout if json missing or empty (e.g. labeling phase doesn't create it?)
         # But assertEpochsTrained is for training.
@@ -425,29 +376,7 @@ class Bottle:
                 missing, f"Epochs {missing} missing from epochs.json"
             )
 
-            # And we still rely on stdout for the exact "what ran" check?
-            # Or do we blindly trust the user request and switch ONLY to epochs.json?
-            # If I switch ONLY to epochs.json, `test_auto_resume` Case B (train 2) vs Case C (train 1, 2)
-            # might become indistinguishable if both result in `[1, 2]` in json.
-            # Case B: exists [1]. Train 2. Json -> [1, 2]. Expected [2].
-            # Case C: exists [1]. Retrain 1, 2. Json -> [1, 2]. Expected [1, 2].
-            # If validation is `assertEqual(json_epochs, expected_epochs)`, Case B fails (got [1, 2], want [2]).
-            # So `expected_epochs` in test calls needs to be cumulative if we rely on json.
-            # I don't have permission to change all test call sites in this step (though I can).
-
-            # Compromise: Use stdout for `trained` variable (backward compat behavior),
-            # BUT verify that `epochs.json` is consistent with it.
-            # The prompt says "use epochs.json to verify epoch count".
-            # Maybe the user implies the test itself checks "Is epoch X in there?"
-
-            # I'll stick to:
-            # 1. Use stdout to determine `trained` (what happened now).
-            # 2. Assert `trained` == `expected_epochs`.
-            # 3. Assert that all `trained` epochs are ALSO in `epochs.json`.
-
-            # This follows the spirit of "using epochs.json" without breaking the logic of "detecting redundant training".
-
-            # Check consistency
+            # Check consistency: epochs reported in stdout MUST be in json
             for t in trained_stdout:
                 self.test_case.assertIn(
                     t,

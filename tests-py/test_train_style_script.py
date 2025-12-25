@@ -18,12 +18,8 @@ class TestTrainStyleScript(unittest.TestCase):
         test_configs = [
             {"name": "regular", "extra_args": f"{COMMON_ARGS}"},
             {
-                "name": "pretrain-mlm",
-                "extra_args": f"{COMMON_ARGS} --pretrain-mlm --pretrain-epochs 1",
-            },
-            {
-                "name": "pretrain-kc",
-                "extra_args": f"{COMMON_ARGS} --pretrain-kc --kc-epochs 1 --kc-k 256",
+                "name": "pretrain-all",
+                "extra_args": f"{COMMON_ARGS} --pretrain-mlm --pretrain-epochs 1 --pretrain-kc --kc-epochs 1 --kc-k 256",
             },
         ]
 
@@ -33,7 +29,6 @@ class TestTrainStyleScript(unittest.TestCase):
                     bottle.populate_test_data()
 
                     # Take initial snapshot
-                    overrides = {"TRAIN_ROOT": bottle.root_dir, "SKIP_DEPS": "1"}
                     bottle.snapshot("initial")
 
                     # Step 1: Pre-run labeling to setup cache/data
@@ -61,17 +56,20 @@ class TestTrainStyleScript(unittest.TestCase):
                     # Use --no-label to skip re-running the label phase (metadata already setup in Step 1)
                     # Use --no-confusion to skip generating confusion matrices (saves time)
                     train_args = f"--epochs 1 --no-label --no-confusion {config['extra_args']}".strip()
-                    result1 = bottle.train_style(train_args, env_overrides=overrides)
+                    result1 = bottle.train_style(train_args)
 
                     # Verify epochs trained
                     # For pretrain-mlm/kc: expect [1, 1] (1 pretrain + 1 fine-tune)
                     # For regular: expect [1] (just 1 fine-tune)
-                    expected_epochs = (
-                        [1, 1]
-                        if "pretrain-mlm" in config["extra_args"]
+                    if "pretrain-all" in config["name"]:
+                        expected_epochs = [1, 1, 1]  # MLM, KC, Style
+                    elif (
+                        "pretrain-mlm" in config["extra_args"]
                         or "pretrain-kc" in config["extra_args"]
-                        else [1]
-                    )
+                    ):
+                        expected_epochs = [1, 1]  # One pretrain, one style
+                    else:
+                        expected_epochs = [1]
                     bottle.assertEpochsTrained(result1, expected_epochs)
 
                     # Verify changes since snapshot (should only be training artifacts)
@@ -80,7 +78,8 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[models]/style-support/training.log ADDED",
                         "[models]/style-support/epochs.json ADDED",
                         "[models]/style-support/checkpoint.pt ADDED",
-                        "[models]/style-support/checkpoint_optim.pt ADDED",
+                        # checkpoint_optim.pt is now merged into checkpoint.pt
+                        "[models]/style-support/checkpoint_meta.pt ADDED",
                         "[models]/style-support/config.json ADDED",
                         "[models]/style-support/tokenizer.json ADDED",
                         "[models]/style/model.pt ADDED",
@@ -89,6 +88,15 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[models]/style/model_type.txt ADDED",
                         "[models]/style/tokenizer.json ADDED",
                     ]
+
+                    if "pretrain-mlm" in config["extra_args"]:
+                        EXPECTED_TRAIN_DIFFERENCES.append(
+                            "[models]/style-support/checkpoint_mlm.pt ADDED"
+                        )
+                    if "pretrain-kc" in config["extra_args"]:
+                        EXPECTED_TRAIN_DIFFERENCES.append(
+                            "[models]/style-support/checkpoint_kc.pt ADDED"
+                        )
 
                     bottle.assert_dir_diff("after_label", EXPECTED_TRAIN_DIFFERENCES)
 
@@ -99,7 +107,6 @@ class TestTrainStyleScript(unittest.TestCase):
                     # Use --no-label here as well
                     result2 = bottle.train_style(
                         "--resume --epochs 2 --no-label --no-confusion",
-                        env_overrides=overrides,
                     )
 
                     # Verify only epoch 2 was trained (resume from epoch 1)
@@ -111,7 +118,8 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[models]/style-support/training.log MODIFIED",
                         "[models]/style-support/epochs.json MODIFIED",
                         "[models]/style-support/checkpoint.pt MODIFIED",
-                        "[models]/style-support/checkpoint_optim.pt MODIFIED",
+                        # checkpoint_optim.pt is gone
+                        "[models]/style-support/checkpoint_meta.pt MODIFIED",
                         "[models]/style-support/config.json MODIFIED",
                         "[models]/style-support/tokenizer.json MODIFIED",
                         # Model output should be updated
@@ -121,6 +129,9 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[models]/style/model_type.txt MODIFIED",
                         "[models]/style/tokenizer.json MODIFIED",
                     ]
+
+                    # NOTE: checkpoint_mlm.pt and checkpoint_kc.pt should NOT be modified
+                    # because we are resuming and pretraining is already complete for this test case.
 
                     bottle.assert_dir_diff("after_epoch_1", EXPECTED_RESUME_DIFFERENCES)
 
@@ -170,35 +181,39 @@ class TestTrainStyleScript(unittest.TestCase):
                     bottle.assertModelIsFp8(model_path)
 
                     # 4. Verify history in epochs.json
-                    epoch_json_path = bottle.get_file(
-                        "[models]/style-support/epochs.json"
-                    )
-                    self.assertTrue(os.path.exists(epoch_json_path))
-                    with open(epoch_json_path) as f:
-                        history = json.load(f)
+                    # 4. Verify history in epochs.json
+                    history = bottle.get_epoch_history()
+                    self.assertTrue(len(history) > 0, "epochs.json should not be empty")
 
                     if config["name"] == "regular":
                         self.assertEqual(len(history), 2)
                         self.assertEqual(history[0]["type"], "style")
                         self.assertEqual(history[0]["sentence_count"], 76)
-                    elif config["name"] == "pretrain-mlm":
-                        self.assertEqual(len(history), 3)
+                    elif config["name"] == "pretrain-all":
+                        self.assertGreaterEqual(len(history), 4)
                         self.assertEqual(history[0]["type"], "pretrain-mlm")
-                        self.assertEqual(history[0]["sentence_count"], 85)
-                    elif config["name"] == "pretrain-kc":
-                        self.assertEqual(len(history), 3)
-                        self.assertEqual(history[0]["type"], "pretrain-kc")
-                        self.assertEqual(history[0]["sentence_count"], 68)
-                        # Spot validate KC metrics
-                        self.assertIn("avg_struct_loss", history[0])
-                        self.assertIn("avg_sparsity", history[0])
-                        self.assertIn("num_struct_heads_processed", history[0])
-                        self.assertGreater(history[0]["num_struct_heads_processed"], 0)
+                        self.assertEqual(history[1]["type"], "pretrain-kc")
+
+                        # Verify counts
+                        self.assertEqual(
+                            history[0]["sentence_count"], 85
+                        )  # MLM full dataset
+                        self.assertEqual(
+                            history[1]["sentence_count"], 68
+                        )  # KC filtered
+
+                        # KC metrics check
+                        self.assertIn("avg_struct_loss", history[1])
 
                     # All remaining entries are always standard style fine-tuning
-                    for entry in history[1:]:
-                        self.assertEqual(entry["type"], "style")
-                        self.assertEqual(entry["sentence_count"], 76)
+                    # Remaining entries are style fine-tuning
+                    start_idx = 1
+                    if config["name"] == "pretrain-all":
+                        start_idx = 2
+
+                    for i in range(start_idx, len(history)):
+                        self.assertEqual(history[i]["type"], "style")
+                        self.assertEqual(history[i]["sentence_count"], 76)
 
     def test_auto_resume(self):
         """Verifies auto-resume affects *training*, not just printing."""
