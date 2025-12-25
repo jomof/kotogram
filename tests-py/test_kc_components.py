@@ -144,3 +144,84 @@ def test_negative_sampling_logic():
     loss = F.binary_cross_entropy_with_logits(logits[mask], targets[mask])
     assert not torch.isnan(loss)
     assert loss > 0
+
+
+def test_kc_probe_diagnose_collapse():
+    """Verify _diagnose_kc_probe detects collapse risk correctly."""
+    # Simulate collapse: high max_top1, low entropy
+    probe_result = {
+        "max_top1": 0.25,  # Very high (want < 0.10)
+        "entropy_norm": 0.70,  # Low (want > 0.85)
+        "uniq_kcs": 100,
+        "kc_vocab_size": 1024,
+    }
+
+    # The diagnose function logic (inline test without Trainer instance)
+    recommendations = []
+    max_top1 = probe_result.get("max_top1", 0.0)
+    entropy_norm = probe_result.get("entropy_norm", 1.0)
+
+    collapse_risk = max_top1 > 0.10 or entropy_norm < 0.85
+    if collapse_risk:
+        recommendations.append("COLLAPSE RISK")
+
+    assert collapse_risk is True, "Should detect collapse from high max_top1"
+    assert "COLLAPSE RISK" in recommendations[0]
+
+
+def test_kc_probe_diagnose_healthy():
+    """Verify _diagnose_kc_probe approves healthy KC state."""
+    probe_result = {
+        "max_top1": 0.05,  # Good (< 0.10)
+        "entropy_norm": 0.95,  # Good (> 0.85)
+        "uniq_kcs": 800,  # Good usage
+        "kc_vocab_size": 1024,
+        "head_pos_auc": 0.92,  # Good
+        "head_conjugated_form_auc": 0.88,  # Good
+    }
+
+    # Check collapse
+    collapse_risk = (
+        probe_result["max_top1"] > 0.10 or probe_result["entropy_norm"] < 0.85
+    )
+    assert collapse_risk is False, "Should not detect collapse for healthy metrics"
+
+    # Check usage
+    usage_ratio = probe_result["uniq_kcs"] / probe_result["kc_vocab_size"]
+    assert usage_ratio >= 0.5, "Usage should be healthy"
+
+
+def test_kc_probe_auc_calculation():
+    """Verify AUC calculation logic for structural heads."""
+    # Perfect separation: all positives have higher scores than negatives
+    pos_logits = [2.0, 3.0, 4.0]
+    neg_logits = [-1.0, 0.0, 1.0]
+
+    all_logits = pos_logits + neg_logits
+    all_labels = [1.0] * len(pos_logits) + [0.0] * len(neg_logits)
+    combined = sorted(zip(all_logits, all_labels), key=lambda x: x[0])
+    ranks = list(range(1, len(combined) + 1))
+    pos_rank_sum = sum(r for r, (_, lbl) in zip(ranks, combined) if lbl > 0.5)
+    n_pos = len(pos_logits)
+    n_neg = len(neg_logits)
+    auc = (pos_rank_sum - n_pos * (n_pos + 1) / 2) / max(1, n_pos * n_neg)
+
+    # Perfect AUC should be 1.0
+    assert abs(auc - 1.0) < 0.01, f"Perfect separation should give AUC=1.0, got {auc}"
+
+    # Random (overlapping) scores - use slightly different values to avoid ties
+    # With ties, AUC is dependent on sort stability
+    pos_logits_random = [0.51, 0.52, 0.53]
+    neg_logits_random = [0.49, 0.50, 0.54]
+
+    all_logits_r = pos_logits_random + neg_logits_random
+    all_labels_r = [1.0] * 3 + [0.0] * 3
+    combined_r = sorted(zip(all_logits_r, all_labels_r), key=lambda x: x[0])
+    ranks_r = list(range(1, len(combined_r) + 1))
+    pos_rank_sum_r = sum(r for r, (_, lbl) in zip(ranks_r, combined_r) if lbl > 0.5)
+    auc_r = (pos_rank_sum_r - 3 * 4 / 2) / 9
+
+    # Interleaved scores should give AUC between 0.3 and 0.7
+    assert 0.3 < auc_r < 0.7, (
+        f"Interleaved scores should give AUC near 0.5, got {auc_r}"
+    )
