@@ -123,7 +123,10 @@ def choose_torch_threads(config: TrainerConfig) -> Tuple[int, int]:
 def _worker_init_fn(_: int) -> None:
     """Worker initialization function to limit per-worker threads."""
     torch.set_num_threads(1)
-    torch.set_num_interop_threads(1)
+    try:
+        torch.set_num_interop_threads(1)
+    except RuntimeError:
+        pass  # Already set or parallel work started
 
 
 def _safe_configure_threads(config: TrainerConfig) -> None:
