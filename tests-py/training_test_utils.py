@@ -201,10 +201,7 @@ class Bottle:
         return state
 
     def snapshot(self, name: str) -> None:
-        """Captures the current directory state as a named snapshot.
-
-        Also resets profile counters so that subsequent profiling starts fresh.
-        """
+        """Captures the current directory state as a named snapshot."""
         self._snapshots[name] = self._get_current_state()
 
     def __enter__(self):
