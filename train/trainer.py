@@ -2108,6 +2108,18 @@ class Trainer:
             eval_res = self.evaluate()
             self.scheduler.step(eval_res["loss"])
 
+            # KC Probe (Round 9): measure KC health during STYLE training
+            kc_probe_result = None
+            m = cast(
+                StyleClassifier,
+                self.model.module if self.is_distributed else self.model,
+            )
+            if getattr(m.config, "kc_enabled", False):
+                probe_loader = self._build_kc_probe_loader(max_batches=25)
+                if probe_loader is not None:
+                    kc_probe_result = self.evaluate_kc_probe(probe_loader)
+                    self._diagnose_kc_probe(kc_probe_result, verbose=verbose)
+
             for k, v in zip(
                 [
                     "train_loss",
@@ -2229,6 +2241,339 @@ class Trainer:
         if self.best_state:
             self.model.load_state_dict(self.best_state, strict=False)
         return self.history
+
+    # =========================================================================
+    # KC Degradation Probe (Round 9)
+    # =========================================================================
+    # Measures KC health during STYLE training without affecting gradients.
+    # Provides actionable diagnostics for KC preservation vs style accuracy tradeoffs.
+    # =========================================================================
+
+    def _build_kc_probe_loader(
+        self, max_batches: int = 25
+    ) -> Optional[DataLoader[Dict[str, Any]]]:
+        """Build a DataLoader for KC probe evaluation.
+
+        Returns val_loader if model has KC enabled, else None.
+        Filtering to grammatical samples is done during iteration.
+        """
+        m = cast(
+            StyleClassifier, self.model.module if self.is_distributed else self.model
+        )
+        if not getattr(m.config, "kc_enabled", False):
+            return None
+
+        # Just return val_loader - filtering handled in evaluate_kc_probe
+        return cast(DataLoader[Dict[str, Any]], self.val_loader)
+
+    def evaluate_kc_probe(
+        self,
+        probe_loader: DataLoader[Dict[str, Any]],
+        max_batches: int = 25,
+        temperature: float = 1.5,
+        tau_usage: float = 2.0,
+    ) -> Dict[str, Any]:
+        """Evaluate KC health metrics without affecting gradients.
+
+        Returns dict with:
+        - Usage: uniq_kcs, max_top1, entropy_norm, kl_to_uniform, tv_mean, gap_mean, avg_prob, act_dens
+        - Structural (per head): p_true, auc, delta_bce
+        - (If baseline available): drift metrics
+
+        HOW TO INTERPRET:
+        - uniq_kcs: Higher is better (KCs being used). Low = collapse.
+        - max_top1: Lower is better (<0.10 good). High = one KC dominates.
+        - entropy_norm: Higher is better (>0.85 good). Low = uneven usage.
+        - kl_to_uniform: Lower is better (<0.5 good). High = uneven.
+        - tv_mean: Mean top-k probability value.
+        - gap_mean: Gap between top-1 and top-k (higher = more confident).
+        - avg_prob: Mean sigmoid probability (>0.5 = "Gray Goo").
+        - act_dens: Should be ~k/V (e.g., 8/1024 = 0.0078).
+        - AUC: Higher is better (>0.85 good for structural heads).
+        - delta_bce: Negative is better (model beats constant baseline).
+        """
+        m = cast(
+            StyleClassifierWithMLM,
+            self.model.module if self.is_distributed else self.model,
+        )
+        m.eval()
+
+        kc_vocab_size = int(getattr(m.config, "kc_vocab_size", 1024))
+        kc_topk = int(getattr(m.config, "kc_topk", 8))
+        target_specs = getattr(m.config, "kc_target_specs", {})
+
+        # Initialize accumulators
+        topk_hist = torch.zeros(kc_vocab_size, device=self.device, dtype=torch.long)
+        top1_hist = torch.zeros(kc_vocab_size, device=self.device, dtype=torch.long)
+
+        n_samples = 0
+        sum_entropy = 0.0
+        sum_kl = 0.0
+        sum_tv = 0.0
+        sum_gap = 0.0
+        sum_avg_prob = 0.0
+        sum_act_dens = 0.0
+
+        # Per-head AUC sampling (reservoir style)
+        probe_heads = ["pos", "conjugated_form", "conjugated_type"]
+        head_samples: Dict[str, Dict[str, Any]] = {
+            h: {"pos_logits": [], "neg_logits": [], "p_sum": 0.0, "count": 0}
+            for h in probe_heads
+            if h in target_specs
+        }
+        max_samples_per_head = 2000
+
+        with torch.no_grad():
+            for batch_idx, batch in enumerate(probe_loader):
+                if batch_idx >= max_batches:
+                    break
+
+                field_inputs = {
+                    k: v.to(self.device)
+                    for k, v in batch.items()
+                    if k.startswith("input_ids_")
+                }
+                attention_mask = batch["attention_mask"].to(self.device)
+
+                # Forward KC (deterministic: gumbel_scale=0.0, eval mode)
+                outputs = m(
+                    field_inputs,
+                    attention_mask=attention_mask,
+                    mode="kc",
+                    temperature=temperature,
+                    gumbel_scale=0.0,
+                )
+
+                B = outputs["kc_probs"].shape[0]
+                n_samples += B
+
+                # Usage histograms
+                topk_inds = outputs["topk_inds"]  # (B, k)
+                for i in range(B):
+                    for j in range(kc_topk):
+                        idx = topk_inds[i, j].item()
+                        topk_hist[idx] += 1
+                        if j == 0:
+                            top1_hist[idx] += 1
+
+                # Entropy and KL from soft usage
+                logits_raw = outputs["kc_logits_raw"]
+                logits_clamped = logits_raw.clamp(min=-8.0, max=8.0)
+                q = torch.softmax(logits_clamped / tau_usage, dim=-1)  # (B, V)
+                p = q.mean(dim=0)  # (V,)
+                p = p / p.sum().clamp_min(1e-9)
+
+                eps = 1e-9
+                log_p = (p + eps).log()
+                entropy = -(p * log_p).sum()
+                entropy_norm = entropy / math.log(kc_vocab_size)
+                kl_to_uniform = (p * (log_p + math.log(kc_vocab_size))).sum()
+
+                sum_entropy += entropy_norm.item() * B
+                sum_kl += kl_to_uniform.item() * B
+
+                # Top-k value stats
+                topk_vals = outputs["topk_vals"]  # (B, k)
+                sum_tv += topk_vals.mean().item() * B
+                gap = topk_vals[:, 0] - topk_vals[:, -1]
+                sum_gap += gap.mean().item() * B
+
+                # Soft density stats
+                sum_avg_prob += outputs["kc_probs"].mean().item() * B
+                sum_act_dens += (
+                    outputs["sparse_activations"] > 0
+                ).float().mean().item() * B
+
+                # Per-head AUC sampling
+                if "target_logits" in outputs:
+                    kc_targets = create_kc_batch(
+                        batch, self.val_dataset.tokenizer, target_specs
+                    )
+                    for head_name in head_samples:
+                        if head_name not in outputs["target_logits"]:
+                            continue
+                        logits_h = outputs["target_logits"][head_name]
+                        target_key = f"kc_targets_{head_name}"
+                        if target_key not in kc_targets:
+                            continue
+                        targets_h = kc_targets[target_key].to(self.device).float()
+
+                        # Update head stats
+                        hs = head_samples[head_name]
+                        hs["p_sum"] += targets_h.sum().item()
+                        hs["count"] += targets_h.numel()
+
+                        # Sample pos and neg logits for AUC
+                        pos_mask = targets_h > 0.5
+                        neg_mask = ~pos_mask
+
+                        if len(hs["pos_logits"]) < max_samples_per_head:
+                            pos_logits = logits_h[pos_mask].cpu().tolist()
+                            hs["pos_logits"].extend(
+                                pos_logits[
+                                    : max_samples_per_head - len(hs["pos_logits"])
+                                ]
+                            )
+                        if len(hs["neg_logits"]) < max_samples_per_head:
+                            neg_logits = logits_h[neg_mask].cpu().tolist()
+                            hs["neg_logits"].extend(
+                                neg_logits[
+                                    : max_samples_per_head - len(hs["neg_logits"])
+                                ]
+                            )
+
+        # DDP sync if needed
+        if self.is_distributed:
+            dist.all_reduce(topk_hist, op=dist.ReduceOp.SUM)
+            dist.all_reduce(top1_hist, op=dist.ReduceOp.SUM)
+            scalars = torch.tensor(
+                [
+                    n_samples,
+                    sum_entropy,
+                    sum_kl,
+                    sum_tv,
+                    sum_gap,
+                    sum_avg_prob,
+                    sum_act_dens,
+                ],
+                device=self.device,
+            )
+            dist.all_reduce(scalars, op=dist.ReduceOp.SUM)
+            n_samples = int(scalars[0].item())
+            sum_entropy = scalars[1].item()
+            sum_kl = scalars[2].item()
+            sum_tv = scalars[3].item()
+            sum_gap = scalars[4].item()
+            sum_avg_prob = scalars[5].item()
+            sum_act_dens = scalars[6].item()
+
+        # Compute final metrics
+        uniq_kcs = int((topk_hist > 0).sum().item())
+        max_top1 = float(top1_hist.max().item()) / max(1, n_samples)
+
+        result: Dict[str, Any] = {
+            "n_samples": n_samples,
+            "uniq_kcs": uniq_kcs,
+            "max_top1": max_top1,
+            "entropy_norm": sum_entropy / max(1, n_samples),
+            "kl_to_uniform": sum_kl / max(1, n_samples),
+            "tv_mean": sum_tv / max(1, n_samples),
+            "gap_mean": sum_gap / max(1, n_samples),
+            "avg_prob": sum_avg_prob / max(1, n_samples),
+            "act_dens": sum_act_dens / max(1, n_samples),
+            "kc_vocab_size": kc_vocab_size,
+        }
+
+        # Per-head AUCs (rank0 only for simplicity)
+        if is_main_process():
+            for head_name, hs in head_samples.items():
+                p_true = hs["p_sum"] / max(1, hs["count"])
+                auc = float("nan")
+                delta_bce = float("nan")
+
+                pos_l = hs["pos_logits"]
+                neg_l = hs["neg_logits"]
+                if len(pos_l) > 0 and len(neg_l) > 0:
+                    # Rank AUC
+                    all_logits = pos_l + neg_l
+                    all_labels = [1.0] * len(pos_l) + [0.0] * len(neg_l)
+                    combined = sorted(zip(all_logits, all_labels), key=lambda x: x[0])
+                    ranks = list(range(1, len(combined) + 1))
+                    pos_rank_sum = sum(
+                        r for r, (_, lbl) in zip(ranks, combined) if lbl > 0.5
+                    )
+                    n_pos = len(pos_l)
+                    n_neg = len(neg_l)
+                    auc = (pos_rank_sum - n_pos * (n_pos + 1) / 2) / max(
+                        1, n_pos * n_neg
+                    )
+
+                    # Delta BCE vs constant baseline
+                    import torch.nn.functional as F
+
+                    logits_t = torch.tensor(all_logits, dtype=torch.float32)
+                    labels_t = torch.tensor(all_labels, dtype=torch.float32)
+                    model_bce = F.binary_cross_entropy_with_logits(
+                        logits_t, labels_t
+                    ).item()
+                    baseline_logit = (
+                        math.log(p_true / (1 - p_true)) if 0 < p_true < 1 else 0.0
+                    )
+                    baseline_bce = F.binary_cross_entropy_with_logits(
+                        torch.full_like(logits_t, baseline_logit), labels_t
+                    ).item()
+                    delta_bce = model_bce - baseline_bce
+
+                result[f"head_{head_name}_p_true"] = p_true
+                result[f"head_{head_name}_auc"] = auc
+                result[f"head_{head_name}_delta_bce"] = delta_bce
+
+        return result
+
+    def _diagnose_kc_probe(
+        self, probe_result: Dict[str, Any], verbose: bool = True
+    ) -> List[str]:
+        """Diagnose KC degradation and return actionable recommendations.
+
+        DIAGNOSTIC THRESHOLDS:
+        - Collapse: max_top1 > 0.10 OR entropy_norm < 0.85
+        - Quality drop: any head AUC < 0.80
+        """
+        recommendations: List[str] = []
+
+        max_top1 = probe_result.get("max_top1", 0.0)
+        entropy_norm = probe_result.get("entropy_norm", 1.0)
+        uniq_kcs = probe_result.get("uniq_kcs", 0)
+        kc_vocab_size = probe_result.get("kc_vocab_size", 1024)
+
+        # Collapse detection
+        collapse_risk = max_top1 > 0.10 or entropy_norm < 0.85
+        if collapse_risk:
+            recommendations.append(
+                f"⚠️ COLLAPSE RISK: maxTop1={max_top1:.3f} (want <0.10), entN={entropy_norm:.3f} (want >0.85). "
+                "Try: reduce encoder_lr_factor (0.1→0.01) or freeze encoder for first 2 epochs."
+            )
+
+        # Usage check
+        usage_ratio = uniq_kcs / kc_vocab_size
+        if usage_ratio < 0.5:
+            recommendations.append(
+                f"⚠️ LOW DIVERSITY: only {uniq_kcs}/{kc_vocab_size} KCs used ({usage_ratio:.1%}). "
+                "Try: increase diversity_weight_thawed or lower temperature."
+            )
+
+        # Structural quality check
+        for head in ["pos", "conjugated_form", "conjugated_type"]:
+            auc = probe_result.get(f"head_{head}_auc", float("nan"))
+            if not math.isnan(auc) and auc < 0.80:
+                recommendations.append(
+                    f"⚠️ QUALITY DROP ({head}): AUC={auc:.3f} (want >0.85). "
+                    "Try: add KC auxiliary loss during STYLE or retrain KC decoders post-STYLE."
+                )
+
+        # Summary
+        if not recommendations:
+            recommendations.append("✅ KC health OK. No action needed.")
+
+        # Print compact summary
+        if verbose and is_main_process():
+            print(
+                f"  KCProbe: uniq={probe_result.get('uniq_kcs', 0)}/{probe_result.get('kc_vocab_size', 0)} "
+                f"maxTop1={probe_result.get('max_top1', 0):.3f} "
+                f"entN={probe_result.get('entropy_norm', 0):.3f} "
+                f"klU={probe_result.get('kl_to_uniform', 0):.3f} "
+                f"tv={probe_result.get('tv_mean', 0):.3f} "
+                f"gap={probe_result.get('gap_mean', 0):.3f} "
+                f"prob={probe_result.get('avg_prob', 0):.2f} "
+                f"dens={probe_result.get('act_dens', 0):.4f}"
+            )
+            for head in ["pos", "conjugated_form", "conjugated_type"]:
+                auc = probe_result.get(f"head_{head}_auc", float("nan"))
+                delta = probe_result.get(f"head_{head}_delta_bce", float("nan"))
+                if not math.isnan(auc):
+                    print(f"    {head}: AUC={auc:.3f} ΔBCE={delta:+.4f}")
+
+        return recommendations
 
     def restore_from_checkpoint(
         self, checkpoint: Dict[str, Any], reset_optimizer: bool = False

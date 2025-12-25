@@ -232,14 +232,60 @@ By working with structured linguistic features instead of raw characters, the mo
 - **~270K unpragmatic examples** showing inappropriate formality/gender mixing
 
 **What the model learns:**
-- **Knowledge Components (KCs)**: A set of sparse, unsupervised latent units that serve as the "atoms" of Japanese style.
-    - **How they're built**: The model creates these by compressing sentences into a small set of active KCs (e.g., top 8) and trying to **reconstruct** the original sentence's structural features (lemmas, POS tags, n-grams) from them.
-    - **What they do**: Each KC specializes in capturing a reusable linguistic pattern—for example, one KC might learn to fire for "formal verb endings" (masu/desu), another for "feminine sentence-final particles" (wa/no), and another for "Kansai dialect markers".
-    - **Why this matters**: Instead of just predicting a black-box "formality" score, the model builds its understanding from these interpretable components, making its decisions more robust and explainable.
 - **Formality**: Modeled as a continuous scale (-1.0 to +1.0) via regression heads on top of the KCs.
 - **Gender**: Modeled as a continuous scale (-1.0 to +1.0).
 - **Register**: Multi-label classification (detecting specific dialects/styles).
 - **Grammaticality**: Binary classification for error detection.
+
+### Knowledge Components (KCs)
+
+Most style classifiers learn a direct mapping from “sentence in” → “label out.” That works, but it also tends to become a black box that’s hard to *reason about*, hard to *debug*, and sometimes oddly brittle when you change domains or introduce new constructions.
+
+Kotogram’s KC learner is my attempt to build something closer to how I actually learn Japanese: accumulate reusable little “grammar instincts,” then combine them to explain what a sentence is doing.
+
+At a high level, KCs are **sparse latent units** (think: a small set of “on” switches per sentence) that the model learns *without* being told what each unit means. The trick is that we train those units to be useful by asking them to reconstruct sentence structure.
+
+#### The KC learner, layer by layer
+
+1) **Feature embeddings (kotogram fields)**
+- **What**: Each token is represented by explicit linguistic fields (POS, conjugation type/form, lemma, etc.), each with its own embedding table.
+- **Why**: Japanese style cues often live in *morphology* (auxiliaries, endings, particles). Feeding structured features makes the learning problem dramatically more tractable than raw characters.
+
+2) **Transformer encoder**
+- **What**: Multi-head attention over the feature embeddings to build contextual token representations.
+- **Why**: Style and register are often non-local. A single です might be fine, until it collides with a ぜ at the end. The encoder is where “this token in this context” gets formed.
+
+3) **Sentence pooling**
+- **What**: A pooled sentence vector from the encoder output.
+- **Why**: KCs are sentence-level “atoms,” so we need a stable sentence representation to decide which atoms should fire.
+
+4) **KC head (logits → probabilities)**
+- **What**: A linear projection produces **KC logits** over a KC vocabulary. During training we optionally add Gumbel noise, then apply a temperatured sigmoid.
+- **Why**: This is the “proposal” step: which KCs might explain this sentence? Temperature + (optional) noise helps avoid early lock-in where a few KCs win forever.
+
+5) **Top-K sparsifier (the key move)**
+- **What**: Keep only the top *k* KC activations (e.g., k=8), zero out the rest.
+- **Why it helped**: Sparsity forces *specialization*. If only 8 KCs can speak for a sentence, each KC has to become a reliable, reusable pattern instead of a mushy average.
+
+6) **Structural decoders (reconstruction heads)**
+- **What**: From the sparse KC activations, lightweight linear decoders predict multi-hot structural targets like lemma/POS/conjugation “bags.”
+- **Why it helped**: This is how the model learns meaningfully structured KCs without hand-labeling them. If a KC repeatedly helps reconstruct “polite auxiliaries” or “sentence-final particles,” it has a reason to exist and to stay stable.
+
+7) **Regularization: diversity, load-balance, collapse control**
+- **What**: We add gentle pressure so KC usage doesn’t collapse into a tiny set.
+- **Why**: Without this, the model can discover one “do-everything” KC and starve the rest. The regularizers encourage a healthier ecosystem of KCs that actually cover the space of Japanese constructions.
+
+#### So why build KCs at all?
+
+Because I want Kotogram’s predictions to be grounded in something closer to *linguistic structure* than pure label-fitting.
+
+KCs give me:
+- **Interpretability hooks**: Even when KCs are learned unsupervised, they tend to cluster around recognizable patterns (politeness auxiliaries, dialect markers, final particles, etc.). That’s exactly the level where Japanese “style” lives.
+- **Robustness**: The classifier heads sit on top of reusable components instead of memorizing superficial correlations.
+- **A teaching tool**: Ultimately, I want to surface explanations like: “This sentence reads masculine because these markers fired,” not just “masculine: 0.99.”
+
+In other words: KCs are the model’s internal set of “grammar instincts,” and the downstream heads (formality/gender/register/grammaticality) learn to read those instincts consistently.
+
 
 The architecture uses multi-head attention over linguistic feature embeddings, trained with AdamW and cosine annealing — pretty standard modern NLP techniques, but applied to a focused domain-specific problem.
 
