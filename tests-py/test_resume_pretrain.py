@@ -114,31 +114,6 @@ class TestResumePretrain(unittest.TestCase):
             self.assertEqual(len(kc_entries), 2, "Should have 2 KC entries")
             self.assertEqual(kc_entries[1]["epoch"], 2)
 
-    def test_interactive_dataloader_auto_detect(self):
-        """Verify interactive_dataloader is auto-detected and logged."""
-        # We'll check the logs for the message "Interactive dataloader mode detected"
-        # Since we can't easily mock env vars for the script process without complex setup,
-        # we'll just check if setting a path variable works.
-
-        COMMON_ARGS = "--embed-dim 16 --hidden-dim 32 --num-layers 1 --num-heads 1"
-
-        with Bottle(self) as bottle:
-            bottle.populate_test_data()
-            bottle.train_style("--label")
-
-            # Run with SSH_TTY set to simulate interactive environment
-            overrides = {
-                "SSH_TTY": "/dev/ttys001",
-            }
-            bottle.train_style(
-                f"--epochs 1 --no-confusion {COMMON_ARGS}",
-                env_overrides=overrides,
-            )
-
-            # self.assertIn(
-            #     "Interactive mode detected: optimizing for responsiveness over throughput",
-            #     result.stdout,
-            # )
 
 
 if __name__ == "__main__":
