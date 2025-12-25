@@ -263,22 +263,65 @@ def create_kc_batch(
     batch: Dict[str, torch.Tensor],
     tokenizer: Tokenizer,
     target_specs: Dict[str, int],
+    *,
+    large_head_threshold: int = 4096,
+    max_pos_per_sample: int = 64,
 ) -> Dict[str, torch.Tensor]:
-    """Create multi-hot target batches for Knowledge Component (KC) training."""
-    result = {}
+    """Create target batches for Knowledge Component (KC) training.
+
+    Round 13: Hybrid dense/sparse approach:
+    - For small heads (vocab_size <= large_head_threshold): dense multi-hot (B, V)
+    - For large heads: sparse positive indices (B, P) with mask
+    """
+    result: Dict[str, torch.Tensor] = {}
+    attn = batch["attention_mask"].bool()
+    B = int(attn.size(0))
+
     for name, vocab_size in target_specs.items():
         input_key = f"input_ids_{name}"
         if input_key not in batch:
             continue
-        ids = batch[input_key]
-        multi_hot = torch.zeros((ids.size(0), vocab_size), device=ids.device)
-        mask = batch["attention_mask"].bool()
-        for i in range(ids.size(0)):
-            unique_ids = torch.unique(ids[i, mask[i]])
-            unique_ids = unique_ids[unique_ids >= 4]  # Skip special tokens
-            if len(unique_ids) > 0:
-                multi_hot[i, unique_ids] = 1.0
-        result[f"kc_targets_{name}"] = multi_hot
+
+        ids = batch[input_key]  # (B, T)
+
+        if vocab_size <= large_head_threshold:
+            # Dense path for small heads
+            multi_hot = torch.zeros((B, vocab_size), device=ids.device)
+            for i in range(B):
+                tok = ids[i, attn[i]]
+                tok = tok[tok >= 4]  # skip specials
+                if tok.numel() == 0:
+                    continue
+                uniq = torch.unique(tok)
+                uniq = uniq[uniq < vocab_size]
+                if uniq.numel() > 0:
+                    multi_hot[i, uniq] = 1.0
+            result[f"kc_targets_{name}"] = multi_hot
+        else:
+            # Sparse path for large heads
+            pos_inds = torch.full(
+                (B, max_pos_per_sample), -1, dtype=torch.long, device=ids.device
+            )
+            pos_mask = torch.zeros(
+                (B, max_pos_per_sample), dtype=torch.bool, device=ids.device
+            )
+            for i in range(B):
+                tok = ids[i, attn[i]]
+                tok = tok[tok >= 4]
+                if tok.numel() == 0:
+                    continue
+                uniq = torch.unique(tok)
+                uniq = uniq[uniq < vocab_size]
+                if uniq.numel() == 0:
+                    continue
+                if uniq.numel() > max_pos_per_sample:
+                    uniq = uniq[:max_pos_per_sample]
+                n = int(uniq.numel())
+                pos_inds[i, :n] = uniq
+                pos_mask[i, :n] = True
+            result[f"kc_pos_inds_{name}"] = pos_inds
+            result[f"kc_pos_mask_{name}"] = pos_mask
+
     return result
 
 
@@ -741,6 +784,66 @@ class KCTrainer:
         if m.kc_head.linear.bias is not None:
             nn.init.zeros_(m.kc_head.linear.bias)
 
+    def _bce_sampled_from_sparse(
+        self,
+        logits_f: torch.Tensor,  # (B, V) float
+        pos_inds: torch.Tensor,  # (B, P) long, padded -1
+        pos_mask: torch.Tensor,  # (B, P) bool
+        vocab_size: int,
+        neg_count: int = 128,
+        seed: int = 0,
+    ) -> torch.Tensor:
+        """Compute BCE on (positives + sampled negatives) without dense targets.
+
+        Round 13: For large vocabulary heads, avoids allocating (B, V) tensors.
+        """
+        B = int(logits_f.size(0))
+        device = logits_f.device
+        P = int(pos_inds.size(1))
+        K = neg_count
+
+        # Positives: keep only masked, replace unmasked with -1
+        pos_i = pos_inds.clone()
+        pos_i[~pos_mask] = -1
+
+        # Sample negatives uniformly from [4, vocab_size)
+        g = torch.Generator(device=device)
+        g.manual_seed(seed)
+        neg_i = torch.randint(4, vocab_size, (B, K), device=device, generator=g)
+
+        # Collision mitigation: if neg is in positives, resample
+        if P > 0 and pos_mask.any():
+            for _ in range(3):
+                coll = (neg_i.unsqueeze(-1) == pos_i.unsqueeze(1)).any(dim=-1)
+                if not coll.any():
+                    break
+                repl = torch.randint(
+                    4, vocab_size, (int(coll.sum().item()),), device=device, generator=g
+                )
+                neg_i[coll] = repl
+
+        # Build combined indices
+        idxs = torch.cat([pos_i, neg_i], dim=1)  # (B, P+K)
+
+        # Targets: positives=1 where pos_mask else ignore; negatives=0
+        t_pos = pos_mask.float()
+        t_neg = torch.zeros((B, K), device=device, dtype=torch.float)
+        t = torch.cat([t_pos, t_neg], dim=1)
+
+        # Mask for valid indices (pos part excludes padded -1; neg part always valid)
+        valid = torch.cat(
+            [pos_mask, torch.ones((B, K), device=device, dtype=torch.bool)], dim=1
+        )
+
+        # Gather logits at indices; replace -1 with 0 for gather safety
+        idxs_safe = idxs.clamp_min(0)
+        gathered = logits_f.gather(1, idxs_safe)
+
+        # Compute BCE elementwise then mask
+        loss_elem = F.binary_cross_entropy_with_logits(gathered, t, reduction="none")
+        loss = (loss_elem * valid.float()).sum() / valid.float().sum().clamp_min(1.0)
+        return loss
+
     def _init_structural_decoder_biases(self, num_batches: int = 10) -> None:
         raw = self.model.module if self.is_distributed else self.model
         m = cast("StyleClassifierWithMLM", raw)
@@ -850,19 +953,36 @@ class KCTrainer:
                     + (f" (flush_accum={accum})" if is_flush else "")
                 )
 
-        # --- Round 10: Guard - if any grad is non-finite, skip step and downscale ---
+        # --- Round 10/13: Guard - if any grad is non-finite, skip step and downscale ---
         # Unscale first so we check real magnitudes
         if self.config.use_amp:
             self.scaler.unscale_(self.optimizer)
 
+        # Round 13: Build name map for culprit identification
+        name_map: Dict[int, str] = {}
+        for n, p in m.named_parameters():
+            name_map[id(p)] = n
+
         found_nonfinite = False
+        bad: List[Tuple[str, int, int, float]] = []
         for group in self.optimizer.param_groups:
             for p in group["params"]:
                 if p.grad is None:
                     continue
-                if not torch.isfinite(p.grad).all():
+                g = p.grad
+                if not torch.isfinite(g).all():
                     found_nonfinite = True
-                    break
+                    nnan = int(torch.isnan(g).sum().item())
+                    ninf = int(torch.isinf(g).sum().item())
+                    gmax = (
+                        float(g.detach().float().abs().max().item())
+                        if torch.isfinite(g.detach().float().abs().max())
+                        else float("inf")
+                    )
+                    pname = name_map.get(id(p), "<unnamed>")
+                    bad.append((pname, nnan, ninf, gmax))
+                    if len(bad) >= 5:
+                        break
             if found_nonfinite:
                 break
 
@@ -871,6 +991,10 @@ class KCTrainer:
                 print(
                     f"  KC Step Skipped: non-finite grad detected (scale={self.scaler.get_scale():.1f})"
                 )
+                for pname, nnan, ninf, gmax in bad:
+                    print(
+                        f"    grad_nonfinite: {pname} nan={nnan} inf={ninf} |g|max={gmax:.3g}"
+                    )
             self.optimizer.zero_grad(set_to_none=True)
             if self.config.use_amp:
                 self.scaler.update(new_scale=max(1.0, self.scaler.get_scale() / 2.0))
@@ -1410,21 +1534,22 @@ class KCTrainer:
                 # Check for structural targets (bags, hashes)
                 for name, logits in target_logits.items():
                     target_key = f"kc_targets_{name}"
+                    pos_key = f"kc_pos_inds_{name}"
+                    mask_key = f"kc_pos_mask_{name}"
+                    vocab_size = int(m.config.kc_target_specs.get(name, 0))
 
                     if target_key in batch:
-                        # Structural target (multi-hot)
+                        # Dense path for small heads
                         targets = batch[target_key].to(self.device).float()
                         logits_f = logits.float()
 
-                        # Round 6: Optimized Negative Sampling
+                        # Round 6: Optimized Negative Sampling for medium heads
                         B, V_f = logits_f.shape
                         if V_f > 256:
                             # Large Head: Sample 128 negatives
                             pos_mask = targets > 0.5
                             neg_count = 128
 
-                            # Optim: Use smaller index tensor for scatter, avoid huge boolean mask if possible?
-                            # Sticking to valid mask approach but ensuring cleaner code.
                             neg_inds = torch.randint(
                                 0, V_f, (B, neg_count), device=self.device
                             )
@@ -1445,6 +1570,25 @@ class KCTrainer:
                             task_loss = F.binary_cross_entropy_with_logits(
                                 logits_f, targets
                             )
+
+                        structural_loss += task_loss
+                        num_struct += 1
+                        batch_kc_losses[name] = task_loss.item()
+
+                    elif pos_key in batch and mask_key in batch:
+                        # Round 13: Sparse path for large heads (vocab_size > 4096)
+                        pos_inds = batch[pos_key].to(self.device)
+                        pos_mask_t = batch[mask_key].to(self.device)
+                        logits_f = logits.float()
+
+                        task_loss = self._bce_sampled_from_sparse(
+                            logits_f=logits_f,
+                            pos_inds=pos_inds,
+                            pos_mask=pos_mask_t,
+                            vocab_size=vocab_size,
+                            neg_count=128,
+                            seed=(epoch * 100000 + batch_idx),
+                        )
 
                         structural_loss += task_loss
                         num_struct += 1
