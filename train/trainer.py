@@ -4,6 +4,7 @@ import math
 import os
 import sys
 from datetime import timedelta
+from functools import partial
 from typing import Any, Callable, Dict, List, Optional, Tuple, cast
 
 import torch
@@ -24,7 +25,10 @@ from kotogram.model import (
 from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
 from train.config import TrainerConfig
 from train.dataset import StyleDataset, collate_fn
-from train.io import save_checkpoint
+from train.io import (
+    load_training_state,
+    save_training_state,
+)
 
 from .display import (
     print_epoch_summary,
@@ -35,6 +39,102 @@ from .display import (
     print_phase_header,
     print_progress_bar,
 )
+
+
+def detect_cpu_cores() -> int:
+    """Returns number of CPU cores available."""
+    # os.cpu_count() can return None
+    count = os.cpu_count()
+    return count if count is not None else 4
+
+
+def detect_is_cuda() -> bool:
+    """Returns True if CUDA is available."""
+    return torch.cuda.is_available()
+
+
+def choose_workers(config: TrainerConfig) -> Dict[str, Any]:
+    """Auto-tunes DataLoader settings based on config and system state."""
+    settings: Dict[str, Any] = {}
+
+    # 1. num_workers
+    if config.dataloader_num_workers is not None:
+        workers = config.dataloader_num_workers
+    else:
+        cores = detect_cpu_cores()
+        reserve = config.cpu_reserve_cores if config.interactive_mode else 0
+        usable = max(1, cores - reserve)
+
+        if config.interactive_mode:
+            # Conservative: enough to overlap I/O but not starve the box
+            workers = min(4, max(1, usable // 4))
+        else:
+            # Normal: more aggressive
+            workers = min(8, max(2, usable // 2))
+
+    settings["num_workers"] = workers
+
+    # 2. pin_memory
+    if config.dataloader_pin_memory is not None:
+        settings["pin_memory"] = config.dataloader_pin_memory
+    else:
+        settings["pin_memory"] = detect_is_cuda()
+
+    # 3. persistent_workers
+    settings["persistent_workers"] = (
+        config.dataloader_persistent_workers and workers > 0
+    )
+
+    # 4. prefetch_factor
+    if workers > 0:
+        settings["prefetch_factor"] = config.dataloader_prefetch_factor
+    else:
+        settings["prefetch_factor"] = None
+
+    return settings
+
+
+def choose_torch_threads(config: TrainerConfig) -> Tuple[int, int]:
+    """Auto-tunes PyTorch threads based on config and system state.
+
+    Returns:
+        (intra_op_threads, inter_op_threads)
+    """
+    cores = detect_cpu_cores()
+    reserve = config.cpu_reserve_cores if config.interactive_mode else 0
+    usable = max(1, cores - reserve)
+
+    if config.torch_num_threads is not None:
+        t = config.torch_num_threads
+    else:
+        # Intra-op: primary computation threads
+        # If interactive, be more conservative (share with system)
+        t = max(1, usable // (2 if config.interactive_mode else 1))
+
+    if config.torch_num_interop_threads is not None:
+        it = config.torch_num_interop_threads
+    else:
+        # Inter-op: parallelism between independent ops
+        it = max(1, min(4, usable // 4))
+
+    return t, it
+
+
+def _worker_init_fn(_: int) -> None:
+    """Worker initialization function to limit per-worker threads."""
+    torch.set_num_threads(1)
+    torch.set_num_interop_threads(1)
+
+
+def _safe_configure_threads(config: TrainerConfig) -> None:
+    """Configures PyTorch threads safely, ignoring errors if already set."""
+    intra_threads, inter_threads = choose_torch_threads(config)
+    torch.set_num_threads(intra_threads)
+    try:
+        torch.set_num_interop_threads(inter_threads)
+    except RuntimeError:
+        pass  # Already set or parallel work started
+
 
 GENDER_LOSS_WEIGHT = 10.0
 
@@ -140,7 +240,7 @@ class StyleClassifierWithMLM(StyleClassifier):
         # 1. Path for Selection/Probabilities (Sigmoid)
         # We want to prevent sigmoid saturation and large gradients.
         logits_select = logits_select.clamp(min=-12.0, max=12.0)
-        
+
         # 2. Path for Diversity Regularizer (Usage)
         # We want to prevent rare large logits from dominating the softmax mean.
         # Note: this is stored in outputs now, to be retrieved in train_epoch.
@@ -160,7 +260,7 @@ class StyleClassifierWithMLM(StyleClassifier):
         # Get top-k
         k = getattr(self.config, "kc_topk", 8)
         topk_vals, topk_inds = torch.topk(kc_probs, k, dim=-1)
-        
+
         # Round 14: Clamp topk_vals to 0.80 (Hard ceiling on confidence)
         # This prevents deterministic "locking" where a KC gets 1.0 and stops exploring.
         topk_vals = topk_vals.clamp(max=0.80)
@@ -230,11 +330,140 @@ def setup_distributed() -> Tuple[int, int, int]:
     return 0, 1, 0
 
 
+def configure_runtime_thread_limits(config: TrainerConfig) -> None:
+    """Set torch and environment thread limits to prevent oversubscription."""
+    try:
+        torch.set_num_threads(config.cpu_threads)
+        torch.set_num_interop_threads(config.interop_threads)
+    except RuntimeError:
+        # Already set or parallel work started, ignore
+        pass
+
+    if config.set_env_thread_limits:
+        for env_var in [
+            "OMP_NUM_THREADS",
+            "MKL_NUM_THREADS",
+            "OPENBLAS_NUM_THREADS",
+            "VECLIB_MAXIMUM_THREADS",
+            "NUMEXPR_NUM_THREADS",
+        ]:
+            if env_var not in os.environ:
+                os.environ[env_var] = str(config.cpu_threads)
+
+        if "TOKENIZERS_PARALLELISM" not in os.environ:
+            os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+
 def is_main_process() -> bool:
     """Check if we are on the main process (rank 0)."""
-    if dist.is_available() and dist.is_initialized():
-        return dist.get_rank() == 0
-    return True
+    if not dist.is_available() or not dist.is_initialized():
+        return True
+    return dist.get_rank() == 0
+
+
+def get_safe_dataloader_config(
+    config: TrainerConfig, device: torch.device, mode: str = "train"
+) -> Dict[str, Any]:
+    """Determine safe and performant DataLoader settings based on environment and load."""
+    cpu_count = os.cpu_count() or 1
+    is_cuda = "cuda" in str(device)
+
+    # 1. Base Policy
+    if config.interactive_dataloader:
+        # Keep machine responsive in interactive sessions
+        if is_main_process() and mode == "train" and config.dataloader_show_config:
+            print(
+                "  [Safety] Interactive dataloader mode detected (SSH/tmux). Forces num_workers=0, pin_memory=False."
+            )
+        num_workers = 0
+        pin_memory = False
+        prefetch_factor = None
+        persistent_workers = False
+    elif is_cuda:
+        # Conservative defaults for CUDA
+        num_workers = min(4, max(2, cpu_count // 8))
+        if config.dataloader_num_workers_style is not None:
+            num_workers = config.dataloader_num_workers_style
+
+        pin_memory = (
+            config.dataloader_pin_memory
+            if config.dataloader_pin_memory is not None
+            else True
+        )
+        prefetch_factor = config.dataloader_prefetch_factor
+        persistent_workers = config.dataloader_persistent_workers and num_workers > 0
+    else:
+        # Avoid workers on non-CUDA to save overhead
+        num_workers = 0
+        pin_memory = False
+        prefetch_factor = None
+        persistent_workers = False
+
+    # 2. Evaluation adjustments
+    if mode == "val" and num_workers > 0:
+        num_workers = max(1, num_workers // 2)
+        prefetch_factor = 1
+
+    # 3. Safety Valve: Check system stress
+    stressed = False
+    reasons = []
+
+    # Load average check
+    try:
+        load1, _, _ = os.getloadavg()
+        if load1 > cpu_count * 1.5:
+            stressed = True
+            reasons.append(f"high load ({load1:.1f} > {cpu_count * 1.5:.1f})")
+    except (AttributeError, OSError):
+        pass
+
+    # Memory check (Linux only)
+    if os.path.exists("/proc/meminfo"):
+        try:
+            with open("/proc/meminfo", "r") as f:
+                meminfo = {
+                    line.split(":")[0]: int(line.split(":")[1].split()[0])
+                    for line in f
+                    if ":" in line
+                }
+            mem_available_kb = meminfo.get("MemAvailable", 0)
+            if mem_available_kb < 1024 * 1024:  # Less than 1GB available
+                stressed = True
+                reasons.append(f"low memory ({mem_available_kb // 1024}MB available)")
+        except Exception:
+            pass
+
+    # Downgrade if stressed
+    if stressed:
+        if num_workers > 1:
+            num_workers = max(1, num_workers // 2)
+        pin_memory = False
+        if prefetch_factor is not None:
+            prefetch_factor = 1
+
+        if is_main_process() and mode == "train":
+            reason_str = ", ".join(reasons)
+            print(
+                f"  [Safety] System stressed ({reason_str}). Downgraded DataLoader settings: "
+                f"workers={num_workers}, pin={pin_memory}, prefetch={prefetch_factor}"
+            )
+
+    settings = {
+        "num_workers": num_workers,
+        "pin_memory": pin_memory,
+        "persistent_workers": persistent_workers,
+    }
+    if prefetch_factor is not None and num_workers > 0:
+        settings["prefetch_factor"] = prefetch_factor
+
+    if config.dataloader_show_config and is_main_process() and mode == "train":
+        print(
+            f"  [Runtime] DataLoader ({mode}): workers={num_workers}, "
+            f"pin={pin_memory}, persistent={persistent_workers}, "
+            f"prefetch={prefetch_factor or 'default'}, threads={config.cpu_threads}"
+        )
+
+    return settings
 
 
 def create_mlm_batch(
@@ -310,7 +539,7 @@ def create_kc_batch(
             parts = name.split("_")
             if parts[0] in ["bag", "tail", "ngram", "prefix"]:
                 field_name = "_".join(parts[1:])
-        
+
         input_key = f"input_ids_{field_name}"
         if input_key not in batch:
             continue
@@ -367,6 +596,7 @@ class MLMTrainer:
         dataset: StyleDataset,
         config: Optional[TrainerConfig] = None,
         mask_prob: float = 0.15,
+        args: Optional[Any] = None,
     ):
         ngrammatic = [s for s in dataset.samples if s.grammaticality_label == 0]
         if ngrammatic:
@@ -378,6 +608,12 @@ class MLMTrainer:
         self.model = model
         self.dataset = dataset
         self.config = config or TrainerConfig()
+        self.args = args
+
+        # Configure PyTorch threads
+        _safe_configure_threads(self.config)
+
+        configure_runtime_thread_limits(self.config)
         self.mask_prob = mask_prob
 
         if self.config.world_size > 1:
@@ -408,40 +644,92 @@ class MLMTrainer:
 
         pad_id = dataset.tokenizer.pad_id
         max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
+        self.vocab_sizes = dataset.tokenizer.get_vocab_sizes()
 
         self.sampler: Optional[DistributedSampler] = (
             DistributedSampler(
                 dataset,
                 num_replicas=self.config.world_size,
-                rank=dist.get_rank(),
+                rank=self.config.local_rank,
                 shuffle=True,
             )
             if self.is_distributed
             else None
         )
+
+        dl_settings = get_safe_dataloader_config(self.config, self.device)
         self.data_loader = DataLoader(
             dataset,
             batch_size=self.config.batch_size,
             shuffle=(self.sampler is None),
             sampler=self.sampler,
-            collate_fn=lambda b: collate_fn(
-                b, pad_id, cast(Optional[int], max_seq_len)
+            collate_fn=partial(
+                collate_fn, pad_id=pad_id, max_seq_len=cast(Optional[int], max_seq_len)
             ),
-            pin_memory=(self.config.device == "cuda"),
-            num_workers=(4 if self.config.device == "cuda" else 0),
+            num_workers=dl_settings["num_workers"],
+            pin_memory=dl_settings["pin_memory"],
+            persistent_workers=dl_settings["persistent_workers"],
+            prefetch_factor=dl_settings.get("prefetch_factor"),
+            worker_init_fn=_worker_init_fn,
         )
 
         self.criterion = nn.CrossEntropyLoss(ignore_index=-100)
         self.optimizer = Adam(self.model.parameters(), lr=self.config.learning_rate)
-        self.vocab_sizes = dataset.tokenizer.get_vocab_sizes()
         self.field_weights = {f: 1.0 for f in FEATURE_FIELDS}
         self.history: Dict[str, Any] = {
             "mlm_loss": [],
             "field_losses": {f: [] for f in FEATURE_FIELDS},
             "sentence_count": [],
         }
+        self.start_epoch = 0
+        self.start_batch = 0
+        self.global_step = 0
 
-    def train_epoch(self, verbose: bool = True) -> Tuple[float, Dict[str, float]]:
+    def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
+        """Save training checkpoint."""
+        if not is_main_process() or self.config.checkpoint_dir is None:
+            return
+
+        save_training_state(
+            path=self.config.checkpoint_dir,
+            model=getattr(self.model, "module", self.model),
+            optimizer=self.optimizer,
+            epoch=epoch,
+            history=self.history,
+            global_step=self.global_step,
+            batch_idx=batch_idx,
+            scaler=self.scaler,
+            config=self.args or self.config,
+            filename="checkpoint_mlm.pt",
+        )
+
+    def restore_from_checkpoint(self, path: str) -> bool:
+        """Restore training state from checkpoint."""
+        try:
+            checkpoint = load_training_state(
+                path=path,
+                model=getattr(self.model, "module", self.model),
+                optimizer=self.optimizer,
+                scaler=self.scaler,
+                filename="checkpoint_mlm.pt",
+                device=str(self.device),
+            )
+            self.start_epoch = checkpoint["epoch"]
+            self.start_batch = checkpoint.get("batch_idx", 0)
+            self.global_step = checkpoint.get("global_step", 0)
+            self.history = checkpoint["history"]
+            if is_main_process():
+                print(
+                    f"  [Resume] Restored MLM checkpoint from {path} "
+                    f"(epoch {self.start_epoch}, step {self.global_step})"
+                )
+            return True
+        except FileNotFoundError:
+            return False
+
+    def train_epoch(
+        self, epoch: int, verbose: bool = True
+    ) -> Tuple[float, Dict[str, float]]:
         if verbose and is_main_process():
             print_phase_header("MLM")
 
@@ -451,6 +739,10 @@ class MLMTrainer:
         total_batches = len(self.data_loader)
 
         for batch_idx, batch in enumerate(self.data_loader):
+            # Mid-epoch resume: skip batches already processed
+            if epoch == self.start_epoch and batch_idx < self.start_batch:
+                continue
+
             mlm_batch = create_mlm_batch(
                 batch,
                 mask_prob=self.mask_prob,
@@ -512,9 +804,30 @@ class MLMTrainer:
 
             total_loss += loss.item() * self.config.grad_accum_steps
             n_batches += 1
+            self.global_step += 1
+
+            # Round 17: Periodic checkpointing
+            if (
+                self.config.checkpoint_every_n_steps
+                and self.global_step % self.config.checkpoint_every_n_steps == 0
+            ):
+                self.save_checkpoint(self.start_epoch + epoch, batch_idx)
 
             if verbose and is_main_process():
-                print_progress_bar(batch_idx, total_batches, total_loss / n_batches)
+                if (
+                    batch_idx % self.config.progress_update_every == 0
+                    or batch_idx == total_batches - 1
+                ):
+                    print_progress_bar(batch_idx, total_batches, total_loss / n_batches)
+
+                if (
+                    self.config.log_flush_every > 0
+                    and batch_idx % self.config.log_flush_every == 0
+                ):
+                    sys.stdout.flush()
+
+        # Reset start_batch for next epoch
+        self.start_batch = 0
 
         if verbose and is_main_process():
             sys.stdout.write("\n")
@@ -530,10 +843,15 @@ class MLMTrainer:
         on_epoch_end: Optional[Callable[[Dict[str, Any]], None]] = None,
     ) -> Dict[str, Any]:
         actual_epochs = epochs or self.config.epochs
-        for epoch in range(actual_epochs):
+
+        # Round 17: Auto-resume
+        if self.config.resume_from:
+            self.restore_from_checkpoint(self.config.resume_from)
+
+        for epoch in range(self.start_epoch, actual_epochs):
             if self.is_distributed:
                 cast(DistributedSampler, self.sampler).set_epoch(epoch)
-            mlm_loss, fields = self.train_epoch(verbose=verbose)
+            mlm_loss, fields = self.train_epoch(epoch=epoch, verbose=verbose)
             self.history["mlm_loss"].append(mlm_loss)
             for f, v in fields.items():
                 self.history["field_losses"][f].append(v)
@@ -550,6 +868,10 @@ class MLMTrainer:
                     phase="MLM",
                 )
             self.history["sentence_count"].append(len(self.dataset.samples))
+
+            # Save end-of-epoch checkpoint
+            self.save_checkpoint(epoch + 1, 0)
+
             if on_epoch_end and is_main_process():
                 on_epoch_end(self.history)
         return self.history
@@ -612,6 +934,7 @@ class KCTrainer:
         dataset: StyleDataset,
         config: Optional[TrainerConfig] = None,
         kc_config: Optional[Dict[str, Any]] = None,
+        args: Optional[Any] = None,
     ):
         # Filter out agrammatic samples (KC training should only see valid grammar)
         if any(s.grammaticality_label == 0 for s in dataset.samples):
@@ -622,9 +945,15 @@ class KCTrainer:
         self.dataset = dataset
         self.config = config or TrainerConfig()
 
+        # Configure PyTorch threads
+        _safe_configure_threads(self.config)
+
+        configure_runtime_thread_limits(self.config)
+
         kc_config = kc_config or {}
         self.kc_sparsity_weight = kc_config.get("sparsity_weight", 0.1)
         self.freeze_encoder_epochs = kc_config.get("freeze_encoder_epochs", 1)
+        self.args = args
 
         if self.config.world_size > 1:
             self.device = torch.device("cuda", self.config.local_rank)
@@ -668,31 +997,32 @@ class KCTrainer:
 
         pad_id = dataset.tokenizer.pad_id
         max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
-        # vocab_sizes = dataset.tokenizer.get_vocab_sizes() # Unused
 
         self.sampler: Optional[DistributedSampler] = (
             DistributedSampler(
                 dataset,
                 num_replicas=self.config.world_size,
-                rank=dist.get_rank(),
+                rank=self.config.local_rank,
                 shuffle=True,
             )
             if self.is_distributed
             else None
         )
+
+        dl_settings = choose_workers(self.config)
         self.data_loader = DataLoader(
             dataset,
             batch_size=self.config.batch_size,
             shuffle=(self.sampler is None),
             sampler=self.sampler,
-            collate_fn=lambda b: collate_fn(
-                b, pad_id, cast(Optional[int], max_seq_len)
-            ),
-            pin_memory=(self.config.device == "cuda"),
-            num_workers=(4 if self.config.device == "cuda" else 0),
+            collate_fn=partial(collate_fn, pad_id=pad_id, max_seq_len=max_seq_len),
+            num_workers=dl_settings["num_workers"],
+            pin_memory=dl_settings["pin_memory"],
+            persistent_workers=dl_settings["persistent_workers"],
+            prefetch_factor=dl_settings.get("prefetch_factor"),
+            worker_init_fn=_worker_init_fn,
         )
-
-        self.optimizer = Adam(self.model.parameters(), lr=self.config.learning_rate)
+        self._create_optimizer(freeze_encoder=True)
 
         # Loss functions
         self.default_bce_loss = nn.BCEWithLogitsLoss()
@@ -773,6 +1103,9 @@ class KCTrainer:
             "first_batch_separation": [],
             "first_batch_grad_norms": [],
         }
+        self.start_epoch = 0
+        self.start_batch = 0
+        self.global_step = 0
         self._did_print_debug_for_epoch = -1
 
         # Round 11: NaN recovery state
@@ -787,6 +1120,48 @@ class KCTrainer:
         self._total_step_skips = 0
         self._total_steps_applied = 0
         self._max_consecutive_skips = int(kc_config.get("max_consecutive_skips", 25))
+
+    def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
+        """Save training checkpoint."""
+        if not is_main_process() or self.config.checkpoint_dir is None:
+            return
+
+        save_training_state(
+            path=self.config.checkpoint_dir,
+            model=getattr(self.model, "module", self.model),
+            optimizer=self.optimizer,
+            epoch=epoch,
+            history=self.history,
+            global_step=self.global_step,
+            batch_idx=batch_idx,
+            scaler=self.scaler,
+            config=self.args or self.config,
+            filename="checkpoint_kc.pt",
+        )
+
+    def restore_from_checkpoint(self, path: str) -> bool:
+        """Restore training state from checkpoint."""
+        try:
+            checkpoint = load_training_state(
+                path=path,
+                model=getattr(self.model, "module", self.model),
+                optimizer=self.optimizer,
+                scaler=self.scaler,
+                filename="checkpoint_kc.pt",
+                device=str(self.device),
+            )
+            self.start_epoch = checkpoint["epoch"]
+            self.start_batch = checkpoint.get("batch_idx", 0)
+            self.global_step = checkpoint.get("global_step", 0)
+            self.history = checkpoint["history"]
+            if is_main_process():
+                print(
+                    f"  [Resume] Restored KC checkpoint from {path} "
+                    f"(epoch {self.start_epoch}, step {self.global_step})"
+                )
+            return True
+        except FileNotFoundError:
+            return False
 
     def _save_kc_snapshot(self) -> None:
         """Save current KC params (kc_head + kc_decoders) as last-known-good state.
@@ -926,7 +1301,7 @@ class KCTrainer:
             for name, vocab_size in m.config.kc_target_specs.items():
                 dense_key = f"kc_targets_{name}"
                 mask_key = f"kc_pos_mask_{name}"
-                
+
                 if dense_key in kc_targets:
                     # Dense path (small heads)
                     t = kc_targets[dense_key].float()
@@ -1150,29 +1525,26 @@ class KCTrainer:
         return skipped
 
     def _create_optimizer(self, freeze_encoder: bool) -> None:
-        # Re-create optimizer to optionally freeze encoder
+        # Re-create optimizer or update it. To ensure resumability, we always
+        # keep the same number of parameter groups.
         raw = self.model.module if self.is_distributed else self.model
         m = cast(StyleClassifierWithMLM, raw)
-        pg = [
-            {
-                "params": list(m.kc_head.parameters())
-                + (
-                    list(m.kc_decoders.parameters())
-                    if hasattr(m, "kc_decoders")
-                    else []
-                ),
-                "lr": self.config.learning_rate,
-            }
-        ]
-        if not freeze_encoder:
-            pg.append(
-                {
-                    "params": list(m.embedding.parameters())
-                    + list(m.encoder.parameters()),
-                    "lr": self.config.learning_rate * 0.01,
-                }
-            )
-        self.optimizer = Adam(pg)
+
+        # Group 0: KC Heads
+        pg_heads = {
+            "params": list(m.kc_head.parameters())
+            + (list(m.kc_decoders.parameters()) if hasattr(m, "kc_decoders") else []),
+            "lr": self.config.learning_rate,
+        }
+
+        # Group 1: Encoder/Embeddings
+        pg_encoder = {
+            "params": list(m.embedding.parameters()) + list(m.encoder.parameters()),
+            "lr": self.config.learning_rate * 0.01 if not freeze_encoder else 0.0,
+        }
+
+        # We always use 2 groups now to maintain checkpoint compatibility
+        self.optimizer = Adam([pg_heads, pg_encoder])
 
     def train_epoch(
         self, epoch: int = 0, verbose: bool = True
@@ -1238,11 +1610,12 @@ class KCTrainer:
         self.optimizer.zero_grad(set_to_none=True)
 
         for batch_idx, batch in enumerate(self.data_loader):
+            # Mid-epoch resume: skip batches already processed
+            if epoch == self.start_epoch and batch_idx < self.start_batch:
+                continue
+
             raw = self.model.module if self.is_distributed else self.model
             m = cast(StyleClassifierWithMLM, raw)
-
-            if batch_idx == 0:
-                pass
 
             # Generate KC targets on-the-fly
             kc_targets = create_kc_batch(
@@ -1452,12 +1825,12 @@ class KCTrainer:
                             # Helper to compute single-head stats
                             def get_head_stat(name: str) -> Dict[str, Any]:
                                 logits = outputs["target_logits"][name]
-                                
+
                                 # Round 15: Handle both dense and sparse target formats
                                 dense_key = f"kc_targets_{name}"
                                 pos_key = f"kc_pos_inds_{name}"
                                 mask_key = f"kc_pos_mask_{name}"
-                                
+
                                 if dense_key in batch:
                                     # Dense path (small heads)
                                     t = batch[dense_key].to(self.device).float()
@@ -1469,7 +1842,7 @@ class KCTrainer:
                                     is_sparse = True
                                 else:
                                     return {}
-                                
+
                                 with torch.no_grad():
                                     if is_sparse:
                                         # Compute stats from sparse format
@@ -1477,13 +1850,19 @@ class KCTrainer:
                                         vocab_size = logits.size(1)
                                         n_pos = pos_mask_t.sum().item()
                                         total = B * vocab_size
-                                        p = (n_pos / (total + self.kc_pos_weight_eps))
-                                        p = max(self.kc_pos_weight_eps, min(p, 1.0 - self.kc_pos_weight_eps))
-                                        pos_w = min(self.kc_pos_weight_cap, max(1.0, (1.0 - p) / p))
-                                        
+                                        p = n_pos / (total + self.kc_pos_weight_eps)
+                                        p = max(
+                                            self.kc_pos_weight_eps,
+                                            min(p, 1.0 - self.kc_pos_weight_eps),
+                                        )
+                                        pos_w = min(
+                                            self.kc_pos_weight_cap,
+                                            max(1.0, (1.0 - p) / p),
+                                        )
+
                                         probs = torch.sigmoid(logits)
                                         p_avg = probs.mean().item()
-                                        
+
                                         # AUC from sparse indices (subsample)
                                         auc = 0.0
                                         pos_logits_list = []
@@ -1491,35 +1870,65 @@ class KCTrainer:
                                         for i in range(min(B, 4)):
                                             valid_inds = pos_inds[i, pos_mask_t[i]]
                                             if valid_inds.numel() > 0:
-                                                pos_logits_list.extend(probs[i, valid_inds].cpu().tolist())
-                                            neg_inds = torch.randint(4, vocab_size, (50,), device=self.device)
-                                            neg_logits_list.extend(probs[i, neg_inds].cpu().tolist())
-                                        
+                                                pos_logits_list.extend(
+                                                    probs[i, valid_inds].cpu().tolist()
+                                                )
+                                            neg_inds = torch.randint(
+                                                4, vocab_size, (50,), device=self.device
+                                            )
+                                            neg_logits_list.extend(
+                                                probs[i, neg_inds].cpu().tolist()
+                                            )
+
                                         if pos_logits_list and neg_logits_list:
-                                            pos_t = torch.tensor(pos_logits_list[:500], device=self.device)
-                                            neg_t = torch.tensor(neg_logits_list[:500], device=self.device)
+                                            pos_t = torch.tensor(
+                                                pos_logits_list[:500],
+                                                device=self.device,
+                                            )
+                                            neg_t = torch.tensor(
+                                                neg_logits_list[:500],
+                                                device=self.device,
+                                            )
                                             sp = torch.cat([pos_t, neg_t])
-                                            sl = torch.cat([
-                                                torch.ones(len(pos_t), device=self.device),
-                                                torch.zeros(len(neg_t), device=self.device)
-                                            ])
+                                            sl = torch.cat(
+                                                [
+                                                    torch.ones(
+                                                        len(pos_t), device=self.device
+                                                    ),
+                                                    torch.zeros(
+                                                        len(neg_t), device=self.device
+                                                    ),
+                                                ]
+                                            )
                                             comb = torch.stack([sp, sl], dim=1)
                                             idx = torch.argsort(comb[:, 0])
                                             sl_s = comb[idx, 1]
-                                            ranks = torch.arange(1, sl_s.numel() + 1, device=self.device).float()
+                                            ranks = torch.arange(
+                                                1, sl_s.numel() + 1, device=self.device
+                                            ).float()
                                             pos_rank_sum = (ranks * sl_s).sum().item()
-                                            n_pos_auc, n_neg_auc = len(pos_t), len(neg_t)
+                                            n_pos_auc, n_neg_auc = (
+                                                len(pos_t),
+                                                len(neg_t),
+                                            )
                                             if n_pos_auc > 0 and n_neg_auc > 0:
-                                                auc = (pos_rank_sum - n_pos_auc * (n_pos_auc + 1) / 2) / (n_pos_auc * n_neg_auc)
-                                        
+                                                auc = (
+                                                    pos_rank_sum
+                                                    - n_pos_auc * (n_pos_auc + 1) / 2
+                                                ) / (n_pos_auc * n_neg_auc)
+
                                         # Delta loss (use sampled approach)
-                                        delta = 0.0  # Skip detailed delta for sparse heads
-                                        
+                                        delta = (
+                                            0.0  # Skip detailed delta for sparse heads
+                                        )
+
                                     else:
                                         # Dense path (original code)
                                         pos = t.sum()
                                         total = t.numel()
-                                        p = (pos / (total + self.kc_pos_weight_eps)).clamp(
+                                        p = (
+                                            pos / (total + self.kc_pos_weight_eps)
+                                        ).clamp(
                                             min=self.kc_pos_weight_eps,
                                             max=1.0 - self.kc_pos_weight_eps,
                                         )
@@ -1553,10 +1962,12 @@ class KCTrainer:
                                             sl = torch.cat(
                                                 [
                                                     torch.ones(
-                                                        idx_p.numel(), device=self.device
+                                                        idx_p.numel(),
+                                                        device=self.device,
                                                     ),
                                                     torch.zeros(
-                                                        idx_n.numel(), device=self.device
+                                                        idx_n.numel(),
+                                                        device=self.device,
                                                     ),
                                                 ]
                                             )
@@ -1578,7 +1989,9 @@ class KCTrainer:
                                         bias_used = logits.mean().item()
                                         import torch.nn.functional as F
 
-                                        pw = torch.tensor(pos_w.item(), device=self.device)
+                                        pw = torch.tensor(
+                                            pos_w.item(), device=self.device
+                                        )
                                         hl = F.binary_cross_entropy_with_logits(
                                             logits, t, pos_weight=pw
                                         ).item()
@@ -1588,14 +2001,16 @@ class KCTrainer:
                                             pos_weight=pw,
                                         ).item()
                                         delta = hl - pl
-                                        
+
                                         p = p.item()
                                         pos_w = pos_w.item()
 
                                 return {
                                     "name": name,
                                     "p": p if isinstance(p, float) else p,
-                                    "pos_w": pos_w if isinstance(pos_w, float) else pos_w,
+                                    "pos_w": pos_w
+                                    if isinstance(pos_w, float)
+                                    else pos_w,
                                     "p_avg": p_avg,
                                     "auc": auc,
                                     "delta": delta,
@@ -2010,9 +2425,24 @@ class KCTrainer:
             for k, v in batch_kc_losses.items():
                 kc_losses[k] = kc_losses.get(k, 0.0) + v
             n_batches += 1
+            self.global_step += 1
+
+            # Round 17: Periodic checkpointing
+            if (
+                self.config.checkpoint_every_n_steps
+                and self.global_step % self.config.checkpoint_every_n_steps == 0
+            ):
+                self.save_checkpoint(epoch, batch_idx)
 
             if verbose and is_main_process():
-                print_progress_bar(batch_idx, total_batches, total_loss / n_batches)
+                if (
+                    batch_idx % self.config.progress_update_every == 0
+                    or batch_idx == total_batches - 1
+                ):
+                    print_progress_bar(batch_idx, total_batches, total_loss / n_batches)
+
+        # Reset start_batch for next epoch
+        self.start_batch = 0
 
         if did_any_backward and pending_accum > 0:
             raw = self.model.module if self.is_distributed else self.model
@@ -2177,10 +2607,15 @@ class KCTrainer:
     ) -> Dict[str, Any]:
         actual_epochs = epochs or self.config.epochs
 
-        # Initialize biases to empirical base rates before training
-        self._init_structural_decoder_biases()
+        # Round 17: Auto-resume
+        if self.config.resume_from:
+            self.restore_from_checkpoint(self.config.resume_from)
 
-        for epoch in range(actual_epochs):
+        # Initialize biases to empirical base rates before training (only if starting fresh)
+        if self.start_epoch == 0 and self.start_batch == 0:
+            self._init_structural_decoder_biases()
+
+        for epoch in range(self.start_epoch, actual_epochs):
             if self.is_distributed:
                 cast(DistributedSampler, self.sampler).set_epoch(epoch)
             total_loss, kc_losses, avg_sparsity, epoch_stats = self.train_epoch(
@@ -2225,6 +2660,10 @@ class KCTrainer:
                 )
 
             self.history["sentence_count"].append(len(self.dataset.samples))
+
+            # Save end-of-epoch checkpoint
+            self.save_checkpoint(epoch + 1, 0)
+
             if on_epoch_end and is_main_process():
                 on_epoch_end(self.history)
 
@@ -2242,11 +2681,14 @@ class Trainer:
         config: Optional[TrainerConfig] = None,
         encoder_lr_factor: float = 0.1,
         support_dir: Optional[str] = None,
+        args: Optional[Any] = None,
     ):
         self.model = model
         self.train_dataset = train_dataset
         self.val_dataset = val_dataset
         self.config = config or TrainerConfig()
+        self.args = args
+        configure_runtime_thread_limits(self.config)
         self.encoder_lr_factor = encoder_lr_factor
         self.support_dir = support_dir
 
@@ -2299,27 +2741,40 @@ class Trainer:
             self.train_sampler, self.val_sampler = None, None
             t_shuffle, v_shuffle = True, False
 
+        # Round 18: Use tuned settings
+        dl_settings_train = choose_workers(self.config)
         self.train_loader = DataLoader(
             train_dataset,
             batch_size=self.config.batch_size,
             shuffle=t_shuffle,
             sampler=self.train_sampler,
-            collate_fn=lambda b: collate_fn(
-                b, pad_id, cast(Optional[int], max_seq_len)
+            collate_fn=partial(
+                collate_fn, pad_id=pad_id, max_seq_len=cast(Optional[int], max_seq_len)
             ),
-            pin_memory=(self.config.device == "cuda"),
-            num_workers=(4 if self.config.device == "cuda" else 0),
+            num_workers=dl_settings_train["num_workers"],
+            pin_memory=dl_settings_train["pin_memory"],
+            persistent_workers=dl_settings_train["persistent_workers"],
+            prefetch_factor=dl_settings_train.get("prefetch_factor"),
+            worker_init_fn=_worker_init_fn,
         )
+
+        dl_settings_val = choose_workers(self.config)
+        # Validation might use less workers? For now use same logic or override if needed.
+        # But wait, choose_workers() doesn't take 'val' mode.
+        # Let's just use it.
         self.val_loader = DataLoader(
             val_dataset,
             batch_size=self.config.batch_size,
             shuffle=v_shuffle,
             sampler=self.val_sampler,
-            collate_fn=lambda b: collate_fn(
-                b, pad_id, cast(Optional[int], max_seq_len)
+            collate_fn=partial(
+                collate_fn, pad_id=pad_id, max_seq_len=cast(Optional[int], max_seq_len)
             ),
-            pin_memory=(self.config.device == "cuda"),
-            num_workers=(4 if self.config.device == "cuda" else 0),
+            num_workers=dl_settings_val["num_workers"],
+            pin_memory=dl_settings_val["pin_memory"],
+            persistent_workers=dl_settings_val["persistent_workers"],
+            prefetch_factor=dl_settings_val.get("prefetch_factor"),
+            worker_init_fn=_worker_init_fn,
         )
 
         if self.config.use_class_weights:
@@ -2368,7 +2823,14 @@ class Trainer:
         self.patience_counter = 0
         self.best_state: Optional[Dict[str, torch.Tensor]] = None
         self.start_epoch = 0
-        self.history: Dict[str, Any] = {
+        self.start_batch = 0
+        self.global_step = 0
+        self.is_distributed = self.config.world_size > 1
+
+        # Configure PyTorch threads (Round 18)
+        _safe_configure_threads(self.config)
+
+        self.history: Dict[str, List[float]] = {
             k: []
             for k in [
                 "train_loss",
@@ -2391,8 +2853,72 @@ class Trainer:
             ]
         }
 
+    def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
+        """Save training checkpoint."""
+        if not is_main_process() or self.config.checkpoint_dir is None:
+            return
+
+        save_training_state(
+            path=self.config.checkpoint_dir,
+            model=getattr(self.model, "module", self.model),
+            optimizer=self.optimizer,
+            epoch=epoch,
+            history=self.history,
+            global_step=self.global_step,
+            batch_idx=batch_idx,
+            scaler=self.scaler,
+            scheduler=self.scheduler,
+            config=self.args or self.config,
+            filename="checkpoint.pt",
+        )
+        # Extra Style-specific state (patience, best_loss) in separate file for now,
+        # or we can just append it to generic save if we want.
+        # Let's append it to a metadata file if needed, but generic history has most of it.
+        checkpoint_meta = {
+            "best_val_loss": self.best_val_loss,
+            "patience_counter": self.patience_counter,
+            "best_state": self.best_state,
+        }
+        torch.save(
+            checkpoint_meta,
+            os.path.join(self.config.checkpoint_dir, "checkpoint_meta.pt"),
+        )
+
+    def restore_from_checkpoint(self, path: str) -> bool:
+        """Restore training state from checkpoint."""
+        try:
+            checkpoint = load_training_state(
+                path=path,
+                model=getattr(self.model, "module", self.model),
+                optimizer=self.optimizer,
+                scaler=self.scaler,
+                scheduler=self.scheduler,
+                filename="checkpoint.pt",
+                device=str(self.device),
+            )
+            self.start_epoch = checkpoint["epoch"]
+            self.start_batch = checkpoint.get("batch_idx", 0)
+            self.global_step = checkpoint.get("global_step", 0)
+            self.history = checkpoint["history"]
+
+            meta_path = os.path.join(path, "checkpoint_meta.pt")
+            if os.path.exists(meta_path):
+                meta = torch.load(meta_path, map_location="cpu")
+                self.best_val_loss = meta.get("best_val_loss", float("inf"))
+                self.patience_counter = meta.get("patience_counter", 0)
+                self.best_state = meta.get("best_state")
+
+            if is_main_process():
+                print(
+                    f"  [Resume] Restored Style checkpoint from {path} "
+                    f"(epoch {self.start_epoch}, step {self.global_step})"
+                )
+            return True
+        except FileNotFoundError:
+            return False
+
     def train_epoch(
-        self, verbose: bool = True
+        self, epoch: int, verbose: bool = True
     ) -> Tuple[float, float, float, float, float]:
         if verbose and is_main_process():
             print_phase_header("Style")
@@ -2409,6 +2935,17 @@ class Trainer:
             return 0.0, 0.0, 0.0, 0.0, 0.0
 
         for batch_idx, batch in enumerate(self.train_loader):
+            # Mid-epoch resume: skip batches already processed
+            if self.start_epoch >= 0 and batch_idx < self.start_batch:
+                # We use start_batch only for the first epoch being resumed
+                pass
+            else:
+                pass  # placeholder for non-skip
+
+            # Simplified logic for skipping:
+            if batch_idx < self.start_batch:
+                continue
+
             field_inputs = {
                 f"input_ids_{f}": batch[f"input_ids_{f}"].to(self.device)
                 for f in FEATURE_FIELDS
@@ -2502,12 +3039,30 @@ class Trainer:
             tgram_loss += gram_loss.item()
             tr_loss += reg_loss.item()
             n += 1
+            self.global_step += 1
+
+            # Round 17: Periodic checkpointing
             if (
-                verbose
-                and is_main_process()
-                and ((batch_idx + 1) % 100 == 0 or (batch_idx + 1) == total_batches)
+                self.config.checkpoint_every_n_steps
+                and self.global_step % self.config.checkpoint_every_n_steps == 0
             ):
-                print_progress_bar(batch_idx, total_batches, t_loss / n)
+                self.save_checkpoint(epoch, batch_idx)
+
+            if verbose and is_main_process():
+                if (
+                    batch_idx % self.config.progress_update_every == 0
+                    or batch_idx == total_batches - 1
+                ):
+                    print_progress_bar(batch_idx, total_batches, t_loss / n)
+
+                if (
+                    self.config.log_flush_every > 0
+                    and batch_idx % self.config.log_flush_every == 0
+                ):
+                    sys.stdout.flush()
+
+        # Reset start_batch for next epoch
+        self.start_batch = 0
         if verbose and is_main_process():
             sys.stdout.write("\n")
         return t_loss / n, tf_loss / n, tg_loss / n, tgram_loss / n, tr_loss / n
@@ -2649,76 +3204,54 @@ class Trainer:
     def train(
         self,
         verbose: bool = True,
-        checkpoint_dir: Optional[str] = None,
-        checkpoint_args: Optional[Any] = None,
-        model_config: Optional[ModelConfig] = None,
         on_epoch_end: Optional[Callable[[Dict[str, List[float]]], None]] = None,
     ) -> Dict[str, List[float]]:
+        # Round 17: Auto-resume
+        if self.config.resume_from:
+            self.restore_from_checkpoint(self.config.resume_from)
+
         for epoch in range(self.start_epoch, self.config.epochs):
-            tl, tfl, tgl, tgraml, trl = self.train_epoch(verbose=verbose)
+            tl, tfl, tgl, tgraml, trl = self.train_epoch(epoch=epoch, verbose=verbose)
             eval_res = self.evaluate()
             self.scheduler.step(eval_res["loss"])
 
             # KC Probe (Round 9): measure KC health during STYLE training
             kc_probe_result = None
-            m = cast(
+            m_style = cast(
                 StyleClassifier,
                 self.model.module if self.is_distributed else self.model,
             )
-            if getattr(m.config, "kc_enabled", False):
+            if getattr(m_style.config, "kc_enabled", False):
                 probe_loader = self._build_kc_probe_loader(max_batches=25)
                 if probe_loader is not None:
                     kc_probe_result = self.evaluate_kc_probe(probe_loader)
                     self._diagnose_kc_probe(kc_probe_result, verbose=verbose)
 
-            for k, v in zip(
-                [
-                    "train_loss",
-                    "train_formality_loss",
-                    "train_gender_loss",
-                    "train_grammaticality_loss",
-                    "train_register_loss",
-                ],
-                [tl, tfl, tgl, tgraml, trl],
-            ):
-                self.history[k].append(v)
-            for k, v in zip(
-                [
-                    "val_loss",
-                    "val_formality_loss",
-                    "val_gender_loss",
-                    "val_grammaticality_loss",
-                    "val_register_loss",
-                ],
-                [
-                    eval_res["loss"],
-                    eval_res["formality_loss"],
-                    eval_res["gender_loss"],
-                    eval_res["grammaticality_loss"],
-                    eval_res["register_loss"],
-                ],
-            ):
-                self.history[k].append(v)
-            for k, mk in zip(
-                [
-                    "val_formality_accuracy",
-                    "val_formality_mse",
-                    "val_gender_pragmatic_accuracy",
-                    "val_gender_value_mse",
-                    "val_grammaticality_accuracy",
-                    "val_register_accuracy",
-                ],
-                [
-                    "formality_accuracy",
-                    "formality_value_mse",
-                    "gender_pragmatic_accuracy",
-                    "gender_value_mse",
-                    "grammaticality_accuracy",
-                    "register_accuracy",
-                ],
-            ):
-                self.history[k].append(eval_res[mk])
-
+            # Record history
+            self.history["train_loss"].append(tl)
+            self.history["train_formality_loss"].append(tfl)
+            self.history["train_gender_loss"].append(tgl)
+            self.history["train_grammaticality_loss"].append(tgraml)
+            self.history["train_register_loss"].append(trl)
+            self.history["val_loss"].append(eval_res["loss"])
+            self.history["val_formality_loss"].append(eval_res["formality_loss"])
+            self.history["val_gender_loss"].append(eval_res["gender_loss"])
+            self.history["val_grammaticality_loss"].append(
+                eval_res["grammaticality_loss"]
+            )
+            self.history["val_register_loss"].append(eval_res["register_loss"])
+            self.history["val_formality_accuracy"].append(
+                eval_res["formality_accuracy"]
+            )
+            self.history["val_formality_mse"].append(eval_res["formality_value_mse"])
+            self.history["val_gender_pragmatic_accuracy"].append(
+                eval_res["gender_pragmatic_accuracy"]
+            )
+            self.history["val_gender_value_mse"].append(eval_res["gender_value_mse"])
+            self.history["val_grammaticality_accuracy"].append(
+                eval_res["grammaticality_accuracy"]
+            )
+            self.history["val_register_accuracy"].append(eval_res["register_accuracy"])
             self.history["sentence_count"].append(len(self.train_dataset.samples))
 
             if verbose:
@@ -2767,22 +3300,9 @@ class Trainer:
                         print(f"Early stopping at epoch {epoch + 1}")
                     break
 
-            if checkpoint_dir and checkpoint_args and model_config:
-                save_checkpoint(
-                    checkpoint_dir,
-                    self.model,
-                    self.train_dataset.tokenizer,
-                    self.optimizer,
-                    self.scheduler,
-                    epoch,
-                    self.history,
-                    self.best_val_loss,
-                    self.patience_counter,
-                    self.best_state,
-                    checkpoint_args,
-                    model_config,
-                    is_best=is_best,
-                )
+            # Round 17: Save end-of-epoch checkpoint
+            self.save_checkpoint(epoch + 1, 0)
+
             if self.is_distributed:
                 dist.barrier()
 
@@ -2866,7 +3386,7 @@ class Trainer:
         sum_act_dens = 0.0
 
         # Per-head AUC sampling (reservoir style)
-        probe_heads = ["pos", "conjugated_form", "conjugated_type"]
+        probe_heads = ["lemma", "pos", "conjugated_form", "conjugated_type"]
         head_samples: Dict[str, Dict[str, Any]] = {
             h: {"pos_logits": [], "neg_logits": [], "p_sum": 0.0, "count": 0}
             for h in probe_heads
@@ -2944,12 +3464,12 @@ class Trainer:
                         if head_name not in outputs["target_logits"]:
                             continue
                         logits_h = outputs["target_logits"][head_name]
-                        
+
                         # Round 15: Handle both dense and sparse target formats
                         dense_key = f"kc_targets_{head_name}"
                         pos_key = f"kc_pos_inds_{head_name}"
                         mask_key = f"kc_pos_mask_{head_name}"
-                        
+
                         if dense_key in kc_targets:
                             # Dense path (small heads)
                             targets_h = kc_targets[dense_key].to(self.device).float()
@@ -2981,31 +3501,45 @@ class Trainer:
                             # Sparse path (large heads like lemma)
                             pos_inds = kc_targets[pos_key].to(self.device)
                             pos_mask_t = kc_targets[mask_key].to(self.device)
-                            
+
                             hs = head_samples[head_name]
                             B = pos_inds.size(0)
                             vocab_size = logits_h.size(1)
-                            
+
                             # Count positives
                             n_pos = pos_mask_t.sum().item()
                             n_total = B * vocab_size
                             hs["p_sum"] += n_pos
                             hs["count"] += n_total
-                            
+
                             # Sample pos logits from sparse indices
                             if len(hs["pos_logits"]) < max_samples_per_head:
-                                for i in range(min(B, 4)):  # Sample from first 4 batch items
+                                for i in range(
+                                    min(B, 4)
+                                ):  # Sample from first 4 batch items
                                     valid_inds = pos_inds[i, pos_mask_t[i]]
                                     if valid_inds.numel() > 0:
                                         pos_log = logits_h[i, valid_inds].cpu().tolist()
-                                        hs["pos_logits"].extend(pos_log[:max_samples_per_head - len(hs["pos_logits"])])
-                            
+                                        hs["pos_logits"].extend(
+                                            pos_log[
+                                                : max_samples_per_head
+                                                - len(hs["pos_logits"])
+                                            ]
+                                        )
+
                             # Sample neg logits (random indices not in positives)
                             if len(hs["neg_logits"]) < max_samples_per_head:
                                 for i in range(min(B, 4)):
-                                    neg_inds = torch.randint(4, vocab_size, (50,), device=self.device)
+                                    neg_inds = torch.randint(
+                                        4, vocab_size, (50,), device=self.device
+                                    )
                                     neg_log = logits_h[i, neg_inds].cpu().tolist()
-                                    hs["neg_logits"].extend(neg_log[:max_samples_per_head - len(hs["neg_logits"])])
+                                    hs["neg_logits"].extend(
+                                        neg_log[
+                                            : max_samples_per_head
+                                            - len(hs["neg_logits"])
+                                        ]
+                                    )
 
         # DDP sync if needed
         if self.is_distributed:
@@ -3128,7 +3662,7 @@ class Trainer:
             )
 
         # Structural quality check
-        for head in ["pos", "conjugated_form", "conjugated_type"]:
+        for head in ["lemma", "pos", "conjugated_form", "conjugated_type"]:
             auc = probe_result.get(f"head_{head}_auc", float("nan"))
             if not math.isnan(auc) and auc < 0.80:
                 recommendations.append(
@@ -3152,24 +3686,10 @@ class Trainer:
                 f"prob={probe_result.get('avg_prob', 0):.2f} "
                 f"dens={probe_result.get('act_dens', 0):.4f}"
             )
-            for head in ["pos", "conjugated_form", "conjugated_type"]:
+            for head in ["lemma", "pos", "conjugated_form", "conjugated_type"]:
                 auc = probe_result.get(f"head_{head}_auc", float("nan"))
                 delta = probe_result.get(f"head_{head}_delta_bce", float("nan"))
                 if not math.isnan(auc):
                     print(f"    {head}: AUC={auc:.3f} ΔBCE={delta:+.4f}")
 
         return recommendations
-
-    def restore_from_checkpoint(
-        self, checkpoint: Dict[str, Any], reset_optimizer: bool = False
-    ) -> None:
-        if not reset_optimizer:
-            self.optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
-            self.scheduler.load_state_dict(checkpoint["scheduler_state_dict"])
-        self.history, self.best_val_loss, self.patience_counter, self.best_state = (
-            checkpoint["history"],
-            checkpoint["best_val_loss"],
-            checkpoint["patience_counter"],
-            checkpoint["best_state"],
-        )
-        self.start_epoch = checkpoint["epoch"] + 1

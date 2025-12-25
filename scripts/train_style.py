@@ -201,6 +201,33 @@ if __name__ == "__main__":
         help="Gradient accumulation steps",
     )
     parser.add_argument(
+        "--checkpoint-every",
+        type=int,
+        default=None,
+        help="Save checkpoint every N steps",
+    )
+
+    # Round 18: Interactive Mode and Performance Tuning
+    # Round 18: Interactive Mode and Performance Tuning
+    parser.add_argument(
+        "--dataloader-num-workers",
+        type=int,
+        default=None,
+        help="Number of DataLoader workers (None=auto-tune).",
+    )
+    parser.add_argument(
+        "--torch-num-threads",
+        type=int,
+        default=None,
+        help="Number of intra-op threads for PyTorch (None=auto-tune).",
+    )
+    parser.add_argument(
+        "--cpu-reserve-cores",
+        type=int,
+        default=2,
+        help="Number of CPU cores to reserve for system/OS in interactive mode.",
+    )
+    parser.add_argument(
         "--preprocess-only",
         action="store_true",
         help="Exit after loading and caching data",
@@ -276,13 +303,14 @@ if __name__ == "__main__":
     model: Optional[StyleClassifier] = None
     tokenizer: Optional[Tokenizer] = None
     checkpoint: Optional[Dict[str, Any]] = None
-    strict_load_failed = False
     vocab_grew = False
 
     if args.resume or args.retrain:
         checkpoint_path = os.path.join(args.support_dir, "checkpoint.pt")
         if os.path.exists(checkpoint_path):
-            checkpoint_data = torch.load(checkpoint_path, map_location="cpu")
+            checkpoint_data = torch.load(
+                checkpoint_path, map_location="cpu", weights_only=False
+            )
             saved_args = checkpoint_data["args"]
 
             if args.resume:
@@ -290,13 +318,23 @@ if __name__ == "__main__":
                 args.pretrain_mlm = saved_args.get("pretrain_mlm", False)
                 args.pretrain_kc = saved_args.get("pretrain_kc", False)
 
+                # Restore epoch counts and other training hyperparams if resuming
+                if args.pretrain_epochs == 5:  # Default
+                    args.pretrain_epochs = saved_args.get("pretrain_epochs", 5)
+                if args.kc_epochs == 3:  # Default
+                    args.kc_epochs = saved_args.get("kc_epochs", 3)
+
+                # We do NOT restore args.epochs if the user provided one on command line?
+                # The script handles args.epochs overwrite later:
+                # "if args.epochs is None: args.epochs = saved_args.get('epochs', 20)"
+
                 # Use StyleClassifierWithMLM if we are doing pretraining, as it has the 'mode' argument in forward
                 model_class = (
                     StyleClassifierWithMLM
                     if (args.pretrain_mlm or args.pretrain_kc)
                     else StyleClassifier
                 )
-                model, tokenizer, checkpoint, strict_load_failed = load_checkpoint(
+                model, tokenizer, checkpoint, _ = load_checkpoint(
                     args.support_dir, model_class=model_class
                 )
 
@@ -377,6 +415,13 @@ if __name__ == "__main__":
         else:
             model = StyleClassifier(model_config)
 
+    # Round 17: Save model config and tokenizer to support_dir for resumption compatibility
+    if is_main_process():
+        os.makedirs(args.support_dir, exist_ok=True)
+        with open(os.path.join(args.support_dir, "config.json"), "w") as f:
+            json.dump(model_config.to_dict(), f, indent=2)
+        tokenizer.save(os.path.join(args.support_dir, "tokenizer.json"))
+
     # Load checkpoint if resuming
     if args.resume and checkpoint is not None:
         old_vocab_sizes = tokenizer.get_vocab_sizes()
@@ -385,11 +430,23 @@ if __name__ == "__main__":
         # Restoring state dict later.
         pass
 
+    # Detect interactive mode
+    is_interactive = (
+        sys.stdout.isatty() or "SSH_TTY" in os.environ or "TMUX" in os.environ
+    )
+    if is_main_process() and is_interactive:
+        print(
+            "Interactive mode detected: optimizing for responsiveness over throughput.",
+            flush=True,
+        )
+
     # Phase 1: MLM Pretraining
     if args.pretrain_mlm and not args.preprocess_only:
         # Check if already done in history?
-        has_mlm = any(e.get("type") == "pretrain-mlm" for e in training_history)
-        if not has_mlm or args.retrain:
+        mlm_epochs_done = len(
+            [e for e in training_history if e.get("type") == "pretrain-mlm"]
+        )
+        if mlm_epochs_done < args.pretrain_epochs or args.retrain:
             unlabeled_dataset = StyleDataset.from_tsv(
                 args.data,
                 tokenizer,
@@ -406,11 +463,20 @@ if __name__ == "__main__":
                 local_rank=local_rank,
                 world_size=world_size,
                 grad_accum_steps=args.grad_accum_steps,
+                checkpoint_dir=args.support_dir,
+                resume_from=args.support_dir if args.resume else None,
+                interactive_mode=is_interactive,
+                dataloader_num_workers=args.dataloader_num_workers,
+                torch_num_threads=args.torch_num_threads,
+                cpu_reserve_cores=args.cpu_reserve_cores,
             )
-            mlm_loader = MLMTrainer(
-                cast(StyleClassifierWithMLM, model), unlabeled_dataset, pretrain_config
+            mlm_trainer = MLMTrainer(
+                cast(StyleClassifierWithMLM, model),
+                unlabeled_dataset,
+                pretrain_config,
+                args=args,
             )
-            mlm_history = mlm_loader.train(
+            mlm_history = mlm_trainer.train(
                 epochs=args.pretrain_epochs,
                 verbose=is_main_process(),
                 on_epoch_end=lambda h: _append_history(h, "pretrain-mlm"),
@@ -441,8 +507,10 @@ if __name__ == "__main__":
         sys.exit(0)
 
     if args.pretrain_kc and not args.preprocess_only:
-        has_kc = any(e.get("type") == "pretrain-kc" for e in training_history)
-        if not has_kc or args.retrain:
+        kc_epochs_done = len(
+            [e for e in training_history if e.get("type") == "pretrain-kc"]
+        )
+        if kc_epochs_done < args.kc_epochs or args.retrain:
             kc_trainer_config = TrainerConfig(
                 learning_rate=args.learning_rate,
                 batch_size=args.batch_size,
@@ -451,6 +519,12 @@ if __name__ == "__main__":
                 use_amp=args.fp16 or args.fp8,
                 world_size=world_size,
                 local_rank=local_rank,
+                checkpoint_dir=args.support_dir,
+                resume_from=args.support_dir if args.resume else None,
+                interactive_mode=is_interactive,
+                dataloader_num_workers=args.dataloader_num_workers,
+                torch_num_threads=args.torch_num_threads,
+                cpu_reserve_cores=args.cpu_reserve_cores,
             )
             kc_history = KCTrainer(
                 cast(StyleClassifierWithMLM, model),
@@ -460,6 +534,7 @@ if __name__ == "__main__":
                     "sparsity_weight": args.kc_sparsity_weight,
                     "freeze_encoder_epochs": args.kc_freeze_encoder_epochs,
                 },
+                args=args,
             ).train(
                 epochs=args.kc_epochs,
                 on_epoch_end=lambda h: _append_history(h, "pretrain-kc"),
@@ -480,6 +555,12 @@ if __name__ == "__main__":
         local_rank=local_rank,
         world_size=world_size,
         grad_accum_steps=args.grad_accum_steps,
+        checkpoint_dir=args.support_dir,
+        resume_from=args.support_dir if args.resume else None,
+        interactive_mode=is_interactive,
+        dataloader_num_workers=args.dataloader_num_workers,
+        torch_num_threads=args.torch_num_threads,
+        cpu_reserve_cores=args.cpu_reserve_cores,
     )
     trainer = Trainer(
         model,
@@ -488,17 +569,14 @@ if __name__ == "__main__":
         trainer_config,
         encoder_lr_factor=args.encoder_lr_factor if args.pretrain_mlm else 1.0,
         support_dir=args.support_dir,
+        args=args,
     )
 
-    if args.resume and checkpoint is not None:
-        trainer.restore_from_checkpoint(
-            checkpoint, reset_optimizer=vocab_grew or strict_load_failed
-        )
+    if args.resume:
+        # Auto-resume handled inside trainer.train() if checkpoint_dir set
+        pass
 
     history = trainer.train(
-        checkpoint_dir=args.support_dir,
-        checkpoint_args=args,
-        model_config=model_config,
         verbose=is_main_process(),
         on_epoch_end=lambda h: _append_history(h, "style"),
     )
