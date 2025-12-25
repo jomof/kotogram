@@ -74,8 +74,6 @@ class DataLoaderSettings:
     pin_memory: Optional[bool] = None
     persistent_workers: bool = True
     prefetch_factor: Optional[int] = 2
-    # If True, forces num_workers=0 and pin_memory=False
-    interactive_dataloader: Optional[bool] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -83,7 +81,7 @@ class DataLoaderSettings:
             "pin_memory": self.pin_memory,
             "persistent_workers": self.persistent_workers,
             "prefetch_factor": self.prefetch_factor,
-            "interactive_dataloader": self.interactive_dataloader,
+            "prefetch_factor": self.prefetch_factor,
         }
 
     @classmethod
@@ -162,7 +160,6 @@ class TrainerConfig:
     )
 
     # Global Toggles and Intervals
-    interactive_mode: bool = False
     progress_update_every: int = 50  # Batches between progress bar updates
     log_flush_every: int = 200  # Batches between stdout flushes
 
@@ -189,7 +186,6 @@ class TrainerConfig:
             "checkpoint": self.checkpoint.to_dict(),
             "main": self.main.to_dict(),
             "worker": self.worker.to_dict(),
-            "interactive_mode": self.interactive_mode,
             "progress_update_every": self.progress_update_every,
             "log_flush_every": self.log_flush_every,
         }
@@ -233,13 +229,6 @@ class TrainerConfig:
         return _get_safe_dataloader_config(self, device, process, mode)
 
     def __post_init__(self) -> None:
-        # Auto-detect interactive environment (GCP VM, SSH, tmux)
-        if self.dataloader.interactive_dataloader is None:
-            is_ssh = "SSH_CLIENT" in os.environ or "SSH_TTY" in os.environ
-            is_tmux = "TMUX" in os.environ
-            object.__setattr__(
-                self.dataloader, "interactive_dataloader", is_ssh or is_tmux
-            )
 
         # Resolve thread counts
         cpu_t, interop_t = _choose_torch_threads(self)
@@ -261,15 +250,13 @@ def _choose_torch_threads(config: "TrainerConfig") -> Tuple[int, int]:
         (intra_op_threads, inter_op_threads)
     """
     cores = detect_cpu_cores()
-    reserve = config.hardware.cpu_reserve_cores if config.interactive_mode else 0
-    usable = max(1, cores - reserve)
+    usable = max(1, cores)
 
     if config.hardware.torch_num_threads is not None:
         t = config.hardware.torch_num_threads
     else:
         # Intra-op: primary computation threads
-        # If interactive, be more conservative (share with system)
-        t = max(1, usable // (2 if config.interactive_mode else 1))
+        t = max(1, usable)
 
     if config.hardware.torch_num_interop_threads is not None:
         it = config.hardware.torch_num_interop_threads
@@ -291,17 +278,7 @@ def _get_safe_dataloader_config(
     is_cuda = "cuda" in str(device)
 
     # 1. Base Policy
-    if config.dataloader.interactive_dataloader:
-        # Keep machine responsive in interactive sessions
-        if process.show_safety_logs and mode == "train":
-            print(
-                "  [Safety] Interactive dataloader mode detected (SSH/tmux). Forces num_workers=0, pin_memory=False."
-            )
-        num_workers = 0
-        pin_memory = False
-        prefetch_factor = None
-        persistent_workers = False
-    elif is_cuda:
+    if is_cuda:
         # Conservative defaults for CUDA
         num_workers = min(4, max(2, cpu_count // 8))
         if config.dataloader.num_workers is not None:

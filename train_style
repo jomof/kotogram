@@ -436,9 +436,6 @@ def main() -> int:
             else {},
         )
 
-    sys_interactive = (
-        sys.stdout.isatty() or "SSH_TTY" in os.environ or "TMUX" in os.environ
-    )
 
     # Build TrainerConfig with only user-specified overrides
     # Defaults come from config.py dataclass, not from argparse
@@ -458,7 +455,6 @@ def main() -> int:
         "dataloader": DataLoaderSettings(
             num_workers=args.dataloader_num_workers,
         ),
-        "interactive_mode": sys_interactive,
     }
     # Only include values if explicitly provided
     if args.epochs is not None:
