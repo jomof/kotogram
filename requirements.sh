@@ -1,6 +1,6 @@
 #!/bin/bash
 # Setup script for kotogram training environment
-# Run with: source requirements.sh
+# Run with: ./requirements.sh (or source requirements.sh)
 
 set -e
 
@@ -10,16 +10,6 @@ cd "$SCRIPT_DIR"
 echo "========================================"
 echo "Kotogram Environment Setup"
 echo "========================================"
-
-# Create venv if it doesn't exist
-if [ ! -d ".venv" ]; then
-    echo "Creating virtual environment..."
-    python3 -m venv .venv
-fi
-
-# Activate venv
-echo "Activating virtual environment..."
-source .venv/bin/activate
 
 # Detect CUDA
 echo "Detecting GPU/CUDA environment..."
@@ -51,32 +41,34 @@ if [ -z "$TORCH_INDEX" ]; then
     echo "  No CUDA detected, installing CPU-only PyTorch"
 fi
 
+# Show which python we're using
+echo ""
+echo "Installing to: $(which python3)"
+echo ""
+
 # Install/upgrade pip
 echo "Upgrading pip..."
-pip install --upgrade pip
+python3 -m pip install --upgrade pip
 
 # Install PyTorch
 echo "Installing PyTorch..."
 if [ -n "$TORCH_INDEX" ]; then
-    pip install torch --index-url "$TORCH_INDEX"
+    python3 -m pip install torch --index-url "$TORCH_INDEX"
 else
-    pip install torch
+    python3 -m pip install torch
 fi
 
 # Install other requirements
 echo "Installing other dependencies..."
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 
 # Install the project in editable mode
 echo "Installing kotogram in editable mode..."
-pip install -e .
+python3 -m pip install -e .
 
 echo ""
 echo "========================================"
 echo "Setup complete!"
 echo "========================================"
 echo ""
-echo "Virtual environment is now active."
 echo "You can now run: ./train_style"
-echo ""
-echo "To reactivate later: source .venv/bin/activate"
