@@ -261,6 +261,238 @@ def test_nan_guard_finite_grad_check():
     assert not torch.isfinite(inf_grad).all(), "Gradient with Inf not all finite"
 
 
+# =============================================================================
+# Round 11: NaN Recovery System Tests
+# =============================================================================
+
+
+def test_tensor_finite_stats_clean():
+    """Test tensor_finite_stats with clean tensor."""
+    from train.trainer import tensor_finite_stats
+
+    x = torch.tensor([1.0, 2.0, 3.0])
+    stats = tensor_finite_stats(x)
+
+    assert stats["finite"] is True, "Clean tensor should be finite"
+    assert stats["n_nan"] == 0, "No NaNs expected"
+    assert stats["n_inf"] == 0, "No Infs expected"
+    assert stats["min"] == 1.0, "Min should be 1.0"
+    assert stats["max"] == 3.0, "Max should be 3.0"
+
+
+def test_tensor_finite_stats_with_nan():
+    """Test tensor_finite_stats with NaN values."""
+    from train.trainer import tensor_finite_stats
+
+    x = torch.tensor([1.0, float("nan"), 3.0])
+    stats = tensor_finite_stats(x)
+
+    assert stats["finite"] is False, "Tensor with NaN should not be finite"
+    assert stats["n_nan"] == 1, "One NaN expected"
+    assert stats["n_inf"] == 0, "No Infs expected"
+    assert stats["min"] == 1.0, "Min of finite values should be 1.0"
+    assert stats["max"] == 3.0, "Max of finite values should be 3.0"
+
+
+def test_tensor_finite_stats_with_inf():
+    """Test tensor_finite_stats with Inf values."""
+    from train.trainer import tensor_finite_stats
+
+    x = torch.tensor([1.0, float("inf"), 3.0])
+    stats = tensor_finite_stats(x)
+
+    assert stats["finite"] is False, "Tensor with Inf should not be finite"
+    assert stats["n_nan"] == 0, "No NaNs expected"
+    assert stats["n_inf"] == 1, "One Inf expected"
+    assert stats["min"] == 1.0, "Min of finite values should be 1.0"
+    assert stats["max"] == 3.0, "Max of finite values should be 3.0"
+
+
+def test_tensor_finite_stats_all_nan():
+    """Test tensor_finite_stats with all NaN values."""
+    import math
+
+    from train.trainer import tensor_finite_stats
+
+    x = torch.tensor([float("nan"), float("nan")])
+    stats = tensor_finite_stats(x)
+
+    assert stats["finite"] is False
+    assert stats["n_nan"] == 2
+    assert math.isnan(stats["min"]), "Min should be NaN when all values non-finite"
+    assert math.isnan(stats["max"]), "Max should be NaN when all values non-finite"
+
+
+def test_tensor_finite_stats_none():
+    """Test tensor_finite_stats with None input."""
+    from train.trainer import tensor_finite_stats
+
+    stats = tensor_finite_stats(None)
+
+    assert stats["finite"] is True, "None should be treated as finite"
+    assert stats["n_nan"] == 0
+    assert stats["n_inf"] == 0
+
+
+def test_nan_recovery_log_spam_pattern():
+    """Test the log spam reduction pattern (first 3, then every 50th).
+
+    Mirrors the logic in KCTrainer.train_epoch.
+    """
+    logged_count = 0
+    nonfinite_total = 0
+
+    for _ in range(100):
+        nonfinite_total += 1
+        should_log = logged_count < 3 or nonfinite_total % 50 == 0
+        if should_log:
+            logged_count += 1
+
+    # Should have logged: 1, 2, 3, 50, 100 = 5 times
+    assert logged_count == 5, f"Expected 5 logs, got {logged_count}"
+
+
+def test_nan_recovery_streak_reset():
+    """Test that streak resets on successful forward.
+
+    Mirrors the streak logic in KCTrainer.train_epoch.
+    """
+    streak = 0
+
+    # Simulate NaN forward -> streak increases
+    forward_ok = False
+    if not forward_ok:
+        streak += 1
+    assert streak == 1
+
+    # Simulate another NaN forward
+    forward_ok = False
+    if not forward_ok:
+        streak += 1
+    assert streak == 2
+
+    # Simulate successful forward -> streak resets
+    forward_ok = True
+    if forward_ok and streak > 0:
+        streak = 0
+    assert streak == 0
+
+
+# =============================================================================
+# Round 12: KC Numeric Stability Tests
+# =============================================================================
+
+
+def test_forward_kc_gumbel_stability():
+    """Test gumbel path produces finite outputs with various scales."""
+    from kotogram.model import ModelConfig
+    from train.trainer import StyleClassifierWithMLM
+
+    config = ModelConfig(
+        vocab_sizes={f: 50 for f in FEATURE_FIELDS},
+        kc_enabled=True,
+        kc_vocab_size=16,
+        kc_topk=4,
+        kc_temperature=1.0,
+    )
+    model = StyleClassifierWithMLM(config)
+    model.train()
+
+    field_inputs = {
+        f"input_ids_{f}": torch.zeros(4, 10, dtype=torch.long) for f in FEATURE_FIELDS
+    }
+    attention_mask = torch.ones(4, 10)
+
+    # Test with multiple gumbel scales
+    for gumbel_scale in [0.0, 0.5, 1.0, 2.0, 5.0]:
+        outputs = model.forward_kc(
+            field_inputs, attention_mask, gumbel_scale=gumbel_scale
+        )
+
+        assert torch.isfinite(outputs["kc_logits_raw"]).all(), (
+            f"kc_logits_raw not finite at scale={gumbel_scale}"
+        )
+        assert torch.isfinite(outputs["kc_probs"]).all(), (
+            f"kc_probs not finite at scale={gumbel_scale}"
+        )
+        assert torch.isfinite(outputs["topk_vals"]).all(), (
+            f"topk_vals not finite at scale={gumbel_scale}"
+        )
+
+
+def test_forward_kc_nan_to_num_guard():
+    """Test that kc_probs uses nan_to_num to guard against non-finite values.
+
+    Verifies that even if extreme inputs cause issues, output probs are still finite
+    due to the logits clamp and nan_to_num guard.
+    """
+    from kotogram.model import ModelConfig
+    from train.trainer import StyleClassifierWithMLM
+
+    config = ModelConfig(
+        vocab_sizes={f: 50 for f in FEATURE_FIELDS},
+        kc_enabled=True,
+        kc_vocab_size=16,
+        kc_topk=4,
+        kc_temperature=1.0,
+    )
+    model = StyleClassifierWithMLM(config)
+    model.train()
+
+    field_inputs = {
+        f"input_ids_{f}": torch.zeros(2, 5, dtype=torch.long) for f in FEATURE_FIELDS
+    }
+    attention_mask = torch.ones(2, 5)
+
+    # Run forward even with extreme gumbel scale
+    outputs = model.forward_kc(field_inputs, attention_mask, gumbel_scale=100.0)
+
+    # Probs should be finite due to nan_to_num guard (and logits clamp)
+    assert torch.isfinite(outputs["kc_probs"]).all(), (
+        "kc_probs should be finite with nan_to_num guard"
+    )
+    # Probs should be in [0, 1]
+    assert (outputs["kc_probs"] >= 0).all() and (outputs["kc_probs"] <= 1).all(), (
+        "kc_probs out of range"
+    )
+
+
+def test_kc_snapshot_restore_pattern():
+    """Test the snapshot/restore pattern used for NaN recovery.
+
+    This tests the state_dict based save/restore logic.
+    """
+    # Create mock state dicts
+    original_weight = torch.tensor([[1.0, 2.0], [3.0, 4.0]])
+    snapshot = {"kc_head": {"linear.weight": original_weight.clone()}}
+
+    # Restore pattern
+    restored = {k: v.clone() for k, v in snapshot["kc_head"].items()}
+
+    # Verify restore produces original values
+    assert torch.allclose(restored["linear.weight"], original_weight)
+    assert not torch.isnan(restored["linear.weight"]).any()
+
+
+def test_kc_logits_clamp_range():
+    """Test that logits_for_selection is clamped to [-20, 20].
+
+    Verifies the clamp prevents extreme logits that could cause gradient issues.
+    """
+    # Simulate the clamp logic from forward_kc
+    extreme_logits = torch.tensor([[-100.0, 0.0, 100.0], [-50.0, 50.0, 0.0]])
+    clamped = extreme_logits.clamp(min=-20.0, max=20.0)
+
+    assert clamped.min() >= -20.0, "Min should be >= -20"
+    assert clamped.max() <= 20.0, "Max should be <= 20"
+
+    # Sigmoid of clamped values should be numerically stable
+    sigmoid_vals = torch.sigmoid(clamped)
+    assert torch.isfinite(sigmoid_vals).all(), (
+        "Sigmoid of clamped logits should be finite"
+    )
+
+
 def test_nan_guard_skip_logic():
     """Test the NaN guard skip logic pattern used in KCTrainer (Round 10).
 

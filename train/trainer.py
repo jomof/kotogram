@@ -122,12 +122,19 @@ class StyleClassifierWithMLM(StyleClassifier):
         # We use noisy logits for selection, but return clean logits for regularization
         logits_for_selection = kc_logits_raw
         if gumbel_scale is not None and gumbel_scale > 0 and self.training:
-            u = torch.rand_like(kc_logits_raw)
-            g = -torch.log(-torch.log(u + 1e-9) + 1e-9)
+            # Round 12: Clamp u away from {0,1} to prevent inf/nan in log
+            u = torch.rand_like(kc_logits_raw).clamp_(1e-6, 1 - 1e-6)
+            g = -torch.log(-torch.log(u))
             logits_for_selection = kc_logits_raw + gumbel_scale * g
+
+        # Round 12: Clamp logits to prevent sigmoid saturation and gradient spikes
+        logits_for_selection = logits_for_selection.clamp(min=-20.0, max=20.0)
 
         # Compute probs from (possibly noisy) logits
         kc_probs = torch.sigmoid(logits_for_selection / cur_temp)
+
+        # Round 12: Guard against any non-finite values before topk
+        kc_probs = torch.nan_to_num(kc_probs, nan=0.0, posinf=1.0, neginf=0.0)
 
         # Get top-k
         k = getattr(self.config, "kc_topk", 8)
@@ -472,6 +479,54 @@ class MLMTrainer:
         return self.history
 
 
+# =============================================================================
+# Round 11: NaN Recovery Utilities for KC Training
+# =============================================================================
+
+
+def tensor_finite_stats(x: Optional[torch.Tensor]) -> Dict[str, Any]:
+    """Compute finite-aware statistics for a tensor.
+
+    Returns dict with:
+    - finite: bool (all elements finite)
+    - n_nan: int (count of NaN elements)
+    - n_inf: int (count of Inf elements)
+    - min: float (min of finite elements, NaN if none finite)
+    - max: float (max of finite elements, NaN if none finite)
+
+    This prevents uninformative "min=nan max=nan" in diagnostics.
+    """
+    if x is None:
+        return {
+            "finite": True,
+            "n_nan": 0,
+            "n_inf": 0,
+            "min": float("nan"),
+            "max": float("nan"),
+        }
+
+    flat = x.detach().flatten().float()
+    is_finite = torch.isfinite(flat)
+    n_nan = int(torch.isnan(flat).sum().item())
+    n_inf = int(torch.isinf(flat).sum().item())
+
+    finite_vals = flat[is_finite]
+    if len(finite_vals) > 0:
+        min_val = float(finite_vals.min().item())
+        max_val = float(finite_vals.max().item())
+    else:
+        min_val = float("nan")
+        max_val = float("nan")
+
+    return {
+        "finite": bool(is_finite.all().item()),
+        "n_nan": n_nan,
+        "n_inf": n_inf,
+        "min": min_val,
+        "max": max_val,
+    }
+
+
 class KCTrainer:
     """Trainer for Knowledge Component (KC) learning."""
 
@@ -625,6 +680,67 @@ class KCTrainer:
         }
         self._did_print_debug_for_epoch = -1
 
+        # Round 11: NaN recovery state
+        self._kc_last_good_state: Optional[Dict[str, Dict[str, torch.Tensor]]] = None
+        self._nonfinite_streak = 0
+        self._nonfinite_total = 0
+        self._nonfinite_logged = 0  # For log spam reduction
+        self._max_nonfinite_streak = 50  # Raise error if exceeded
+
+    def _save_kc_snapshot(self) -> None:
+        """Save current KC params (kc_head + kc_decoders) as last-known-good state.
+
+        Round 12: Uses state_dict() for cleaner rollback.
+        """
+        raw = self.model.module if self.is_distributed else self.model
+        m = cast(StyleClassifierWithMLM, raw)
+        self._kc_last_good_state = {
+            "kc_head": {
+                k: v.detach().cpu().clone() for k, v in m.kc_head.state_dict().items()
+            },
+        }
+        if hasattr(m, "kc_decoders"):
+            self._kc_last_good_state["kc_decoders"] = {
+                k: v.detach().cpu().clone()
+                for k, v in m.kc_decoders.state_dict().items()
+            }
+
+    def _restore_kc_snapshot(self) -> bool:
+        """Restore KC params from last-known-good state. Returns True if restored.
+
+        Round 12: Uses load_state_dict() with strict=True for safety.
+        """
+        if self._kc_last_good_state is None:
+            return False
+        raw = self.model.module if self.is_distributed else self.model
+        m = cast(StyleClassifierWithMLM, raw)
+
+        # Restore kc_head
+        device = next(m.kc_head.parameters()).device
+        restored_head = {
+            k: v.to(device) for k, v in self._kc_last_good_state["kc_head"].items()
+        }
+        m.kc_head.load_state_dict(restored_head, strict=True)
+
+        # Restore kc_decoders if present
+        if "kc_decoders" in self._kc_last_good_state and hasattr(m, "kc_decoders"):
+            device_dec = next(m.kc_decoders.parameters()).device
+            restored_dec = {
+                k: v.to(device_dec)
+                for k, v in self._kc_last_good_state["kc_decoders"].items()
+            }
+            m.kc_decoders.load_state_dict(restored_dec, strict=True)
+
+        return True
+
+    def _reinit_kc_head(self) -> None:
+        """Reinitialize kc_head weights (xavier) and biases (zeros) as fallback."""
+        raw = self.model.module if self.is_distributed else self.model
+        m = cast(StyleClassifierWithMLM, raw)
+        nn.init.xavier_uniform_(m.kc_head.linear.weight)
+        if m.kc_head.linear.bias is not None:
+            nn.init.zeros_(m.kc_head.linear.bias)
+
     def _init_structural_decoder_biases(self, num_batches: int = 10) -> None:
         raw = self.model.module if self.is_distributed else self.model
         m = cast("StyleClassifierWithMLM", raw)
@@ -761,11 +877,16 @@ class KCTrainer:
             return True
 
         # Clip grads (already unscaled above when AMP enabled)
-        if self.config.gradient_clip > 0:
-            if not self.config.use_amp:
-                # Only unscale if we haven't already (non-AMP path)
-                pass
-            nn.utils.clip_grad_norm_(self.model.parameters(), self.config.gradient_clip)
+        # Round 11/12: KC default gradient clip is 1.0, clip only optimizer params
+        clip_val = self.config.gradient_clip if self.config.gradient_clip > 0 else 1.0
+        params_to_clip = [
+            p
+            for group in self.optimizer.param_groups
+            for p in group["params"]
+            if p.grad is not None
+        ]
+        if params_to_clip:
+            nn.utils.clip_grad_norm_(params_to_clip, clip_val)
 
         # 3. Detect if GradScaler skips the step
         scale_before = float(self.scaler.get_scale())
@@ -774,6 +895,30 @@ class KCTrainer:
         self.optimizer.zero_grad(set_to_none=True)
         scale_after = float(self.scaler.get_scale())
         skipped = scale_after < scale_before
+
+        # Round 11: Check KC params are finite after step, restore if not
+        if not skipped:
+            param_nonfinite = False
+            for p in m.kc_head.parameters():
+                if not torch.isfinite(p.data).all():
+                    param_nonfinite = True
+                    break
+            if not param_nonfinite and hasattr(m, "kc_decoders"):
+                for p in m.kc_decoders.parameters():
+                    if not torch.isfinite(p.data).all():
+                        param_nonfinite = True
+                        break
+
+            if param_nonfinite:
+                if is_main_process():
+                    print("  [KC] Params became NaN after step, restoring snapshot")
+                restored = self._restore_kc_snapshot()
+                if not restored:
+                    self._reinit_kc_head()
+                skipped = True
+            else:
+                # Save good state
+                self._save_kc_snapshot()
 
         if is_main_process() and (not has_printed_step_check or is_flush):
             if self.kc_show_amp_details:
@@ -934,6 +1079,61 @@ class KCTrainer:
                     temperature=t_val,
                     gumbel_scale=gumbel_scale,
                 )
+
+                # --- Round 11: Forward output NaN detection + recovery ---
+                logits_stats = tensor_finite_stats(outputs.get("kc_logits_raw"))
+                probs_stats = tensor_finite_stats(outputs.get("kc_probs"))
+                forward_nonfinite = (
+                    not logits_stats["finite"] or not probs_stats["finite"]
+                )
+
+                if forward_nonfinite:
+                    self._nonfinite_streak += 1
+                    self._nonfinite_total += 1
+
+                    # Log spam reduction: first 3, then every 50th
+                    should_log = (
+                        self._nonfinite_logged < 3 or self._nonfinite_total % 50 == 0
+                    )
+                    if should_log and is_main_process():
+                        self._nonfinite_logged += 1
+                        print(
+                            f"  [KC][FORWARD NaN] ep={epoch} b={batch_idx} streak={self._nonfinite_streak} "
+                            f"raw[nan={logits_stats['n_nan']} inf={logits_stats['n_inf']} "
+                            f"finite_range={logits_stats['min']:.2g}..{logits_stats['max']:.2g}] "
+                            f"scale={self.scaler.get_scale():.1f}"
+                        )
+
+                    # Check max streak
+                    if self._nonfinite_streak > self._max_nonfinite_streak:
+                        raise RuntimeError(
+                            f"KC training failed: {self._nonfinite_streak} consecutive non-finite batches"
+                        )
+
+                    # Recovery: restore or reinit
+                    self.optimizer.zero_grad(set_to_none=True)
+                    restored = self._restore_kc_snapshot()
+                    if not restored:
+                        if is_main_process():
+                            print(
+                                "  [KC] No snapshot available, reinitializing kc_head"
+                            )
+                        self._reinit_kc_head()
+
+                    # Reduce LR (at most once per 10 batches)
+                    if self._nonfinite_streak == 1:
+                        for pg in self.optimizer.param_groups:
+                            pg["lr"] = pg["lr"] * 0.5
+                        if is_main_process():
+                            print(
+                                f"  [KC] Halved LR to {self.optimizer.param_groups[0]['lr']:.2e}"
+                            )
+
+                    continue  # Skip this batch
+
+                # Reset streak on successful forward
+                if self._nonfinite_streak > 0:
+                    self._nonfinite_streak = 0
 
                 # Thawed Clamping (Optional but High Impact)
                 # Training-time only tweak to limit gradient explosion from "winning" KCs
