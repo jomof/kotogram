@@ -1,0 +1,414 @@
+#!/usr/bin/env python3
+"""Train style classifier (formality + gender + grammaticality) on Japanese sentence corpus.
+
+This script orchestrates the full training pipeline:
+1. Environment detection (GPU, batch sizes, gradient accumulation)
+2. Preprocessing/labeling phase (via scripts.label)
+3. Training phase (via scripts.train_style)
+4. Confusion matrix evaluation (via scripts.confusion)
+
+Usage:
+    ./train_style                    # Default training
+    ./train_style --pretrain-mlm     # With MLM pretraining
+    ./train_style --label            # Preprocessing only
+"""
+
+import argparse
+import os
+import subprocess
+import sys
+from typing import List, Optional
+
+# Ensure we can import kotogram from project root if running from source
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+
+def get_num_gpus() -> int:
+    """Detect the number of available CUDA GPUs."""
+    try:
+        import torch
+
+        return torch.cuda.device_count()
+    except ImportError:
+        return 0
+
+
+def get_cpu_count() -> int:
+    """Get number of CPU cores."""
+    try:
+        import multiprocessing
+
+        return multiprocessing.cpu_count()
+    except Exception:
+        return 4
+
+
+def run_command(cmd: List[str], env: dict, cwd: str, tee_log: Optional[str] = None) -> int:
+    """Run a command, optionally teeing output to a log file."""
+    if tee_log:
+        # Create parent directory if needed
+        os.makedirs(os.path.dirname(tee_log), exist_ok=True)
+        with open(tee_log, "a") as log_file:
+            process = subprocess.Popen(
+                cmd, env=env, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True
+            )
+            for line in process.stdout:  # type: ignore
+                sys.stdout.write(line)
+                sys.stdout.flush()
+                log_file.write(line)
+            process.wait()
+            return process.returncode
+    else:
+        result = subprocess.run(cmd, env=env, cwd=cwd)
+        return result.returncode
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Train style classifier (formality + gender + grammaticality) on Japanese sentence corpus",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+
+    # Data options
+    parser.add_argument(
+        "--agrammatic-pattern",
+        default=None,
+        help="Pattern for agrammatic TSV files (default: $DATA_DIR/jpn_agrammatic*.tsv)",
+    )
+    parser.add_argument(
+        "--no-agrammatic-data", action="store_true", help="Disable loading agrammatic data"
+    )
+
+    # Training options
+    parser.add_argument("--epochs", type=int, default=None, help="Training epochs")
+    parser.add_argument("--batch-size", type=int, default=None, help="Batch size per device")
+    parser.add_argument("--embed-dim", type=int, default=256, help="Model dimension (default: 256)")
+    parser.add_argument("--hidden-dim", type=int, default=512, help="Hidden layer dimension (default: 512)")
+    parser.add_argument("--num-layers", type=int, default=3, help="Number of encoder layers (default: 3)")
+    parser.add_argument("--num-heads", type=int, default=8, help="Number of attention heads (default: 8)")
+
+    # Pretraining options
+    parser.add_argument("--pretrain-mlm", action="store_true", help="Enable masked LM pretraining")
+    parser.add_argument("--pretrain-epochs", type=int, default=5, help="MLM pretraining epochs (default: 5)")
+    parser.add_argument("--encoder-lr-factor", type=float, default=0.1, help="LR factor for encoder in fine-tuning")
+    parser.add_argument("--learning-rate", type=float, default=1e-4, help="Base learning rate (default: 1e-4)")
+
+    # Loss weights
+    parser.add_argument("--formality-weight", type=float, default=1.0, help="Weight for formality loss")
+    parser.add_argument("--gender-weight", type=float, default=1.0, help="Weight for gender loss")
+    parser.add_argument("--grammaticality-weight", type=float, default=5.0, help="Weight for grammaticality loss")
+
+    # Precision options
+    parser.add_argument("--fp16", action="store_true", help="Save model in float16 (half size)")
+    parser.add_argument("--fp8", action="store_true", help="Save model in float8 (quarter size)")
+
+    # Resume/retrain
+    parser.add_argument("--resume", action="store_true", help="Resume training from checkpoint")
+    parser.add_argument("--retrain", action="store_true", help="Retrain from scratch using params from checkpoint")
+
+    # KC Pretraining options
+    parser.add_argument("--pretrain-kc", action="store_true", help="Enable KC sparse concept pretraining")
+    parser.add_argument("--kc-epochs", type=int, default=3, help="KC pretraining epochs (default: 3)")
+    parser.add_argument("--kc-k", type=int, default=1024, help="KC vocabulary size (default: 1024)")
+    parser.add_argument("--kc-topk", type=int, default=8, help="Number of active KCs per sample (default: 8)")
+    parser.add_argument(
+        "--kc-freeze-encoder-epochs", type=int, default=1, help="Epochs to freeze encoder during KC training"
+    )
+    parser.add_argument("--kc-sparsity-weight", type=float, default=1e-3, help="Sparsity regularization weight")
+    parser.add_argument(
+        "--kc-target-heads",
+        default="lemma,pos,conjugated_form,conjugated_type",
+        help="Comma-separated target heads for KC supervision",
+    )
+
+    # Action flags
+    parser.add_argument("--confusion", action="store_true", help="Print confusion matrices and exit")
+    parser.add_argument("--no-confusion", action="store_true", help="Skip confusion report after training")
+    parser.add_argument("--label", action="store_true", help="Run ONLY the labeling/preprocessing phase")
+    parser.add_argument("--no-label", action="store_true", help="Skip labeling phase")
+    parser.add_argument("--force-relabel", action="store_true", help="Force re-running labeling phase")
+
+    # Data sampling
+    parser.add_argument("--percent", type=float, default=None, help="Percentage of data to use (1-100)")
+
+    args = parser.parse_args()
+
+    # Setup environment
+    env = os.environ.copy()
+
+    # Set TRAIN_ROOT if not already set
+    train_root = env.get("TRAIN_ROOT", ".")
+    if not os.path.isabs(train_root):
+        train_root = os.path.join(PROJECT_ROOT, train_root)
+    env["TRAIN_ROOT"] = train_root
+
+    # Enable MPS fallback for unsupported ops (Mac Apple Silicon)
+    env["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
+    # Silence OMP warnings and prevent thread oversubscription
+    env["OMP_NUM_THREADS"] = "1"
+
+    # Profiling support
+    profile_dir = ""
+    if env.get("TRAIN_PROFILE"):
+        profile_dir = os.path.join(train_root, ".profile")
+        os.makedirs(profile_dir, exist_ok=True)
+        print(f"Profiling enabled. Results will be written to: {profile_dir}")
+
+    # Get paths from locations module
+    from kotogram import locations
+
+    data_dir = locations.get_data_dir()
+    cache_dir = locations.get_cache_dir()
+    models_dir = locations.get_models_dir()
+    support_dir = locations.get_style_support_dir()
+    output_dir = locations.get_style_output_dir()
+
+    # Set default agrammatic pattern
+    if args.no_agrammatic_data:
+        agrammatic_pattern = ""
+    elif args.agrammatic_pattern:
+        agrammatic_pattern = args.agrammatic_pattern
+    else:
+        agrammatic_pattern = os.path.join(data_dir, "jpn_agrammatic*.tsv")
+
+    gram_data_pattern = os.path.join(data_dir, "jpn_sentences*.tsv")
+
+    # Print configuration header
+    print("=" * 56)
+    print("Style Classifier Training (Formality + Gender + Grammaticality)")
+    print("=" * 56)
+    print(f"Data:           {gram_data_pattern}")
+    if agrammatic_pattern:
+        print(f"Agrammatic:     {agrammatic_pattern}")
+    print(f"Output:         {output_dir}")
+    if args.epochs is not None:
+        print(f"Epochs:         {args.epochs}")
+    else:
+        print("Epochs:         (default or restored from checkpoint)")
+    print(f"Learning rate:  {args.learning_rate}")
+    print(f"Model dim:      {args.embed_dim}")
+    print(f"Hidden dim:     {args.hidden_dim}")
+    print(f"Num layers:     {args.num_layers}")
+    print(f"Num heads:      {args.num_heads}")
+    print(f"Formality wt:   {args.formality_weight}")
+    print(f"Gender wt:      {args.gender_weight}")
+    print(f"Grammatic wt:   {args.grammaticality_weight}")
+    if args.pretrain_mlm:
+        print(f"MLM pretrain:   {args.pretrain_epochs} epochs")
+        print(f"Encoder LR:     {args.encoder_lr_factor}x base LR during fine-tuning")
+    if args.pretrain_kc:
+        print(f"KC pretrain:    {args.kc_epochs} epochs")
+        print(f"KC K:           {args.kc_k}")
+        print(f"KC Top-k:       {args.kc_topk}")
+        print(f"KC Freeze:      {args.kc_freeze_encoder_epochs} epochs")
+        print(f"KC Sparsity:    {args.kc_sparsity_weight}")
+        print(f"KC Targets:     {args.kc_target_heads}")
+    if args.fp8:
+        print("Precision:      float8 (quarter size)")
+    elif args.fp16:
+        print("Precision:      float16 (half size)")
+    if args.resume:
+        print("Resume:         from checkpoint")
+    if args.retrain:
+        print("Retrain:        from scratch using parameters from checkpoint")
+    if args.confusion:
+        print("Action:         Print confusion matrices (no training)")
+    if args.label:
+        print("Action:         Preprocessing/Labeling only")
+    if args.percent:
+        print(f"Data usage:     {args.percent}%")
+    print("=" * 46)
+    print()
+
+    # Create directories
+    os.makedirs(cache_dir, exist_ok=True)
+    if not args.label:
+        os.makedirs(output_dir, exist_ok=True)
+        os.makedirs(support_dir, exist_ok=True)
+
+    # Auto-resume logic
+    checkpoint_path = os.path.join(support_dir, "checkpoint.pt")
+    auto_resume = False
+    if not args.resume and not args.retrain and os.path.exists(checkpoint_path):
+        args.resume = True
+        auto_resume = True
+        print(f"Auto-resume enabled (found checkpoint: {checkpoint_path})")
+
+    # Detect environment
+    num_gpus = get_num_gpus()
+    cpu_count = get_cpu_count()
+
+    # Configure batch sizes
+    micro_batch_size = args.batch_size if args.batch_size else 32
+    target_global_batch_size = 128
+    num_devices = max(num_gpus, 1)
+
+    total_current_batch = num_devices * micro_batch_size
+    if total_current_batch < target_global_batch_size:
+        grad_accum_steps = target_global_batch_size // total_current_batch
+    else:
+        grad_accum_steps = 1
+    grad_accum_steps = max(grad_accum_steps, 1)
+
+    # Determine launcher
+    if num_gpus > 1:
+        launcher = ["torchrun", f"--nproc_per_node={num_gpus}"]
+    else:
+        launcher = ["python"]
+
+    # Print effective configuration
+    print("-" * 46)
+    print("Effective Training Configuration:")
+    print("-" * 46)
+    print(f"  Devices:          {num_devices}")
+    print(f"  Micro batch:      {micro_batch_size}")
+    print(f"  Grad accum:       {grad_accum_steps}")
+    print(f"  Effective batch:  {micro_batch_size * grad_accum_steps * num_devices}")
+    print(f"  Launcher:         {' '.join(launcher)}")
+    if args.pretrain_kc:
+        print(f"  KC Epochs:        {args.kc_epochs} (freeze: {args.kc_freeze_encoder_epochs})")
+        print(f"  KC Vocab (K):     {args.kc_k}")
+        print(f"  KC Top-k:         {args.kc_topk}")
+        print(f"  KC Targets:       {args.kc_target_heads}")
+    print("-" * 46)
+    print()
+
+    # Phase 1: Preprocessing/Labeling
+    if not args.no_label:
+        print("=" * 46)
+        print("Running Preprocessing Phase...")
+        print("=" * 46)
+
+        label_cmd = ["python", "-m", "scripts.label", "--grammatic-pattern", gram_data_pattern]
+        if args.force_relabel:
+            label_cmd.append("--force-relabel")
+        if agrammatic_pattern:
+            label_cmd.extend(["--agrammatic-pattern", agrammatic_pattern])
+
+        print("Executing preprocessing script...")
+        ret = run_command(label_cmd, env, PROJECT_ROOT)
+        if ret != 0:
+            print("Preprocessing failed!", file=sys.stderr)
+            return ret
+
+        # Update line counts
+        combined_gram = os.path.join(cache_dir, "grammatic_combined.tsv")
+        combined_agram = os.path.join(cache_dir, "agrammatic_combined.tsv")
+        if os.path.exists(combined_gram):
+            with open(combined_gram) as f:
+                lines = sum(1 for _ in f)
+            print(f"Combined grammatic data: {combined_gram} ({lines} lines)")
+        if os.path.exists(combined_agram):
+            with open(combined_agram) as f:
+                lines = sum(1 for _ in f)
+            print(f"Combined agrammatic data: {combined_agram} ({lines} lines)")
+        print("Preprocessing complete.")
+
+        if args.label:
+            print("Labeling only requested. Exiting.")
+            return 0
+        print()
+    else:
+        print("Skipping Preprocessing Phase (--no-label)")
+
+    # Phase 2: Confusion evaluation (if requested)
+    if args.confusion:
+        print("=" * 46)
+        print("Running Confusion Matrix Evaluation...")
+        print("=" * 46)
+        confusion_cmd = ["python", "-m", "scripts.confusion"]
+        if args.percent:
+            confusion_cmd.extend(["--percent", str(args.percent)])
+        ret = run_command(confusion_cmd, env, PROJECT_ROOT)
+        return ret
+
+    # Phase 3: Training
+    print("Starting training run...")
+
+    train_cmd = launcher + [
+        "-m",
+        "scripts.train_style",
+        "--batch-size",
+        str(micro_batch_size),
+        "--embed-dim",
+        str(args.embed_dim),
+        "--hidden-dim",
+        str(args.hidden_dim),
+        "--num-layers",
+        str(args.num_layers),
+        "--num-heads",
+        str(args.num_heads),
+        "--learning-rate",
+        str(args.learning_rate),
+        "--pretrain-epochs",
+        str(args.pretrain_epochs),
+        "--encoder-lr-factor",
+        str(args.encoder_lr_factor),
+        "--gender-weight",
+        str(args.gender_weight),
+        "--grammaticality-weight",
+        str(args.grammaticality_weight),
+        "--kc-epochs",
+        str(args.kc_epochs),
+        "--kc-k",
+        str(args.kc_k),
+        "--kc-topk",
+        str(args.kc_topk),
+        "--kc-freeze-encoder-epochs",
+        str(args.kc_freeze_encoder_epochs),
+        "--kc-sparsity-weight",
+        str(args.kc_sparsity_weight),
+        "--kc-target-heads",
+        args.kc_target_heads,
+        "--grad-accum-steps",
+        str(grad_accum_steps),
+    ]
+
+    if args.pretrain_mlm:
+        train_cmd.append("--pretrain-mlm")
+    if args.pretrain_kc:
+        train_cmd.append("--pretrain-kc")
+    if args.fp8:
+        train_cmd.append("--fp8")
+    elif args.fp16:
+        train_cmd.append("--fp16")
+    if args.resume:
+        train_cmd.append("--resume")
+    if args.retrain:
+        train_cmd.append("--retrain")
+    if args.epochs is not None:
+        train_cmd.extend(["--epochs", str(args.epochs)])
+    if args.percent:
+        train_cmd.extend(["--percent", str(args.percent)])
+
+    training_log = os.path.join(support_dir, "training.log")
+    ret = run_command(train_cmd, env, PROJECT_ROOT, tee_log=training_log)
+    if ret != 0:
+        print("Training failed!", file=sys.stderr)
+        return ret
+
+    print()
+    print("=" * 46)
+    print("Training complete!")
+    print(f"Model saved to: {output_dir}")
+    print(f"Training log:   {training_log}")
+    print("=" * 46)
+    print()
+
+    # Phase 4: Confusion evaluation (after training)
+    if not args.no_confusion:
+        print("Generating confusion report...")
+        confusion_cmd = ["python", "-m", "scripts.confusion"]
+        if args.percent:
+            confusion_cmd.extend(["--percent", str(args.percent)])
+        run_command(confusion_cmd, env, PROJECT_ROOT)
+    else:
+        print("Skipping confusion report (--no-confusion)")
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
