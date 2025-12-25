@@ -11,51 +11,21 @@ Usage:
     ./train_style                    # Default training
     ./train_style --pretrain-mlm     # With MLM pretraining
     ./train_style --label            # Preprocessing only
+
+Setup:
+    source requirements.sh           # One-time setup (installs deps, activates venv)
 """
 
+import argparse
 import os
+import subprocess
 import sys
+from typing import List, Optional
 
 # Ensure we can import kotogram from project root if running from source
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
-
-
-def _try_venv_fallback() -> None:
-    """If not in a venv and .venv exists, re-execute with .venv/bin/python."""
-    # Check if we are already in a venv
-    if sys.prefix != sys.base_prefix:
-        return  # Already in a venv, nothing to do
-
-    # Check for .venv/bin/python
-    venv_python = os.path.join(PROJECT_ROOT, ".venv", "bin", "python")
-    if os.path.exists(venv_python):
-        try:
-            os.execv(venv_python, [venv_python] + sys.argv)
-        except OSError:
-            pass  # Fall through to normal execution
-
-
-# Try venv fallback before importing heavy dependencies
-try:
-    import torch  # noqa: F401 - just testing if torch is available
-except ImportError:
-    _try_venv_fallback()
-    # If we get here, either venv doesn't exist or execv failed
-    # Try import again to get the actual error message
-    try:
-        import torch  # noqa: F401
-    except ImportError:
-        sys.stderr.write(
-            "Error: Failed to import torch. Make sure dependencies are installed.\n"
-            "Try: pip install -e . (or activate your virtual environment)\n"
-        )
-        sys.exit(1)
-
-import argparse
-import subprocess
-from typing import List, Optional
 
 
 def get_num_gpus() -> int:
@@ -289,7 +259,7 @@ def main() -> int:
     if num_gpus > 1:
         launcher = ["torchrun", f"--nproc_per_node={num_gpus}"]
     else:
-        launcher = ["python"]
+        launcher = [sys.executable]
 
     # Print effective configuration
     print("-" * 46)
@@ -314,7 +284,7 @@ def main() -> int:
         print("Running Preprocessing Phase...")
         print("=" * 46)
 
-        label_cmd = ["python", "-m", "scripts.label", "--grammatic-pattern", gram_data_pattern]
+        label_cmd = [sys.executable, "-m", "scripts.label", "--grammatic-pattern", gram_data_pattern]
         if args.force_relabel:
             label_cmd.append("--force-relabel")
         if agrammatic_pattern:
@@ -351,7 +321,7 @@ def main() -> int:
         print("=" * 46)
         print("Running Confusion Matrix Evaluation...")
         print("=" * 46)
-        confusion_cmd = ["python", "-m", "scripts.confusion"]
+        confusion_cmd = [sys.executable, "-m", "scripts.confusion"]
         if args.percent:
             confusion_cmd.extend(["--percent", str(args.percent)])
         ret = run_command(confusion_cmd, env, PROJECT_ROOT)
@@ -433,7 +403,7 @@ def main() -> int:
     # Phase 4: Confusion evaluation (after training)
     if not args.no_confusion:
         print("Generating confusion report...")
-        confusion_cmd = ["python", "-m", "scripts.confusion"]
+        confusion_cmd = [sys.executable, "-m", "scripts.confusion"]
         if args.percent:
             confusion_cmd.extend(["--percent", str(args.percent)])
         run_command(confusion_cmd, env, PROJECT_ROOT)
