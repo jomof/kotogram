@@ -568,3 +568,83 @@ def test_nan_guard_grad_skip_pattern():
                 found_nonfinite = True
                 break
     assert found_nonfinite, "Inf grad should trigger skip"
+
+
+# =============================================================================
+# Round 13: Sparse Targets and Scaling Tests
+# =============================================================================
+
+
+def test_create_kc_batch_dense_for_small_heads():
+    """Test create_kc_batch returns dense targets for small heads (vocab <= 4096)."""
+    from train.trainer import create_kc_batch
+
+    batch = {
+        "input_ids_lemma": torch.tensor([[4, 5, 6, 0], [10, 11, 0, 0]]),
+        "attention_mask": torch.tensor([[1, 1, 1, 0], [1, 1, 0, 0]]),
+    }
+    target_specs = {"lemma": 100}  # Small head: 100 < 4096
+
+    result = create_kc_batch(batch, None, target_specs)  # type: ignore
+
+    assert "kc_targets_lemma" in result
+    assert result["kc_targets_lemma"].shape == (2, 100)
+    # Check multi-hot encoding
+    assert result["kc_targets_lemma"][0, 5] == 1.0
+    assert result["kc_targets_lemma"][0, 6] == 1.0
+
+
+def test_create_kc_batch_sparse_for_large_heads():
+    """Test create_kc_batch returns sparse indices for large heads (vocab > 4096)."""
+    from train.trainer import create_kc_batch
+
+    batch = {
+        "input_ids_lemma": torch.tensor([[4, 5, 6, 0], [10, 11, 0, 0]]),
+        "attention_mask": torch.tensor([[1, 1, 1, 0], [1, 1, 0, 0]]),
+    }
+    target_specs = {"lemma": 10000}  # Large head: 10000 > 4096
+
+    result = create_kc_batch(batch, None, target_specs)  # type: ignore
+
+    # Should have sparse indices, not dense
+    assert "kc_targets_lemma" not in result
+    assert "kc_pos_inds_lemma" in result
+    assert "kc_pos_mask_lemma" in result
+
+    pos_inds = result["kc_pos_inds_lemma"]
+    pos_mask = result["kc_pos_mask_lemma"]
+
+    # Check shapes
+    assert pos_inds.shape[0] == 2  # batch size
+    assert pos_inds.shape[1] == 64  # max_pos_per_sample default
+
+    # Check sample 0: tokens 4, 5, 6 are all >= 4 so included (specials are <4)
+    assert pos_mask[0, :3].all()  # First three positions should be valid
+    assert set(pos_inds[0, :3].tolist()) == {4, 5, 6}
+
+
+def test_bce_sampled_returns_finite_loss():
+    """Test sampled BCE pattern produces finite loss."""
+    B, V, P, K = 4, 10000, 10, 128
+
+    logits = torch.randn(B, V)
+    pos_inds = torch.randint(4, V, (B, P))
+    pos_mask = torch.ones((B, P), dtype=torch.bool)
+    pos_mask[:, 5:] = False  # Only first 5 positions valid
+
+    # Build combined indices
+    neg_i = torch.randint(4, V, (B, K))
+    idxs = torch.cat([pos_inds, neg_i], dim=1)
+    t_pos = pos_mask.float()
+    t_neg = torch.zeros((B, K))
+    t = torch.cat([t_pos, t_neg], dim=1)
+    valid = torch.cat([pos_mask, torch.ones((B, K), dtype=torch.bool)], dim=1)
+
+    idxs_safe = idxs.clamp_min(0)
+    gathered = logits.gather(1, idxs_safe)
+
+    loss_elem = F.binary_cross_entropy_with_logits(gathered, t, reduction="none")
+    loss = (loss_elem * valid.float()).sum() / valid.float().sum().clamp_min(1.0)
+
+    assert torch.isfinite(loss), "Sampled BCE should produce finite loss"
+    assert loss.item() > 0, "Loss should be positive"
