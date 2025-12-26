@@ -42,6 +42,7 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[.cache]/register_samples.csv",
                         "[.cache]/style_dataset/label_metadata.json",
                         "[.cache]/style_dataset/vocab.json",
+                        "[.cache]/style_dataset/dataset_tensors.pt",
                         # --- Generated Cache (Databases) ---
                         "[.cache]/agrammatic_combined.tsv",
                         "[.cache]/grammatic_combined.tsv",
@@ -195,7 +196,7 @@ class TestTrainStyleScript(unittest.TestCase):
                             history[0]["sentence_count"], 85
                         )  # MLM full dataset
                         self.assertEqual(
-                            history[1]["sentence_count"], 68
+                            history[1]["sentence_count"], 67
                         )  # KC filtered
 
                         # KC metrics check

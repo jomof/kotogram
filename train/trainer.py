@@ -57,15 +57,16 @@ from .display import (
 class TrainingMetrics:
     """Accumulate training metrics for an epoch."""
 
-    total_loss: float = 0.0
-    formality_loss: float = 0.0
-    gender_loss: float = 0.0
-    grammaticality_loss: float = 0.0
-    register_loss: float = 0.0
+    total_loss: Any = 0.0  # Can be float or Tensor
+    formality_loss: Any = 0.0
+    gender_loss: Any = 0.0
+    grammaticality_loss: Any = 0.0
+    register_loss: Any = 0.0
     count: int = 0
 
-    def update(self, loss_dict: Dict[str, float], count: int = 1) -> None:
+    def update(self, loss_dict: Dict[str, Any], count: int = 1) -> None:
         """Update metrics with batch losses."""
+        # Accumulate as is (Tensor or float)
         self.total_loss += loss_dict["loss"] * count
         self.formality_loss += loss_dict["formality_loss"] * count
         self.gender_loss += loss_dict["gender_loss"] * count
@@ -74,19 +75,28 @@ class TrainingMetrics:
         self.count += count
 
     def average(self) -> Tuple[float, float, float, float, float]:
-        """Return averaged metrics."""
+        """Return averaged metrics as floats."""
         n = max(1, self.count)
+
+        def _to_float(val: Any) -> float:
+            if isinstance(val, torch.Tensor):
+                return val.item()
+            return float(val)
+
         return (
-            self.total_loss / n,
-            self.formality_loss / n,
-            self.gender_loss / n,
-            self.grammaticality_loss / n,
-            self.register_loss / n,
+            _to_float(self.total_loss) / n,
+            _to_float(self.formality_loss) / n,
+            _to_float(self.gender_loss) / n,
+            _to_float(self.grammaticality_loss) / n,
+            _to_float(self.register_loss) / n,
         )
 
     def get_avg_loss(self) -> float:
-        """Return average total loss."""
-        return self.total_loss / max(1, self.count)
+        """Return average total loss as float."""
+        val = self.total_loss
+        if isinstance(val, torch.Tensor):
+            val = val.item()
+        return float(val) / max(1, self.count)
 
 
 @dataclass
@@ -537,12 +547,9 @@ class MLMTrainer:
         mask_prob: float = 0.15,
         args: Optional[Any] = None,
     ):
-        ngrammatic = [s for s in dataset.samples if s.grammaticality_label == 0]
-        if ngrammatic:
-            dataset = StyleDataset(
-                [s for s in dataset.samples if s.grammaticality_label == 1],
-                dataset.tokenizer,
-            )
+        # MLMTrainer only trains on grammatical sentences
+        # Use filter_by_grammaticality to handle both list and tensor modes
+        dataset = dataset.filter_by_grammaticality(1)
 
         self.model = model
         self.dataset = dataset
@@ -626,7 +633,7 @@ class MLMTrainer:
             "sentence_count": [],
         }
         profile_dir = ""
-        if os.environ.get("TRAIN_PROFILE"):
+        if os.environ.get("TRAIN_PROFILE", "1") != "0":
             profile_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
             if is_main_process():
                 print(f"DEBUG: MLMTrainer profile_dir={profile_dir}")
@@ -842,7 +849,7 @@ class MLMTrainer:
                     },
                     phase="MLM",
                 )
-            self.history["sentence_count"].append(len(self.dataset.samples))
+            self.history["sentence_count"].append(len(self.dataset))
 
             # Performance report
             if verbose and is_main_process():
@@ -926,9 +933,8 @@ class KCTrainer:
         args: Optional[Any] = None,
     ):
         # Filter out agrammatic samples (KC training should only see valid grammar)
-        if any(s.grammaticality_label == 0 for s in dataset.samples):
-            valid_samples = [s for s in dataset.samples if s.grammaticality_label == 1]
-            dataset = StyleDataset(valid_samples, dataset.tokenizer)
+        # Filter out agrammatic samples (KC training should only see valid grammar)
+        dataset = dataset.filter_by_grammaticality(1)
 
         self.model = model
         self.dataset = dataset
@@ -2703,7 +2709,7 @@ class KCTrainer:
                     kc_epoch_stats=epoch_stats,
                 )
 
-            self.history["sentence_count"].append(len(self.dataset.samples))
+            self.history["sentence_count"].append(len(self.dataset))
 
             # Save end-of-epoch checkpoint
             self.save_checkpoint(epoch + 1, 0)
@@ -2855,12 +2861,10 @@ class Trainer:
             self.grammaticality_criterion = nn.CrossEntropyLoss(
                 weight=train_dataset.get_grammaticality_class_weights().to(self.device)
             )
-            self.register_criterion = nn.BCEWithLogitsLoss()
         else:
             self.formality_criterion = nn.CrossEntropyLoss()
             self.gender_pragmatic_criterion = nn.CrossEntropyLoss()
             self.grammaticality_criterion = nn.CrossEntropyLoss()
-            self.register_criterion = nn.BCEWithLogitsLoss()
 
         mod = cast(
             StyleClassifier, self.model.module if self.is_distributed else self.model
@@ -3003,6 +3007,37 @@ class Trainer:
             print()
         return True
 
+    @staticmethod
+    def _masked_mse(
+        pred: torch.Tensor, target: torch.Tensor, mask: torch.Tensor
+    ) -> torch.Tensor:
+        """Compute MSE loss with masking to avoid sync (no python if-checks)."""
+        # Element-wise loss
+        loss_raw = F.mse_loss(pred, target, reduction="none")
+        # Apply mask
+        loss_masked = loss_raw * mask
+        # Sum and divide by valid count (safe division)
+        # We assume mask is 0.0 or 1.0
+        return loss_masked.sum() / (mask.sum() + 1e-6)
+
+    @staticmethod
+    def _masked_bce(
+        pred: torch.Tensor, target: torch.Tensor, mask: torch.Tensor
+    ) -> torch.Tensor:
+        """Compute BCE loss with masking."""
+        loss_raw = F.binary_cross_entropy_with_logits(pred, target, reduction="none")
+        # Expand mask if necessary (though usually (N,) vs (N, C) broadcasts fine if (N, 1))
+        # loss_raw is (N, C), mask is (N,). Broadcast mask to (N, C)
+        if mask.dim() < loss_raw.dim():
+            mask = mask.unsqueeze(-1)
+
+        loss_masked = loss_raw * mask
+        # Mean reduction over ALL elements (N*C), matching standard BCEWithLogitsLoss behavior
+        # But we only want mean over valid elements.
+        # Standard: sum() / numel()
+        # Here: sum() / (valid_count * C)
+        return loss_masked.sum() / (mask.sum() * loss_raw.size(-1) + 1e-6)
+
     def _unpack_training_batch(
         self, batch: Dict[str, Any]
     ) -> Tuple[Dict[str, Any], torch.Tensor, Dict[str, torch.Tensor]]:
@@ -3036,34 +3071,32 @@ class Trainer:
             reg_l,
         ) = outputs
 
-        f_loss = self.formality_criterion(f_prag_l, targets["f_prag"]) + (
-            F.mse_loss(
-                f_val_l.squeeze(-1)[is_valid_style],
-                targets["f_val"][is_valid_style],
-            )
-            if is_valid_style.any()
-            else 0
-        )
+        # Avoid implicit synchronization (if is_valid_style.any()) by using masking
+        mask = is_valid_style.float()
 
+        # Formality
+        f_mse = self._masked_mse(f_val_l.squeeze(-1), targets["f_val"], mask)
+        # Note: Pragmatic classification loss is always computed on full batch in original logic?
+        # Looking at original: self.formality_criterion(f_prag_l, targets["f_prag"])
+        # Yes, classification is always on.
+        f_loss = self.formality_criterion(f_prag_l, targets["f_prag"]) + f_mse
+
+        # Gender
+        g_mse = self._masked_mse(g_val_l.squeeze(-1), targets["g_val"], mask)
+        g_loss = self.formality_criterion(g_prag_l, targets["g_prag"]) + (
+            g_mse * GENDER_LOSS_WEIGHT
+        )
+        # Wait, original used self.gender_pragmatic_criterion
+        # Re-check: g_loss = self.gender_pragmatic_criterion(g_prag_l, targets["g_prag"])
         g_loss = self.gender_pragmatic_criterion(g_prag_l, targets["g_prag"]) + (
-            F.mse_loss(
-                g_val_l.squeeze(-1)[is_valid_style],
-                targets["g_val"][is_valid_style],
-            )
-            * GENDER_LOSS_WEIGHT
-            if is_valid_style.any()
-            else 0
+            g_mse * GENDER_LOSS_WEIGHT
         )
 
         gram_loss = self.grammaticality_criterion(gram_l, targets["gram"])
 
-        reg_loss = (
-            self.register_criterion(
-                reg_l[is_valid_style], targets["reg"][is_valid_style]
-            )
-            if is_valid_style.any()
-            else torch.tensor(0.0, device=self.device)
-        )
+        # Register
+        reg_loss = self._masked_bce(reg_l, targets["reg"], mask)
+
         return f_loss, g_loss, gram_loss, reg_loss
 
     def _compute_training_loss(
@@ -3126,20 +3159,19 @@ class Trainer:
             self.optimizer.zero_grad(set_to_none=True)
 
         gad = self.config.grad_accum_steps
+
+        # Return detached tensors to avoid sync
+        def _detach(val: Any) -> Any:
+            if isinstance(val, torch.Tensor):
+                return val.detach()
+            return val
+
         return {
-            "loss": loss.item() * gad,
-            "formality_loss": losses["f_loss"].item()
-            if isinstance(losses["f_loss"], torch.Tensor)
-            else losses["f_loss"],
-            "gender_loss": losses["g_loss"].item()
-            if isinstance(losses["g_loss"], torch.Tensor)
-            else losses["g_loss"],
-            "grammaticality_loss": losses["gram_loss"].item()
-            if isinstance(losses["gram_loss"], torch.Tensor)
-            else losses["gram_loss"],
-            "register_loss": losses["reg_loss"].item()
-            if isinstance(losses["reg_loss"], torch.Tensor)
-            else losses["reg_loss"],
+            "loss": _detach(loss) * gad,
+            "formality_loss": _detach(losses["f_loss"]),
+            "gender_loss": _detach(losses["g_loss"]),
+            "grammaticality_loss": _detach(losses["gram_loss"]),
+            "register_loss": _detach(losses["reg_loss"]),
         }
 
     def _log_epoch_progress(
@@ -3403,7 +3435,7 @@ class Trainer:
             self.history["val_grammaticality_accuracy"].append(
                 eval_res["grammaticality_accuracy"]
             )
-            self.history["sentence_count"].append(len(self.train_dataset.samples))
+            self.history["sentence_count"].append(len(self.train_dataset))
 
             # Performance report
             if verbose and is_main_process():

@@ -50,14 +50,14 @@ from train.trainer import (
 def generate_profile_report() -> None:
     # pylint: disable=too-many-locals
     """Generate human-readable performance report from JSONL logs."""
-    profile_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
+    prof_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
     support_dir = locations.get_style_support_dir()
     os.makedirs(support_dir, exist_ok=True)
     output_path = os.path.join(support_dir, "training-profile.txt")
 
-    print(f"Generating profile report from {profile_dir}...")
+    print(f"Generating profile report from {prof_dir}...")
 
-    files = glob.glob(os.path.join(profile_dir, "*.jsonl"))
+    files = glob.glob(os.path.join(prof_dir, "*.jsonl"))
     if not files:
         print("No .jsonl profile files found.")
         return
@@ -144,7 +144,7 @@ def generate_profile_report() -> None:
 if __name__ == "__main__":
     # Internal profiling when TRAIN_PROFILE is set
     _profiler = None
-    if os.environ.get("TRAIN_PROFILE"):
+    if os.environ.get("TRAIN_PROFILE", "1") != "0":
         import atexit
         import cProfile
 
@@ -156,21 +156,17 @@ if __name__ == "__main__":
                 _profiler.disable()
                 import pstats
 
-                profile_dir = os.path.join(
-                    os.environ.get("TRAIN_ROOT", "."), ".profile"
-                )
-                os.makedirs(profile_dir, exist_ok=True)
+                prof_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
+                os.makedirs(prof_dir, exist_ok=True)
 
                 # Write .pstats file
                 pstats_file = os.path.join(
-                    profile_dir, f"train_style_{os.getpid()}.pstats"
+                    prof_dir, f"train_style_{os.getpid()}.pstats"
                 )
                 _profiler.dump_stats(pstats_file)
 
                 # Write human-readable summary
-                summary_file = os.path.join(
-                    profile_dir, f"train_style_{os.getpid()}.txt"
-                )
+                summary_file = os.path.join(prof_dir, f"train_style_{os.getpid()}.txt")
                 with open(summary_file, "w", encoding="utf-8") as summary_file_handle:
                     stats = pstats.Stats(_profiler, stream=summary_file_handle)
                     stats.sort_stats("cumulative")
@@ -239,6 +235,16 @@ if __name__ == "__main__":
         action="store_true",
         help="Retrain from scratch using parameters from existing checkpoint",
     )
+
+    # Check if we should clean up profile directory
+    if "--retrain" in sys.argv:
+        profile_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
+        if os.path.exists(profile_dir):
+            import shutil
+
+            shutil.rmtree(profile_dir, ignore_errors=True)
+            if is_main_process():
+                print(f"Cleaned up profile directory: {profile_dir}")
     parser.add_argument(
         "--percent",
         type=float,

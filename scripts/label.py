@@ -1,14 +1,8 @@
 #!/usr/bin/env python3
-"""Standalone script to label and cache Japanese sentences for style classification.
-Factored out from train_style.py.
-
-NOTE FOR SELF: Never use conditional imports surrounded by try/catch.
-It makes the code harder to reason about and can hide installation issues.
-"""
+"""Standalone script to label and cache Japanese sentences for style classification."""
 
 import csv
 import glob
-import importlib.util
 import json
 import multiprocessing as mp
 import os
@@ -20,16 +14,8 @@ import time
 from collections import Counter
 from typing import Any, Dict, List, Optional, Tuple, cast
 
-if importlib.util.find_spec("_setup_path"):
-    import _setup_path  # type: ignore # noqa: F401 # pylint: disable=unused-import
-else:
-    from scripts import (
-        _setup_path,  # type: ignore # noqa: F401 # pylint: disable=unused-import
-    )
-
-
+import torch
 from rich.console import Console
-from rich.panel import Panel
 from rich.progress import (
     BarColumn,
     MofNCompleteColumn,
@@ -44,13 +30,12 @@ from rich.table import Table
 from kotogram import locations
 from kotogram.kotogram import extract_token_features, split_kotogram
 from kotogram.model import (
-    FEATURE_FIELDS,
     FORMALITY_ID_TO_LABEL,
     FORMALITY_LABEL_TO_ID,
     REGISTER_ID_TO_LABEL,
     REGISTER_LABEL_TO_ID,
-    Tokenizer,
 )
+from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
 from train.cache import get_kotogram_cache
 from train.dataset import CACHE_VERSION, DatasetConfig, StyleDataset, parse_tsv
 
@@ -349,74 +334,58 @@ def print_stats(results: List[ProcessedSample]) -> None:
     if not results:
         return
 
-    # Formality Stats
-    formality_counts = Counter(r.formality_id for r in results if r.success)
-    f_table = Table(
-        title="Formality Distribution", show_header=True, header_style="bold magenta"
+    def _print_dist(
+        title: str,
+        style: str,
+        counts: Counter,
+        map_func: Optional[Any] = None,
+    ) -> None:
+        table = Table(title=title, show_header=True, header_style=style)
+        table.add_column("Type", style="dim")
+        table.add_column("Count", justify="right")
+        table.add_column("Percentage", justify="right")
+        total = sum(counts.values()) or 1
+        for kid in sorted(counts.keys()):
+            label = map_func(kid) if map_func else str(kid)
+            count = counts[kid]
+            table.add_row(label, f"{count:,}", f"{100 * count / total:.1f}%")
+        console.print(table)
+
+    # Formality
+    _print_dist(
+        "Formality Distribution",
+        "bold magenta",
+        Counter(r.formality_id for r in results if r.success),
+        lambda x: FORMALITY_ID_TO_LABEL[x].value,
     )
-    f_table.add_column("Level", style="dim")
-    f_table.add_column("Count", justify="right")
-    f_table.add_column("Percentage", justify="right")
 
-    total = sum(formality_counts.values())
-    for fid in sorted(formality_counts.keys()):
-        label = FORMALITY_ID_TO_LABEL[fid].value
-        count = formality_counts[fid]
-        f_table.add_row(label, f"{count:,}", f"{100 * count / total:.1f}%")
-
-    # Gender Stats
-    gender_counts = Counter(r.gender_pragmatic for r in results if r.success)
-    g_table = Table(
-        title="Gender Pragmatic Distribution",
-        show_header=True,
-        header_style="bold cyan",
+    # Gender
+    _print_dist(
+        "Gender Pragmatic Distribution",
+        "bold cyan",
+        Counter(r.gender_pragmatic for r in results if r.success),
+        lambda x: {1: "Pragmatic", 0: "Unpragmatic"}[x],
     )
-    g_table.add_column("Type", style="dim")
-    g_table.add_column("Count", justify="right")
-    g_table.add_column("Percentage", justify="right")
 
-    g_map = {1: "Pragmatic", 0: "Unpragmatic"}
-    for gid in sorted(gender_counts.keys()):
-        count = gender_counts[gid]
-        g_table.add_row(g_map[gid], f"{count:,}", f"{100 * count / total:.1f}%")
-
-    # Register Stats
-    register_counts: Counter[int] = Counter()
+    # Register
+    reg_counts: Counter[int] = Counter()
     for r in results:
         if r.success:
-            for rid in r.register_ids:
-                register_counts[rid] += 1
-
-    r_table = Table(
-        title="Register Distribution", show_header=True, header_style="bold yellow"
+            reg_counts.update(r.register_ids)
+    _print_dist(
+        "Register Distribution",
+        "bold yellow",
+        reg_counts,
+        lambda x: REGISTER_ID_TO_LABEL[x].value,
     )
-    r_table.add_column("Register", style="dim")
-    r_table.add_column("Count", justify="right")
-    r_table.add_column("Percentage", justify="right")
 
-    for rid in sorted(register_counts.keys()):
-        label = REGISTER_ID_TO_LABEL[rid].value
-        count = register_counts[rid]
-        r_table.add_row(label, f"{count:,}", f"{100 * count / total:.1f}%")
-
-    # Grammaticality Stats
-    gram_counts = Counter(r.gram_label for r in results if r.success)
-    gram_table = Table(
-        title="Grammaticality Distribution", show_header=True, header_style="bold green"
+    # Grammaticality
+    _print_dist(
+        "Grammaticality Distribution",
+        "bold green",
+        Counter(r.gram_label for r in results if r.success),
+        lambda x: {1: "Grammatic", 0: "Agrammatic"}[x],
     )
-    gram_table.add_column("Type", style="dim")
-    gram_table.add_column("Count", justify="right")
-    gram_table.add_column("Percentage", justify="right")
-
-    gram_map = {1: "Grammatic", 0: "Agrammatic"}
-    for gid in sorted(gram_counts.keys()):
-        count = gram_counts[gid]
-        gram_table.add_row(gram_map[gid], f"{count:,}", f"{100 * count / total:.1f}%")
-
-    console.print(Panel.fit(f_table, border_style="magenta"))
-    console.print(Panel.fit(g_table, border_style="cyan"))
-    console.print(Panel.fit(r_table, border_style="yellow"))
-    console.print(Panel.fit(gram_table, border_style="green"))
 
 
 def save_register_samples(results: List[ProcessedSample]) -> None:
@@ -490,6 +459,7 @@ def main() -> None:
         action="store_true",
         help="Force re-computation of labels even if cached",
     )
+    parser.add_argument("--verbose", action="store_true", help="Print verbose output")
 
     args = parser.parse_args()
 
@@ -593,7 +563,7 @@ def main() -> None:
 
     uncached_rows = []
     unlabeled_rows = []
-    final_results = []
+    final_results: List[ProcessedSample] = []
 
     merged_counters: Dict[str, Counter[Any]] = {f: Counter() for f in FEATURE_FIELDS}
 
@@ -869,6 +839,125 @@ def main() -> None:
             ),
         )
 
+        # Save binary index as flattened tensors for RAM efficiency (Struct of Arrays)
+        console.print("[cyan]Tokenizing and building binary dataset tensors...[/cyan]")
+
+        # 1. Flatten sentences and create offsets
+        # Use existing tokenizer to encode everything
+
+        # Extract all token IDs from already processed samples
+        # Support all feature fields
+        all_encodings: Dict[str, List[int]] = {f: [] for f in FEATURE_FIELDS}
+        all_offsets = [0]
+        current_offset = 0
+
+        # Extract labels
+        f_vals = []
+        f_prags = []
+        g_vals = []
+        g_prags = []
+        gram_labels = []
+        # Register labels: List[int] -> multi-hot tensor later
+        # We need to know max class ID, or use NUM_REGISTER_CLASSES from model?
+        # Let's import it or assume 20 (safe upper bound for now, or determining from data).
+        # Actually, let's just flattened list of Register IDs + offsets for registers.
+        # But simpler: assume <32 classes and use bitmask? No, just multi-hot byte tensor.
+        # Let's import NUM_REGISTER_CLASSES to be safe.
+        ## For now, store indices list for each sample to avoid importing model constant here?
+        ## No, let's just store List[List[int]] and convert to padded tensor?
+        ## Or just flatten it: all_reg_ids, reg_offsets.
+        all_reg_ids = []
+        reg_offsets = [0]
+        cur_reg_offset = 0
+
+        # We need to access inner ProcessedSample data.
+        # Use final_results directly as it contains ProcessedSample objects.
+        # dataset.samples converts them to Sample, losing some info/changing structure.
+
+        # Mapping for formality value
+        f_id_to_val = {0: 1.0, 1: 0.5, 2: 0.0, 3: -0.5, 4: -1.0}
+
+        # Prepare for binary format
+        # Shuffle results to ensure random sampling for down-stream tasks that use contiguous slicing
+        random.seed(42)
+        random.shuffle(final_results)
+
+        # Tokenize valid samples for tensor generation
+        valid_samples: List[ProcessedSample] = [s for s in final_results if s.success]
+        if valid_samples:
+            if args.verbose:
+                console.print(
+                    f"Tokenizing {len(valid_samples)} samples for binary cache..."
+                )
+            encodings = [tokenizer.encode(s.kotogram) for s in valid_samples]
+            for sample_item, enc in zip(valid_samples, encodings):
+                sample_item.feature_ids = enc
+
+        for sample in [s for s in final_results if s.success and s.feature_ids]:
+            # Length should be same for all fields
+            seq_len = 0
+            if sample.feature_ids:
+                for field in FEATURE_FIELDS:
+                    if field in sample.feature_ids:
+                        ids = sample.feature_ids[field]
+                        all_encodings[field].extend(ids)
+                        # Assume all fields have same length (they should from Tokenizer)
+                        seq_len = len(ids)
+
+            current_offset += seq_len
+            all_offsets.append(current_offset)
+
+            # Formality value mapping
+            f_val = (
+                f_id_to_val.get(sample.formality_id, 0.0)
+                if sample.formality_id != 5
+                else 0.0
+            )
+            f_vals.append(f_val)
+
+            # Pragmatic (always 1 for valid styles, 0 for ID 5?)
+            # Logic from _map_processed_to_sample: if f_id != 5: f_prag=1 else 0
+            f_prag = 1 if sample.formality_id != 5 else 0
+            f_prags.append(f_prag)
+
+            g_vals.append(sample.gender_value)
+            g_prags.append(sample.gender_pragmatic)
+            gram_labels.append(sample.gram_label)
+
+            # Register IDs
+            r_ids = sample.register_ids
+            # Ensure list
+            if not isinstance(r_ids, list):
+                r_ids = [r_ids] if r_ids is not None else []
+            all_reg_ids.extend(r_ids)
+            cur_reg_offset += len(r_ids)
+            reg_offsets.append(cur_reg_offset)
+
+        # Convert to tensors
+        tensor_data = {
+            "offsets": torch.tensor(all_offsets, dtype=torch.int32),
+            "labels": {
+                "f_val": torch.tensor(f_vals, dtype=torch.float32),
+                "f_prag": torch.tensor(f_prags, dtype=torch.long),
+                "g_val": torch.tensor(g_vals, dtype=torch.float32),
+                "g_prag": torch.tensor(g_prags, dtype=torch.long),
+                "gram": torch.tensor(gram_labels, dtype=torch.long),
+                "reg_ids": torch.tensor(all_reg_ids, dtype=torch.long),  # Flattened
+                "reg_offsets": torch.tensor(reg_offsets, dtype=torch.int32),
+            },
+            "version": 2,
+        }
+
+        # Add feature tensors
+        for field, values in all_encodings.items():
+            if values:
+                tensor_data[field] = torch.tensor(values, dtype=torch.int32)
+
+        torch.save(tensor_data, os.path.join(dataset_cache_dir, "dataset_tensors.pt"))
+        console.print(
+            f"  Saved binary tensors to [cyan]{os.path.join(dataset_cache_dir, 'dataset_tensors.pt')}[/cyan]"
+        )
+
         # Print statistics
         vocab_sizes = tokenizer.get_vocab_sizes()
         console.print("\n[bold cyan]Dataset Statistics:[/bold cyan]")
@@ -904,36 +993,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    if os.environ.get("TRAIN_PROFILE"):
-        import cProfile
-        import pstats
-
-        profiler = cProfile.Profile()
-        profiler.enable()
-        try:
-            main()
-        finally:
-            profiler.disable()
-            profile_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
-            os.makedirs(profile_dir, exist_ok=True)
-
-            # Write .pstats
-            pstats_file = os.path.join(profile_dir, f"label_{os.getpid()}.pstats")
-            profiler.dump_stats(pstats_file)
-
-            # Write summary
-            summary_file = os.path.join(profile_dir, f"label_{os.getpid()}.txt")
-            with open(summary_file, "w", encoding="utf-8") as summary_handle:
-                stats = pstats.Stats(profiler, stream=summary_handle)
-                stats.sort_stats("cumulative")
-                summary_handle.write("TOP 50 BY CUMULATIVE TIME\n")
-                summary_handle.write("=" * 80 + "\n")
-                stats.print_stats(50)
-
-                summary_handle.write("\n" + "=" * 80 + "\n")
-                summary_handle.write("TOP 50 BY TOTAL TIME (self)\n")
-                summary_handle.write("=" * 80 + "\n")
-                stats.sort_stats("tottime")
-                stats.print_stats(50)
-    else:
-        main()
+    main()

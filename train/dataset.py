@@ -55,17 +55,176 @@ class StyleDataset(Dataset[Sample]):
 
     def __init__(
         self,
-        samples: List[Sample],
+        samples: Optional[List[Sample]],
         tokenizer: Tokenizer,
+        tensor_data: Optional[Dict[str, Any]] = None,
     ):
         self.samples = samples
         self.tokenizer = tokenizer
+        self.tensor_data = tensor_data
+
+        if self.tensor_data is not None:
+            # Check length from offsets
+            if "offsets" in self.tensor_data:
+                self._len = len(self.tensor_data["offsets"]) - 1
+            else:
+                self._len = 0
+
+            # Ensure safe access for Mypy
+            self.tensor_data = cast(Dict[str, Any], self.tensor_data)
+        elif self.samples is not None:
+            self._len = len(self.samples)
+        else:
+            self._len = 0
 
     def __len__(self) -> int:
-        return len(self.samples)
+        return self._len
 
     def __getitem__(self, idx: int) -> Sample:
+        if self.tensor_data is not None:
+            return self._get_item_from_tensors(idx)
+        # Fallback to list-based access with safety check
+        if self.samples is None:
+            raise ValueError("StyleDataset not initialized with any data.")
         return self.samples[idx]
+
+    def _get_item_from_tensors(self, idx: int) -> Sample:
+        """Construct Sample upon retrieval."""
+        # Mypy safety
+        if self.tensor_data is None:
+            raise ValueError("Tensor data is None")
+
+        offsets = self.tensor_data["offsets"]
+        start = offsets[idx].item()
+        end = offsets[idx + 1].item()
+
+        feature_ids: Dict[str, List[int]] = {}
+        # Iterate over tokenizer fields.
+        # If tensor_data doesn't fail on missing key, check existence.
+        # FEATURE_FIELDS imported or use keys from tensor excluding metadata?
+        # Let's iterate keys and check if they match fields.
+        # But efficiently: we iterate known fields.
+        for field in FEATURE_FIELDS:
+            if field in self.tensor_data:
+                field_tensor = self.tensor_data[field]
+                feature_ids[field] = field_tensor[start:end].tolist()
+
+        # Labels
+        labels = self.tensor_data["labels"]
+
+        # Register labels: List[int]
+        # Reconstruct from reg_ids + reg_offsets
+        reg_ids_tensor = labels["reg_ids"]
+        reg_offsets = labels["reg_offsets"]
+        r_start = reg_offsets[idx].item()
+        r_end = reg_offsets[idx + 1].item()
+        reg_list = reg_ids_tensor[r_start:r_end].tolist()
+        if not reg_list:
+            reg_list = [0]  # Default
+
+        # Mapping for formality value (replicate _map_processed_to_sample logic or use stored value)
+        # We stored f_val directly.
+
+        return Sample(
+            feature_ids=feature_ids,
+            formality_value=labels["f_val"][idx].item(),
+            formality_pragmatic=labels["f_prag"][idx].item(),
+            gender_value=labels["g_val"][idx].item(),
+            gender_pragmatic=labels["g_prag"][idx].item(),
+            grammaticality_label=labels["gram"][idx].item(),
+            register_labels=reg_list,
+            original_sentence="",  # Missing in binary mode
+            kotogram="",  # Missing
+            # KC targets computed on demand or stored?
+            # We don't store KC targets in binary mode yet to save space/time.
+            # If they are needed, we can compute them from feature_ids.
+            kc_targets=(
+                self._compute_kc_targets(feature_ids)
+                if DatasetConfig().parser is None
+                else {}
+            ),
+        )
+
+    @staticmethod
+    def _subset_register_labels(
+        labels: Dict[str, Any], indices: torch.Tensor
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
+        """Helper to slice register ragged tensors."""
+        old_offsets = labels["reg_offsets"]
+        starts = old_offsets[indices]
+        ends = old_offsets[indices + 1]
+
+        # New Offsets
+        new_offsets = torch.zeros(len(indices) + 1, dtype=torch.int32)
+        torch.cumsum(ends - starts, dim=0, out=new_offsets[1:])
+
+        # New IDs
+        slices = [labels["reg_ids"][s:e] for s, e in zip(starts, ends)]
+        new_ids = torch.cat(slices) if slices else torch.tensor([], dtype=torch.long)
+        return new_offsets, new_ids
+
+    def _subset_from_tensors(self, indices: torch.Tensor) -> "StyleDataset":
+        """Create a new StyleDataset backed by a subset of tensors."""
+        if self.tensor_data is None:
+            raise ValueError("No tensor data")
+
+        labels = self.tensor_data["labels"]
+        indices = indices.long()  # Ensure long for indexing
+
+        # 1. New Offsets
+        offsets = self.tensor_data["offsets"]
+        new_offsets = torch.zeros(len(indices) + 1, dtype=torch.int32)
+        # Combine starts/ends access
+        torch.cumsum(
+            offsets[indices + 1] - offsets[indices], dim=0, out=new_offsets[1:]
+        )
+
+        new_data: Dict[str, Any] = {
+            "offsets": new_offsets,
+            "labels": {},
+            "version": self.tensor_data.get("version", 2),
+        }
+
+        # 2. Slice Labels
+        for k, v in labels.items():
+            if k == "reg_offsets":
+                # Handle register offsets
+                (
+                    new_data["labels"]["reg_offsets"],
+                    new_data["labels"]["reg_ids"],
+                ) = self._subset_register_labels(labels, indices)
+            elif k != "reg_ids":
+                new_data["labels"][k] = v[indices]
+
+        # 3. Slice Features
+        starts = offsets[indices]
+        ends = offsets[indices + 1]
+        for field in FEATURE_FIELDS:
+            if field in self.tensor_data:
+                field_slices = [
+                    self.tensor_data[field][s:e] for s, e in zip(starts, ends)
+                ]
+                new_data[field] = (
+                    torch.cat(field_slices)
+                    if field_slices
+                    else torch.tensor([], dtype=torch.int32)
+                )
+
+        return StyleDataset(None, self.tokenizer, tensor_data=new_data)
+
+    def filter_by_grammaticality(self, valid_label: int = 1) -> "StyleDataset":
+        """Return a new dataset containing only samples with the given grammaticality label."""
+        if self.tensor_data is not None:
+            mask = self.tensor_data["labels"]["gram"] == valid_label
+            return self._subset_from_tensors(torch.nonzero(mask).squeeze(-1))
+
+        if self.samples is not None:
+            return StyleDataset(
+                [s for s in self.samples if s.grammaticality_label == valid_label],
+                self.tokenizer,
+            )
+
+        return StyleDataset([], self.tokenizer)
 
     @staticmethod
     def _load_vocab(cache_path: str, tokenizer: Tokenizer) -> None:
@@ -185,6 +344,73 @@ class StyleDataset(Dataset[Sample]):
         return all_rows
 
     @classmethod
+    def _try_load_from_binary_cache(
+        cls, cache_dir: str, config: DatasetConfig
+    ) -> Optional[List[Tuple[str, int]]]:
+        """Attempt to load dataset from binary cache."""
+        index_path = os.path.join(cache_dir, "dataset_index.pt")
+        if config.use_cache and os.path.exists(index_path):
+            if config.verbose:
+                print(f"  Loading dataset index from binary cache: {index_path}")
+            all_rows = cast(List[Tuple[str, int]], torch.load(index_path))
+            # Apply downsampling if needed
+            if config.sample_ratio < 1.0:
+                random.seed(42)
+                n_samples = max(1, int(len(all_rows) * config.sample_ratio))
+                all_rows = random.sample(all_rows, n_samples)
+            return all_rows
+        return None
+
+    @classmethod
+    def _try_load_tensor_cache(
+        cls, cache_dir: str, config: DatasetConfig
+    ) -> Optional[Dict[str, Any]]:
+        """Attempt to load dataset from binary tensor cache."""
+        tensor_path = os.path.join(cache_dir, "dataset_tensors.pt")
+        if not (config.use_cache and os.path.exists(tensor_path)):
+            return None
+
+        if config.verbose:
+            print(f"  Loading binary tensors from: {tensor_path}")
+        tensor_data = torch.load(tensor_path)
+
+        if config.sample_ratio < 1.0:
+            # Simple random sampling logic for tensors
+            random.seed(42)
+            num_samples = len(tensor_data["offsets"]) - 1
+            keep_count = max(1, int(num_samples * config.sample_ratio))
+
+            if config.verbose:
+                print(
+                    f"  Subsampling binary cache: using first {config.sample_ratio:.1%} of data (shuffled)."
+                )
+
+            # Slice offsets: we need keep_count + 1 offsets
+            new_offsets = tensor_data["offsets"][: keep_count + 1]
+            end_token_idx = new_offsets[-1].item()
+            tensor_data["offsets"] = new_offsets
+
+            # Slice features
+            for field in FEATURE_FIELDS:
+                if field in tensor_data:
+                    tensor_data[field] = tensor_data[field][:end_token_idx]
+
+            # Slice labels
+            # Register offsets need special slicing
+            reg_offsets = tensor_data["labels"]["reg_offsets"][: keep_count + 1]
+            end_reg_idx = reg_offsets[-1].item()
+            tensor_data["labels"]["reg_offsets"] = reg_offsets
+            tensor_data["labels"]["reg_ids"] = tensor_data["labels"]["reg_ids"][
+                :end_reg_idx
+            ]
+
+            for k, v in tensor_data["labels"].items():
+                if k not in ("reg_ids", "reg_offsets"):
+                    tensor_data["labels"][k] = v[:keep_count]
+
+        return cast(Dict[str, Any], tensor_data)
+
+    @classmethod
     def from_multiple_tsv(
         cls,
         tsv_paths: List[str],
@@ -201,11 +427,11 @@ class StyleDataset(Dataset[Sample]):
             gram_labels = [1] * len(tsv_paths)
 
         vocab_path = ""
-        vocab_path = ""
         if config.use_cache and config.cache_name:
             vocab_path = os.path.join(cache_dir, config.cache_name)
-            metadata_path = os.path.join(cache_dir, "label_metadata.json")
-            if os.path.exists(vocab_path) and os.path.exists(metadata_path):
+            if os.path.exists(vocab_path) and os.path.exists(
+                os.path.join(cache_dir, "label_metadata.json")
+            ):
                 # Simple presence check here for now, full validation could be added back
                 cls._load_vocab(vocab_path, tokenizer)
                 if config.verbose:
@@ -218,7 +444,17 @@ class StyleDataset(Dataset[Sample]):
 
         preprocessing_start = time.time()
         phase1_start = time.time()
-        all_rows = cls._load_raw_rows(tsv_paths, gram_labels, config)
+
+        # Priority 1: Binary Tensor Cache (dataset_tensors.pt) - RAM Optimal
+        tensor_data = cls._try_load_tensor_cache(cache_dir, config)
+        if tensor_data is not None:
+            return cls(samples=None, tokenizer=tokenizer, tensor_data=tensor_data)
+
+        # Priority 2: Old Binary Index (dataset_index.pt) - Legacy
+        all_rows = cls._try_load_from_binary_cache(cache_dir, config)
+        if all_rows is None:
+            # Priority 3: Raw TSV - Legacy Slow Path
+            all_rows = cls._load_raw_rows(tsv_paths, gram_labels, config)
 
         phase1_duration = time.time() - phase1_start
         phase2_start = time.time()
@@ -417,44 +653,95 @@ class StyleDataset(Dataset[Sample]):
     ) -> Tuple["StyleDataset", "StyleDataset"]:
         """Split dataset into train and validation sets."""
         random.seed(seed)
-        indices = list(range(len(self.samples)))
-        random.shuffle(indices)
+        total_len = len(self)
+        indices = torch.randperm(total_len)
 
-        n_train = int(len(self.samples) * train_ratio)
+        n_train = int(total_len * train_ratio)
         train_indices = indices[:n_train]
         val_indices = indices[n_train:]
 
-        return (
-            StyleDataset([self.samples[i] for i in train_indices], self.tokenizer),
-            StyleDataset([self.samples[i] for i in val_indices], self.tokenizer),
-        )
+        if self.tensor_data is not None:
+            return (
+                self._subset_from_tensors(train_indices),
+                self._subset_from_tensors(val_indices),
+            )
+
+        if self.samples is not None:
+            # Convert indices to list for list indexing
+            train_idx_list = train_indices.tolist()
+            val_idx_list = val_indices.tolist()
+            return (
+                StyleDataset([self.samples[i] for i in train_idx_list], self.tokenizer),
+                StyleDataset([self.samples[i] for i in val_idx_list], self.tokenizer),
+            )
+
+        return (StyleDataset([], self.tokenizer), StyleDataset([], self.tokenizer))
 
     def get_formality_class_weights(self) -> torch.Tensor:
         """Calculate inverse frequency weights for formality classes."""
+        if self.tensor_data is not None:
+            # Revert to float if needed for validation logging etc
+            labels = self.tensor_data["labels"]["f_prag"]
+            t_counts = torch.bincount(
+                labels, minlength=NUM_FORMALITY_PRAGMATIC_CLASSES
+            ).float()
+            total = t_counts.sum()
+            weights = total / (t_counts + 1e-5)
+            return weights / weights.sum() * NUM_FORMALITY_PRAGMATIC_CLASSES
+
+        if self.samples is None:
+            return torch.ones(NUM_FORMALITY_PRAGMATIC_CLASSES)
+
         counts = Counter(s.formality_pragmatic for s in self.samples)
-        total = sum(counts.values())
-        weights = torch.zeros(NUM_FORMALITY_PRAGMATIC_CLASSES)
+        total_val = sum(counts.values())
+        l_weights = torch.zeros(NUM_FORMALITY_PRAGMATIC_CLASSES)
         for i in range(NUM_FORMALITY_PRAGMATIC_CLASSES):
-            weights[i] = total / (counts[i] + 1e-5)
-        return weights / weights.sum() * NUM_FORMALITY_PRAGMATIC_CLASSES
+            l_weights[i] = total_val / (counts[i] + 1e-5)
+        return l_weights / l_weights.sum() * NUM_FORMALITY_PRAGMATIC_CLASSES
 
     def get_gender_class_weights(self) -> torch.Tensor:
         """Calculate inverse frequency weights for gender classes."""
+        if self.tensor_data is not None:
+            # Use tensor operations
+            g_prags = self.tensor_data["labels"]["g_prag"]
+            # Bin count logic
+            t_counts = torch.bincount(
+                g_prags, minlength=NUM_GENDER_PRAGMATIC_CLASSES
+            ).float()
+            total = t_counts.sum()
+            weights = total / (t_counts + 1e-5)
+            return weights / weights.sum() * NUM_GENDER_PRAGMATIC_CLASSES
+
+        if self.samples is None:
+            return torch.ones(NUM_GENDER_PRAGMATIC_CLASSES)
+
         counts = Counter(s.gender_pragmatic for s in self.samples)
-        total = sum(counts.values())
-        weights = torch.zeros(NUM_GENDER_PRAGMATIC_CLASSES)
+        total_val = sum(counts.values())
+        l_weights = torch.zeros(NUM_GENDER_PRAGMATIC_CLASSES)
         for i in range(NUM_GENDER_PRAGMATIC_CLASSES):
-            weights[i] = total / (counts[i] + 1e-5)
-        return weights / weights.sum() * NUM_GENDER_PRAGMATIC_CLASSES
+            l_weights[i] = total_val / (counts[i] + 1e-5)
+        return l_weights / l_weights.sum() * NUM_GENDER_PRAGMATIC_CLASSES
 
     def get_grammaticality_class_weights(self) -> torch.Tensor:
         """Calculate inverse frequency weights for grammaticality classes."""
+        if self.tensor_data is not None:
+            probs = self.tensor_data["labels"]["gram"]
+            t_counts = torch.bincount(
+                probs, minlength=NUM_GRAMMATICALITY_CLASSES
+            ).float()
+            total = t_counts.sum()
+            weights = total / (t_counts + 1e-5)
+            return weights / weights.sum() * NUM_GRAMMATICALITY_CLASSES
+
+        if self.samples is None:
+            return torch.ones(NUM_GRAMMATICALITY_CLASSES)
+
         counts = Counter(s.grammaticality_label for s in self.samples)
-        total = sum(counts.values())
-        weights = torch.zeros(NUM_GRAMMATICALITY_CLASSES)
+        total_val = sum(counts.values())
+        l_weights = torch.zeros(NUM_GRAMMATICALITY_CLASSES)
         for i in range(NUM_GRAMMATICALITY_CLASSES):
-            weights[i] = total / (counts[i] + 1e-5)
-        return weights / weights.sum() * NUM_GRAMMATICALITY_CLASSES
+            l_weights[i] = total_val / (counts[i] + 1e-5)
+        return l_weights / l_weights.sum() * NUM_GRAMMATICALITY_CLASSES
 
 
 def collate_fn(
