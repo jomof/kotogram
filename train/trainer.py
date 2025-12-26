@@ -117,8 +117,9 @@ class Timer:
                     f.write(json.dumps(entry) + "\n")
                     f.flush()
                     os.fsync(f.fileno())
-            except Exception:
-                pass  # Don't crash training on metric write fail
+            except Exception as e:
+                # Debug print for failed writes
+                print(f"Timer write failed to {self.output_path}: {e}", file=sys.stderr)
 
         return d
 
