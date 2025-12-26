@@ -1,0 +1,524 @@
+Watchdog Dump at Fri Dec 26 02:58:24 2025
+
+===== PID 141295 =====
+Process 141295: python3 ./train_style --retrain
+Python v3.10.17 (/opt/conda/bin/python3.10)
+
+Thread 141295 (idle): "MainThread"
+    run_command (train_style:68)
+    main (train_style:674)
+    <module> (train_style:707)
+
+
+===== PID 141330 =====
+Process 141330: /opt/conda/bin/python3 /opt/conda/bin/torchrun --nproc_per_node=4 -m scripts.train_style --config ./models/style-support/config.json --embed-dim 256 --hidden-dim 512 --num-layers 3 --num-heads 8 --retrain
+Python v3.10.17 (/opt/conda/bin/python3.10)
+
+Thread 141330 (idle): "MainThread"
+    _invoke_run (torch/distributed/elastic/agent/server/api.py:870)
+    run (torch/distributed/elastic/agent/server/api.py:711)
+    wrapper (torch/distributed/elastic/metrics/api.py:137)
+    launch_agent (torch/distributed/launcher/api.py:260)
+    __call__ (torch/distributed/launcher/api.py:138)
+    run (torch/distributed/run.py:909)
+    main (torch/distributed/run.py:918)
+    wrapper (torch/distributed/elastic/multiprocessing/errors/__init__.py:355)
+    <module> (torchrun:7)
+
+
+===== PID 141334 =====
+Process 141334: /opt/conda/bin/python3 -u -m scripts.train_style --config ./models/style-support/config.json --embed-dim 256 --hidden-dim 512 --num-layers 3 --num-heads 8 --retrain
+Python v3.10.17 (/opt/conda/bin/python3.10)
+
+Thread 141334 (active): "MainThread"
+    train_epoch (train/trainer.py:2986)
+    train (train/trainer.py:3171)
+    <module> (train_style.py:600)
+    _run_code (runpy.py:86)
+    _run_module_as_main (runpy.py:196)
+Thread 142324 (idle): "Thread-1 (_pin_memory_loop)"
+    select (selectors.py:416)
+    wait (multiprocessing/connection.py:931)
+    _poll (multiprocessing/connection.py:424)
+    poll (multiprocessing/connection.py:257)
+    get (multiprocessing/queues.py:113)
+    do_one_step (torch/utils/data/_utils/pin_memory.py:35)
+    _pin_memory_loop (torch/utils/data/_utils/pin_memory.py:59)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142403 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142404 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142475 (idle)
+Thread 142477 (idle)
+Thread 142478 (idle)
+Thread 142476 (idle)
+
+
+===== PID 141335 =====
+Process 141335: /opt/conda/bin/python3 -u -m scripts.train_style --config ./models/style-support/config.json --embed-dim 256 --hidden-dim 512 --num-layers 3 --num-heads 8 --retrain
+Python v3.10.17 (/opt/conda/bin/python3.10)
+
+Thread 141335 (idle): "MainThread"
+    _engine_run_backward (torch/autograd/graph.py:823)
+    backward (torch/autograd/__init__.py:347)
+    backward (torch/_tensor.py:626)
+    train_epoch (train/trainer.py:2975)
+    train (train/trainer.py:3171)
+    <module> (train_style.py:600)
+    _run_code (runpy.py:86)
+    _run_module_as_main (runpy.py:196)
+Thread 142270 (idle): "Thread-1 (_pin_memory_loop)"
+    select (selectors.py:416)
+    wait (multiprocessing/connection.py:931)
+    _poll (multiprocessing/connection.py:424)
+    poll (multiprocessing/connection.py:257)
+    get (multiprocessing/queues.py:113)
+    do_one_step (torch/utils/data/_utils/pin_memory.py:35)
+    _pin_memory_loop (torch/utils/data/_utils/pin_memory.py:59)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142317 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142318 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142471 (idle)
+Thread 142473 (idle)
+Thread 142472 (active)
+Thread 142474 (idle)
+
+
+===== PID 141336 =====
+Process 141336: /opt/conda/bin/python3 -u -m scripts.train_style --config ./models/style-support/config.json --embed-dim 256 --hidden-dim 512 --num-layers 3 --num-heads 8 --retrain
+Python v3.10.17 (/opt/conda/bin/python3.10)
+
+Thread 141336 (active+gil): "MainThread"
+    zero_grad (torch/optim/optimizer.py:973)
+    _fn (torch/_dynamo/eval_frame.py:745)
+    inner (torch/_compile.py:32)
+    train_epoch (train/trainer.py:2917)
+    train (train/trainer.py:3171)
+    <module> (train_style.py:600)
+    _run_code (runpy.py:86)
+    _run_module_as_main (runpy.py:196)
+Thread 142432 (idle): "Thread-1 (_pin_memory_loop)"
+    select (selectors.py:416)
+    wait (multiprocessing/connection.py:931)
+    _poll (multiprocessing/connection.py:424)
+    poll (multiprocessing/connection.py:257)
+    get (multiprocessing/queues.py:113)
+    do_one_step (torch/utils/data/_utils/pin_memory.py:35)
+    _pin_memory_loop (torch/utils/data/_utils/pin_memory.py:59)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142463 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142464 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142483 (idle)
+Thread 142485 (idle)
+Thread 142486 (idle)
+Thread 142484 (idle)
+
+
+===== PID 141337 =====
+Process 141337: /opt/conda/bin/python3 -u -m scripts.train_style --config ./models/style-support/config.json --embed-dim 256 --hidden-dim 512 --num-layers 3 --num-heads 8 --retrain
+Python v3.10.17 (/opt/conda/bin/python3.10)
+
+Thread 141337 (active): "MainThread"
+    train_epoch (train/trainer.py:2986)
+    train (train/trainer.py:3171)
+    <module> (train_style.py:600)
+    _run_code (runpy.py:86)
+    _run_module_as_main (runpy.py:196)
+Thread 142372 (idle): "Thread-1 (_pin_memory_loop)"
+    select (selectors.py:416)
+    wait (multiprocessing/connection.py:931)
+    _poll (multiprocessing/connection.py:424)
+    poll (multiprocessing/connection.py:257)
+    get (multiprocessing/queues.py:113)
+    do_one_step (torch/utils/data/_utils/pin_memory.py:35)
+    _pin_memory_loop (torch/utils/data/_utils/pin_memory.py:59)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142409 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142411 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142479 (idle)
+Thread 142481 (idle)
+Thread 142480 (idle)
+Thread 142482 (idle)
+
+
+===== PID 142253 =====
+Process 142253: /opt/conda/bin/python3 -u -m scripts.train_style --config ./models/style-support/config.json --embed-dim 256 --hidden-dim 512 --num-layers 3 --num-heads 8 --retrain
+Python v3.10.17 (/opt/conda/bin/python3.10)
+
+Thread 142253 (idle): "MainThread"
+    select (selectors.py:416)
+    wait (multiprocessing/connection.py:931)
+    _poll (multiprocessing/connection.py:424)
+    poll (multiprocessing/connection.py:257)
+    get (multiprocessing/queues.py:113)
+    _worker_loop (torch/utils/data/_utils/worker.py:315)
+    run (multiprocessing/process.py:108)
+    _bootstrap (multiprocessing/process.py:314)
+    _launch (multiprocessing/popen_fork.py:71)
+    __init__ (multiprocessing/popen_fork.py:19)
+    _Popen (multiprocessing/context.py:281)
+    _Popen (multiprocessing/context.py:224)
+    start (multiprocessing/process.py:121)
+    __init__ (torch/utils/data/dataloader.py:1146)
+    _get_iterator (torch/utils/data/dataloader.py:422)
+    __iter__ (torch/utils/data/dataloader.py:486)
+    train_epoch (train/trainer.py:2889)
+    train (train/trainer.py:3171)
+    <module> (train_style.py:600)
+    _run_code (runpy.py:86)
+    _run_module_as_main (runpy.py:196)
+Thread 142319 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142320 (idle): "Thread-1 (_serve)"
+    accept (socket.py:293)
+    accept (multiprocessing/connection.py:609)
+    accept (multiprocessing/connection.py:463)
+    _serve (multiprocessing/resource_sharer.py:138)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+
+
+===== PID 142269 =====
+Process 142269: /opt/conda/bin/python3 -u -m scripts.train_style --config ./models/style-support/config.json --embed-dim 256 --hidden-dim 512 --num-layers 3 --num-heads 8 --retrain
+Python v3.10.17 (/opt/conda/bin/python3.10)
+
+Thread 142269 (idle): "MainThread"
+    select (selectors.py:416)
+    wait (multiprocessing/connection.py:931)
+    _poll (multiprocessing/connection.py:424)
+    poll (multiprocessing/connection.py:257)
+    get (multiprocessing/queues.py:113)
+    _worker_loop (torch/utils/data/_utils/worker.py:315)
+    run (multiprocessing/process.py:108)
+    _bootstrap (multiprocessing/process.py:314)
+    _launch (multiprocessing/popen_fork.py:71)
+    __init__ (multiprocessing/popen_fork.py:19)
+    _Popen (multiprocessing/context.py:281)
+    _Popen (multiprocessing/context.py:224)
+    start (multiprocessing/process.py:121)
+    __init__ (torch/utils/data/dataloader.py:1146)
+    _get_iterator (torch/utils/data/dataloader.py:422)
+    __iter__ (torch/utils/data/dataloader.py:486)
+    train_epoch (train/trainer.py:2889)
+    train (train/trainer.py:3171)
+    <module> (train_style.py:600)
+    _run_code (runpy.py:86)
+    _run_module_as_main (runpy.py:196)
+Thread 142321 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142322 (idle): "Thread-1 (_serve)"
+    accept (socket.py:293)
+    accept (multiprocessing/connection.py:609)
+    accept (multiprocessing/connection.py:463)
+    _serve (multiprocessing/resource_sharer.py:138)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+
+
+===== PID 142301 =====
+Process 142301: /opt/conda/bin/python3 -u -m scripts.train_style --config ./models/style-support/config.json --embed-dim 256 --hidden-dim 512 --num-layers 3 --num-heads 8 --retrain
+Python v3.10.17 (/opt/conda/bin/python3.10)
+
+Thread 142301 (idle): "MainThread"
+    select (selectors.py:416)
+    wait (multiprocessing/connection.py:931)
+    _poll (multiprocessing/connection.py:424)
+    poll (multiprocessing/connection.py:257)
+    get (multiprocessing/queues.py:113)
+    _worker_loop (torch/utils/data/_utils/worker.py:315)
+    run (multiprocessing/process.py:108)
+    _bootstrap (multiprocessing/process.py:314)
+    _launch (multiprocessing/popen_fork.py:71)
+    __init__ (multiprocessing/popen_fork.py:19)
+    _Popen (multiprocessing/context.py:281)
+    _Popen (multiprocessing/context.py:224)
+    start (multiprocessing/process.py:121)
+    __init__ (torch/utils/data/dataloader.py:1146)
+    _get_iterator (torch/utils/data/dataloader.py:422)
+    __iter__ (torch/utils/data/dataloader.py:486)
+    train_epoch (train/trainer.py:2889)
+    train (train/trainer.py:3171)
+    <module> (train_style.py:600)
+    _run_code (runpy.py:86)
+    _run_module_as_main (runpy.py:196)
+Thread 142405 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142406 (idle): "Thread-1 (_serve)"
+    accept (socket.py:293)
+    accept (multiprocessing/connection.py:609)
+    accept (multiprocessing/connection.py:463)
+    _serve (multiprocessing/resource_sharer.py:138)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+
+
+===== PID 142323 =====
+Process 142323: /opt/conda/bin/python3 -u -m scripts.train_style --config ./models/style-support/config.json --embed-dim 256 --hidden-dim 512 --num-layers 3 --num-heads 8 --retrain
+Python v3.10.17 (/opt/conda/bin/python3.10)
+
+Thread 142323 (idle): "MainThread"
+    select (selectors.py:416)
+    wait (multiprocessing/connection.py:931)
+    _poll (multiprocessing/connection.py:424)
+    poll (multiprocessing/connection.py:257)
+    get (multiprocessing/queues.py:113)
+    _worker_loop (torch/utils/data/_utils/worker.py:315)
+    run (multiprocessing/process.py:108)
+    _bootstrap (multiprocessing/process.py:314)
+    _launch (multiprocessing/popen_fork.py:71)
+    __init__ (multiprocessing/popen_fork.py:19)
+    _Popen (multiprocessing/context.py:281)
+    _Popen (multiprocessing/context.py:224)
+    start (multiprocessing/process.py:121)
+    __init__ (torch/utils/data/dataloader.py:1146)
+    _get_iterator (torch/utils/data/dataloader.py:422)
+    __iter__ (torch/utils/data/dataloader.py:486)
+    train_epoch (train/trainer.py:2889)
+    train (train/trainer.py:3171)
+    <module> (train_style.py:600)
+    _run_code (runpy.py:86)
+    _run_module_as_main (runpy.py:196)
+Thread 142407 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142408 (idle): "Thread-1 (_serve)"
+    accept (socket.py:293)
+    accept (multiprocessing/connection.py:609)
+    accept (multiprocessing/connection.py:463)
+    _serve (multiprocessing/resource_sharer.py:138)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+
+
+===== PID 142355 =====
+Process 142355: /opt/conda/bin/python3 -u -m scripts.train_style --config ./models/style-support/config.json --embed-dim 256 --hidden-dim 512 --num-layers 3 --num-heads 8 --retrain
+Python v3.10.17 (/opt/conda/bin/python3.10)
+
+Thread 142355 (idle): "MainThread"
+    select (selectors.py:416)
+    wait (multiprocessing/connection.py:931)
+    _poll (multiprocessing/connection.py:424)
+    poll (multiprocessing/connection.py:257)
+    get (multiprocessing/queues.py:113)
+    _worker_loop (torch/utils/data/_utils/worker.py:315)
+    run (multiprocessing/process.py:108)
+    _bootstrap (multiprocessing/process.py:314)
+    _launch (multiprocessing/popen_fork.py:71)
+    __init__ (multiprocessing/popen_fork.py:19)
+    _Popen (multiprocessing/context.py:281)
+    _Popen (multiprocessing/context.py:224)
+    start (multiprocessing/process.py:121)
+    __init__ (torch/utils/data/dataloader.py:1146)
+    _get_iterator (torch/utils/data/dataloader.py:422)
+    __iter__ (torch/utils/data/dataloader.py:486)
+    train_epoch (train/trainer.py:2889)
+    train (train/trainer.py:3171)
+    <module> (train_style.py:600)
+    _run_code (runpy.py:86)
+    _run_module_as_main (runpy.py:196)
+Thread 142427 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142429 (idle): "Thread-1 (_serve)"
+    accept (socket.py:293)
+    accept (multiprocessing/connection.py:609)
+    accept (multiprocessing/connection.py:463)
+    _serve (multiprocessing/resource_sharer.py:138)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+
+
+===== PID 142371 =====
+Process 142371: /opt/conda/bin/python3 -u -m scripts.train_style --config ./models/style-support/config.json --embed-dim 256 --hidden-dim 512 --num-layers 3 --num-heads 8 --retrain
+Python v3.10.17 (/opt/conda/bin/python3.10)
+
+Thread 142371 (idle): "MainThread"
+    select (selectors.py:416)
+    wait (multiprocessing/connection.py:931)
+    _poll (multiprocessing/connection.py:424)
+    poll (multiprocessing/connection.py:257)
+    get (multiprocessing/queues.py:113)
+    _worker_loop (torch/utils/data/_utils/worker.py:315)
+    run (multiprocessing/process.py:108)
+    _bootstrap (multiprocessing/process.py:314)
+    _launch (multiprocessing/popen_fork.py:71)
+    __init__ (multiprocessing/popen_fork.py:19)
+    _Popen (multiprocessing/context.py:281)
+    _Popen (multiprocessing/context.py:224)
+    start (multiprocessing/process.py:121)
+    __init__ (torch/utils/data/dataloader.py:1146)
+    _get_iterator (torch/utils/data/dataloader.py:422)
+    __iter__ (torch/utils/data/dataloader.py:486)
+    train_epoch (train/trainer.py:2889)
+    train (train/trainer.py:3171)
+    <module> (train_style.py:600)
+    _run_code (runpy.py:86)
+    _run_module_as_main (runpy.py:196)
+Thread 142428 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142430 (idle): "Thread-1 (_serve)"
+    accept (socket.py:293)
+    accept (multiprocessing/connection.py:609)
+    accept (multiprocessing/connection.py:463)
+    _serve (multiprocessing/resource_sharer.py:138)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+
+
+===== PID 142410 =====
+Process 142410: /opt/conda/bin/python3 -u -m scripts.train_style --config ./models/style-support/config.json --embed-dim 256 --hidden-dim 512 --num-layers 3 --num-heads 8 --retrain
+Python v3.10.17 (/opt/conda/bin/python3.10)
+
+Thread 142410 (idle): "MainThread"
+    select (selectors.py:416)
+    wait (multiprocessing/connection.py:931)
+    _poll (multiprocessing/connection.py:424)
+    poll (multiprocessing/connection.py:257)
+    get (multiprocessing/queues.py:113)
+    _worker_loop (torch/utils/data/_utils/worker.py:315)
+    run (multiprocessing/process.py:108)
+    _bootstrap (multiprocessing/process.py:314)
+    _launch (multiprocessing/popen_fork.py:71)
+    __init__ (multiprocessing/popen_fork.py:19)
+    _Popen (multiprocessing/context.py:281)
+    _Popen (multiprocessing/context.py:224)
+    start (multiprocessing/process.py:121)
+    __init__ (torch/utils/data/dataloader.py:1146)
+    _get_iterator (torch/utils/data/dataloader.py:422)
+    __iter__ (torch/utils/data/dataloader.py:486)
+    train_epoch (train/trainer.py:2889)
+    train (train/trainer.py:3171)
+    <module> (train_style.py:600)
+    _run_code (runpy.py:86)
+    _run_module_as_main (runpy.py:196)
+Thread 142465 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142467 (idle): "Thread-1 (_serve)"
+    accept (socket.py:293)
+    accept (multiprocessing/connection.py:609)
+    accept (multiprocessing/connection.py:463)
+    _serve (multiprocessing/resource_sharer.py:138)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+
+
+===== PID 142431 =====
+Process 142431: /opt/conda/bin/python3 -u -m scripts.train_style --config ./models/style-support/config.json --embed-dim 256 --hidden-dim 512 --num-layers 3 --num-heads 8 --retrain
+Python v3.10.17 (/opt/conda/bin/python3.10)
+
+Thread 142431 (idle): "MainThread"
+    select (selectors.py:416)
+    wait (multiprocessing/connection.py:931)
+    _poll (multiprocessing/connection.py:424)
+    poll (multiprocessing/connection.py:257)
+    get (multiprocessing/queues.py:113)
+    _worker_loop (torch/utils/data/_utils/worker.py:315)
+    run (multiprocessing/process.py:108)
+    _bootstrap (multiprocessing/process.py:314)
+    _launch (multiprocessing/popen_fork.py:71)
+    __init__ (multiprocessing/popen_fork.py:19)
+    _Popen (multiprocessing/context.py:281)
+    _Popen (multiprocessing/context.py:224)
+    start (multiprocessing/process.py:121)
+    __init__ (torch/utils/data/dataloader.py:1146)
+    _get_iterator (torch/utils/data/dataloader.py:422)
+    __iter__ (torch/utils/data/dataloader.py:486)
+    train_epoch (train/trainer.py:2889)
+    train (train/trainer.py:3171)
+    <module> (train_style.py:600)
+    _run_code (runpy.py:86)
+    _run_module_as_main (runpy.py:196)
+Thread 142466 (idle): "QueueFeederThread"
+    wait (threading.py:320)
+    _feed (multiprocessing/queues.py:231)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
+Thread 142468 (idle): "Thread-1 (_serve)"
+    accept (socket.py:293)
+    accept (multiprocessing/connection.py:609)
+    accept (multiprocessing/connection.py:463)
+    _serve (multiprocessing/resource_sharer.py:138)
+    run (threading.py:953)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)
