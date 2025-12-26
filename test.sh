@@ -161,7 +161,7 @@ if [ -f "package.json" ]; then
     success "TypeScript package verification passed"
 fi
 
-python -m pytest --no-header tests-py/
+CI=true python -m pytest -x --no-header tests-py/
 
 # Verify git status hasn't changed
 FINAL_GIT_STATUS=$(git status --short)

@@ -645,7 +645,7 @@ def main() -> int:
 
     # Profiling support
     profile_dir = ""
-    if env.get("TRAIN_PROFILE"):
+    if env.get("TRAIN_PROFILE", "1") != "0":
         profile_dir = os.path.join(train_root, ".profile")
         os.makedirs(profile_dir, exist_ok=True)
         if not args.show_config:

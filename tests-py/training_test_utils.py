@@ -5,18 +5,21 @@ import json
 import os
 import subprocess
 import tempfile
+import time
 import unittest
 from typing import Dict, List, Optional, Set
 
 import torch
 
 
+# pylint: disable=too-many-positional-arguments
 def train_style(
     test_case,
     script_path: str,
     project_root: str,
     args: str,
     env_overrides: Optional[Dict[str, str]] = None,
+    timeout: Optional[int] = 3,
 ):
     """Runs the train_style.sh script with the given arguments and asserts success."""
     env = os.environ.copy()
@@ -25,9 +28,34 @@ def train_style(
 
     cmd = [script_path] + args.split()
 
-    result = subprocess.run(
-        cmd, env=env, cwd=project_root, capture_output=True, text=True, check=False
-    )
+    if os.environ.get("CI") == "true":
+        timeout = None
+
+    start_time = time.time()
+    try:
+        result = subprocess.run(
+            cmd,
+            env=env,
+            cwd=project_root,
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=timeout,
+        )
+    except subprocess.TimeoutExpired as e:
+        print(f"\n[Timeout] Command '{' '.join(cmd)}' timed out after {timeout}s")
+        if e.stdout:
+            print(f"[Timeout] STDOUT:\n{e.stdout}")
+        if e.stderr:
+            print(f"[Timeout] STDERR:\n{e.stderr}")
+        raise
+
+    duration = time.time() - start_time
+    if timeout is not None and duration < 0.15 * timeout:
+        raise RuntimeError(
+            f"Command finished in {duration:.2f}s, which is < 15% of timeout {timeout}s. "
+            f"Please use a tighter timeout (suggested: {int(duration * 6) + 1}s)."
+        )
 
     if result.returncode != 0:
         print(f"Command failed: {cmd}")
@@ -242,11 +270,16 @@ class Bottle:
         """Populates the bottle with test data."""
         populate_test_data(self.root_dir, self.project_root)
 
-    def train_style(self, args: str, env_overrides: Optional[Dict[str, str]] = None):
+    def train_style(
+        self,
+        args: str,
+        env_overrides: Optional[Dict[str, str]] = None,
+        timeout: Optional[int] = 3,
+    ):
         """Runs train_style.sh inside the bottle."""
         import re
 
-        overrides = {"TRAIN_ROOT": self.root_dir}
+        overrides = {"TRAIN_ROOT": self.root_dir, "TRAIN_PROFILE": "0"}
         if env_overrides:
             if "TRAIN_ROOT" in env_overrides:
                 raise ValueError(
@@ -258,7 +291,12 @@ class Bottle:
                 )
             overrides.update(env_overrides)
         result = train_style(
-            self.test_case, self.script_path, self.project_root, args, overrides
+            self.test_case,
+            self.script_path,
+            self.project_root,
+            args,
+            overrides,
+            timeout=timeout,
         )
 
         # Assert no warnings or errors in output
@@ -302,6 +340,7 @@ class Bottle:
         bin_path = os.path.join(self.project_root, "bin", "kotogram")
         env = os.environ.copy()
         env["TRAIN_ROOT"] = self.root_dir
+        env["TRAIN_PROFILE"] = "0"
         if env_overrides:
             env.update(env_overrides)
 

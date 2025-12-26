@@ -37,6 +37,9 @@ class MockDataset:
     def __len__(self):
         return 10
 
+    def filter_by_grammaticality(self, _valid_label: int = 1):
+        return self
+
     def __getitem__(self, idx):
         item = {
             "attention_mask": torch.tensor([1, 1, 1, 1], dtype=torch.long),
