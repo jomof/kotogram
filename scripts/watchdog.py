@@ -91,6 +91,7 @@ def run_watchdog():
             print(f"\nError: {e}")
             time.sleep(5)
 
+
 if __name__ == "__main__":
     if os.geteuid() != 0:
         print("Warning: Not running as root. py-spy might fail to attach.")
