@@ -301,56 +301,6 @@ def _get_safe_dataloader_config(
         num_workers = max(1, num_workers // 2)
         prefetch_factor = 1
 
-    # 3. Safety Valve: Check system stress
-    stressed = False
-    reasons = []
-
-    # Load average check
-    try:
-        load1, _, _ = os.getloadavg()
-        if load1 > cpu_count * 1.5:
-            stressed = True
-            reasons.append(f"high load ({load1:.1f} > {cpu_count * 1.5:.1f})")
-    except (AttributeError, OSError):
-        pass
-
-    # Memory check (Linux only)
-    if os.path.exists("/proc/meminfo"):
-        try:
-            with open("/proc/meminfo", "r") as f:
-                meminfo = {
-                    line.split(":")[0]: int(line.split(":")[1].split()[0])
-                    for line in f
-                    if ":" in line
-                }
-            mem_available_kb = meminfo.get("MemAvailable", 0)
-            if mem_available_kb < 1024 * 1024:  # Less than 1GB available
-                stressed = True
-                reasons.append(f"low memory ({mem_available_kb // 1024}MB available)")
-        except Exception:
-            pass
-
-    # Downgrade if stressed
-    if stressed:
-        if num_workers > 1:
-            num_workers = max(1, num_workers // 2)
-        pin_memory = False
-        if prefetch_factor is not None:
-            prefetch_factor = 1
-
-        if process.show_safety_logs and mode == "train":
-            reason_str = ", ".join(reasons)
-            print(
-                f"  [Safety] System stressed ({reason_str}). Downgraded DataLoader settings: "
-                f"workers={num_workers}, pin={pin_memory}, prefetch={prefetch_factor}"
-            )
-
-            print(
-                f"  [Runtime] DataLoader ({mode}): workers={num_workers}, "
-                f"pin={pin_memory}, persistent={persistent_workers}, "
-                f"prefetch={prefetch_factor or 'default'}, threads={config.hardware.cpu_threads}"
-            )
-
     return DataLoaderConfig(
         num_workers=num_workers,
         pin_memory=pin_memory,

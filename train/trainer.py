@@ -1,10 +1,12 @@
 """Core training logic and model extensions for style classification."""
 
+import json
 import math
 import os
+import resource
 import sys
 import time
-from datetime import timedelta
+from datetime import datetime, timedelta
 from functools import partial
 from typing import Any, Callable, Dict, List, Optional, Tuple, cast
 
@@ -64,20 +66,60 @@ def is_main_process() -> bool:
 
 
 class Timer:
-    """Simple timer for performance instrumentation."""
+    """Timer for performance and resource usage instrumentation."""
 
-    def __init__(self, name: str, verbose: bool = False):
+    def __init__(self, name: str, output_path: Optional[str] = None):
         self.name = name
-        self.verbose = verbose
+        self.output_path = output_path
         self.durations: List[float] = []
         self.start_time: float = 0.0
+        self.start_resources: Optional[resource.struct_rusage] = None
+
+        # Create/Clear the file if path provided
+        if self.output_path:
+            os.makedirs(os.path.dirname(self.output_path), exist_ok=True)
+            # We append in the loop, but typically we might want to start fresh or append?
+            # User wants "flush frequently... machine locks up", implies streaming.
+            # Let's just append to allow restart resilience, or mode='a'.
+            pass
 
     def start(self) -> None:
         self.start_time = time.perf_counter()
+        self.start_resources = resource.getrusage(resource.RUSAGE_SELF)
 
-    def stop(self) -> float:
-        d = time.perf_counter() - self.start_time
+    def stop(self, epoch: int = 0, batch: int = 0) -> float:
+        end_time = time.perf_counter()
+        end_resources = resource.getrusage(resource.RUSAGE_SELF)
+
+        d = end_time - self.start_time
         self.durations.append(d)
+
+        if self.output_path and self.start_resources:
+            # RSS is peak so specific diff doesn't mean much for this interval,
+            # but tracking the peak growth is useful.
+            # Faults are engaging counters, so diff is valid.
+            majflt = end_resources.ru_majflt - self.start_resources.ru_majflt
+            minflt = end_resources.ru_minflt - self.start_resources.ru_minflt
+
+            entry = {
+                "timestamp": datetime.now().isoformat(),
+                "name": self.name,
+                "epoch": epoch,
+                "batch": batch,
+                "duration_s": d,
+                "maxrss": end_resources.ru_maxrss,
+                "majflt": majflt,
+                "minflt": minflt,
+            }
+
+            try:
+                with open(self.output_path, "a") as f:
+                    f.write(json.dumps(entry) + "\n")
+                    f.flush()
+                    os.fsync(f.fileno())
+            except Exception:
+                pass  # Don't crash training on metric write fail
+
         return d
 
     def avg(self) -> float:
@@ -512,8 +554,21 @@ class MLMTrainer:
             "field_losses": {f: [] for f in FEATURE_FIELDS},
             "sentence_count": [],
         }
-        self.train_timer_data = Timer("mlm_data")
-        self.train_timer_compute = Timer("mlm_compute")
+        profile_dir = ""
+        if os.environ.get("TRAIN_PROFILE"):
+            profile_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
+
+        pid = os.getpid()
+        self.train_timer_data = Timer(
+            "mlm_data",
+            os.path.join(profile_dir, f"mlm_data_{pid}.jsonl") if profile_dir else None,
+        )
+        self.train_timer_compute = Timer(
+            "mlm_compute",
+            os.path.join(profile_dir, f"mlm_compute_{pid}.jsonl")
+            if profile_dir
+            else None,
+        )
         self.start_epoch = 0
         self.start_batch = 0
         self.global_step = 0
@@ -573,7 +628,7 @@ class MLMTrainer:
 
         self.train_timer_data.start()
         for batch_idx, batch in enumerate(self.data_loader):
-            self.train_timer_data.stop()
+            self.train_timer_data.stop(epoch, batch_idx)
             self.train_timer_compute.start()
 
             # Mid-epoch resume: skip batches already processed
@@ -663,12 +718,12 @@ class MLMTrainer:
                 ):
                     sys.stdout.flush()
 
-            self.train_timer_compute.stop()
+            self.train_timer_compute.stop(epoch, batch_idx)
             self.train_timer_data.start()
 
         # Reset start_batch for next epoch
         self.start_batch = 0
-        self.train_timer_data.stop()
+        self.train_timer_data.stop(epoch, batch_idx if total_batches > 0 else 0)
 
         if verbose and is_main_process():
             sys.stdout.write("\n")
@@ -2731,8 +2786,23 @@ class Trainer:
                 "sentence_count",
             ]
         }
-        self.train_timer_data = Timer("train_data")
-        self.train_timer_compute = Timer("train_compute")
+        profile_dir = ""
+        if os.environ.get("TRAIN_PROFILE"):
+            profile_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
+
+        pid = os.getpid()
+        self.train_timer_data = Timer(
+            "train_data",
+            os.path.join(profile_dir, f"train_data_{pid}.jsonl")
+            if profile_dir
+            else None,
+        )
+        self.train_timer_compute = Timer(
+            "train_compute",
+            os.path.join(profile_dir, f"train_compute_{pid}.jsonl")
+            if profile_dir
+            else None,
+        )
 
     def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
         """Save training checkpoint."""
@@ -2817,12 +2887,12 @@ class Trainer:
 
         self.train_timer_data.start()
         for batch_idx, batch in enumerate(self.train_loader):
-            self.train_timer_data.stop()
+            self.train_timer_data.stop(epoch, batch_idx)
             self.train_timer_compute.start()
 
             # Mid-epoch resume: skip batches already processed
             if batch_idx < self.start_batch:
-                self.train_timer_compute.stop()
+                self.train_timer_compute.stop(epoch, batch_idx)
                 self.train_timer_data.start()
                 continue
 
@@ -2941,12 +3011,12 @@ class Trainer:
                 ):
                     sys.stdout.flush()
 
-            self.train_timer_compute.stop()
+            self.train_timer_compute.stop(epoch, batch_idx)
             self.train_timer_data.start()
 
         # Reset start_batch for next epoch
         self.start_batch = 0
-        self.train_timer_data.stop()
+        self.train_timer_data.stop(epoch, batch_idx if total_batches > 0 else 0)
         if verbose and is_main_process():
             sys.stdout.write("\n")
         return t_loss / n, tf_loss / n, tg_loss / n, tgram_loss / n, tr_loss / n

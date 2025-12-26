@@ -9,6 +9,7 @@ try:
 except ImportError:
     from scripts import _setup_path  # type: ignore # noqa: F401
 
+import glob
 import json
 import os
 import sys
@@ -39,6 +40,98 @@ from train.trainer import (
     is_main_process,
     setup_distributed,
 )
+
+
+def generate_profile_report() -> None:
+    """Generate human-readable performance report from JSONL logs."""
+    profile_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
+    support_dir = locations.get_style_support_dir()
+    os.makedirs(support_dir, exist_ok=True)
+    output_path = os.path.join(support_dir, "training-profile.txt")
+
+    print(f"Generating profile report from {profile_dir}...")
+
+    files = glob.glob(os.path.join(profile_dir, "*.jsonl"))
+    if not files:
+        print("No .jsonl profile files found.")
+        return
+
+    all_entries = []
+    for p in files:
+        with open(p, "r") as f:
+            for line in f:
+                try:
+                    all_entries.append(json.loads(line))
+                except json.JSONDecodeError:
+                    pass
+
+    if not all_entries:
+        print("No valid entries found.")
+        return
+
+    # Sort by timestamp
+    all_entries.sort(key=lambda x: x.get("timestamp", ""))
+
+    # Analytics
+    epochs = sorted(list(set(e.get("epoch", 0) for e in all_entries)))
+    thrashing_events = [e for e in all_entries if e.get("majflt", 0) > 0]
+
+    with open(output_path, "w") as f:
+        f.write("KOTOGRAM TRAINING PERFORMANCE PROFILE\n")
+        f.write("======================================\n")
+        f.write(f"Generated at: {time.ctime()}\n")
+        f.write(f"Source logs: {len(files)} files, {len(all_entries)} samples\n\n")
+
+        f.write("SYSTEM HEALTH SUMMARY\n")
+        f.write("---------------------\n")
+        max_rss = max(e.get("maxrss", 0) for e in all_entries)
+        f.write(f"Peak RSS: {max_rss:,}\n")
+        f.write(
+            f"Total Major Page Faults (Thrashing): {sum(e.get('majflt', 0) for e in all_entries)}\n"
+        )
+        f.write(f"Thrashing Events (>0 faults): {len(thrashing_events)}\n\n")
+
+        if thrashing_events:
+            f.write("THRASHING TIMELINE (Top 10)\n")
+            f.write("---------------------------\n")
+            for e in sorted(thrashing_events, key=lambda x: x["majflt"], reverse=True)[
+                :10
+            ]:
+                f.write(
+                    f"Epoch {e.get('epoch')} Batch {e.get('batch')}: {e['majflt']} faults, Duration: {e['duration_s']:.2f}s, RSS: {e['maxrss']}\n"
+                )
+            f.write("\n")
+
+        f.write("PER-EPOCH TIMING\n")
+        f.write("----------------\n")
+        for ep in epochs:
+            ep_entries = [e for e in all_entries if e.get("epoch") == ep]
+            if not ep_entries:
+                continue
+
+            data_entries = [e for e in ep_entries if "data" in e.get("name", "")]
+            comp_entries = [e for e in ep_entries if "compute" in e.get("name", "")]
+
+            avg_data = (
+                sum(e["duration_s"] for e in data_entries) / len(data_entries)
+                if data_entries
+                else 0
+            )
+            avg_comp = (
+                sum(e["duration_s"] for e in comp_entries) / len(comp_entries)
+                if comp_entries
+                else 0
+            )
+
+            f.write(f"Epoch {ep}:\n")
+            f.write(f"  Avg Data Loading: {avg_data * 1000:.1f}ms\n")
+            f.write(f"  Avg Compute:      {avg_comp * 1000:.1f}ms\n")
+            if avg_data + avg_comp > 0:
+                f.write(f"  Data Overhead:    {avg_data / (avg_data + avg_comp):.1%}\n")
+            f.write("\n")
+
+    print(f"Report written to {output_path}")
+
 
 if __name__ == "__main__":
     # Internal profiling when TRAIN_PROFILE is set
@@ -107,7 +200,7 @@ if __name__ == "__main__":
     )
     # Config file (required - contains TrainerConfig)
     parser.add_argument(
-        "--config", type=str, required=True, help="Path to unified config.json file"
+        "--config", type=str, required=False, help="Path to unified config.json file"
     )
     parser.add_argument(
         "--agrammatic-pattern",
@@ -185,12 +278,25 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
+        "--report",
+        action="store_true",
+        help="Generate performance report from .profile logs and exit",
+    )
+
+    parser.add_argument(
         "--preprocess-only",
         action="store_true",
         help="Exit after loading and caching data",
     )
 
     args = parser.parse_args()
+
+    if args.report:
+        generate_profile_report()
+        sys.exit(0)
+
+    if not args.config:
+        parser.error("--config is required for training/labeling")
 
     # Resolve and inject paths
     cache_dir = locations.get_cache_dir()

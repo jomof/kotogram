@@ -55,14 +55,20 @@ def run_command(cmd: List[str], env: dict, cwd: str, tee_log: Optional[str] = No
     if tee_log:
         # Create parent directory if needed
         os.makedirs(os.path.dirname(tee_log), exist_ok=True)
-        with open(tee_log, "a") as log_file:
+        with open(tee_log, "ab") as log_file:
             process = subprocess.Popen(
-                cmd, env=env, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True
+                cmd, env=env, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=0
             )
-            for line in process.stdout:  # type: ignore
-                sys.stdout.write(line)
+            while True:
+                # Read chunks to allow real-time progress bar updates without newline buffering issues
+                chunk = process.stdout.read(4096)
+                if not chunk:
+                    break
+                sys.stdout.buffer.write(chunk)
                 sys.stdout.flush()
-                log_file.write(line)
+                log_file.write(chunk)
+                log_file.flush()
+            
             process.wait()
             return process.returncode
     else:
@@ -76,6 +82,58 @@ def get_free_port() -> int:
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind(('', 0))
         return s.getsockname()[1]
+
+
+
+class WatchdogThread(threading.Thread):
+    def __init__(self, processes: List[subprocess.Popen], output_file: str, interval: float = 5.0):
+        super().__init__(daemon=True)
+        self.processes = processes
+        self.output_file = output_file
+        self.interval = interval
+        self.stop_event = threading.Event()
+
+    def run(self):
+        while not self.stop_event.is_set():
+            try:
+                # Collect PIDs: self (launcher) + children
+                pids = [os.getpid()] + [p.pid for p in self.processes if p.poll() is None]
+                
+                output = []
+                for pid in pids:
+                    output.append(f"\n===== PID {pid} =====")
+                    try:
+                        # Use py-spy to dump stack
+                        dump = subprocess.check_output(
+                            ["py-spy", "dump", "-p", str(pid)], 
+                            text=True, 
+                            stderr=subprocess.STDOUT
+                        )
+                        output.append(dump)
+                    except FileNotFoundError:
+                        output.append("[py-spy not found]")
+                        # Sleep longer if tool missing to avoid log spam
+                        if self.interval < 60:
+                            self.interval = 60
+                    except subprocess.CalledProcessError as e:
+                        output.append(f"[py-spy failed: {e.output}]")
+                    except Exception as e:
+                        output.append(f"[error: {e}]")
+
+                # Atomic write (or close enough)
+                entry = f"Watchdog Dump at {time.ctime()}\n" + "\n".join(output)
+                temp_path = self.output_file + ".tmp"
+                with open(temp_path, "w") as f:
+                    f.write(entry)
+                os.replace(temp_path, self.output_file)
+
+            except Exception:
+                pass  # Don't crash the launcher
+
+            self.stop_event.wait(self.interval)
+
+    def stop(self):
+        self.stop_event.set()
 
 
 def run_mp_distributed(cmd: List[str], env: dict, world_size: int, tee_log: Optional[str] = None) -> int:
@@ -99,21 +157,24 @@ def run_mp_distributed(cmd: List[str], env: dict, world_size: int, tee_log: Opti
     
     if tee_log:
         os.makedirs(os.path.dirname(tee_log), exist_ok=True)
-        log_f = open(tee_log, "a")
+        log_f = open(tee_log, "ab")
         # Write a header
-        log_f.write(f"\n--- Starting MP Distributed Run (world_size={world_size}) ---\n")
+        log_f.write(f"\n--- Starting MP Distributed Run (world_size={world_size}) ---\n".encode("utf-8"))
     else:
         log_f = None
 
     def pipe_reader(pipe):
         try:
-            for line in pipe:
-                sys.stdout.write(line)
+            while True:
+                chunk = pipe.read(4096)
+                if not chunk:
+                    break
+                sys.stdout.buffer.write(chunk)
                 sys.stdout.flush()
                 if log_f:
-                    log_f.write(line)
+                    log_f.write(chunk)
                     log_f.flush()
-        except EOFError:
+        except Exception:
             pass
 
     for i in range(world_size):
@@ -128,15 +189,21 @@ def run_mp_distributed(cmd: List[str], env: dict, world_size: int, tee_log: Opti
             cwd=PROJECT_ROOT,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
-            text=True,
-            bufsize=1 # Line buffered
+            bufsize=0 # Unbuffered binary
         )
         processes.append(p)
         t = threading.Thread(target=pipe_reader, args=(p.stdout,))
         t.daemon = True
         t.start()
 
+    # Start Watchdog
+    profile_dir = os.path.join(env.get("TRAIN_ROOT", "."), ".profile")
+    os.makedirs(profile_dir, exist_ok=True)
+    watchdog = WatchdogThread(processes, os.path.join(profile_dir, "process-threads.txt"))
+    watchdog.start()
+
     exit_codes = [p.wait() for p in processes]
+    watchdog.stop()
     if log_f:
         log_f.close()
         
@@ -213,6 +280,8 @@ def main() -> int:
 
     # Data sampling
     parser.add_argument("--percent", type=float, default=None, help="Percentage of data to use (1-100)")
+    
+    parser.add_argument("--report", action="store_true", help="Generate performance report and exit")
 
     # Performance options
     parser.add_argument(
@@ -224,12 +293,15 @@ def main() -> int:
 
     args = parser.parse_args()
 
-    # Handle --show-config: print just TrainerConfig as JSON and exit immediately
     if args.show_config:
         import json
         from train.config import TrainerConfig
         print(json.dumps(TrainerConfig().to_dict(), indent=2))
         return 0
+
+    if args.report:
+        # Just pass through to inner script
+        return run_command([sys.executable, "-m", "scripts.train_style", "--report"], os.environ.copy(), PROJECT_ROOT)
 
     # Setup environment
     env = os.environ.copy()
