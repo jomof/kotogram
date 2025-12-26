@@ -29,6 +29,32 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
+def _enforce_venv():
+    """Re-execute with .venv python if not already running in it and it exists."""
+    # Common venv location
+    venv_python = os.path.join(PROJECT_ROOT, ".venv", "bin", "python")
+    if not os.path.exists(venv_python):
+        return
+
+    # Check if we are running the venv python
+    # resolving symlinks to be sure
+    current_exe = os.path.realpath(sys.executable)
+    venv_exe = os.path.realpath(venv_python)
+
+    if current_exe != venv_exe:
+        # Re-execute preserving all arguments
+        # Use os.execv to replace current process
+        print(f"Switching to virtual environment: {venv_python}")
+        try:
+            os.execv(venv_python, [venv_python] + sys.argv)
+        except OSError as e:
+            print(f"Failed to switch to venv: {e}")
+
+# Run venv check immediately
+_enforce_venv()
+
+
+
 
 def get_num_gpus() -> int:
     """Detect the number of available CUDA GPUs."""
