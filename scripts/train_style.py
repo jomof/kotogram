@@ -489,7 +489,7 @@ if __name__ == "__main__":
             model.reset_classifier()
 
     # Load labeled data for remaining phases
-    old_vocab_sizes = tokenizer.get_vocab_sizes()
+    old_vocab_sizes = model_config.vocab_sizes.copy()
     tokenizer._frozen = False
     labeled_dataset = StyleDataset.from_multiple_tsv(
         data_files,
