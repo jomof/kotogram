@@ -24,7 +24,7 @@ Functions:
 
 import re
 from dataclasses import dataclass
-from typing import List
+from typing import Any, Dict, List, Optional, Tuple
 
 
 @dataclass
@@ -41,6 +41,61 @@ class TokenFeatures:
     base_orth: str = ""
     lemma: str = ""
     reading: str = ""
+
+
+class Token:
+    """Hashable wrapper for token features."""
+
+    def __init__(self, surface: str, features: Optional[Dict[str, Any]] = None):
+        self.surface = surface
+        self.features = features or {}
+
+        # Determine items for hashing
+        f_items: Tuple[Tuple[str, Any], ...] = tuple()
+        if hasattr(self.features, "items"):
+            f_items = tuple(sorted(self.features.items()))
+
+        self._hash = hash((surface, f_items))
+
+    def __hash__(self) -> int:
+        return self._hash
+
+    def __eq__(self, other: object) -> bool:
+        if isinstance(other, str):
+            return self.surface == other
+        if isinstance(other, Token):
+            return self.surface == other.surface and self.features == other.features
+        return False
+
+    def __repr__(self) -> str:
+        return f"Token({self.surface}, {self.features})"
+
+    def get(self, key: str, default: Any = None) -> Any:
+        if key == "surface":
+            return self.surface
+        return self.features.get(key, default)
+
+    @property
+    def reading(self) -> str:
+        """Returns the reading in Hiragana, or surface if not available."""
+        r = self.get("reading")
+        if not r:
+            return self.surface
+        # Convert Katakana to Hiragana (simple range check)
+        return "".join(
+            chr(ord(c) - 0x60) if 0x30A1 <= ord(c) <= 0x30F6 else c for c in str(r)
+        )
+
+
+def tokenize_sentence(sentence: str, parser: Any) -> List["Token"]:
+    """Tokenize a sentence into a list of Token objects using the provided parser."""
+    from dataclasses import asdict
+
+    k = parser.japanese_to_kotogram(sentence)
+    return [
+        Token(extract_token_features(t).surface or t, asdict(extract_token_features(t)))
+        for t in split_kotogram(k)
+    ]
 
 
 def kotogram_to_japanese(

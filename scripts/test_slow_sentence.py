@@ -14,16 +14,10 @@ def test_slow_sentence() -> None:
     start = time.time()
     # Manual steps to profile
     parser = augmenter.get_parser()
-    k = parser.japanese_to_kotogram(sentence)
-    from dataclasses import asdict
+    from kotogram.augment import get_surface
+    from kotogram.kotogram import tokenize_sentence
 
-    from kotogram.augment import Token, get_surface
-    from kotogram.kotogram import extract_token_features, split_kotogram
-
-    tokens = [
-        Token(extract_token_features(t).surface or t, asdict(extract_token_features(t)))
-        for t in split_kotogram(k)
-    ]
+    tokens = tokenize_sentence(sentence, parser)
 
     aug_start = time.time()
     candidates = augmenter.augment_tokens(tuple(tokens), deadline=time.time() + 1.0)

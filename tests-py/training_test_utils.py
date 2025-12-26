@@ -573,3 +573,28 @@ class Bottle:
                 )
 
             self.test_case.fail(msg)
+
+
+def setup_mock_style_model(test_case):
+    """Sets up a mock style model and tokenizer for testing analysis."""
+    from unittest.mock import patch
+
+    from kotogram.model import ModelConfig, StyleClassifier
+    from kotogram.tokenizer import Tokenizer
+
+    # Create dummy tokenizer
+    test_case.tokenizer = Tokenizer()
+    test_case.tokenizer._frozen = True
+
+    # Create dummy model
+    config = ModelConfig(vocab_sizes=test_case.tokenizer.get_vocab_sizes())
+    test_case.model = StyleClassifier(config)
+    test_case.model.eval()
+
+    # Patch the internal loader
+    patcher = patch(
+        "kotogram.analysis._load_style_model",
+        return_value=(test_case.model, test_case.tokenizer),
+    )
+    patcher.start()
+    test_case.addCleanup(patcher.stop)

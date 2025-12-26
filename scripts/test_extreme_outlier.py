@@ -1,7 +1,6 @@
 import time
-from dataclasses import asdict
 
-from kotogram.augment import Augmenter, Token, extract_token_features, split_kotogram
+from kotogram.augment import Augmenter
 
 
 def test_extreme_outlier() -> None:
@@ -15,11 +14,9 @@ def test_extreme_outlier() -> None:
     deadline = start + 1.0
 
     parser = augmenter.get_parser()
-    k = parser.japanese_to_kotogram(sentence)
-    tokens = [
-        Token(extract_token_features(t).surface or t, asdict(extract_token_features(t)))
-        for t in split_kotogram(k)
-    ]
+    from kotogram.kotogram import tokenize_sentence
+
+    tokens = tokenize_sentence(sentence, parser)
 
     aug_start = time.time()
     candidates = augmenter.augment_tokens(tuple(tokens), deadline=deadline)

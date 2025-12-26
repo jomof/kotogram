@@ -372,19 +372,7 @@ class StyleDataset(Dataset[Sample]):
                 update_items = []
                 for p, s in zip(missing_results, newly_encoded_samples):
                     # Re-map formality_id to formality_id for cache (bit annoying)
-                    update_items.append(
-                        (
-                            p.sentence,
-                            p.kotogram,
-                            p.formality_id,
-                            p.gender_value,
-                            p.gender_pragmatic,
-                            p.register_ids,
-                            p.gram_label,
-                            s.feature_ids,
-                            # We don't cache KC targets yet to save complexity/space
-                        )
-                    )
+                    update_items.append(p.to_cache_tuple(s.feature_ids))
                 cache.put_batch(cast(List[Any], update_items))
 
             # Populate KC targets for newly encoded samples
