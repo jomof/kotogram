@@ -33,11 +33,14 @@ run_quiet() {
 }
 
 # --- Setup Python Environment ---
-if [ ! -d "$VENV_DIR" ]; then
-    run_quiet $PYTHON_CMD -m venv "$VENV_DIR"
-fi
+# --- Setup Python Environment ---
+if [ -z "${CI:-}" ]; then
+    if [ ! -d "$VENV_DIR" ]; then
+        run_quiet $PYTHON_CMD -m venv "$VENV_DIR"
+    fi
 
-source "$VENV_DIR/bin/activate"
+    source "$VENV_DIR/bin/activate"
+fi
 
 run_quiet pip install --upgrade pip
 run_quiet pip install -e .
