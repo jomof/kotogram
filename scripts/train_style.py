@@ -12,6 +12,7 @@ except ImportError:
 import json
 import os
 import sys
+import time
 from typing import Any, Dict, List, Optional, cast
 
 import torch
@@ -198,26 +199,18 @@ if __name__ == "__main__":
     args.output = locations.get_style_output_dir()
     args.support_dir = locations.get_style_support_dir()
 
-    if is_main_process():
-        print("Setting up distributed training...", flush=True)
     rank, world_size, local_rank = setup_distributed()
-    device = torch.device(
-        "cuda"
-        if torch.cuda.is_available()
-        else ("mps" if torch.backends.mps.is_available() else "cpu")
-    )
-    if world_size > 1:
-        device = torch.device("cuda", local_rank)
 
     # Epoch history logging
     epochs_json_path = os.path.join(args.support_dir, "epochs.json")
     training_history: List[Dict[str, Any]] = []
-    if os.path.exists(epochs_json_path):
+    if is_main_process() and os.path.exists(epochs_json_path):
         try:
             with open(epochs_json_path, "r") as f:
                 training_history = json.load(f)
-        except json.JSONDecodeError:
-            print(f"Warning: Could not decode {epochs_json_path}", file=sys.stderr)
+        except (json.JSONDecodeError, FileNotFoundError):
+            # Safe to ignore, might be first run or race condition
+            pass
 
     def _append_history(
         raw_history: Dict[str, Any], phase_type: str, start_epoch: int = 0
@@ -259,9 +252,10 @@ if __name__ == "__main__":
                             epoch_data[f"{k}_{sub_k}"] = sub_v[i]
             training_history.append(epoch_data)
 
-        # Save immediately
-        with open(epochs_json_path, "w") as f:
-            json.dump(training_history, f, indent=2)
+        if is_main_process():
+            # Save immediately
+            with open(epochs_json_path, "w") as f:
+                json.dump(training_history, f, indent=2)
 
     model: Optional[StyleClassifier] = None
     tokenizer: Optional[Tokenizer] = None
@@ -328,22 +322,30 @@ if __name__ == "__main__":
                 raise ValueError(f"Vocabulary not found at {tokenizer_path_cache}")
 
     # Create a single TrainerConfig and ModelConfig
-    if args.config:
-        model_config, trainer_config = TrainerConfig.load_config(args.config)
+    if args.config and os.path.exists(args.config):
+        try:
+            model_config, trainer_config = TrainerConfig.load_config(args.config)
 
-        # Override resume_from if --resume flag is present but not in config
-        # This handles auto-resume from the wrapper while keeping config.json stable
-        if args.resume and not trainer_config.checkpoint.resume_from:
-            # type: ignore[misc]
-            object.__setattr__(
-                trainer_config.checkpoint, "resume_from", args.support_dir
-            )
+            # Override resume_from if --resume flag is present but not in config
+            # This handles auto-resume from the wrapper while keeping config.json stable
+            if args.resume and not trainer_config.checkpoint.resume_from:
+                # type: ignore[misc]
+                object.__setattr__(
+                    trainer_config.checkpoint, "resume_from", args.support_dir
+                )
+        except Exception as e:
+            if is_main_process():
+                print(f"Failed to load existing config: {e}")
+            sys.exit(1)
     else:
         print(
             "ERROR: --config is required. Configuration must be passed from the wrapper script.",
             file=sys.stderr,
         )
         sys.exit(1)
+
+    # Tokenizer and Device after config load
+    device = torch.device(trainer_config.device)
 
     # Tokenizer may need to be saved to support_dir for checkpoint loading
     if is_main_process():
@@ -358,6 +360,9 @@ if __name__ == "__main__":
         else:
             model = StyleClassifier(model_config)
 
+    # MLM/KC Pretraining
+    mlm_start = time.perf_counter()
+    mlm_end = mlm_start
     # Phase 1: MLM Pretraining
     if args.pretrain_mlm and not args.preprocess_only:
         # Check if already done in history?
@@ -371,7 +376,7 @@ if __name__ == "__main__":
                 verbose=is_main_process(),
                 labeled=False,
                 sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                use_cache=False,
+                use_cache=True,
             )
             mlm_trainer = MLMTrainer(
                 cast(StyleClassifierWithMLM, model),
@@ -389,6 +394,10 @@ if __name__ == "__main__":
             )
             if is_main_process():
                 _append_history(mlm_history, "pretrain-mlm")
+            # Update model reference (Trainer may have wrapped/moved it)
+            model = mlm_trainer.model
+            if hasattr(model, "module"):
+                model = cast(StyleClassifierWithMLM, model.module)
             model.reset_classifier()
 
     # Load labeled data for remaining phases
@@ -400,7 +409,7 @@ if __name__ == "__main__":
         verbose=is_main_process(),
         grammaticality_labels=grammaticality_labels,
         sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-        use_cache=False,
+        use_cache=True,
     )
     train_data, val_data = labeled_dataset.split()
     new_vocab_sizes = tokenizer.get_vocab_sizes()
@@ -426,7 +435,7 @@ if __name__ == "__main__":
             [e for e in training_history if e.get("type") == "pretrain-kc"]
         )
         if kc_epochs_done < trainer_config.kc_epochs or args.retrain:
-            kc_history = KCTrainer(
+            kc_trainer = KCTrainer(
                 cast(StyleClassifierWithMLM, model),
                 train_data,
                 trainer_config,
@@ -438,13 +447,19 @@ if __name__ == "__main__":
                     "freeze_encoder_epochs": args.kc_freeze_encoder_epochs,
                 },
                 args=args,
-            ).train(
+            )
+            kc_history = kc_trainer.train(
                 epochs=trainer_config.kc_epochs,
                 on_epoch_end=lambda h: _append_history(h, "pretrain-kc"),
             )
             if is_main_process():
                 _append_history(kc_history, "pretrain-kc")
+            # Update model reference (Trainer may have wrapped/moved it)
+            model = kc_trainer.model
+            if hasattr(model, "module"):
+                model = cast(StyleClassifierWithMLM, model.module)
             model.reset_classifier()
+    mlm_end = time.perf_counter()
 
     # Final supervised training
     style_trainer = Trainer(
@@ -460,6 +475,8 @@ if __name__ == "__main__":
         ),
     )
 
+    style_start = time.perf_counter()
+    style_end = style_start
     if args.resume:
         # Auto-resume handled inside trainer.train() if checkpoint_dir set
         pass
@@ -470,6 +487,7 @@ if __name__ == "__main__":
     )
     if is_main_process():
         _append_history(history, "style")
+    style_end = time.perf_counter()
 
     # Test evaluation and model saving
     res = style_trainer.evaluate()
@@ -487,8 +505,13 @@ if __name__ == "__main__":
         os.makedirs(output_dir, exist_ok=True)
         from train.io import save_model
 
+        # Ensure we use the trained model
+        trained_model = style_trainer.model
+        if hasattr(trained_model, "module"):
+            trained_model = cast(StyleClassifier, trained_model.module)
+
         save_model(
-            cast(StyleClassifier, model.module if hasattr(model, "module") else model),
+            cast(StyleClassifier, trained_model),
             tokenizer,
             output_dir,
             model_config,
@@ -496,6 +519,17 @@ if __name__ == "__main__":
             fp8=args.fp8,
         )
         print(f"Model saved to: {output_dir}")
+
+        # Final timing report
+        print("-" * 34)
+        print("Performance Summary:")
+        print("-" * 34)
+        if (args.pretrain_mlm and trainer_config.mlm_epochs > 0) or (
+            args.pretrain_kc and trainer_config.kc_epochs > 0
+        ):
+            print(f"  Pretraining: {mlm_end - mlm_start:.1f}s")
+        print(f"  Style Training: {style_end - style_start:.1f}s")
+        print("-" * 34)
 
     if dist.is_available() and dist.is_initialized():
         dist.destroy_process_group()

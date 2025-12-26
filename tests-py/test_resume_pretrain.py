@@ -115,6 +115,5 @@ class TestResumePretrain(unittest.TestCase):
             self.assertEqual(kc_entries[1]["epoch"], 2)
 
 
-
 if __name__ == "__main__":
     unittest.main()
