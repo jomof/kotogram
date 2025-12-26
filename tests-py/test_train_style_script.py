@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 import unittest
 
 from training_test_utils import Bottle
@@ -31,12 +32,12 @@ class TestTrainStyleScript(unittest.TestCase):
 
                     # Step 1: Pre-run labeling to setup cache/data
                     bottle.train_style("--label")
+                    shutil.rmtree(bottle.resolve_path("[data]"))
 
                     # Verify label phase output files using glob patterns
                     expected_label_manifest = [
                         # --- Source Data ---
-                        "[data]/jpn_agrammatic_*.tsv",
-                        "[data]/jpn_sentences*.tsv",
+                        # Data is deleted to ensure downstream independence
                         # --- Generated Cache (Metadata & Vocab) ---
                         "[.cache]/register_samples.csv",
                         "[.cache]/style_dataset/label_metadata.json",
