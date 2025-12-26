@@ -619,7 +619,9 @@ class MLMTrainer:
         self, epoch: int, verbose: bool = True
     ) -> Tuple[float, Dict[str, float]]:
         if verbose and is_main_process():
-            print_phase_header("MLM")
+            print_phase_header(
+                "MLM", epoch=epoch + 1, total_epochs=self.config.mlm_epochs
+            )
 
         self.model.train()
         total_loss, n_batches = 0.0, 0
@@ -1470,7 +1472,10 @@ class KCTrainer:
 
         if verbose and is_main_process():
             print_phase_header(
-                "KC", info="Encoder Frozen" if should_freeze else "Encoder Thawed"
+                "KC",
+                info="Encoder Frozen" if should_freeze else "Encoder Thawed",
+                epoch=epoch + 1,
+                total_epochs=self.config.kc_epochs,
             )
 
         self.model.train()
@@ -2874,7 +2879,9 @@ class Trainer:
         self, epoch: int, verbose: bool = True
     ) -> Tuple[float, float, float, float, float]:
         if verbose and is_main_process():
-            print_phase_header("Style")
+            print_phase_header(
+                "Style", epoch=epoch + 1, total_epochs=self.config.epochs
+            )
 
         self.model.train()
         t_loss: float = 0.0
