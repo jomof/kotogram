@@ -5,19 +5,16 @@ Extracted from train_style.py.
 
 import csv
 import os
-import sys
 from typing import Any, Dict, List, Optional, cast
 
 import torch
-import torch.nn as nn
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
+from torch import nn
 from torch.utils.data import DataLoader
 
-# Add project root to path to allow imports from kotogram
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
+# pylint: disable=wrong-import-position
 from kotogram import locations
 from kotogram.evaluator import Evaluator
 from kotogram.model import (
@@ -26,7 +23,7 @@ from kotogram.model import (
     StyleClassifier,
     load_model,
 )
-from train.dataset import StyleDataset, collate_fn
+from train.dataset import DatasetConfig, StyleDataset, collate_fn
 
 console = Console()
 
@@ -49,7 +46,9 @@ def print_confusion_matrix(
     for label in labels:
         table.add_column(label[:12])
 
-    for i, row in enumerate(matrix):
+    # pylint: disable=consider-using-enumerate
+    for i in range(len(matrix)):
+        row = matrix[i]
         row_str = [str(v) for v in row]
         # Highlight diagonals
         for j in range(len(row)):
@@ -61,17 +60,7 @@ def print_confusion_matrix(
     console.print()
 
 
-def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
-    """Calculate and display reports."""
-    # Summary Table
-    summary = Table(
-        title="Overall Model Performance", show_header=True, header_style="bold cyan"
-    )
-    summary.add_column("Task")
-    summary.add_column("Accuracy/MSE")
-
-    # Formality
-    # Formality
+def _add_formality_metrics(data: Dict[str, Any], summary: Table) -> None:
     f_prag_acc = sum(
         p == label
         for p, label in zip(data["formality_prag_preds"], data["formality_prag_labels"])
@@ -89,7 +78,8 @@ def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
         ) / len(f_prag_labels)
         summary.add_row("Formality Value MSE (Pragmatic samples)", f"{f_mse:.4f}")
 
-    # Gender
+
+def _add_gender_metrics(data: Dict[str, Any], summary: Table) -> None:
     g_prag_acc = sum(
         p == label
         for p, label in zip(data["gender_prag_preds"], data["gender_prag_labels"])
@@ -105,23 +95,24 @@ def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
         ) / len(prag_labels)
         summary.add_row("Gender Value MSE (Pragmatic samples)", f"{g_mse:.4f}")
 
-    # Grammaticality
+
+def _add_grammaticality_metrics(data: Dict[str, Any], summary: Table) -> None:
     gram_acc = sum(
         p == label
         for p, label in zip(data["grammaticality_preds"], data["grammaticality_labels"])
     ) / len(data["grammaticality_preds"])
     summary.add_row("Grammaticality Accuracy", f"{gram_acc:.4%}")
 
-    # Register (Exact Match)
+
+def _add_register_metrics(data: Dict[str, Any], summary: Table) -> None:
     reg_acc = sum(
         all(p[i] == label[i] for i in range(len(p)))
         for p, label in zip(data["register_preds"], data["register_labels"])
     ) / len(data["register_preds"])
     summary.add_row("Register Exact Match Accuracy", f"{reg_acc:.4%}")
 
-    console.print(Panel(summary, expand=False))
 
-    # Confusion Matrices
+def _print_confusion_matrices(data: Dict[str, Any]) -> None:
     # Formality Pragmatic
     f_labels = ["Unpragmatic", "Pragmatic"]
     f_confusion = [[0] * 2 for _ in range(2)]
@@ -147,7 +138,8 @@ def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
         "Grammaticality Confusion Matrix", gram_labels, gram_confusion
     )
 
-    # Register Report
+
+def _print_register_report(data: Dict[str, Any]) -> None:
     reg_table = Table(
         title="Register Classification Report",
         show_header=True,
@@ -192,150 +184,161 @@ def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
     console.print(reg_table)
     console.print()
 
-    # Save Mismatches
-    if save_dir:
-        os.makedirs(save_dir, exist_ok=True)
-        sub_dir = os.path.join(save_dir, "confusion_matrices")
-        os.makedirs(sub_dir, exist_ok=True)
 
-        tasks_mismatches = [
-            (
-                "formality",
-                data["formality_prag_preds"],
-                data["formality_prag_labels"],
-                lambda x: f_labels[x],
-            ),
-            (
-                "gender",
-                data["gender_prag_preds"],
-                data["gender_prag_labels"],
-                lambda x: g_labels[x],
-            ),
-            (
-                "grammaticality",
-                data["grammaticality_preds"],
-                data["grammaticality_labels"],
-                lambda x: gram_labels[x].lower(),
-            ),
-        ]
+def _save_gender_mse_errors(data: Dict[str, Any], save_dir: str, sub_dir: str) -> None:
+    # pylint: disable=too-many-locals
+    prag_mask = [label == 1 for label in data["gender_prag_labels"]]
+    prag_labels = [label for label, m in zip(data["gender_val_labels"], prag_mask) if m]
 
-        for name, preds, labels, formatter in tasks_mismatches:
-            mismatches = []
-            for i in range(len(preds)):
-                if preds[i] != labels[i]:
-                    mismatches.append(
-                        {
-                            "sentence": data["sentences"][i],
-                            "predicted": formatter(preds[i]),
-                            "actual": formatter(labels[i]),
-                            "kotogram": data["kotograms"][i]
-                            if i < len(data["kotograms"])
-                            else "",
-                        }
-                    )
-
-            if mismatches:
-                # Sort by kotogram to group similar grammatical structures, then sentence
-                mismatches.sort(key=lambda x: (x["kotogram"], x["sentence"]))
-
-                # Save to root as .csv
-                out_path_csv = os.path.join(save_dir, f"{name}_confusion.csv")
-                # Save to subdirectory as .tsv
-                out_path_tsv = os.path.join(sub_dir, f"{name}_confusion.tsv")
-
-                for out_path in [out_path_csv, out_path_tsv]:
-                    with open(out_path, "w", newline="", encoding="utf-8") as f:
-                        writer = csv.DictWriter(
-                            f,
-                            fieldnames=["sentence", "predicted", "actual", "kotogram"],
-                            delimiter="\t",
-                        )
-                        writer.writeheader()
-                        writer.writerows(mismatches)
-                console.print(
-                    f"[green]Saved {len(mismatches)} {name} mismatches to {out_path_csv} and {out_path_tsv}[/green]"
-                )
-
-        # Gender MSE worst matches
-        if prag_labels:
-            mse_errors = []
-            for i in range(len(data["gender_val_preds"])):
-                if prag_mask[i]:
-                    error = (
-                        data["gender_val_preds"][i] - data["gender_val_labels"][i]
-                    ) ** 2
-                    mse_errors.append(
-                        {
-                            "sentence": data["sentences"][i],
-                            "predicted": f"{data['gender_val_preds'][i]:.4f}",
-                            "actual": f"{data['gender_val_labels'][i]:.4f}",
-                            "error": error,
-                            "kotogram": data["kotograms"][i]
-                            if i < len(data["kotograms"])
-                            else "",
-                        }
-                    )
-
-            if mse_errors:
-                mse_errors.sort(key=lambda x: x["error"], reverse=True)
-                top_mse = mse_errors[:50]
-
-                out_path_csv = os.path.join(save_dir, "gender_mse_confusion.csv")
-                out_path_tsv = os.path.join(sub_dir, "gender_mse_confusion.tsv")
-
-                for out_path in [out_path_csv, out_path_tsv]:
-                    with open(out_path, "w", newline="", encoding="utf-8") as f:
-                        writer = csv.DictWriter(
-                            f,
-                            fieldnames=[
-                                "sentence",
-                                "predicted",
-                                "actual",
-                                "error",
-                                "kotogram",
-                            ],
-                            delimiter="\t",
-                        )
-                        writer.writeheader()
-                        writer.writerows(top_mse)
-                console.print(
-                    f"[green]Saved top 50 gender MSE errors to {out_path_csv} and {out_path_tsv}[/green]"
-                )
-
-        # Register mismatches
-        reg_mismatches = []
-        for i in range(len(data["register_preds"])):
-            if any(
-                data["register_preds"][i][j] != data["register_labels"][i][j]
-                for j in range(NUM_REGISTER_CLASSES)
-            ):
-                p_names = [
-                    REGISTER_ID_TO_LABEL[j].value
-                    for j, val in enumerate(data["register_preds"][i])
-                    if val == 1
-                ]
-                l_names = [
-                    REGISTER_ID_TO_LABEL[j].value
-                    for j, val in enumerate(data["register_labels"][i])
-                    if val == 1
-                ]
-                reg_mismatches.append(
+    if prag_labels:
+        mse_errors = []
+        for i, (pred, label, mask) in enumerate(
+            zip(data["gender_val_preds"], data["gender_val_labels"], prag_mask)
+        ):
+            if mask:
+                error = (pred - label) ** 2
+                mse_errors.append(
                     {
                         "sentence": data["sentences"][i],
-                        "predicted": ",".join(p_names),
-                        "actual": ",".join(l_names),
+                        "predicted": f"{pred:.4f}",
+                        "actual": f"{label:.4f}",
+                        "error": error,
                         "kotogram": data["kotograms"][i]
                         if i < len(data["kotograms"])
                         else "",
                     }
                 )
 
-        if reg_mismatches:
-            # Sort by kotogram to group similar grammatical structures, then sentence
-            reg_mismatches.sort(key=lambda x: (x["kotogram"], x["sentence"]))
+        if mse_errors:
+            mse_errors.sort(key=lambda x: x["error"], reverse=True)
+            top_mse = mse_errors[:50]
 
-            out_path_csv = os.path.join(save_dir, "register_confusion.csv")
-            out_path_tsv = os.path.join(sub_dir, "register_confusion.tsv")
+            out_path_csv = os.path.join(save_dir, "gender_mse_confusion.csv")
+            out_path_tsv = os.path.join(sub_dir, "gender_mse_confusion.tsv")
+
+            for out_path in [out_path_csv, out_path_tsv]:
+                with open(out_path, "w", newline="", encoding="utf-8") as f:
+                    writer = csv.DictWriter(
+                        f,
+                        fieldnames=[
+                            "sentence",
+                            "predicted",
+                            "actual",
+                            "error",
+                            "kotogram",
+                        ],
+                        delimiter="\t",
+                    )
+                    writer.writeheader()
+                    writer.writerows(top_mse)
+            console.print(
+                f"[green]Saved top 50 gender MSE errors to {out_path_csv} and {out_path_tsv}[/green]"
+            )
+
+
+def _save_register_mismatches(
+    data: Dict[str, Any], save_dir: str, sub_dir: str
+) -> None:
+    # pylint: disable=too-many-locals
+    reg_mismatches = []
+    # pylint: disable=consider-using-enumerate
+    for i in range(len(data["register_preds"])):
+        if any(
+            data["register_preds"][i][j] != data["register_labels"][i][j]
+            for j in range(NUM_REGISTER_CLASSES)
+        ):
+            p_names = [
+                REGISTER_ID_TO_LABEL[j].value
+                for j, val in enumerate(data["register_preds"][i])
+                if val == 1
+            ]
+            l_names = [
+                REGISTER_ID_TO_LABEL[j].value
+                for j, val in enumerate(data["register_labels"][i])
+                if val == 1
+            ]
+            reg_mismatches.append(
+                {
+                    "sentence": data["sentences"][i],
+                    "predicted": ",".join(p_names),
+                    "actual": ",".join(l_names),
+                    "kotogram": data["kotograms"][i]
+                    if i < len(data["kotograms"])
+                    else "",
+                }
+            )
+
+    if reg_mismatches:
+        # Sort by kotogram to group similar grammatical structures, then sentence
+        reg_mismatches.sort(key=lambda x: (x["kotogram"], x["sentence"]))
+
+        out_path_csv = os.path.join(save_dir, "register_confusion.csv")
+        out_path_tsv = os.path.join(sub_dir, "register_confusion.tsv")
+
+        for out_path in [out_path_csv, out_path_tsv]:
+            with open(out_path, "w", newline="", encoding="utf-8") as f:
+                writer = csv.DictWriter(
+                    f,
+                    fieldnames=["sentence", "predicted", "actual", "kotogram"],
+                    delimiter="\t",
+                )
+                writer.writeheader()
+                writer.writerows(reg_mismatches)
+        console.print(
+            f"[green]Saved {len(reg_mismatches)} register mismatches to {out_path_csv} and {out_path_tsv}[/green]"
+        )
+
+
+def _save_mismatches(data: Dict[str, Any], save_dir: str) -> None:
+    # pylint: disable=too-many-locals
+    os.makedirs(save_dir, exist_ok=True)
+    sub_dir = os.path.join(save_dir, "confusion_matrices")
+    os.makedirs(sub_dir, exist_ok=True)
+
+    tasks_mismatches = [
+        (
+            "formality",
+            data["formality_prag_preds"],
+            data["formality_prag_labels"],
+            lambda x: ["Unpragmatic", "Pragmatic"][x],
+        ),
+        (
+            "gender",
+            data["gender_prag_preds"],
+            data["gender_prag_labels"],
+            lambda x: ["Unpragmatic", "Pragmatic"][x],
+        ),
+        (
+            "grammaticality",
+            data["grammaticality_preds"],
+            data["grammaticality_labels"],
+            lambda x: ["Agrammatic", "Grammatic"][x].lower(),
+        ),
+    ]
+
+    for name, preds, labels, formatter in tasks_mismatches:
+        mismatches = []
+        for i, (pred, label) in enumerate(zip(preds, labels)):
+            if pred != label:
+                mismatches.append(
+                    {
+                        "sentence": data["sentences"][i],
+                        "predicted": formatter(pred),
+                        "actual": formatter(label),
+                        "kotogram": data["kotograms"][i]
+                        if i < len(data["kotograms"])
+                        else "",
+                    }
+                )
+
+        if mismatches:
+            # Sort by kotogram to group similar grammatical structures, then sentence
+            mismatches.sort(key=lambda x: (x["kotogram"], x["sentence"]))
+
+            # Save to root as .csv
+            out_path_csv = os.path.join(save_dir, f"{name}_confusion.csv")
+            # Save to subdirectory as .tsv
+            out_path_tsv = os.path.join(sub_dir, f"{name}_confusion.tsv")
 
             for out_path in [out_path_csv, out_path_tsv]:
                 with open(out_path, "w", newline="", encoding="utf-8") as f:
@@ -345,13 +348,40 @@ def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
                         delimiter="\t",
                     )
                     writer.writeheader()
-                    writer.writerows(reg_mismatches)
+                    writer.writerows(mismatches)
             console.print(
-                f"[green]Saved {len(reg_mismatches)} register mismatches to {out_path_csv} and {out_path_tsv}[/green]"
+                f"[green]Saved {len(mismatches)} {name} mismatches to {out_path_csv} and {out_path_tsv}[/green]"
             )
+
+    _save_gender_mse_errors(data, save_dir, sub_dir)
+    _save_register_mismatches(data, save_dir, sub_dir)
+
+
+def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
+    """Calculate and display reports."""
+    # Summary Table
+    summary = Table(
+        title="Overall Model Performance", show_header=True, header_style="bold cyan"
+    )
+    summary.add_column("Task")
+    summary.add_column("Accuracy/MSE")
+
+    _add_formality_metrics(data, summary)
+    _add_gender_metrics(data, summary)
+    _add_grammaticality_metrics(data, summary)
+    _add_register_metrics(data, summary)
+
+    console.print(Panel(summary, expand=False))
+
+    _print_confusion_matrices(data)
+    _print_register_report(data)
+
+    if save_dir:
+        _save_mismatches(data, save_dir)
 
 
 def main() -> None:
+    # pylint: disable=too-many-locals
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -385,7 +415,7 @@ def main() -> None:
 
     if args.config:
         # Load unified config from file
-        model_config, trainer_config = TrainerConfig.load_config(args.config)
+        _, trainer_config = TrainerConfig.load_config(args.config)
         # Use batch size from config if not explicitly set to something else?
         # Actually, let's just use what's in the config by default, but allow override.
         # But if the user didn't specify --batch-size, args.batch_size will be 512.
@@ -457,18 +487,20 @@ def main() -> None:
         dataset = StyleDataset.from_multiple_tsv(
             data_files,
             tokenizer,
-            labeled=True,
-            grammaticality_labels=grammaticality_labels,
-            sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-            verbose=True,
+            config=DatasetConfig(
+                grammaticality_labels=grammaticality_labels,
+                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                verbose=True,
+            ),
         )
     else:
         dataset = StyleDataset.from_tsv(
             data_files[0],
             tokenizer,
-            labeled=True,
-            sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-            verbose=True,
+            config=DatasetConfig(
+                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                verbose=True,
+            ),
         )
 
     # Determine num_workers: 0 is much faster for in-memory datasets on macOS (avoid spawn overhead)

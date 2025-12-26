@@ -26,7 +26,7 @@ def train_style(
     cmd = [script_path] + args.split()
 
     result = subprocess.run(
-        cmd, env=env, cwd=project_root, capture_output=True, text=True
+        cmd, env=env, cwd=project_root, capture_output=True, text=True, check=False
     )
 
     if result.returncode != 0:
@@ -79,6 +79,7 @@ def populate_test_data(root_dir: str, project_root: str):
             f.writelines(lines)
 
 
+# pylint: disable=too-many-locals
 def assert_dir_layout(test_case, root_dir: str, expected_manifest: List[str]):
     """Asserts that the file layout in root_dir matches expected_manifest with glob support.
 
@@ -107,9 +108,7 @@ def assert_dir_layout(test_case, root_dir: str, expected_manifest: List[str]):
 
     # Check for duplicates in expected_manifest
     if len(expected_manifest) != len(set(expected_manifest)):
-        duplicates = set(
-            [x for x in expected_manifest if expected_manifest.count(x) > 1]
-        )
+        duplicates = {x for x in expected_manifest if expected_manifest.count(x) > 1}
         test_case.fail(f"Duplicate entries found in expected_manifest: {duplicates}")
 
     # Get the paths relative to root_dir
@@ -193,6 +192,7 @@ class Bottle:
             os.path.join(os.path.dirname(__file__), "..")
         )
         self.script_path = os.path.join(self.project_root, "train_style")
+        # pylint: disable=consider-using-with
         self.temp_dir = tempfile.TemporaryDirectory()
         self.root_dir = self.temp_dir.name
         # Stores snapshots as Dict[snap_name, Dict[rel_path, hash]]
@@ -209,7 +209,7 @@ class Bottle:
     def _get_current_state(self) -> Dict[str, str]:
         """Collects the current state (file hashes) of all files in root_dir."""
         state = {}
-        for root, dirs, files in os.walk(self.root_dir):
+        for root, _, files in os.walk(self.root_dir):
             for file in files:
                 if file == ".DS_Store":
                     continue
@@ -307,7 +307,12 @@ class Bottle:
 
         cmd = [bin_path] + list(args)
         result = subprocess.run(
-            cmd, env=env, cwd=self.project_root, capture_output=True, text=True
+            cmd,
+            env=env,
+            cwd=self.project_root,
+            capture_output=True,
+            text=True,
+            check=False,
         )
 
         self.test_case.assertEqual(
@@ -356,6 +361,7 @@ class Bottle:
         """Alias for resolve_path."""
         return self.resolve_path(path_template)
 
+    # pylint: disable=invalid-name
     def assertModelIsFp8(self, model_path: str):
         """Asserts that the model at model_path is in FP8 format."""
         if not os.path.exists(model_path):
@@ -389,9 +395,10 @@ class Bottle:
         if not os.path.exists(epochs_path):
             return []
 
-        with open(epochs_path, "r") as f:
+        with open(epochs_path, "r", encoding="utf-8") as f:
             return json.load(f)
 
+    # pylint: disable=invalid-name
     def assertEpochsTrained(self, result, expected_epochs: List[int]):
         """Asserts that specific epoch numbers were trained."""
         import re
@@ -434,6 +441,7 @@ class Bottle:
             f"Expected epochs {expected_epochs} but found {trained_stdout}",
         )
 
+    # pylint: disable=too-many-locals,too-many-nested-blocks
     def assert_dir_diff(self, snap_name: str, expected_diffs: List[str]):
         """Asserts that the differences between the current state and a snapshot match expected_diffs.
 
@@ -442,7 +450,7 @@ class Bottle:
             expected_diffs: List of strings like "path/to/file ADDED", "MODIFIED", or "DELETED".
         """
         if len(expected_diffs) != len(set(expected_diffs)):
-            duplicates = set([x for x in expected_diffs if expected_diffs.count(x) > 1])
+            duplicates = {x for x in expected_diffs if expected_diffs.count(x) > 1}
             self.test_case.fail(
                 f"Duplicate entries found in expected_diffs: {duplicates}"
             )
@@ -522,7 +530,6 @@ class Bottle:
                         # If actual is not in diffs, we fall through. But wait, actual_diffs ONLY contain changes.
                         # MAYBE-MODIFIED means: if it IS modified, it's consumed. If it's NOT modified, it's also okay.
                         # So if we find a MODIFIED, we claim it.
-                        pass
                     elif act_type == change_type and fnmatch.fnmatch(
                         act_path, path_glob
                     ):
@@ -584,6 +591,7 @@ def setup_mock_style_model(test_case):
 
     # Create dummy tokenizer
     test_case.tokenizer = Tokenizer()
+    # pylint: disable=protected-access
     test_case.tokenizer._frozen = True
 
     # Create dummy model

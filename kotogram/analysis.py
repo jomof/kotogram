@@ -20,9 +20,9 @@ if TYPE_CHECKING:
     from kotogram.tokenizer import Tokenizer
 
 # Global cache for loaded model (lazy loading)
-_style_model: Optional["StyleClassifier"] = None
-_style_tokenizer: Optional["Tokenizer"] = None
-_style_model_path: str = "models/style"
+_STYLE_MODEL: Optional["StyleClassifier"] = None
+_STYLE_TOKENIZER: Optional["Tokenizer"] = None
+_STYLE_MODEL_PATH: str = "models/style"
 
 
 def _load_style_model() -> Tuple["StyleClassifier", "Tokenizer"]:
@@ -34,20 +34,20 @@ def _load_style_model() -> Tuple["StyleClassifier", "Tokenizer"]:
     Raises:
         FileNotFoundError: If model files are not found at the expected path.
     """
-    global _style_model, _style_tokenizer
+    global _STYLE_MODEL, _STYLE_TOKENIZER  # pylint: disable=global-statement
 
-    if _style_model is None or _style_tokenizer is None:
+    if _STYLE_MODEL is None or _STYLE_TOKENIZER is None:
         from kotogram.model import load_default_style_model, load_model
 
         # Priority 1: Check for local model in style-output dir (handles TRAIN_ROOT)
         model_dir = locations.get_style_output_dir()
         if os.path.exists(os.path.join(model_dir, "model.pt")):
-            _style_model, _style_tokenizer = load_model(model_dir)
+            _STYLE_MODEL, _STYLE_TOKENIZER = load_model(model_dir)
         else:
             # Priority 2: Fall back to package-default model
-            _style_model, _style_tokenizer = load_default_style_model()
+            _STYLE_MODEL, _STYLE_TOKENIZER = load_default_style_model()
 
-    return _style_model, _style_tokenizer
+    return _STYLE_MODEL, _STYLE_TOKENIZER
 
 
 @dataclass
@@ -114,6 +114,7 @@ class GrammarAnalysis:
 
 
 def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
+    # pylint: disable=too-many-locals
     """Analyze a list of Japanese sentences in batch and return results.
 
     This function is significantly more efficient than calling grammar()

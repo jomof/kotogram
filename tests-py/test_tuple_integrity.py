@@ -23,7 +23,7 @@ class TestResultIntegrity(unittest.TestCase):
 
         # Single-element batch
         batch = [("これはテストです", 1)]  # (sentence, gram_label)
-        results, counters = _process_sentence_batch(batch)
+        results, _ = _process_sentence_batch(batch)
 
         assert len(results) == 1, "Expected 1 result"
         result = results[0]
@@ -66,7 +66,7 @@ class TestResultIntegrity(unittest.TestCase):
 
         # Single-element batch with pre-computed kotogram
         batch = [("テスト", "テスト[*]", 1)]  # (sentence, kotogram, gram_label)
-        results, counters = _compute_labels_batch(batch)
+        results, _ = _compute_labels_batch(batch)
 
         assert len(results) == 1, "Expected 1 result"
         result = results[0]
@@ -113,7 +113,7 @@ class TestResultIntegrity(unittest.TestCase):
             ("お元気ですか", 1),
         ]
 
-        results, counters = _process_sentence_batch(rows)
+        results, _ = _process_sentence_batch(rows)
 
         assert len(results) > 0, "Expected at least some results"
 
@@ -153,7 +153,7 @@ class TestResultIntegrity(unittest.TestCase):
         from scripts.label import _process_sentence_batch
 
         batch = [("お嬢様はごきげんよう", 1)]  # Ojousama register
-        results, counters = _process_sentence_batch(batch)
+        results, _ = _process_sentence_batch(batch)
 
         assert len(results) == 1
         result = results[0]

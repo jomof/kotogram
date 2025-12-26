@@ -111,7 +111,9 @@ success "Mypy passed"
 run_quiet vulture kotogram scripts train tests-py scripts/vulture_whitelist.py train_style bin/kotogram
 success "Vulture passed"
 
-run_quiet pylint --disable=all --enable=duplicate-code kotogram scripts train tests-py train_style bin/kotogram
+# Add current directory and tests-py to PYTHONPATH to ensure Pylint can resolve local modules and test utilities
+export PYTHONPATH="${PYTHONPATH:-}:$(pwd):$(pwd)/tests-py"
+run_quiet pylint --enable=duplicate-code kotogram scripts train tests-py train_style bin/kotogram
 success "Pylint duplication check passed"
 
 if [ -f "package.json" ]; then

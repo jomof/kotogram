@@ -7,7 +7,7 @@ import random
 from typing import Any, Dict, Optional, cast
 
 import torch
-import torch.nn as nn
+from torch import nn
 
 from kotogram.model import (
     FORMALITY_LABEL_TO_ID,
@@ -27,6 +27,7 @@ def save_model(
     fp8: bool = False,
 ) -> None:
     """Save trained model, tokenizer, and config."""
+    # pylint: disable=too-many-positional-arguments
     os.makedirs(path, exist_ok=True)
 
     # Save model weights
@@ -59,14 +60,14 @@ def save_model(
 
     # Save config
     config = config or model.config
-    with open(os.path.join(path, "model.json"), "w") as f:
+    with open(os.path.join(path, "model.json"), "w", encoding="utf-8") as f:
         json.dump(config.to_dict(), f, indent=2)
 
     # Save label mappings
     formality_label_map = {k.value: v for k, v in FORMALITY_LABEL_TO_ID.items()}
     gender_label_map = {k.value: v for k, v in GENDER_LABEL_TO_ID.items()}
     grammaticality_label_map = {"agrammatic": 0, "grammatic": 1}
-    with open(os.path.join(path, "labels.json"), "w") as f:
+    with open(os.path.join(path, "labels.json"), "w", encoding="utf-8") as f:
         json.dump(
             {
                 "formality": formality_label_map,
@@ -78,7 +79,7 @@ def save_model(
         )
 
     # Mark as feature-based multi-task model
-    with open(os.path.join(path, "model_type.txt"), "w") as f:
+    with open(os.path.join(path, "model_type.txt"), "w", encoding="utf-8") as f:
         f.write("style-multitask")
 
 
@@ -126,6 +127,7 @@ def save_training_state(
     filename: str = "checkpoint.pt",
 ) -> None:
     """Generic training state save."""
+    # pylint: disable=too-many-positional-arguments
     os.makedirs(path, exist_ok=True)
     checkpoint = {
         "epoch": epoch,
@@ -160,6 +162,7 @@ def load_training_state(
     device: str = "cpu",
 ) -> Dict[str, Any]:
     """Generic training state load."""
+    # pylint: disable=too-many-positional-arguments
     full_path = os.path.join(path, filename)
     if not os.path.exists(full_path):
         raise FileNotFoundError(f"No checkpoint at {full_path}")

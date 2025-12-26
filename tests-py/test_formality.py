@@ -9,6 +9,7 @@ from kotogram import FormalityLevel, RegisterLevel, SudachiJapaneseParser, gramm
 from kotogram.model import StylePrediction
 
 
+# pylint: disable=no-member
 class TestFormalityModel(unittest.TestCase):
     """Test formality analysis using the neural model."""
 
@@ -107,7 +108,6 @@ class TestFormalityModel(unittest.TestCase):
         # Actually I removed the 'if not tokens' check in analysis.py.
         # If tokenizer handles empty string fine, model will predict something.
         # Let's skip this test if I'm unsure, OR I'll add the check back in analysis.py if it fails.
-        pass
 
 
 if __name__ == "__main__":

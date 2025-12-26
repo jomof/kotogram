@@ -1,19 +1,23 @@
 """Core training logic and model extensions for style classification."""
 
 import json
+
+# pylint: disable=too-many-lines,not-callable
 import math
 import os
 import resource
 import sys
 import time
+from dataclasses import dataclass
+from dataclasses import field as dc_field
 from datetime import datetime, timedelta
 from functools import partial
 from typing import Any, Callable, Dict, List, Optional, Tuple, cast
 
 import torch
 import torch.distributed as dist
-import torch.nn as nn
 import torch.nn.functional as F
+from torch import nn
 from torch.amp import GradScaler, autocast
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.optim import Adam
@@ -49,6 +53,69 @@ from .display import (
 )
 
 
+@dataclass
+class TrainingMetrics:
+    """Accumulate training metrics for an epoch."""
+
+    total_loss: float = 0.0
+    formality_loss: float = 0.0
+    gender_loss: float = 0.0
+    grammaticality_loss: float = 0.0
+    register_loss: float = 0.0
+    count: int = 0
+
+    def update(self, loss_dict: Dict[str, float], count: int = 1) -> None:
+        """Update metrics with batch losses."""
+        self.total_loss += loss_dict["loss"] * count
+        self.formality_loss += loss_dict["formality_loss"] * count
+        self.gender_loss += loss_dict["gender_loss"] * count
+        self.grammaticality_loss += loss_dict["grammaticality_loss"] * count
+        self.register_loss += loss_dict["register_loss"] * count
+        self.count += count
+
+    def average(self) -> Tuple[float, float, float, float, float]:
+        """Return averaged metrics."""
+        n = max(1, self.count)
+        return (
+            self.total_loss / n,
+            self.formality_loss / n,
+            self.gender_loss / n,
+            self.grammaticality_loss / n,
+            self.register_loss / n,
+        )
+
+    def get_avg_loss(self) -> float:
+        """Return average total loss."""
+        return self.total_loss / max(1, self.count)
+
+
+@dataclass
+class KCMetricsAccumulator:
+    """Accumulate KC probe metrics."""
+
+    n_samples: int = 0
+    sum_entropy: float = 0.0
+    sum_kl: float = 0.0
+    sum_tv: float = 0.0
+    sum_gap: float = 0.0
+    sum_avg_prob: float = 0.0
+    sum_act_dens: float = 0.0
+    topk_hist: torch.Tensor = dc_field(default_factory=lambda: torch.tensor([]))
+    top1_hist: torch.Tensor = dc_field(default_factory=lambda: torch.tensor([]))
+    head_samples: Dict[str, Dict[str, Any]] = dc_field(default_factory=dict)
+
+
+@dataclass
+class KCProbeConfig:
+    """Configuration for KC probe evaluation."""
+
+    tau_usage: float
+    vocab_size: int
+    topk: int
+    target_specs: Dict[str, Any]
+    max_samples_per_head: int
+
+
 def _worker_init_fn(_: int) -> None:
     """Worker initialization function to limit per-worker threads."""
     torch.set_num_threads(1)
@@ -79,7 +146,6 @@ class Timer:
             # We append in the loop, but typically we might want to start fresh or append?
             # User wants "flush frequently... machine locks up", implies streaming.
             # Let's just append to allow restart resilience, or mode='a'.
-            pass
 
     def start(self) -> None:
         self.start_time = time.perf_counter()
@@ -110,7 +176,7 @@ class Timer:
                 "minflt": minflt,
             }
 
-            with open(self.output_path, "a") as f:
+            with open(self.output_path, "a", encoding="utf-8") as f:
                 f.write(json.dumps(entry) + "\n")
                 f.flush()
                 # os.fsync(f.fileno()) # Dropping fsync for speed/stability if desired, or keeping it?
@@ -186,6 +252,7 @@ class StyleClassifierWithMLM(StyleClassifier):
             return self.forward_kc(*args, **kwargs)
         return super().forward(*args, **kwargs)
 
+    # pylint: disable=too-many-locals,too-many-positional-arguments
     def forward_kc(
         self,
         field_inputs: Dict[str, torch.Tensor],
@@ -330,6 +397,7 @@ def setup_distributed() -> Tuple[int, int, int]:
     return 0, 1, 0
 
 
+# pylint: disable=too-many-locals
 def create_mlm_batch(
     batch: Dict[str, torch.Tensor],
     mask_prob: float = 0.15,
@@ -340,7 +408,7 @@ def create_mlm_batch(
     """Create masked language modeling batch for feature-based tokens."""
     special_token_ids = special_token_ids or [0, 1, 2, 3]
     vocab_sizes = vocab_sizes or {}
-    HIDDEN_FIELDS = ["surface", "lemma"]
+    hidden_fields = ["surface", "lemma"]
     primary_field = "pos"
     primary_ids = batch[f"input_ids_{primary_field}"].clone()
 
@@ -359,7 +427,7 @@ def create_mlm_batch(
     for field in FEATURE_FIELDS:
         field_ids = batch[f"input_ids_{field}"].clone()
         mlm_labels = torch.full_like(field_ids, -100)
-        if field in HIDDEN_FIELDS:
+        if field in hidden_fields:
             active_tokens = batch["attention_mask"].bool()
             field_ids[active_tokens] = mask_token_id
         else:
@@ -378,9 +446,10 @@ def create_mlm_batch(
     return result
 
 
+# pylint: disable=too-many-locals
 def create_kc_batch(
     batch: Dict[str, torch.Tensor],
-    tokenizer: Tokenizer,
+    _tokenizer: Tokenizer,
     target_specs: Dict[str, int],
     *,
     large_head_threshold: int = 4096,
@@ -392,9 +461,10 @@ def create_kc_batch(
     - For small heads (vocab_size <= large_head_threshold): dense multi-hot (B, V)
     - For large heads: sparse positive indices (B, P) with mask
     """
+    # pylint: disable=too-many-locals
     result: Dict[str, torch.Tensor] = {}
     attn = batch["attention_mask"].bool()
-    B = int(attn.size(0))
+    batch_size = int(attn.size(0))
 
     for name, vocab_size in target_specs.items():
         # Strip prefixes for multi-task heads (bag_lemma -> lemma)
@@ -412,8 +482,8 @@ def create_kc_batch(
 
         if vocab_size <= large_head_threshold:
             # Dense path for small heads
-            multi_hot = torch.zeros((B, vocab_size), device=ids.device)
-            for i in range(B):
+            multi_hot = torch.zeros((batch_size, vocab_size), device=ids.device)
+            for i in range(batch_size):
                 tok = ids[i, attn[i]]
                 tok = tok[tok >= 4]  # skip specials
                 if tok.numel() == 0:
@@ -426,12 +496,15 @@ def create_kc_batch(
         else:
             # Sparse path for large heads
             pos_inds = torch.full(
-                (B, max_pos_per_sample), -1, dtype=torch.long, device=ids.device
+                (batch_size, max_pos_per_sample),
+                -1,
+                dtype=torch.long,
+                device=ids.device,
             )
             pos_mask = torch.zeros(
-                (B, max_pos_per_sample), dtype=torch.bool, device=ids.device
+                (batch_size, max_pos_per_sample), dtype=torch.bool, device=ids.device
             )
-            for i in range(B):
+            for i in range(batch_size):
                 tok = ids[i, attn[i]]
                 tok = tok[tok >= 4]
                 if tok.numel() == 0:
@@ -454,6 +527,7 @@ def create_kc_batch(
 class MLMTrainer:
     """Trainer for self-supervised MLM pretraining."""
 
+    # pylint: disable=too-many-positional-arguments
     def __init__(
         self,
         model: StyleClassifierWithMLM,
@@ -615,6 +689,7 @@ class MLMTrainer:
             )
         return True
 
+    # pylint: disable=too-many-locals
     def train_epoch(
         self, epoch: int, verbose: bool = True
     ) -> Tuple[float, Dict[str, float]]:
@@ -629,6 +704,8 @@ class MLMTrainer:
         total_batches = len(self.data_loader)
 
         self.train_timer_data.start()
+        # Initialize batch_idx to handle empty loops
+        batch_idx = 0
         for batch_idx, batch in enumerate(self.data_loader):
             self.train_timer_data.stop(epoch, batch_idx)
             self.train_timer_compute.start()
@@ -838,6 +915,7 @@ def tensor_finite_stats(x: Optional[torch.Tensor]) -> Dict[str, Any]:
 class KCTrainer:
     """Trainer for Knowledge Component (KC) learning."""
 
+    # pylint: disable=too-many-positional-arguments
     def __init__(
         self,
         model: StyleClassifierWithMLM,
@@ -1134,6 +1212,7 @@ class KCTrainer:
         if m.kc_head.linear.bias is not None:
             nn.init.zeros_(m.kc_head.linear.bias)
 
+    # pylint: disable=too-many-locals,too-many-positional-arguments
     def _bce_sampled_from_sparse(
         self,
         logits_f: torch.Tensor,  # (B, V) float
@@ -1147,10 +1226,10 @@ class KCTrainer:
 
         Round 13: For large vocabulary heads, avoids allocating (B, V) tensors.
         """
-        B = int(logits_f.size(0))
+        batch_size = int(logits_f.size(0))
         device = logits_f.device
-        P = int(pos_inds.size(1))
-        K = neg_count
+        n_pos = int(pos_inds.size(1))
+        neg_c = neg_count
 
         # Positives: keep only masked, replace unmasked with -1
         pos_i = pos_inds.clone()
@@ -1159,10 +1238,12 @@ class KCTrainer:
         # Sample negatives uniformly from [4, vocab_size)
         g = torch.Generator(device=device)
         g.manual_seed(seed)
-        neg_i = torch.randint(4, vocab_size, (B, K), device=device, generator=g)
+        neg_i = torch.randint(
+            4, vocab_size, (batch_size, neg_c), device=device, generator=g
+        )
 
         # Collision mitigation: if neg is in positives, resample
-        if P > 0 and pos_mask.any():
+        if n_pos > 0 and pos_mask.any():
             for _ in range(3):
                 coll = (neg_i.unsqueeze(-1) == pos_i.unsqueeze(1)).any(dim=-1)
                 if not coll.any():
@@ -1176,13 +1257,18 @@ class KCTrainer:
         idxs = torch.cat([pos_i, neg_i], dim=1)  # (B, P+K)
 
         # Targets: positives=1 where pos_mask else ignore; negatives=0
+        # Targets: positives=1 where pos_mask else ignore; negatives=0
         t_pos = pos_mask.float()
-        t_neg = torch.zeros((B, K), device=device, dtype=torch.float)
+        t_neg = torch.zeros((batch_size, neg_c), device=device, dtype=torch.float)
         t = torch.cat([t_pos, t_neg], dim=1)
 
         # Mask for valid indices (pos part excludes padded -1; neg part always valid)
         valid = torch.cat(
-            [pos_mask, torch.ones((B, K), device=device, dtype=torch.bool)], dim=1
+            [
+                pos_mask,
+                torch.ones((batch_size, neg_c), device=device, dtype=torch.bool),
+            ],
+            dim=1,
         )
 
         # Gather logits at indices; replace -1 with 0 for gather safety
@@ -1194,6 +1280,7 @@ class KCTrainer:
         loss = (loss_elem * valid.float()).sum() / valid.float().sum().clamp_min(1.0)
         return loss
 
+    # pylint: disable=too-many-locals
     def _init_structural_decoder_biases(self, num_batches: int = 10) -> None:
         raw = self.model.module if self.is_distributed else self.model
         m = cast("StyleClassifierWithMLM", raw)
@@ -1211,7 +1298,7 @@ class KCTrainer:
             # MUST generate targets as they aren't pre-computed in the dataset
             kc_targets = create_kc_batch(
                 batch=batch,
-                tokenizer=self.dataset.tokenizer,
+                _tokenizer=self.dataset.tokenizer,
                 target_specs=m.config.kc_target_specs,
             )
 
@@ -1229,9 +1316,9 @@ class KCTrainer:
                     # Sparse path (large heads like lemma)
                     # p = (num_pos) / (B * V)
                     pos_mask_t = kc_targets[mask_key]
-                    B = pos_mask_t.size(0)
+                    batch_size = pos_mask_t.size(0)
                     num_pos = pos_mask_t.sum().item()
-                    p = num_pos / (B * vocab_size)
+                    p = num_pos / (batch_size * vocab_size)
                     sums[name] = sums.get(name, 0.0) + p
                     counts[name] = counts.get(name, 0) + 1
 
@@ -1281,10 +1368,11 @@ class KCTrainer:
             total += (g.float().norm(2).item()) ** 2
         return float(total**0.5)
 
+    # pylint: disable=too-many-locals,too-many-positional-arguments
     def _perform_optimizer_step(
         self,
         m: StyleClassifierWithMLM,
-        verbose: bool,
+        _verbose: bool,
         has_printed_step_check: bool,
         accum: int,
         is_flush: bool = False,
@@ -1463,6 +1551,7 @@ class KCTrainer:
         # We always use 2 groups now to maintain checkpoint compatibility
         self.optimizer = Adam([pg_heads, pg_encoder])
 
+    # pylint: disable=too-many-locals
     def train_epoch(
         self, epoch: int = 0, verbose: bool = True
     ) -> Tuple[float, Dict[str, float], float, Dict[str, Any]]:
@@ -1546,7 +1635,7 @@ class KCTrainer:
             # Generate KC targets on-the-fly
             kc_targets = create_kc_batch(
                 batch=batch,
-                tokenizer=self.dataset.tokenizer,
+                _tokenizer=self.dataset.tokenizer,
                 target_specs=m.config.kc_target_specs,
             )
             batch.update(kc_targets)
@@ -1642,8 +1731,8 @@ class KCTrainer:
                     continue  # Skip this batch
 
                 # Reset streak on successful forward
-                if self._nonfinite_streak > 0:
-                    self._nonfinite_streak = 0
+                # Reset streak on successful forward
+                self._nonfinite_streak = min(self._nonfinite_streak, 0)
 
                 # Thawed Clamping (Optional but High Impact)
                 # Training-time only tweak to limit gradient explosion from "winning" KCs
@@ -1670,8 +1759,8 @@ class KCTrainer:
                 inds_cpu = topk_inds.detach().to("cpu")  # (B, K)
                 vals_cpu = topk_vals.detach().to("cpu")  # (B, K)
 
-                B_sz = int(inds_cpu.size(0))
-                kc_usage_total_samples += B_sz
+                batch_size = int(inds_cpu.size(0))
+                kc_usage_total_samples += batch_size
 
                 flat = inds_cpu.reshape(-1)
                 topk_hist += torch.bincount(flat, minlength=kc_vocab_size)
@@ -1747,14 +1836,22 @@ class KCTrainer:
                             # Gather others sorted by density
                             all_heads = sorted(outputs["target_logits"].keys())
 
+                            # pylint: disable=too-many-locals
                             # Helper to compute single-head stats
-                            def get_head_stat(name: str) -> Dict[str, Any]:
+                            def get_head_stat(
+                                name: str,
+                                batch: Dict[str, Any],
+                                outputs: Dict[str, Any],
+                            ) -> Dict[str, Any]:
                                 logits = outputs["target_logits"][name]
 
                                 # Round 15: Handle both dense and sparse target formats
                                 dense_key = f"kc_targets_{name}"
                                 pos_key = f"kc_pos_inds_{name}"
                                 mask_key = f"kc_pos_mask_{name}"
+                                t: Optional[torch.Tensor] = None
+                                pos_inds: Optional[torch.Tensor] = None
+                                pos_mask_t: Optional[torch.Tensor] = None
 
                                 if dense_key in batch:
                                     # Dense path (small heads)
@@ -1771,10 +1868,12 @@ class KCTrainer:
                                 with torch.no_grad():
                                     if is_sparse:
                                         # Compute stats from sparse format
-                                        B = pos_inds.size(0)
+                                        assert pos_inds is not None
+                                        assert pos_mask_t is not None
+                                        batch_size = pos_inds.size(0)
                                         vocab_size = logits.size(1)
                                         n_pos = pos_mask_t.sum().item()
-                                        total = B * vocab_size
+                                        total = batch_size * vocab_size
                                         p = n_pos / (total + self.kc_pos_weight_eps)
                                         p = max(
                                             self.kc_pos_weight_eps,
@@ -1792,7 +1891,7 @@ class KCTrainer:
                                         auc = 0.0
                                         pos_logits_list = []
                                         neg_logits_list = []
-                                        for i in range(min(B, 4)):
+                                        for i in range(min(batch_size, 4)):
                                             valid_inds = pos_inds[i, pos_mask_t[i]]
                                             if valid_inds.numel() > 0:
                                                 pos_logits_list.extend(
@@ -1849,6 +1948,7 @@ class KCTrainer:
 
                                     else:
                                         # Dense path (original code)
+                                        assert t is not None
                                         pos = t.sum()
                                         total = t.numel()
                                         p = (
@@ -1912,7 +2012,6 @@ class KCTrainer:
 
                                         # Delta Loss
                                         bias_used = logits.mean().item()
-                                        import torch.nn.functional as F
 
                                         pw = torch.tensor(
                                             pos_w.item(), device=self.device
@@ -1947,7 +2046,7 @@ class KCTrainer:
                             # 1. Priority
                             for h in priority:
                                 if h in all_heads:
-                                    s = get_head_stat(h)
+                                    s = get_head_stat(h, batch, outputs)
                                     if s:
                                         selected_stats.append(s)
                                         seen.add(h)
@@ -1957,7 +2056,7 @@ class KCTrainer:
                             # Sort by rough density (we need to compute it or guess, here we compute)
                             other_stats = []
                             for h in others:
-                                s = get_head_stat(h)
+                                s = get_head_stat(h, batch, outputs)
                                 if s:
                                     other_stats.append(s)
 
@@ -2035,14 +2134,17 @@ class KCTrainer:
                         logits_f = logits.float()
 
                         # Round 6: Optimized Negative Sampling for medium heads
-                        B, V_f = logits_f.shape
-                        if V_f > 256:
+                        batch_size_f, vocab_size_f = logits_f.shape
+                        if vocab_size_f > 256:
                             # Large Head: Sample 128 negatives
                             pos_mask = targets > 0.5
                             neg_count = 128
 
                             neg_inds = torch.randint(
-                                0, V_f, (B, neg_count), device=self.device
+                                0,
+                                vocab_size_f,
+                                (batch_size_f, neg_count),
+                                device=self.device,
                             )
                             mask = torch.zeros_like(logits_f, dtype=torch.bool)
                             mask.scatter_(1, neg_inds, True)
@@ -2424,21 +2526,21 @@ class KCTrainer:
         avg_kl_to_uniform = running_kl_to_uniform / max(1, n_batches)
 
         # Prepare histograms for printing
-        N = 10
-        topk_vals_hist, topk_idx_hist = torch.topk(topk_hist, k=min(N, kc_vocab_size))
-        top1_vals_hist, top1_idx_hist = torch.topk(top1_hist, k=min(N, kc_vocab_size))
+        top_n = 10
+        topk_vals_hist, topk_idx_hist = torch.topk(
+            topk_hist, k=min(top_n, kc_vocab_size)
+        )
+        top1_vals_hist, top1_idx_hist = torch.topk(
+            top1_hist, k=min(top_n, kc_vocab_size)
+        )
 
         topk_counts_list = []
-        for i in range(len(topk_idx_hist)):
-            topk_counts_list.append(
-                (int(topk_idx_hist[i].item()), int(topk_vals_hist[i].item()))
-            )
+        for idx_val, count_val in zip(topk_idx_hist, topk_vals_hist):
+            topk_counts_list.append((int(idx_val.item()), int(count_val.item())))
 
         top1_counts_list = []
-        for i in range(len(top1_idx_hist)):
-            top1_counts_list.append(
-                (int(top1_idx_hist[i].item()), int(top1_vals_hist[i].item()))
-            )
+        for idx_val, count_val in zip(top1_idx_hist, top1_vals_hist):
+            top1_counts_list.append((int(idx_val.item()), int(count_val.item())))
 
         epoch_stats = {
             "avg_struct_loss": running_struct_loss / max(1, running_num_struct_total),
@@ -2524,14 +2626,26 @@ class KCTrainer:
 
         return total_loss / n_batches, avg_kc_losses, avg_sparsity, epoch_stats
 
+    def _log_training_progress(self) -> None:
+        """Log training timing stats."""
+        data_avg = self.train_timer_data.avg()
+        compute_avg = self.train_timer_compute.avg()
+        total = data_avg + compute_avg
+        if total > 0:
+            print(
+                f"  [Time] Avg batch: {total * 1000:.1f}ms "
+                f"(Data: {data_avg * 1000:.1f}ms ({data_avg / total:.1%}), "
+                f"Compute: {compute_avg * 1000:.1f}ms)"
+            )
+        self.train_timer_data.reset()
+        self.train_timer_compute.reset()
+
     def train(
         self,
         epochs: Optional[int] = None,
         verbose: bool = True,
-        on_epoch_end: Optional[Callable[[Dict[str, Any]], None]] = None,
-    ) -> Dict[str, Any]:
-        actual_epochs = epochs or self.config.kc_epochs
-
+        on_epoch_end: Optional[Callable[[Dict[str, List[float]]], None]] = None,
+    ) -> Dict[str, List[float]]:
         # Round 17: Auto-resume
         if self.config.checkpoint.resume_from:
             self.restore_from_checkpoint(self.config.checkpoint.resume_from)
@@ -2540,6 +2654,7 @@ class KCTrainer:
         if self.start_epoch == 0 and self.start_batch == 0:
             self._init_structural_decoder_biases()
 
+        actual_epochs = epochs or self.config.kc_epochs
         for epoch in range(self.start_epoch, actual_epochs):
             if self.is_distributed:
                 cast(DistributedSampler, self.sampler).set_epoch(epoch)
@@ -2549,15 +2664,7 @@ class KCTrainer:
 
             # Performance report
             if verbose and is_main_process():
-                data_avg = self.train_timer_data.avg()
-                compute_avg = self.train_timer_compute.avg()
-                total = data_avg + compute_avg
-                if total > 0:
-                    print(
-                        f"  [Time] Avg batch: {total * 1000:.1f}ms (Data: {data_avg * 1000:.1f}ms ({data_avg / total:.1%}), Compute: {compute_avg * 1000:.1f}ms)"
-                    )
-                self.train_timer_data.reset()
-                self.train_timer_compute.reset()
+                self._log_training_progress()
 
             self.history["total_loss"].append(total_loss)
             self.history["kc_sparsity"].append(avg_sparsity)
@@ -2607,9 +2714,27 @@ class KCTrainer:
         return self.history
 
 
+def _acc(p: List[int], labels: List[int]) -> float:
+    return sum(x == y for x, y in zip(p, labels)) / len(labels) if labels else 0.0
+
+
+def _mse(p: List[float], labels: List[float], ids: List[int]) -> float:
+    return sum((p[i] - labels[i]) ** 2 for i in ids) / len(ids) if ids else 0.0
+
+
+def _reg_acc(p: List[List[int]], labels: List[List[int]], ids: List[int]) -> float:
+    return (
+        sum(all(p[i][j] == labels[i][j] for j in range(len(p[i]))) for i in ids)
+        / len(ids)
+        if ids
+        else 0.0
+    )
+
+
 class Trainer:
     """Standard trainer for style classification with differential learning rates."""
 
+    # pylint: disable=too-many-locals,too-many-positional-arguments
     def __init__(
         self,
         model: StyleClassifier,
@@ -2618,11 +2743,17 @@ class Trainer:
         config: Optional[TrainerConfig] = None,
         dl_config_train: Optional[DataLoaderConfig] = None,
         dl_config_val: Optional[DataLoaderConfig] = None,
+        name: str = "style_model",
+        output_path: Optional[str] = None,
+        kc_show_epoch_table: bool = True,
     ):
         self.model = model
         self.train_dataset = train_dataset
         self.val_dataset = val_dataset
         self.config = config or TrainerConfig()
+        self.name = name
+        self.output_path = output_path or "checkpoints"
+        self.kc_show_epoch_table = kc_show_epoch_table
         configure_runtime_thread_limits(self.config)
 
         if self.config.world_size > 1:
@@ -2869,11 +3000,160 @@ class Trainer:
             self.best_state = meta.get("best_state")
 
         if is_main_process():
-            print(
-                f"  [Resume] Restored Style checkpoint from {path} "
-                f"(epoch {self.start_epoch}, step {self.global_step})"
-            )
+            print()
         return True
+
+    def _unpack_training_batch(
+        self, batch: Dict[str, Any]
+    ) -> Tuple[Dict[str, Any], torch.Tensor, Dict[str, torch.Tensor]]:
+        field_inputs = {
+            f"input_ids_{f}": batch[f"input_ids_{f}"].to(self.device)
+            for f in FEATURE_FIELDS
+        }
+        attention_mask = batch["attention_mask"].to(self.device)
+        targets = {
+            "f_val": batch["formality_value"].to(self.device),
+            "f_prag": batch["formality_pragmatic"].to(self.device),
+            "g_val": batch["gender_value"].to(self.device),
+            "g_prag": batch["gender_pragmatic"].to(self.device),
+            "gram": batch["grammaticality_labels"].to(self.device),
+            "reg": batch["register_labels"].to(self.device),
+        }
+        return field_inputs, attention_mask, targets
+
+    def _compute_component_losses(
+        self,
+        outputs: Tuple[torch.Tensor, ...],
+        targets: Dict[str, torch.Tensor],
+        is_valid_style: torch.Tensor,
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+        (
+            f_val_l,
+            f_prag_l,
+            g_val_l,
+            g_prag_l,
+            gram_l,
+            reg_l,
+        ) = outputs
+
+        f_loss = self.formality_criterion(f_prag_l, targets["f_prag"]) + (
+            F.mse_loss(
+                f_val_l.squeeze(-1)[is_valid_style],
+                targets["f_val"][is_valid_style],
+            )
+            if is_valid_style.any()
+            else 0
+        )
+
+        g_loss = self.gender_pragmatic_criterion(g_prag_l, targets["g_prag"]) + (
+            F.mse_loss(
+                g_val_l.squeeze(-1)[is_valid_style],
+                targets["g_val"][is_valid_style],
+            )
+            * GENDER_LOSS_WEIGHT
+            if is_valid_style.any()
+            else 0
+        )
+
+        gram_loss = self.grammaticality_criterion(gram_l, targets["gram"])
+
+        reg_loss = (
+            self.register_criterion(
+                reg_l[is_valid_style], targets["reg"][is_valid_style]
+            )
+            if is_valid_style.any()
+            else torch.tensor(0.0, device=self.device)
+        )
+        return f_loss, g_loss, gram_loss, reg_loss
+
+    def _compute_training_loss(
+        self, outputs: Tuple[torch.Tensor, ...], targets: Dict[str, torch.Tensor]
+    ) -> Dict[str, Any]:
+        is_gram = targets["gram"] == 1
+        is_f_prag = targets["f_prag"] == 1
+        is_g_prag = targets["g_prag"] == 1
+        is_valid_style = is_gram & is_f_prag & is_g_prag
+
+        f_loss, g_loss, gram_loss, reg_loss = self._compute_component_losses(
+            outputs, targets, is_valid_style
+        )
+
+        loss = (
+            self.config.formality_loss_weight * f_loss
+            + self.config.gender_loss_weight * g_loss
+            + self.config.grammaticality_loss_weight * gram_loss
+            + self.config.register_loss_weight * reg_loss
+        ) / self.config.grad_accum_steps
+
+        return {
+            "loss": loss,
+            "f_loss": f_loss,
+            "g_loss": g_loss,
+            "gram_loss": gram_loss,
+            "reg_loss": reg_loss,
+        }
+
+    def _train_batch(self, batch: Dict[str, Any], batch_idx: int) -> Dict[str, float]:
+        """Process a single training batch."""
+        field_inputs, attention_mask, targets = self._unpack_training_batch(batch)
+
+        # Optimization step
+        # Only zero grad if it's the start of an accumulation step
+        if batch_idx % self.config.grad_accum_steps == 0:
+            self.optimizer.zero_grad(set_to_none=True)
+
+        device_type = (
+            "cuda"
+            if "cuda" in str(self.device)
+            else ("mps" if "mps" in str(self.device) else "cpu")
+        )
+
+        with autocast(device_type=device_type, enabled=self.config.use_amp):
+            outputs = self.model(field_inputs, attention_mask)
+            losses = self._compute_training_loss(outputs, targets)
+            loss = losses["loss"]
+
+        self.scaler.scale(loss).backward()
+
+        if (batch_idx + 1) % self.config.grad_accum_steps == 0:
+            if self.config.gradient_clip > 0:
+                self.scaler.unscale_(self.optimizer)
+                nn.utils.clip_grad_norm_(
+                    self.model.parameters(), self.config.gradient_clip
+                )
+            self.scaler.step(self.optimizer)
+            self.scaler.update()
+            self.optimizer.zero_grad(set_to_none=True)
+
+        gad = self.config.grad_accum_steps
+        return {
+            "loss": loss.item() * gad,
+            "formality_loss": losses["f_loss"].item()
+            if isinstance(losses["f_loss"], torch.Tensor)
+            else losses["f_loss"],
+            "gender_loss": losses["g_loss"].item()
+            if isinstance(losses["g_loss"], torch.Tensor)
+            else losses["g_loss"],
+            "grammaticality_loss": losses["gram_loss"].item()
+            if isinstance(losses["gram_loss"], torch.Tensor)
+            else losses["gram_loss"],
+            "register_loss": losses["reg_loss"].item()
+            if isinstance(losses["reg_loss"], torch.Tensor)
+            else losses["reg_loss"],
+        }
+
+    def _log_epoch_progress(
+        self, batch_idx: int, total_batches: int, metrics: TrainingMetrics
+    ) -> None:
+        if is_main_process():
+            avg_loss = metrics.get_avg_loss()
+            print_progress_bar(batch_idx, total_batches, avg_loss)
+
+        if (
+            self.config.log_flush_every > 0
+            and batch_idx % self.config.log_flush_every == 0
+        ):
+            sys.stdout.flush()
 
     def train_epoch(
         self, epoch: int, verbose: bool = True
@@ -2884,135 +3164,44 @@ class Trainer:
             )
 
         self.model.train()
-        t_loss: float = 0.0
-        tf_loss: float = 0.0
-        tg_loss: float = 0.0
-        tgram_loss: float = 0.0
-        tr_loss: float = 0.0
-        n = 0
+        metrics = TrainingMetrics()
+
         total_batches = len(self.train_loader)
         if total_batches == 0:
             return 0.0, 0.0, 0.0, 0.0, 0.0
 
         self.train_timer_data.start()
-        for batch_idx, batch in enumerate(self.train_loader):
-            self.train_timer_data.stop(epoch, batch_idx)
-            self.train_timer_compute.start()
 
+        for batch_idx, batch in enumerate(self.train_loader):
             # Mid-epoch resume: skip batches already processed
             if batch_idx < self.start_batch:
-                self.train_timer_compute.stop(epoch, batch_idx)
-                self.train_timer_data.start()
                 continue
 
-            field_inputs = {
-                f"input_ids_{f}": batch[f"input_ids_{f}"].to(self.device)
-                for f in FEATURE_FIELDS
-            }
-            attention_mask = batch["attention_mask"].to(self.device)
-            f_val_targets, f_prag_targets = (
-                batch["formality_value"].to(self.device),
-                batch["formality_pragmatic"].to(self.device),
-            )
-            g_val_targets, g_prag_targets = (
-                batch["gender_value"].to(self.device),
-                batch["gender_pragmatic"].to(self.device),
-            )
-            gram_targets, reg_targets = (
-                batch["grammaticality_labels"].to(self.device),
-                batch["register_labels"].to(self.device),
-            )
+            self.train_timer_data.stop()
+            self.train_timer_compute.start()
 
-            self.optimizer.zero_grad(set_to_none=True)
-            device_type = (
-                "cuda"
-                if "cuda" in str(self.device)
-                else ("mps" if "mps" in str(self.device) else "cpu")
-            )
-
-            with autocast(device_type=device_type, enabled=self.config.use_amp):
-                (
-                    f_val_logits,
-                    f_prag_logits,
-                    g_val_logits,
-                    g_prag_logits,
-                    gram_logits,
-                    reg_logits,
-                ) = self.model(field_inputs, attention_mask)
-                is_gram, is_f_prag, is_g_prag = (
-                    gram_targets == 1,
-                    f_prag_targets == 1,
-                    g_prag_targets == 1,
-                )
-                is_valid_style = is_gram & is_f_prag & is_g_prag
-
-                f_loss = self.formality_criterion(f_prag_logits, f_prag_targets) + (
-                    F.mse_loss(
-                        f_val_logits.squeeze(-1)[is_valid_style],
-                        f_val_targets[is_valid_style],
-                    )
-                    if is_valid_style.any()
-                    else 0
-                )
-                g_loss = self.gender_pragmatic_criterion(
-                    g_prag_logits, g_prag_targets
-                ) + (
-                    F.mse_loss(
-                        g_val_logits.squeeze(-1)[is_valid_style],
-                        g_val_targets[is_valid_style],
-                    )
-                    * GENDER_LOSS_WEIGHT
-                    if is_valid_style.any()
-                    else 0
-                )
-                gram_loss = self.grammaticality_criterion(gram_logits, gram_targets)
-                reg_loss = (
-                    self.register_criterion(
-                        reg_logits[is_valid_style], reg_targets[is_valid_style]
-                    )
-                    if is_valid_style.any()
-                    else torch.tensor(0.0, device=self.device)
-                )
-
-                loss = (
-                    self.config.formality_loss_weight * f_loss
-                    + self.config.gender_loss_weight * g_loss
-                    + self.config.grammaticality_loss_weight * gram_loss
-                    + self.config.register_loss_weight * reg_loss
-                ) / self.config.grad_accum_steps
-
-            self.scaler.scale(loss).backward()
-            if (batch_idx + 1) % self.config.grad_accum_steps == 0:
-                if self.config.gradient_clip > 0:
-                    self.scaler.unscale_(self.optimizer)
-                    nn.utils.clip_grad_norm_(
-                        self.model.parameters(), self.config.gradient_clip
-                    )
-                self.scaler.step(self.optimizer)
-                self.scaler.update()
-                self.optimizer.zero_grad(set_to_none=True)
-
-            t_loss += loss.item() * self.config.grad_accum_steps
-            tf_loss += f_loss.item()
-            tg_loss += g_loss.item()
-            tgram_loss += gram_loss.item()
-            tr_loss += reg_loss.item()
-            n += 1
-            self.global_step += 1
+            losses = self._train_batch(batch, batch_idx)
+            metrics.update(losses)
 
             # Round 17: Periodic checkpointing
-            if (
-                self.config.checkpoint.every_n_steps
-                and self.global_step % self.config.checkpoint.every_n_steps == 0
-            ):
-                self.save_checkpoint(epoch, batch_idx)
+            if (batch_idx + 1) % self.config.grad_accum_steps == 0:
+                self.global_step += 1
+                self._log_epoch_progress(batch_idx, total_batches, metrics)
+
+                if (
+                    self.config.checkpoint.every_n_steps
+                    and self.global_step % self.config.checkpoint.every_n_steps == 0
+                ):
+                    self.save_checkpoint(epoch, batch_idx)
 
             if verbose and is_main_process():
                 if (
                     batch_idx % self.config.progress_update_every == 0
                     or batch_idx == total_batches - 1
                 ):
-                    print_progress_bar(batch_idx, total_batches, t_loss / n)
+                    # Use current average for progress
+                    avg_loss = metrics.get_avg_loss()
+                    print_progress_bar(batch_idx, total_batches, avg_loss)
 
                 if (
                     self.config.log_flush_every > 0
@@ -3025,144 +3214,141 @@ class Trainer:
 
         # Reset start_batch for next epoch
         self.start_batch = 0
-        self.train_timer_data.stop(epoch, batch_idx if total_batches > 0 else 0)
+        self.train_timer_data.stop()
         if verbose and is_main_process():
             sys.stdout.write("\n")
-        return t_loss / n, tf_loss / n, tg_loss / n, tgram_loss / n, tr_loss / n
+
+        return metrics.average()
+
+    def _extract_predictions(
+        self, outputs: Tuple[torch.Tensor, ...], targets: Dict[str, torch.Tensor]
+    ) -> Dict[str, List[Any]]:
+        (
+            f_v_l,
+            f_p_l,
+            g_v_l,
+            g_p_l,
+            gram_l,
+            r_l,
+        ) = outputs
+
+        return {
+            "f_prag_p": f_p_l.argmax(-1).cpu().tolist(),
+            "f_prag_l": targets["f_prag"].cpu().tolist(),
+            "f_val_p": f_v_l.squeeze(-1).cpu().tolist(),
+            "f_val_l": targets["f_val"].cpu().tolist(),
+            "g_prag_p": g_p_l.argmax(-1).cpu().tolist(),
+            "g_prag_l": targets["g_prag"].cpu().tolist(),
+            "g_val_p": g_v_l.squeeze(-1).cpu().tolist(),
+            "g_val_l": targets["g_val"].cpu().tolist(),
+            "gram_p": gram_l.argmax(-1).cpu().tolist(),
+            "gram_l": targets["gram"].cpu().tolist(),
+            "reg_p": (torch.sigmoid(r_l) > 0.5).long().cpu().tolist(),
+            "reg_l": targets["reg"].long().cpu().tolist(),
+            "is_valid": (
+                (targets["gram"] == 1)
+                & (targets["f_prag"] == 1)
+                & (targets["g_prag"] == 1)
+            )
+            .cpu()
+            .tolist(),
+        }
 
     @torch.no_grad()
     def evaluate(self) -> Dict[str, Any]:
         """Run evaluation and return metrics and predictions."""
         self.model.eval()
-        tl: float = 0.0
-        tfl: float = 0.0
-        tgl: float = 0.0
-        tgraml: float = 0.0
-        trl: float = 0.0
         n = 0
-        all_f_prag_p, all_f_prag_l, all_f_val_p, all_f_val_l = [], [], [], []
-        all_g_prag_p, all_g_prag_l, all_g_val_p, all_g_val_l = [], [], [], []
-        all_gram_p, all_gram_l, all_reg_p, all_reg_l, all_valid = [], [], [], [], []
-        all_sentences, all_kotograms = [], []
+        metrics_sum: Dict[str, float] = {}
+        all_preds: Dict[str, List[Any]] = {
+            k: []
+            for k in [
+                "f_prag_p",
+                "f_prag_l",
+                "f_val_p",
+                "f_val_l",
+                "g_prag_p",
+                "g_prag_l",
+                "g_val_p",
+                "g_val_l",
+                "gram_p",
+                "gram_l",
+                "reg_p",
+                "reg_l",
+                "is_valid",
+                "sentences",
+                "kotograms",
+            ]
+        }
 
         for batch in self.val_loader:
-            field_inputs = {
-                f"input_ids_{f}": batch[f"input_ids_{f}"].to(self.device)
-                for f in FEATURE_FIELDS
-            }
-            attention_mask = batch["attention_mask"].to(self.device)
-            f_v_t, f_p_t = (
-                batch["formality_value"].to(self.device),
-                batch["formality_pragmatic"].to(self.device),
-            )
-            g_v_t, g_p_t = (
-                batch["gender_value"].to(self.device),
-                batch["gender_pragmatic"].to(self.device),
-            )
-            gram_t, reg_t = (
-                batch["grammaticality_labels"].to(self.device),
-                batch["register_labels"].to(self.device),
-            )
-            all_sentences.extend(batch.get("original_sentence", []))
-            all_kotograms.extend(batch.get("kotogram", []))
+            field_inputs, attention_mask, targets = self._unpack_training_batch(batch)
 
-            fv_l, fp_l, gv_l, gp_l, gram_l, r_l = self.model(
-                field_inputs, attention_mask
-            )
-            is_valid = (gram_t == 1) & (f_p_t == 1) & (g_p_t == 1)
+            outputs = self.model(field_inputs, attention_mask)
+            # Accumulate
+            self._accumulate_eval_batch(outputs, targets, batch, metrics_sum, all_preds)
 
-            f_loss = self.formality_criterion(fp_l, f_p_t) + (
-                F.mse_loss(fv_l.squeeze(-1)[is_valid], f_v_t[is_valid])
-                if is_valid.any()
-                else 0
-            )
-            g_loss = self.gender_pragmatic_criterion(gp_l, g_p_t) + (
-                F.mse_loss(gv_l.squeeze(-1)[is_valid], g_v_t[is_valid])
-                * GENDER_LOSS_WEIGHT
-                if is_valid.any()
-                else 0
-            )
-            gram_loss = self.grammaticality_criterion(gram_l, gram_t)
-            reg_loss = (
-                self.register_criterion(r_l[is_valid], reg_t[is_valid])
-                if is_valid.any()
-                else torch.tensor(0.0, device=self.device)
-            )
-
-            tl += (
-                self.config.formality_loss_weight * f_loss
-                + self.config.gender_loss_weight * g_loss
-                + self.config.grammaticality_loss_weight * gram_loss
-                + self.config.register_loss_weight * reg_loss
-            ).item()
-            tfl += f_loss.item()
-            tgl += g_loss.item()
-            tgraml += gram_loss.item()
-            trl += reg_loss.item()
             n += 1
 
-            all_f_prag_p.extend(fp_l.argmax(-1).cpu().tolist())
-            all_f_prag_l.extend(f_p_t.cpu().tolist())
-            all_f_val_p.extend(fv_l.squeeze(-1).cpu().tolist())
-            all_f_val_l.extend(f_v_t.cpu().tolist())
-            all_g_prag_p.extend(gp_l.argmax(-1).cpu().tolist())
-            all_g_prag_l.extend(g_p_t.cpu().tolist())
-            all_g_val_p.extend(gv_l.squeeze(-1).cpu().tolist())
-            all_g_val_l.extend(g_v_t.cpu().tolist())
-            all_gram_p.extend(gram_l.argmax(-1).cpu().tolist())
-            all_gram_l.extend(gram_t.cpu().tolist())
-            all_reg_p.extend((torch.sigmoid(r_l) > 0.5).long().cpu().tolist())
-            all_reg_l.extend(reg_t.long().cpu().tolist())
-            all_valid.extend(is_valid.cpu().tolist())
+        if n == 0:
+            return {}
 
-        def acc(p: List[int], labels: List[int]) -> float:
-            return (
-                sum(x == y for x, y in zip(p, labels)) / len(labels) if labels else 0.0
-            )
-
-        valid_idxs = [i for i, v in enumerate(all_valid) if v]
-
-        def mse(p: List[float], labels: List[float], ids: List[int]) -> float:
-            return sum((p[i] - labels[i]) ** 2 for i in ids) / len(ids) if ids else 0.0
-
-        def reg_acc(
-            p: List[List[int]], labels: List[List[int]], ids: List[int]
-        ) -> float:
-            return (
-                sum(all(p[i][j] == labels[i][j] for j in range(len(p[i]))) for i in ids)
-                / len(ids)
-                if ids
-                else 0.0
-            )
+        avg_metrics = {k: v / n for k, v in metrics_sum.items()}
+        valid_idxs = [i for i, v in enumerate(all_preds["is_valid"]) if v]
 
         return {
-            "loss": tl / n,
-            "formality_loss": tfl / n,
-            "gender_loss": tgl / n,
-            "grammaticality_loss": tgraml / n,
-            "register_loss": trl / n,
-            "formality_accuracy": acc(all_f_prag_p, all_f_prag_l),
-            "formality_value_mse": mse(all_f_val_p, all_f_val_l, valid_idxs),
-            "gender_pragmatic_accuracy": acc(all_g_prag_p, all_g_prag_l),
-            "gender_value_mse": mse(all_g_val_p, all_g_val_l, valid_idxs),
-            "grammaticality_accuracy": acc(all_gram_p, all_gram_l),
-            "register_accuracy": reg_acc(all_reg_p, all_reg_l, valid_idxs),
+            "loss": avg_metrics.get("loss", 0.0) * self.config.grad_accum_steps,
+            "formality_loss": avg_metrics.get("f_loss", 0.0),
+            "gender_loss": avg_metrics.get("g_loss", 0.0),
+            "grammaticality_loss": avg_metrics.get("gram_loss", 0.0),
+            "register_loss": avg_metrics.get("reg_loss", 0.0),
+            "formality_accuracy": _acc(all_preds["f_prag_p"], all_preds["f_prag_l"]),
+            "formality_mse": _mse(
+                all_preds["f_val_p"], all_preds["f_val_l"], valid_idxs
+            ),
+            "gender_accuracy": _acc(all_preds["g_prag_p"], all_preds["g_prag_l"]),
+            "gender_mse": _mse(all_preds["g_val_p"], all_preds["g_val_l"], valid_idxs),
+            "grammaticality_accuracy": _acc(all_preds["gram_p"], all_preds["gram_l"]),
+            "register_accuracy": _reg_acc(
+                all_preds["reg_p"], all_preds["reg_l"], valid_idxs
+            ),
             # Full results for report generation
-            "formality_val_preds": all_f_val_p,
-            "formality_val_labels": all_f_val_l,
-            "formality_prag_preds": all_f_prag_p,
-            "formality_prag_labels": all_f_prag_l,
-            "gender_val_preds": all_g_val_p,
-            "gender_val_labels": all_g_val_l,
-            "gender_prag_preds": all_g_prag_p,
-            "gender_prag_labels": all_g_prag_l,
-            "grammaticality_preds": all_gram_p,
-            "grammaticality_labels": all_gram_l,
-            "register_preds": all_reg_p,
-            "register_labels": all_reg_l,
-            "sentences": all_sentences,
-            "kotograms": all_kotograms,
+            "formality_val_preds": all_preds["f_val_p"],
+            "formality_val_labels": all_preds["f_val_l"],
+            "formality_prag_preds": all_preds["f_prag_p"],
+            "formality_prag_labels": all_preds["f_prag_l"],
+            "gender_val_preds": all_preds["g_val_p"],
+            "gender_val_labels": all_preds["g_val_l"],
+            "gender_prag_preds": all_preds["g_prag_p"],
+            "gender_prag_labels": all_preds["g_prag_l"],
+            "grammaticality_preds": all_preds["gram_p"],
+            "grammaticality_labels": all_preds["gram_l"],
+            "register_preds": all_preds["reg_p"],
+            "register_labels": all_preds["reg_l"],
+            "is_valid": all_preds["is_valid"],
         }
+
+    def _accumulate_eval_batch(
+        self,
+        outputs: Tuple[torch.Tensor, ...],
+        targets: Dict[str, torch.Tensor],
+        batch: Dict[str, Any],
+        metrics_sum: Dict[str, float],
+        all_preds: Dict[str, List[Any]],
+    ) -> None:
+        losses = self._compute_training_loss(outputs, targets)
+        preds = self._extract_predictions(outputs, targets)
+
+        # Accumulate losses
+        for k, v in losses.items():
+            val = v.item() if isinstance(v, torch.Tensor) else v
+            metrics_sum[k] = metrics_sum.get(k, 0.0) + val
+
+        # Accumulate predictions
+        for k, v in preds.items():
+            all_preds[k].extend(v)
+        all_preds["sentences"].extend(batch.get("original_sentence", []))
+        all_preds["kotograms"].extend(batch.get("kotogram", []))
 
     def train(
         self,
@@ -3188,7 +3374,7 @@ class Trainer:
                 self.model.module if self.is_distributed else self.model,
             )
             if getattr(m_style.config, "kc_enabled", False):
-                probe_loader = self._build_kc_probe_loader(max_batches=25)
+                probe_loader = self._build_kc_probe_loader(_max_batches=25)
                 if probe_loader is not None:
                     kc_probe_result = self.evaluate_kc_probe(probe_loader)
                     self._diagnose_kc_probe(kc_probe_result, verbose=verbose)
@@ -3209,11 +3395,11 @@ class Trainer:
             self.history["val_formality_accuracy"].append(
                 eval_res["formality_accuracy"]
             )
-            self.history["val_formality_mse"].append(eval_res["formality_value_mse"])
+            self.history["val_formality_mse"].append(eval_res["formality_mse"])
             self.history["val_gender_pragmatic_accuracy"].append(
-                eval_res["gender_pragmatic_accuracy"]
+                eval_res["gender_accuracy"]
             )
-            self.history["val_gender_value_mse"].append(eval_res["gender_value_mse"])
+            self.history["val_gender_value_mse"].append(eval_res["gender_mse"])
             self.history["val_grammaticality_accuracy"].append(
                 eval_res["grammaticality_accuracy"]
             )
@@ -3242,7 +3428,7 @@ class Trainer:
                     "Gender": {
                         "Train": tgl,
                         "Val": eval_res["gender_loss"],
-                        "Acc": eval_res["gender_pragmatic_accuracy"],
+                        "Acc": eval_res["gender_accuracy"],
                     },
                     "Grammar": {
                         "Train": tgraml,
@@ -3298,79 +3484,308 @@ class Trainer:
     # =========================================================================
 
     def _build_kc_probe_loader(
-        self, max_batches: int = 25
+        self, _max_batches: int = 25
     ) -> Optional[DataLoader[Dict[str, Any]]]:
         """Build a DataLoader for KC probe evaluation.
 
         Returns val_loader if model has KC enabled, else None.
         Filtering to grammatical samples is done during iteration.
         """
-        m = cast(
-            StyleClassifier, self.model.module if self.is_distributed else self.model
-        )
-        if not getattr(m.config, "kc_enabled", False):
-            return None
-
         # Just return val_loader - filtering handled in evaluate_kc_probe
         return cast(DataLoader[Dict[str, Any]], self.val_loader)
 
-    def evaluate_kc_probe(
+    def _update_kc_metrics(
+        self,
+        acc: KCMetricsAccumulator,
+        outputs: Dict[str, Any],
+        batch: Dict[str, Any],
+        config: KCProbeConfig,
+    ) -> None:
+        """Update KC metrics accumulator with batch results."""
+        batch_size = outputs["kc_probs"].shape[0]
+        acc.n_samples += batch_size
+
+        self._update_kc_usage_stats(acc, outputs, batch_size, config)
+
+        if "target_logits" in outputs:
+            self._update_kc_structural_stats(acc, outputs, batch, config)
+
+    def _compute_entropy_kl(
+        self, logits_raw: torch.Tensor, config: KCProbeConfig
+    ) -> Tuple[float, float]:
+        logits_clamped = logits_raw.clamp(min=-8.0, max=8.0)
+        q = torch.softmax(logits_clamped / config.tau_usage, dim=-1)  # (B, V)
+        p = q.mean(dim=0)  # (V,)
+        p = p / p.sum().clamp_min(1e-9)
+
+        eps = 1e-9
+        log_p = (p + eps).log()
+        entropy = -(p * log_p).sum()
+        entropy_norm = entropy / math.log(config.vocab_size)
+        kl_to_uniform = (p * (log_p + math.log(config.vocab_size))).sum()
+        return entropy_norm.item(), kl_to_uniform.item()
+
+    def _update_kc_usage_stats(
+        self,
+        acc: KCMetricsAccumulator,
+        outputs: Dict[str, Any],
+        batch_size: int,
+        config: KCProbeConfig,
+    ) -> None:
+        # Usage histograms
+        topk_inds = outputs["topk_inds"]  # (B, k)
+        for i in range(batch_size):
+            for j in range(config.topk):
+                idx = topk_inds[i, j].item()
+                acc.topk_hist[idx] += 1
+                if j == 0:
+                    acc.top1_hist[idx] += 1
+
+        # Entropy and KL from soft usage
+        entropy_norm, kl_to_uniform = self._compute_entropy_kl(
+            outputs["kc_logits_raw"], config
+        )
+
+        acc.sum_entropy += entropy_norm * batch_size
+        acc.sum_kl += kl_to_uniform * batch_size
+
+        # Top-k value stats
+        topk_vals = outputs["topk_vals"]  # (B, k)
+        acc.sum_tv += topk_vals.mean().item() * batch_size
+        gap = topk_vals[:, 0] - topk_vals[:, -1]
+        acc.sum_gap += gap.mean().item() * batch_size
+
+        # Soft density stats
+        acc.sum_avg_prob += outputs["kc_probs"].mean().item() * batch_size
+        acc.sum_act_dens += (
+            outputs["sparse_activations"] > 0
+        ).float().mean().item() * batch_size
+
+    def _update_kc_structural_stats(
+        self,
+        acc: KCMetricsAccumulator,
+        outputs: Dict[str, Any],
+        batch: Dict[str, Any],
+        config: KCProbeConfig,
+    ) -> None:
+        kc_targets = create_kc_batch(
+            batch, self.val_dataset.tokenizer, config.target_specs
+        )
+        for head_name in acc.head_samples:
+            if head_name not in outputs["target_logits"]:
+                continue
+            logits_h = outputs["target_logits"][head_name]
+            hs = acc.head_samples[head_name]
+            self._update_single_head_stats(head_name, logits_h, kc_targets, hs, config)
+
+    def _update_single_head_stats(
+        self,
+        head_name: str,
+        logits_h: torch.Tensor,
+        kc_targets: Dict[str, torch.Tensor],
+        hs: Dict[str, Any],
+        config: KCProbeConfig,
+    ) -> None:
+        # Round 15: Handle both dense and sparse target formats
+        dense_key = f"kc_targets_{head_name}"
+        pos_key = f"kc_pos_inds_{head_name}"
+        mask_key = f"kc_pos_mask_{head_name}"
+
+        if dense_key in kc_targets:
+            self._update_dense_head_stats(
+                kc_targets[dense_key], logits_h, hs, config.max_samples_per_head
+            )
+        elif pos_key in kc_targets and mask_key in kc_targets:
+            self._update_sparse_head_stats(
+                (kc_targets[pos_key], kc_targets[mask_key]),
+                logits_h,
+                hs,
+                config.max_samples_per_head,
+            )
+
+    def _update_dense_head_stats(
+        self,
+        targets_h: torch.Tensor,
+        logits_h: torch.Tensor,
+        hs: Dict[str, Any],
+        max_samples_per_head: int,
+    ) -> None:
+        """Update head stats for dense targets."""
+        targets_h = targets_h.to(self.device).float()
+
+        # Update head stats
+        hs["p_sum"] += targets_h.sum().item()
+        hs["count"] += targets_h.numel()
+
+        # Sample pos and neg logits for AUC
+        pos_mask = targets_h > 0.5
+        neg_mask = ~pos_mask
+
+        if len(hs["pos_logits"]) < max_samples_per_head:
+            pos_logits = logits_h[pos_mask].cpu().tolist()
+            hs["pos_logits"].extend(
+                pos_logits[: max_samples_per_head - len(hs["pos_logits"])]
+            )
+        if len(hs["neg_logits"]) < max_samples_per_head:
+            neg_logits = logits_h[neg_mask].cpu().tolist()
+            hs["neg_logits"].extend(
+                neg_logits[: max_samples_per_head - len(hs["neg_logits"])]
+            )
+
+    def _sample_sparse_logits(
+        self,
+        pos_inds: torch.Tensor,
+        pos_mask_t: torch.Tensor,
+        logits_h: torch.Tensor,
+        hs: Dict[str, Any],
+        max_samples_per_head: int,
+    ) -> None:
+        batch_size = pos_inds.size(0)
+        vocab_size = logits_h.size(1)
+
+        # Sample pos logits from sparse indices
+        if len(hs["pos_logits"]) < max_samples_per_head:
+            for i in range(min(batch_size, 4)):  # Sample from first 4 batch items
+                valid_inds = pos_inds[i, pos_mask_t[i]]
+                if valid_inds.numel() > 0:
+                    pos_log = logits_h[i, valid_inds].cpu().tolist()
+                    hs["pos_logits"].extend(
+                        pos_log[: max_samples_per_head - len(hs["pos_logits"])]
+                    )
+
+        # Sample neg logits (random indices not in positives)
+        if len(hs["neg_logits"]) < max_samples_per_head:
+            for i in range(min(batch_size, 4)):
+                neg_inds = torch.randint(4, vocab_size, (50,), device=self.device)
+                neg_log = logits_h[i, neg_inds].cpu().tolist()
+                hs["neg_logits"].extend(
+                    neg_log[: max_samples_per_head - len(hs["neg_logits"])]
+                )
+
+    def _update_sparse_head_stats(
+        self,
+        sparse_data: Tuple[torch.Tensor, torch.Tensor],
+        logits_h: torch.Tensor,
+        hs: Dict[str, Any],
+        max_samples_per_head: int,
+    ) -> None:
+        """Update head stats for sparse targets."""
+        pos_inds, pos_mask_t = sparse_data
+        pos_inds = pos_inds.to(self.device)
+        pos_mask_t = pos_mask_t.to(self.device)
+
+        batch_size = pos_inds.size(0)
+        vocab_size = logits_h.size(1)
+
+        # Count positives
+        n_pos = pos_mask_t.sum().item()
+        n_total = batch_size * vocab_size
+        hs["p_sum"] += n_pos
+        hs["count"] += n_total
+
+        self._sample_sparse_logits(
+            pos_inds, pos_mask_t, logits_h, hs, max_samples_per_head
+        )
+
+    def _compute_kc_metrics(
+        self, acc: KCMetricsAccumulator, kc_vocab_size: int
+    ) -> Dict[str, Any]:
+        """Finalize KC metrics computation."""
+        # DDP sync if needed
+        if self.is_distributed:
+            dist.all_reduce(acc.top1_hist, op=dist.ReduceOp.SUM)
+            scalars = torch.tensor(
+                [
+                    acc.n_samples,
+                    acc.sum_entropy,
+                    acc.sum_kl,
+                    acc.sum_tv,
+                    acc.sum_gap,
+                    acc.sum_avg_prob,
+                    acc.sum_act_dens,
+                ],
+                device=self.device,
+            )
+            dist.all_reduce(scalars, op=dist.ReduceOp.SUM)
+            acc.n_samples = int(scalars[0].item())
+            acc.sum_entropy = scalars[1].item()
+            acc.sum_kl = scalars[2].item()
+            acc.sum_tv = scalars[3].item()
+            acc.sum_gap = scalars[4].item()
+            acc.sum_avg_prob = scalars[5].item()
+            acc.sum_act_dens = scalars[6].item()
+
+        # Compute final metrics
+        n_samples = max(1, acc.n_samples)
+
+        uniq_kcs = int((acc.topk_hist > 0).sum().item())
+        max_top1 = float(acc.top1_hist.max().item()) / n_samples
+
+        result: Dict[str, Any] = {
+            "n_samples": n_samples,
+            "uniq_kcs": uniq_kcs,
+            "max_top1": max_top1,
+            "entropy_norm": acc.sum_entropy / n_samples,
+            "kl_to_uniform": acc.sum_kl / n_samples,
+            "tv_mean": acc.sum_tv / n_samples,
+            "gap_mean": acc.sum_gap / n_samples,
+            "avg_prob": acc.sum_avg_prob / n_samples,
+            "act_dens": acc.sum_act_dens / n_samples,
+            "kc_vocab_size": kc_vocab_size,
+        }
+
+        # Per-head AUCs (rank0 only for simplicity)
+        if is_main_process():
+            for head_name, hs in acc.head_samples.items():
+                p_true, auc, delta_bce = self._compute_head_metrics(hs)
+
+                result[f"head_{head_name}_p_true"] = p_true
+                result[f"head_{head_name}_auc"] = auc
+                result[f"head_{head_name}_delta_bce"] = delta_bce
+
+        return result
+
+    def _compute_head_metrics(self, hs: Dict[str, Any]) -> Tuple[float, float, float]:
+        """Compute AUC and delta BCE for a single head."""
+        p_true = hs["p_sum"] / max(1, hs["count"])
+        auc = float("nan")
+        delta_bce = float("nan")
+
+        pos_l = hs["pos_logits"]
+        neg_l = hs["neg_logits"]
+        if len(pos_l) > 0 and len(neg_l) > 0:
+            # Rank AUC
+            all_logits = pos_l + neg_l
+            all_labels = [1.0] * len(pos_l) + [0.0] * len(neg_l)
+            combined = sorted(zip(all_logits, all_labels), key=lambda x: x[0])
+            ranks = list(range(1, len(combined) + 1))
+            pos_rank_sum = sum(r for r, (_, lbl) in zip(ranks, combined) if lbl > 0.5)
+            n_pos = len(pos_l)
+            n_neg = len(neg_l)
+            auc = (pos_rank_sum - n_pos * (n_pos + 1) / 2) / max(1, n_pos * n_neg)
+
+            # Delta BCE vs constant baseline
+            logits_t = torch.tensor(all_logits, dtype=torch.float32)
+            labels_t = torch.tensor(all_labels, dtype=torch.float32)
+            model_bce = F.binary_cross_entropy_with_logits(logits_t, labels_t).item()
+            baseline_logit = math.log(p_true / (1 - p_true)) if 0 < p_true < 1 else 0.0
+            baseline_bce = F.binary_cross_entropy_with_logits(
+                torch.full_like(logits_t, baseline_logit), labels_t
+            ).item()
+            delta_bce = model_bce - baseline_bce
+
+        return p_true, auc, delta_bce
+
+    def _run_kc_probe_loop(
         self,
         probe_loader: DataLoader[Dict[str, Any]],
-        max_batches: int = 25,
-        temperature: float = 1.5,
-        tau_usage: float = 2.0,
-    ) -> Dict[str, Any]:
-        """Evaluate KC health metrics without affecting gradients.
-
-        Returns dict with:
-        - Usage: uniq_kcs, max_top1, entropy_norm, kl_to_uniform, tv_mean, gap_mean, avg_prob, act_dens
-        - Structural (per head): p_true, auc, delta_bce
-        - (If baseline available): drift metrics
-
-        HOW TO INTERPRET:
-        - uniq_kcs: Higher is better (KCs being used). Low = collapse.
-        - max_top1: Lower is better (<0.10 good). High = one KC dominates.
-        - entropy_norm: Higher is better (>0.85 good). Low = uneven usage.
-        - kl_to_uniform: Lower is better (<0.5 good). High = uneven.
-        - tv_mean: Mean top-k probability value.
-        - gap_mean: Gap between top-1 and top-k (higher = more confident).
-        - avg_prob: Mean sigmoid probability (>0.5 = "Gray Goo").
-        - act_dens: Should be ~k/V (e.g., 8/1024 = 0.0078).
-        - AUC: Higher is better (>0.85 good for structural heads).
-        - delta_bce: Negative is better (model beats constant baseline).
-        """
-        m = cast(
-            StyleClassifierWithMLM,
-            self.model.module if self.is_distributed else self.model,
-        )
-        m.eval()
-
-        kc_vocab_size = int(getattr(m.config, "kc_vocab_size", 1024))
-        kc_topk = int(getattr(m.config, "kc_topk", 8))
-        target_specs = getattr(m.config, "kc_target_specs", {})
-
-        # Initialize accumulators
-        topk_hist = torch.zeros(kc_vocab_size, device=self.device, dtype=torch.long)
-        top1_hist = torch.zeros(kc_vocab_size, device=self.device, dtype=torch.long)
-
-        n_samples = 0
-        sum_entropy = 0.0
-        sum_kl = 0.0
-        sum_tv = 0.0
-        sum_gap = 0.0
-        sum_avg_prob = 0.0
-        sum_act_dens = 0.0
-
-        # Per-head AUC sampling (reservoir style)
-        probe_heads = ["lemma", "pos", "conjugated_form", "conjugated_type"]
-        head_samples: Dict[str, Dict[str, Any]] = {
-            h: {"pos_logits": [], "neg_logits": [], "p_sum": 0.0, "count": 0}
-            for h in probe_heads
-            if h in target_specs
-        }
-        max_samples_per_head = 2000
-
+        acc: KCMetricsAccumulator,
+        config: KCProbeConfig,
+        m: StyleClassifierWithMLM,
+        max_batches: int,
+        temperature: float,
+    ) -> None:
+        """Run the KC probe evaluation loop."""
         with torch.no_grad():
             for batch_idx, batch in enumerate(probe_loader):
                 if batch_idx >= max_batches:
@@ -3392,219 +3807,51 @@ class Trainer:
                     gumbel_scale=0.0,
                 )
 
-                B = outputs["kc_probs"].shape[0]
-                n_samples += B
+                self._update_kc_metrics(acc, outputs, batch, config)
 
-                # Usage histograms
-                topk_inds = outputs["topk_inds"]  # (B, k)
-                for i in range(B):
-                    for j in range(kc_topk):
-                        idx = topk_inds[i, j].item()
-                        topk_hist[idx] += 1
-                        if j == 0:
-                            top1_hist[idx] += 1
+    def evaluate_kc_probe(
+        self,
+        probe_loader: DataLoader[Dict[str, Any]],
+        max_batches: int = 25,
+        temperature: float = 1.5,
+        tau_usage: float = 2.0,
+    ) -> Dict[str, Any]:
+        """Evaluate KC health metrics without affecting gradients."""
+        m = cast(
+            StyleClassifierWithMLM,
+            self.model.module if self.is_distributed else self.model,
+        )
+        m.eval()
 
-                # Entropy and KL from soft usage
-                logits_raw = outputs["kc_logits_raw"]
-                logits_clamped = logits_raw.clamp(min=-8.0, max=8.0)
-                q = torch.softmax(logits_clamped / tau_usage, dim=-1)  # (B, V)
-                p = q.mean(dim=0)  # (V,)
-                p = p / p.sum().clamp_min(1e-9)
+        config = KCProbeConfig(
+            tau_usage=tau_usage,
+            vocab_size=int(getattr(m.config, "kc_vocab_size", 1024)),
+            topk=int(getattr(m.config, "kc_topk", 8)),
+            target_specs=getattr(m.config, "kc_target_specs", {}),
+            max_samples_per_head=2000,
+        )
 
-                eps = 1e-9
-                log_p = (p + eps).log()
-                entropy = -(p * log_p).sum()
-                entropy_norm = entropy / math.log(kc_vocab_size)
-                kl_to_uniform = (p * (log_p + math.log(kc_vocab_size))).sum()
-
-                sum_entropy += entropy_norm.item() * B
-                sum_kl += kl_to_uniform.item() * B
-
-                # Top-k value stats
-                topk_vals = outputs["topk_vals"]  # (B, k)
-                sum_tv += topk_vals.mean().item() * B
-                gap = topk_vals[:, 0] - topk_vals[:, -1]
-                sum_gap += gap.mean().item() * B
-
-                # Soft density stats
-                sum_avg_prob += outputs["kc_probs"].mean().item() * B
-                sum_act_dens += (
-                    outputs["sparse_activations"] > 0
-                ).float().mean().item() * B
-
-                # Per-head AUC sampling
-                if "target_logits" in outputs:
-                    kc_targets = create_kc_batch(
-                        batch, self.val_dataset.tokenizer, target_specs
-                    )
-                    for head_name in head_samples:
-                        if head_name not in outputs["target_logits"]:
-                            continue
-                        logits_h = outputs["target_logits"][head_name]
-
-                        # Round 15: Handle both dense and sparse target formats
-                        dense_key = f"kc_targets_{head_name}"
-                        pos_key = f"kc_pos_inds_{head_name}"
-                        mask_key = f"kc_pos_mask_{head_name}"
-
-                        if dense_key in kc_targets:
-                            # Dense path (small heads)
-                            targets_h = kc_targets[dense_key].to(self.device).float()
-
-                            # Update head stats
-                            hs = head_samples[head_name]
-                            hs["p_sum"] += targets_h.sum().item()
-                            hs["count"] += targets_h.numel()
-
-                            # Sample pos and neg logits for AUC
-                            pos_mask = targets_h > 0.5
-                            neg_mask = ~pos_mask
-
-                            if len(hs["pos_logits"]) < max_samples_per_head:
-                                pos_logits = logits_h[pos_mask].cpu().tolist()
-                                hs["pos_logits"].extend(
-                                    pos_logits[
-                                        : max_samples_per_head - len(hs["pos_logits"])
-                                    ]
-                                )
-                            if len(hs["neg_logits"]) < max_samples_per_head:
-                                neg_logits = logits_h[neg_mask].cpu().tolist()
-                                hs["neg_logits"].extend(
-                                    neg_logits[
-                                        : max_samples_per_head - len(hs["neg_logits"])
-                                    ]
-                                )
-                        elif pos_key in kc_targets and mask_key in kc_targets:
-                            # Sparse path (large heads like lemma)
-                            pos_inds = kc_targets[pos_key].to(self.device)
-                            pos_mask_t = kc_targets[mask_key].to(self.device)
-
-                            hs = head_samples[head_name]
-                            B = pos_inds.size(0)
-                            vocab_size = logits_h.size(1)
-
-                            # Count positives
-                            n_pos = pos_mask_t.sum().item()
-                            n_total = B * vocab_size
-                            hs["p_sum"] += n_pos
-                            hs["count"] += n_total
-
-                            # Sample pos logits from sparse indices
-                            if len(hs["pos_logits"]) < max_samples_per_head:
-                                for i in range(
-                                    min(B, 4)
-                                ):  # Sample from first 4 batch items
-                                    valid_inds = pos_inds[i, pos_mask_t[i]]
-                                    if valid_inds.numel() > 0:
-                                        pos_log = logits_h[i, valid_inds].cpu().tolist()
-                                        hs["pos_logits"].extend(
-                                            pos_log[
-                                                : max_samples_per_head
-                                                - len(hs["pos_logits"])
-                                            ]
-                                        )
-
-                            # Sample neg logits (random indices not in positives)
-                            if len(hs["neg_logits"]) < max_samples_per_head:
-                                for i in range(min(B, 4)):
-                                    neg_inds = torch.randint(
-                                        4, vocab_size, (50,), device=self.device
-                                    )
-                                    neg_log = logits_h[i, neg_inds].cpu().tolist()
-                                    hs["neg_logits"].extend(
-                                        neg_log[
-                                            : max_samples_per_head
-                                            - len(hs["neg_logits"])
-                                        ]
-                                    )
-
-        # DDP sync if needed
-        if self.is_distributed:
-            dist.all_reduce(topk_hist, op=dist.ReduceOp.SUM)
-            dist.all_reduce(top1_hist, op=dist.ReduceOp.SUM)
-            scalars = torch.tensor(
-                [
-                    n_samples,
-                    sum_entropy,
-                    sum_kl,
-                    sum_tv,
-                    sum_gap,
-                    sum_avg_prob,
-                    sum_act_dens,
-                ],
-                device=self.device,
-            )
-            dist.all_reduce(scalars, op=dist.ReduceOp.SUM)
-            n_samples = int(scalars[0].item())
-            sum_entropy = scalars[1].item()
-            sum_kl = scalars[2].item()
-            sum_tv = scalars[3].item()
-            sum_gap = scalars[4].item()
-            sum_avg_prob = scalars[5].item()
-            sum_act_dens = scalars[6].item()
-
-        # Compute final metrics
-        uniq_kcs = int((topk_hist > 0).sum().item())
-        max_top1 = float(top1_hist.max().item()) / max(1, n_samples)
-
-        result: Dict[str, Any] = {
-            "n_samples": n_samples,
-            "uniq_kcs": uniq_kcs,
-            "max_top1": max_top1,
-            "entropy_norm": sum_entropy / max(1, n_samples),
-            "kl_to_uniform": sum_kl / max(1, n_samples),
-            "tv_mean": sum_tv / max(1, n_samples),
-            "gap_mean": sum_gap / max(1, n_samples),
-            "avg_prob": sum_avg_prob / max(1, n_samples),
-            "act_dens": sum_act_dens / max(1, n_samples),
-            "kc_vocab_size": kc_vocab_size,
+        # Per-head AUC sampling (reservoir style)
+        probe_heads = ["lemma", "pos", "conjugated_form", "conjugated_type"]
+        head_samples: Dict[str, Dict[str, Any]] = {
+            h: {"pos_logits": [], "neg_logits": [], "p_sum": 0.0, "count": 0}
+            for h in probe_heads
+            if h in config.target_specs
         }
 
-        # Per-head AUCs (rank0 only for simplicity)
-        if is_main_process():
-            for head_name, hs in head_samples.items():
-                p_true = hs["p_sum"] / max(1, hs["count"])
-                auc = float("nan")
-                delta_bce = float("nan")
+        acc = KCMetricsAccumulator(
+            topk_hist=torch.zeros(
+                config.vocab_size, device=self.device, dtype=torch.long
+            ),
+            top1_hist=torch.zeros(
+                config.vocab_size, device=self.device, dtype=torch.long
+            ),
+            head_samples=head_samples,
+        )
 
-                pos_l = hs["pos_logits"]
-                neg_l = hs["neg_logits"]
-                if len(pos_l) > 0 and len(neg_l) > 0:
-                    # Rank AUC
-                    all_logits = pos_l + neg_l
-                    all_labels = [1.0] * len(pos_l) + [0.0] * len(neg_l)
-                    combined = sorted(zip(all_logits, all_labels), key=lambda x: x[0])
-                    ranks = list(range(1, len(combined) + 1))
-                    pos_rank_sum = sum(
-                        r for r, (_, lbl) in zip(ranks, combined) if lbl > 0.5
-                    )
-                    n_pos = len(pos_l)
-                    n_neg = len(neg_l)
-                    auc = (pos_rank_sum - n_pos * (n_pos + 1) / 2) / max(
-                        1, n_pos * n_neg
-                    )
+        self._run_kc_probe_loop(probe_loader, acc, config, m, max_batches, temperature)
 
-                    # Delta BCE vs constant baseline
-                    import torch.nn.functional as F
-
-                    logits_t = torch.tensor(all_logits, dtype=torch.float32)
-                    labels_t = torch.tensor(all_labels, dtype=torch.float32)
-                    model_bce = F.binary_cross_entropy_with_logits(
-                        logits_t, labels_t
-                    ).item()
-                    baseline_logit = (
-                        math.log(p_true / (1 - p_true)) if 0 < p_true < 1 else 0.0
-                    )
-                    baseline_bce = F.binary_cross_entropy_with_logits(
-                        torch.full_like(logits_t, baseline_logit), labels_t
-                    ).item()
-                    delta_bce = model_bce - baseline_bce
-
-                result[f"head_{head_name}_p_true"] = p_true
-                result[f"head_{head_name}_auc"] = auc
-                result[f"head_{head_name}_delta_bce"] = delta_bce
-
-        return result
+        return self._compute_kc_metrics(acc, config.vocab_size)
 
     def _diagnose_kc_probe(
         self, probe_result: Dict[str, Any], verbose: bool = True

@@ -11,8 +11,8 @@ from dataclasses import dataclass, field
 from typing import Any, Dict, List, NamedTuple, Optional, Tuple, cast
 
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
+from torch import nn
 
 from kotogram.constants import FormalityLevel, GenderLevel, RegisterLevel
 from kotogram.tokenizer import (
@@ -486,6 +486,7 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         topk: Optional[int] = None,
         min_prob: float = 0.0,
     ) -> List[List[Tuple[int, float]]]:
+        # pylint: disable=too-many-locals
         """Predict top-K Knowledge Components with probabilities.
 
         Args:
@@ -518,12 +519,12 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         probs_list = topk_vals.tolist()
         inds_list = topk_inds.tolist()
 
-        for i in range(len(probs_list)):
+        for prob_row, ind_row in zip(probs_list, inds_list):
             sample_res = []
             for j in range(k):
-                p = probs_list[i][j]
+                p = prob_row[j]
                 if p >= min_prob:
-                    sample_res.append((int(inds_list[i][j]), float(p)))
+                    sample_res.append((int(ind_row[j]), float(p)))
             results.append(sample_res)
 
         return results
@@ -534,10 +535,8 @@ def load_model(
     device: Optional[str] = None,
 ) -> Tuple[StyleClassifier, Tokenizer]:
     """Load trained model and tokenizer."""
-    import os
-
     # Load config
-    with open(os.path.join(path, "model.json"), "r") as f:
+    with open(os.path.join(path, "model.json"), "r", encoding="utf-8") as f:
         config_dict = json.load(f)
     config = ModelConfig.from_dict(config_dict)
 

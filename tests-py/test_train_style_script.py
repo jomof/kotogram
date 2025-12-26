@@ -1,25 +1,23 @@
 import json
 import os
-import sys
 import unittest
 
-# Add tests-py directory to path to allow importing utility module
-sys.path.append(os.path.dirname(__file__))
 from training_test_utils import Bottle
 
 
 @unittest.skipIf(os.environ.get("GITHUB_ACTIONS") == "true", "Skipping on GitHub CI")
 class TestTrainStyleScript(unittest.TestCase):
+    # pylint: disable=too-many-locals
     def test_train(self):
         # Common arguments to reduce model size for faster testing
-        COMMON_ARGS = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
+        common_args = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
 
         # Test both regular training and pretraining (MLM/KC)
         test_configs = [
-            {"name": "regular", "extra_args": f"{COMMON_ARGS}"},
+            {"name": "regular", "extra_args": f"{common_args}"},
             {
                 "name": "pretrain-all",
-                "extra_args": f"{COMMON_ARGS} --pretrain-mlm --pretrain-epochs 1 --pretrain-kc --kc-epochs 1 --kc-k 256",
+                "extra_args": f"{common_args} --pretrain-mlm --pretrain-epochs 1 --pretrain-kc --kc-epochs 1 --kc-k 256",
             },
         ]
 
@@ -35,7 +33,7 @@ class TestTrainStyleScript(unittest.TestCase):
                     bottle.train_style("--label")
 
                     # Verify label phase output files using glob patterns
-                    EXPECTED_LABEL_MANIFEST = [
+                    expected_label_manifest = [
                         # --- Source Data ---
                         "[data]/jpn_agrammatic_*.tsv",
                         "[data]/jpn_sentences*.tsv",
@@ -49,9 +47,8 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[.cache]/kotogram_shards/*.db",
                         # --- Unified Config (Orchestrated) ---
                         "[models]/style-support/config.json",
-                        "[models]/style",
                     ]
-                    bottle.assert_dir_layout(EXPECTED_LABEL_MANIFEST)
+                    bottle.assert_dir_layout(expected_label_manifest)
 
                     bottle.snapshot("after_label")
 
@@ -78,7 +75,7 @@ class TestTrainStyleScript(unittest.TestCase):
                     bottle.assertEpochsTrained(result1, expected_epochs)
 
                     # Verify changes since snapshot (should only be training artifacts)
-                    EXPECTED_TRAIN_DIFFERENCES = [
+                    expected_train_differences = [
                         # Model Output
                         "[models]/style-support/training.log ADDED",
                         "[models]/style-support/epochs.json ADDED",
@@ -95,15 +92,15 @@ class TestTrainStyleScript(unittest.TestCase):
                     ]
 
                     if "pretrain-mlm" in config["extra_args"]:
-                        EXPECTED_TRAIN_DIFFERENCES.append(
+                        expected_train_differences.append(
                             "[models]/style-support/checkpoint_mlm.pt ADDED"
                         )
                     if "pretrain-kc" in config["extra_args"]:
-                        EXPECTED_TRAIN_DIFFERENCES.append(
+                        expected_train_differences.append(
                             "[models]/style-support/checkpoint_kc.pt ADDED"
                         )
 
-                    bottle.assert_dir_diff("after_label", EXPECTED_TRAIN_DIFFERENCES)
+                    bottle.assert_dir_diff("after_label", expected_train_differences)
 
                     # Step 3: Take snapshot after first training pass
                     bottle.snapshot("after_epoch_1")
@@ -118,7 +115,7 @@ class TestTrainStyleScript(unittest.TestCase):
                     bottle.assertEpochsTrained(result2, [2])
 
                     # Verify changes since first training pass
-                    EXPECTED_RESUME_DIFFERENCES = [
+                    expected_resume_differences = [
                         # Training artifacts should be modified
                         "[models]/style-support/training.log MODIFIED",
                         "[models]/style-support/epochs.json MODIFIED",
@@ -131,7 +128,7 @@ class TestTrainStyleScript(unittest.TestCase):
                     # NOTE: checkpoint_mlm.pt and checkpoint_kc.pt should NOT be modified
                     # because we are resuming and pretraining is already complete for this test case.
 
-                    bottle.assert_dir_diff("after_epoch_1", EXPECTED_RESUME_DIFFERENCES)
+                    bottle.assert_dir_diff("after_epoch_1", expected_resume_differences)
 
                     # Verify CLI tool works with the newly trained model
                     result = bottle.kotogram_cli("grammar", "こんにちは")

@@ -104,6 +104,7 @@ def kotogram_to_japanese(
     collapse_punctuation: bool = True,
     furigana: bool = False,
 ) -> str:
+    # pylint: disable=too-many-locals, no-else-return
     """Convert kotogram compact representation back to Japanese text.
 
     This function extracts the surface forms (ˢ markers) from a kotogram string
@@ -178,16 +179,16 @@ def kotogram_to_japanese(
                 # Remove spaces around Japanese punctuation for natural formatting
                 for punc in POS_TO_CHARS["aux-symbol"]:
                     # Skip braces as they're handled above
-                    if punc == "{" or punc == "}":
+                    if punc in ("{", "}"):
                         continue
                     # Remove space before and after punctuation
                     result = result.replace(f" {punc}", punc)
                     result = result.replace(f"{punc} ", punc)
 
             return result
-        else:
-            # Concatenate all surface forms without spaces (natural Japanese)
-            return "".join(matches)
+
+        # Concatenate all surface forms without spaces (natural Japanese)
+        return "".join(matches)
     else:
         # Furigana mode - extract surface forms and IME readings (hiragana)
         tokens = split_kotogram(kotogram)
@@ -252,14 +253,14 @@ def kotogram_to_japanese(
             if collapse_punctuation:
                 # Remove spaces around Japanese punctuation for natural formatting
                 for punc in POS_TO_CHARS["aux-symbol"]:
-                    if punc == "{" or punc == "}":
+                    if punc in ("{", "}"):
                         continue
                     result = result.replace(f" {punc}", punc)
                     result = result.replace(f"{punc} ", punc)
 
             return result
-        else:
-            return "".join(result_parts)
+
+        return "".join(result_parts)
 
 
 def split_kotogram(kotogram: str) -> List[str]:
@@ -308,6 +309,7 @@ def split_kotogram(kotogram: str) -> List[str]:
 
 
 def extract_token_features(token: str) -> TokenFeatures:
+    # pylint: disable=too-many-locals
     """Extract linguistic features from a single kotogram token.
 
     Parses a kotogram token to extract all encoded linguistic information including

@@ -1,16 +1,3 @@
-import textwrap
-
-from sudachipy import dictionary, tokenizer
-
-from kotogram.japanese_parser import (
-    CONJUGATED_FORM_MAP,
-    CONJUGATED_TYPE_MAP,
-    POS1_MAP,
-    POS2_MAP,
-    POS3_MAP,
-    POS_MAP,
-)
-
 """
 Sudachi Split Modes:
 
@@ -41,6 +28,19 @@ We have empirically verified (via `tests-py/test_japanese_parser.py`) that:
 
 This confirms that these are not orthogonal attributes but represent increasing levels of detail.
 """
+
+import textwrap
+
+from sudachipy import dictionary, tokenizer
+
+from kotogram.japanese_parser import (
+    CONJUGATED_FORM_MAP,
+    CONJUGATED_TYPE_MAP,
+    POS1_MAP,
+    POS2_MAP,
+    POS3_MAP,
+    POS_MAP,
+)
 
 
 def test_splitmode_a():

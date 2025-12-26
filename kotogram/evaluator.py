@@ -70,6 +70,7 @@ class Evaluator:
         self.console = Console()
 
     def evaluate(self, loader: DataLoader) -> EvalResult:
+        # pylint: disable=too-many-locals
         """Run inference on the loader and return results."""
         self.model.eval()
         result = EvalResult()
@@ -104,7 +105,7 @@ class Evaluator:
 
         try:
             with torch.no_grad():
-                for i, batch in enumerate(loader):
+                for batch in loader:
                     field_inputs = {
                         f"input_ids_{f}": batch[f"input_ids_{f}"].to(self.device)
                         for f in FEATURE_FIELDS

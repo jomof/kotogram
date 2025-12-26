@@ -9,6 +9,7 @@ from kotogram import GenderLevel, SudachiJapaneseParser, grammar
 from kotogram.model import StylePrediction
 
 
+# pylint: disable=no-member
 class TestGenderModel(unittest.TestCase):
     """Test gender analysis using the neural model."""
 

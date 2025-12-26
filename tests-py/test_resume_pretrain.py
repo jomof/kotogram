@@ -1,9 +1,6 @@
 import os
-import sys
 import unittest
 
-# Add tests-py directory to path to allow importing utility module
-sys.path.append(os.path.dirname(__file__))
 from training_test_utils import Bottle
 
 
@@ -11,7 +8,7 @@ from training_test_utils import Bottle
 class TestResumePretrain(unittest.TestCase):
     def test_resume_mlm(self):
         """Verify MLM pretraining can be resumed."""
-        COMMON_ARGS = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
+        common_args = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
 
         with Bottle(self) as bottle:
             bottle.populate_test_data()
@@ -19,7 +16,7 @@ class TestResumePretrain(unittest.TestCase):
 
             # Step 1: Run MLM for 1 epoch
             result1 = bottle.train_style(
-                f"--pretrain-mlm --pretrain-epochs 1 --epochs 0 --no-confusion {COMMON_ARGS}",
+                f"--pretrain-mlm --pretrain-epochs 1 --epochs 0 --no-confusion {common_args}",
             )
             bottle.assertEpochsTrained(result1, [1])  # 1 MLM, 0 Style
 
@@ -31,7 +28,7 @@ class TestResumePretrain(unittest.TestCase):
 
             # Step 2: Resume MLM to 2 epochs
             result2 = bottle.train_style(
-                f"--resume --pretrain-mlm --pretrain-epochs 2 --epochs 0 --no-confusion {COMMON_ARGS}",
+                f"--resume --pretrain-mlm --pretrain-epochs 2 --epochs 0 --no-confusion {common_args}",
             )
             # Should only train the 2nd MLM epoch
             bottle.assertEpochsTrained(result2, [2])
@@ -49,7 +46,7 @@ class TestResumePretrain(unittest.TestCase):
 
     def test_resume_kc(self):
         """Verify KC pretraining can be resumed."""
-        COMMON_ARGS = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
+        common_args = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
 
         with Bottle(self) as bottle:
             bottle.populate_test_data()
@@ -57,7 +54,7 @@ class TestResumePretrain(unittest.TestCase):
 
             # Step 1: Run KC for 1 epoch
             result1 = bottle.train_style(
-                f"--pretrain-kc --kc-epochs 1 --epochs 0 --no-confusion {COMMON_ARGS}",
+                f"--pretrain-kc --kc-epochs 1 --epochs 0 --no-confusion {common_args}",
             )
             bottle.assertEpochsTrained(result1, [1])  # 1 KC, 0 Style
 
@@ -69,7 +66,7 @@ class TestResumePretrain(unittest.TestCase):
 
             # Step 2: Resume KC to 2 epochs
             result2 = bottle.train_style(
-                f"--resume --pretrain-kc --kc-epochs 2 --epochs 0 --no-confusion {COMMON_ARGS}",
+                f"--resume --pretrain-kc --kc-epochs 2 --epochs 0 --no-confusion {common_args}",
             )
             # Should only train the 2nd KC epoch
             bottle.assertEpochsTrained(result2, [2])
@@ -83,7 +80,7 @@ class TestResumePretrain(unittest.TestCase):
 
     def test_resume_combined(self):
         """Verify resumption when BOTH MLM and KC are active and epochs are increased."""
-        COMMON_ARGS = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
+        common_args = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
 
         with Bottle(self) as bottle:
             bottle.populate_test_data()
@@ -92,13 +89,13 @@ class TestResumePretrain(unittest.TestCase):
             # Step 1: Run Combined Pretraining for 1 epoch each
             # --epochs 0 to skip style fine-tuning for speed
             result1 = bottle.train_style(
-                f"--pretrain-mlm --pretrain-epochs 1 --pretrain-kc --kc-epochs 1 --kc-k 256 --epochs 0 --no-confusion {COMMON_ARGS}"
+                f"--pretrain-mlm --pretrain-epochs 1 --pretrain-kc --kc-epochs 1 --kc-k 256 --epochs 0 --no-confusion {common_args}"
             )
             bottle.assertEpochsTrained(result1, [1, 1])  # MLM(1), KC(1)
 
             # Step 2: Resume BOTH to 2 epochs
             result2 = bottle.train_style(
-                f"--resume --pretrain-mlm --pretrain-epochs 2 --pretrain-kc --kc-epochs 2 --kc-k 256 --epochs 0 --no-confusion {COMMON_ARGS}"
+                f"--resume --pretrain-mlm --pretrain-epochs 2 --pretrain-kc --kc-epochs 2 --kc-k 256 --epochs 0 --no-confusion {common_args}"
             )
             # Should train MLM epoch 2, then KC epoch 2
             bottle.assertEpochsTrained(result2, [2, 2])

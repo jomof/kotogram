@@ -72,7 +72,7 @@ def run_watchdog() -> None:
                 entry = f"Watchdog Dump at {timestamp}\n" + "\n".join(output)
                 # Atomic write
                 temp_path = output_file + ".tmp"
-                with open(temp_path, "w") as f:
+                with open(temp_path, "w", encoding="utf-8") as f:
                     f.write(entry)
                 os.replace(temp_path, output_file)
                 sys.stdout.write(
