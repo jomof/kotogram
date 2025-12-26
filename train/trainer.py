@@ -3,6 +3,7 @@
 import math
 import os
 import sys
+import time
 from datetime import timedelta
 from functools import partial
 from typing import Any, Callable, Dict, List, Optional, Tuple, cast
@@ -60,6 +61,30 @@ def is_main_process() -> bool:
     if not dist.is_available() or not dist.is_initialized():
         return True
     return dist.get_rank() == 0
+
+
+class Timer:
+    """Simple timer for performance instrumentation."""
+
+    def __init__(self, name: str, verbose: bool = False):
+        self.name = name
+        self.verbose = verbose
+        self.durations: List[float] = []
+        self.start_time: float = 0.0
+
+    def start(self) -> None:
+        self.start_time = time.perf_counter()
+
+    def stop(self) -> float:
+        d = time.perf_counter() - self.start_time
+        self.durations.append(d)
+        return d
+
+    def avg(self) -> float:
+        return sum(self.durations) / max(1, len(self.durations))
+
+    def reset(self) -> None:
+        self.durations = []
 
 
 GENDER_LOSS_WEIGHT = 10.0
@@ -236,7 +261,10 @@ class StyleClassifierWithMLM(StyleClassifier):
 
 
 def setup_distributed() -> Tuple[int, int, int]:
-    """Initialize distributed training if available."""
+    """Initialize distributed training if available.
+
+    Supports NCCL for CUDA and Gloo for CPU/MPS.
+    """
     if "RANK" in os.environ and "WORLD_SIZE" in os.environ:
         rank = int(os.environ["RANK"])
         world_size = int(os.environ["WORLD_SIZE"])
@@ -244,14 +272,21 @@ def setup_distributed() -> Tuple[int, int, int]:
 
         if torch.cuda.is_available():
             torch.cuda.set_device(local_rank)
-            dist.init_process_group(
-                backend="nccl",
-                init_method="env://",
-                device_id=torch.device(f"cuda:{local_rank}"),
-                timeout=timedelta(minutes=60),
-            )
-            print(f"Distributed init: Rank {rank}/{world_size} (Local {local_rank})")
-            return rank, world_size, local_rank
+            backend = "nccl"
+        else:
+            backend = "gloo"
+            if sys.platform == "darwin" and "GLOO_SOCKET_IFNAME" not in os.environ:
+                os.environ["GLOO_SOCKET_IFNAME"] = "lo0"
+
+        dist.init_process_group(
+            backend=backend,
+            init_method="env://",
+            timeout=timedelta(minutes=60),
+        )
+        print(
+            f"Distributed init: Rank {rank}/{world_size} (Local {local_rank}) using {backend} backend"
+        )
+        return rank, world_size, local_rank
 
     return 0, 1, 0
 
@@ -477,6 +512,8 @@ class MLMTrainer:
             "field_losses": {f: [] for f in FEATURE_FIELDS},
             "sentence_count": [],
         }
+        self.train_timer_data = Timer("mlm_data")
+        self.train_timer_compute = Timer("mlm_compute")
         self.start_epoch = 0
         self.start_batch = 0
         self.global_step = 0
@@ -534,7 +571,11 @@ class MLMTrainer:
         field_losses = {f: 0.0 for f in FEATURE_FIELDS}
         total_batches = len(self.data_loader)
 
+        self.train_timer_data.start()
         for batch_idx, batch in enumerate(self.data_loader):
+            self.train_timer_data.stop()
+            self.train_timer_compute.start()
+
             # Mid-epoch resume: skip batches already processed
             if epoch == self.start_epoch and batch_idx < self.start_batch:
                 continue
@@ -622,8 +663,12 @@ class MLMTrainer:
                 ):
                     sys.stdout.flush()
 
+            self.train_timer_compute.stop()
+            self.train_timer_data.start()
+
         # Reset start_batch for next epoch
         self.start_batch = 0
+        self.train_timer_data.stop()
 
         if verbose and is_main_process():
             sys.stdout.write("\n")
@@ -664,6 +709,18 @@ class MLMTrainer:
                     phase="MLM",
                 )
             self.history["sentence_count"].append(len(self.dataset.samples))
+
+            # Performance report
+            if verbose and is_main_process():
+                data_avg = self.train_timer_data.avg()
+                compute_avg = self.train_timer_compute.avg()
+                total = data_avg + compute_avg
+                if total > 0:
+                    print(
+                        f"  [Time] Avg batch: {total * 1000:.1f}ms (Data: {data_avg * 1000:.1f}ms ({data_avg / total:.1%}), Compute: {compute_avg * 1000:.1f}ms)"
+                    )
+                self.train_timer_data.reset()
+                self.train_timer_compute.reset()
 
             # Save end-of-epoch checkpoint
             self.save_checkpoint(epoch + 1, 0)
@@ -889,7 +946,6 @@ class KCTrainer:
             self.kc_show_step_checks = True
             self.kc_show_grad_norms = True
             self.kc_show_amp_details = True
-
         self.history: Dict[str, Any] = {
             "total_loss": [],
             "kc_loss": [],
@@ -904,6 +960,8 @@ class KCTrainer:
             "first_batch_separation": [],
             "first_batch_grad_norms": [],
         }
+        self.train_timer_data = Timer("kc_data")
+        self.train_timer_compute = Timer("kc_compute")
         self.start_epoch = 0
         self.start_batch = 0
         self.global_step = 0
@@ -1410,9 +1468,15 @@ class KCTrainer:
         # Zero gradients before starting the epoch loop
         self.optimizer.zero_grad(set_to_none=True)
 
+        self.train_timer_data.start()
         for batch_idx, batch in enumerate(self.data_loader):
+            self.train_timer_data.stop()
+            self.train_timer_compute.start()
+
             # Mid-epoch resume: skip batches already processed
             if epoch == self.start_epoch and batch_idx < self.start_batch:
+                self.train_timer_compute.stop()
+                self.train_timer_data.start()
                 continue
 
             raw = self.model.module if self.is_distributed else self.model
@@ -2422,6 +2486,18 @@ class KCTrainer:
                 epoch=epoch, verbose=verbose
             )
 
+            # Performance report
+            if verbose and is_main_process():
+                data_avg = self.train_timer_data.avg()
+                compute_avg = self.train_timer_compute.avg()
+                total = data_avg + compute_avg
+                if total > 0:
+                    print(
+                        f"  [Time] Avg batch: {total * 1000:.1f}ms (Data: {data_avg * 1000:.1f}ms ({data_avg / total:.1%}), Compute: {compute_avg * 1000:.1f}ms)"
+                    )
+                self.train_timer_data.reset()
+                self.train_timer_compute.reset()
+
             self.history["total_loss"].append(total_loss)
             self.history["kc_sparsity"].append(avg_sparsity)
             self.history["avg_struct_loss"].append(epoch_stats["avg_struct_loss"])
@@ -2655,6 +2731,8 @@ class Trainer:
                 "sentence_count",
             ]
         }
+        self.train_timer_data = Timer("train_data")
+        self.train_timer_compute = Timer("train_compute")
 
     def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
         """Save training checkpoint."""
@@ -2737,16 +2815,15 @@ class Trainer:
         if total_batches == 0:
             return 0.0, 0.0, 0.0, 0.0, 0.0
 
+        self.train_timer_data.start()
         for batch_idx, batch in enumerate(self.train_loader):
-            # Mid-epoch resume: skip batches already processed
-            if self.start_epoch >= 0 and batch_idx < self.start_batch:
-                # We use start_batch only for the first epoch being resumed
-                pass
-            else:
-                pass  # placeholder for non-skip
+            self.train_timer_data.stop()
+            self.train_timer_compute.start()
 
-            # Simplified logic for skipping:
+            # Mid-epoch resume: skip batches already processed
             if batch_idx < self.start_batch:
+                self.train_timer_compute.stop()
+                self.train_timer_data.start()
                 continue
 
             field_inputs = {
@@ -2864,8 +2941,12 @@ class Trainer:
                 ):
                     sys.stdout.flush()
 
+            self.train_timer_compute.stop()
+            self.train_timer_data.start()
+
         # Reset start_batch for next epoch
         self.start_batch = 0
+        self.train_timer_data.stop()
         if verbose and is_main_process():
             sys.stdout.write("\n")
         return t_loss / n, tf_loss / n, tg_loss / n, tgram_loss / n, tr_loss / n
@@ -3057,10 +3138,21 @@ class Trainer:
             self.history["val_grammaticality_accuracy"].append(
                 eval_res["grammaticality_accuracy"]
             )
-            self.history["val_register_accuracy"].append(eval_res["register_accuracy"])
             self.history["sentence_count"].append(len(self.train_dataset.samples))
 
-            if verbose:
+            # Performance report
+            if verbose and is_main_process():
+                data_avg = self.train_timer_data.avg()
+                compute_avg = self.train_timer_compute.avg()
+                total = data_avg + compute_avg
+                if total > 0:
+                    print(
+                        f"  [Time] Avg batch: {total * 1000:.1f}ms (Data: {data_avg * 1000:.1f}ms ({data_avg / total:.1%}), Compute: {compute_avg * 1000:.1f}ms)"
+                    )
+                self.train_timer_data.reset()
+                self.train_timer_compute.reset()
+
+            if verbose and is_main_process():
                 # Format metrics for nice display
                 metrics = {
                     "Formality": {
@@ -3102,7 +3194,7 @@ class Trainer:
             else:
                 self.patience_counter += 1
                 if self.patience_counter >= self.config.patience:
-                    if verbose:
+                    if verbose and is_main_process():
                         print(f"Early stopping at epoch {epoch + 1}")
                     break
 

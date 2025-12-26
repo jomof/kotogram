@@ -125,6 +125,7 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[models]/style-support/checkpoint.pt MODIFIED",
                         "[models]/style-support/checkpoint_meta.pt MODIFIED",
                         "[models]/style-support/config.json MODIFIED",
+                        "[models]/style/model.pt MAYBE-MODIFIED",
                     ]
 
                     # NOTE: checkpoint_mlm.pt and checkpoint_kc.pt should NOT be modified

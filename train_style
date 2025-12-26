@@ -20,6 +20,8 @@ import argparse
 import os
 import subprocess
 import sys
+import time
+import threading
 from typing import List, Optional
 
 # Ensure we can import kotogram from project root if running from source
@@ -66,6 +68,82 @@ def run_command(cmd: List[str], env: dict, cwd: str, tee_log: Optional[str] = No
     else:
         result = subprocess.run(cmd, env=env, cwd=cwd)
         return result.returncode
+
+
+def get_free_port() -> int:
+    """Find a free port on localhost."""
+    import socket
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind(('', 0))
+        return s.getsockname()[1]
+
+
+def run_mp_distributed(cmd: List[str], env: dict, world_size: int, tee_log: Optional[str] = None) -> int:
+    """Run a distributed command using multiprocessing (bypasses torchrun overhead on Mac)."""
+    import threading
+
+    # Always pick a fresh port for MPLauncher to prevent test conflicts
+    # or lingering environment variables from polluting independent runs.
+    master_port = str(get_free_port())
+    master_addr = env.get("MASTER_ADDR", "127.0.0.1")
+    
+    # Ensure env has these for workers
+    env["MASTER_ADDR"] = master_addr
+    env["MASTER_PORT"] = master_port
+    
+    # Force lo0 on Mac for speed
+    if sys.platform == "darwin":
+        env["GLOO_SOCKET_IFNAME"] = "lo0"
+
+    processes = []
+    
+    if tee_log:
+        os.makedirs(os.path.dirname(tee_log), exist_ok=True)
+        log_f = open(tee_log, "a")
+        # Write a header
+        log_f.write(f"\n--- Starting MP Distributed Run (world_size={world_size}) ---\n")
+    else:
+        log_f = None
+
+    def pipe_reader(pipe):
+        try:
+            for line in pipe:
+                sys.stdout.write(line)
+                sys.stdout.flush()
+                if log_f:
+                    log_f.write(line)
+                    log_f.flush()
+        except EOFError:
+            pass
+
+    for i in range(world_size):
+        w_env = env.copy()
+        w_env["RANK"] = str(i)
+        w_env["WORLD_SIZE"] = str(world_size)
+        w_env["LOCAL_RANK"] = str(i)
+
+        p = subprocess.Popen(
+            [sys.executable] + cmd, 
+            env=w_env, 
+            cwd=PROJECT_ROOT,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            bufsize=1 # Line buffered
+        )
+        processes.append(p)
+        t = threading.Thread(target=pipe_reader, args=(p.stdout,))
+        t.daemon = True
+        t.start()
+
+    exit_codes = [p.wait() for p in processes]
+    if log_f:
+        log_f.close()
+        
+    for code in exit_codes:
+        if code != 0:
+            return code
+    return 0
 
 
 def main() -> int:
@@ -166,6 +244,8 @@ def main() -> int:
     env["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
     # Silence OMP warnings and prevent thread oversubscription
     env["OMP_NUM_THREADS"] = "1"
+    # Force 127.0.0.1 for master addr to avoid DNS lookups
+    env["MASTER_ADDR"] = "127.0.0.1"
 
     # Profiling support
     profile_dir = ""
@@ -258,14 +338,25 @@ def main() -> int:
         auto_resume = True
         print(f"Auto-resume enabled (found checkpoint: {checkpoint_path})")
 
-    # Detect environment
+    # Determine process count and launcher
     num_gpus = get_num_gpus()
-    cpu_count = get_cpu_count()
+    use_mp_launcher = False
+    if num_gpus > 1:
+        num_devices = num_gpus
+        launcher = ["torchrun", f"--nproc_per_node={num_gpus}"]
+    elif num_gpus == 1:
+        num_devices = 1
+        launcher = [sys.executable]
+    else:
+        # Simulate distributed on Mac/CPU with 2 processes to catch multi-process bugs.
+        # Use custom MP launcher to avoid 35s torchrun overhead on Mac.
+        num_devices = 2
+        use_mp_launcher = True
+        launcher = ["mp-simulation", "(2 processes)"]
 
     # Configure batch sizes
     micro_batch_size = args.batch_size if args.batch_size else 32
-    target_global_batch_size = 128
-    num_devices = max(num_gpus, 1)
+    target_global_batch_size = int(env.get("TARGET_GLOBAL_BATCH_SIZE", "128"))
 
     total_current_batch = num_devices * micro_batch_size
     if total_current_batch < target_global_batch_size:
@@ -273,12 +364,6 @@ def main() -> int:
     else:
         grad_accum_steps = 1
     grad_accum_steps = max(grad_accum_steps, 1)
-
-    # Determine launcher
-    if num_gpus > 1:
-        launcher = ["torchrun", f"--nproc_per_node={num_gpus}"]
-    else:
-        launcher = [sys.executable]
 
     # Print effective configuration
     print("-" * 46)
@@ -327,52 +412,7 @@ def main() -> int:
 
     gram_data_pattern = os.path.join(data_dir, "jpn_sentences*.tsv")
 
-    # Print configuration header
-    print("=" * 56)
-    print("Style Classifier Training (Formality + Gender + Grammaticality)")
-    print("=" * 56)
-    print(f"Data:           {gram_data_pattern}")
-    if agrammatic_pattern:
-        print(f"Agrammatic:     {agrammatic_pattern}")
-    print(f"Output:         {output_dir}")
-    if args.epochs is not None:
-        print(f"Epochs:         {args.epochs}")
-    else:
-        print("Epochs:         (default or restored from checkpoint)")
-    print(f"Learning rate:  {args.learning_rate}")
-    print(f"Model dim:      {args.embed_dim}")
-    print(f"Hidden dim:     {args.hidden_dim}")
-    print(f"Num layers:     {args.num_layers}")
-    print(f"Num heads:      {args.num_heads}")
-    print(f"Formality wt:   {args.formality_weight}")
-    print(f"Gender wt:      {args.gender_weight}")
-    print(f"Grammatic wt:   {args.grammaticality_weight}")
-    if args.pretrain_mlm:
-        print(f"MLM pretrain:   {args.pretrain_epochs} epochs")
-        print(f"Encoder LR:     {args.encoder_lr_factor}x base LR during fine-tuning")
-    if args.pretrain_kc:
-        print(f"KC pretrain:    {args.kc_epochs} epochs")
-        print(f"KC K:           {args.kc_k}")
-        print(f"KC Top-k:       {args.kc_topk}")
-        print(f"KC Freeze:      {args.kc_freeze_encoder_epochs} epochs")
-        print(f"KC Sparsity:    {args.kc_sparsity_weight}")
-        print(f"KC Targets:     {args.kc_target_heads}")
-    if args.fp8:
-        print("Precision:      float8 (quarter size)")
-    elif args.fp16:
-        print("Precision:      float16 (half size)")
-    if args.resume:
-        print("Resume:         from checkpoint")
-    if args.retrain:
-        print("Retrain:        from scratch using parameters from checkpoint")
-    if args.confusion:
-        print("Action:         Print confusion matrices (no training)")
-    if args.label:
-        print("Action:         Preprocessing/Labeling only")
-    if args.percent:
-        print(f"Data usage:     {args.percent}%")
-    print("=" * 46)
-    print()
+    # Phase 1: MLM Pretraining
 
     # Create directories
     os.makedirs(cache_dir, exist_ok=True)
@@ -413,7 +453,7 @@ def main() -> int:
             model_config, _ = TrainerConfig.load_config(config_path)
             config_loaded = True
         except Exception as e:
-            print(f"Warning: Failed to load existing config: {e}")
+            print(f"Failed to load existing config: {e}")
 
     if not config_loaded:
         model_config = ModelConfig(
@@ -501,21 +541,36 @@ def main() -> int:
     print()
 
     # Phase 1: Preprocessing/Labeling
+    combined_gram = os.path.join(cache_dir, "grammatic_combined.tsv")
+    combined_agram = os.path.join(cache_dir, "agrammatic_combined.tsv")
+    
+    skip_label = False
+    if os.path.exists(combined_gram) and not args.force_relabel:
+        skip_label = True
+        print("Using cached labels")
+
+    # Phase 1: Preprocessing/Labeling
     print("=" * 46)
     print("Running Preprocessing Phase...")
     print("=" * 46)
+    
+    t_label_start = time.perf_counter()
 
-    label_cmd = [sys.executable, "-m", "scripts.label", "--grammatic-pattern", gram_data_pattern]
-    if args.force_relabel:
-        label_cmd.append("--force-relabel")
-    if agrammatic_pattern:
-        label_cmd.extend(["--agrammatic-pattern", agrammatic_pattern])
+    if not skip_label:
+        label_cmd = [sys.executable, "-m", "scripts.label", "--grammatic-pattern", gram_data_pattern]
+        if args.force_relabel:
+            label_cmd.append("--force-relabel")
+        if agrammatic_pattern:
+            label_cmd.extend(["--agrammatic-pattern", agrammatic_pattern])
 
-    print("Executing preprocessing script...")
-    ret = run_command(label_cmd, env, PROJECT_ROOT)
-    if ret != 0:
-        print("Preprocessing failed!", file=sys.stderr)
-        return ret
+        print("Executing preprocessing script...")
+        ret = run_command(label_cmd, env, PROJECT_ROOT)
+        print(f"Preprocessing script took {time.perf_counter() - t_label_start:.1f}s")
+        if ret != 0:
+            print("Preprocessing failed!", file=sys.stderr)
+            return ret
+    else:
+        print(f"Preprocessing skipped (using cached labels). Took {time.perf_counter() - t_label_start:.1f}s")
 
     # Update line counts
     combined_gram = os.path.join(cache_dir, "grammatic_combined.tsv")
@@ -540,16 +595,20 @@ def main() -> int:
         print("=" * 46)
         print("Running Confusion Matrix Evaluation...")
         print("=" * 46)
+        t_confusion_start = time.perf_counter()
         confusion_cmd = [sys.executable, "-m", "scripts.confusion", "--config", config_path]
         if args.percent:
             confusion_cmd.extend(["--percent", str(args.percent)])
         ret = run_command(confusion_cmd, env, PROJECT_ROOT)
+        print(f"Confusion evaluation took {time.perf_counter() - t_confusion_start:.1f}s")
         return ret
 
-    # Phase 3: Training
+    # Training Phase
     print("Starting training run...")
+    t_train_run_start = time.perf_counter()
 
-    train_cmd = launcher + [
+    # Base training command arguments (passed to launcher)
+    train_args = [
         "-m",
         "scripts.train_style",
         "--config",
@@ -562,11 +621,11 @@ def main() -> int:
     ]
 
     if args.pretrain_mlm:
-        train_cmd.append("--pretrain-mlm")
+        train_args.append("--pretrain-mlm")
     if args.pretrain_kc:
-        train_cmd.append("--pretrain-kc")
+        train_args.append("--pretrain-kc")
         # KC-specific model args (not in TrainerConfig)
-        train_cmd.extend([
+        train_args.extend([
             "--kc-k", str(args.kc_k),
             "--kc-topk", str(args.kc_topk),
             "--kc-freeze-encoder-epochs", str(args.kc_freeze_encoder_epochs),
@@ -574,16 +633,24 @@ def main() -> int:
             "--kc-target-heads", args.kc_target_heads,
         ])
     if args.resume:
-        train_cmd.append("--resume")
+        train_args.append("--resume")
     if args.retrain:
-        train_cmd.append("--retrain")
+        train_args.append("--retrain")
     if args.percent:
-        train_cmd.extend(["--percent", str(args.percent)])
+        train_args.extend(["--percent", str(args.percent)])
     
 
 
     training_log = os.path.join(support_dir, "training.log")
-    ret = run_command(train_cmd, env, PROJECT_ROOT, tee_log=training_log)
+    t_train_start = time.perf_counter()
+    
+    if use_mp_launcher:
+        ret = run_mp_distributed(train_args, env, num_devices, tee_log=training_log)
+    else:
+        train_cmd = launcher + train_args
+        ret = run_command(train_cmd, env, PROJECT_ROOT, tee_log=training_log)
+        
+    print(f"Training run took {time.perf_counter() - t_train_start:.1f}s")
     if ret != 0:
         print("Training failed!", file=sys.stderr)
         return ret

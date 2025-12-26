@@ -584,6 +584,17 @@ def load_default_style_model(
     import importlib.resources
     import sys
 
+    from kotogram import locations
+
+    # Dev/Source mode: Check if we are running in a project with a trained model
+    try:
+        # Check standard locations (TRAIN_ROOT or project root)
+        dev_model_dir = locations.get_style_output_dir()
+        if os.path.exists(os.path.join(dev_model_dir, "model.pt")):
+            return load_model(dev_model_dir, device=device)
+    except Exception:
+        pass
+
     try:
         if sys.version_info >= (3, 9):
             from importlib.resources import as_file, files

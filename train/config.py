@@ -81,7 +81,6 @@ class DataLoaderSettings:
             "pin_memory": self.pin_memory,
             "persistent_workers": self.persistent_workers,
             "prefetch_factor": self.prefetch_factor,
-            "prefetch_factor": self.prefetch_factor,
         }
 
     @classmethod
@@ -229,7 +228,6 @@ class TrainerConfig:
         return _get_safe_dataloader_config(self, device, process, mode)
 
     def __post_init__(self) -> None:
-
         # Resolve thread counts
         cpu_t, interop_t = _choose_torch_threads(self)
         object.__setattr__(self.hardware, "cpu_threads", cpu_t)
