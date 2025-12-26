@@ -376,15 +376,8 @@ if __name__ == "__main__":
     failed = 0
 
     for test in tests:
-        try:
-            test()
-            passed += 1
-        except Exception as e:
-            failed += 1
-            print(f"\n❌ {test.__name__} FAILED: {e}")
-            import traceback
-
-            traceback.print_exc()
+        test()
+        passed += 1
 
     print("\n" + "#" * 60)
     print(f"# SUMMARY: {passed}/{len(tests)} tests passed, {failed} failed")

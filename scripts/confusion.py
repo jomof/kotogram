@@ -398,17 +398,14 @@ def main() -> None:
     # Restore percent from checkpoint if not explicitly provided
     checkpoint_path = os.path.join(args.support_dir, "checkpoint.pt")
     if args.percent is None and os.path.exists(checkpoint_path):
-        try:
-            checkpoint_data = torch.load(checkpoint_path, map_location="cpu")
-            saved_args = checkpoint_data.get("args", {})
-            saved_percent = saved_args.get("percent")
-            if saved_percent is not None:
-                args.percent = saved_percent
-                console.print(
-                    f"[dim]Restored --percent {args.percent} from checkpoint[/dim]"
-                )
-        except Exception:
-            pass  # If checkpoint can't be read, just continue without percent
+        checkpoint_data = torch.load(checkpoint_path, map_location="cpu")
+        saved_args = checkpoint_data.get("args", {})
+        saved_percent = saved_args.get("percent")
+        if saved_percent is not None:
+            args.percent = saved_percent
+            console.print(
+                f"[dim]Restored --percent {args.percent} from checkpoint[/dim]"
+            )
 
     device_name = (
         "cuda"

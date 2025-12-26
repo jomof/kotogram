@@ -4,9 +4,11 @@ This script orchestrates the training pipeline, including argument parsing,
 data loading, and calling the trainers from the kotogram.train package.
 """
 
-try:
+import importlib.util
+
+if importlib.util.find_spec("_setup_path"):
     import _setup_path  # type: ignore # noqa: F401
-except ImportError:
+else:
     from scripts import _setup_path  # type: ignore # noqa: F401
 
 import glob
@@ -60,10 +62,8 @@ def generate_profile_report() -> None:
     for p in files:
         with open(p, "r") as f:
             for line in f:
-                try:
+                if line.strip():
                     all_entries.append(json.loads(line))
-                except json.JSONDecodeError:
-                    pass
 
     if not all_entries:
         print("No valid entries found.")
@@ -311,12 +311,8 @@ if __name__ == "__main__":
     epochs_json_path = os.path.join(args.support_dir, "epochs.json")
     training_history: List[Dict[str, Any]] = []
     if is_main_process() and os.path.exists(epochs_json_path):
-        try:
-            with open(epochs_json_path, "r") as f:
-                training_history = json.load(f)
-        except (json.JSONDecodeError, FileNotFoundError):
-            # Safe to ignore, might be first run or race condition
-            pass
+        with open(epochs_json_path, "r") as f:
+            training_history = json.load(f)
 
     def _append_history(
         raw_history: Dict[str, Any], phase_type: str, start_epoch: int = 0
@@ -400,22 +396,13 @@ if __name__ == "__main__":
 
     tokenizer = None
     if os.path.exists(tokenizer_path_support):
-        try:
-            tokenizer = Tokenizer.load(tokenizer_path_support)
-            if is_main_process():
-                print(f"Loaded tokenizer from {tokenizer_path_support}")
-        except Exception as e:
-            print(f"ERROR: Failed to load tokenizer from {tokenizer_path_support}: {e}")
+        tokenizer = Tokenizer.load(tokenizer_path_support)
+        if is_main_process():
+            print(f"Loaded tokenizer from {tokenizer_path_support}")
 
     if tokenizer is None:
         if os.path.exists(tokenizer_path_cache):
-            try:
-                tokenizer = Tokenizer.load(tokenizer_path_cache)
-            except Exception as e:
-                print(
-                    f"ERROR: Failed to load tokenizer from {tokenizer_path_cache}: {e}"
-                )
-                tokenizer = Tokenizer()
+            tokenizer = Tokenizer.load(tokenizer_path_cache)
         else:
             # Fallback to loading via StyleDataset logic or empty
             tokenizer = Tokenizer()
@@ -429,20 +416,15 @@ if __name__ == "__main__":
 
     # Create a single TrainerConfig and ModelConfig
     if args.config and os.path.exists(args.config):
-        try:
-            model_config, trainer_config = TrainerConfig.load_config(args.config)
+        model_config, trainer_config = TrainerConfig.load_config(args.config)
 
-            # Override resume_from if --resume flag is present but not in config
-            # This handles auto-resume from the wrapper while keeping config.json stable
-            if args.resume and not trainer_config.checkpoint.resume_from:
-                # type: ignore[misc]
-                object.__setattr__(
-                    trainer_config.checkpoint, "resume_from", args.support_dir
-                )
-        except Exception as e:
-            if is_main_process():
-                print(f"Failed to load existing config: {e}")
-            sys.exit(1)
+        # Override resume_from if --resume flag is present but not in config
+        # This handles auto-resume from the wrapper while keeping config.json stable
+        if args.resume and not trainer_config.checkpoint.resume_from:
+            # type: ignore[misc]
+            object.__setattr__(
+                trainer_config.checkpoint, "resume_from", args.support_dir
+            )
     else:
         print(
             "ERROR: --config is required. Configuration must be passed from the wrapper script.",

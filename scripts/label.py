@@ -2,12 +2,13 @@
 """Standalone script to label and cache Japanese sentences for style classification.
 Factored out from train_style.py.
 
-NOTE FOR SELF: Never use conditional imports surrounded by try/except.
+NOTE FOR SELF: Never use conditional imports surrounded by try/catch.
 It makes the code harder to reason about and can hide installation issues.
 """
 
 import csv
 import glob
+import importlib.util
 import json
 import multiprocessing as mp
 import os
@@ -17,9 +18,9 @@ import time
 from collections import Counter
 from typing import Any, Dict, List, Optional, Tuple, cast
 
-try:
+if importlib.util.find_spec("_setup_path"):
     import _setup_path  # type: ignore # noqa: F401
-except ImportError:
+else:
     from scripts import _setup_path  # type: ignore # noqa: F401
 
 from rich.console import Console
@@ -492,22 +493,19 @@ def main() -> None:
     current_fingerprints = get_dependencies_fingerprint(args)
 
     if os.path.exists(metadata_path) and not args.force_relabel:
-        try:
-            with open(metadata_path, "r", encoding="utf-8") as f:
-                saved_data = json.load(f)
+        with open(metadata_path, "r", encoding="utf-8") as f:
+            saved_data = json.load(f)
 
-            vocab_path = os.path.join(
-                dataset_cache_dir, saved_data.get("vocab_file", "vocab.json")
-            )
-            if (
-                saved_data.get("fingerprints") == current_fingerprints
-                and saved_data.get("cache_version") == CACHE_VERSION
-                and os.path.exists(vocab_path)
-            ):
-                console.print("[green]Using cached labels[/green]")
-                return
-        except Exception:
-            pass  # Fall back to processing
+        vocab_path = os.path.join(
+            dataset_cache_dir, saved_data.get("vocab_file", "vocab.json")
+        )
+        if (
+            saved_data.get("fingerprints") == current_fingerprints
+            and saved_data.get("cache_version") == CACHE_VERSION
+            and os.path.exists(vocab_path)
+        ):
+            console.print("[green]Using cached labels[/green]")
+            return
 
     num_workers = max(1, mp.cpu_count() - 1)
 

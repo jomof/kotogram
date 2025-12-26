@@ -3,28 +3,26 @@
 
 import os
 import sys
+import importlib.util
 
 # Ensure we can import kotogram from project root if running from source
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-def main():
-    try:
+def main() -> int:
+    if importlib.util.find_spec("kotogram.cli"):
         from kotogram.cli import main as cli_main
         return cli_main()
-    except ImportError:
-        # Check if we are arguably already in a venv
-        if sys.prefix == sys.base_prefix:
-            venv_python = os.path.join(project_root, ".venv", "bin", "python")
-            if os.path.exists(venv_python):
-                try:
-                    os.execv(venv_python, [venv_python] + sys.argv)
-                except OSError:
-                    pass
-        
-        sys.stderr.write("Error: Failed to import kotogram. Make sure dependencies are installed.\n")
-        sys.exit(1)
+
+    # Check if we are arguably already in a venv
+    if sys.prefix == sys.base_prefix:
+        venv_python = os.path.join(project_root, ".venv", "bin", "python")
+        if os.path.exists(venv_python) and os.access(venv_python, os.X_OK):
+            os.execv(venv_python, [venv_python] + sys.argv)
+    
+    sys.stderr.write("Error: Failed to import kotogram. Make sure dependencies are installed.\\n")
+    sys.exit(1)
 
 if __name__ == "__main__":
     sys.exit(main())

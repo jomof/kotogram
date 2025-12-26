@@ -55,18 +55,57 @@ INITIAL_GIT_STATUS=$(git status --short)
 
 # Check for forbidden "# noqa: E402" comments
 echo "Checking for forbidden '# noqa: E402' comments..."
-if grep -rn "# noqa: E402" kotogram scripts tests-py train; then
+if grep -rn "# noqa: E402" kotogram scripts tests-py train train_style bin/kotogram; then
     error "Found forbidden '# noqa: E402' comments! (See above)"
 fi
 success "No '# noqa: E402' comments found"
+
+# Check for forbidden "catch Exception" or bare "except:"
+# These are strictly forbidden even if whitelisted (unless very specifically exempted, but user rule implies broad ban)
+echo "Checking for forbidden broad exception handling..."
+# Matches: "except (.*ERROR_TYPE.*)" or "except ERROR_TYPE:" or bare "except:"
+# where ERROR_TYPE includes FileNotFoundError, IOError, etc.
+FORBIDDEN_TYPES="Exception|BaseException|IOError|OSError|ValueError|BaseError|FileNotFoundError|RuntimeError|ImportError|TypeError|json\.JSONDecodeError|KeyError|sqlite3\.OperationalError"
+if grep -rnE "except(\s*(\([^)]*\b($FORBIDDEN_TYPES)\b[^)]*\)|$FORBIDDEN_TYPES)(\s+as\s+\w+)?\s*:|\s*:) *" kotogram scripts train tests-py train_style bin/kotogram | grep -v "test.sh" | grep -v "scripts/exception-whitelist.txt"; then
+    error "Found forbidden broad exception handling (checked types)! (See above)"
+fi
+success "No broad exception catching found"
+
+# Strict Exception Whitelisting Check
+echo "Checking for non-whitelisted exception handling..."
+WHITELIST="scripts/exception-whitelist.txt"
+FOUND_VIOLATION=0
+
+# Find all lines with 'except' in them
+# -r: recursive
+# -n: show line numbers
+# -I: ignore binary files
+grep -rnIw "except" kotogram scripts train tests-py train_style bin/kotogram | grep -vE ":[0-9]+:\s*#" | grep -v "test.sh" | grep -v "scripts/exception-whitelist.txt" | while read -r line; do
+    # Remove leading/trailing whitespace from the content part for comparison?
+    # User said: "contains the filename, line number, and line from the file" and "All three must match"
+    # Grep output: filename:linenum:content
+    # My whitelist format: filename:linenum:content
+    
+    if ! grep -Fxq "$line" "$WHITELIST"; then
+        echo "  $line"
+        error "Forbidden exception handling found (not in whitelist)! See above violation."
+    fi
+done
+
+if [ $? -ne 0 ]; then
+    error "Whitelisting check failed. Add valid exceptions to $WHITELIST"
+fi
+success "Exception handling compliant with whitelist"
 
 run_quiet ruff check --fix . --config pyproject.toml && run_quiet ruff format .
 success "Ruff check and format passed"
 
 run_quiet mypy kotogram scripts train --explicit-package-bases
+run_quiet mypy train_style
+run_quiet mypy bin/kotogram
 success "Mypy passed"
 
-run_quiet vulture kotogram scripts train tests-py scripts/vulture_whitelist.py
+run_quiet vulture kotogram scripts train tests-py scripts/vulture_whitelist.py train_style bin/kotogram
 success "Vulture passed"
 
 if [ -f "package.json" ]; then

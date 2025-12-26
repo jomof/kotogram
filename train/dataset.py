@@ -60,17 +60,19 @@ class StyleDataset(Dataset[Sample]):
         if not os.path.exists(cache_path):
             raise FileNotFoundError(f"Vocabulary not found at {cache_path}")
 
-        try:
-            with open(cache_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
+        with open(cache_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
 
-            if data.get("version") != CACHE_VERSION:
-                raise ValueError(f"Cache version mismatch. Expected {CACHE_VERSION}")
+        if data.get("version") != CACHE_VERSION:
+            raise ValueError(f"Cache version mismatch. Expected {CACHE_VERSION}")
 
-            tokenizer.field_vocabs = data["field_vocabs"]
-            tokenizer._frozen = bool(data.get("frozen", False))
-        except Exception as e:
-            raise ValueError(f"Failed to load vocabulary from {cache_path}: {e}")
+        if "field_vocabs" not in data:
+            raise ValueError(
+                f"Failed to load vocabulary from {cache_path}: 'field_vocabs'"
+            )
+
+        tokenizer.field_vocabs = data["field_vocabs"]
+        tokenizer._frozen = bool(data.get("frozen", False))
 
     @classmethod
     def _process_parallel(
@@ -189,11 +191,8 @@ class StyleDataset(Dataset[Sample]):
             file_rows: List[Tuple[str, int]] = []
             with open(tsv_path, "r", encoding="utf-8") as f:
                 for line in f:
-                    try:
-                        sentence = parse_tsv(line)
-                        file_rows.append((sentence, gram_label))
-                    except ValueError:
-                        continue
+                    sentence = parse_tsv(line)
+                    file_rows.append((sentence, gram_label))
             all_rows.extend(file_rows)
 
         if sample_ratio < 1.0:
@@ -364,10 +363,9 @@ class StyleDataset(Dataset[Sample]):
                         newly_encoded_samples.extend(batch_encoded)
                     pool.close()
                     pool.join()
-                except Exception:
+                finally:
                     pool.terminate()
                     pool.join()
-                    raise
 
             if newly_encoded_samples:
                 cache = get_kotogram_cache()

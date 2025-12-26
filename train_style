@@ -17,12 +17,13 @@ Setup:
 """
 
 import argparse
+import importlib.util
 import os
 import subprocess
 import sys
 import time
 import threading
-from typing import List, Optional
+from typing import List, Optional, Any, Dict, IO
 
 # Ensure we can import kotogram from project root if running from source
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -36,22 +37,14 @@ if PROJECT_ROOT not in sys.path:
 
 def get_num_gpus() -> int:
     """Detect the number of available CUDA GPUs."""
-    try:
+    if importlib.util.find_spec("torch"):
         import torch
+        if torch.cuda.is_available():
+            return torch.cuda.device_count()
+    return 0
 
-        return torch.cuda.device_count()
-    except ImportError:
-        return 0
 
 
-def get_cpu_count() -> int:
-    """Get number of CPU cores."""
-    try:
-        import multiprocessing
-
-        return multiprocessing.cpu_count()
-    except Exception:
-        return 4
 
 
 def run_command(cmd: List[str], env: dict, cwd: str, tee_log: Optional[str] = None) -> int:
@@ -63,6 +56,8 @@ def run_command(cmd: List[str], env: dict, cwd: str, tee_log: Optional[str] = No
             process = subprocess.Popen(
                 cmd, env=env, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=0
             )
+            if process.stdout is None:
+                raise RuntimeError("Failed to capture stdout")
             while True:
                 # Read chunks to allow real-time progress bar updates without newline buffering issues
                 chunk = process.stdout.read(4096)
@@ -85,7 +80,7 @@ def get_free_port() -> int:
     import socket
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind(('', 0))
-        return s.getsockname()[1]
+        return int(s.getsockname()[1])
 
 
 
@@ -119,19 +114,16 @@ def run_mp_distributed(cmd: List[str], env: dict, world_size: int, tee_log: Opti
     else:
         log_f = None
 
-    def pipe_reader(pipe):
-        try:
-            while True:
-                chunk = pipe.read(4096)
-                if not chunk:
-                    break
-                sys.stdout.buffer.write(chunk)
-                sys.stdout.flush()
-                if log_f:
-                    log_f.write(chunk)
-                    log_f.flush()
-        except Exception:
-            pass
+    def pipe_reader(pipe: IO[bytes]) -> None:
+        while True:
+            chunk = pipe.read(4096)
+            if not chunk:
+                break
+            sys.stdout.buffer.write(chunk)
+            sys.stdout.flush()
+            if log_f:
+                log_f.write(chunk)
+                log_f.flush()
 
     for i in range(world_size):
         w_env = env.copy()
@@ -350,13 +342,12 @@ def main() -> int:
 
     # Auto-resume logic
     checkpoint_path = os.path.join(support_dir, "checkpoint.pt")
-    auto_resume = False
+
     # Capture original --resume flag value before auto-resume may modify it
     # Used for config generation to keep config stable across runs
     explicit_resume = args.resume
     if not args.resume and not args.retrain and os.path.exists(checkpoint_path):
         args.resume = True
-        auto_resume = True
         print(f"Auto-resume enabled (found checkpoint: {checkpoint_path})")
 
     # Determine process count and launcher
@@ -449,32 +440,20 @@ def main() -> int:
     
     tokenizer = None
     if os.path.exists(tokenizer_path_support):
-        try:
-             tokenizer = Tokenizer.load(tokenizer_path_support)
-             print(f"Loaded tokenizer from {tokenizer_path_support}")
-        except Exception as e:
-             print(f"ERROR: Failed to load tokenizer from {tokenizer_path_support}: {e}")
-
-    if tokenizer is None:
-        if os.path.exists(tokenizer_path_cache):
-            try:
-                tokenizer = Tokenizer.load(tokenizer_path_cache)
-                print(f"Loaded tokenizer from {tokenizer_path_cache}")
-            except Exception as e:
-                print(f"ERROR: Failed to load tokenizer from {tokenizer_path_cache}: {e}")
-                tokenizer = Tokenizer()
-        else:
-             tokenizer = Tokenizer()
+         print(f"Loaded tokenizer from {tokenizer_path_support}")
+         tokenizer = Tokenizer.load(tokenizer_path_support)
+    elif os.path.exists(tokenizer_path_cache):
+         print(f"Loaded tokenizer from {tokenizer_path_cache}")
+         tokenizer = Tokenizer.load(tokenizer_path_cache)
+    else:
+         tokenizer = Tokenizer()
 
     # Create configs
     config_loaded = False
     if args.resume and os.path.exists(config_path):
-        try:
-            print(f"Resuming: Loading ModelConfig from {config_path}")
-            model_config, _ = TrainerConfig.load_config(config_path)
-            config_loaded = True
-        except Exception as e:
-            print(f"Failed to load existing config: {e}")
+        print(f"Resuming: Loading ModelConfig from {config_path}")
+        model_config, _ = TrainerConfig.load_config(config_path)
+        config_loaded = True
 
     if not config_loaded:
         model_config = ModelConfig(
@@ -511,7 +490,7 @@ def main() -> int:
             resume_from=support_dir if explicit_resume else None,
         ),
         "hardware": HardwareConfig(
-            cpu_reserve_cores=env.get("CPU_RESERVE_CORES", 2),
+            cpu_reserve_cores=int(env.get("CPU_RESERVE_CORES", 2)),
         ),
         "dataloader": DataLoaderSettings(
             num_workers=args.dataloader_num_workers,
@@ -626,7 +605,7 @@ def main() -> int:
 
     # Training Phase
     print("Starting training run...")
-    t_train_run_start = time.perf_counter()
+
 
     # Base training command arguments (passed to launcher)
     train_args = [

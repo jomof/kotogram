@@ -53,10 +53,11 @@ class ShardedKotogramCache:
                     feature_ids TEXT
                 )
             """)
-            try:
+            # Check for column existence to avoid OperationalError on duplicate column
+            cursor = conn.execute("PRAGMA table_info(cache_entries)")
+            columns = [info[1] for info in cursor.fetchall()]
+            if "feature_ids" not in columns:
                 conn.execute("ALTER TABLE cache_entries ADD COLUMN feature_ids TEXT")
-            except sqlite3.OperationalError:
-                pass
             conn.execute(
                 "CREATE INDEX IF NOT EXISTS idx_hash ON cache_entries(sentence_hash)"
             )

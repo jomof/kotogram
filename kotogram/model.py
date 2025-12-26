@@ -587,29 +587,18 @@ def load_default_style_model(
     from kotogram import locations
 
     # Dev/Source mode: Check if we are running in a project with a trained model
-    try:
-        # Check standard locations (TRAIN_ROOT or project root)
-        dev_model_dir = locations.get_style_output_dir()
-        if os.path.exists(os.path.join(dev_model_dir, "model.pt")):
-            return load_model(dev_model_dir, device=device)
-    except Exception:
-        pass
+    dev_model_dir = locations.get_style_output_dir()
+    if os.path.exists(os.path.join(dev_model_dir, "model.pt")):
+        return load_model(dev_model_dir, device=device)
 
-    try:
-        if sys.version_info >= (3, 9):
-            from importlib.resources import as_file, files
+    if sys.version_info >= (3, 9):
+        from importlib.resources import as_file, files
 
-            ref = files("kotogram.model_data").joinpath("model.pt")
-            with as_file(ref) as model_file:
-                model_dir = os.path.dirname(model_file)
-                return load_model(model_dir, device=device)
-        else:
-            with importlib.resources.path(
-                "kotogram.model_data", "model.pt"
-            ) as model_file:
-                model_dir = os.path.dirname(model_file)
-                return load_model(model_dir, device=device)
-    except (ImportError, ModuleNotFoundError):
-        raise ImportError(
-            "Could not load default model. Ensure 'kotogram.model_data' package is installed and contains model files."
-        )
+        ref = files("kotogram.model_data").joinpath("model.pt")
+        with as_file(ref) as model_file:
+            model_dir = os.path.dirname(model_file)
+            return load_model(model_dir, device=device)
+    else:
+        with importlib.resources.path("kotogram.model_data", "model.pt") as model_file:
+            model_dir = os.path.dirname(model_file)
+            return load_model(model_dir, device=device)

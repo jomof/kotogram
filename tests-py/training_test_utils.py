@@ -224,11 +224,8 @@ class Bottle:
                 abs_path = os.path.join(root, file)
                 rel_path = os.path.relpath(abs_path, self.root_dir)
 
-                try:
+                if os.path.exists(abs_path):
                     state[rel_path] = self._get_file_hash(abs_path)
-                except FileNotFoundError:
-                    # File might have been deleted between walk and processing
-                    pass
         return state
 
     def snapshot(self, name: str) -> None:
