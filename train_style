@@ -33,13 +33,17 @@ def _enforce_venv():
     """Re-execute with .venv python if not already running in it and it exists."""
     # Common venv location
     venv_python = os.path.join(PROJECT_ROOT, ".venv", "bin", "python")
+    print(f"DEBUG: Checking venv: {venv_python}")
     if not os.path.exists(venv_python):
+        print(f"DEBUG: venv python not found at {venv_python}")
         return
 
     # Check if we are running the venv python
     # resolving symlinks to be sure
     current_exe = os.path.realpath(sys.executable)
     venv_exe = os.path.realpath(venv_python)
+    print(f"DEBUG: Current exe: {current_exe}")
+    print(f"DEBUG: Venv exe:    {venv_exe}")
 
     if current_exe != venv_exe:
         # Re-execute preserving all arguments
@@ -49,6 +53,8 @@ def _enforce_venv():
             os.execv(venv_python, [venv_python] + sys.argv)
         except OSError as e:
             print(f"Failed to switch to venv: {e}")
+    else:
+        print("DEBUG: Already running in venv")
 
 # Run venv check immediately
 _enforce_venv()
