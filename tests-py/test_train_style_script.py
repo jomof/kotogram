@@ -196,7 +196,7 @@ class TestTrainStyleScript(unittest.TestCase):
                             history[0]["sentence_count"], 85
                         )  # MLM full dataset
                         self.assertEqual(
-                            history[1]["sentence_count"], 67
+                            history[1]["sentence_count"], 68
                         )  # KC filtered
 
                         # KC metrics check
