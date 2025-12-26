@@ -44,7 +44,7 @@ fi
 
 run_quiet pip install --upgrade pip
 run_quiet pip install -e .
-run_quiet pip install ruff mypy pytest vulture build
+run_quiet pip install ruff mypy pytest vulture build pylint
 
 # --- Setup TypeScript Environment ---
 if [ -f "package.json" ]; then
@@ -110,6 +110,9 @@ success "Mypy passed"
 
 run_quiet vulture kotogram scripts train tests-py scripts/vulture_whitelist.py train_style bin/kotogram
 success "Vulture passed"
+
+run_quiet pylint --disable=all --enable=duplicate-code kotogram scripts train tests-py train_style bin/kotogram
+success "Pylint duplication check passed"
 
 if [ -f "package.json" ]; then
     run_quiet npm run fix && run_quiet npm test
