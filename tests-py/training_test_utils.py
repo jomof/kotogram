@@ -107,7 +107,9 @@ def assert_dir_layout(test_case, root_dir: str, expected_manifest: List[str]):
 
     # Check for duplicates in expected_manifest
     if len(expected_manifest) != len(set(expected_manifest)):
-        duplicates = set([x for x in expected_manifest if expected_manifest.count(x) > 1])
+        duplicates = set(
+            [x for x in expected_manifest if expected_manifest.count(x) > 1]
+        )
         test_case.fail(f"Duplicate entries found in expected_manifest: {duplicates}")
 
     # Get the paths relative to root_dir
@@ -211,6 +213,14 @@ class Bottle:
             for file in files:
                 if file == ".DS_Store":
                     continue
+                # Skip profiling artifacts
+                if (
+                    root.endswith(".profile")
+                    or "/.profile/" in root
+                    or file == ".profile"
+                ):
+                    continue
+
                 abs_path = os.path.join(root, file)
                 rel_path = os.path.relpath(abs_path, self.root_dir)
 
@@ -436,7 +446,9 @@ class Bottle:
         """
         if len(expected_diffs) != len(set(expected_diffs)):
             duplicates = set([x for x in expected_diffs if expected_diffs.count(x) > 1])
-            self.test_case.fail(f"Duplicate entries found in expected_diffs: {duplicates}")
+            self.test_case.fail(
+                f"Duplicate entries found in expected_diffs: {duplicates}"
+            )
 
         if snap_name not in self._snapshots:
             self.test_case.fail(f"Snapshot '{snap_name}' not found.")
@@ -501,18 +513,22 @@ class Bottle:
                 act_parts = act_diff.rsplit(" ", 1)
                 if len(act_parts) == 2:
                     act_path, act_type = act_parts
-                    
+
                     # Handle MAYBE-MODIFIED: match if modified OR if file exists but wasn't modified
                     if change_type == "MAYBE-MODIFIED":
                         # If actual is MODIFIED, it matches.
-                        if act_type == "MODIFIED" and fnmatch.fnmatch(act_path, path_glob):
+                        if act_type == "MODIFIED" and fnmatch.fnmatch(
+                            act_path, path_glob
+                        ):
                             matched_actual.add(act_diff)
                             found_any = True
                         # If actual is not in diffs, we fall through. But wait, actual_diffs ONLY contain changes.
                         # MAYBE-MODIFIED means: if it IS modified, it's consumed. If it's NOT modified, it's also okay.
                         # So if we find a MODIFIED, we claim it.
                         pass
-                    elif act_type == change_type and fnmatch.fnmatch(act_path, path_glob):
+                    elif act_type == change_type and fnmatch.fnmatch(
+                        act_path, path_glob
+                    ):
                         matched_actual.add(act_diff)
                         found_any = True
 
@@ -522,7 +538,7 @@ class Bottle:
                 # Since actual_diffs only has changes, we can't check existence here easily without re-scanning.
                 # However, assert_dir_diff works on snapshots.
                 # If it's not in actual_diffs, it means it's same as old state (so it exists) OR it was deleted (would be in actual_diffs as DELETED).
-                
+
                 # Check if we found a MODIFIED match
                 if found_any:
                     pass
@@ -530,12 +546,12 @@ class Bottle:
                     # Check if it was DELETED
                     is_deleted = False
                     for act_diff in actual_diffs:
-                         if act_diff.endswith(" DELETED"):
-                             act_path = act_diff.rsplit(" ", 1)[0]
-                             if fnmatch.fnmatch(act_path, path_glob):
-                                 is_deleted = True
-                                 break
-                    
+                        if act_diff.endswith(" DELETED"):
+                            act_path = act_diff.rsplit(" ", 1)[0]
+                            if fnmatch.fnmatch(act_path, path_glob):
+                                is_deleted = True
+                                break
+
                     if is_deleted:
                         # If deleted, MAYBE-MODIFIED fails (it implies existence)
                         unmatched_expected.add(exp_pattern)

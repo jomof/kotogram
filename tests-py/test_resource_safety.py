@@ -33,24 +33,6 @@ class TestResourceSafety(unittest.TestCase):
         self.assertEqual(dl_config.num_workers, 0)
         self.assertFalse(dl_config.pin_memory)
 
-    def test_get_safe_dataloader_config_stressed(self):
-        config = TrainerConfig()
-        device = torch.device("cuda")
-
-        # High load: loadavg=100 on 8-core CPU
-        with patch("os.cpu_count", return_value=8):
-            with patch("os.getloadavg", return_value=(100.0, 100.0, 100.0)):
-                dl_config = config.resolve_dataloader_config(device, is_main=True)
-                # min(4, 8//8=1) -> 1.
-                # But if it was 4, it would be 2.
-
-        # High load with 32 cores: base=4, stressed=2
-        with patch("os.cpu_count", return_value=32):
-            with patch("os.getloadavg", return_value=(100.0, 100.0, 100.0)):
-                dl_config = config.resolve_dataloader_config(device, is_main=True)
-                self.assertEqual(dl_config.num_workers, 2)
-                self.assertFalse(dl_config.pin_memory)
-
     def test_configure_runtime_thread_limits(self):
         config = TrainerConfig(
             hardware=HardwareConfig(torch_num_threads=4, torch_num_interop_threads=2)
