@@ -25,18 +25,7 @@ def populate_test_cache(rows):
     memo = []
     for p in processed:
         if p.success:
-            memo.append(
-                (
-                    p.sentence,
-                    p.kotogram,
-                    p.formality_id,
-                    p.gender_value,
-                    p.gender_pragmatic,
-                    p.register_ids,
-                    p.gram_label,
-                    None,  # feature_ids
-                )
-            )
+            memo.append(p.to_cache_tuple())
     cache.put_batch(memo)
     return processed
 
@@ -184,16 +173,7 @@ def test_step4_encoding_inputs_extraction():
             # or just use the object.
             # Based on actual code in train_style.py, we deal with Samples directly now.
             # But just checking that we can access the ID needed for conversion
-            ei = (
-                p.sentence,
-                p.kotogram,
-                p.formality_id,
-                p.gender_value,
-                p.gender_pragmatic,
-                p.register_ids,
-                p.gram_label,
-                None,  # feature_ids
-            )
+            ei = p.to_cache_tuple()
             encoding_inputs.append(ei)
 
     assert len(encoding_inputs) == 2

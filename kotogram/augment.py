@@ -11,50 +11,12 @@ from dataclasses import asdict
 from itertools import product
 from typing import Any, Dict, List, Optional, Set, Tuple, Union
 
-from kotogram.kotogram import extract_token_features, split_kotogram
+from kotogram.kotogram import Token, extract_token_features, split_kotogram
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 
 # Type alias for tokens (either surface string or feature dict wrapper)
 # Forward declaration issue? Just use class name strings or object
 AugmentationToken = Union[str, "Token"]
-
-
-class Token:
-    """Hashable wrapper for token features."""
-
-    def __init__(self, surface: str, features: Optional[Dict[str, str]] = None):
-        self.surface = surface
-        self.features = features or {}
-        self._hash = hash((surface, tuple(sorted(self.features.items()))))
-
-    def __hash__(self) -> int:
-        return self._hash
-
-    def __eq__(self, other: object) -> bool:
-        if isinstance(other, str):
-            return self.surface == other
-        if isinstance(other, Token):
-            return self.surface == other.surface and self.features == other.features
-        return False
-
-    def __repr__(self) -> str:
-        return f"Token({self.surface}, {self.features})"
-
-    def get(self, key: str, default: Any = None) -> Any:
-        if key == "surface":
-            return self.surface
-        return self.features.get(key, default)
-
-    @property
-    def reading(self) -> str:
-        """Returns the phonetic reading in Hiragana, or surface if not available."""
-        r = self.get("reading")
-        if not r:
-            return self.surface
-        # Convert Katakana to Hiragana
-        return "".join(
-            chr(ord(c) - 0x60) if 0x30A1 <= ord(c) <= 0x30F6 else c for c in r
-        )
 
 
 # Constants and Patterns
@@ -1010,7 +972,7 @@ def is_role(token: AugmentationToken, role: str) -> bool:
     return False
 
 
-def get_features(token: AugmentationToken) -> Dict[str, str]:
+def get_features(token: AugmentationToken) -> Dict[str, Any]:
     if isinstance(token, Token):
         return token.features
     return {}

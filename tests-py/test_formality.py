@@ -16,26 +16,10 @@ class TestFormalityModel(unittest.TestCase):
         """Set up test fixtures."""
         self.parser = SudachiJapaneseParser(dict_type="full")
 
-        # Mock the model loader for tests
-        from kotogram.model import ModelConfig, StyleClassifier
-        from kotogram.tokenizer import Tokenizer
+        # Use setup helper
+        from training_test_utils import setup_mock_style_model
 
-        # Create dummy tokenizer
-        self.tokenizer = Tokenizer()
-        self.tokenizer._frozen = True
-
-        # Create dummy model
-        config = ModelConfig(vocab_sizes=self.tokenizer.get_vocab_sizes())
-        self.model = StyleClassifier(config)
-        self.model.eval()
-
-        # Patch the internal loader
-        patcher = patch(
-            "kotogram.analysis._load_style_model",
-            return_value=(self.model, self.tokenizer),
-        )
-        patcher.start()
-        self.addCleanup(patcher.stop)
+        setup_mock_style_model(self)
 
     def test_formal_basic(self):
         """Test basic formal sentence."""

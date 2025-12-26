@@ -54,3 +54,20 @@ class ProcessedSample:
     gram_label: int
     success: int
     feature_ids: Optional[Dict[str, List[int]]] = None
+
+    def to_cache_tuple(
+        self, feature_ids_override: Optional[Dict[str, List[int]]] = None
+    ) -> Any:
+        """Convert to cache tuple format (used by dataset cache)."""
+        return (
+            self.sentence,
+            self.kotogram,
+            self.formality_id,
+            self.gender_value,
+            self.gender_pragmatic,
+            self.register_ids,
+            self.gram_label,
+            feature_ids_override
+            if feature_ids_override is not None
+            else self.feature_ids,
+        )
