@@ -10,16 +10,29 @@ from rich.table import Table
 console = Console()
 
 
-def print_phase_header(phase: str, info: Optional[str] = None) -> None:
+def print_phase_header(
+    phase: str,
+    info: Optional[str] = None,
+    epoch: Optional[int] = None,
+    total_epochs: Optional[int] = None,
+) -> None:
     """Print a header for a training phase."""
     icon = {
         "MLM": "📝 ",
         "KC": "🧠 ",
         "Style": "🎨 ",
     }.get(phase, "")
-    text = (
-        f"{icon}{phase} Pretraining" if "Pretraining" not in phase else f"{icon}{phase}"
-    )
+
+    if epoch is not None and total_epochs is not None:
+        text = f"{icon}Epoch {epoch}/{total_epochs} Training {phase}"
+    else:
+        # Fallback / Legacy behavior
+        text = (
+            f"{icon}{phase} Pretraining"
+            if "Pretraining" not in phase
+            else f"{icon}{phase}"
+        )
+
     if info:
         text += f" ({info})"
     console.print(f"\n[bold blue]{text}[/bold blue]")
@@ -267,7 +280,7 @@ def print_kc_epoch_compact_summary(
     """Compact single-line summary of epoch results."""
     top_str = ", ".join([f"{n} {loss:.3f}" for n, loss in top_losses])
     print(
-        f"  KC Epoch {epoch}/{total_epochs}: loss={total_loss:.4f} "
+        f"  KC Epoch {epoch} of {total_epochs}: loss={total_loss:.4f} "
         f"prob={avg_prob:.2f} dens={act_dens:.4f} "
         f"struct={struct_avg:.4f} "
         f"{f'ent={entropy_norm:.3f} ' if entropy_norm is not None else ''}"
@@ -341,7 +354,7 @@ def print_epoch_summary(
 ) -> None:
     """Print a formatted summary of the epoch using Rich."""
 
-    title = f"Epoch {epoch}/{total_epochs}"
+    title = f"Epoch {epoch} of {total_epochs}"
     if phase:
         icon = {
             "MLM": "📝 ",
