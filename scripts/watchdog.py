@@ -57,10 +57,6 @@ def run_watchdog() -> None:
                 try:
                     # py-spy dump
                     # check if pid still exists
-                    try:
-                        os.kill(pid, 0)
-                    except OSError:
-                        continue
 
                     dump = subprocess.check_output(
                         ["py-spy", "dump", "-p", str(pid)],
@@ -68,12 +64,8 @@ def run_watchdog() -> None:
                         stderr=subprocess.STDOUT,
                     )
                     output.append(dump)
-                except FileNotFoundError:
-                    output.append("[py-spy not found]")
                 except subprocess.CalledProcessError as e:
                     output.append(f"[py-spy failed: {e.output.strip()}]")
-                except Exception as e:
-                    output.append(f"[error: {e}]")
 
             if output:
                 timestamp = time.ctime()
@@ -93,9 +85,6 @@ def run_watchdog() -> None:
         except KeyboardInterrupt:
             print("\nWatchdog stopped.")
             break
-        except Exception as e:
-            print(f"\nError: {e}")
-            time.sleep(5)
 
 
 if __name__ == "__main__":

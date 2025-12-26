@@ -11,6 +11,7 @@ Examples:
     python scripts/validate_tatoeba.py all          # Validate all sentences
 """
 
+import importlib.util
 import json
 import os
 import subprocess
@@ -18,9 +19,9 @@ import sys
 from collections import defaultdict
 from typing import Any, Dict, List, Optional, Set, Tuple
 
-try:
+if importlib.util.find_spec("_setup_path"):
     import _setup_path  # type: ignore # noqa: F401
-except ImportError:
+else:
     # Fallback if run as module
     from scripts import _setup_path  # type: ignore # noqa: F401
 
@@ -213,11 +214,10 @@ def main() -> None:
         if sys.argv[1] == "all":
             max_sentences = None
         else:
-            try:
-                max_sentences = int(sys.argv[1])
-            except ValueError:
+            if not sys.argv[1].isdigit():
                 print("Usage: python scripts/validate_tatoeba.py [count]")
                 sys.exit(1)
+            max_sentences = int(sys.argv[1])
 
     print(
         f"Validating {'all' if max_sentences is None else max_sentences} sentences from {tsv_file}"

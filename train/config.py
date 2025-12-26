@@ -311,12 +311,9 @@ def _get_safe_dataloader_config(
 
 def configure_runtime_thread_limits(config: TrainerConfig) -> None:
     """Set torch and environment thread limits to prevent oversubscription."""
-    try:
-        torch.set_num_threads(config.hardware.cpu_threads)
+    torch.set_num_threads(config.hardware.cpu_threads)
+    if torch.get_num_interop_threads() != config.hardware.interop_threads:
         torch.set_num_interop_threads(config.hardware.interop_threads)
-    except RuntimeError:
-        # Already set or parallel work started, ignore
-        pass
 
     if config.hardware.set_env_thread_limits:
         for env_var in [
@@ -336,7 +333,5 @@ def configure_runtime_thread_limits(config: TrainerConfig) -> None:
 def _safe_configure_threads(config: TrainerConfig) -> None:
     """Configures PyTorch threads safely, ignoring errors if already set."""
     torch.set_num_threads(config.hardware.cpu_threads)
-    try:
+    if torch.get_num_interop_threads() != config.hardware.interop_threads:
         torch.set_num_interop_threads(config.hardware.interop_threads)
-    except RuntimeError:
-        pass  # Already set or parallel work started

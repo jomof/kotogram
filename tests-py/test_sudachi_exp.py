@@ -377,31 +377,35 @@ def token_to_yaml(token) -> str:
     lines = []
 
     # Get all public attributes
-    attributes = [attr for attr in dir(token) if not attr.startswith("_")]
+    known_properties = [
+        "begin",
+        "dictionary_form",
+        "dictionary_id",
+        "end",
+        "is_oov",
+        "normalized_form",
+        "part_of_speech",
+        "part_of_speech_id",
+        "raw_surface",
+        "reading_form",
+        "surface",
+        "synonym_group_ids",
+        "word_id",
+    ]
 
     collected_data = {}
 
-    for attr_name in attributes:
-        # Skip unstable or deprecated attributes
-        if attr_name == "get_word_info":
+    for attr_name in known_properties:
+        if not hasattr(token, attr_name):
             continue
 
         attr = getattr(token, attr_name)
 
-        # We only care about methods that return values (getters) or properties
-        # SudachiPy tokens mostly use methods for accessors
         if callable(attr):
-            try:
-                # Try calling without arguments
-                val = attr()
-                collected_data[attr_name] = val
-            except TypeError:
-                # Requires arguments, skip
-                pass
-            except Exception as e:
-                collected_data[attr_name] = f"<Error: {e}>"
+            # Known properties shouldn't require arguments
+            val = attr()
+            collected_data[attr_name] = val
         else:
-            # It's a property or field
             collected_data[attr_name] = attr
 
     # Special handling for decomposing part_of_speech

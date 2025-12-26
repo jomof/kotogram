@@ -5,11 +5,12 @@ This script provides CLI access to kotogram.locations without triggering
 the full kotogram package import, avoiding RuntimeWarnings.
 """
 
+import importlib.util
 import sys
 
-try:
+if importlib.util.find_spec("_setup_path"):
     import _setup_path  # type: ignore # noqa: F401
-except ImportError:
+else:
     from scripts import _setup_path  # type: ignore # noqa: F401
 
 # Import all functions from the canonical locations module

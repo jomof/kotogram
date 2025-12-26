@@ -52,10 +52,8 @@ from .display import (
 def _worker_init_fn(_: int) -> None:
     """Worker initialization function to limit per-worker threads."""
     torch.set_num_threads(1)
-    try:
+    if torch.get_num_interop_threads() != 1:
         torch.set_num_interop_threads(1)
-    except RuntimeError:
-        pass  # Already set or parallel work started
 
 
 def is_main_process() -> bool:
@@ -112,14 +110,12 @@ class Timer:
                 "minflt": minflt,
             }
 
-            try:
-                with open(self.output_path, "a") as f:
-                    f.write(json.dumps(entry) + "\n")
-                    f.flush()
-                    os.fsync(f.fileno())
-            except Exception as e:
-                # Debug print for failed writes
-                print(f"Timer write failed to {self.output_path}: {e}", file=sys.stderr)
+            with open(self.output_path, "a") as f:
+                f.write(json.dumps(entry) + "\n")
+                f.flush()
+                # os.fsync(f.fileno()) # Dropping fsync for speed/stability if desired, or keeping it?
+                # Keeping fsync as per earlier logic, but NO TRY/EXCEPT
+                os.fsync(f.fileno())
 
         return d
 
@@ -558,6 +554,8 @@ class MLMTrainer:
         profile_dir = ""
         if os.environ.get("TRAIN_PROFILE"):
             profile_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
+            if is_main_process():
+                print(f"DEBUG: MLMTrainer profile_dir={profile_dir}")
 
         pid = os.getpid()
         self.train_timer_data = Timer(
@@ -594,27 +592,28 @@ class MLMTrainer:
 
     def restore_from_checkpoint(self, path: str) -> bool:
         """Restore training state from checkpoint."""
-        try:
-            checkpoint = load_training_state(
-                path=path,
-                model=getattr(self.model, "module", self.model),
-                optimizer=self.optimizer,
-                scaler=self.scaler,
-                filename="checkpoint_mlm.pt",
-                device=str(self.device),
-            )
-            self.start_epoch = checkpoint["epoch"]
-            self.start_batch = checkpoint.get("batch_idx", 0)
-            self.global_step = checkpoint.get("global_step", 0)
-            self.history = checkpoint["history"]
-            if is_main_process():
-                print(
-                    f"  [Resume] Restored MLM checkpoint from {path} "
-                    f"(epoch {self.start_epoch}, step {self.global_step})"
-                )
-            return True
-        except FileNotFoundError:
+        full_path = os.path.join(path, "checkpoint_mlm.pt")
+        if not os.path.exists(full_path):
             return False
+
+        checkpoint = load_training_state(
+            path=path,
+            model=getattr(self.model, "module", self.model),
+            optimizer=self.optimizer,
+            scaler=self.scaler,
+            filename="checkpoint_mlm.pt",
+            device=str(self.device),
+        )
+        self.start_epoch = checkpoint["epoch"]
+        self.start_batch = checkpoint.get("batch_idx", 0)
+        self.global_step = checkpoint.get("global_step", 0)
+        self.history = checkpoint["history"]
+        if is_main_process():
+            print(
+                f"  [Resume] Restored MLM checkpoint from {path} "
+                f"(epoch {self.start_epoch}, step {self.global_step})"
+            )
+        return True
 
     def train_epoch(
         self, epoch: int, verbose: bool = True
@@ -1056,27 +1055,28 @@ class KCTrainer:
 
     def restore_from_checkpoint(self, path: str) -> bool:
         """Restore training state from checkpoint."""
-        try:
-            checkpoint = load_training_state(
-                path=path,
-                model=getattr(self.model, "module", self.model),
-                optimizer=self.optimizer,
-                scaler=self.scaler,
-                filename="checkpoint_kc.pt",
-                device=str(self.device),
-            )
-            self.start_epoch = checkpoint["epoch"]
-            self.start_batch = checkpoint.get("batch_idx", 0)
-            self.global_step = checkpoint.get("global_step", 0)
-            self.history = checkpoint["history"]
-            if is_main_process():
-                print(
-                    f"  [Resume] Restored KC checkpoint from {path} "
-                    f"(epoch {self.start_epoch}, step {self.global_step})"
-                )
-            return True
-        except FileNotFoundError:
+        full_path = os.path.join(path, "checkpoint_kc.pt")
+        if not os.path.exists(full_path):
             return False
+
+        checkpoint = load_training_state(
+            path=path,
+            model=getattr(self.model, "module", self.model),
+            optimizer=self.optimizer,
+            scaler=self.scaler,
+            filename="checkpoint_kc.pt",
+            device=str(self.device),
+        )
+        self.start_epoch = checkpoint["epoch"]
+        self.start_batch = checkpoint.get("batch_idx", 0)
+        self.global_step = checkpoint.get("global_step", 0)
+        self.history = checkpoint["history"]
+        if is_main_process():
+            print(
+                f"  [Resume] Restored KC checkpoint from {path} "
+                f"(epoch {self.start_epoch}, step {self.global_step})"
+            )
+        return True
 
     def _save_kc_snapshot(self) -> None:
         """Save current KC params (kc_head + kc_decoders) as last-known-good state.
@@ -2838,36 +2838,37 @@ class Trainer:
 
     def restore_from_checkpoint(self, path: str) -> bool:
         """Restore training state from checkpoint."""
-        try:
-            checkpoint = load_training_state(
-                path=path,
-                model=getattr(self.model, "module", self.model),
-                optimizer=self.optimizer,
-                scaler=self.scaler,
-                scheduler=self.scheduler,
-                filename="checkpoint.pt",
-                device=str(self.device),
-            )
-            self.start_epoch = checkpoint["epoch"]
-            self.start_batch = checkpoint.get("batch_idx", 0)
-            self.global_step = checkpoint.get("global_step", 0)
-            self.history = checkpoint["history"]
-
-            meta_path = os.path.join(path, "checkpoint_meta.pt")
-            if os.path.exists(meta_path):
-                meta = torch.load(meta_path, map_location="cpu")
-                self.best_val_loss = meta.get("best_val_loss", float("inf"))
-                self.patience_counter = meta.get("patience_counter", 0)
-                self.best_state = meta.get("best_state")
-
-            if is_main_process():
-                print(
-                    f"  [Resume] Restored Style checkpoint from {path} "
-                    f"(epoch {self.start_epoch}, step {self.global_step})"
-                )
-            return True
-        except FileNotFoundError:
+        full_path = os.path.join(path, "checkpoint.pt")
+        if not os.path.exists(full_path):
             return False
+
+        checkpoint = load_training_state(
+            path=path,
+            model=getattr(self.model, "module", self.model),
+            optimizer=self.optimizer,
+            scaler=self.scaler,
+            scheduler=self.scheduler,
+            filename="checkpoint.pt",
+            device=str(self.device),
+        )
+        self.start_epoch = checkpoint["epoch"]
+        self.start_batch = checkpoint.get("batch_idx", 0)
+        self.global_step = checkpoint.get("global_step", 0)
+        self.history = checkpoint["history"]
+
+        meta_path = os.path.join(path, "checkpoint_meta.pt")
+        if os.path.exists(meta_path):
+            meta = torch.load(meta_path, map_location="cpu")
+            self.best_val_loss = meta.get("best_val_loss", float("inf"))
+            self.patience_counter = meta.get("patience_counter", 0)
+            self.best_state = meta.get("best_state")
+
+        if is_main_process():
+            print(
+                f"  [Resume] Restored Style checkpoint from {path} "
+                f"(epoch {self.start_epoch}, step {self.global_step})"
+            )
+        return True
 
     def train_epoch(
         self, epoch: int, verbose: bool = True

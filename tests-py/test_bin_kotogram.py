@@ -86,10 +86,7 @@ class TestBinKotogram(unittest.TestCase):
             self.fail(f"No JSON output found. Full output:\n{stdout}")
 
         json_str = stdout[json_start:]
-        try:
-            data = json.loads(json_str)
-        except json.JSONDecodeError:
-            self.fail(f"Output not valid JSON: {json_str[:100]}...")
+        data = json.loads(json_str)
 
         # Verify required fields
         self.assertIn("is_grammatic", data)
