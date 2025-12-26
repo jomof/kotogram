@@ -29,35 +29,56 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-def _enforce_venv():
-    """Re-execute with .venv python if not already running in it and it exists."""
-    # Common venv location
-    venv_python = os.path.join(PROJECT_ROOT, ".venv", "bin", "python")
-    print(f"DEBUG: Checking venv: {venv_python}")
-    if not os.path.exists(venv_python):
-        print(f"DEBUG: venv python not found at {venv_python}")
+def _ensure_runtime_env():
+    """Ensure we are running in an environment with dependencies (like torch), switching if needed."""
+    try:
+        import torch
+        return
+    except ImportError:
+        pass
+
+    # If we are here, torch is missing. Check if we are running under sudo.
+    sudo_user = os.environ.get("SUDO_USER")
+    if not sudo_user:
+        # Not sudo, or stripped environment. Nothing smart we can do here.
         return
 
-    # Check if we are running the venv python
-    # resolving symlinks to be sure
-    current_exe = os.path.realpath(sys.executable)
-    venv_exe = os.path.realpath(venv_python)
-    print(f"DEBUG: Current exe: {current_exe}")
-    print(f"DEBUG: Venv exe:    {venv_exe}")
+    print("DEBUG: Torch not found. Attempting to detect user python environment from sudo...")
+    
+    # Try to find the user's python
+    try:
+        # 'su - user -c "which python"' gets the python from their login shell (e.g. conda)
+        import subprocess
+        result = subprocess.run(
+            ["su", "-", sudo_user, "-c", "which python"], 
+            capture_output=True, 
+            text=True
+        )
+        user_python = result.stdout.strip()
+    except Exception as e:
+        print(f"DEBUG: Failed to detect user python: {e}")
+        return
 
-    if current_exe != venv_exe:
-        # Re-execute preserving all arguments
-        # Use os.execv to replace current process
-        print(f"Switching to virtual environment: {venv_python}")
-        try:
-            os.execv(venv_python, [venv_python] + sys.argv)
-        except OSError as e:
-            print(f"Failed to switch to venv: {e}")
-    else:
-        print("DEBUG: Already running in venv")
+    if not user_python or not os.path.exists(user_python):
+        print("DEBUG: User python detection returned empty or invalid path.")
+        return
 
-# Run venv check immediately
-_enforce_venv()
+    current_python = sys.executable
+    if os.path.realpath(user_python) == os.path.realpath(current_python):
+        print("DEBUG: User python is same as current python. Cannot fix missing dependencies.")
+        return
+
+    print(f"Switching to user python: {user_python}")
+    try:
+        # Re-execute as root (we are root) but using the user's python binary
+        # This keeps root perms but uses the user's libraries.
+        os.execv(user_python, [user_python] + sys.argv)
+    except OSError as e:
+        print(f"Failed to switch interpreter: {e}")
+        sys.exit(1)
+
+# Check and switch environment if needed
+_ensure_runtime_env()
 
 
 
