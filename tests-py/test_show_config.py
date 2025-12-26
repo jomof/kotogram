@@ -1,10 +1,7 @@
 import json
 import os
-import sys
 import unittest
 
-# Add tests-py directory to path to allow importing utility module
-sys.path.append(os.path.dirname(__file__))
 from training_test_utils import Bottle
 
 

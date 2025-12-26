@@ -1,13 +1,8 @@
 import math
-import os
-import sys
 from typing import Any, Dict
 
 import torch
 import torch.nn.functional as F
-
-# Add project root to path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from kotogram.model import ModelConfig
 from kotogram.tokenizer import FEATURE_FIELDS
@@ -113,9 +108,10 @@ def test_differentiable_usage_calculation():
 
 def test_negative_sampling_logic():
     """Verify logic for masking large heads."""
-    B, V = 4, 300
-    logits = torch.randn(B, V)
-    targets = torch.zeros(B, V)
+    # pylint: disable=invalid-name
+    batch_size, vocab_size = 4, 300
+    logits = torch.randn(batch_size, vocab_size)
+    targets = torch.zeros(batch_size, vocab_size)
 
     # Set some positives
     targets[0, 10] = 1.0
@@ -126,7 +122,8 @@ def test_negative_sampling_logic():
     neg_count = 10  # Small count for test
 
     # Sample negatives
-    neg_inds = torch.randint(0, V, (B, neg_count))
+    # Sample negatives
+    neg_inds = torch.randint(0, vocab_size, (batch_size, neg_count))
     mask = torch.zeros_like(logits, dtype=torch.bool)
     mask.scatter_(1, neg_inds, True)
 
@@ -194,6 +191,7 @@ def test_kc_probe_diagnose_healthy():
 
 def test_kc_probe_auc_calculation():
     """Verify AUC calculation logic for structural heads."""
+    # pylint: disable=too-many-locals
     # Perfect separation: all positives have higher scores than negatives
     pos_logits = [2.0, 3.0, 4.0]
     neg_logits = [-1.0, 0.0, 1.0]
@@ -311,7 +309,6 @@ def test_tensor_finite_stats_with_inf():
 
 def test_tensor_finite_stats_all_nan():
     """Test tensor_finite_stats with all NaN values."""
-    import math
 
     from train.trainer import tensor_finite_stats
 
@@ -386,8 +383,6 @@ def test_nan_recovery_streak_reset():
 
 def test_forward_kc_gumbel_stability():
     """Test gumbel path produces finite outputs with various scales."""
-    from kotogram.model import ModelConfig
-    from train.trainer import StyleClassifierWithMLM
 
     config = ModelConfig(
         vocab_sizes={f: 50 for f in FEATURE_FIELDS},
@@ -427,8 +422,6 @@ def test_forward_kc_nan_to_num_guard():
     Verifies that even if extreme inputs cause issues, output probs are still finite
     due to the logits clamp and nan_to_num guard.
     """
-    from kotogram.model import ModelConfig
-    from train.trainer import StyleClassifierWithMLM
 
     config = ModelConfig(
         vocab_sizes={f: 50 for f in FEATURE_FIELDS},
@@ -626,20 +619,23 @@ def test_create_kc_batch_sparse_for_large_heads():
 
 def test_bce_sampled_returns_finite_loss():
     """Test sampled BCE pattern produces finite loss."""
-    B, V, P, K = 4, 10000, 10, 128
+    # pylint: disable=too-many-locals
+    batch_size, vocab_size, n_pos, n_neg = 4, 10000, 10, 128
 
-    logits = torch.randn(B, V)
-    pos_inds = torch.randint(4, V, (B, P))
-    pos_mask = torch.ones((B, P), dtype=torch.bool)
+    logits = torch.randn(batch_size, vocab_size)
+    pos_inds = torch.randint(4, vocab_size, (batch_size, n_pos))
+    pos_mask = torch.ones((batch_size, n_pos), dtype=torch.bool)
     pos_mask[:, 5:] = False  # Only first 5 positions valid
 
     # Build combined indices
-    neg_i = torch.randint(4, V, (B, K))
+    neg_i = torch.randint(4, vocab_size, (batch_size, n_neg))
     idxs = torch.cat([pos_inds, neg_i], dim=1)
     t_pos = pos_mask.float()
-    t_neg = torch.zeros((B, K))
+    t_neg = torch.zeros((batch_size, n_neg))
     t = torch.cat([t_pos, t_neg], dim=1)
-    valid = torch.cat([pos_mask, torch.ones((B, K), dtype=torch.bool)], dim=1)
+    valid = torch.cat(
+        [pos_mask, torch.ones((batch_size, n_neg), dtype=torch.bool)], dim=1
+    )
 
     idxs_safe = idxs.clamp_min(0)
     gathered = logits.gather(1, idxs_safe)

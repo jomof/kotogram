@@ -20,10 +20,14 @@ from collections import defaultdict
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 if importlib.util.find_spec("_setup_path"):
-    import _setup_path  # type: ignore # noqa: F401
+    import _setup_path  # type: ignore # noqa: F401 # pylint: disable=unused-import
 else:
     # Fallback if run as module
-    from scripts import _setup_path  # type: ignore # noqa: F401
+    from scripts import (
+        _setup_path,  # type: ignore # noqa: F401 # pylint: disable=unused-import
+    )
+
+# pylint: disable=wrong-import-position
 
 from kotogram import SudachiJapaneseParser, extract_token_features
 from kotogram.exceptions import MissingMappingError
@@ -37,6 +41,7 @@ def validate_sentences(
     tsv_file: str,
     max_sentences: Optional[int] = None,
 ) -> Tuple[Dict[str, Set[str]], List[Dict[str, str]], List[str]]:
+    # pylint: disable=too-many-locals
     """Validate sentences and collect unmapped features.
 
     Args:
@@ -106,6 +111,7 @@ def validate_sentences(
 def compare_token_features(
     kotograms: List[str], project_root: str
 ) -> List[Dict[str, Any]]:
+    # pylint: disable=too-many-locals
     """Compare Python and TypeScript extract_token_features results.
 
     Args:
@@ -131,11 +137,11 @@ def compare_token_features(
         return mismatches
 
     # Call TypeScript in batches to avoid command line limits
-    BATCH_SIZE = 1000
+    batch_size = 1000
     ts_results: List[Dict[str, str]] = []
 
-    for batch_start in range(0, len(all_tokens), BATCH_SIZE):
-        batch_end = min(batch_start + BATCH_SIZE, len(all_tokens))
+    for batch_start in range(0, len(all_tokens), batch_size):
+        batch_end = min(batch_start + batch_size, len(all_tokens))
         batch_tokens = all_tokens[batch_start:batch_end]
 
         # Call Node.js script with tokens as JSON via stdin
@@ -146,6 +152,7 @@ def compare_token_features(
             capture_output=True,
             text=True,
             cwd=project_root,
+            check=False,
         )
 
         if result.returncode != 0:

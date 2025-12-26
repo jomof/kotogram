@@ -12,6 +12,8 @@ import importlib.util
 import json
 import multiprocessing as mp
 import os
+
+# pylint: disable=wrong-import-position
 import random
 import sys
 import time
@@ -19,9 +21,12 @@ from collections import Counter
 from typing import Any, Dict, List, Optional, Tuple, cast
 
 if importlib.util.find_spec("_setup_path"):
-    import _setup_path  # type: ignore # noqa: F401
+    import _setup_path  # type: ignore # noqa: F401 # pylint: disable=unused-import
 else:
-    from scripts import _setup_path  # type: ignore # noqa: F401
+    from scripts import (
+        _setup_path,  # type: ignore # noqa: F401 # pylint: disable=unused-import
+    )
+
 
 from rich.console import Console
 from rich.panel import Panel
@@ -35,6 +40,7 @@ from rich.progress import (
 )
 from rich.table import Table
 
+# pylint: disable=wrong-import-position
 from kotogram import locations
 from kotogram.kotogram import extract_token_features, split_kotogram
 from kotogram.model import (
@@ -46,11 +52,13 @@ from kotogram.model import (
     Tokenizer,
 )
 from train.cache import get_kotogram_cache
-from train.dataset import CACHE_VERSION, StyleDataset, parse_tsv
+from train.dataset import CACHE_VERSION, DatasetConfig, StyleDataset, parse_tsv
+
+# pylint: disable=wrong-import-position
 from train.types import ProcessedSample
 
 # Global variable for worker processes only
-_worker_overrides: Optional[Dict[str, List[Any]]] = None
+_WORKER_OVERRIDES: Optional[Dict[str, List[Any]]] = None
 
 DEFAULT_BATCH_SIZE = 1000
 
@@ -66,6 +74,7 @@ def _build_and_save_vocab(
         counter = merged_counters.get(field, Counter())
         # Add values sorted by frequency (descending)
         for value, _ in counter.most_common():
+            # pylint: disable=protected-access
             tokenizer._add_value(field, value)
 
     os.makedirs(cache_dir, exist_ok=True)
@@ -101,13 +110,14 @@ def load_register_overrides() -> Dict[str, List[Any]]:
                 overrides[sentence].add(reg_level)
 
     # Convert sets to sorted lists
-    return {k: sorted(list(v), key=lambda x: str(x)) for k, v in overrides.items()}
+    return {k: sorted(list(v), key=str) for k, v in overrides.items()}
 
 
 def init_worker(overrides: Dict[str, List[Any]]) -> None:
     """Initialize worker process with register overrides."""
-    global _worker_overrides
-    _worker_overrides = overrides
+    # pylint: disable=global-statement
+    global _WORKER_OVERRIDES
+    _WORKER_OVERRIDES = overrides
 
 
 def get_file_fingerprint(path: str) -> Optional[Dict[str, Any]]:
@@ -151,6 +161,7 @@ console = Console()
 def infer_gender_from_register(
     gender_enum: Any, register_enums: List[Any]
 ) -> Tuple[float, int]:
+    # pylint: disable=too-many-return-statements
     """Infer gender value and pragmatic flag from gender enum and registers.
 
     Refined logic:
@@ -165,9 +176,9 @@ def infer_gender_from_register(
 
     if gender_enum == GenderLevel.MASCULINE:
         return -1.0, 1
-    elif gender_enum == GenderLevel.FEMININE:
+    if gender_enum == GenderLevel.FEMININE:
         return 1.0, 1
-    elif gender_enum == GenderLevel.NEUTRAL:
+    if gender_enum == GenderLevel.NEUTRAL:
         # Infer gender from register if neutral
         masculine_registers = {
             RegisterLevel.DANSEIGO,
@@ -186,20 +197,21 @@ def infer_gender_from_register(
         if is_masc and is_fem:
             # Conflicting registers -> Unpragmatic
             return 0.0, 0
-        elif is_masc:
+        if is_masc:
             return -1.0, 1
-        elif is_fem:
+        if is_fem:
             return 1.0, 1
-        else:
-            return 0.0, 1
-    else:  # UNPRAGMATIC_GENDER
-        return 0.0, 0
+        return 0.0, 1
+
+    return 0.0, 1
 
 
 def _process_sentence_batch(
     batch: List[Tuple[str, int]],
 ) -> Tuple[List[ProcessedSample], Dict[str, Counter]]:
+    # pylint: disable=too-many-locals
     """Process a batch of sentences in a worker process."""
+    # pylint: disable=redefined-outer-name, reimported
     from kotogram.analysis import FormalityLevel, RegisterLevel
     from kotogram.kotogram import extract_token_features, split_kotogram
     from kotogram.model import FEATURE_FIELDS
@@ -229,7 +241,7 @@ def _process_sentence_batch(
                 counters[field][value] += 1
 
         # Check for overrides
-        overrides = _worker_overrides or {}
+        overrides = _WORKER_OVERRIDES or {}
         if sentence in overrides:
             register_enums = overrides[sentence]
         else:
@@ -267,10 +279,9 @@ def _process_sentence_batch(
 def _compute_labels_batch(
     batch: List[Tuple[str, str, int]],
 ) -> Tuple[List[ProcessedSample], Dict[str, Counter]]:
+    # pylint: disable=too-many-locals
     """Compute labels for a batch of sentences (where kotogram is already cached)."""
     from kotogram.analysis import FormalityLevel, RegisterLevel
-    from kotogram.kotogram import extract_token_features, split_kotogram
-    from kotogram.model import FEATURE_FIELDS
     from scripts.rule_based_analysis import (
         analyze_formality,
         analyze_gender,
@@ -304,7 +315,7 @@ def _compute_labels_batch(
         )
 
         # Check for overrides
-        overrides = _worker_overrides or {}
+        overrides = _WORKER_OVERRIDES or {}
         if sentence in overrides:
             register_enums = overrides[sentence]
         else:
@@ -333,6 +344,7 @@ def _compute_labels_batch(
 
 
 def print_stats(results: List[ProcessedSample]) -> None:
+    # pylint: disable=too-many-locals
     """Print attractive statistics about the labeling results."""
     if not results:
         return
@@ -434,8 +446,8 @@ def save_register_samples(results: List[ProcessedSample]) -> None:
 
     # Write to CSV
     os.makedirs(output_dir, exist_ok=True)
-    with open(output_file, "w", encoding="utf-8", newline="") as f:
-        writer = csv.writer(f)
+    with open(output_file, "w", encoding="utf-8", newline="") as csv_file:
+        writer = csv.writer(csv_file)
         writer.writerow(
             ["register", "register_id", "sentence", "formality", "gender_value"]
         )
@@ -461,6 +473,7 @@ def save_register_samples(results: List[ProcessedSample]) -> None:
 
 
 def main() -> None:
+    # pylint: disable=too-many-locals
     import argparse
 
     parser = argparse.ArgumentParser(description="Label and cache Japanese sentences.")
@@ -493,8 +506,8 @@ def main() -> None:
     current_fingerprints = get_dependencies_fingerprint(args)
 
     if os.path.exists(metadata_path) and not args.force_relabel:
-        with open(metadata_path, "r", encoding="utf-8") as f:
-            saved_data = json.load(f)
+        with open(metadata_path, "r", encoding="utf-8") as meta_file:
+            saved_data = json.load(meta_file)
 
         vocab_path = os.path.join(
             dataset_cache_dir, saved_data.get("vocab_file", "vocab.json")
@@ -527,8 +540,8 @@ def main() -> None:
         seen = set()
 
         for f_path in sorted(file_list):
-            with open(f_path, "r", encoding="utf-8") as f:
-                for line in f:
+            with open(f_path, "r", encoding="utf-8") as file_handle:
+                for line in file_handle:
                     sentence = parse_tsv(line)
 
                     if sentence not in seen:
@@ -646,11 +659,11 @@ def main() -> None:
     # Optimization: For small datasets, run sequentially in main process to avoid
     # multiprocessing spawn overhead (which can be seconds on macOS).
     # Threshold determined empirically (profiling small tests vs large runs).
-    SMALL_DATASET_THRESHOLD = 500
+    small_dataset_threshold = 500
 
-    if total_tasks > 0 and total_tasks < SMALL_DATASET_THRESHOLD:
+    if 0 < total_tasks < small_dataset_threshold:
         console.print(
-            f"[yellow]Small dataset ({total_tasks} < {SMALL_DATASET_THRESHOLD}), running sequentially...[/yellow]"
+            f"[yellow]Small dataset ({total_tasks} < {small_dataset_threshold}), running sequentially...[/yellow]"
         )
         # Initialize worker global state in main process
         init_worker(register_overrides)
@@ -837,8 +850,7 @@ def main() -> None:
             "\n[bold blue]Finalizing dataset and building vocabulary...[/bold blue]"
         )
 
-        from kotogram.model import Tokenizer
-
+        # Tokenizer is already imported at top level
         tokenizer = Tokenizer()
 
         # Build and save vocabulary explicitly
@@ -850,10 +862,11 @@ def main() -> None:
         dataset = StyleDataset.from_processed_samples(
             final_results,
             tokenizer,
-            verbose=False,  # Suppress redundant distribution stats
-            # base_cache_dir removed, handled by StyleDataset via locations
-            cache_name=vocab_file,
-            sample_ratio=1.0,
+            config=DatasetConfig(
+                verbose=False,  # Suppress redundant distribution stats
+                cache_name=vocab_file,
+                sample_ratio=1.0,
+            ),
         )
 
         # Print statistics
@@ -910,16 +923,16 @@ if __name__ == "__main__":
 
             # Write summary
             summary_file = os.path.join(profile_dir, f"label_{os.getpid()}.txt")
-            with open(summary_file, "w") as f:
-                stats = pstats.Stats(profiler, stream=f)
+            with open(summary_file, "w", encoding="utf-8") as summary_handle:
+                stats = pstats.Stats(profiler, stream=summary_handle)
                 stats.sort_stats("cumulative")
-                f.write("TOP 50 BY CUMULATIVE TIME\n")
-                f.write("=" * 80 + "\n")
+                summary_handle.write("TOP 50 BY CUMULATIVE TIME\n")
+                summary_handle.write("=" * 80 + "\n")
                 stats.print_stats(50)
 
-                f.write("\n" + "=" * 80 + "\n")
-                f.write("TOP 50 BY TOTAL TIME (self)\n")
-                f.write("=" * 80 + "\n")
+                summary_handle.write("\n" + "=" * 80 + "\n")
+                summary_handle.write("TOP 50 BY TOTAL TIME (self)\n")
+                summary_handle.write("=" * 80 + "\n")
                 stats.sort_stats("tottime")
                 stats.print_stats(50)
     else:

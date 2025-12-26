@@ -22,13 +22,28 @@ import os
 import subprocess
 import sys
 import time
-import threading
 from typing import List, Optional, Any, Dict, IO
 
 # Ensure we can import kotogram from project root if running from source
+# pylint: disable=wrong-import-position
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
+
+from kotogram import locations
+from kotogram.model import (
+    NUM_FORMALITY_PRAGMATIC_CLASSES,
+    NUM_GENDER_PRAGMATIC_CLASSES,
+    NUM_GRAMMATICALITY_CLASSES,
+    ModelConfig,
+)
+from kotogram.tokenizer import Tokenizer
+from train.config import (
+    CheckpointConfig,
+    DataLoaderSettings,
+    HardwareConfig,
+    TrainerConfig,
+)
 
 
 
@@ -53,25 +68,25 @@ def run_command(cmd: List[str], env: dict, cwd: str, tee_log: Optional[str] = No
         # Create parent directory if needed
         os.makedirs(os.path.dirname(tee_log), exist_ok=True)
         with open(tee_log, "ab") as log_file:
-            process = subprocess.Popen(
+            with subprocess.Popen(
                 cmd, env=env, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=0
-            )
-            if process.stdout is None:
-                raise RuntimeError("Failed to capture stdout")
-            while True:
-                # Read chunks to allow real-time progress bar updates without newline buffering issues
-                chunk = process.stdout.read(4096)
-                if not chunk:
-                    break
-                sys.stdout.buffer.write(chunk)
-                sys.stdout.flush()
-                log_file.write(chunk)
-                log_file.flush()
-            
-            process.wait()
-            return process.returncode
+            ) as process:
+                if process.stdout is None:
+                    raise RuntimeError("Failed to capture stdout")
+                while True:
+                    # Read chunks to allow real-time progress bar updates without newline buffering issues
+                    chunk = process.stdout.read(4096)
+                    if not chunk:
+                        break
+                    sys.stdout.buffer.write(chunk)
+                    sys.stdout.flush()
+                    log_file.write(chunk)
+                    log_file.flush()
+
+                process.wait()
+                return process.returncode
     else:
-        result = subprocess.run(cmd, env=env, cwd=cwd)
+        result = subprocess.run(cmd, env=env, cwd=cwd, check=False)
         return result.returncode
 
 
@@ -87,74 +102,371 @@ def get_free_port() -> int:
 
 
 
+# pylint: disable=too-many-locals
 def run_mp_distributed(cmd: List[str], env: dict, world_size: int, tee_log: Optional[str] = None) -> int:
     """Run a distributed command using multiprocessing (bypasses torchrun overhead on Mac)."""
     import threading
+    from contextlib import ExitStack
 
     # Always pick a fresh port for MPLauncher to prevent test conflicts
     # or lingering environment variables from polluting independent runs.
     master_port = str(get_free_port())
     master_addr = env.get("MASTER_ADDR", "127.0.0.1")
-    
+
     # Ensure env has these for workers
     env["MASTER_ADDR"] = master_addr
     env["MASTER_PORT"] = master_port
-    
+
     # Force lo0 on Mac for speed
     if sys.platform == "darwin":
         env["GLOO_SOCKET_IFNAME"] = "lo0"
 
-    processes = []
-    
-    if tee_log:
-        os.makedirs(os.path.dirname(tee_log), exist_ok=True)
-        log_f = open(tee_log, "ab")
-        # Write a header
-        log_f.write(f"\n--- Starting MP Distributed Run (world_size={world_size}) ---\n".encode("utf-8"))
-    else:
+    # Use ExitStack to manage file and process contexts
+    with ExitStack() as stack:
         log_f = None
+        if tee_log:
+            os.makedirs(os.path.dirname(tee_log), exist_ok=True)
+            log_f = stack.enter_context(open(tee_log, "ab"))
+            log_f.write(f"\n--- Starting MP Distributed Run (world_size={world_size}) ---\n".encode("utf-8"))
 
-    def pipe_reader(pipe: IO[bytes]) -> None:
-        while True:
-            chunk = pipe.read(4096)
-            if not chunk:
-                break
-            sys.stdout.buffer.write(chunk)
-            sys.stdout.flush()
-            if log_f:
-                log_f.write(chunk)
-                log_f.flush()
+        def pipe_reader(pipe: IO[bytes]) -> None:
+            while True:
+                chunk = pipe.read(4096)
+                if not chunk:
+                    break
+                sys.stdout.buffer.write(chunk)
+                sys.stdout.flush()
+                if log_f:
+                    log_f.write(chunk)
+                    log_f.flush()
 
-    for i in range(world_size):
-        w_env = env.copy()
-        w_env["RANK"] = str(i)
-        w_env["WORLD_SIZE"] = str(world_size)
-        w_env["LOCAL_RANK"] = str(i)
+        processes = []
+        for i in range(world_size):
+            w_env = env.copy()
+            w_env["RANK"] = str(i)
+            w_env["WORLD_SIZE"] = str(world_size)
+            w_env["LOCAL_RANK"] = str(i)
 
-        p = subprocess.Popen(
-            [sys.executable] + cmd, 
-            env=w_env, 
-            cwd=PROJECT_ROOT,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            bufsize=0 # Unbuffered binary
-        )
-        processes.append(p)
-        t = threading.Thread(target=pipe_reader, args=(p.stdout,))
-        t.daemon = True
-        t.start()
+            p = stack.enter_context(subprocess.Popen(
+                [sys.executable] + cmd,
+                env=w_env,
+                cwd=PROJECT_ROOT,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                bufsize=0 # Unbuffered binary
+            ))
+            processes.append(p)
 
-    exit_codes = [p.wait() for p in processes]
-    if log_f:
-        log_f.close()
-        
+            t = threading.Thread(target=pipe_reader, args=(p.stdout,))
+            t.daemon = True
+            t.start()
+
+        # Wait for all processes
+        exit_codes = [p.wait() for p in processes]
+
     for code in exit_codes:
         if code != 0:
             return code
     return 0
 
 
-def main() -> int:
+def handle_special_modes(args: argparse.Namespace) -> Optional[int]:
+    """Handle special modes like --show-config and --report."""
+    if args.show_config:
+        import json
+        print(json.dumps(TrainerConfig().to_dict(), indent=2))
+        return 0
+
+    if args.report:
+        # Just pass through to inner script
+        return run_command([sys.executable, "-m", "scripts.train_style", "--report"], os.environ.copy(), PROJECT_ROOT)
+
+    return None
+
+
+def run_preprocessing(
+    args: argparse.Namespace,
+    env: dict,
+    cache_dir: str,
+    gram_data_pattern: str,
+    agrammatic_pattern: str,
+) -> bool:
+    """Run preprocessing/labeling phase."""
+    combined_gram = os.path.join(cache_dir, "grammatic_combined.tsv")
+    combined_agram = os.path.join(cache_dir, "agrammatic_combined.tsv")
+
+    skip_label = False
+    if os.path.exists(combined_gram) and not args.force_relabel:
+        skip_label = True
+        print("Using cached labels")
+
+    print("=" * 46)
+    print("Running Preprocessing Phase...")
+    print("=" * 46)
+
+    t_label_start = time.perf_counter()
+
+    if not skip_label:
+        label_cmd = [
+            sys.executable,
+            "-m",
+            "scripts.label",
+            "--grammatic-pattern",
+            gram_data_pattern,
+        ]
+        if args.force_relabel:
+            label_cmd.append("--force-relabel")
+        if agrammatic_pattern:
+            label_cmd.extend(["--agrammatic-pattern", agrammatic_pattern])
+
+        print("Executing preprocessing script...")
+        ret = run_command(label_cmd, env, PROJECT_ROOT)
+        print(f"Preprocessing script took {time.perf_counter() - t_label_start:.1f}s")
+        if ret != 0:
+            print("Preprocessing failed!", file=sys.stderr)
+            return False
+    else:
+        print(
+            f"Preprocessing skipped (using cached labels). Took {time.perf_counter() - t_label_start:.1f}s"
+        )
+
+    # Update line counts
+    if os.path.exists(combined_gram):
+        with open(combined_gram, "r", encoding="utf-8") as f:
+            lines = sum(1 for _ in f)
+        print(f"Combined grammatic data: {combined_gram} ({lines} lines)")
+    if os.path.exists(combined_agram):
+        with open(combined_agram, "r", encoding="utf-8") as f:
+            lines = sum(1 for _ in f)
+        print(f"Combined agrammatic data: {combined_agram} ({lines} lines)")
+    print("Preprocessing complete.")
+    return True
+
+
+def build_trainer_config(
+    args: argparse.Namespace,
+    env: dict,
+    support_dir: str,
+    explicit_resume: bool,
+    grad_accum_steps: int,
+) -> TrainerConfig:
+    """Build the TrainerConfig object from arguments."""
+    trainer_kwargs: Dict[str, Any] = {
+        "mlm_epochs": args.pretrain_epochs,
+        "kc_epochs": args.kc_epochs,
+        "learning_rate": args.learning_rate,
+        "use_amp": args.fp16 or args.fp8,
+        "grad_accum_steps": grad_accum_steps,
+        "checkpoint": CheckpointConfig(
+            dir=support_dir,
+            resume_from=support_dir if explicit_resume else None,
+        ),
+        "hardware": HardwareConfig(
+            cpu_reserve_cores=int(env.get("CPU_RESERVE_CORES", 2)),
+        ),
+        "dataloader": DataLoaderSettings(
+            num_workers=args.dataloader_num_workers,
+        ),
+    }
+
+    if args.epochs is not None:
+        trainer_kwargs["epochs"] = args.epochs
+    if args.batch_size is not None:
+        trainer_kwargs["batch_size"] = args.batch_size
+    if args.formality_weight is not None:
+        trainer_kwargs["formality_loss_weight"] = args.formality_weight
+    if args.gender_weight is not None:
+        trainer_kwargs["gender_loss_weight"] = args.gender_weight
+    if args.grammaticality_weight is not None:
+        trainer_kwargs["grammaticality_loss_weight"] = args.grammaticality_weight
+    if args.pretrain_mlm:
+        trainer_kwargs["encoder_lr_factor"] = args.encoder_lr_factor
+
+    return TrainerConfig(**trainer_kwargs)
+
+
+# pylint: disable=too-many-locals
+def generate_and_save_config(
+    args: argparse.Namespace,
+    env: dict,
+    explicit_resume: bool,
+    grad_accum_steps: int,
+) -> str:
+    """Generate and save the unified configuration file."""
+    support_dir = locations.get_style_support_dir()
+    cache_dir = locations.get_cache_dir()
+
+    config_path = os.path.join(support_dir, "config.json")
+
+    # Load tokenizer
+    tokenizer_path_support = os.path.join(support_dir, "tokenizer.json")
+    tokenizer_path_cache = os.path.join(cache_dir, "style_dataset", "vocab.json")
+
+    tokenizer = None
+    if os.path.exists(tokenizer_path_support):
+        print(f"Loaded tokenizer from {tokenizer_path_support}")
+        tokenizer = Tokenizer.load(tokenizer_path_support)
+    elif os.path.exists(tokenizer_path_cache):
+        print(f"Loaded tokenizer from {tokenizer_path_cache}")
+        tokenizer = Tokenizer.load(tokenizer_path_cache)
+    else:
+        tokenizer = Tokenizer()
+
+    # Create configs
+    config_loaded = False
+    model_config = None  # type: ignore # Fix Pylint E0606
+    if args.resume and os.path.exists(config_path):
+        print(f"Resuming: Loading ModelConfig from {config_path}")
+        model_config, _ = TrainerConfig.load_config(config_path)
+        config_loaded = True
+
+    if not config_loaded:
+        model_config = ModelConfig(
+            vocab_sizes=tokenizer.get_vocab_sizes(),
+            num_formality_pragmatic_classes=NUM_FORMALITY_PRAGMATIC_CLASSES,
+            num_gender_pragmatic_classes=NUM_GENDER_PRAGMATIC_CLASSES,
+            num_grammaticality_classes=NUM_GRAMMATICALITY_CLASSES,
+            d_model=args.embed_dim,
+            hidden_dim=args.hidden_dim,
+            num_layers=args.num_layers,
+            num_heads=args.num_heads,
+            kc_enabled=args.pretrain_kc,
+            mlm_enabled=args.pretrain_mlm,
+            kc_target_specs={
+                h.strip(): tokenizer.get_vocab_sizes().get(h.strip(), 100)
+                for h in args.kc_target_heads.split(",")
+                if h.strip()
+            }
+            if args.pretrain_kc
+            else {},
+        )
+
+    # Build TrainerConfig
+    trainer_config = build_trainer_config(
+        args, env, support_dir, explicit_resume, grad_accum_steps
+    )
+
+    # Save unified config
+    import json
+
+    assert model_config is not None
+    combined_config = model_config.to_dict()
+    combined_config["trainer"] = trainer_config.to_dict()
+
+    if args.show_config:
+        print(json.dumps(trainer_config.to_dict(), indent=2))
+        return ""
+
+    new_config_json = json.dumps(combined_config, indent=2)
+    write_config = True
+    if os.path.exists(config_path):
+        with open(config_path, "r", encoding="utf-8") as f:
+            if f.read() == new_config_json:
+                write_config = False
+
+    if write_config:
+        with open(config_path, "w", encoding="utf-8") as f:
+            f.write(new_config_json)
+        print(f"Orchestrated configuration saved to: {config_path}")
+    else:
+        print(f"Configuration unchanged: {config_path}")
+    print()
+
+    return config_path
+
+# pylint: disable=too-many-positional-arguments
+def run_training_phase(
+    args: argparse.Namespace,
+    env: dict,
+    config_path: str,
+    launcher: List[str],
+    use_mp_launcher: bool,
+    num_devices: int,
+) -> int:
+    """Run the training phase using the generated configuration."""
+    support_dir = locations.get_style_support_dir()
+    output_dir = locations.get_style_output_dir()
+
+    # Training Phase
+    print("Starting training run...")
+
+    train_args = [
+        "-m",
+        "scripts.train_style",
+        "--config",
+        config_path,
+        "--embed-dim", str(args.embed_dim),
+        "--hidden-dim", str(args.hidden_dim),
+        "--num-layers", str(args.num_layers),
+        "--num-heads", str(args.num_heads),
+    ]
+
+    if args.pretrain_mlm:
+        train_args.append("--pretrain-mlm")
+    if args.pretrain_kc:
+        train_args.append("--pretrain-kc")
+        train_args.extend([
+            "--kc-k", str(args.kc_k),
+            "--kc-topk", str(args.kc_topk),
+            "--kc-freeze-encoder-epochs", str(args.kc_freeze_encoder_epochs),
+            "--kc-sparsity-weight", str(args.kc_sparsity_weight),
+            "--kc-target-heads", args.kc_target_heads,
+        ])
+    if args.resume:
+        train_args.append("--resume")
+    if args.retrain:
+        train_args.append("--retrain")
+    if args.percent:
+        train_args.extend(["--percent", str(args.percent)])
+
+    training_log = os.path.join(support_dir, "training.log")
+    t_train_start = time.perf_counter()
+
+    if use_mp_launcher:
+        ret = run_mp_distributed(train_args, env, num_devices, tee_log=training_log)
+    else:
+        train_cmd = launcher + train_args
+        ret = run_command(train_cmd, env, PROJECT_ROOT, tee_log=training_log)
+
+    print(f"Training run took {time.perf_counter() - t_train_start:.1f}s")
+    if ret != 0:
+        print("Training failed!", file=sys.stderr)
+        return ret
+
+    print()
+    print("=" * 46)
+    print("Training complete!")
+    print(f"Model saved to: {output_dir}")
+    print(f"Training log:   {training_log}")
+    print("=" * 46)
+    print()
+    return 0
+
+
+def run_confusion_phase(args: argparse.Namespace, env: dict, config_path: str) -> int:
+    """Run confusion matrix evaluation."""
+    print("=" * 46)
+    print("Running Confusion Matrix Evaluation...")
+    print("=" * 46)
+    t_confusion_start = time.perf_counter()
+    confusion_cmd = [
+        sys.executable,
+        "-m",
+        "scripts.confusion",
+        "--config",
+        config_path,
+    ]
+    if args.percent:
+        confusion_cmd.extend(["--percent", str(args.percent)])
+    ret = run_command(confusion_cmd, env, PROJECT_ROOT)
+    print(f"Confusion evaluation took {time.perf_counter() - t_confusion_start:.1f}s")
+    return ret
+
+
+
+
+def parse_arguments() -> argparse.Namespace:
+    """Parse command line arguments."""
     parser = argparse.ArgumentParser(
         description="Train style classifier (formality + gender + grammaticality) on Japanese sentence corpus",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -200,7 +512,7 @@ def main() -> int:
     # KC Pretraining options
     parser.add_argument("--pretrain-kc", action="store_true", help="Enable KC sparse concept pretraining")
     parser.add_argument("--kc-epochs", type=int, default=3, help="KC pretraining epochs (default: 3)")
-    parser.add_argument("--kc-k", type=int, default=1024, help="KC vocabulary size (default: 1024)")
+    parser.add_argument("--kc-k", type=int, default=1024, help="KC vocabulary size None (default: 1024)")
     parser.add_argument("--kc-topk", type=int, default=8, help="Number of active KCs per sample (default: 8)")
     parser.add_argument(
         "--kc-freeze-encoder-epochs", type=int, default=1, help="Epochs to freeze encoder during KC training"
@@ -221,7 +533,7 @@ def main() -> int:
 
     # Data sampling
     parser.add_argument("--percent", type=float, default=None, help="Percentage of data to use (1-100)")
-    
+
     parser.add_argument("--report", action="store_true", help="Generate performance report and exit")
 
     # Performance options
@@ -232,17 +544,88 @@ def main() -> int:
         help="Number of DataLoader workers (None=auto-tune)",
     )
 
-    args = parser.parse_args()
+    return parser.parse_args()
 
+
+def get_data_patterns(args: argparse.Namespace) -> tuple[str, str]:
+    """Resolve data file patterns."""
+    data_dir = locations.get_data_dir()
+    gram_data_pattern = os.path.join(data_dir, "jpn_sentences*.tsv")
+
+    if args.no_agrammatic_data:
+        agrammatic_pattern = ""
+    elif args.agrammatic_pattern:
+        agrammatic_pattern = args.agrammatic_pattern
+    else:
+        agrammatic_pattern = os.path.join(data_dir, "jpn_agrammatic*.tsv")
+
+    return gram_data_pattern, agrammatic_pattern
+
+
+def print_training_banner(
+    args: argparse.Namespace,
+    gram_data_pattern: str,
+    agrammatic_pattern: str,
+    output_dir: str
+) -> None:
+    """Print the training configuration banner."""
     if args.show_config:
-        import json
-        from train.config import TrainerConfig
-        print(json.dumps(TrainerConfig().to_dict(), indent=2))
-        return 0
+        return
 
-    if args.report:
-        # Just pass through to inner script
-        return run_command([sys.executable, "-m", "scripts.train_style", "--report"], os.environ.copy(), PROJECT_ROOT)
+    print("=" * 56)
+    print("Style Classifier Training (Formality + Gender + Grammaticality)")
+    print("=" * 56)
+    print(f"Data:           {gram_data_pattern}")
+    if agrammatic_pattern:
+        print(f"Agrammatic:     {agrammatic_pattern}")
+    print(f"Output:         {output_dir}")
+    if args.epochs is not None:
+        print(f"Epochs:         {args.epochs}")
+    else:
+        print("Epochs:         (default or restored from checkpoint)")
+    print(f"Learning rate:  {args.learning_rate}")
+    print(f"Model dim:      {args.embed_dim}")
+    print(f"Hidden dim:     {args.hidden_dim}")
+    print(f"Num layers:     {args.num_layers}")
+    print(f"Num heads:      {args.num_heads}")
+    print(f"Formality wt:   {args.formality_weight}")
+    print(f"Gender wt:      {args.gender_weight}")
+    print(f"Grammatic wt:   {args.grammaticality_weight}")
+    if args.pretrain_mlm:
+        print(f"MLM pretrain:   {args.pretrain_epochs} epochs")
+        print(f"Encoder LR:     {args.encoder_lr_factor}x base LR during fine-tuning")
+    if args.pretrain_kc:
+        print(f"KC pretrain:    {args.kc_epochs} epochs")
+        print(f"KC K:           {args.kc_k}")
+        print(f"KC Top-k:       {args.kc_topk}")
+        print(f"KC Freeze:      {args.kc_freeze_encoder_epochs} epochs")
+        print(f"KC Sparsity:    {args.kc_sparsity_weight}")
+        print(f"KC Targets:     {args.kc_target_heads}")
+    if args.fp8:
+        print("Precision:      float8 (quarter size)")
+    elif args.fp16:
+        print("Precision:      float16 (half size)")
+    if args.resume:
+        print("Resume:         from checkpoint")
+    if args.retrain:
+        print("Retrain:        from scratch using parameters from checkpoint")
+    if args.confusion:
+        print("Action:         Print confusion matrices (no training)")
+    if args.label:
+        print("Action:         Preprocessing/Labeling only")
+    if args.percent:
+        print(f"Data usage:     {args.percent}%")
+    print("=" * 46)
+    print()
+
+
+# pylint: disable=too-many-return-statements
+def main() -> int:
+    args = parse_arguments()
+
+    ret = handle_special_modes(args)
+    if ret is not None:
+        return ret
 
     # Setup environment
     env = os.environ.copy()
@@ -269,76 +652,25 @@ def main() -> int:
             print(f"Profiling enabled. Results will be written to: {profile_dir}")
 
     # Get paths from locations module
-    from kotogram import locations
+    # Get paths from locations module
+    # from kotogram import locations (moved to global)
 
-    data_dir = locations.get_data_dir()
+
     cache_dir = locations.get_cache_dir()
     support_dir = locations.get_style_support_dir()
     output_dir = locations.get_style_output_dir()
 
     # Set default agrammatic pattern
-    if args.no_agrammatic_data:
-        agrammatic_pattern = ""
-    elif args.agrammatic_pattern:
-        agrammatic_pattern = args.agrammatic_pattern
-    else:
-        agrammatic_pattern = os.path.join(data_dir, "jpn_agrammatic*.tsv")
+    gram_data_pattern, agrammatic_pattern = get_data_patterns(args)
 
-    gram_data_pattern = os.path.join(data_dir, "jpn_sentences*.tsv")
-
-    # Print configuration header (skip if just showing config)
-    if not args.show_config:
-        print("=" * 56)
-        print("Style Classifier Training (Formality + Gender + Grammaticality)")
-        print("=" * 56)
-        print(f"Data:           {gram_data_pattern}")
-        if agrammatic_pattern:
-            print(f"Agrammatic:     {agrammatic_pattern}")
-        print(f"Output:         {output_dir}")
-        if args.epochs is not None:
-            print(f"Epochs:         {args.epochs}")
-        else:
-            print("Epochs:         (default or restored from checkpoint)")
-        print(f"Learning rate:  {args.learning_rate}")
-        print(f"Model dim:      {args.embed_dim}")
-        print(f"Hidden dim:     {args.hidden_dim}")
-        print(f"Num layers:     {args.num_layers}")
-        print(f"Num heads:      {args.num_heads}")
-        print(f"Formality wt:   {args.formality_weight}")
-        print(f"Gender wt:      {args.gender_weight}")
-        print(f"Grammatic wt:   {args.grammaticality_weight}")
-        if args.pretrain_mlm:
-            print(f"MLM pretrain:   {args.pretrain_epochs} epochs")
-            print(f"Encoder LR:     {args.encoder_lr_factor}x base LR during fine-tuning")
-        if args.pretrain_kc:
-            print(f"KC pretrain:    {args.kc_epochs} epochs")
-            print(f"KC K:           {args.kc_k}")
-            print(f"KC Top-k:       {args.kc_topk}")
-            print(f"KC Freeze:      {args.kc_freeze_encoder_epochs} epochs")
-            print(f"KC Sparsity:    {args.kc_sparsity_weight}")
-            print(f"KC Targets:     {args.kc_target_heads}")
-        if args.fp8:
-            print("Precision:      float8 (quarter size)")
-        elif args.fp16:
-            print("Precision:      float16 (half size)")
-        if args.resume:
-            print("Resume:         from checkpoint")
-        if args.retrain:
-            print("Retrain:        from scratch using parameters from checkpoint")
-        if args.confusion:
-            print("Action:         Print confusion matrices (no training)")
-        if args.label:
-            print("Action:         Preprocessing/Labeling only")
-        if args.percent:
-            print(f"Data usage:     {args.percent}%")
-        print("=" * 46)
-        print()
+    # Print configuration header
+    print_training_banner(args, gram_data_pattern, agrammatic_pattern, output_dir)
 
     # Create directories
     os.makedirs(cache_dir, exist_ok=True)
+    os.makedirs(support_dir, exist_ok=True)
     if not args.label:
         os.makedirs(output_dir, exist_ok=True)
-        os.makedirs(support_dir, exist_ok=True)
 
     # Auto-resume logic
     checkpoint_path = os.path.join(support_dir, "checkpoint.pt")
@@ -394,288 +726,35 @@ def main() -> int:
     print("-" * 46)
     print()
 
-    # Phase 0: Configuration Orchestration
-    from kotogram.model import (
-        NUM_FORMALITY_PRAGMATIC_CLASSES,
-        NUM_GENDER_PRAGMATIC_CLASSES,
-        NUM_GRAMMATICALITY_CLASSES,
-        ModelConfig,
-    )
-    from kotogram.tokenizer import Tokenizer
-    from train.config import (
-        CheckpointConfig,
-        DataLoaderSettings,
-        HardwareConfig,
-        TrainerConfig,
-    )
+    # Phase 1: Preprocessing/Labeling
+    if not run_preprocessing(args, env, cache_dir, gram_data_pattern, agrammatic_pattern):
+        return 1
 
-    support_dir = locations.get_style_support_dir()
-    output_dir = locations.get_style_output_dir()
-    cache_dir = locations.get_cache_dir()
-    data_dir = locations.get_data_dir()
-
-    # Set default agrammatic pattern
-    if args.no_agrammatic_data:
-        agrammatic_pattern = ""
-    elif args.agrammatic_pattern:
-        agrammatic_pattern = args.agrammatic_pattern
-    else:
-        agrammatic_pattern = os.path.join(data_dir, "jpn_agrammatic*.tsv")
-
-    gram_data_pattern = os.path.join(data_dir, "jpn_sentences*.tsv")
-
-    # Phase 1: MLM Pretraining
-
-    # Create directories
-    os.makedirs(cache_dir, exist_ok=True)
-    os.makedirs(output_dir, exist_ok=True)
-    os.makedirs(support_dir, exist_ok=True)
-
-    config_path = os.path.join(support_dir, "config.json")
-
-    # Load tokenizer to get vocab sizes
-    # Priority: support_dir (training progress) > cache (labeling result)
-    tokenizer_path_support = os.path.join(support_dir, "tokenizer.json")
-    tokenizer_path_cache = os.path.join(cache_dir, "style_dataset", "vocab.json")
-    
-    tokenizer = None
-    if os.path.exists(tokenizer_path_support):
-         print(f"Loaded tokenizer from {tokenizer_path_support}")
-         tokenizer = Tokenizer.load(tokenizer_path_support)
-    elif os.path.exists(tokenizer_path_cache):
-         print(f"Loaded tokenizer from {tokenizer_path_cache}")
-         tokenizer = Tokenizer.load(tokenizer_path_cache)
-    else:
-         tokenizer = Tokenizer()
-
-    # Create configs
-    config_loaded = False
-    if args.resume and os.path.exists(config_path):
-        print(f"Resuming: Loading ModelConfig from {config_path}")
-        model_config, _ = TrainerConfig.load_config(config_path)
-        config_loaded = True
-
-    if not config_loaded:
-        model_config = ModelConfig(
-            vocab_sizes=tokenizer.get_vocab_sizes(),
-            num_formality_pragmatic_classes=NUM_FORMALITY_PRAGMATIC_CLASSES,
-            num_gender_pragmatic_classes=NUM_GENDER_PRAGMATIC_CLASSES,
-            num_grammaticality_classes=NUM_GRAMMATICALITY_CLASSES,
-            d_model=args.embed_dim,
-            hidden_dim=args.hidden_dim,
-            num_layers=args.num_layers,
-            num_heads=args.num_heads,
-            kc_enabled=args.pretrain_kc,
-            mlm_enabled=args.pretrain_mlm,
-            kc_target_specs={
-                h.strip(): tokenizer.get_vocab_sizes().get(h.strip(), 100)
-                for h in args.kc_target_heads.split(",")
-                if h.strip()
-            }
-            if args.pretrain_kc
-            else {},
-        )
-
-
-    # Build TrainerConfig with only user-specified overrides
-    # Defaults come from config.py dataclass, not from argparse
-    trainer_kwargs: Dict[str, Any] = {
-        "mlm_epochs": args.pretrain_epochs,
-        "kc_epochs": args.kc_epochs,
-        "learning_rate": args.learning_rate,
-        "use_amp": args.fp16 or args.fp8,
-        "grad_accum_steps": grad_accum_steps,
-        "checkpoint": CheckpointConfig(
-            dir=support_dir,
-            resume_from=support_dir if explicit_resume else None,
-        ),
-        "hardware": HardwareConfig(
-            cpu_reserve_cores=int(env.get("CPU_RESERVE_CORES", 2)),
-        ),
-        "dataloader": DataLoaderSettings(
-            num_workers=args.dataloader_num_workers,
-        ),
-    }
-    # Only include values if explicitly provided
-    if args.epochs is not None:
-        trainer_kwargs["epochs"] = args.epochs
-    if micro_batch_size is not None:
-        trainer_kwargs["batch_size"] = micro_batch_size
-    if args.formality_weight is not None:
-        trainer_kwargs["formality_loss_weight"] = args.formality_weight
-    if args.gender_weight is not None:
-        trainer_kwargs["gender_loss_weight"] = args.gender_weight
-    if args.grammaticality_weight is not None:
-        trainer_kwargs["grammaticality_loss_weight"] = args.grammaticality_weight
-    # Set encoder_lr_factor based on whether MLM pretraining is enabled
-    if args.pretrain_mlm:
-        trainer_kwargs["encoder_lr_factor"] = args.encoder_lr_factor
-
-    trainer_config = TrainerConfig(**trainer_kwargs)
-
-    # Save unified config
-    import json
-
-    combined_config = model_config.to_dict()
-    combined_config["trainer"] = trainer_config.to_dict()
-
-    # Handle --show-config: print and exit
+    # Phase 2: Configuration
+    config_path = generate_and_save_config(args, env, explicit_resume, grad_accum_steps)
     if args.show_config:
-        print(json.dumps(trainer_config.to_dict(), indent=2))
         return 0
-
-    # Only write config if changed to avoid unnecessary file modifications
-    new_config_json = json.dumps(combined_config, indent=2)
-    write_config = True
-    if os.path.exists(config_path):
-        with open(config_path, "r") as f:
-            if f.read() == new_config_json:
-                write_config = False
-
-    if write_config:
-        with open(config_path, "w") as f:
-            f.write(new_config_json)
-        print(f"Orchestrated configuration saved to: {config_path}")
-    else:
-        print(f"Configuration unchanged: {config_path}")
-    print()
-
-    # Phase 1: Preprocessing/Labeling
-    combined_gram = os.path.join(cache_dir, "grammatic_combined.tsv")
-    combined_agram = os.path.join(cache_dir, "agrammatic_combined.tsv")
-    
-    skip_label = False
-    if os.path.exists(combined_gram) and not args.force_relabel:
-        skip_label = True
-        print("Using cached labels")
-
-    # Phase 1: Preprocessing/Labeling
-    print("=" * 46)
-    print("Running Preprocessing Phase...")
-    print("=" * 46)
-    
-    t_label_start = time.perf_counter()
-
-    if not skip_label:
-        label_cmd = [sys.executable, "-m", "scripts.label", "--grammatic-pattern", gram_data_pattern]
-        if args.force_relabel:
-            label_cmd.append("--force-relabel")
-        if agrammatic_pattern:
-            label_cmd.extend(["--agrammatic-pattern", agrammatic_pattern])
-
-        print("Executing preprocessing script...")
-        ret = run_command(label_cmd, env, PROJECT_ROOT)
-        print(f"Preprocessing script took {time.perf_counter() - t_label_start:.1f}s")
-        if ret != 0:
-            print("Preprocessing failed!", file=sys.stderr)
-            return ret
-    else:
-        print(f"Preprocessing skipped (using cached labels). Took {time.perf_counter() - t_label_start:.1f}s")
-
-    # Update line counts
-    combined_gram = os.path.join(cache_dir, "grammatic_combined.tsv")
-    combined_agram = os.path.join(cache_dir, "agrammatic_combined.tsv")
-    if os.path.exists(combined_gram):
-        with open(combined_gram) as f:
-            lines = sum(1 for _ in f)
-        print(f"Combined grammatic data: {combined_gram} ({lines} lines)")
-    if os.path.exists(combined_agram):
-        with open(combined_agram) as f:
-            lines = sum(1 for _ in f)
-        print(f"Combined agrammatic data: {combined_agram} ({lines} lines)")
-    print("Preprocessing complete.")
 
     if args.label:
         print("Labeling only requested. Exiting.")
         return 0
-    print()
 
-    # Phase 2: Confusion evaluation (if requested)
     if args.confusion:
-        print("=" * 46)
-        print("Running Confusion Matrix Evaluation...")
-        print("=" * 46)
-        t_confusion_start = time.perf_counter()
-        confusion_cmd = [sys.executable, "-m", "scripts.confusion", "--config", config_path]
-        if args.percent:
-            confusion_cmd.extend(["--percent", str(args.percent)])
-        ret = run_command(confusion_cmd, env, PROJECT_ROOT)
-        print(f"Confusion evaluation took {time.perf_counter() - t_confusion_start:.1f}s")
-        return ret
+        return run_confusion_phase(args, env, config_path)
 
-    # Training Phase
-    print("Starting training run...")
-
-
-    # Base training command arguments (passed to launcher)
-    train_args = [
-        "-m",
-        "scripts.train_style",
-        "--config",
-        config_path,
-        # Model architecture
-        "--embed-dim", str(args.embed_dim),
-        "--hidden-dim", str(args.hidden_dim),
-        "--num-layers", str(args.num_layers),
-        "--num-heads", str(args.num_heads),
-    ]
-
-    if args.pretrain_mlm:
-        train_args.append("--pretrain-mlm")
-    if args.pretrain_kc:
-        train_args.append("--pretrain-kc")
-        # KC-specific model args (not in TrainerConfig)
-        train_args.extend([
-            "--kc-k", str(args.kc_k),
-            "--kc-topk", str(args.kc_topk),
-            "--kc-freeze-encoder-epochs", str(args.kc_freeze_encoder_epochs),
-            "--kc-sparsity-weight", str(args.kc_sparsity_weight),
-            "--kc-target-heads", args.kc_target_heads,
-        ])
-    if args.resume:
-        train_args.append("--resume")
-    if args.retrain:
-        train_args.append("--retrain")
-    if args.percent:
-        train_args.extend(["--percent", str(args.percent)])
-    
-
-
-    training_log = os.path.join(support_dir, "training.log")
-    t_train_start = time.perf_counter()
-    
-    if use_mp_launcher:
-        ret = run_mp_distributed(train_args, env, num_devices, tee_log=training_log)
-    else:
-        train_cmd = launcher + train_args
-        ret = run_command(train_cmd, env, PROJECT_ROOT, tee_log=training_log)
-        
-    print(f"Training run took {time.perf_counter() - t_train_start:.1f}s")
+    # Phase 3: Training
+    ret = run_training_phase(
+        args, env, config_path, launcher, use_mp_launcher, num_devices
+    )
     if ret != 0:
-        print("Training failed!", file=sys.stderr)
         return ret
 
-    print()
-    print("=" * 46)
-    print("Training complete!")
-    print(f"Model saved to: {output_dir}")
-    print(f"Training log:   {training_log}")
-    print("=" * 46)
-    print()
+    # Printing handled by run_training_phase
 
     # Phase 4: Confusion evaluation (after training)
     if not args.no_confusion:
         print("Generating confusion report...")
-        confusion_cmd = [
-            sys.executable,
-            "-m",
-            "scripts.confusion",
-            "--config",
-            config_path,
-        ]
-        if args.percent:
-            confusion_cmd.extend(["--percent", str(args.percent)])
-        run_command(confusion_cmd, env, PROJECT_ROOT)
+        run_confusion_phase(args, env, config_path)
     else:
         print("Skipping confusion report (--no-confusion)")
 

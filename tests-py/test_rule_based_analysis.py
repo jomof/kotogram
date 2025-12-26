@@ -1,12 +1,8 @@
 """Tests for rule-based formality and gender analysis in scripts."""
 
-import os
-import sys
 import unittest
 
-# Add project root to path to allow importing from scripts
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
+# Add project root to path to allow import os
 from kotogram import FormalityLevel, GenderLevel, SudachiJapaneseParser
 from scripts.rule_based_analysis import analyze_formality, analyze_gender
 
@@ -95,7 +91,6 @@ class TestRuleBasedFormality(unittest.TestCase):
         # but rule-based logic explicitly checks for mix.
         # Let's verify the logic exists by checking the function code or running this.
         # If 'masu' and 'ze' are detected, it returns UNPRAGMATIC.
-        pass
 
 
 class TestRuleBasedGender(unittest.TestCase):

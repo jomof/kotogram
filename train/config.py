@@ -199,7 +199,7 @@ class TrainerConfig:
 
         from kotogram.model import ModelConfig
 
-        with open(path, "r") as f:
+        with open(path, "r", encoding="utf-8") as f:
             d = json.load(f)
         model_config = ModelConfig.from_dict(d)
         trainer_config = TrainerConfig.from_dict(d.get("trainer", {}))
@@ -268,7 +268,7 @@ def _choose_torch_threads(config: "TrainerConfig") -> Tuple[int, int]:
 def _get_safe_dataloader_config(
     config: TrainerConfig,
     device: torch.device,
-    process: ProcessSettings,
+    process: ProcessSettings,  # pylint: disable=unused-argument
     mode: str = "train",
 ) -> DataLoaderConfig:
     """Determine safe and performant DataLoader settings based on environment and load."""

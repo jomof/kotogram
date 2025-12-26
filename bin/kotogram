@@ -20,7 +20,7 @@ def main() -> int:
         venv_python = os.path.join(project_root, ".venv", "bin", "python")
         if os.path.exists(venv_python) and os.access(venv_python, os.X_OK):
             os.execv(venv_python, [venv_python] + sys.argv)
-    
+
     sys.stderr.write("Error: Failed to import kotogram. Make sure dependencies are installed.\\n")
     sys.exit(1)
 

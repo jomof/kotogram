@@ -1,6 +1,5 @@
 import os
 import subprocess
-import sys
 import unittest
 from pathlib import Path
 
@@ -19,7 +18,6 @@ class TestBinKotogram(unittest.TestCase):
 
     def run_script(self, args, input_text=None):
         """Run the script as a subprocess."""
-        cmd = [sys.executable, str(self.script_path)] + args
 
         # Ensure we use the project root for finding models/style in dev mode
         env = os.environ.copy()
@@ -28,7 +26,12 @@ class TestBinKotogram(unittest.TestCase):
         env["TRAIN_ROOT"] = str(project_root)
 
         result = subprocess.run(
-            cmd, input=input_text, text=True, capture_output=True, env=env
+            [str(self.script_path)] + args,
+            input=input_text,
+            capture_output=True,
+            text=True,
+            check=False,
+            env=env,
         )
         return result
 

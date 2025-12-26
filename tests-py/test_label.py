@@ -4,10 +4,6 @@ import shutil
 import sys
 import tempfile
 import unittest
-
-# Add project root to path so we can import scripts and kotogram
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from unittest.mock import patch
 
 from kotogram import locations
@@ -15,6 +11,7 @@ from scripts.label import main as label_main
 from train.cache import get_kotogram_cache
 
 
+# pylint: disable=protected-access
 class TestLabelScript(unittest.TestCase):
     def setUp(self):
         self.test_dir = tempfile.mkdtemp()
@@ -34,12 +31,10 @@ class TestLabelScript(unittest.TestCase):
         # Reset global cache instance if needed
         import train.cache
 
-        train.cache._kotogram_cache = None
+        train.cache._KOTOGRAM_CACHE = None
 
     def test_label_and_cache(self):
         # Run label.py via main
-        import sys
-        from unittest.mock import patch
 
         # Mock sys.argv
         test_args = [
@@ -53,7 +48,7 @@ class TestLabelScript(unittest.TestCase):
         # Ensure the global cache is reset
         import train.cache
 
-        train.cache._kotogram_cache = None
+        train.cache._KOTOGRAM_CACHE = None
 
         with patch.dict(os.environ, {"TRAIN_ROOT": self.test_dir}):
             with patch.object(sys, "argv", test_args):
@@ -61,7 +56,7 @@ class TestLabelScript(unittest.TestCase):
 
             # Verify cache was created and populated
             # Re-initialize to see what happened
-            train.cache._kotogram_cache = None
+            train.cache._KOTOGRAM_CACHE = None
             cache = get_kotogram_cache()
 
             print(f"Checking results in {self.shards_dir}...")
@@ -78,7 +73,7 @@ class TestLabelScript(unittest.TestCase):
             self.assertIsNotNone(results["走る。"])
 
             # Check if fields are populated
-            k, f, g_val, g_prag, r_lbls, g_lbl, f_ids = results["これはテストです。"]
+            k, f, g_val, g_prag, r_lbls, g_lbl, _ = results["これはテストです。"]
             self.assertTrue(len(k) > 0)
             self.assertIsNotNone(f)
             self.assertIsNotNone(g_val)
@@ -88,12 +83,10 @@ class TestLabelScript(unittest.TestCase):
 
     def test_incremental_labeling(self):
         # First run
-        import sys
-        from unittest.mock import patch
 
         import train.cache
 
-        train.cache._kotogram_cache = None
+        train.cache._KOTOGRAM_CACHE = None
 
         test_args = [
             "scripts/label.py",
@@ -136,7 +129,7 @@ class TestLabelScript(unittest.TestCase):
             with patch.object(sys, "argv", test_args_new):
                 label_main()
 
-            train.cache._kotogram_cache = None
+            train.cache._KOTOGRAM_CACHE = None
             cache = get_kotogram_cache()
             results = cache.get_batch(["新しい文です。"])
             self.assertIsNotNone(results["新しい文です。"])

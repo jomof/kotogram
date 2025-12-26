@@ -7,10 +7,13 @@ data loading, and calling the trainers from the kotogram.train package.
 import importlib.util
 
 if importlib.util.find_spec("_setup_path"):
-    import _setup_path  # type: ignore # noqa: F401
+    import _setup_path  # type: ignore # noqa: F401 # pylint: disable=unused-import
 else:
-    from scripts import _setup_path  # type: ignore # noqa: F401
+    from scripts import (
+        _setup_path,  # type: ignore # noqa: F401 # pylint: disable=unused-import
+    )
 
+# pylint: disable=wrong-import-position
 import glob
 import json
 import os
@@ -32,7 +35,7 @@ from kotogram.tokenizer import (
 from train.config import (
     TrainerConfig,
 )
-from train.dataset import StyleDataset
+from train.dataset import DatasetConfig, StyleDataset
 from train.io import save_model
 from train.trainer import (
     KCTrainer,
@@ -45,6 +48,7 @@ from train.trainer import (
 
 
 def generate_profile_report() -> None:
+    # pylint: disable=too-many-locals
     """Generate human-readable performance report from JSONL logs."""
     profile_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
     support_dir = locations.get_style_support_dir()
@@ -60,8 +64,8 @@ def generate_profile_report() -> None:
 
     all_entries = []
     for p in files:
-        with open(p, "r") as f:
-            for line in f:
+        with open(p, "r", encoding="utf-8") as profile_file:
+            for line in profile_file:
                 if line.strip():
                     all_entries.append(json.loads(line))
 
@@ -76,34 +80,36 @@ def generate_profile_report() -> None:
     epochs = sorted(list(set(e.get("epoch", 0) for e in all_entries)))
     thrashing_events = [e for e in all_entries if e.get("majflt", 0) > 0]
 
-    with open(output_path, "w") as f:
-        f.write("KOTOGRAM TRAINING PERFORMANCE PROFILE\n")
-        f.write("======================================\n")
-        f.write(f"Generated at: {time.ctime()}\n")
-        f.write(f"Source logs: {len(files)} files, {len(all_entries)} samples\n\n")
+    with open(output_path, "w", encoding="utf-8") as report_file:
+        report_file.write("KOTOGRAM TRAINING PERFORMANCE PROFILE\n")
+        report_file.write("======================================\n")
+        report_file.write(f"Generated at: {time.ctime()}\n")
+        report_file.write(
+            f"Source logs: {len(files)} files, {len(all_entries)} samples\n\n"
+        )
 
-        f.write("SYSTEM HEALTH SUMMARY\n")
-        f.write("---------------------\n")
+        report_file.write("SYSTEM HEALTH SUMMARY\n")
+        report_file.write("---------------------\n")
         max_rss = max(e.get("maxrss", 0) for e in all_entries)
-        f.write(f"Peak RSS: {max_rss:,}\n")
-        f.write(
+        report_file.write(f"Peak RSS: {max_rss:,}\n")
+        report_file.write(
             f"Total Major Page Faults (Thrashing): {sum(e.get('majflt', 0) for e in all_entries)}\n"
         )
-        f.write(f"Thrashing Events (>0 faults): {len(thrashing_events)}\n\n")
+        report_file.write(f"Thrashing Events (>0 faults): {len(thrashing_events)}\n\n")
 
         if thrashing_events:
-            f.write("THRASHING TIMELINE (Top 10)\n")
-            f.write("---------------------------\n")
+            report_file.write("THRASHING TIMELINE (Top 10)\n")
+            report_file.write("---------------------------\n")
             for e in sorted(thrashing_events, key=lambda x: x["majflt"], reverse=True)[
                 :10
             ]:
-                f.write(
+                report_file.write(
                     f"Epoch {e.get('epoch')} Batch {e.get('batch')}: {e['majflt']} faults, Duration: {e['duration_s']:.2f}s, RSS: {e['maxrss']}\n"
                 )
-            f.write("\n")
+            report_file.write("\n")
 
-        f.write("PER-EPOCH TIMING\n")
-        f.write("----------------\n")
+        report_file.write("PER-EPOCH TIMING\n")
+        report_file.write("----------------\n")
         for ep in epochs:
             ep_entries = [e for e in all_entries if e.get("epoch") == ep]
             if not ep_entries:
@@ -123,12 +129,14 @@ def generate_profile_report() -> None:
                 else 0
             )
 
-            f.write(f"Epoch {ep}:\n")
-            f.write(f"  Avg Data Loading: {avg_data * 1000:.1f}ms\n")
-            f.write(f"  Avg Compute:      {avg_comp * 1000:.1f}ms\n")
+            report_file.write(f"Epoch {ep}:\n")
+            report_file.write(f"  Avg Data Loading: {avg_data * 1000:.1f}ms\n")
+            report_file.write(f"  Avg Compute:      {avg_comp * 1000:.1f}ms\n")
             if avg_data + avg_comp > 0:
-                f.write(f"  Data Overhead:    {avg_data / (avg_data + avg_comp):.1%}\n")
-            f.write("\n")
+                report_file.write(
+                    f"  Data Overhead:    {avg_data / (avg_data + avg_comp):.1%}\n"
+                )
+            report_file.write("\n")
 
     print(f"Report written to {output_path}")
 
@@ -163,11 +171,11 @@ if __name__ == "__main__":
                 summary_file = os.path.join(
                     profile_dir, f"train_style_{os.getpid()}.txt"
                 )
-                with open(summary_file, "w") as f:
-                    stats = pstats.Stats(_profiler, stream=f)
+                with open(summary_file, "w", encoding="utf-8") as summary_file_handle:
+                    stats = pstats.Stats(_profiler, stream=summary_file_handle)
                     stats.sort_stats("cumulative")
-                    f.write("TOP 50 BY CUMULATIVE TIME\n")
-                    f.write("=" * 80 + "\n")
+                    summary_file_handle.write("TOP 50 BY CUMULATIVE TIME\n")
+                    summary_file_handle.write("=" * 80 + "\n")
                     stats.print_stats(50)
 
         atexit.register(_save_profile)
@@ -311,8 +319,8 @@ if __name__ == "__main__":
     epochs_json_path = os.path.join(args.support_dir, "epochs.json")
     training_history: List[Dict[str, Any]] = []
     if is_main_process() and os.path.exists(epochs_json_path):
-        with open(epochs_json_path, "r") as f:
-            training_history = json.load(f)
+        with open(epochs_json_path, "r", encoding="utf-8") as history_file:
+            training_history = json.load(history_file)
 
     def _append_history(
         raw_history: Dict[str, Any], phase_type: str, start_epoch: int = 0
@@ -356,11 +364,12 @@ if __name__ == "__main__":
 
         if is_main_process():
             # Save immediately
-            with open(epochs_json_path, "w") as f:
-                json.dump(training_history, f, indent=2)
+            with open(epochs_json_path, "w", encoding="utf-8") as h_file:
+                json.dump(training_history, h_file, indent=2)
 
     model: Optional[StyleClassifier] = None
     tokenizer: Optional[Tokenizer] = None
+    # pylint: disable=invalid-name
     checkpoint: Optional[Dict[str, Any]] = None
     vocab_grew = False
 
@@ -410,6 +419,7 @@ if __name__ == "__main__":
                 locations.get_style_dataset_cache_dir(), "vocab.json"
             )
             if os.path.exists(vocab_legacy):
+                # pylint: disable=protected-access
                 StyleDataset._load_vocab(vocab_legacy, tokenizer)
             else:
                 raise ValueError(f"Vocabulary not found at {tokenizer_path_cache}")
@@ -461,10 +471,11 @@ if __name__ == "__main__":
             unlabeled_dataset = StyleDataset.from_tsv(
                 args.data,
                 tokenizer,
-                verbose=is_main_process(),
-                labeled=False,
-                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                use_cache=True,
+                config=DatasetConfig(
+                    verbose=is_main_process(),
+                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+                    use_cache=True,
+                ),
             )
             mlm_trainer = MLMTrainer(
                 cast(StyleClassifierWithMLM, model),
@@ -490,14 +501,17 @@ if __name__ == "__main__":
 
     # Load labeled data for remaining phases
     old_vocab_sizes = model_config.vocab_sizes.copy()
+    # pylint: disable=protected-access
     tokenizer._frozen = False
     labeled_dataset = StyleDataset.from_multiple_tsv(
         data_files,
         tokenizer,
-        verbose=is_main_process(),
-        grammaticality_labels=grammaticality_labels,
-        sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-        use_cache=True,
+        config=DatasetConfig(
+            verbose=is_main_process(),
+            grammaticality_labels=grammaticality_labels,
+            sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+            use_cache=True,
+        ),
     )
     train_data, val_data = labeled_dataset.split()
     new_vocab_sizes = tokenizer.get_vocab_sizes()
@@ -584,14 +598,15 @@ if __name__ == "__main__":
         print("Final Test Results:")
         print("-" * 34)
         print(
-            f"Accuracy: form={res['formality_accuracy']:.4f}, gender={res['gender_pragmatic_accuracy']:.4f}, gram={res['grammaticality_accuracy']:.4f}, register={res['register_accuracy']:.4f}"
+            f"Accuracy: form={res['formality_accuracy']:.4f}, gender={res['gender_accuracy']:.4f}, gram={res['grammaticality_accuracy']:.4f}, register={res['register_accuracy']:.4f}"
         )
         print("-" * 34)
 
         # Save model
         output_dir = locations.get_style_output_dir()
         os.makedirs(output_dir, exist_ok=True)
-        from train.io import save_model
+        # from train.io import save_model  # Already imported
+        # pylint: disable=reimported
 
         # Ensure we use the trained model
         trained_model = style_trainer.model

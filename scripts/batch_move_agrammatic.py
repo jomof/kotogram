@@ -23,4 +23,4 @@ sentences = [
 for sentence in sentences:
     s = sentence.strip()
     print(f"Moving to agrammatic: {s}")
-    subprocess.run(["python3", "scripts/move_to", "agrammatic", s])
+    subprocess.run(["python3", "scripts/move_to", "agrammatic", s], check=True)

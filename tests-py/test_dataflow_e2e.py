@@ -6,11 +6,7 @@ instead of manually constructed kotograms. Each step prints its output for
 debugging purposes.
 """
 
-import os
 import sys
-
-# Add project root to path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from train.cache import get_kotogram_cache
 from train.types import ProcessedSample
@@ -20,7 +16,7 @@ def populate_test_cache(rows):
     """Helper to populate the cache for testing."""
     from scripts.label import _process_sentence_batch
 
-    processed, counters = _process_sentence_batch(rows)
+    processed, _ = _process_sentence_batch(rows)
     cache = get_kotogram_cache()
     memo = []
     for p in processed:
@@ -81,7 +77,7 @@ def test_step2_process_sentence_batch():
     for item in batch:
         print(f"  {item}")
 
-    results, counters = _process_sentence_batch(batch)
+    results, _ = _process_sentence_batch(batch)
 
     print(f"\nOutput ({len(results)} results):")
     for i, result in enumerate(results):
@@ -111,6 +107,7 @@ def test_step2_process_sentence_batch():
     )
 
 
+# pylint: disable=protected-access
 def test_step3_process_parallel():
     """Step 3: Verify StyleDataset._process_parallel uses cache correctly."""
     from train.dataset import StyleDataset
@@ -133,13 +130,11 @@ def test_step3_process_parallel():
 
     results = StyleDataset._process_parallel(
         rows,
-        num_workers=1,
-        batch_size=100,
         verbose=True,
     )
 
     print(f"\nOutput ({len(results)} results):")
-    for i, result in enumerate(results):
+    for result in results:
         assert isinstance(result, ProcessedSample)
         assert result.success == 1
 
@@ -162,9 +157,7 @@ def test_step4_encoding_inputs_extraction():
 
     populate_test_cache(rows)
 
-    processed_results = StyleDataset._process_parallel(
-        rows, num_workers=1, batch_size=100, verbose=False
-    )
+    processed_results = StyleDataset._process_parallel(rows, verbose=False)
 
     encoding_inputs = []
     for p in processed_results:
@@ -200,9 +193,7 @@ def test_step5_encode_samples_batch():
 
     populate_test_cache(rows)
 
-    processed_results = StyleDataset._process_parallel(
-        rows, num_workers=1, batch_size=100, verbose=False
-    )
+    processed_results = StyleDataset._process_parallel(rows, verbose=False)
 
     # Create a tokenizer and build vocabulary
     tokenizer = Tokenizer()
@@ -242,9 +233,7 @@ def test_step6_collate_fn():
 
     populate_test_cache(rows)
 
-    processed_results = StyleDataset._process_parallel(
-        rows, num_workers=1, batch_size=100, verbose=False
-    )
+    processed_results = StyleDataset._process_parallel(rows, verbose=False)
 
     tokenizer = Tokenizer()
     for p in processed_results:
@@ -285,9 +274,7 @@ def test_step7_evaluate_list_consistency():
     populate_test_cache(rows)
 
     tokenizer = Tokenizer()
-    processed_results = StyleDataset._process_parallel(
-        rows, num_workers=1, batch_size=100, verbose=False
-    )
+    processed_results = StyleDataset._process_parallel(rows, verbose=False)
 
     for p in processed_results:
         tokenizer.encode(p.kotogram, add_cls=True, add_to_vocab=True)
@@ -317,9 +304,7 @@ def test_step8_trace_register_mislabel():
 
     populate_test_cache(rows)
 
-    processed = StyleDataset._process_parallel(
-        rows, num_workers=1, batch_size=100, verbose=False
-    )
+    processed = StyleDataset._process_parallel(rows, verbose=False)
 
     result = processed[0]
     print(f"Active register IDs: {result.register_ids}")
@@ -353,15 +338,15 @@ if __name__ == "__main__":
     ]
 
     passed = 0
-    failed = 0
+    FAILED_COUNT = 0
 
     for test in tests:
         test()
         passed += 1
 
     print("\n" + "#" * 60)
-    print(f"# SUMMARY: {passed}/{len(tests)} tests passed, {failed} failed")
+    print(f"# SUMMARY: {passed}/{len(tests)} tests passed, {FAILED_COUNT} failed")
     print("#" * 60)
 
-    if failed > 0:
+    if FAILED_COUNT > 0:
         sys.exit(1)

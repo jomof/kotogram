@@ -5,29 +5,30 @@ from typing import Any, Dict, List, Optional
 from kotogram.tokenizer import Tokenizer
 from train.types import ProcessedSample, Sample
 
-_tokenizer: Optional[Tokenizer] = None
+_TOKENIZER: Optional[Tokenizer] = None
 
 
 def init_worker(tokenizer_state: Dict[str, Any]) -> None:
     """Initialize worker process with tokenizer state."""
-    global _tokenizer
-    _tokenizer = Tokenizer()
-    _tokenizer.field_vocabs = tokenizer_state["field_vocabs"]
-    _tokenizer._frozen = True
+    # pylint: disable=global-statement
+    global _TOKENIZER
+    _TOKENIZER = Tokenizer()
+    # pylint: disable=protected-access
+    _TOKENIZER.field_vocabs = tokenizer_state["field_vocabs"]
+    _TOKENIZER._frozen = True
 
 
 def _encode_samples_batch(
     items: List[ProcessedSample],
 ) -> List[Sample]:
     """Encode samples using the initialized global tokenizer."""
-    global _tokenizer
-    if _tokenizer is None:
+    if _TOKENIZER is None:
         raise RuntimeError("Worker not initialized. Call init_worker first.")
 
     samples = []
 
     for item in items:
-        feature_ids = _tokenizer.encode(item.kotogram, add_cls=True, add_to_vocab=False)
+        feature_ids = _TOKENIZER.encode(item.kotogram, add_cls=True, add_to_vocab=False)
 
         # Map formality_id to value/pragmatic
         f_id = item.formality_id

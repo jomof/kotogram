@@ -43,10 +43,12 @@ def print_progress_bar(batch_idx: int, total_batches: int, loss: float) -> None:
     progress = (batch_idx + 1) / max(1, total_batches)
     bar_width = 30
     filled_width = int(bar_width * progress)
-    bar = "=" * filled_width + ">" + "." * (bar_width - filled_width - 1)
+    progress_bar_str = "=" * filled_width + ">" + "." * (bar_width - filled_width - 1)
     import sys
 
-    sys.stdout.write(f"\r  [{bar}] {batch_idx + 1}/{total_batches} loss={loss:.4f}")
+    sys.stdout.write(
+        f"\r  [{progress_bar_str}] {batch_idx + 1}/{total_batches} loss={loss:.4f}"
+    )
     sys.stdout.flush()
 
 
@@ -64,6 +66,7 @@ def print_kc_first_batch_debug(
     pos_weight_eps: float = 1e-6,
 ) -> None:
     """Detailed debug prints for the first batch of a KC epoch."""
+    # pylint: disable=too-many-locals, too-many-positional-arguments
     import torch
 
     print(f"\n  --- [KC Epoch {epoch} First Batch Debug] ---")
@@ -101,138 +104,151 @@ def print_kc_first_batch_debug(
     print("  KC Decoder Sanity (Structural + Separation):")
     sorted_heads = sorted(target_logits.keys())
     for name in sorted_heads[:8]:
-        logits = target_logits[name]
-        target_key = f"kc_targets_{name}"
-        if target_key not in batch:
+        if f"kc_targets_{name}" not in batch:
             continue
 
-        targets = batch[target_key].to(device).float()
-        with torch.no_grad():
-            # 1. Compute density and pos_weight as Loss will
-            pos_count = targets.sum()
-            total_count = targets.numel()
-            p = (pos_count / (total_count + pos_weight_eps)).clamp(
-                min=pos_weight_eps, max=1.0 - pos_weight_eps
-            )
-            pos_w = ((1.0 - p) / p).clamp(min=1.0, max=pos_weight_cap)
-            # 2. Probability-based metrics
-            probs = torch.sigmoid(logits)
-            prob_mean = probs.mean().item()
-
-            # Adaptive Thresholds
-            p_prior = p.item()
-            dp = (probs > p_prior).float().mean().item()
-            d2p = (probs > min(0.9, 2 * p_prior)).float().mean().item()
-
-            thresh_str = f"dp={dp:.2f} d2p={d2p:.2f}"
-            if p_prior < 0.1:
-                d005 = (probs > 0.05).float().mean().item()
-                d002 = (probs > 0.02).float().mean().item()
-                d001 = (probs > 0.01).float().mean().item()
-                thresh_str += f" d05={d005:.2f} d02={d002:.2f} d01={d001:.2f}"
-            else:
-                dens_01 = (probs > 0.1).float().mean().item()
-                dens_05 = (probs > 0.5).float().mean().item()
-                thresh_str += f" d1={dens_01:.2f} d5={dens_05:.2f}"
-
-            pos_mask = targets > 0.5
-            neg_mask = ~pos_mask
-
-            pos_probs = probs[pos_mask]
-            neg_probs = probs[neg_mask]
-
-            pos_p = pos_probs.mean().item() if pos_mask.any() else float("nan")
-            neg_p = neg_probs.mean().item() if neg_mask.any() else float("nan")
-            gap_p = pos_p - neg_p if (pos_mask.any() and neg_mask.any()) else 0.0
-
-            # ROC-AUC calculation (subsampled for efficiency)
-            auc = float("nan")
-            if pos_mask.any() and neg_mask.any():
-                n_pos_all = pos_mask.sum().item()
-                n_neg_all = neg_mask.sum().item()
-
-                # Subsample if too large
-                max_samples = 2000
-                if n_pos_all > max_samples or n_neg_all > max_samples:
-                    # Random subsample
-                    pos_idx = torch.where(pos_mask.view(-1))[0]
-                    neg_idx = torch.where(neg_mask.view(-1))[0]
-
-                    if pos_idx.numel() > max_samples:
-                        pos_idx = pos_idx[torch.randperm(pos_idx.numel())[:max_samples]]
-                    if neg_idx.numel() > max_samples:
-                        neg_idx = neg_idx[torch.randperm(neg_idx.numel())[:max_samples]]
-
-                    n_pos = pos_idx.numel()
-                    n_neg = neg_idx.numel()
-
-                    sub_probs = torch.cat(
-                        [probs.view(-1)[pos_idx], probs.view(-1)[neg_idx]]
-                    )
-                    sub_labels = torch.cat(
-                        [
-                            torch.ones(n_pos, device=device),
-                            torch.zeros(n_neg, device=device),
-                        ]
-                    )
-                else:
-                    n_pos = n_pos_all
-                    n_neg = n_neg_all
-                    sub_probs = probs.view(-1)
-                    sub_labels = targets.view(-1)
-
-                # Rank statistic AUC
-                combined = torch.stack([sub_probs, sub_labels], dim=1)
-                # Sort by probability
-                indices = torch.argsort(combined[:, 0])
-                sorted_labels = combined[indices, 1]
-                # Ranks (1-indexed)
-                ranks = torch.arange(
-                    1, sorted_labels.numel() + 1, device=device
-                ).float()
-                pos_rank_sum = (ranks * sorted_labels).sum().item()
-                auc = (pos_rank_sum - n_pos * (n_pos + 1) / 2) / (n_pos * n_neg)
-
-            # 3. Baseline & Loss Analysis
-            bias_used = logits.mean().item()
-            import torch.nn.functional as F
-
-            pw_tensor = torch.tensor(pos_w.item(), device=device)
-
-            # Actual head loss
-            head_loss = F.binary_cross_entropy_with_logits(
-                logits, targets, pos_weight=pw_tensor, reduction="mean"
-            ).item()
-
-            # Prior loss (constant prediction at mean logit)
-            prior_loss = F.binary_cross_entropy_with_logits(
-                torch.full_like(logits, fill_value=bias_used),
-                targets,
-                pos_weight=pw_tensor,
-                reduction="mean",
-            ).item()
-
-            delta = head_loss - prior_loss
-
-            # Drift Diagnostics
-            # p_target_global = p (from 10 batches) or we can use true_pos_rate
-            # bias_init = log(p / (1-p))
-            # We want to see how far our current logits/probs moved from that prior.
-            bias_prior = math.log(p_prior / (1 - p_prior)) if p_prior > 0 else -10.0
-            bias_drift = bias_used - bias_prior
-
-            true_pos_rate = targets.mean().item()
-
-        print(
-            f"    {name:20}: p={p:.5f} pos_w={pos_w:.1f} bias={bias_used:.2f} |\n"
-            f"      tgt={true_pos_rate:.4f} p_avg={prob_mean:.4f} {thresh_str} |\n"
-            f"      pos_p={pos_p:.4f} neg_p={neg_p:.4f} gap_p={gap_p:.4f} auc={auc:.4f} |\n"
-            f"      loss={head_loss:.4f} prior={prior_loss:.4f} delta={delta:.4f} drift={bias_drift:.2f}"
+        _analyze_kc_head_debug(
+            name,
+            target_logits[name],
+            batch[f"kc_targets_{name}"],
+            device,
+            pos_weight_cap,
+            pos_weight_eps,
         )
 
     if len(sorted_heads) > 8:
         print("    ...")
     print("  -------------------------------------------\n")
+
+
+def _analyze_kc_head_debug(
+    name: str,
+    logits: Any,
+    targets: Any,
+    device: Any,
+    pos_weight_cap: float,
+    pos_weight_eps: float,
+) -> None:
+    """Analyze and print debug stats for a single KC head."""
+    # pylint: disable=too-many-locals, too-many-positional-arguments
+    import torch
+    import torch.nn.functional as F
+
+    targets = targets.to(device).float()
+    with torch.no_grad():
+        # 1. Compute density and pos_weight as Loss will
+        pos_count = targets.sum()
+        total_count = targets.numel()
+        p = (pos_count / (total_count + pos_weight_eps)).clamp(
+            min=pos_weight_eps, max=1.0 - pos_weight_eps
+        )
+        pos_w = ((1.0 - p) / p).clamp(min=1.0, max=pos_weight_cap)
+        # 2. Probability-based metrics
+        probs = torch.sigmoid(logits)
+        prob_mean = probs.mean().item()
+
+        # Adaptive Thresholds
+        p_prior = p.item()
+        dp = (probs > p_prior).float().mean().item()
+        d2p = (probs > min(0.9, 2 * p_prior)).float().mean().item()
+
+        thresh_str = f"dp={dp:.2f} d2p={d2p:.2f}"
+        if p_prior < 0.1:
+            d005 = (probs > 0.05).float().mean().item()
+            d002 = (probs > 0.02).float().mean().item()
+            d001 = (probs > 0.01).float().mean().item()
+            thresh_str += f" d05={d005:.2f} d02={d002:.2f} d01={d001:.2f}"
+        else:
+            dens_01 = (probs > 0.1).float().mean().item()
+            dens_05 = (probs > 0.5).float().mean().item()
+            thresh_str += f" d1={dens_01:.2f} d5={dens_05:.2f}"
+
+        pos_mask = targets > 0.5
+        neg_mask = ~pos_mask
+
+        pos_probs = probs[pos_mask]
+        neg_probs = probs[neg_mask]
+
+        pos_p = pos_probs.mean().item() if pos_mask.any() else float("nan")
+        neg_p = neg_probs.mean().item() if neg_mask.any() else float("nan")
+        gap_p = pos_p - neg_p if (pos_mask.any() and neg_mask.any()) else 0.0
+
+        # AUC Logic (simplified/inlined or kept if complexity allows)
+        # Keeping logic here for now but simplified extraction would be better if still complex.
+        # Given this is now in its own function, it should satisfy locals limit for the *outer* function.
+        # This function might still have high locals, but let's clear the outer one first.
+
+        auc = float("nan")
+        if pos_mask.any() and neg_mask.any():
+            # Subsample if too large
+            max_samples = 2000
+            n_pos_all = pos_mask.sum().item()
+            n_neg_all = neg_mask.sum().item()
+
+            if n_pos_all > max_samples or n_neg_all > max_samples:
+                # Random subsample
+                pos_idx = torch.where(pos_mask.view(-1))[0]
+                neg_idx = torch.where(neg_mask.view(-1))[0]
+
+                if pos_idx.numel() > max_samples:
+                    pos_idx = pos_idx[torch.randperm(pos_idx.numel())[:max_samples]]
+                if neg_idx.numel() > max_samples:
+                    neg_idx = neg_idx[torch.randperm(neg_idx.numel())[:max_samples]]
+
+                n_pos = pos_idx.numel()
+                n_neg = neg_idx.numel()
+
+                sub_probs = torch.cat(
+                    [probs.view(-1)[pos_idx], probs.view(-1)[neg_idx]]
+                )
+                sub_labels = torch.cat(
+                    [
+                        torch.ones(n_pos, device=device),
+                        torch.zeros(n_neg, device=device),
+                    ]
+                )
+            else:
+                n_pos = n_pos_all
+                n_neg = n_neg_all
+                sub_probs = probs.view(-1)
+                sub_labels = targets.view(-1)
+
+            combined = torch.stack([sub_probs, sub_labels], dim=1)
+            indices = torch.argsort(combined[:, 0])
+            sorted_labels = combined[indices, 1]
+            ranks = torch.arange(1, sorted_labels.numel() + 1, device=device).float()
+            pos_rank_sum = (ranks * sorted_labels).sum().item()
+            auc = (pos_rank_sum - n_pos * (n_pos + 1) / 2) / (n_pos * n_neg)
+
+        # 3. Baseline & Loss Analysis
+        bias_used = logits.mean().item()
+
+        pw_tensor = torch.tensor(pos_w.item(), device=device)
+
+        # Actual head loss
+        head_loss = F.binary_cross_entropy_with_logits(
+            logits, targets, pos_weight=pw_tensor, reduction="mean"
+        ).item()
+
+        # Prior loss (constant prediction at mean logit)
+        prior_loss = F.binary_cross_entropy_with_logits(
+            torch.full_like(logits, fill_value=bias_used),
+            targets,
+            pos_weight=pw_tensor,
+            reduction="mean",
+        ).item()
+
+        delta = head_loss - prior_loss
+        bias_prior = math.log(p_prior / (1 - p_prior)) if p_prior > 0 else -10.0
+        bias_drift = bias_used - bias_prior
+        true_pos_rate = targets.mean().item()
+
+    print(
+        f"    {name:20}: p={p:.5f} pos_w={pos_w:.1f} bias={bias_used:.2f} |\n"
+        f"      tgt={true_pos_rate:.4f} p_avg={prob_mean:.4f} {thresh_str} |\n"
+        f"      pos_p={pos_p:.4f} neg_p={neg_p:.4f} gap_p={gap_p:.4f} auc={auc:.4f} |\n"
+        f"      loss={head_loss:.4f} prior={prior_loss:.4f} delta={delta:.4f} drift={bias_drift:.2f}"
+    )
 
 
 def print_kc_first_batch_summary(
@@ -278,6 +294,7 @@ def print_kc_epoch_compact_summary(
     avg_p_max: Optional[float] = None,
 ) -> None:
     """Compact single-line summary of epoch results."""
+    # pylint: disable=too-many-positional-arguments
     top_str = ", ".join([f"{n} {loss:.3f}" for n, loss in top_losses])
     print(
         f"  KC Epoch {epoch} of {total_epochs}: loss={total_loss:.4f} "
@@ -323,6 +340,7 @@ def print_kc_usage_summary(
     k: int,
 ) -> None:
     """Print compact KC usage stats (histograms)."""
+    # pylint: disable=too-many-positional-arguments
 
     def fmt_hist(counts: List[Tuple[int, int]], div: int) -> str:
         parts = []
@@ -353,6 +371,7 @@ def print_epoch_summary(
     kc_epoch_stats: Optional[Dict[str, Any]] = None,
 ) -> None:
     """Print a formatted summary of the epoch using Rich."""
+    # pylint: disable=too-many-locals, too-many-positional-arguments
 
     title = f"Epoch {epoch} of {total_epochs}"
     if phase:

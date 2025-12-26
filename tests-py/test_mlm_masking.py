@@ -1,11 +1,6 @@
-import os
-import sys
-
 import torch
 
-# Add project root to path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
+from kotogram.tokenizer import FEATURE_FIELDS
 from train.trainer import create_mlm_batch
 
 
@@ -16,8 +11,6 @@ def test_mlm_grammar_only():
     # Mock batch
     batch_size = 2
     seq_len = 50
-    from kotogram.tokenizer import FEATURE_FIELDS
-
     feature_fields = FEATURE_FIELDS
 
     batch = {"attention_mask": torch.ones(batch_size, seq_len, dtype=torch.long)}

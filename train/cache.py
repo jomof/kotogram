@@ -66,6 +66,57 @@ class ShardedKotogramCache:
             conn.close()
 
     @staticmethod
+    def _parse_cache_row(
+        k: str,
+        f_lbl: Optional[int],
+        g_val: Optional[float],
+        g_prag: Optional[int],
+        r_lbls_json: Optional[str],
+        gram_lbl: Optional[int],
+        f_ids_json: Optional[str],
+    ) -> Tuple[
+        str,
+        Optional[int],
+        Optional[float],
+        Optional[int],
+        Optional[List[int]],
+        Optional[int],
+        Optional[Dict[str, List[int]]],
+    ]:
+        """Helper to parse a row from the cache."""
+        # pylint: disable=too-many-positional-arguments
+        r_lbls = json.loads(r_lbls_json) if r_lbls_json else None
+        f_ids = json.loads(f_ids_json) if f_ids_json else None
+        return (k, f_lbl, g_val, g_prag, r_lbls, gram_lbl, f_ids)
+
+    @staticmethod
+    def _prepare_cache_row(
+        s: str,
+        k: str,
+        f_lbl: Optional[int],
+        g_val: Optional[float],
+        g_prag: Optional[int],
+        r_lbls: Optional[List[int]],
+        gram_lbl: Optional[int],
+        f_ids: Optional[Dict[str, List[int]]],
+    ) -> Tuple:
+        """Helper to prepare a row for insertion."""
+        # pylint: disable=too-many-positional-arguments
+        r_lbls_json = json.dumps(r_lbls) if r_lbls is not None else None
+        f_ids_json = json.dumps(f_ids) if f_ids is not None else None
+        return (
+            ShardedKotogramCache._hash_sentence(s),
+            s,
+            k,
+            f_lbl,
+            g_val,
+            g_prag,
+            r_lbls_json,
+            gram_lbl,
+            f_ids_json,
+        )
+
+    @staticmethod
     def _hash_sentence(sentence: str) -> str:
         return hashlib.sha256(sentence.encode("utf-8")).hexdigest()
 
@@ -85,6 +136,7 @@ class ShardedKotogramCache:
             ]
         ],
     ]:
+        # pylint: disable=too-many-locals
         if not sentences:
             return {}
 
@@ -102,7 +154,7 @@ class ShardedKotogramCache:
             if not os.path.exists(shard_path):
                 continue
 
-            hash_to_sentence = {h: s for h, s in items}
+            hash_to_sentence = dict(items)
             hashes = list(hash_to_sentence.keys())
 
             conn = sqlite3.connect(shard_path)
@@ -114,11 +166,9 @@ class ShardedKotogramCache:
 
             for row in cursor:
                 h, k, f_lbl, g_val, g_prag, r_lbls_json, gram_lbl, f_ids_json = row
-                r_lbls = json.loads(r_lbls_json) if r_lbls_json else None
-                f_ids = json.loads(f_ids_json) if f_ids_json else None
-
-                sent = hash_to_sentence[h]
-                results[sent] = (k, f_lbl, g_val, g_prag, r_lbls, gram_lbl, f_ids)
+                results[hash_to_sentence[h]] = self._parse_cache_row(
+                    k, f_lbl, g_val, g_prag, r_lbls_json, gram_lbl, f_ids_json
+                )
             conn.close()
 
         return results
@@ -126,8 +176,8 @@ class ShardedKotogramCache:
     def put_batch(
         self,
         items: List[CacheEntryType],
-        verbose: bool = False,
     ) -> None:
+        # pylint: disable=too-many-locals
         if not items:
             return
 
@@ -139,10 +189,10 @@ class ShardedKotogramCache:
             if path not in shard_to_data:
                 shard_to_data[path] = []
 
-            r_lbls_json = json.dumps(r_lbls) if r_lbls is not None else None
-            f_ids_json = json.dumps(f_ids) if f_ids is not None else None
             shard_to_data[path].append(
-                (h, s, k, f_lbl, g_val, g_prag, r_lbls_json, gram_lbl, f_ids_json)
+                self._prepare_cache_row(
+                    s, k, f_lbl, g_val, g_prag, r_lbls, gram_lbl, f_ids
+                )
             )
 
         for shard_path, data in shard_to_data.items():
@@ -158,12 +208,13 @@ class ShardedKotogramCache:
             conn.close()
 
 
-_kotogram_cache: Optional[ShardedKotogramCache] = None
+_KOTOGRAM_CACHE: Optional[ShardedKotogramCache] = None
 
 
 def get_kotogram_cache() -> ShardedKotogramCache:
-    global _kotogram_cache
+    # pylint: disable=global-statement
+    global _KOTOGRAM_CACHE
     expected_shards_dir = locations.get_shards_cache_dir()
-    if _kotogram_cache is None or _kotogram_cache.shards_dir != expected_shards_dir:
-        _kotogram_cache = ShardedKotogramCache()
-    return _kotogram_cache
+    if _KOTOGRAM_CACHE is None or _KOTOGRAM_CACHE.shards_dir != expected_shards_dir:
+        _KOTOGRAM_CACHE = ShardedKotogramCache()
+    return _KOTOGRAM_CACHE

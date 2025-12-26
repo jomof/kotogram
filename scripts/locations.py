@@ -9,11 +9,18 @@ import importlib.util
 import sys
 
 if importlib.util.find_spec("_setup_path"):
-    import _setup_path  # type: ignore # noqa: F401
+    import _setup_path  # type: ignore # noqa: F401 # pylint: disable=unused-import
+
+    _ = _setup_path  # Vulture: Used for side effects
 else:
-    from scripts import _setup_path  # type: ignore # noqa: F401
+    from scripts import (
+        _setup_path,  # type: ignore # noqa: F401 # pylint: disable=unused-import
+    )
+
+    _ = _setup_path  # Vulture: Used for side effects
 
 # Import all functions from the canonical locations module
+# pylint: disable=wrong-import-position
 from kotogram.locations import (
     get_cache_dir,
     get_data_dir,

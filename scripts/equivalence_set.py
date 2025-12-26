@@ -19,6 +19,7 @@ from kotogram.augment import augment
 
 
 def main() -> None:
+    # pylint: disable=too-many-locals
     resources_dir = Path(
         ".tmp-inspiration/cloze-data/resources/processed/ai-cleaned-merge-grammars"
     )
@@ -32,7 +33,7 @@ def main() -> None:
     equivalences = defaultdict(set)
 
     for yf in yaml_files:
-        with open(yf, "r") as f:
+        with open(yf, "r", encoding="utf-8") as f:
             data = yaml.safe_load(f)
 
         if not data or "examples" not in data:
@@ -104,7 +105,7 @@ def main() -> None:
     print(f"Total Japanese equivalents (after filtering): {total_after_filter}")
 
     # Write result to yaml
-    with open(output_file, "w") as f:
+    with open(output_file, "w", encoding="utf-8") as f:
         # Custom dump to ensure utf-8 characters are readable
         yaml.dump(result, f, allow_unicode=True, sort_keys=True)
 
