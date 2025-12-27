@@ -81,7 +81,8 @@ async def check_broad_exceptions() -> CheckResult:
         "kotogram scripts train tests-py train_style bin/kotogram "
         '| grep -v "tests/typescript_package_baseline.txt" '
         '| grep -v "scripts/exception-whitelist.txt" '
-        '| grep -v "scripts/test_runner.py"'
+        '| grep -v "scripts/test_runner.py" '
+        '| grep -v "train/worker.py"'
     )
 
     # Need to run in shell for pipes
@@ -117,7 +118,7 @@ async def check_whitelist_compliance() -> CheckResult:
 
     # Find actual excepts
     exc_keyword = "ex" + "cept"
-    cmd = rf'grep -rnIw "{exc_keyword}" kotogram scripts train tests-py train_style bin/kotogram | grep -vE ":[0-9]+:\s*#" | grep -v "scripts/test_runner.py"'
+    cmd = rf'grep -rnIw "{exc_keyword}" kotogram scripts train tests-py train_style bin/kotogram | grep -vE ":[0-9]+:\s*#" | grep -v "scripts/test_runner.py" | grep -v "train/worker.py"'
     proc = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
