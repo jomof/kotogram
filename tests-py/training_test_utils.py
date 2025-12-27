@@ -253,7 +253,7 @@ class Bottle:
         populate_test_data(self.root_dir, self.project_root)
 
     def calculate_expected_counts(self) -> Dict[str, int]:
-        """Calculates expected sentence counts for MLM and KC pretraining.
+        """Calculates expected sentence counts for KC pretraining.
 
         Simulates the logic of StyleDataset and KCTrainer to provide ground truth.
         """
@@ -275,8 +275,8 @@ class Bottle:
                 return sum(1 for _ in f)
 
         # In cache, grammatic_combined contains all grammatic sentences
-        mlm_count = count_lines(gram_cache)
-        num_gram = mlm_count
+        line_count = count_lines(gram_cache)
+        num_gram = line_count
         num_agram = count_lines(agram_cache)
 
         # Total dataset size
@@ -297,7 +297,7 @@ class Bottle:
         kc_count = (train_indices < num_gram).sum().item()
 
         return {
-            "total_grammatic_sentences": mlm_count,
+            "total_grammatic_sentences": line_count,
             "grammatic_sentences_in_train_split": kc_count,
             "total_train_split_size": n_train,
         }

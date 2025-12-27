@@ -37,21 +37,21 @@ def save_model(
         state_dict = {
             k: v.cpu().to(torch.float8_e4m3fn) if v.dtype == torch.float32 else v.cpu()
             for k, v in model.state_dict().items()
-            if not k.startswith("mlm_head.") and not k.startswith("kc_decoders.")
+            if not k.startswith("kc_decoders.")
         }
         torch.save(state_dict, os.path.join(path, "model.pt"))
     elif fp16:
         state_dict = {
             k: v.cpu().half() if v.dtype == torch.float32 else v.cpu()
             for k, v in model.state_dict().items()
-            if not k.startswith("mlm_head.") and not k.startswith("kc_decoders.")
+            if not k.startswith("kc_decoders.")
         }
         torch.save(state_dict, os.path.join(path, "model.pt"))
     else:
         state_dict = {
             k: v.cpu()
             for k, v in model.state_dict().items()
-            if not k.startswith("mlm_head.") and not k.startswith("kc_decoders.")
+            if not k.startswith("kc_decoders.")
         }
         torch.save(state_dict, os.path.join(path, "model.pt"))
 
