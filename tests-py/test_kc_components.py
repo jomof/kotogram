@@ -6,7 +6,7 @@ import torch.nn.functional as F
 
 from kotogram.model import ModelConfig
 from kotogram.tokenizer import FEATURE_FIELDS
-from train.trainer import StyleClassifierWithMLM
+from train.trainer import StyleClassifierWithKC
 
 
 def test_gumbel_noise_training_only():
@@ -18,7 +18,7 @@ def test_gumbel_noise_training_only():
         kc_topk=1,  # Select top-1 to easily see noise impact
         kc_temperature=1.0,
     )
-    model = StyleClassifierWithMLM(config)
+    model = StyleClassifierWithKC(config)
 
     # Mock inputs
     field_inputs = {}
@@ -391,7 +391,7 @@ def test_forward_kc_gumbel_stability():
         kc_topk=4,
         kc_temperature=1.0,
     )
-    model = StyleClassifierWithMLM(config)
+    model = StyleClassifierWithKC(config)
     model.train()
 
     field_inputs = {
@@ -430,7 +430,7 @@ def test_forward_kc_nan_to_num_guard():
         kc_topk=4,
         kc_temperature=1.0,
     )
-    model = StyleClassifierWithMLM(config)
+    model = StyleClassifierWithKC(config)
     model.train()
 
     field_inputs = {

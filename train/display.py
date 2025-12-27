@@ -18,7 +18,6 @@ def print_phase_header(
 ) -> None:
     """Print a header for a training phase."""
     icon = {
-        "MLM": "📝 ",
         "KC": "🧠 ",
         "Style": "🎨 ",
     }.get(phase, "")
@@ -376,7 +375,6 @@ def print_epoch_summary(
     title = f"Epoch {epoch} of {total_epochs}"
     if phase:
         icon = {
-            "MLM": "📝 ",
             "KC": "🧠 ",
             "Style": "🎨 ",
         }.get(phase, "")

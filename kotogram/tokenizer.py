@@ -16,7 +16,6 @@ from kotogram.kotogram import extract_token_features, split_kotogram
 PAD_TOKEN = "<PAD>"
 UNK_TOKEN = "<UNK>"
 CLS_TOKEN = "<CLS>"
-MASK_TOKEN = "<MASK>"  # For self-supervised pretraining
 
 # Feature fields used for token embedding
 # NOTE: 'surface' is critical for gender detection (pronouns like 僕, 俺, あたし)
@@ -57,7 +56,6 @@ class Tokenizer:
                 PAD_TOKEN: 0,
                 UNK_TOKEN: 1,
                 CLS_TOKEN: 2,
-                MASK_TOKEN: 3,
             }
             self._field_counters[f] = Counter()
 
@@ -74,10 +72,6 @@ class Tokenizer:
     @property
     def cls_id(self) -> int:
         return 2
-
-    @property
-    def mask_id(self) -> int:
-        return 3
 
     def get_vocab_sizes(self) -> Dict[str, int]:
         """Get vocabulary sizes for all fields."""

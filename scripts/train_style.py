@@ -38,9 +38,9 @@ from train.config import (
 from train.dataset import DatasetConfig, StyleDataset
 from train.distributed import is_main_process, setup_distributed
 from train.io import save_model
-from train.models import StyleClassifierWithMLM
+from train.models import StyleClassifierWithKC
 from train.profile import get_profile_dir
-from train.trainer import KCTrainer, MLMTrainer, Trainer
+from train.trainer import KCTrainer, Trainer
 
 
 def generate_profile_report() -> None:
@@ -216,11 +216,6 @@ if __name__ == "__main__":
         "--num-heads", type=int, default=6, help="Number of attention heads"
     )
     # Training phase flags
-    parser.add_argument(
-        "--pretrain-mlm",
-        action="store_true",
-        help="Pre-train with masked language modeling",
-    )
     # Config file (required - contains TrainerConfig)
     parser.add_argument(
         "--config", type=str, required=False, help="Path to unified config.json file"
@@ -461,51 +456,12 @@ if __name__ == "__main__":
     # Initialize model if not already loaded from checkpoint
     # Initialize model if not already loaded from checkpoint
     if model is None:
-        if model_config.mlm_enabled or model_config.kc_enabled:
-            model = StyleClassifierWithMLM(model_config)
+        if model_config.kc_enabled:
+            model = StyleClassifierWithKC(model_config)
         else:
             model = StyleClassifier(model_config)
 
-    # MLM/KC Pretraining
-    mlm_start = time.perf_counter()
-    mlm_end = mlm_start
-    # Phase 1: MLM Pretraining
-    if args.pretrain_mlm and not args.preprocess_only:
-        # Check if already done in history?
-        mlm_epochs_done = len(
-            [e for e in training_history if e.get("type") == "pretrain-mlm"]
-        )
-        if mlm_epochs_done < trainer_config.mlm_epochs or args.retrain:
-            unlabeled_dataset = StyleDataset.from_tsv(
-                args.data,
-                tokenizer,
-                config=DatasetConfig(
-                    verbose=is_main_process(),
-                    sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                    use_cache=True,
-                ),
-            )
-            mlm_trainer = MLMTrainer(
-                cast(StyleClassifierWithMLM, model),
-                unlabeled_dataset,
-                trainer_config,
-                dl_config=trainer_config.resolve_dataloader_config(
-                    device, is_main_process()
-                ),
-                args=args,
-            )
-            mlm_history = mlm_trainer.train(
-                epochs=trainer_config.mlm_epochs,
-                verbose=is_main_process(),
-                on_epoch_end=lambda h: _append_history(h, "pretrain-mlm"),
-            )
-            if is_main_process():
-                _append_history(mlm_history, "pretrain-mlm")
-            # Update model reference (Trainer may have wrapped/moved it)
-            model = mlm_trainer.model
-            if hasattr(model, "module"):
-                model = cast(StyleClassifierWithMLM, model.module)
-            model.reset_classifier()
+    # MLM Pretraining Removed
 
     # Load labeled data for remaining phases
     old_vocab_sizes = model_config.vocab_sizes.copy()
@@ -548,7 +504,7 @@ if __name__ == "__main__":
         )
         if kc_epochs_done < trainer_config.kc_epochs or args.retrain:
             kc_trainer = KCTrainer(
-                cast(StyleClassifierWithMLM, model),
+                cast(StyleClassifierWithKC, model),
                 train_data,
                 trainer_config,
                 dl_config=trainer_config.resolve_dataloader_config(
@@ -569,9 +525,8 @@ if __name__ == "__main__":
             # Update model reference (Trainer may have wrapped/moved it)
             model = kc_trainer.model
             if hasattr(model, "module"):
-                model = cast(StyleClassifierWithMLM, model.module)
+                model = cast(StyleClassifierWithKC, model.module)
             model.reset_classifier()
-    mlm_end = time.perf_counter()
 
     # Final supervised training
     style_trainer = Trainer(
@@ -637,10 +592,9 @@ if __name__ == "__main__":
         print("-" * 34)
         print("Performance Summary:")
         print("-" * 34)
-        if (args.pretrain_mlm and trainer_config.mlm_epochs > 0) or (
-            args.pretrain_kc and trainer_config.kc_epochs > 0
-        ):
-            print(f"  Pretraining: {mlm_end - mlm_start:.1f}s")
+        if args.pretrain_kc and trainer_config.kc_epochs > 0:
+            # Approximate pretraining time using what logic we have left or just remove details
+            pass
         print(f"  Style Training: {style_end - style_start:.1f}s")
         print("-" * 34)
 

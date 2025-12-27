@@ -6,8 +6,7 @@ from train.config import TrainerConfig
 from train.dataset import StyleDataset
 from train.trainer import (
     KCTrainer,
-    MLMTrainer,
-    StyleClassifierWithMLM,
+    StyleClassifierWithKC,
 )
 from train.types import Sample
 
@@ -95,36 +94,7 @@ class TestPretrainDataFiltering(unittest.TestCase):
             kc_enabled=True,
             kc_target_specs={"lemma": 100},
         )
-        self.model = StyleClassifierWithMLM(self.model_config)
-
-    def test_mlm_trainer_filtering(self):
-        dataset = StyleDataset(
-            [self.grammatic_sample, self.agrammatic_sample], self.tokenizer
-        )
-
-        agrammatic_count = sum(
-            1 for s in dataset.samples if s.grammaticality_label == 0
-        )
-        self.assertEqual(
-            agrammatic_count,
-            1,
-            "Dataset should contain one agrammatic sample for testing",
-        )
-
-        trainer = MLMTrainer(self.model, dataset, self.config)
-
-        def has_agrammatic(dataset):
-            return any(s.grammaticality_label == 0 for s in dataset.samples)
-
-        self.assertFalse(
-            has_agrammatic(trainer.dataset),
-            "MLMTrainer's dataset should NOT contain agrammatic samples",
-        )
-        self.assertEqual(
-            len(trainer.dataset.samples),
-            1,
-            "MLMTrainer should have filtered out the one agrammatic sample",
-        )
+        self.model = StyleClassifierWithKC(self.model_config)
 
     def test_kc_trainer_filtering(self):
         dataset = StyleDataset(

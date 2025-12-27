@@ -252,7 +252,6 @@ def build_trainer_config(
 ) -> TrainerConfig:
     """Build the TrainerConfig object from arguments."""
     trainer_kwargs: Dict[str, Any] = {
-        "mlm_epochs": args.pretrain_epochs,
         "kc_epochs": args.kc_epochs,
         "learning_rate": args.learning_rate,
         "use_amp": args.fp16 or args.fp8,
@@ -279,8 +278,6 @@ def build_trainer_config(
         trainer_kwargs["gender_loss_weight"] = args.gender_weight
     if args.grammaticality_weight is not None:
         trainer_kwargs["grammaticality_loss_weight"] = args.grammaticality_weight
-    if args.pretrain_mlm:
-        trainer_kwargs["encoder_lr_factor"] = args.encoder_lr_factor
 
     return TrainerConfig(**trainer_kwargs)
 
@@ -339,7 +336,6 @@ def generate_and_save_config(
             num_layers=args.num_layers,
             num_heads=args.num_heads,
             kc_enabled=args.pretrain_kc,
-            mlm_enabled=args.pretrain_mlm,
             kc_target_specs={
                 h.strip(): tokenizer.get_vocab_sizes().get(h.strip(), 100)
                 for h in args.kc_target_heads.split(",")
@@ -409,8 +405,6 @@ def run_training_phase(
         "--num-heads", str(args.num_heads),
     ]
 
-    if args.pretrain_mlm:
-        train_args.append("--pretrain-mlm")
     if args.pretrain_kc:
         train_args.append("--pretrain-kc")
         train_args.extend([
@@ -499,9 +493,6 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument("--num-heads", type=int, default=8, help="Number of attention heads (default: 8)")
 
     # Pretraining options
-    parser.add_argument("--pretrain-mlm", action="store_true", help="Enable masked LM pretraining")
-    parser.add_argument("--pretrain-epochs", type=int, default=5, help="MLM pretraining epochs (default: 5)")
-    parser.add_argument("--encoder-lr-factor", type=float, default=0.1, help="LR factor for encoder in fine-tuning")
     parser.add_argument("--learning-rate", type=float, default=1e-4, help="Base learning rate (default: 1e-4)")
 
     # Loss weights
@@ -599,9 +590,6 @@ def print_training_banner(
     print(f"Formality wt:   {args.formality_weight}")
     print(f"Gender wt:      {args.gender_weight}")
     print(f"Grammatic wt:   {args.grammaticality_weight}")
-    if args.pretrain_mlm:
-        print(f"MLM pretrain:   {args.pretrain_epochs} epochs")
-        print(f"Encoder LR:     {args.encoder_lr_factor}x base LR during fine-tuning")
     if args.pretrain_kc:
         print(f"KC pretrain:    {args.kc_epochs} epochs")
         print(f"KC K:           {args.kc_k}")

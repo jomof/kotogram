@@ -4,7 +4,7 @@ from kotogram.model import KCHead, ModelConfig, StyleClassifier
 from kotogram.tokenizer import ALL_FEATURE_FIELDS
 from train.config import TrainerConfig
 from train.dataset import create_kc_batch
-from train.models import KCDecoder, StyleClassifierWithMLM
+from train.models import KCDecoder, StyleClassifierWithKC
 from train.trainer import KCTrainer
 
 
@@ -12,7 +12,6 @@ from train.trainer import KCTrainer
 class MockTokenizer:
     def __init__(self):
         self.pad_id = 0
-        self.mask_id = 3
 
     def get_vocab_sizes(self):
         return {f: 100 for f in ALL_FEATURE_FIELDS}
@@ -94,7 +93,7 @@ def test_kc_decoder_shapes():
     assert logits_dict["lemma"].shape == (batch_size, 200)
 
 
-def test_style_classifier_with_mlm_kc_mode():
+def test_style_classifier_with_kc_mode():
     vocab_sizes = {f: 100 for f in ALL_FEATURE_FIELDS}
     config = ModelConfig(
         vocab_sizes=vocab_sizes,
@@ -102,7 +101,7 @@ def test_style_classifier_with_mlm_kc_mode():
         kc_vocab_size=64,
         kc_target_specs={"pos": 50},
     )
-    model = StyleClassifierWithMLM(config)
+    model = StyleClassifierWithKC(config)
 
     batch_size = 2
     seq_len = 10
@@ -159,7 +158,7 @@ def test_kc_trainer_init():
         kc_vocab_size=32,
         kc_target_specs={},
     )
-    model = StyleClassifierWithMLM(config)
+    model = StyleClassifierWithKC(config)
     dataset = MockDataset()
     trainer_config = TrainerConfig(batch_size=2, device="cpu")
 

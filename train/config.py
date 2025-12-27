@@ -117,7 +117,6 @@ class TrainerConfig:
     learning_rate: float = 1e-4
     batch_size: int = 32
     epochs: int = 20  # Fine-tuning epochs
-    mlm_epochs: int = 5
     kc_epochs: int = 3
     patience: int = 5  # Early stopping patience
     lr_scheduler_patience: int = 2
@@ -169,7 +168,6 @@ class TrainerConfig:
             "learning_rate": self.learning_rate,
             "batch_size": self.batch_size,
             "epochs": self.epochs,
-            "mlm_epochs": self.mlm_epochs,
             "kc_epochs": self.kc_epochs,
             "patience": self.patience,
             "lr_scheduler_patience": self.lr_scheduler_patience,
