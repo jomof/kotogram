@@ -49,6 +49,8 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[.cache]/kotogram_shards/*.db",
                         # --- Unified Config (Orchestrated) ---
                         "[models]/style-support/config.json",
+                        # Tokenizer is now staged by wrapper during label phase
+                        "[models]/style/tokenizer.json",
                     ]
                     bottle.assert_dir_layout(expected_label_manifest)
 
@@ -85,12 +87,10 @@ class TestTrainStyleScript(unittest.TestCase):
                         # checkpoint_optim.pt is now merged into checkpoint.pt
                         "[models]/style-support/checkpoint_meta.pt ADDED",
                         "[models]/style-support/config.json MODIFIED",
-                        "[models]/style-support/tokenizer.json ADDED",
                         "[models]/style/model.pt ADDED",
                         "[models]/style/model.json ADDED",
                         "[models]/style/labels.json ADDED",
                         "[models]/style/model_type.txt ADDED",
-                        "[models]/style/tokenizer.json ADDED",
                     ]
 
                     if "pretrain-mlm" in config["extra_args"]:

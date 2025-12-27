@@ -6,6 +6,7 @@ fast imports in multiprocessing workers.
 """
 
 import json
+import os
 from collections import Counter
 from typing import Any, Dict, List
 
@@ -165,14 +166,42 @@ class Tokenizer:
         self._frozen = True
 
     def save(self, path: str, **kwargs: Any) -> None:
-        """Save tokenizer vocabularies to JSON file."""
+        """Save tokenizer vocabularies to JSON file atomically."""
         data = {
             "field_vocabs": self.field_vocabs,
             "frozen": self._frozen,
         }
         data.update(kwargs)
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+
+        dir_name = os.path.dirname(path)
+        if dir_name:
+            os.makedirs(dir_name, exist_ok=True)
+
+        # Atomic write: dump to temp file then rename
+        # This prevents concurrent readers from seeing partial content
+        import tempfile
+
+        tmp_path = None
+        try:
+            with tempfile.NamedTemporaryFile(
+                "w", dir=dir_name, delete=False, encoding="utf-8"
+            ) as tmp_file:
+                # We save path to clean up in finally block if something goes wrong
+                tmp_path = tmp_file.name
+                json.dump(data, tmp_file, ensure_ascii=False, indent=2)
+                tmp_file.flush()
+                # fsync to ensure data is on disk before rename
+                os.fsync(tmp_file.fileno())
+
+            # Context manager closed the file. Now replace atomically.
+            os.replace(tmp_path, path)
+            # Sentinel to prevent deletion in finally
+            tmp_path = None
+
+        finally:
+            # If tmp_path is still set, it means we didn't complete the replace/success path
+            if tmp_path and os.path.exists(tmp_path):
+                os.remove(tmp_path)
 
     @classmethod
     def load(cls, path: str) -> "Tokenizer":

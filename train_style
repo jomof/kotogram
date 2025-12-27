@@ -299,18 +299,26 @@ def generate_and_save_config(
     config_path = os.path.join(support_dir, "config.json")
 
     # Load tokenizer
-    tokenizer_path_support = os.path.join(support_dir, "tokenizer.json")
+    output_dir = locations.get_style_output_dir()
+    os.makedirs(output_dir, exist_ok=True)
+    tokenizer_path_final = os.path.join(output_dir, "tokenizer.json")
     tokenizer_path_cache = os.path.join(cache_dir, "style_dataset", "vocab.json")
 
-    tokenizer = None
-    if os.path.exists(tokenizer_path_support):
-        print(f"Loaded tokenizer from {tokenizer_path_support}")
-        tokenizer = Tokenizer.load(tokenizer_path_support)
-    elif os.path.exists(tokenizer_path_cache):
-        print(f"Loaded tokenizer from {tokenizer_path_cache}")
-        tokenizer = Tokenizer.load(tokenizer_path_cache)
-    else:
-        tokenizer = Tokenizer()
+    # Ensure tokenizer is in the final output location (models/style/tokenizer.json)
+    # This is the single source of truth for training and inference.
+    if os.path.exists(tokenizer_path_cache):
+        # Always overwrite from cache (latest labels) to ensure consistency
+        import shutil
+        shutil.copy2(tokenizer_path_cache, tokenizer_path_final)
+        print(f"Staged tokenizer to {tokenizer_path_final}")
+    elif not os.path.exists(tokenizer_path_final):
+        # If no cache and no existing final tokenizer, create a fresh one (e.g. first run)
+        print(f"Creating fresh tokenizer at {tokenizer_path_final}")
+        Tokenizer().save(tokenizer_path_final)
+
+    # Load strictly from the final location
+    print(f"Loaded tokenizer from {tokenizer_path_final}")
+    tokenizer = Tokenizer.load(tokenizer_path_final)
 
     # Create configs
     config_loaded = False
