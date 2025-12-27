@@ -2,7 +2,7 @@ import unittest
 
 from kotogram.model import ModelConfig
 from kotogram.tokenizer import Tokenizer
-from train.config import TrainerConfig
+from train.config import DataLoaderSettings, TrainerConfig
 from train.dataset import StyleDataset
 from train.trainer import (
     KCTrainer,
@@ -66,9 +66,8 @@ class TestPretrainDataFiltering(unittest.TestCase):
             learning_rate=1e-4,
             batch_size=2,
             epochs=1,
+            dataloader=DataLoaderSettings(num_workers=2, prefetch_factor=2),
             device="cpu",
-            world_size=1,
-            local_rank=0,
         )
 
         self.model_config = ModelConfig(

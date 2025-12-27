@@ -253,7 +253,8 @@ def build_trainer_config(
     trainer_kwargs: Dict[str, Any] = {
         "kc_epochs": args.kc_epochs,
         "learning_rate": args.learning_rate,
-        "use_amp": args.fp16 or args.fp8,
+
+
         "grad_accum_steps": grad_accum_steps,
         "checkpoint": CheckpointConfig(
             dir=support_dir,
@@ -499,9 +500,9 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument("--gender-weight", type=float, default=None, help="Weight for gender loss")
     parser.add_argument("--grammaticality-weight", type=float, default=None, help="Weight for grammaticality loss")
 
-    # Precision options
-    parser.add_argument("--fp16", action="store_true", help="Save model in float16 (half size)")
-    parser.add_argument("--fp8", action="store_true", help="Save model in float8 (quarter size)")
+
+
+
 
     # Resume/retrain
     parser.add_argument("--resume", action="store_true", help="Resume training from checkpoint")
@@ -596,10 +597,7 @@ def print_training_banner(
         print(f"KC Freeze:      {args.kc_freeze_encoder_epochs} epochs")
         print(f"KC Sparsity:    {args.kc_sparsity_weight}")
         print(f"KC Targets:     {args.kc_target_heads}")
-    if args.fp8:
-        print("Precision:      float8 (quarter size)")
-    elif args.fp16:
-        print("Precision:      float16 (half size)")
+
     if args.resume:
         print("Resume:         from checkpoint")
     if args.retrain:

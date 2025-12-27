@@ -19,7 +19,9 @@ class TestResultIntegrity(unittest.TestCase):
 
     def test_process_sentence_batch_returns_objects(self):
         """Verify _process_sentence_batch returns ProcessedSample objects."""
-        from scripts.label import _process_sentence_batch
+        from scripts.label import (  # pylint: disable=import-private-name
+            _process_sentence_batch,
+        )
 
         # Single-element batch
         batch = [("これはテストです", 1)]  # (sentence, gram_label)
@@ -62,7 +64,9 @@ class TestResultIntegrity(unittest.TestCase):
 
     def test_compute_labels_batch_returns_objects(self):
         """Verify _compute_labels_batch returns ProcessedSample objects."""
-        from scripts.label import _compute_labels_batch
+        from scripts.label import (  # pylint: disable=import-private-name
+            _compute_labels_batch,
+        )
 
         # Single-element batch with pre-computed kotogram
         batch = [("テスト", "テスト[*]", 1)]  # (sentence, kotogram, gram_label)
@@ -105,7 +109,9 @@ class TestResultIntegrity(unittest.TestCase):
 
     def test_process_parallel_returns_objects(self):
         """Verify _process_sentence_batch returns ProcessedSample objects."""
-        from scripts.label import _process_sentence_batch
+        from scripts.label import (  # pylint: disable=import-private-name
+            _process_sentence_batch,
+        )
 
         # Simple test rows
         rows = [
@@ -150,7 +156,9 @@ class TestResultIntegrity(unittest.TestCase):
 
     def test_register_ids_contains_valid_integers(self):
         """Verify register_ids list contains valid integer IDs."""
-        from scripts.label import _process_sentence_batch
+        from scripts.label import (  # pylint: disable=import-private-name
+            _process_sentence_batch,
+        )
 
         batch = [("お嬢様はごきげんよう", 1)]  # Ojousama register
         results, _ = _process_sentence_batch(batch)

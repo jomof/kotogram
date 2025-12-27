@@ -167,7 +167,6 @@ class TestTrainStyleScript(unittest.TestCase):
                     bottle.assertModelIsFp8(model_path)
 
                     # 4. Verify history in epochs.json
-                    # 4. Verify history in epochs.json
                     history = bottle.get_epoch_history()
                     self.assertTrue(len(history) > 0, "epochs.json should not be empty")
 

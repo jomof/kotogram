@@ -5,28 +5,8 @@ from typing import TYPE_CHECKING, Any, Dict, Optional, Tuple
 
 import torch
 
-GENDER_LOSS_WEIGHT = 10.0
-
 if TYPE_CHECKING:
     from kotogram.model import ModelConfig
-
-
-@dataclass(frozen=True)
-class ProcessSettings:
-    """Settings that vary between main and worker processes."""
-
-    show_dataloader_config: bool = True
-    show_safety_logs: bool = True
-
-    def to_dict(self) -> Dict[str, Any]:
-        return {
-            "show_dataloader_config": self.show_dataloader_config,
-            "show_safety_logs": self.show_safety_logs,
-        }
-
-    @classmethod
-    def from_dict(cls, d: Dict[str, Any]) -> "ProcessSettings":
-        return cls(**d)
 
 
 @dataclass(frozen=True)
@@ -51,7 +31,6 @@ class HardwareConfig:
     torch_num_threads: Optional[int] = None
     torch_num_interop_threads: Optional[int] = None
     cpu_reserve_cores: int = 2
-    set_env_thread_limits: bool = True
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -60,7 +39,6 @@ class HardwareConfig:
             "torch_num_threads": self.torch_num_threads,
             "torch_num_interop_threads": self.torch_num_interop_threads,
             "cpu_reserve_cores": self.cpu_reserve_cores,
-            "set_env_thread_limits": self.set_env_thread_limits,
         }
 
     @classmethod
@@ -110,6 +88,14 @@ class CheckpointConfig:
         return cls(**d)
 
 
+# Loss Weights
+_FORMALITY_LOSS_WEIGHT_DEFAULT = 1.0
+_GRAMMATICALITY_LOSS_WEIGHT_DEFAULT = 1.0
+_REGISTER_LOSS_WEIGHT_DEFAULT = 1.0
+_GENDER_LOSS_WEIGHT_DEFAULT = 1.0
+_GENDER_MSE_SCALING_FACTOR_DEFAULT = 10.0
+
+
 @dataclass(frozen=True)
 class TrainerConfig:
     """Configuration for model training."""
@@ -122,22 +108,25 @@ class TrainerConfig:
     lr_scheduler_patience: int = 2
     lr_scheduler_factor: float = 0.5
     gradient_clip: float = 1.0
-    use_class_weights: bool = True
-    formality_loss_weight: float = 1.0  # Weight for formality loss in multi-task
-    gender_loss_weight: float = 1.0  # Weight for gender loss in multi-task
-    grammaticality_loss_weight: float = (
-        1.0  # Weight for grammaticality loss in multi-task
+    formality_loss_weight: float = (
+        _FORMALITY_LOSS_WEIGHT_DEFAULT  # Weight for formality loss in multi-task
     )
-    register_loss_weight: float = 1.0  # Weight for register loss in multi-task
+    gender_loss_weight: float = (
+        _GENDER_LOSS_WEIGHT_DEFAULT  # Weight for gender loss in multi-task
+    )
+    grammaticality_loss_weight: float = _GRAMMATICALITY_LOSS_WEIGHT_DEFAULT  # Weight for grammaticality loss in multi-task
+    register_loss_weight: float = (
+        _REGISTER_LOSS_WEIGHT_DEFAULT  # Weight for register loss in multi-task
+    )
+    gender_mse_scaling_factor: float = (
+        _GENDER_MSE_SCALING_FACTOR_DEFAULT  # Scaling factor for gender MSE component
+    )
     device: str = (
         "cuda"
         if torch.cuda.is_available()
         else ("mps" if torch.backends.mps.is_available() else "cpu")
     )
-    use_amp: bool = False  # Mixed precision training
     grad_accum_steps: int = 1  # Gradient accumulation steps
-    local_rank: int = 0  # Local rank for distributed training
-    world_size: int = 1  # World size for distributed training
     encoder_lr_factor: float = (
         1.0  # LR multiplier for encoder during fine-tuning (< 1.0 after pretraining)
     )
@@ -148,16 +137,7 @@ class TrainerConfig:
     checkpoint: CheckpointConfig = field(default_factory=CheckpointConfig)
 
     # Process-specific Configuration
-    main: ProcessSettings = field(
-        default_factory=lambda: ProcessSettings(
-            show_dataloader_config=True, show_safety_logs=True
-        )
-    )
-    worker: ProcessSettings = field(
-        default_factory=lambda: ProcessSettings(
-            show_dataloader_config=False, show_safety_logs=False
-        )
-    )
+    # (Removed ProcessSettings as unused)
 
     # Global Toggles and Intervals
     progress_update_every: int = 50  # Batches between progress bar updates
@@ -172,19 +152,17 @@ class TrainerConfig:
             "patience": self.patience,
             "lr_scheduler_patience": self.lr_scheduler_patience,
             "lr_scheduler_factor": self.lr_scheduler_factor,
-            "use_amp": self.use_amp,
+            "gradient_clip": self.gradient_clip,
             "grad_accum_steps": self.grad_accum_steps,
             "formality_loss_weight": self.formality_loss_weight,
             "gender_loss_weight": self.gender_loss_weight,
             "grammaticality_loss_weight": self.grammaticality_loss_weight,
-            "local_rank": self.local_rank,
-            "world_size": self.world_size,
+            "register_loss_weight": self.register_loss_weight,
+            "gender_mse_scaling_factor": self.gender_mse_scaling_factor,
             "encoder_lr_factor": self.encoder_lr_factor,
             "hardware": self.hardware.to_dict(),
             "dataloader": self.dataloader.to_dict(),
             "checkpoint": self.checkpoint.to_dict(),
-            "main": self.main.to_dict(),
-            "worker": self.worker.to_dict(),
             "progress_update_every": self.progress_update_every,
             "log_flush_every": self.log_flush_every,
         }
@@ -216,20 +194,15 @@ class TrainerConfig:
             d["dataloader"] = DataLoaderSettings.from_dict(d["dataloader"])
         if "checkpoint" in d:
             d["checkpoint"] = CheckpointConfig.from_dict(d["checkpoint"])
-        if "main" in d:
-            d["main"] = ProcessSettings.from_dict(d["main"])
-        if "worker" in d:
-            d["worker"] = ProcessSettings.from_dict(d["worker"])
 
         valid_fields = {f.name for f in fields(cls)}
         return cls(**{k: v for k, v in d.items() if k in valid_fields})
 
     def resolve_dataloader_config(
-        self, device: torch.device, is_main: bool, mode: str = "train"
+        self, device: torch.device, mode: str = "train"
     ) -> DataLoaderConfig:
         """Resolve a safe DataLoader configuration for the current process and environment."""
-        process = self.main if is_main else self.worker
-        return _get_safe_dataloader_config(self, device, process, mode)
+        return _get_safe_dataloader_config(self, device, mode)
 
     def __post_init__(self) -> None:
         # Resolve thread counts
@@ -272,7 +245,6 @@ def _choose_torch_threads(config: "TrainerConfig") -> Tuple[int, int]:
 def _get_safe_dataloader_config(
     config: TrainerConfig,
     device: torch.device,
-    process: ProcessSettings,  # pylint: disable=unused-argument
     mode: str = "train",
 ) -> DataLoaderConfig:
     """Determine safe and performant DataLoader settings based on environment and load."""
@@ -319,19 +291,17 @@ def configure_runtime_thread_limits(config: TrainerConfig) -> None:
     if torch.get_num_interop_threads() != config.hardware.interop_threads:
         torch.set_num_interop_threads(config.hardware.interop_threads)
 
-    if config.hardware.set_env_thread_limits:
-        for env_var in [
-            "OMP_NUM_THREADS",
-            "MKL_NUM_THREADS",
-            "OPENBLAS_NUM_THREADS",
-            "VECLIB_MAXIMUM_THREADS",
-            "NUMEXPR_NUM_THREADS",
-        ]:
-            if env_var not in os.environ:
-                os.environ[env_var] = str(config.hardware.cpu_threads)
+    for env_var in [
+        "OMP_NUM_THREADS",
+        "MKL_NUM_THREADS",
+        "OPENBLAS_NUM_THREADS",
+        "VECLIB_MAXIMUM_THREADS",
+        "NUMEXPR_NUM_THREADS",
+    ]:
+        os.environ[env_var] = str(config.hardware.cpu_threads)
 
-        if "TOKENIZERS_PARALLELISM" not in os.environ:
-            os.environ["TOKENIZERS_PARALLELISM"] = "false"
+    # Tokenizers parallelism is usually harmful when we manage threads ourselves
+    os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
 def _safe_configure_threads(config: TrainerConfig) -> None:

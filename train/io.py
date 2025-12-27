@@ -23,37 +23,21 @@ def save_model(
     path: str,
     tokenizer: Optional[Tokenizer] = None,
     config: Optional[ModelConfig] = None,
-    fp16: bool = False,
-    fp8: bool = False,
 ) -> None:
     """Save trained model, tokenizer, and config."""
     # pylint: disable=too-many-positional-arguments
     os.makedirs(path, exist_ok=True)
 
-    # Save model weights
-    if fp8:
-        if not hasattr(torch, "float8_e4m3fn"):
-            raise RuntimeError("FP8 requires PyTorch 2.1+. Use --fp16 instead.")
-        state_dict = {
-            k: v.cpu().to(torch.float8_e4m3fn) if v.dtype == torch.float32 else v.cpu()
-            for k, v in model.state_dict().items()
-            if not k.startswith("kc_decoders.")
-        }
-        torch.save(state_dict, os.path.join(path, "model.pt"))
-    elif fp16:
-        state_dict = {
-            k: v.cpu().half() if v.dtype == torch.float32 else v.cpu()
-            for k, v in model.state_dict().items()
-            if not k.startswith("kc_decoders.")
-        }
-        torch.save(state_dict, os.path.join(path, "model.pt"))
-    else:
-        state_dict = {
-            k: v.cpu()
-            for k, v in model.state_dict().items()
-            if not k.startswith("kc_decoders.")
-        }
-        torch.save(state_dict, os.path.join(path, "model.pt"))
+    # Save model weights (Always use FP8 if available)
+    if not hasattr(torch, "float8_e4m3fn"):
+        raise RuntimeError("FP8 requires PyTorch 2.1+.")
+
+    state_dict = {
+        k: v.cpu().to(torch.float8_e4m3fn) if v.dtype == torch.float32 else v.cpu()
+        for k, v in model.state_dict().items()
+        if not k.startswith("kc_decoders.")
+    }
+    torch.save(state_dict, os.path.join(path, "model.pt"))
 
     # Save tokenizer if provided
     if tokenizer is not None:

@@ -20,11 +20,11 @@ from collections import defaultdict
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 if importlib.util.find_spec("_setup_path"):
-    import _setup_path  # type: ignore # noqa: F401 # pylint: disable=unused-import
+    import _setup_path  # type: ignore # noqa: F401 # pylint: disable=unused-import,import-private-name
 else:
     # Fallback if run as module
     from scripts import (
-        _setup_path,  # type: ignore # noqa: F401 # pylint: disable=unused-import
+        _setup_path,  # type: ignore # noqa: F401 # pylint: disable=unused-import,import-private-name
     )
 
 # pylint: disable=wrong-import-position
