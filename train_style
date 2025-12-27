@@ -55,6 +55,8 @@ def get_num_gpus() -> int:
         import torch
         if torch.cuda.is_available():
             return torch.cuda.device_count()
+        if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+            return 1
     return 0
 
 

@@ -27,7 +27,7 @@ from train.types import ProcessedSample, Sample
 from train.worker import _encode_samples_batch, init_worker
 
 # Cache version - bump this when cache format changes to invalidate old caches
-CACHE_VERSION = 11
+CACHE_VERSION = 12
 
 # KC Configuration
 KC_HASH_BUCKETS = 16384
@@ -138,12 +138,37 @@ class StyleDataset(Dataset[Sample]):
             # KC targets computed on demand or stored?
             # We don't store KC targets in binary mode yet to save space/time.
             # If they are needed, we can compute them from feature_ids.
-            kc_targets=(
-                self._compute_kc_targets(feature_ids)
-                if DatasetConfig().parser is None
-                else {}
-            ),
+            kc_targets=self._load_kc_targets(idx, feature_ids),
         )
+
+    def _load_kc_targets(
+        self, idx: int, feature_ids: Dict[str, List[int]]
+    ) -> Dict[str, Any]:
+        """Load KC targets from tensors or compute on demand."""
+        # 1. Try to load from tensor_data
+        if (
+            self.tensor_data is not None
+            and "kc_targets" in self.tensor_data
+            and self.tensor_data["kc_targets"]
+        ):
+            targets = {}
+            kc_data = self.tensor_data["kc_targets"]
+            for key, data in kc_data.items():
+                ids = data["ids"]
+                offsets = data["offsets"]
+                start = offsets[idx].item()
+                end = offsets[idx + 1].item()
+                # Helper to convert back to list (and set/hash where appropriate?)
+                # _compute_kc_targets returns list(set(...)) usually.
+                # So we just return list.
+                targets[key] = ids[start:end].tolist()
+            return targets
+
+        # 2. Fallback: Compute on demand
+        if DatasetConfig().parser is None:
+            return self._compute_kc_targets(feature_ids)
+
+        return {}
 
     @staticmethod
     def _subset_register_labels(
@@ -161,6 +186,26 @@ class StyleDataset(Dataset[Sample]):
         # New IDs
         slices = [labels["reg_ids"][s:e] for s, e in zip(starts, ends)]
         new_ids = torch.cat(slices) if slices else torch.tensor([], dtype=torch.long)
+        return new_offsets, new_ids
+
+    @staticmethod
+    def _subset_ragged(
+        ids: torch.Tensor, offsets: torch.Tensor, indices: torch.Tensor
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
+        """Subset a ragged tensor defined by ids and offsets."""
+        starts = offsets[indices]
+        ends = offsets[indices + 1]
+
+        # New Offsets
+        # lengths = ends - starts
+        new_offsets = torch.zeros(len(indices) + 1, dtype=torch.int32)
+        torch.cumsum(ends - starts, dim=0, out=new_offsets[1:])
+
+        # New IDs
+        # Optimization: use list comp + cat
+        slices = [ids[s:e] for s, e in zip(starts, ends)]
+        new_ids = torch.cat(slices) if slices else torch.tensor([], dtype=ids.dtype)
+
         return new_offsets, new_ids
 
     def _subset_from_tensors(self, indices: torch.Tensor) -> "StyleDataset":
@@ -209,6 +254,18 @@ class StyleDataset(Dataset[Sample]):
                     if field_slices
                     else torch.tensor([], dtype=torch.int32)
                 )
+
+        # 4. Slice KC Targets
+        if "kc_targets" in self.tensor_data:
+            new_data["kc_targets"] = {}
+            for key, val in self.tensor_data["kc_targets"].items():
+                new_offsets, new_ids = self._subset_ragged(
+                    val["ids"], val["offsets"], indices
+                )
+                new_data["kc_targets"][key] = {
+                    "ids": new_ids,
+                    "offsets": new_offsets,
+                }
 
         return StyleDataset(None, self.tokenizer, tensor_data=new_data)
 
@@ -365,6 +422,7 @@ class StyleDataset(Dataset[Sample]):
     def _try_load_tensor_cache(
         cls, cache_dir: str, config: DatasetConfig
     ) -> Optional[Dict[str, Any]]:
+        # pylint: disable=too-many-locals
         """Attempt to load dataset from binary tensor cache."""
         tensor_path = os.path.join(cache_dir, "dataset_tensors.pt")
         if not (config.use_cache and os.path.exists(tensor_path)):
@@ -407,6 +465,20 @@ class StyleDataset(Dataset[Sample]):
             for k, v in tensor_data["labels"].items():
                 if k not in ("reg_ids", "reg_offsets"):
                     tensor_data["labels"][k] = v[:keep_count]
+
+            # Slice KC Targets
+            if "kc_targets" in tensor_data:
+                for val in tensor_data["kc_targets"].values():
+                    # Slice offsets
+                    old_offsets = val["offsets"]
+                    # We need keep_count items, so keep_count+1 offsets
+                    # But we also need to confirm validity?
+                    # Assuming aligned with main offsets.
+                    # Just slice offsets likely works if they are per-sample.
+                    new_offsets = old_offsets[: keep_count + 1]
+                    end_idx = new_offsets[-1].item()
+                    val["offsets"] = new_offsets
+                    val["ids"] = val["ids"][:end_idx]
 
         return cast(Dict[str, Any], tensor_data)
 

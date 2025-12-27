@@ -78,3 +78,57 @@ class Timer:
 
     def reset(self) -> None:
         self.durations = []
+
+
+def setup_profiling(script_prefix: str, include_kc_infix: bool = False) -> None:
+    """Enable cProfile if TRAIN_PROFILE is set and register exit handler."""
+    if os.environ.get("TRAIN_PROFILE", "1") == "0":
+        return
+
+    import atexit
+    import cProfile
+    import pstats
+    import sys
+
+    _profiler = cProfile.Profile()
+    _profiler.enable()
+
+    def _save_profile() -> None:
+        if _profiler:
+            _profiler.disable()
+
+            prof_dir = get_profile_dir()
+            if prof_dir:
+                os.makedirs(prof_dir, exist_ok=True)
+
+                infix = (
+                    "_kc" if include_kc_infix and "--pretrain-kc" in sys.argv else ""
+                )
+                pid = os.getpid()
+
+                # Write .pstats file
+                pstats_file = os.path.join(
+                    prof_dir, f"{script_prefix}{infix}_{pid}.pstats"
+                )
+                _profiler.dump_stats(pstats_file)
+
+                # Write human-readable summary
+                summary_file = os.path.join(
+                    prof_dir, f"{script_prefix}{infix}_{pid}.txt"
+                )
+                with open(summary_file, "w", encoding="utf-8") as summary_file_handle:
+                    stats = pstats.Stats(_profiler, stream=summary_file_handle)
+
+                    stats.sort_stats("cumulative")
+                    summary_file_handle.write("TOP 50 BY CUMULATIVE TIME\n")
+                    summary_file_handle.write("=" * 80 + "\n")
+                    stats.print_stats(50)
+
+                    summary_file_handle.write("\n")
+
+                    stats.sort_stats("calls")
+                    summary_file_handle.write("TOP 50 BY INVOCATION COUNT\n")
+                    summary_file_handle.write("=" * 80 + "\n")
+                    stats.print_stats(50)
+
+    atexit.register(_save_profile)

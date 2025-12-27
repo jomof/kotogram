@@ -99,7 +99,7 @@ def tensor_finite_stats(x: Optional[torch.Tensor]) -> Dict[str, Any]:
 class KCTrainer:
     """Trainer for Knowledge Component (KC) learning."""
 
-    # pylint: disable=too-many-positional-arguments
+    # pylint: disable=too-many-positional-arguments,too-many-locals
     def __init__(
         self,
         model: StyleClassifierWithKC,
@@ -192,6 +192,21 @@ class KCTrainer:
         self.mse_loss = nn.MSELoss()
         self.ce_loss = nn.CrossEntropyLoss()
 
+        # Timers for profiling
+        pid = os.getpid()
+        profile_dir = get_profile_dir()
+        data_log = (
+            os.path.join(profile_dir, f"kc_data_{pid}.jsonl") if profile_dir else None
+        )
+        comp_log = (
+            os.path.join(profile_dir, f"kc_compute_{pid}.jsonl")
+            if profile_dir
+            else None
+        )
+
+        self.train_timer_data = Timer("data_loading", output_path=data_log)
+        self.train_timer_compute = Timer("compute", output_path=comp_log)
+
         self.kc_pos_weight_cap = kc_config.get("pos_weight_cap", 50.0)
         self.kc_pos_weight_eps = kc_config.get("pos_weight_eps", 1e-6)
 
@@ -264,8 +279,18 @@ class KCTrainer:
             "first_batch_separation": [],
             "first_batch_grad_norms": [],
         }
-        self.train_timer_data = Timer("kc_data")
-        self.train_timer_compute = Timer("kc_compute")
+        profile_dir = get_profile_dir()
+        pid = os.getpid()
+        self.train_timer_data = Timer(
+            "kc_data",
+            os.path.join(profile_dir, f"kc_data_{pid}.jsonl") if profile_dir else None,
+        )
+        self.train_timer_compute = Timer(
+            "kc_compute",
+            os.path.join(profile_dir, f"kc_compute_{pid}.jsonl")
+            if profile_dir
+            else None,
+        )
         self.start_epoch = 0
         self.start_batch = 0
         self.global_step = 0
@@ -772,12 +797,12 @@ class KCTrainer:
 
         self.train_timer_data.start()
         for batch_idx, batch in enumerate(self.data_loader):
-            self.train_timer_data.stop()
+            self.train_timer_data.stop(epoch=epoch, batch=batch_idx)
             self.train_timer_compute.start()
 
             # Mid-epoch resume: skip batches already processed
             if epoch == self.start_epoch and batch_idx < self.start_batch:
-                self.train_timer_compute.stop()
+                self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
                 self.train_timer_data.start()
                 continue
 
@@ -1009,7 +1034,7 @@ class KCTrainer:
                                         # Compute stats from sparse format
                                         assert pos_inds is not None
                                         assert pos_mask_t is not None
-                                        batch_size = pos_inds.size(0)
+                                        batch_size = pos_mask_t.size(0)
                                         vocab_size = logits.size(1)
                                         n_pos = pos_mask_t.sum().item()
                                         total = batch_size * vocab_size
@@ -1599,6 +1624,9 @@ class KCTrainer:
                 ):
                     print_progress_bar(batch_idx, total_batches, total_loss / n_batches)
 
+            self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
+            self.train_timer_data.start()
+
         # Reset start_batch for next epoch
         self.start_batch = 0
 
@@ -1982,6 +2010,23 @@ class Trainer:
             worker_init_fn=_worker_init_fn,
         )
 
+        # Timers for profiling
+        pid = os.getpid()
+        profile_dir = get_profile_dir()
+        data_log = (
+            os.path.join(profile_dir, f"train_data_{pid}.jsonl")
+            if profile_dir
+            else None
+        )
+        comp_log = (
+            os.path.join(profile_dir, f"train_compute_{pid}.jsonl")
+            if profile_dir
+            else None
+        )
+
+        self.train_timer_data = Timer("data_loading", output_path=data_log)
+        self.train_timer_compute = Timer("compute", output_path=comp_log)
+
         self.formality_criterion = nn.CrossEntropyLoss(
             weight=train_dataset.get_formality_class_weights().to(self.device)
         )
@@ -2320,7 +2365,7 @@ class Trainer:
             if batch_idx < self.start_batch:
                 continue
 
-            self.train_timer_data.stop()
+            self.train_timer_data.stop(epoch=epoch, batch=batch_idx)
             self.train_timer_compute.start()
 
             losses = self._train_batch(batch, batch_idx)
@@ -2352,7 +2397,7 @@ class Trainer:
                 ):
                     sys.stdout.flush()
 
-            self.train_timer_compute.stop(epoch, batch_idx)
+            self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
             self.train_timer_data.start()
 
         # Reset start_batch for next epoch

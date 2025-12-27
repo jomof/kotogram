@@ -140,7 +140,7 @@ class TrainerConfig:
     # (Removed ProcessSettings as unused)
 
     # Global Toggles and Intervals
-    progress_update_every: int = 50  # Batches between progress bar updates
+    progress_update_every: int = 5  # Batches between progress bar updates
     log_flush_every: int = 200  # Batches between stdout flushes
 
     def to_dict(self) -> Dict[str, Any]:
@@ -252,25 +252,41 @@ def _get_safe_dataloader_config(
     is_cuda = "cuda" in str(device)
 
     # 1. Base Policy
-    if is_cuda:
-        # Conservative defaults for CUDA
-        num_workers = min(4, max(2, cpu_count // 8))
+    if is_cuda or device.type == "mps":
+        # Conservative defaults for CUDA/MPS
+        num_workers = min(4, max(2, cpu_count // 4))  # Slightly relaxed from //8
         if config.dataloader.num_workers is not None:
             num_workers = config.dataloader.num_workers
 
-        pin_memory = (
-            config.dataloader.pin_memory
-            if config.dataloader.pin_memory is not None
-            else True
-        )
-        prefetch_factor = config.dataloader.prefetch_factor
+        # Force disable pin_memory on MPS to avoid warnings/hangs,
+        # even if config requests it (unless we are sure it's safe)
+        if device.type == "mps":
+            pin_memory = False
+        else:
+            pin_memory = (
+                config.dataloader.pin_memory
+                if config.dataloader.pin_memory is not None
+                else True
+            )
+
+        if num_workers == 0:
+            prefetch_factor = None
+        else:
+            prefetch_factor = config.dataloader.prefetch_factor
+
         persistent_workers = config.dataloader.persistent_workers and num_workers > 0
     else:
-        # Avoid workers on non-CUDA to save overhead
-        num_workers = 0
-        pin_memory = False
-        prefetch_factor = None
-        persistent_workers = False
+        # Avoid workers on CPU-only to save overhead unless explicitly requested
+        if config.dataloader.num_workers is not None:
+            num_workers = config.dataloader.num_workers
+            pin_memory = config.dataloader.pin_memory or False
+            prefetch_factor = config.dataloader.prefetch_factor
+            persistent_workers = config.dataloader.persistent_workers
+        else:
+            num_workers = 0
+            pin_memory = False
+            prefetch_factor = None
+            persistent_workers = False
 
     # 2. Evaluation adjustments
     if mode == "val" and num_workers > 0:
