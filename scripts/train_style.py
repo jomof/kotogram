@@ -36,24 +36,25 @@ from train.config import (
     TrainerConfig,
 )
 from train.dataset import DatasetConfig, StyleDataset
+from train.distributed import is_main_process, setup_distributed
 from train.io import save_model
-from train.trainer import (
-    KCTrainer,
-    MLMTrainer,
-    StyleClassifierWithMLM,
-    Trainer,
-    is_main_process,
-    setup_distributed,
-)
+from train.models import StyleClassifierWithMLM
+from train.profile import get_profile_dir
+from train.trainer import KCTrainer, MLMTrainer, Trainer
 
 
 def generate_profile_report() -> None:
     # pylint: disable=too-many-locals
     """Generate human-readable performance report from JSONL logs."""
-    prof_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
-    support_dir = locations.get_style_support_dir()
-    os.makedirs(support_dir, exist_ok=True)
-    output_path = os.path.join(support_dir, "training-profile.txt")
+    prof_dir = get_profile_dir()
+    if not prof_dir or not os.path.exists(prof_dir):
+        # If no profile dir, nothing to do (or TRAIN_PROFILE=0)
+        return
+
+    # Use a dynamic summary filename based on hostname/pid or just "summary.txt"?
+    # User said "aggregate .txt summary reports".
+    # Let's use training-profile.txt in the profile dir.
+    output_path = os.path.join(prof_dir, "training-profile.txt")
 
     print(f"Generating profile report from {prof_dir}...")
 
@@ -140,6 +141,11 @@ def generate_profile_report() -> None:
 
     print(f"Report written to {output_path}")
 
+    # Cleanup JSONL files
+    for p in files:
+        os.remove(p)
+    print(f"Cleaned up {len(files)} .jsonl profile files.")
+
 
 if __name__ == "__main__":
     # Internal profiling when TRAIN_PROFILE is set
@@ -156,23 +162,36 @@ if __name__ == "__main__":
                 _profiler.disable()
                 import pstats
 
-                prof_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
-                os.makedirs(prof_dir, exist_ok=True)
+                prof_dir = get_profile_dir()
+                if prof_dir:
+                    os.makedirs(prof_dir, exist_ok=True)
 
-                # Write .pstats file
-                pstats_file = os.path.join(
-                    prof_dir, f"train_style_{os.getpid()}.pstats"
-                )
-                _profiler.dump_stats(pstats_file)
+                    # Write .pstats file
+                    pstats_file = os.path.join(
+                        prof_dir, f"train_style_{os.getpid()}.pstats"
+                    )
+                    _profiler.dump_stats(pstats_file)
 
-                # Write human-readable summary
-                summary_file = os.path.join(prof_dir, f"train_style_{os.getpid()}.txt")
-                with open(summary_file, "w", encoding="utf-8") as summary_file_handle:
-                    stats = pstats.Stats(_profiler, stream=summary_file_handle)
-                    stats.sort_stats("cumulative")
-                    summary_file_handle.write("TOP 50 BY CUMULATIVE TIME\n")
-                    summary_file_handle.write("=" * 80 + "\n")
-                    stats.print_stats(50)
+                    # Write human-readable summary
+                    summary_file = os.path.join(
+                        prof_dir, f"train_style_{os.getpid()}.txt"
+                    )
+                    with open(
+                        summary_file, "w", encoding="utf-8"
+                    ) as summary_file_handle:
+                        stats = pstats.Stats(_profiler, stream=summary_file_handle)
+
+                        stats.sort_stats("cumulative")
+                        summary_file_handle.write("TOP 50 BY CUMULATIVE TIME\n")
+                        summary_file_handle.write("=" * 80 + "\n")
+                        stats.print_stats(50)
+
+                        summary_file_handle.write("\n")
+
+                        stats.sort_stats("calls")
+                        summary_file_handle.write("TOP 50 BY INVOCATION COUNT\n")
+                        summary_file_handle.write("=" * 80 + "\n")
+                        stats.print_stats(50)
 
         atexit.register(_save_profile)
 
@@ -642,3 +661,10 @@ if __name__ == "__main__":
 
     if dist.is_available() and dist.is_initialized():
         dist.destroy_process_group()
+
+    # Auto-generate report and cleanup if profiling was enabled
+    # We check environment because arguments might not settle it alone (defaults)
+    # But usually if we ran code, we generated logs.
+    if os.environ.get("TRAIN_PROFILE", "1") != "0" and not args.report:
+        # args.report exits early, so we only need to do this for a normal run
+        generate_profile_report()

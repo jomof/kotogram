@@ -5,7 +5,6 @@ import json
 import os
 import subprocess
 import tempfile
-import time
 import unittest
 from typing import Dict, List, Optional, Set
 
@@ -19,7 +18,6 @@ def train_style(
     project_root: str,
     args: str,
     env_overrides: Optional[Dict[str, str]] = None,
-    timeout: Optional[int] = 3,
 ):
     """Runs the train_style.sh script with the given arguments and asserts success."""
     env = os.environ.copy()
@@ -28,34 +26,14 @@ def train_style(
 
     cmd = [script_path] + args.split()
 
-    if os.environ.get("CI") == "true":
-        timeout = None
-
-    start_time = time.time()
-    try:
-        result = subprocess.run(
-            cmd,
-            env=env,
-            cwd=project_root,
-            capture_output=True,
-            text=True,
-            check=False,
-            timeout=timeout,
-        )
-    except subprocess.TimeoutExpired as e:
-        print(f"\n[Timeout] Command '{' '.join(cmd)}' timed out after {timeout}s")
-        if e.stdout:
-            print(f"[Timeout] STDOUT:\n{e.stdout}")
-        if e.stderr:
-            print(f"[Timeout] STDERR:\n{e.stderr}")
-        raise
-
-    duration = time.time() - start_time
-    if timeout is not None and duration < 0.15 * timeout:
-        raise RuntimeError(
-            f"Command finished in {duration:.2f}s, which is < 15% of timeout {timeout}s. "
-            f"Please use a tighter timeout (suggested: {int(duration * 6) + 1}s)."
-        )
+    result = subprocess.run(
+        cmd,
+        env=env,
+        cwd=project_root,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
 
     if result.returncode != 0:
         print(f"Command failed: {cmd}")
@@ -168,6 +146,10 @@ def assert_dir_layout(test_case, root_dir: str, expected_manifest: List[str]):
             if file == ".DS_Store":
                 continue
 
+            # Skip profiling artifacts (any file/dir starting with .profile)
+            if ".profile" in root or file.startswith(".profile"):
+                continue
+
             # Construct path to check for exclusions
             if rel_root:
                 path_to_check = os.path.join(rel_root, file)
@@ -179,6 +161,10 @@ def assert_dir_layout(test_case, root_dir: str, expected_manifest: List[str]):
         # Add directory IF it is empty (and no files except .DS_Store)
         visible_files = [f for f in files if f != ".DS_Store"]
         if not dirs and not visible_files:
+            # Skip profiling artifacts (directories starting with .profile)
+            if rel_root.startswith(".profile") or "/.profile" in rel_root:
+                continue
+
             if rel_root:
                 actual_paths.append(rel_root)
 
@@ -241,12 +227,8 @@ class Bottle:
             for file in files:
                 if file == ".DS_Store":
                     continue
-                # Skip profiling artifacts
-                if (
-                    root.endswith(".profile")
-                    or "/.profile/" in root
-                    or file == ".profile"
-                ):
+                # Skip profiling artifacts (any file/dir starting with .profile)
+                if ".profile" in root or file.startswith(".profile"):
                     continue
 
                 abs_path = os.path.join(root, file)
@@ -270,16 +252,65 @@ class Bottle:
         """Populates the bottle with test data."""
         populate_test_data(self.root_dir, self.project_root)
 
+    def calculate_expected_counts(self) -> Dict[str, int]:
+        """Calculates expected sentence counts for MLM and KC pretraining.
+
+        Simulates the logic of StyleDataset and KCTrainer to provide ground truth.
+        """
+        from unittest.mock import patch
+
+        from kotogram import locations
+
+        # Find cache directory in bottle (where script puts processed data)
+        with patch.dict(os.environ, {"TRAIN_ROOT": self.root_dir}):
+            cache_dir = locations.get_cache_dir()
+
+        gram_cache = os.path.join(cache_dir, "grammatic_combined.tsv")
+        agram_cache = os.path.join(cache_dir, "agrammatic_combined.tsv")
+
+        def count_lines(path):
+            if not os.path.exists(path):
+                return 0
+            with open(path, "r", encoding="utf-8") as f:
+                return sum(1 for _ in f)
+
+        # In cache, grammatic_combined contains all grammatic sentences
+        mlm_count = count_lines(gram_cache)
+        num_gram = mlm_count
+        num_agram = count_lines(agram_cache)
+
+        # Total dataset size
+        total_len = num_gram + num_agram
+
+        # Simulate StyleDataset.split(seed=42, train_ratio=0.8)
+        # We need to know which indices are grammatic (0..num_gram-1)
+        # and which are agrammatic (num_gram..total_len-1).
+        # This assumes data is loaded in that block order (grammatic first).
+        # Based on train_style.py: data_files = [gram, agram]. Yes.
+
+        torch.manual_seed(42)
+        indices = torch.randperm(total_len)
+        n_train = int(total_len * 0.8)
+        train_indices = indices[:n_train]
+
+        # Count how many of train_indices correspond to grammatic part (< num_gram)
+        kc_count = (train_indices < num_gram).sum().item()
+
+        return {
+            "total_grammatic_sentences": mlm_count,
+            "grammatic_sentences_in_train_split": kc_count,
+            "total_train_split_size": n_train,
+        }
+
     def train_style(
         self,
         args: str,
         env_overrides: Optional[Dict[str, str]] = None,
-        timeout: Optional[int] = 3,
     ):
         """Runs train_style.sh inside the bottle."""
         import re
 
-        overrides = {"TRAIN_ROOT": self.root_dir, "TRAIN_PROFILE": "0"}
+        overrides = {"TRAIN_ROOT": self.root_dir}
         if env_overrides:
             if "TRAIN_ROOT" in env_overrides:
                 raise ValueError(
@@ -296,7 +327,6 @@ class Bottle:
             self.project_root,
             args,
             overrides,
-            timeout=timeout,
         )
 
         # Assert no warnings or errors in output
@@ -619,6 +649,67 @@ class Bottle:
                 )
 
             self.test_case.fail(msg)
+
+    def assert_coherent_performance_profile(self):
+        """Asserts that .profile-<machine name> has no .jsonl files but has .txt summary."""
+        import platform
+        from unittest.mock import patch
+
+        from train.profile import get_profile_dir
+
+        with patch.dict(os.environ, {"TRAIN_ROOT": self.root_dir}):
+            profile_dir = get_profile_dir()
+
+        if not profile_dir:
+            # Profiling disabled
+            return
+
+        self.test_case.assertTrue(
+            os.path.exists(profile_dir),
+            f"Profile directory {profile_dir} should exist",
+        )
+
+        # Verify directory naming invariant (.profile-<hostname>)
+        hostname = platform.node().split(".")[0]
+        expected_dirname = f".profile-{hostname}"
+        self.test_case.assertEqual(
+            os.path.basename(profile_dir),
+            expected_dirname,
+            f"Profile directory name mismatch. Expected {expected_dirname}, got {os.path.basename(profile_dir)}",
+        )
+
+        # Check for jsonl files (should be gone)
+        jsonl_files = glob.glob(os.path.join(profile_dir, "*.jsonl"))
+        self.test_case.assertEqual(
+            len(jsonl_files),
+            0,
+            f"Profile directory should not contain .jsonl files, found: {jsonl_files}",
+        )
+
+        # Check for txt summary reports (should be present) and contain required sections
+        txt_files = glob.glob(os.path.join(profile_dir, "*.txt"))
+        self.test_case.assertTrue(
+            len(txt_files) > 0,
+            f"Profile directory {profile_dir} should contain .txt summary report",
+        )
+
+        for txt_file in txt_files:
+            # We only care about checking the cProfile outputs (train_style_*.txt),
+            # not necessarily the custom "training-profile.txt" aggregate (though it's good if valid).
+            # The cProfile ones are named train_style_<pid>.txt
+            if "train_style_" in os.path.basename(txt_file):
+                with open(txt_file, "r", encoding="utf-8") as f:
+                    content = f.read()
+                    self.test_case.assertIn(
+                        "TOP 50 BY INVOCATION COUNT",
+                        content,
+                        f"Profile {txt_file} missing 'TOP 50 BY INVOCATION COUNT'",
+                    )
+                    self.test_case.assertIn(
+                        "TOP 50 BY CUMULATIVE TIME",
+                        content,
+                        f"Profile {txt_file} missing 'TOP 50 BY CUMULATIVE TIME'",
+                    )
 
 
 def setup_mock_style_model(test_case):

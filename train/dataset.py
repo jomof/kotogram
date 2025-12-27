@@ -653,6 +653,7 @@ class StyleDataset(Dataset[Sample]):
     ) -> Tuple["StyleDataset", "StyleDataset"]:
         """Split dataset into train and validation sets."""
         random.seed(seed)
+        torch.manual_seed(seed)
         total_len = len(self)
         indices = torch.randperm(total_len)
 
@@ -838,5 +839,132 @@ def _collate_kc_targets(
                 if valid_indices:
                     target_tensor[i, valid_indices] = 1.0
             result[f"kc_targets_{key}"] = target_tensor
+
+    return result
+
+
+# pylint: disable=too-many-locals
+def create_mlm_batch(
+    batch: Dict[str, torch.Tensor],
+    mask_prob: float = 0.15,
+    mask_token_id: int = 3,
+    vocab_sizes: Optional[Dict[str, int]] = None,
+    special_token_ids: Optional[List[int]] = None,
+) -> Dict[str, torch.Tensor]:
+    """Create masked language modeling batch for feature-based tokens."""
+    special_token_ids = special_token_ids or [0, 1, 2, 3]
+    vocab_sizes = vocab_sizes or {}
+    hidden_fields = ["surface", "lemma"]
+    primary_field = "pos"
+    primary_ids = batch[f"input_ids_{primary_field}"].clone()
+
+    maskable = batch["attention_mask"].bool()
+    for special_id in special_token_ids:
+        maskable &= primary_ids != special_id
+
+    probs = torch.rand_like(primary_ids.float())
+    mask = maskable & (probs < mask_prob)
+    mask_token_positions = mask & (probs < mask_prob * 0.8)
+    random_token_positions = (
+        mask & (probs >= mask_prob * 0.8) & (probs < mask_prob * 0.9)
+    )
+
+    result = {"attention_mask": batch["attention_mask"]}
+    for field in FEATURE_FIELDS:
+        field_ids = batch[f"input_ids_{field}"].clone()
+        mlm_labels = torch.full_like(field_ids, -100)
+        if field in hidden_fields:
+            active_tokens = batch["attention_mask"].bool()
+            field_ids[active_tokens] = mask_token_id
+        else:
+            mlm_labels[mask] = field_ids[mask]
+            field_ids[mask_token_positions] = mask_token_id
+            field_vocab_size = vocab_sizes.get(field)
+            if field_vocab_size:
+                num_random = int(random_token_positions.sum().item())
+                low, high = len(special_token_ids), field_vocab_size
+                if num_random > 0 and high > low:
+                    field_ids[random_token_positions] = torch.randint(
+                        low, high, (num_random,)
+                    )
+        result[f"mlm_labels_{field}"] = mlm_labels
+        result[f"input_ids_{field}"] = field_ids
+    return result
+
+
+# pylint: disable=too-many-locals
+def create_kc_batch(
+    batch: Dict[str, torch.Tensor],
+    _tokenizer: Tokenizer,
+    target_specs: Dict[str, int],
+    *,
+    large_head_threshold: int = 4096,
+    max_pos_per_sample: int = 64,
+) -> Dict[str, torch.Tensor]:
+    """Create target batches for Knowledge Component (KC) training.
+
+    Round 13: Hybrid dense/sparse approach:
+    - For small heads (vocab_size <= large_head_threshold): dense multi-hot (B, V)
+    - For large heads: sparse positive indices (B, P) with mask
+    """
+    # pylint: disable=too-many-locals
+    result: Dict[str, torch.Tensor] = {}
+    attn = batch["attention_mask"].bool()
+    batch_size = int(attn.size(0))
+
+    for name, vocab_size in target_specs.items():
+        # Strip prefixes for multi-task heads (bag_lemma -> lemma)
+        field_name = name
+        if "_" in name:
+            parts = name.split("_")
+            if parts[0] in ["bag", "tail", "ngram", "prefix"]:
+                field_name = "_".join(parts[1:])
+
+        input_key = f"input_ids_{field_name}"
+        if input_key not in batch:
+            continue
+
+        ids = batch[input_key]  # (B, T)
+
+        if vocab_size <= large_head_threshold:
+            # Dense path for small heads
+            multi_hot = torch.zeros((batch_size, vocab_size), device=ids.device)
+            for i in range(batch_size):
+                tok = ids[i, attn[i]]
+                tok = tok[tok >= 4]  # skip specials
+                if tok.numel() == 0:
+                    continue
+                uniq = torch.unique(tok)
+                uniq = uniq[uniq < vocab_size]
+                if uniq.numel() > 0:
+                    multi_hot[i, uniq] = 1.0
+            result[f"kc_targets_{name}"] = multi_hot
+        else:
+            # Sparse path for large heads
+            pos_inds = torch.full(
+                (batch_size, max_pos_per_sample),
+                -1,
+                dtype=torch.long,
+                device=ids.device,
+            )
+            pos_mask = torch.zeros(
+                (batch_size, max_pos_per_sample), dtype=torch.bool, device=ids.device
+            )
+            for i in range(batch_size):
+                tok = ids[i, attn[i]]
+                tok = tok[tok >= 4]
+                if tok.numel() == 0:
+                    continue
+                uniq = torch.unique(tok)
+                uniq = uniq[uniq < vocab_size]
+                if uniq.numel() == 0:
+                    continue
+                if uniq.numel() > max_pos_per_sample:
+                    uniq = uniq[:max_pos_per_sample]
+                n = int(uniq.numel())
+                pos_inds[i, :n] = uniq
+                pos_mask[i, :n] = True
+            result[f"kc_pos_inds_{name}"] = pos_inds
+            result[f"kc_pos_mask_{name}"] = pos_mask
 
     return result

@@ -109,9 +109,7 @@ class TestTrainStyleScript(unittest.TestCase):
 
                     # Step 4: Resume training with --epochs 2 (should train only epoch 2)
                     # Use --no-label here as well
-                    result2 = bottle.train_style(
-                        "--resume --epochs 2 --no-confusion",
-                    )
+                    result2 = bottle.train_style("--resume --epochs 2 --no-confusion")
 
                     # Verify only epoch 2 was trained (resume from epoch 1)
                     bottle.assertEpochsTrained(result2, [2])
@@ -182,22 +180,33 @@ class TestTrainStyleScript(unittest.TestCase):
                     history = bottle.get_epoch_history()
                     self.assertTrue(len(history) > 0, "epochs.json should not be empty")
 
+                    # Calculate expected counts based on actual data in bottle
+                    expected_counts = bottle.calculate_expected_counts()
+
                     if config["name"] == "regular":
                         self.assertEqual(len(history), 2)
                         self.assertEqual(history[0]["type"], "style")
-                        self.assertEqual(history[0]["sentence_count"], 76)
+                        # Style training uses full train split (labeled_train)
+                        self.assertEqual(
+                            history[0]["sentence_count"],
+                            expected_counts["total_train_split_size"],
+                        )
                     elif config["name"] == "pretrain-all":
                         self.assertGreaterEqual(len(history), 4)
                         self.assertEqual(history[0]["type"], "pretrain-mlm")
                         self.assertEqual(history[1]["type"], "pretrain-kc")
 
                         # Verify counts
+                        # MLM pretraining uses the full grammatical dataset
                         self.assertEqual(
-                            history[0]["sentence_count"], 85
-                        )  # MLM full dataset
+                            history[0]["sentence_count"],
+                            expected_counts["total_grammatic_sentences"],
+                        )
+                        # KC pretraining uses ONLY grammatical sentences from the training split
                         self.assertEqual(
-                            history[1]["sentence_count"], 68
-                        )  # KC filtered
+                            history[1]["sentence_count"],
+                            expected_counts["grammatic_sentences_in_train_split"],
+                        )
 
                         # KC metrics check
                         self.assertIn("avg_struct_loss", history[1])
@@ -210,7 +219,14 @@ class TestTrainStyleScript(unittest.TestCase):
 
                     for i in range(start_idx, len(history)):
                         self.assertEqual(history[i]["type"], "style")
-                        self.assertEqual(history[i]["sentence_count"], 76)
+                        # Style fine-tuning uses the full training split (gram + agram)
+                        self.assertEqual(
+                            history[i]["sentence_count"],
+                            expected_counts["total_train_split_size"],
+                        )
+
+                    # Verify performance profile coherence (clean jsonl, present txt)
+                    bottle.assert_coherent_performance_profile()
 
 
 if __name__ == "__main__":

@@ -2,6 +2,8 @@
 
 from typing import Any, Dict, List, Optional
 
+import torch
+
 from kotogram.tokenizer import Tokenizer
 from train.types import ProcessedSample, Sample
 
@@ -53,3 +55,10 @@ def _encode_samples_batch(
         samples.append(sample)
 
     return samples
+
+
+def _worker_init_fn(_: int) -> None:
+    """Worker initialization function to limit per-worker threads."""
+    torch.set_num_threads(1)
+    if torch.get_num_interop_threads() != 1:
+        torch.set_num_interop_threads(1)
