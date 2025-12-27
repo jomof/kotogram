@@ -1,17 +1,25 @@
 """Profiling and timing utilities."""
 
+import cProfile
 import json
 import os
 import platform
+import pstats
+import re
 import resource
 import time
 from datetime import datetime
-from typing import List, Optional
+from typing import Any, List, Optional
+
+
+def profiling_enabled() -> bool:
+    """Check if profiling is enabled via TRAIN_PROFILE environment variable."""
+    return os.environ.get("TRAIN_PROFILE", "0") == "1"
 
 
 def get_profile_dir() -> Optional[str]:
     """Get the directory for profiling output based on hostname."""
-    if os.environ.get("TRAIN_PROFILE", "1") == "0":
+    if not profiling_enabled():
         return None
     root = os.environ.get("TRAIN_ROOT", ".")
     hostname = platform.node().split(".")[0]
@@ -82,12 +90,10 @@ class Timer:
 
 def setup_profiling(script_prefix: str, include_kc_infix: bool = False) -> None:
     """Enable cProfile if TRAIN_PROFILE is set and register exit handler."""
-    if os.environ.get("TRAIN_PROFILE", "1") == "0":
+    if not profiling_enabled():
         return
 
     import atexit
-    import cProfile
-    import pstats
     import sys
 
     _profiler = cProfile.Profile()
@@ -132,3 +138,78 @@ def setup_profiling(script_prefix: str, include_kc_infix: bool = False) -> None:
                     stats.print_stats(50)
 
     atexit.register(_save_profile)
+
+
+class PhaseTimer:
+    """Timer for measuring phases in scripts."""
+
+    def __init__(self, console: Any, profile_dir: Optional[str] = None):
+        self.console = console
+        self.profile_dir = profile_dir
+        self.pid = os.getpid()
+        self.last = time.perf_counter()
+        self.phase_idx = 1
+
+        self.profiler: Optional[cProfile.Profile] = None
+        if self.profile_dir:
+            self.profiler = cProfile.Profile()
+            self.profiler.enable()
+
+    def mark(self, phase_name: str) -> None:
+        """Mark the end of a phase and print/dump stats."""
+        now = time.perf_counter()
+        elapsed = now - self.last
+        self.last = now
+        self.console.print(
+            f"[dim]Stats: Phase '{phase_name}' took {elapsed:.1f}s[/dim]"
+        )
+
+        if self.profiler and self.profile_dir:
+            self.profiler.disable()
+
+            self._dump_stats(phase_name, elapsed)
+
+            # Start new profiler/tracer for next phase
+            self.profiler = cProfile.Profile()
+            self.profiler.enable()
+            self.phase_idx += 1
+
+    def stop(self, phase_name: str = "Final") -> None:
+        """Stop the timer and dump final stats."""
+        self.mark(phase_name)
+        if self.profiler:
+            self.profiler.disable()
+            self.profiler = None
+
+    def _dump_stats(self, phase_name: str, elapsed: float) -> None:
+        if not self.profile_dir:
+            return
+
+        # Sanitize phase name for filename
+        clean_name = re.sub(r"[^a-zA-Z0-9_]", "_", phase_name).lower()
+        clean_name = re.sub(r"_+", "_", clean_name).strip("_")
+
+        elapsed_str = f"{elapsed:.1f}s"
+        base_path = os.path.join(
+            self.profile_dir,
+            f"label_p{self.phase_idx}_{clean_name}_{elapsed_str}_{self.pid}",
+        )
+
+        # Write .pstats
+        if self.profiler:  # Check again for type safety
+            self.profiler.dump_stats(f"{base_path}.pstats")
+
+            # Write .txt summary
+            with open(f"{base_path}.txt", "w", encoding="utf-8") as f:
+                stats = pstats.Stats(self.profiler, stream=f)
+                stats.sort_stats("cumulative")
+                f.write(f"PHASE: {phase_name} ({elapsed_str})\n")
+                f.write("=" * 80 + "\n")
+                f.write("TOP 50 BY CUMULATIVE TIME\n")
+                f.write("-" * 80 + "\n")
+                stats.print_stats(50)
+                f.write("\n")
+                stats.sort_stats("calls")
+                f.write("TOP 50 BY INVOCATION COUNT\n")
+                f.write("-" * 80 + "\n")
+                stats.print_stats(50)

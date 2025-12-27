@@ -1,9 +1,11 @@
+import contextlib
 import fnmatch
 import glob
 import hashlib
 import json
 import os
 import subprocess
+import sys
 import tempfile
 import unittest
 from typing import Dict, List, Optional, Set
@@ -25,6 +27,8 @@ def train_style(
         env.update(env_overrides)
 
     cmd = [script_path] + args.split()
+    if script_path.endswith(".py"):
+        cmd = [sys.executable, script_path] + args.split()
 
     result = subprocess.run(
         cmd,
@@ -288,8 +292,10 @@ class Bottle:
         # This assumes data is loaded in that block order (grammatic first).
         # Based on train_style.py: data_files = [gram, agram]. Yes.
 
-        torch.manual_seed(42)
-        indices = torch.randperm(total_len)
+        # Use isolated generator to mimic StyleDataset.split
+        g = torch.Generator()
+        g.manual_seed(42)
+        indices = torch.randperm(total_len, generator=g)
         n_train = int(total_len * 0.8)
         train_indices = indices[:n_train]
 
@@ -376,7 +382,6 @@ class Bottle:
         bin_path = os.path.join(self.project_root, "bin", "kotogram")
         env = os.environ.copy()
         env["TRAIN_ROOT"] = self.root_dir
-        env["TRAIN_PROFILE"] = "0"
         if env_overrides:
             env.update(env_overrides)
 
@@ -396,6 +401,58 @@ class Bottle:
             msg=f"CLI failed with {result.returncode}.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
         )
         return result
+
+    def run_script(
+        self,
+        rel_path: str,
+        args: List[str],
+        env_overrides: Optional[Dict[str, str]] = None,
+    ):
+        """Runs a python script inside the bottle.
+
+        Args:
+            rel_path: Relative path to the script from project root (e.g. 'scripts/label.py').
+            args: List of command line arguments.
+            env_overrides: Dictionary of environment variables to override.
+        """
+        script_path = os.path.join(self.project_root, rel_path)
+        env = os.environ.copy()
+        env["TRAIN_ROOT"] = self.root_dir
+        # Ensure imports work for scripts not having path boilerplate (like scripts/label.py)
+        env["PYTHONPATH"] = self.project_root
+        if env_overrides:
+            env.update(env_overrides)
+
+        cmd = [sys.executable, script_path] + args
+        result = subprocess.run(
+            cmd,
+            env=env,
+            cwd=self.project_root,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        # Helper logging on failure
+        if result.returncode != 0:
+            # Just print for visibility, let assertion handle failure
+            print(f"Script failed: {cmd}")
+            print("STDOUT:", result.stdout)
+            print("STDERR:", result.stderr)
+
+        self.test_case.assertEqual(
+            result.returncode,
+            0,
+            msg=f"Script {rel_path} failed with {result.returncode}.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
+        )
+        return result
+
+    @contextlib.contextmanager
+    def environment(self):
+        """Context manager that sets TRAIN_ROOT to the bottle's root for in-process checks."""
+        from unittest.mock import patch
+
+        with patch.dict(os.environ, {"TRAIN_ROOT": self.root_dir}):
+            yield
 
     def assert_dir_layout(self, expected_manifest: List[str]):
         """Verifies the bottle's directory layout."""

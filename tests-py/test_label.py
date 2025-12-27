@@ -1,25 +1,20 @@
 import csv
 import os
-import shutil
-import sys
-import tempfile
 import unittest
-from unittest.mock import patch
 
-from kotogram import locations
-from scripts.label import main as label_main
+from training_test_utils import Bottle
+
 from train.cache import get_kotogram_cache
 
 
-# pylint: disable=protected-access
+# pylint: disable=protected-access, unnecessary-dunder-call
 class TestLabelScript(unittest.TestCase):
     def setUp(self):
-        self.test_dir = tempfile.mkdtemp()
-        with patch.dict(os.environ, {"TRAIN_ROOT": self.test_dir}):
-            self.shards_dir = locations.get_shards_cache_dir()
-        self.data_file = os.path.join(self.test_dir, "test_data.tsv")
+        self.bottle = Bottle(self)
+        self.bottle.__enter__()
 
-        # Create dummy data
+        # Create dummy data in bottle root
+        self.data_file = os.path.join(self.bottle.root_dir, "test_data.tsv")
         with open(self.data_file, "w", encoding="utf-8") as f:
             writer = csv.writer(f, delimiter="\t")
             writer.writerow(["id1", "label1", "これはテストです。"])
@@ -27,39 +22,33 @@ class TestLabelScript(unittest.TestCase):
             writer.writerow(["id3", "label3", "走る。"])
 
     def tearDown(self):
-        shutil.rmtree(self.test_dir)
+        self.bottle.__exit__(None, None, None)
         # Reset global cache instance if needed
         import train.cache
 
         train.cache._KOTOGRAM_CACHE = None
 
     def test_label_and_cache(self):
-        # Run label.py via main
-
-        # Mock sys.argv
-        test_args = [
-            "scripts/label.py",
+        # Run label.py via subprocess using Bottle
+        args = [
             "--grammatic-pattern",
             self.data_file,
-            # "--cache-dir", self.test_dir # Removed
         ]
 
-        # Point the cache to our temp dir
-        # Ensure the global cache is reset
+        self.bottle.run_script("scripts/label.py", args)
+
+        # Verify cache was created and populated
+        # Re-initialize to see what happened
         import train.cache
 
         train.cache._KOTOGRAM_CACHE = None
 
-        with patch.dict(os.environ, {"TRAIN_ROOT": self.test_dir}):
-            with patch.object(sys, "argv", test_args):
-                label_main()
+        with self.bottle.environment():
+            # In-process verification needs mocked environment
+            shards_dir = get_kotogram_cache().shards_dir
+            print(f"Checking results in {shards_dir}...")
 
-            # Verify cache was created and populated
-            # Re-initialize to see what happened
-            train.cache._KOTOGRAM_CACHE = None
             cache = get_kotogram_cache()
-
-            print(f"Checking results in {self.shards_dir}...")
             results = cache.get_batch(
                 ["これはテストです。", "美味しいですね。", "走る。"]
             )
@@ -83,53 +72,48 @@ class TestLabelScript(unittest.TestCase):
 
     def test_incremental_labeling(self):
         # First run
-
         import train.cache
 
         train.cache._KOTOGRAM_CACHE = None
 
-        test_args = [
-            "scripts/label.py",
+        args = [
             "--grammatic-pattern",
             self.data_file,
-            # "--cache-dir", self.test_dir # Removed
         ]
 
-        with patch.dict(os.environ, {"TRAIN_ROOT": self.test_dir}):
-            with patch.object(sys, "argv", test_args):
-                label_main()
+        self.bottle.run_script("scripts/label.py", args)
 
+        with self.bottle.environment():
             # Verify something was written
-            files = os.listdir(self.shards_dir)
+            shards_dir = get_kotogram_cache().shards_dir
+            files = os.listdir(shards_dir)
             print(f"Shard files: {files}")
             if not files:
                 self.fail("No shard files created")
 
-            shard_path = os.path.join(self.shards_dir, files[0])
+            shard_path = os.path.join(shards_dir, files[0])
             os.path.getmtime(shard_path)
 
-            # Second run with same data
-            with patch.object(sys, "argv", test_args):
-                label_main()
+        # Second run with same data
+        self.bottle.run_script("scripts/label.py", args)
 
-            # Add a new file
-            new_data_file = os.path.join(self.test_dir, "new_data.tsv")
-            with open(new_data_file, "w", encoding="utf-8") as f:
-                writer = csv.writer(f, delimiter="\t")
-                writer.writerow(["id4", "label4", "新しい文です。"])
+        # Add a new file
+        new_data_file = os.path.join(self.bottle.root_dir, "new_data.tsv")
+        with open(new_data_file, "w", encoding="utf-8") as f:
+            writer = csv.writer(f, delimiter="\t")
+            writer.writerow(["id4", "label4", "新しい文です。"])
 
-            test_args_new = [
-                "scripts/label.py",
-                "--grammatic-pattern",
-                self.data_file,
-                "--agrammatic-pattern",
-                new_data_file,
-                # "--cache-dir", self.test_dir
-            ]
-            with patch.object(sys, "argv", test_args_new):
-                label_main()
+        args_new = [
+            "--grammatic-pattern",
+            self.data_file,
+            "--agrammatic-pattern",
+            new_data_file,
+        ]
 
-            train.cache._KOTOGRAM_CACHE = None
+        self.bottle.run_script("scripts/label.py", args_new)
+
+        train.cache._KOTOGRAM_CACHE = None
+        with self.bottle.environment():
             cache = get_kotogram_cache()
             results = cache.get_batch(["新しい文です。"])
             self.assertIsNotNone(results["新しい文です。"])

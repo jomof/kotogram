@@ -39,6 +39,7 @@ from train.types import KCMetricsAccumulator, KCProbeConfig, TrainingMetrics
 from train.worker import _worker_init_fn
 
 from .display import (
+    print_best_model_saved,
     print_epoch_summary,
     print_kc_epoch_compact_summary,
     print_kc_first_batch_debug,
@@ -2643,6 +2644,12 @@ class Trainer:
                     k: cast(torch.Tensor, v.cpu().clone())
                     for k, v in self.model.state_dict().items()
                 }
+                if is_main_process():
+                    # Ensure directory exists (it might not have been created yet on first epoch)
+                    os.makedirs(self.output_path, exist_ok=True)
+                    model_path = os.path.join(self.output_path, "model.pt")
+                    torch.save(self.best_state, model_path)
+                    print_best_model_saved(model_path, self.best_val_loss)
             else:
                 self.patience_counter += 1
                 if self.patience_counter >= self.config.patience:

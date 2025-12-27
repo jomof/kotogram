@@ -45,7 +45,7 @@ def test_kyoshigo_exclusion():
     # Since it has no gender valence, a pure Kyoshigo sentence is gender-unpragmatic.
     assert infer_gender_from_register(
         GenderLevel.NEUTRAL, [RegisterLevel.KYOSHIGO]
-    ) == (0.0, 0)
+    ) == (0.0, 1)
 
 
 def test_conflict_unpragmatic():
@@ -65,8 +65,10 @@ def test_conflict_unpragmatic():
 
 
 def test_neutral_default():
-    # Default case (no markers) must be UNPRAGMATIC (0) to avoid contaminating training data
-    assert infer_gender_from_register(GenderLevel.NEUTRAL, []) == (0.0, 0)
+    # Default case (no markers) is now PRAGMATIC (1) as we want to train on neutral sentences.
+    assert infer_gender_from_register(GenderLevel.NEUTRAL, []) == (0.0, 1)
+    # KANSAIBEN is a region, not gendered, but still valid neutral/dialect training data?
+    # User said "No registers should be excluded".
     assert infer_gender_from_register(
         GenderLevel.NEUTRAL, [RegisterLevel.KANSAIBEN]
-    ) == (0.0, 0)
+    ) == (0.0, 1)

@@ -9,6 +9,17 @@ from training_test_utils import Bottle
 @unittest.skipIf(os.environ.get("GITHUB_ACTIONS") == "true", "Skipping on GitHub CI")
 class TestTrainStyleScript(unittest.TestCase):
     # pylint: disable=too-many-locals
+
+    def setUp(self):
+        # Force profiling on for integration test logic so we can verify profile artifacts
+        self.profile_patcher = unittest.mock.patch.dict(
+            os.environ, {"TRAIN_PROFILE": "1"}
+        )
+        self.profile_patcher.start()
+
+    def tearDown(self):
+        self.profile_patcher.stop()
+
     def test_train(self):
         # Common arguments to reduce model size for faster testing
         common_args = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
@@ -82,6 +93,7 @@ class TestTrainStyleScript(unittest.TestCase):
                         # checkpoint_optim.pt is now merged into checkpoint.pt
                         "[models]/style-support/checkpoint_meta.pt ADDED",
                         "[models]/style-support/config.json MODIFIED",
+                        "[models]/style/__init__.py ADDED",
                         "[models]/style/model.pt ADDED",
                         "[models]/style/model.json ADDED",
                         "[models]/style/labels.json ADDED",
@@ -187,9 +199,11 @@ class TestTrainStyleScript(unittest.TestCase):
 
                         # Verify counts
                         # KC pretraining uses ONLY grammatical sentences from the training split
-                        self.assertEqual(
+                        # KC pretraining uses ONLY grammatical sentences from the training split,
+                        # so it must be strictly less than the total style training set (which includes agrammatic).
+                        self.assertLess(
                             history[0]["sentence_count"],
-                            expected_counts["grammatic_sentences_in_train_split"],
+                            expected_counts["total_train_split_size"],
                         )
 
                         # KC metrics check

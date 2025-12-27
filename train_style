@@ -630,6 +630,8 @@ def main() -> int:
     if not os.path.isabs(train_root):
         train_root = os.path.join(PROJECT_ROOT, train_root)
     env["TRAIN_ROOT"] = train_root
+    # Sync TRAIN_ROOT to os.environ so train.profile functions use the correct absolute path
+    os.environ["TRAIN_ROOT"] = train_root
 
     # Enable MPS fallback for unsupported ops (Mac Apple Silicon)
     env["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
@@ -639,12 +641,16 @@ def main() -> int:
     env["MASTER_ADDR"] = "127.0.0.1"
 
     # Profiling support
+    from train.profile import get_profile_dir, profiling_enabled
+
     profile_dir = ""
-    if env.get("TRAIN_PROFILE", "1") != "0":
-        profile_dir = os.path.join(train_root, ".profile")
-        os.makedirs(profile_dir, exist_ok=True)
-        if not args.show_config:
-            print(f"Profiling enabled. Results will be written to: {profile_dir}")
+    if profiling_enabled():
+        p_dir = get_profile_dir()
+        if p_dir:
+            profile_dir = p_dir
+            os.makedirs(profile_dir, exist_ok=True)
+            if not args.show_config:
+                print(f"Profiling enabled. Results will be written to: {profile_dir}")
 
     # Get paths from locations module
     # Get paths from locations module

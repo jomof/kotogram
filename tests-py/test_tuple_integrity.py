@@ -27,40 +27,10 @@ class TestResultIntegrity(unittest.TestCase):
         batch = [("これはテストです", 1)]  # (sentence, gram_label)
         results, _ = _process_sentence_batch(batch)
 
-        assert len(results) == 1, "Expected 1 result"
-        result = results[0]
-
-        # Validate type
-        assert isinstance(result, ProcessedSample), (
-            f"Result should be ProcessedSample, got {type(result)}"
-        )
-
-        # Validate attributes
-        self.assertTrue(hasattr(result, "sentence"), "Missing sentence attribute")
-        assert isinstance(result.sentence, str), (
-            f"sentence should be str, got {type(result.sentence)}"
-        )
-        assert isinstance(result.kotogram, str), (
-            f"kotogram should be str, got {type(result.kotogram)}"
-        )
-        assert isinstance(result.formality_id, int), (
-            f"formality_id should be int, got {type(result.formality_id)}"
-        )
-        assert isinstance(result.gender_value, float), (
-            f"gender_value should be float, got {type(result.gender_value)}"
-        )
-        assert isinstance(result.gender_pragmatic, int), (
-            f"gender_pragmatic should be int, got {type(result.gender_pragmatic)}"
-        )
-        assert isinstance(result.register_ids, list), (
-            f"register_ids should be list, got {type(result.register_ids)}"
-        )
-        assert isinstance(result.gram_label, int), (
-            f"gram_label should be int, got {type(result.gram_label)}"
-        )
-        assert isinstance(result.success, int), (
-            f"success should be int, got {type(result.success)}"
-        )
+        assert isinstance(results, dict)
+        assert len(results["sentences"]) == 1, "Expected 1 result"
+        assert results["sentences"][0] == "これはテストです"
+        assert isinstance(results["f_ids"][0], int)
 
     def test_compute_labels_batch_returns_objects(self):
         """Verify _compute_labels_batch returns ProcessedSample objects."""
@@ -72,40 +42,28 @@ class TestResultIntegrity(unittest.TestCase):
         batch = [("テスト", "テスト[*]", 1)]  # (sentence, kotogram, gram_label)
         results, _ = _compute_labels_batch(batch)
 
-        assert len(results) == 1, "Expected 1 result"
-        result = results[0]
+        assert isinstance(results, dict), f"Expected dict results, got {type(results)}"
+        assert len(results["sentences"]) == 1, "Expected 1 result sentence"
 
-        # Validate type
-        assert isinstance(result, ProcessedSample), (
-            f"Result should be ProcessedSample, got {type(result)}"
-        )
+        # Verify columns exist
+        expected_keys = [
+            "sentences",
+            "kotograms",
+            "f_ids",
+            "g_vals",
+            "g_prags",
+            "gram_labels",
+            "reg_ids_flat",
+            "reg_ids_lens",
+        ]
+        for key in expected_keys:
+            assert key in results, f"Missing key {key}"
+            assert isinstance(results[key], list), f"{key} should be a list"
 
-        # Validate attributes
-        self.assertTrue(hasattr(result, "sentence"))
-        assert isinstance(result.sentence, str), (
-            f"sentence should be str, got {type(result.sentence)}"
-        )
-        assert isinstance(result.kotogram, str), (
-            f"kotogram should be str, got {type(result.kotogram)}"
-        )
-        assert isinstance(result.formality_id, int), (
-            f"formality_id should be int, got {type(result.formality_id)}"
-        )
-        assert isinstance(result.gender_value, float), (
-            f"gender_value should be float, got {type(result.gender_value)}"
-        )
-        assert isinstance(result.gender_pragmatic, int), (
-            f"gender_pragmatic should be int, got {type(result.gender_pragmatic)}"
-        )
-        assert isinstance(result.register_ids, list), (
-            f"register_ids should be list, got {type(result.register_ids)}"
-        )
-        assert isinstance(result.gram_label, int), (
-            f"gram_label should be int, got {type(result.gram_label)}"
-        )
-        assert isinstance(result.success, int), (
-            f"success should be int, got {type(result.success)}"
-        )
+        # Verify values
+        assert results["sentences"][0] == "テスト"
+        assert results["f_ids"][0] == 2  # Neutral (assuming ID 2)
+        assert results["gram_labels"][0] == 1
 
     def test_process_parallel_returns_objects(self):
         """Verify _process_sentence_batch returns ProcessedSample objects."""
@@ -121,38 +79,17 @@ class TestResultIntegrity(unittest.TestCase):
 
         results, _ = _process_sentence_batch(rows)
 
-        assert len(results) > 0, "Expected at least some results"
+        assert isinstance(results, dict)
+        cnt = len(results["sentences"])
+        assert cnt > 0, "Expected at least some results"
 
-        for i, result in enumerate(results):
-            # Validate type
-            assert isinstance(result, ProcessedSample), (
-                f"Result {i} should be ProcessedSample"
-            )
-
-            # Validate attributes
-            self.assertTrue(hasattr(result, "sentence"))
-            assert isinstance(result.sentence, str), (
-                f"Result {i}: sentence should be str"
-            )
-            assert isinstance(result.kotogram, str), (
-                f"Result {i}: kotogram should be str"
-            )
-            assert isinstance(result.formality_id, int), (
-                f"Result {i}: f_id should be int"
-            )
-            assert isinstance(result.gender_value, float), (
-                f"Result {i}: g_val should be float"
-            )
-            assert isinstance(result.gender_pragmatic, int), (
-                f"Result {i}: g_prag should be int"
-            )
-            assert isinstance(result.register_ids, list), (
-                f"Result {i}: r_ids should be list, got {type(result.register_ids)}"
-            )
-            assert isinstance(result.gram_label, int), (
-                f"Result {i}: gram_label should be int"
-            )
-            assert isinstance(result.success, int), f"Result {i}: success should be int"
+        for i in range(cnt):
+            assert isinstance(results["sentences"][i], str)
+            assert isinstance(results["kotograms"][i], str)
+            assert isinstance(results["f_ids"][i], int)
+            assert isinstance(results["g_vals"][i], float)
+            assert isinstance(results["g_prags"][i], int)
+            assert isinstance(results["gram_labels"][i], int)
 
     def test_register_ids_contains_valid_integers(self):
         """Verify register_ids list contains valid integer IDs."""
@@ -163,14 +100,20 @@ class TestResultIntegrity(unittest.TestCase):
         batch = [("お嬢様はごきげんよう", 1)]  # Ojousama register
         results, _ = _process_sentence_batch(batch)
 
-        assert len(results) == 1
-        result = results[0]
-        register_ids = result.register_ids
+        assert isinstance(results, dict)
+        assert len(results["sentences"]) == 1
 
-        assert isinstance(register_ids, list), (
-            f"register_ids should be list, got {type(register_ids)}"
-        )
-        assert len(register_ids) > 0, "register_ids should not be empty"
+        reg_ids_flat = results["reg_ids_flat"]
+        reg_ids_lens = results["reg_ids_lens"]
+
+        assert len(reg_ids_lens) == 1
+        length = reg_ids_lens[0]
+        assert length > 0
+
+        # In this simple batch of 1, flat list is just the ids
+        register_ids = reg_ids_flat
+        assert len(register_ids) == length
+
         for rid in register_ids:
             assert isinstance(rid, int), f"register ID should be int, got {type(rid)}"
             assert 0 <= rid <= 10, f"register ID {rid} out of expected range [0, 10]"
