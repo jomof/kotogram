@@ -1,34 +1,11 @@
 """Model extensions and heads for style training."""
 
-from typing import Any, Dict, Optional, cast
+from typing import Any, Dict, Optional
 
 import torch
-import torch.nn.functional as F
 from torch import nn
 
 from kotogram.model import ModelConfig, StyleClassifier
-from kotogram.tokenizer import FEATURE_FIELDS
-
-
-class MLMHead(nn.Module):
-    """Masked language modeling head for feature-based tokens."""
-
-    def __init__(self, config: ModelConfig):
-        super().__init__()
-        self.config = config
-        self.shared_dense = nn.Linear(config.d_model, config.d_model)
-        self.shared_norm = nn.LayerNorm(config.d_model)
-
-        self.decoders = nn.ModuleDict()
-        for field_name in FEATURE_FIELDS:
-            vocab_size = config.vocab_sizes.get(field_name, 100)
-            self.decoders[field_name] = nn.Linear(config.d_model, vocab_size)
-
-    def forward(self, hidden_states: torch.Tensor) -> Dict[str, torch.Tensor]:
-        x = self.shared_dense(hidden_states)
-        x = F.gelu(x)  # pylint: disable=not-callable
-        x = self.shared_norm(x)
-        return {field: decoder(x) for field, decoder in self.decoders.items()}
 
 
 class KCDecoder(nn.Module):
@@ -46,12 +23,11 @@ class KCDecoder(nn.Module):
         }
 
 
-class StyleClassifierWithMLM(StyleClassifier):
-    """Multi-task style classifier with MLM and KC pretraining support."""
+class StyleClassifierWithKC(StyleClassifier):
+    """Multi-task style classifier with KC pretraining support."""
 
     def __init__(self, config: ModelConfig):
         super().__init__(config)
-        self.mlm_head = MLMHead(config)
         if config.kc_enabled:
             self.kc_decoders = KCDecoder(config.kc_vocab_size, config.kc_target_specs)
 
@@ -61,8 +37,6 @@ class StyleClassifierWithMLM(StyleClassifier):
         mode: str = "classification",
         **kwargs: Any,
     ) -> Any:
-        if mode == "mlm":
-            return self.forward_mlm(*args, **kwargs)
         if mode == "kc":
             return self.forward_kc(*args, **kwargs)
         return super().forward(*args, **kwargs)
@@ -148,14 +122,6 @@ class StyleClassifierWithMLM(StyleClassifier):
             "topk_inds": topk_inds,
             "target_logits": target_logits,
         }
-
-    def forward_mlm(
-        self,
-        field_inputs: Dict[str, torch.Tensor],
-        attention_mask: Optional[torch.Tensor] = None,
-    ) -> Dict[str, torch.Tensor]:
-        encoder_output = self.get_encoder_output(field_inputs, attention_mask)
-        return cast(Dict[str, torch.Tensor], self.mlm_head(encoder_output))
 
     def reset_classifier(self) -> None:
         """Reinitialize all classifier head weights."""

@@ -844,55 +844,6 @@ def _collate_kc_targets(
 
 
 # pylint: disable=too-many-locals
-def create_mlm_batch(
-    batch: Dict[str, torch.Tensor],
-    mask_prob: float = 0.15,
-    mask_token_id: int = 3,
-    vocab_sizes: Optional[Dict[str, int]] = None,
-    special_token_ids: Optional[List[int]] = None,
-) -> Dict[str, torch.Tensor]:
-    """Create masked language modeling batch for feature-based tokens."""
-    special_token_ids = special_token_ids or [0, 1, 2, 3]
-    vocab_sizes = vocab_sizes or {}
-    hidden_fields = ["surface", "lemma"]
-    primary_field = "pos"
-    primary_ids = batch[f"input_ids_{primary_field}"].clone()
-
-    maskable = batch["attention_mask"].bool()
-    for special_id in special_token_ids:
-        maskable &= primary_ids != special_id
-
-    probs = torch.rand_like(primary_ids.float())
-    mask = maskable & (probs < mask_prob)
-    mask_token_positions = mask & (probs < mask_prob * 0.8)
-    random_token_positions = (
-        mask & (probs >= mask_prob * 0.8) & (probs < mask_prob * 0.9)
-    )
-
-    result = {"attention_mask": batch["attention_mask"]}
-    for field in FEATURE_FIELDS:
-        field_ids = batch[f"input_ids_{field}"].clone()
-        mlm_labels = torch.full_like(field_ids, -100)
-        if field in hidden_fields:
-            active_tokens = batch["attention_mask"].bool()
-            field_ids[active_tokens] = mask_token_id
-        else:
-            mlm_labels[mask] = field_ids[mask]
-            field_ids[mask_token_positions] = mask_token_id
-            field_vocab_size = vocab_sizes.get(field)
-            if field_vocab_size:
-                num_random = int(random_token_positions.sum().item())
-                low, high = len(special_token_ids), field_vocab_size
-                if num_random > 0 and high > low:
-                    field_ids[random_token_positions] = torch.randint(
-                        low, high, (num_random,)
-                    )
-        result[f"mlm_labels_{field}"] = mlm_labels
-        result[f"input_ids_{field}"] = field_ids
-    return result
-
-
-# pylint: disable=too-many-locals
 def create_kc_batch(
     batch: Dict[str, torch.Tensor],
     _tokenizer: Tokenizer,

@@ -17,8 +17,8 @@ class TestTrainStyleScript(unittest.TestCase):
         test_configs = [
             {"name": "regular", "extra_args": f"{common_args}"},
             {
-                "name": "pretrain-all",
-                "extra_args": f"{common_args} --pretrain-mlm --pretrain-epochs 1 --pretrain-kc --kc-epochs 1 --kc-k 256",
+                "name": "pretrain-kc",
+                "extra_args": f"{common_args} --pretrain-kc --kc-epochs 1 --kc-k 256",
             },
         ]
 
@@ -67,13 +67,8 @@ class TestTrainStyleScript(unittest.TestCase):
                     # Verify epochs trained
                     # For pretrain-mlm/kc: expect [1, 1] (1 pretrain + 1 fine-tune)
                     # For regular: expect [1] (just 1 fine-tune)
-                    if "pretrain-all" in config["name"]:
-                        expected_epochs = [1, 1, 1]  # MLM, KC, Style
-                    elif (
-                        "pretrain-mlm" in config["extra_args"]
-                        or "pretrain-kc" in config["extra_args"]
-                    ):
-                        expected_epochs = [1, 1]  # One pretrain, one style
+                    if "pretrain-kc" in config["name"]:
+                        expected_epochs = [1, 1]  # 1 KC, 1 Style
                     else:
                         expected_epochs = [1]
                     bottle.assertEpochsTrained(result1, expected_epochs)
@@ -93,10 +88,6 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[models]/style/model_type.txt ADDED",
                     ]
 
-                    if "pretrain-mlm" in config["extra_args"]:
-                        expected_train_differences.append(
-                            "[models]/style-support/checkpoint_mlm.pt ADDED"
-                        )
                     if "pretrain-kc" in config["extra_args"]:
                         expected_train_differences.append(
                             "[models]/style-support/checkpoint_kc.pt ADDED"
@@ -191,31 +182,25 @@ class TestTrainStyleScript(unittest.TestCase):
                             history[0]["sentence_count"],
                             expected_counts["total_train_split_size"],
                         )
-                    elif config["name"] == "pretrain-all":
-                        self.assertGreaterEqual(len(history), 4)
-                        self.assertEqual(history[0]["type"], "pretrain-mlm")
-                        self.assertEqual(history[1]["type"], "pretrain-kc")
+                    elif config["name"] == "pretrain-kc":
+                        self.assertGreaterEqual(len(history), 3)
+                        self.assertEqual(history[0]["type"], "pretrain-kc")
 
                         # Verify counts
-                        # MLM pretraining uses the full grammatical dataset
-                        self.assertEqual(
-                            history[0]["sentence_count"],
-                            expected_counts["total_grammatic_sentences"],
-                        )
                         # KC pretraining uses ONLY grammatical sentences from the training split
                         self.assertEqual(
-                            history[1]["sentence_count"],
+                            history[0]["sentence_count"],
                             expected_counts["grammatic_sentences_in_train_split"],
                         )
 
                         # KC metrics check
-                        self.assertIn("avg_struct_loss", history[1])
+                        self.assertIn("avg_struct_loss", history[0])
 
                     # All remaining entries are always standard style fine-tuning
                     # Remaining entries are style fine-tuning
                     start_idx = 1
-                    if config["name"] == "pretrain-all":
-                        start_idx = 2
+                    if config["name"] == "pretrain-kc":
+                        start_idx = 1
 
                     for i in range(start_idx, len(history)):
                         self.assertEqual(history[i]["type"], "style")

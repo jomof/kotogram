@@ -29,13 +29,13 @@ from train.config import (
     _safe_configure_threads,
     configure_runtime_thread_limits,
 )
-from train.dataset import StyleDataset, collate_fn, create_kc_batch, create_mlm_batch
+from train.dataset import StyleDataset, collate_fn, create_kc_batch
 from train.distributed import is_main_process
 from train.io import (
     load_training_state,
     save_training_state,
 )
-from train.models import StyleClassifierWithMLM
+from train.models import StyleClassifierWithKC
 from train.profile import Timer, get_profile_dir
 from train.types import KCMetricsAccumulator, KCProbeConfig, TrainingMetrics
 from train.worker import _worker_init_fn
@@ -49,342 +49,6 @@ from .display import (
     print_phase_header,
     print_progress_bar,
 )
-
-
-class MLMTrainer:
-    """Trainer for self-supervised MLM pretraining."""
-
-    # pylint: disable=too-many-positional-arguments
-    def __init__(
-        self,
-        model: StyleClassifierWithMLM,
-        dataset: StyleDataset,
-        config: Optional[TrainerConfig] = None,
-        dl_config: Optional[DataLoaderConfig] = None,
-        mask_prob: float = 0.15,
-        args: Optional[Any] = None,
-    ):
-        # MLMTrainer only trains on grammatical sentences
-        # Use filter_by_grammaticality to handle both list and tensor modes
-        dataset = dataset.filter_by_grammaticality(1)
-
-        self.model = model
-        self.dataset = dataset
-        self.config = config or TrainerConfig()
-        self.args = args
-
-        # Configure PyTorch threads
-        _safe_configure_threads(self.config)
-
-        configure_runtime_thread_limits(self.config)
-        self.mask_prob = mask_prob
-
-        if self.config.world_size > 1:
-            self.device = torch.device("cuda", self.config.local_rank)
-            self.is_distributed = True
-        else:
-            self.device = torch.device(self.config.device)
-            self.is_distributed = False
-
-        self.model.to(self.device)
-        if self.is_distributed:
-            self.model = cast(
-                StyleClassifierWithMLM,
-                DDP(
-                    self.model,
-                    device_ids=[self.config.local_rank],
-                    output_device=self.config.local_rank,
-                    find_unused_parameters=True,
-                ),
-            )
-
-        device_type = (
-            "cuda"
-            if "cuda" in str(self.device)
-            else ("mps" if "mps" in str(self.device) else "cpu")
-        )
-        self.scaler = GradScaler(device=device_type, enabled=self.config.use_amp)
-
-        pad_id = dataset.tokenizer.pad_id
-        max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
-        self.vocab_sizes = dataset.tokenizer.get_vocab_sizes()
-
-        self.sampler: Optional[DistributedSampler] = (
-            DistributedSampler(
-                dataset,
-                num_replicas=self.config.world_size,
-                rank=self.config.local_rank,
-                shuffle=True,
-            )
-            if self.is_distributed
-            else None
-        )
-
-        if dl_config is None:
-            # Fallback for compatibility/testing if not passed
-            dl_config = self.config.resolve_dataloader_config(
-                self.device, is_main_process()
-            )
-
-        self.data_loader = DataLoader(
-            dataset,
-            batch_size=self.config.batch_size,
-            shuffle=(self.sampler is None),
-            sampler=self.sampler,
-            collate_fn=partial(
-                collate_fn, pad_id=pad_id, max_seq_len=cast(Optional[int], max_seq_len)
-            ),
-            num_workers=dl_config.num_workers,
-            pin_memory=dl_config.pin_memory,
-            persistent_workers=dl_config.persistent_workers,
-            prefetch_factor=dl_config.prefetch_factor,
-            worker_init_fn=_worker_init_fn,
-        )
-
-        self.criterion = nn.CrossEntropyLoss(ignore_index=-100)
-        self.optimizer = Adam(self.model.parameters(), lr=self.config.learning_rate)
-        self.field_weights = {f: 1.0 for f in FEATURE_FIELDS}
-        self.history: Dict[str, Any] = {
-            "mlm_loss": [],
-            "field_losses": {f: [] for f in FEATURE_FIELDS},
-            "sentence_count": [],
-        }
-        profile_dir = get_profile_dir()
-        if profile_dir and is_main_process():
-            print(f"DEBUG: MLMTrainer profile_dir={profile_dir}")
-
-        pid = os.getpid()
-        self.train_timer_data = Timer(
-            "mlm_data",
-            os.path.join(profile_dir, f"mlm_data_{pid}.jsonl") if profile_dir else None,
-        )
-        self.train_timer_compute = Timer(
-            "mlm_compute",
-            os.path.join(profile_dir, f"mlm_compute_{pid}.jsonl")
-            if profile_dir
-            else None,
-        )
-        self.start_epoch = 0
-        self.start_batch = 0
-        self.global_step = 0
-
-    def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
-        """Save training checkpoint."""
-        if not is_main_process() or self.config.checkpoint.dir is None:
-            return
-
-        save_training_state(
-            path=self.config.checkpoint.dir,
-            model=getattr(self.model, "module", self.model),
-            optimizer=self.optimizer,
-            epoch=epoch,
-            history=self.history,
-            global_step=self.global_step,
-            batch_idx=batch_idx,
-            scaler=self.scaler,
-            config=self.args or self.config,
-            filename="checkpoint_mlm.pt",
-        )
-
-    def restore_from_checkpoint(self, path: str) -> bool:
-        """Restore training state from checkpoint."""
-        full_path = os.path.join(path, "checkpoint_mlm.pt")
-        if not os.path.exists(full_path):
-            return False
-
-        checkpoint = load_training_state(
-            path=path,
-            model=getattr(self.model, "module", self.model),
-            optimizer=self.optimizer,
-            scaler=self.scaler,
-            filename="checkpoint_mlm.pt",
-            device=str(self.device),
-        )
-        self.start_epoch = checkpoint["epoch"]
-        self.start_batch = checkpoint.get("batch_idx", 0)
-        self.global_step = checkpoint.get("global_step", 0)
-        self.history = checkpoint["history"]
-        if is_main_process():
-            print(
-                f"  [Resume] Restored MLM checkpoint from {path} "
-                f"(epoch {self.start_epoch}, step {self.global_step})"
-            )
-        return True
-
-    # pylint: disable=too-many-locals
-    def train_epoch(
-        self, epoch: int, verbose: bool = True
-    ) -> Tuple[float, Dict[str, float]]:
-        if verbose and is_main_process():
-            print_phase_header(
-                "MLM", epoch=epoch + 1, total_epochs=self.config.mlm_epochs
-            )
-
-        self.model.train()
-        total_loss, n_batches = 0.0, 0
-        field_losses = {f: 0.0 for f in FEATURE_FIELDS}
-        total_batches = len(self.data_loader)
-
-        self.train_timer_data.start()
-        # Initialize batch_idx to handle empty loops
-        batch_idx = 0
-        for batch_idx, batch in enumerate(self.data_loader):
-            self.train_timer_data.stop(epoch, batch_idx)
-            self.train_timer_compute.start()
-
-            # Mid-epoch resume: skip batches already processed
-            if epoch == self.start_epoch and batch_idx < self.start_batch:
-                continue
-
-            mlm_batch = create_mlm_batch(
-                batch,
-                mask_prob=self.mask_prob,
-                mask_token_id=self.dataset.tokenizer.mask_id,
-                vocab_sizes=self.vocab_sizes,
-            )
-            field_inputs = {
-                k: v.to(self.device)
-                for k, v in mlm_batch.items()
-                if k.startswith("input_ids_")
-            }
-            attention_mask = mlm_batch["attention_mask"].to(self.device)
-
-            self.optimizer.zero_grad(set_to_none=True)
-            device_type = (
-                "cuda"
-                if "cuda" in str(self.device)
-                else ("mps" if "mps" in str(self.device) else "cpu")
-            )
-
-            with autocast(device_type=device_type, enabled=self.config.use_amp):
-                mlm_logits_dict = self.model(
-                    field_inputs, attention_mask=attention_mask, mode="mlm"
-                )
-                batch_loss, valid_fields_count = (
-                    torch.tensor(0.0, device=self.device),
-                    0,
-                )
-                for f in FEATURE_FIELDS:
-                    logits = mlm_logits_dict[f]
-                    labels = mlm_batch[f"mlm_labels_{f}"].to(self.device)
-                    if (labels != -100).sum() == 0:
-                        continue
-                    f_loss = self.criterion(
-                        logits.view(-1, logits.size(-1)), labels.view(-1)
-                    )
-                    if torch.isnan(f_loss):
-                        continue
-                    batch_loss += self.field_weights[f] * f_loss
-                    field_losses[f] += f_loss.item()
-                    valid_fields_count += 1
-                loss = (
-                    (batch_loss / valid_fields_count)
-                    if valid_fields_count > 0
-                    else torch.tensor(0.0, device=self.device, requires_grad=True)
-                )
-                loss = loss / self.config.grad_accum_steps
-
-            self.scaler.scale(loss).backward()
-            if (batch_idx + 1) % self.config.grad_accum_steps == 0:
-                if self.config.gradient_clip > 0:
-                    self.scaler.unscale_(self.optimizer)
-                    nn.utils.clip_grad_norm_(
-                        self.model.parameters(), self.config.gradient_clip
-                    )
-                self.scaler.step(self.optimizer)
-                self.scaler.update()
-                self.optimizer.zero_grad(set_to_none=True)
-
-            total_loss += loss.item() * self.config.grad_accum_steps
-            n_batches += 1
-            self.global_step += 1
-
-            # Round 17: Periodic checkpointing
-            if (
-                self.config.checkpoint.every_n_steps
-                and self.global_step % self.config.checkpoint.every_n_steps == 0
-            ):
-                self.save_checkpoint(self.start_epoch + epoch, batch_idx)
-
-            if verbose and is_main_process():
-                if (
-                    batch_idx % self.config.progress_update_every == 0
-                    or batch_idx == total_batches - 1
-                ):
-                    print_progress_bar(batch_idx, total_batches, total_loss / n_batches)
-
-                if (
-                    self.config.log_flush_every > 0
-                    and batch_idx % self.config.log_flush_every == 0
-                ):
-                    sys.stdout.flush()
-
-            self.train_timer_compute.stop(epoch, batch_idx)
-            self.train_timer_data.start()
-
-        # Reset start_batch for next epoch
-        self.start_batch = 0
-        self.train_timer_data.stop(epoch, batch_idx if total_batches > 0 else 0)
-
-        if verbose and is_main_process():
-            sys.stdout.write("\n")
-            sys.stdout.flush()
-        return total_loss / n_batches, {
-            f: loss_val / n_batches for f, loss_val in field_losses.items()
-        }
-
-    def train(
-        self,
-        epochs: Optional[int] = None,
-        verbose: bool = True,
-        on_epoch_end: Optional[Callable[[Dict[str, Any]], None]] = None,
-    ) -> Dict[str, Any]:
-        actual_epochs = epochs or self.config.mlm_epochs
-
-        # Round 17: Auto-resume
-        if self.config.checkpoint.resume_from:
-            self.restore_from_checkpoint(self.config.checkpoint.resume_from)
-
-        for epoch in range(self.start_epoch, actual_epochs):
-            if self.is_distributed:
-                cast(DistributedSampler, self.sampler).set_epoch(epoch)
-            mlm_loss, fields = self.train_epoch(epoch=epoch, verbose=verbose)
-            self.history["mlm_loss"].append(mlm_loss)
-            for f, v in fields.items():
-                self.history["field_losses"][f].append(v)
-            if verbose and is_main_process():
-                print_epoch_summary(
-                    epoch + 1,
-                    actual_epochs,
-                    {"MLM Loss": mlm_loss},
-                    {
-                        f: v
-                        for f, v in fields.items()
-                        if v > 0.0001  # Only show non-trivial losses to declutter
-                    },
-                    phase="MLM",
-                )
-            self.history["sentence_count"].append(len(self.dataset))
-
-            # Performance report
-            if verbose and is_main_process():
-                data_avg = self.train_timer_data.avg()
-                compute_avg = self.train_timer_compute.avg()
-                total = data_avg + compute_avg
-                if total > 0:
-                    print(
-                        f"  [Time] Avg batch: {total * 1000:.1f}ms (Data: {data_avg * 1000:.1f}ms ({data_avg / total:.1%}), Compute: {compute_avg * 1000:.1f}ms)"
-                    )
-                self.train_timer_data.reset()
-                self.train_timer_compute.reset()
-
-            # Save end-of-epoch checkpoint
-            self.save_checkpoint(epoch + 1, 0)
-
-            if on_epoch_end and is_main_process():
-                on_epoch_end(self.history)
-        return self.history
-
 
 # =============================================================================
 # Round 11: NaN Recovery Utilities for KC Training
@@ -440,7 +104,7 @@ class KCTrainer:
     # pylint: disable=too-many-positional-arguments
     def __init__(
         self,
-        model: StyleClassifierWithMLM,
+        model: StyleClassifierWithKC,
         dataset: StyleDataset,
         config: Optional[TrainerConfig] = None,
         dl_config: Optional[DataLoaderConfig] = None,
@@ -475,7 +139,7 @@ class KCTrainer:
         self.model.to(self.device)
         if self.is_distributed:
             self.model = cast(
-                StyleClassifierWithMLM,
+                StyleClassifierWithKC,
                 DDP(
                     self.model,
                     device_ids=[self.config.local_rank],
@@ -685,7 +349,7 @@ class KCTrainer:
         Round 12: Uses state_dict() for cleaner rollback.
         """
         raw = self.model.module if self.is_distributed else self.model
-        m = cast(StyleClassifierWithMLM, raw)
+        m = cast(StyleClassifierWithKC, raw)
         self._kc_last_good_state = {
             "kc_head": {
                 k: v.detach().cpu().clone() for k, v in m.kc_head.state_dict().items()
@@ -705,7 +369,7 @@ class KCTrainer:
         if self._kc_last_good_state is None:
             return False
         raw = self.model.module if self.is_distributed else self.model
-        m = cast(StyleClassifierWithMLM, raw)
+        m = cast(StyleClassifierWithKC, raw)
 
         # Restore kc_head
         device = next(m.kc_head.parameters()).device
@@ -728,7 +392,7 @@ class KCTrainer:
     def _reinit_kc_head(self) -> None:
         """Reinitialize kc_head weights (xavier) and biases (zeros) as fallback."""
         raw = self.model.module if self.is_distributed else self.model
-        m = cast(StyleClassifierWithMLM, raw)
+        m = cast(StyleClassifierWithKC, raw)
         nn.init.xavier_uniform_(m.kc_head.linear.weight)
         if m.kc_head.linear.bias is not None:
             nn.init.zeros_(m.kc_head.linear.bias)
@@ -804,7 +468,7 @@ class KCTrainer:
     # pylint: disable=too-many-locals
     def _init_structural_decoder_biases(self, num_batches: int = 10) -> None:
         raw = self.model.module if self.is_distributed else self.model
-        m = cast("StyleClassifierWithMLM", raw)
+        m = cast("StyleClassifierWithKC", raw)
         if not hasattr(m, "kc_decoders"):
             return
 
@@ -892,7 +556,7 @@ class KCTrainer:
     # pylint: disable=too-many-locals,too-many-positional-arguments
     def _perform_optimizer_step(
         self,
-        m: StyleClassifierWithMLM,
+        m: StyleClassifierWithKC,
         _verbose: bool,
         has_printed_step_check: bool,
         accum: int,
@@ -1054,7 +718,7 @@ class KCTrainer:
         # Re-create optimizer or update it. To ensure resumability, we always
         # keep the same number of parameter groups.
         raw = self.model.module if self.is_distributed else self.model
-        m = cast(StyleClassifierWithMLM, raw)
+        m = cast(StyleClassifierWithKC, raw)
 
         # Group 0: KC Heads
         pg_heads = {
@@ -1111,7 +775,7 @@ class KCTrainer:
 
         # Epoch-level KC Usage Accumulators
         raw = self.model.module if self.is_distributed else self.model
-        kc_vocab_size = int(cast(StyleClassifierWithMLM, raw).config.kc_vocab_size)
+        kc_vocab_size = int(cast(StyleClassifierWithKC, raw).config.kc_vocab_size)
         topk_hist = torch.zeros(kc_vocab_size, dtype=torch.long)
         top1_hist = torch.zeros(kc_vocab_size, dtype=torch.long)
         kc_usage_total_samples = 0
@@ -1151,7 +815,7 @@ class KCTrainer:
                 continue
 
             raw = self.model.module if self.is_distributed else self.model
-            m = cast(StyleClassifierWithMLM, raw)
+            m = cast(StyleClassifierWithKC, raw)
 
             # Generate KC targets on-the-fly
             kc_targets = create_kc_batch(
@@ -1306,7 +970,7 @@ class KCTrainer:
                 ):
                     self._did_print_debug_for_epoch = epoch
                     raw = self.model.module if self.is_distributed else self.model
-                    m = cast(StyleClassifierWithMLM, raw)
+                    m = cast(StyleClassifierWithKC, raw)
 
                     # Condensed or Detailed Debug
                     should_print_fb = (
@@ -1326,7 +990,7 @@ class KCTrainer:
 
                     if should_print_fb:
                         # Prepare data for summary/debug
-                        m = cast(StyleClassifierWithMLM, raw)
+                        m = cast(StyleClassifierWithKC, raw)
 
                         if self.kc_log_level == "debug":
                             # Full output
@@ -1994,7 +1658,7 @@ class KCTrainer:
 
         if did_any_backward and pending_accum > 0:
             raw = self.model.module if self.is_distributed else self.model
-            m = cast(StyleClassifierWithMLM, raw)
+            m = cast(StyleClassifierWithKC, raw)
             self._perform_optimizer_step(
                 m, verbose, has_printed_step_check, pending_accum, is_flush=True
             )
@@ -2035,7 +1699,7 @@ class KCTrainer:
         k_val = (
             int(
                 getattr(
-                    cast(StyleClassifierWithMLM, self.model.module).config, "kc_topk", 8
+                    cast(StyleClassifierWithKC, self.model.module).config, "kc_topk", 8
                 )
             )
             if self.is_distributed
@@ -2287,7 +1951,7 @@ class Trainer:
         self.model.to(self.device)
         if self.is_distributed:
             self.model = cast(
-                StyleClassifierWithMLM,
+                StyleClassifierWithKC,
                 DDP(
                     self.model,
                     device_ids=[self.config.local_rank],
@@ -3326,7 +2990,7 @@ class Trainer:
         probe_loader: DataLoader[Dict[str, Any]],
         acc: KCMetricsAccumulator,
         config: KCProbeConfig,
-        m: StyleClassifierWithMLM,
+        m: StyleClassifierWithKC,
         max_batches: int,
         temperature: float,
     ) -> None:
@@ -3363,7 +3027,7 @@ class Trainer:
     ) -> Dict[str, Any]:
         """Evaluate KC health metrics without affecting gradients."""
         m = cast(
-            StyleClassifierWithMLM,
+            StyleClassifierWithKC,
             self.model.module if self.is_distributed else self.model,
         )
         m.eval()
