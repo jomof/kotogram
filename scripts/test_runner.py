@@ -88,6 +88,7 @@ async def check_noqa_e402() -> CheckResult:
 
 async def check_broad_exceptions() -> CheckResult:
     """Check for forbidden broad exception handling."""
+    # pylint: disable=too-many-locals
 
     # Load whitelist to ignore approved instances
     whitelist_entries = set()
@@ -151,9 +152,6 @@ async def check_broad_exceptions() -> CheckResult:
 
         fpath, lineno, content = parts[0], parts[1], parts[2]
 
-        if f"{fpath}:{lineno}:{content}".strip() in whitelist_entries:
-            continue
-
         # Analyze content for forbidden types
         # 1. Remove comments
         code_part = content.split("#", 1)[0].strip()
@@ -193,10 +191,17 @@ async def check_broad_exceptions() -> CheckResult:
                 break
 
     if val_errors:
+        shaming_msg = (
+            "To whoever is working on this code right now: catching broad exceptions "
+            "hides errors and makes the system difficult to debug. You know this, "
+            "and you should be ashamed. Stop it!"
+        )
         return CheckResult(
             "broad exception check",
             False,
-            "Found forbidden broad exception handling:\n" + "\n".join(val_errors),
+            "Found forbidden broad exception handling:\n"
+            + "\n".join(val_errors)
+            + f"\n\n{RED}{shaming_msg}{RESET}",
         )
 
     print_success("No broad exception catching found")
@@ -457,6 +462,17 @@ async def check_typescript_package() -> CheckResult:
 
 
 async def main() -> None:
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Kotogram Test Runner")
+    parser.add_argument(
+        "--hygiene",
+        "--hygeine",  # Alias for common typo
+        action="store_true",
+        help="Run only hygiene checks (linting, static analysis, build verification), skipping Python tests.",
+    )
+    args = parser.parse_args()
+
     # Capture initial git status
     initial_git_status = subprocess.check_output(["git", "status", "--short"]).decode()
 
@@ -481,12 +497,12 @@ async def main() -> None:
     failed = False
 
     # Run tasks
-    for coro in asyncio.as_completed(pending):
-        result = await coro
+    results = await asyncio.gather(*pending)
+
+    for result in results:
         if not result.success:
             print_error(result.output)
             failed = True
-            break
 
     # If failed, cancel pending
     if failed:
@@ -525,6 +541,7 @@ async def main() -> None:
     # Just run them. File systems are usually atomic enough for saves.
     # If ruff modifies, it's an atomic write. Mypy might see old or new version.
     # Consistency might be an issue if ruff fixes a syntax error that blocked mypy.
+    # HOWEVER, we assume code is mostly clean.
 
     # Let's try fully parallel. If flaky, we sequence.
 
@@ -542,19 +559,22 @@ async def main() -> None:
     # Wait, the original script does "Record initial git status" AFTER environment setup.
     # We can do that here.
 
-    # Run Pytest
-    print(f"\n{BLUE}Running Pytest...{RESET}")
-    # CI=true python -m pytest -x --no-header tests-py/
-    env = os.environ.copy()
-    env["CI"] = "true"
-    res = subprocess.run(
-        [sys.executable, "-m", "pytest", "-x", "--no-header", "tests-py/"],
-        env=env,
-        check=False,
-    )
+    # Run Pytest (if not hygiene mode)
+    if not args.hygiene:
+        print(f"\n{BLUE}Running Pytest...{RESET}")
+        # CI=true python -m pytest -x --no-header tests-py/
+        env = os.environ.copy()
+        env["CI"] = "true"
+        res = subprocess.run(
+            [sys.executable, "-m", "pytest", "-x", "--no-header", "tests-py/"],
+            env=env,
+            check=False,
+        )
 
-    if res.returncode != 0:
-        sys.exit(res.returncode)
+        if res.returncode != 0:
+            sys.exit(res.returncode)
+    else:
+        print(f"\n{BLUE}Skipping Pytest (--hygiene mode){RESET}")
 
     # Final git check
     final_git_status = subprocess.check_output(["git", "status", "--short"]).decode()

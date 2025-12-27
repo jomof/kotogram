@@ -24,7 +24,14 @@ Functions:
 
 import re
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Tuple
+from functools import lru_cache
+from typing import Any, Dict, List, Optional
+
+# Pre-compiled regex patterns for performance
+RE_KOTOGRAM_TOKEN = re.compile(r"⌈[^⌉]*⌉")
+RE_SURFACE = re.compile(r"ˢ(.*?)ᵖ", re.DOTALL)
+
+RE_READING_FULL = re.compile(r"ʳ(.*?)(?:⌉|ᵇ|ᵈ)")
 
 
 @dataclass
@@ -46,25 +53,37 @@ class TokenFeatures:
 class Token:
     """Hashable wrapper for token features."""
 
+    __slots__ = ("surface", "features", "_hash")
+
     def __init__(self, surface: str, features: Optional[Dict[str, Any]] = None):
         self.surface = surface
         self.features = features or {}
-
-        # Determine items for hashing
-        f_items: Tuple[Tuple[str, Any], ...] = tuple()
-        if hasattr(self.features, "items"):
-            f_items = tuple(sorted(self.features.items()))
-
-        self._hash = hash((surface, f_items))
+        # Delay hash computation until needed or assume features don't change?
+        # Assuming immutable usage for hashing.
+        self._hash = 0
 
     def __hash__(self) -> int:
+        if self._hash == 0:
+            # Optimized hash: sort only if needed
+            if hasattr(self.features, "items") and self.features:
+                # Use a specific order of keys we care about for identity?
+                # Or just standard tuple of sorted items.
+                # Sorting is expensive (O(N log N)), but N is small (5-10 features).
+                # Current usage: frequent creation.
+                f_items = tuple(sorted(self.features.items()))
+                self._hash = hash((self.surface, f_items))
+            else:
+                self._hash = hash((self.surface,))
         return self._hash
 
     def __eq__(self, other: object) -> bool:
         if isinstance(other, str):
             return self.surface == other
         if isinstance(other, Token):
-            return self.surface == other.surface and self.features == other.features
+            # Fast path check hash first? No, default __eq__ doesn't used hash for correctness
+            if self.surface != other.surface:
+                return False
+            return self.features == other.features
         return False
 
     def __repr__(self) -> str:
@@ -157,8 +176,7 @@ def kotogram_to_japanese(
 
     if not furigana:
         # Original implementation - extract surface forms only
-        pattern = r"ˢ(.*?)ᵖ"
-        matches = re.findall(pattern, kotogram, re.DOTALL)
+        matches = RE_SURFACE.findall(kotogram)
 
         if spaces:
             # Join tokens with spaces
@@ -213,7 +231,7 @@ def kotogram_to_japanese(
 
         for token in tokens:
             # Extract surface form
-            surface_match = re.search(r"ˢ(.*?)ᵖ", token, re.DOTALL)
+            surface_match = RE_SURFACE.search(token)
             if not surface_match:
                 continue
             surface = surface_match.group(1)
@@ -225,7 +243,7 @@ def kotogram_to_japanese(
                 result_parts.append(surface)
             else:
                 # Surface contains kanji - extract reading for IME input
-                reading_match = re.search(r"ʳ(.*?)(?:⌉|ᵇ|ᵈ)", token)
+                reading_match = RE_READING_FULL.search(token)
                 reading_katakana = reading_match.group(1) if reading_match else None
 
                 if reading_katakana:
@@ -294,79 +312,25 @@ def split_kotogram(kotogram: str) -> List[str]:
 
     # Find all complete token annotations enclosed in ⌈⌉
     # Pattern matches: ⌈ followed by any chars (non-greedy) until ⌉
-    return re.findall(r"⌈[^⌉]*⌉", kotogram)
+    return RE_KOTOGRAM_TOKEN.findall(kotogram)
 
 
+@lru_cache(maxsize=65536)
 def extract_token_features(token: str) -> TokenFeatures:
     # pylint: disable=too-many-locals
     """Extract linguistic features from a single kotogram token.
 
-    Parses a kotogram token to extract all encoded linguistic information including
-    part of speech, conjugation details, and orthographic forms. This function handles
-    the variable-length POS format where empty fields are omitted by the parser.
+    Parses a kotogram token to extract all encoded linguistic information using efficient
+    string slicing instead of regex.
 
-    Kotogram format uses Unicode markers to encode linguistic information:
+    Kotogram format uses Unicode markers:
     - ⌈⌉ : Token boundaries
-    - ˢ : Surface form (the actual text)
-    - ᵖ : Part of speech and grammatical features (colon-separated)
-    - ᵇ : Base orthography (dictionary form spelling)
-    - ᵈ : Lemma (dictionary form)
-    - ʳ : Reading/pronunciation
-
-    The POS field (ᵖ) contains colon-separated values in a specific semantic order:
-    `pos:pos_detail_1:pos_detail_2:conjugated_type:conjugated_form`
-
-    However, the parser omits empty fields, so this function identifies each field
-    semantically by checking which mapping it belongs to, rather than relying on
-    positional indices.
-
-    Args:
-        token: A single kotogram token string (⌈...⌉)
-
-    Returns:
-        TokenFeatures object with extracted features:
-        - surface: The surface form of the token (actual text)
-        - pos: Part of speech main category (e.g., 'v', 'n', 'auxv', 'prt')
-        - pos_detail1: First POS detail level (e.g., 'general', 'common_noun')
-        - pos_detail2: Second POS detail level (e.g., 'general')
-        - pos_detail3: Third POS detail level (e.g., 'general')
-        - conjugated_type: Conjugation type (e.g., 'lower-ichidan-ba', 'auxv-masu')
-        - conjugated_form: Conjugation form (e.g., 'conjunctive', 'terminal')
-        - base_orth: Base orthography (dictionary form spelling)
-        - lemma: Lemma/dictionary form
-        - reading: Reading/pronunciation
-
-    Examples:
-        >>> # Extract features from a verb token
-        >>> token = "⌈ˢ食べᵖverb:general:lower-ichidan-ba:continuativeᵇ食べるᵈ食べるʳタベ⌉"
-        >>> features = extract_token_features(token)
-        >>> features.pos
-        'v'
-        >>> features.conjugated_type
-        'lower-ichidan-ba'
-        >>> features.conjugated_form
-        'conjunctive'
-
-        >>> # Extract features from an auxiliary verb (note: empty fields omitted)
-        >>> token = "⌈ˢますᵖaux-verb:aux-masu:terminalᵇますʳマス⌉"
-        >>> features = extract_token_features(token)
-        >>> features.pos
-        'auxv'
-        >>> features.conjugated_type
-        'auxv-masu'
-        >>> features.conjugated_form
-        'terminal'
-        >>> features.pos_detail1  # Empty because parser omitted it
-        ''
-
-    Note:
-        All returned attributes are strings. Fields that are not present
-        in the token will have empty string values ('').
+    - ˢ : Surface form
+    - ᵖ : POS
+    - ᵇ : Base
+    - ᵈ : Lemma
+    - ʳ : Reading
     """
-    from kotogram.validation import ensure_string
-
-    ensure_string(token, "token")
-
     from .japanese_parser import (
         CONJUGATED_FORM_MAP,
         CONJUGATED_TYPE_MAP,
@@ -377,76 +341,97 @@ def extract_token_features(token: str) -> TokenFeatures:
 
     feature = TokenFeatures()
 
-    # Extract surface form (ˢ...ᵖ)
-    surface_match = re.search(r"ˢ(.*?)ᵖ", token, re.DOTALL)
-    if surface_match:
-        feature.surface = surface_match.group(1)
+    # Find marker indices
+    # Token structure is generally: ⌈ˢ...ᵖ...ᵇ...ᵈ...ʳ...⌉
+    # But some fields might be missing. The order is consistent.
 
-    # Extract POS data (ᵖ...ᵇ|ᵈ|ʳ|⌉)
-    pos_match = re.search(r"ᵖ([^⌉ᵇᵈʳ]+)", token)
-    if pos_match:
-        pos_data = pos_match.group(1)
-        parts = pos_data.split(":")
+    # ˢ Surface (always present in valid tokens)
+    idx_s = token.find("ˢ")
+    if idx_s == -1:
+        return feature
 
-        # Main POS code (always first)
-        feature.pos = parts[0] if len(parts) > 0 else ""
+    idx_p = token.find("ᵖ", idx_s)
 
-        # Parse remaining fields semantically by checking which map they belong to
-        # The parser skips empty fields, so we can't rely on position alone
-        #
-        # Parser builds: pos:pos_detail_1:pos_detail_2:conjugated_type:conjugated_form
-        # But skips empty fields, so we need to identify each by checking the maps
-        for i in range(1, len(parts)):
-            value = parts[i]
-            if not value:
-                continue
+    # Surface is between ˢ and ᵖ (or next marker/end if ᵖ missing, but ᵖ usually follows)
+    # Actually standard format enforces ˢ...ᵖ for at least POS? checking parser..
+    # Yes, usually. But let's be robust.
 
-            # Check which map this value belongs to
-            if value in CONJUGATED_FORM_MAP.values():
-                feature.conjugated_form = value
-            elif value in CONJUGATED_TYPE_MAP.values():
-                feature.conjugated_type = value
-            elif value in POS2_MAP.values():
-                # pos_detail_2 comes after pos_detail_1, so check if we already have pos_detail_1
-                if feature.pos_detail1:
-                    feature.pos_detail2 = value
-                else:
-                    feature.pos_detail1 = value
-            elif value in POS3_MAP.values():
-                # pos_detail_3 usually comes last for details
-                feature.pos_detail3 = value
-            elif value in POS1_MAP.values():
-                # pos_detail_1 comes before pos_detail_2
-                if not feature.pos_detail1:
-                    feature.pos_detail1 = value
-                else:
-                    feature.pos_detail2 = value
-            else:
-                # Unknown value - try to assign by position as fallback
-                if not feature.pos_detail1:
-                    feature.pos_detail1 = value
-                elif not feature.pos_detail2:
-                    feature.pos_detail2 = value
-                elif not feature.pos_detail3:
-                    feature.pos_detail3 = value
-                elif not feature.conjugated_type:
-                    feature.conjugated_type = value
-                elif not feature.conjugated_form:
+    # Find all markers
+    idx_b = token.find("ᵇ", idx_s)
+    idx_d = token.find("ᵈ", idx_s)
+    idx_r = token.find("ʳ", idx_s)
+    idx_end = token.find("⌉", idx_s)
+
+    # 1. Surface: ˢ to next marker
+    start = idx_s + 1
+    next_indices = [i for i in [idx_p, idx_b, idx_d, idx_r, idx_end] if i > start]
+    end = min(next_indices) if next_indices else len(token)
+    feature.surface = token[start:end]
+
+    # 2. POS: ᵖ to next marker
+    if idx_p != -1:
+        start = idx_p + 1
+        next_indices = [i for i in [idx_b, idx_d, idx_r, idx_end] if i > start]
+        end = min(next_indices) if next_indices else len(token)
+        pos_data = token[start:end]
+
+        if pos_data:
+            parts = pos_data.split(":")
+            feature.pos = parts[0] if len(parts) > 0 else ""
+
+            for i in range(1, len(parts)):
+                value = parts[i]
+                if not value:
+                    continue
+
+                # Check maps (same logic as before)
+                if value in CONJUGATED_FORM_MAP.values():
                     feature.conjugated_form = value
+                elif value in CONJUGATED_TYPE_MAP.values():
+                    feature.conjugated_type = value
+                elif value in POS2_MAP.values():
+                    if feature.pos_detail1:
+                        feature.pos_detail2 = value
+                    else:
+                        feature.pos_detail1 = value
+                elif value in POS3_MAP.values():
+                    feature.pos_detail3 = value
+                elif value in POS1_MAP.values():
+                    if not feature.pos_detail1:
+                        feature.pos_detail1 = value
+                    else:
+                        feature.pos_detail2 = value
+                else:
+                    if not feature.pos_detail1:
+                        feature.pos_detail1 = value
+                    elif not feature.pos_detail2:
+                        feature.pos_detail2 = value
+                    elif not feature.pos_detail3:
+                        feature.pos_detail3 = value
+                    elif not feature.conjugated_type:
+                        feature.conjugated_type = value
+                    elif not feature.conjugated_form:
+                        feature.conjugated_form = value
 
-    # Extract base orthography (ᵇ...ᵈ|ʳ|⌉)
-    base_match = re.search(r"ᵇ([^⌉ᵈʳ]+)", token)
-    if base_match:
-        feature.base_orth = base_match.group(1)
+    # 3. Base: ᵇ to next marker
+    if idx_b != -1:
+        start = idx_b + 1
+        next_indices = [i for i in [idx_d, idx_r, idx_end] if i > start]
+        end = min(next_indices) if next_indices else len(token)
+        feature.base_orth = token[start:end]
 
-    # Extract lemma/dictionary form (ᵈ...ʳ|⌉)
-    lemma_match = re.search(r"ᵈ([^⌉ʳ]+)", token)
-    if lemma_match:
-        feature.lemma = lemma_match.group(1)
+    # 4. Lemma: ᵈ to next marker
+    if idx_d != -1:
+        start = idx_d + 1
+        next_indices = [i for i in [idx_r, idx_end] if i > start]
+        end = min(next_indices) if next_indices else len(token)
+        feature.lemma = token[start:end]
 
-    # Extract reading (ʳ...⌉)
-    reading_match = re.search(r"ʳ([^⌉]+)", token)
-    if reading_match:
-        feature.reading = reading_match.group(1)
+    # 5. Reading: ʳ to next marker
+    if idx_r != -1:
+        start = idx_r + 1
+        next_indices = [i for i in [idx_end] if i > start]
+        end = min(next_indices) if next_indices else len(token)
+        feature.reading = token[start:end]
 
     return feature

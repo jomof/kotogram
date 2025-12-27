@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Standalone script to label and cache Japanese sentences for style classification."""
 
+import array
 import csv
 import glob
 import json
@@ -12,7 +13,7 @@ import random
 import sys
 import time
 from collections import Counter
-from typing import Any, Dict, List, Optional, Tuple, cast
+from typing import Any, Dict, Iterator, List, Optional, Tuple, cast
 
 import torch
 from rich.console import Console
@@ -37,13 +38,15 @@ from kotogram.model import (
 )
 from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
 from train.cache import get_kotogram_cache
-from train.dataset import CACHE_VERSION, DatasetConfig, StyleDataset, parse_tsv
-
-# pylint: disable=wrong-import-position
+from train.dataset import CACHE_VERSION, parse_tsv
+from train.profile import PhaseTimer, get_profile_dir
 from train.types import ProcessedSample
+from train.worker import encode_batch_fast
+from train.worker import init_worker as encode_init_worker
 
 # Global variable for worker processes only
 _WORKER_OVERRIDES: Optional[Dict[str, List[Any]]] = None
+
 
 DEFAULT_BATCH_SIZE = 1000
 
@@ -186,14 +189,15 @@ def infer_gender_from_register(
             return -1.0, 1
         if is_fem:
             return 1.0, 1
-        return 0.0, 0
+
+        return 0.0, 1
 
     return 0.0, 0
 
 
 def _process_sentence_batch(
     batch: List[Tuple[str, int]],
-) -> Tuple[List[ProcessedSample], Dict[str, Counter]]:
+) -> Tuple[Dict[str, Any], Dict[str, Counter]]:
     # pylint: disable=too-many-locals
     """Process a batch of sentences in a worker process."""
     # pylint: disable=redefined-outer-name, reimported
@@ -208,7 +212,16 @@ def _process_sentence_batch(
     )
 
     parser = SudachiJapaneseParser()
-    results = []
+    results: Dict[str, Any] = {
+        "sentences": [],
+        "kotograms": [],
+        "f_ids": [],
+        "g_vals": [],
+        "g_prags": [],
+        "gram_labels": [],
+        "reg_ids_flat": [],
+        "reg_ids_lens": [],
+    }
     counters: Dict[str, Counter[Any]] = {f: Counter() for f in FEATURE_FIELDS}
 
     for sentence, gram_label in batch:
@@ -246,24 +259,24 @@ def _process_sentence_batch(
         if not register_ids:
             register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
 
-        results.append(
-            ProcessedSample(
-                sentence=sentence,
-                kotogram=kotogram,
-                formality_id=formality_id,
-                gender_value=gender_val,
-                gender_pragmatic=gender_prag,
-                register_ids=register_ids,
-                gram_label=gram_label,
-                success=1,
-            )
-        )
+        # Flattened accumulation
+        results["sentences"].append(sentence)
+        results["kotograms"].append(kotogram)
+        results["f_ids"].append(formality_id)
+        results["g_vals"].append(gender_val)
+        results["g_prags"].append(gender_prag)
+        results["gram_labels"].append(gram_label)
+
+        # Flattened lists
+        results["reg_ids_flat"].extend(register_ids)
+        results["reg_ids_lens"].append(len(register_ids))
+
     return results, counters
 
 
 def _compute_labels_batch(
     batch: List[Tuple[str, str, int]],
-) -> Tuple[List[ProcessedSample], Dict[str, Counter]]:
+) -> Tuple[Dict[str, Any], Dict[str, Counter]]:
     # pylint: disable=too-many-locals
     """Compute labels for a batch of sentences (where kotogram is already cached)."""
     from kotogram.analysis import FormalityLevel, RegisterLevel
@@ -273,7 +286,16 @@ def _compute_labels_batch(
         analyze_register,
     )
 
-    results = []
+    results: Dict[str, Any] = {
+        "sentences": [],
+        "kotograms": [],
+        "f_ids": [],
+        "g_vals": [],
+        "g_prags": [],
+        "gram_labels": [],
+        "reg_ids_flat": [],
+        "reg_ids_lens": [],
+    }
     counters: Dict[str, Counter[Any]] = {f: Counter() for f in FEATURE_FIELDS}
 
     for sentence, kotogram, gram_label in batch:
@@ -312,18 +334,17 @@ def _compute_labels_batch(
         if not register_ids:
             register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
 
-        results.append(
-            ProcessedSample(
-                sentence=sentence,
-                kotogram=kotogram,
-                formality_id=formality_id,
-                gender_value=gender_val,
-                gender_pragmatic=gender_prag,
-                register_ids=register_ids,
-                gram_label=gram_label,
-                success=1,
-            )
-        )
+        # Flattened accumulation
+        results["sentences"].append(sentence)
+        results["kotograms"].append(kotogram)
+        results["f_ids"].append(formality_id)
+        results["g_vals"].append(gender_val)
+        results["g_prags"].append(gender_prag)
+        results["gram_labels"].append(gram_label)
+
+        # Flattened lists
+        results["reg_ids_flat"].extend(register_ids)
+        results["reg_ids_lens"].append(len(register_ids))
 
     return results, counters
 
@@ -463,8 +484,16 @@ def main() -> None:
 
     args = parser.parse_args()
 
+    args = parser.parse_args()
+
     # Resolve and inject paths from locations.py into args namespace
     cache_dir = locations.get_cache_dir()
+
+    profile_dir = get_profile_dir()
+    if profile_dir:
+        os.makedirs(profile_dir, exist_ok=True)
+    timer = PhaseTimer(console, profile_dir)
+
     args.output_grammatic = os.path.join(cache_dir, "grammatic_combined.tsv")
     args.output_agrammatic = os.path.join(cache_dir, "agrammatic_combined.tsv")
     args.model_dir = locations.get_style_output_dir()
@@ -556,7 +585,19 @@ def main() -> None:
         console.print("[red]No data sentences found. Check your patterns.[/red]")
         sys.exit(1)
 
+    # Global Deduplication of all_rows (preserving order)
+    # This handles potential overlap between grammatic/agrammatic files or duplicates across files.
+    # We keep the FIRST occurrence (prioritizing Grammatic if loading order is Gram -> Agram).
+    seen_global = set()
+    unique_all_rows = []
+    for r in all_rows:
+        if r[0] not in seen_global:
+            seen_global.add(r[0])
+            unique_all_rows.append(r)
+    all_rows = unique_all_rows
+
     console.print(f"Total unique sentences to check: [bold]{len(all_rows):,}[/bold]")
+    timer.mark("Scanning Input")
 
     cache = get_kotogram_cache()
     cached_batch = cache.get_batch([r[0] for r in all_rows])
@@ -650,22 +691,40 @@ def main() -> None:
                 for field, b_counter in batch_counters.items():
                     merged_counters[field].update(b_counter)
 
-                for res in batch_results:
-                    if res.success:
-                        final_results.append(res)
-                        new_entries.append(
-                            (
-                                cast(str, res.sentence),
-                                cast(str, res.kotogram),
-                                cast(Optional[int], res.formality_id),
-                                cast(Optional[float], res.gender_value),
-                                cast(Optional[int], res.gender_pragmatic),
-                                cast(Optional[List[int]], res.register_ids),
-                                cast(Optional[int], res.gram_label),
-                                None,  # feature_ids (computed later)
-                            )
-                        )
+                # Reconstruct ProcessedSample from columns
+                cnt = len(batch_results["sentences"])
+                reg_offset = 0
+                for idx in range(cnt):
+                    r_len = batch_results["reg_ids_lens"][idx]
+                    r_ids = batch_results["reg_ids_flat"][
+                        reg_offset : reg_offset + r_len
+                    ]
+                    reg_offset += r_len
 
+                    sample = ProcessedSample(
+                        sentence=batch_results["sentences"][idx],
+                        kotogram=batch_results["kotograms"][idx],
+                        formality_id=batch_results["f_ids"][idx],
+                        gender_value=batch_results["g_vals"][idx],
+                        gender_pragmatic=batch_results["g_prags"][idx],
+                        register_ids=r_ids,
+                        gram_label=batch_results["gram_labels"][idx],
+                        success=1,
+                        feature_ids=None,
+                    )
+                    final_results.append(sample)
+                    new_entries.append(
+                        (
+                            sample.sentence,
+                            sample.kotogram,
+                            sample.formality_id,
+                            sample.gender_value,
+                            sample.gender_pragmatic,
+                            sample.register_ids,
+                            sample.gram_label,
+                            None,
+                        )
+                    )
             if new_entries:
                 from train.cache import CacheEntryType
 
@@ -678,12 +737,32 @@ def main() -> None:
             ]
             for batch_rows in batches_unlabeled:
                 batch_results, batch_counters = _compute_labels_batch(batch_rows)
+                # Merge counters
                 for field, b_counter in batch_counters.items():
                     merged_counters[field].update(b_counter)
 
-                for res in batch_results:
-                    if res.success:
-                        final_results.append(res)
+                # Reconstruct ProcessedSample from columns
+                cnt = len(batch_results["sentences"])
+                reg_offset = 0
+                for idx in range(cnt):
+                    r_len = batch_results["reg_ids_lens"][idx]
+                    r_ids = batch_results["reg_ids_flat"][
+                        reg_offset : reg_offset + r_len
+                    ]
+                    reg_offset += r_len
+
+                    sample = ProcessedSample(
+                        sentence=batch_results["sentences"][idx],
+                        kotogram=batch_results["kotograms"][idx],
+                        formality_id=batch_results["f_ids"][idx],
+                        gender_value=batch_results["g_vals"][idx],
+                        gender_pragmatic=batch_results["g_prags"][idx],
+                        register_ids=r_ids,
+                        gram_label=batch_results["gram_labels"][idx],
+                        success=1,
+                        feature_ids=None,
+                    )
+                    final_results.append(sample)
 
     else:
         ctx = mp.get_context("spawn")
@@ -719,22 +798,41 @@ def main() -> None:
                             for field, b_counter in batch_counters.items():
                                 merged_counters[field].update(b_counter)
 
-                            for res in batch_results:
-                                if res.success:
-                                    final_results.append(res)
-                                    new_entries.append(
-                                        (
-                                            cast(str, res.sentence),
-                                            cast(str, res.kotogram),
-                                            cast(Optional[int], res.formality_id),
-                                            cast(Optional[float], res.gender_value),
-                                            cast(Optional[int], res.gender_pragmatic),
-                                            cast(Optional[List[int]], res.register_ids),
-                                            cast(Optional[int], res.gram_label),
-                                            None,  # feature_ids (computed later)
-                                        )
+                            # Reconstruct ProcessedSample from columns
+                            cnt = len(batch_results["sentences"])
+                            reg_offset = 0
+                            for idx in range(cnt):
+                                r_len = batch_results["reg_ids_lens"][idx]
+                                r_ids = batch_results["reg_ids_flat"][
+                                    reg_offset : reg_offset + r_len
+                                ]
+                                reg_offset += r_len
+
+                                sample = ProcessedSample(
+                                    sentence=batch_results["sentences"][idx],
+                                    kotogram=batch_results["kotograms"][idx],
+                                    formality_id=batch_results["f_ids"][idx],
+                                    gender_value=batch_results["g_vals"][idx],
+                                    gender_pragmatic=batch_results["g_prags"][idx],
+                                    register_ids=r_ids,
+                                    gram_label=batch_results["gram_labels"][idx],
+                                    success=1,
+                                    feature_ids=None,
+                                )
+                                final_results.append(sample)
+                                new_entries.append(
+                                    (
+                                        sample.sentence,
+                                        sample.kotogram,
+                                        sample.formality_id,
+                                        sample.gender_value,
+                                        sample.gender_pragmatic,
+                                        sample.register_ids,
+                                        sample.gram_label,
+                                        None,
                                     )
-                            progress.update(task, advance=len(batch_results))
+                                )
+                            progress.update(task, advance=cnt)
 
                     if new_entries:
                         from train.cache import CacheEntryType
@@ -763,23 +861,46 @@ def main() -> None:
                             for field, b_counter in batch_counters.items():
                                 merged_counters[field].update(b_counter)
 
-                            for res in batch_results:
-                                if res.success:
-                                    final_results.append(res)
-                                    # No need to put batch since these are just re-labeled/not cached or already cached?
-                                    # Wait, earlier loop for parallel didn't update cache for unlabeled_rows either, just final_results logic?
-                                    # Ah, unlabeled_rows are just partials being completed for final results.
-                                    # Wait, lines 712-720 didn't show what happens to results.
-                                    # Looking at previous view:
-                                    #  for res in batch_results:
-                                    #       if res.success:
-                                    #            final_results.append(res)
-                                    # It didn't put to cache. So that matches my sequential logic.
-                            progress.update(task, advance=len(batch_results))
+                            # Reconstruct ProcessedSample from columns
+                            cnt = len(batch_results["sentences"])
+                            reg_offset = 0
+                            for idx in range(cnt):
+                                r_len = batch_results["reg_ids_lens"][idx]
+                                r_ids = batch_results["reg_ids_flat"][
+                                    reg_offset : reg_offset + r_len
+                                ]
+                                reg_offset += r_len
+
+                                # Optimization: Create ProcessedSample only if needed?
+                                # But final_results stores them.
+                                sample = ProcessedSample(
+                                    sentence=batch_results["sentences"][idx],
+                                    kotogram=batch_results["kotograms"][idx],
+                                    formality_id=batch_results["f_ids"][idx],
+                                    gender_value=batch_results["g_vals"][idx],
+                                    gender_pragmatic=batch_results["g_prags"][idx],
+                                    register_ids=r_ids,
+                                    gram_label=batch_results["gram_labels"][idx],
+                                    success=1,
+                                    feature_ids=None,
+                                )
+                                final_results.append(sample)
+                            progress.update(task, advance=cnt)
+
+    # Restore deterministic order based on all_rows (Input Globs)
+    # This prevents cache-hit permutation from breaking StyleDataset split logic.
+    if final_results:
+        result_map = {r.sentence: r for r in final_results}
+        final_results = []
+        for sentence, _ in all_rows:
+            if sentence in result_map:
+                final_results.append(result_map[sentence])
+            # Failures are silently dropped here (already logged or skipped)
 
     console.print(
         f"\n[bold green]Processing complete![/bold green] Total processed: {len(final_results):,}"
     )
+    timer.mark("Parsing & Labeling (Phase 1)")
     display_results = [r for r in final_results if r.success]
     print_stats(display_results)
 
@@ -829,149 +950,128 @@ def main() -> None:
             f"  Saved vocabulary to {os.path.join(dataset_cache_dir, vocab_file)}"
         )
 
-        dataset = StyleDataset.from_processed_samples(
-            final_results,
-            tokenizer,
-            config=DatasetConfig(
-                verbose=False,  # Suppress redundant distribution stats
-                cache_name=vocab_file,
-                sample_ratio=1.0,
-            ),
-        )
+        # Prepare tokenizer state for workers
 
-        # Save binary index as flattened tensors for RAM efficiency (Struct of Arrays)
-        console.print("[cyan]Tokenizing and building binary dataset tensors...[/cyan]")
-
-        # 1. Flatten sentences and create offsets
-        # Use existing tokenizer to encode everything
-
-        # Extract all token IDs from already processed samples
-        # Support all feature fields
-        all_encodings: Dict[str, List[int]] = {f: [] for f in FEATURE_FIELDS}
-        all_offsets = [0]
+        # Accumulators for Streaming Construction
+        all_encodings: Dict[str, array.array] = {
+            f: array.array("I") for f in FEATURE_FIELDS
+        }
+        all_offsets = array.array("I", [0])
         current_offset = 0
-
-        # Extract labels
-        f_vals = []
-        f_prags = []
-        g_vals = []
-        g_prags = []
-        gram_labels = []
-        # Register labels: List[int] -> multi-hot tensor later
-        # We need to know max class ID, or use NUM_REGISTER_CLASSES from model?
-        # Let's import it or assume 20 (safe upper bound for now, or determining from data).
-        # Actually, let's just flattened list of Register IDs + offsets for registers.
-        # But simpler: assume <32 classes and use bitmask? No, just multi-hot byte tensor.
-        # Let's import NUM_REGISTER_CLASSES to be safe.
-        ## For now, store indices list for each sample to avoid importing model constant here?
-        ## No, let's just store List[List[int]] and convert to padded tensor?
-        ## Or just flatten it: all_reg_ids, reg_offsets.
-        all_reg_ids = []
-        reg_offsets = [0]
+        f_vals = array.array("f")
+        f_prags = array.array("B")
+        g_vals = array.array("f")
+        g_prags = array.array("B")
+        gram_labels = array.array("B")
+        all_reg_ids = array.array("B")
+        reg_offsets = array.array("I", [0])
         cur_reg_offset = 0
-
-        # Accumulators for KC targets {key: {ids: [], offsets: [0], cur_len: 0}}
         kc_collections: Dict[str, Dict[str, Any]] = {}
 
-        # We need to access inner ProcessedSample data.
-        # Use final_results directly as it contains ProcessedSample objects.
-        # dataset.samples converts them to Sample, losing some info/changing structure.
+        # Sort results to ensure determinism before shuffling
+        # This is critical for consistent vocabulary generation across runs
+        final_results.sort(key=lambda x: x.sentence)
 
-        # Mapping for formality value
-        f_id_to_val = {0: 1.0, 1: 0.5, 2: 0.0, 3: -0.5, 4: -1.0}
-
-        # Prepare for binary format
         # Shuffle results to ensure random sampling for down-stream tasks that use contiguous slicing
         random.seed(42)
         random.shuffle(final_results)
 
-        # Tokenize valid samples for tensor generation
-        valid_samples: List[ProcessedSample] = [s for s in final_results if s.success]
-        if valid_samples:
-            if args.verbose:
-                console.print(
-                    f"Tokenizing {len(valid_samples)} samples for binary cache..."
-                )
-            encodings = [tokenizer.encode(s.kotogram) for s in valid_samples]
-            for sample_item, enc in zip(valid_samples, encodings):
-                sample_item.feature_ids = enc
+        tokenizer_state = {"field_vocabs": tokenizer.field_vocabs}
 
-        for sample in [s for s in final_results if s.success and s.feature_ids]:
-            # Length should be same for all fields
-            seq_len = 0
-            if sample.feature_ids:
+        timer.mark("Dataset Construction & Assembly (Streaming)")
+
+        console.print(
+            "[cyan]Streaming encoding and tensor assembly (skipping cache write)...[/cyan]"
+        )
+
+        # Parallel Encoding Stream
+        chunk_size = 1000
+
+        # Generator for batches
+        def batch_gen() -> Iterator[List[ProcessedSample]]:
+            for i in range(0, len(final_results), chunk_size):
+                yield final_results[i : i + chunk_size]
+
+        # import multiprocessing as mp  <-- Removed to avoid shadowing
+        # Use spawn context to avoid fork-safety issues on macOS/Py3.12+
+        ctx_enc: Any = mp.get_context("spawn")
+
+        with ctx_enc.Pool(
+            num_workers, initializer=encode_init_worker, initargs=(tokenizer_state,)
+        ) as pool:
+            # imap_unordered is fine because we just need to collect all data,
+            # and shuffled beforehand anyway (except we must keep offsets consistent within sample?)
+            # Wait, order matters for 'all_offsets' if we align with something?
+            # But we are building the dataset from scratch.
+            # We just need internal consistency (ids[i] matches label[i]).
+            # Since we process a BATCH atomically, the batch is consistent.
+            # And we append batches. So order of batches doesn't matter as long as all lists correspond.
+            # Yes.
+
+            for batch_res in pool.imap_unordered(encode_batch_fast, batch_gen()):
+                # Unpack column batch (Array optimized)
+                # Features
+                batch_lens = None
+
                 for field in FEATURE_FIELDS:
-                    if field in sample.feature_ids:
-                        ids = sample.feature_ids[field]
-                        all_encodings[field].extend(ids)
-                        # Assume all fields have same length (they should from Tokenizer)
-                        seq_len = len(ids)
+                    if field in batch_res["features_flat"]:
+                        flat_vals = batch_res["features_flat"][field]
+                        # Capture lengths from the first valid field (usually all same)
+                        if batch_lens is None:
+                            batch_lens = batch_res["features_lens"][field]
 
-            current_offset += seq_len
-            all_offsets.append(current_offset)
+                        # Extend flattened array - FAST
+                        all_encodings[field].extend(flat_vals)
 
-            # Formality value mapping
-            f_val = (
-                f_id_to_val.get(sample.formality_id, 0.0)
-                if sample.formality_id != 5
-                else 0.0
-            )
-            f_vals.append(f_val)
+                if batch_lens is None:
+                    continue  # Should not happen
 
-            # Pragmatic (always 1 for valid styles, 0 for ID 5?)
-            # Logic from _map_processed_to_sample: if f_id != 5: f_prag=1 else 0
-            f_prag = 1 if sample.formality_id != 5 else 0
-            f_prags.append(f_prag)
+                # Offsets (Iterate array - fast enough)
+                for length in batch_lens:
+                    current_offset += length
+                    all_offsets.append(current_offset)
 
-            g_vals.append(sample.gender_value)
-            g_prags.append(sample.gender_pragmatic)
-            gram_labels.append(sample.gram_label)
+                # KC Targets
+                for k_key, k_val in batch_res["kc_ids"].items():
+                    if k_key not in kc_collections:
+                        kc_collections[k_key] = {
+                            "ids": array.array("I"),
+                            "counts": array.array("I"),
+                        }
+                    kc_collections[k_key]["ids"].extend(k_val)
+                    # counts
+                    kc_collections[k_key]["counts"].extend(
+                        batch_res["kc_counts"][k_key]
+                    )
 
-            # Register IDs
-            r_ids = sample.register_ids
-            # Ensure list
-            if not isinstance(r_ids, list):
-                r_ids = [r_ids] if r_ids is not None else []
-            all_reg_ids.extend(r_ids)
-            cur_reg_offset += len(r_ids)
-            reg_offsets.append(cur_reg_offset)
+                # Metadata arrays
+                f_vals.extend(batch_res["f_val"])
+                f_prags.extend(batch_res["f_prag"])
+                g_vals.extend(batch_res["g_val"])
+                g_prags.extend(batch_res["g_prag"])
+                gram_labels.extend(batch_res["gram"])
 
-            # KC Targets
-            # Compute on the fly and accumulate
-            # feature_ids is guaranteed to be present and populated here
-            # pylint: disable=protected-access
-            kc_t = StyleDataset._compute_kc_targets(
-                cast(Dict[str, List[int]], sample.feature_ids)
-            )
-            for k_key, k_vals in kc_t.items():
-                if k_key not in kc_collections:
-                    kc_collections[k_key] = {"ids": [], "offsets": [0], "cur_len": 0}
-
-                # k_vals is list of ints
-                # Sort for determinism? Not strictly required but good practice.
-                k_vals_list = (
-                    sorted(list(k_vals)) if isinstance(k_vals, (list, set)) else []
-                )
-
-                # Mypy help
-                coll = kc_collections[k_key]
-                cast(List[int], coll["ids"]).extend(k_vals_list)
-                prev_len = cast(int, coll["cur_len"])
-                new_len = prev_len + len(k_vals_list)
-                coll["cur_len"] = new_len
-                cast(List[int], coll["offsets"]).append(new_len)
+                # Registers (Flattened array)
+                all_reg_ids.extend(batch_res["reg_flat"])
+                for length in batch_res["reg_lens"]:
+                    cur_reg_offset += length
+                    reg_offsets.append(cur_reg_offset)
+        # End of parallel loop
 
         # Convert to tensors
+        # Convert to tensors (Zero-copy from array.array)
         tensor_data: Dict[str, Any] = {
-            "offsets": torch.tensor(all_offsets, dtype=torch.int32),
+            "offsets": torch.frombuffer(all_offsets, dtype=torch.int32),
             "labels": {
-                "f_val": torch.tensor(f_vals, dtype=torch.float32),
-                "f_prag": torch.tensor(f_prags, dtype=torch.long),
-                "g_val": torch.tensor(g_vals, dtype=torch.float32),
-                "g_prag": torch.tensor(g_prags, dtype=torch.long),
-                "gram": torch.tensor(gram_labels, dtype=torch.long),
-                "reg_ids": torch.tensor(all_reg_ids, dtype=torch.long),  # Flattened
-                "reg_offsets": torch.tensor(reg_offsets, dtype=torch.int32),
+                "f_val": torch.frombuffer(f_vals, dtype=torch.float32),
+                "f_prag": torch.frombuffer(f_prags, dtype=torch.uint8).long(),
+                "g_val": torch.frombuffer(g_vals, dtype=torch.float32),
+                "g_prag": torch.frombuffer(g_prags, dtype=torch.uint8).long(),
+                "gram": torch.frombuffer(gram_labels, dtype=torch.uint8).long(),
+                "reg_ids": torch.frombuffer(
+                    all_reg_ids, dtype=torch.uint8
+                ).long(),  # Flattened
+                "reg_offsets": torch.frombuffer(reg_offsets, dtype=torch.int32),
             },
             "version": 2,
         }
@@ -980,15 +1080,20 @@ def main() -> None:
         if kc_collections:
             tensor_data["kc_targets"] = {}
             for k_key, accum in kc_collections.items():
+                counts = torch.frombuffer(accum["counts"], dtype=torch.int32)
+                # Generate offsets from counts: [0, c1, c1+c2, ...]
+                offsets = torch.zeros(len(counts) + 1, dtype=torch.int32)
+                torch.cumsum(counts, dim=0, out=offsets[1:])
+
                 tensor_data["kc_targets"][k_key] = {
-                    "ids": torch.tensor(accum["ids"], dtype=torch.long),
-                    "offsets": torch.tensor(accum["offsets"], dtype=torch.int32),
+                    "ids": torch.frombuffer(accum["ids"], dtype=torch.int32).long(),
+                    "offsets": offsets,
                 }
 
         # Add feature tensors
         for field, values in all_encodings.items():
-            if values:
-                tensor_data[field] = torch.tensor(values, dtype=torch.int32)
+            if len(values) > 0:
+                tensor_data[field] = torch.frombuffer(values, dtype=torch.int32)
 
         torch.save(tensor_data, os.path.join(dataset_cache_dir, "dataset_tensors.pt"))
         console.print(
@@ -998,7 +1103,7 @@ def main() -> None:
         # Print statistics
         vocab_sizes = tokenizer.get_vocab_sizes()
         console.print("\n[bold cyan]Dataset Statistics:[/bold cyan]")
-        console.print(f"  Encoded samples: [bold]{len(dataset)}[/bold]")
+        console.print(f"  Encoded samples: [bold]{len(final_results)}[/bold]")
         console.print("  Vocabulary sizes:")
         console.print(f"    Surface forms: {vocab_sizes['surface']:,}")
         console.print(f"    Lemmas: {vocab_sizes['lemma']:,}")
@@ -1009,6 +1114,7 @@ def main() -> None:
             f"  Vocabulary cache: [cyan]{os.path.join(dataset_cache_dir, vocab_file)}[/cyan]"
         )
         console.print("\n[bold green]Dataset finalization complete.[/bold green]")
+        timer.stop("Tensor Assembly & Saving (Phase 3)")
 
     # Final: Save metadata for fast-skip
     output_fingerprints = {}
@@ -1030,8 +1136,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    from train.profile import setup_profiling
-
-    setup_profiling("label")
-
     main()

@@ -40,7 +40,7 @@ from train.dataset import DatasetConfig, StyleDataset
 from train.distributed import is_main_process, setup_distributed
 from train.io import save_model
 from train.models import StyleClassifierWithKC
-from train.profile import get_profile_dir
+from train.profile import get_profile_dir, profiling_enabled
 from train.trainer import KCTrainer, Trainer
 
 
@@ -49,7 +49,7 @@ def generate_profile_report() -> None:
     """Generate human-readable performance report from JSONL logs."""
     prof_dir = get_profile_dir()
     if not prof_dir or not os.path.exists(prof_dir):
-        # If no profile dir, nothing to do (or TRAIN_PROFILE=0)
+        # If no profile dir, nothing to do (or profiling disabled)
         return
 
     # Use a dynamic summary filename based on hostname/pid or just "summary.txt"?
@@ -166,11 +166,10 @@ def cleanup_profile_if_retrain(argv_list: List[str]) -> None:
 if __name__ == "__main__":
     cleanup_profile_if_retrain(sys.argv)
 
-    # Internal profiling when TRAIN_PROFILE is set
+    # Internal profiling when enabled
     from train.profile import setup_profiling
 
     setup_profiling("train_style", include_kc_infix=True)
-
     if os.environ.get("RANK", "0") == "0":
         print("Starting training script...", flush=True)
     import argparse
@@ -482,6 +481,7 @@ if __name__ == "__main__":
         trainer_config,
         dl_config_train=trainer_config.resolve_dataloader_config(device, mode="train"),
         dl_config_val=trainer_config.resolve_dataloader_config(device, mode="val"),
+        output_path=args.output,
     )
 
     style_start = time.perf_counter()
@@ -520,6 +520,12 @@ if __name__ == "__main__":
         if hasattr(trained_model, "module"):
             trained_model = cast(StyleClassifier, trained_model.module)
 
+        # Create __init__.py to make the model directory a valid Python package
+        # This is required for 'kotogram.model_data' redirection in pyproject.toml
+        init_path = os.path.join(output_dir, "__init__.py")
+        with open(init_path, "w", encoding="utf-8"):
+            pass
+
         save_model(
             cast(StyleClassifier, trained_model),
             output_dir,
@@ -544,6 +550,6 @@ if __name__ == "__main__":
     # Auto-generate report and cleanup if profiling was enabled
     # We check environment because arguments might not settle it alone (defaults)
     # But usually if we ran code, we generated logs.
-    if os.environ.get("TRAIN_PROFILE", "1") != "0" and not args.report:
+    if profiling_enabled() and not args.report:
         # args.report exits early, so we only need to do this for a normal run
         generate_profile_report()

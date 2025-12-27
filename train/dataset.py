@@ -22,6 +22,7 @@ from kotogram.model import (
 )
 from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
 from train.cache import get_kotogram_cache
+from train.kc import KC_HASH_BUCKETS, compute_kc_targets
 from train.tsv import parse_tsv  # Re-exported for backward compatibility
 from train.types import ProcessedSample, Sample
 from train.worker import _encode_samples_batch, init_worker
@@ -29,10 +30,7 @@ from train.worker import _encode_samples_batch, init_worker
 # Cache version - bump this when cache format changes to invalidate old caches
 CACHE_VERSION = 12
 
-# KC Configuration
-KC_HASH_BUCKETS = 16384
-KC_NGRAM_ORDER = 3
-KC_POS_BIASED_WINDOW = 5
+# KC Configuration moved to train.kc
 
 
 # Types moved to types.py
@@ -166,7 +164,7 @@ class StyleDataset(Dataset[Sample]):
 
         # 2. Fallback: Compute on demand
         if DatasetConfig().parser is None:
-            return self._compute_kc_targets(feature_ids)
+            return compute_kc_targets(feature_ids)
 
         return {}
 
@@ -544,62 +542,6 @@ class StyleDataset(Dataset[Sample]):
             },
         )
 
-    @staticmethod
-    def _compute_kc_targets(feature_ids: Dict[str, List[int]]) -> Dict[str, Any]:
-        """Compute KC targets from feature IDs."""
-        targets: Dict[str, Any] = {}
-
-        # 1. Token bags (Multi-hot)
-        # Target = unique token IDs appearing in the sentence
-        for field in ["lemma", "pos", "conjugated_form"]:
-            if field in feature_ids:
-                targets[f"bag_{field}"] = list(set(feature_ids[field]))
-
-        # 2. Position-biased token bags
-        # Target = unique token IDs appearing in the last N tokens
-        for field in ["surface", "lemma", "pos", "conjugated_form"]:
-            if field in feature_ids:
-                ids = feature_ids[field]
-                tail_ids = ids[-KC_POS_BIASED_WINDOW:] if len(ids) > 0 else []
-                targets[f"tail_{field}"] = list(set(tail_ids))
-
-        # 3. N-gram hash targets
-        # Target = hashed IDs for bigrams/trigrams
-        for field in ["pos", "conjugated_form"]:
-            if field in feature_ids:
-                ids = feature_ids[field]
-                hashes = set()
-                # Unigrams, Bigrams, Trigrams
-                # Actually user asked for Bigrams/Trigrams.
-                # Let's include unigrams too? User said: "bigrams/trigrams of pos"
-                # "Token bags" (Priority 1A) covers unigrams basically.
-                # So let's stick to n=2..Order.
-                for n_val in range(2, KC_NGRAM_ORDER + 1):
-                    if len(ids) >= n_val:
-                        for i in range(len(ids) - n_val + 1):
-                            ngram = tuple(ids[i : i + n_val])
-                            # Simple hash: polynomial rolling hash or python hash
-                            # Python hash is randomized per process, strictly we might want stable
-                            # but "Stable KC IDs across runs" is a non-goal.
-                            # Start with python hash for simplicity and speed.
-                            h = hash(ngram) % KC_HASH_BUCKETS
-                            hashes.add(h)
-                targets[f"ngram_{field}"] = list(hashes)
-
-        # 3b. (pos, conjugated_form) pairs
-        if "pos" in feature_ids and "conjugated_form" in feature_ids:
-            p_ids = feature_ids["pos"]
-            c_ids = feature_ids["conjugated_form"]
-            if len(p_ids) == len(c_ids):
-                pair_hashes = set()
-                for i, p_id in enumerate(p_ids):
-                    pair = (p_id, c_ids[i])
-                    h = hash(pair) % KC_HASH_BUCKETS
-                    pair_hashes.add(h)
-                targets["pair_pos_conj"] = list(pair_hashes)
-
-        return targets
-
     @classmethod
     def from_processed_samples(
         cls,
@@ -642,10 +584,7 @@ class StyleDataset(Dataset[Sample]):
             ]
             cache.put_batch(cast(List[Any], update_items))
 
-            # KC Targets
-            for s in newly_encoded:
-                s.kc_targets = cls._compute_kc_targets(s.feature_ids)
-
+            # KC Targets computed in worker now (s.kc_targets is populated)
             samples.extend(newly_encoded)
 
         # pylint: disable=protected-access
@@ -672,9 +611,7 @@ class StyleDataset(Dataset[Sample]):
             grammaticality_label=p.gram_label,
             original_sentence=p.sentence,
             kotogram=p.kotogram,
-            kc_targets=StyleDataset._compute_kc_targets(
-                cast(Dict[str, List[int]], p.feature_ids)
-            ),
+            kc_targets=compute_kc_targets(cast(Dict[str, List[int]], p.feature_ids)),
         )
 
     @staticmethod
@@ -725,9 +662,11 @@ class StyleDataset(Dataset[Sample]):
     ) -> Tuple["StyleDataset", "StyleDataset"]:
         """Split dataset into train and validation sets."""
         random.seed(seed)
-        torch.manual_seed(seed)
+        # Use isolated generator to ensure reproducibility regardless of global state
+        g = torch.Generator()
+        g.manual_seed(seed)
         total_len = len(self)
-        indices = torch.randperm(total_len)
+        indices = torch.randperm(total_len, generator=g)
 
         n_train = int(total_len * train_ratio)
         train_indices = indices[:n_train]

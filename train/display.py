@@ -468,3 +468,15 @@ def print_epoch_summary(
             f"    label_loss(avg)={kc_epoch_stats.get('avg_label_loss', 0.0):.4f} over {kc_epoch_stats.get('num_label_heads_processed', 0)} label batches"
         )
         print(f"    sparsity={kc_epoch_stats.get('avg_sparsity', 0.0):.4f}")
+
+
+def print_best_model_saved(path: str, val_loss: float) -> None:
+    """Print success message when a new best model is saved.
+
+    Args:
+        path: Path where the model was saved.
+        val_loss: The validation loss of this best model.
+    """
+    console.print(
+        f"[bold green]New best model matched! Saving to {path} (Loss: {val_loss:.4f})[/bold green]"
+    )
