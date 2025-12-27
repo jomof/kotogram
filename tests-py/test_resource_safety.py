@@ -20,7 +20,7 @@ class TestResourceSafety(unittest.TestCase):
             with patch("os.getloadavg", return_value=(1.0, 1.0, 1.0)):
                 # Normal conditions on CUDA
                 # min(4, 32//8) = 4
-                dl_config = config.resolve_dataloader_config(device, is_main=True)
+                dl_config = config.resolve_dataloader_config(device, mode="train")
                 self.assertEqual(dl_config.num_workers, 4)
                 self.assertTrue(dl_config.pin_memory)
                 self.assertTrue(dl_config.persistent_workers)
@@ -29,7 +29,7 @@ class TestResourceSafety(unittest.TestCase):
         config = TrainerConfig()
         device = torch.device("cpu")
 
-        dl_config = config.resolve_dataloader_config(device, is_main=True)
+        dl_config = config.resolve_dataloader_config(device, mode="train")
         self.assertEqual(dl_config.num_workers, 0)
         self.assertFalse(dl_config.pin_memory)
 

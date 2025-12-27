@@ -80,6 +80,7 @@ extend-select = ["I"]
 source-roots = ["tests-py"]
 # Ensure current directory is in sys.path so modules in root are importable
 init-hook = "import sys; sys.path.insert(0, '.')"
+load-plugins = ["pylint.extensions.private_import"]
 
 [tool.pylint.messages_control]
 disable = [

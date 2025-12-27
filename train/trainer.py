@@ -11,7 +11,6 @@ import torch
 import torch.distributed as dist
 import torch.nn.functional as F
 from torch import nn
-from torch.amp import GradScaler, autocast
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
@@ -23,7 +22,6 @@ from kotogram.model import (
 )
 from kotogram.tokenizer import FEATURE_FIELDS
 from train.config import (
-    GENDER_LOSS_WEIGHT,
     DataLoaderConfig,
     TrainerConfig,
     _safe_configure_threads,
@@ -129,8 +127,12 @@ class KCTrainer:
         self.freeze_encoder_epochs = kc_config.get("freeze_encoder_epochs", 1)
         self.args = args
 
-        if self.config.world_size > 1:
-            self.device = torch.device("cuda", self.config.local_rank)
+        if dist.is_initialized():
+            local_rank = int(os.environ.get("LOCAL_RANK", 0))
+            if torch.cuda.is_available():
+                self.device = torch.device("cuda", local_rank)
+            else:
+                self.device = torch.device("cpu")
             self.is_distributed = True
         else:
             self.device = torch.device(self.config.device)
@@ -138,36 +140,23 @@ class KCTrainer:
 
         self.model.to(self.device)
         if self.is_distributed:
+            local_rank = int(os.environ.get("LOCAL_RANK", 0))
+            if self.device.type == "cuda":
+                device_ids = [local_rank]
+                output_device = local_rank
+            else:
+                device_ids = None
+                output_device = None
+
             self.model = cast(
                 StyleClassifierWithKC,
                 DDP(
                     self.model,
-                    device_ids=[self.config.local_rank],
-                    output_device=self.config.local_rank,
+                    device_ids=device_ids,
+                    output_device=output_device,
                     find_unused_parameters=True,
                 ),
             )
-
-        device_type = (
-            "cuda"
-            if "cuda" in str(self.device)
-            else ("mps" if "mps" in str(self.device) else "cpu")
-        )
-
-        # Round 14: Separate KC scaler with lower init_scale to prevent fp16 overflow
-        # Also add use_amp_kc flag: if False, KC runs without autocast even if global AMP is on
-        self.use_amp_kc = kc_config.get(
-            "use_amp_kc", False
-        )  # Default: safer without AMP
-        kc_init_scale = kc_config.get("kc_init_scale", 1024.0)  # Not 65536 (too high)
-        self.kc_scaler = GradScaler(
-            device=device_type,
-            enabled=(self.config.use_amp and self.use_amp_kc),
-            init_scale=kc_init_scale,
-            growth_interval=2000,
-        )
-        # Keep original scaler for compatibility, but use kc_scaler for KC
-        self.scaler = self.kc_scaler
 
         pad_id = dataset.tokenizer.pad_id
         max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
@@ -175,8 +164,6 @@ class KCTrainer:
         self.sampler: Optional[DistributedSampler] = (
             DistributedSampler(
                 dataset,
-                num_replicas=self.config.world_size,
-                rank=self.config.local_rank,
                 shuffle=True,
             )
             if self.is_distributed
@@ -184,9 +171,7 @@ class KCTrainer:
         )
 
         if dl_config is None:
-            dl_config = self.config.resolve_dataloader_config(
-                self.device, is_main_process()
-            )
+            dl_config = self.config.resolve_dataloader_config(self.device)
 
         self.data_loader = DataLoader(
             dataset,
@@ -253,7 +238,6 @@ class KCTrainer:
         self.kc_show_epoch_table = bool(kc_config.get("show_epoch_table", False))
         self.kc_show_step_checks = bool(kc_config.get("show_step_checks", False))
         self.kc_show_grad_norms = bool(kc_config.get("show_grad_norms", False))
-        self.kc_show_amp_details = bool(kc_config.get("show_amp_details", False))
 
         # Round 14 Stability Hardening Params
         self.kc_grad_cap = float(kc_config.get("kc_grad_cap", 5.0))
@@ -265,7 +249,7 @@ class KCTrainer:
             self.kc_show_epoch_table = True
             self.kc_show_step_checks = True
             self.kc_show_grad_norms = True
-            self.kc_show_amp_details = True
+
         self.history: Dict[str, Any] = {
             "total_loss": [],
             "kc_loss": [],
@@ -313,7 +297,6 @@ class KCTrainer:
             history=self.history,
             global_step=self.global_step,
             batch_idx=batch_idx,
-            scaler=self.scaler,
             config=self.args or self.config,
             filename="checkpoint_kc.pt",
         )
@@ -328,7 +311,6 @@ class KCTrainer:
             path=path,
             model=getattr(self.model, "module", self.model),
             optimizer=self.optimizer,
-            scaler=self.scaler,
             filename="checkpoint_kc.pt",
             device=str(self.device),
         )
@@ -557,7 +539,6 @@ class KCTrainer:
     def _perform_optimizer_step(
         self,
         m: StyleClassifierWithKC,
-        _verbose: bool,
         has_printed_step_check: bool,
         accum: int,
         is_flush: bool = False,
@@ -582,14 +563,11 @@ class KCTrainer:
                 gn_dec = self._grad_norm(dec) if dec is not None else 0.0
                 phase = "Flush" if is_flush else "Pre-Step"
                 print(
-                    f"  KC {phase} Grad Norms: kc_head={gn_kc:.6f} decoder={gn_dec:.6f} scale={self.scaler.get_scale():.1f}"
+                    f"  KC {phase} Grad Norms: kc_head={gn_kc:.6f} decoder={gn_dec:.6f}"
                     + (f" (flush_accum={accum})" if is_flush else "")
                 )
 
         # --- Round 10/13: Guard - if any grad is non-finite, skip step and downscale ---
-        # Unscale first so we check real magnitudes
-        if self.config.use_amp:
-            self.scaler.unscale_(self.optimizer)
 
         # Round 13: Build name map for culprit identification
         name_map: Dict[int, str] = {}
@@ -626,7 +604,7 @@ class KCTrainer:
 
             if is_main_process():
                 print(
-                    f"  KC Step Skipped: non-finite grad detected (scale={self.scaler.get_scale():.1f}) "
+                    f"  KC Step Skipped: non-finite grad detected "
                     f"consec={self._consecutive_step_skips}/{self._max_consecutive_skips}"
                 )
                 for pname, nnan, ninf, gmax in bad:
@@ -635,14 +613,12 @@ class KCTrainer:
                     )
 
             self.optimizer.zero_grad(set_to_none=True)
-            if self.config.use_amp and self.use_amp_kc:
-                self.scaler.update(new_scale=max(1.0, self.scaler.get_scale() / 2.0))
 
             # Round 14: Fail-fast if too many consecutive skips
             if self._consecutive_step_skips > self._max_consecutive_skips:
                 raise RuntimeError(
                     f"KC training exceeded max consecutive step skips ({self._max_consecutive_skips}). "
-                    f"scale={self.scaler.get_scale():.1f}, lr={self.optimizer.param_groups[0]['lr']:.2e}, "
+                    f"lr={self.optimizer.param_groups[0]['lr']:.2e}, "
                     f"total_skips={self._total_step_skips}, applied={self._total_steps_applied}. "
                     f"Culprits: {[(p, n, i) for p, n, i, _ in bad[:3]]}"
                 )
@@ -661,13 +637,10 @@ class KCTrainer:
         if params_to_clip:
             nn.utils.clip_grad_norm_(params_to_clip, clip_val)
 
-        # 3. Detect if GradScaler skips the step
-        scale_before = float(self.scaler.get_scale())
-        self.scaler.step(self.optimizer)
-        self.scaler.update()
+        # 3. Standard Optimizer Step (No GradScaler)
+        self.optimizer.step()
         self.optimizer.zero_grad(set_to_none=True)
-        scale_after = float(self.scaler.get_scale())
-        skipped = scale_after < scale_before
+        skipped = False
 
         # Round 11: Check KC params are finite after step, restore if not
         if not skipped:
@@ -697,11 +670,6 @@ class KCTrainer:
                 self._total_steps_applied += 1
 
         if is_main_process() and (not has_printed_step_check or is_flush):
-            if self.kc_show_amp_details:
-                print(
-                    f"  KC AMP {'Flush ' if is_flush else ''}Step: scale {scale_before:.1f} -> {scale_after:.1f} skipped={skipped}"
-                )
-
             if self.kc_show_step_checks:
                 # 4. Compute parameter delta AFTER step
                 w0 = m.kc_head.linear.weight
@@ -738,13 +706,13 @@ class KCTrainer:
 
     # pylint: disable=too-many-locals
     def train_epoch(
-        self, epoch: int = 0, verbose: bool = True
-    ) -> Tuple[float, Dict[str, float], float, Dict[str, Any]]:
+        self, epoch: int = 0
+    ) -> Tuple[float, Dict[str, float], float, Dict[str, float]]:
         # Handle freezing
         should_freeze = epoch < self.freeze_encoder_epochs
         self._create_optimizer(freeze_encoder=should_freeze)
 
-        if verbose and is_main_process():
+        if is_main_process():
             print_phase_header(
                 "KC",
                 info="Encoder Frozen" if should_freeze else "Encoder Thawed",
@@ -766,8 +734,7 @@ class KCTrainer:
         first_batch_grad_norms: Dict[str, float] = {}
         # first_batch_debug_printed = False  # Unused
         has_printed_step_check = False
-        amp_skips = 0
-        amp_scale_start = float(self.scaler.get_scale())
+
         opt_steps = 0
         flush_steps = 0
         pending_accum = 0
@@ -832,12 +799,6 @@ class KCTrainer:
             }
             attention_mask = batch["attention_mask"].to(self.device)
 
-            device_type = (
-                "cuda"
-                if "cuda" in str(self.device)
-                else ("mps" if "mps" in str(self.device) else "cpu")
-            )
-
             # Determine temperature for this sub-step (approximate)
             gumbel_scale = 0.0
             if epoch < self.freeze_encoder_epochs:
@@ -853,87 +814,80 @@ class KCTrainer:
                 ratio = min(1.0, epoch_idx_thawed / float(epochs_remaining))
                 gumbel_scale = 0.6 * (1.0 - ratio) + 0.2 * ratio
 
-            with autocast(device_type=device_type, enabled=self.config.use_amp):
-                # Forward pass
-                outputs = self.model(
-                    field_inputs,
-                    attention_mask=attention_mask,
-                    mode="kc",
-                    temperature=t_val,
-                    gumbel_scale=gumbel_scale,
-                    grad_cap=self.kc_grad_cap,
+            # Forward pass
+            outputs = self.model(
+                field_inputs,
+                attention_mask=attention_mask,
+                mode="kc",
+                temperature=t_val,
+                gumbel_scale=gumbel_scale,
+                grad_cap=self.kc_grad_cap,
+            )
+
+            # --- Round 11: Forward output NaN detection + recovery ---
+            logits_stats = tensor_finite_stats(outputs.get("kc_logits_raw"))
+            probs_stats = tensor_finite_stats(outputs.get("kc_probs"))
+            forward_nonfinite = not logits_stats["finite"] or not probs_stats["finite"]
+
+            if forward_nonfinite:
+                self._nonfinite_streak += 1
+                self._nonfinite_total += 1
+
+                # Log spam reduction: first 3, then every 50th
+                should_log = (
+                    self._nonfinite_logged < 3 or self._nonfinite_total % 50 == 0
                 )
-
-                # --- Round 11: Forward output NaN detection + recovery ---
-                logits_stats = tensor_finite_stats(outputs.get("kc_logits_raw"))
-                probs_stats = tensor_finite_stats(outputs.get("kc_probs"))
-                forward_nonfinite = (
-                    not logits_stats["finite"] or not probs_stats["finite"]
-                )
-
-                if forward_nonfinite:
-                    self._nonfinite_streak += 1
-                    self._nonfinite_total += 1
-
-                    # Log spam reduction: first 3, then every 50th
-                    should_log = (
-                        self._nonfinite_logged < 3 or self._nonfinite_total % 50 == 0
+                if should_log and is_main_process():
+                    self._nonfinite_logged += 1
+                    print(
+                        f"  [KC][FORWARD NaN] ep={epoch} b={batch_idx} streak={self._nonfinite_streak} "
+                        f"raw[nan={logits_stats['n_nan']} inf={logits_stats['n_inf']} "
+                        f"finite_range={logits_stats['min']:.2g}..{logits_stats['max']:.2g}] "
                     )
-                    if should_log and is_main_process():
-                        self._nonfinite_logged += 1
+
+                # Check max streak
+                if self._nonfinite_streak > self._max_nonfinite_streak:
+                    raise RuntimeError(
+                        f"KC training failed: {self._nonfinite_streak} consecutive non-finite batches"
+                    )
+
+                # Recovery: restore or reinit
+                self.optimizer.zero_grad(set_to_none=True)
+                restored = self._restore_kc_snapshot()
+                if not restored:
+                    if is_main_process():
+                        print("  [KC] No snapshot available, reinitializing kc_head")
+                    self._reinit_kc_head()
+
+                # Reduce LR (at most once per 10 batches)
+                if self._nonfinite_streak == 1:
+                    for pg in self.optimizer.param_groups:
+                        pg["lr"] = pg["lr"] * 0.5
+                    if is_main_process():
                         print(
-                            f"  [KC][FORWARD NaN] ep={epoch} b={batch_idx} streak={self._nonfinite_streak} "
-                            f"raw[nan={logits_stats['n_nan']} inf={logits_stats['n_inf']} "
-                            f"finite_range={logits_stats['min']:.2g}..{logits_stats['max']:.2g}] "
-                            f"scale={self.scaler.get_scale():.1f}"
+                            f"  [KC] Halved LR to {self.optimizer.param_groups[0]['lr']:.2e}"
                         )
 
-                    # Check max streak
-                    if self._nonfinite_streak > self._max_nonfinite_streak:
-                        raise RuntimeError(
-                            f"KC training failed: {self._nonfinite_streak} consecutive non-finite batches"
-                        )
+                continue  # Skip this batch
 
-                    # Recovery: restore or reinit
-                    self.optimizer.zero_grad(set_to_none=True)
-                    restored = self._restore_kc_snapshot()
-                    if not restored:
-                        if is_main_process():
-                            print(
-                                "  [KC] No snapshot available, reinitializing kc_head"
-                            )
-                        self._reinit_kc_head()
+            # Reset streak on successful forward
+            self._nonfinite_streak = min(self._nonfinite_streak, 0)
 
-                    # Reduce LR (at most once per 10 batches)
-                    if self._nonfinite_streak == 1:
-                        for pg in self.optimizer.param_groups:
-                            pg["lr"] = pg["lr"] * 0.5
-                        if is_main_process():
-                            print(
-                                f"  [KC] Halved LR to {self.optimizer.param_groups[0]['lr']:.2e}"
-                            )
+            # Thawed Clamping (Optional but High Impact)
+            # Training-time only tweak to limit gradient explosion from "winning" KCs
+            if epoch >= self.freeze_encoder_epochs:
+                # Create local clamped copy
+                topk_vals_clamped = outputs["topk_vals"].clamp(max=0.85)
 
-                    continue  # Skip this batch
+                # Rebuild sparse activations for decoder targets ONLY
+                # We can't modify outputs["sparse_activations"] in place easily if it's needed for sparsity loss
+                # But we can re-generate target logits.
+                sparse_clamped = torch.zeros_like(outputs["kc_probs"])
+                sparse_clamped.scatter_(1, outputs["topk_inds"], topk_vals_clamped)
 
-                # Reset streak on successful forward
-                # Reset streak on successful forward
-                self._nonfinite_streak = min(self._nonfinite_streak, 0)
-
-                # Thawed Clamping (Optional but High Impact)
-                # Training-time only tweak to limit gradient explosion from "winning" KCs
-                if epoch >= self.freeze_encoder_epochs:
-                    # Create local clamped copy
-                    topk_vals_clamped = outputs["topk_vals"].clamp(max=0.85)
-
-                    # Rebuild sparse activations for decoder targets ONLY
-                    # We can't modify outputs["sparse_activations"] in place easily if it's needed for sparsity loss
-                    # But we can re-generate target logits.
-                    sparse_clamped = torch.zeros_like(outputs["kc_probs"])
-                    sparse_clamped.scatter_(1, outputs["topk_inds"], topk_vals_clamped)
-
-                    # Run decoders directly
-                    if hasattr(m, "kc_decoders"):
-                        outputs["target_logits"] = m.kc_decoders(sparse_clamped)
+                # Run decoders directly
+                if hasattr(m, "kc_decoders"):
+                    outputs["target_logits"] = m.kc_decoders(sparse_clamped)
 
             # --- Accumulate KC Usage Stats ---
             topk_inds = outputs.get("topk_inds", None)
@@ -1604,31 +1558,23 @@ class KCTrainer:
                         msg += f" raw[min={kc_logits_raw.min().item():.3g} max={kc_logits_raw.max().item():.3g}]"
                     if kc_probs is not None:
                         msg += f" probs[min={kc_probs.min().item():.3g} max={kc_probs.max().item():.3g}]"
-                    msg += f" scaler={self.scaler.get_scale():.1f}"
+
                     print(msg)
 
                 # Clear grads and reduce scaler aggressively to recover
                 self.optimizer.zero_grad(set_to_none=True)
-                if self.config.use_amp:
-                    self.scaler.update(
-                        new_scale=max(1.0, self.scaler.get_scale() / 2.0)
-                    )
 
-                amp_skips += 1
-                continue
-
-            self.scaler.scale(loss).backward()
+            loss.backward()
             did_any_backward = True
             pending_accum += 1
 
             # (Removed old mid-epoch inaccurate grad norm prints)
 
             if (batch_idx + 1) % self.config.grad_accum_steps == 0:
-                is_skipped = self._perform_optimizer_step(
-                    m, verbose, has_printed_step_check, pending_accum, is_flush=False
+                self._perform_optimizer_step(
+                    m, has_printed_step_check, pending_accum, is_flush=False
                 )
-                if is_skipped:
-                    amp_skips += 1
+
                 opt_steps += 1
                 has_printed_step_check = True
                 pending_accum = 0
@@ -1646,7 +1592,7 @@ class KCTrainer:
             ):
                 self.save_checkpoint(epoch, batch_idx)
 
-            if verbose and is_main_process():
+            if is_main_process():
                 if (
                     batch_idx % self.config.progress_update_every == 0
                     or batch_idx == total_batches - 1
@@ -1660,13 +1606,13 @@ class KCTrainer:
             raw = self.model.module if self.is_distributed else self.model
             m = cast(StyleClassifierWithKC, raw)
             self._perform_optimizer_step(
-                m, verbose, has_printed_step_check, pending_accum, is_flush=True
+                m, has_printed_step_check, pending_accum, is_flush=True
             )
             # Flush doesn't increment amp_skips usually, but we track steps
             flush_steps += 1
             has_printed_step_check = True
 
-        if verbose and is_main_process():
+        if is_main_process():
             sys.stdout.write("\n")
             sys.stdout.flush()
 
@@ -1748,16 +1694,16 @@ class KCTrainer:
             k: v / max(1, n_batches) for k, v in running_loss_components.items()
         }
 
-        if verbose and is_main_process() and not self.kc_show_epoch_table:
+        if is_main_process() and not self.kc_show_epoch_table:
             if not self.kc_show_epoch_table:
                 # Minimal mode summary
                 top_losses = sorted(
                     avg_kc_losses.items(), key=lambda x: x[1], reverse=True
                 )[:3]
                 amp_stats = {
-                    "skips": amp_skips,
-                    "start": amp_scale_start,
-                    "end": self.scaler.get_scale(),
+                    "skips": 0,
+                    "start": 1.0,  # Fixed scale
+                    "end": 1.0,
                     "opt_steps": opt_steps,
                     "flush_steps": flush_steps,
                 }
@@ -1802,14 +1748,19 @@ class KCTrainer:
                 )
 
         # Round 8 Fix 6: Compact health line (main process only)
-        if verbose and is_main_process():
+        if is_main_process():
             print(
                 f"  KC Health: maxTop1={max_top1:.3f} uniqKCs={uniq_kcs_epoch}/{kc_vocab_size} "
                 f"avgProb={cast(float, epoch_stats['avg_prob']):.3f} actDens={cast(float, epoch_stats['act_dens']):.4f} "
                 f"entN={avg_entropy_norm:.3f} klU={avg_kl_to_uniform:.3f}"
             )
 
-        return total_loss / n_batches, avg_kc_losses, avg_sparsity, epoch_stats
+        return (
+            total_loss / n_batches,
+            avg_kc_losses,
+            avg_sparsity,
+            cast(Dict[str, float], epoch_stats),
+        )
 
     def _log_training_progress(self) -> None:
         """Log training timing stats."""
@@ -1828,7 +1779,6 @@ class KCTrainer:
     def train(
         self,
         epochs: Optional[int] = None,
-        verbose: bool = True,
         on_epoch_end: Optional[Callable[[Dict[str, List[float]]], None]] = None,
     ) -> Dict[str, List[float]]:
         # Round 17: Auto-resume
@@ -1844,11 +1794,11 @@ class KCTrainer:
             if self.is_distributed:
                 cast(DistributedSampler, self.sampler).set_epoch(epoch)
             total_loss, kc_losses, avg_sparsity, epoch_stats = self.train_epoch(
-                epoch=epoch, verbose=verbose
+                epoch=epoch
             )
 
             # Performance report
-            if verbose and is_main_process():
+            if is_main_process():
                 self._log_training_progress()
 
             self.history["total_loss"].append(total_loss)
@@ -1874,7 +1824,7 @@ class KCTrainer:
                     self.history["kc_losses"][k] = []
                 self.history["kc_losses"][k].append(v)
 
-            if verbose and is_main_process() and self.kc_show_epoch_table:
+            if is_main_process() and self.kc_show_epoch_table:
                 # Top 5 contributors
                 top_losses = dict(
                     sorted(kc_losses.items(), key=lambda x: x[1], reverse=True)[:5]
@@ -1941,8 +1891,12 @@ class Trainer:
         self.kc_show_epoch_table = kc_show_epoch_table
         configure_runtime_thread_limits(self.config)
 
-        if self.config.world_size > 1:
-            self.device = torch.device("cuda", self.config.local_rank)
+        if torch.distributed.is_initialized():
+            local_rank = int(os.environ.get("LOCAL_RANK", 0))
+            if torch.cuda.is_available():
+                self.device = torch.device("cuda", local_rank)
+            else:
+                self.device = torch.device("cpu")
             self.is_distributed = True
         else:
             self.device = torch.device(self.config.device)
@@ -1950,22 +1904,24 @@ class Trainer:
 
         self.model.to(self.device)
         if self.is_distributed:
+            local_rank = int(os.environ.get("LOCAL_RANK", 0))
+            if self.device.type == "cuda":
+                device_ids = [local_rank]
+                output_device = local_rank
+            else:
+                device_ids = None
+                output_device = None
+
             self.model = cast(
                 StyleClassifierWithKC,
                 DDP(
                     self.model,
-                    device_ids=[self.config.local_rank],
-                    output_device=self.config.local_rank,
+                    device_ids=device_ids,
+                    output_device=output_device,
                     find_unused_parameters=True,
                 ),
             )
 
-        device_type = (
-            "cuda"
-            if "cuda" in str(self.device)
-            else ("mps" if "mps" in str(self.device) else "cpu")
-        )
-        self.scaler = GradScaler(device=device_type, enabled=self.config.use_amp)
         self.train_dataset = train_dataset
         self.val_dataset = val_dataset
 
@@ -1975,14 +1931,10 @@ class Trainer:
         if self.is_distributed:
             self.train_sampler: Optional[DistributedSampler] = DistributedSampler(
                 train_dataset,
-                num_replicas=self.config.world_size,
-                rank=dist.get_rank(),
                 shuffle=True,
             )
             self.val_sampler: Optional[DistributedSampler] = DistributedSampler(
                 val_dataset,
-                num_replicas=self.config.world_size,
-                rank=dist.get_rank(),
                 shuffle=False,
             )
             t_shuffle, v_shuffle = False, False
@@ -1992,7 +1944,7 @@ class Trainer:
 
         if dl_config_train is None:
             dl_config_train = self.config.resolve_dataloader_config(
-                self.device, is_main_process(), mode="train"
+                self.device, mode="train"
             )
 
         self.train_loader = DataLoader(
@@ -2012,7 +1964,7 @@ class Trainer:
 
         if dl_config_val is None:
             dl_config_val = self.config.resolve_dataloader_config(
-                self.device, is_main_process(), mode="val"
+                self.device, mode="val"
             )
 
         self.val_loader = DataLoader(
@@ -2030,20 +1982,15 @@ class Trainer:
             worker_init_fn=_worker_init_fn,
         )
 
-        if self.config.use_class_weights:
-            self.formality_criterion = nn.CrossEntropyLoss(
-                weight=train_dataset.get_formality_class_weights().to(self.device)
-            )
-            self.gender_pragmatic_criterion = nn.CrossEntropyLoss(
-                weight=train_dataset.get_gender_class_weights().to(self.device)
-            )
-            self.grammaticality_criterion = nn.CrossEntropyLoss(
-                weight=train_dataset.get_grammaticality_class_weights().to(self.device)
-            )
-        else:
-            self.formality_criterion = nn.CrossEntropyLoss()
-            self.gender_pragmatic_criterion = nn.CrossEntropyLoss()
-            self.grammaticality_criterion = nn.CrossEntropyLoss()
+        self.formality_criterion = nn.CrossEntropyLoss(
+            weight=train_dataset.get_formality_class_weights().to(self.device)
+        )
+        self.gender_pragmatic_criterion = nn.CrossEntropyLoss(
+            weight=train_dataset.get_gender_class_weights().to(self.device)
+        )
+        self.grammaticality_criterion = nn.CrossEntropyLoss(
+            weight=train_dataset.get_grammaticality_class_weights().to(self.device)
+        )
 
         mod = cast(
             StyleClassifier, self.model.module if self.is_distributed else self.model
@@ -2079,7 +2026,6 @@ class Trainer:
         self.start_epoch = 0
         self.start_batch = 0
         self.global_step = 0
-        self.is_distributed = self.config.world_size > 1
 
         # Configure PyTorch threads (Round 18)
         _safe_configure_threads(self.config)
@@ -2135,7 +2081,6 @@ class Trainer:
             history=self.history,
             global_step=self.global_step,
             batch_idx=batch_idx,
-            scaler=self.scaler,
             scheduler=self.scheduler,
             config=self.config,
             filename="checkpoint.pt",
@@ -2163,7 +2108,6 @@ class Trainer:
             path=path,
             model=getattr(self.model, "module", self.model),
             optimizer=self.optimizer,
-            scaler=self.scaler,
             scheduler=self.scheduler,
             filename="checkpoint.pt",
             device=str(self.device),
@@ -2261,12 +2205,12 @@ class Trainer:
         # Gender
         g_mse = self._masked_mse(g_val_l.squeeze(-1), targets["g_val"], mask)
         g_loss = self.formality_criterion(g_prag_l, targets["g_prag"]) + (
-            g_mse * GENDER_LOSS_WEIGHT
+            g_mse * self.config.gender_mse_scaling_factor
         )
         # Wait, original used self.gender_pragmatic_criterion
         # Re-check: g_loss = self.gender_pragmatic_criterion(g_prag_l, targets["g_prag"])
         g_loss = self.gender_pragmatic_criterion(g_prag_l, targets["g_prag"]) + (
-            g_mse * GENDER_LOSS_WEIGHT
+            g_mse * self.config.gender_mse_scaling_factor
         )
 
         gram_loss = self.grammaticality_criterion(gram_l, targets["gram"])
@@ -2312,27 +2256,19 @@ class Trainer:
         if batch_idx % self.config.grad_accum_steps == 0:
             self.optimizer.zero_grad(set_to_none=True)
 
-        device_type = (
-            "cuda"
-            if "cuda" in str(self.device)
-            else ("mps" if "mps" in str(self.device) else "cpu")
-        )
+        # Round 13: Forward pass (standard precision)
+        outputs = self.model(field_inputs, attention_mask)
+        losses = self._compute_training_loss(outputs, targets)
+        loss = losses["loss"]
 
-        with autocast(device_type=device_type, enabled=self.config.use_amp):
-            outputs = self.model(field_inputs, attention_mask)
-            losses = self._compute_training_loss(outputs, targets)
-            loss = losses["loss"]
-
-        self.scaler.scale(loss).backward()
+        loss.backward()
 
         if (batch_idx + 1) % self.config.grad_accum_steps == 0:
             if self.config.gradient_clip > 0:
-                self.scaler.unscale_(self.optimizer)
                 nn.utils.clip_grad_norm_(
                     self.model.parameters(), self.config.gradient_clip
                 )
-            self.scaler.step(self.optimizer)
-            self.scaler.update()
+            self.optimizer.step()
             self.optimizer.zero_grad(set_to_none=True)
 
         gad = self.config.grad_accum_steps
@@ -2364,10 +2300,8 @@ class Trainer:
         ):
             sys.stdout.flush()
 
-    def train_epoch(
-        self, epoch: int, verbose: bool = True
-    ) -> Tuple[float, float, float, float, float]:
-        if verbose and is_main_process():
+    def train_epoch(self, epoch: int) -> Tuple[float, float, float, float, float]:
+        if is_main_process():
             print_phase_header(
                 "Style", epoch=epoch + 1, total_epochs=self.config.epochs
             )
@@ -2403,7 +2337,7 @@ class Trainer:
                 ):
                     self.save_checkpoint(epoch, batch_idx)
 
-            if verbose and is_main_process():
+            if is_main_process():
                 if (
                     batch_idx % self.config.progress_update_every == 0
                     or batch_idx == total_batches - 1
@@ -2424,7 +2358,7 @@ class Trainer:
         # Reset start_batch for next epoch
         self.start_batch = 0
         self.train_timer_data.stop()
-        if verbose and is_main_process():
+        if is_main_process():
             sys.stdout.write("\n")
 
         return metrics.average()
@@ -2562,7 +2496,6 @@ class Trainer:
     def train(
         self,
         epochs: Optional[int] = None,
-        verbose: bool = True,
         on_epoch_end: Optional[Callable[[Dict[str, List[float]]], None]] = None,
     ) -> Dict[str, List[float]]:
         # Round 17: Auto-resume
@@ -2572,7 +2505,7 @@ class Trainer:
         actual_epochs = epochs or self.config.epochs
 
         for epoch in range(self.start_epoch, actual_epochs):
-            tl, tfl, tgl, tgraml, trl = self.train_epoch(epoch=epoch, verbose=verbose)
+            tl, tfl, tgl, tgraml, trl = self.train_epoch(epoch=epoch)
             eval_res = self.evaluate()
             self.scheduler.step(eval_res["loss"])
 
@@ -2586,7 +2519,7 @@ class Trainer:
                 probe_loader = self._build_kc_probe_loader(_max_batches=25)
                 if probe_loader is not None:
                     kc_probe_result = self.evaluate_kc_probe(probe_loader)
-                    self._diagnose_kc_probe(kc_probe_result, verbose=verbose)
+                    self._diagnose_kc_probe(kc_probe_result)
 
             # Record history
             self.history["train_loss"].append(tl)
@@ -2615,7 +2548,7 @@ class Trainer:
             self.history["sentence_count"].append(len(self.train_dataset))
 
             # Performance report
-            if verbose and is_main_process():
+            if is_main_process():
                 data_avg = self.train_timer_data.avg()
                 compute_avg = self.train_timer_compute.avg()
                 total = data_avg + compute_avg
@@ -2626,7 +2559,7 @@ class Trainer:
                 self.train_timer_data.reset()
                 self.train_timer_compute.reset()
 
-            if verbose and is_main_process():
+            if is_main_process():
                 # Format metrics for nice display
                 metrics = {
                     "Formality": {
@@ -2668,7 +2601,7 @@ class Trainer:
             else:
                 self.patience_counter += 1
                 if self.patience_counter >= self.config.patience:
-                    if verbose and is_main_process():
+                    if is_main_process():
                         print(f"Early stopping at epoch {epoch + 1}")
                     break
 
@@ -3062,9 +2995,7 @@ class Trainer:
 
         return self._compute_kc_metrics(acc, config.vocab_size)
 
-    def _diagnose_kc_probe(
-        self, probe_result: Dict[str, Any], verbose: bool = True
-    ) -> List[str]:
+    def _diagnose_kc_probe(self, probe_result: Dict[str, Any]) -> List[str]:
         """Diagnose KC degradation and return actionable recommendations.
 
         DIAGNOSTIC THRESHOLDS:
@@ -3108,7 +3039,7 @@ class Trainer:
             recommendations.append("✅ KC health OK. No action needed.")
 
         # Print compact summary
-        if verbose and is_main_process():
+        if is_main_process():
             print(
                 f"  KCProbe: uniq={probe_result.get('uniq_kcs', 0)}/{probe_result.get('kc_vocab_size', 0)} "
                 f"maxTop1={probe_result.get('max_top1', 0):.3f} "

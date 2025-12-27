@@ -348,6 +348,12 @@ class Bottle:
             # Gloo loopback fallback warning
             if "ProcessGroupGloo.cpp" in line and "loopback" in line:
                 continue
+            # DDP find_unused_parameters warning (safe to ignore in tests)
+            if (
+                "find_unused_parameters=True was specified" in line
+                and "Warning" in line
+            ):
+                continue
             filtered_combined.append(line)
 
         combined_filtered = "\n".join(filtered_combined)

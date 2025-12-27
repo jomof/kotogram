@@ -7,10 +7,10 @@ data loading, and calling the trainers from the kotogram.train package.
 import importlib.util
 
 if importlib.util.find_spec("_setup_path"):
-    import _setup_path  # type: ignore # noqa: F401 # pylint: disable=unused-import
+    import _setup_path  # type: ignore # noqa: F401 # pylint: disable=unused-import,import-private-name
 else:
     from scripts import (
-        _setup_path,  # type: ignore # noqa: F401 # pylint: disable=unused-import
+        _setup_path,  # type: ignore # noqa: F401 # pylint: disable=unused-import,import-private-name
     )
 
 # pylint: disable=wrong-import-position
@@ -228,18 +228,6 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--fp16",
-        action="store_true",
-        default=None,
-        help="Save model in float16 precision",
-    )
-    parser.add_argument(
-        "--fp8",
-        action="store_true",
-        default=None,
-        help="Save model in float8 precision",
-    )
-    parser.add_argument(
         "--resume",
         action="store_true",
         help="Resume training from checkpoint",
@@ -393,11 +381,6 @@ if __name__ == "__main__":
     checkpoint: Optional[Dict[str, Any]] = None
     vocab_grew = False
 
-    if args.fp16 is None:
-        args.fp16 = False
-    if args.fp8 is None:
-        args.fp8 = not args.fp16
-
     data_files = [args.data]
     grammaticality_labels = [1]
 
@@ -505,9 +488,7 @@ if __name__ == "__main__":
                 cast(StyleClassifierWithKC, model),
                 train_data,
                 trainer_config,
-                dl_config=trainer_config.resolve_dataloader_config(
-                    device, is_main_process()
-                ),
+                dl_config=trainer_config.resolve_dataloader_config(device),
                 kc_config={
                     "sparsity_weight": args.kc_sparsity_weight,
                     "freeze_encoder_epochs": args.kc_freeze_encoder_epochs,
@@ -532,12 +513,8 @@ if __name__ == "__main__":
         train_data,
         val_data,
         trainer_config,
-        dl_config_train=trainer_config.resolve_dataloader_config(
-            device, is_main_process(), mode="train"
-        ),
-        dl_config_val=trainer_config.resolve_dataloader_config(
-            device, is_main_process(), mode="val"
-        ),
+        dl_config_train=trainer_config.resolve_dataloader_config(device, mode="train"),
+        dl_config_val=trainer_config.resolve_dataloader_config(device, mode="val"),
     )
 
     style_start = time.perf_counter()
@@ -581,8 +558,6 @@ if __name__ == "__main__":
             output_dir,
             None,  # Tokenizer already saved by wrapper/growth logic
             model_config,
-            fp16=trainer_config.use_amp,
-            fp8=args.fp8,
         )
         print(f"Model saved to: {output_dir}")
 

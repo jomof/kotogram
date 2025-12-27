@@ -14,6 +14,7 @@ from train.types import ProcessedSample
 
 def populate_test_cache(rows):
     """Helper to populate the cache for testing."""
+    # pylint: disable=import-private-name
     from scripts.label import _process_sentence_batch
 
     processed, _ = _process_sentence_batch(rows)
@@ -60,6 +61,7 @@ def test_step1_parser_output():
 
 def test_step2_process_sentence_batch():
     """Step 2: Verify _process_sentence_batch returns correct structure."""
+    # pylint: disable=import-private-name
     from scripts.label import _process_sentence_batch
 
     print("\n" + "=" * 60)
@@ -180,6 +182,8 @@ def test_step5_encode_samples_batch():
     """Step 5: Verify _encode_samples_batch creates valid Sample objects."""
     from kotogram.tokenizer import Tokenizer
     from train.dataset import StyleDataset
+
+    # pylint: disable=import-private-name
     from train.worker import _encode_samples_batch, init_worker
 
     print("\n" + "=" * 60)
@@ -219,6 +223,8 @@ def test_step6_collate_fn():
     from kotogram.model import NUM_REGISTER_CLASSES
     from kotogram.tokenizer import Tokenizer
     from train.dataset import StyleDataset, collate_fn
+
+    # pylint: disable=import-private-name
     from train.worker import _encode_samples_batch, init_worker
 
     print("\n" + "=" * 60)
@@ -258,6 +264,8 @@ def test_step7_evaluate_list_consistency():
     """Step 7: Verify evaluate() maintains list length consistency."""
     from kotogram.tokenizer import Tokenizer
     from train.dataset import StyleDataset
+
+    # pylint: disable=import-private-name
     from train.worker import _encode_samples_batch, init_worker
 
     print("\n" + "=" * 60)

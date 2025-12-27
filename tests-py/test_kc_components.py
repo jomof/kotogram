@@ -1,5 +1,4 @@
 import math
-from typing import Any, Dict
 
 import torch
 import torch.nn.functional as F
@@ -650,18 +649,6 @@ def test_bce_sampled_returns_finite_loss():
 # =============================================================================
 # Round 14: KC AMP Safety and Skip-Loop Protection Tests
 # =============================================================================
-
-
-def test_kc_scaler_init_scale_default():
-    """Test that kc_scaler uses lower init_scale (1024) by default."""
-    # Simulate the kc_scaler logic from KCTrainer.__init__
-    kc_config: Dict[str, Any] = {}  # Empty config = use defaults
-
-    kc_init_scale = kc_config.get("kc_init_scale", 1024.0)
-    use_amp_kc = kc_config.get("use_amp_kc", False)
-
-    assert kc_init_scale == 1024.0, "Default kc_init_scale should be 1024"
-    assert use_amp_kc is False, "Default use_amp_kc should be False (safer without AMP)"
 
 
 def test_consecutive_skip_counter_logic():
