@@ -601,3 +601,30 @@ def load_default_style_model(
         with importlib.resources.path("kotogram.model_data", "model.pt") as model_file:
             model_dir = os.path.dirname(model_file)
             return load_model(model_dir, device=device)
+
+
+def is_default_style_model_available() -> bool:
+    """Check if the default style model is available."""
+    import importlib.util
+    import sys
+
+    from kotogram import locations
+
+    # Dev/Source mode: Check if we are running in a project with a trained model
+    dev_model_dir = locations.get_style_output_dir()
+    if os.path.exists(os.path.join(dev_model_dir, "model.pt")):
+        return True
+
+    # Package mode check
+    if importlib.util.find_spec("kotogram.model_data") is None:
+        return False
+
+    if sys.version_info >= (3, 9):
+        from importlib.resources import files  # type: ignore
+
+        return files("kotogram.model_data").joinpath("model.pt").is_file()
+
+    # Fallback for < 3.9
+    import importlib.resources
+
+    return importlib.resources.is_resource("kotogram.model_data", "model.pt")

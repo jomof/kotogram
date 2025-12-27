@@ -182,12 +182,29 @@ async def run_mypy() -> CheckResult:
 
 
 async def run_vulture() -> CheckResult:
-    """Vulture check."""
-    cmd = "vulture kotogram scripts train tests-py scripts/vulture_whitelist.py train_style bin/kotogram"
-    res = await run_command(cmd)
-    if not res.success:
-        return CheckResult("vulture", False, f"Vulture failed:\n{res.output}")
-    print_success("Vulture passed")
+    """Vulture check in two passes."""
+    # Pass 1: Production code only (ensure prod code is used by prod code)
+    # Exclude tests-py to verify production code isn't kept alive solely by tests.
+    cmd_prod = "vulture kotogram scripts train scripts/vulture_whitelist.py train_style bin/kotogram"
+    res_prod = await run_command(cmd_prod)
+    if not res_prod.success:
+        return CheckResult(
+            "vulture (production strict)",
+            False,
+            f"Vulture found unused production code (not used by other production code):\n{res_prod.output}",
+        )
+
+    # Pass 2: Full check (catch dead code within tests and ensure overall consistency)
+    cmd_full = "vulture kotogram scripts train tests-py scripts/vulture_whitelist.py train_style bin/kotogram"
+    res_full = await run_command(cmd_full)
+    if not res_full.success:
+        return CheckResult(
+            "vulture (full)",
+            False,
+            f"Vulture found unused code (likely in tests):\n{res_full.output}",
+        )
+
+    print_success("Vulture passed (strict production + full)")
     return CheckResult("vulture", True, "")
 
 
@@ -198,7 +215,7 @@ async def run_pylint() -> CheckResult:
     cwd = os.getcwd()
     env["PYTHONPATH"] = f"{env.get('PYTHONPATH', '')}:{cwd}:{cwd}/tests-py"
 
-    cmd = "pylint --enable=duplicate-code kotogram scripts train tests-py train_style bin/kotogram"
+    cmd = "pylint --enable=duplicate-code --ignore=vulture_whitelist.py kotogram scripts train tests-py train_style bin/kotogram"
     res = await run_command(cmd, env=env)
 
     if not res.success:
@@ -224,11 +241,11 @@ async def run_typescript() -> CheckResult:
 
 async def check_python_package() -> CheckResult:
     """Verify python package contents."""
-    # Clean dist
-    shutil.rmtree("dist", ignore_errors=True)
+    # Clean dist_py
+    shutil.rmtree("dist_py", ignore_errors=True)
 
-    # Build
-    res = await run_command("python3 -m build")
+    # Build to isolated directory
+    res = await run_command("python3 -m build --outdir dist_py")
     if not res.success:
         return CheckResult("py-build", False, f"Build failed:\n{res.output}")
 
@@ -237,10 +254,13 @@ async def check_python_package() -> CheckResult:
     # unzip -l dist/*.whl | awk '{print $4}' | grep -v "Name" ...
 
     # Python native implementation finding first wheel
-    whls = [f for f in os.listdir("dist") if f.endswith(".whl")]
+    if not os.path.exists("dist_py"):
+        return CheckResult("py-pkg", False, "dist_py not found")
+
+    whls = [f for f in os.listdir("dist_py") if f.endswith(".whl")]
     if not whls:
         return CheckResult("py-pkg", False, "No wheel file generated")
-    whl_path = os.path.join("dist", whls[0])
+    whl_path = os.path.join("dist_py", whls[0])
 
     # Use unzip -l specific format expectation?
     # Easier to use zipfile module
