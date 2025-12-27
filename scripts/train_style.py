@@ -17,6 +17,7 @@ else:
 import glob
 import json
 import os
+import shutil
 import sys
 import time
 from typing import Any, Dict, List, Optional, cast
@@ -147,53 +148,28 @@ def generate_profile_report() -> None:
     print(f"Cleaned up {len(files)} .jsonl profile files.")
 
 
+def cleanup_profile_if_retrain(argv_list: List[str]) -> None:
+    """Delete .profile directory if --retrain is present in arguments."""
+    if "--retrain" in argv_list:
+        # Use get_profile_dir to ensure we clean the correct machine-specific directory
+        profile_dir = get_profile_dir()
+        if profile_dir and os.path.exists(profile_dir):
+            if is_main_process():
+                print(f"Cleaning up profile directory: {profile_dir}")
+                shutil.rmtree(profile_dir, ignore_errors=True)
+                os.makedirs(profile_dir, exist_ok=True)
+            else:
+                # Wait for main process to recreate it
+                time.sleep(0.5)
+
+
 if __name__ == "__main__":
+    cleanup_profile_if_retrain(sys.argv)
+
     # Internal profiling when TRAIN_PROFILE is set
-    _profiler = None
-    if os.environ.get("TRAIN_PROFILE", "1") != "0":
-        import atexit
-        import cProfile
+    from train.profile import setup_profiling
 
-        _profiler = cProfile.Profile()
-        _profiler.enable()
-
-        def _save_profile() -> None:
-            if _profiler:
-                _profiler.disable()
-                import pstats
-
-                prof_dir = get_profile_dir()
-                if prof_dir:
-                    os.makedirs(prof_dir, exist_ok=True)
-
-                    # Write .pstats file
-                    pstats_file = os.path.join(
-                        prof_dir, f"train_style_{os.getpid()}.pstats"
-                    )
-                    _profiler.dump_stats(pstats_file)
-
-                    # Write human-readable summary
-                    summary_file = os.path.join(
-                        prof_dir, f"train_style_{os.getpid()}.txt"
-                    )
-                    with open(
-                        summary_file, "w", encoding="utf-8"
-                    ) as summary_file_handle:
-                        stats = pstats.Stats(_profiler, stream=summary_file_handle)
-
-                        stats.sort_stats("cumulative")
-                        summary_file_handle.write("TOP 50 BY CUMULATIVE TIME\n")
-                        summary_file_handle.write("=" * 80 + "\n")
-                        stats.print_stats(50)
-
-                        summary_file_handle.write("\n")
-
-                        stats.sort_stats("calls")
-                        summary_file_handle.write("TOP 50 BY INVOCATION COUNT\n")
-                        summary_file_handle.write("=" * 80 + "\n")
-                        stats.print_stats(50)
-
-        atexit.register(_save_profile)
+    setup_profiling("train_style", include_kc_infix=True)
 
     if os.environ.get("RANK", "0") == "0":
         print("Starting training script...", flush=True)
@@ -238,15 +214,6 @@ if __name__ == "__main__":
         help="Retrain from scratch using parameters from existing checkpoint",
     )
 
-    # Check if we should clean up profile directory
-    if "--retrain" in sys.argv:
-        profile_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
-        if os.path.exists(profile_dir):
-            import shutil
-
-            shutil.rmtree(profile_dir, ignore_errors=True)
-            if is_main_process():
-                print(f"Cleaned up profile directory: {profile_dir}")
     parser.add_argument(
         "--percent",
         type=float,

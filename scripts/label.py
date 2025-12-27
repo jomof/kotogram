@@ -7,7 +7,7 @@ import json
 import multiprocessing as mp
 import os
 
-# pylint: disable=wrong-import-position
+# pylint: disable=wrong-import-position, too-many-lines
 import random
 import sys
 import time
@@ -870,6 +870,9 @@ def main() -> None:
         reg_offsets = [0]
         cur_reg_offset = 0
 
+        # Accumulators for KC targets {key: {ids: [], offsets: [0], cur_len: 0}}
+        kc_collections: Dict[str, Dict[str, Any]] = {}
+
         # We need to access inner ProcessedSample data.
         # Use final_results directly as it contains ProcessedSample objects.
         # dataset.samples converts them to Sample, losing some info/changing structure.
@@ -933,8 +936,33 @@ def main() -> None:
             cur_reg_offset += len(r_ids)
             reg_offsets.append(cur_reg_offset)
 
+            # KC Targets
+            # Compute on the fly and accumulate
+            # feature_ids is guaranteed to be present and populated here
+            # pylint: disable=protected-access
+            kc_t = StyleDataset._compute_kc_targets(
+                cast(Dict[str, List[int]], sample.feature_ids)
+            )
+            for k_key, k_vals in kc_t.items():
+                if k_key not in kc_collections:
+                    kc_collections[k_key] = {"ids": [], "offsets": [0], "cur_len": 0}
+
+                # k_vals is list of ints
+                # Sort for determinism? Not strictly required but good practice.
+                k_vals_list = (
+                    sorted(list(k_vals)) if isinstance(k_vals, (list, set)) else []
+                )
+
+                # Mypy help
+                coll = kc_collections[k_key]
+                cast(List[int], coll["ids"]).extend(k_vals_list)
+                prev_len = cast(int, coll["cur_len"])
+                new_len = prev_len + len(k_vals_list)
+                coll["cur_len"] = new_len
+                cast(List[int], coll["offsets"]).append(new_len)
+
         # Convert to tensors
-        tensor_data = {
+        tensor_data: Dict[str, Any] = {
             "offsets": torch.tensor(all_offsets, dtype=torch.int32),
             "labels": {
                 "f_val": torch.tensor(f_vals, dtype=torch.float32),
@@ -947,6 +975,15 @@ def main() -> None:
             },
             "version": 2,
         }
+
+        # Add KC target tensors
+        if kc_collections:
+            tensor_data["kc_targets"] = {}
+            for k_key, accum in kc_collections.items():
+                tensor_data["kc_targets"][k_key] = {
+                    "ids": torch.tensor(accum["ids"], dtype=torch.long),
+                    "offsets": torch.tensor(accum["offsets"], dtype=torch.int32),
+                }
 
         # Add feature tensors
         for field, values in all_encodings.items():
@@ -993,4 +1030,8 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    from train.profile import setup_profiling
+
+    setup_profiling("label")
+
     main()
