@@ -42,9 +42,10 @@ def test_neutral_inference():
 
 def test_kyoshigo_exclusion():
     # KYOSHIGO used to be masculine, should now be neutral (unless other markers exist)
+    # Since it has no gender valence, a pure Kyoshigo sentence is gender-unpragmatic.
     assert infer_gender_from_register(
         GenderLevel.NEUTRAL, [RegisterLevel.KYOSHIGO]
-    ) == (0.0, 1)
+    ) == (0.0, 0)
 
 
 def test_conflict_unpragmatic():
@@ -64,7 +65,8 @@ def test_conflict_unpragmatic():
 
 
 def test_neutral_default():
-    assert infer_gender_from_register(GenderLevel.NEUTRAL, []) == (0.0, 1)
+    # Default case (no markers) must be UNPRAGMATIC (0) to avoid contaminating training data
+    assert infer_gender_from_register(GenderLevel.NEUTRAL, []) == (0.0, 0)
     assert infer_gender_from_register(
         GenderLevel.NEUTRAL, [RegisterLevel.KANSAIBEN]
-    ) == (0.0, 1)
+    ) == (0.0, 0)
