@@ -42,7 +42,9 @@ class TestGrammarSerialization(unittest.TestCase):
         self.assertEqual(data["register_scores"]["neutral"], 0.2)
 
         # From JSON
-        restored = GrammarAnalysis.from_json(json_str)
+        from kotogram_test_utils import KotogramTestUtils
+
+        restored = KotogramTestUtils.grammar_analysis_from_json(json_str)
 
         # Verify restored object
         self.assertEqual(restored.kotogram, analysis.kotogram)

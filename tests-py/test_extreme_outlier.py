@@ -14,9 +14,9 @@ def test_extreme_outlier() -> None:
     deadline = start + 1.0
 
     parser = augmenter.get_parser()
-    from kotogram.kotogram import tokenize_sentence
+    from kotogram_test_utils import KotogramTestUtils
 
-    tokens = tokenize_sentence(sentence, parser)
+    tokens = KotogramTestUtils.tokenize_sentence(sentence, parser)
 
     aug_start = time.time()
     candidates = augmenter.augment_tokens(tuple(tokens), deadline=deadline)

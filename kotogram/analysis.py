@@ -50,6 +50,17 @@ def _load_style_model() -> Tuple["StyleClassifier", "Tokenizer"]:
     return _STYLE_MODEL, _STYLE_TOKENIZER
 
 
+def check_model_available() -> bool:
+    """Check if the style model is available for loading."""
+    # Check if already loaded
+    if _STYLE_MODEL is not None:
+        return True
+
+    from kotogram.model import is_default_style_model_available
+
+    return is_default_style_model_available()
+
+
 @dataclass
 class GrammarAnalysis:
     """Consolidated analysis result for a Japanese sentence."""
@@ -90,27 +101,6 @@ class GrammarAnalysis:
         if self.kc_top is None:
             del d["kc_top"]
         return json.dumps(d, ensure_ascii=False)
-
-    @classmethod
-    def from_json(cls, json_str: str) -> "GrammarAnalysis":
-        """Deserialize analysis result from JSON string."""
-        d = json.loads(json_str)
-
-        # Map strings back to Enums
-        d["formality"] = FormalityLevel(d["formality"])
-        d["gender"] = GenderLevel(d["gender"])
-        d["registers"] = {RegisterLevel(r) for r in d["registers"]}
-        d["register_scores"] = {
-            RegisterLevel(k): v for k, v in d["register_scores"].items()
-        }
-
-        if "kc_top" not in d:
-            d["kc_top"] = None
-        else:
-            # JSON keys are always strings, map back to int
-            d["kc_top"] = {int(k): v for k, v in d["kc_top"].items()}
-
-        return cls(**d)
 
 
 def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:

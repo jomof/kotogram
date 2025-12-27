@@ -24,10 +24,11 @@ class TestSlowSentence(unittest.TestCase):
         start = time.time()
         # Manual steps to profile
         parser = augmenter.get_parser()
-        from kotogram.augment import get_surface
-        from kotogram.kotogram import tokenize_sentence
+        from kotogram_test_utils import KotogramTestUtils
 
-        tokens = tokenize_sentence(sentence, parser)
+        from kotogram.augment import get_surface
+
+        tokens = KotogramTestUtils.tokenize_sentence(sentence, parser)
 
         aug_start = time.time()
         candidates = augmenter.augment_tokens(tuple(tokens), deadline=time.time() + 1.0)
