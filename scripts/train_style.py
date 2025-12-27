@@ -424,30 +424,18 @@ if __name__ == "__main__":
 
     # --- Model and Data Initialization ---
     # Load tokenizer to get vocab sizes
-    # Priority: support_dir (training progress) > cache (labeling result)
-    tokenizer_path_support = os.path.join(args.support_dir, "tokenizer.json")
-    tokenizer_path_cache = os.path.join(cache_dir, "style_dataset", "vocab.json")
+    # STRICT: Load only from final output location. Wrapper guarantees its existence.
+    tokenizer_path = os.path.join(locations.get_style_output_dir(), "tokenizer.json")
 
-    tokenizer = None
-    if os.path.exists(tokenizer_path_support):
-        tokenizer = Tokenizer.load(tokenizer_path_support)
-        if is_main_process():
-            print(f"Loaded tokenizer from {tokenizer_path_support}")
+    if not os.path.exists(tokenizer_path):
+        raise FileNotFoundError(
+            f"Critical: Tokenizer not found at {tokenizer_path}. "
+            "Please run with --label first or via the wrapper script."
+        )
 
-    if tokenizer is None:
-        if os.path.exists(tokenizer_path_cache):
-            tokenizer = Tokenizer.load(tokenizer_path_cache)
-        else:
-            # Fallback to loading via StyleDataset logic or empty
-            tokenizer = Tokenizer()
-            vocab_legacy = os.path.join(
-                locations.get_style_dataset_cache_dir(), "vocab.json"
-            )
-            if os.path.exists(vocab_legacy):
-                # pylint: disable=protected-access
-                StyleDataset._load_vocab(vocab_legacy, tokenizer)
-            else:
-                raise ValueError(f"Vocabulary not found at {tokenizer_path_cache}")
+    tokenizer = Tokenizer.load(tokenizer_path)
+    if is_main_process():
+        print(f"Loaded tokenizer from {tokenizer_path}")
 
     # Create a single TrainerConfig and ModelConfig
     if args.config and os.path.exists(args.config):
@@ -469,11 +457,6 @@ if __name__ == "__main__":
 
     # Tokenizer and Device after config load
     device = torch.device(trainer_config.device)
-
-    # Tokenizer may need to be saved to support_dir for checkpoint loading
-    if is_main_process():
-        os.makedirs(args.support_dir, exist_ok=True)
-        tokenizer.save(os.path.join(args.support_dir, "tokenizer.json"))
 
     # Initialize model if not already loaded from checkpoint
     # Initialize model if not already loaded from checkpoint
@@ -548,9 +531,11 @@ if __name__ == "__main__":
     if vocab_grew:
         model.resize_embeddings(new_vocab_sizes)
         model_config.vocab_sizes = new_vocab_sizes
-        # Save updated tokenizer to support_dir so resumption finds it
+        # Save updated tokenizer to output_dir so resumption finds it
         if is_main_process():
-            tokenizer.save(os.path.join(args.support_dir, "tokenizer.json"))
+            tokenizer.save(
+                os.path.join(locations.get_style_output_dir(), "tokenizer.json")
+            )
 
     if args.preprocess_only:
         if dist.is_available() and dist.is_initialized():
@@ -640,8 +625,8 @@ if __name__ == "__main__":
 
         save_model(
             cast(StyleClassifier, trained_model),
-            tokenizer,
             output_dir,
+            None,  # Tokenizer already saved by wrapper/growth logic
             model_config,
             fp16=trainer_config.use_amp,
             fp8=args.fp8,

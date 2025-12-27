@@ -20,8 +20,8 @@ from kotogram.tokenizer import Tokenizer
 
 def save_model(
     model: StyleClassifier,
-    tokenizer: Tokenizer,
     path: str,
+    tokenizer: Optional[Tokenizer] = None,
     config: Optional[ModelConfig] = None,
     fp16: bool = False,
     fp8: bool = False,
@@ -55,8 +55,9 @@ def save_model(
         }
         torch.save(state_dict, os.path.join(path, "model.pt"))
 
-    # Save tokenizer
-    tokenizer.save(os.path.join(path, "tokenizer.json"))
+    # Save tokenizer if provided
+    if tokenizer is not None:
+        tokenizer.save(os.path.join(path, "tokenizer.json"))
 
     # Save config
     config = config or model.config
