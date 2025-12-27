@@ -186,9 +186,9 @@ def infer_gender_from_register(
             return -1.0, 1
         if is_fem:
             return 1.0, 1
-        return 0.0, 1
+        return 0.0, 0
 
-    return 0.0, 1
+    return 0.0, 0
 
 
 def _process_sentence_batch(
