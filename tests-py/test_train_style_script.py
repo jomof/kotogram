@@ -13,7 +13,7 @@ class TestTrainStyleScript(unittest.TestCase):
         # Common arguments to reduce model size for faster testing
         common_args = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
 
-        # Test both regular training and pretraining (MLM/KC)
+        # Test both regular training and pretraining (KC)
         test_configs = [
             {"name": "regular", "extra_args": f"{common_args}"},
             {
@@ -65,7 +65,7 @@ class TestTrainStyleScript(unittest.TestCase):
                     result1 = bottle.train_style(train_args)
 
                     # Verify epochs trained
-                    # For pretrain-mlm/kc: expect [1, 1] (1 pretrain + 1 fine-tune)
+                    # For pretrain-kc: expect [1, 1] (1 pretrain + 1 fine-tune)
                     # For regular: expect [1] (just 1 fine-tune)
                     if "pretrain-kc" in config["name"]:
                         expected_epochs = [1, 1]  # 1 KC, 1 Style
@@ -116,7 +116,7 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[models]/style/model.pt MAYBE-MODIFIED",
                     ]
 
-                    # NOTE: checkpoint_mlm.pt and checkpoint_kc.pt should NOT be modified
+                    # NOTE: checkpoint_kc.pt should NOT be modified
                     # because we are resuming and pretraining is already complete for this test case.
 
                     bottle.assert_dir_diff("after_epoch_1", expected_resume_differences)

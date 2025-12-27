@@ -350,7 +350,7 @@ if __name__ == "__main__":
             return
 
         # Determine num_epochs from the first list value found
-        # (e.g., 'loss', 'mlm_loss', 'total_loss')
+        # (e.g., 'loss', 'total_loss')
         num_epochs = 0
         for v in raw_history.values():
             if isinstance(v, list):
@@ -376,7 +376,7 @@ if __name__ == "__main__":
                     if i < len(v):
                         epoch_data[k] = v[i]
                 elif isinstance(v, dict):
-                    # Flatten nested dicts (like field_losses in MLM: keys -> list of vals)
+                    # Flatten nested dicts (keys -> list of vals)
                     for sub_k, sub_v in v.items():
                         if isinstance(sub_v, list) and i < len(sub_v):
                             epoch_data[f"{k}_{sub_k}"] = sub_v[i]
@@ -460,8 +460,6 @@ if __name__ == "__main__":
             model = StyleClassifierWithKC(model_config)
         else:
             model = StyleClassifier(model_config)
-
-    # MLM Pretraining Removed
 
     # Load labeled data for remaining phases
     old_vocab_sizes = model_config.vocab_sizes.copy()

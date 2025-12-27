@@ -207,6 +207,8 @@ class TrainerConfig:
 
     @classmethod
     def from_dict(cls, d: Dict[str, Any]) -> "TrainerConfig":
+        from dataclasses import fields
+
         d = dict(d)
         if "hardware" in d:
             d["hardware"] = HardwareConfig.from_dict(d["hardware"])
@@ -218,7 +220,9 @@ class TrainerConfig:
             d["main"] = ProcessSettings.from_dict(d["main"])
         if "worker" in d:
             d["worker"] = ProcessSettings.from_dict(d["worker"])
-        return cls(**d)
+
+        valid_fields = {f.name for f in fields(cls)}
+        return cls(**{k: v for k, v in d.items() if k in valid_fields})
 
     def resolve_dataloader_config(
         self, device: torch.device, is_main: bool, mode: str = "train"

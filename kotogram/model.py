@@ -124,7 +124,6 @@ class ModelConfig:
 
     # KC Learning configuration
     kc_enabled: bool = False
-    mlm_enabled: bool = False
     kc_vocab_size: int = 1024  # Size of the sparse concept, vocabulary
     kc_topk: int = 8  # Number of active concepts to retrieve
     kc_temperature: float = 1.0  # Sparsification temperature
@@ -148,7 +147,6 @@ class ModelConfig:
             "max_seq_len": self.max_seq_len,
             "pooling": self.pooling,
             "kc_enabled": self.kc_enabled,
-            "mlm_enabled": self.mlm_enabled,
             "kc_vocab_size": self.kc_vocab_size,
             "kc_topk": self.kc_topk,
             "kc_temperature": self.kc_temperature,
@@ -157,24 +155,10 @@ class ModelConfig:
 
     @classmethod
     def from_dict(cls, d: Dict[str, Any]) -> "ModelConfig":
-        d = dict(d)
-        # Legacy compatibility: remove deprecated fields
-        if "excluded_features" in d:
-            d.pop("excluded_features")
+        from dataclasses import fields
 
-        # Legacy compatibility: remove old fields
-        if "num_gender_classes" in d:
-            d.pop("num_gender_classes")
-        if "num_formality_classes" in d:
-            d.pop("num_formality_classes")
-
-        if "num_formality_classes" in d:
-            d.pop("num_formality_classes")
-
-        if "trainer" in d:
-            d.pop("trainer")
-
-        return cls(**d)
+        valid_fields = {f.name for f in fields(cls)}
+        return cls(**{k: v for k, v in d.items() if k in valid_fields})
 
 
 class PositionalEncoding(nn.Module):  # type: ignore[misc]
@@ -557,9 +541,6 @@ def load_model(
         return v
 
     state_dict = {k: to_float32(v) for k, v in state_dict.items()}
-
-    # Filter out MLM head weights if present
-    state_dict = {k: v for k, v in state_dict.items() if not k.startswith("mlm_head.")}
 
     # Load with strict=False to allow architecture changes (e.g. gender head refactor)
     # We catch the error/warning to report relevant mismatches
