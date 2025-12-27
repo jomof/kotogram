@@ -1,15 +1,11 @@
 import torch
 
-from kotogram.model import KCHead, ModelConfig
+from kotogram.model import KCHead, ModelConfig, StyleClassifier
 from kotogram.tokenizer import ALL_FEATURE_FIELDS
 from train.config import TrainerConfig
-from train.trainer import (
-    KCDecoder,
-    KCTrainer,
-    StyleClassifier,
-    StyleClassifierWithMLM,
-    create_kc_batch,
-)
+from train.dataset import create_kc_batch
+from train.models import KCDecoder, StyleClassifierWithMLM
+from train.trainer import KCTrainer
 
 
 # Mock classes for Trainer dependencies

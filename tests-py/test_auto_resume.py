@@ -14,16 +14,14 @@ class TestAutoResume(unittest.TestCase):
             bottle.populate_test_data()
 
             # 0) Prepare cache/vocab once
-            bottle.train_style("--label", timeout=10)
+            bottle.train_style("--label")
 
             checkpoint_path = bottle.resolve_path(
                 "[models]/style-support/checkpoint.pt"
             )
 
             # Case A: No checkpoint, no flags => train 1 epoch only
-            result = bottle.train_style(
-                f"--epochs 1 --no-confusion {common_args}", timeout=10
-            )
+            result = bottle.train_style(f"--epochs 1 --no-confusion {common_args}")
             bottle.assertEpochsTrained(result, [1])
             self.assertNotIn("Auto-resume enabled", result.stdout)
 
@@ -31,16 +29,14 @@ class TestAutoResume(unittest.TestCase):
             self.assertTrue(
                 os.path.exists(checkpoint_path), "Expected checkpoint after training"
             )
-            result = bottle.train_style(
-                f"--epochs 2 --no-confusion {common_args}", timeout=10
-            )
+            result = bottle.train_style(f"--epochs 2 --no-confusion {common_args}")
             # If auto-resume works, it sees epoch 1 done, trains epoch 2.
             bottle.assertEpochsTrained(result, [2])
             self.assertIn("Auto-resume enabled", result.stdout)
 
             # Case C: Checkpoint exists, --retrain => should NOT auto-resume; trains [1,2] from scratch
             result = bottle.train_style(
-                f"--epochs 2 --no-confusion {common_args} --retrain", timeout=10
+                f"--epochs 2 --no-confusion {common_args} --retrain"
             )
             bottle.assertEpochsTrained(result, [1, 2])
             self.assertNotIn("Auto-resume enabled", result.stdout)
@@ -49,7 +45,7 @@ class TestAutoResume(unittest.TestCase):
             # Case D: Checkpoint exists (epoch 2 now), explicit --resume => trains [3] if we ask for 3
             # We must increase epochs to verify resume works from the new state
             result = bottle.train_style(
-                f"--epochs 3 --no-confusion {common_args} --resume", timeout=10
+                f"--epochs 3 --no-confusion {common_args} --resume"
             )
             bottle.assertEpochsTrained(result, [3])
             self.assertNotIn("Auto-resume enabled", result.stdout)

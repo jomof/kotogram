@@ -17,7 +17,6 @@ class TestResumePretrain(unittest.TestCase):
             # Step 1: Run MLM for 1 epoch
             result1 = bottle.train_style(
                 f"--pretrain-mlm --pretrain-epochs 1 --epochs 0 --no-confusion {common_args}",
-                timeout=10,
             )
             bottle.assertEpochsTrained(result1, [1])  # 1 MLM, 0 Style
 
@@ -30,7 +29,6 @@ class TestResumePretrain(unittest.TestCase):
             # Step 2: Resume MLM to 2 epochs
             result2 = bottle.train_style(
                 f"--resume --pretrain-mlm --pretrain-epochs 2 --epochs 0 --no-confusion {common_args}",
-                timeout=10,
             )
             # Should only train the 2nd MLM epoch
             bottle.assertEpochsTrained(result2, [2])
@@ -52,12 +50,11 @@ class TestResumePretrain(unittest.TestCase):
 
         with Bottle(self) as bottle:
             bottle.populate_test_data()
-            bottle.train_style("--label", timeout=10)
+            bottle.train_style("--label")
 
             # Step 1: Run KC for 1 epoch
             result1 = bottle.train_style(
                 f"--pretrain-kc --kc-epochs 1 --epochs 0 --no-confusion {common_args}",
-                timeout=10,
             )
             bottle.assertEpochsTrained(result1, [1])  # 1 KC, 0 Style
 
@@ -70,7 +67,6 @@ class TestResumePretrain(unittest.TestCase):
             # Step 2: Resume KC to 2 epochs
             result2 = bottle.train_style(
                 f"--resume --pretrain-kc --kc-epochs 2 --epochs 0 --no-confusion {common_args}",
-                timeout=10,
             )
             # Should only train the 2nd KC epoch
             bottle.assertEpochsTrained(result2, [2])
@@ -88,20 +84,18 @@ class TestResumePretrain(unittest.TestCase):
 
         with Bottle(self) as bottle:
             bottle.populate_test_data()
-            bottle.train_style("--label", timeout=10)
+            bottle.train_style("--label")
 
             # Step 1: Run Combined Pretraining for 1 epoch each
             # --epochs 0 to skip style fine-tuning for speed
             result1 = bottle.train_style(
                 f"--pretrain-mlm --pretrain-epochs 1 --pretrain-kc --kc-epochs 1 --kc-k 256 --epochs 0 --no-confusion {common_args}",
-                timeout=10,
             )
             bottle.assertEpochsTrained(result1, [1, 1])  # MLM(1), KC(1)
 
             # Step 2: Resume BOTH to 2 epochs
             result2 = bottle.train_style(
                 f"--resume --pretrain-mlm --pretrain-epochs 2 --pretrain-kc --kc-epochs 2 --kc-k 256 --epochs 0 --no-confusion {common_args}",
-                timeout=10,
             )
             # Should train MLM epoch 2, then KC epoch 2
             bottle.assertEpochsTrained(result2, [2, 2])

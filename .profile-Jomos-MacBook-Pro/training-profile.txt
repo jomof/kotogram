@@ -1,0 +1,32 @@
+KOTOGRAM TRAINING PERFORMANCE PROFILE
+======================================
+Generated at: Fri Dec 26 17:02:43 2025
+Source logs: 4 files, 2252 samples
+
+SYSTEM HEALTH SUMMARY
+---------------------
+Peak RSS: 1,106,001,920
+Total Major Page Faults (Thrashing): 1931
+Thrashing Events (>0 faults): 6
+
+THRASHING TIMELINE (Top 10)
+---------------------------
+Epoch 0 Batch 0: 813 faults, Duration: 1.22s, RSS: 1059799040
+Epoch 0 Batch 0: 801 faults, Duration: 0.55s, RSS: 1106001920
+Epoch 0 Batch 280: 91 faults, Duration: 0.25s, RSS: 1059799040
+Epoch 0 Batch 1: 82 faults, Duration: 0.30s, RSS: 1059799040
+Epoch 0 Batch 1: 77 faults, Duration: 0.87s, RSS: 1106001920
+Epoch 0 Batch 280: 67 faults, Duration: 0.58s, RSS: 1106001920
+
+PER-EPOCH TIMING
+----------------
+Epoch 0:
+  Avg Data Loading: 5.7ms
+  Avg Compute:      333.8ms
+  Data Overhead:    1.7%
+
+Epoch 1:
+  Avg Data Loading: 0.0ms
+  Avg Compute:      324.7ms
+  Data Overhead:    0.0%
+

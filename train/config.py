@@ -5,6 +5,8 @@ from typing import TYPE_CHECKING, Any, Dict, Optional, Tuple
 
 import torch
 
+GENDER_LOSS_WEIGHT = 10.0
+
 if TYPE_CHECKING:
     from kotogram.model import ModelConfig
 

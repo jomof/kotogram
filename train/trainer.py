@@ -1,16 +1,9 @@
 """Core training logic and model extensions for style classification."""
 
-import json
-
 # pylint: disable=too-many-lines,not-callable
 import math
 import os
-import resource
 import sys
-import time
-from dataclasses import dataclass
-from dataclasses import field as dc_field
-from datetime import datetime, timedelta
 from functools import partial
 from typing import Any, Callable, Dict, List, Optional, Tuple, cast
 
@@ -26,21 +19,26 @@ from torch.utils.data import DataLoader
 from torch.utils.data.distributed import DistributedSampler
 
 from kotogram.model import (
-    ModelConfig,
     StyleClassifier,
 )
-from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
+from kotogram.tokenizer import FEATURE_FIELDS
 from train.config import (
+    GENDER_LOSS_WEIGHT,
     DataLoaderConfig,
     TrainerConfig,
     _safe_configure_threads,
     configure_runtime_thread_limits,
 )
-from train.dataset import StyleDataset, collate_fn
+from train.dataset import StyleDataset, collate_fn, create_kc_batch, create_mlm_batch
+from train.distributed import is_main_process
 from train.io import (
     load_training_state,
     save_training_state,
 )
+from train.models import StyleClassifierWithMLM
+from train.profile import Timer, get_profile_dir
+from train.types import KCMetricsAccumulator, KCProbeConfig, TrainingMetrics
+from train.worker import _worker_init_fn
 
 from .display import (
     print_epoch_summary,
@@ -51,487 +49,6 @@ from .display import (
     print_phase_header,
     print_progress_bar,
 )
-
-
-@dataclass
-class TrainingMetrics:
-    """Accumulate training metrics for an epoch."""
-
-    total_loss: Any = 0.0  # Can be float or Tensor
-    formality_loss: Any = 0.0
-    gender_loss: Any = 0.0
-    grammaticality_loss: Any = 0.0
-    register_loss: Any = 0.0
-    count: int = 0
-
-    def update(self, loss_dict: Dict[str, Any], count: int = 1) -> None:
-        """Update metrics with batch losses."""
-        # Accumulate as is (Tensor or float)
-        self.total_loss += loss_dict["loss"] * count
-        self.formality_loss += loss_dict["formality_loss"] * count
-        self.gender_loss += loss_dict["gender_loss"] * count
-        self.grammaticality_loss += loss_dict["grammaticality_loss"] * count
-        self.register_loss += loss_dict["register_loss"] * count
-        self.count += count
-
-    def average(self) -> Tuple[float, float, float, float, float]:
-        """Return averaged metrics as floats."""
-        n = max(1, self.count)
-
-        def _to_float(val: Any) -> float:
-            if isinstance(val, torch.Tensor):
-                return val.item()
-            return float(val)
-
-        return (
-            _to_float(self.total_loss) / n,
-            _to_float(self.formality_loss) / n,
-            _to_float(self.gender_loss) / n,
-            _to_float(self.grammaticality_loss) / n,
-            _to_float(self.register_loss) / n,
-        )
-
-    def get_avg_loss(self) -> float:
-        """Return average total loss as float."""
-        val = self.total_loss
-        if isinstance(val, torch.Tensor):
-            val = val.item()
-        return float(val) / max(1, self.count)
-
-
-@dataclass
-class KCMetricsAccumulator:
-    """Accumulate KC probe metrics."""
-
-    n_samples: int = 0
-    sum_entropy: float = 0.0
-    sum_kl: float = 0.0
-    sum_tv: float = 0.0
-    sum_gap: float = 0.0
-    sum_avg_prob: float = 0.0
-    sum_act_dens: float = 0.0
-    topk_hist: torch.Tensor = dc_field(default_factory=lambda: torch.tensor([]))
-    top1_hist: torch.Tensor = dc_field(default_factory=lambda: torch.tensor([]))
-    head_samples: Dict[str, Dict[str, Any]] = dc_field(default_factory=dict)
-
-
-@dataclass
-class KCProbeConfig:
-    """Configuration for KC probe evaluation."""
-
-    tau_usage: float
-    vocab_size: int
-    topk: int
-    target_specs: Dict[str, Any]
-    max_samples_per_head: int
-
-
-def _worker_init_fn(_: int) -> None:
-    """Worker initialization function to limit per-worker threads."""
-    torch.set_num_threads(1)
-    if torch.get_num_interop_threads() != 1:
-        torch.set_num_interop_threads(1)
-
-
-def is_main_process() -> bool:
-    """Check if we are on the main process (rank 0)."""
-    if not dist.is_available() or not dist.is_initialized():
-        return True
-    return dist.get_rank() == 0
-
-
-class Timer:
-    """Timer for performance and resource usage instrumentation."""
-
-    def __init__(self, name: str, output_path: Optional[str] = None):
-        self.name = name
-        self.output_path = output_path
-        self.durations: List[float] = []
-        self.start_time: float = 0.0
-        self.start_resources: Optional[resource.struct_rusage] = None
-
-        # Create/Clear the file if path provided
-        if self.output_path:
-            os.makedirs(os.path.dirname(self.output_path), exist_ok=True)
-            # We append in the loop, but typically we might want to start fresh or append?
-            # User wants "flush frequently... machine locks up", implies streaming.
-            # Let's just append to allow restart resilience, or mode='a'.
-
-    def start(self) -> None:
-        self.start_time = time.perf_counter()
-        self.start_resources = resource.getrusage(resource.RUSAGE_SELF)
-
-    def stop(self, epoch: int = 0, batch: int = 0) -> float:
-        end_time = time.perf_counter()
-        end_resources = resource.getrusage(resource.RUSAGE_SELF)
-
-        d = end_time - self.start_time
-        self.durations.append(d)
-
-        if self.output_path and self.start_resources:
-            # RSS is peak so specific diff doesn't mean much for this interval,
-            # but tracking the peak growth is useful.
-            # Faults are engaging counters, so diff is valid.
-            majflt = end_resources.ru_majflt - self.start_resources.ru_majflt
-            minflt = end_resources.ru_minflt - self.start_resources.ru_minflt
-
-            entry = {
-                "timestamp": datetime.now().isoformat(),
-                "name": self.name,
-                "epoch": epoch,
-                "batch": batch,
-                "duration_s": d,
-                "maxrss": end_resources.ru_maxrss,
-                "majflt": majflt,
-                "minflt": minflt,
-            }
-
-            with open(self.output_path, "a", encoding="utf-8") as f:
-                f.write(json.dumps(entry) + "\n")
-                f.flush()
-                # os.fsync(f.fileno()) # Dropping fsync for speed/stability if desired, or keeping it?
-                # Keeping fsync as per earlier logic, but NO TRY/EXCEPT
-                os.fsync(f.fileno())
-
-        return d
-
-    def avg(self) -> float:
-        return sum(self.durations) / max(1, len(self.durations))
-
-    def reset(self) -> None:
-        self.durations = []
-
-
-GENDER_LOSS_WEIGHT = 10.0
-
-
-class MLMHead(nn.Module):
-    """Masked language modeling head for feature-based tokens."""
-
-    def __init__(self, config: ModelConfig):
-        super().__init__()
-        self.config = config
-        self.shared_dense = nn.Linear(config.d_model, config.d_model)
-        self.shared_norm = nn.LayerNorm(config.d_model)
-
-        self.decoders = nn.ModuleDict()
-        for field_name in FEATURE_FIELDS:
-            vocab_size = config.vocab_sizes.get(field_name, 100)
-            self.decoders[field_name] = nn.Linear(config.d_model, vocab_size)
-
-    def forward(self, hidden_states: torch.Tensor) -> Dict[str, torch.Tensor]:
-        x = self.shared_dense(hidden_states)
-        x = F.gelu(x)
-        x = self.shared_norm(x)
-        return {field: decoder(x) for field, decoder in self.decoders.items()}
-
-
-class KCDecoder(nn.Module):
-    """Decoder for predicting sentence-level attributes from KC activations."""
-
-    def __init__(self, kc_vocab_size: int, target_specs: Dict[str, int]):
-        super().__init__()
-        self.decoders = nn.ModuleDict()
-        for name, vocab_size in target_specs.items():
-            self.decoders[name] = nn.Linear(kc_vocab_size, vocab_size)
-
-    def forward(self, kc_activations: torch.Tensor) -> Dict[str, torch.Tensor]:
-        return {
-            name: decoder(kc_activations) for name, decoder in self.decoders.items()
-        }
-
-
-class StyleClassifierWithMLM(StyleClassifier):
-    """Multi-task style classifier with MLM and KC pretraining support."""
-
-    def __init__(self, config: ModelConfig):
-        super().__init__(config)
-        self.mlm_head = MLMHead(config)
-        if config.kc_enabled:
-            self.kc_decoders = KCDecoder(config.kc_vocab_size, config.kc_target_specs)
-
-    def forward(
-        self,
-        *args: Any,
-        mode: str = "classification",
-        **kwargs: Any,
-    ) -> Any:
-        if mode == "mlm":
-            return self.forward_mlm(*args, **kwargs)
-        if mode == "kc":
-            return self.forward_kc(*args, **kwargs)
-        return super().forward(*args, **kwargs)
-
-    # pylint: disable=too-many-locals,too-many-positional-arguments
-    def forward_kc(
-        self,
-        field_inputs: Dict[str, torch.Tensor],
-        attention_mask: Optional[torch.Tensor] = None,
-        temperature: Optional[float] = None,
-        gumbel_scale: Optional[float] = None,
-        grad_cap: Optional[float] = None,
-    ) -> Dict[str, Any]:
-        pooled = self._get_pooled_output(field_inputs, attention_mask)
-
-        # Get raw and normalized logits
-        if hasattr(self.kc_head, "forward_with_raw"):
-            kc_logits_raw, kc_logits = self.kc_head.forward_with_raw(pooled)
-        else:
-            kc_logits = self.kc_head(pooled)
-            kc_logits_raw = kc_logits
-
-        cur_temp = (
-            temperature
-            if temperature is not None
-            else getattr(self.config, "kc_temperature", 1.0)
-        )
-
-        # Apply Gumbel Noise for Top-K Selection (Training Only)
-        # We use noisy logits for selection, but return clean logits for regularization
-        if gumbel_scale is not None and gumbel_scale > 0 and self.training:
-            # Round 12: Clamp u away from {0,1} to prevent inf/nan in log
-            u = torch.rand_like(kc_logits_raw).clamp_(1e-6, 1 - 1e-6)
-            g = -torch.log(-torch.log(u))
-            logits_select = kc_logits_raw + gumbel_scale * g
-        else:
-            logits_select = kc_logits_raw
-
-        # Round 14: Gradient capping via hook on primary logits Path
-        if self.training and grad_cap is not None:
-            if kc_logits_raw.requires_grad:
-                kc_logits_raw.register_hook(
-                    lambda grad: grad.clamp(min=-grad_cap, max=grad_cap)
-                )
-
-        # Round 14: Split clamping logic (Stability Hardening)
-        # 1. Path for Selection/Probabilities (Sigmoid)
-        # We want to prevent sigmoid saturation and large gradients.
-        logits_select = logits_select.clamp(min=-12.0, max=12.0)
-
-        # 2. Path for Diversity Regularizer (Usage)
-        # We want to prevent rare large logits from dominating the softmax mean.
-        # Note: this is stored in outputs now, to be retrieved in train_epoch.
-        logits_usage = kc_logits_raw.clamp(min=-8.0, max=8.0)
-
-        # Compute probs from (possibly noisy) logits
-        cur_temp = (
-            temperature
-            if temperature is not None
-            else getattr(self.config, "kc_temperature", 1.0)
-        )
-        kc_probs = torch.sigmoid(logits_select / cur_temp)
-
-        # Round 12: Guard against any non-finite values before topk
-        kc_probs = torch.nan_to_num(kc_probs, nan=0.0, posinf=1.0, neginf=0.0)
-
-        # Get top-k
-        k = getattr(self.config, "kc_topk", 8)
-        topk_vals, topk_inds = torch.topk(kc_probs, k, dim=-1)
-
-        # Round 14: Clamp topk_vals to 0.80 (Hard ceiling on confidence)
-        # This prevents deterministic "locking" where a KC gets 1.0 and stops exploring.
-        topk_vals = topk_vals.clamp(max=0.80)
-
-        # Create sparse activation (everything else zero)
-        # We start with zeros and scatter the top-k values back
-        sparse_activations = torch.zeros_like(kc_probs)
-        sparse_activations.scatter_(1, topk_inds, topk_vals)
-
-        target_logits = self.kc_decoders(sparse_activations)
-
-        return {
-            "kc_logits": kc_logits,
-            "kc_logits_raw": kc_logits_raw,
-            "logits_usage": logits_usage,  # Round 14: Passed for use in train_epoch
-            "kc_probs": kc_probs,
-            "sparse_activations": sparse_activations,
-            "topk_vals": topk_vals,
-            "topk_inds": topk_inds,
-            "target_logits": target_logits,
-        }
-
-    def forward_mlm(
-        self,
-        field_inputs: Dict[str, torch.Tensor],
-        attention_mask: Optional[torch.Tensor] = None,
-    ) -> Dict[str, torch.Tensor]:
-        encoder_output = self.get_encoder_output(field_inputs, attention_mask)
-        return cast(Dict[str, torch.Tensor], self.mlm_head(encoder_output))
-
-    def reset_classifier(self) -> None:
-        """Reinitialize all classifier head weights."""
-        for classifier in [
-            self.formality_value_head,
-            self.formality_pragmatic_head,
-            self.gender_value_head,
-            self.gender_pragmatic_head,
-            self.grammaticality_classifier,
-            self.register_classifier,
-        ]:
-            if isinstance(classifier, nn.Module):
-                for module in classifier.modules():
-                    if isinstance(module, nn.Linear):
-                        nn.init.xavier_uniform_(module.weight)
-                        if module.bias is not None:
-                            nn.init.zeros_(module.bias)
-
-
-def setup_distributed() -> Tuple[int, int, int]:
-    """Initialize distributed training if available.
-
-    Supports NCCL for CUDA and Gloo for CPU/MPS.
-    """
-    if "RANK" in os.environ and "WORLD_SIZE" in os.environ:
-        rank = int(os.environ["RANK"])
-        world_size = int(os.environ["WORLD_SIZE"])
-        local_rank = int(os.environ.get("LOCAL_RANK", "0"))
-
-        if torch.cuda.is_available():
-            torch.cuda.set_device(local_rank)
-            backend = "nccl"
-        else:
-            backend = "gloo"
-            if sys.platform == "darwin" and "GLOO_SOCKET_IFNAME" not in os.environ:
-                os.environ["GLOO_SOCKET_IFNAME"] = "lo0"
-
-        dist.init_process_group(
-            backend=backend,
-            init_method="env://",
-            timeout=timedelta(minutes=60),
-        )
-        print(
-            f"Distributed init: Rank {rank}/{world_size} (Local {local_rank}) using {backend} backend"
-        )
-        return rank, world_size, local_rank
-
-    return 0, 1, 0
-
-
-# pylint: disable=too-many-locals
-def create_mlm_batch(
-    batch: Dict[str, torch.Tensor],
-    mask_prob: float = 0.15,
-    mask_token_id: int = 3,
-    vocab_sizes: Optional[Dict[str, int]] = None,
-    special_token_ids: Optional[List[int]] = None,
-) -> Dict[str, torch.Tensor]:
-    """Create masked language modeling batch for feature-based tokens."""
-    special_token_ids = special_token_ids or [0, 1, 2, 3]
-    vocab_sizes = vocab_sizes or {}
-    hidden_fields = ["surface", "lemma"]
-    primary_field = "pos"
-    primary_ids = batch[f"input_ids_{primary_field}"].clone()
-
-    maskable = batch["attention_mask"].bool()
-    for special_id in special_token_ids:
-        maskable &= primary_ids != special_id
-
-    probs = torch.rand_like(primary_ids.float())
-    mask = maskable & (probs < mask_prob)
-    mask_token_positions = mask & (probs < mask_prob * 0.8)
-    random_token_positions = (
-        mask & (probs >= mask_prob * 0.8) & (probs < mask_prob * 0.9)
-    )
-
-    result = {"attention_mask": batch["attention_mask"]}
-    for field in FEATURE_FIELDS:
-        field_ids = batch[f"input_ids_{field}"].clone()
-        mlm_labels = torch.full_like(field_ids, -100)
-        if field in hidden_fields:
-            active_tokens = batch["attention_mask"].bool()
-            field_ids[active_tokens] = mask_token_id
-        else:
-            mlm_labels[mask] = field_ids[mask]
-            field_ids[mask_token_positions] = mask_token_id
-            field_vocab_size = vocab_sizes.get(field)
-            if field_vocab_size:
-                num_random = int(random_token_positions.sum().item())
-                low, high = len(special_token_ids), field_vocab_size
-                if num_random > 0 and high > low:
-                    field_ids[random_token_positions] = torch.randint(
-                        low, high, (num_random,)
-                    )
-        result[f"mlm_labels_{field}"] = mlm_labels
-        result[f"input_ids_{field}"] = field_ids
-    return result
-
-
-# pylint: disable=too-many-locals
-def create_kc_batch(
-    batch: Dict[str, torch.Tensor],
-    _tokenizer: Tokenizer,
-    target_specs: Dict[str, int],
-    *,
-    large_head_threshold: int = 4096,
-    max_pos_per_sample: int = 64,
-) -> Dict[str, torch.Tensor]:
-    """Create target batches for Knowledge Component (KC) training.
-
-    Round 13: Hybrid dense/sparse approach:
-    - For small heads (vocab_size <= large_head_threshold): dense multi-hot (B, V)
-    - For large heads: sparse positive indices (B, P) with mask
-    """
-    # pylint: disable=too-many-locals
-    result: Dict[str, torch.Tensor] = {}
-    attn = batch["attention_mask"].bool()
-    batch_size = int(attn.size(0))
-
-    for name, vocab_size in target_specs.items():
-        # Strip prefixes for multi-task heads (bag_lemma -> lemma)
-        field_name = name
-        if "_" in name:
-            parts = name.split("_")
-            if parts[0] in ["bag", "tail", "ngram", "prefix"]:
-                field_name = "_".join(parts[1:])
-
-        input_key = f"input_ids_{field_name}"
-        if input_key not in batch:
-            continue
-
-        ids = batch[input_key]  # (B, T)
-
-        if vocab_size <= large_head_threshold:
-            # Dense path for small heads
-            multi_hot = torch.zeros((batch_size, vocab_size), device=ids.device)
-            for i in range(batch_size):
-                tok = ids[i, attn[i]]
-                tok = tok[tok >= 4]  # skip specials
-                if tok.numel() == 0:
-                    continue
-                uniq = torch.unique(tok)
-                uniq = uniq[uniq < vocab_size]
-                if uniq.numel() > 0:
-                    multi_hot[i, uniq] = 1.0
-            result[f"kc_targets_{name}"] = multi_hot
-        else:
-            # Sparse path for large heads
-            pos_inds = torch.full(
-                (batch_size, max_pos_per_sample),
-                -1,
-                dtype=torch.long,
-                device=ids.device,
-            )
-            pos_mask = torch.zeros(
-                (batch_size, max_pos_per_sample), dtype=torch.bool, device=ids.device
-            )
-            for i in range(batch_size):
-                tok = ids[i, attn[i]]
-                tok = tok[tok >= 4]
-                if tok.numel() == 0:
-                    continue
-                uniq = torch.unique(tok)
-                uniq = uniq[uniq < vocab_size]
-                if uniq.numel() == 0:
-                    continue
-                if uniq.numel() > max_pos_per_sample:
-                    uniq = uniq[:max_pos_per_sample]
-                n = int(uniq.numel())
-                pos_inds[i, :n] = uniq
-                pos_mask[i, :n] = True
-            result[f"kc_pos_inds_{name}"] = pos_inds
-            result[f"kc_pos_mask_{name}"] = pos_mask
-
-    return result
 
 
 class MLMTrainer:
@@ -632,11 +149,9 @@ class MLMTrainer:
             "field_losses": {f: [] for f in FEATURE_FIELDS},
             "sentence_count": [],
         }
-        profile_dir = ""
-        if os.environ.get("TRAIN_PROFILE", "1") != "0":
-            profile_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
-            if is_main_process():
-                print(f"DEBUG: MLMTrainer profile_dir={profile_dir}")
+        profile_dir = get_profile_dir()
+        if profile_dir and is_main_process():
+            print(f"DEBUG: MLMTrainer profile_dir={profile_dir}")
 
         pid = os.getpid()
         self.train_timer_data = Timer(
@@ -2927,9 +2442,7 @@ class Trainer:
                 "sentence_count",
             ]
         }
-        profile_dir = ""
-        if os.environ.get("TRAIN_PROFILE"):
-            profile_dir = os.path.join(os.environ.get("TRAIN_ROOT", "."), ".profile")
+        profile_dir = get_profile_dir()
 
         pid = os.getpid()
         self.train_timer_data = Timer(
