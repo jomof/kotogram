@@ -11,7 +11,7 @@ class TestCrossLanguageSync(unittest.TestCase):
 
     def setUp(self):
         """Load TypeScript source for analysis."""
-        with open("src/analysis.ts", "r") as f:
+        with open("src/analysis.ts", "r", encoding="utf-8") as f:
             self.ts_content = f.read()
 
     def _extract_ts_enum(self, enum_name: str) -> dict:
@@ -25,7 +25,7 @@ class TestCrossLanguageSync(unittest.TestCase):
         enum_body = match.group(1)
         # Match KEY = "value" or KEY = 'value'
         pairs = re.findall(r"(\w+)\s*=\s*['\"]([^'\"]+)['\"]", enum_body)
-        return {key: val for key, val in pairs}
+        return dict(pairs)
 
     def test_formality_level_sync(self):
         """Verify FormalityLevel sync."""
@@ -62,7 +62,7 @@ class TestCrossLanguageSync(unittest.TestCase):
 
         interface_body = match.group(1)
         # Match fieldName: type;
-        ts_fields = set(re.findall(r"(\w+)\s*:", interface_body))
+        ts_fields = set(re.findall(r"(\w+)\??\s*:", interface_body))
 
         self.assertEqual(
             ts_fields,

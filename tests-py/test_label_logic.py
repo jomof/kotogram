@@ -1,11 +1,4 @@
-import os
-import sys
-
 from kotogram.analysis import GenderLevel, RegisterLevel
-
-# Add project root to path to allow importing scripts
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from scripts.label import infer_gender_from_register
 
 
@@ -49,6 +42,7 @@ def test_neutral_inference():
 
 def test_kyoshigo_exclusion():
     # KYOSHIGO used to be masculine, should now be neutral (unless other markers exist)
+    # Since it has no gender valence, a pure Kyoshigo sentence is gender-unpragmatic.
     assert infer_gender_from_register(
         GenderLevel.NEUTRAL, [RegisterLevel.KYOSHIGO]
     ) == (0.0, 1)
@@ -71,7 +65,10 @@ def test_conflict_unpragmatic():
 
 
 def test_neutral_default():
+    # Default case (no markers) is now PRAGMATIC (1) as we want to train on neutral sentences.
     assert infer_gender_from_register(GenderLevel.NEUTRAL, []) == (0.0, 1)
+    # KANSAIBEN is a region, not gendered, but still valid neutral/dialect training data?
+    # User said "No registers should be excluded".
     assert infer_gender_from_register(
         GenderLevel.NEUTRAL, [RegisterLevel.KANSAIBEN]
     ) == (0.0, 1)

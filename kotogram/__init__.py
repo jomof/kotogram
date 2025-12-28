@@ -7,7 +7,6 @@ from .augment import augment
 from .constants import FormalityLevel, GenderLevel, RegisterLevel
 from .japanese_parser import JapaneseParser
 from .kotogram import extract_token_features, kotogram_to_japanese, split_kotogram
-from .profile import ProfileReport, get_profile_report, increment_profile_counter
 from .sudachi_japanese_parser import SudachiJapaneseParser
 
 __all__ = [
@@ -22,7 +21,4 @@ __all__ = [
     "RegisterLevel",
     "extract_token_features",
     "augment",
-    "increment_profile_counter",
-    "get_profile_report",
-    "ProfileReport",
 ]

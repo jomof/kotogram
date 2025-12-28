@@ -13,6 +13,19 @@ def get_parser() -> SudachiJapaneseParser:
     return SudachiJapaneseParser()
 
 
+def _get_kotogram_from_args(args: argparse.Namespace) -> str:
+    """Helper to extract/parse kotogram from arguments."""
+    text = str(args.text)
+    if text == "-":
+        text = sys.stdin.read().strip()
+
+    # If it doesn't look like a kotogram, parse it first
+    if not text.startswith("⌈"):
+        parser = get_parser()
+        return parser.japanese_to_kotogram(text)
+    return text
+
+
 def cmd_parse(args: argparse.Namespace) -> int:
     """Parse Japanese text to kotogram format."""
     parser = get_parser()
@@ -55,20 +68,23 @@ def cmd_raw(args: argparse.Namespace) -> int:
     return 0
 
 
+def _check_model() -> bool:
+    """Check if model exists and print error if not."""
+    from kotogram.analysis import check_model_available
+
+    if not check_model_available():
+        sys.stderr.write("\nError: Model file not found.\n")
+        sys.stderr.write("Please ensure the style model is trained or installed.\n")
+        return False
+    return True
+
+
 def cmd_grammar(args: argparse.Namespace) -> int:
     """Analyze grammar of Japanese text."""
-    text = str(args.text)
+    if not _check_model():
+        return 1
 
-    if text == "-":
-        text = sys.stdin.read().strip()
-
-    # If it doesn't look like a kotogram, parse it first
-    if not text.startswith("⌈"):
-        parser = get_parser()
-        kotogram = parser.japanese_to_kotogram(text)
-    else:
-        kotogram = text
-
+    kotogram = _get_kotogram_from_args(args)
     from kotogram.analysis import grammar
 
     result = grammar(kotogram)
@@ -76,6 +92,47 @@ def cmd_grammar(args: argparse.Namespace) -> int:
     # Use to_json() then load/dump for pretty printing
     data = json.loads(result.to_json())
     print(json.dumps(data, indent=2, ensure_ascii=False))
+    return 0
+
+
+def cmd_formality_score(args: argparse.Namespace) -> int:
+    """Get formality score."""
+    if not _check_model():
+        return 1
+
+    kotogram = _get_kotogram_from_args(args)
+    from kotogram.analysis import grammar
+
+    result = grammar(kotogram)
+    print(result.formality_score)
+    return 0
+
+
+def cmd_formality_is_pragmatic(args: argparse.Namespace) -> int:
+    """Get formality pragmatic status."""
+    if not _check_model():
+        return 1
+
+    kotogram = _get_kotogram_from_args(args)
+    from kotogram.analysis import grammar
+
+    result = grammar(kotogram)
+    print(str(result.formality_is_pragmatic).lower())
+    return 0
+
+
+def cmd_grammaticality(args: argparse.Namespace) -> int:
+    """Get grammaticality score."""
+    if not _check_model():
+        return 1
+
+    kotogram = _get_kotogram_from_args(args)
+    from kotogram.analysis import grammar
+
+    result = grammar(kotogram)
+    # The user asked for "grammaticality", but Vulture flagged "grammaticality_score".
+    # Printing the score is more informative.
+    print(result.grammaticality_score)
     return 0
 
 
@@ -119,6 +176,31 @@ def main() -> int:
         help="Japanese text or kotogram to analyze (use '-' to read from stdin)",
     )
     grammar_parser.set_defaults(func=cmd_grammar)
+
+    # New commands to expose analysis properties
+    # formality_score
+    fs_parser = subparsers.add_parser(
+        "formality_score",
+        help="Get formality score (-1.0 to 1.0)",
+    )
+    fs_parser.add_argument("text", help="Text to analyze")
+    fs_parser.set_defaults(func=cmd_formality_score)
+
+    # formality_is_pragmatic
+    fp_parser = subparsers.add_parser(
+        "formality_is_pragmatic",
+        help="Check if formality is pragmatically determined",
+    )
+    fp_parser.add_argument("text", help="Text to analyze")
+    fp_parser.set_defaults(func=cmd_formality_is_pragmatic)
+
+    # grammaticality
+    g_parser = subparsers.add_parser(
+        "grammaticality",
+        help="Get grammaticality score (0.0 to 1.0)",
+    )
+    g_parser.add_argument("text", help="Text to analyze")
+    g_parser.set_defaults(func=cmd_grammaticality)
 
     args = parser.parse_args()
 

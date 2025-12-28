@@ -4,7 +4,8 @@ from typing import Any, Dict, List
 import torch
 from torch.utils.data import DataLoader
 
-from kotogram.model import FEATURE_FIELDS, StyleClassifier
+from kotogram.model import StyleClassifier
+from kotogram.tokenizer import FEATURE_FIELDS
 
 
 @dataclass
@@ -31,6 +32,7 @@ class EvalResult:
 
     sentences: List[str] = field(default_factory=list)
     kotograms: List[str] = field(default_factory=list)
+    indices: List[int] = field(default_factory=list)
 
     # Store raw logits if needed later? Maybe too heavy.
 
@@ -51,6 +53,7 @@ class EvalResult:
             "register_labels": self.register_labels,
             "sentences": self.sentences,
             "kotograms": self.kotograms,
+            "indices": self.indices,
         }
 
 
@@ -69,6 +72,7 @@ class Evaluator:
         self.console = Console()
 
     def evaluate(self, loader: DataLoader) -> EvalResult:
+        # pylint: disable=too-many-locals
         """Run inference on the loader and return results."""
         self.model.eval()
         result = EvalResult()
@@ -103,79 +107,133 @@ class Evaluator:
 
         try:
             with torch.no_grad():
-                for i, batch in enumerate(loader):
+                # Group accumulators to avoid too-many-locals
+                preds: Dict[str, List[Any]] = {
+                    "formality_val": [],
+                    "formality_val_targets": [],
+                    "formality_prag": [],
+                    "formality_prag_targets": [],
+                    "gender_val": [],
+                    "gender_val_targets": [],
+                    "gender_prag": [],
+                    "gender_prag_targets": [],
+                    "grammaticality": [],
+                    "grammaticality_targets": [],
+                    "register": [],
+                    "register_targets": [],
+                    "indices": [],
+                }
+
+                for batch in loader:
                     field_inputs = {
                         f"input_ids_{f}": batch[f"input_ids_{f}"].to(self.device)
                         for f in FEATURE_FIELDS
                     }
                     attention_mask = batch["attention_mask"].to(self.device)
 
-                    formality_value_targets = batch["formality_value"].to(self.device)
-                    formality_prag_targets = batch["formality_pragmatic"].to(
-                        self.device
-                    )
-                    gender_value_targets = batch["gender_value"].to(self.device)
-                    gender_prag_targets = batch["gender_pragmatic"].to(self.device)
-                    grammaticality_targets = batch["grammaticality_labels"].to(
-                        self.device
-                    )
-                    register_targets = batch["register_labels"].to(self.device)
+                    # Targets (Async transfer)
+                    # pylint: disable=duplicate-code
+                    targets = {
+                        "formality_val": batch["formality_value"].to(self.device),
+                        "formality_prag": batch["formality_pragmatic"].to(self.device),
+                        "gender_val": batch["gender_value"].to(self.device),
+                        "gender_prag": batch["gender_pragmatic"].to(self.device),
+                        "grammaticality": batch["grammaticality_labels"].to(
+                            self.device
+                        ),
+                        "register": batch["register_labels"].to(self.device),
+                    }
 
                     prediction = self.model.predict(field_inputs, attention_mask)
 
                     # Predictions
-                    formality_prag_preds = prediction.formality_pragmatic_probs.argmax(
-                        dim=-1
-                    )
-                    gender_prag_preds = prediction.gender_pragmatic_probs.argmax(dim=-1)
-                    grammaticality_preds = prediction.grammaticality_probs.argmax(
-                        dim=-1
-                    )
-
                     # Multi-label prediction (Exact match threshold 0.5)
-                    register_probs = prediction.register_probs
-                    register_preds = (register_probs > 0.5).long()
+                    register_preds = (prediction.register_probs > 0.5).long()
 
-                    # Accumulate
-                    result.formality_val_preds.extend(
-                        prediction.formality_value.squeeze(-1).cpu().tolist()
+                    # Accumulate tensors (detach to save memory)
+                    preds["formality_val"].append(
+                        prediction.formality_value.squeeze(-1)
                     )
-                    result.formality_val_labels.extend(
-                        formality_value_targets.cpu().tolist()
-                    )
+                    preds["formality_val_targets"].append(targets["formality_val"])
 
-                    result.formality_prag_preds.extend(
-                        formality_prag_preds.cpu().tolist()
+                    preds["formality_prag"].append(
+                        prediction.formality_pragmatic_probs.argmax(dim=-1)
                     )
-                    result.formality_prag_labels.extend(
-                        formality_prag_targets.cpu().tolist()
-                    )
+                    preds["formality_prag_targets"].append(targets["formality_prag"])
 
-                    result.gender_val_preds.extend(
-                        prediction.gender_value.squeeze(-1).cpu().tolist()
-                    )
-                    result.gender_val_labels.extend(gender_value_targets.cpu().tolist())
+                    preds["gender_val"].append(prediction.gender_value.squeeze(-1))
+                    preds["gender_val_targets"].append(targets["gender_val"])
 
-                    result.gender_prag_preds.extend(gender_prag_preds.cpu().tolist())
-                    result.gender_prag_labels.extend(gender_prag_targets.cpu().tolist())
+                    preds["gender_prag"].append(
+                        prediction.gender_pragmatic_probs.argmax(dim=-1)
+                    )
+                    preds["gender_prag_targets"].append(targets["gender_prag"])
 
-                    result.grammaticality_preds.extend(
-                        grammaticality_preds.cpu().tolist()
+                    preds["grammaticality"].append(
+                        prediction.grammaticality_probs.argmax(dim=-1)
                     )
-                    result.grammaticality_labels.extend(
-                        grammaticality_targets.cpu().tolist()
-                    )
+                    preds["grammaticality_targets"].append(targets["grammaticality"])
 
-                    result.register_preds.extend(register_preds.cpu().tolist())
-                    result.register_labels.extend(
-                        register_targets.long().cpu().tolist()
-                    )
+                    preds["register"].append(register_preds)
+                    preds["register_targets"].append(targets["register"].long())
+
+                    if "indices" in batch:
+                        preds["indices"].append(batch["indices"])
 
                     result.sentences.extend(batch.get("original_sentence", []))
                     result.kotograms.extend(batch.get("kotogram", []))
 
                     if progress_context and task_id is not None:
                         progress_context.update(task_id, advance=1)
+
+                # Consolidate results (Single synchronization point)
+                if preds["formality_val"]:
+                    result.formality_val_preds = torch.cat(
+                        [x.cpu() for x in preds["formality_val"]]
+                    ).tolist()
+                    result.formality_val_labels = torch.cat(
+                        [x.cpu() for x in preds["formality_val_targets"]]
+                    ).tolist()
+
+                    result.formality_prag_preds = torch.cat(
+                        [x.cpu() for x in preds["formality_prag"]]
+                    ).tolist()
+                    result.formality_prag_labels = torch.cat(
+                        [x.cpu() for x in preds["formality_prag_targets"]]
+                    ).tolist()
+
+                    result.gender_val_preds = torch.cat(
+                        [x.cpu() for x in preds["gender_val"]]
+                    ).tolist()
+                    result.gender_val_labels = torch.cat(
+                        [x.cpu() for x in preds["gender_val_targets"]]
+                    ).tolist()
+
+                    result.gender_prag_preds = torch.cat(
+                        [x.cpu() for x in preds["gender_prag"]]
+                    ).tolist()
+                    result.gender_prag_labels = torch.cat(
+                        [x.cpu() for x in preds["gender_prag_targets"]]
+                    ).tolist()
+
+                    result.grammaticality_preds = torch.cat(
+                        [x.cpu() for x in preds["grammaticality"]]
+                    ).tolist()
+                    result.grammaticality_labels = torch.cat(
+                        [x.cpu() for x in preds["grammaticality_targets"]]
+                    ).tolist()
+
+                    result.register_preds = torch.cat(
+                        [x.cpu() for x in preds["register"]]
+                    ).tolist()
+                    result.register_labels = torch.cat(
+                        [x.cpu() for x in preds["register_targets"]]
+                    ).tolist()
+
+                    if preds["indices"]:
+                        result.indices = torch.cat(
+                            [x.cpu() for x in preds["indices"]]
+                        ).tolist()
 
         except KeyboardInterrupt:
             self.console.print("\n[bold red]Evaluation interrupted by user.[/bold red]")

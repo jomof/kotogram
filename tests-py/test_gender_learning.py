@@ -1,11 +1,13 @@
 import unittest
 
 import torch
-import torch.nn as nn
+from torch import nn
 
-from kotogram.model import ModelConfig, StyleClassifier
+from kotogram.model import ModelConfig
+from train.trainer import StyleClassifier
 
 
+# pylint: disable=too-many-locals
 class TestGenderLearning(unittest.TestCase):
     def test_gradient_flow(self):
         """Verify that gradients flow to gender heads."""
@@ -23,25 +25,15 @@ class TestGenderLearning(unittest.TestCase):
         batch_size = 4
         # Default model uses all features: surface, pos, pos_detail1, pos_detail2, conjugated_type, conjugated_form, lemma
         field_inputs = {}
-        for field in [
-            "surface",
-            "pos",
-            "pos_detail1",
-            "pos_detail2",
-            "pos_detail3",
-            "conjugated_type",
-            "conjugated_form",
-            "lemma",
-            "base_orth",
-            "reading",
-        ]:
+        from kotogram.tokenizer import FEATURE_FIELDS
+
+        field_inputs = {}
+        for field in FEATURE_FIELDS:
             field_inputs[f"input_ids_{field}"] = torch.randint(0, 100, (batch_size, 10))
         attention_mask = torch.ones((batch_size, 10))
 
         # Forward pass
-        formality_val, formality_prag, gender_val, gender_prag, gram, _ = model(
-            field_inputs, attention_mask
-        )
+        _, _, gender_val, gender_prag, _, _ = model(field_inputs, attention_mask)
 
         # Dummy targets
         gender_val_targets = torch.randn(batch_size)

@@ -5,6 +5,8 @@ associated speech patterns. It was moved from kotogram/analysis.py to keep the
 main package model-focused.
 """
 
+# pylint: disable=too-many-lines, too-many-locals, too-many-return-statements
+
 from typing import List, Set
 
 from kotogram.analysis import FormalityLevel, GenderLevel, RegisterLevel
@@ -430,6 +432,7 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
     Returns:
         Set of RegisterLevel based on the combination of features
     """
+    # pylint: disable=too-many-locals, too-many-nested-blocks, too-many-branches, too-many-statements, too-many-boolean-expressions
     if not features:
         return {RegisterLevel.NEUTRAL}
 
@@ -630,11 +633,7 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
         if surface == "わ" and i > 0 and features[i - 1].surface == "です":
             detected_registers.add(RegisterLevel.OJOUSAMA)
         # "masu wa" / "masen wa"
-        if (
-            surface == "わ"
-            and i > 0
-            and (features[i - 1].surface == "ます" or features[i - 1].surface == "て")
-        ):
+        if surface == "わ" and i > 0 and (features[i - 1].surface in ("ます", "て")):
             # "masu wa" or "te wa" (rare, but "yoroshikute wa")
             detected_registers.add(RegisterLevel.OJOUSAMA)
         if surface == "わ" and i > 0 and "ません" in features[i - 1].surface:
@@ -1343,15 +1342,11 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
             # Catch o-kake (noun/verb)
             if features[i + 1].surface == "掛け" or features[i + 1].lemma == "掛ける":
                 detected_registers.add(RegisterLevel.SONKEIGO)
-            if (
-                features[i + 1].lemma == "指導"
-                or features[i + 1].lemma == "自由"
-                or features[i + 1].lemma == "不在"
-            ):
+            if features[i + 1].lemma in ("指導", "自由", "不在"):
                 detected_registers.add(RegisterLevel.SONKEIGO)
         # o-V-ni-naru pattern: o + V(conj) + ni + naru
         # Check for 'ni' and 'naru' (lemma)
-        if surface == "に" and i > 1 and i < len(features) - 1:
+        if surface == "に" and 1 < i < len(features) - 1:
             prev1 = features[i - 1]
             prev2 = features[i - 2]
             next1 = features[i + 1]

@@ -16,12 +16,13 @@ from . import locations
 # This is required for cross-language furigana support to work on typescript
 # canary CI machine without installing pytorch.
 if TYPE_CHECKING:
-    from kotogram.model import StyleClassifier, Tokenizer
+    from kotogram.model import StyleClassifier
+    from kotogram.tokenizer import Tokenizer
 
 # Global cache for loaded model (lazy loading)
-_style_model: Optional["StyleClassifier"] = None
-_style_tokenizer: Optional["Tokenizer"] = None
-_style_model_path: str = "models/style"
+_STYLE_MODEL: Optional["StyleClassifier"] = None
+_STYLE_TOKENIZER: Optional["Tokenizer"] = None
+_STYLE_MODEL_PATH: str = "models/style"
 
 
 def _load_style_model() -> Tuple["StyleClassifier", "Tokenizer"]:
@@ -33,20 +34,31 @@ def _load_style_model() -> Tuple["StyleClassifier", "Tokenizer"]:
     Raises:
         FileNotFoundError: If model files are not found at the expected path.
     """
-    global _style_model, _style_tokenizer
+    global _STYLE_MODEL, _STYLE_TOKENIZER  # pylint: disable=global-statement
 
-    if _style_model is None or _style_tokenizer is None:
+    if _STYLE_MODEL is None or _STYLE_TOKENIZER is None:
         from kotogram.model import load_default_style_model, load_model
 
         # Priority 1: Check for local model in style-output dir (handles TRAIN_ROOT)
         model_dir = locations.get_style_output_dir()
         if os.path.exists(os.path.join(model_dir, "model.pt")):
-            _style_model, _style_tokenizer = load_model(model_dir)
+            _STYLE_MODEL, _STYLE_TOKENIZER = load_model(model_dir)
         else:
             # Priority 2: Fall back to package-default model
-            _style_model, _style_tokenizer = load_default_style_model()
+            _STYLE_MODEL, _STYLE_TOKENIZER = load_default_style_model()
 
-    return _style_model, _style_tokenizer
+    return _STYLE_MODEL, _STYLE_TOKENIZER
+
+
+def check_model_available() -> bool:
+    """Check if the style model is available for loading."""
+    # Check if already loaded
+    if _STYLE_MODEL is not None:
+        return True
+
+    from kotogram.model import is_default_style_model_available
+
+    return is_default_style_model_available()
 
 
 @dataclass
@@ -73,6 +85,7 @@ class GrammarAnalysis:
     # Grammaticality
     is_grammatic: bool
     grammaticality_score: float  # Probability of being grammatic
+    kc_top: Optional[Dict[int, float]] = None  # Top-K KC {id: prob}
 
     def to_json(self) -> str:
         """Serialize analysis result to JSON string."""
@@ -84,25 +97,14 @@ class GrammarAnalysis:
         d["registers"] = sorted([r.value for r in self.registers])
         # Convert Dict keys from Enums to strings
         d["register_scores"] = {k.value: v for k, v in self.register_scores.items()}
+        # kc_top: Dict[int, float] -> json.dump will convert int keys to strings automatically
+        if self.kc_top is None:
+            del d["kc_top"]
         return json.dumps(d, ensure_ascii=False)
-
-    @classmethod
-    def from_json(cls, json_str: str) -> "GrammarAnalysis":
-        """Deserialize analysis result from JSON string."""
-        d = json.loads(json_str)
-
-        # Map strings back to Enums
-        d["formality"] = FormalityLevel(d["formality"])
-        d["gender"] = GenderLevel(d["gender"])
-        d["registers"] = {RegisterLevel(r) for r in d["registers"]}
-        d["register_scores"] = {
-            RegisterLevel(k): v for k, v in d["register_scores"].items()
-        }
-
-        return cls(**d)
 
 
 def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
+    # pylint: disable=too-many-locals
     """Analyze a list of Japanese sentences in batch and return results.
 
     This function is significantly more efficient than calling grammar()
@@ -125,7 +127,8 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     # Use the trained neural model for prediction
     import torch
 
-    from kotogram.model import FEATURE_FIELDS, REGISTER_ID_TO_LABEL
+    from kotogram.model import REGISTER_ID_TO_LABEL
+    from kotogram.tokenizer import FEATURE_FIELDS
 
     model, tokenizer = _load_style_model()
 
@@ -155,6 +158,12 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     model.eval()
     with torch.no_grad():
         prediction = model.predict(field_inputs, attention_mask)
+        # Get Interpretable KCs separately
+        kc_top_results = None
+        if model.config.kc_enabled:
+            kc_top_results = model.predict_kcs_top(
+                field_inputs, attention_mask, min_prob=0.0
+            )
 
     results = []
     for i in range(batch_size):
@@ -208,6 +217,11 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
         gram_score = float(prediction.grammaticality_probs[i][1].item())
         is_grammatic = gram_score > 0.5
 
+        kc_top_sample = None
+        if kc_top_results is not None:
+            # Convert list of (int, float) tuples to {int: float} dict
+            # We strictly cast int(k_id) to ensure it's an int.
+            kc_top_sample = {int(k_id): prob for k_id, prob in kc_top_results[i]}
         results.append(
             GrammarAnalysis(
                 kotogram=kotograms[i],
@@ -221,6 +235,7 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
                 register_scores=detected_register_scores,
                 is_grammatic=is_grammatic,
                 grammaticality_score=gram_score,
+                kc_top=kc_top_sample,
             )
         )
 

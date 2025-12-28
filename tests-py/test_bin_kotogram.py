@@ -1,6 +1,5 @@
 import os
 import subprocess
-import sys
 import unittest
 from pathlib import Path
 
@@ -19,9 +18,21 @@ class TestBinKotogram(unittest.TestCase):
 
     def run_script(self, args, input_text=None):
         """Run the script as a subprocess."""
-        cmd = [sys.executable, str(self.script_path)] + args
 
-        result = subprocess.run(cmd, input=input_text, text=True, capture_output=True)
+        # Ensure we use the project root for finding models/style in dev mode
+        env = os.environ.copy()
+        current_dir = Path(os.path.dirname(os.path.abspath(__file__)))
+        project_root = current_dir.parent
+        env["TRAIN_ROOT"] = str(project_root)
+
+        result = subprocess.run(
+            [str(self.script_path)] + args,
+            input=input_text,
+            capture_output=True,
+            text=True,
+            check=False,
+            env=env,
+        )
         return result
 
     def test_help(self):
@@ -78,10 +89,7 @@ class TestBinKotogram(unittest.TestCase):
             self.fail(f"No JSON output found. Full output:\n{stdout}")
 
         json_str = stdout[json_start:]
-        try:
-            data = json.loads(json_str)
-        except json.JSONDecodeError:
-            self.fail(f"Output not valid JSON: {json_str[:100]}...")
+        data = json.loads(json_str)
 
         # Verify required fields
         self.assertIn("is_grammatic", data)

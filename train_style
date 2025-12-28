@@ -1,0 +1,761 @@
+#!/usr/bin/env python3
+"""Train style classifier (formality + gender + grammaticality) on Japanese sentence corpus.
+
+This script orchestrates the full training pipeline:
+1. Environment detection (GPU, batch sizes, gradient accumulation)
+2. Preprocessing/labeling phase (via scripts.label)
+3. Training phase (via scripts.train_style)
+4. Confusion matrix evaluation (via scripts.confusion)
+
+Usage:
+    ./train_style                    # Default training
+    ./train_style --label            # Preprocessing only
+
+Setup:
+    source requirements.sh           # One-time setup (installs deps, activates venv)
+"""
+
+import argparse
+import importlib.util
+import os
+import subprocess
+import sys
+import time
+from typing import List, Optional, Any, Dict, IO
+
+# Ensure we can import kotogram from project root if running from source
+# pylint: disable=wrong-import-position
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+from kotogram import locations
+from kotogram.model import (
+    NUM_FORMALITY_PRAGMATIC_CLASSES,
+    NUM_GENDER_PRAGMATIC_CLASSES,
+    NUM_GRAMMATICALITY_CLASSES,
+    ModelConfig,
+)
+from kotogram.tokenizer import Tokenizer
+from train.config import (
+    CheckpointConfig,
+    DataLoaderSettings,
+    HardwareConfig,
+    TrainerConfig,
+)
+
+
+
+
+
+
+def get_num_gpus() -> int:
+    """Detect the number of available CUDA GPUs."""
+    if importlib.util.find_spec("torch"):
+        import torch
+        if torch.cuda.is_available():
+            return torch.cuda.device_count()
+        if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+            return 1
+    return 0
+
+
+
+
+
+def run_command(cmd: List[str], env: dict, cwd: str, tee_log: Optional[str] = None) -> int:
+    """Run a command, optionally teeing output to a log file."""
+    if tee_log:
+        # Create parent directory if needed
+        os.makedirs(os.path.dirname(tee_log), exist_ok=True)
+        with open(tee_log, "ab") as log_file:
+            with subprocess.Popen(
+                cmd, env=env, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=0
+            ) as process:
+                if process.stdout is None:
+                    raise RuntimeError("Failed to capture stdout")
+                while True:
+                    # Read chunks to allow real-time progress bar updates without newline buffering issues
+                    chunk = process.stdout.read(4096)
+                    if not chunk:
+                        break
+                    sys.stdout.buffer.write(chunk)
+                    sys.stdout.flush()
+                    log_file.write(chunk)
+                    log_file.flush()
+
+                process.wait()
+                return process.returncode
+    else:
+        result = subprocess.run(cmd, env=env, cwd=cwd, check=False)
+        return result.returncode
+
+
+def get_free_port() -> int:
+    """Find a free port on localhost."""
+    import socket
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind(('', 0))
+        return int(s.getsockname()[1])
+
+
+
+
+
+
+# pylint: disable=too-many-locals
+def run_mp_distributed(cmd: List[str], env: dict, world_size: int, tee_log: Optional[str] = None) -> int:
+    """Run a distributed command using multiprocessing (bypasses torchrun overhead on Mac)."""
+    import threading
+    from contextlib import ExitStack
+
+    # Always pick a fresh port for MPLauncher to prevent test conflicts
+    # or lingering environment variables from polluting independent runs.
+    master_port = str(get_free_port())
+    master_addr = env.get("MASTER_ADDR", "127.0.0.1")
+
+    # Ensure env has these for workers
+    env["MASTER_ADDR"] = master_addr
+    env["MASTER_PORT"] = master_port
+
+    # Force lo0 on Mac for speed
+    if sys.platform == "darwin":
+        env["GLOO_SOCKET_IFNAME"] = "lo0"
+
+    # Use ExitStack to manage file and process contexts
+    with ExitStack() as stack:
+        log_f = None
+        if tee_log:
+            os.makedirs(os.path.dirname(tee_log), exist_ok=True)
+            log_f = stack.enter_context(open(tee_log, "ab"))
+            log_f.write(f"\n--- Starting MP Distributed Run (world_size={world_size}) ---\n".encode("utf-8"))
+
+        def pipe_reader(pipe: IO[bytes]) -> None:
+            while True:
+                chunk = pipe.read(4096)
+                if not chunk:
+                    break
+                sys.stdout.buffer.write(chunk)
+                sys.stdout.flush()
+                if log_f:
+                    log_f.write(chunk)
+                    log_f.flush()
+
+        processes = []
+        for i in range(world_size):
+            w_env = env.copy()
+            w_env["RANK"] = str(i)
+            w_env["WORLD_SIZE"] = str(world_size)
+            w_env["LOCAL_RANK"] = str(i)
+
+            p = stack.enter_context(subprocess.Popen(
+                [sys.executable] + cmd,
+                env=w_env,
+                cwd=PROJECT_ROOT,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                bufsize=0 # Unbuffered binary
+            ))
+            processes.append(p)
+
+            t = threading.Thread(target=pipe_reader, args=(p.stdout,))
+            t.daemon = True
+            t.start()
+
+        # Wait for all processes
+        exit_codes = [p.wait() for p in processes]
+
+    for code in exit_codes:
+        if code != 0:
+            return code
+    return 0
+
+
+def handle_special_modes(args: argparse.Namespace) -> Optional[int]:
+    """Handle special modes like --show-config and --report."""
+    if args.show_config:
+        import json
+        print(json.dumps(TrainerConfig().to_dict(), indent=2))
+        return 0
+
+    if args.report:
+        # Just pass through to inner script
+        return run_command([sys.executable, "-m", "scripts.train_style", "--report"], os.environ.copy(), PROJECT_ROOT)
+
+    return None
+
+
+def run_preprocessing(
+    args: argparse.Namespace,
+    env: dict,
+    gram_data_pattern: str,
+    agrammatic_pattern: str,
+) -> bool:
+    """Run preprocessing/labeling phase."""
+    style_cache_dir = locations.get_style_dataset_cache_dir()
+    offsets_bin = os.path.join(style_cache_dir, "offsets.bin")
+
+    skip_label = False
+    if os.path.exists(offsets_bin) and not args.force_relabel:
+        skip_label = True
+        print("Using cached labels (V2 Binary)")
+
+    print("=" * 46)
+    print("Running Preprocessing Phase...")
+    print("=" * 46)
+
+    t_label_start = time.perf_counter()
+
+    if not skip_label:
+        label_cmd = [
+            sys.executable,
+            "-m",
+            "scripts.label",
+            "--grammatic-pattern",
+            gram_data_pattern,
+        ]
+        if args.force_relabel:
+            label_cmd.append("--force-relabel")
+        if agrammatic_pattern:
+            label_cmd.extend(["--agrammatic-pattern", agrammatic_pattern])
+
+        print("Executing preprocessing script...")
+        ret = run_command(label_cmd, env, PROJECT_ROOT)
+        print(f"Preprocessing script took {time.perf_counter() - t_label_start:.1f}s")
+        if ret != 0:
+            print("Preprocessing failed!", file=sys.stderr)
+            return False
+    else:
+        print(
+            f"Preprocessing skipped (using cached labels). Took {time.perf_counter() - t_label_start:.1f}s"
+        )
+
+    # Report size if possible
+    if os.path.exists(offsets_bin):
+        sz = os.path.getsize(offsets_bin)
+        count = sz // 4 - 1
+        print(f"Dataset size: {count} samples")
+    print("Preprocessing complete.")
+    return True
+
+
+def build_trainer_config(
+    args: argparse.Namespace,
+    env: dict,
+    support_dir: str,
+    explicit_resume: bool,
+    grad_accum_steps: int,
+) -> TrainerConfig:
+    """Build the TrainerConfig object from arguments."""
+    trainer_kwargs: Dict[str, Any] = {
+        "kc_epochs": args.kc_epochs,
+        "learning_rate": args.learning_rate,
+
+
+        "grad_accum_steps": grad_accum_steps,
+        "checkpoint": CheckpointConfig(
+            dir=support_dir,
+            resume_from=support_dir if explicit_resume else None,
+        ),
+        "hardware": HardwareConfig(
+            cpu_reserve_cores=int(env.get("CPU_RESERVE_CORES", 2)),
+        ),
+        "dataloader": DataLoaderSettings(
+            num_workers=args.dataloader_num_workers,
+        ),
+    }
+
+    if args.epochs is not None:
+        trainer_kwargs["epochs"] = args.epochs
+    if args.batch_size is not None:
+        trainer_kwargs["batch_size"] = args.batch_size
+    if args.formality_weight is not None:
+        trainer_kwargs["formality_loss_weight"] = args.formality_weight
+    if args.gender_weight is not None:
+        trainer_kwargs["gender_loss_weight"] = args.gender_weight
+    if args.grammaticality_weight is not None:
+        trainer_kwargs["grammaticality_loss_weight"] = args.grammaticality_weight
+
+    return TrainerConfig(**trainer_kwargs)
+
+
+# pylint: disable=too-many-locals
+def generate_and_save_config(
+    args: argparse.Namespace,
+    env: dict,
+    explicit_resume: bool,
+    grad_accum_steps: int,
+) -> str:
+    """Generate and save the unified configuration file."""
+    support_dir = locations.get_style_support_dir()
+    cache_dir = locations.get_cache_dir()
+
+    config_path = os.path.join(support_dir, "config.json")
+
+    # Load tokenizer
+    output_dir = locations.get_style_output_dir()
+    os.makedirs(output_dir, exist_ok=True)
+    tokenizer_path_final = os.path.join(output_dir, "tokenizer.json")
+    tokenizer_path_cache = os.path.join(cache_dir, "style_dataset", "vocab.json")
+
+    # Ensure tokenizer is in the final output location (models/style/tokenizer.json)
+    # This is the single source of truth for training and inference.
+    if os.path.exists(tokenizer_path_cache):
+        # Always overwrite from cache (latest labels) to ensure consistency
+        import shutil
+        shutil.copy2(tokenizer_path_cache, tokenizer_path_final)
+        print(f"Staged tokenizer to {tokenizer_path_final}")
+    elif not os.path.exists(tokenizer_path_final):
+        # If no cache and no existing final tokenizer, create a fresh one (e.g. first run)
+        print(f"Creating fresh tokenizer at {tokenizer_path_final}")
+        Tokenizer().save(tokenizer_path_final)
+
+    # Load strictly from the final location
+    print(f"Loaded tokenizer from {tokenizer_path_final}")
+    tokenizer = Tokenizer.load(tokenizer_path_final)
+
+    # Create configs
+    config_loaded = False
+    model_config = None  # type: ignore # Fix Pylint E0606
+    if args.resume and os.path.exists(config_path):
+        print(f"Resuming: Loading ModelConfig from {config_path}")
+        model_config, _ = TrainerConfig.load_config(config_path)
+        config_loaded = True
+
+    if not config_loaded:
+        model_config = ModelConfig(
+            vocab_sizes=tokenizer.get_vocab_sizes(),
+            num_formality_pragmatic_classes=NUM_FORMALITY_PRAGMATIC_CLASSES,
+            num_gender_pragmatic_classes=NUM_GENDER_PRAGMATIC_CLASSES,
+            num_grammaticality_classes=NUM_GRAMMATICALITY_CLASSES,
+            d_model=args.embed_dim,
+            hidden_dim=args.hidden_dim,
+            num_layers=args.num_layers,
+            num_heads=args.num_heads,
+            kc_enabled=args.pretrain_kc,
+            kc_target_specs={
+                h.strip(): tokenizer.get_vocab_sizes().get(h.strip(), 100)
+                for h in args.kc_target_heads.split(",")
+                if h.strip()
+            }
+            if args.pretrain_kc
+            else {},
+        )
+
+    # Build TrainerConfig
+    trainer_config = build_trainer_config(
+        args, env, support_dir, explicit_resume, grad_accum_steps
+    )
+
+    # Save unified config
+    import json
+
+    assert model_config is not None
+    combined_config = model_config.to_dict()
+    combined_config["trainer"] = trainer_config.to_dict()
+
+    if args.show_config:
+        print(json.dumps(trainer_config.to_dict(), indent=2))
+        return ""
+
+    new_config_json = json.dumps(combined_config, indent=2)
+    write_config = True
+    if os.path.exists(config_path):
+        with open(config_path, "r", encoding="utf-8") as f:
+            if f.read() == new_config_json:
+                write_config = False
+
+    if write_config:
+        with open(config_path, "w", encoding="utf-8") as f:
+            f.write(new_config_json)
+        print(f"Orchestrated configuration saved to: {config_path}")
+    else:
+        print(f"Configuration unchanged: {config_path}")
+    print()
+
+    return config_path
+
+# pylint: disable=too-many-positional-arguments
+def run_training_phase(
+    args: argparse.Namespace,
+    env: dict,
+    config_path: str,
+    launcher: List[str],
+    use_mp_launcher: bool,
+    num_devices: int,
+) -> int:
+    """Run the training phase using the generated configuration."""
+    support_dir = locations.get_style_support_dir()
+    output_dir = locations.get_style_output_dir()
+
+    # Training Phase
+    print("Starting training run...")
+
+    train_args = [
+        "-m",
+        "scripts.train_style",
+        "--config",
+        config_path,
+        "--embed-dim", str(args.embed_dim),
+        "--hidden-dim", str(args.hidden_dim),
+        "--num-layers", str(args.num_layers),
+        "--num-heads", str(args.num_heads),
+    ]
+
+    if args.pretrain_kc:
+        train_args.append("--pretrain-kc")
+        train_args.extend([
+            "--kc-k", str(args.kc_k),
+            "--kc-topk", str(args.kc_topk),
+            "--kc-freeze-encoder-epochs", str(args.kc_freeze_encoder_epochs),
+            "--kc-sparsity-weight", str(args.kc_sparsity_weight),
+            "--kc-target-heads", args.kc_target_heads,
+        ])
+    if args.resume:
+        train_args.append("--resume")
+    if args.retrain:
+        train_args.append("--retrain")
+    if args.percent:
+        train_args.extend(["--percent", str(args.percent)])
+
+    training_log = os.path.join(support_dir, "training.log")
+    t_train_start = time.perf_counter()
+
+    if use_mp_launcher:
+        ret = run_mp_distributed(train_args, env, num_devices, tee_log=training_log)
+    else:
+        train_cmd = launcher + train_args
+        ret = run_command(train_cmd, env, PROJECT_ROOT, tee_log=training_log)
+
+    print(f"Training run took {time.perf_counter() - t_train_start:.1f}s")
+    if ret != 0:
+        print("Training failed!", file=sys.stderr)
+        return ret
+
+    print()
+    print("=" * 46)
+    print("Training complete!")
+    print(f"Model saved to: {output_dir}")
+    print(f"Training log:   {training_log}")
+    print("=" * 46)
+    print()
+    return 0
+
+
+def run_confusion_phase(args: argparse.Namespace, env: dict, config_path: str) -> int:
+    """Run confusion matrix evaluation."""
+    print("=" * 46)
+    print("Running Confusion Matrix Evaluation...")
+    print("=" * 46)
+    t_confusion_start = time.perf_counter()
+    confusion_cmd = [
+        sys.executable,
+        "-m",
+        "scripts.confusion",
+        "--config",
+        config_path,
+    ]
+    if args.percent:
+        confusion_cmd.extend(["--percent", str(args.percent)])
+    ret = run_command(confusion_cmd, env, PROJECT_ROOT)
+    print(f"Confusion evaluation took {time.perf_counter() - t_confusion_start:.1f}s")
+    return ret
+
+
+
+
+def parse_arguments() -> argparse.Namespace:
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser(
+        description="Train style classifier (formality + gender + grammaticality) on Japanese sentence corpus",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+
+    # Data options
+    parser.add_argument(
+        "--agrammatic-pattern",
+        default=None,
+        help="Pattern for agrammatic TSV files (default: $DATA_DIR/jpn_agrammatic*.tsv)",
+    )
+    parser.add_argument(
+        "--no-agrammatic-data", action="store_true", help="Disable loading agrammatic data"
+    )
+
+    # Training options
+    parser.add_argument("--epochs", type=int, default=None, help="Training epochs")
+    parser.add_argument("--batch-size", type=int, default=None, help="Batch size per device")
+    parser.add_argument("--embed-dim", type=int, default=256, help="Model dimension (default: 256)")
+    parser.add_argument("--hidden-dim", type=int, default=512, help="Hidden layer dimension (default: 512)")
+    parser.add_argument("--num-layers", type=int, default=3, help="Number of encoder layers (default: 3)")
+    parser.add_argument("--num-heads", type=int, default=8, help="Number of attention heads (default: 8)")
+
+    # Pretraining options
+    parser.add_argument("--learning-rate", type=float, default=1e-4, help="Base learning rate (default: 1e-4)")
+
+    # Loss weights
+    parser.add_argument("--formality-weight", type=float, default=None, help="Weight for formality loss")
+    parser.add_argument("--gender-weight", type=float, default=None, help="Weight for gender loss")
+    parser.add_argument("--grammaticality-weight", type=float, default=None, help="Weight for grammaticality loss")
+
+
+
+
+
+    # Resume/retrain
+    parser.add_argument("--resume", action="store_true", help="Resume training from checkpoint")
+    parser.add_argument("--retrain", action="store_true", help="Retrain from scratch using params from checkpoint")
+
+    # KC Pretraining options
+    parser.add_argument("--pretrain-kc", action="store_true", help="Enable KC sparse concept pretraining")
+    parser.add_argument("--kc-epochs", type=int, default=3, help="KC pretraining epochs (default: 3)")
+    parser.add_argument("--kc-k", type=int, default=1024, help="KC vocabulary size None (default: 1024)")
+    parser.add_argument("--kc-topk", type=int, default=8, help="Number of active KCs per sample (default: 8)")
+    parser.add_argument(
+        "--kc-freeze-encoder-epochs", type=int, default=1, help="Epochs to freeze encoder during KC training"
+    )
+    parser.add_argument("--kc-sparsity-weight", type=float, default=1e-3, help="Sparsity regularization weight")
+    parser.add_argument(
+        "--kc-target-heads",
+        default="lemma,pos,conjugated_form,conjugated_type",
+        help="Comma-separated target heads for KC supervision",
+    )
+
+    # Action flags
+    parser.add_argument("--confusion", action="store_true", help="Print confusion matrices and exit")
+    parser.add_argument("--no-confusion", action="store_true", help="Skip confusion report after training")
+    parser.add_argument("--label", action="store_true", help="Run ONLY the labeling/preprocessing phase")
+    parser.add_argument("--force-relabel", action="store_true", help="Force re-running labeling phase")
+    parser.add_argument("--show-config", action="store_true", help="Print configuration as JSON and exit")
+
+    # Data sampling
+    parser.add_argument("--percent", type=float, default=None, help="Percentage of data to use (1-100)")
+
+    parser.add_argument("--report", action="store_true", help="Generate performance report and exit")
+
+    # Performance options
+    parser.add_argument(
+        "--dataloader-num-workers",
+        type=int,
+        default=None,
+        help="Number of DataLoader workers (None=auto-tune)",
+    )
+
+    return parser.parse_args()
+
+
+def get_data_patterns(args: argparse.Namespace) -> tuple[str, str]:
+    """Resolve data file patterns."""
+    data_dir = locations.get_data_dir()
+    gram_data_pattern = os.path.join(data_dir, "jpn_sentences*.tsv")
+
+    if args.no_agrammatic_data:
+        agrammatic_pattern = ""
+    elif args.agrammatic_pattern:
+        agrammatic_pattern = args.agrammatic_pattern
+    else:
+        agrammatic_pattern = os.path.join(data_dir, "jpn_agrammatic*.tsv")
+
+    return gram_data_pattern, agrammatic_pattern
+
+
+def print_training_banner(
+    args: argparse.Namespace,
+    gram_data_pattern: str,
+    agrammatic_pattern: str,
+    output_dir: str
+) -> None:
+    """Print the training configuration banner."""
+    if args.show_config:
+        return
+
+    print("=" * 56)
+    print("Style Classifier Training (Formality + Gender + Grammaticality)")
+    print("=" * 56)
+    print(f"Data:           {gram_data_pattern}")
+    if agrammatic_pattern:
+        print(f"Agrammatic:     {agrammatic_pattern}")
+    print(f"Output:         {output_dir}")
+    if args.epochs is not None:
+        print(f"Epochs:         {args.epochs}")
+    else:
+        print("Epochs:         (default or restored from checkpoint)")
+    print(f"Learning rate:  {args.learning_rate}")
+    print(f"Model dim:      {args.embed_dim}")
+    print(f"Hidden dim:     {args.hidden_dim}")
+    print(f"Num layers:     {args.num_layers}")
+    print(f"Num heads:      {args.num_heads}")
+    print(f"Formality wt:   {args.formality_weight}")
+    print(f"Gender wt:      {args.gender_weight}")
+    print(f"Grammatic wt:   {args.grammaticality_weight}")
+    if args.pretrain_kc:
+        print(f"KC pretrain:    {args.kc_epochs} epochs")
+        print(f"KC K:           {args.kc_k}")
+        print(f"KC Top-k:       {args.kc_topk}")
+        print(f"KC Freeze:      {args.kc_freeze_encoder_epochs} epochs")
+        print(f"KC Sparsity:    {args.kc_sparsity_weight}")
+        print(f"KC Targets:     {args.kc_target_heads}")
+
+    if args.resume:
+        print("Resume:         from checkpoint")
+    if args.retrain:
+        print("Retrain:        from scratch using parameters from checkpoint")
+    if args.confusion:
+        print("Action:         Print confusion matrices (no training)")
+    if args.label:
+        print("Action:         Preprocessing/Labeling only")
+    if args.percent:
+        print(f"Data usage:     {args.percent}%")
+    print("=" * 46)
+    print()
+
+
+# pylint: disable=too-many-return-statements
+def main() -> int:
+    args = parse_arguments()
+
+    ret = handle_special_modes(args)
+    if ret is not None:
+        return ret
+
+    # Setup environment
+    env = os.environ.copy()
+
+    # Set TRAIN_ROOT if not already set
+    train_root = env.get("TRAIN_ROOT", ".")
+    if not os.path.isabs(train_root):
+        train_root = os.path.join(PROJECT_ROOT, train_root)
+    env["TRAIN_ROOT"] = train_root
+    # Sync TRAIN_ROOT to os.environ so train.profile functions use the correct absolute path
+    os.environ["TRAIN_ROOT"] = train_root
+
+    # Enable MPS fallback for unsupported ops (Mac Apple Silicon)
+    env["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
+    # Silence OMP warnings and prevent thread oversubscription
+    env["OMP_NUM_THREADS"] = "1"
+    # Force 127.0.0.1 for master addr to avoid DNS lookups
+    env["MASTER_ADDR"] = "127.0.0.1"
+
+    # Profiling support
+    from train.profile import get_profile_dir, profiling_enabled
+
+    profile_dir = ""
+    if profiling_enabled():
+        p_dir = get_profile_dir()
+        if p_dir:
+            profile_dir = p_dir
+            os.makedirs(profile_dir, exist_ok=True)
+            if not args.show_config:
+                print(f"Profiling enabled. Results will be written to: {profile_dir}")
+
+    # Get paths from locations module
+    # Get paths from locations module
+    # from kotogram import locations (moved to global)
+
+
+    cache_dir = locations.get_cache_dir()
+    support_dir = locations.get_style_support_dir()
+    output_dir = locations.get_style_output_dir()
+
+    # Set default agrammatic pattern
+    gram_data_pattern, agrammatic_pattern = get_data_patterns(args)
+
+    # Print configuration header
+    print_training_banner(args, gram_data_pattern, agrammatic_pattern, output_dir)
+
+    # Create directories
+    os.makedirs(cache_dir, exist_ok=True)
+    os.makedirs(support_dir, exist_ok=True)
+    if not args.label:
+        os.makedirs(output_dir, exist_ok=True)
+
+    # Auto-resume logic
+    checkpoint_path = os.path.join(support_dir, "checkpoint.pt")
+
+    # Capture original --resume flag value before auto-resume may modify it
+    # Used for config generation to keep config stable across runs
+    explicit_resume = args.resume
+    if not args.resume and not args.retrain and os.path.exists(checkpoint_path):
+        args.resume = True
+        print(f"Auto-resume enabled (found checkpoint: {checkpoint_path})")
+
+    # Determine process count and launcher
+    num_gpus = get_num_gpus()
+    use_mp_launcher = False
+    if num_gpus > 1:
+        num_devices = num_gpus
+        launcher = ["torchrun", f"--nproc_per_node={num_gpus}"]
+    elif num_gpus == 1:
+        num_devices = 1
+        launcher = [sys.executable]
+    else:
+        # Simulate distributed on Mac/CPU with 2 processes to catch multi-process bugs.
+        # Use custom MP launcher to avoid 35s torchrun overhead on Mac.
+        num_devices = 2
+        use_mp_launcher = True
+        launcher = ["mp-simulation", "(2 processes)"]
+
+    # Configure batch sizes
+    micro_batch_size = args.batch_size if args.batch_size else 32
+    target_global_batch_size = int(env.get("TARGET_GLOBAL_BATCH_SIZE", "128"))
+
+    total_current_batch = num_devices * micro_batch_size
+    if total_current_batch < target_global_batch_size:
+        grad_accum_steps = target_global_batch_size // total_current_batch
+    else:
+        grad_accum_steps = 1
+    grad_accum_steps = max(grad_accum_steps, 1)
+
+    # Print effective configuration
+    print("-" * 46)
+    print("Effective Training Configuration:")
+    print("-" * 46)
+    print(f"  Devices:          {num_devices}")
+    print(f"  Micro batch:      {micro_batch_size}")
+    print(f"  Grad accum:       {grad_accum_steps}")
+    print(f"  Effective batch:  {micro_batch_size * grad_accum_steps * num_devices}")
+    print(f"  Launcher:         {' '.join(launcher)}")
+    if args.pretrain_kc:
+        print(f"  KC Epochs:        {args.kc_epochs} (freeze: {args.kc_freeze_encoder_epochs})")
+        print(f"  KC Vocab (K):     {args.kc_k}")
+        print(f"  KC Top-k:         {args.kc_topk}")
+        print(f"  KC Targets:       {args.kc_target_heads}")
+    print("-" * 46)
+    print()
+
+    # Phase 1: Preprocessing/Labeling
+    if not run_preprocessing(args, env, gram_data_pattern, agrammatic_pattern):
+        return 1
+
+    # Phase 2: Configuration
+    config_path = generate_and_save_config(args, env, explicit_resume, grad_accum_steps)
+    if args.show_config:
+        return 0
+
+    if args.label:
+        print("Labeling only requested. Exiting.")
+        return 0
+
+    if args.confusion:
+        return run_confusion_phase(args, env, config_path)
+
+    # Phase 3: Training
+    ret = run_training_phase(
+        args, env, config_path, launcher, use_mp_launcher, num_devices
+    )
+    if ret != 0:
+        return ret
+
+    # Printing handled by run_training_phase
+
+    # Phase 4: Confusion evaluation (after training)
+    if not args.no_confusion:
+        print("Generating confusion report...")
+        run_confusion_phase(args, env, config_path)
+    else:
+        print("Skipping confusion report (--no-confusion)")
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

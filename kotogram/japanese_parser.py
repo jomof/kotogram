@@ -323,4 +323,3 @@ class JapaneseParser(ABC):
         Returns:
             Kotogram compact sentence representation
         """
-        pass

@@ -33,15 +33,18 @@ run_quiet() {
 }
 
 # --- Setup Python Environment ---
-if [ ! -d "$VENV_DIR" ]; then
-    run_quiet $PYTHON_CMD -m venv "$VENV_DIR"
-fi
+# --- Setup Python Environment ---
+if [ -z "${CI:-}" ]; then
+    if [ ! -d "$VENV_DIR" ]; then
+        run_quiet $PYTHON_CMD -m venv "$VENV_DIR"
+    fi
 
-source "$VENV_DIR/bin/activate"
+    source "$VENV_DIR/bin/activate"
+fi
 
 run_quiet pip install --upgrade pip
 run_quiet pip install -e .
-run_quiet pip install ruff mypy pytest vulture build
+run_quiet pip install ruff mypy pytest vulture build pylint wheel
 
 # --- Setup TypeScript Environment ---
 if [ -f "package.json" ]; then
@@ -50,78 +53,49 @@ fi
 
 # --- Run Checks ---
 
-# Record initial git status
-INITIAL_GIT_STATUS=$(git status --short)
+# --- Argument Parsing ---
+SPECIFIC_TEST=""
 
-# Check for forbidden "# noqa: E402" comments
-echo "Checking for forbidden '# noqa: E402' comments..."
-if grep -rn "# noqa: E402" kotogram scripts tests-py; then
-    error "Found forbidden '# noqa: E402' comments! (See above)"
-fi
-success "No '# noqa: E402' comments found"
+# Parse args to find --specific-python-test
+ARGS=()
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --specific-python-test)
+            SPECIFIC_TEST="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        *)
+            ARGS+=("$1")
+            shift # past argument
+            ;;
+    esac
+done
 
-run_quiet ruff check --fix . --config pyproject.toml && run_quiet ruff format .
-success "Ruff check and format passed"
-
-run_quiet mypy kotogram scripts --explicit-package-bases
-success "Mypy passed"
-
-run_quiet vulture kotogram scripts tests-py scripts/vulture_whitelist.py
-success "Vulture passed"
-
-if [ -f "package.json" ]; then
-    run_quiet npm run fix && run_quiet npm test
-    success "TypeScript checks passed"
-fi
-
-
-
-# Clean dist to ensure fresh builds
-rm -rf dist
-run_quiet $PYTHON_CMD -m build
-
-# Extract filenames, remove header/footer, sort, and normalize version
-unzip -l dist/*.whl 2>/dev/null | \
-awk '{print $4}' | \
-grep -v "Name" | \
-grep -v "\-\-\-\-" | \
-grep -v "^\s*$" | \
-sed 's/kotogram-.*\.dist-info/kotogram-*.dist-info/g' | \
-LC_ALL=C sort > /tmp/package_files.txt
-
-if ! diff -u tests/python_package_baseline.txt /tmp/package_files.txt > /dev/null; then
-    diff -u tests/python_package_baseline.txt /tmp/package_files.txt
-    error "Python package contents do not match baseline!"
-fi
-success "Python package verification passed"
-
-if [ -f "package.json" ]; then
-    # Ensure fresh dist for TS build
-    rm -rf dist
-    run_quiet npm run build
-
-    # Create package and list contents (quietly to get just filename)
-    PACK_FILE=$(npm pack --quiet | tail -n 1)
-
-    # List files, strip 'package/' prefix, sort
-    tar -tf "$PACK_FILE" | sed 's/^package\///' | LC_ALL=C sort > /tmp/ts_package_files.txt
-
-    if ! diff -u tests/typescript_package_baseline.txt /tmp/ts_package_files.txt > /dev/null; then
-        diff -u tests/typescript_package_baseline.txt /tmp/ts_package_files.txt
-        error "TypeScript package contents do not match baseline!"
+# If running a specific test, bypass all maintenance/hygiene checks
+if [ -n "$SPECIFIC_TEST" ]; then
+    log "Running specific python test: $SPECIFIC_TEST"
+    # We still need the environment
+    if [ -z "${CI:-}" ]; then
+        if [ ! -d "$VENV_DIR" ]; then
+             log "Creating venv for specific test..."
+             run_quiet $PYTHON_CMD -m venv "$VENV_DIR"
+             source "$VENV_DIR/bin/activate"
+             run_quiet pip install --upgrade pip
+             run_quiet pip install -e .
+             run_quiet pip install ruff mypy pytest vulture build pylint
+        else
+             source "$VENV_DIR/bin/activate"
+        fi
     fi
-    rm "$PACK_FILE"
-    success "TypeScript package verification passed"
+    
+    # Just run the requested test module using unittest
+    export PYTHONPATH="tests-py:${PYTHONPATH:-}"
+    exec python3 -m unittest "$SPECIFIC_TEST"
+    exit 0
 fi
 
-python -m pytest --no-header tests-py/
+# --- Full Test Suite ---
 
-# Verify git status hasn't changed
-FINAL_GIT_STATUS=$(git status --short)
-if [ "$INITIAL_GIT_STATUS" != "$FINAL_GIT_STATUS" ]; then
-    diff <(echo "$INITIAL_GIT_STATUS") <(echo "$FINAL_GIT_STATUS") || true
-    error "git status changed during tests. New/changed files detected in repository."
-fi
-success "Git status clean"
-
-success "All checks passed successfully!"
+# Record initial git status (captured in python now, but let's just delegate)
+exec $PYTHON_CMD scripts/test_runner.py --confinement-config confine/python-test.json "${ARGS[@]+"${ARGS[@]}"}"

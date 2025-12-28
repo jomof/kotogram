@@ -1,8 +1,6 @@
 class KotogramError(Exception):
     """Base exception for Kotogram errors."""
 
-    pass
-
 
 class MissingMappingError(KotogramError, KeyError):
     """Raised when a feature mapping is missing during parsing.

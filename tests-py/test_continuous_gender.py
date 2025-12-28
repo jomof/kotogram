@@ -26,18 +26,10 @@ class TestContinuousGender(unittest.TestCase):
         bs = 2
         # FEATURE_FIELDS: ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma', 'base_orth', 'reading']
         inputs = {}
-        for field in [
-            "surface",
-            "pos",
-            "pos_detail1",
-            "pos_detail2",
-            "pos_detail3",
-            "conjugated_type",
-            "conjugated_form",
-            "lemma",
-            "base_orth",
-            "reading",
-        ]:
+        from kotogram.tokenizer import FEATURE_FIELDS
+
+        inputs = {}
+        for field in FEATURE_FIELDS:
             inputs[f"input_ids_{field}"] = torch.randint(0, 10, (bs, 10))
 
         mask = torch.ones(bs, 10)
@@ -46,7 +38,7 @@ class TestContinuousGender(unittest.TestCase):
         # Now expecting 6 outputs: formality_val, formality_prag, gender_val, gender_prag, gram, register
         self.assertEqual(len(out), 6)
 
-        formality_val, formality_prag, gender_val, gender_prag, gram, _ = out
+        _, _, gender_val, gender_prag, _, _ = out
 
         self.assertEqual(gender_val.shape, (bs, 1))
         self.assertEqual(gender_prag.shape, (bs, 2))
@@ -61,7 +53,6 @@ class TestContinuousGender(unittest.TestCase):
         # without mocking sys.modules or patching.
         # But since we updated analysis.py to handle Optional[float],
         # we can assume valid behavior if test_gender.py passes (which uses the real model/pipeline).
-        pass
 
 
 if __name__ == "__main__":

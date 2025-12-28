@@ -5,14 +5,22 @@ This script provides CLI access to kotogram.locations without triggering
 the full kotogram package import, avoiding RuntimeWarnings.
 """
 
+import importlib.util
 import sys
 
-try:
-    import _setup_path  # type: ignore # noqa: F401
-except ImportError:
-    from scripts import _setup_path  # type: ignore # noqa: F401
+if importlib.util.find_spec("_setup_path"):
+    import _setup_path  # type: ignore # noqa: F401 # pylint: disable=unused-import,import-private-name
+
+    _ = _setup_path  # Vulture: Used for side effects
+else:
+    from scripts import (
+        _setup_path,  # type: ignore # noqa: F401 # pylint: disable=unused-import,import-private-name
+    )
+
+    _ = _setup_path  # Vulture: Used for side effects
 
 # Import all functions from the canonical locations module
+# pylint: disable=wrong-import-position
 from kotogram.locations import (
     get_cache_dir,
     get_data_dir,
@@ -26,7 +34,13 @@ from kotogram.locations import (
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        if sys.argv[1] == "cache":
+        if sys.argv[1] == "shell-env":
+            # Output all paths in shell-evaluable format
+            print(f"export DATA_DIR='{get_data_dir()}'")
+            print(f"export CACHE_DIR='{get_cache_dir()}'")
+            print(f"export MODELS_DIR='{get_models_dir()}'")
+            print(f"export SUPPORT_DIR='{get_style_support_dir()}'")
+        elif sys.argv[1] == "cache":
             print(get_cache_dir())
         elif sys.argv[1] == "data":
             print(get_data_dir())

@@ -1,0 +1,232 @@
+Processing grammatic data (1 patterns) with 13 workers...
+  Matched 17 grammatic files.
+Processing agrammatic data (1 patterns)...
+  Matched 2 agrammatic files.
+Total unique sentences to check: 1,121,300
+Stats: Phase 'Scanning Input' took 3.5s
+Loaded 2,072 register overrides.
+Cache status: 0 hits, 0 partial, 1,121,300 misses
+  Parsing & Labeling... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 1121300/1121300
+
+Processing complete! Total processed: 1,121,300
+Stats: Phase 'Parsing & Labeling (Phase 1)' took 42.9s
+             Formality Distribution             
+┏━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Type                  ┃   Count ┃ Percentage ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━┩
+│ very_formal           │  11,454 │       1.0% │
+│ formal                │ 330,777 │      29.5% │
+│ neutral               │ 399,907 │      35.7% │
+│ casual                │ 270,312 │      24.1% │
+│ very_casual           │     138 │       0.0% │
+│ unpragmatic_formality │ 108,712 │       9.7% │
+└───────────────────────┴─────────┴────────────┘
+    Gender Pragmatic Distribution     
+┏━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Type        ┃   Count ┃ Percentage ┃
+┡━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━┩
+│ Unpragmatic │ 160,842 │      14.3% │
+│ Pragmatic   │ 960,458 │      85.7% │
+└─────────────┴─────────┴────────────┘
+       Register Distribution        
+┏━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Type      ┃   Count ┃ Percentage ┃
+┡━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━┩
+│ neutral   │ 791,616 │      60.1% │
+│ sonkeigo  │  72,592 │       5.5% │
+│ kenjogo   │   5,340 │       0.4% │
+│ kansaiben │  10,199 │       0.8% │
+│ hakataben │   1,295 │       0.1% │
+│ kyoshigo  │  19,622 │       1.5% │
+│ netslang  │     148 │       0.0% │
+│ ojousama  │     668 │       0.1% │
+│ guntai    │   2,230 │       0.2% │
+│ joseigo   │ 173,162 │      13.2% │
+│ danseigo  │ 239,306 │      18.2% │
+│ burikko   │     115 │       0.0% │
+│ tohoku    │     144 │       0.0% │
+│ bushi     │     132 │       0.0% │
+└───────────┴─────────┴────────────┘
+     Grammaticality Distribution     
+┏━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Type       ┃   Count ┃ Percentage ┃
+┡━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━┩
+│ Agrammatic │ 846,219 │      75.5% │
+│ Grammatic  │ 275,081 │      24.5% │
+└────────────┴─────────┴────────────┘
+Writing 275,081 grammatic sentences to /Users/jomofisher/projects/kotogram/./.cache/grammatic_combined.tsv...
+Writing 846,219 agrammatic sentences to /Users/jomofisher/projects/kotogram/./.cache/agrammatic_combined.tsv...
+
+Saved register samples to: /Users/jomofisher/projects/kotogram/./.cache/register_samples.csv
+  Registers with samples: 14
+
+Finalizing dataset and building vocabulary...
+  Saved vocabulary to /Users/jomofisher/projects/kotogram/./.cache/style_dataset/vocab.json
+Stats: Phase 'Dataset Construction & Assembly (Streaming)' took 3.9s
+Streaming encoding and tensor assembly (skipping cache write)...
+  Saved binary tensors to /Users/jomofisher/projects/kotogram/./.cache/style_dataset/dataset_tensors.pt
+
+Dataset Statistics:
+  Encoded samples: 1121300
+  Vocabulary sizes:
+    Surface forms: 48,355
+    Lemmas: 38,966
+    POS tags: 18
+    Conjugation types: 89
+    Conjugation forms: 34
+  Vocabulary cache: /Users/jomofisher/projects/kotogram/./.cache/style_dataset/vocab.json
+
+Dataset finalization complete.
+Stats: Phase 'Tensor Assembly & Saving (Phase 3)' took 13.9s
+Starting training script...
+Profiling enabled. Results will be written to: /Users/jomofisher/projects/kotogram/./.profile-Jomos-MacBook-Pro
+========================================================
+Style Classifier Training (Formality + Gender + Grammaticality)
+========================================================
+Data:           /Users/jomofisher/projects/kotogram/./data/jpn_sentences*.tsv
+Agrammatic:     /Users/jomofisher/projects/kotogram/./data/jpn_agrammatic*.tsv
+Output:         /Users/jomofisher/projects/kotogram/./models/style
+Epochs:         2
+Learning rate:  0.0001
+Model dim:      256
+Hidden dim:     512
+Num layers:     3
+Num heads:      8
+Formality wt:   None
+Gender wt:      None
+Grammatic wt:   None
+KC pretrain:    2 epochs
+KC K:           1024
+KC Top-k:       8
+KC Freeze:      1 epochs
+KC Sparsity:    0.001
+KC Targets:     lemma,pos,conjugated_form,conjugated_type
+Data usage:     1.0%
+==============================================
+
+----------------------------------------------
+Effective Training Configuration:
+----------------------------------------------
+  Devices:          1
+  Micro batch:      32
+  Grad accum:       4
+  Effective batch:  128
+  Launcher:         /Users/jomofisher/projects/kotogram/.venv/bin/python3
+  KC Epochs:        2 (freeze: 1)
+  KC Vocab (K):     1024
+  KC Top-k:         8
+  KC Targets:       lemma,pos,conjugated_form,conjugated_type
+----------------------------------------------
+
+==============================================
+Running Preprocessing Phase...
+==============================================
+Executing preprocessing script...
+Preprocessing script took 71.9s
+Combined grammatic data: /Users/jomofisher/projects/kotogram/./.cache/grammatic_combined.tsv (275081 lines)
+Combined agrammatic data: /Users/jomofisher/projects/kotogram/./.cache/agrammatic_combined.tsv (846219 lines)
+Preprocessing complete.
+Staged tokenizer to /Users/jomofisher/projects/kotogram/./models/style/tokenizer.json
+Loaded tokenizer from /Users/jomofisher/projects/kotogram/./models/style/tokenizer.json
+Orchestrated configuration saved to: /Users/jomofisher/projects/kotogram/./models/style-support/config.json
+
+Starting training run...
+Loaded tokenizer from /Users/jomofisher/projects/kotogram/./models/style/tokenizer.json
+  Loaded vocabulary from cache: /Users/jomofisher/projects/kotogram/./.cache/style_dataset/vocab.json
+  Loading binary tensors from: /Users/jomofisher/projects/kotogram/./.cache/style_dataset/dataset_tensors.pt
+  Subsampling binary cache: using first 1.0% of data (shuffled).
+[BiasInit] lemma               : p_mean=4.25852e-05 bias=-10.0640 (filled bias[38966])
+[BiasInit] pos                 : p_mean=0.28125 bias=-0.9383 (filled bias[18])
+[BiasInit] conjugated_form     : p_mean=0.0488971 bias=-2.9679 (filled bias[34])
+[BiasInit] conjugated_type     : p_mean=0.0275281 bias=-3.5646 (filled bias[89])
+
+🧠 Epoch 1/2 Training KC (Encoder Frozen)
+  FB: KC: raw μ/σ=-0.012/0.576 [-2.18, 2.52] nom μ/σ=-0.0000/1.0000 probs μ/σ=0.497/0.134 (>0.5: 49.5% >0.9: 0.0%) topk μ/min/max=0.80/0.79/0.80 sparse=0.0062 nonzeros=8.0 uniqKCs=43
+    lemma               : tgt=5.052e-05 w=50.0 pred=4.263e-05 auc=0.607 Δloss=+0.0000
+    pos                 : tgt=0.2986 w=2.3 pred=0.2817 auc=0.414 Δloss=+0.0050
+    conjugated_type     : tgt=0.02844 w=34.2 pred=0.02757 auc=0.490 Δloss=+0.0031
+    conjugated_form     : tgt=0.05423 w=17.4 pred=0.04895 auc=0.537 Δloss=-0.0032
+
+  [==============================>] 69/69 loss=0.1869
+  KC LossParts: base=0.1864 struct=0.2663 label=0.0000 | div=0.0000 lb=0.0000 coll=0.0000 spar=0.0005 (W: div=0.001 lb=0 coll=0)
+  KC Epoch 1 of 2: loss=0.1869 prob=0.46 dens=0.0078 struct=1.0653 ent=0.979 kl=0.145 uniq=139 pmax=0.005 top=[pos 0.587, conjugated_form 0.203, lemma 0.145] | AMP scale 1->1 skips=0 steps=17(+flush=1)
+    KC Usage: uniqKCs=139 total=2202 maxTop1=0.322 topkVals μ=0.798 gapμ=0.008
+      topK(topk): 433:1921:10.9%, 520:1866:10.6%, 137:1364:7.7%, 593:1294:7.3%, 676:1203:6.8%, 544:1181:6.7%, 51:873:5.0%, 896:849:4.8%, 338:835:4.7%, 228:763:4.3%
+      topK(top1): 433:709:32.2%, 520:600:27.2%, 137:185:8.4%, 593:134:6.1%, 544:130:5.9%, 676:109:5.0%, 896:64:2.9%, 338:56:2.5%, 228:48:2.2%, 51:43:2.0%
+  KC Health: maxTop1=0.322 uniqKCs=139/1024 avgProb=0.464 actDens=0.0078 entN=0.979 klU=0.145
+  [Time] Avg batch: 264.7ms (Data: 1.6ms (0.6%), Compute: 263.1ms)
+
+🧠 Epoch 2/2 Training KC (Encoder Thawed)
+  FB: KC: raw μ/σ=-0.320/0.596 [-2.52, 2.17] nom μ/σ=0.0000/1.0000 probs μ/σ=0.503/0.125 (>0.5: 47.8% >0.9: 0.1%) topk μ/min/max=0.80/0.80/0.80 sparse=0.0063 nonzeros=8.0 uniqKCs=198
+    lemma               : tgt=4.09e-05 w=50.0 pred=4.262e-05 auc=0.631 Δloss=+0.0000
+    pos                 : tgt=0.2726 w=2.7 pred=0.281 auc=0.557 Δloss=-0.0035
+    conjugated_type     : tgt=0.02458 w=39.7 pred=0.02743 auc=0.522 Δloss=-0.0043
+    conjugated_form     : tgt=0.04688 w=20.3 pred=0.04884 auc=0.529 Δloss=-0.0032
+
+  [==============================>] 69/69 loss=0.1870
+  KC LossParts: base=0.1863 struct=0.2661 label=0.0000 | div=0.0004 lb=0.0001 coll=0.0000 spar=0.0003 (W: div=0.1 lb=0.02 coll=1)
+  KC Epoch 2 of 2: loss=0.1870 prob=0.51 dens=0.0078 struct=1.0646 ent=0.996 kl=0.025 uniq=1022 pmax=0.002 top=[pos 0.586, conjugated_form 0.203, lemma 0.145] | AMP scale 1->1 skips=0 steps=17(+flush=1)
+    KC Usage: uniqKCs=1022 total=2202 maxTop1=0.016 topkVals μ=0.800 gapμ=0.000
+      topK(topk): 520:220:1.2%, 433:210:1.2%, 676:192:1.1%, 338:179:1.0%, 896:168:1.0%, 544:166:0.9%, 137:166:0.9%, 950:128:0.7%, 593:124:0.7%, 802:114:0.6%
+      topK(top1): 520:35:1.6%, 433:35:1.6%, 544:29:1.3%, 676:27:1.2%, 137:24:1.1%, 896:20:0.9%, 802:18:0.8%, 51:17:0.8%, 593:16:0.7%, 338:15:0.7%
+  KC Health: maxTop1=0.016 uniqKCs=1022/1024 avgProb=0.506 actDens=0.0078 entN=0.996 klU=0.025
+  [Time] Avg batch: 237.6ms (Data: 1.5ms (0.6%), Compute: 236.1ms)
+
+🎨 Epoch 1/2 Training Style
+
+  [==============================>] 281/281 loss=3.5024
+  KCProbe: uniq=28/1024 maxTop1=0.486 entN=0.996 klU=0.028 tv=0.677 gap=0.045 prob=0.46 dens=0.0078
+    lemma: AUC=0.477 ΔBCE=+0.0053
+    pos: AUC=0.824 ΔBCE=-0.0096
+    conjugated_form: AUC=0.755 ΔBCE=+0.0095
+    conjugated_type: AUC=0.712 ΔBCE=+0.0515
+  [Time] Avg batch: 187.9ms (Data: 8.4ms (4.5%), Compute: 179.5ms)
+╭──────────── 🎨 Style | Epoch 1 of 2 ─────────────╮
+│   Primary Metric     Value                       │
+│   Train Loss        3.5024                       │
+│   Val Loss          2.1958                       │
+│ ┏━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┓ │
+│ ┃ Field     ┃ Train Loss ┃ Val Loss ┃ Accuracy ┃ │
+│ ┡━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━┩ │
+│ │ Formality │     0.8852 │   0.6416 │   54.17% │ │
+│ │ Gender    │     1.6904 │   0.8224 │   93.45% │ │
+│ │ Grammar   │     0.7205 │   0.6481 │   68.88% │ │
+│ │ Register  │     0.2063 │   0.0836 │   86.48% │ │
+│ └───────────┴────────────┴──────────┴──────────┘ │
+╰──────────────────────────────────────────────────╯
+New best model matched! Saving to /Users/jomofisher/projects/kotogram/./models/style/model.pt (Loss: 2.1958)
+
+🎨 Epoch 2/2 Training Style
+
+  [==============================>] 281/281 loss=1.9320
+  KCProbe: uniq=41/1024 maxTop1=0.651 entN=0.996 klU=0.027 tv=0.698 gap=0.060 prob=0.47 dens=0.0078
+    lemma: AUC=0.521 ΔBCE=+0.0046
+    pos: AUC=0.756 ΔBCE=-0.0088
+    conjugated_form: AUC=0.678 ΔBCE=+0.0128
+    conjugated_type: AUC=0.716 ΔBCE=+0.0494
+  [Time] Avg batch: 182.4ms (Data: 1.7ms (1.0%), Compute: 180.7ms)
+╭──────────── 🎨 Style | Epoch 2 of 2 ─────────────╮
+│   Primary Metric     Value                       │
+│   Train Loss        1.9320                       │
+│   Val Loss          1.2781                       │
+│ ┏━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┓ │
+│ ┃ Field     ┃ Train Loss ┃ Val Loss ┃ Accuracy ┃ │
+│ ┡━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━┩ │
+│ │ Formality │     0.4433 │   0.2001 │   88.81% │ │
+│ │ Gender    │     0.7952 │   0.4448 │   95.32% │ │
+│ │ Grammar   │     0.6156 │   0.5539 │   65.14% │ │
+│ │ Register  │     0.0779 │   0.0794 │   86.48% │ │
+│ └───────────┴────────────┴──────────┴──────────┘ │
+╰──────────────────────────────────────────────────╯
+New best model matched! Saving to /Users/jomofisher/projects/kotogram/./models/style/model.pt (Loss: 1.2781)
+----------------------------------
+Final Test Results:
+----------------------------------
+Accuracy: form=0.8881, gender=0.9532, gram=0.6514, register=0.8648
+----------------------------------
+Model saved to: /Users/jomofisher/projects/kotogram/./models/style
+----------------------------------
+Performance Summary:
+----------------------------------
+  Style Training: 121.2s
+----------------------------------
