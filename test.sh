@@ -54,4 +54,4 @@ fi
 # --- Run Checks ---
 
 # Record initial git status (captured in python now, but let's just delegate)
-exec $PYTHON_CMD scripts/test_runner.py "$@"
+exec $PYTHON_CMD scripts/test_runner.py --confinement-config confine/python-test.json "$@"

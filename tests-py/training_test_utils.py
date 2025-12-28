@@ -327,17 +327,45 @@ class Bottle:
                     "SKIP_DEPS cannot be overridden in bottle.train_style()"
                 )
             overrides.update(env_overrides)
-        result = train_style(
-            self.test_case,
-            self.script_path,
-            self.project_root,
-            args,
-            overrides,
+
+        # Prepare environment
+        env = os.environ.copy()
+        if overrides:
+            env.update(overrides)
+
+        cmd = [self.script_path] + args.split()
+        if self.script_path.endswith(".py"):
+            cmd = [sys.executable, self.script_path] + args.split()
+
+        # Run confined with CWD = bottle root to prevent write errors in project root
+        result = subprocess.run(
+            cmd,
+            env=env,
+            cwd=self.root_dir,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+
+        if result.returncode != 0:
+            print(f"Command failed: {cmd}")
+            print("STDOUT:", result.stdout)
+            print("STDERR:", result.stderr)
+        else:
+            # Help iteration by printing output even on success
+            print(result.stdout)
+            if result.stderr:
+                print(result.stderr)
+
+        self.test_case.assertEqual(
+            result.returncode,
+            0,
+            msg=f"Command failed with {result.returncode}.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
         )
 
         # Assert no warnings or errors in output
         # Use word boundary regex to avoid false positives like "mse_errors"
-        combined = result.stdout + result.stderr
+        combined = str(result.stdout or "") + str(result.stderr or "")
 
         # Filter out harmless distributed warnings
         filtered_combined = []
@@ -386,13 +414,15 @@ class Bottle:
             env.update(env_overrides)
 
         cmd = [bin_path] + list(args)
+
+        # Run confined with CWD = bottle root
         result = subprocess.run(
             cmd,
             env=env,
-            cwd=self.project_root,
+            cwd=self.root_dir,
+            check=False,
             capture_output=True,
             text=True,
-            check=False,
         )
 
         self.test_case.assertEqual(
@@ -424,14 +454,17 @@ class Bottle:
             env.update(env_overrides)
 
         cmd = [sys.executable, script_path] + args
+
+        # Run confined with CWD = bottle root
         result = subprocess.run(
             cmd,
             env=env,
-            cwd=self.project_root,
+            cwd=self.root_dir,
+            check=False,
             capture_output=True,
             text=True,
-            check=False,
         )
+
         # Helper logging on failure
         if result.returncode != 0:
             # Just print for visibility, let assertion handle failure
