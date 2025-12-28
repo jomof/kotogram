@@ -53,15 +53,13 @@ python3 -m pip install --upgrade pip
 # Install PyTorch
 echo "Installing PyTorch..."
 if [ -n "$TORCH_INDEX" ]; then
-    python3 -m pip install torch --index-url "$TORCH_INDEX"
+    python3 -m pip install torch==2.9.1 --index-url "$TORCH_INDEX"
 else
-    python3 -m pip install torch
+    python3 -m pip install torch==2.9.1
 fi
 
 # Install other requirements
 echo "Installing other dependencies..."
-python3 -m pip install wheel
-python3 -m pip install ruff mypy pytest vulture build pylint
 python3 -m pip install -r requirements.txt
 
 # Install TypeScript dependencies

@@ -1,10 +1,17 @@
 # Kotogram dependencies
 # Note: torch should be installed separately via requirements.sh for proper GPU support
-sudachipy
-sudachidict-core
-sudachidict-full
-PyYaml
-types-PyYAML
-rich
-numpy
-memray
+sudachipy==0.6.10
+sudachidict-core==20251022
+sudachidict-full==20251022
+PyYaml==6.0.3
+types-PyYAML==6.0.12.20250915
+rich==14.2.0
+numpy==2.3.5
+memray==1.19.1
+wheel==0.45.1
+ruff==0.14.10
+mypy==1.19.1
+pytest==9.0.2
+vulture==2.14
+build==1.3.0
+pylint==4.0.4
