@@ -60,6 +60,8 @@ fi
 
 # Install other requirements
 echo "Installing other dependencies..."
+python3 -m pip install wheel
+python3 -m pip install ruff mypy pytest vulture build pylint
 python3 -m pip install -r requirements.txt
 
 # Install the project in editable mode

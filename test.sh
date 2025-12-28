@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+echo "Starting test.sh..."
+
 # --- Configuration ---
 VENV_DIR=".venv"
 PYTHON_CMD="python3"
@@ -20,7 +22,14 @@ success() {
 }
 
 # Run a command quietly, only showing output on failure
+# In CI, we run verbose to debug issues
 run_quiet() {
+    if [ -n "${CI:-}" ]; then
+        echo "Running: $*"
+        "$@"
+        return $?
+    fi
+
     local tmpfile
     tmpfile=$(mktemp /tmp/kotogram_setup_XXXXXX)
     if ! "$@" > "$tmpfile" 2>&1; then
@@ -33,18 +42,26 @@ run_quiet() {
 }
 
 # --- Setup Python Environment ---
+
+
 # --- Setup Python Environment ---
 if [ -z "${CI:-}" ]; then
     if [ ! -d "$VENV_DIR" ]; then
-        run_quiet $PYTHON_CMD -m venv "$VENV_DIR"
+        # If venv doesn't exist, we can't really "rely on requirements.sh" if we create a fresh one here.
+        # But per instructions, we just assume requirements.sh was run or we are in the right env.
+        # However, to be helpful, if we activate a venv, we expect it to feature the deps.
+        # I will leave the VENV activation logic but remove the installation.
+        # If the user hasn't run requirements.sh inside this venv, it will fail, which matches "rely on requirements.sh".
+        :
     fi
 
-    source "$VENV_DIR/bin/activate"
+    if [ -d "$VENV_DIR" ]; then
+        source "$VENV_DIR/bin/activate"
+    fi
 fi
 
-run_quiet pip install --upgrade pip
-run_quiet pip install -e .
-run_quiet pip install ruff mypy pytest vulture build pylint wheel
+# Dependencies are assumed to be installed via requirements.sh
+
 
 # --- Setup TypeScript Environment ---
 if [ -f "package.json" ]; then
@@ -81,9 +98,8 @@ if [ -n "$SPECIFIC_TEST" ]; then
              log "Creating venv for specific test..."
              run_quiet $PYTHON_CMD -m venv "$VENV_DIR"
              source "$VENV_DIR/bin/activate"
-             run_quiet pip install --upgrade pip
-             run_quiet pip install -e .
-             run_quiet pip install ruff mypy pytest vulture build pylint
+
+             # Dependencies must be installed via requirements.sh
         else
              source "$VENV_DIR/bin/activate"
         fi

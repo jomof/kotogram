@@ -75,10 +75,6 @@ class Timer:
 
         # Start heavy profilers if configured
         if self.profile_dir and profiling_enabled():
-            # cProfile
-            self.profiler = cProfile.Profile()
-            self.profiler.enable()
-
             # memray
             if memray:  # pylint: disable=using-constant-test
                 pid = os.getpid()
@@ -90,6 +86,11 @@ class Timer:
                 )
                 self.memray_tracker = memray.Tracker(self.memray_file)
                 self.memray_tracker.__enter__()  # pylint: disable=unnecessary-dunder-call
+
+            # cProfile (Only if memray is NOT active)
+            if not self.memray_tracker:
+                self.profiler = cProfile.Profile()
+                self.profiler.enable()
 
     def stop(
         self, epoch: int = 0, batch: int = 0, phase_name: Optional[str] = None
@@ -287,9 +288,8 @@ def setup_profiling(script_prefix: str, include_kc_infix: bool = False) -> None:
 
     import atexit
 
-    # Enable cProfile
-    _profiler = cProfile.Profile()
-    _profiler.enable()
+    # Enable cProfile (Only if memray is NOT active)
+    _profiler = None
 
     # Enable memray
     _memray_tracker = None
@@ -310,6 +310,10 @@ def setup_profiling(script_prefix: str, include_kc_infix: bool = False) -> None:
         )
         _memray_tracker = memray.Tracker(_memray_file)
         _memray_tracker.__enter__()  # pylint: disable=unnecessary-dunder-call
+
+    if not _memray_tracker:
+        _profiler = cProfile.Profile()
+        _profiler.enable()
 
     start_time = time.perf_counter()
 
