@@ -53,5 +53,49 @@ fi
 
 # --- Run Checks ---
 
+# --- Argument Parsing ---
+SPECIFIC_TEST=""
+
+# Parse args to find --specific-python-test
+ARGS=()
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --specific-python-test)
+            SPECIFIC_TEST="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        *)
+            ARGS+=("$1")
+            shift # past argument
+            ;;
+    esac
+done
+
+# If running a specific test, bypass all maintenance/hygiene checks
+if [ -n "$SPECIFIC_TEST" ]; then
+    log "Running specific python test: $SPECIFIC_TEST"
+    # We still need the environment
+    if [ -z "${CI:-}" ]; then
+        if [ ! -d "$VENV_DIR" ]; then
+             log "Creating venv for specific test..."
+             run_quiet $PYTHON_CMD -m venv "$VENV_DIR"
+             source "$VENV_DIR/bin/activate"
+             run_quiet pip install --upgrade pip
+             run_quiet pip install -e .
+             run_quiet pip install ruff mypy pytest vulture build pylint
+        else
+             source "$VENV_DIR/bin/activate"
+        fi
+    fi
+    
+    # Just run the requested test module using unittest
+    export PYTHONPATH="tests-py:${PYTHONPATH:-}"
+    exec python3 -m unittest "$SPECIFIC_TEST"
+    exit 0
+fi
+
+# --- Full Test Suite ---
+
 # Record initial git status (captured in python now, but let's just delegate)
-exec $PYTHON_CMD scripts/test_runner.py --confinement-config confine/python-test.json "$@"
+exec $PYTHON_CMD scripts/test_runner.py --confinement-config confine/python-test.json "${ARGS[@]+"${ARGS[@]}"}"
