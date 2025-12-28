@@ -44,7 +44,7 @@ fi
 
 run_quiet pip install --upgrade pip
 run_quiet pip install -e .
-run_quiet pip install ruff mypy pytest vulture build pylint
+run_quiet pip install ruff mypy pytest vulture build pylint wheel
 
 # --- Setup TypeScript Environment ---
 if [ -f "package.json" ]; then
