@@ -10,16 +10,6 @@ from training_test_utils import Bottle
 class TestTrainStyleScript(unittest.TestCase):
     # pylint: disable=too-many-locals
 
-    def setUp(self):
-        # Force profiling on for integration test logic so we can verify profile artifacts
-        self.profile_patcher = unittest.mock.patch.dict(
-            os.environ, {"TRAIN_PROFILE": "1"}
-        )
-        self.profile_patcher.start()
-
-    def tearDown(self):
-        self.profile_patcher.stop()
-
     def test_train(self):
         # Common arguments to reduce model size for faster testing
         common_args = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
@@ -35,7 +25,9 @@ class TestTrainStyleScript(unittest.TestCase):
 
         for config in test_configs:
             with self.subTest(config=config["name"]):
-                with Bottle(self) as bottle:
+                # Force profiling on for integration test logic so we can verify profile artifacts
+                env = {"TRAIN_PROFILE": "1"}
+                with Bottle(self, env=env) as bottle:
                     bottle.populate_test_data()
 
                     # Take initial snapshot
@@ -47,20 +39,14 @@ class TestTrainStyleScript(unittest.TestCase):
 
                     # Verify label phase output files using glob patterns
                     expected_label_manifest = [
-                        # --- Source Data ---
-                        # Data is deleted to ensure downstream independence
-                        # --- Generated Cache (Metadata & Vocab) ---
-                        "[.cache]/register_samples.csv",
-                        "[.cache]/style_dataset/label_metadata.json",
                         "[.cache]/style_dataset/vocab.json",
-                        "[.cache]/style_dataset/dataset_tensors.pt",
-                        # --- Generated Cache (Databases) ---
-                        "[.cache]/agrammatic_combined.tsv",
-                        "[.cache]/grammatic_combined.tsv",
-                        "[.cache]/kotogram_shards/*.db",
-                        # --- Unified Config (Orchestrated) ---
+                        "[.cache]/style_dataset/sentences.txt",
+                        "[.cache]/style_dataset/kotograms.txt",
+                        "[.cache]/style_dataset/kc_*.bin",
+                        "[.cache]/style_dataset/feat_*.bin",
+                        "[.cache]/style_dataset/labels.bin_*",
+                        "[.cache]/style_dataset/offsets.bin",
                         "[models]/style-support/config.json",
-                        # Tokenizer is now staged by wrapper during label phase
                         "[models]/style/tokenizer.json",
                     ]
                     bottle.assert_dir_layout(expected_label_manifest)
@@ -68,30 +54,32 @@ class TestTrainStyleScript(unittest.TestCase):
                     bottle.snapshot("after_label")
 
                     # Step 2: Run train_style.sh for 1 epoch (with optional pretraining)
-                    # Use --no-label to skip re-running the label phase (metadata already setup in Step 1)
                     # Use --no-confusion to skip generating confusion matrices (saves time)
                     train_args = (
                         f"--epochs 1 --no-confusion {config['extra_args']}".strip()
                     )
-                    result1 = bottle.train_style(train_args)
+                    bottle.train_style(train_args)
 
                     # Verify epochs trained
                     # For pretrain-kc: expect [1, 1] (1 pretrain + 1 fine-tune)
                     # For regular: expect [1] (just 1 fine-tune)
                     if "pretrain-kc" in config["name"]:
-                        expected_epochs = [1, 1]  # 1 KC, 1 Style
+                        # Expect 1 KC event and 1 Style event
+                        bottle.assert_kc_epochs_trained([1])
+                        bottle.assert_style_epochs_trained([1])
                     else:
-                        expected_epochs = [1]
-                    bottle.assertEpochsTrained(result1, expected_epochs)
+                        bottle.assert_style_epochs_trained([1])
 
                     # Verify changes since snapshot (should only be training artifacts)
+                    # Use assert_files_exist to ensure key artifacts are present
+                    bottle.assert_files_exist(["[models]/style-support/training.log"])
+
                     expected_train_differences = [
-                        # Model Output
                         "[models]/style-support/training.log ADDED",
-                        "[models]/style-support/epochs.json ADDED",
+                        "[models]/style-support/training-history.tsv ADDED",
                         "[models]/style-support/checkpoint.pt ADDED",
-                        # checkpoint_optim.pt is now merged into checkpoint.pt
                         "[models]/style-support/checkpoint_meta.pt ADDED",
+                        "[.profile]/* ADDED",
                         "[models]/style-support/config.json MODIFIED",
                         "[models]/style/__init__.py ADDED",
                         "[models]/style/model.pt ADDED",
@@ -111,19 +99,26 @@ class TestTrainStyleScript(unittest.TestCase):
                     bottle.snapshot("after_epoch_1")
 
                     # Step 4: Resume training with --epochs 2 (should train only epoch 2)
-                    # Use --no-label here as well
-                    result2 = bottle.train_style("--resume --epochs 2 --no-confusion")
+                    bottle.train_style("--resume --epochs 2 --no-confusion")
 
                     # Verify only epoch 2 was trained (resume from epoch 1)
-                    bottle.assertEpochsTrained(result2, [2])
+                    # Verify only epoch 2 was trained (resume from epoch 1)
+                    if "pretrain-kc" in config["name"]:
+                        # Resume should just add Style epoch 2. KC history remains [1].
+                        bottle.assert_kc_epochs_trained([1])
+                        bottle.assert_style_epochs_trained([1, 2])
+                    else:
+                        bottle.assert_style_epochs_trained([1, 2])
 
                     # Verify changes since first training pass
                     expected_resume_differences = [
                         # Training artifacts should be modified
                         "[models]/style-support/training.log MODIFIED",
-                        "[models]/style-support/epochs.json MODIFIED",
+                        "[models]/style-support/training-history.tsv MODIFIED",
                         "[models]/style-support/checkpoint.pt MODIFIED",
                         "[models]/style-support/checkpoint_meta.pt MODIFIED",
+                        "[.profile]/* ADDED",
+                        "[.profile]/training-profile.txt MODIFIED",
                         "[models]/style-support/config.json MODIFIED",
                         "[models]/style/model.pt MAYBE-MODIFIED",
                     ]
@@ -176,7 +171,7 @@ class TestTrainStyleScript(unittest.TestCase):
                         )
 
                     model_path = bottle.get_file("[models]/style/model.pt")
-                    bottle.assertModelIsFp8(model_path)
+                    bottle.assert_model_is_fp8(model_path)
 
                     # 4. Verify history in epochs.json
                     history = bottle.get_epoch_history()
@@ -187,27 +182,26 @@ class TestTrainStyleScript(unittest.TestCase):
 
                     if config["name"] == "regular":
                         self.assertEqual(len(history), 2)
-                        self.assertEqual(history[0]["type"], "style")
+                        self.assertEqual(history[0].get_type_name(), "STYLE_EPOCH")
                         # Style training uses full train split (labeled_train)
                         self.assertEqual(
-                            history[0]["sentence_count"],
+                            history[0].metrics["sentence_count"],
                             expected_counts["total_train_split_size"],
                         )
                     elif config["name"] == "pretrain-kc":
                         self.assertGreaterEqual(len(history), 3)
-                        self.assertEqual(history[0]["type"], "pretrain-kc")
+                        self.assertEqual(history[0].get_type_name(), "KC_EPOCH")
 
                         # Verify counts
-                        # KC pretraining uses ONLY grammatical sentences from the training split
                         # KC pretraining uses ONLY grammatical sentences from the training split,
                         # so it must be strictly less than the total style training set (which includes agrammatic).
                         self.assertLess(
-                            history[0]["sentence_count"],
+                            history[0].metrics["sentence_count"],
                             expected_counts["total_train_split_size"],
                         )
 
                         # KC metrics check
-                        self.assertIn("avg_struct_loss", history[0])
+                        self.assertIn("avg_struct_loss", history[0].metrics)
 
                     # All remaining entries are always standard style fine-tuning
                     # Remaining entries are style fine-tuning
@@ -216,10 +210,10 @@ class TestTrainStyleScript(unittest.TestCase):
                         start_idx = 1
 
                     for i in range(start_idx, len(history)):
-                        self.assertEqual(history[i]["type"], "style")
+                        self.assertEqual(history[i].get_type_name(), "STYLE_EPOCH")
                         # Style fine-tuning uses the full training split (gram + agram)
                         self.assertEqual(
-                            history[i]["sentence_count"],
+                            history[i].metrics["sentence_count"],
                             expected_counts["total_train_split_size"],
                         )
 

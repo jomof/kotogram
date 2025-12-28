@@ -33,6 +33,7 @@ from kotogram.tokenizer import (
     FEATURE_FIELDS,
     Tokenizer,
 )
+from train import history
 from train.config import (
     TrainerConfig,
 )
@@ -290,56 +291,45 @@ if __name__ == "__main__":
     rank, world_size, local_rank = setup_distributed()
 
     # Epoch history logging
-    epochs_json_path = os.path.join(args.support_dir, "epochs.json")
-    training_history: List[Dict[str, Any]] = []
-    if is_main_process() and os.path.exists(epochs_json_path):
-        with open(epochs_json_path, "r", encoding="utf-8") as history_file:
-            training_history = json.load(history_file)
+    history_path = os.path.join(args.support_dir, "training-history.tsv")
 
-    def _append_history(
+    # Clear history if starting fresh (and not just labeling)
+    if is_main_process() and not args.resume and not args.label:
+        history.clear_history(history_path)
+
+    def _log_epoch_event(
         raw_history: Dict[str, Any], phase_type: str, start_epoch: int = 0
     ) -> None:
-        """Convert columnar history to rows and append to training_history."""
+        """Log the latest epoch from raw_history to the TSV file."""
         if not raw_history:
             return
 
-        # Determine num_epochs from the first list value found
-        # (e.g., 'loss', 'total_loss')
-        num_epochs = 0
-        for v in raw_history.values():
-            if isinstance(v, list):
-                num_epochs = len(v)
-                break
-
-        if num_epochs == 0:
+        # Find a list column to determine current epoch index
+        valid_keys = [k for k, v in raw_history.items() if isinstance(v, list) and v]
+        if not valid_keys:
             return
 
-        # Replace existing entries for this phase type to support incremental updates
-        training_history[:] = [
-            e for e in training_history if e.get("type") != phase_type
-        ]
+        # Get latest index from the first valid key
+        idx = len(raw_history[valid_keys[0]]) - 1
+        if idx < 0:
+            return
 
-        for i in range(num_epochs):
-            epoch_data = {
-                "type": phase_type,
-                "epoch": start_epoch + i + 1,
-            }
-            # Flatten metrics
-            for k, v in raw_history.items():
-                if isinstance(v, list):
-                    if i < len(v):
-                        epoch_data[k] = v[i]
-                elif isinstance(v, dict):
-                    # Flatten nested dicts (keys -> list of vals)
-                    for sub_k, sub_v in v.items():
-                        if isinstance(sub_v, list) and i < len(sub_v):
-                            epoch_data[f"{k}_{sub_k}"] = sub_v[i]
-            training_history.append(epoch_data)
+        current_epoch = start_epoch + idx + 1
+
+        # Extract metrics for this epoch
+        metrics = {}
+        for k, v in raw_history.items():
+            if isinstance(v, list) and len(v) > idx:
+                metrics[k] = v[idx]
 
         if is_main_process():
-            # Save immediately
-            with open(epochs_json_path, "w", encoding="utf-8") as h_file:
-                json.dump(training_history, h_file, indent=2)
+            event: history.HistoryEvent
+            if phase_type == "pretrain-kc":
+                event = history.KcEpochEvent(epoch=current_epoch, metrics=metrics)
+            else:
+                event = history.StyleEpochEvent(epoch=current_epoch, metrics=metrics)
+
+            history.append_event(history_path, event)
 
     model: Optional[StyleClassifier] = None
     tokenizer: Optional[Tokenizer] = None
@@ -421,7 +411,6 @@ if __name__ == "__main__":
             verbose=is_main_process(),
             grammaticality_labels=grammaticality_labels,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-            use_cache=True,
         ),
     )
     train_data, val_data = labeled_dataset.split()
@@ -446,9 +435,9 @@ if __name__ == "__main__":
         sys.exit(0)
 
     if args.pretrain_kc and not args.preprocess_only:
-        kc_epochs_done = len(
-            [e for e in training_history if e.get("type") == "pretrain-kc"]
-        )
+        # Load history to check KC progress
+        events = history.read_events(history_path)
+        kc_epochs_done = sum(1 for e in events if isinstance(e, history.KcEpochEvent))
         if kc_epochs_done < trainer_config.kc_epochs or args.retrain:
             kc_trainer = KCTrainer(
                 cast(StyleClassifierWithKC, model),
@@ -461,12 +450,14 @@ if __name__ == "__main__":
                 },
                 args=args,
             )
-            kc_history = kc_trainer.train(
+            _ = kc_trainer.train(
                 epochs=trainer_config.kc_epochs,
-                on_epoch_end=lambda h: _append_history(h, "pretrain-kc"),
+                on_epoch_end=lambda h: _log_epoch_event(h, "pretrain-kc"),
             )
             if is_main_process():
-                _append_history(kc_history, "pretrain-kc")
+                # Ensure final state is logged if not already (redundant if using callback)
+                # But callback might be skipped if 0 epochs? No, train loop handles it.
+                pass
             # Update model reference (Trainer may have wrapped/moved it)
             model = kc_trainer.model
             if hasattr(model, "module"):
@@ -490,12 +481,11 @@ if __name__ == "__main__":
         # Auto-resume handled inside trainer.train() if checkpoint_dir set
         pass
 
-    history = style_trainer.train(
+    _ = style_trainer.train(
         epochs=trainer_config.epochs,
-        on_epoch_end=lambda h: _append_history(h, "style"),
+        on_epoch_end=lambda h: _log_epoch_event(h, "style"),
     )
-    if is_main_process():
-        _append_history(history, "style")
+    # _log_epoch_event already logs during callbacks
     style_end = time.perf_counter()
 
     # Test evaluation and model saving

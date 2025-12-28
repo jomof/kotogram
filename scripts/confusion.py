@@ -23,7 +23,50 @@ from kotogram.model import (
     StyleClassifier,
     load_model,
 )
-from train.dataset import DatasetConfig, StyleDataset, collate_fn
+from train.dataset import StyleDataset, collate_fn
+from train.profile import PhaseTimer, get_profile_dir
+
+
+class TextIndex:
+    """Lazy text loader using line offsets."""
+
+    def __init__(self, path: str):
+        self.path = path
+        self.offsets = []
+        if os.path.exists(path):
+            console.print(f"Indexing text file: {path} ...")
+            with open(path, "rb") as f:
+                offset = 0
+                for line in f:
+                    self.offsets.append(offset)
+                    offset += len(line)
+            console.print(f"Indexed {len(self.offsets)} lines.")
+
+    def get(self, idx: int) -> str:
+        if idx < 0 or idx >= len(self.offsets):
+            return ""
+        with open(self.path, "r", encoding="utf-8") as f:
+            f.seek(self.offsets[idx])
+            return f.readline().strip()
+
+
+class LazyStringList:
+    """List-like object that lazy-loads text on access."""
+
+    def __init__(self, indices: List[int], text_index: TextIndex):
+        self.indices = indices
+        self.text_index = text_index
+
+    def __getitem__(self, idx: int) -> str:
+        return self.text_index.get(self.indices[idx])
+
+    def __len__(self) -> int:
+        return len(self.indices)
+
+    def __iter__(self) -> Any:
+        for idx in self.indices:
+            yield self.text_index.get(idx)
+
 
 console = Console()
 
@@ -380,13 +423,16 @@ def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
         _save_mismatches(data, save_dir)
 
 
+# Define Dataset at module level for pickling support (multiprocessing spawn)
+class ConfusionDataset(StyleDataset):
+    pass  # No overrides needed, StyleDataset handles indices, we supply text separately
+
+
 def main() -> None:
     # pylint: disable=too-many-locals
     import argparse
 
-    parser = argparse.ArgumentParser(
-        description="Evaluate model confusion and generate reports."
-    )
+    parser = argparse.ArgumentParser(description="Generate confusion matrices")
     parser.add_argument(
         "--batch-size", type=int, default=512, help="Batch size for evaluation"
     )
@@ -403,8 +449,14 @@ def main() -> None:
 
     args = parser.parse_args()
 
+    # Initialize Profiler
+    profile_dir = get_profile_dir()
+    if profile_dir:
+        os.makedirs(profile_dir, exist_ok=True)
+    timer = PhaseTimer(console, profile_dir)
+
     # Resolve and inject paths from locations.py into args namespace
-    cache_dir = locations.get_cache_dir()
+    cache_dir = locations.get_style_dataset_cache_dir()
     args.output = locations.get_style_support_dir()
     args.support_dir = args.output
     args.model_dir = locations.get_style_output_dir()
@@ -428,7 +480,9 @@ def main() -> None:
     # Restore percent from checkpoint if not explicitly provided
     checkpoint_path = os.path.join(args.support_dir, "checkpoint.pt")
     if args.percent is None and os.path.exists(checkpoint_path):
-        checkpoint_data = torch.load(checkpoint_path, map_location="cpu")
+        checkpoint_data = torch.load(
+            checkpoint_path, map_location="cpu", weights_only=False
+        )
         saved_args = checkpoint_data.get("args", {})
         saved_percent = saved_args.get("percent")
         if saved_percent is not None:
@@ -456,57 +510,39 @@ def main() -> None:
     # Load model and tokenizer
     # Load model and tokenizer
     model, tokenizer = load_model(args.model_dir, device=device_name)
+    timer.mark("Setup & Load Model")
 
-    # Building evaluation files list
-    data_files = []
-    grammaticality_labels = []
-
-    def add_file(path: Optional[str], force_label: Optional[int] = None) -> None:
-        if not path:
-            return
-        data_files.append(path)
-        if force_label is not None:
-            grammaticality_labels.append(force_label)
-        else:
-            # Heuristic based on filename
-            is_agrammatic = (
-                "agrammatic" in os.path.basename(path).lower()
-                or "error" in os.path.basename(path).lower()
-            )
-            grammaticality_labels.append(0 if is_agrammatic else 1)
-
-    add_file(args.data, force_label=1)  # Main data is always assumed grammatic (or 1)
-    # Add agrammatic sentences if provided
-    if os.path.exists(args.agrammatic_data):
-        add_file(args.agrammatic_data, force_label=0)
-
-    console.print(f"Loading data from: {data_files}")
+    # V2 loads pre-built binary dataset from cache_dir.
+    # We ignore args.data and args.agrammatic_data as they are baked into the label phase.
+    console.print(f"Loading binary dataset from: {cache_dir}")
 
     # Load dataset
-    if len(data_files) > 1:
-        dataset = StyleDataset.from_multiple_tsv(
-            data_files,
-            tokenizer,
-            config=DatasetConfig(
-                grammaticality_labels=grammaticality_labels,
-                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                verbose=True,
-            ),
-        )
-    else:
-        dataset = StyleDataset.from_tsv(
-            data_files[0],
-            tokenizer,
-            config=DatasetConfig(
-                sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-                verbose=True,
-            ),
-        )
+    # V2: Use MMapStyleDataset. Text maps are side-loaded lazily.
+    dataset = ConfusionDataset(
+        data_dir=cache_dir,
+        tokenizer=tokenizer,
+        sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+        verbose=True,
+    )
+
+    # Init Lazy Maps
+    s_index = TextIndex(os.path.join(cache_dir, "sentences.txt"))
+    k_index = TextIndex(os.path.join(cache_dir, "kotograms.txt"))
+
+    # Filter by grammaticality if needed?
+    # Original script merged grammatic and agrammatic files.
+    # V2 dataset is monolithic. We can filter using `filter_by_grammaticality` if we want separate reports?
+    # But generate_reports handles mixed data.
+    # The MMapDataset contains both (if labeled together).
+    # If the user ran --label with --agrammatic-pattern, it's all in there.
+    # We just run on the whole thing.
 
     # Determine num_workers: 0 is much faster for in-memory datasets on macOS (avoid spawn overhead)
     num_workers = args.num_workers
     if num_workers is None:
-        num_workers = 4 if device.type == "cuda" else 0
+        # Enable workers on MPS/CUDA to saturate CPU while GPU works.
+        # on macOS (MPS), multiprocessing works well with `spawn` (default).
+        num_workers = 4 if device.type in ["cuda", "mps"] else 0
 
     from functools import partial
 
@@ -518,14 +554,30 @@ def main() -> None:
             collate_fn, pad_id=tokenizer.pad_id, max_seq_len=model.config.max_seq_len
         ),
         num_workers=num_workers,
-        pin_memory=(device.type == "cuda"),
+        pin_memory=(
+            device.type == "cuda"
+        ),  # Pinned memory is only beneficial/supported on CUDA
     )
+    timer.mark("Load Dataset")
 
     # Calculate metrics
     results = calculate_metrics(model, loader, device)
 
+    # Inject lazy text lists into results
+    if "indices" in results:
+        results["sentences"] = LazyStringList(results["indices"], s_index)
+        results["kotograms"] = LazyStringList(results["indices"], k_index)
+    else:
+        # Fallback if indices missing (should not happen with updated evaluator)
+        console.print(
+            "[red]Warning: No indices in results, text reporting may mismatch.[/red]"
+        )
+
+    timer.mark("Reporting")
+
     # Generate reports
     generate_reports(results, args.output)
+    timer.stop("Reporting")
 
     console.print("[bold green]Confusion analysis complete.[/bold green]")
 

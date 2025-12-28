@@ -3,6 +3,8 @@ import unittest
 
 from training_test_utils import Bottle
 
+from train import history
+
 
 @unittest.skipIf(os.environ.get("GITHUB_ACTIONS") == "true", "Skipping on GitHub CI")
 class TestResumePretrain(unittest.TestCase):
@@ -15,10 +17,11 @@ class TestResumePretrain(unittest.TestCase):
             bottle.train_style("--label")
 
             # Step 1: Run KC for 1 epoch
-            result1 = bottle.train_style(
+            bottle.train_style(
                 f"--pretrain-kc --kc-epochs 1 --epochs 0 --no-confusion {common_args}",
             )
-            bottle.assertEpochsTrained(result1, [1])  # 1 KC, 0 Style
+            bottle.assert_kc_epochs_trained([1])  # 1 KC
+            bottle.assert_style_epochs_trained([])  # 0 Style
 
             # Verify KC checkpoint exists
             kc_ckpt = bottle.resolve_path("[models]/style-support/checkpoint_kc.pt")
@@ -27,18 +30,22 @@ class TestResumePretrain(unittest.TestCase):
             )
 
             # Step 2: Resume KC to 2 epochs
-            result2 = bottle.train_style(
+            bottle.train_style(
                 f"--resume --pretrain-kc --kc-epochs 2 --epochs 0 --no-confusion {common_args}",
             )
             # Should only train the 2nd KC epoch
-            bottle.assertEpochsTrained(result2, [2])
+            # History accumulates [1, 2]
+            bottle.assert_kc_epochs_trained([1, 2])
+            bottle.assert_style_epochs_trained([])
 
             # Verify history
-            history = bottle.get_epoch_history()
-            kc_entries = [e for e in history if e["type"] == "pretrain-kc"]
+            history_events = bottle.get_epoch_history()
+            kc_entries = [
+                e for e in history_events if isinstance(e, history.KcEpochEvent)
+            ]
             self.assertEqual(len(kc_entries), 2)
-            self.assertEqual(kc_entries[0]["epoch"], 1)
-            self.assertEqual(kc_entries[1]["epoch"], 2)
+            self.assertEqual(kc_entries[0].epoch, 1)
+            self.assertEqual(kc_entries[1].epoch, 2)
 
 
 if __name__ == "__main__":

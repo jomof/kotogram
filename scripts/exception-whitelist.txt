@@ -1,12 +1,10 @@
 kotogram/cli.py:212:    except KeyboardInterrupt:
 kotogram/cli.py:214:    except BrokenPipeError:
-kotogram/evaluator.py:182:        except KeyboardInterrupt:
+kotogram/evaluator.py:238:        except KeyboardInterrupt:
 scripts/watchdog.py:29:    except subprocess.CalledProcessError:
 scripts/watchdog.py:67:                except subprocess.CalledProcessError as e:
 scripts/watchdog.py:85:        except KeyboardInterrupt:
 scripts/validate_tatoeba.py:72:            except MissingMappingError as e:
 tests-py/training_test_utils.py:45:    except subprocess.TimeoutExpired as e:
 scripts/test_runner.py:601:    except KeyboardInterrupt:
-
-
-
+scripts/label.py:704:            except queue.Empty:

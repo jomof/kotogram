@@ -13,14 +13,30 @@ from kotogram.model import StylePrediction
 class TestGenderModel(unittest.TestCase):
     """Test gender analysis using the neural model."""
 
+    # pylint: disable=invalid-name
     def setUp(self):
+        # pylint: disable=duplicate-code
         """Set up test fixtures."""
         self.parser = SudachiJapaneseParser(dict_type="full")
 
-        # Use setup helper
-        from training_test_utils import setup_mock_style_model
+        # Manually setup mock model/tokenizer
+        from kotogram.model import ModelConfig, StyleClassifier
+        from kotogram.tokenizer import Tokenizer
 
-        setup_mock_style_model(self)
+        self.tokenizer = Tokenizer()
+        # pylint: disable=protected-access
+        self.tokenizer._frozen = True
+
+        config = ModelConfig(vocab_sizes=self.tokenizer.get_vocab_sizes())
+        self.model = StyleClassifier(config)
+        self.model.eval()
+
+        patcher = patch(
+            "kotogram.analysis._load_style_model",
+            return_value=(self.model, self.tokenizer),
+        )
+        patcher.start()
+        self.addCleanup(patcher.stop)
 
     def test_masculine_basic(self):
         """Test basic masculine sentence."""

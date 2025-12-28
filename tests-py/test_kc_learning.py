@@ -12,6 +12,8 @@ from train.trainer import KCTrainer
 class MockTokenizer:
     def __init__(self):
         self.pad_id = 0
+        self.unk_id = 1
+        self.cls_id = 2
 
     def get_vocab_sizes(self):
         return {f: 100 for f in ALL_FEATURE_FIELDS}
