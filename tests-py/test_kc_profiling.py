@@ -21,7 +21,7 @@ class DummyDataset(StyleDataset):
     def __getitem__(self, idx):
         return {}
 
-    def filter_by_grammaticality(self, valid_label: int = 1):
+    def filter_by_grammaticality(self, label: int = 1):
         return self
 
 

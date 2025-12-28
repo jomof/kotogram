@@ -4,7 +4,8 @@ import unittest
 
 from training_test_utils import Bottle
 
-from train.cache import get_kotogram_cache
+# V2: We check for binary shards and text files instead of SQLite cache
+from kotogram import locations
 
 
 # pylint: disable=protected-access, unnecessary-dunder-call
@@ -23,13 +24,10 @@ class TestLabelScript(unittest.TestCase):
 
     def tearDown(self):
         self.bottle.__exit__(None, None, None)
-        # Reset global cache instance if needed
-        import train.cache
 
-        train.cache._KOTOGRAM_CACHE = None
-
-    def test_label_and_cache(self):
+    def test_label_output_artifacts(self):
         # Run label.py via subprocess using Bottle
+        # V2 label.py writes to locations.get_style_dataset_cache_dir()
         args = [
             "--grammatic-pattern",
             self.data_file,
@@ -37,45 +35,51 @@ class TestLabelScript(unittest.TestCase):
 
         self.bottle.run_script("scripts/label.py", args)
 
-        # Verify cache was created and populated
-        # Re-initialize to see what happened
-        import train.cache
-
-        train.cache._KOTOGRAM_CACHE = None
-
         with self.bottle.environment():
-            # In-process verification needs mocked environment
-            shards_dir = get_kotogram_cache().shards_dir
-            print(f"Checking results in {shards_dir}...")
+            # Verify V2 artifacts
+            cache_dir = locations.get_style_dataset_cache_dir()
+            print(f"Checking results in {cache_dir}...")
 
-            cache = get_kotogram_cache()
-            results = cache.get_batch(
-                ["これはテストです。", "美味しいですね。", "走る。"]
-            )
+            # Check for core text files
+            sentences_path = os.path.join(cache_dir, "sentences.txt")
+            kotograms_path = os.path.join(cache_dir, "kotograms.txt")
 
-            for k_sent, v in results.items():
-                if v is None:
-                    print(f"MISSING: {k_sent}")
+            self.assertTrue(os.path.exists(sentences_path), "sentences.txt missing")
+            self.assertTrue(os.path.exists(kotograms_path), "kotograms.txt missing")
 
-            self.assertIsNotNone(results["これはテストです。"])
-            self.assertIsNotNone(results["美味しいですね。"])
-            self.assertIsNotNone(results["走る。"])
+            # Verify content
+            with open(sentences_path, "r", encoding="utf-8") as f:
+                lines = [line.strip() for line in f]
+                self.assertIn("これはテストです。", lines)
+                self.assertIn("美味しいですね。", lines)
+                self.assertIn("走る。", lines)
 
-            # Check if fields are populated
-            k, f, g_val, g_prag, r_lbls, g_lbl, _ = results["これはテストです。"]
-            self.assertTrue(len(k) > 0)
-            self.assertIsNotNone(f)
-            self.assertIsNotNone(g_val)
-            self.assertIsNotNone(g_prag)
-            self.assertIsNotNone(r_lbls)
-            self.assertIsNotNone(g_lbl)
+            with open(kotograms_path, "r", encoding="utf-8") as f:
+                k_lines = [line.strip() for line in f]
+                self.assertEqual(len(k_lines), 3)
+                self.assertTrue(all(len(k) > 0 for k in k_lines))
 
-    def test_incremental_labeling(self):
+            # Check for binary shards (offsets, labels)
+            # We expect at least shard_0... or unified binaries if merged?
+            # scripts/label.py merges them into binaries in the root of cache_dir
+            exts = [
+                "labels.bin_f_val",
+                "labels.bin_f_prag",
+                "labels.bin_g_val",
+                "labels.bin_g_prag",
+                "labels.bin_gram",
+                "labels.bin_reg_ids.bin",
+            ]
+            for ext in exts:
+                path = os.path.join(cache_dir, ext)
+                self.assertTrue(os.path.exists(path), f"Missing {ext}")
+
+            # Check JSON metadata
+            vocab_path = os.path.join(cache_dir, "vocab.json")
+            self.assertTrue(os.path.exists(vocab_path), "vocab.json missing")
+
+    def test_incremental_labeling_v2_artifacts(self):
         # First run
-        import train.cache
-
-        train.cache._KOTOGRAM_CACHE = None
-
         args = [
             "--grammatic-pattern",
             self.data_file,
@@ -84,18 +88,9 @@ class TestLabelScript(unittest.TestCase):
         self.bottle.run_script("scripts/label.py", args)
 
         with self.bottle.environment():
-            # Verify something was written
-            shards_dir = get_kotogram_cache().shards_dir
-            files = os.listdir(shards_dir)
-            print(f"Shard files: {files}")
-            if not files:
-                self.fail("No shard files created")
-
-            shard_path = os.path.join(shards_dir, files[0])
-            os.path.getmtime(shard_path)
-
-        # Second run with same data
-        self.bottle.run_script("scripts/label.py", args)
+            cache_dir = locations.get_style_dataset_cache_dir()
+            s_path = os.path.join(cache_dir, "sentences.txt")
+            self.assertTrue(os.path.exists(s_path))
 
         # Add a new file
         new_data_file = os.path.join(self.bottle.root_dir, "new_data.tsv")
@@ -103,6 +98,7 @@ class TestLabelScript(unittest.TestCase):
             writer = csv.writer(f, delimiter="\t")
             writer.writerow(["id4", "label4", "新しい文です。"])
 
+        # Run with both
         args_new = [
             "--grammatic-pattern",
             self.data_file,
@@ -112,11 +108,15 @@ class TestLabelScript(unittest.TestCase):
 
         self.bottle.run_script("scripts/label.py", args_new)
 
-        train.cache._KOTOGRAM_CACHE = None
         with self.bottle.environment():
-            cache = get_kotogram_cache()
-            results = cache.get_batch(["新しい文です。"])
-            self.assertIsNotNone(results["新しい文です。"])
+            cache_dir = locations.get_style_dataset_cache_dir()
+            s_path = os.path.join(cache_dir, "sentences.txt")
+
+            with open(s_path, "r", encoding="utf-8") as f:
+                lines = [line.strip() for line in f]
+                self.assertIn("新しい文です。", lines)
+                # It might have duplicates if not deduped, but V2 label.py dedups globally in main logic
+                self.assertIn("これはテストです。", lines)
 
 
 if __name__ == "__main__":

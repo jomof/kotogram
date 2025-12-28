@@ -188,18 +188,17 @@ def handle_special_modes(args: argparse.Namespace) -> Optional[int]:
 def run_preprocessing(
     args: argparse.Namespace,
     env: dict,
-    cache_dir: str,
     gram_data_pattern: str,
     agrammatic_pattern: str,
 ) -> bool:
     """Run preprocessing/labeling phase."""
-    combined_gram = os.path.join(cache_dir, "grammatic_combined.tsv")
-    combined_agram = os.path.join(cache_dir, "agrammatic_combined.tsv")
+    style_cache_dir = locations.get_style_dataset_cache_dir()
+    offsets_bin = os.path.join(style_cache_dir, "offsets.bin")
 
     skip_label = False
-    if os.path.exists(combined_gram) and not args.force_relabel:
+    if os.path.exists(offsets_bin) and not args.force_relabel:
         skip_label = True
-        print("Using cached labels")
+        print("Using cached labels (V2 Binary)")
 
     print("=" * 46)
     print("Running Preprocessing Phase...")
@@ -231,15 +230,11 @@ def run_preprocessing(
             f"Preprocessing skipped (using cached labels). Took {time.perf_counter() - t_label_start:.1f}s"
         )
 
-    # Update line counts
-    if os.path.exists(combined_gram):
-        with open(combined_gram, "r", encoding="utf-8") as f:
-            lines = sum(1 for _ in f)
-        print(f"Combined grammatic data: {combined_gram} ({lines} lines)")
-    if os.path.exists(combined_agram):
-        with open(combined_agram, "r", encoding="utf-8") as f:
-            lines = sum(1 for _ in f)
-        print(f"Combined agrammatic data: {combined_agram} ({lines} lines)")
+    # Report size if possible
+    if os.path.exists(offsets_bin):
+        sz = os.path.getsize(offsets_bin)
+        count = sz // 4 - 1
+        print(f"Dataset size: {count} samples")
     print("Preprocessing complete.")
     return True
 
@@ -728,7 +723,7 @@ def main() -> int:
     print()
 
     # Phase 1: Preprocessing/Labeling
-    if not run_preprocessing(args, env, cache_dir, gram_data_pattern, agrammatic_pattern):
+    if not run_preprocessing(args, env, gram_data_pattern, agrammatic_pattern):
         return 1
 
     # Phase 2: Configuration

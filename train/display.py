@@ -1,13 +1,83 @@
 """Display logic for training progress reporting."""
 
 import math
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, cast
 
 from rich.console import Console, Group
 from rich.panel import Panel
+from rich.progress import (
+    BarColumn,
+    Progress,
+    SpinnerColumn,
+    TaskProgressColumn,
+    TextColumn,
+    TimeRemainingColumn,
+)
 from rich.table import Table
 
-console = Console()
+console = Console(force_terminal=True)
+
+
+class RichTrainerProgressBar:
+    """Stateful progress bar for training loops using Rich."""
+
+    def __init__(
+        self,
+        desc: str,
+        total_steps: int,
+        console_: Optional[Console] = None,
+        transient: bool = False,
+    ):
+        # Use provided console or fall back to global forced-terminal console
+        self.console = console_ or console
+        self.progress = Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(bar_width=40),
+            TaskProgressColumn(),
+            TimeRemainingColumn(),
+            TextColumn("{task.fields[status]}"),
+            console=self.console,
+            transient=transient,
+        )
+        self.task_id = self.progress.add_task(
+            desc, total=total_steps, status="Initializing..."
+        )
+        self.progress.start()
+
+    def update(
+        self,
+        step: int,
+        loss: Optional[float] = None,
+        desc: Optional[str] = None,
+        status: Optional[str] = None,
+    ) -> None:
+        """Update progress bar state."""
+        # Build extra fields
+        fields = {}
+        if loss is not None:
+            fields["status"] = f"loss={loss:.4f}"
+        if status is not None:
+            fields["status"] = status
+
+        # Update description if provided
+        # Cast fields to Any for Mypy safety with typed kwargs in Progress.update
+        fields_any = cast(Dict[str, Any], fields)
+        if desc is not None:
+            self.progress.update(
+                self.task_id, completed=step + 1, description=desc, **fields_any
+            )
+        else:
+            self.progress.update(self.task_id, completed=step + 1, **fields_any)
+
+    def log(self, message: str) -> None:
+        """Print a message above the progress bar."""
+        # Use the progress console to print cleanly above the bar
+        self.progress.console.print(message)
+
+    def stop(self) -> None:
+        """Stop and remove progress bar."""
+        self.progress.stop()
 
 
 def print_phase_header(
@@ -35,20 +105,6 @@ def print_phase_header(
     if info:
         text += f" ({info})"
     console.print(f"\n[bold blue]{text}[/bold blue]")
-
-
-def print_progress_bar(batch_idx: int, total_batches: int, loss: float) -> None:
-    """Print a simple text-based progress bar."""
-    progress = (batch_idx + 1) / max(1, total_batches)
-    bar_width = 30
-    filled_width = int(bar_width * progress)
-    progress_bar_str = "=" * filled_width + ">" + "." * (bar_width - filled_width - 1)
-    import sys
-
-    sys.stdout.write(
-        f"\r  [{progress_bar_str}] {batch_idx + 1}/{total_batches} loss={loss:.4f}"
-    )
-    sys.stdout.flush()
 
 
 def print_kc_first_batch_debug(
@@ -250,10 +306,10 @@ def _analyze_kc_head_debug(
     )
 
 
-def print_kc_first_batch_summary(
+def format_kc_first_batch_summary(
     kc_stats: Dict[str, Any],
     head_diagnostics: List[Dict[str, Any]],
-) -> None:
+) -> str:
     """Compact summary of the first batch for minimal logging mode."""
     raw_str = ""
     if "raw_logits_mean" in kc_stats:
@@ -262,23 +318,25 @@ def print_kc_first_batch_summary(
             f"[{kc_stats['raw_logits_min']:.2f}, {kc_stats['raw_logits_max']:.2f}] "
         )
 
-    print(
+    lines = [
         f"  FB: KC: {raw_str}nom μ/σ={kc_stats['logits_mean']:.4f}/{kc_stats['logits_std']:.4f} "
         f"probs μ/σ={kc_stats['probs_mean']:.3f}/{kc_stats['probs_std']:.3f} "
         f"(>0.5: {kc_stats.get('probs_gt05', 0.0):.1%} >0.9: {kc_stats.get('probs_gt09', 0.0):.1%}) "
         f"topk μ/min/max={kc_stats.get('topk_mean', 0.0):.2f}/{kc_stats.get('topk_min', 0.0):.2f}/{kc_stats.get('topk_max', 0.0):.2f} "
         f"sparse={kc_stats['sparse_mean']:.4f} nonzeros={kc_stats['nonzero']:.1f} "
         f"uniqKCs={kc_stats['unique_kcs']}"
-    )
+    ]
 
     for d in head_diagnostics:
-        print(
+        lines.append(
             f"    {d['name']:20}: tgt={d['p']:.4g} w={d['pos_w']:.1f} pred={d['p_avg']:.4g} "
             f"auc={d['auc']:.3f} Δloss={d['delta']:+.4f}"
         )
 
+    return "\n".join(lines)
 
-def print_kc_epoch_compact_summary(
+
+def format_kc_epoch_compact_summary(
     epoch: int,
     total_epochs: int,
     total_loss: float,
@@ -291,11 +349,11 @@ def print_kc_epoch_compact_summary(
     avg_kl_to_uniform: Optional[float] = None,
     uniq_kcs: Optional[int] = None,
     avg_p_max: Optional[float] = None,
-) -> None:
+) -> str:
     """Compact single-line summary of epoch results."""
     # pylint: disable=too-many-positional-arguments
     top_str = ", ".join([f"{n} {loss:.3f}" for n, loss in top_losses])
-    print(
+    return (
         f"  KC Epoch {epoch} of {total_epochs}: loss={total_loss:.4f} "
         f"prob={avg_prob:.2f} dens={act_dens:.4f} "
         f"struct={struct_avg:.4f} "
@@ -309,11 +367,11 @@ def print_kc_epoch_compact_summary(
     )
 
 
-def print_kc_loss_breakdown(parts: Dict[str, float], weights: Dict[str, float]) -> None:
+def format_kc_loss_breakdown(parts: Dict[str, float], weights: Dict[str, float]) -> str:
     """Print breakdown of KC loss components."""
     # parts: base, struct, label, div, lb, collapse, sparsity
     # weights: div, lb, sparsity, collapse
-    msg = (
+    return (
         f"  KC LossParts: base={parts.get('base', 0):.4f} "
         f"struct={parts.get('struct', 0):.4f} "
         f"label={parts.get('label', 0):.4f} | "
@@ -325,10 +383,9 @@ def print_kc_loss_breakdown(parts: Dict[str, float], weights: Dict[str, float]) 
         f"lb={weights.get('lb', 0):.2g} "
         f"coll={weights.get('collapse', 0):.2g})"
     )
-    print(msg)
 
 
-def print_kc_usage_summary(
+def format_kc_usage_summary(
     uniq: int,
     total: int,
     max_top1: float,
@@ -337,7 +394,7 @@ def print_kc_usage_summary(
     topk_counts: List[Tuple[int, int]],
     top1_counts: List[Tuple[int, int]],
     k: int,
-) -> None:
+) -> str:
     """Print compact KC usage stats (histograms)."""
     # pylint: disable=too-many-positional-arguments
 
@@ -353,7 +410,7 @@ def print_kc_usage_summary(
     topk_str = fmt_hist(topk_counts, total * k)
     top1_str = fmt_hist(top1_counts, total)
 
-    print(
+    return (
         f"    KC Usage: uniqKCs={uniq} total={total} maxTop1={max_top1:.3f} "
         f"topkVals μ={tv_mean:.3f} gapμ={gap_mean:.3f}\n"
         f"      topK(topk): {topk_str}\n"

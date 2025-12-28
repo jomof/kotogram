@@ -94,6 +94,11 @@ class Tokenizer:
         vocab[value] = new_id
         return new_id
 
+    def get_id(self, field: str, value: str) -> int:
+        """Get ID for a value in a field."""
+        vocab = self.field_vocabs[field]
+        return vocab.get(value, self.unk_id)
+
     def extract_features(self, kotogram: str) -> List[Dict[str, str]]:
         """Extract features from each token in a Kotogram string."""
         tokens = split_kotogram(kotogram)
@@ -236,6 +241,11 @@ class Tokenizer:
             if tmp_path and os.path.exists(tmp_path):
                 os.remove(tmp_path)
 
+    def load_state(self, state: Dict[str, Any]) -> None:
+        """Load tokenizer state from dictionary."""
+        self.field_vocabs.update(state.get("field_vocabs", {}))
+        self._frozen = state.get("frozen", self._frozen)
+
     @classmethod
     def load(cls, path: str) -> "Tokenizer":
         """Load tokenizer from JSON file."""
@@ -244,8 +254,5 @@ class Tokenizer:
 
         tokenizer = cls()
         # Merge loaded vocabs, preserving defaults for any new fields not in the file
-        loaded_vocabs = data["field_vocabs"]
-        tokenizer.field_vocabs.update(loaded_vocabs)
-
-        tokenizer._frozen = data.get("frozen", False)
+        tokenizer.load_state(data)
         return tokenizer

@@ -127,6 +127,9 @@ async def check_broad_exceptions() -> CheckResult:
         if not line:
             continue
 
+        if line in whitelist_entries:
+            continue
+
         parts = line.split(":", 2)
         if len(parts) < 3:
             continue

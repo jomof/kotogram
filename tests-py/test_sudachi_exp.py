@@ -64,14 +64,14 @@ def test_splitmode_a():
           end: 2
           is_oov: False
           normalized_form: 日本
-          part_of_speech: 
+          part_of_speech:
           - raw: ('名詞', '固有名詞', '地名', '国', '*', '*')
           - pos: 名詞 -> noun
           - pos1: 固有名詞 -> proper-noun
           - pos2: 地名 -> place-name
           - pos3: 国 -> country
-          - conjugated_type: * -> 
-          - conjugated_form: * -> 
+          - conjugated_type: * ->
+          - conjugated_form: * ->
           part_of_speech_id: 23
           raw_surface: 日本
           reading_form: ニホン
@@ -85,14 +85,14 @@ def test_splitmode_a():
           end: 3
           is_oov: False
           normalized_form: 語
-          part_of_speech: 
+          part_of_speech:
           - raw: ('名詞', '普通名詞', '一般', '*', '*', '*')
           - pos: 名詞 -> noun
           - pos1: 普通名詞 -> common-noun
           - pos2: 一般 -> general
-          - pos3: * -> 
-          - conjugated_type: * -> 
-          - conjugated_form: * -> 
+          - pos3: * ->
+          - conjugated_type: * ->
+          - conjugated_form: * ->
           part_of_speech_id: 4
           raw_surface: 語
           reading_form: ゴ
@@ -106,14 +106,14 @@ def test_splitmode_a():
           end: 4
           is_oov: False
           normalized_form: を
-          part_of_speech: 
+          part_of_speech:
           - raw: ('助詞', '格助詞', '*', '*', '*', '*')
           - pos: 助詞 -> particle
           - pos1: 格助詞 -> case-particle
-          - pos2: * -> 
-          - pos3: * -> 
-          - conjugated_type: * -> 
-          - conjugated_form: * -> 
+          - pos2: * ->
+          - pos3: * ->
+          - conjugated_type: * ->
+          - conjugated_form: * ->
           part_of_speech_id: 7
           raw_surface: を
           reading_form: ヲ
@@ -127,12 +127,12 @@ def test_splitmode_a():
           end: 6
           is_oov: False
           normalized_form: 話す
-          part_of_speech: 
+          part_of_speech:
           - raw: ('動詞', '一般', '*', '*', '五段-サ行', '連用形-一般')
           - pos: 動詞 -> verb
           - pos1: 一般 -> general
-          - pos2: * -> 
-          - pos3: * -> 
+          - pos2: * ->
+          - pos3: * ->
           - conjugated_type: 五段-サ行 -> godan-sa
           - conjugated_form: 連用形-一般 -> continuative
           part_of_speech_id: 82
@@ -148,12 +148,12 @@ def test_splitmode_a():
           end: 8
           is_oov: False
           normalized_form: ます
-          part_of_speech: 
+          part_of_speech:
           - raw: ('助動詞', '*', '*', '*', '助動詞-マス', '終止形-一般')
           - pos: 助動詞 -> aux-verb
-          - pos1: * -> 
-          - pos2: * -> 
-          - pos3: * -> 
+          - pos1: * ->
+          - pos2: * ->
+          - pos3: * ->
           - conjugated_type: 助動詞-マス -> aux-masu
           - conjugated_form: 終止形-一般 -> terminal
           part_of_speech_id: 55
@@ -188,14 +188,14 @@ def test_splitmode_b():
           end: 3
           is_oov: False
           normalized_form: 日本語
-          part_of_speech: 
+          part_of_speech:
           - raw: ('名詞', '普通名詞', '一般', '*', '*', '*')
           - pos: 名詞 -> noun
           - pos1: 普通名詞 -> common-noun
           - pos2: 一般 -> general
-          - pos3: * -> 
-          - conjugated_type: * -> 
-          - conjugated_form: * -> 
+          - pos3: * ->
+          - conjugated_type: * ->
+          - conjugated_form: * ->
           part_of_speech_id: 4
           raw_surface: 日本語
           reading_form: ニホンゴ
@@ -209,14 +209,14 @@ def test_splitmode_b():
           end: 4
           is_oov: False
           normalized_form: を
-          part_of_speech: 
+          part_of_speech:
           - raw: ('助詞', '格助詞', '*', '*', '*', '*')
           - pos: 助詞 -> particle
           - pos1: 格助詞 -> case-particle
-          - pos2: * -> 
-          - pos3: * -> 
-          - conjugated_type: * -> 
-          - conjugated_form: * -> 
+          - pos2: * ->
+          - pos3: * ->
+          - conjugated_type: * ->
+          - conjugated_form: * ->
           part_of_speech_id: 7
           raw_surface: を
           reading_form: ヲ
@@ -230,12 +230,12 @@ def test_splitmode_b():
           end: 6
           is_oov: False
           normalized_form: 話す
-          part_of_speech: 
+          part_of_speech:
           - raw: ('動詞', '一般', '*', '*', '五段-サ行', '連用形-一般')
           - pos: 動詞 -> verb
           - pos1: 一般 -> general
-          - pos2: * -> 
-          - pos3: * -> 
+          - pos2: * ->
+          - pos3: * ->
           - conjugated_type: 五段-サ行 -> godan-sa
           - conjugated_form: 連用形-一般 -> continuative
           part_of_speech_id: 82
@@ -251,12 +251,12 @@ def test_splitmode_b():
           end: 8
           is_oov: False
           normalized_form: ます
-          part_of_speech: 
+          part_of_speech:
           - raw: ('助動詞', '*', '*', '*', '助動詞-マス', '終止形-一般')
           - pos: 助動詞 -> aux-verb
-          - pos1: * -> 
-          - pos2: * -> 
-          - pos3: * -> 
+          - pos1: * ->
+          - pos2: * ->
+          - pos3: * ->
           - conjugated_type: 助動詞-マス -> aux-masu
           - conjugated_form: 終止形-一般 -> terminal
           part_of_speech_id: 55
@@ -291,14 +291,14 @@ def test_splitmode_c():
           end: 3
           is_oov: False
           normalized_form: 日本語
-          part_of_speech: 
+          part_of_speech:
           - raw: ('名詞', '普通名詞', '一般', '*', '*', '*')
           - pos: 名詞 -> noun
           - pos1: 普通名詞 -> common-noun
           - pos2: 一般 -> general
-          - pos3: * -> 
-          - conjugated_type: * -> 
-          - conjugated_form: * -> 
+          - pos3: * ->
+          - conjugated_type: * ->
+          - conjugated_form: * ->
           part_of_speech_id: 4
           raw_surface: 日本語
           reading_form: ニホンゴ
@@ -312,14 +312,14 @@ def test_splitmode_c():
           end: 4
           is_oov: False
           normalized_form: を
-          part_of_speech: 
+          part_of_speech:
           - raw: ('助詞', '格助詞', '*', '*', '*', '*')
           - pos: 助詞 -> particle
           - pos1: 格助詞 -> case-particle
-          - pos2: * -> 
-          - pos3: * -> 
-          - conjugated_type: * -> 
-          - conjugated_form: * -> 
+          - pos2: * ->
+          - pos3: * ->
+          - conjugated_type: * ->
+          - conjugated_form: * ->
           part_of_speech_id: 7
           raw_surface: を
           reading_form: ヲ
@@ -333,12 +333,12 @@ def test_splitmode_c():
           end: 6
           is_oov: False
           normalized_form: 話す
-          part_of_speech: 
+          part_of_speech:
           - raw: ('動詞', '一般', '*', '*', '五段-サ行', '連用形-一般')
           - pos: 動詞 -> verb
           - pos1: 一般 -> general
-          - pos2: * -> 
-          - pos3: * -> 
+          - pos2: * ->
+          - pos3: * ->
           - conjugated_type: 五段-サ行 -> godan-sa
           - conjugated_form: 連用形-一般 -> continuative
           part_of_speech_id: 82
@@ -354,12 +354,12 @@ def test_splitmode_c():
           end: 8
           is_oov: False
           normalized_form: ます
-          part_of_speech: 
+          part_of_speech:
           - raw: ('助動詞', '*', '*', '*', '助動詞-マス', '終止形-一般')
           - pos: 助動詞 -> aux-verb
-          - pos1: * -> 
-          - pos2: * -> 
-          - pos3: * -> 
+          - pos1: * ->
+          - pos2: * ->
+          - pos3: * ->
           - conjugated_type: 助動詞-マス -> aux-masu
           - conjugated_form: 終止形-一般 -> terminal
           part_of_speech_id: 55
@@ -420,27 +420,27 @@ def token_to_yaml(token) -> str:
         # (POS, POS1, POS2, POS3, conjugated_type, conjugated_form)
         if len(pos_tuple) >= 1:
             pos_lines.append(
-                f"- pos: {pos_tuple[0]} -> {POS_MAP.get(pos_tuple[0], '')}"
+                f"- pos: {pos_tuple[0]} -> {POS_MAP.get(pos_tuple[0], '')}".rstrip()
             )
         if len(pos_tuple) >= 2:
             pos_lines.append(
-                f"- pos1: {pos_tuple[1]} -> {POS1_MAP.get(pos_tuple[1], '')}"
+                f"- pos1: {pos_tuple[1]} -> {POS1_MAP.get(pos_tuple[1], '')}".rstrip()
             )
         if len(pos_tuple) >= 3:
             pos_lines.append(
-                f"- pos2: {pos_tuple[2]} -> {POS2_MAP.get(pos_tuple[2], '')}"
+                f"- pos2: {pos_tuple[2]} -> {POS2_MAP.get(pos_tuple[2], '')}".rstrip()
             )
         if len(pos_tuple) >= 4:
             pos_lines.append(
-                f"- pos3: {pos_tuple[3]} -> {POS3_MAP.get(pos_tuple[3], '')}"
+                f"- pos3: {pos_tuple[3]} -> {POS3_MAP.get(pos_tuple[3], '')}".rstrip()
             )
         if len(pos_tuple) >= 5:
             pos_lines.append(
-                f"- conjugated_type: {pos_tuple[4]} -> {CONJUGATED_TYPE_MAP.get(pos_tuple[4], '')}"
+                f"- conjugated_type: {pos_tuple[4]} -> {CONJUGATED_TYPE_MAP.get(pos_tuple[4], '')}".rstrip()
             )
         if len(pos_tuple) >= 6:
             pos_lines.append(
-                f"- conjugated_form: {pos_tuple[5]} -> {CONJUGATED_FORM_MAP.get(pos_tuple[5], '')}"
+                f"- conjugated_form: {pos_tuple[5]} -> {CONJUGATED_FORM_MAP.get(pos_tuple[5], '')}".rstrip()
             )
 
         # Format as a multi-line string indented safely for the YAML-like output
@@ -454,7 +454,10 @@ def token_to_yaml(token) -> str:
     # Sort keys for deterministic output
     for key in sorted(collected_data.keys()):
         value = collected_data[key]
-        lines.append(f"  {key}: {value}")
+        if isinstance(value, str) and value.startswith("\n"):
+            lines.append(f"  {key}:{value}")
+        else:
+            lines.append(f"  {key}: {value}")
 
     return "\n".join(lines)
 

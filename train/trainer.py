@@ -28,6 +28,14 @@ from train.config import (
     configure_runtime_thread_limits,
 )
 from train.dataset import StyleDataset, collate_fn, create_kc_batch
+from train.display import (
+    RichTrainerProgressBar,
+    format_kc_first_batch_summary,
+    print_best_model_saved,
+    print_epoch_summary,
+    print_kc_first_batch_debug,
+    print_phase_header,
+)
 from train.distributed import is_main_process
 from train.io import (
     load_training_state,
@@ -37,17 +45,6 @@ from train.models import StyleClassifierWithKC
 from train.profile import Timer, get_profile_dir
 from train.types import KCMetricsAccumulator, KCProbeConfig, TrainingMetrics
 from train.worker import _worker_init_fn
-
-from .display import (
-    print_best_model_saved,
-    print_epoch_summary,
-    print_kc_epoch_compact_summary,
-    print_kc_first_batch_debug,
-    print_kc_first_batch_summary,
-    print_kc_usage_summary,
-    print_phase_header,
-    print_progress_bar,
-)
 
 # =============================================================================
 # Round 11: NaN Recovery Utilities for KC Training
@@ -75,6 +72,24 @@ def tensor_finite_stats(x: Optional[torch.Tensor]) -> Dict[str, Any]:
             "max": float("nan"),
         }
 
+    # Fast check (scalar boolean, 1 sync)
+    # If all finite and we don't need min/max for logging (unless non-finite), return early.
+    # However, original code computed min/max only if finite values existed.
+    # We'll assume the caller primarily checks 'finite' flag.
+    # To be safe and fast:
+    if x.isfinite().all():
+        return {
+            "finite": True,
+            "n_nan": 0,
+            "n_inf": 0,
+            # We skip min/max computation in the fast path to save syncs.
+            # If caller needs them even for finite tensors, this optimization changes behavior.
+            # But looking at usage, it's used for anomaly detection.
+            "min": float("nan"),
+            "max": float("nan"),
+        }
+
+    # Slow path: detailed stats
     flat = x.detach().flatten().float()
     is_finite = torch.isfinite(flat)
     n_nan = int(torch.isnan(flat).sum().item())
@@ -89,7 +104,7 @@ def tensor_finite_stats(x: Optional[torch.Tensor]) -> Dict[str, Any]:
         max_val = float("nan")
 
     return {
-        "finite": bool(is_finite.all().item()),
+        "finite": False,
         "n_nan": n_nan,
         "n_inf": n_inf,
         "min": min_val,
@@ -491,7 +506,7 @@ class KCTrainer:
             # MUST generate targets as they aren't pre-computed in the dataset
             kc_targets = create_kc_batch(
                 batch=batch,
-                _tokenizer=self.dataset.tokenizer,
+                tokenizer=self.dataset.tokenizer,
                 target_specs=m.config.kc_target_specs,
             )
 
@@ -796,6 +811,17 @@ class KCTrainer:
         # Zero gradients before starting the epoch loop
         self.optimizer.zero_grad(set_to_none=True)
 
+        # Rich Progress Bar for KC
+        pbar = None
+        # Default loss for display until first update
+        current_display_loss = 0.5
+        if is_main_process():
+            pbar = RichTrainerProgressBar(
+                f"KC Epoch {epoch + 1}" + (" (Frozen)" if should_freeze else ""),
+                total_steps=total_batches,
+                transient=False,
+            )
+
         self.train_timer_data.start()
         for batch_idx, batch in enumerate(self.data_loader):
             self.train_timer_data.stop(epoch=epoch, batch=batch_idx)
@@ -813,7 +839,7 @@ class KCTrainer:
             # Generate KC targets on-the-fly
             kc_targets = create_kc_batch(
                 batch=batch,
-                _tokenizer=self.dataset.tokenizer,
+                tokenizer=self.dataset.tokenizer,
                 target_specs=m.config.kc_target_specs,
             )
             batch.update(kc_targets)
@@ -851,9 +877,23 @@ class KCTrainer:
             )
 
             # --- Round 11: Forward output NaN detection + recovery ---
-            logits_stats = tensor_finite_stats(outputs.get("kc_logits_raw"))
-            probs_stats = tensor_finite_stats(outputs.get("kc_probs"))
-            forward_nonfinite = not logits_stats["finite"] or not probs_stats["finite"]
+            # Throttled (Round 20 Optimization): Skip expensive syncs most of the time.
+            should_check_nan = (
+                batch_idx < 50
+                or (batch_idx % 50 == 0)
+                or self._nonfinite_streak
+                > 0  # If we are already in trouble, check every step
+            )
+
+            if should_check_nan:
+                logits_stats = tensor_finite_stats(outputs.get("kc_logits_raw"))
+                probs_stats = tensor_finite_stats(outputs.get("kc_probs"))
+                forward_nonfinite = (
+                    not logits_stats["finite"] or not probs_stats["finite"]
+                )
+            else:
+                # Assume fine
+                forward_nonfinite = False
 
             if forward_nonfinite:
                 self._nonfinite_streak += 1
@@ -865,11 +905,15 @@ class KCTrainer:
                 )
                 if should_log and is_main_process():
                     self._nonfinite_logged += 1
-                    print(
+                    msg = (
                         f"  [KC][FORWARD NaN] ep={epoch} b={batch_idx} streak={self._nonfinite_streak} "
                         f"raw[nan={logits_stats['n_nan']} inf={logits_stats['n_inf']} "
                         f"finite_range={logits_stats['min']:.2g}..{logits_stats['max']:.2g}] "
                     )
+                    if pbar:
+                        pbar.log(msg)
+                    else:
+                        print(msg)
 
                 # Check max streak
                 if self._nonfinite_streak > self._max_nonfinite_streak:
@@ -882,7 +926,14 @@ class KCTrainer:
                 restored = self._restore_kc_snapshot()
                 if not restored:
                     if is_main_process():
-                        print("  [KC] No snapshot available, reinitializing kc_head")
+                        if pbar:
+                            pbar.log(
+                                "  [KC] No snapshot available, reinitializing kc_head"
+                            )
+                        else:
+                            print(
+                                "  [KC] No snapshot available, reinitializing kc_head"
+                            )
                     self._reinit_kc_head()
 
                 # Reduce LR (at most once per 10 batches)
@@ -890,9 +941,11 @@ class KCTrainer:
                     for pg in self.optimizer.param_groups:
                         pg["lr"] = pg["lr"] * 0.5
                     if is_main_process():
-                        print(
-                            f"  [KC] Halved LR to {self.optimizer.param_groups[0]['lr']:.2e}"
-                        )
+                        msg = f"  [KC] Halved LR to {self.optimizer.param_groups[0]['lr']:.2e}"
+                        if pbar:
+                            pbar.log(msg)
+                        else:
+                            print(msg)
 
                 continue  # Skip this batch
 
@@ -1260,7 +1313,13 @@ class KCTrainer:
                                 "unique_kcs": len(torch.unique(outputs["topk_inds"])),
                             }
 
-                            print_kc_first_batch_summary(kc_stats, selected_stats[:5])
+                            msg = format_kc_first_batch_summary(
+                                kc_stats, selected_stats[:5]
+                            )
+                            if pbar:
+                                pbar.log(msg)
+                            else:
+                                print(msg)
 
                     # Compute separation metrics for storage
                     for name, logits in outputs["target_logits"].items():
@@ -1618,12 +1677,16 @@ class KCTrainer:
             ):
                 self.save_checkpoint(epoch, batch_idx)
 
-            if is_main_process():
+            if is_main_process() and pbar:
+                # Throttled loss update for display
                 if (
                     batch_idx % self.config.progress_update_every == 0
                     or batch_idx == total_batches - 1
                 ):
-                    print_progress_bar(batch_idx, total_batches, total_loss / n_batches)
+                    current_display_loss = total_loss / max(1, n_batches)
+
+                # Update every step
+                pbar.update(batch_idx, loss=current_display_loss)
 
             self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
             self.train_timer_data.start()
@@ -1746,43 +1809,66 @@ class KCTrainer:
                     else 0.0,
                 }
                 from train.display import (
-                    print_kc_loss_breakdown,  # Lazy import to avoid circular issues if any (though display is usually fine)
+                    format_kc_epoch_compact_summary,
+                    format_kc_loss_breakdown,
+                    format_kc_usage_summary,
                 )
 
-                print_kc_loss_breakdown(avg_loss_components, weights_dict)
+                lines = []
+                lines.append(
+                    format_kc_loss_breakdown(avg_loss_components, weights_dict)
+                )
 
-                print_kc_epoch_compact_summary(
-                    epoch + 1,
-                    self.config.epochs,
-                    total_loss / n_batches,
-                    cast(float, epoch_stats["avg_prob"]),
-                    cast(float, epoch_stats["act_dens"]),
-                    cast(float, epoch_stats["avg_struct_loss"]),
-                    top_losses,
-                    amp_stats,
-                    entropy_norm=avg_entropy_norm,
-                    avg_kl_to_uniform=avg_kl_to_uniform,
-                    uniq_kcs=uniq_kcs_epoch,
-                    avg_p_max=cast(float, epoch_stats.get("avg_p_max")),
+                lines.append(
+                    format_kc_epoch_compact_summary(
+                        epoch + 1,
+                        self.config.epochs,
+                        total_loss / n_batches,
+                        cast(float, epoch_stats["avg_prob"]),
+                        cast(float, epoch_stats["act_dens"]),
+                        cast(float, epoch_stats["avg_struct_loss"]),
+                        top_losses,
+                        amp_stats,
+                        entropy_norm=avg_entropy_norm,
+                        avg_kl_to_uniform=avg_kl_to_uniform,
+                        uniq_kcs=uniq_kcs_epoch,
+                        avg_p_max=cast(float, epoch_stats.get("avg_p_max")),
+                    )
                 )
-                print_kc_usage_summary(
-                    uniq=uniq_kcs_epoch,
-                    total=kc_usage_total_samples,
-                    max_top1=max_top1,
-                    tv_mean=tv_mean,
-                    gap_mean=gap_mean,
-                    topk_counts=topk_counts_list,
-                    top1_counts=top1_counts_list,
-                    k=k_val,
+
+                lines.append(
+                    format_kc_usage_summary(
+                        uniq=uniq_kcs_epoch,
+                        total=kc_usage_total_samples,
+                        max_top1=max_top1,
+                        tv_mean=tv_mean,
+                        gap_mean=gap_mean,
+                        topk_counts=topk_counts_list,
+                        top1_counts=top1_counts_list,
+                        k=k_val,
+                    )
                 )
+
+                msg = "\n".join(lines)
+                if pbar:
+                    pbar.log(msg)
+                else:
+                    print(msg)
 
         # Round 8 Fix 6: Compact health line (main process only)
         if is_main_process():
-            print(
+            msg = (
                 f"  KC Health: maxTop1={max_top1:.3f} uniqKCs={uniq_kcs_epoch}/{kc_vocab_size} "
                 f"avgProb={cast(float, epoch_stats['avg_prob']):.3f} actDens={cast(float, epoch_stats['act_dens']):.4f} "
                 f"entN={avg_entropy_norm:.3f} klU={avg_kl_to_uniform:.3f}"
             )
+            if pbar:
+                pbar.log(msg)
+            else:
+                print(msg)
+
+        if pbar:
+            pbar.stop()
 
         return (
             total_loss / n_batches,
@@ -2333,19 +2419,6 @@ class Trainer:
             "register_loss": _detach(losses["reg_loss"]),
         }
 
-    def _log_epoch_progress(
-        self, batch_idx: int, total_batches: int, metrics: TrainingMetrics
-    ) -> None:
-        if is_main_process():
-            avg_loss = metrics.get_avg_loss()
-            print_progress_bar(batch_idx, total_batches, avg_loss)
-
-        if (
-            self.config.log_flush_every > 0
-            and batch_idx % self.config.log_flush_every == 0
-        ):
-            sys.stdout.flush()
-
     def train_epoch(self, epoch: int) -> Tuple[float, float, float, float, float]:
         if is_main_process():
             print_phase_header(
@@ -2359,47 +2432,58 @@ class Trainer:
         if total_batches == 0:
             return 0.0, 0.0, 0.0, 0.0, 0.0
 
-        self.train_timer_data.start()
+        # Rich Progress Bar
+        pbar = None
+        current_loss_val = None
+        if is_main_process():
+            pbar = RichTrainerProgressBar(
+                f"Style Epoch {epoch + 1}/{self.config.epochs}",
+                total_steps=total_batches,
+                transient=False,
+            )
 
-        for batch_idx, batch in enumerate(self.train_loader):
-            # Mid-epoch resume: skip batches already processed
-            if batch_idx < self.start_batch:
-                continue
-
-            self.train_timer_data.stop(epoch=epoch, batch=batch_idx)
-            self.train_timer_compute.start()
-
-            losses = self._train_batch(batch, batch_idx)
-            metrics.update(losses)
-
-            # Round 17: Periodic checkpointing
-            if (batch_idx + 1) % self.config.grad_accum_steps == 0:
-                self.global_step += 1
-                self._log_epoch_progress(batch_idx, total_batches, metrics)
-
-                if (
-                    self.config.checkpoint.every_n_steps
-                    and self.global_step % self.config.checkpoint.every_n_steps == 0
-                ):
-                    self.save_checkpoint(epoch, batch_idx)
-
-            if is_main_process():
-                if (
-                    batch_idx % self.config.progress_update_every == 0
-                    or batch_idx == total_batches - 1
-                ):
-                    # Use current average for progress
-                    avg_loss = metrics.get_avg_loss()
-                    print_progress_bar(batch_idx, total_batches, avg_loss)
-
-                if (
-                    self.config.log_flush_every > 0
-                    and batch_idx % self.config.log_flush_every == 0
-                ):
-                    sys.stdout.flush()
-
-            self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
+        try:
             self.train_timer_data.start()
+
+            for batch_idx, batch in enumerate(self.train_loader):
+                # Mid-epoch resume: skip batches already processed
+                if batch_idx < self.start_batch:
+                    if pbar:
+                        pbar.update(batch_idx, desc="Skipping...")
+                    continue
+
+                self.train_timer_data.stop(epoch=epoch, batch=batch_idx)
+                self.train_timer_compute.start()
+
+                losses = self._train_batch(batch, batch_idx)
+                metrics.update(losses)
+
+                # Update pbar
+                if pbar:
+                    # Sync loss only occasionally
+                    if (batch_idx % self.config.progress_update_every == 0) or (
+                        batch_idx == total_batches - 1
+                    ):
+                        current_loss_val = metrics.get_avg_loss()
+
+                    pbar.update(batch_idx, loss=current_loss_val)
+
+                # Round 17: Periodic checkpointing
+                if (batch_idx + 1) % self.config.grad_accum_steps == 0:
+                    self.global_step += 1
+
+                    if (
+                        self.config.checkpoint.every_n_steps
+                        and self.global_step % self.config.checkpoint.every_n_steps == 0
+                    ):
+                        self.save_checkpoint(epoch, batch_idx)
+
+                self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
+                self.train_timer_data.start()
+
+        finally:
+            if pbar:
+                pbar.stop()
 
         # Reset start_batch for next epoch
         self.start_batch = 0
@@ -2727,13 +2811,53 @@ class Trainer:
         config: KCProbeConfig,
     ) -> None:
         # Usage histograms
-        topk_inds = outputs["topk_inds"]  # (B, k)
-        for i in range(batch_size):
-            for j in range(config.topk):
-                idx = topk_inds[i, j].item()
-                acc.topk_hist[idx] += 1
-                if j == 0:
-                    acc.top1_hist[idx] += 1
+        # Usage histograms - Vectorized (Round 20 Optimization)
+        # Avoids 1000s of .item() calls per batch.
+
+        # Ensure accumulator tensors are float and on CPU
+        if not acc.top1_hist.is_floating_point():
+            acc.top1_hist = acc.top1_hist.float()
+        if acc.top1_hist.device.type != "cpu":
+            acc.top1_hist = acc.top1_hist.cpu()
+
+        if not acc.topk_hist.is_floating_point():
+            acc.topk_hist = acc.topk_hist.float()
+        if acc.topk_hist.device.type != "cpu":
+            acc.topk_hist = acc.topk_hist.cpu()
+
+        # 1. Update Top-1 (first column)
+        top1_inds = outputs["topk_inds"][:, 0].flatten().cpu()
+        # Find max index to resize bincount result if needed, but bincount returns size=max(input)+1
+        # top1_hist is likely a defined size, so we add to it.
+        # But top1_hist is sparse/unknown size initially?
+        # types.py says default_factory=lambda: torch.tensor([]).
+        # We need to resize acc.top1_hist if new indices exceed it.
+
+        # Actually, simpler: just iterate unique if vocab is huge, OR use bincount if vocab fits in RAM.
+        # Vocab is < 100k usually. bincount is fast.
+
+        counts_1 = torch.bincount(top1_inds)
+        if len(counts_1) > len(acc.top1_hist):
+            # Resize histogram
+            new_hist = torch.zeros(len(counts_1), dtype=torch.float)
+            if len(acc.top1_hist) > 0:
+                new_hist[: len(acc.top1_hist)] = acc.top1_hist.float()
+            acc.top1_hist = new_hist
+
+        # Add safely
+        acc.top1_hist[: len(counts_1)] += counts_1.float()
+
+        # 2. Update Top-K (all indices)
+        topk_inds_flat = outputs["topk_inds"].flatten().cpu()
+        counts_k = torch.bincount(topk_inds_flat)
+        if len(counts_k) > len(acc.topk_hist):
+            # Resize histogram
+            new_hist = torch.zeros(len(counts_k), dtype=torch.float)
+            if len(acc.topk_hist) > 0:
+                new_hist[: len(acc.topk_hist)] = acc.topk_hist.float()
+            acc.topk_hist = new_hist
+
+        acc.topk_hist[: len(counts_k)] += counts_k.float()
 
         # Entropy and KL from soft usage
         entropy_norm, kl_to_uniform = self._compute_entropy_kl(

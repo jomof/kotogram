@@ -2,15 +2,41 @@ import time
 
 # pylint: disable=too-many-locals
 import unittest
+from unittest.mock import patch  # Added for inlined code
 
-from training_test_utils import setup_mock_style_model
-
+# from training_test_utils import setup_mock_style_model # Removed as it's being inlined
 from kotogram.augment import Augmenter
 
 
 class TestSlowSentence(unittest.TestCase):
     def setUp(self):
-        setup_mock_style_model(self)
+        # pylint: disable=duplicate-code
+        # Manually setup mock model/tokenizer
+        # from sudachipy import Dictionary
+        # from sudachipy.tokenizer import Tokenizer as SudachiTokenizer
+
+        from kotogram.model import ModelConfig, StyleClassifier
+        from kotogram.tokenizer import Tokenizer
+
+        self.tokenizer = Tokenizer()
+        # pylint: disable=invalid-name
+        from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+
+        # pylint: disable=invalid-name
+        self.parser = SudachiJapaneseParser(dict_type="full")
+        # pylint: disable=protected-access
+        self.tokenizer._frozen = True
+
+        config = ModelConfig(vocab_sizes=self.tokenizer.get_vocab_sizes())
+        self.model = StyleClassifier(config)
+        self.model.eval()
+
+        patcher = patch(
+            "kotogram.analysis._load_style_model",
+            return_value=(self.model, self.tokenizer),
+        )
+        patcher.start()
+        self.addCleanup(patcher.stop)
 
     # pylint: disable=too-many-locals
     def test_slow_sentence(self) -> None:

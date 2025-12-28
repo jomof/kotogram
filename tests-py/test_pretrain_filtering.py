@@ -11,6 +11,28 @@ from train.trainer import (
 from train.types import Sample
 
 
+class MockDataset(StyleDataset):
+    def __init__(self, samples):
+        # pylint: disable=super-init-not-called
+        self._samples = samples
+        self.tokenizer = Tokenizer()
+
+    def __len__(self):
+        return len(self._samples)
+
+    def __getitem__(self, idx):
+        return self._samples[idx]
+
+    def filter_by_grammaticality(self, label: int = 1):
+        filtered = [s for s in self._samples if s.grammaticality_label == label]
+        return MockDataset(filtered)
+
+    @property
+    def samples(self):
+        # Expose samples for test verification
+        return self._samples
+
+
 class TestPretrainDataFiltering(unittest.TestCase):
     def setUp(self):
         self.tokenizer = Tokenizer()
@@ -37,6 +59,8 @@ class TestPretrainDataFiltering(unittest.TestCase):
             register_labels=[1],
             original_sentence="こんにちは",
             kotogram=[],
+            idx=0,
+            kc_targets={},
         )
 
         self.agrammatic_sample = Sample(
@@ -60,13 +84,15 @@ class TestPretrainDataFiltering(unittest.TestCase):
             register_labels=[1],
             original_sentence="こんにちは *",
             kotogram=[],
+            idx=1,
+            kc_targets={},
         )
 
         self.config = TrainerConfig(
             learning_rate=1e-4,
             batch_size=2,
             epochs=1,
-            dataloader=DataLoaderSettings(num_workers=2, prefetch_factor=2),
+            dataloader=DataLoaderSettings(num_workers=0, prefetch_factor=None),
             device="cpu",
         )
 
@@ -96,9 +122,7 @@ class TestPretrainDataFiltering(unittest.TestCase):
         self.model = StyleClassifierWithKC(self.model_config)
 
     def test_kc_trainer_filtering(self):
-        dataset = StyleDataset(
-            [self.grammatic_sample, self.agrammatic_sample], self.tokenizer
-        )
+        dataset = MockDataset([self.grammatic_sample, self.agrammatic_sample])
         kc_config = {"sparsity_weight": 0.01, "freeze_encoder_epochs": 1}
 
         agrammatic_count = sum(

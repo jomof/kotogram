@@ -1,14 +1,31 @@
 import time
 import unittest
-
-from training_test_utils import setup_mock_style_model
+from unittest.mock import patch
 
 from kotogram.augment import Augmenter
 
 
 class TestTimeout(unittest.TestCase):
     def setUp(self):
-        setup_mock_style_model(self)
+        # pylint: disable=duplicate-code
+        # Manually setup mock model/tokenizer
+        from kotogram.model import ModelConfig, StyleClassifier
+        from kotogram.tokenizer import Tokenizer
+
+        self.tokenizer = Tokenizer()
+        # pylint: disable=protected-access
+        self.tokenizer._frozen = True
+
+        config = ModelConfig(vocab_sizes=self.tokenizer.get_vocab_sizes())
+        self.model = StyleClassifier(config)
+        self.model.eval()
+
+        patcher = patch(
+            "kotogram.analysis._load_style_model",
+            return_value=(self.model, self.tokenizer),
+        )
+        patcher.start()
+        self.addCleanup(patcher.stop)
 
     def test_timeout_mechanism(self) -> None:
         augmenter = Augmenter()

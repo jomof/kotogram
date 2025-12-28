@@ -22,7 +22,7 @@ class TestAutoResume(unittest.TestCase):
 
             # Case A: No checkpoint, no flags => train 1 epoch only
             result = bottle.train_style(f"--epochs 1 --no-confusion {common_args}")
-            bottle.assertEpochsTrained(result, [1])
+            bottle.assert_style_epochs_trained([1])
             self.assertNotIn("Auto-resume enabled", result.stdout)
 
             # Case B: Checkpoint exists (epoch 1), no flags => SHOULD auto-resume to epoch 2
@@ -31,14 +31,14 @@ class TestAutoResume(unittest.TestCase):
             )
             result = bottle.train_style(f"--epochs 2 --no-confusion {common_args}")
             # If auto-resume works, it sees epoch 1 done, trains epoch 2.
-            bottle.assertEpochsTrained(result, [2])
+            bottle.assert_style_epochs_trained([1, 2])
             self.assertIn("Auto-resume enabled", result.stdout)
 
             # Case C: Checkpoint exists, --retrain => should NOT auto-resume; trains [1,2] from scratch
             result = bottle.train_style(
                 f"--epochs 2 --no-confusion {common_args} --retrain"
             )
-            bottle.assertEpochsTrained(result, [1, 2])
+            bottle.assert_style_epochs_trained([1, 2])
             self.assertNotIn("Auto-resume enabled", result.stdout)
             self.assertIn("Retrain:        from scratch", result.stdout)
 
@@ -47,7 +47,7 @@ class TestAutoResume(unittest.TestCase):
             result = bottle.train_style(
                 f"--epochs 3 --no-confusion {common_args} --resume"
             )
-            bottle.assertEpochsTrained(result, [3])
+            bottle.assert_style_epochs_trained([1, 2, 3])
             self.assertNotIn("Auto-resume enabled", result.stdout)
             self.assertIn("Resume:         from checkpoint", result.stdout)
 
