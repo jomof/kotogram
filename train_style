@@ -49,15 +49,15 @@ from train.config import (
 
 
 
-def get_num_gpus() -> int:
-    """Detect the number of available CUDA GPUs."""
+def get_device_info() -> tuple[int, str]:
+    """Detect the number and type of available devices."""
     if importlib.util.find_spec("torch"):
         import torch
         if torch.cuda.is_available():
-            return torch.cuda.device_count()
+            return torch.cuda.device_count(), "CUDA"
         if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
-            return 1
-    return 0
+            return 1, "MPS"
+    return 1, "CPU"
 
 
 
@@ -679,20 +679,57 @@ def main() -> int:
         print(f"Auto-resume enabled (found checkpoint: {checkpoint_path})")
 
     # Determine process count and launcher
-    num_gpus = get_num_gpus()
+    num_devices, device_type = get_device_info()
     use_mp_launcher = False
-    if num_gpus > 1:
-        num_devices = num_gpus
-        launcher = ["torchrun", f"--nproc_per_node={num_gpus}"]
-    elif num_gpus == 1:
-        num_devices = 1
+    
+    # Configure launcher based on device type and count
+    if device_type == "CUDA" and num_devices > 1:
+        launcher = ["torchrun", f"--nproc_per_node={num_devices}"]
+    elif num_devices == 1:
         launcher = [sys.executable]
     else:
         # Simulate distributed on Mac/CPU with 2 processes to catch multi-process bugs.
         # Use custom MP launcher to avoid 35s torchrun overhead on Mac.
-        num_devices = 2
-        use_mp_launcher = True
-        launcher = ["mp-simulation", "(2 processes)"]
+        # This handles the specific "fake distributed" case if detected (rare/manual override?)
+        # For now, let's trust get_device_info.
+        # Note: The original logic had a fallback for num_gpus (from get_num_gpus returning 0) -> num_devices=2
+        # get_device_info now returns 1, "CPU" if no GPU.
+        # To preserve the mp-simulation logic, we check for dev/testing env var or argument?
+        # The prompt implies we want to see "actual usage".
+        # If the user was relying on the fallback `else` block (num_gpus=0 implied CPU simulation),
+        # we strictly default to 1 CPU now.
+        # PROMPT: "Will all 4 GPUs be used?" -> Focused on production.
+        # I will stick to 1 CPU default for "CPU" type unless explicitly simulation requested.
+        # Wait, the original code had:
+        # if num_gpus > 1: ... elif num_gpus == 1: ... else: num_devices=2 ...
+        # get_num_gpus returned 0 for CPU.
+        # So essentially CPU/Unknown was FORCED to 2-process simulation? That seems odd for production CPU training.
+        # It was likely for testing distributed logic on CPU machines.
+        # I should probably preserve that behavior if it helps dev, OR simplify.
+        # But for the user request "how many GPUs... will be used", accurate logging is key.
+        # I will trust the logic:
+        pass
+    
+    # Re-eval launcher logic to match previous structure but with types
+    if device_type == "CUDA" and num_devices > 1:
+         launcher = ["torchrun", f"--nproc_per_node={num_devices}"]
+    elif device_type == "CUDA" and num_devices == 1:
+         launcher = [sys.executable]
+    elif device_type == "MPS":
+         num_devices = 1
+         launcher = [sys.executable]
+    else:
+         # CPU case. Original code mapped 0 GPUs to 2 processes.
+         # Let's check if we really want that.
+         # "Simulate distributed on Mac/CPU with 2 processes to catch multi-process bugs."
+         # This seems intended for dev.
+         # For production CPU training, you might want 1 process?
+         # I will preserve the original simulation logic for CPU to avoid breaking dev workflow,
+         # but label it clearly.
+         num_devices = 2
+         use_mp_launcher = True
+         launcher = ["mp-simulation", "(2 processes)"]
+         device_type = "CPU (Simulated Distributed)"
 
     # Configure batch sizes
     micro_batch_size = args.batch_size if args.batch_size else 32
@@ -709,7 +746,7 @@ def main() -> int:
     print("-" * 46)
     print("Effective Training Configuration:")
     print("-" * 46)
-    print(f"  Devices:          {num_devices}")
+    print(f"  Devices:          {num_devices} ({device_type})")
     print(f"  Micro batch:      {micro_batch_size}")
     print(f"  Grad accum:       {grad_accum_steps}")
     print(f"  Effective batch:  {micro_batch_size * grad_accum_steps * num_devices}")
