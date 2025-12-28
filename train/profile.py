@@ -7,9 +7,13 @@ import platform
 import pstats
 import re
 import resource
+import subprocess
+import sys
 import time
 from datetime import datetime
 from typing import Any, List, Optional
+
+import memray
 
 
 def profiling_enabled() -> bool:
@@ -27,43 +31,93 @@ def get_profile_dir() -> Optional[str]:
 
 
 class Timer:
-    """Timer for performance and resource usage instrumentation."""
+    """Consolidated timer for performance, resource usage, and profiling."""
 
-    def __init__(self, name: str, output_path: Optional[str] = None):
+    # pylint: disable=too-many-instance-attributes
+
+    def __init__(
+        self,
+        name: str,
+        output_path: Optional[str] = None,
+        profile_dir: Optional[str] = None,
+        console: Any = None,
+    ):
         self.name = name
         self.output_path = output_path
+        self.profile_dir = profile_dir
+        self.console = console
+
         self.durations: List[float] = []
         self.start_time: float = 0.0
         self.start_resources: Optional[resource.struct_rusage] = None
 
-        # Create/Clear the file if path provided
+        # Profiling state
+        self.profiler: Optional[cProfile.Profile] = None
+        self.memray_tracker: Any = None
+        self.memray_file: Optional[str] = None
+
+        # Phase tracking
+        self.phase_idx = 1
+        self.last_phase_name: Optional[str] = None
+
+        # Create/Clear the simplified log file if path provided
         if self.output_path:
             os.makedirs(os.path.dirname(self.output_path), exist_ok=True)
-            # We append in the loop, but typically we might want to start fresh or append?
-            # User wants "flush frequently... machine locks up", implies streaming.
-            # Let's just append to allow restart resilience, or mode='a'.
+
+        # Initialize global profilers immediately if this is a phase-style timer
+        if self.profile_dir:
+            os.makedirs(self.profile_dir, exist_ok=True)
 
     def start(self) -> None:
+        """Start timing a block."""
         self.start_time = time.perf_counter()
         self.start_resources = resource.getrusage(resource.RUSAGE_SELF)
 
-    def stop(self, epoch: int = 0, batch: int = 0) -> float:
+        # Start heavy profilers if configured
+        if self.profile_dir and profiling_enabled():
+            # cProfile
+            self.profiler = cProfile.Profile()
+            self.profiler.enable()
+
+            # memray
+            if memray:
+                pid = os.getpid()
+                timestamp = int(time.time() * 1000)
+                clean_name = self._clean_name(self.name)
+                self.memray_file = os.path.join(
+                    self.profile_dir,
+                    f"{clean_name}_{timestamp}_{pid}.bin",
+                )
+                self.memray_tracker = memray.Tracker(self.memray_file)
+                self.memray_tracker.__enter__()
+
+    def stop(
+        self, epoch: int = 0, batch: int = 0, phase_name: Optional[str] = None
+    ) -> float:
+        """Stop timing a block and record stats."""
         end_time = time.perf_counter()
         end_resources = resource.getrusage(resource.RUSAGE_SELF)
 
         d = end_time - self.start_time
         self.durations.append(d)
 
+        # Stop profilers
+        if self.profiler:
+            self.profiler.disable()
+        if self.memray_tracker:
+            self.memray_tracker.__exit__(None, None, None)
+            self.memray_tracker = None
+
+        # 1. Write simple usage stats (JSONL)
         if self.output_path and self.start_resources:
-            # RSS is peak so specific diff doesn't mean much for this interval,
-            # but tracking the peak growth is useful.
-            # Faults are engaging counters, so diff is valid.
             majflt = end_resources.ru_majflt - self.start_resources.ru_majflt
             minflt = end_resources.ru_minflt - self.start_resources.ru_minflt
 
+            # If we had a memray file, we can't easily get peak without processing,
+            # so we stick to RSS from getrusage for the lightweight log.
             entry = {
                 "timestamp": datetime.now().isoformat(),
-                "name": self.name,
+                "name": phase_name or self.name,
                 "epoch": epoch,
                 "batch": batch,
                 "duration_s": d,
@@ -75,17 +129,157 @@ class Timer:
             with open(self.output_path, "a", encoding="utf-8") as f:
                 f.write(json.dumps(entry) + "\n")
                 f.flush()
-                # os.fsync(f.fileno()) # Dropping fsync for speed/stability if desired, or keeping it?
-                # Keeping fsync as per earlier logic, but NO TRY/EXCEPT
-                os.fsync(f.fileno())
+                try:
+                    os.fsync(f.fileno())
+                except OSError:
+                    pass
+
+        # 2. Write heavy profiles (Artifacts)
+        if self.profile_dir and (self.profiler or self.memray_file):
+            self._save_heavy_stats(phase_name or self.name, d)
+            self.profiler = None
+            self.memray_file = None
+
+        if self.console and phase_name:
+            self.console.print(f"[dim]Stats: Phase '{phase_name}' took {d:.1f}s[/dim]")
 
         return d
+
+    def mark(self, phase_name: str) -> None:
+        """Sequential phase marker (stops previous, starts new)."""
+        # Stop previous if running
+        if self.start_time > 0:
+            name = self.last_phase_name or f"Phase_{self.phase_idx}"
+            self.stop(phase_name=name)
+
+        # Setup for next
+        self.name = phase_name  # Update current name for the next block
+        self.last_phase_name = phase_name
+        self.phase_idx += 1
+
+        # Start new
+        self.start()
 
     def avg(self) -> float:
         return sum(self.durations) / max(1, len(self.durations))
 
     def reset(self) -> None:
         self.durations = []
+
+    def _clean_name(self, name: str) -> str:
+        clean = re.sub(r"[^a-zA-Z0-9_]", "_", name).lower()
+        return re.sub(r"_+", "_", clean).strip("_")
+
+    def _clean_name(self, name: str) -> str:
+        return _clean_name(name)
+
+    def _save_heavy_stats(self, name: str, elapsed: float) -> None:
+        """Save cProfile and memray stats to disk."""
+        save_combined_stats(
+            self.profile_dir,
+            name,
+            elapsed,
+            self.profiler,
+            self.memray_file,
+        )
+
+
+class PhaseTimer(Timer):
+    """Backward compatible wrapper for sequential phases."""
+
+    def __init__(self, console: Any, profile_dir: Optional[str] = None):
+        super().__init__("start", profile_dir=profile_dir, console=console)
+        self.start()
+
+    def mark(self, phase_name: str) -> None:
+        # For PhaseTimer, 'phase_name' labels the COMPLETED phase.
+        # Timer.stop() takes phase_name to label the completed interval.
+        self.stop(phase_name=phase_name)
+        # Start next phase
+        self.name = "phase_next"  # Placeholder until next mark
+        self.start()
+
+    def stop(self, phase_name: str = "Final") -> float:  # type: ignore
+        return super().stop(phase_name=phase_name)
+
+
+def _clean_name(name: str) -> str:
+    clean = re.sub(r"[^a-zA-Z0-9_]", "_", name).lower()
+    return re.sub(r"_+", "_", clean).strip("_")
+
+
+def save_combined_stats(
+    profile_dir: Optional[str],
+    name: str,
+    elapsed: float,
+    profiler: Optional[cProfile.Profile],
+    memray_file: Optional[str],
+) -> None:
+    """Save cProfile and memray stats to disk (shared logic)."""
+    if not profile_dir:
+        return
+
+    pid = os.getpid()
+    clean = _clean_name(name)
+    elapsed_str = f"{elapsed:.1f}s"
+    base_name = f"{clean}_{elapsed_str}_{pid}"
+    base_path = os.path.join(profile_dir, base_name)
+
+    # 1. Save cProfile .pstats
+    if profiler:
+        pstats_file = f"{base_path}.pstats"
+        profiler.dump_stats(pstats_file)
+
+    # 2. Text Report (Combine cProfile + Memray)
+    txt_file = f"{base_path}.txt"
+    with open(txt_file, "w", encoding="utf-8") as f:
+        f.write(f"PROFILE: {name} ({elapsed_str})\n")
+        f.write("=" * 80 + "\n")
+
+        # cProfile Section
+        if profiler:
+            stats = pstats.Stats(profiler, stream=f)
+            stats.sort_stats("cumulative")
+            f.write("TOP 50 BY CUMULATIVE TIME (cProfile)\n")
+            f.write("-" * 80 + "\n")
+            stats.print_stats(50)
+            f.write("\n")
+
+        # Memray Section
+        if memray_file and os.path.exists(memray_file):
+            f.write("=" * 80 + "\n")
+            f.write("MEMORY REPORT (memray tree)\n")
+            f.write("-" * 80 + "\n")
+            f.flush()
+
+            # Execute memray tree (better context than summary)
+            # Execute memray stats (cleaner text output than tree/summary)
+            try:
+                f.write("\n")
+                f.write("=" * 80 + "\n")
+                f.write("MEMORY REPORT (memray stats)\n")
+                f.write("-" * 80 + "\n")
+                f.flush()
+
+                env = os.environ.copy()
+                env["COLUMNS"] = "200"
+                
+                cmd_stats = [
+                    sys.executable,
+                    "-m",
+                    "memray",
+                    "stats",
+                    "-n",
+                    "20",
+                    memray_file,
+                ]
+                subprocess.check_call(cmd_stats, stdout=f, stderr=f, env=env)
+
+                f.write("\n")
+                f.write(f"Raw memray file: {os.path.basename(memray_file)}\n")
+
+            except Exception as e:
+                f.write(f"Error generating memray report: {e}\n")
 
 
 def setup_profiling(script_prefix: str, include_kc_infix: bool = False) -> None:
@@ -94,122 +288,56 @@ def setup_profiling(script_prefix: str, include_kc_infix: bool = False) -> None:
         return
 
     import atexit
-    import sys
 
+    # Enable cProfile
     _profiler = cProfile.Profile()
     _profiler.enable()
 
+    # Enable memray
+    _memray_tracker = None
+    _memray_file = None
+    prof_dir = get_profile_dir()
+    
+    if memray and prof_dir:
+        os.makedirs(prof_dir, exist_ok=True)
+        pid = os.getpid()
+        timestamp = int(time.time() * 1000)
+        
+        infix = (
+            "_kc" if include_kc_infix and "--pretrain-kc" in sys.argv else ""
+        )
+        # Use a temporary name until we know elapsed time? 
+        # actually we can just name it broadly.
+        _memray_file = os.path.join(
+            prof_dir,
+            f"{script_prefix}{infix}_global_{timestamp}_{pid}.bin",
+        )
+        _memray_tracker = memray.Tracker(_memray_file)
+        _memray_tracker.__enter__()
+
+    start_time = time.perf_counter()
+
     def _save_profile() -> None:
+        elapsed = time.perf_counter() - start_time
+        
         if _profiler:
             _profiler.disable()
 
-            prof_dir = get_profile_dir()
-            if prof_dir:
-                os.makedirs(prof_dir, exist_ok=True)
+        if _memray_tracker:
+            _memray_tracker.__exit__(None, None, None)
 
-                infix = (
-                    "_kc" if include_kc_infix and "--pretrain-kc" in sys.argv else ""
-                )
-                pid = os.getpid()
-
-                # Write .pstats file
-                pstats_file = os.path.join(
-                    prof_dir, f"{script_prefix}{infix}_{pid}.pstats"
-                )
-                _profiler.dump_stats(pstats_file)
-
-                # Write human-readable summary
-                summary_file = os.path.join(
-                    prof_dir, f"{script_prefix}{infix}_{pid}.txt"
-                )
-                with open(summary_file, "w", encoding="utf-8") as summary_file_handle:
-                    stats = pstats.Stats(_profiler, stream=summary_file_handle)
-
-                    stats.sort_stats("cumulative")
-                    summary_file_handle.write("TOP 50 BY CUMULATIVE TIME\n")
-                    summary_file_handle.write("=" * 80 + "\n")
-                    stats.print_stats(50)
-
-                    summary_file_handle.write("\n")
-
-                    stats.sort_stats("calls")
-                    summary_file_handle.write("TOP 50 BY INVOCATION COUNT\n")
-                    summary_file_handle.write("=" * 80 + "\n")
-                    stats.print_stats(50)
+        if prof_dir:
+            infix = (
+                "_kc" if include_kc_infix and "--pretrain-kc" in sys.argv else ""
+            )
+            # Use unified saver
+            save_combined_stats(
+                prof_dir,
+                f"{script_prefix}{infix}",
+                elapsed,
+                _profiler,
+                _memray_file,
+            )
 
     atexit.register(_save_profile)
 
-
-class PhaseTimer:
-    """Timer for measuring phases in scripts."""
-
-    def __init__(self, console: Any, profile_dir: Optional[str] = None):
-        self.console = console
-        self.profile_dir = profile_dir
-        self.pid = os.getpid()
-        self.last = time.perf_counter()
-        self.phase_idx = 1
-
-        self.profiler: Optional[cProfile.Profile] = None
-        if self.profile_dir:
-            self.profiler = cProfile.Profile()
-            self.profiler.enable()
-
-    def mark(self, phase_name: str) -> None:
-        """Mark the end of a phase and print/dump stats."""
-        now = time.perf_counter()
-        elapsed = now - self.last
-        self.last = now
-        self.console.print(
-            f"[dim]Stats: Phase '{phase_name}' took {elapsed:.1f}s[/dim]"
-        )
-
-        if self.profiler and self.profile_dir:
-            self.profiler.disable()
-
-            self._dump_stats(phase_name, elapsed)
-
-            # Start new profiler/tracer for next phase
-            self.profiler = cProfile.Profile()
-            self.profiler.enable()
-            self.phase_idx += 1
-
-    def stop(self, phase_name: str = "Final") -> None:
-        """Stop the timer and dump final stats."""
-        self.mark(phase_name)
-        if self.profiler:
-            self.profiler.disable()
-            self.profiler = None
-
-    def _dump_stats(self, phase_name: str, elapsed: float) -> None:
-        if not self.profile_dir:
-            return
-
-        # Sanitize phase name for filename
-        clean_name = re.sub(r"[^a-zA-Z0-9_]", "_", phase_name).lower()
-        clean_name = re.sub(r"_+", "_", clean_name).strip("_")
-
-        elapsed_str = f"{elapsed:.1f}s"
-        base_path = os.path.join(
-            self.profile_dir,
-            f"label_p{self.phase_idx}_{clean_name}_{elapsed_str}_{self.pid}",
-        )
-
-        # Write .pstats
-        if self.profiler:  # Check again for type safety
-            self.profiler.dump_stats(f"{base_path}.pstats")
-
-            # Write .txt summary
-            with open(f"{base_path}.txt", "w", encoding="utf-8") as f:
-                stats = pstats.Stats(self.profiler, stream=f)
-                stats.sort_stats("cumulative")
-                f.write(f"PHASE: {phase_name} ({elapsed_str})\n")
-                f.write("=" * 80 + "\n")
-                f.write("TOP 50 BY CUMULATIVE TIME\n")
-                f.write("-" * 80 + "\n")
-                stats.print_stats(50)
-                f.write("\n")
-                stats.sort_stats("calls")
-                f.write("TOP 50 BY INVOCATION COUNT\n")
-                f.write("-" * 80 + "\n")
-                stats.print_stats(50)
