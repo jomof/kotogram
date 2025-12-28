@@ -102,11 +102,11 @@ class Timer:
         self.durations.append(d)
 
         # Stop profilers
-        if self.profiler:
-            self.profiler.disable()
         if self.memray_tracker:
             self.memray_tracker.__exit__(None, None, None)
             self.memray_tracker = None
+        if self.profiler:
+            self.profiler.disable()
 
         # 1. Write simple usage stats (JSONL)
         if self.output_path and self.start_resources:
