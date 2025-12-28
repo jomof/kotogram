@@ -1,0 +1,22 @@
+{
+    "allow_network": true,
+    "allow_read": [
+        "[exec-root]",
+        "[tmp]",
+        "/usr",
+        "/Library",
+        "/System",
+        "/bin",
+        "/sbin",
+        "/dev",
+        "/opt",
+        "/private/etc",
+        "/private/var"
+    ],
+    "allow_write": [
+        "[tmp]",
+        "/dev/null",
+        "/tmp",
+        "[exec-root]/.pytest_cache"
+    ]
+}
