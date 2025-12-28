@@ -330,6 +330,10 @@ async def check_python_package() -> CheckResult:
     norm_files = []
     for f in files:
         f = re.sub(r"kotogram-.*\.dist-info", "kotogram-*.dist-info", f)
+        # Normalize license location (some builds put it in licenses/ subdir)
+        f = f.replace(
+            "kotogram-*.dist-info/licenses/LICENSE", "kotogram-*.dist-info/LICENSE"
+        )
         norm_files.append(f)
 
     norm_files.sort()
