@@ -681,7 +681,7 @@ def main() -> int:
     # Determine process count and launcher
     num_devices, device_type = get_device_info()
     use_mp_launcher = False
-    
+
     # Configure launcher based on device type and count
     if device_type == "CUDA" and num_devices > 1:
         launcher = ["torchrun", f"--nproc_per_node={num_devices}"]
@@ -709,27 +709,27 @@ def main() -> int:
         # But for the user request "how many GPUs... will be used", accurate logging is key.
         # I will trust the logic:
         pass
-    
+
     # Re-eval launcher logic to match previous structure but with types
     if device_type == "CUDA" and num_devices > 1:
-         launcher = ["torchrun", f"--nproc_per_node={num_devices}"]
+        launcher = ["torchrun", f"--nproc_per_node={num_devices}"]
     elif device_type == "CUDA" and num_devices == 1:
-         launcher = [sys.executable]
+        launcher = [sys.executable]
     elif device_type == "MPS":
-         num_devices = 1
-         launcher = [sys.executable]
+        num_devices = 1
+        launcher = [sys.executable]
     else:
-         # CPU case. Original code mapped 0 GPUs to 2 processes.
-         # Let's check if we really want that.
-         # "Simulate distributed on Mac/CPU with 2 processes to catch multi-process bugs."
-         # This seems intended for dev.
-         # For production CPU training, you might want 1 process?
-         # I will preserve the original simulation logic for CPU to avoid breaking dev workflow,
-         # but label it clearly.
-         num_devices = 2
-         use_mp_launcher = True
-         launcher = ["mp-simulation", "(2 processes)"]
-         device_type = "CPU (Simulated Distributed)"
+        # CPU case. Original code mapped 0 GPUs to 2 processes.
+        # Let's check if we really want that.
+        # "Simulate distributed on Mac/CPU with 2 processes to catch multi-process bugs."
+        # This seems intended for dev.
+        # For production CPU training, you might want 1 process?
+        # I will preserve the original simulation logic for CPU to avoid breaking dev workflow,
+        # but label it clearly.
+        num_devices = 2
+        use_mp_launcher = True
+        launcher = ["mp-simulation", "(2 processes)"]
+        device_type = "CPU (Simulated Distributed)"
 
     # Configure batch sizes
     micro_batch_size = args.batch_size if args.batch_size else 32
