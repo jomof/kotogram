@@ -64,6 +64,12 @@ python3 -m pip install wheel
 python3 -m pip install ruff mypy pytest vulture build pylint
 python3 -m pip install -r requirements.txt
 
+# Install TypeScript dependencies
+if [ -f "package.json" ]; then
+    echo "Installing TypeScript dependencies..."
+    npm install
+fi
+
 # Install the project in editable mode
 echo "Installing kotogram in editable mode..."
 python3 -m pip install -e .

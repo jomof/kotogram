@@ -63,10 +63,7 @@ fi
 # Dependencies are assumed to be installed via requirements.sh
 
 
-# --- Setup TypeScript Environment ---
-if [ -f "package.json" ]; then
-    run_quiet npm install
-fi
+
 
 # --- Run Checks ---
 

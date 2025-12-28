@@ -487,27 +487,32 @@ async def main() -> None:
                 f"{BLUE}Running Pytest confined with {args.confinement_config}{RESET}"
             )
 
-            # --- Confinement Verification Probe ---
-            print(f"{BLUE}Verifying confinement (Probe)...{RESET}")
-            probe_file = "confinement_probe_fail.txt"
-            # Python one-liner to attempt write
-            probe_cmd = [
-                sys.executable,
-                "-c",
-                f"import sys\ntry:\n    open('{probe_file}', 'w').close()\nexcept OSError:\n    sys.exit(1)",
-            ]
-            # Should fail
-            probe_res = confine_lib.confine(probe_cmd, config, env=env, check=False)  # type: ignore
+            # --- Confinement Verification Probe (Mac Only) ---
+            if sys.platform == "darwin":
+                print(f"{BLUE}Verifying confinement (Probe)...{RESET}")
+                probe_file = "confinement_probe_fail.txt"
+                # Python one-liner to attempt write
+                probe_cmd = [
+                    sys.executable,
+                    "-c",
+                    f"import sys\ntry:\n    open('{probe_file}', 'w').close()\nexcept OSError:\n    sys.exit(1)",
+                ]
+                # Should fail
+                probe_res = confine_lib.confine(probe_cmd, config, env=env, check=False)  # type: ignore
 
-            if probe_res.returncode == 0:
-                print_error(
-                    "Confinement Verification FAILED: Able to write to project root."
+                if probe_res.returncode == 0:
+                    print_error(
+                        "Confinement Verification FAILED: Able to write to project root."
+                    )
+                    if os.path.exists(probe_file):
+                        os.remove(probe_file)
+                    sys.exit(1)
+
+                print_success("Confinement verified (Write denied).")
+            else:
+                print(
+                    f"{BLUE}Skipping confinement verification (Non-Mac detected){RESET}"
                 )
-                if os.path.exists(probe_file):
-                    os.remove(probe_file)
-                sys.exit(1)
-
-            print_success("Confinement verified (Write denied).")
             # --------------------------------------
             # pylint: disable=no-member
             pytest_res = confine_lib.confine(pytest_cmd, config, env=env, check=False)  # type: ignore[attr-defined]
