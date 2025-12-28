@@ -155,7 +155,7 @@ class StyleDataset(Dataset[Sample]):
 
     def __getitem__(self, idx: int) -> Sample:
         # Resolve real index
-        real_idx = self.indices[idx].item()
+        real_idx = int(self.indices[idx].item())
 
         # Get start/end (tokens)
         start = int(self.offsets[real_idx].item())
