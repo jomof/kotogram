@@ -21,6 +21,7 @@ from pathlib import Path
 # Add parent to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+# pylint: disable=wrong-import-position
 from kotogram import SudachiJapaneseParser, kotogram_to_japanese
 
 
@@ -31,7 +32,7 @@ def generate_kotograms(data_path: Path) -> list[str]:
     kotograms = []
 
     with open(data_path, "r", encoding="utf-8") as f:
-        from scripts.jpn_tsv import parse_tsv
+        from train.tsv import parse_tsv
 
         for line in f:
             sentence = parse_tsv(line)
@@ -78,7 +79,11 @@ writeFileSync('{output_file}', results.join('\\n'));
 
     try:
         result = subprocess.run(
-            ["node", str(script_file)], cwd=project_root, capture_output=True, text=True
+            ["node", str(script_file)],
+            cwd=project_root,
+            capture_output=True,
+            text=True,
+            check=False,
         )
         if result.returncode != 0:
             print(f"TypeScript error: {result.stderr}", file=sys.stderr)

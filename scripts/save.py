@@ -1,6 +1,8 @@
 import argparse
+import inspect
 import os
 import sys
+from typing import Any, Dict
 
 import torch
 
@@ -27,11 +29,10 @@ def main() -> None:
 
     print(f"Loading checkpoint from {args.checkpoint}...")
     # Load to CPU to avoid CUDA OOM or compatibility issues
-    try:
-        checkpoint = torch.load(args.checkpoint, map_location="cpu", weights_only=False)
-    except TypeError:
-        # Fallback for older pytorch versions without weights_only
-        checkpoint = torch.load(args.checkpoint, map_location="cpu")
+    kwargs: Dict[str, Any] = {"map_location": "cpu"}
+    if "weights_only" in inspect.signature(torch.load).parameters:
+        kwargs["weights_only"] = False
+    checkpoint = torch.load(args.checkpoint, **kwargs)
 
     if isinstance(checkpoint, dict) and "model_state_dict" in checkpoint:
         print("Found model_state_dict in checkpoint.")

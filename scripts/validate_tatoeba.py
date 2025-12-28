@@ -11,6 +11,7 @@ Examples:
     python scripts/validate_tatoeba.py all          # Validate all sentences
 """
 
+import importlib.util
 import json
 import os
 import subprocess
@@ -18,16 +19,20 @@ import sys
 from collections import defaultdict
 from typing import Any, Dict, List, Optional, Set, Tuple
 
-try:
-    import _setup_path  # type: ignore # noqa: F401
-except ImportError:
+if importlib.util.find_spec("_setup_path"):
+    import _setup_path  # type: ignore # noqa: F401 # pylint: disable=unused-import,import-private-name
+else:
     # Fallback if run as module
-    from scripts import _setup_path  # type: ignore # noqa: F401
+    from scripts import (
+        _setup_path,  # type: ignore # noqa: F401 # pylint: disable=unused-import,import-private-name
+    )
+
+# pylint: disable=wrong-import-position
 
 from kotogram import SudachiJapaneseParser, extract_token_features
 from kotogram.exceptions import MissingMappingError
 from kotogram.kotogram import split_kotogram
-from scripts.jpn_tsv import parse_tsv
+from train.tsv import parse_tsv
 
 
 def validate_sentences(
@@ -36,6 +41,7 @@ def validate_sentences(
     tsv_file: str,
     max_sentences: Optional[int] = None,
 ) -> Tuple[Dict[str, Set[str]], List[Dict[str, str]], List[str]]:
+    # pylint: disable=too-many-locals
     """Validate sentences and collect unmapped features.
 
     Args:
@@ -105,6 +111,7 @@ def validate_sentences(
 def compare_token_features(
     kotograms: List[str], project_root: str
 ) -> List[Dict[str, Any]]:
+    # pylint: disable=too-many-locals
     """Compare Python and TypeScript extract_token_features results.
 
     Args:
@@ -130,11 +137,11 @@ def compare_token_features(
         return mismatches
 
     # Call TypeScript in batches to avoid command line limits
-    BATCH_SIZE = 1000
+    batch_size = 1000
     ts_results: List[Dict[str, str]] = []
 
-    for batch_start in range(0, len(all_tokens), BATCH_SIZE):
-        batch_end = min(batch_start + BATCH_SIZE, len(all_tokens))
+    for batch_start in range(0, len(all_tokens), batch_size):
+        batch_end = min(batch_start + batch_size, len(all_tokens))
         batch_tokens = all_tokens[batch_start:batch_end]
 
         # Call Node.js script with tokens as JSON via stdin
@@ -145,6 +152,7 @@ def compare_token_features(
             capture_output=True,
             text=True,
             cwd=project_root,
+            check=False,
         )
 
         if result.returncode != 0:
@@ -213,11 +221,10 @@ def main() -> None:
         if sys.argv[1] == "all":
             max_sentences = None
         else:
-            try:
-                max_sentences = int(sys.argv[1])
-            except ValueError:
+            if not sys.argv[1].isdigit():
                 print("Usage: python scripts/validate_tatoeba.py [count]")
                 sys.exit(1)
+            max_sentences = int(sys.argv[1])
 
     print(
         f"Validating {'all' if max_sentences is None else max_sentences} sentences from {tsv_file}"

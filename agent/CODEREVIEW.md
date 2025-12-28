@@ -25,7 +25,7 @@ You are reviewing changes from a relatively inexperienced engineer who doesn't n
 
 Checks to perform:
 - Run './test.sh'
-- Run './train_style.sh --percent 0.1 --epochs 3 --output .tmp/code-review'. Validation error should decrease for each reported metric.
+- Run 'TRAIN_ROOT=/some/temp/folder ./train_style.sh --percent 0.1 --epochs 3'. Validation error should decrease for each reported metric.
 
 You should provide:
 - Actionable codereview comments if changes are needed.

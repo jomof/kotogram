@@ -11,6 +11,7 @@ class TestJapaneseParserInterface(unittest.TestCase):
     def test_cannot_instantiate_abstract_class(self):
         """JapaneseParser is abstract and cannot be instantiated directly."""
         with self.assertRaises(TypeError):
+            # pylint: disable=abstract-class-instantiated
             JapaneseParser()
 
     def test_subclass_must_implement_japanese_to_kotogram(self):
@@ -20,6 +21,7 @@ class TestJapaneseParserInterface(unittest.TestCase):
             pass
 
         with self.assertRaises(TypeError):
+            # pylint: disable=abstract-class-instantiated
             IncompleteParser()
 
 

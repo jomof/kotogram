@@ -1,16 +1,13 @@
-import os
-import sys
 import unittest
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../scripts")))
-from rule_based_analysis import analyze_register
 
 from kotogram.analysis import RegisterLevel
 
 # Use the actual parser
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+from scripts.rule_based_analysis import analyze_register
 
 
+# pylint: disable=too-many-public-methods
 class TestRegisterLabeler(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

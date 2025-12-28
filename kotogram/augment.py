@@ -4,6 +4,7 @@ This module provides an extensible framework for generating variations of Japane
 sentences (e.g. changing formality, dropping topics, swapping pronouns) and verifying
 their grammaticality using a neural model.
 """
+# pylint: disable=too-many-lines
 
 import time
 from abc import ABC, abstractmethod
@@ -11,50 +12,12 @@ from dataclasses import asdict
 from itertools import product
 from typing import Any, Dict, List, Optional, Set, Tuple, Union
 
-from kotogram.kotogram import extract_token_features, split_kotogram
+from kotogram.kotogram import Token, extract_token_features, split_kotogram
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 
 # Type alias for tokens (either surface string or feature dict wrapper)
 # Forward declaration issue? Just use class name strings or object
 AugmentationToken = Union[str, "Token"]
-
-
-class Token:
-    """Hashable wrapper for token features."""
-
-    def __init__(self, surface: str, features: Optional[Dict[str, str]] = None):
-        self.surface = surface
-        self.features = features or {}
-        self._hash = hash((surface, tuple(sorted(self.features.items()))))
-
-    def __hash__(self) -> int:
-        return self._hash
-
-    def __eq__(self, other: object) -> bool:
-        if isinstance(other, str):
-            return self.surface == other
-        if isinstance(other, Token):
-            return self.surface == other.surface and self.features == other.features
-        return False
-
-    def __repr__(self) -> str:
-        return f"Token({self.surface}, {self.features})"
-
-    def get(self, key: str, default: Any = None) -> Any:
-        if key == "surface":
-            return self.surface
-        return self.features.get(key, default)
-
-    @property
-    def reading(self) -> str:
-        """Returns the phonetic reading in Hiragana, or surface if not available."""
-        r = self.get("reading")
-        if not r:
-            return self.surface
-        # Convert Katakana to Hiragana
-        return "".join(
-            chr(ord(c) - 0x60) if 0x30A1 <= ord(c) <= 0x30F6 else c for c in r
-        )
 
 
 # Constants and Patterns
@@ -118,11 +81,6 @@ PROGRESSIVE_END_PATTERNS = [
 
 DROPPABLE_PARTICLES = {"は", "が", "を"}
 
-DROPPABLE_TOPIC_STARTS = [
-    ("私", "は"),
-    ("僕達", "僕たち"),
-    ("俺達", "俺たち"),
-]
 
 PLURAL_PATTERNS = [
     ("私達", "私たち"),
@@ -220,6 +178,7 @@ HONORIFIC_MAP = {
 
 
 def conjugate_to_masu_stem(lemma: str, ctype: str) -> Optional[str]:
+    # pylint: disable=too-many-return-statements
     """Conjugate a dictionary form verb to its masu-stem (ren'youkei)."""
     if not lemma or not ctype:
         return None
@@ -262,6 +221,7 @@ def conjugate_to_masu_stem(lemma: str, ctype: str) -> Optional[str]:
 
 
 def conjugate_to_irrealis_stem(lemma: str, ctype: str) -> Optional[str]:
+    # pylint: disable=too-many-return-statements
     """Conjugate a dictionary form verb to its irrealis-stem (mizenkei)."""
     if not lemma or not ctype:
         return None
@@ -318,7 +278,6 @@ class AugmentationRule(ABC):
         Returns:
             A set of token tuples comprising the original and any valid variations.
         """
-        pass
 
 
 class VerbPolitenessRule(AugmentationRule):
@@ -327,6 +286,7 @@ class VerbPolitenessRule(AugmentationRule):
     def apply(
         self, tokens: Tuple[AugmentationToken, ...]
     ) -> Set[Tuple[AugmentationToken, ...]]:
+        # pylint: disable=too-many-locals
         result = {tokens}
 
         # To avoid index drift issues during iteration, we collect potential replacement sites first,
@@ -518,6 +478,7 @@ class ContractionRule(AugmentationRule):
     def apply(
         self, tokens: Tuple[AugmentationToken, ...]
     ) -> Set[Tuple[AugmentationToken, ...]]:
+        # pylint: disable=too-many-locals
         result = {tokens}
         token_surfaces = tuple(get_surface(t) for t in tokens)
 
@@ -1010,7 +971,7 @@ def is_role(token: AugmentationToken, role: str) -> bool:
     return False
 
 
-def get_features(token: AugmentationToken) -> Dict[str, str]:
+def get_features(token: AugmentationToken) -> Dict[str, Any]:
     if isinstance(token, Token):
         return token.features
     return {}
@@ -1064,7 +1025,7 @@ class Augmenter:
         current_set = {tokens}
 
         # Threshold for applying deduplication to prevent explosion
-        HYSTERESIS_THRESHOLD = 5000
+        hysteresis_threshold = 5000
 
         # Apply core rules iteratively
         for _ in range(5):
@@ -1081,7 +1042,7 @@ class Augmenter:
                     next_set.update(rule_results)
 
             # Hysteresis deduplication
-            if len(next_set) > HYSTERESIS_THRESHOLD:
+            if len(next_set) > hysteresis_threshold:
                 next_set = deduplicate_by_reading(next_set)
 
             if len(next_set) == len(current_set):
@@ -1103,6 +1064,7 @@ class Augmenter:
     def process_sentence(
         self, sentence: str, timeout: Optional[float] = 1.0
     ) -> Set[str]:
+        # pylint: disable=too-many-locals
         """Process a single unspaced Japanese sentence into augmented variations within a time budget."""
         if not sentence:
             return set()
@@ -1177,7 +1139,7 @@ class Augmenter:
         # BUDGET: Total character count units per batch.
         # 10000 allows for slightly larger batches to improve throughput while
         # still maintaining good granularity for timeout checks.
-        MAX_LEN_BUDGET = 10000
+        max_len_budget = 10000
 
         current_batch: List[str] = []
         current_batch_len = 0
@@ -1202,7 +1164,7 @@ class Augmenter:
 
             s_len = len(s)
             # If adding this sentence exceeds budget, process current batch first
-            if current_batch and (current_batch_len + s_len > MAX_LEN_BUDGET):
+            if current_batch and (current_batch_len + s_len > max_len_budget):
                 process_shard(current_batch)
                 current_batch = []
                 current_batch_len = 0
@@ -1221,6 +1183,7 @@ class Augmenter:
 
 
 def augment(sentences: List[str], timeout: Optional[float] = 1.0) -> List[str]:
+    # pylint: disable=too-many-locals
     """Augment a list of Japanese sentences and filter for grammaticality within a time budget.
 
     Args:

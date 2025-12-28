@@ -47,10 +47,8 @@ class SudachiJapaneseParser(JapaneseParser):
         Returns:
             Kotogram compact sentence representation with encoded linguistic features
         """
-        from kotogram.profile import increment_profile_counter
         from kotogram.validation import ensure_string
 
-        increment_profile_counter()
         ensure_string(text, "text")
 
         # Fix for special case with っ character
@@ -60,6 +58,7 @@ class SudachiJapaneseParser(JapaneseParser):
         return self._tokens_to_kotogram(tokens)
 
     def _tokens_to_kotogram(self, tokens: List[Any]) -> str:
+        # pylint: disable=cell-var-from-loop
         """Convert Sudachi tokens to kotogram format.
 
         Args:
@@ -93,11 +92,11 @@ class SudachiJapaneseParser(JapaneseParser):
                 mapping: Dict[str, str], key: str, map_name: str
             ) -> Optional[str]:
                 """Lookup with validation support."""
-                if key == "" or key == "*":
+                if key in ("", "*"):
                     return mapping.get(key, None)
 
                 result = mapping.get(key)
-                if self.validate and result is None and key != "" and key != "*":
+                if self.validate and result is None and key not in ("", "*"):
                     raise MissingMappingError(
                         map_name=map_name,
                         key=key,

@@ -31,6 +31,7 @@ dependencies = [
     "PyYaml",
     "torch",
     "rich",
+    "memray",
 ]
 
 [project.scripts]
@@ -74,3 +75,26 @@ exclude = ["scripts/vulture_whitelist.py"]
 extend-select = ["I"]
 
 
+
+[tool.pylint.main]
+# Analyze these directories
+source-roots = ["tests-py"]
+# Ensure current directory is in sys.path so modules in root are importable
+init-hook = "import sys; sys.path.insert(0, '.')"
+load-plugins = ["pylint.extensions.private_import"]
+
+[tool.pylint.messages_control]
+disable = [
+    "C0114", # missing-module-docstring
+    "C0115", # missing-class-docstring
+    "C0116", # missing-function-docstring
+    "R0903", # too-few-public-methods
+    "C0415", # import-outside-toplevel
+    "R0902", # too-many-instance-attributes
+    "R0912", # too-many-branches
+    "R0913", # too-many-arguments
+    "R0915", # too-many-statements
+    "C0301", # line-too-long (handled by ruff/black)
+    "W0511", # fixme (TODOs are fine)
+]
+# W1514 is enabled by default, so we don't need to explicitly enable it, just not disable it.

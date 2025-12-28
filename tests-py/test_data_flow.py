@@ -2,7 +2,9 @@ import unittest
 
 import torch
 
-from scripts.train_style import NUM_REGISTER_CLASSES, Sample, collate_fn
+from kotogram.model import NUM_REGISTER_CLASSES
+from train.dataset import collate_fn
+from train.types import Sample
 
 
 class TestDataFlow(unittest.TestCase):
