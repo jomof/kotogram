@@ -158,8 +158,8 @@ class StyleDataset(Dataset[Sample]):
         real_idx = self.indices[idx].item()
 
         # Get start/end (tokens)
-        start = self.offsets[real_idx].item()
-        end = self.offsets[real_idx + 1].item()
+        start = int(self.offsets[real_idx].item())
+        end = int(self.offsets[real_idx + 1].item())
 
         # Features
         feature_ids: Dict[str, Any] = {}
