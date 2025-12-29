@@ -804,3 +804,17 @@ class Bottle:
                         content,
                         f"Profile {txt_file} missing 'TOP 50 BY CUMULATIVE TIME'",
                     )
+
+    def assert_no_nans_in_history(self):
+        """Asserts that no metric values in training-history.tsv are NaN."""
+        import math
+
+        history_events = self.get_epoch_history()
+        for event in history_events:
+            for key, value in event.metrics.items():
+                if isinstance(value, float):
+                    # Check for NaN
+                    if math.isnan(value):
+                        self.test_case.fail(
+                            f"NaN found in history epoch {event.epoch} for metric '{key}'"
+                        )

@@ -70,6 +70,9 @@ class TestTrainStyleScript(unittest.TestCase):
                     else:
                         bottle.assert_style_epochs_trained([1])
 
+                    # Verify no NaNs in history
+                    bottle.assert_no_nans_in_history()
+
                     # Verify changes since snapshot (should only be training artifacts)
                     # Use assert_files_exist to ensure key artifacts are present
                     bottle.assert_files_exist(["[models]/style-support/training.log"])
@@ -109,6 +112,9 @@ class TestTrainStyleScript(unittest.TestCase):
                         bottle.assert_style_epochs_trained([1, 2])
                     else:
                         bottle.assert_style_epochs_trained([1, 2])
+
+                    # Verify no NaNs in history after resume
+                    bottle.assert_no_nans_in_history()
 
                     # Verify changes since first training pass
                     expected_resume_differences = [
