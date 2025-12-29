@@ -18,133 +18,54 @@ class TestCrossLanguageBugs(unittest.TestCase):
         # Initialize Sudachi parser
         self.parser = SudachiJapaneseParser(dict_type="full")
 
-    def test_bug1_small_tsu_collapses_with_particle(self):
+    def test_bug1_small_tsu_compound_verb(self):
         """
-        Bug 1: Missing POS_TO_CHARS.auxs entries
-
-        Issue: TypeScript was missing many punctuation characters in POS_TO_CHARS.auxs,
-        most critically the small tsu 'っ' which is needed to properly collapse
-        compound verb forms.
-
-        Example: "もっ" + "て" should collapse to "もって" when collapse_punctuation=True
-        because 'っ' at the end of a token should attach to the following particle.
+        Bug 1 Regression Test: "もって" (motte)
         """
-        # Kotogram for "もって" (motte) - verb stem + te particle
-        kotogram = self.parser.japanese_to_kotogram("もって")
+        text = "もって"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = kotogram_to_japanese(kotogram)
+        self.assertEqual(result, text)
 
-        # With collapse_punctuation=True, small tsu should attach to following て
-        collapsed = kotogram_to_japanese(
-            kotogram, spaces=True, collapse_punctuation=True
-        )
-        self.assertEqual(collapsed, "もって")
+    def test_bug1_period(self):
+        """Period 。 regression test."""
+        text = "こんにちは。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = kotogram_to_japanese(kotogram)
+        self.assertEqual(result, text)
 
-        # With collapse_punctuation=False, should keep space
-        not_collapsed = kotogram_to_japanese(
-            kotogram, spaces=True, collapse_punctuation=False
-        )
-        self.assertEqual(not_collapsed, "もっ て")
+    def test_bug1_question_mark(self):
+        """Question mark ？ regression test."""
+        text = "何？"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = kotogram_to_japanese(kotogram)
+        self.assertEqual(result, text)
 
-    def test_bug1_period_collapses(self):
-        """Period 。 should collapse when collapse_punctuation=True."""
-        kotogram = self.parser.japanese_to_kotogram("こんにちは。")
-
-        collapsed = kotogram_to_japanese(
-            kotogram, spaces=True, collapse_punctuation=True
-        )
-        self.assertEqual(collapsed, "こんにちは。")
-
-        not_collapsed = kotogram_to_japanese(
-            kotogram, spaces=True, collapse_punctuation=False
-        )
-        self.assertEqual(not_collapsed, "こんにちは 。")
-
-    def test_bug1_question_mark_collapses(self):
-        """Question mark ？ should collapse when collapse_punctuation=True."""
-        kotogram = self.parser.japanese_to_kotogram("何？")
-
-        collapsed = kotogram_to_japanese(
-            kotogram, spaces=True, collapse_punctuation=True
-        )
-        self.assertEqual(collapsed, "何？")
-
-        not_collapsed = kotogram_to_japanese(
-            kotogram, spaces=True, collapse_punctuation=False
-        )
-        self.assertEqual(not_collapsed, "何 ？")
-
-    def test_integration_full_sentence_with_compound_verbs(self):
+    def test_integration_full_sentence(self):
         """
         Integration test: Full sentence from validation failure.
-
-        This was one of the actual failing test cases that revealed the bugs.
         Sentence: "きみにちょっとしたものをもってきたよ。"
-        Meaning: "I brought you a little something."
         """
-        kotogram = self.parser.japanese_to_kotogram(
-            "きみにちょっとしたものをもってきたよ。"
-        )
+        text = "きみにちょっとしたものをもってきたよ。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = kotogram_to_japanese(kotogram)
+        self.assertEqual(result, text)
 
-        # Default: no spaces, punctuation naturally attached
-        default_result = kotogram_to_japanese(kotogram)
-        self.assertEqual(default_result, "きみにちょっとしたものをもってきたよ。")
-
-        # With spaces + collapse: should collapse もっ+て and attach period
-        collapsed = kotogram_to_japanese(
-            kotogram, spaces=True, collapse_punctuation=True
-        )
-        self.assertEqual(collapsed, "きみ に ちょっと し た もの を もって き た よ。")
-        self.assertIn("もって", collapsed)  # Should be collapsed
-        self.assertNotIn(" 。", collapsed)  # Period should be attached
-
-        # With spaces but no collapse: should keep もっ て separated and space before period
-        not_collapsed = kotogram_to_japanese(
-            kotogram, spaces=True, collapse_punctuation=False
-        )
-        self.assertEqual(
-            not_collapsed, "きみ に ちょっと し た もの を もっ て き た よ 。"
-        )
-        self.assertIn("もっ て", not_collapsed)  # Should be separated
-        self.assertIn(" 。", not_collapsed)  # Period should have space before it
-
-    def test_integration_sentence_with_furigana_and_compound_verbs(self):
+    def test_integration_sentence_with_furigana(self):
         """Same sentence with furigana mode."""
-        kotogram = self.parser.japanese_to_kotogram(
-            "きみにちょっとしたものをもってきたよ。"
-        )
+        text = "きみにちょっとしたものをもってきたよ。"
+        kotogram = self.parser.japanese_to_kotogram(text)
+        result = kotogram_to_japanese(kotogram, furigana=True)
+        # Just ensure it runs and contains key parts (exact string depends on reading resolution)
+        self.assertIn("もって", result)
+        self.assertIn("。", result)
 
-        result = kotogram_to_japanese(
-            kotogram, spaces=True, furigana=True, collapse_punctuation=True
-        )
-
-        # Should have proper collapsing
-        self.assertIn("もって", result)  # Collapsed
-        self.assertNotIn(" 。", result)  # Period attached
-        # Pure kana tokens shouldn't get furigana, but check it doesn't break
-        self.assertTrue(len(result) > 0)
-
-    def test_real_world_sentence_from_tatoeba(self):
+    def test_real_world_sentence_tatoeba(self):
         """Test with a real sentence from Tatoeba corpus."""
         text = "何かしてみましょう。"
         kotogram = self.parser.japanese_to_kotogram(text)
-
-        # Default
-        default_result = kotogram_to_japanese(kotogram)
-        self.assertEqual(default_result, text)
-
-        # With spaces + collapse
-        collapsed = kotogram_to_japanese(
-            kotogram, spaces=True, collapse_punctuation=True
-        )
-        # Period should be attached
-        self.assertFalse(collapsed.endswith(" 。"))
-        self.assertTrue(collapsed.endswith("。"))
-
-        # With spaces but no collapse
-        not_collapsed = kotogram_to_japanese(
-            kotogram, spaces=True, collapse_punctuation=False
-        )
-        # Period should have space before it
-        self.assertTrue(not_collapsed.endswith(" 。"))
+        result = kotogram_to_japanese(kotogram)
+        self.assertEqual(result, text)
 
     def test_compound_verb_parsing(self):
         """Test that compound verbs like もって are parsed correctly."""
@@ -157,17 +78,9 @@ class TestCrossLanguageBugs(unittest.TestCase):
         tokens = split_kotogram(kotogram)
         self.assertEqual(len(tokens), 2)
 
-        # With collapse, should join back to もって
-        result_collapsed = kotogram_to_japanese(
-            kotogram, spaces=True, collapse_punctuation=True
-        )
-        self.assertEqual(result_collapsed, "もって")
-
-        # Without collapse, should have space
-        result_not_collapsed = kotogram_to_japanese(
-            kotogram, spaces=True, collapse_punctuation=False
-        )
-        self.assertEqual(result_not_collapsed, "もっ て")
+        # Round trip
+        result = kotogram_to_japanese(kotogram)
+        self.assertEqual(result, text)
 
 
 if __name__ == "__main__":

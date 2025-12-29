@@ -3,7 +3,10 @@
 from abc import ABC, abstractmethod
 
 # Global mapping constants shared across all Japanese parser implementations
+OBSCURE_KOTOGRAM = 0  # 0=Standard, 1=Obfuscated (Base64)
+
 __all__ = [
+    "OBSCURE_KOTOGRAM",
     "POS_MAP",
     "POS1_MAP",
     "POS2_MAP",

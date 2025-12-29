@@ -7,10 +7,13 @@ main package model-focused.
 
 # pylint: disable=too-many-lines, too-many-locals, too-many-return-statements
 
-from typing import List, Set
+import glob
+import os
+from typing import Any, Dict, List, Set, Tuple
 
 from kotogram.analysis import FormalityLevel, GenderLevel, RegisterLevel
 from kotogram.kotogram import TokenFeatures, extract_token_features, split_kotogram
+from train.tsv import parse_tsv
 
 
 def analyze_formality(kotogram: str) -> FormalityLevel:
@@ -1503,3 +1506,110 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
         return {RegisterLevel.NEUTRAL}
 
     return detected_registers
+
+
+def infer_gender_from_register(
+    gender_enum: Any, register_enums: List[Any]
+) -> Tuple[float, int]:
+    """Infer gender value and pragmatic flag from gender enum and registers.
+
+    Refined logic:
+    1. If gender is explicitly MASCULINE/FEMININE, use that.
+    2. If gender is NEUTRAL, infer from registers:
+       - Masculine registers: DANSEIGO, GUNTAI, BUSHI (Excluded KYOSHIGO)
+       - Feminine registers: JOSEIGO, OJOUSAMA, BURIKKO
+    3. If registers have both masculine and feminine markers, return UNPRAGMATIC (0.0, 0).
+    4. Otherwise return NEUTRAL (0.0, 1) or the inferred gender.
+    """
+
+    val: float = 0.0
+    prag: int = 0
+
+    if gender_enum == GenderLevel.MASCULINE:
+        val, prag = -1.0, 1
+    elif gender_enum == GenderLevel.FEMININE:
+        val, prag = 1.0, 1
+    elif gender_enum == GenderLevel.NEUTRAL:
+        # Infer gender from register if neutral
+        masculine_registers = {
+            RegisterLevel.DANSEIGO,
+            RegisterLevel.GUNTAI,
+            RegisterLevel.BUSHI,
+        }
+        feminine_registers = {
+            RegisterLevel.JOSEIGO,
+            RegisterLevel.OJOUSAMA,
+            RegisterLevel.BURIKKO,
+        }
+
+        is_masc = any(r in masculine_registers for r in register_enums)
+        is_fem = any(r in feminine_registers for r in register_enums)
+
+        if is_masc and is_fem:
+            # Conflicting registers -> Unpragmatic
+            val, prag = 0.0, 0
+        elif is_masc:
+            val, prag = -1.0, 1
+        elif is_fem:
+            val, prag = 1.0, 1
+        else:
+            val, prag = 0.0, 1
+    else:
+        val, prag = 0.0, 0
+
+    return val, prag
+
+
+def load_register_overrides() -> Dict[str, List[Any]]:
+    """Load manual register overrides from data/jpn_sentences_<register>.tsv."""
+    # Map register string to RegisterLevel
+    reg_map = {r.value: r for r in RegisterLevel}
+
+    overrides: Dict[str, Any] = {}
+
+    # Pattern to match individual register files
+    pattern = "data/jpn_sentences_*.tsv"
+    for file_path in glob.glob(pattern):
+        basename = os.path.basename(file_path)
+
+        reg_str = basename.replace("jpn_sentences_", "").replace(".tsv", "")
+        if reg_str not in reg_map:
+            continue
+
+        reg_level = reg_map[reg_str]
+
+        with open(file_path, "r", encoding="utf-8") as f:
+            for line in f:
+                sentence = parse_tsv(line)
+                if sentence not in overrides:
+                    overrides[sentence] = set()
+                overrides[sentence].add(reg_level)
+
+    # Convert sets to sorted lists
+    return {k: sorted(list(v), key=str) for k, v in overrides.items()}
+
+
+def formality_to_weight(formality: FormalityLevel) -> Tuple[float, int]:
+    """Convert formality level to weight and pragmatic flag.
+
+    Mapping:
+        Very Casual: -1.0
+        Casual: -0.5
+        Neutral: 0.0
+        Formal: 0.5
+        Very Formal: 1.0
+        Unpragmatic: 0.0 (weight), 0 (pragmatic flag)
+    """
+    if formality == FormalityLevel.VERY_CASUAL:
+        return -1.0, 1
+    if formality == FormalityLevel.CASUAL:
+        return -0.5, 1
+    if formality == FormalityLevel.NEUTRAL:
+        return 0.0, 1
+    if formality == FormalityLevel.FORMAL:
+        return 0.5, 1
+    if formality == FormalityLevel.VERY_FORMAL:
+        return 1.0, 1
+
+    # Unpragmatic
+    return 0.0, 0

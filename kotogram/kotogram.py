@@ -22,16 +22,19 @@ Functions:
     split_kotogram: Split a kotogram sentence into individual tokens
 """
 
+import base64
 import re
 from dataclasses import dataclass
 from functools import lru_cache
 from typing import Any, Dict, List, Optional
 
 # Pre-compiled regex patterns for performance
-RE_KOTOGRAM_TOKEN = re.compile(r"⌈[^⌉]*⌉")
-RE_SURFACE = re.compile(r"ˢ(.*?)ᵖ", re.DOTALL)
+# Matches standard ⌈...⌉ tokens OR obfuscated [Base64] tokens
+# Obfuscated tokens use brackets and strictly Base64 characters to avoid false positives with text like "foo [bar]"
+_RE_KOTOGRAM_TOKEN = re.compile(r"⌈[^⌉]*⌉|\[[A-Za-z0-9+/=]+\]")
+_RE_SURFACE = re.compile(r"ˢ(.*?)ᵖ", re.DOTALL)
 
-RE_READING_FULL = re.compile(r"ʳ(.*?)(?:⌉|ᵇ|ᵈ)")
+_RE_READING_FULL = re.compile(r"ʳ(.*?)(?:⌉|ᵇ|ᵈ)")
 
 
 @dataclass
@@ -108,29 +111,19 @@ class Token:
 
 def kotogram_to_japanese(
     kotogram: str,
-    spaces: bool = False,
-    collapse_punctuation: bool = True,
     furigana: bool = False,
 ) -> str:
     # pylint: disable=too-many-locals, no-else-return
     """Convert kotogram compact representation back to Japanese text.
 
     This function extracts the surface forms (ˢ markers) from a kotogram string
-    and reconstructs the original Japanese text. It can optionally preserve
-    token boundaries with spaces, handle punctuation spacing intelligently, and
-    include furigana readings in parentheses.
+    and reconstructs the original Japanese text. It can optionally include
+    furigana readings in parentheses.
 
     Args:
         kotogram: Kotogram compact sentence representation containing encoded
                  linguistic information. Must follow the standard kotogram format
                  with ⌈⌉ token boundaries and ˢ surface markers.
-        spaces: If True, insert spaces between tokens to preserve word boundaries.
-               Useful for debugging or analysis. Default is False for natural
-               Japanese text without spaces.
-        collapse_punctuation: If True (default), remove spaces around punctuation
-                            marks to ensure natural Japanese formatting. Only
-                            applies when spaces=True. Handles common Japanese
-                            punctuation including 。、・etc.
         furigana: If True, append IME-style readings in hiragana brackets after
                  each token when available and different from the surface form. Shows
                  what you would type in a Japanese IME to input the text. For example,
@@ -139,20 +132,12 @@ def kotogram_to_japanese(
 
     Returns:
         Japanese text string reconstructed from the kotogram representation.
-        Preserves the original character sequence and can optionally show
-        token boundaries with spaces and/or furigana readings.
+        Preserves the original character sequence.
 
     Examples:
         >>> kotogram = "⌈ˢ猫ᵖnoun⌉⌈ˢをᵖparticle:case-particle⌉⌈ˢ食べるᵖverb⌉"
         >>> kotogram_to_japanese(kotogram)
         '猫を食べる'
-
-        >>> kotogram_to_japanese(kotogram, spaces=True)
-        '猫 を 食べる'
-
-        >>> kotogram = "⌈ˢこんにちはᵖint⌉⌈ˢ。ᵖauxs⌉"
-        >>> kotogram_to_japanese(kotogram, spaces=True, collapse_punctuation=True)
-        'こんにちは。'
 
         >>> kotogram = "⌈ˢ漢字ᵖnounʳカンジ⌉⌈ˢですᵖaux-verb⌉"
         >>> kotogram_to_japanese(kotogram, furigana=True)
@@ -172,102 +157,63 @@ def kotogram_to_japanese(
 
     ensure_string(kotogram, "kotogram")
 
-    from .japanese_parser import POS_TO_CHARS
+    # Always split into tokens first to handle obfuscation correctly
+    tokens = split_kotogram(kotogram)
+    result_parts = []
 
-    if not furigana:
-        # Original implementation - extract surface forms only
-        matches = RE_SURFACE.findall(kotogram)
-
-        if spaces:
-            # Join tokens with spaces
-            result = " ".join(matches).replace("{ ", "{").replace(" }", "}")
-
-            if collapse_punctuation:
-                # Remove spaces around Japanese punctuation for natural formatting
-                for punc in POS_TO_CHARS["aux-symbol"]:
-                    # Skip braces as they're handled above
-                    if punc in ("{", "}"):
-                        continue
-                    # Remove space before and after punctuation
-                    result = result.replace(f" {punc}", punc)
-                    result = result.replace(f"{punc} ", punc)
-
-            return result
-
-        # Concatenate all surface forms without spaces (natural Japanese)
-        return "".join(matches)
-    else:
-        # Furigana mode - extract surface forms and IME readings (hiragana)
-        tokens = split_kotogram(kotogram)
-        result_parts = []
-
-        def to_hiragana(text: str) -> str:
-            """Convert katakana to hiragana for IME-style furigana."""
-            result = []
-            for char in text:
-                code = ord(char)
-                # Katakana range: 0x30A1-0x30F6
-                if 0x30A1 <= code <= 0x30F6:
-                    # Convert to hiragana by subtracting offset
-                    result.append(chr(code - 0x60))
-                # Keep katakana length marker as hiragana equivalent
-                elif char == "ー":
-                    result.append("ー")
-                else:
-                    result.append(char)
-            return "".join(result)
-
-        def is_kana_only(text: str) -> bool:
-            """Check if text contains only hiragana and katakana characters."""
-            for char in text:
-                code = ord(char)
-                # Check if it's hiragana (0x3041-0x309F) or katakana (0x30A0-0x30FF)
-                is_hiragana = 0x3041 <= code <= 0x309F
-                is_katakana = 0x30A0 <= code <= 0x30FF
-
-                if not (is_hiragana or is_katakana):
-                    return False
-            return True
-
-        for token in tokens:
-            # Extract surface form
-            surface_match = RE_SURFACE.search(token)
-            if not surface_match:
-                continue
-            surface = surface_match.group(1)
-
-            # For IME-style furigana, we only add readings for kanji or mixed text
-            # Pure kana (hiragana/katakana) already shows the IME input
-            if is_kana_only(surface):
-                # Surface is already in kana - no furigana needed
-                result_parts.append(surface)
+    def to_hiragana(text: str) -> str:
+        """Convert katakana to hiragana for IME-style furigana."""
+        result = []
+        for char in text:
+            code = ord(char)
+            # Katakana range: 0x30A1-0x30F6
+            if 0x30A1 <= code <= 0x30F6:
+                # Convert to hiragana by subtracting offset
+                result.append(chr(code - 0x60))
+            # Keep katakana length marker as hiragana equivalent
+            elif char == "ー":
+                result.append("ー")
             else:
-                # Surface contains kanji - extract reading for IME input
-                reading_match = RE_READING_FULL.search(token)
-                reading_katakana = reading_match.group(1) if reading_match else None
+                result.append(char)
+        return "".join(result)
 
-                if reading_katakana:
-                    # Convert pronunciation to hiragana for IME-style furigana
-                    reading_hiragana = to_hiragana(reading_katakana)
-                    result_parts.append(f"{surface}[{reading_hiragana}]")
-                else:
-                    # No reading available
-                    result_parts.append(surface)
+    def is_kana_only(text: str) -> bool:
+        """Check if text contains only hiragana and katakana characters."""
+        for char in text:
+            code = ord(char)
+            # Check if it's hiragana (0x3041-0x309F) or katakana (0x30A0-0x30FF)
+            is_hiragana = 0x3041 <= code <= 0x309F
+            is_katakana = 0x30A0 <= code <= 0x30FF
 
-        if spaces:
-            result = " ".join(result_parts).replace("{ ", "{").replace(" }", "}")
+            if not (is_hiragana or is_katakana):
+                return False
+        return True
 
-            if collapse_punctuation:
-                # Remove spaces around Japanese punctuation for natural formatting
-                for punc in POS_TO_CHARS["aux-symbol"]:
-                    if punc in ("{", "}"):
-                        continue
-                    result = result.replace(f" {punc}", punc)
-                    result = result.replace(f"{punc} ", punc)
+    for token in tokens:
+        # Extract features using robust API
+        features = extract_token_features(token)
+        surface = features.surface
+        if not surface:
+            continue
 
-            return result
+        if not furigana:
+            # Simple surface extraction
+            result_parts.append(surface)
+            continue
 
-        return "".join(result_parts)
+        # Furigana mode logic
+        if is_kana_only(surface):
+            result_parts.append(surface)
+        else:
+            reading_katakana = features.reading if features.reading != surface else None
+
+            if reading_katakana:
+                reading_hiragana = to_hiragana(reading_katakana)
+                result_parts.append(f"{surface}[{reading_hiragana}]")
+            else:
+                result_parts.append(surface)
+
+    return "".join(result_parts)
 
 
 def split_kotogram(kotogram: str) -> List[str]:
@@ -312,7 +258,25 @@ def split_kotogram(kotogram: str) -> List[str]:
 
     # Find all complete token annotations enclosed in ⌈⌉
     # Pattern matches: ⌈ followed by any chars (non-greedy) until ⌉
-    return RE_KOTOGRAM_TOKEN.findall(kotogram)
+    return _RE_KOTOGRAM_TOKEN.findall(kotogram)
+
+
+def obscure_kotogram_token_string(inner_content: str) -> str:
+    """Obfuscate the inner content of a kotogram token if enabled.
+
+    Args:
+        inner_content: The raw string content inside ⌈⌉ (e.g. "ˢfooᵖbar")
+
+    Returns:
+        Obfuscated string (Base64) if OBSCURE_KOTOGRAM=1, else original.
+    """
+    from .japanese_parser import OBSCURE_KOTOGRAM
+
+    if OBSCURE_KOTOGRAM == 1:
+        # Encode to Base64
+        encoded = base64.b64encode(inner_content.encode("utf-8")).decode("ascii")
+        return encoded
+    return inner_content
 
 
 @lru_cache(maxsize=65536)
@@ -331,6 +295,7 @@ def extract_token_features(token: str) -> TokenFeatures:
     - ᵈ : Lemma
     - ʳ : Reading
     """
+
     from .japanese_parser import (
         CONJUGATED_FORM_MAP,
         CONJUGATED_TYPE_MAP,
@@ -338,6 +303,18 @@ def extract_token_features(token: str) -> TokenFeatures:
         POS2_MAP,
         POS3_MAP,
     )
+
+    # Unobscure if needed
+    # Logic is purely based on delimiters:
+    # ⌈...⌉ -> Raw/Standard Kotogram (no decoding)
+    # [...] -> Obfuscated (Base64 encoded)
+
+    if token.startswith("[") and token.endswith("]"):
+        # Handle bracketed obfuscated token
+        inner = token[1:-1]
+        # Always decode bracketed tokens as Base64
+        token_content = base64.b64decode(inner).decode("utf-8")
+        token = f"⌈{token_content}⌉"
 
     feature = TokenFeatures()
 
@@ -364,14 +341,14 @@ def extract_token_features(token: str) -> TokenFeatures:
 
     # 1. Surface: ˢ to next marker
     start = idx_s + 1
-    next_indices = [i for i in [idx_p, idx_b, idx_d, idx_r, idx_end] if i > start]
+    next_indices = [i for i in [idx_p, idx_b, idx_d, idx_r, idx_end] if i >= start]
     end = min(next_indices) if next_indices else len(token)
     feature.surface = token[start:end]
 
     # 2. POS: ᵖ to next marker
     if idx_p != -1:
         start = idx_p + 1
-        next_indices = [i for i in [idx_b, idx_d, idx_r, idx_end] if i > start]
+        next_indices = [i for i in [idx_b, idx_d, idx_r, idx_end] if i >= start]
         end = min(next_indices) if next_indices else len(token)
         pos_data = token[start:end]
 
@@ -416,21 +393,23 @@ def extract_token_features(token: str) -> TokenFeatures:
     # 3. Base: ᵇ to next marker
     if idx_b != -1:
         start = idx_b + 1
-        next_indices = [i for i in [idx_d, idx_r, idx_end] if i > start]
+        next_indices = [i for i in [idx_d, idx_r, idx_end] if i >= start]
         end = min(next_indices) if next_indices else len(token)
         feature.base_orth = token[start:end]
 
     # 4. Lemma: ᵈ to next marker
     if idx_d != -1:
         start = idx_d + 1
-        next_indices = [i for i in [idx_r, idx_end] if i > start]
+        next_indices = [i for i in [idx_r, idx_end] if i >= start]
         end = min(next_indices) if next_indices else len(token)
         feature.lemma = token[start:end]
+        if feature.lemma == "*":
+            feature.lemma = feature.surface
 
     # 5. Reading: ʳ to next marker
     if idx_r != -1:
         start = idx_r + 1
-        next_indices = [i for i in [idx_end] if i > start]
+        next_indices = [i for i in [idx_end] if i >= start]
         end = min(next_indices) if next_indices else len(token)
         feature.reading = token[start:end]
 

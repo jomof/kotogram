@@ -77,37 +77,6 @@ def _build_and_save_vocab(
     tokenizer.save(vocab_path, version=CACHE_VERSION)
 
 
-def load_register_overrides() -> Dict[str, List[Any]]:
-    """Load manual register overrides from data/jpn_sentences_<register>.tsv."""
-    from kotogram.analysis import RegisterLevel
-
-    # Map register string to RegisterLevel
-    reg_map = {r.value: r for r in RegisterLevel}
-
-    overrides: Dict[str, Any] = {}
-
-    # Pattern to match individual register files
-    pattern = "data/jpn_sentences_*.tsv"
-    for file_path in glob.glob(pattern):
-        basename = os.path.basename(file_path)
-
-        reg_str = basename.replace("jpn_sentences_", "").replace(".tsv", "")
-        if reg_str not in reg_map:
-            continue
-
-        reg_level = reg_map[reg_str]
-
-        with open(file_path, "r", encoding="utf-8") as f:
-            for line in f:
-                sentence = parse_tsv(line)
-                if sentence not in overrides:
-                    overrides[sentence] = set()
-                overrides[sentence].add(reg_level)
-
-    # Convert sets to sorted lists
-    return {k: sorted(list(v), key=str) for k, v in overrides.items()}
-
-
 def init_worker(
     worker_id: int,
     shard_dir: str,
@@ -124,59 +93,6 @@ def init_worker(
     _TOKENIZER.load_state(tokenizer_state)
 
 
-def infer_gender_from_register(
-    gender_enum: Any, register_enums: List[Any]
-) -> Tuple[float, int]:
-    """Infer gender value and pragmatic flag from gender enum and registers.
-
-    Refined logic:
-    1. If gender is explicitly MASCULINE/FEMININE, use that.
-    2. If gender is NEUTRAL, infer from registers:
-       - Masculine registers: DANSEIGO, GUNTAI, BUSHI (Excluded KYOSHIGO)
-       - Feminine registers: JOSEIGO, OJOUSAMA, BURIKKO
-    3. If registers have both masculine and feminine markers, return UNPRAGMATIC (0.0, 0).
-    4. Otherwise return NEUTRAL (0.0, 1) or the inferred gender.
-    """
-    from kotogram.analysis import GenderLevel, RegisterLevel
-
-    val: float = 0.0
-    prag: int = 0
-
-    if gender_enum == GenderLevel.MASCULINE:
-        val, prag = -1.0, 1
-    elif gender_enum == GenderLevel.FEMININE:
-        val, prag = 1.0, 1
-    elif gender_enum == GenderLevel.NEUTRAL:
-        # Infer gender from register if neutral
-        masculine_registers = {
-            RegisterLevel.DANSEIGO,
-            RegisterLevel.GUNTAI,
-            RegisterLevel.BUSHI,
-        }
-        feminine_registers = {
-            RegisterLevel.JOSEIGO,
-            RegisterLevel.OJOUSAMA,
-            RegisterLevel.BURIKKO,
-        }
-
-        is_masc = any(r in masculine_registers for r in register_enums)
-        is_fem = any(r in feminine_registers for r in register_enums)
-
-        if is_masc and is_fem:
-            # Conflicting registers -> Unpragmatic
-            val, prag = 0.0, 0
-        elif is_masc:
-            val, prag = -1.0, 1
-        elif is_fem:
-            val, prag = 1.0, 1
-        else:
-            val, prag = 0.0, 1
-    else:
-        val, prag = 0.0, 0
-
-    return val, prag
-
-
 def analyze_batch(
     batch: List[Tuple[str, int]],
 ) -> Dict[str, Any]:
@@ -188,6 +104,8 @@ def analyze_batch(
         analyze_formality,
         analyze_gender,
         analyze_register,
+        formality_to_weight,
+        infer_gender_from_register,
     )
 
     parser = SudachiJapaneseParser()
@@ -211,7 +129,7 @@ def analyze_batch(
         "formality": Counter(),
         "gender_prag": Counter(),
         "register": Counter(),
-        "grammaticality": Counter(),
+        "grammatic": Counter(),
     }
     reg_samples: Dict[str, List[Any]] = {}
 
@@ -236,27 +154,47 @@ def analyze_batch(
         else:
             register_enums = list(analyze_register(kotogram_obj))
 
+        # ID for stats only
         formality_id = FORMALITY_LABEL_TO_ID.get(
             formality_enum, FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL]
         )
+
+        # Calculate formality weight for training
+        f_val, f_prag = formality_to_weight(formality_enum)
+        if f_prag == 0:
+            f_val = float("nan")
+
         # Assuming infer_gender_from_register is available in scope (it is)
         gender_val, gender_prag = infer_gender_from_register(
             gender_enum, register_enums
         )
+        if gender_prag == 0:
+            gender_val = float("nan")
+
         register_ids = [
             REGISTER_LABEL_TO_ID[r] for r in register_enums if r in REGISTER_LABEL_TO_ID
         ]
         if not register_ids:
             register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
 
+        # The gender_val assignment to NaN if gender_prag is 0 is already handled above.
+        # The diff snippet seems to imply a re-ordering or re-assignment, but the logic
+        # for g_val (gender_val) being NaN based on g_prag (gender_prag) is already in place.
+        # We will keep the existing placement of `if gender_prag == 0: gender_val = float("nan")`
+        # and just add the new `final_gram` logic.
+
+        # STRICT GRAMMATICALITY:
+        # gram=1 iff source=1 AND f_prag=1 AND g_prag=1
+        final_gram = gram_label and f_prag and gender_prag
+
         # Accumulate
         sentences_buf.append(sentence)
         kotograms_buf.append(kotogram_obj)
-        f_val_buf.append(formality_id)
-        f_prag_buf.append(1)
+        f_val_buf.append(f_val)
+        f_prag_buf.append(f_prag)
         g_val_buf.append(gender_val)
         g_prag_buf.append(gender_prag)
-        gram_buf.append(gram_label)
+        gram_buf.append(final_gram)
 
         reg_ids_buf.extend(register_ids)
         current_reg_offset += len(register_ids)
@@ -265,7 +203,7 @@ def analyze_batch(
         # Stats
         label_stats["formality"][formality_id] += 1
         label_stats["gender_prag"][gender_prag] += 1
-        label_stats["grammaticality"][gram_label] += 1
+        label_stats["grammatic"][gram_label] += 1
         for reg_id in register_ids:
             label_stats["register"][reg_id] += 1
             if len(reg_samples.get(str(reg_id), [])) < 3:
@@ -427,7 +365,7 @@ def print_stats(label_stats: Dict[str, Counter]) -> None:
     _print_dist(
         "Grammaticality Distribution",
         "bold green",
-        label_stats["grammaticality"],
+        label_stats["grammatic"],
         lambda x: {1: "Grammatic", 0: "Agrammatic"}[x],
     )
 
@@ -466,7 +404,7 @@ def worker_p1_wrapper(
             "formality": Counter(),
             "gender_prag": Counter(),
             "register": Counter(),
-            "grammaticality": Counter(),
+            "grammatic": Counter(),
         },
         "reg_samples": {},
     }
@@ -641,9 +579,11 @@ def main() -> None:
         "formality": Counter(),
         "gender_prag": Counter(),
         "register": Counter(),
-        "grammaticality": Counter(),
+        "grammatic": Counter(),
     }
     merged_reg_samples: Dict[str, List[Any]] = {}
+
+    from scripts.rule_based_analysis import load_register_overrides
 
     register_overrides = load_register_overrides()
 
@@ -695,8 +635,8 @@ def main() -> None:
                         merged_reg_samples[rid] = []
                     merged_reg_samples[rid].extend(samps)
 
-                # label_stats["grammaticality"] has count of sentences.
-                count = sum(ls["grammaticality"].values())
+                # label_stats["grammatic"] has count of sentences.
+                count = sum(ls["grammatic"].values())
                 progress.update(task1, advance=count)
 
                 finished_count += 1
