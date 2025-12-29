@@ -56,8 +56,10 @@ def train_style(
     return result
 
 
+# pylint: disable=too-many-locals
 def populate_test_data(root_dir: str, project_root: str):
-    """Pre-populates test data in root_dir with the first 5 lines of each real .tsv from project_root."""
+    """Pre-populates test data in root_dir by sampling from data/corpus.db."""
+    import sqlite3
 
     from kotogram import locations
 
@@ -67,24 +69,85 @@ def populate_test_data(root_dir: str, project_root: str):
     # Create data directory in the test root
     os.makedirs(data_dir, exist_ok=True)
 
-    # Source data pattern (matches real data)
-    source_pattern = os.path.join(project_root, "data", "*.tsv")
+    db_path = os.path.join(project_root, "data", "corpus.db")
+    if not os.path.exists(db_path):
+        raise FileNotFoundError(f"Corpus database not found at {db_path}")
 
-    for file_path in glob.glob(source_pattern):
-        filename = os.path.basename(file_path)
-        # Only copy relevant files (sentences and agrammatic)
-        if not (
-            filename.startswith("jpn_sentences")
-            or filename.startswith("jpn_agrammatic")
-        ):
-            continue
+    # Connect to DB
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
 
-        with open(file_path, "r", encoding="utf-8") as f:
-            lines = [next(f) for _ in range(5)]
+    grammatic_samples: Set[str] = set()
+    agrammatic_samples: Set[str] = set()
 
-        dest_path = os.path.join(data_dir, filename)
-        with open(dest_path, "w", encoding="utf-8") as f:
-            f.writelines(lines)
+    def add_samples(condition: str, target_set: Set[str], count: int = 5):
+        try:
+            query = f"SELECT sentence FROM corpus WHERE {condition} LIMIT {count}"
+            cursor.execute(query)
+            rows = cursor.fetchall()
+            for row in rows:
+                target_set.add(row[0])
+        except sqlite3.Error as e:
+            print(f"Error querying {condition}: {e}")
+
+    # 1. Gender Diversity
+    # gender: -1.0 (Male), 1.0 (Female), 0.0 (Neutral), NULL (Unpragmatic)
+    add_samples("gender = -1.0", grammatic_samples)
+    add_samples("gender = 1.0", grammatic_samples)
+    add_samples("gender = 0.0", grammatic_samples)
+    add_samples("gender IS NULL", grammatic_samples)
+
+    # 2. Register Diversity (All registers)
+    register_samples: Dict[str, Set[str]] = {}
+
+    # Read registers from the DB
+    try:
+        cursor.execute("SELECT id, label FROM register")
+        db_registers = cursor.fetchall()  # List of (id, label)
+    except sqlite3.Error as e:
+        print(f"Error reading registers: {e}")
+        db_registers = []
+
+    for reg_id, reg_label_str in db_registers:
+        reg_name = reg_label_str.lower()
+        if reg_name not in register_samples:
+            register_samples[reg_name] = set()
+
+        # Query for sentences with this register
+        add_samples(f"register_ids = '{reg_id}'", register_samples[reg_name])
+
+    # 3. Formality Diversity (All 5 levels + Unpragmatic)
+    # Formality levels seen: -1.0, -0.5, 0.0, 0.5, 1.0
+    for f_val in [-1.0, -0.5, 0.0, 0.5, 1.0]:
+        add_samples(f"formality = {f_val}", grammatic_samples)
+    add_samples("formality IS NULL", grammatic_samples)
+
+    # 4. Grammaticality
+    add_samples("grammatic = 1", grammatic_samples)
+    add_samples("grammatic = 0", agrammatic_samples)
+
+    conn.close()
+
+    # Write sampled data to TSV files
+    # Note: jpn_sentences_sampled.tsv (Grammatic - Gender/Formality/Generic)
+    #       jpn_grammatic_<register>.tsv (Grammatic - Register specific)
+    #       jpn_agrammatic_sampled.tsv (Agrammatic)
+
+    gram_path = os.path.join(data_dir, "jpn_sentences_sampled.tsv")
+    with open(gram_path, "w", encoding="utf-8") as f:
+        for s in grammatic_samples:
+            f.write(s + "\n")
+
+    for reg_name, samples in register_samples.items():
+        reg_path = os.path.join(data_dir, f"jpn_sentences_{reg_name}.tsv")
+        with open(reg_path, "w", encoding="utf-8") as f:
+            for s in samples:
+                f.write(s + "\n")
+
+    agram_path = os.path.join(data_dir, "jpn_agrammatic_sampled.tsv")
+    with open(agram_path, "w", encoding="utf-8") as f:
+        for s in agrammatic_samples:
+            f.write(s + "\n")
 
 
 # pylint: disable=too-many-locals
