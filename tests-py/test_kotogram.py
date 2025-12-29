@@ -4,6 +4,7 @@ import unittest
 
 from kotogram import (
     SudachiJapaneseParser,
+    extract_token_features,
     kotogram_to_japanese,
     split_kotogram,
 )
@@ -22,32 +23,6 @@ class TestKotogramToJapanese(unittest.TestCase):
         kotogram = self.parser.japanese_to_kotogram(text)
         result = kotogram_to_japanese(kotogram)
         self.assertEqual(result, text)
-
-    def test_with_spaces(self):
-        """Add spaces between tokens."""
-        text = "猫を食べる"
-        kotogram = self.parser.japanese_to_kotogram(text)
-        result = kotogram_to_japanese(kotogram, spaces=True)
-        self.assertIn(" ", result)
-        # Removing spaces should give original text
-        self.assertEqual(result.replace(" ", ""), text)
-
-    def test_punctuation_collapse(self):
-        """Punctuation should not have spaces around it."""
-        text = "こんにちは。"
-        kotogram = self.parser.japanese_to_kotogram(text)
-        result = kotogram_to_japanese(kotogram, spaces=True, collapse_punctuation=True)
-        # Should not have space before punctuation
-        self.assertNotIn(" 。", result)
-        self.assertEqual(result.replace(" ", ""), text)
-
-
-class TestFurigana(unittest.TestCase):
-    """Test cases for furigana feature."""
-
-    def setUp(self):
-        """Set up test fixtures."""
-        self.parser = SudachiJapaneseParser(dict_type="full")
 
     def test_kanji_gets_furigana(self):
         """Kanji should get hiragana furigana."""
@@ -129,15 +104,6 @@ class TestFurigana(unittest.TestCase):
         if "がっこ" in result:
             self.assertIn("っ", result)
 
-    def test_furigana_with_spaces(self):
-        """Furigana should work with spaces option."""
-        text = "猫を食べる"
-        kotogram = self.parser.japanese_to_kotogram(text)
-        result = kotogram_to_japanese(kotogram, furigana=True, spaces=True)
-        # Should have both furigana and spaces
-        self.assertIn("[", result)
-        # Should be able to handle both features
-
     def test_default_no_furigana(self):
         """Default behavior should not include furigana."""
         text = "漢字"
@@ -161,8 +127,9 @@ class TestSplitKotogram(unittest.TestCase):
         kotogram = self.parser.japanese_to_kotogram(text)
         tokens = split_kotogram(kotogram)
         self.assertEqual(len(tokens), 1)
-        self.assertTrue(tokens[0].startswith("⌈"))
-        self.assertTrue(tokens[0].endswith("⌉"))
+        # Verify content via API
+        features = extract_token_features(tokens[0])
+        self.assertEqual(features.surface, "猫")
 
     def test_split_multiple_tokens(self):
         """Split kotogram with multiple tokens."""
@@ -171,10 +138,10 @@ class TestSplitKotogram(unittest.TestCase):
         tokens = split_kotogram(kotogram)
         # Should have multiple tokens
         self.assertGreater(len(tokens), 1)
-        # Each token should be properly formatted
+        # Each token should be parseable
         for token in tokens:
-            self.assertTrue(token.startswith("⌈"))
-            self.assertTrue(token.endswith("⌉"))
+            features = extract_token_features(token)
+            self.assertTrue(features.surface, f"Token failed to parse surface: {token}")
 
     def test_split_empty_kotogram(self):
         """Split empty kotogram returns empty list."""
@@ -186,10 +153,10 @@ class TestSplitKotogram(unittest.TestCase):
         text = "猫"
         kotogram = self.parser.japanese_to_kotogram(text)
         tokens = split_kotogram(kotogram)
-        # Token should contain surface marker
-        self.assertIn("ˢ", tokens[0])
-        # Token should contain POS marker
-        self.assertIn("ᵖ", tokens[0])
+        # Token should contain annotations accessible via API
+        features = extract_token_features(tokens[0])
+        self.assertTrue(features.surface)
+        self.assertTrue(features.pos)
 
     def test_roundtrip_with_split(self):
         """Splitting and rejoining should preserve kotogram."""

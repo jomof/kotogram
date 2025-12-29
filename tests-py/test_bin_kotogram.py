@@ -3,6 +3,8 @@ import subprocess
 import unittest
 from pathlib import Path
 
+from kotogram.kotogram import split_kotogram
+
 
 class TestBinKotogram(unittest.TestCase):
     """Integration tests for bin/kotogram CLI."""
@@ -25,8 +27,10 @@ class TestBinKotogram(unittest.TestCase):
         project_root = current_dir.parent
         env["TRAIN_ROOT"] = str(project_root)
 
+        import sys
+
         result = subprocess.run(
-            [str(self.script_path)] + args,
+            [sys.executable, str(self.script_path)] + args,
             input=input_text,
             capture_output=True,
             text=True,
@@ -50,9 +54,9 @@ class TestBinKotogram(unittest.TestCase):
             print(f"Stderr: {result.stderr}")
 
         self.assertEqual(result.returncode, 0)
-        # Check for kotogram output (should contain delimiters)
-        self.assertIn("⌈", result.stdout)
-        self.assertIn("⌉", result.stdout)
+        # Verify valid kotogram output using API
+        tokens = split_kotogram(result.stdout)
+        self.assertTrue(len(tokens) > 0, f"No tokens found in output: {result.stdout}")
 
     def test_parse_stdin(self):
         """Test 'parse' command with stdin input."""
@@ -60,7 +64,9 @@ class TestBinKotogram(unittest.TestCase):
         result = self.run_script(["parse", "-"], input_text=input_text)
 
         self.assertEqual(result.returncode, 0)
-        self.assertIn("⌈", result.stdout)
+        # Verify valid kotogram output using API
+        tokens = split_kotogram(result.stdout)
+        self.assertTrue(len(tokens) > 0, f"No tokens found in output: {result.stdout}")
 
     def test_raw_argument(self):
         """Test 'raw' command."""
@@ -74,7 +80,9 @@ class TestBinKotogram(unittest.TestCase):
         """Test 'grammar' command with JSON output."""
         input_text = "私は猫です"
         result = self.run_script(["grammar", input_text])
-
+        if result.returncode != 0:
+            print(f"Stdout: {result.stdout}")
+            print(f"Stderr: {result.stderr}")
         self.assertEqual(result.returncode, 0)
 
         # Verify result is valid JSON

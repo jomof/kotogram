@@ -1,0 +1,874 @@
+#!/usr/bin/env python3
+"""
+Curate the training corpus.
+Command: curate drink
+"""
+import argparse
+import glob
+import multiprocessing as mp
+import os
+import sqlite3
+import sys
+import queue
+from typing import Any, Dict, List, Tuple
+
+from rich.console import Console
+from rich.progress import (
+    BarColumn,
+    MofNCompleteColumn,
+    Progress,
+    SpinnerColumn,
+    TextColumn,
+)
+
+# Ensure we can import from local modules
+if os.path.basename(os.getcwd()) == "scripts":
+    sys.path.append(os.path.dirname(os.getcwd()))
+elif os.path.exists("scripts"):
+    # Prepend to path to ensure local modules override installed ones
+    sys.path.insert(0, os.getcwd())
+
+from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+from scripts.rule_based_analysis import (
+    analyze_formality,
+    analyze_gender,
+    analyze_register,
+    infer_gender_from_register,
+    formality_to_weight,
+    load_register_overrides,
+)
+from kotogram.analysis import FormalityLevel, RegisterLevel, GenderLevel
+from kotogram.model import (
+    FORMALITY_LABEL_TO_ID,
+    REGISTER_LABEL_TO_ID,
+)
+from kotogram.kotogram import kotogram_to_japanese, extract_token_features
+from train.tsv import parse_tsv
+
+console = Console()
+
+# Global variables for workers
+_WORKER_OVERRIDES: Dict[str, Any] = None
+
+
+def init_worker(overrides: Dict[str, Any]):
+    """Initialize worker process."""
+    global _WORKER_OVERRIDES
+    _WORKER_OVERRIDES = overrides
+
+
+def analyze_chunk(chunk: List[Tuple[str, int]]) -> List[Tuple]:
+    """Analyze a chunk of sentences."""
+    results = []
+    
+    # Cache constants
+    NEUTRAL_R_ID = REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]
+    
+    # Instantiate parser per chunk for resilience (matches label.py)
+    # Instantiate parser per chunk for resilience (matches label.py)
+    parser = SudachiJapaneseParser()
+    
+    for sent, gram in chunk:
+        kotogram = parser.japanese_to_kotogram(sent)
+        
+        # Normalize sentence to match tokenizer pipeline (e.g. "…" -> "...")
+        normalized_sent = kotogram_to_japanese(kotogram)
+            
+        # Analysis
+        f_enum = analyze_formality(kotogram)
+        g_enum = analyze_gender(kotogram)
+        
+        # Reg overrides - key by normalized or raw?
+        # Overrides loaded from file might be raw?
+        # `load_register_overrides` presumably loads raw sentences.
+        # But if we key by normalized, we might miss overrides if they are keyed by raw?
+        # Or should we normalize overrides too?
+        # Let's check overrides first with RAW sent, then NORMALIZED?
+        # Safe bet: check RAW `sent` first (as it matches file input).
+        
+        if _WORKER_OVERRIDES and sent in _WORKER_OVERRIDES:
+            r_enums = _WORKER_OVERRIDES[sent]
+        else:
+            r_enums = list(analyze_register(kotogram))
+            
+        # Calculate formality value
+        # formality_to_weight returns (val, prag). If prag=0, use None (for SQL NULL)
+        f_val, f_prag = formality_to_weight(f_enum)
+        if f_prag == 0:
+            f_val = None
+
+        # Calculate gender value
+        g_val, g_prag = infer_gender_from_register(g_enum, r_enums)
+        
+        r_ids = [REGISTER_LABEL_TO_ID[r] for r in r_enums if r in REGISTER_LABEL_TO_ID]
+        if not r_ids:
+             r_ids = [NEUTRAL_R_ID]
+        
+        # STRICT GRAMMATICALITY:
+        # A sentence is grammatic (1) ONLY if:
+        # 1. Source says it is grammatic (gram=1)
+        # 2. Formality is pragmatic (f_prag=1)
+        # 3. Gender is pragmatic (g_prag=1)
+        # Otherwise, even if source says gram=1, we demote to 0.
+        final_gram = gram and f_prag and g_prag
+
+        # Store result with NORMALIZED sentence
+        results.append((
+            normalized_sent,
+            f_val if f_prag else None,
+            g_val if g_prag else None,
+            final_gram,
+            ",".join(map(str, sorted(r_ids)))
+        ))
+        
+    return results
+
+
+def worker_wrapper(chunk_idx: int, chunk: List[Tuple[str, int]], overrides: Dict[str, Any], result_queue: Any):
+    """Wrapper to run analysis in a separate process."""
+    init_worker(overrides)
+    results = analyze_chunk(chunk)
+    result_queue.put(results)
+
+
+def get_all_sentences() -> List[Tuple[str, int]]:
+    """Read all sentences from data/jpn*."""
+    sentences = {}
+    search_pattern = "data/jpn*"
+    files = glob.glob(search_pattern)
+    
+    gram_files = []
+    agram_files = []
+    
+    for fpath in files:
+        if os.path.isdir(fpath): 
+            continue
+        base = os.path.basename(fpath)
+        if "agrammatic" in base:
+            agram_files.append(fpath)
+        else:
+            gram_files.append(fpath)
+            
+    gram_files.sort()
+    agram_files.sort()
+    
+    def process_files(file_list, gram_label):
+        for fpath in file_list:
+            with open(fpath, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    s = parse_tsv(line)
+                    if s and s not in sentences:
+                        sentences[s] = gram_label
+
+    process_files(gram_files, 1)
+    process_files(agram_files, 0)
+    
+    return list(sentences.items())
+
+
+def curate_drink(db_path: str):
+    # Setup DB
+    if os.path.exists(db_path):
+        os.remove(db_path)
+    
+    os.makedirs(os.path.dirname(os.path.abspath(db_path)), exist_ok=True)
+    
+    console.print("[bold blue]Loading overrides...[/bold blue]")
+    overrides = load_register_overrides()
+    
+    console.print("[bold blue]Scanning sentences...[/bold blue]")
+    sentences = get_all_sentences()
+    total_sentences = len(sentences)
+    
+    console.print(f"[bold green]Found {total_sentences:,} unique sentences. Processing...[/bold green]")
+    
+    data_to_insert = []
+    
+    # Calculate workers
+    num_workers = mp.cpu_count()
+    if total_sentences > 0:
+        chunk_size = max(1, total_sentences // num_workers)
+        chunks = [sentences[i : i + chunk_size] for i in range(0, total_sentences, chunk_size)]
+    else:
+        chunks = []
+    
+    ctx = mp.get_context("spawn")
+    result_queue = ctx.Queue()
+    procs = []
+    
+    try:
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(),
+            MofNCompleteColumn(),
+            console=console,
+        ) as progress:
+            task = progress.add_task("[green]Analyzing...", total=total_sentences)
+            
+            for i, chunk in enumerate(chunks):
+                p = ctx.Process(
+                    target=worker_wrapper,
+                    args=(i, chunk, overrides, result_queue)
+                )
+                procs.append(p)
+                p.start()
+            
+            finished_count = 0
+            while finished_count < len(procs):
+                try:
+                    results = result_queue.get(timeout=0.1)
+                    data_to_insert.extend(results)
+                    progress.update(task, advance=len(results))
+                    finished_count += 1
+                except queue.Empty:
+                    failed = False
+                    for p in procs:
+                        if not p.is_alive() and p.exitcode != 0:
+                            console.print(f"[red]Worker {p.pid} failed (exit code: {p.exitcode})[/red]")
+                            failed = True
+                    if failed:
+                        for p in procs:
+                            p.terminate()
+                        sys.exit(1)
+    finally:
+        for p in procs:
+            if p.is_alive():
+                p.terminate()
+            p.join()
+
+    # DB Insertion
+    console.print("[bold blue]Inserting into database...[/bold blue]")
+    
+    conn = sqlite3.connect(db_path)
+    c = conn.cursor()
+    
+    # Enable FKs
+    c.execute("PRAGMA foreign_keys = ON")
+    
+    # Create Label Lookup Tables first (referenced by FKs)
+    # Formality table removed
+    # Gender table removed
+    # Grammaticality table removed (using boolean 'grammatic' in corpus)
+    c.execute("CREATE TABLE register (id INTEGER PRIMARY KEY, label TEXT)")
+
+    c.execute("""
+        CREATE TABLE corpus (
+            sentence TEXT PRIMARY KEY,
+            formality REAL CHECK (formality IS NULL OR (formality >= -1.0 AND formality <= 1.0)),
+            gender REAL CHECK (gender IS NULL OR (gender >= -1.0 AND gender <= 1.0)),
+            grammatic INTEGER NOT NULL CHECK (grammatic IN (0, 1)),
+            register_ids TEXT NOT NULL
+        ) WITHOUT ROWID
+    """)
+
+    # Formality labels no longer populated
+    # Gender labels no longer populated
+    # Grammaticality labels no longer populated
+
+    # Populate Register Labels
+    from kotogram.model import REGISTER_ID_TO_LABEL
+    r_data = [(k, v.name) for k, v in REGISTER_ID_TO_LABEL.items()]
+    c.executemany("INSERT INTO register VALUES (?,?)", r_data)
+
+    # data_to_insert structure update:
+    # 0: sent
+    # 1: f_id (formality_id)
+    # 2: g_val (gender)
+    # 3: gram (grammaticality_id)
+    # 4: r_ids_str
+    
+    c.executemany("INSERT INTO corpus VALUES (?,?,?,?,?)", data_to_insert)
+    conn.commit()
+    
+    console.print("[bold blue]Vacuuming database...[/bold blue]")
+    c.execute("VACUUM")
+    conn.commit()
+    conn.close()
+    
+    console.print("[bold green]Done![/bold green]")
+
+    console.print("[bold green]Done![/bold green]")
+
+
+def print_record(sent: str, f_val: Any, g_val: Any, gram: int, r_ids_str: str, source: str):
+    """Print a sentence record with a clear source indicator."""
+    console.print(f"[bold yellow]Source: {source}[/bold yellow]")
+    console.print(f"[bold]Sentence:[/bold] {sent}")
+    console.print(f"[bold]Formality:[/bold] {f_val}")
+    console.print(f"[bold]Gender:[/bold] {g_val}")
+    console.print(f"[bold]Grammatic:[/bold] {gram}")
+    
+    # Decode register IDs back to labels
+    if r_ids_str:
+        r_ids = [int(x) for x in r_ids_str.split(",") if x]
+        from kotogram.model import REGISTER_ID_TO_LABEL
+        r_labels = [REGISTER_ID_TO_LABEL[rid].name for rid in r_ids]
+        console.print(f"[bold]Registers:[/bold] {', '.join(r_labels)}")
+    else:
+        console.print(f"[bold]Registers:[/bold] (None)")
+
+
+def curate_show(sentence: str):
+    """Show labels for a single sentence (Calculated)."""
+    overrides = load_register_overrides()
+    init_worker(overrides)
+    
+    # Analyze assuming source is grammatic (1) separately from DB
+    results = analyze_chunk([(sentence, 1)])
+    
+    if not results:
+        console.print("[red]Analysis failed.[/red]")
+        return
+        
+    res = results[0]
+    # res structure: (sent, f_val, g_val, gram, r_ids_str)
+    print_record(res[0], res[1], res[2], res[3], res[4], "Calculated (Live)")
+
+
+def curate_read(sentence: str, db_path: str):
+    """Read labels for a single sentence from DB."""
+    if not os.path.exists(db_path):
+        console.print(f"[red]Database not found at {db_path}[/red]")
+        return
+
+    conn = sqlite3.connect(db_path)
+    c = conn.cursor()
+    
+    query = "SELECT formality, gender, grammatic, register_ids FROM corpus WHERE sentence = ?"
+    c.execute(query, (sentence,))
+    row = c.fetchone()
+    conn.close()
+    
+    if row:
+        # row: (formality, gender, grammatic, register_ids)
+        print_record(sentence, row[0], row[1], row[2], row[3], f"corpus.db ({db_path})")
+    else:
+        console.print(f"[red]Sentence not found in {db_path}[/red]")
+
+
+
+def curate_summary(db_path: str):
+    """Print summary statistics from the database."""
+    if not os.path.exists(db_path):
+        console.print(f"[red]Database not found at {db_path}[/red]")
+        return
+        
+    console.print(f"[bold blue]Reading from {db_path}...[/bold blue]")
+    conn = sqlite3.connect(db_path)
+    c = conn.cursor()
+    
+    # Initialize Counters
+    from collections import Counter
+    from rich.table import Table
+    from kotogram.model import FORMALITY_ID_TO_LABEL, REGISTER_ID_TO_LABEL
+    
+    label_stats = {
+        "formality": Counter(),
+        "gender_prag": Counter(),
+        "register": Counter(),
+        "grammatic": Counter(),
+    }
+    
+    # Query all data
+    # We could do aggregates in SQL but splitting register_ids is easier in Python.
+    query = "SELECT formality, gender, grammatic, register_ids FROM corpus"
+    c.execute(query)
+    
+    # Formality Weight map (approximate reverse mapping)
+    # -1.0: Very Casual, -0.5: Casual, 0.0: Neutral, 0.5: Formal, 1.0: Very Formal
+    # We need to map back to IDs to reuse label.py logic or just map to labels directly.
+    # Let's map to labels directly for display.
+    # We need to look up ID from weight? Or just hardcode the display labels.
+    # label.py uses FORMALITY_ID_TO_LABEL[id].value
+    # Let's map float -> Label Name
+    
+    # We can match FormalityLevel enum values?
+    # FormalityLevel.VERY_CASUAL etc.
+    # Actually, let's just use a simple map for the summary.
+    w_to_label = {
+        -1.0: "Very Casual",
+        -0.5: "Casual",
+        0.0: "Neutral",
+        0.5: "Formal",
+        1.0: "Very Formal"
+    }
+
+    for row in c:
+        formality, gender, grammatic, r_ids_str = row
+        
+        # Formality
+        if formality is not None:
+            # Round to nearest 0.5 to be safe
+            w = round(formality * 2) / 2
+            lbl = w_to_label.get(w, f"Unknown ({w})")
+            label_stats["formality"][lbl] += 1
+        
+        # Gender Prag
+        g_prag = 1 if gender is not None else 0
+        label_stats["gender_prag"][g_prag] += 1
+        
+        # Grammatic
+        label_stats["grammatic"][grammatic] += 1
+        
+        # Registers
+        if r_ids_str:
+            for rid_str in r_ids_str.split(","):
+                if rid_str:
+                    rid = int(rid_str)
+                    # Count ID
+                    label_stats["register"][rid] += 1
+
+    conn.close()
+
+    # Print functions
+    def _print_dist(title: str, style: str, counts: Counter, map_func=None):
+        table = Table(title=title, show_header=True, header_style=style)
+        table.add_column("Type", style="dim")
+        table.add_column("Count", justify="right")
+        table.add_column("Percentage", justify="right")
+        total = sum(counts.values()) or 1
+        for key in sorted(counts.keys()):
+            label = map_func(key) if map_func else str(key)
+            count = counts[key]
+            table.add_row(str(label), f"{count:,}", f"{100 * count / total:.1f}%")
+        console.print(table)
+    
+    # Print Tables
+    _print_dist(
+        "Formality Distribution",
+        "bold magenta",
+        label_stats["formality"]
+    )
+    
+    _print_dist(
+        "Gender Pragmatic Distribution",
+        "bold cyan",
+        label_stats["gender_prag"],
+        lambda x: {1: "Pragmatic", 0: "Unpragmatic"}[x]
+    )
+
+    _print_dist(
+        "Register Distribution",
+        "bold yellow",
+        label_stats["register"],
+        lambda x: REGISTER_ID_TO_LABEL[x].value if x in REGISTER_ID_TO_LABEL else str(x)
+    )
+
+    _print_dist(
+        "Grammaticality Distribution",
+        "bold green",
+        label_stats["grammatic"],
+        lambda x: {1: "Grammatic", 0: "Agrammatic"}[x]
+    )
+
+
+
+    _print_dist(
+        "Grammaticality Distribution",
+        "bold green",
+        label_stats["grammatic"],
+        lambda x: {1: "Grammatic", 0: "Agrammatic"}[x]
+    )
+
+
+def curate_distinct(db_path: str, include_ungrammatic: bool):
+    """Print counts of distinct style combinations."""
+    if not os.path.exists(db_path):
+        console.print(f"[red]Database not found at {db_path}[/red]")
+        return
+        
+    console.print(f"[bold blue]Reading from {db_path}...[/bold blue]")
+    conn = sqlite3.connect(db_path)
+    c = conn.cursor()
+    
+    from collections import Counter
+    from rich.table import Table
+    from kotogram.model import REGISTER_ID_TO_LABEL
+    
+    counts = Counter()
+    
+    w_to_label = {
+        -1.0: "Very Casual",
+        -0.5: "Casual",
+        0.0: "Neutral",
+        0.5: "Formal",
+        1.0: "Very Formal"
+    }
+
+    query = "SELECT formality, gender, grammatic, register_ids FROM corpus"
+    if not include_ungrammatic:
+        query += " WHERE grammatic = 1"
+        
+    c.execute(query)
+    
+    for row in c:
+        formality, gender, grammatic, r_ids_str = row
+        
+        parts = []
+        
+        # Formality
+        if formality is not None:
+            w = round(formality * 2) / 2
+            f_lbl = w_to_label.get(w, f"Unknown ({w})")
+            parts.append(f"Formality: {f_lbl}")
+        else:
+            parts.append("Formality: None")
+            
+        # Gender
+        # Distinct report should probably show if it's Male/Female if pragmatic, or just Pragmatic?
+        # User asked for "human-readable string of *all* the information".
+        # "all the information in a row, except for Japanese"
+        # The row has gender value (Real) or None. 
+        # So we should probably report "Gender: Male", "Gender: Female", "Gender: Neutral" if possible?
+        # Or just "Gender: Pragmatic" vs "Unpragmatic"? 
+        # Given "information in a row", and previous commands show float value.
+        # But for distinct combinations, rounding float gender is tricky. 
+        # Usually gender is distinct values like -1, -0.5, 0, 0.5, 1? 
+        # Wait, gender logic usually produces binary-ish weights or ranges?
+        # Actually in `label.py` we just bin it to Pragmatic/Unpragmatic for summary.
+        # But here let's try to be more descriptive if it's discrete.
+        # If it's continuous, we can't key on it easily.
+        # Let's check `gender_analysis` or just report "Gender: Pragmatic" / "Gender: Unpragmatic".
+        # Or maybe "Gender: Male (1.0)", "Gender: Female (-1.0)".
+        # Let's stick to "Gender: Pragmatic" vs "Unpragmatic" if it's continuous, OR buckets?
+        # User said "all the information".
+        # Let's try to map the float value if it's standard.
+        if gender is not None:
+             g_lbl = f"Gender: {gender}" # Too granular?
+             # Let's bucketize for readability?
+             # "Male", "Female", "Neutral"?
+             # Let's say "Pragmatic (val)" or just "Pragmatic". 
+             # Let's default to "Gender: Pragmatic" vs "Gender: Unpragmatic" used in Label summary.
+             # Actually, simpler: "Gender: Pragmatic/Unpragmatic" is safer for aggregation.
+             # But if user wants specific distinct rows, maybe they care about specific weights?
+             # Let's check typical values. They are usually derived from weights.
+             # Let's use "Gender: {val}" but rounded?
+             # Let's assume for now "Gender: {val}" if pragmatic.
+             parts.append(f"Gender: {gender}")
+        else:
+             parts.append("Gender: Unpragmatic") # Or None
+             
+        # Grammatic
+        parts.append(f"Grammatic: {grammatic}")
+        
+        # Registers
+        r_labels = []
+        if r_ids_str:
+            for rid_str in r_ids_str.split(","):
+                if rid_str:
+                    rid = int(rid_str)
+                    if rid in REGISTER_ID_TO_LABEL:
+                        r_labels.append(REGISTER_ID_TO_LABEL[rid].name)
+                    else:
+                        r_labels.append(str(rid))
+        parts.append(f"Registers: {', '.join(sorted(r_labels)) if r_labels else '(None)'}")
+        
+        key = ", ".join(parts)
+        counts[key] += 1
+        
+    conn.close()
+    
+    table = Table(title="Distinct Style Combinations", show_header=True)
+    table.add_column("Count", justify="right")
+    table.add_column("Percentage", justify="right")
+    table.add_column("Style Combination", justify="left")
+    
+    total = sum(counts.values()) or 1
+    
+    for key, count in counts.most_common():
+        pct = f"{100 * count / total:.1f}%"
+        table.add_row(f"{count:,}", pct, key)
+        
+    console.print(table)
+
+
+
+    for key, count in counts.most_common():
+        pct = f"{100 * count / total:.1f}%"
+        table.add_row(f"{count:,}", pct, key)
+        
+    console.print(table)
+
+
+def curate_compress(db_path: str):
+    """Vacuum the database to reclaim space."""
+    if not os.path.exists(db_path):
+        console.print(f"[red]Database not found at {db_path}[/red]")
+        return
+    console.print(f"[bold blue]Vacuuming {db_path}...[/bold blue]")
+    conn = sqlite3.connect(db_path)
+    conn.execute("VACUUM")
+    conn.close()
+    console.print("[bold green]Done![/bold green]")
+
+
+def curate_compare(db_path: str):
+    """Compare corpus.db against .cache."""
+    import collections
+    from kotogram import locations, tokenizer
+    from kotogram.kotogram import kotogram_to_japanese
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    from train.dataset import StyleDataset
+    from kotogram.model import REGISTER_ID_TO_LABEL
+    
+    cache_dir = locations.get_style_dataset_cache_dir()
+    if not os.path.exists(cache_dir):
+        console.print(f"[red]Cache not found at {cache_dir}[/red]")
+        return
+    
+    console.print(f"[bold blue]Loading cache from {cache_dir}...[/bold blue]")
+    
+    # Load tokenizer first to decode
+    vocab_path = os.path.join(cache_dir, "vocab.json")
+    if not os.path.exists(vocab_path):
+            console.print(f"[red]Vocab not found at {vocab_path}[/red]")
+            return
+            
+    # Check for offsets before loading dataset to avoid FileNotFoundError crash
+    from train.binary_io import EXT_OFFSETS
+    if not os.path.exists(os.path.join(cache_dir, EXT_OFFSETS)):
+        console.print(f"[red]Binary dataset (offsets) not found in {cache_dir}. Run 'drink' first?[/red]")
+        return
+
+    tok = tokenizer.Tokenizer.load(vocab_path)
+    # Load Dataset (V2 Binary)
+    ds = StyleDataset.from_multiple_tsv([], tok) # Args ignored in V2 factory
+        
+    console.print(f"[bold blue]Loading corpus from {db_path}...[/bold blue]")
+    if not os.path.exists(db_path):
+        console.print(f"[red]Database not found at {db_path}[/red]")
+        return
+    
+    conn = sqlite3.connect(db_path)
+    c = conn.cursor()
+    c.execute("SELECT sentence, formality, gender, grammatic, register_ids FROM corpus")
+    db_rows = c.fetchall()
+    conn.close()
+    
+    # Map DB by sentence
+    # Since we normalize at drink time, we can trust DB keys are normalized.
+    db_map = {}
+    
+    with console.status("Indexing DB sentences..."): 
+        for row in db_rows:
+            raw_sentence = row[0]
+            db_map[raw_sentence] = row
+    
+    # Invert vocab for surface
+    if "surface" not in tok.field_vocabs:
+        console.print("[red]Tokenizer missing surface field![/red]")
+        return
+    
+    surface_vocab = tok.field_vocabs["surface"]
+    id_to_surface = {v: k for k, v in surface_vocab.items()}
+    
+    disagreements = []
+    missing_in_db = []
+    missing_in_cache = [] # Hard to detect efficiently unless we iterate all DB?
+    # We can detect missing_in_cache by checking against db_map keys set later.
+    
+    console.print("[bold blue]Comparing...[/bold blue]")
+    
+    # Iterate Cache
+    seen_in_cache = set()
+    
+    from rich.progress import track
+    # We can't iterate ds easily with tqdm if it's large without collate overhead?
+    # Accessing by index is fast.
+    
+    for i in track(range(len(ds)), description="Scanning cache..."):
+        sample = ds[i]
+        
+        # Reconstruct Sentence
+        # sample.feature_ids["surface"] is Tensor or List
+        raw_ids = sample.feature_ids["surface"]
+        surf_ids = raw_ids.tolist() if hasattr(raw_ids, "tolist") else list(raw_ids)
+        tokens = []
+        for sid in surf_ids:
+            # Skip special tokens if not part of text logic?
+            # 0=PAD, 1=UNK, 2=CLS
+            tokens.append(id_to_surface.get(sid, tokenizer.UNK_TOKEN))
+        
+        # Join without spaces for Japanese
+        reconstructed_sent = "".join(tokens)
+        
+        # NOTE: reconstructed_sent is the raw Japanese text (surface tokens joined).
+        # We compare this directly with the DB key.
+        raw_sentence = reconstructed_sent
+        
+        # Debug only weird ones to reduce noise
+        if "ᵖ" in raw_sentence or "ˢ" in raw_sentence:
+             if len(seen_in_cache) < 5: # Limit spam
+                 console.print(f"[yellow]Suspicious Reconstruct:[/yellow] '{raw_sentence}'")
+        
+        seen_in_cache.add(raw_sentence)
+        
+        if raw_sentence not in db_map:
+            # Note: We track missing keys by their Raw/DB form
+            missing_in_db.append(raw_sentence)
+            continue
+            
+        # Compare
+        db_row = db_map[raw_sentence]
+        # db: (sent, f, g, gram, r_ids_str)
+        # sample: formality_value, formality_pragmatic, gender_value, gender_pragmatic, grammaticality_label, register_labels (list of ints)
+        
+        diffs = []
+        
+        # Formality
+        # DB: float or None. Cache: value (float) and prag (int).
+        # DB stores NULL if unpragmatic. Cache stores value regardless but prag=0 flag.
+        db_f = db_row[1]
+        cache_f_prag = sample.formality_pragmatic
+        cache_f_val = sample.formality_value
+        
+        if db_f is None:
+            if cache_f_prag != 0:
+                diffs.append(f"Formality: DB=None, Cache={cache_f_val} (Prag={cache_f_prag})")
+        else:
+            if cache_f_prag == 0:
+                diffs.append(f"Formality: DB={db_f}, Cache=Unpragmatic")
+            elif abs(db_f - cache_f_val) > 1e-4:
+                 diffs.append(f"Formality: DB={db_f}, Cache={cache_f_val}")
+                 
+        # Gender
+        db_g = db_row[2]
+        cache_g_prag = sample.gender_pragmatic
+        cache_g_val = sample.gender_value
+        
+        if db_g is None:
+            # In strict logic: if cache is unpragmatic (g_prag=0), DB should be NULL.
+            # But wait, DB stores raw gender value in `gender` column?
+            # No, `scripts/curate` writes NULL if unpragmatic?
+            # Inspect `curate.py`: `g_val if g_prag else None` -> Yes.
+            if cache_g_prag != 0:
+                 diffs.append(f"Gender: DB=None, Cache={cache_g_val} (Prag={cache_g_prag})")
+        else:
+            if cache_g_prag == 0:
+                 diffs.append(f"Gender: DB={db_g}, Cache=Unpragmatic")
+            elif abs(db_g - cache_g_val) > 1e-4:
+                 diffs.append(f"Gender: DB={db_g}, Cache={cache_g_val}")
+
+        # Grammaticality
+        db_gram = db_row[3]
+        cache_gram = sample.grammaticality_label
+        
+        if db_gram != cache_gram:
+             diffs.append(f"Grammatic: DB={db_gram}, Cache={cache_gram}")
+             
+        # Registers
+        # DB: "1,5" string. Cache: [1, 5] list.
+        db_r_ids_str = db_row[4]
+        if db_r_ids_str:
+            db_r_ids = sorted([int(x) for x in db_r_ids_str.split(",") if x])
+        else:
+            db_r_ids = []
+            
+        cache_r_ids = sorted(list(sample.register_labels))
+        # Note: dataset.py sample.register_labels might include 0 if empty list fallback?
+        # Check dataset.py: `if not reg_list: reg_list = [0]`
+        # DB stores Register 0? 0 is usually "None" or "Neutral"?
+        # REGISTER_ID_TO_LABEL has entry for 0?
+        # Typically 0 is "No Register" or "Neutral" if mapped.
+        # DB usually stores empty string for no registers?
+        # Inspect `curate.py`: `",".join(map(str, sorted(r_ids)))`
+        # `analyze_chunk` returns `r_ids`.
+        # `RegisterInference.infer` returns set of IDs.
+        
+        if db_r_ids != cache_r_ids:
+             diffs.append(f"Registers: DB={db_r_ids}, Cache={cache_r_ids}")
+        
+        if diffs:
+            disagreements.append({
+                "sentence": reconstructed_sent,
+                "diffs": diffs
+            })
+
+    # Check for missing in Cache
+    for k in db_map:
+        if k not in seen_in_cache:
+            missing_in_cache.append(k)
+            
+    # Report
+    if not disagreements and not missing_in_db and not missing_in_cache:
+        console.print("[bold green]Perfect Match! No discrepancies found.[/bold green]")
+        return
+        
+    if missing_in_db:
+         console.print(f"[yellow]{len(missing_in_db)} sentences in Cache but missing in DB (e.g., '{missing_in_db[0]}')[/yellow]")
+    
+    if missing_in_cache:
+         console.print(f"[yellow]{len(missing_in_cache)} sentences in DB but missing in Cache (e.g., '{missing_in_cache[0]}')[/yellow]")
+         
+    if disagreements:
+        console.print(f"[red]Found {len(disagreements)} Disagreements:[/red]")
+        count = 0
+        for d in disagreements:
+            if count >= 10:
+                console.print(f"... and {len(disagreements) - 10} more.")
+                break
+            console.print(f"[bold]{d['sentence']}[/bold]")
+            for diff in d['diffs']:
+                console.print(f"  - {diff}")
+            count += 1
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    subparsers = parser.add_subparsers(dest="command", required=True)
+    
+    # Drink command
+    drink_parser = subparsers.add_parser("drink", help="Curate the corpus")
+    drink_parser.add_argument("--db-path", default="data/corpus.db", help="Path to output database")
+
+    # Show command
+    show_parser = subparsers.add_parser("show", help="Show labels for a sentence (Calculated)")
+    show_parser.add_argument("sentence", help="Japanese sentence to analyze")
+    
+    # Read command
+    read_parser = subparsers.add_parser("read", help="Read labels for a sentence from DB")
+    read_parser.add_argument("sentence", help="Japanese sentence to lookup")
+    read_parser.add_argument("--db-path", default="data/corpus.db", help="Path to database")
+
+    # Summary command
+    summary_parser = subparsers.add_parser("summary", help="Print corpus statistics from DB")
+    summary_parser.add_argument("--db-path", default="data/corpus.db", help="Path to database")
+    
+    # Distinct command
+    distinct_parser = subparsers.add_parser("distinct", help="Print distinct style combinations")
+    distinct_parser.add_argument("--db-path", default="data/corpus.db", help="Path to database")
+    distinct_parser.add_argument("--include-ungrammatic", action="store_true", help="Include ungrammatic sentences")
+    
+    # Compare command
+    compare_parser = subparsers.add_parser("compare", help="Compare DB with Cache")
+    compare_parser.add_argument("--db-path", default="data/corpus.db", help="Path to database")
+
+    # Compress command
+    compress_parser = subparsers.add_parser("compress", help="Vacuum the database")
+    compress_parser.add_argument("--db-path", default="data/corpus.db", help="Path to database")
+
+    args = parser.parse_args()
+    
+    if args.command == "drink":
+        curate_drink(args.db_path)
+    elif args.command == "show":
+        curate_show(args.sentence)
+    elif args.command == "read":
+        curate_read(args.sentence, args.db_path)
+    elif args.command == "summary":
+        curate_summary(args.db_path)
+    elif args.command == "distinct":
+        curate_distinct(args.db_path, args.include_ungrammatic)
+    elif args.command == "compare":
+        curate_compare(args.db_path)
+    elif args.command == "compress":
+        curate_compress(args.db_path)
+
+
+if __name__ == "__main__":
+    mp.set_start_method("spawn", force=True)
+    main()

@@ -1,5 +1,5 @@
 from kotogram.analysis import GenderLevel, RegisterLevel
-from scripts.label import infer_gender_from_register
+from scripts.rule_based_analysis import infer_gender_from_register
 
 
 def test_explicit_gender():

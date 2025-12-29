@@ -13,7 +13,12 @@ import time
 from datetime import datetime
 from typing import Any, List, Optional
 
-import memray
+try:
+    import memray
+
+    memray: Any  # type: ignore
+except ImportError:
+    memray = None  # type: ignore
 
 
 def profiling_enabled() -> bool:

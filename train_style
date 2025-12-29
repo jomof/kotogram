@@ -635,6 +635,13 @@ def main() -> int:
     # Force 127.0.0.1 for master addr to avoid DNS lookups
     env["MASTER_ADDR"] = "127.0.0.1"
 
+    # Ensure subprocesses use the project root in PYTHONPATH to pick up local changes
+    python_path = env.get("PYTHONPATH", "")
+    if python_path:
+        env["PYTHONPATH"] = f"{PROJECT_ROOT}{os.pathsep}{python_path}"
+    else:
+        env["PYTHONPATH"] = PROJECT_ROOT
+
     # Profiling support
     from train.profile import get_profile_dir, profiling_enabled
 

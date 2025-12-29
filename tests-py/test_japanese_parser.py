@@ -34,29 +34,11 @@ class TestKotogramToJapanese(unittest.TestCase):
         result = kotogram_to_japanese(kotogram)
         self.assertEqual(result, "猫")
 
-    def test_multiple_tokens_without_spaces(self):
-        """Convert multiple tokens without spaces."""
+    def test_multiple_tokens(self):
+        """Convert multiple tokens."""
         kotogram = "⌈ˢ猫ᵖn⌉⌈ˢをᵖprt⌉⌈ˢ食べるᵖv⌉"
-        result = kotogram_to_japanese(kotogram, spaces=False)
+        result = kotogram_to_japanese(kotogram)
         self.assertEqual(result, "猫を食べる")
-
-    def test_multiple_tokens_with_spaces(self):
-        """Convert multiple tokens with spaces."""
-        kotogram = "⌈ˢ猫ᵖn⌉⌈ˢをᵖprt⌉⌈ˢ食べるᵖv⌉"
-        result = kotogram_to_japanese(kotogram, spaces=True)
-        self.assertEqual(result, "猫 を 食べる")
-
-    def test_punctuation_collapse(self):
-        """Punctuation should not have spaces around it when collapse_punctuation=True."""
-        kotogram = "⌈ˢ猫ᵖn⌉⌈ˢ。ᵖauxs⌉"
-        result = kotogram_to_japanese(kotogram, spaces=True, collapse_punctuation=True)
-        self.assertEqual(result, "猫。")
-
-    def test_punctuation_no_collapse(self):
-        """Punctuation can have spaces when collapse_punctuation=False."""
-        kotogram = "⌈ˢ猫ᵖn⌉⌈ˢ。ᵖauxs⌉"
-        result = kotogram_to_japanese(kotogram, spaces=True, collapse_punctuation=False)
-        self.assertEqual(result, "猫 。")
 
 
 class TestSplitKotogram(unittest.TestCase):

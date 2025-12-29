@@ -54,6 +54,12 @@ class SudachiJapaneseParser(JapaneseParser):
         # Fix for special case with っ character
         text = text.replace(" っ", "っ").replace("っ ", "っ")
 
+        # Fix for phantom tokens caused by ellipsis in Sudachi (maps … -> ...)
+        text = text.replace("…", "...")
+
+        # Normalize double exclamation mark (‼ -> !!) for consistent tokenization
+        text = text.replace("‼", "!!")
+
         tokens = self.tokenizer.tokenize(text)
         return self._tokens_to_kotogram(tokens)
 
@@ -84,7 +90,10 @@ class SudachiJapaneseParser(JapaneseParser):
 
             def add(field: str, value: Optional[str]) -> None:
                 """Add field to token dict if value is not empty."""
-                if value is None or value == '""' or value == "" or value == "*":
+                if value is None or value == '""' or value == "":
+                    return
+                # Allow "*" specifically for lemma to indicate explicit surface identity
+                if value == "*" and field != "lemma":
                     return
                 parsed_token[field] = value
 
@@ -137,7 +146,8 @@ class SudachiJapaneseParser(JapaneseParser):
                 )
 
             # Lexical information
-            add("lemma", dictionary_form if dictionary_form != surface else None)
+            # Explicitly use "*" if lemma matches surface
+            add("lemma", dictionary_form if dictionary_form != surface else "*")
             add(
                 "base_orthography",
                 dictionary_form if dictionary_form != surface else None,
@@ -153,6 +163,7 @@ class SudachiJapaneseParser(JapaneseParser):
         return self._raw_tokens_to_kotogram(parsed_tokens)
 
     def _raw_token_to_kotogram(self, token: Dict[str, Any]) -> str:
+        # pylint: disable=too-many-locals
         """Convert a single parsed token to kotogram format.
 
         Args:
@@ -161,7 +172,6 @@ class SudachiJapaneseParser(JapaneseParser):
         Returns:
             Kotogram representation of the token
         """
-        recombined = ""
         surface = token["surface"]
         pos = token.get("pos", "")
         pos_detail_1 = token.get("pos_detail_1")
@@ -176,25 +186,38 @@ class SudachiJapaneseParser(JapaneseParser):
         pos_detail_3 = token.get("pos_detail_3")
         pos_code = pos if pos else ""
 
-        recombined += f"⌈ˢ{surface}ᵖ{pos_code}"
+        pos_code = pos if pos else ""
+
+        # Construct inner content first
+        inner = f"ˢ{surface}ᵖ{pos_code}"
         if pos_detail_1:
-            recombined += f":{pos_detail_1}"
+            inner += f":{pos_detail_1}"
         if pos_detail_2 and pos_detail_2 != "general":
-            recombined += f":{pos_detail_2}"
+            inner += f":{pos_detail_2}"
         if pos_detail_3 and pos_detail_3 != "general":
-            recombined += f":{pos_detail_3}"
+            inner += f":{pos_detail_3}"
         if conjugated_type:
-            recombined += f":{conjugated_type}"
+            inner += f":{conjugated_type}"
         if conjugated_form:
-            recombined += f":{conjugated_form}"
+            inner += f":{conjugated_form}"
         if base:
-            recombined += f"ᵇ{base}"
+            inner += f"ᵇ{base}"
         if lemma and lemma != surface:
-            recombined += f"ᵈ{lemma}"
+            inner += f"ᵈ{lemma}"
         if pronunciation and pronunciation != surface:
-            recombined += f"ʳ{pronunciation}"
-        recombined += "⌉"
-        return recombined
+            inner += f"ʳ{pronunciation}"
+
+        # Obfuscate if enabled
+        from kotogram.kotogram import obscure_kotogram_token_string
+
+        inner = obscure_kotogram_token_string(inner)
+
+        from kotogram.japanese_parser import OBSCURE_KOTOGRAM
+
+        if OBSCURE_KOTOGRAM == 1:
+            return f"[{inner}]"
+
+        return f"⌈{inner}⌉"
 
     def _raw_tokens_to_kotogram(self, tokens: List[Dict[str, Any]]) -> str:
         """Convert a list of parsed tokens to kotogram format.
