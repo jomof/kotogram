@@ -2328,14 +2328,17 @@ class Trainer:
         mask = is_valid_style.float()
 
         # Formality
-        f_mse = self._masked_mse(f_val_l.squeeze(-1), targets["f_val"], mask)
+        # Sanitize targets (NaN * 0 = NaN, so we must remove NaNs even if masked)
+        f_val_target = torch.nan_to_num(targets["f_val"], nan=0.0)
+        f_mse = self._masked_mse(f_val_l.squeeze(-1), f_val_target, mask)
         # Note: Pragmatic classification loss is always computed on full batch in original logic?
         # Looking at original: self.formality_criterion(f_prag_l, targets["f_prag"])
         # Yes, classification is always on.
         f_loss = self.formality_criterion(f_prag_l, targets["f_prag"]) + f_mse
 
         # Gender
-        g_mse = self._masked_mse(g_val_l.squeeze(-1), targets["g_val"], mask)
+        g_val_target = torch.nan_to_num(targets["g_val"], nan=0.0)
+        g_mse = self._masked_mse(g_val_l.squeeze(-1), g_val_target, mask)
         g_loss = self.formality_criterion(g_prag_l, targets["g_prag"]) + (
             g_mse * self.config.gender_mse_scaling_factor
         )
