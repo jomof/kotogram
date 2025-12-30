@@ -382,6 +382,10 @@ if __name__ == "__main__":
             object.__setattr__(
                 trainer_config.checkpoint, "resume_from", args.support_dir
             )
+
+        # Override kc_enabled if specified in arguments (CLI takes precedence over config)
+        if args.pretrain_kc:
+            model_config.kc_enabled = True
     else:
         print(
             "ERROR: --config is required. Configuration must be passed from the wrapper script.",

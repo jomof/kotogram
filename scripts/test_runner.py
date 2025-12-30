@@ -1,3 +1,18 @@
+"""
+Test Runner Script for Kotogram.
+
+This script acts as the primary CI/CD entry point and local development verification tool.
+It orchestrates a suite of checks including:
+1. Static Analysis (Ruff, Mypy, Vulture, Pylint).
+2. Code Hygiene (Whitespace stripping, forbidden pattern detection).
+3. Package Integrity (Verifying built Python and TypeScript artifacts against baselines).
+4. Unit Testing (Pytest, npm test).
+5. Sandboxed Execution (Running tests under strict confinement on macOS).
+
+Usage:
+    python scripts/test_runner.py [--hygiene] [--confinement-config path/to/config.json]
+"""
+
 import asyncio
 import os
 import re
@@ -6,37 +21,34 @@ import subprocess
 import sys
 from typing import Dict, NamedTuple, Optional
 
-# --- Configuration ---
-WHITELIST_FILE = "scripts/exception-whitelist.txt"
+if os.environ.get("VULTURE_WHITELIST"):
+    # This block is used solely for static analysis by Vulture.
+    # It explicitly references symbols that might otherwise appear unused (e.g., used dynamically
+    # or only in specific OS environments), preventing false positives in dead code detection.
+    from scripts import confine
+
+    _v1 = confine.confine
+
+
 PYTHON_BASELINE = "tests/python_package_baseline.txt"
 TS_BASELINE = "tests/typescript_package_baseline.txt"
 
-# ANSI Colors
 GREEN = "\033[1;32m"
 RED = "\033[1;31m"
 BLUE = "\033[1;34m"
 RESET = "\033[0m"
 
-# Forbidden types to check for
-# Bare 'except:' is also forbidden (matches empty capture)
-FORBIDDEN_EXCEPTIONS = {
-    "Exception",
-    "BaseException",
-    "IOError",
-    "OSError",
-    "ValueError",
-    "BaseError",
-    "FileNotFoundError",
-    "RuntimeError",
-    "ImportError",
-    "TypeError",
-    "json.JSONDecodeError",
-    "KeyError",
-    "sqlite3.OperationalError",
-}
-
 
 class CheckResult(NamedTuple):
+    """
+    Structured result of a single check/command execution.
+
+    Attributes:
+        name: unique identifier for the check (e.g., 'mypy', 'ruff').
+        success: True if the check passed (exit code 0), False otherwise.
+        output: Captured stdout and stderr from the command.
+    """
+
     name: str
     success: bool
     output: str
@@ -45,7 +57,16 @@ class CheckResult(NamedTuple):
 async def run_command(
     command: str, env: Optional[Dict[str, str]] = None
 ) -> CheckResult:
-    """Run a shell command and return the result."""
+    """
+    Asynchronously run a shell command and capture its output.
+
+    Args:
+        command: The shell command string to execute.
+        env: Optional dictionary of environment variables to override.
+
+    Returns:
+        CheckResult containing the command name, success status, and combined output.
+    """
     proc = await asyncio.create_subprocess_shell(
         command, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE, env=env
     )
@@ -62,14 +83,17 @@ def print_error(message: str) -> None:
     print(f"{RED}[ERROR] {message}{RESET}")
 
 
-# --- Check Implementations ---
-
-
 async def check_noqa_e402() -> CheckResult:
-    """Check for forbidden no-qa comments."""
+    """
+    Enforce strict import ordering by forbidding 'noqa: E402'.
+
+    E402 (module level import not at top of file) is often suppressed to allow
+    monkey-patching or conditional imports. We strictly forbid this suppression
+    to maintain a clean and predictable import structure across the codebase.
+    """
+    # Split the string to avoid this script itself triggering the check grep
     noqa_str = "# noqa" + ": E402"
-    cmd = f'grep -rn "{noqa_str}" kotogram scripts tests-py train train_style bin/kotogram'
-    # grep returns 0 if found (failure for us), 1 if not found (success for us)
+    cmd = f'grep -rnI "{noqa_str}" kotogram scripts tests-py train train_style bin/kotogram'
 
     proc = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
@@ -86,24 +110,32 @@ async def check_noqa_e402() -> CheckResult:
     return CheckResult("noqa check", True, "")
 
 
-async def check_broad_exceptions() -> CheckResult:
-    """Check for forbidden broad exception handling."""
-    # pylint: disable=too-many-locals
+async def verify_exception_usage() -> CheckResult:
+    """
+    Enforce a strict whitelist of allowed exceptions in `except` blocks.
 
-    # Load whitelist to ignore approved instances
-    whitelist_entries = set()
-    if os.path.exists(WHITELIST_FILE):
-        with open(WHITELIST_FILE, "r", encoding="utf-8") as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith("#"):
-                    # Whitelist format is roughly "filename:lineno: content"
-                    whitelist_entries.add(line)
+    This static analysis ensures that code does not catch generic exceptions or
+    exceptions that mask critical system failures. Only tailored, specific exceptions
+    (e.g., `KeyboardInterrupt`, `subprocess.CalledProcessError`) are allowed.
 
-    # Grep for all exception handlers
+    This policy prevents "pokemon exception handling" (gotta catch 'em all) which
+    swallows bugs and makes debugging impossible.
+    """
+
+    exception_whitelist = {
+        "KeyboardInterrupt",
+        "subprocess.CalledProcessError",
+        "MissingMappingError",
+        "queue.Empty",
+        "subprocess.TimeoutExpired",
+        "BrokenPipeError",
+    }
+
     cmd = (
+        # Find lines starting with 'except' (ignoring indentation)
         r'grep -rnH "^\s*except\b.*:" '
         "kotogram scripts train tests-py train_style bin/kotogram "
+        # Exclude this specific line which is necessary for the grep itself to work safely
         '| grep -v "worker-init=special-carveout"'
     )
 
@@ -117,17 +149,20 @@ async def check_broad_exceptions() -> CheckResult:
     if proc.returncode != 0:
         if proc.returncode == 1:
             print_success("No exception handlers found (clean but unlikely)")
-            return CheckResult("broad exception check", True, "")
+            return CheckResult("exception usage check", True, "")
+        return CheckResult(
+            "exception usage check", False, f"Grep failed: {stdout.decode()}"
+        )
 
     output = stdout.decode()
-    val_errors = []
+    violations = []
 
     for line in output.splitlines():
         line = line.strip()
         if not line:
             continue
 
-        if line in whitelist_entries:
+        if "scripts/test_runner.py" in line:
             continue
 
         parts = line.split(":", 2)
@@ -136,7 +171,6 @@ async def check_broad_exceptions() -> CheckResult:
 
         fpath, lineno, content = parts[0], parts[1], parts[2]
 
-        # Analyze content for forbidden types
         code_part = content.split("#", 1)[0].strip()
 
         if code_part.endswith(":"):
@@ -151,81 +185,37 @@ async def check_broad_exceptions() -> CheckResult:
         if code_part.startswith("(") and code_part.endswith(")"):
             code_part = code_part[1:-1]
 
+        if not code_part:
+            violations.append(f"{fpath}:{lineno}: Bare 'except:' is FORBIDDEN")
+            continue
+
         caught_types = [t.strip() for t in code_part.split(",")]
 
         for t in caught_types:
-            if not t:
-                val_errors.append(f"{fpath}:{lineno}: Bare 'except:' is forbidden")
-                break
-
-            if t in FORBIDDEN_EXCEPTIONS:
-                val_errors.append(f"{fpath}:{lineno}: Forbidden exception '{t}'")
-                break
-
-    if val_errors:
-        shaming_msg = (
-            "To whoever is working on this code right now: catching broad exceptions "
-            "hides errors and makes the system difficult to debug. You know this, "
-            "and you should be ashamed. Stop it!"
-        )
-        return CheckResult(
-            "broad exception check",
-            False,
-            "Found forbidden broad exception handling:\n"
-            + "\n".join(val_errors)
-            + f"\n\n{RED}{shaming_msg}{RESET}",
-        )
-
-    print_success("No broad exception catching found")
-    return CheckResult("broad exception check", True, "")
-
-
-async def check_whitelist_compliance() -> CheckResult:
-    """Strict Exception Whitelisting Check"""
-
-    if not os.path.exists(WHITELIST_FILE):
-        return CheckResult(
-            "whitelist check", False, f"Whitelist file not found: {WHITELIST_FILE}"
-        )
-
-    with open(WHITELIST_FILE, "r", encoding="utf-8") as f:
-        whitelist_lines = set(line.strip() for line in f if line.strip())
-
-    cmd = (
-        r'grep -rnH "^\s*except\b" kotogram scripts train train_style bin/kotogram '
-        '| grep -v "worker-init=special-carveout"'
-    )
-    proc = await asyncio.create_subprocess_shell(
-        cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
-    )
-    stdout, stderr = await proc.communicate()
-
-    if proc.returncode not in (0, 1):
-        return CheckResult("whitelist check", False, f"Grep failed: {stderr.decode()}")
-
-    output = stdout.decode().strip()
-
-    violations = []
-    if output:
-        for line in output.splitlines():
-            if line.strip() in whitelist_lines:
-                continue
-            if "scripts/exception-whitelist.txt" in line:
-                continue
-            violations.append(line)
+            if t not in exception_whitelist:
+                violations.append(
+                    f"{fpath}:{lineno}: Exception '{t}' is NOT WHITELISTED"
+                )
 
     if violations:
-        msg = "Forbidden exception handling found (not in whitelist)!\n" + "\n".join(
-            violations
+        shaming_msg = (
+            "Strict Exception Policy Violation!\n"
+            f"Allowed Exceptions: {', '.join(sorted(exception_whitelist))}\n"
+            "Overbroad exceptions are FORBIDDEN. You will not be able to circumvent this policy so don't try. Rethink your code to stop relying on this exception (let it propagate, most likely). If you _really_ think this exception is needed, you can prepare a rationale and present it to request a _specific_, _narrow_ exception be added to the whitelist (hint, it won't be Exception or RuntimeError). But it probably will be turned down, so just write the code a different way."
         )
-        return CheckResult("whitelist check", False, msg)
+        return CheckResult(
+            "exception usage check",
+            False,
+            f"{shaming_msg}\n\nViolations:\n" + "\n".join(violations),
+        )
 
-    print_success("Exception handling compliant with whitelist")
-    return CheckResult("whitelist check", True, "")
+    print_success("Exception usage compliant")
+    return CheckResult("exception usage check", True, "")
 
 
 async def run_ruff() -> CheckResult:
-    """Ruff check and format."""
+    """Run Ruff for fast linting and auto-formatting."""
+    # --fix applies safe fixes; format standardizes code style
     cmd = "ruff check --fix . --config pyproject.toml && ruff format ."
     res = await run_command(cmd)
     if not res.success:
@@ -235,7 +225,7 @@ async def run_ruff() -> CheckResult:
 
 
 async def run_mypy() -> CheckResult:
-    """Mypy checks."""
+    """Run MyPy for static type checking across all modules."""
     cmds = [
         "mypy kotogram scripts train --explicit-package-bases",
         "mypy train_style",
@@ -252,8 +242,14 @@ async def run_mypy() -> CheckResult:
 
 
 async def run_vulture() -> CheckResult:
-    """Vulture check in two passes."""
-    cmd_prod = "vulture kotogram scripts train scripts/vulture_whitelist.py train_style bin/kotogram"
+    """
+    Run Vulture to detect dead code (unused functions, variables, etc.).
+
+    This runs in two passes:
+    1. Production Strict: Checks core modules to ensure every symbol is used by other production code.
+    2. Full (Permissive): Checks everything (including tests) to catch truly orphaned code.
+    """
+    cmd_prod = "vulture kotogram scripts train scripts/curate scripts/test_runner.py train_style bin/kotogram"
     res_prod = await run_command(cmd_prod)
     if not res_prod.success:
         return CheckResult(
@@ -262,7 +258,7 @@ async def run_vulture() -> CheckResult:
             f"Vulture found unused production code (not used by other production code):\n{res_prod.output}",
         )
 
-    cmd_full = "vulture kotogram scripts train tests-py scripts/vulture_whitelist.py train_style bin/kotogram"
+    cmd_full = "vulture kotogram scripts train tests-py scripts/test_runner.py train_style bin/kotogram"
     res_full = await run_command(cmd_full)
     if not res_full.success:
         return CheckResult(
@@ -276,7 +272,7 @@ async def run_vulture() -> CheckResult:
 
 
 async def run_pylint() -> CheckResult:
-    """Pylint check."""
+    """Run Pylint, specifically enabling code duplication detection."""
     env = os.environ.copy()
     cwd = os.getcwd()
     env["PYTHONPATH"] = f"{env.get('PYTHONPATH', '')}:{cwd}:{cwd}/tests-py"
@@ -291,7 +287,7 @@ async def run_pylint() -> CheckResult:
 
 
 async def run_typescript() -> CheckResult:
-    """TypeScript checks."""
+    """Run standard npm hygiene (lint/fix) and tests."""
     if not os.path.exists("package.json"):
         return CheckResult("typescript", True, "Skipped (no package.json)")
 
@@ -306,10 +302,17 @@ async def run_typescript() -> CheckResult:
 
 
 async def check_python_package() -> CheckResult:
-    """Verify python package contents."""
+    """
+    Verify the Python package build artifact integrity.
+
+    This function:
+    1. Builds the wheel package.
+    2. Extracts the file list from the generated wheel.
+    3. Normalizes paths (to ignore version numbers and dynamic metadata).
+    4. Compares the file list against a known 'baseline' to prevent accidental leaks or omissions.
+    """
     shutil.rmtree("dist_py", ignore_errors=True)
 
-    # Build to isolated directory
     res = await run_command("python3 -m build --no-isolation --outdir dist_py")
     if not res.success:
         return CheckResult("py-build", False, f"Build failed:\n{res.output}")
@@ -327,10 +330,11 @@ async def check_python_package() -> CheckResult:
     with zipfile.ZipFile(whl_path, "r") as z:
         files = z.namelist()
 
+    # Normalize file names to avoid version-dependent diffs
+    # e.g., kotogram-0.1.0.dist-info -> kotogram-*.dist-info
     norm_files = []
     for f in files:
         f = re.sub(r"kotogram-.*\.dist-info", "kotogram-*.dist-info", f)
-        # Normalize license location (some builds put it in licenses/ subdir)
         f = f.replace(
             "kotogram-*.dist-info/licenses/LICENSE", "kotogram-*.dist-info/LICENSE"
         )
@@ -360,7 +364,12 @@ async def check_python_package() -> CheckResult:
 
 
 async def check_typescript_package() -> CheckResult:
-    """Verify TypeScript package contents."""
+    """
+    Verify the TypeScript package build artifact integrity.
+
+    Similar to the Python check, this ensures `npm pack` produces exactly the expected set of files
+    defined in `tests/typescript_package_baseline.txt`.
+    """
     if not os.path.exists("package.json"):
         return CheckResult("ts-pkg", True, "Skipped")
 
@@ -382,6 +391,7 @@ async def check_typescript_package() -> CheckResult:
         return CheckResult("tar-tf", False, f"tar failed:\n{res.output}")
 
     files = res.output.strip().splitlines()
+    # Normalize paths: 'package/lib/index.js' -> 'lib/index.js'
     norm_files = sorted([f.replace("package/", "", 1) for f in files])
 
     import tempfile
@@ -408,8 +418,63 @@ async def check_typescript_package() -> CheckResult:
     return CheckResult("ts-pkg-verify", True, "")
 
 
+def auto_fix_whitespaces() -> None:
+    """
+    Recursively remove trailing whitespace from all tracked source files.
+
+    This enforces a strict "no trailing whitespace" policy on every test run,
+    minimizing diff noise and maintaining code hygiene.
+    """
+    print("Auto-fixing trailing whitespace...")
+
+    for root, _, files in os.walk("."):
+        if (
+            ".git" in root
+            or ".venv" in root
+            or ".mypy_cache" in root
+            or "__pycache__" in root
+        ):
+            continue
+
+        for file in files:
+            if file.endswith(".py"):
+                path = os.path.join(root, file)
+                _strip_file(path)
+
+    if os.path.exists("train_style"):
+        _strip_file("train_style")
+
+    print_success("Whitespace cleanup complete.")
+
+
+def _strip_file(path: str) -> None:
+    """Strip trailing whitespace from a single file."""
+    with open(path, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+
+    new_lines = [line.rstrip() + "\n" for line in lines]
+
+    if lines != new_lines:
+        with open(path, "w", encoding="utf-8") as f:
+            f.writelines(new_lines)
+
+
 async def main() -> None:
     # pylint: disable=too-many-locals
+    """
+    Main entry point for the test runner.
+
+    Orchestration flow:
+    1. Static Exception Analysis (Blocking) - Fails fast if policy is violated.
+    2. Whitespace Auto-fix - Modifies files in place.
+    3. Git Status Snapshot - Records state to detect uncommitted changes during tests.
+    4. Parallel Static Checks (Ruff, Mypy, Vulture, Pylint, Pkg Verification).
+    5. Conditional Test Execution:
+       - If hygiene passes, runs TypeScript tests.
+       - Then runs Python tests (Pytest).
+       - Supports Confinement (Sandboxing) for Pytest on macOS.
+    6. Git Status Verification - Fails if tests generated untracked artifacts.
+    """
     import argparse
 
     parser = argparse.ArgumentParser(description="Kotogram Test Runner")
@@ -422,26 +487,59 @@ async def main() -> None:
         "--confinement-config",
         help="JSON configuration file for confinement (applies only to Pytest).",
     )
+    parser.add_argument(
+        "--specific-python-test",
+        help="Run a specific Python test module using unittest, skipping all other checks.",
+    )
     args = parser.parse_args()
 
-    # Capture initial git status
+    # --- Handling Specific Test Mode ---
+    if args.specific_python_test:
+        print(f"{BLUE}Running specific python test: {args.specific_python_test}{RESET}")
+
+        # Ensure PYTHONPATH includes project root and tests-py
+        cwd = os.getcwd()
+        sys.path.insert(0, os.path.join(cwd, "tests-py"))
+        sys.path.insert(0, cwd)
+
+        # Use subprocess to run unittest to ensure clean environment semantics match previous shell script
+        # explicitly setting PYTHONPATH in environment just to be safe
+        env = os.environ.copy()
+        env["PYTHONPATH"] = f".:tests-py:{env.get('PYTHONPATH', '')}"
+
+        cmd = [sys.executable, "-m", "unittest", args.specific_python_test]
+
+        # We don't use confinement for specific tests currently (per legacy test.sh behavior)
+        test_res = subprocess.run(cmd, env=env, check=False)
+        sys.exit(test_res.returncode)
+
+    exception_res = await verify_exception_usage()
+    if not exception_res.success:
+        print_error(exception_res.output)
+        sys.exit(1)
+    auto_fix_whitespaces()
+
     initial_git_status = subprocess.check_output(["git", "status", "--short"]).decode()
 
+    process_noqa = check_noqa_e402()
+
+    # Run Ruff first and serially to avoid race conditions (since it writes/formats files)
+    ruff_res = await run_ruff()
+    if not ruff_res.success:
+        print_error(ruff_res.output)
+        sys.exit(1)
+
     tasks = [
-        check_noqa_e402(),
-        check_broad_exceptions(),
-        check_whitelist_compliance(),
-        run_ruff(),
         run_mypy(),
         run_vulture(),
         run_pylint(),
         check_python_package(),
     ]
+    tasks.insert(0, process_noqa)
 
     pending = [asyncio.create_task(t) for t in tasks]
     failed = False
 
-    # Run general python static checks in parallel
     results = await asyncio.gather(*pending)
 
     for result in results:
@@ -449,7 +547,6 @@ async def main() -> None:
             print_error(result.output)
             failed = True
 
-    # Run TypeScript tasks serially to avoid build conflicts
     if not failed:
         ts_tasks = [run_typescript(), check_typescript_package()]
         for ts_t in ts_tasks:
@@ -464,12 +561,11 @@ async def main() -> None:
                 t.cancel()
         sys.exit(1)
 
-    # Run Pytest (if not hygiene mode)
     if not args.hygiene:
         print(f"\n{BLUE}Running Pytest...{RESET}")
 
         env = os.environ.copy()
-        env["CI"] = "true"
+        env["CI"] = "true"  # Force CI mode in tests
         pytest_cmd = [sys.executable, "-m", "pytest", "-x", "--no-header", "tests-py/"]
 
         if args.confinement_config:
@@ -484,24 +580,26 @@ async def main() -> None:
             with open(args.confinement_config, "r", encoding="utf-8") as f:
                 config = json.load(f)
 
-            # Ensure mode is run
             config["mode"] = "run"
 
             print(
                 f"{BLUE}Running Pytest confined with {args.confinement_config}{RESET}"
             )
 
-            # --- Confinement Verification Probe (Mac Only) ---
+            # --- Confinement Verification (Probe) ---
+            # To ensure the sandbox isn't just a placebo, we first try to break out of it.
+            # We run a small script that attempts to write a file to the project root.
+            # If the write SUCCEEDS, the confinement is broken -> we fail hard.
+            # If the write FAILS (OS error), the confinement is working -> we proceed.
+
             if sys.platform == "darwin":
                 print(f"{BLUE}Verifying confinement (Probe)...{RESET}")
                 probe_file = "confinement_probe_fail.txt"
-                # Python one-liner to attempt write
                 probe_cmd = [
                     sys.executable,
                     "-c",
                     f"import sys\ntry:\n    open('{probe_file}', 'w').close()\nexcept OSError:\n    sys.exit(1)",
                 ]
-                # Should fail
                 probe_res = confine_lib.confine(probe_cmd, config, env=env, check=False)  # type: ignore
 
                 if probe_res.returncode == 0:
@@ -517,9 +615,8 @@ async def main() -> None:
                 print(
                     f"{BLUE}Skipping confinement verification (Non-Mac detected){RESET}"
                 )
-            # --------------------------------------
             # pylint: disable=no-member
-            pytest_res = confine_lib.confine(pytest_cmd, config, env=env, check=False)  # type: ignore[attr-defined]
+            pytest_res = confine_lib.confine(pytest_cmd, config, env=env, check=False)  # type: ignore
         else:
             pytest_res = subprocess.run(
                 pytest_cmd,
@@ -530,7 +627,8 @@ async def main() -> None:
         if pytest_res.returncode != 0:
             sys.exit(pytest_res.returncode)
 
-    # Final git check
+    # Verify that the test run left the workspace clean.
+    # We do NOT want tests that succeed but leave behind trash or modify files.
     final_git_status = subprocess.check_output(["git", "status", "--short"]).decode()
     if initial_git_status != final_git_status:
         print_error(

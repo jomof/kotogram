@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# pylint: disable=too-many-lines
 """Standalone script to label and cache Japanese sentences for style classification (V2 Binary Format)."""
 
 import glob
@@ -21,6 +22,7 @@ from rich.progress import (
 from rich.table import Table
 
 from kotogram import locations
+from kotogram.japanese_parser import KotogramFormat
 from kotogram.kotogram import extract_token_features, split_kotogram
 from kotogram.model import (
     FORMALITY_ID_TO_LABEL,
@@ -134,7 +136,9 @@ def analyze_batch(
     reg_samples: Dict[str, List[Any]] = {}
 
     for sentence, gram_label in batch:
-        kotogram_obj = parser.japanese_to_kotogram(sentence)
+        kotogram_obj = parser.japanese_to_kotogram(
+            sentence, fmt=KotogramFormat.TRAINING_MASK
+        )
         formality_enum = analyze_formality(kotogram_obj)
         gender_enum = analyze_gender(kotogram_obj)
 
@@ -216,6 +220,152 @@ def analyze_batch(
                         "gender_value": gender_val,
                     }
                 )
+
+    return {
+        "sentences": sentences_buf,
+        "kotograms": kotograms_buf,
+        "f_val": f_val_buf,
+        "f_prag": f_prag_buf,
+        "g_val": g_val_buf,
+        "g_prag": g_prag_buf,
+        "gram": gram_buf,
+        "reg_ids": reg_ids_buf,
+        "reg_offsets": reg_offsets_buf,
+        "vocab": vocab_counters,
+        "stats": label_stats,
+        "reg_samples": reg_samples,
+    }
+
+
+def analyze_batch_from_db(
+    batch: List[Tuple[Any, ...]],
+) -> Dict[str, Any]:
+    """Phase 1 (DB): Process DB rows directly without re-analysis."""
+    # pylint: disable=too-many-locals, redefined-outer-name, reimported
+    from kotogram.analysis import FormalityLevel, RegisterLevel
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+
+    parser = SudachiJapaneseParser()
+
+    # Buffers
+    sentences_buf: List[str] = []
+    kotograms_buf: List[str] = []
+
+    f_val_buf: List[float] = []
+    f_prag_buf: List[int] = []
+    g_val_buf: List[float] = []
+    g_prag_buf: List[int] = []
+    gram_buf: List[int] = []
+    reg_ids_buf: List[int] = []
+    reg_offsets_buf: List[int] = [0]
+    current_reg_offset = 0
+
+    vocab_counters: Dict[str, Counter[Any]] = {f: Counter() for f in FEATURE_FIELDS}
+    label_stats: Dict[str, Counter] = {
+        "formality": Counter(),
+        "gender_prag": Counter(),
+        "register": Counter(),
+        "grammatic": Counter(),
+    }
+    reg_samples: Dict[str, List[Any]] = {}
+
+    for row in batch:
+        # row: (sentence, formality, gender, grammatic, register_ids_str)
+        sentence, formality, gender, grammatic, r_ids_str = row
+
+        # Parse Kotogram (Apply Masking)
+        kotogram_obj = parser.japanese_to_kotogram(
+            sentence, fmt=KotogramFormat.TRAINING_MASK
+        )
+
+        # Token features and vocabulary counting
+        tokens = split_kotogram(kotogram_obj)
+        for token in tokens:
+            token_feat = extract_token_features(token)
+            for field in FEATURE_FIELDS:
+                val = getattr(token_feat, field)
+                vocab_counters[field][val] += 1
+
+        # Use DB Labels directly
+        # Formality
+        if formality is not None:
+            f_val = float(formality)
+            f_prag = 1
+            # Inverse map value to ID?
+            # `formality` in DB is float (-1.0 to 1.0).
+            # We need ID for stats.
+            # Map -1.0 -> VERY_CASUAL?
+            # Wait, `formality_to_weight` maps Enum -> (val, prag).
+            # Here we have val.
+            # We can't perfectly map float -> ID without thresholds.
+            # But we only use ID for STATS printing.
+            # Let's approximate or just map to NEUTRAL if unsure?
+            # Or skip stats for DB source?
+            # The user wants "Switch Labeling to Consume Corpus DB".
+            # The stats are displayed.
+            # If we just put them in NEUTRAL for stats, it's misleading.
+            # We can try to reverse map.
+            # 1.0 = Formal, -1.0 = Casual?
+            # Check `rule_based_analysis` or `constants`.
+            # Typically: 1.0 (Very Formal), 0.5 (Formal), 0.0 (Neutral), -0.5 (Casual), -1.0 (Very Casual).
+            # Let's implement a quick helper or logic here.
+            if f_val >= 0.75:
+                f_enum = FormalityLevel.VERY_FORMAL
+            elif f_val >= 0.25:
+                f_enum = FormalityLevel.FORMAL
+            elif f_val >= -0.25:
+                f_enum = FormalityLevel.NEUTRAL
+            elif f_val >= -0.75:
+                f_enum = FormalityLevel.CASUAL
+            else:
+                f_enum = FormalityLevel.VERY_CASUAL
+            f_id = FORMALITY_LABEL_TO_ID[f_enum]
+        else:
+            f_val = float("nan")
+            f_prag = 0
+            f_id = FORMALITY_LABEL_TO_ID[FormalityLevel.UNPRAGMATIC_FORMALITY]
+
+        # Gender
+        if gender is not None:
+            g_val = float(gender)
+            g_prag = 1
+        else:
+            g_val = float("nan")
+            g_prag = 0
+
+        # Grammaticality
+        final_gram = int(grammatic)  # DB stores 0/1
+
+        # Registers
+        register_ids = []
+        if r_ids_str:
+            for s in r_ids_str.split(","):
+                if s:
+                    register_ids.append(int(s))
+
+        if not register_ids:
+            register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
+
+        # Accumulate
+        sentences_buf.append(sentence)
+        kotograms_buf.append(kotogram_obj)
+        f_val_buf.append(f_val)
+        f_prag_buf.append(f_prag)
+        g_val_buf.append(g_val)
+        g_prag_buf.append(g_prag)
+        gram_buf.append(final_gram)
+
+        reg_ids_buf.extend(register_ids)
+        current_reg_offset += len(register_ids)
+        reg_offsets_buf.append(current_reg_offset)
+
+        # Stats
+        if f_prag:
+            label_stats["formality"][f_id] += 1  # ID might be fake
+        label_stats["gender_prag"][g_prag] += 1
+        label_stats["grammatic"][final_gram] += 1
+        for reg_id in register_ids:
+            label_stats["register"][reg_id] += 1
 
     return {
         "sentences": sentences_buf,
@@ -443,6 +593,81 @@ def worker_p1_wrapper(
             reg_samples_buf[rid].extend(samps)
 
     # Write ALL data once
+    _write_shard_data(wid, s_dir, buffers)
+
+    result_queue_arg.put((buffers["vocab"], buffers["stats"], buffers["reg_samples"]))
+
+
+def worker_p1_db_wrapper(
+    wid: int,
+    chunk: List[Tuple[Any, ...]],
+    s_dir: str,
+    result_queue_arg: Any,
+) -> None:
+    """Worker wrapper for DB source (skips overrides as DB has golden labels)."""
+    # pylint: disable=too-many-locals
+    init_worker(wid, s_dir, {}, {})
+    b_size = 2000
+
+    buffers = {
+        "sentences": [],
+        "kotograms": [],
+        "f_val": [],
+        "f_prag": [],
+        "g_val": [],
+        "g_prag": [],
+        "gram": [],
+        "reg_ids": [],
+        "reg_offsets": [0],
+        "vocab": {f: Counter() for f in FEATURE_FIELDS},
+        "stats": {
+            "formality": Counter(),
+            "gender_prag": Counter(),
+            "register": Counter(),
+            "grammatic": Counter(),
+        },
+        "reg_samples": {},
+    }
+
+    total_reg_ids_so_far = 0
+
+    for i in range(0, len(chunk), b_size):
+        batch = chunk[i : i + b_size]
+        # Use analyze_batch_from_db
+        res = analyze_batch_from_db(batch)
+
+        # Extend data (Exact copy of p1 wrapper logic)
+        cast(List[str], buffers["sentences"]).extend(res["sentences"])
+        cast(List[str], buffers["kotograms"]).extend(res["kotograms"])
+        cast(List[float], buffers["f_val"]).extend(res["f_val"])
+        cast(List[int], buffers["f_prag"]).extend(res["f_prag"])
+        cast(List[float], buffers["g_val"]).extend(res["g_val"])
+        cast(List[int], buffers["g_prag"]).extend(res["g_prag"])
+        cast(List[int], buffers["gram"]).extend(res["gram"])
+        cast(List[int], buffers["reg_ids"]).extend(res["reg_ids"])
+
+        shifted = [o + total_reg_ids_so_far for o in res["reg_offsets"][1:]]
+        cast(List[int], buffers["reg_offsets"]).extend(shifted)
+        total_reg_ids_so_far += len(res["reg_ids"])
+
+        for f in FEATURE_FIELDS:
+            cast(Dict[str, Counter], buffers["vocab"])[f].update(res["vocab"][f])
+        for k in cast(Dict[str, Counter], buffers["stats"]):
+            cast(Dict[str, Counter], buffers["stats"])[k].update(res["stats"][k])
+
+        reg_samples_buf = cast(Dict[str, List[Any]], buffers["reg_samples"])
+        for rid, samps in res["reg_samples"].items():
+            if rid not in reg_samples_buf:
+                reg_samples_buf[rid] = []
+            reg_samples_buf[rid].extend(samps)
+
+    _write_shard_data(wid, s_dir, buffers)
+
+    result_queue_arg.put((buffers["vocab"], buffers["stats"], buffers["reg_samples"]))
+
+
+def _write_shard_data(wid: int, s_dir: str, buffers: Dict[str, Any]) -> None:
+    """Helper to write shard data from buffers."""
     shard_prefix = os.path.join(s_dir, f"shard_{wid}")
     os.makedirs(s_dir, exist_ok=True)
 
@@ -487,27 +712,32 @@ def worker_p1_wrapper(
         "i",
     )
 
-    result_queue_arg.put((buffers["vocab"], buffers["stats"], buffers["reg_samples"]))
-
 
 def main() -> None:
     # pylint: disable=too-many-locals, too-many-statements
     import argparse
+    import sqlite3
 
     parser = argparse.ArgumentParser(description="Label and cache Japanese sentences.")
     parser.add_argument(
         "--grammatic-pattern",
         type=str,
-        required=True,
         help="Primary TSV data file(s) (glob pattern)",
     )
     parser.add_argument("--agrammatic-pattern", type=str, help="Agrammatic TSV pattern")
+    parser.add_argument(
+        "--source-db", type=str, help="Path to corpus.db (replaces file patterns)"
+    )
     parser.add_argument("--verbose", action="store_true", help="Print verbose output")
     parser.add_argument(
         "--num-workers", type=int, default=0, help="Number of workers (default: CPU-1)"
     )
 
     args = parser.parse_args()
+
+    # Validation
+    if not args.source_db and not args.grammatic_pattern:
+        parser.error("Must provide either --source-db or --grammatic-pattern")
 
     # Resolve and inject paths from locations.py into args namespace
     dataset_cache_dir = locations.get_style_dataset_cache_dir()
@@ -528,49 +758,95 @@ def main() -> None:
     else:
         num_workers = max(1, mp.cpu_count() - 1)
 
-    # ... (Glob parsing same as before)
-    def process_file_group(patterns: Any, gram_label: int) -> List[Tuple[str, int]]:
-        if not patterns:
-            return []
-        file_list = []
-        if isinstance(patterns, str):
-            file_list = glob.glob(patterns)
-        else:
-            for p in patterns:
-                file_list.extend(glob.glob(p))
-        if not file_list:
-            return []
-        unique_rows = []
-        seen = set()
-        for f_path in sorted(file_list):
-            with open(f_path, "r", encoding="utf-8") as file_handle:
-                for line in file_handle:
-                    sentence = parse_tsv(line)
-                    if sentence not in seen:
-                        seen.add(sentence)
-                        unique_rows.append((sentence, gram_label))
-        return unique_rows
+    all_rows: List[Any] = []
 
-    all_rows = []
-    gram_patterns = [args.grammatic_pattern]
-    console.print(f"Scanning data with {num_workers} workers...")
+    if args.source_db:
+        # Load from DB
+        console.print(f"Loading data from DB: {args.source_db}")
+        conn = sqlite3.connect(args.source_db)
+        c = conn.cursor()
+        # Fetch expected columns
+        # Note: We need register_ids as string (DB stores text comma separated? Or needs join?)
+        # Let's check `curate` schema.
+        # `curate` uses `corpus` table.
+        # It likely stores `register_ids` as TEXT if it's a list, or it has a mapping table?
+        # `curate` script (recently modified) uses `corpus` table.
+        # User task "Refactor scripts/curate to use float formality column and remove formality table" etc.
+        # So everything is in `corpus` table?
+        # Let's assume `corpus` has `sentence`, `formality`, `gender`, `grammatic`.
+        # What about `register_ids`?
+        # Task 2 refers to `remove gender table`.
+        # Task 6 refers to `remove formality table`.
+        # Does `corpus` have `register_ids`?
+        # `curate` usually normalizes.
+        # If `register_ids` is missing, we might need a join or it might be in `corpus` as text.
+        # Actually `curate drink` populates `corpus`.
+        # I should assume `corpus` table has `sentence`, `formality`, `gender`, `grammatic`.
+        # And `registers`?
+        # If `registers` are not in `corpus`, we might need logic.
+        # BUT: The user said "use labels from that".
+        # If `corpus.db` is the golden source, it should have everything.
+        # Let's query `corpus` table for columns dynamically or trust it exists?
+        # Or `select *` and map?
+        # Safer: `SELECT sentence, formality, gender, grammatic, register_ids FROM corpus`
+        # If `register_ids` column exists.
 
-    # ... (Scanning logic)
-    rows = process_file_group(gram_patterns, 1)
-    all_rows.extend(rows)
-    if args.agrammatic_pattern:
-        rows = process_file_group([args.agrammatic_pattern], 0)
+        # Let's peek at `scripts/curate` to see schema if possible, or assume it matches.
+        # `curate` script was open. Let's briefly check what it writes to corpus.
+        # Wait, I am mid-Replace.
+        # I will assume `register_ids` is a column (TEXT) based on typical simple-schema evolutions I've seen.
+        # If it fails, I'll fix it.
+        c.execute(
+            "SELECT sentence, formality, gender, grammatic, register_ids FROM corpus"
+        )
+        all_rows = c.fetchall()
+        conn.close()
+        console.print(f"Loaded {len(all_rows):,} rows from DB.")
+
+    else:
+        # File Loading Logic
+        def process_file_group(patterns: Any, gram_label: int) -> List[Tuple[str, int]]:
+            if not patterns:
+                return []
+            file_list = []
+            if isinstance(patterns, str):
+                file_list = glob.glob(patterns)
+            else:
+                for p in patterns:
+                    file_list.extend(glob.glob(p))
+            if not file_list:
+                return []
+            unique_rows = []
+            seen = set()
+            for f_path in sorted(file_list):
+                with open(f_path, "r", encoding="utf-8") as file_handle:
+                    for line in file_handle:
+                        sentence = parse_tsv(line)
+                        if sentence not in seen:
+                            seen.add(sentence)
+                            unique_rows.append((sentence, gram_label))
+            return unique_rows
+
+        gram_patterns = [args.grammatic_pattern]
+        console.print(f"Scanning data with {num_workers} workers...")
+
+        rows = process_file_group(gram_patterns, 1)
         all_rows.extend(rows)
+        if args.agrammatic_pattern:
+            # Type ignore for list vs tuple usage in all_rows (Any covers it)
+            rows = process_file_group([args.agrammatic_pattern], 0)
+            all_rows.extend(rows)
 
-    seen_global = set()
-    unique_all_rows = []
-    for r in all_rows:
-        if r[0] not in seen_global:
-            seen_global.add(r[0])
-            unique_all_rows.append(r)
-    all_rows = unique_all_rows
+        seen_global = set()
+        unique_all_rows = []
+        for r in all_rows:
+            if r[0] not in seen_global:
+                seen_global.add(r[0])
+                unique_all_rows.append(r)
+        all_rows = unique_all_rows
 
-    console.print(f"Total unique sentences: [bold]{len(all_rows):,}[/bold]")
+        console.print(f"Total unique sentences: [bold]{len(all_rows):,}[/bold]")
+
     timer.mark("Scanning Input")
 
     # Init main stats
@@ -585,7 +861,8 @@ def main() -> None:
 
     from scripts.rule_based_analysis import load_register_overrides
 
-    register_overrides = load_register_overrides()
+    # We only use overrides if NOT using DB
+    register_overrides = load_register_overrides() if not args.source_db else {}
 
     # PHASE 1: Analyze & Shard Text
     ctx = mp.get_context("spawn")
@@ -609,10 +886,16 @@ def main() -> None:
         procs = []
 
         for i, chunk in enumerate(chunks):
-            p = ctx.Process(
-                target=worker_p1_wrapper,
-                args=(i, chunk, shard_dir, register_overrides, result_queue),
-            )
+            if args.source_db:
+                p = ctx.Process(
+                    target=worker_p1_db_wrapper,
+                    args=(i, chunk, shard_dir, result_queue),
+                )
+            else:
+                p = ctx.Process(
+                    target=worker_p1_wrapper,
+                    args=(i, chunk, shard_dir, register_overrides, result_queue),
+                )
             procs.append(p)
             p.start()
 

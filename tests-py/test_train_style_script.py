@@ -226,6 +226,57 @@ class TestTrainStyleScript(unittest.TestCase):
                     # Verify performance profile coherence (clean jsonl, present txt)
                     bottle.assert_coherent_performance_profile()
 
+    def test_label_from_db(self):
+        """Verify labeling directly from corpus.db."""
+        import sqlite3
+
+        env = {"TRAIN_PROFILE": "1"}
+        with Bottle(self, env=env) as bottle:
+            # Create a dummy corpus.db in data dir
+            data_dir = bottle.resolve_path("[data]")
+            os.makedirs(data_dir, exist_ok=True)
+            db_path = os.path.join(data_dir, "corpus.db")
+
+            conn = sqlite3.connect(db_path)
+            c = conn.cursor()
+            c.execute(
+                "CREATE TABLE corpus (sentence TEXT, formality REAL, gender REAL, grammatic INTEGER, register_ids TEXT)"
+            )
+            # Add some test data
+            data = [
+                (
+                    "これはテストです",
+                    1.0,
+                    0.5,
+                    1,
+                    "1,2",
+                ),  # Formal, mixed gender, grammatic, reg 1,2
+                ("あえいうえお", None, None, 0, ""),  # Agrammatic
+            ]
+            c.executemany("INSERT INTO corpus VALUES (?, ?, ?, ?, ?)", data)
+            conn.commit()
+            conn.close()
+
+            # Run labeling (no TSV files present)
+            # This implicitly asserts that TSVs are not required if DB is present
+            bottle.train_style("--label")
+
+            # Verify outputs
+            # Check manifest
+            expected_label_manifest = [
+                "[.cache]/style_dataset/vocab.json",
+                "[.cache]/style_dataset/sentences.txt",
+                "[.cache]/style_dataset/kotograms.txt",
+                "[.cache]/style_dataset/offsets.bin",
+                "[.cache]/style_dataset/labels.bin_*",
+                "[.cache]/style_dataset/feat_*.bin",
+                "[.cache]/style_dataset/kc_*.bin",
+                "[models]/style-support/config.json",
+                "[models]/style/tokenizer.json",
+                "[data]/corpus.db",
+            ]
+            bottle.assert_dir_layout(expected_label_manifest)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -3,6 +3,7 @@
 from typing import Any, Dict, List, Optional
 
 from kotogram.exceptions import MissingMappingError
+from kotogram.kotogram import Token
 
 from .japanese_parser import (
     CONJUGATED_FORM_MAP,
@@ -12,6 +13,7 @@ from .japanese_parser import (
     POS3_MAP,
     POS_MAP,
     JapaneseParser,
+    KotogramFormat,
 )
 
 
@@ -38,15 +40,17 @@ class SudachiJapaneseParser(JapaneseParser):
         self.tokenizer = self.dict_obj.create()
         self.validate = validate
 
-    def japanese_to_kotogram(self, text: str) -> str:
+    def japanese_to_kotogram(self, text: str, fmt: str = KotogramFormat.DEFAULT) -> str:
         """Convert Japanese text to kotogram compact representation.
 
         Args:
-            text: Japanese text to parse
+            text: Raw Japanese input string.
+            fmt: Format option (e.g. KotogramFormat.TRAINING_MASK for anonymization).
 
         Returns:
             Kotogram compact sentence representation with encoded linguistic features
         """
+        # from kotogram.japanese_parser import KotogramFormat # Removed, moved to top-level
         from kotogram.validation import ensure_string
 
         ensure_string(text, "text")
@@ -60,20 +64,32 @@ class SudachiJapaneseParser(JapaneseParser):
         # Normalize double exclamation mark (‼ -> !!) for consistent tokenization
         text = text.replace("‼", "!!")
 
-        tokens = self.tokenizer.tokenize(text)
-        return self._tokens_to_kotogram(tokens)
+        sudachi_tokens = self.tokenizer.tokenize(text)
 
-    def _tokens_to_kotogram(self, tokens: List[Any]) -> str:
+        # Convert to Kotogram Token objects first
+        tokens = self._to_kotogram_tokens(sudachi_tokens)
+
+        # Handle Training Mask (Given Name Replacement)
+        if fmt == KotogramFormat.TRAINING_MASK:
+            from kotogram.masking import apply_training_mask
+
+            apply_training_mask(tokens)
+
+        # Serialize to kotogram string
+        return self._tokens_to_string(tokens)
+
+    def _to_kotogram_tokens(self, tokens: List[Any]) -> List["Token"]:
         # pylint: disable=cell-var-from-loop
-        """Convert Sudachi tokens to kotogram format.
+        """Convert Sudachi tokens to Kotogram Token objects.
 
         Args:
             tokens: List of Sudachi token objects
 
         Returns:
-            Kotogram compact sentence representation
+            List of kotogram.Token objects
         """
-        parsed_tokens = []
+
+        k_tokens = []
 
         for token in tokens:
             # Extract token features
@@ -84,9 +100,7 @@ class SudachiJapaneseParser(JapaneseParser):
 
             # Parse POS tuple
             # Format: (POS, POS1, POS2, POS3, conjugation_type, conjugation_form)
-            parsed_token = {
-                "surface": surface,
-            }
+            features = {}
 
             def add(field: str, value: Optional[str]) -> None:
                 """Add field to token dict if value is not empty."""
@@ -95,7 +109,7 @@ class SudachiJapaneseParser(JapaneseParser):
                 # Allow "*" specifically for lemma to indicate explicit surface identity
                 if value == "*" and field != "lemma":
                     return
-                parsed_token[field] = value
+                features[field] = value
 
             def validated_lookup(
                 mapping: Dict[str, str], key: str, map_name: str
@@ -157,39 +171,43 @@ class SudachiJapaneseParser(JapaneseParser):
                 reading_form if reading_form != surface else None,
             )
 
-            parsed_tokens.append(parsed_token)
+            k_tokens.append(Token(surface, features=features))
 
-        # Convert parsed tokens to kotogram format
-        return self._raw_tokens_to_kotogram(parsed_tokens)
+        return k_tokens
 
-    def _raw_token_to_kotogram(self, token: Dict[str, Any]) -> str:
+    def _tokens_to_string(self, tokens: List["Token"]) -> str:
+        """Serialize a list of Kotogram Tokens to compact string format."""
+        parts = []
+        for token in tokens:
+            parts.append(self._token_to_string(token))
+        return "".join(parts)
+
+    def _token_to_string(self, token: "Token") -> str:
         # pylint: disable=too-many-locals
-        """Convert a single parsed token to kotogram format.
+        """Convert a single Token object to kotogram fragment."""
+        from kotogram.japanese_parser import (
+            OBSCURE_KOTOGRAM,
+        )
 
-        Args:
-            token: Dictionary containing parsed token features
+        surface = token.surface
+        features = token.features or {}
 
-        Returns:
-            Kotogram representation of the token
-        """
-        surface = token["surface"]
-        pos = token.get("pos", "")
-        pos_detail_1 = token.get("pos_detail_1")
-        pos_detail_2 = token.get("pos_detail_2")
+        # Access features with defaults
+        pos = features.get("pos")
+        pos_detail_1 = features.get("pos_detail_1")
+        pos_detail_2 = features.get("pos_detail_2")
+        pos_detail_3 = features.get("pos_detail_3")
 
-        conjugated_type = token.get("conjugated_type")
-        conjugated_form = token.get("conjugated_form")
-        lemma = token.get("lemma")
-        base = token.get("base_orthography", None)
-        pronunciation = token.get("surface_pronunciation", None)
-
-        pos_detail_3 = token.get("pos_detail_3")
-        pos_code = pos if pos else ""
+        conjugated_type = features.get("conjugated_type")
+        conjugated_form = features.get("conjugated_form")
+        lemma = features.get("lemma")
+        base = features.get("base_orthography")
+        pronunciation = features.get("surface_pronunciation")
 
         pos_code = pos if pos else ""
 
-        # Construct inner content first
         inner = f"ˢ{surface}ᵖ{pos_code}"
+
         if pos_detail_1:
             inner += f":{pos_detail_1}"
         if pos_detail_2 and pos_detail_2 != "general":
@@ -212,23 +230,7 @@ class SudachiJapaneseParser(JapaneseParser):
 
         inner = obscure_kotogram_token_string(inner)
 
-        from kotogram.japanese_parser import OBSCURE_KOTOGRAM
-
         if OBSCURE_KOTOGRAM == 1:
             return f"[{inner}]"
 
         return f"⌈{inner}⌉"
-
-    def _raw_tokens_to_kotogram(self, tokens: List[Dict[str, Any]]) -> str:
-        """Convert a list of parsed tokens to kotogram format.
-
-        Args:
-            tokens: List of token dictionaries
-
-        Returns:
-            Kotogram representation of the full sentence
-        """
-        recombined = ""
-        for token in tokens:
-            recombined += self._raw_token_to_kotogram(token)
-        return recombined

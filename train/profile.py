@@ -1,6 +1,7 @@
 """Profiling and timing utilities."""
 
 import cProfile
+import importlib.util
 import json
 import os
 import platform
@@ -13,11 +14,11 @@ import time
 from datetime import datetime
 from typing import Any, List, Optional
 
-try:
+if importlib.util.find_spec("memray"):
     import memray
 
-    memray: Any  # type: ignore
-except ImportError:
+    memray: Any  # type: ignore # pylint: disable=no-member
+else:
     memray = None  # type: ignore
 
 

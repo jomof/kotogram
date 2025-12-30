@@ -157,9 +157,36 @@ def load_training_state(
     # Load model weights
     model_state = checkpoint["model_state_dict"]
     # Handle DDP 'module.' prefix
+    # Handle DDP 'module.' prefix
     if not isinstance(model, torch.nn.parallel.DistributedDataParallel):
         model_state = {k.replace("module.", ""): v for k, v in model_state.items()}
-    model.load_state_dict(model_state)
+
+    # Use strict=False to get missing keys without exception, avoiding banned try-except RuntimeError
+    missing_keys, unexpected_keys = model.load_state_dict(model_state, strict=False)
+
+    # Filter out known safe missing keys (kc_head initialization)
+    # If we are loading a non-KC checkpoint into a KC model, kc_head weights will be missing.
+    real_missing = [k for k in missing_keys if not k.startswith("kc_head.")]
+
+    if real_missing or unexpected_keys:
+        err_msgs = []
+        if real_missing:
+            err_msgs.append(
+                f"Missing key(s) in state_dict: {', '.join(map(repr, real_missing))}."
+            )
+        if unexpected_keys:
+            err_msgs.append(
+                f"Unexpected key(s) in state_dict: {', '.join(map(repr, unexpected_keys))}."
+            )
+        raise RuntimeError(
+            f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t"
+            + "\n\t".join(err_msgs)
+        )
+
+    if missing_keys:
+        print(
+            f"Warning: Missing KC head weights in checkpoint. Initializing from scratch. (Missing: {len(missing_keys)} keys)"
+        )
 
     # Load optimizer
     if optimizer is not None and "optimizer_state_dict" in checkpoint:

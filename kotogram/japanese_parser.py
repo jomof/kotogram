@@ -14,8 +14,18 @@ __all__ = [
     "CONJUGATED_TYPE_MAP",
     "CONJUGATED_FORM_MAP",
     "POS_TO_CHARS",
+    "POS_TO_CHARS",
     "JapaneseParser",
+    "KotogramFormat",
 ]
+
+
+class KotogramFormat:
+    """Format options for kotogram generation."""
+
+    DEFAULT = "Default"
+    TRAINING_MASK = "TrainingMask"
+
 
 # Part-of-speech mappings
 POS_MAP = {
@@ -317,11 +327,12 @@ class JapaneseParser(ABC):
     """
 
     @abstractmethod
-    def japanese_to_kotogram(self, text: str) -> str:
-        """Convert Japanese text to kotogram compact representation.
+    def japanese_to_kotogram(self, text: str, fmt: str = "Default") -> str:
+        """Parse Japanese text into Kotogram format.
 
         Args:
             text: Japanese text to parse
+            fmt: Format option (e.g. KotogramFormat.TRAINING_MASK)
 
         Returns:
             Kotogram compact sentence representation

@@ -81,14 +81,11 @@ def populate_test_data(root_dir: str, project_root: str):
     agrammatic_samples: Set[str] = set()
 
     def add_samples(condition: str, target_set: Set[str], count: int = 5):
-        try:
-            query = f"SELECT sentence FROM corpus WHERE {condition} LIMIT {count}"
-            cursor.execute(query)
-            rows = cursor.fetchall()
-            for row in rows:
-                target_set.add(row[0])
-        except sqlite3.Error as e:
-            print(f"Error querying {condition}: {e}")
+        query = f"SELECT sentence FROM corpus WHERE {condition} LIMIT {count}"
+        cursor.execute(query)
+        rows = cursor.fetchall()
+        for row in rows:
+            target_set.add(row[0])
 
     # 1. Gender Diversity
     # gender: -1.0 (Male), 1.0 (Female), 0.0 (Neutral), NULL (Unpragmatic)
@@ -101,12 +98,9 @@ def populate_test_data(root_dir: str, project_root: str):
     register_samples: Dict[str, Set[str]] = {}
 
     # Read registers from the DB
-    try:
-        cursor.execute("SELECT id, label FROM register")
-        db_registers = cursor.fetchall()  # List of (id, label)
-    except sqlite3.Error as e:
-        print(f"Error reading registers: {e}")
-        db_registers = []
+    # Read registers from the DB
+    cursor.execute("SELECT id, label FROM register")
+    db_registers = cursor.fetchall()  # List of (id, label)
 
     for reg_id, reg_label_str in db_registers:
         reg_name = reg_label_str.lower()
@@ -128,26 +122,54 @@ def populate_test_data(root_dir: str, project_root: str):
 
     conn.close()
 
-    # Write sampled data to TSV files
-    # Note: jpn_sentences_sampled.tsv (Grammatic - Gender/Formality/Generic)
-    #       jpn_grammatic_<register>.tsv (Grammatic - Register specific)
-    #       jpn_agrammatic_sampled.tsv (Agrammatic)
+    # Write sampled data to corpus.db in data_dir for train_style to consume
 
-    gram_path = os.path.join(data_dir, "jpn_sentences_sampled.tsv")
-    with open(gram_path, "w", encoding="utf-8") as f:
-        for s in grammatic_samples:
-            f.write(s + "\n")
+    # Schema must match what label.py expects:
+    # sentence, formality, gender, grammatic, register_ids (TEXT)
 
-    for reg_name, samples in register_samples.items():
-        reg_path = os.path.join(data_dir, f"jpn_sentences_{reg_name}.tsv")
-        with open(reg_path, "w", encoding="utf-8") as f:
-            for s in samples:
-                f.write(s + "\n")
+    new_db_path = os.path.join(data_dir, "corpus.db")
 
-    agram_path = os.path.join(data_dir, "jpn_agrammatic_sampled.tsv")
-    with open(agram_path, "w", encoding="utf-8") as f:
-        for s in agrammatic_samples:
-            f.write(s + "\n")
+    # Check if target DB is already initialized or just delete it to be safe
+    if os.path.exists(new_db_path):
+        os.remove(new_db_path)
+
+    # Re-open source DB to fetch full rows for the collected sentences
+    source_conn = sqlite3.connect(db_path)
+    source_c = source_conn.cursor()
+
+    # Init target DB
+    target_conn = sqlite3.connect(new_db_path)
+    target_c = target_conn.cursor()
+    target_c.execute(
+        "CREATE TABLE corpus (sentence TEXT, formality REAL, gender REAL, grammatic INTEGER, register_ids TEXT)"
+    )
+
+    all_sentences = grammatic_samples.union(agrammatic_samples)
+    for s in register_samples.values():
+        all_sentences.update(s)
+
+    # Fetch and insert
+    for sent in all_sentences:
+        # Fetch detailed info from source
+        # Note: source corpus schema might differ slightly?
+        # Source DB in `project_root/data/corpus.db` has likely full schema.
+        # We need sentence, formality, gender, grammatic, register_ids.
+        # register_ids might not be a column in source if it is old.
+        # But let's try.
+        source_c.execute(
+            "SELECT sentence, formality, gender, grammatic, register_ids FROM corpus WHERE sentence = ?",
+            (sent,),
+        )
+        row = source_c.fetchone()
+        if row:
+            target_c.execute("INSERT INTO corpus VALUES (?, ?, ?, ?, ?)", row)
+        else:
+            # Fallback if sentence not found (unlikely)
+            pass
+
+    source_conn.close()
+    target_conn.commit()
+    target_conn.close()
 
 
 # pylint: disable=too-many-locals
@@ -454,6 +476,14 @@ class Bottle:
         # Let's replace the whole sentence.
         combined = re.sub(
             r"Warning: find_unused_parameters=True was specified in DDP constructor.*?(?=\n|\[)",
+            "",
+            combined,
+            flags=re.DOTALL,
+        )
+
+        # Allow "Warning: Missing KC head weights" which is expected when upgrading checkpoints
+        combined = re.sub(
+            r"Warning: Missing KC head weights in checkpoint.*?(?=\n)",
             "",
             combined,
             flags=re.DOTALL,

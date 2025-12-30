@@ -26,11 +26,22 @@ class TestCurateNormalization(unittest.TestCase):
 
     def test_drink_normalization(self):
         # Create input with non-normalized characters
-        input_file = os.path.join(self.data_dir, "jpn_sentences.tsv")
+        tsv_name = "jpn_sentences.tsv"
+        input_file = os.path.join(self.data_dir, tsv_name)
         with open(input_file, "w", encoding="utf-8") as f:
             f.write("あの…\n")  # Ellipsis char -> ...
             f.write("えっと‼\n")  # Double Exclamation -> !!
             f.write("その...ままで\n")  # Already normalized
+
+        # Create corpus.tar.gz
+        import tarfile
+
+        tar_path = os.path.join(self.data_dir, "corpus.tar.gz")
+        with tarfile.open(tar_path, "w:gz") as tar:
+            tar.add(input_file, arcname=tsv_name)
+
+        # Remove raw file to ensure usage of tarball
+        os.remove(input_file)
 
         # Run curate drink
         env = os.environ.copy()
