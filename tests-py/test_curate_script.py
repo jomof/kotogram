@@ -30,22 +30,39 @@ class TestCurateScript(unittest.TestCase):
             )  # Conflicting: Danseigo + Joseigo -> Unpragmatic Gender -> Gram=0
 
         # 2. Agrammatic Input
-        self.agrammatic_file = os.path.join(
-            self.data_dir, "jpn_agrammatic_sentences.tsv"
-        )
+        agrammatic_name = "jpn_agrammatic_sentences.tsv"
+        self.agrammatic_file = os.path.join(self.data_dir, agrammatic_name)
         with open(self.agrammatic_file, "w", encoding="utf-8") as f:
             f.write("ペンはこれ\n")
 
         # 3. Register Overrides (to force conflict logic)
         # Danseigo: 俺 (Ore)
-        self.danseigo_file = os.path.join(self.data_dir, "jpn_sentences_danseigo.tsv")
+        danseigo_name = "jpn_sentences_danseigo.tsv"
+        self.danseigo_file = os.path.join(self.data_dir, danseigo_name)
         with open(self.danseigo_file, "w", encoding="utf-8") as f:
             f.write("俺はあたしだ\n")
 
         # Joseigo: あたし (Atashi)
-        self.joseigo_file = os.path.join(self.data_dir, "jpn_sentences_joseigo.tsv")
+        joseigo_name = "jpn_sentences_joseigo.tsv"
+        self.joseigo_file = os.path.join(self.data_dir, joseigo_name)
         with open(self.joseigo_file, "w", encoding="utf-8") as f:
             f.write("俺はあたしだ\n")
+
+        # Create corpus.tar.gz
+        import tarfile
+
+        tar_path = os.path.join(self.data_dir, "corpus.tar.gz")
+        with tarfile.open(tar_path, "w:gz") as tar:
+            tar.add(self.input_file, arcname="jpn_sentences.tsv")
+            tar.add(self.agrammatic_file, arcname=agrammatic_name)
+            tar.add(self.danseigo_file, arcname=danseigo_name)
+            tar.add(self.joseigo_file, arcname=joseigo_name)
+
+        # Clean up raw files to ensure strict archival usage
+        os.remove(self.input_file)
+        os.remove(self.agrammatic_file)
+        os.remove(self.danseigo_file)
+        os.remove(self.joseigo_file)
 
         # Determine script path (absolute)
         # Determine script path (absolute)

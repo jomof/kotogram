@@ -65,10 +65,6 @@ if [ -f "package.json" ]; then
     npm install
 fi
 
-# Install the project in editable mode
-echo "Installing kotogram in editable mode..."
-python3 -m pip install -e .
-
 echo ""
 echo "========================================"
 echo "Setup complete!"

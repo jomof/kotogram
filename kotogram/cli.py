@@ -5,6 +5,7 @@ import argparse
 import json
 import sys
 
+from kotogram.japanese_parser import KotogramFormat
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 
 
@@ -22,7 +23,9 @@ def _get_kotogram_from_args(args: argparse.Namespace) -> str:
     # If it doesn't look like a kotogram, parse it first
     if not text.startswith("⌈"):
         parser = get_parser()
-        return parser.japanese_to_kotogram(text)
+        # Always use training mask for inference/analysis commands (grammar, etc)
+        # to ensure names are anonymized and match training distribution.
+        return parser.japanese_to_kotogram(text, fmt=KotogramFormat.TRAINING_MASK)
     return text
 
 
@@ -34,7 +37,11 @@ def cmd_parse(args: argparse.Namespace) -> int:
     if text == "-":
         text = sys.stdin.read().strip()
 
-    kotogram = parser.japanese_to_kotogram(text)
+    fmt = KotogramFormat.DEFAULT
+    if getattr(args, "format_training_mask", False):
+        fmt = KotogramFormat.TRAINING_MASK
+
+    kotogram = parser.japanese_to_kotogram(text, fmt=fmt)
     print(kotogram)
     return 0
 
@@ -152,6 +159,11 @@ def main() -> int:
     parse_parser.add_argument(
         "text",
         help="Japanese text to parse (use '-' to read from stdin)",
+    )
+    parse_parser.add_argument(
+        "--format-training-mask",
+        action="store_true",
+        help="Apply training mask (replace given names with placeholder)",
     )
     parse_parser.set_defaults(func=cmd_parse)
 

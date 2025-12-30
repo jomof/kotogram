@@ -8,8 +8,7 @@ fast imports in multiprocessing workers.
 import json
 import os
 from collections import Counter
-from functools import lru_cache
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List
 
 from kotogram.kotogram import extract_token_features, split_kotogram
 
@@ -160,48 +159,6 @@ class Tokenizer:
         """Encode a Kotogram string to feature ID sequences."""
         features_list = self.extract_features(kotogram)
         return self.encode_features(features_list, add_cls, add_to_vocab)
-
-    def encode_fast(self, kotogram: str) -> Dict[str, List[int]]:
-        """Optimized encoding using caching for frozen vocabularies (e.g. inference/labeling)."""
-        # Initialize columns with CLS token
-        columns = [[self.cls_id] for _ in FEATURE_FIELDS]
-
-        # Tokenize
-        tokens = split_kotogram(kotogram)
-
-        # Use cached lookup for body tokens
-        for token in tokens:
-            token_ids = self._get_cached_ids(token)
-            for i, tid in enumerate(token_ids):
-                columns[i].append(tid)
-
-        return dict(zip(FEATURE_FIELDS, columns))
-
-    @lru_cache(maxsize=50000)
-    def _get_cached_ids(self, token_str: str) -> Tuple[int, ...]:
-        """Cache-enabled ID lookup for a single token string."""
-        # Note: We use extract_token_features (which is also cached)
-        # But this avoids the getattr and dict lookup loop.
-        feats = extract_token_features(token_str)
-
-        # Direct attribute access matches FEATURE_FIELDS order
-        # FEATURE_FIELDS = ['surface', 'pos', ...]
-        ids = []
-        for field in FEATURE_FIELDS:
-            # We must handle the field access dynamically or hardcode for speed?
-            # Dynamic is cleaner.
-            val = getattr(feats, field)
-            # Fast path for frozen/inference
-            vocab = self.field_vocabs[field]
-            ids.append(vocab.get(val, 1))  # 1 is UNK_TOKEN default
-
-        return tuple(ids)
-
-    def freeze(self) -> None:
-        """Freeze vocabulary - new values will map to UNK."""
-        self._frozen = True
-        # Clear cache as logic might change (though _get_cached_ids assumes frozen)
-        self._get_cached_ids.cache_clear()
 
     def save(self, path: str, **kwargs: Any) -> None:
         """Save tokenizer vocabularies to JSON file atomically."""

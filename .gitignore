@@ -74,5 +74,6 @@ env/
 # Build artifacts (prevent cross-contamination)
 *.whl
 *.tar.gz
+!data/corpus.tar.gz
 .cache/
 test-dist/

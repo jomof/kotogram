@@ -188,8 +188,6 @@ def handle_special_modes(args: argparse.Namespace) -> Optional[int]:
 def run_preprocessing(
     args: argparse.Namespace,
     env: dict,
-    gram_data_pattern: str,
-    agrammatic_pattern: str,
 ) -> bool:
     """Run preprocessing/labeling phase."""
     style_cache_dir = locations.get_style_dataset_cache_dir()
@@ -207,19 +205,29 @@ def run_preprocessing(
     t_label_start = time.perf_counter()
 
     if not skip_label:
+        data_dir = locations.get_data_dir()
+        corpus_db_path = os.path.join(data_dir, "corpus.db")
+
+        if not os.path.exists(corpus_db_path):
+            print(f"ERROR: corpus.db not found at {corpus_db_path}.", file=sys.stderr)
+            print("train_style now requires corpus.db for labeling.", file=sys.stderr)
+            print("Please run 'curate drink' to generate the database.", file=sys.stderr)
+            return False
+
         label_cmd = [
             sys.executable,
             "-m",
             "scripts.label",
-            "--grammatic-pattern",
-            gram_data_pattern,
+            "--source-db",
+            corpus_db_path,
         ]
+
         if args.force_relabel:
             label_cmd.append("--force-relabel")
-        if agrammatic_pattern:
-            label_cmd.extend(["--agrammatic-pattern", agrammatic_pattern])
 
-        print("Executing preprocessing script...")
+        # Legacy pattern arguments are dropped as per user request ("Don't fall back")
+
+        print("Executing preprocessing script (Source: corpus.db)...")
         ret = run_command(label_cmd, env, PROJECT_ROOT)
         print(f"Preprocessing script took {time.perf_counter() - t_label_start:.1f}s")
         if ret != 0:
@@ -543,25 +551,10 @@ def parse_arguments() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def get_data_patterns(args: argparse.Namespace) -> tuple[str, str]:
-    """Resolve data file patterns."""
-    data_dir = locations.get_data_dir()
-    gram_data_pattern = os.path.join(data_dir, "jpn_sentences*.tsv")
-
-    if args.no_agrammatic_data:
-        agrammatic_pattern = ""
-    elif args.agrammatic_pattern:
-        agrammatic_pattern = args.agrammatic_pattern
-    else:
-        agrammatic_pattern = os.path.join(data_dir, "jpn_agrammatic*.tsv")
-
-    return gram_data_pattern, agrammatic_pattern
 
 
 def print_training_banner(
     args: argparse.Namespace,
-    gram_data_pattern: str,
-    agrammatic_pattern: str,
     output_dir: str
 ) -> None:
     """Print the training configuration banner."""
@@ -571,9 +564,13 @@ def print_training_banner(
     print("=" * 56)
     print("Style Classifier Training (Formality + Gender + Grammaticality)")
     print("=" * 56)
-    print(f"Data:           {gram_data_pattern}")
-    if agrammatic_pattern:
-        print(f"Agrammatic:     {agrammatic_pattern}")
+
+    # We now strictly use corpus.db, so just print that.
+    # Or resolve path if needed for clarity.
+    data_dir = locations.get_data_dir()
+    corpus_db = os.path.join(data_dir, "corpus.db")
+    print(f"Source Data:    {corpus_db}")
+
     print(f"Output:         {output_dir}")
     if args.epochs is not None:
         print(f"Epochs:         {args.epochs}")
@@ -663,11 +660,8 @@ def main() -> int:
     support_dir = locations.get_style_support_dir()
     output_dir = locations.get_style_output_dir()
 
-    # Set default agrammatic pattern
-    gram_data_pattern, agrammatic_pattern = get_data_patterns(args)
-
     # Print configuration header
-    print_training_banner(args, gram_data_pattern, agrammatic_pattern, output_dir)
+    print_training_banner(args, output_dir)
 
     # Create directories
     os.makedirs(cache_dir, exist_ok=True)
@@ -767,7 +761,7 @@ def main() -> int:
     print()
 
     # Phase 1: Preprocessing/Labeling
-    if not run_preprocessing(args, env, gram_data_pattern, agrammatic_pattern):
+    if not run_preprocessing(args, env):
         return 1
 
     # Phase 2: Configuration

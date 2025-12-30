@@ -124,48 +124,52 @@ def analyze_chunk(chunk: List[Tuple[str, int]]) -> List[Tuple]:
     return results
 
 
-def worker_wrapper(chunk_idx: int, chunk: List[Tuple[str, int]], overrides: Dict[str, Any], result_queue: Any):
+def worker_wrapper(_chunk_idx: int, chunk: List[Tuple[str, int]], overrides: Dict[str, Any], result_queue: Any):
     """Wrapper to run analysis in a separate process."""
     init_worker(overrides)
     results = analyze_chunk(chunk)
     result_queue.put(results)
 
 
-def get_all_sentences() -> List[Tuple[str, int]]:
-    """Read all sentences from data/jpn*."""
-    sentences = {}
-    search_pattern = "data/jpn*"
-    files = glob.glob(search_pattern)
-    
-    gram_files = []
-    agram_files = []
-    
-    for fpath in files:
-        if os.path.isdir(fpath): 
-            continue
-        base = os.path.basename(fpath)
-        if "agrammatic" in base:
-            agram_files.append(fpath)
-        else:
-            gram_files.append(fpath)
-            
-    gram_files.sort()
-    agram_files.sort()
-    
-    def process_files(file_list, gram_label):
-        for fpath in file_list:
-            with open(fpath, "r", encoding="utf-8") as f:
-                for line in f:
-                    line = line.strip()
-                    if not line:
-                        continue
-                    s = parse_tsv(line)
-                    if s and s not in sentences:
-                        sentences[s] = gram_label
+import tarfile
 
-    process_files(gram_files, 1)
-    process_files(agram_files, 0)
+def get_all_sentences() -> List[Tuple[str, int]]:
+    """Read all sentences from data/corpus.tar.gz."""
+    sentences = {}
+    tar_path = "data/corpus.tar.gz"
     
+    if not os.path.exists(tar_path):
+        console.print(f"[red]Error: {tar_path} not found. Please run 'tar -czf {tar_path} data/jpn*.tsv'[/red]")
+        sys.exit(1)
+        
+    console.print(f"[blue]Reading from {tar_path}...[/blue]")
+    
+    with tarfile.open(tar_path, "r:gz") as tar:
+        for member in tar.getmembers():
+            if not member.isfile():
+                continue
+                
+            base = os.path.basename(member.name)
+            if not base.startswith("jpn"):
+                continue
+
+            # Determine grammatical status based on filename
+            is_gram = 0 if "agrammatic" in base else 1
+            
+            f = tar.extractfile(member)
+            if f is None:
+                continue
+                
+            # Read and decode
+            content = f.read().decode("utf-8")
+            for line in content.splitlines():
+                line = line.strip()
+                if not line:
+                    continue
+                s = parse_tsv(line)
+                if s and s not in sentences:
+                    sentences[s] = is_gram
+
     return list(sentences.items())
 
 
@@ -538,7 +542,7 @@ def curate_distinct(db_path: str, include_ungrammatic: bool):
         # User said "all the information".
         # Let's try to map the float value if it's standard.
         if gender is not None:
-             g_lbl = f"Gender: {gender}" # Too granular?
+             # g_lbl = f"Gender: {gender}" # Too granular?
              # Let's bucketize for readability?
              # "Male", "Female", "Neutral"?
              # Let's say "Pragmatic (val)" or just "Pragmatic". 
@@ -649,14 +653,28 @@ def curate_compare(db_path: str):
     db_rows = c.fetchall()
     conn.close()
     
+    from kotogram.japanese_parser import KotogramFormat
+    
+    # Instantiate parser for masking
+    parser = SudachiJapaneseParser()
+
     # Map DB by sentence
     # Since we normalize at drink time, we can trust DB keys are normalized.
+    # But we need to mask them to match the cache.
     db_map = {}
     
-    with console.status("Indexing DB sentences..."): 
+    with console.status("Indexing DB sentences (with masking)..."): 
         for row in db_rows:
             raw_sentence = row[0]
-            db_map[raw_sentence] = row
+            
+            # Apply Masking to match cache
+            masked_kotogram = parser.japanese_to_kotogram(raw_sentence, fmt=KotogramFormat.TRAINING_MASK)
+            masked_sentence = kotogram_to_japanese(masked_kotogram)
+            
+            # Note: Multiple raw sentences might map to the same masked sentence.
+            # We just overwrite for now, assuming labels are consistent for the same masked content.
+            # (e.g. "Hanako runs" and "Taro runs" -> "<given-name> runs" -> same labels)
+            db_map[masked_sentence] = row
     
     # Invert vocab for surface
     if "surface" not in tok.field_vocabs:
