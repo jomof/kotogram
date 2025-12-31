@@ -1,5 +1,3 @@
-"""Core training logic and model extensions for style classification."""
-
 # pylint: disable=too-many-lines,not-callable
 import math
 import os
@@ -49,17 +47,6 @@ from train.worker import _worker_init_fn
 
 
 def tensor_finite_stats(x: Optional[torch.Tensor]) -> Dict[str, Any]:
-    """Compute finite-aware statistics for a tensor.
-
-    Returns dict with:
-    - finite: bool (all elements finite)
-    - n_nan: int (count of NaN elements)
-    - n_inf: int (count of Inf elements)
-    - min: float (min of finite elements, NaN if none finite)
-    - max: float (max of finite elements, NaN if none finite)
-
-    This prevents uninformative "min=nan max=nan" in diagnostics.
-    """
     if x is None:
         return {
             "finite": True,
@@ -101,8 +88,6 @@ def tensor_finite_stats(x: Optional[torch.Tensor]) -> Dict[str, Any]:
 
 
 class KCTrainer:
-    """Trainer for Knowledge Component (KC) learning."""
-
     # pylint: disable=too-many-positional-arguments,too-many-locals
     def __init__(
         self,
@@ -305,7 +290,6 @@ class KCTrainer:
         self._max_consecutive_skips = int(kc_config.get("max_consecutive_skips", 25))
 
     def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
-        """Save training checkpoint."""
         if not is_main_process() or self.config.checkpoint.dir is None:
             return
 
@@ -322,7 +306,6 @@ class KCTrainer:
         )
 
     def restore_from_checkpoint(self, path: str) -> bool:
-        """Restore training state from checkpoint."""
         full_path = os.path.join(path, "checkpoint_kc.pt")
         if not os.path.exists(full_path):
             return False
@@ -346,10 +329,6 @@ class KCTrainer:
         return True
 
     def _save_kc_snapshot(self) -> None:
-        """Save current KC params (kc_head + kc_decoders) as last-known-good state.
-
-        Round 12: Uses state_dict() for cleaner rollback.
-        """
         raw = self.model.module if self.is_distributed else self.model
         m = cast(StyleClassifierWithKC, raw)
         self._kc_last_good_state = {
@@ -364,10 +343,6 @@ class KCTrainer:
             }
 
     def _restore_kc_snapshot(self) -> bool:
-        """Restore KC params from last-known-good state. Returns True if restored.
-
-        Round 12: Uses load_state_dict() with strict=True for safety.
-        """
         if self._kc_last_good_state is None:
             return False
         raw = self.model.module if self.is_distributed else self.model
@@ -390,7 +365,6 @@ class KCTrainer:
         return True
 
     def _reinit_kc_head(self) -> None:
-        """Reinitialize kc_head weights (xavier) and biases (zeros) as fallback."""
         raw = self.model.module if self.is_distributed else self.model
         m = cast(StyleClassifierWithKC, raw)
         nn.init.xavier_uniform_(m.kc_head.linear.weight)
@@ -410,10 +384,6 @@ class KCTrainer:
         family_name: str = "",
         reading_mask_id: int = 0,
     ) -> torch.Tensor:
-        """Compute BCE on (positives + sampled negatives) without dense targets.
-
-        Round 13: For large vocabulary heads, avoids allocating (B, V) tensors.
-        """
         batch_size = int(logits_f.size(0))
         device = logits_f.device
         n_pos = int(pos_inds.size(1))
@@ -546,7 +516,6 @@ class KCTrainer:
                 )
 
     def _grad_norm(self, module: torch.nn.Module) -> float:
-        """Compute L2 norm of gradients for a given module."""
         total = 0.0
         for p in module.parameters():
             if p.grad is None:
@@ -563,8 +532,6 @@ class KCTrainer:
         accum: int,
         is_flush: bool = False,
     ) -> bool:
-        """Perform one optimizer step with unscaling and clipping. Returns True if skipped."""
-
         w0_before = 0.0
         if self.kc_show_step_checks:
             w0 = m.kc_head.linear.weight
@@ -1813,7 +1780,6 @@ class KCTrainer:
         )
 
     def _log_training_progress(self) -> None:
-        """Log training timing stats."""
         data_avg = self.train_timer_data.avg()
         compute_avg = self.train_timer_compute.avg()
         total = data_avg + compute_avg
@@ -1913,8 +1879,6 @@ def _reg_acc(p: List[List[int]], labels: List[List[int]], ids: List[int]) -> flo
 
 
 class Trainer:
-    """Standard trainer for style classification with differential learning rates."""
-
     # pylint: disable=too-many-locals,too-many-positional-arguments
     def __init__(
         self,
@@ -2130,7 +2094,6 @@ class Trainer:
         )
 
     def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
-        """Save training checkpoint."""
         if not is_main_process() or self.config.checkpoint.dir is None:
             return
 
@@ -2158,7 +2121,6 @@ class Trainer:
         )
 
     def restore_from_checkpoint(self, path: str) -> bool:
-        """Restore training state from checkpoint."""
         full_path = os.path.join(path, "checkpoint.pt")
         if not os.path.exists(full_path):
             return False
@@ -2191,8 +2153,6 @@ class Trainer:
     def _masked_mse(
         pred: torch.Tensor, target: torch.Tensor, mask: torch.Tensor
     ) -> torch.Tensor:
-        """Compute MSE loss with masking to avoid sync (no python if-checks)."""
-
         loss_raw = F.mse_loss(pred, target, reduction="none")
 
         loss_masked = loss_raw * mask
@@ -2203,7 +2163,6 @@ class Trainer:
     def _masked_bce(
         pred: torch.Tensor, target: torch.Tensor, mask: torch.Tensor
     ) -> torch.Tensor:
-        """Compute BCE loss with masking."""
         loss_raw = F.binary_cross_entropy_with_logits(pred, target, reduction="none")
 
         if mask.dim() < loss_raw.dim():
@@ -2297,7 +2256,6 @@ class Trainer:
         }
 
     def _train_batch(self, batch: Dict[str, Any], batch_idx: int) -> Dict[str, float]:
-        """Process a single training batch."""
         field_inputs, attention_mask, targets = self._unpack_training_batch(batch)
 
         if batch_idx % self.config.grad_accum_steps == 0:
@@ -2436,7 +2394,6 @@ class Trainer:
 
     @torch.no_grad()
     def evaluate(self) -> Dict[str, Any]:
-        """Run evaluation and return metrics and predictions."""
         self.model.eval()
         n = 0
         metrics_sum: Dict[str, float] = {}
@@ -2654,12 +2611,6 @@ class Trainer:
     def _build_kc_probe_loader(
         self, _max_batches: int = 25
     ) -> Optional[DataLoader[Dict[str, Any]]]:
-        """Build a DataLoader for KC probe evaluation.
-
-        Returns val_loader if model has KC enabled, else None.
-        Filtering to grammatical samples is done during iteration.
-        """
-
         return cast(DataLoader[Dict[str, Any]], self.val_loader)
 
     def _update_kc_metrics(
@@ -2669,7 +2620,6 @@ class Trainer:
         batch: Dict[str, Any],
         config: KCProbeConfig,
     ) -> None:
-        """Update KC metrics accumulator with batch results."""
         batch_size = outputs["kc_probs"].shape[0]
         acc.n_samples += batch_size
 
@@ -2796,7 +2746,6 @@ class Trainer:
         hs: Dict[str, Any],
         max_samples_per_head: int,
     ) -> None:
-        """Update head stats for dense targets."""
         targets_h = targets_h.to(self.device).float()
 
         hs["p_sum"] += targets_h.sum().item()
@@ -2851,7 +2800,6 @@ class Trainer:
         hs: Dict[str, Any],
         max_samples_per_head: int,
     ) -> None:
-        """Update head stats for sparse targets."""
         pos_inds, pos_mask_t = sparse_data
         pos_inds = pos_inds.to(self.device)
         pos_mask_t = pos_mask_t.to(self.device)
@@ -2871,8 +2819,6 @@ class Trainer:
     def _compute_kc_metrics(
         self, acc: KCMetricsAccumulator, kc_vocab_size: int
     ) -> Dict[str, Any]:
-        """Finalize KC metrics computation."""
-
         if self.is_distributed:
             dist.all_reduce(acc.top1_hist, op=dist.ReduceOp.SUM)
             scalars = torch.tensor(
@@ -2925,7 +2871,6 @@ class Trainer:
         return result
 
     def _compute_head_metrics(self, hs: Dict[str, Any]) -> Tuple[float, float, float]:
-        """Compute AUC and delta BCE for a single head."""
         p_true = hs["p_sum"] / max(1, hs["count"])
         auc = float("nan")
         delta_bce = float("nan")
@@ -2962,7 +2907,6 @@ class Trainer:
         max_batches: int,
         temperature: float,
     ) -> None:
-        """Run the KC probe evaluation loop."""
         with torch.no_grad():
             for batch_idx, batch in enumerate(probe_loader):
                 if batch_idx >= max_batches:
@@ -2992,7 +2936,6 @@ class Trainer:
         temperature: float = 1.5,
         tau_usage: float = 2.0,
     ) -> Dict[str, Any]:
-        """Evaluate KC health metrics without affecting gradients."""
         m = cast(
             StyleClassifierWithKC,
             self.model.module if self.is_distributed else self.model,
@@ -3029,12 +2972,6 @@ class Trainer:
         return self._compute_kc_metrics(acc, config.vocab_size)
 
     def _diagnose_kc_probe(self, probe_result: Dict[str, Any]) -> List[str]:
-        """Diagnose KC degradation and return actionable recommendations.
-
-        DIAGNOSTIC THRESHOLDS:
-        - Collapse: max_top1 > 0.10 OR entropy_norm < 0.85
-        - Quality drop: any head AUC < 0.80
-        """
         recommendations: List[str] = []
 
         max_top1 = probe_result.get("max_top1", 0.0)
