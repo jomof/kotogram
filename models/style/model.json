@@ -1,15 +1,15 @@
 {
   "vocab_sizes": {
-    "surface": 48353,
+    "surface": 43045,
     "pos": 18,
-    "pos_detail1": 27,
-    "pos_detail2": 12,
-    "pos_detail3": 6,
+    "pos_detail_1": 27,
+    "pos_detail_2": 12,
+    "pos_detail_3": 6,
     "conjugated_type": 89,
     "conjugated_form": 34,
-    "lemma": 6649,
-    "base_orth": 6649,
-    "reading": 32242
+    "lemma": 37670,
+    "base_orth": 6566,
+    "reading": 29053
   },
   "num_formality_pragmatic_classes": 2,
   "num_gender_pragmatic_classes": 2,
@@ -18,9 +18,9 @@
   "field_embed_dims": {
     "surface": 64,
     "pos": 32,
-    "pos_detail1": 32,
-    "pos_detail2": 16,
-    "pos_detail3": 16,
+    "pos_detail_1": 32,
+    "pos_detail_2": 16,
+    "pos_detail_3": 16,
     "conjugated_type": 32,
     "conjugated_form": 32,
     "lemma": 64
@@ -37,9 +37,17 @@
   "kc_topk": 8,
   "kc_temperature": 1.0,
   "kc_target_specs": {
-    "lemma": 6649,
-    "pos": 18,
-    "conjugated_form": 34,
-    "conjugated_type": 89
+    "bag_reading": 29053,
+    "tail_reading": 29053,
+    "bag_pos": 18,
+    "tail_pos": 18,
+    "bag_conjugated_form": 34,
+    "tail_conjugated_form": 34,
+    "bag_conjugated_type": 89,
+    "tail_conjugated_type": 89,
+    "ngram_pos": 16384,
+    "ngram_conjugated_form": 16384,
+    "ngram_conjugated_type": 16384,
+    "pair_pos_conj": 16384
   }
 }

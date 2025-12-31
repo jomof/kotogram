@@ -6,14 +6,11 @@ from functools import partial
 from typing import Any, Callable, Dict, List, Optional, Tuple, cast
 
 import torch
-import torch.distributed as dist
 import torch.nn.functional as F
 from torch import nn
-from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 from torch.utils.data import DataLoader
-from torch.utils.data.distributed import DistributedSampler
 
 from kotogram.model import (
     StyleClassifier,
@@ -35,7 +32,6 @@ from train.display import (
     print_kc_first_batch_debug,
     print_phase_header,
 )
-from train.distributed import is_main_process
 from train.io import (
     load_training_state,
     save_training_state,
@@ -126,48 +122,16 @@ class KCTrainer:
         self.kc_sparsity_weight = self.kc_config.sparsity_weight
         self.freeze_encoder_epochs = self.kc_config.freeze_encoder_epochs
 
-        if dist.is_initialized():
-            local_rank = int(os.environ.get("LOCAL_RANK", 0))
-            if torch.cuda.is_available():
-                self.device = torch.device("cuda", local_rank)
-            else:
-                self.device = torch.device("cpu")
-            self.is_distributed = True
-        else:
-            self.device = torch.device(self.config.device)
-            self.is_distributed = False
+        self.kc_sparsity_weight = self.kc_config.sparsity_weight
+        self.freeze_encoder_epochs = self.kc_config.freeze_encoder_epochs
 
+        self.device = torch.device(self.config.device)
         self.model.to(self.device)
-        if self.is_distributed:
-            local_rank = int(os.environ.get("LOCAL_RANK", 0))
-            if self.device.type == "cuda":
-                device_ids = [local_rank]
-                output_device = local_rank
-            else:
-                device_ids = None
-                output_device = None
-
-            self.model = cast(
-                StyleClassifierWithKC,
-                DDP(
-                    self.model,
-                    device_ids=device_ids,
-                    output_device=output_device,
-                    find_unused_parameters=True,
-                ),
-            )
 
         pad_id = 0
-        max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
+        max_seq_len = self.model.config.max_seq_len
 
-        self.sampler: Optional[DistributedSampler] = (
-            DistributedSampler(
-                dataset,
-                shuffle=True,
-            )
-            if self.is_distributed
-            else None
-        )
+        self.sampler = None
 
         if dl_config is None:
             dl_config = self.config.resolve_dataloader_config(self.device)
@@ -224,10 +188,9 @@ class KCTrainer:
         self.kc_collapse_weight_thawed = self.kc_config.collapse_weight_thawed
 
         self.kc_temperature_frozen = float(
-            getattr(
-                getattr(self.model, "module", self.model).config, "kc_temperature", 1.0
-            )
+            getattr(self.model.config, "kc_temperature", 1.0)
         )
+
         self.kc_temperature_thawed = self.kc_config.temperature_thawed
 
         self.kc_log_level = self.kc_config.log_level
@@ -276,12 +239,12 @@ class KCTrainer:
         self._max_consecutive_skips = self.kc_config.max_consecutive_skips
 
     def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
-        if not is_main_process() or self.config.checkpoint.dir is None:
+        if self.config.checkpoint.dir is None:
             return
 
         save_training_state(
             path=self.config.checkpoint.dir,
-            model=getattr(self.model, "module", self.model),
+            model=self.model,
             optimizer=self.optimizer,
             epoch=epoch,
             history=self.history,
@@ -315,16 +278,15 @@ class KCTrainer:
                 self.history.update(history_data)
         else:
             self.history = history_data
-        if is_main_process():
-            print(
-                f"  [Resume] Restored KC checkpoint from {path} "
-                f"(epoch {self.start_epoch}, step {self.global_step})"
-            )
+        print(
+            f"  [Resume] Restored KC checkpoint from {path} "
+            f"(epoch {self.start_epoch}, step {self.global_step})"
+        )
         return True
 
     def _save_kc_snapshot(self) -> None:
-        raw = self.model.module if self.is_distributed else self.model
-        m = cast(StyleClassifierWithKC, raw)
+        m = self.model
+
         self._kc_last_good_state = {
             "kc_head": {
                 k: v.detach().cpu().clone() for k, v in m.kc_head.state_dict().items()
@@ -339,8 +301,7 @@ class KCTrainer:
     def _restore_kc_snapshot(self) -> bool:
         if self._kc_last_good_state is None:
             return False
-        raw = self.model.module if self.is_distributed else self.model
-        m = cast(StyleClassifierWithKC, raw)
+        m = self.model
 
         device = next(m.kc_head.parameters()).device
         restored_head = {
@@ -359,8 +320,8 @@ class KCTrainer:
         return True
 
     def _reinit_kc_head(self) -> None:
-        raw = self.model.module if self.is_distributed else self.model
-        m = cast(StyleClassifierWithKC, raw)
+        m = self.model
+
         nn.init.xavier_uniform_(m.kc_head.linear.weight)
         if m.kc_head.linear.bias is not None:
             nn.init.zeros_(m.kc_head.linear.bias)
@@ -439,9 +400,9 @@ class KCTrainer:
         return loss
 
     # pylint: disable=too-many-locals
+    # pylint: disable=too-many-locals
     def _init_structural_decoder_biases(self, num_batches: int = 10) -> None:
-        raw = self.model.module if self.is_distributed else self.model
-        m = cast("StyleClassifierWithKC", raw)
+        m = self.model
         if not hasattr(m, "kc_decoders"):
             return
 
@@ -475,37 +436,22 @@ class KCTrainer:
                     sums[name] = sums.get(name, 0.0) + p
                     counts[name] = counts.get(name, 0) + 1
 
-        if self.is_distributed:
-            names = sorted(sums.keys())
+        for name, _ in m.config.kc_target_specs.items():
+            if name not in sums or counts.get(name, 0) == 0:
+                continue
 
-            data = []
-            for n in names:
-                data.append(sums[n])
-                data.append(float(counts[n]))
+            p = sums[name] / counts[name]
+            p = max(1e-6, min(1.0 - 1e-6, p))
+            b = float(-torch.log(torch.tensor(1.0 / p - 1.0)).item())
 
-            t_data = torch.tensor(data, device=self.device)
-            dist.all_reduce(t_data, op=dist.ReduceOp.SUM)
+            lin = m.kc_decoders.decoders[name]
+            if lin.bias is not None:
+                nn.init.constant_(lin.bias, b)
 
-            t_list = t_data.tolist()
-            for i, n in enumerate(names):
-                sums[n] = t_list[2 * i]
-                counts[n] = int(t_list[2 * i + 1])
-
-        for name, s in sums.items():
-            p = s / max(1, counts[name])
-            p = min(max(p, 1e-6), 1 - 1e-6)
-            b = math.log(p / (1 - p))
-
-            lin = cast(nn.Linear, m.kc_decoders.decoders[name])
-            with torch.no_grad():
-                if lin.bias is not None:
-                    nn.init.constant_(lin.bias, b)
-
-            if is_main_process():
-                print(
-                    f"[BiasInit] {name:20}: p_mean={p:.6g} bias={b:.4f} "
-                    f"(filled bias[{lin.bias.numel()}])"
-                )
+            print(
+                f"[BiasInit] {name:20}: p_mean={p:.6g} bias={b:.4f} "
+                f"(filled bias[{lin.bias.numel()}])"
+            )
 
     def _grad_norm(self, module: torch.nn.Module) -> float:
         total = 0.0
@@ -529,9 +475,10 @@ class KCTrainer:
             w0 = m.kc_head.linear.weight
             w0_before = w0.detach().flatten()[0].item()
 
-        if is_main_process() and (not has_printed_step_check or is_flush):
+        if not has_printed_step_check or is_flush:
             if self.kc_show_grad_norms:
                 gn_kc = self._grad_norm(m.kc_head)
+
                 dec_name = (
                     "pos"
                     if "pos" in m.kc_decoders.decoders
@@ -576,15 +523,18 @@ class KCTrainer:
             self._consecutive_step_skips += 1
             self._total_step_skips += 1
 
-            if is_main_process():
+        if found_nonfinite:
+            self._consecutive_step_skips += 1
+            self._total_step_skips += 1
+
+            print(
+                f"  KC Step Skipped: non-finite grad detected "
+                f"consec={self._consecutive_step_skips}/{self._max_consecutive_skips}"
+            )
+            for pname, nnan, ninf, gmax in bad:
                 print(
-                    f"  KC Step Skipped: non-finite grad detected "
-                    f"consec={self._consecutive_step_skips}/{self._max_consecutive_skips}"
+                    f"    grad_nonfinite: {pname} nan={nnan} inf={ninf} |g|max={gmax:.3g}"
                 )
-                for pname, nnan, ninf, gmax in bad:
-                    print(
-                        f"    grad_nonfinite: {pname} nan={nnan} inf={ninf} |g|max={gmax:.3g}"
-                    )
 
             self.optimizer.zero_grad(set_to_none=True)
 
@@ -625,9 +575,9 @@ class KCTrainer:
                         break
 
             if param_nonfinite:
-                if is_main_process():
-                    print("  [KC] Params became NaN after step, restoring snapshot")
+                print("  [KC] Params became NaN after step, restoring snapshot")
                 restored = self._restore_kc_snapshot()
+
                 if not restored:
                     self._reinit_kc_head()
                 skipped = True
@@ -637,7 +587,7 @@ class KCTrainer:
                 self._consecutive_step_skips = 0
                 self._total_steps_applied += 1
 
-        if is_main_process() and (not has_printed_step_check or is_flush):
+        if not has_printed_step_check or is_flush:
             if self.kc_show_step_checks:
                 w0 = m.kc_head.linear.weight
                 w0_after = w0.detach().flatten()[0].item()
@@ -650,8 +600,7 @@ class KCTrainer:
         return skipped
 
     def _create_optimizer(self, freeze_encoder: bool) -> None:
-        raw = self.model.module if self.is_distributed else self.model
-        m = cast(StyleClassifierWithKC, raw)
+        m = self.model
 
         pg_heads = {
             "params": list(m.kc_head.parameters())
@@ -671,15 +620,17 @@ class KCTrainer:
         should_freeze = epoch < self.freeze_encoder_epochs
         self._create_optimizer(freeze_encoder=should_freeze)
 
-        if is_main_process():
-            print_phase_header(
-                "KC",
-                info="Encoder Frozen" if should_freeze else "Encoder Thawed",
-                epoch=epoch + 1,
-                total_epochs=self.config.kc_epochs,
-            )
+        self._create_optimizer(freeze_encoder=should_freeze)
+
+        print_phase_header(
+            "KC",
+            info="Encoder Frozen" if should_freeze else "Encoder Thawed",
+            epoch=epoch + 1,
+            total_epochs=self.config.kc_epochs,
+        )
 
         self.model.train()
+
         total_loss, n_batches = 0.0, 0
         kc_losses: Dict[str, float] = {}
         total_sparsity = 0.0
@@ -699,8 +650,11 @@ class KCTrainer:
         pending_accum = 0
         did_any_backward = False
 
-        raw = self.model.module if self.is_distributed else self.model
-        kc_vocab_size = int(cast(StyleClassifierWithKC, raw).config.kc_vocab_size)
+        pending_accum = 0
+        did_any_backward = False
+
+        kc_vocab_size = int(self.model.config.kc_vocab_size)
+
         topk_hist = torch.zeros(kc_vocab_size, dtype=torch.long)
         top1_hist = torch.zeros(kc_vocab_size, dtype=torch.long)
         kc_usage_total_samples = 0
@@ -737,12 +691,14 @@ class KCTrainer:
         pbar = None
 
         current_display_loss = 0.5
-        if is_main_process():
-            pbar = RichTrainerProgressBar(
-                f"KC Epoch {epoch + 1}" + (" (Frozen)" if should_freeze else ""),
-                total_steps=total_batches,
-                transient=False,
-            )
+        pbar = None
+
+        current_display_loss = 0.5
+        pbar = RichTrainerProgressBar(
+            f"KC Epoch {epoch + 1}" + (" (Frozen)" if should_freeze else ""),
+            total_steps=total_batches,
+            transient=False,
+        )
 
         self.train_timer_data.start()
         for batch_idx, batch in enumerate(self.data_loader):
@@ -754,8 +710,7 @@ class KCTrainer:
                 self.train_timer_data.start()
                 continue
 
-            raw = self.model.module if self.is_distributed else self.model
-            m = cast(StyleClassifierWithKC, raw)
+            m = self.model
 
             kc_targets = create_kc_batch(
                 batch=batch,
@@ -809,7 +764,7 @@ class KCTrainer:
                 should_log = (
                     self._nonfinite_logged < 3 or self._nonfinite_total % 50 == 0
                 )
-                if should_log and is_main_process():
+                if should_log:
                     self._nonfinite_logged += 1
                     msg = (
                         f"  [KC][FORWARD NaN] ep={epoch} b={batch_idx} streak={self._nonfinite_streak} "
@@ -829,26 +784,19 @@ class KCTrainer:
                 self.optimizer.zero_grad(set_to_none=True)
                 restored = self._restore_kc_snapshot()
                 if not restored:
-                    if is_main_process():
-                        if pbar:
-                            pbar.log(
-                                "  [KC] No snapshot available, reinitializing kc_head"
-                            )
-                        else:
-                            print(
-                                "  [KC] No snapshot available, reinitializing kc_head"
-                            )
+                    if pbar:
+                        pbar.log("  [KC] No snapshot available, reinitializing kc_head")
+                    else:
+                        print("  [KC] No snapshot available, reinitializing kc_head")
                     self._reinit_kc_head()
 
                 if self._nonfinite_streak == 1:
                     for pg in self.optimizer.param_groups:
                         pg["lr"] = pg["lr"] * 0.5
-                    if is_main_process():
-                        msg = f"  [KC] Halved LR to {self.optimizer.param_groups[0]['lr']:.2e}"
-                        if pbar:
-                            pbar.log(msg)
-                        else:
-                            print(msg)
+                    if pbar:
+                        pbar.log(msg)
+                    else:
+                        print(msg)
 
                 continue
 
@@ -889,13 +837,10 @@ class KCTrainer:
 
                 target_logits = outputs["target_logits"]
 
-                if (
-                    batch_idx == 0
-                    and is_main_process()
-                    and epoch != self._did_print_debug_for_epoch
-                ):
+                if batch_idx == 0 and epoch != self._did_print_debug_for_epoch:
                     self._did_print_debug_for_epoch = epoch
-                    raw = self.model.module if self.is_distributed else self.model
+                    raw = self.model
+
                     m = cast(StyleClassifierWithKC, raw)
 
                     should_print_fb = (
@@ -1523,16 +1468,15 @@ class KCTrainer:
                 nonfinite_reason = "topk_vals"
 
             if nonfinite_reason:
-                if is_main_process():
-                    kc_logits_raw = outputs.get("kc_logits_raw", None)
-                    kc_probs = outputs.get("kc_probs", None)
-                    msg = f"  [KC][NON-FINITE {nonfinite_reason.upper()}] epoch={epoch} batch={batch_idx} loss={loss.item()}"
-                    if kc_logits_raw is not None:
-                        msg += f" raw[min={kc_logits_raw.min().item():.3g} max={kc_logits_raw.max().item():.3g}]"
-                    if kc_probs is not None:
-                        msg += f" probs[min={kc_probs.min().item():.3g} max={kc_probs.max().item():.3g}]"
+                kc_logits_raw = outputs.get("kc_logits_raw", None)
+                kc_probs = outputs.get("kc_probs", None)
+                msg = f"  [KC][NON-FINITE {nonfinite_reason.upper()}] epoch={epoch} batch={batch_idx} loss={loss.item()}"
+                if kc_logits_raw is not None:
+                    msg += f" raw[min={kc_logits_raw.min().item():.3g} max={kc_logits_raw.max().item():.3g}]"
+                if kc_probs is not None:
+                    msg += f" probs[min={kc_probs.min().item():.3g} max={kc_probs.max().item():.3g}]"
 
-                    print(msg)
+                print(msg)
 
                 self.optimizer.zero_grad(set_to_none=True)
 
@@ -1561,7 +1505,7 @@ class KCTrainer:
             ):
                 self.save_checkpoint(epoch, batch_idx)
 
-            if is_main_process() and pbar:
+            if pbar:
                 if (
                     batch_idx % self.config.progress_update_every == 0
                     or batch_idx == total_batches - 1
@@ -1576,7 +1520,8 @@ class KCTrainer:
         self.start_batch = 0
 
         if did_any_backward and pending_accum > 0:
-            raw = self.model.module if self.is_distributed else self.model
+            raw = self.model
+
             m = cast(StyleClassifierWithKC, raw)
             self._perform_optimizer_step(
                 m, has_printed_step_check, pending_accum, is_flush=True
@@ -1585,43 +1530,16 @@ class KCTrainer:
             flush_steps += 1
             has_printed_step_check = True
 
-        if is_main_process():
-            sys.stdout.write("\n")
-            sys.stdout.flush()
+        sys.stdout.write("\n")
+        sys.stdout.flush()
 
         avg_kc_losses = {k: v / n_batches for k, v in kc_losses.items()}
-
-        if self.is_distributed and dist.is_initialized():
-            hist_dev = topk_hist.to(self.device)
-            top1_dev = top1_hist.to(self.device)
-            dist.all_reduce(hist_dev, op=dist.ReduceOp.SUM)
-            dist.all_reduce(top1_dev, op=dist.ReduceOp.SUM)
-            topk_hist = hist_dev.to("cpu")
-            top1_hist = top1_dev.to("cpu")
-
-            scal = torch.tensor(
-                [kc_usage_total_samples, kc_tv_sum, kc_gap_sum, kc_gap_count],
-                device=self.device,
-                dtype=torch.float64,
-            )
-            dist.all_reduce(scal, op=dist.ReduceOp.SUM)
-            kc_usage_total_samples = int(scal[0].item())
-            kc_tv_sum = float(scal[1].item())
-            kc_gap_sum = float(scal[2].item())
-            kc_gap_count = int(scal[3].item())
 
         uniq_kcs_epoch = int((topk_hist > 0).sum().item())
         max_top1 = float(top1_hist.max().item()) / max(1, kc_usage_total_samples)
 
-        k_val = (
-            int(
-                getattr(
-                    cast(StyleClassifierWithKC, self.model.module).config, "kc_topk", 8
-                )
-            )
-            if self.is_distributed
-            else int(getattr(self.model.config, "kc_topk", 8))
-        )
+        k_val = int(getattr(self.model.config, "kc_topk", 8))
+
         tv_mean = kc_tv_sum / max(1, kc_usage_total_samples * k_val)
         gap_mean = kc_gap_sum / max(1, kc_gap_count)
         avg_entropy_norm = running_entropy_norm / max(1, n_batches)
@@ -1664,7 +1582,7 @@ class KCTrainer:
             k: v / max(1, n_batches) for k, v in running_loss_components.items()
         }
 
-        if is_main_process() and not self.kc_show_epoch_table:
+        if not self.kc_show_epoch_table:
             if not self.kc_show_epoch_table:
                 top_losses = sorted(
                     avg_kc_losses.items(), key=lambda x: x[1], reverse=True
@@ -1731,24 +1649,22 @@ class KCTrainer:
                 else:
                     print(msg)
 
-        if is_main_process():
-            msg = (
-                f"  KC Health: maxTop1={max_top1:.3f} uniqKCs={uniq_kcs_epoch}/{kc_vocab_size} "
-                f"avgProb={epoch_stats.avg_prob:.3f} actDens={epoch_stats.act_dens:.4f} "
-                f"entN={avg_entropy_norm:.3f} klU={avg_kl_to_uniform:.3f}"
-            )
-            if pbar:
-                pbar.log(msg)
-            else:
-                print(msg)
+        msg = (
+            f"  KC Health: maxTop1={max_top1:.3f} uniqKCs={uniq_kcs_epoch}/{kc_vocab_size} "
+            f"avgProb={epoch_stats.avg_prob:.3f} actDens={epoch_stats.act_dens:.4f} "
+            f"entN={avg_entropy_norm:.3f} klU={avg_kl_to_uniform:.3f}"
+        )
+        if pbar:
+            pbar.log(msg)
+        else:
+            print(msg)
 
-        if is_main_process():
-            diag_lines = kc_diag.finalize(epoch)
-            for line in diag_lines:
-                if pbar:
-                    pbar.log(line)
-                else:
-                    print(line)
+        diag_lines = kc_diag.finalize(epoch)
+        for line in diag_lines:
+            if pbar:
+                pbar.log(line)
+            else:
+                print(line)
 
         if pbar:
             pbar.stop()
@@ -1786,16 +1702,13 @@ class KCTrainer:
 
         actual_epochs = epochs or self.config.kc_epochs
         for epoch in range(self.start_epoch, actual_epochs):
-            if self.is_distributed:
-                cast(DistributedSampler, self.sampler).set_epoch(epoch)
             epoch_res = self.train_epoch(epoch=epoch)
             total_loss = epoch_res.total_loss
             kc_losses = epoch_res.kc_losses
             avg_sparsity = epoch_res.avg_sparsity
             epoch_stats = epoch_res.epoch_stats
 
-            if is_main_process():
-                self._log_training_progress()
+            self._log_training_progress()
 
             self.history.total_loss.append(total_loss)
             self.history.kc_sparsity.append(avg_sparsity)
@@ -1821,7 +1734,7 @@ class KCTrainer:
                     self.history.kc_losses[k] = []
                 self.history.kc_losses[k].append(v)
 
-            if is_main_process() and self.kc_show_epoch_table:
+            if self.kc_show_epoch_table:
                 top_losses = dict(
                     sorted(kc_losses.items(), key=lambda x: x[1], reverse=True)[:5]
                 )
@@ -1838,7 +1751,7 @@ class KCTrainer:
 
             self.save_checkpoint(epoch + 1, 0)
 
-            if on_epoch_end and is_main_process():
+            if on_epoch_end:
                 on_epoch_end(self.history)
 
         return self.history
@@ -1883,56 +1796,17 @@ class Trainer:
         self.kc_show_epoch_table = kc_show_epoch_table
         configure_runtime_thread_limits(self.config)
 
-        if torch.distributed.is_initialized():
-            local_rank = int(os.environ.get("LOCAL_RANK", 0))
-            if torch.cuda.is_available():
-                self.device = torch.device("cuda", local_rank)
-            else:
-                self.device = torch.device("cpu")
-            self.is_distributed = True
-        else:
-            self.device = torch.device(self.config.device)
-            self.is_distributed = False
-
+        self.device = torch.device(self.config.device)
         self.model.to(self.device)
-        if self.is_distributed:
-            local_rank = int(os.environ.get("LOCAL_RANK", 0))
-            if self.device.type == "cuda":
-                device_ids = [local_rank]
-                output_device = local_rank
-            else:
-                device_ids = None
-                output_device = None
-
-            self.model = cast(
-                StyleClassifierWithKC,
-                DDP(
-                    self.model,
-                    device_ids=device_ids,
-                    output_device=output_device,
-                    find_unused_parameters=True,
-                ),
-            )
 
         self.train_dataset = train_dataset
         self.val_dataset = val_dataset
 
         pad_id = 0
-        max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
+        max_seq_len = self.model.config.max_seq_len
 
-        if self.is_distributed:
-            self.train_sampler: Optional[DistributedSampler] = DistributedSampler(
-                train_dataset,
-                shuffle=True,
-            )
-            self.val_sampler: Optional[DistributedSampler] = DistributedSampler(
-                val_dataset,
-                shuffle=False,
-            )
-            t_shuffle, v_shuffle = False, False
-        else:
-            self.train_sampler, self.val_sampler = None, None
-            t_shuffle, v_shuffle = True, False
+        self.train_sampler, self.val_sampler = None, None
+        t_shuffle, v_shuffle = True, False
 
         if dl_config_train is None:
             dl_config_train = self.config.resolve_dataloader_config(
@@ -2000,9 +1874,8 @@ class Trainer:
             weight=train_dataset.get_grammaticality_class_weights().to(self.device)
         )
 
-        mod = cast(
-            StyleClassifier, self.model.module if self.is_distributed else self.model
-        )
+        mod = cast(StyleClassifier, self.model)
+
         enc_p = list(mod.embedding.parameters()) + list(mod.encoder.parameters())
         cls_p = (
             list(mod.formality_value_head.parameters())
@@ -2055,12 +1928,12 @@ class Trainer:
         )
 
     def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
-        if not is_main_process() or self.config.checkpoint.dir is None:
+        if self.config.checkpoint.dir is None:
             return
 
         save_training_state(
             path=self.config.checkpoint.dir,
-            model=getattr(self.model, "module", self.model),
+            model=self.model,
             optimizer=self.optimizer,
             epoch=epoch,
             history=self.history,
@@ -2120,8 +1993,7 @@ class Trainer:
             self.patience_counter = meta.get("patience_counter", 0)
             self.best_state = meta.get("best_state")
 
-        if is_main_process():
-            print()
+        print()
         return True
 
     @staticmethod
@@ -2266,12 +2138,10 @@ class Trainer:
         }
 
     def train_epoch(self, epoch: int) -> Tuple[float, float, float, float, float]:
-        if is_main_process():
-            print_phase_header(
-                "Style", epoch=epoch + 1, total_epochs=self.config.epochs
-            )
+        print_phase_header("Style", epoch=epoch + 1, total_epochs=self.config.epochs)
 
         self.model.train()
+
         metrics = TrainingMetrics()
 
         total_batches = len(self.train_loader)
@@ -2280,12 +2150,11 @@ class Trainer:
 
         pbar = None
         current_loss_val = None
-        if is_main_process():
-            pbar = RichTrainerProgressBar(
-                f"Style Epoch {epoch + 1}/{self.config.epochs}",
-                total_steps=total_batches,
-                transient=False,
-            )
+        pbar = RichTrainerProgressBar(
+            f"Style Epoch {epoch + 1}/{self.config.epochs}",
+            total_steps=total_batches,
+            transient=False,
+        )
 
         try:
             self.train_timer_data.start()
@@ -2328,8 +2197,7 @@ class Trainer:
 
         self.start_batch = 0
         self.train_timer_data.stop()
-        if is_main_process():
-            sys.stdout.write("\n")
+        sys.stdout.write("\n")
 
         return metrics.average()
 
@@ -2482,8 +2350,9 @@ class Trainer:
             kc_probe_result = None
             m_style = cast(
                 StyleClassifier,
-                self.model.module if self.is_distributed else self.model,
+                self.model,
             )
+
             if getattr(m_style.config, "kc_enabled", False):
                 probe_loader = self._build_kc_probe_loader(_max_batches=25)
                 if probe_loader is not None:
@@ -2510,47 +2379,45 @@ class Trainer:
             self.history.val_register_accuracy.append(eval_res.register_accuracy)
             self.history.sentence_count.append(len(self.train_dataset))
 
-            if is_main_process():
-                data_avg = self.train_timer_data.avg()
-                compute_avg = self.train_timer_compute.avg()
-                total = data_avg + compute_avg
-                if total > 0:
-                    print(
-                        f"  [Time] Avg batch: {total * 1000:.1f}ms (Data: {data_avg * 1000:.1f}ms ({data_avg / total:.1%}), Compute: {compute_avg * 1000:.1f}ms)"
-                    )
-                self.train_timer_data.reset()
-                self.train_timer_compute.reset()
-
-            if is_main_process():
-                metrics = {
-                    "Formality": {
-                        "Train": tfl,
-                        "Val": eval_res.formality_loss,
-                        "Acc": eval_res.formality_accuracy,
-                    },
-                    "Gender": {
-                        "Train": tgl,
-                        "Val": eval_res.gender_loss,
-                        "Acc": eval_res.gender_accuracy,
-                    },
-                    "Grammar": {
-                        "Train": tgraml,
-                        "Val": eval_res.grammaticality_loss,
-                        "Acc": eval_res.grammaticality_accuracy,
-                    },
-                    "Register": {
-                        "Train": trl,
-                        "Val": eval_res.register_loss,
-                        "Acc": eval_res.register_accuracy,
-                    },
-                }
-                print_epoch_summary(
-                    epoch + 1,
-                    self.config.epochs,
-                    {"Train Loss": tl, "Val Loss": eval_res.loss},
-                    metrics,
-                    phase="Style",
+            data_avg = self.train_timer_data.avg()
+            compute_avg = self.train_timer_compute.avg()
+            total = data_avg + compute_avg
+            if total > 0:
+                print(
+                    f"  [Time] Avg batch: {total * 1000:.1f}ms (Data: {data_avg * 1000:.1f}ms ({data_avg / total:.1%}), Compute: {compute_avg * 1000:.1f}ms)"
                 )
+            self.train_timer_data.reset()
+            self.train_timer_compute.reset()
+
+            metrics = {
+                "Formality": {
+                    "Train": tfl,
+                    "Val": eval_res.formality_loss,
+                    "Acc": eval_res.formality_accuracy,
+                },
+                "Gender": {
+                    "Train": tgl,
+                    "Val": eval_res.gender_loss,
+                    "Acc": eval_res.gender_accuracy,
+                },
+                "Grammar": {
+                    "Train": tgraml,
+                    "Val": eval_res.grammaticality_loss,
+                    "Acc": eval_res.grammaticality_accuracy,
+                },
+                "Register": {
+                    "Train": trl,
+                    "Val": eval_res.register_loss,
+                    "Acc": eval_res.register_accuracy,
+                },
+            }
+            print_epoch_summary(
+                epoch + 1,
+                self.config.epochs,
+                {"Train Loss": tl, "Val Loss": eval_res.loss},
+                metrics,
+                phase="Style",
+            )
 
             is_best = eval_res.loss < self.best_val_loss
             if is_best:
@@ -2559,24 +2426,21 @@ class Trainer:
                     k: cast(torch.Tensor, v.cpu().clone())
                     for k, v in self.model.state_dict().items()
                 }
-                if is_main_process():
-                    os.makedirs(self.output_path, exist_ok=True)
-                    model_path = os.path.join(self.output_path, "model.pt")
-                    torch.save(self.best_state, model_path)
-                    print_best_model_saved(model_path, self.best_val_loss)
+                os.makedirs(self.output_path, exist_ok=True)
+                model_path = os.path.join(self.output_path, "model.pt")
+                torch.save(self.best_state, model_path)
+                print_best_model_saved(model_path, self.best_val_loss)
             else:
                 self.patience_counter += 1
                 if self.patience_counter >= self.config.patience:
-                    if is_main_process():
-                        print(f"Early stopping at epoch {epoch + 1}")
+                    print(f"Early stopping at epoch {epoch + 1}")
                     break
 
             self.save_checkpoint(epoch + 1, 0)
 
-            if self.is_distributed:
-                dist.barrier()
+            self.save_checkpoint(epoch + 1, 0)
 
-            if on_epoch_end and is_main_process():
+            if on_epoch_end:
                 on_epoch_end(self.history)
 
         if self.best_state:
@@ -2794,42 +2658,19 @@ class Trainer:
     def _compute_kc_metrics(
         self, acc: KCMetricsAccumulator, kc_vocab_size: int
     ) -> KCProbeEvaluationResult:
-        if self.is_distributed:
-            dist.all_reduce(acc.top1_hist, op=dist.ReduceOp.SUM)
-            scalars = torch.tensor(
-                [
-                    acc.n_samples,
-                    acc.sum_entropy,
-                    acc.sum_kl,
-                    acc.sum_tv,
-                    acc.sum_gap,
-                    acc.sum_avg_prob,
-                    acc.sum_act_dens,
-                ],
-                device=self.device,
-            )
-            dist.all_reduce(scalars, op=dist.ReduceOp.SUM)
-            acc.n_samples = int(scalars[0].item())
-            acc.sum_entropy = scalars[1].item()
-            acc.sum_kl = scalars[2].item()
-            acc.sum_tv = scalars[3].item()
-            acc.sum_gap = scalars[4].item()
-            acc.sum_avg_prob = scalars[5].item()
-            acc.sum_act_dens = scalars[6].item()
-
         n_samples = max(1, acc.n_samples)
 
         uniq_kcs = int((acc.topk_hist > 0).sum().item())
         max_top1 = float(acc.top1_hist.max().item()) / n_samples
 
-        head_metrics = {}
-        if is_main_process():
-            for head_name, hs in acc.head_samples.items():
-                p_true, auc, delta_bce = self._compute_head_metrics(hs)
+        head_metrics: Dict[str, float] = {}
 
-                head_metrics[f"head_{head_name}_p_true"] = p_true
-                head_metrics[f"head_{head_name}_auc"] = auc
-                head_metrics[f"head_{head_name}_delta_bce"] = delta_bce
+        for head_name, hs in acc.head_samples.items():
+            p_true, auc, delta_bce = self._compute_head_metrics(hs)
+
+            head_metrics[f"head_{head_name}_p_true"] = p_true
+            head_metrics[f"head_{head_name}_auc"] = auc
+            head_metrics[f"head_{head_name}_delta_bce"] = delta_bce
 
         return KCProbeEvaluationResult(
             n_samples=n_samples,
@@ -2913,8 +2754,9 @@ class Trainer:
     ) -> KCProbeEvaluationResult:
         m = cast(
             StyleClassifierWithKC,
-            self.model.module if self.is_distributed else self.model,
+            self.model,
         )
+
         m.eval()
 
         config = KCProbeConfig(
@@ -2981,23 +2823,25 @@ class Trainer:
         if not recommendations:
             recommendations.append("✅ KC health OK. No action needed.")
 
-        if is_main_process():
-            print(
-                f"  KCProbe: uniq={probe_result.uniq_kcs}/{probe_result.kc_vocab_size} "
-                f"maxTop1={probe_result.max_top1:.3f} "
-                f"entN={probe_result.entropy_norm:.3f} "
-                f"klU={probe_result.kl_to_uniform:.3f} "
-                f"tv={probe_result.tv_mean:.3f} "
-                f"gap={probe_result.gap_mean:.3f} "
-                f"prob={probe_result.avg_prob:.2f} "
-                f"dens={probe_result.act_dens:.4f}"
+        if not recommendations:
+            recommendations.append("✅ KC health OK. No action needed.")
+
+        print(
+            f"  KCProbe: uniq={probe_result.uniq_kcs}/{probe_result.kc_vocab_size} "
+            f"maxTop1={probe_result.max_top1:.3f} "
+            f"entN={probe_result.entropy_norm:.3f} "
+            f"klU={probe_result.kl_to_uniform:.3f} "
+            f"tv={probe_result.tv_mean:.3f} "
+            f"gap={probe_result.gap_mean:.3f} "
+            f"prob={probe_result.avg_prob:.2f} "
+            f"dens={probe_result.act_dens:.4f}"
+        )
+        for head in ["lemma", "pos", "conjugated_form", "conjugated_type"]:
+            auc = probe_result.head_metrics.get(f"head_{head}_auc", float("nan"))
+            delta = probe_result.head_metrics.get(
+                f"head_{head}_delta_bce", float("nan")
             )
-            for head in ["lemma", "pos", "conjugated_form", "conjugated_type"]:
-                auc = probe_result.head_metrics.get(f"head_{head}_auc", float("nan"))
-                delta = probe_result.head_metrics.get(
-                    f"head_{head}_delta_bce", float("nan")
-                )
-                if not math.isnan(auc):
-                    print(f"    {head}: AUC={auc:.3f} ΔBCE={delta:+.4f}")
+            if not math.isnan(auc):
+                print(f"    {head}: AUC={auc:.3f} ΔBCE={delta:+.4f}")
 
         return recommendations

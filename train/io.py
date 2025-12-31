@@ -197,10 +197,8 @@ def load_training_state(
 
     # Load model weights
     model_state = checkpoint["model_state_dict"]
-    # Handle DDP 'module.' prefix
-    # Handle DDP 'module.' prefix
-    if not isinstance(model, torch.nn.parallel.DistributedDataParallel):
-        model_state = {k.replace("module.", ""): v for k, v in model_state.items()}
+    # Handle 'module.' prefix (legacy support for checkpoints)
+    model_state = {k.replace("module.", ""): v for k, v in model_state.items()}
 
     # Use strict=False to get missing keys without exception, avoiding banned try-except RuntimeError
     missing_keys, unexpected_keys = model.load_state_dict(model_state, strict=False)

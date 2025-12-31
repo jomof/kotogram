@@ -20,7 +20,8 @@ import os
 import subprocess
 import sys
 import time
-from typing import List, Optional, Any, Dict, IO, cast
+from typing import List, Optional, Any, Dict, cast
+
 
 
 from kotogram import locations
@@ -102,71 +103,7 @@ def get_free_port() -> int:
 
 
 # pylint: disable=too-many-locals
-def run_mp_distributed(cmd: List[str], env: dict, world_size: int, tee_log: Optional[str] = None) -> int:
-    """Run a distributed command using multiprocessing (bypasses torchrun overhead on Mac)."""
-    import threading
-    from contextlib import ExitStack
 
-    # Always pick a fresh port for MPLauncher to prevent test conflicts
-    # or lingering environment variables from polluting independent runs.
-    master_port = str(get_free_port())
-    master_addr = env.get("MASTER_ADDR", "127.0.0.1")
-
-    # Ensure env has these for workers
-    env["MASTER_ADDR"] = master_addr
-    env["MASTER_PORT"] = master_port
-
-    # Force lo0 on Mac for speed
-    if sys.platform == "darwin":
-        env["GLOO_SOCKET_IFNAME"] = "lo0"
-
-    # Use ExitStack to manage file and process contexts
-    with ExitStack() as stack:
-        log_f = None
-        if tee_log:
-            os.makedirs(os.path.dirname(tee_log), exist_ok=True)
-            log_f = stack.enter_context(open(tee_log, "ab"))
-            log_f.write(f"\n--- Starting MP Distributed Run (world_size={world_size}) ---\n".encode("utf-8"))
-
-        def pipe_reader(pipe: IO[bytes]) -> None:
-            while True:
-                chunk = pipe.read(4096)
-                if not chunk:
-                    break
-                sys.stdout.buffer.write(chunk)
-                sys.stdout.flush()
-                if log_f:
-                    log_f.write(chunk)
-                    log_f.flush()
-
-        processes = []
-        for i in range(world_size):
-            w_env = env.copy()
-            w_env["RANK"] = str(i)
-            w_env["WORLD_SIZE"] = str(world_size)
-            w_env["LOCAL_RANK"] = str(i)
-
-            p = stack.enter_context(subprocess.Popen(
-                [sys.executable] + cmd,
-                env=w_env,
-                cwd=PROJECT_ROOT,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                bufsize=0 # Unbuffered binary
-            ))
-            processes.append(p)
-
-            t = threading.Thread(target=pipe_reader, args=(p.stdout,))
-            t.daemon = True
-            t.start()
-
-        # Wait for all processes
-        exit_codes = [p.wait() for p in processes]
-
-    for code in exit_codes:
-        if code != 0:
-            return code
-    return 0
 
 
 def handle_special_modes(args: argparse.Namespace) -> Optional[int]:
@@ -410,9 +347,8 @@ def run_training_phase(
     env: dict,
     config_path: str,
     launcher: List[str],
-    use_mp_launcher: bool,
-    num_devices: int,
 ) -> int:
+
     """Run the training phase using the generated configuration."""
     # pylint: disable=import-outside-toplevel
     from train.paths import get_style_support_dir
@@ -462,11 +398,8 @@ def run_training_phase(
     training_log = os.path.join(support_dir, "training.log")
     t_train_start = time.perf_counter()
 
-    if use_mp_launcher:
-        ret = run_mp_distributed(train_args, env, num_devices, tee_log=training_log)
-    else:
-        train_cmd = launcher + train_args
-        ret = run_command(train_cmd, env, PROJECT_ROOT, tee_log=training_log)
+    train_cmd = launcher + train_args
+    ret = run_command(train_cmd, env, PROJECT_ROOT, tee_log=training_log)
 
     print(f"Training run took {time.perf_counter() - t_train_start:.1f}s")
     if ret != 0:
@@ -713,56 +646,20 @@ def main() -> int:
 
     # Determine process count and launcher
     num_devices, device_type = get_device_info()
-    use_mp_launcher = False
-
     # Configure launcher based on device type and count
-    if device_type == "CUDA" and num_devices > 1:
-        launcher = ["torchrun", f"--nproc_per_node={num_devices}"]
-    elif num_devices == 1:
-        launcher = [sys.executable]
-    else:
-        # Simulate distributed on Mac/CPU with 2 processes to catch multi-process bugs.
-        # Use custom MP launcher to avoid 35s torchrun overhead on Mac.
-        # This handles the specific "fake distributed" case if detected (rare/manual override?)
-        # For now, let's trust get_device_info.
-        # Note: The original logic had a fallback for num_gpus (from get_num_gpus returning 0) -> num_devices=2
-        # get_device_info now returns 1, "CPU" if no GPU.
-        # To preserve the mp-simulation logic, we check for dev/testing env var or argument?
-        # The prompt implies we want to see "actual usage".
-        # If the user was relying on the fallback `else` block (num_gpus=0 implied CPU simulation),
-        # we strictly default to 1 CPU now.
-        # PROMPT: "Will all 4 GPUs be used?" -> Focused on production.
-        # I will stick to 1 CPU default for "CPU" type unless explicitly simulation requested.
-        # Wait, the original code had:
-        # if num_gpus > 1: ... elif num_gpus == 1: ... else: num_devices=2 ...
-        # get_num_gpus returned 0 for CPU.
-        # So essentially CPU/Unknown was FORCED to 2-process simulation? That seems odd for production CPU training.
-        # It was likely for testing distributed logic on CPU machines.
-        # I should probably preserve that behavior if it helps dev, OR simplify.
-        # But for the user request "how many GPUs... will be used", accurate logging is key.
-        # I will trust the logic:
-        pass
+    # Support only single-device execution
+    num_devices = 1
+    launcher = [sys.executable]
 
-    # Re-eval launcher logic to match previous structure but with types
-    if device_type == "CUDA" and num_devices > 1:
-        launcher = ["torchrun", f"--nproc_per_node={num_devices}"]
-    elif device_type == "CUDA" and num_devices == 1:
-        launcher = [sys.executable]
+    if device_type == "CUDA":
+        # Even if multiple GPUs are available, we currently support only single-device training.
+
+        pass
     elif device_type == "MPS":
-        num_devices = 1
-        launcher = [sys.executable]
+        pass
     else:
-        # CPU case. Original code mapped 0 GPUs to 2 processes.
-        # Let's check if we really want that.
-        # "Simulate distributed on Mac/CPU with 2 processes to catch multi-process bugs."
-        # This seems intended for dev.
-        # For production CPU training, you might want 1 process?
-        # I will preserve the original simulation logic for CPU to avoid breaking dev workflow,
-        # but label it clearly.
-        num_devices = 2
-        use_mp_launcher = True
-        launcher = ["mp-simulation", "(2 processes)"]
-        device_type = "CPU (Simulated Distributed)"
+        # CPU
+        pass
 
     # Configure batch sizes
     micro_batch_size = args.batch_size if args.batch_size else 32
@@ -809,7 +706,7 @@ def main() -> int:
 
     # Phase 3: Training
     ret = run_training_phase(
-        args, env, config_path, launcher, use_mp_launcher, num_devices
+        args, env, config_path, launcher
     )
     if ret != 0:
         return ret

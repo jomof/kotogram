@@ -14,7 +14,6 @@ import time
 from typing import Any, Dict, List, Optional, Union, cast
 
 import torch
-import torch.distributed as dist
 
 from kotogram import locations
 from kotogram.model import StyleClassifier
@@ -28,7 +27,6 @@ from train.config import (
     TrainerConfig,
 )
 from train.dataset import DatasetConfig, StyleDataset
-from train.distributed import is_main_process, setup_distributed
 from train.io import save_model
 from train.models import StyleClassifierWithKC
 from train.profile import get_profile_dir, profiling_enabled
@@ -147,13 +145,9 @@ def cleanup_profile_if_retrain(argv_list: List[str]) -> None:
         # Use get_profile_dir to ensure we clean the correct machine-specific directory
         profile_dir = get_profile_dir()
         if profile_dir and os.path.exists(profile_dir):
-            if is_main_process():
-                print(f"Cleaning up profile directory: {profile_dir}")
-                shutil.rmtree(profile_dir, ignore_errors=True)
-                os.makedirs(profile_dir, exist_ok=True)
-            else:
-                # Wait for main process to recreate it
-                time.sleep(0.5)
+            print(f"Cleaning up profile directory: {profile_dir}")
+            shutil.rmtree(profile_dir, ignore_errors=True)
+            os.makedirs(profile_dir, exist_ok=True)
 
 
 if __name__ == "__main__":
@@ -163,8 +157,7 @@ if __name__ == "__main__":
     from train.profile import setup_profiling
 
     setup_profiling("train_style", include_kc_infix=True)
-    if os.environ.get("RANK", "0") == "0":
-        print("Starting training script...", flush=True)
+    print("Starting training script...", flush=True)
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -280,13 +273,11 @@ if __name__ == "__main__":
     args.output = locations.get_style_output_dir()
     args.support_dir = paths.get_style_support_dir()
 
-    rank, world_size, local_rank = setup_distributed()
-
     # Epoch history logging
     history_path = os.path.join(args.support_dir, "training-history.tsv")
 
     # Clear history if starting fresh (and not just labeling)
-    if is_main_process() and not args.resume and not args.label:
+    if not args.resume and not args.label:
         history.clear_history(history_path)
 
     def _log_epoch_event(
@@ -328,32 +319,27 @@ if __name__ == "__main__":
                     val = dataclasses.asdict(val)
                 metrics[k] = val
 
-        if is_main_process():
-            event: history.HistoryEvent
-            if phase_type == "pretrain-kc":
-                # Check for diagnostics
-                if (
-                    "kc_diagnostics" in history_map
-                    and isinstance(history_map["kc_diagnostics"], list)
-                    and len(history_map["kc_diagnostics"]) > idx
-                ):
-                    diags = history_map["kc_diagnostics"]
-                    if diags[idx]:
-                        d_val = diags[idx]
-                        if dataclasses.is_dataclass(d_val) and not isinstance(
-                            d_val, type
-                        ):
-                            d_val = dataclasses.asdict(d_val)
-                        diag_event = history.KcDiagEvent(
-                            epoch=current_epoch, stats=d_val
-                        )
-                        history.append_event(history_path, diag_event)
+        event: history.HistoryEvent
+        if phase_type == "pretrain-kc":
+            # Check for diagnostics
+            if (
+                "kc_diagnostics" in history_map
+                and isinstance(history_map["kc_diagnostics"], list)
+                and len(history_map["kc_diagnostics"]) > idx
+            ):
+                diags = history_map["kc_diagnostics"]
+                if diags[idx]:
+                    d_val = diags[idx]
+                    if dataclasses.is_dataclass(d_val) and not isinstance(d_val, type):
+                        d_val = dataclasses.asdict(d_val)
+                    diag_event = history.KcDiagEvent(epoch=current_epoch, stats=d_val)
+                    history.append_event(history_path, diag_event)
 
-                event = history.KcEpochEvent(epoch=current_epoch, metrics=metrics)
-            else:
-                event = history.StyleEpochEvent(epoch=current_epoch, metrics=metrics)
+            event = history.KcEpochEvent(epoch=current_epoch, metrics=metrics)
+        else:
+            event = history.StyleEpochEvent(epoch=current_epoch, metrics=metrics)
 
-            history.append_event(history_path, event)
+        history.append_event(history_path, event)
 
     model: Optional[StyleClassifier] = None
     tokenizer: Optional[Tokenizer] = None
@@ -392,8 +378,7 @@ if __name__ == "__main__":
         )
 
     tokenizer = Tokenizer.load(tokenizer_path)
-    if is_main_process():
-        print(f"Loaded tokenizer from {tokenizer_path}")
+    print(f"Loaded tokenizer from {tokenizer_path}")
 
     # Create a single TrainerConfig and ModelConfig
     if args.config and os.path.exists(args.config):
@@ -436,7 +421,7 @@ if __name__ == "__main__":
         data_files,
         tokenizer,
         config=DatasetConfig(
-            verbose=is_main_process(),
+            verbose=True,
             grammaticality_labels=grammaticality_labels,
             sample_ratio=args.percent / 100.0 if args.percent else 1.0,
         ),
@@ -452,15 +437,12 @@ if __name__ == "__main__":
         model.resize_embeddings(new_vocab_sizes)
         model_config.vocab_sizes = new_vocab_sizes
         # Save updated tokenizer to output_dir so resumption finds it
-        if is_main_process():
-            train_io.save_tokenizer(
-                tokenizer,
-                os.path.join(locations.get_style_output_dir(), "tokenizer.json"),
-            )
+        train_io.save_tokenizer(
+            tokenizer,
+            os.path.join(locations.get_style_output_dir(), "tokenizer.json"),
+        )
 
     if args.preprocess_only:
-        if dist.is_available() and dist.is_initialized():
-            dist.destroy_process_group()
         sys.exit(0)
 
     if args.pretrain_kc and not args.preprocess_only:
@@ -482,14 +464,13 @@ if __name__ == "__main__":
                 epochs=trainer_config.kc_epochs,
                 on_epoch_end=lambda h: _log_epoch_event(h, "pretrain-kc"),
             )
-            if is_main_process() and kc_hist.total_loss:
+            if kc_hist.total_loss:
                 print(
                     f"KC Pretraining finished. Final loss: {kc_hist.total_loss[-1]:.4f}"
                 )
-            if is_main_process():
-                # Ensure final state is logged if not already (redundant if using callback)
-                # But callback might be skipped if 0 epochs? No, train loop handles it.
-                pass
+            # Ensure final state is logged if not already (redundant if using callback)
+            # But callback might be skipped if 0 epochs? No, train loop handles it.
+
             # Update model reference (Trainer may have wrapped/moved it)
             model = kc_trainer.model
             if hasattr(model, "module"):
@@ -517,63 +498,59 @@ if __name__ == "__main__":
         epochs=trainer_config.epochs,
         on_epoch_end=lambda h: _log_epoch_event(h, "style"),
     )
-    if is_main_process() and style_hist.train_loss:
+    if style_hist.train_loss:
         print(f"Style Training finished. Final loss: {style_hist.train_loss[-1]:.4f}")
+
     # _log_epoch_event already logs during callbacks
     style_end = time.perf_counter()
 
     # Test evaluation and model saving
     res = style_trainer.evaluate()
-    if is_main_process():
-        print("----------------------------------")
-        print(
-            f"Final Test Results:\n"
-            f"Accuracy: form={res.formality_accuracy:.4f}, gender={res.gender_accuracy:.4f}, gram={res.grammaticality_accuracy:.4f}, register={res.register_accuracy:.4f}"
-        )
-        print("----------------------------------")
+    print("----------------------------------")
+    print(
+        f"Final Test Results:\n"
+        f"Accuracy: form={res.formality_accuracy:.4f}, gender={res.gender_accuracy:.4f}, gram={res.grammaticality_accuracy:.4f}, register={res.register_accuracy:.4f}"
+    )
+    print("----------------------------------")
 
-        # Save model
-        output_dir = locations.get_style_output_dir()
-        os.makedirs(output_dir, exist_ok=True)
-        # from train.io import save_model  # Already imported
-        # pylint: disable=reimported
+    # Save model
+    output_dir = locations.get_style_output_dir()
+    os.makedirs(output_dir, exist_ok=True)
+    # from train.io import save_model  # Already imported
+    # pylint: disable=reimported
 
-        # Ensure we use the trained model
-        trained_model = style_trainer.model
-        if hasattr(trained_model, "module"):
-            trained_model = cast(StyleClassifier, trained_model.module)
+    # Ensure we use the trained model
+    trained_model = style_trainer.model
+    if hasattr(trained_model, "module"):
+        trained_model = cast(StyleClassifier, trained_model.module)
 
-        # Create __init__.py to make the model directory a valid Python package
-        # This is required for 'kotogram.model_data' redirection in pyproject.toml
-        init_path = os.path.join(output_dir, "__init__.py")
-        with open(init_path, "w", encoding="utf-8"):
-            pass
+    # Create __init__.py to make the model directory a valid Python package
+    # This is required for 'kotogram.model_data' redirection in pyproject.toml
+    init_path = os.path.join(output_dir, "__init__.py")
+    with open(init_path, "w", encoding="utf-8"):
+        pass
 
-        save_model(
-            cast(StyleClassifier, trained_model),
-            output_dir,
-            None,  # Tokenizer already saved by wrapper/growth logic
-            model_config,
-        )
-        print(f"Model saved to: {output_dir}")
+    save_model(
+        cast(StyleClassifier, trained_model),
+        output_dir,
+        None,  # Tokenizer already saved by wrapper/growth logic
+        model_config,
+    )
+    print(f"Model saved to: {output_dir}")
 
-        # Final timing report
-        print("-" * 34)
-        print("Performance Summary:")
-        print("-" * 34)
-        if args.pretrain_kc and trainer_config.kc_epochs > 0:
-            # Approximate pretraining time using what logic we have left or just remove details
-            pass
-        print(f"  Style Training: {style_end - style_start:.1f}s")
-        print("-" * 34)
-
-    if dist.is_available() and dist.is_initialized():
-        dist.destroy_process_group()
+    # Final timing report
+    print("-" * 34)
+    print("Performance Summary:")
+    print("-" * 34)
+    if args.pretrain_kc and trainer_config.kc_epochs > 0:
+        # Approximate pretraining time using what logic we have left or just remove details
+        pass
+    print(f"  Style Training: {style_end - style_start:.1f}s")
+    print("-" * 34)
 
     # Auto-generate report and cleanup if profiling was enabled
     # We check environment because arguments might not settle it alone (defaults)
     # But usually if we ran code, we generated logs.
     if profiling_enabled() and not args.report:
         # args.report exits early, so we only need to do this for a normal run
-        if is_main_process():
-            generate_profile_report()
+        generate_profile_report()

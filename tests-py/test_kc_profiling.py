@@ -33,8 +33,6 @@ class TestKCProfiling(unittest.TestCase):
         self.mock_model.config = MagicMock()
         self.mock_model.config.max_seq_len = 128
         self.mock_model.config.kc_vocab_size = 100
-        # Mock module attribute for DDP handling logic in init
-        self.mock_model.module = self.mock_model
 
         # Mock submodules
         self.mock_model.kc_head = MagicMock()
