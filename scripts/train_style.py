@@ -19,9 +19,6 @@ import torch.distributed as dist
 from kotogram import locations
 from kotogram.model import StyleClassifier
 from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
-from scripts import (
-    _setup_path,  # type: ignore # noqa: F401 # pylint: disable=import-private-name
-)
 from train import history
 from train.config import (
     KCConfig,
@@ -35,13 +32,11 @@ from train.profile import get_profile_dir, profiling_enabled
 from train.trainer import KCTrainer, Trainer
 from train.types import KCTrainingHistory, TrainingHistory
 
-# Vulture: Used for side effects
-_vulture_marker: Any = [_setup_path]
-
 
 def generate_profile_report() -> None:
     # pylint: disable=too-many-locals
     """Generate human-readable performance report from JSONL logs."""
+
     prof_dir = get_profile_dir()
     if not prof_dir or not os.path.exists(prof_dir):
         # If no profile dir, nothing to do (or profiling disabled)
@@ -483,7 +478,10 @@ if __name__ == "__main__":
                 epochs=trainer_config.kc_epochs,
                 on_epoch_end=lambda h: _log_epoch_event(h, "pretrain-kc"),
             )
-            _vulture_marker.append(kc_hist)
+            if is_main_process() and kc_hist.total_loss:
+                print(
+                    f"KC Pretraining finished. Final loss: {kc_hist.total_loss[-1]:.4f}"
+                )
             if is_main_process():
                 # Ensure final state is logged if not already (redundant if using callback)
                 # But callback might be skipped if 0 epochs? No, train loop handles it.
@@ -515,7 +513,8 @@ if __name__ == "__main__":
         epochs=trainer_config.epochs,
         on_epoch_end=lambda h: _log_epoch_event(h, "style"),
     )
-    _vulture_marker.append(style_hist)
+    if is_main_process() and style_hist.train_loss:
+        print(f"Style Training finished. Final loss: {style_hist.train_loss[-1]:.4f}")
     # _log_epoch_event already logs during callbacks
     style_end = time.perf_counter()
 
@@ -572,4 +571,5 @@ if __name__ == "__main__":
     # But usually if we ran code, we generated logs.
     if profiling_enabled() and not args.report:
         # args.report exits early, so we only need to do this for a normal run
-        generate_profile_report()
+        if is_main_process():
+            generate_profile_report()

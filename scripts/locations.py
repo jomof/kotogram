@@ -17,11 +17,6 @@ from kotogram.locations import (
     get_style_support_dir,
     get_train_root,
 )
-from scripts import (
-    _setup_path,  # type: ignore # noqa: F401 # pylint: disable=import-private-name
-)
-
-_vulture_marker = _setup_path  # Vulture: Used for side effects
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
