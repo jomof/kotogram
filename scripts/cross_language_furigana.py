@@ -18,16 +18,13 @@ import sys
 import tempfile
 from pathlib import Path
 
-from kotogram import SudachiJapaneseParser, kotogram_to_japanese
-from scripts import (
-    _setup_path,  # type: ignore # noqa: F401 # pylint: disable=import-private-name
-)
-
-_vulture_marker = _setup_path  # Vulture: Used for side effects
+# Local imports used to avoid top-level dependency on project root being in sys.path
 
 
 def generate_kotograms(data_path: Path) -> list[str]:
     """Generate kotograms for all sentences using Sudachi parser."""
+    from kotogram import SudachiJapaneseParser
+
     parser = SudachiJapaneseParser(dict_type="full")
 
     kotograms = []
@@ -45,6 +42,8 @@ def generate_kotograms(data_path: Path) -> list[str]:
 
 def python_convert_furigana(kotograms: list[str]) -> list[str]:
     """Convert kotograms to Japanese with furigana using Python."""
+    from kotogram import kotogram_to_japanese
+
     results = []
     for kotogram in kotograms:
         if not kotogram:
@@ -125,60 +124,89 @@ def compare_results(
 
 
 def main() -> None:
-    project_root = Path(__file__).parent.parent
+    # pylint: disable=too-many-locals
+
+    # Ensure project_root is in sys.path
+    project_root = Path(__file__).resolve().parent.parent
+    if str(project_root) not in sys.path:
+        sys.path.insert(0, str(project_root))
+
     data_path = project_root / "data" / "jpn_sentences.tsv"
+    tar_path = project_root / "data" / "corpus.tar.gz"
 
-    print("Cross-language furigana validation")
-    print("=" * 60)
-    print(f"Data: {data_path}")
-    print()
+    # Context manager stack to handle optional temp directory
+    import contextlib
+    import tarfile
 
-    # Step 1: Generate kotograms
-    print("Step 1: Generating kotograms from Japanese sentences...")
-    kotograms = generate_kotograms(data_path)
-    print(f"  Generated {len(kotograms)} kotograms")
-    print()
+    with contextlib.ExitStack() as stack:
+        if not data_path.exists() and tar_path.exists():
+            print(f"Extracting jpn_sentences.tsv from {tar_path}...")
+            tmproot = stack.enter_context(tempfile.TemporaryDirectory())
+            with tarfile.open(tar_path, "r:gz") as tar:
+                # Extract only the needed file
+                if "jpn_sentences.tsv" in tar.getnames():
+                    tar.extract("jpn_sentences.tsv", path=tmproot)
+                    data_path = Path(tmproot) / "jpn_sentences.tsv"
+                else:
+                    print(f"Error: jpn_sentences.tsv not found in {tar_path}")
+                    sys.exit(1)
 
-    with tempfile.TemporaryDirectory() as tmpdir_str:
-        tmpdir = Path(tmpdir_str)
-
-        print("Step 2: Converting kotograms with Python...")
-        python_results = python_convert_furigana(kotograms)
-        print(f"  Converted {len(python_results)} kotograms")
-
-        # Write kotograms to temp file for TypeScript
-        kotograms_file = tmpdir / "kotograms.txt"
-        kotograms_file.write_text("\n".join(kotograms))
-
-        ts_output_file = tmpdir / "ts_results.txt"
-
-        print("Step 3: Converting kotograms with TypeScript...")
-        if not typescript_convert_furigana(kotograms_file, ts_output_file):
-            print("  ❌ TypeScript conversion failed")
+        if not data_path.exists():
+            print(f"Error: Data file not found at {data_path}")
             sys.exit(1)
 
-        typescript_results = ts_output_file.read_text().split("\n")
-        print(f"  Converted {len(typescript_results)} kotograms")
+        print("Cross-language furigana validation")
+        print("=" * 60)
+        print(f"Data: {data_path}")
+        print()
 
-        # Step 4: Compare results
-        print("Step 4: Comparing results...")
-        matches, total, mismatches = compare_results(
-            python_results, typescript_results, kotograms
-        )
+        # Step 1: Generate kotograms
+        print("Step 1: Generating kotograms from Japanese sentences...")
+        # generate_kotograms opens the file, so we just pass the path
+        kotograms = generate_kotograms(data_path)
+        print(f"  Generated {len(kotograms)} kotograms")
+        print()
 
-        if not mismatches:
-            print(f"  ✅ All {matches} conversions match!")
-        else:
-            print(f"  ❌ {len(mismatches)} mismatches found out of {total} conversions")
-            print()
-            print("  First 5 mismatches:")
-            for m in mismatches[:5]:
-                print(f"    Line {m['line']}:")
-                print(f"      Kotogram: {m['kotogram']}")
-                print(f"      Python:     {m['python']}")
-                print(f"      TypeScript: {m['typescript']}")
+        with tempfile.TemporaryDirectory() as tmpdir_str:
+            tmpdir = Path(tmpdir_str)
+
+            print("Step 2: Converting kotograms with Python...")
+            python_results = python_convert_furigana(kotograms)
+            print(f"  Converted {len(python_results)} kotograms")
+
+            # Write kotograms to temp file for TypeScript
+            kotograms_file = tmpdir / "kotograms.txt"
+            kotograms_file.write_text("\n".join(kotograms))
+
+            ts_output_file = tmpdir / "ts_results.txt"
+
+            print("Step 3: Converting kotograms with TypeScript...")
+            if not typescript_convert_furigana(kotograms_file, ts_output_file):
+                print("  ❌ TypeScript conversion failed")
+                sys.exit(1)
+
+            typescript_results = ts_output_file.read_text().split("\n")
+            print(f"  Converted {len(typescript_results)} kotograms")
+
+            # Step 4: Compare results
+            print("Step 4: Comparing results...")
+            matches, total, mismatches = compare_results(
+                python_results, typescript_results, kotograms
+            )
+
+            if not mismatches:
+                print(f"  ✅ All {matches} conversions match!")
+            else:
+                print(f"  ❌ {len(mismatches)} mismatches found out of {total} conversions")
                 print()
-            sys.exit(1)
+                print("  First 5 mismatches:")
+                for m in mismatches[:5]:
+                    print(f"    Line {m['line']}:")
+                    print(f"      Kotogram: {m['kotogram']}")
+                    print(f"      Python:     {m['python']}")
+                    print(f"      TypeScript: {m['typescript']}")
+                    print()
+                sys.exit(1)
 
 
 if __name__ == "__main__":
