@@ -43,7 +43,14 @@ from train.io import (
 from train.kc_diagnostics import KCEpochDiag
 from train.models import StyleClassifierWithKC
 from train.profile import Timer, get_profile_dir
-from train.types import KCMetricsAccumulator, KCProbeConfig, TrainingMetrics
+from train.types import (
+    EvaluationMetrics,
+    KCMetricsAccumulator,
+    KCProbeConfig,
+    KCTrainingHistory,
+    TrainingHistory,
+    TrainingMetrics,
+)
 from train.worker import _worker_init_fn
 
 
@@ -233,21 +240,7 @@ class KCTrainer:
             self.kc_show_step_checks = True
             self.kc_show_grad_norms = True
 
-        self.history: Dict[str, Any] = {
-            "total_loss": [],
-            "kc_loss": [],
-            "kc_sparsity": [],
-            "kc_losses": {},
-            "avg_struct_loss": [],
-            "avg_label_loss": [],
-            "num_struct_heads_processed": [],
-            "num_label_heads_processed": [],
-            "avg_sparsity": [],
-            "sentence_count": [],
-            "first_batch_separation": [],
-            "first_batch_grad_norms": [],
-            "kc_diagnostics": [],
-        }
+        self.history = KCTrainingHistory()
         profile_dir = get_profile_dir()
         pid = os.getpid()
         self.train_timer_data = Timer(
@@ -307,7 +300,15 @@ class KCTrainer:
         self.start_epoch = checkpoint["epoch"]
         self.start_batch = checkpoint.get("batch_idx", 0)
         self.global_step = checkpoint.get("global_step", 0)
-        self.history = checkpoint["history"]
+        history_data = checkpoint["history"]
+        if isinstance(history_data, dict):
+            for k, v in history_data.items():
+                if hasattr(self.history, k):
+                    setattr(self.history, k, v)
+            if isinstance(self.history, dict):
+                self.history.update(history_data)
+        else:
+            self.history = history_data
         if is_main_process():
             print(
                 f"  [Resume] Restored KC checkpoint from {path} "
@@ -1782,8 +1783,8 @@ class KCTrainer:
     def train(
         self,
         epochs: Optional[int] = None,
-        on_epoch_end: Optional[Callable[[Dict[str, List[float]]], None]] = None,
-    ) -> Dict[str, List[float]]:
+        on_epoch_end: Optional[Callable[[KCTrainingHistory], None]] = None,
+    ) -> KCTrainingHistory:
         if self.config.checkpoint.resume_from:
             self.restore_from_checkpoint(self.config.checkpoint.resume_from)
 
@@ -1801,29 +1802,31 @@ class KCTrainer:
             if is_main_process():
                 self._log_training_progress()
 
-            self.history["total_loss"].append(total_loss)
-            self.history["kc_sparsity"].append(avg_sparsity)
-            self.history["avg_struct_loss"].append(epoch_stats["avg_struct_loss"])
-            self.history["avg_label_loss"].append(epoch_stats["avg_label_loss"])
-            self.history["num_struct_heads_processed"].append(
+            self.history.total_loss.append(total_loss)
+            self.history.kc_sparsity.append(avg_sparsity)
+            self.history.avg_struct_loss.append(epoch_stats["avg_struct_loss"])
+            self.history.avg_label_loss.append(epoch_stats["avg_label_loss"])
+            self.history.num_struct_heads_processed.append(
                 epoch_stats["num_struct_heads_processed"]
             )
-            self.history["num_label_heads_processed"].append(
+            self.history.num_label_heads_processed.append(
                 epoch_stats["num_label_heads_processed"]
             )
-            self.history["avg_sparsity"].append(epoch_stats["avg_sparsity"])
-            self.history["first_batch_separation"].append(
+            self.history.avg_sparsity.append(epoch_stats["avg_sparsity"])
+            self.history.first_batch_separation.append(
                 epoch_stats["first_batch_separation"]
             )
-            self.history["first_batch_grad_norms"].append(
+            self.history.first_batch_grad_norms.append(
                 epoch_stats["first_batch_grad_norms"]
             )
-            self.history["kc_diagnostics"].append(epoch_stats.get("kc_diagnostics", {}))
+            self.history.kc_diagnostics.append(
+                cast(Dict[str, Any], epoch_stats.get("kc_diagnostics", {}))
+            )
 
             for k, v in kc_losses.items():
-                if k not in self.history["kc_losses"]:
-                    self.history["kc_losses"][k] = []
-                self.history["kc_losses"][k].append(v)
+                if k not in self.history.kc_losses:
+                    self.history.kc_losses[k] = []
+                self.history.kc_losses[k].append(v)
 
             if is_main_process() and self.kc_show_epoch_table:
                 top_losses = dict(
@@ -1838,7 +1841,7 @@ class KCTrainer:
                     kc_epoch_stats=epoch_stats,
                 )
 
-            self.history["sentence_count"].append(len(self.dataset))
+            self.history.sentence_count.append(len(self.dataset))
 
             self.save_checkpoint(epoch + 1, 0)
 
@@ -1872,18 +1875,17 @@ class Trainer:
         model: StyleClassifier,
         train_dataset: StyleDataset,
         val_dataset: StyleDataset,
-        config: Optional[TrainerConfig] = None,
-        dl_config_train: Optional[DataLoaderConfig] = None,
-        dl_config_val: Optional[DataLoaderConfig] = None,
-        name: str = "style_model",
+        config: TrainerConfig,
+        dl_config_train: DataLoaderConfig,
+        dl_config_val: DataLoaderConfig,
         output_path: Optional[str] = None,
         kc_show_epoch_table: bool = True,
     ):
         self.model = model
         self.train_dataset = train_dataset
         self.val_dataset = val_dataset
-        self.config = config or TrainerConfig()
-        self.name = name
+        self.config = config
+        self.name = "style_model"
         self.output_path = output_path or "checkpoints"
         self.kc_show_epoch_table = kc_show_epoch_table
         configure_runtime_thread_limits(self.config)
@@ -2042,28 +2044,7 @@ class Trainer:
 
         _safe_configure_threads(self.config)
 
-        self.history: Dict[str, List[float]] = {
-            k: []
-            for k in [
-                "train_loss",
-                "train_formality_loss",
-                "train_gender_loss",
-                "train_grammaticality_loss",
-                "train_register_loss",
-                "val_loss",
-                "val_formality_loss",
-                "val_gender_loss",
-                "val_grammaticality_loss",
-                "val_register_loss",
-                "val_formality_accuracy",
-                "val_formality_mse",
-                "val_gender_pragmatic_accuracy",
-                "val_gender_value_mse",
-                "val_grammaticality_accuracy",
-                "val_register_accuracy",
-                "sentence_count",
-            ]
-        }
+        self.history = TrainingHistory()
         profile_dir = get_profile_dir()
 
         pid = os.getpid()
@@ -2123,7 +2104,21 @@ class Trainer:
         self.start_epoch = checkpoint["epoch"]
         self.start_batch = checkpoint.get("batch_idx", 0)
         self.global_step = checkpoint.get("global_step", 0)
-        self.history = checkpoint["history"]
+        history_data = checkpoint["history"]
+
+        # Try to update existing history object (dataclass) from dict to preserve type
+        if isinstance(history_data, dict):
+            # We assume self.history is initialized correctly in __init__
+            for k, v in history_data.items():
+                if hasattr(self.history, k):
+                    setattr(self.history, k, v)
+
+            # Fallback: if self.history is a dict (legacy), update it
+            if isinstance(self.history, dict):
+                self.history.update(history_data)
+        else:
+            # history_data is already an object (e.g. from newer checkpoint?), replace
+            self.history = history_data
 
         meta_path = os.path.join(path, "checkpoint_meta.pt")
         if os.path.exists(meta_path):
@@ -2380,7 +2375,7 @@ class Trainer:
         }
 
     @torch.no_grad()
-    def evaluate(self) -> Dict[str, Any]:
+    def evaluate(self) -> EvaluationMetrics:
         self.model.eval()
         n = 0
         metrics_sum: Dict[str, float] = {}
@@ -2415,41 +2410,26 @@ class Trainer:
             n += 1
 
         if n == 0:
-            return {}
+            return EvaluationMetrics()
 
         avg_metrics = {k: v / n for k, v in metrics_sum.items()}
         valid_idxs = [i for i, v in enumerate(all_preds["is_valid"]) if v]
 
-        return {
-            "loss": avg_metrics.get("loss", 0.0) * self.config.grad_accum_steps,
-            "formality_loss": avg_metrics.get("f_loss", 0.0),
-            "gender_loss": avg_metrics.get("g_loss", 0.0),
-            "grammaticality_loss": avg_metrics.get("gram_loss", 0.0),
-            "register_loss": avg_metrics.get("reg_loss", 0.0),
-            "formality_accuracy": _acc(all_preds["f_prag_p"], all_preds["f_prag_l"]),
-            "formality_mse": _mse(
-                all_preds["f_val_p"], all_preds["f_val_l"], valid_idxs
-            ),
-            "gender_accuracy": _acc(all_preds["g_prag_p"], all_preds["g_prag_l"]),
-            "gender_mse": _mse(all_preds["g_val_p"], all_preds["g_val_l"], valid_idxs),
-            "grammaticality_accuracy": _acc(all_preds["gram_p"], all_preds["gram_l"]),
-            "register_accuracy": _reg_acc(
+        return EvaluationMetrics(
+            loss=avg_metrics.get("loss", 0.0) * self.config.grad_accum_steps,
+            formality_loss=avg_metrics.get("f_loss", 0.0),
+            gender_loss=avg_metrics.get("g_loss", 0.0),
+            grammaticality_loss=avg_metrics.get("gram_loss", 0.0),
+            register_loss=avg_metrics.get("reg_loss", 0.0),
+            formality_accuracy=_acc(all_preds["f_prag_p"], all_preds["f_prag_l"]),
+            formality_mse=_mse(all_preds["f_val_p"], all_preds["f_val_l"], valid_idxs),
+            gender_accuracy=_acc(all_preds["g_prag_p"], all_preds["g_prag_l"]),
+            gender_mse=_mse(all_preds["g_val_p"], all_preds["g_val_l"], valid_idxs),
+            grammaticality_accuracy=_acc(all_preds["gram_p"], all_preds["gram_l"]),
+            register_accuracy=_reg_acc(
                 all_preds["reg_p"], all_preds["reg_l"], valid_idxs
             ),
-            "formality_val_preds": all_preds["f_val_p"],
-            "formality_val_labels": all_preds["f_val_l"],
-            "formality_prag_preds": all_preds["f_prag_p"],
-            "formality_prag_labels": all_preds["f_prag_l"],
-            "gender_val_preds": all_preds["g_val_p"],
-            "gender_val_labels": all_preds["g_val_l"],
-            "gender_prag_preds": all_preds["g_prag_p"],
-            "gender_prag_labels": all_preds["g_prag_l"],
-            "grammaticality_preds": all_preds["gram_p"],
-            "grammaticality_labels": all_preds["gram_l"],
-            "register_preds": all_preds["reg_p"],
-            "register_labels": all_preds["reg_l"],
-            "is_valid": all_preds["is_valid"],
-        }
+        )
 
     def _accumulate_eval_batch(
         self,
@@ -2474,8 +2454,8 @@ class Trainer:
     def train(
         self,
         epochs: Optional[int] = None,
-        on_epoch_end: Optional[Callable[[Dict[str, List[float]]], None]] = None,
-    ) -> Dict[str, List[float]]:
+        on_epoch_end: Optional[Callable[[TrainingHistory], None]] = None,
+    ) -> TrainingHistory:
         if self.config.checkpoint.resume_from:
             self.restore_from_checkpoint(self.config.checkpoint.resume_from)
 
@@ -2484,7 +2464,7 @@ class Trainer:
         for epoch in range(self.start_epoch, actual_epochs):
             tl, tfl, tgl, tgraml, trl = self.train_epoch(epoch=epoch)
             eval_res = self.evaluate()
-            self.scheduler.step(eval_res["loss"])
+            self.scheduler.step(eval_res.loss)
 
             kc_probe_result = None
             m_style = cast(
@@ -2497,30 +2477,25 @@ class Trainer:
                     kc_probe_result = self.evaluate_kc_probe(probe_loader)
                     self._diagnose_kc_probe(kc_probe_result)
 
-            self.history["train_loss"].append(tl)
-            self.history["train_formality_loss"].append(tfl)
-            self.history["train_gender_loss"].append(tgl)
-            self.history["train_grammaticality_loss"].append(tgraml)
-            self.history["train_register_loss"].append(trl)
-            self.history["val_loss"].append(eval_res["loss"])
-            self.history["val_formality_loss"].append(eval_res["formality_loss"])
-            self.history["val_gender_loss"].append(eval_res["gender_loss"])
-            self.history["val_grammaticality_loss"].append(
-                eval_res["grammaticality_loss"]
+            self.history.train_loss.append(tl)
+            self.history.train_formality_loss.append(tfl)
+            self.history.train_gender_loss.append(tgl)
+            self.history.train_grammaticality_loss.append(tgraml)
+            self.history.train_register_loss.append(trl)
+            self.history.val_loss.append(eval_res.loss)
+            self.history.val_formality_loss.append(eval_res.formality_loss)
+            self.history.val_gender_loss.append(eval_res.gender_loss)
+            self.history.val_grammaticality_loss.append(eval_res.grammaticality_loss)
+            self.history.val_register_loss.append(eval_res.register_loss)
+            self.history.val_formality_accuracy.append(eval_res.formality_accuracy)
+            self.history.val_formality_mse.append(eval_res.formality_mse)
+            self.history.val_gender_pragmatic_accuracy.append(eval_res.gender_accuracy)
+            self.history.val_gender_value_mse.append(eval_res.gender_mse)
+            self.history.val_grammaticality_accuracy.append(
+                eval_res.grammaticality_accuracy
             )
-            self.history["val_register_loss"].append(eval_res["register_loss"])
-            self.history["val_formality_accuracy"].append(
-                eval_res["formality_accuracy"]
-            )
-            self.history["val_formality_mse"].append(eval_res["formality_mse"])
-            self.history["val_gender_pragmatic_accuracy"].append(
-                eval_res["gender_accuracy"]
-            )
-            self.history["val_gender_value_mse"].append(eval_res["gender_mse"])
-            self.history["val_grammaticality_accuracy"].append(
-                eval_res["grammaticality_accuracy"]
-            )
-            self.history["sentence_count"].append(len(self.train_dataset))
+            self.history.val_register_accuracy.append(eval_res.register_accuracy)
+            self.history.sentence_count.append(len(self.train_dataset))
 
             if is_main_process():
                 data_avg = self.train_timer_data.avg()
@@ -2537,36 +2512,36 @@ class Trainer:
                 metrics = {
                     "Formality": {
                         "Train": tfl,
-                        "Val": eval_res["formality_loss"],
-                        "Acc": eval_res["formality_accuracy"],
+                        "Val": eval_res.formality_loss,
+                        "Acc": eval_res.formality_accuracy,
                     },
                     "Gender": {
                         "Train": tgl,
-                        "Val": eval_res["gender_loss"],
-                        "Acc": eval_res["gender_accuracy"],
+                        "Val": eval_res.gender_loss,
+                        "Acc": eval_res.gender_accuracy,
                     },
                     "Grammar": {
                         "Train": tgraml,
-                        "Val": eval_res["grammaticality_loss"],
-                        "Acc": eval_res["grammaticality_accuracy"],
+                        "Val": eval_res.grammaticality_loss,
+                        "Acc": eval_res.grammaticality_accuracy,
                     },
                     "Register": {
                         "Train": trl,
-                        "Val": eval_res["register_loss"],
-                        "Acc": eval_res["register_accuracy"],
+                        "Val": eval_res.register_loss,
+                        "Acc": eval_res.register_accuracy,
                     },
                 }
                 print_epoch_summary(
                     epoch + 1,
                     self.config.epochs,
-                    {"Train Loss": tl, "Val Loss": eval_res["loss"]},
+                    {"Train Loss": tl, "Val Loss": eval_res.loss},
                     metrics,
                     phase="Style",
                 )
 
-            is_best = eval_res["loss"] < self.best_val_loss
+            is_best = eval_res.loss < self.best_val_loss
             if is_best:
-                self.best_val_loss, self.patience_counter = eval_res["loss"], 0
+                self.best_val_loss, self.patience_counter = eval_res.loss, 0
                 self.best_state = {
                     k: cast(torch.Tensor, v.cpu().clone())
                     for k, v in self.model.state_dict().items()

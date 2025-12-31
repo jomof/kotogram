@@ -3,7 +3,7 @@
 import json
 import os
 import random
-from typing import Any, Dict, Optional, cast
+from typing import Any, Dict, Optional, Union, cast
 
 import torch
 from torch import nn
@@ -15,6 +15,7 @@ from kotogram.model import (
     StyleClassifier,
 )
 from kotogram.tokenizer import Tokenizer
+from train.types import TrainingHistory
 
 
 def save_model(
@@ -102,7 +103,7 @@ def save_training_state(
     model: nn.Module,
     optimizer: torch.optim.Optimizer,
     epoch: int,
-    history: Dict[str, Any],
+    history: Union[Dict[str, Any], TrainingHistory],
     global_step: int = 0,
     batch_idx: int = 0,
     scaler: Optional[torch.amp.GradScaler] = None,
@@ -113,13 +114,19 @@ def save_training_state(
     """Generic training state save."""
     # pylint: disable=too-many-positional-arguments
     os.makedirs(path, exist_ok=True)
+    history_dict = (
+        history.to_dict()
+        if hasattr(history, "to_dict")
+        else (vars(history) if not isinstance(history, dict) else history)
+    )
+
     checkpoint = {
         "epoch": epoch,
         "global_step": global_step,
         "batch_idx": batch_idx,
         "model_state_dict": model.state_dict(),
         "optimizer_state_dict": optimizer.state_dict(),
-        "history": history,
+        "history": history_dict,
         "rng_states": get_rng_states(),
     }
     if scaler is not None:
