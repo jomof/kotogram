@@ -47,10 +47,6 @@ from train.profile import Timer, get_profile_dir
 from train.types import KCMetricsAccumulator, KCProbeConfig, TrainingMetrics
 from train.worker import _worker_init_fn
 
-# =============================================================================
-# Round 11: NaN Recovery Utilities for KC Training
-# =============================================================================
-
 
 def tensor_finite_stats(x: Optional[torch.Tensor]) -> Dict[str, Any]:
     """Compute finite-aware statistics for a tensor.
@@ -73,24 +69,15 @@ def tensor_finite_stats(x: Optional[torch.Tensor]) -> Dict[str, Any]:
             "max": float("nan"),
         }
 
-    # Fast check (scalar boolean, 1 sync)
-    # If all finite and we don't need min/max for logging (unless non-finite), return early.
-    # However, original code computed min/max only if finite values existed.
-    # We'll assume the caller primarily checks 'finite' flag.
-    # To be safe and fast:
     if x.isfinite().all():
         return {
             "finite": True,
             "n_nan": 0,
             "n_inf": 0,
-            # We skip min/max computation in the fast path to save syncs.
-            # If caller needs them even for finite tensors, this optimization changes behavior.
-            # But looking at usage, it's used for anomaly detection.
             "min": float("nan"),
             "max": float("nan"),
         }
 
-    # Slow path: detailed stats
     flat = x.detach().flatten().float()
     is_finite = torch.isfinite(flat)
     n_nan = int(torch.isnan(flat).sum().item())
@@ -126,15 +113,12 @@ class KCTrainer:
         kc_config: Optional[Dict[str, Any]] = None,
         args: Optional[Any] = None,
     ):
-        # Filter out agrammatic samples (KC training should only see valid grammar)
-        # Filter out agrammatic samples (KC training should only see valid grammar)
         dataset = dataset.filter_by_grammaticality(1)
 
         self.model = model
         self.dataset = dataset
         self.config = config or TrainerConfig()
 
-        # Configure PyTorch threads
         _safe_configure_threads(self.config)
 
         configure_runtime_thread_limits(self.config)
@@ -209,12 +193,10 @@ class KCTrainer:
         )
         self._create_optimizer(freeze_encoder=True)
 
-        # Loss functions
         self.default_bce_loss = nn.BCEWithLogitsLoss()
         self.mse_loss = nn.MSELoss()
         self.ce_loss = nn.CrossEntropyLoss()
 
-        # Timers for profiling
         pid = os.getpid()
         profile_dir = get_profile_dir()
         data_log = (
@@ -232,28 +214,24 @@ class KCTrainer:
         self.kc_pos_weight_cap = kc_config.get("pos_weight_cap", 50.0)
         self.kc_pos_weight_eps = kc_config.get("pos_weight_eps", 1e-6)
 
-        # Diversity / Regularization
         self.kc_diversity_weight_frozen = float(kc_config.get("diversity_weight", 1e-3))
         self.kc_diversity_weight_thawed = float(
             kc_config.get("diversity_weight_thawed", 1e-1)
         )
-        # self.kc_diversity_mode = "topk" (Implied)
+
         self.kc_diversity_eps = float(kc_config.get("diversity_eps", 1e-9))
         self.kc_diversity_warmup_epochs = int(
             kc_config.get("diversity_warmup_epochs", 0)
         )
-        self.kc_sparsity_mode = "target_density"  # New default
+        self.kc_sparsity_mode = "target_density"
 
-        # Load Balancing
         self.kc_lb_weight_frozen = float(kc_config.get("lb_weight", 0.0))
         self.kc_lb_weight_thawed = float(kc_config.get("lb_weight_thawed", 2e-2))
 
-        # Collapse Penalty
         self.kc_collapse_weight_thawed = float(
             kc_config.get("collapse_weight_thawed", 1.0)
         )
 
-        # Temperature
         self.kc_temperature_frozen = float(
             getattr(
                 getattr(self.model, "module", self.model).config, "kc_temperature", 1.0
@@ -261,27 +239,23 @@ class KCTrainer:
         )
         self.kc_temperature_thawed = float(kc_config.get("temperature_thawed", 1.8))
 
-        # Logging configuration
         self.kc_log_level = kc_config.get("log_level", "minimal")
         self.kc_first_batch_debug_every = int(
             kc_config.get("first_batch_debug_every", 1)
         )
-        # Default minimal behavior: only epoch 0
+
         self.kc_first_batch_debug_epochs = kc_config.get(
             "first_batch_debug_epochs", [0]
         )
 
-        # Visibility flags
         self.kc_show_epoch_table = bool(kc_config.get("show_epoch_table", False))
         self.kc_show_step_checks = bool(kc_config.get("show_step_checks", False))
         self.kc_show_grad_norms = bool(kc_config.get("show_grad_norms", False))
 
-        # Round 14 Stability Hardening Params
         self.kc_grad_cap = float(kc_config.get("kc_grad_cap", 5.0))
         self.kc_pos_weight_cap = float(kc_config.get("pos_weight_cap", 50.0))
         self.kc_pos_weight_eps = float(kc_config.get("pos_weight_eps", 1e-6))
 
-        # Override if global log_level is debug
         if self.kc_log_level == "debug":
             self.kc_show_epoch_table = True
             self.kc_show_step_checks = True
@@ -319,14 +293,12 @@ class KCTrainer:
         self.global_step = 0
         self._did_print_debug_for_epoch = -1
 
-        # Round 11: NaN recovery state
         self._kc_last_good_state: Optional[Dict[str, Dict[str, torch.Tensor]]] = None
         self._nonfinite_streak = 0
         self._nonfinite_total = 0
-        self._nonfinite_logged = 0  # For log spam reduction
-        self._max_nonfinite_streak = 50  # Raise error if exceeded
+        self._nonfinite_logged = 0
+        self._max_nonfinite_streak = 50
 
-        # Round 14: Skip-loop visibility + fail-fast
         self._consecutive_step_skips = 0
         self._total_step_skips = 0
         self._total_steps_applied = 0
@@ -401,14 +373,12 @@ class KCTrainer:
         raw = self.model.module if self.is_distributed else self.model
         m = cast(StyleClassifierWithKC, raw)
 
-        # Restore kc_head
         device = next(m.kc_head.parameters()).device
         restored_head = {
             k: v.to(device) for k, v in self._kc_last_good_state["kc_head"].items()
         }
         m.kc_head.load_state_dict(restored_head, strict=True)
 
-        # Restore kc_decoders if present
         if "kc_decoders" in self._kc_last_good_state and hasattr(m, "kc_decoders"):
             device_dec = next(m.kc_decoders.parameters()).device
             restored_dec = {
@@ -430,9 +400,9 @@ class KCTrainer:
     # pylint: disable=too-many-locals,too-many-positional-arguments
     def _bce_sampled_from_sparse(
         self,
-        logits_f: torch.Tensor,  # (B, V) float
-        pos_inds: torch.Tensor,  # (B, P) long, padded -1
-        pos_mask: torch.Tensor,  # (B, P) bool
+        logits_f: torch.Tensor,
+        pos_inds: torch.Tensor,
+        pos_mask: torch.Tensor,
         vocab_size: int,
         neg_count: int = 128,
         seed: int = 0,
@@ -449,18 +419,15 @@ class KCTrainer:
         n_pos = int(pos_inds.size(1))
         neg_c = neg_count
 
-        # Positives: keep only masked, replace unmasked with -1
         pos_i = pos_inds.clone()
         pos_i[~pos_mask] = -1
 
-        # Sample negatives uniformly from [4, vocab_size)
         g = torch.Generator(device=device)
         g.manual_seed(seed)
         neg_i = torch.randint(
             4, vocab_size, (batch_size, neg_c), device=device, generator=g
         )
 
-        # Collision mitigation: if neg is in positives, resample
         if n_pos > 0 and pos_mask.any():
             for _ in range(3):
                 coll = (neg_i.unsqueeze(-1) == pos_i.unsqueeze(1)).any(dim=-1)
@@ -471,15 +438,12 @@ class KCTrainer:
                 )
                 neg_i[coll] = repl
 
-        # Build combined indices
-        idxs = torch.cat([pos_i, neg_i], dim=1)  # (B, P+K)
+        idxs = torch.cat([pos_i, neg_i], dim=1)
 
-        # Targets: positives=1 where pos_mask else ignore; negatives=0
         t_pos = pos_mask.float()
         t_neg = torch.zeros((batch_size, neg_c), device=device, dtype=torch.float)
         t = torch.cat([t_pos, t_neg], dim=1)
 
-        # Mask for valid indices (pos part excludes padded -1; neg part always valid)
         valid = torch.cat(
             [
                 pos_mask,
@@ -488,26 +452,23 @@ class KCTrainer:
             dim=1,
         )
 
-        # Gather logits at indices; replace -1 with 0 for gather safety
         idxs_safe = idxs.clamp_min(0)
         gathered = logits_f.gather(1, idxs_safe)
 
-        # Compute BCE elementwise then mask
         loss_elem = F.binary_cross_entropy_with_logits(gathered, t, reduction="none")
         loss = (loss_elem * valid.float()).sum() / valid.float().sum().clamp_min(1.0)
 
-        # Diagnostics
         if diag is not None and family_name:
             with torch.no_grad():
                 probs = torch.sigmoid(gathered)
-                # Filter to valid entries only for accuracy
+
                 valid_bool = valid.bool()
                 diag.update_family(
                     family_name,
-                    pos_inds,  # The raw positive IDs (for collisions/stats)
-                    pos_mask,  # Mask for raw positives
-                    probs[valid_bool],  # Flattened probs for valid positions
-                    t[valid_bool],  # Flattened targets for valid positions
+                    pos_inds,
+                    pos_mask,
+                    probs[valid_bool],
+                    t[valid_bool],
                     loss.item(),
                     mask_id=reading_mask_id,
                 )
@@ -523,12 +484,10 @@ class KCTrainer:
         sums: Dict[str, float] = {}
         counts: Dict[str, int] = {}
 
-        # Scan a few batches to estimate base rates
         for i, batch in enumerate(self.data_loader):
             if i >= num_batches:
                 break
 
-            # Use pre-collated targets if available, else generate on fly
             kc_targets = batch
             if not any(k.startswith("kc_") for k in batch):
                 kc_targets = create_kc_batch(
@@ -542,14 +501,11 @@ class KCTrainer:
                 mask_key = f"kc_pos_mask_{name}"
 
                 if dense_key in kc_targets:
-                    # Dense path (small heads)
                     t = kc_targets[dense_key].float()
                     p = t.mean().item()
                     sums[name] = sums.get(name, 0.0) + p
                     counts[name] = counts.get(name, 0) + 1
                 elif mask_key in kc_targets:
-                    # Sparse path (large heads like lemma)
-                    # p = (num_pos) / (B * V)
                     pos_mask_t = kc_targets[mask_key]
                     batch_size = pos_mask_t.size(0)
                     num_pos = pos_mask_t.sum().item()
@@ -557,12 +513,9 @@ class KCTrainer:
                     sums[name] = sums.get(name, 0.0) + p
                     counts[name] = counts.get(name, 0) + 1
 
-        # Apply logit initialization to biases
-        # Round 6: DDP Sync
         if self.is_distributed:
-            # Flatten to tensor for all_reduce
             names = sorted(sums.keys())
-            # [sum_0, count_0, sum_1, count_1, ...]
+
             data = []
             for n in names:
                 data.append(sums[n])
@@ -571,7 +524,6 @@ class KCTrainer:
             t_data = torch.tensor(data, device=self.device)
             dist.all_reduce(t_data, op=dist.ReduceOp.SUM)
 
-            # Unpack
             t_list = t_data.tolist()
             for i, n in enumerate(names):
                 sums[n] = t_list[2 * i]
@@ -612,7 +564,7 @@ class KCTrainer:
         is_flush: bool = False,
     ) -> bool:
         """Perform one optimizer step with unscaling and clipping. Returns True if skipped."""
-        # 1. Snapshot w0 before step
+
         w0_before = 0.0
         if self.kc_show_step_checks:
             w0 = m.kc_head.linear.weight
@@ -620,7 +572,6 @@ class KCTrainer:
 
         if is_main_process() and (not has_printed_step_check or is_flush):
             if self.kc_show_grad_norms:
-                # 2. Compute grad norms BEFORE unscale/clip/step
                 gn_kc = self._grad_norm(m.kc_head)
                 dec_name = (
                     "pos"
@@ -635,9 +586,6 @@ class KCTrainer:
                     + (f" (flush_accum={accum})" if is_flush else "")
                 )
 
-        # --- Round 10/13: Guard - if any grad is non-finite, skip step and downscale ---
-
-        # Round 13: Build name map for culprit identification
         name_map: Dict[int, str] = {}
         for n, p in m.named_parameters():
             name_map[id(p)] = n
@@ -666,7 +614,6 @@ class KCTrainer:
                 break
 
         if found_nonfinite:
-            # Round 14: Track consecutive skips and fail-fast
             self._consecutive_step_skips += 1
             self._total_step_skips += 1
 
@@ -682,7 +629,6 @@ class KCTrainer:
 
             self.optimizer.zero_grad(set_to_none=True)
 
-            # Round 14: Fail-fast if too many consecutive skips
             if self._consecutive_step_skips > self._max_consecutive_skips:
                 raise RuntimeError(
                     f"KC training exceeded max consecutive step skips ({self._max_consecutive_skips}). "
@@ -693,8 +639,6 @@ class KCTrainer:
 
             return True
 
-        # Clip grads (already unscaled above when AMP enabled)
-        # Round 11/12: KC default gradient clip is 1.0, clip only optimizer params
         clip_val = self.config.gradient_clip if self.config.gradient_clip > 0 else 1.0
         params_to_clip = [
             p
@@ -705,12 +649,10 @@ class KCTrainer:
         if params_to_clip:
             nn.utils.clip_grad_norm_(params_to_clip, clip_val)
 
-        # 3. Standard Optimizer Step (No GradScaler)
         self.optimizer.step()
         self.optimizer.zero_grad(set_to_none=True)
         skipped = False
 
-        # Round 11: Check KC params are finite after step, restore if not
         if not skipped:
             param_nonfinite = False
             for p in m.kc_head.parameters():
@@ -731,15 +673,13 @@ class KCTrainer:
                     self._reinit_kc_head()
                 skipped = True
             else:
-                # Save good state
                 self._save_kc_snapshot()
-                # Round 14: Reset consecutive skip counter on successful step
+
                 self._consecutive_step_skips = 0
                 self._total_steps_applied += 1
 
         if is_main_process() and (not has_printed_step_check or is_flush):
             if self.kc_show_step_checks:
-                # 4. Compute parameter delta AFTER step
                 w0 = m.kc_head.linear.weight
                 w0_after = w0.detach().flatten()[0].item()
                 print(
@@ -751,32 +691,26 @@ class KCTrainer:
         return skipped
 
     def _create_optimizer(self, freeze_encoder: bool) -> None:
-        # Re-create optimizer or update it. To ensure resumability, we always
-        # keep the same number of parameter groups.
         raw = self.model.module if self.is_distributed else self.model
         m = cast(StyleClassifierWithKC, raw)
 
-        # Group 0: KC Heads
         pg_heads = {
             "params": list(m.kc_head.parameters())
             + (list(m.kc_decoders.parameters()) if hasattr(m, "kc_decoders") else []),
             "lr": self.config.learning_rate,
         }
 
-        # Group 1: Encoder/Embeddings
         pg_encoder = {
             "params": list(m.embedding.parameters()) + list(m.encoder.parameters()),
             "lr": self.config.learning_rate * 0.01 if not freeze_encoder else 0.0,
         }
 
-        # We always use 2 groups now to maintain checkpoint compatibility
         self.optimizer = Adam([pg_heads, pg_encoder])
 
     # pylint: disable=too-many-locals
     def train_epoch(
         self, epoch: int = 0
     ) -> Tuple[float, Dict[str, float], float, Dict[str, float]]:
-        # Handle freezing
         should_freeze = epoch < self.freeze_encoder_epochs
         self._create_optimizer(freeze_encoder=should_freeze)
 
@@ -800,7 +734,7 @@ class KCTrainer:
         running_sparsity = 0.0
         first_batch_separation: Dict[str, float] = {}
         first_batch_grad_norms: Dict[str, float] = {}
-        # first_batch_debug_printed = False  # Unused
+
         has_printed_step_check = False
 
         opt_steps = 0
@@ -808,7 +742,6 @@ class KCTrainer:
         pending_accum = 0
         did_any_backward = False
 
-        # Epoch-level KC Usage Accumulators
         raw = self.model.module if self.is_distributed else self.model
         kc_vocab_size = int(cast(StyleClassifierWithKC, raw).config.kc_vocab_size)
         topk_hist = torch.zeros(kc_vocab_size, dtype=torch.long)
@@ -835,7 +768,6 @@ class KCTrainer:
             "sparsity": 0.0,
         }
 
-        # Round 21: Diagnostics
         kc_diag = KCEpochDiag()
         reading_mask_id = getattr(self.dataset.tokenizer, "unk_id", 0)
         if "reading" in self.dataset.tokenizer.field_vocabs:
@@ -843,12 +775,10 @@ class KCTrainer:
                 "<READING_MASK>", reading_mask_id
             )
 
-        # Zero gradients before starting the epoch loop
         self.optimizer.zero_grad(set_to_none=True)
 
-        # Rich Progress Bar for KC
         pbar = None
-        # Default loss for display until first update
+
         current_display_loss = 0.5
         if is_main_process():
             pbar = RichTrainerProgressBar(
@@ -862,7 +792,6 @@ class KCTrainer:
             self.train_timer_data.stop(epoch=epoch, batch=batch_idx)
             self.train_timer_compute.start()
 
-            # Mid-epoch resume: skip batches already processed
             if epoch == self.start_epoch and batch_idx < self.start_batch:
                 self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
                 self.train_timer_data.start()
@@ -871,7 +800,6 @@ class KCTrainer:
             raw = self.model.module if self.is_distributed else self.model
             m = cast(StyleClassifierWithKC, raw)
 
-            # Use pre-collated targets if available, else generate on fly (Legacy path)
             if not any(
                 k.startswith("kc_targets_") or k.startswith("kc_pos_inds_")
                 for k in batch
@@ -890,22 +818,18 @@ class KCTrainer:
             }
             attention_mask = batch["attention_mask"].to(self.device)
 
-            # Determine temperature for this sub-step (approximate)
             gumbel_scale = 0.0
             if epoch < self.freeze_encoder_epochs:
                 t_val = self.kc_temperature_frozen
             else:
                 t_val = self.kc_temperature_thawed
-                # Training-time Gumbel annealing
-                # Slower exploration anneal: keep noise higher longer to avoid early KC lock-in.
-                # 0.6 -> 0.2 over thawed epochs
+
                 total_kc_epochs = self.config.kc_epochs or self.config.epochs or 3
                 epochs_remaining = max(1, total_kc_epochs - self.freeze_encoder_epochs)
                 epoch_idx_thawed = max(0, epoch - self.freeze_encoder_epochs)
                 ratio = min(1.0, epoch_idx_thawed / float(epochs_remaining))
                 gumbel_scale = 0.6 * (1.0 - ratio) + 0.2 * ratio
 
-            # Forward pass
             outputs = self.model(
                 field_inputs,
                 attention_mask=attention_mask,
@@ -915,13 +839,8 @@ class KCTrainer:
                 grad_cap=self.kc_grad_cap,
             )
 
-            # --- Round 11: Forward output NaN detection + recovery ---
-            # Throttled (Round 20 Optimization): Skip expensive syncs most of the time.
             should_check_nan = (
-                batch_idx < 50
-                or (batch_idx % 50 == 0)
-                or self._nonfinite_streak
-                > 0  # If we are already in trouble, check every step
+                batch_idx < 50 or (batch_idx % 50 == 0) or self._nonfinite_streak > 0
             )
 
             if should_check_nan:
@@ -931,14 +850,12 @@ class KCTrainer:
                     not logits_stats["finite"] or not probs_stats["finite"]
                 )
             else:
-                # Assume fine
                 forward_nonfinite = False
 
             if forward_nonfinite:
                 self._nonfinite_streak += 1
                 self._nonfinite_total += 1
 
-                # Log spam reduction: first 3, then every 50th
                 should_log = (
                     self._nonfinite_logged < 3 or self._nonfinite_total % 50 == 0
                 )
@@ -954,13 +871,11 @@ class KCTrainer:
                     else:
                         print(msg)
 
-                # Check max streak
                 if self._nonfinite_streak > self._max_nonfinite_streak:
                     raise RuntimeError(
                         f"KC training failed: {self._nonfinite_streak} consecutive non-finite batches"
                     )
 
-                # Recovery: restore or reinit
                 self.optimizer.zero_grad(set_to_none=True)
                 restored = self._restore_kc_snapshot()
                 if not restored:
@@ -975,7 +890,6 @@ class KCTrainer:
                             )
                     self._reinit_kc_head()
 
-                # Reduce LR (at most once per 10 batches)
                 if self._nonfinite_streak == 1:
                     for pg in self.optimizer.param_groups:
                         pg["lr"] = pg["lr"] * 0.5
@@ -986,35 +900,25 @@ class KCTrainer:
                         else:
                             print(msg)
 
-                continue  # Skip this batch
+                continue
 
-            # Reset streak on successful forward
             self._nonfinite_streak = min(self._nonfinite_streak, 0)
 
-            # Thawed Clamping (Optional but High Impact)
-            # Training-time only tweak to limit gradient explosion from "winning" KCs
             if epoch >= self.freeze_encoder_epochs:
-                # Create local clamped copy
                 topk_vals_clamped = outputs["topk_vals"].clamp(max=0.85)
 
-                # Rebuild sparse activations for decoder targets ONLY
-                # We can't modify outputs["sparse_activations"] in place easily if it's needed for sparsity loss
-                # But we can re-generate target logits.
                 sparse_clamped = torch.zeros_like(outputs["kc_probs"])
                 sparse_clamped.scatter_(1, outputs["topk_inds"], topk_vals_clamped)
 
-                # Run decoders directly
                 if hasattr(m, "kc_decoders"):
                     outputs["target_logits"] = m.kc_decoders(sparse_clamped)
 
-            # --- Accumulate KC Usage Stats ---
             topk_inds = outputs.get("topk_inds", None)
             topk_vals = outputs.get("topk_vals", None)
 
             if topk_inds is not None and topk_vals is not None:
-                # Detach to avoid keeping graph
-                inds_cpu = topk_inds.detach().to("cpu")  # (B, K)
-                vals_cpu = topk_vals.detach().to("cpu")  # (B, K)
+                inds_cpu = topk_inds.detach().to("cpu")
+                vals_cpu = topk_vals.detach().to("cpu")
 
                 batch_size = int(inds_cpu.size(0))
                 kc_usage_total_samples += batch_size
@@ -1032,7 +936,7 @@ class KCTrainer:
                 gap = vals_cpu[:, 0] - vals_cpu[:, -1]
                 kc_gap_sum += float(gap.sum().item())
                 kc_gap_count += int(gap.numel())
-                # ---------------------------------
+
                 target_logits = outputs["target_logits"]
 
                 if (
@@ -1044,7 +948,6 @@ class KCTrainer:
                     raw = self.model.module if self.is_distributed else self.model
                     m = cast(StyleClassifierWithKC, raw)
 
-                    # Condensed or Detailed Debug
                     should_print_fb = (
                         self.kc_log_level == "debug"
                         or (
@@ -1061,11 +964,9 @@ class KCTrainer:
                     )
 
                     if should_print_fb:
-                        # Prepare data for summary/debug
                         m = cast(StyleClassifierWithKC, raw)
 
                         if self.kc_log_level == "debug":
-                            # Full output
                             print_kc_first_batch_debug(
                                 epoch,
                                 outputs["kc_logits"],
@@ -1080,21 +981,17 @@ class KCTrainer:
                                 pos_weight_eps=self.kc_pos_weight_eps,
                             )
                         else:
-                            # Condensed output
-                            # 1. Gather head stats similar to debug tool
-                            # head_diagnostics = [] # Unused
-                            # Priority heads
                             priority = [
                                 "lemma",
                                 "pos",
                                 "conjugated_type",
                                 "conjugated_form",
                             ]
-                            # Gather others sorted by density
+
                             all_heads = sorted(outputs["target_logits"].keys())
 
                             # pylint: disable=too-many-locals
-                            # Helper to compute single-head stats
+
                             def get_head_stat(
                                 name: str,
                                 batch: Dict[str, Any],
@@ -1102,7 +999,6 @@ class KCTrainer:
                             ) -> Dict[str, Any]:
                                 logits = outputs["target_logits"][name]
 
-                                # Round 15: Handle both dense and sparse target formats
                                 dense_key = f"kc_targets_{name}"
                                 pos_key = f"kc_pos_inds_{name}"
                                 mask_key = f"kc_pos_mask_{name}"
@@ -1111,11 +1007,9 @@ class KCTrainer:
                                 pos_mask_t: Optional[torch.Tensor] = None
 
                                 if dense_key in batch:
-                                    # Dense path (small heads)
                                     t = batch[dense_key].to(self.device).float()
                                     is_sparse = False
                                 elif pos_key in batch and mask_key in batch:
-                                    # Sparse path (large heads like lemma)
                                     pos_inds = batch[pos_key].to(self.device)
                                     pos_mask_t = batch[mask_key].to(self.device)
                                     is_sparse = True
@@ -1124,7 +1018,6 @@ class KCTrainer:
 
                                 with torch.no_grad():
                                     if is_sparse:
-                                        # Compute stats from sparse format
                                         assert pos_inds is not None
                                         assert pos_mask_t is not None
                                         batch_size = pos_mask_t.size(0)
@@ -1144,7 +1037,6 @@ class KCTrainer:
                                         probs = torch.sigmoid(logits)
                                         p_avg = probs.mean().item()
 
-                                        # AUC from sparse indices (subsample)
                                         auc = 0.0
                                         pos_logits_list = []
                                         neg_logits_list = []
@@ -1198,13 +1090,9 @@ class KCTrainer:
                                                     - n_pos_auc * (n_pos_auc + 1) / 2
                                                 ) / (n_pos_auc * n_neg_auc)
 
-                                        # Delta loss (use sampled approach)
-                                        delta = (
-                                            0.0  # Skip detailed delta for sparse heads
-                                        )
+                                        delta = 0.0
 
                                     else:
-                                        # Dense path (original code)
                                         assert t is not None
                                         pos = t.sum()
                                         total = t.numel()
@@ -1221,12 +1109,10 @@ class KCTrainer:
                                         probs = torch.sigmoid(logits)
                                         p_avg = probs.mean().item()
 
-                                        # AUC (subsampled)
                                         auc = 0.0
                                         pos_mask = t > 0.5
                                         neg_mask = ~pos_mask
                                         if pos_mask.any() and neg_mask.any():
-                                            # Simple subsample for display speed
                                             max_s = 1000
                                             idx_p = torch.where(pos_mask.view(-1))[0]
                                             idx_n = torch.where(neg_mask.view(-1))[0]
@@ -1254,7 +1140,6 @@ class KCTrainer:
                                                 ]
                                             )
 
-                                            # Rank AUC
                                             comb = torch.stack([sp, sl], dim=1)
                                             idx = torch.argsort(comb[:, 0])
                                             sl_s = comb[idx, 1]
@@ -1267,7 +1152,6 @@ class KCTrainer:
                                                 pos_rank_sum - n_pos * (n_pos + 1) / 2
                                             ) / (n_pos * n_neg)
 
-                                        # Delta Loss
                                         bias_used = logits.mean().item()
 
                                         pw = torch.tensor(
@@ -1297,10 +1181,9 @@ class KCTrainer:
                                     "delta": delta,
                                 }
 
-                            # Collect selected heads
                             selected_stats = []
                             seen = set()
-                            # 1. Priority
+
                             for h in priority:
                                 if h in all_heads:
                                     s = get_head_stat(h, batch, outputs)
@@ -1308,9 +1191,8 @@ class KCTrainer:
                                         selected_stats.append(s)
                                         seen.add(h)
 
-                            # 2. Rarest others
                             others = [h for h in all_heads if h not in seen]
-                            # Sort by rough density (we need to compute it or guess, here we compute)
+
                             other_stats = []
                             for h in others:
                                 s = get_head_stat(h, batch, outputs)
@@ -1318,7 +1200,7 @@ class KCTrainer:
                                     other_stats.append(s)
 
                             other_stats.sort(key=lambda x: float(x.get("p", 0.0)))
-                            selected_stats.extend(other_stats[:2])  # Take 2 rarest
+                            selected_stats.extend(other_stats[:2])
 
                             logits = outputs["kc_logits"]
                             logits_raw = (
@@ -1360,7 +1242,6 @@ class KCTrainer:
                             else:
                                 print(msg)
 
-                    # Compute separation metrics for storage
                     for name, logits in outputs["target_logits"].items():
                         target_key = f"kc_targets_{name}"
                         if target_key not in batch:
@@ -1383,8 +1264,6 @@ class KCTrainer:
                 label_loss = torch.tensor(0.0, device=self.device)
                 num_label = 0
 
-                # Compute losses for each target present in target_logits AND batch
-                # Check for structural targets (bags, hashes)
                 for name, logits in target_logits.items():
                     target_key = f"kc_targets_{name}"
                     pos_key = f"kc_pos_inds_{name}"
@@ -1392,14 +1271,11 @@ class KCTrainer:
                     vocab_size = int(m.config.kc_target_specs.get(name, 0))
 
                     if target_key in batch:
-                        # Dense path for small heads
                         targets = batch[target_key].to(self.device).float()
                         logits_f = logits.float()
 
-                        # Round 6: Optimized Negative Sampling for medium heads
                         batch_size_f, vocab_size_f = logits_f.shape
                         if vocab_size_f > 256:
-                            # Large Head: Sample 128 negatives
                             pos_mask = targets > 0.5
                             neg_count = 128
 
@@ -1419,16 +1295,10 @@ class KCTrainer:
                                 task_loss = F.binary_cross_entropy_with_logits(
                                     subset_logits, subset_targets
                                 )
-                                # Dense Path Diagnostics (Large head with dense input)
+
                                 with torch.no_grad():
                                     probs = torch.sigmoid(subset_logits)
-                                    # For dense, we construct pos_ids from mask if needed, but
-                                    # targets[mask] is 1D. We need per-example cardinality.
-                                    # Positives per example from dense targets:
-                                    # Just treat indices as unknown (NA) for collisions or infer?
-                                    # Usually dense is small vocab so collisions are trivial.
-                                    # Pass dummy pos_ids? (B, 1) dummy?
-                                    # Let's just pass empty pos_ids to skip collision/mask logic for dense.
+
                                     dummy_pos = torch.zeros(
                                         (batch_size_f, 0),
                                         device=self.device,
@@ -1440,37 +1310,15 @@ class KCTrainer:
                                         dtype=torch.bool,
                                     )
 
-                                    # But we want cardinality.
-                                    # reconstruct 'pos_mask' style from targets?
-                                    # KCEpochDiag expects (B, P) pos_mask to count cardinality.
-                                    # We can pass the full dense targets > 0.5 as pos_mask?
-                                    # Yes, if targets is (B, V), that works.
-                                    # But pos_ids needs to match size.
-                                    # We can pass pos_ids = ranges.
-                                    # It's expensive. Let's just compute cardinality manually and pass?
-                                    # update_family is rigid.
-                                    # Hack: pass targets>0.5 as pos_mask, and a dummy tensor as pos_ids with same shape?
-                                    # Yes, collisions will look at dummy IDs (all 0).
-                                    # So we disable collisions for dense logic if pos_ids are dummy.
-                                    # But we can't easily signal "dummy".
-                                    # Actually, let's just use the targets directly to update stats if possible.
-                                    # Given constraints, we skip detailed collision/mask stats for dense path.
-                                    # We feed the Sampled/Active Predictions.
                                     kc_diag.update_family(
                                         name,
-                                        dummy_pos,  # Skip card/coll/mask logic effectively
+                                        dummy_pos,
                                         dummy_mask,
                                         probs,
                                         subset_targets,
                                         task_loss.item(),
                                     )
-                                    # Wait, if we pass dummy mask, cardinality will be 0.
-                                    # That makes diagnostics useless for cardinality.
-                                    # Let's fix KCEpochDiag.update_family to take optional cardinality override?
-                                    # No, let's stick to minimal edits.
-                                    # We can pass 'targets > 0.5' as pos_mask and 'indices' as pos_ids.
-                                    # shape (B, V).
-                                    # Arange V.
+
                                     v_ids = (
                                         torch.arange(vocab_size_f, device=self.device)
                                         .unsqueeze(0)
@@ -1479,7 +1327,7 @@ class KCTrainer:
                                     kc_diag.update_family(
                                         name,
                                         v_ids,
-                                        pos_mask,  # (B, V) bool
+                                        pos_mask,
                                         probs,
                                         subset_targets,
                                         task_loss.item(),
@@ -1489,11 +1337,10 @@ class KCTrainer:
                                     0.0, device=self.device, requires_grad=True
                                 )
                         else:
-                            # Small Head: Full BCE
                             task_loss = F.binary_cross_entropy_with_logits(
                                 logits_f, targets
                             )
-                            # Dense Diagnostics (Small head)
+
                             with torch.no_grad():
                                 probs = torch.sigmoid(logits_f)
                                 pos_mask = targets > 0.5
@@ -1516,7 +1363,6 @@ class KCTrainer:
                         batch_kc_losses[name] = task_loss.item()
 
                     elif pos_key in batch and mask_key in batch:
-                        # Round 13: Sparse path for large heads (vocab_size > 4096)
                         pos_inds = batch[pos_key].to(self.device)
                         pos_mask_t = batch[mask_key].to(self.device)
                         logits_f = logits.float()
@@ -1537,7 +1383,6 @@ class KCTrainer:
                         num_struct += 1
                         batch_kc_losses[name] = task_loss.item()
 
-                    # Auxiliary Label Targets
                     elif name == "formality_value":
                         targets = batch["formality_value"].to(self.device)
                         task_loss = self.mse_loss(logits.squeeze(-1), targets)
@@ -1575,7 +1420,6 @@ class KCTrainer:
                         num_label += 1
                         batch_kc_losses[name] = task_loss.item()
 
-                # Track running stats for epoch summary
                 if num_struct > 0:
                     running_struct_loss += structural_loss.item()
                     running_num_struct_total += 1
@@ -1583,14 +1427,12 @@ class KCTrainer:
                     running_label_loss += label_loss.item()
                     running_num_label_total += 1
 
-                # Weighted Loss Combination
                 combined_loss = torch.tensor(0.0, device=self.device)
                 if num_struct > 0:
                     combined_loss += 0.7 * (structural_loss / num_struct)
                 if num_label > 0:
                     combined_loss += 0.3 * (label_loss / num_label)
 
-                # Select Diversity Weight based on epoch
                 if epoch < self.freeze_encoder_epochs:
                     div_weight = self.kc_diversity_weight_frozen
                     lb_weight = self.kc_lb_weight_frozen
@@ -1598,60 +1440,42 @@ class KCTrainer:
                     div_weight = self.kc_diversity_weight_thawed
                     lb_weight = self.kc_lb_weight_thawed
 
-                # Diversity Regularization
                 diversity_loss = torch.tensor(0.0, device=self.device)
                 entropy_norm = torch.tensor(0.0, device=self.device)
                 kl_to_uniform = torch.tensor(0.0, device=self.device)
 
-                # Tracking scalars
                 loss_div_val = 0.0
                 loss_lb_val = 0.0
                 loss_coll_val = 0.0
 
                 if epoch >= self.kc_diversity_warmup_epochs:
-                    # ------------------------------------------------------------------
-                    # ROUND 5: OPINIONATED STABILITY FIXES
-                    # ------------------------------------------------------------------
-                    # Step 2: Regularize USAGE (Softmax), not Probabilities (Sigmoid)
-                    # Round 14: Use split-clamped logits_usage from forward_kc
                     logits_usage = outputs.get("logits_usage", outputs["kc_logits_raw"])
 
                     tau_usage = 1.0 if epoch < self.freeze_encoder_epochs else 2.0
 
-                    # q: (B, V) soft assignment distribution (sums to 1 per sample)
                     q = torch.softmax(logits_usage / tau_usage, dim=-1)
 
-                    # p: (V,) global batch usage distribution (sums to 1)
                     p = q.mean(dim=0)
 
-                    # Ensure sum to 1 (softmax does this, but floating point drift might occur)
                     p_sum = p.sum().clamp_min(self.kc_diversity_eps)
                     p = p / p_sum
 
-                    # Differentiable Entropy / Diversity
-                    # Maximize entropy of p => minimize neg_entropy
                     log_p = (p + self.kc_diversity_eps).log()
                     entropy = -(p * log_p).sum()
                     entropy_norm = entropy / math.log(kc_vocab_size)
                     diversity_loss = 1.0 - entropy_norm
 
-                    # Differentiable Load Balance: KL(p || uniform)
                     kl_val = (p * (p.clamp_min(1e-9) * kc_vocab_size).log()).sum()
                     load_balance_loss = kl_val / math.log(kc_vocab_size)
 
-                    # Step 3: Strict Collapse Penalty (Linear, Thawed Only)
                     p_max = p.max()
 
                     if epoch >= self.freeze_encoder_epochs:
-                        # Threshold scale with V (approx 3x uniform)
                         thr = max(3.0 / max(1, kc_vocab_size), 0.002)
 
-                        # Linear penalty (L1), not squared, to bite immediately
                         diff = (p_max - thr).clamp_min(0.0)
 
-                        # Strong weight (order 1.0)
                         if self.kc_collapse_weight_thawed > 0:
-                            # Use weight directly on linear penalty
                             collapse_penalty = diff
                             combined_loss += (
                                 self.kc_collapse_weight_thawed * collapse_penalty
@@ -1660,7 +1484,6 @@ class KCTrainer:
                                 self.kc_collapse_weight_thawed * collapse_penalty
                             ).item()
 
-                    # Apply Standard Regularizers
                     if div_weight > 0:
                         combined_loss += div_weight * diversity_loss
                         loss_div_val = (div_weight * diversity_loss).item()
@@ -1669,24 +1492,20 @@ class KCTrainer:
                         combined_loss += lb_weight * load_balance_loss
                         loss_lb_val = (lb_weight * load_balance_loss).item()
 
-                    # Metrics for logging (Overwrite with differentiable versions)
                     kl_to_uniform = kl_val
 
                 running_entropy_norm += entropy_norm.item()
                 running_kl_to_uniform += kl_to_uniform.item()
                 running_p_max += p_max.item() if ("p_max" in locals()) else 0.0
 
-                # Sparsity Loss and New Metrics
                 if (
                     self.kc_sparsity_weight > 0
                     and self.kc_sparsity_mode == "target_density"
                 ):
-                    # Avg probability (soft)
                     avg_prob = outputs["kc_probs"].mean()
-                    # Activation density (hard, post-topk)
+
                     act_dens = (outputs["sparse_activations"] > 0).float().mean()
 
-                    # Sparsity loss uses soft probabilities usually for differentiability
                     sparsity_term = avg_prob
                 else:
                     avg_prob = outputs["kc_probs"].mean()
@@ -1695,11 +1514,10 @@ class KCTrainer:
 
                 running_avg_prob += avg_prob.item()
                 running_act_dens += act_dens.item()
-                # Round 8 Fix 1: Track what we're actually penalizing for avg_sparsity output
+
                 total_sparsity += float(sparsity_term.detach().item())
                 running_sparsity += sparsity_term.item()
 
-                # Round 8 Fix 5: Stage sparsity pressure - lighter early in thawed phase
                 spar_w = self.kc_sparsity_weight
                 if epoch >= self.freeze_encoder_epochs:
                     epoch_idx_thawed = max(0, epoch - self.freeze_encoder_epochs)
@@ -1712,8 +1530,6 @@ class KCTrainer:
 
                 loss_spar_val = (spar_w * sparsity_term).item()
 
-                # Update loss components dict for logging
-                # Ensure we add key if missing
                 current_epoch_comp = {
                     "base": combined_loss.item(),
                     "struct": structural_loss.item(),
@@ -1724,14 +1540,11 @@ class KCTrainer:
                     "sparsity": loss_spar_val,
                 }
 
-                # Update loss components stats
                 running_loss_components["base"] += current_epoch_comp["base"]
                 running_loss_components["div"] += current_epoch_comp["div"]
                 running_loss_components["lb"] += current_epoch_comp["lb"]
                 running_loss_components["collapse"] += current_epoch_comp["collapse"]
 
-                # Subtract regs from base to show pure base loss?
-                # combined_loss includes regs. So base = combined - regs.
                 running_loss_components["base"] -= (
                     current_epoch_comp["div"]
                     + current_epoch_comp["lb"]
@@ -1751,7 +1564,6 @@ class KCTrainer:
                 if loss.item() == 0.0 and loss.requires_grad:
                     pass
 
-            # --- Round 14: NaN/Inf guard: never backprop if key tensors are non-finite ---
             nonfinite_reason = None
             if not torch.isfinite(loss):
                 nonfinite_reason = "loss"
@@ -1772,14 +1584,11 @@ class KCTrainer:
 
                     print(msg)
 
-                # Clear grads and reduce scaler aggressively to recover
                 self.optimizer.zero_grad(set_to_none=True)
 
             loss.backward()
             did_any_backward = True
             pending_accum += 1
-
-            # (Removed old mid-epoch inaccurate grad norm prints)
 
             if (batch_idx + 1) % self.config.grad_accum_steps == 0:
                 self._perform_optimizer_step(
@@ -1796,7 +1605,6 @@ class KCTrainer:
             n_batches += 1
             self.global_step += 1
 
-            # Round 17: Periodic checkpointing
             if (
                 self.config.checkpoint.every_n_steps
                 and self.global_step % self.config.checkpoint.every_n_steps == 0
@@ -1804,20 +1612,17 @@ class KCTrainer:
                 self.save_checkpoint(epoch, batch_idx)
 
             if is_main_process() and pbar:
-                # Throttled loss update for display
                 if (
                     batch_idx % self.config.progress_update_every == 0
                     or batch_idx == total_batches - 1
                 ):
                     current_display_loss = total_loss / max(1, n_batches)
 
-                # Update every step
                 pbar.update(batch_idx, loss=current_display_loss)
 
             self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
             self.train_timer_data.start()
 
-        # Reset start_batch for next epoch
         self.start_batch = 0
 
         if did_any_backward and pending_accum > 0:
@@ -1826,7 +1631,7 @@ class KCTrainer:
             self._perform_optimizer_step(
                 m, has_printed_step_check, pending_accum, is_flush=True
             )
-            # Flush doesn't increment amp_skips usually, but we track steps
+
             flush_steps += 1
             has_printed_step_check = True
 
@@ -1837,7 +1642,6 @@ class KCTrainer:
         avg_kc_losses = {k: v / n_batches for k, v in kc_losses.items()}
         avg_sparsity = total_sparsity / max(1, n_batches)
 
-        # KC Usage Stats Calculation (DDP Safe)
         if self.is_distributed and dist.is_initialized():
             hist_dev = topk_hist.to(self.device)
             top1_dev = top1_hist.to(self.device)
@@ -1874,7 +1678,6 @@ class KCTrainer:
         avg_entropy_norm = running_entropy_norm / max(1, n_batches)
         avg_kl_to_uniform = running_kl_to_uniform / max(1, n_batches)
 
-        # Prepare histograms for printing
         top_n = 10
         topk_vals_hist, topk_idx_hist = torch.topk(
             topk_hist, k=min(top_n, kc_vocab_size)
@@ -1915,19 +1718,17 @@ class KCTrainer:
 
         if is_main_process() and not self.kc_show_epoch_table:
             if not self.kc_show_epoch_table:
-                # Minimal mode summary
                 top_losses = sorted(
                     avg_kc_losses.items(), key=lambda x: x[1], reverse=True
                 )[:3]
                 amp_stats = {
                     "skips": 0,
-                    "start": 1.0,  # Fixed scale
+                    "start": 1.0,
                     "end": 1.0,
                     "opt_steps": opt_steps,
                     "flush_steps": flush_steps,
                 }
 
-                # New Loss Breakdown
                 weights_dict = {
                     "div": div_weight if "div_weight" in locals() else 0.0,
                     "lb": lb_weight if "lb_weight" in locals() else 0.0,
@@ -1982,7 +1783,6 @@ class KCTrainer:
                 else:
                     print(msg)
 
-        # Round 8 Fix 6: Compact health line (main process only)
         if is_main_process():
             msg = (
                 f"  KC Health: maxTop1={max_top1:.3f} uniqKCs={uniq_kcs_epoch}/{kc_vocab_size} "
@@ -1994,7 +1794,6 @@ class KCTrainer:
             else:
                 print(msg)
 
-        # Round 21: KC Diagnostics Report
         if is_main_process():
             diag_lines = kc_diag.finalize(epoch)
             for line in diag_lines:
@@ -2032,11 +1831,9 @@ class KCTrainer:
         epochs: Optional[int] = None,
         on_epoch_end: Optional[Callable[[Dict[str, List[float]]], None]] = None,
     ) -> Dict[str, List[float]]:
-        # Round 17: Auto-resume
         if self.config.checkpoint.resume_from:
             self.restore_from_checkpoint(self.config.checkpoint.resume_from)
 
-        # Initialize biases to empirical base rates before training (only if starting fresh)
         if self.start_epoch == 0 and self.start_batch == 0:
             self._init_structural_decoder_biases()
 
@@ -2048,7 +1845,6 @@ class KCTrainer:
                 epoch=epoch
             )
 
-            # Performance report
             if is_main_process():
                 self._log_training_progress()
 
@@ -2077,7 +1873,6 @@ class KCTrainer:
                 self.history["kc_losses"][k].append(v)
 
             if is_main_process() and self.kc_show_epoch_table:
-                # Top 5 contributors
                 top_losses = dict(
                     sorted(kc_losses.items(), key=lambda x: x[1], reverse=True)[:5]
                 )
@@ -2092,7 +1887,6 @@ class KCTrainer:
 
             self.history["sentence_count"].append(len(self.dataset))
 
-            # Save end-of-epoch checkpoint
             self.save_checkpoint(epoch + 1, 0)
 
             if on_epoch_end and is_main_process():
@@ -2234,7 +2028,6 @@ class Trainer:
             worker_init_fn=_worker_init_fn,
         )
 
-        # Timers for profiling
         pid = os.getpid()
         profile_dir = get_profile_dir()
         data_log = (
@@ -2296,7 +2089,6 @@ class Trainer:
         self.start_batch = 0
         self.global_step = 0
 
-        # Configure PyTorch threads (Round 18)
         _safe_configure_threads(self.config)
 
         self.history: Dict[str, List[float]] = {
@@ -2354,9 +2146,7 @@ class Trainer:
             config=self.config,
             filename="checkpoint.pt",
         )
-        # Extra Style-specific state (patience, best_loss) in separate file for now,
-        # or we can just append it to generic save if we want.
-        # Let's append it to a metadata file if needed, but generic history has most of it.
+
         checkpoint_meta = {
             "best_val_loss": self.best_val_loss,
             "patience_counter": self.patience_counter,
@@ -2402,12 +2192,11 @@ class Trainer:
         pred: torch.Tensor, target: torch.Tensor, mask: torch.Tensor
     ) -> torch.Tensor:
         """Compute MSE loss with masking to avoid sync (no python if-checks)."""
-        # Element-wise loss
+
         loss_raw = F.mse_loss(pred, target, reduction="none")
-        # Apply mask
+
         loss_masked = loss_raw * mask
-        # Sum and divide by valid count (safe division)
-        # We assume mask is 0.0 or 1.0
+
         return loss_masked.sum() / (mask.sum() + 1e-6)
 
     @staticmethod
@@ -2416,16 +2205,12 @@ class Trainer:
     ) -> torch.Tensor:
         """Compute BCE loss with masking."""
         loss_raw = F.binary_cross_entropy_with_logits(pred, target, reduction="none")
-        # Expand mask if necessary (though usually (N,) vs (N, C) broadcasts fine if (N, 1))
-        # loss_raw is (N, C), mask is (N,). Broadcast mask to (N, C)
+
         if mask.dim() < loss_raw.dim():
             mask = mask.unsqueeze(-1)
 
         loss_masked = loss_raw * mask
-        # Mean reduction over ALL elements (N*C), matching standard BCEWithLogitsLoss behavior
-        # But we only want mean over valid elements.
-        # Standard: sum() / numel()
-        # Here: sum() / (valid_count * C)
+
         return loss_masked.sum() / (mask.sum() * loss_raw.size(-1) + 1e-6)
 
     def _unpack_training_batch(
@@ -2461,33 +2246,25 @@ class Trainer:
             reg_l,
         ) = outputs
 
-        # Avoid implicit synchronization (if is_valid_style.any()) by using masking
         mask = is_valid_style.float()
 
-        # Formality
-        # Sanitize targets (NaN * 0 = NaN, so we must remove NaNs even if masked)
         f_val_target = torch.nan_to_num(targets["f_val"], nan=0.0)
         f_mse = self._masked_mse(f_val_l.squeeze(-1), f_val_target, mask)
-        # Note: Pragmatic classification loss is always computed on full batch in original logic?
-        # Looking at original: self.formality_criterion(f_prag_l, targets["f_prag"])
-        # Yes, classification is always on.
+
         f_loss = self.formality_criterion(f_prag_l, targets["f_prag"]) + f_mse
 
-        # Gender
         g_val_target = torch.nan_to_num(targets["g_val"], nan=0.0)
         g_mse = self._masked_mse(g_val_l.squeeze(-1), g_val_target, mask)
         g_loss = self.formality_criterion(g_prag_l, targets["g_prag"]) + (
             g_mse * self.config.gender_mse_scaling_factor
         )
-        # Wait, original used self.gender_pragmatic_criterion
-        # Re-check: g_loss = self.gender_pragmatic_criterion(g_prag_l, targets["g_prag"])
+
         g_loss = self.gender_pragmatic_criterion(g_prag_l, targets["g_prag"]) + (
             g_mse * self.config.gender_mse_scaling_factor
         )
 
         gram_loss = self.grammaticality_criterion(gram_l, targets["gram"])
 
-        # Register
         reg_loss = self._masked_bce(reg_l, targets["reg"], mask)
 
         return f_loss, g_loss, gram_loss, reg_loss
@@ -2523,12 +2300,9 @@ class Trainer:
         """Process a single training batch."""
         field_inputs, attention_mask, targets = self._unpack_training_batch(batch)
 
-        # Optimization step
-        # Only zero grad if it's the start of an accumulation step
         if batch_idx % self.config.grad_accum_steps == 0:
             self.optimizer.zero_grad(set_to_none=True)
 
-        # Round 13: Forward pass (standard precision)
         outputs = self.model(field_inputs, attention_mask)
         losses = self._compute_training_loss(outputs, targets)
         loss = losses["loss"]
@@ -2545,7 +2319,6 @@ class Trainer:
 
         gad = self.config.grad_accum_steps
 
-        # Return detached tensors to avoid sync
         def _detach(val: Any) -> Any:
             if isinstance(val, torch.Tensor):
                 return val.detach()
@@ -2572,7 +2345,6 @@ class Trainer:
         if total_batches == 0:
             return 0.0, 0.0, 0.0, 0.0, 0.0
 
-        # Rich Progress Bar
         pbar = None
         current_loss_val = None
         if is_main_process():
@@ -2586,7 +2358,6 @@ class Trainer:
             self.train_timer_data.start()
 
             for batch_idx, batch in enumerate(self.train_loader):
-                # Mid-epoch resume: skip batches already processed
                 if batch_idx < self.start_batch:
                     if pbar:
                         pbar.update(batch_idx, desc="Skipping...")
@@ -2598,9 +2369,7 @@ class Trainer:
                 losses = self._train_batch(batch, batch_idx)
                 metrics.update(losses)
 
-                # Update pbar
                 if pbar:
-                    # Sync loss only occasionally
                     if (batch_idx % self.config.progress_update_every == 0) or (
                         batch_idx == total_batches - 1
                     ):
@@ -2608,7 +2377,6 @@ class Trainer:
 
                     pbar.update(batch_idx, loss=current_loss_val)
 
-                # Round 17: Periodic checkpointing
                 if (batch_idx + 1) % self.config.grad_accum_steps == 0:
                     self.global_step += 1
 
@@ -2625,7 +2393,6 @@ class Trainer:
             if pbar:
                 pbar.stop()
 
-        # Reset start_batch for next epoch
         self.start_batch = 0
         self.train_timer_data.stop()
         if is_main_process():
@@ -2698,7 +2465,7 @@ class Trainer:
             field_inputs, attention_mask, targets = self._unpack_training_batch(batch)
 
             outputs = self.model(field_inputs, attention_mask)
-            # Accumulate
+
             self._accumulate_eval_batch(outputs, targets, batch, metrics_sum, all_preds)
 
             n += 1
@@ -2725,7 +2492,6 @@ class Trainer:
             "register_accuracy": _reg_acc(
                 all_preds["reg_p"], all_preds["reg_l"], valid_idxs
             ),
-            # Full results for report generation
             "formality_val_preds": all_preds["f_val_p"],
             "formality_val_labels": all_preds["f_val_l"],
             "formality_prag_preds": all_preds["f_prag_p"],
@@ -2752,12 +2518,10 @@ class Trainer:
         losses = self._compute_training_loss(outputs, targets)
         preds = self._extract_predictions(outputs, targets)
 
-        # Accumulate losses
         for k, v in losses.items():
             val = v.item() if isinstance(v, torch.Tensor) else v
             metrics_sum[k] = metrics_sum.get(k, 0.0) + val
 
-        # Accumulate predictions
         for k, v in preds.items():
             all_preds[k].extend(v)
         all_preds["sentences"].extend(batch.get("original_sentence", []))
@@ -2768,7 +2532,6 @@ class Trainer:
         epochs: Optional[int] = None,
         on_epoch_end: Optional[Callable[[Dict[str, List[float]]], None]] = None,
     ) -> Dict[str, List[float]]:
-        # Round 17: Auto-resume
         if self.config.checkpoint.resume_from:
             self.restore_from_checkpoint(self.config.checkpoint.resume_from)
 
@@ -2779,7 +2542,6 @@ class Trainer:
             eval_res = self.evaluate()
             self.scheduler.step(eval_res["loss"])
 
-            # KC Probe (Round 9): measure KC health during STYLE training
             kc_probe_result = None
             m_style = cast(
                 StyleClassifier,
@@ -2791,7 +2553,6 @@ class Trainer:
                     kc_probe_result = self.evaluate_kc_probe(probe_loader)
                     self._diagnose_kc_probe(kc_probe_result)
 
-            # Record history
             self.history["train_loss"].append(tl)
             self.history["train_formality_loss"].append(tfl)
             self.history["train_gender_loss"].append(tgl)
@@ -2817,7 +2578,6 @@ class Trainer:
             )
             self.history["sentence_count"].append(len(self.train_dataset))
 
-            # Performance report
             if is_main_process():
                 data_avg = self.train_timer_data.avg()
                 compute_avg = self.train_timer_compute.avg()
@@ -2830,7 +2590,6 @@ class Trainer:
                 self.train_timer_compute.reset()
 
             if is_main_process():
-                # Format metrics for nice display
                 metrics = {
                     "Formality": {
                         "Train": tfl,
@@ -2869,7 +2628,6 @@ class Trainer:
                     for k, v in self.model.state_dict().items()
                 }
                 if is_main_process():
-                    # Ensure directory exists (it might not have been created yet on first epoch)
                     os.makedirs(self.output_path, exist_ok=True)
                     model_path = os.path.join(self.output_path, "model.pt")
                     torch.save(self.best_state, model_path)
@@ -2881,7 +2639,6 @@ class Trainer:
                         print(f"Early stopping at epoch {epoch + 1}")
                     break
 
-            # Round 17: Save end-of-epoch checkpoint
             self.save_checkpoint(epoch + 1, 0)
 
             if self.is_distributed:
@@ -2894,13 +2651,6 @@ class Trainer:
             self.model.load_state_dict(self.best_state, strict=False)
         return self.history
 
-    # =========================================================================
-    # KC Degradation Probe (Round 9)
-    # =========================================================================
-    # Measures KC health during STYLE training without affecting gradients.
-    # Provides actionable diagnostics for KC preservation vs style accuracy tradeoffs.
-    # =========================================================================
-
     def _build_kc_probe_loader(
         self, _max_batches: int = 25
     ) -> Optional[DataLoader[Dict[str, Any]]]:
@@ -2909,7 +2659,7 @@ class Trainer:
         Returns val_loader if model has KC enabled, else None.
         Filtering to grammatical samples is done during iteration.
         """
-        # Just return val_loader - filtering handled in evaluate_kc_probe
+
         return cast(DataLoader[Dict[str, Any]], self.val_loader)
 
     def _update_kc_metrics(
@@ -2932,8 +2682,8 @@ class Trainer:
         self, logits_raw: torch.Tensor, config: KCProbeConfig
     ) -> Tuple[float, float]:
         logits_clamped = logits_raw.clamp(min=-8.0, max=8.0)
-        q = torch.softmax(logits_clamped / config.tau_usage, dim=-1)  # (B, V)
-        p = q.mean(dim=0)  # (V,)
+        q = torch.softmax(logits_clamped / config.tau_usage, dim=-1)
+        p = q.mean(dim=0)
         p = p / p.sum().clamp_min(1e-9)
 
         eps = 1e-9
@@ -2950,11 +2700,6 @@ class Trainer:
         batch_size: int,
         config: KCProbeConfig,
     ) -> None:
-        # Usage histograms
-        # Usage histograms - Vectorized (Round 20 Optimization)
-        # Avoids 1000s of .item() calls per batch.
-
-        # Ensure accumulator tensors are float and on CPU
         if not acc.top1_hist.is_floating_point():
             acc.top1_hist = acc.top1_hist.float()
         if acc.top1_hist.device.type != "cpu":
@@ -2965,33 +2710,20 @@ class Trainer:
         if acc.topk_hist.device.type != "cpu":
             acc.topk_hist = acc.topk_hist.cpu()
 
-        # 1. Update Top-1 (first column)
         top1_inds = outputs["topk_inds"][:, 0].flatten().cpu()
-        # Find max index to resize bincount result if needed, but bincount returns size=max(input)+1
-        # top1_hist is likely a defined size, so we add to it.
-        # But top1_hist is sparse/unknown size initially?
-        # types.py says default_factory=lambda: torch.tensor([]).
-        # We need to resize acc.top1_hist if new indices exceed it.
-
-        # Actually, simpler: just iterate unique if vocab is huge, OR use bincount if vocab fits in RAM.
-        # Vocab is < 100k usually. bincount is fast.
 
         counts_1 = torch.bincount(top1_inds)
         if len(counts_1) > len(acc.top1_hist):
-            # Resize histogram
             new_hist = torch.zeros(len(counts_1), dtype=torch.float)
             if len(acc.top1_hist) > 0:
                 new_hist[: len(acc.top1_hist)] = acc.top1_hist.float()
             acc.top1_hist = new_hist
 
-        # Add safely
         acc.top1_hist[: len(counts_1)] += counts_1.float()
 
-        # 2. Update Top-K (all indices)
         topk_inds_flat = outputs["topk_inds"].flatten().cpu()
         counts_k = torch.bincount(topk_inds_flat)
         if len(counts_k) > len(acc.topk_hist):
-            # Resize histogram
             new_hist = torch.zeros(len(counts_k), dtype=torch.float)
             if len(acc.topk_hist) > 0:
                 new_hist[: len(acc.topk_hist)] = acc.topk_hist.float()
@@ -2999,7 +2731,6 @@ class Trainer:
 
         acc.topk_hist[: len(counts_k)] += counts_k.float()
 
-        # Entropy and KL from soft usage
         entropy_norm, kl_to_uniform = self._compute_entropy_kl(
             outputs["kc_logits_raw"], config
         )
@@ -3007,13 +2738,11 @@ class Trainer:
         acc.sum_entropy += entropy_norm * batch_size
         acc.sum_kl += kl_to_uniform * batch_size
 
-        # Top-k value stats
-        topk_vals = outputs["topk_vals"]  # (B, k)
+        topk_vals = outputs["topk_vals"]
         acc.sum_tv += topk_vals.mean().item() * batch_size
         gap = topk_vals[:, 0] - topk_vals[:, -1]
         acc.sum_gap += gap.mean().item() * batch_size
 
-        # Soft density stats
         acc.sum_avg_prob += outputs["kc_probs"].mean().item() * batch_size
         acc.sum_act_dens += (
             outputs["sparse_activations"] > 0
@@ -3044,7 +2773,6 @@ class Trainer:
         hs: Dict[str, Any],
         config: KCProbeConfig,
     ) -> None:
-        # Round 15: Handle both dense and sparse target formats
         dense_key = f"kc_targets_{head_name}"
         pos_key = f"kc_pos_inds_{head_name}"
         mask_key = f"kc_pos_mask_{head_name}"
@@ -3071,11 +2799,9 @@ class Trainer:
         """Update head stats for dense targets."""
         targets_h = targets_h.to(self.device).float()
 
-        # Update head stats
         hs["p_sum"] += targets_h.sum().item()
         hs["count"] += targets_h.numel()
 
-        # Sample pos and neg logits for AUC
         pos_mask = targets_h > 0.5
         neg_mask = ~pos_mask
 
@@ -3101,9 +2827,8 @@ class Trainer:
         batch_size = pos_inds.size(0)
         vocab_size = logits_h.size(1)
 
-        # Sample pos logits from sparse indices
         if len(hs["pos_logits"]) < max_samples_per_head:
-            for i in range(min(batch_size, 4)):  # Sample from first 4 batch items
+            for i in range(min(batch_size, 4)):
                 valid_inds = pos_inds[i, pos_mask_t[i]]
                 if valid_inds.numel() > 0:
                     pos_log = logits_h[i, valid_inds].cpu().tolist()
@@ -3111,7 +2836,6 @@ class Trainer:
                         pos_log[: max_samples_per_head - len(hs["pos_logits"])]
                     )
 
-        # Sample neg logits (random indices not in positives)
         if len(hs["neg_logits"]) < max_samples_per_head:
             for i in range(min(batch_size, 4)):
                 neg_inds = torch.randint(4, vocab_size, (50,), device=self.device)
@@ -3135,7 +2859,6 @@ class Trainer:
         batch_size = pos_inds.size(0)
         vocab_size = logits_h.size(1)
 
-        # Count positives
         n_pos = pos_mask_t.sum().item()
         n_total = batch_size * vocab_size
         hs["p_sum"] += n_pos
@@ -3149,7 +2872,7 @@ class Trainer:
         self, acc: KCMetricsAccumulator, kc_vocab_size: int
     ) -> Dict[str, Any]:
         """Finalize KC metrics computation."""
-        # DDP sync if needed
+
         if self.is_distributed:
             dist.all_reduce(acc.top1_hist, op=dist.ReduceOp.SUM)
             scalars = torch.tensor(
@@ -3173,7 +2896,6 @@ class Trainer:
             acc.sum_avg_prob = scalars[5].item()
             acc.sum_act_dens = scalars[6].item()
 
-        # Compute final metrics
         n_samples = max(1, acc.n_samples)
 
         uniq_kcs = int((acc.topk_hist > 0).sum().item())
@@ -3192,7 +2914,6 @@ class Trainer:
             "kc_vocab_size": kc_vocab_size,
         }
 
-        # Per-head AUCs (rank0 only for simplicity)
         if is_main_process():
             for head_name, hs in acc.head_samples.items():
                 p_true, auc, delta_bce = self._compute_head_metrics(hs)
@@ -3212,7 +2933,6 @@ class Trainer:
         pos_l = hs["pos_logits"]
         neg_l = hs["neg_logits"]
         if len(pos_l) > 0 and len(neg_l) > 0:
-            # Rank AUC
             all_logits = pos_l + neg_l
             all_labels = [1.0] * len(pos_l) + [0.0] * len(neg_l)
             combined = sorted(zip(all_logits, all_labels), key=lambda x: x[0])
@@ -3222,7 +2942,6 @@ class Trainer:
             n_neg = len(neg_l)
             auc = (pos_rank_sum - n_pos * (n_pos + 1) / 2) / max(1, n_pos * n_neg)
 
-            # Delta BCE vs constant baseline
             logits_t = torch.tensor(all_logits, dtype=torch.float32)
             labels_t = torch.tensor(all_labels, dtype=torch.float32)
             model_bce = F.binary_cross_entropy_with_logits(logits_t, labels_t).item()
@@ -3256,7 +2975,6 @@ class Trainer:
                 }
                 attention_mask = batch["attention_mask"].to(self.device)
 
-                # Forward KC (deterministic: gumbel_scale=0.0, eval mode)
                 outputs = m(
                     field_inputs,
                     attention_mask=attention_mask,
@@ -3289,7 +3007,6 @@ class Trainer:
             max_samples_per_head=2000,
         )
 
-        # Per-head AUC sampling (reservoir style)
         probe_heads = ["lemma", "pos", "conjugated_form", "conjugated_type"]
         head_samples: Dict[str, Dict[str, Any]] = {
             h: {"pos_logits": [], "neg_logits": [], "p_sum": 0.0, "count": 0}
@@ -3325,7 +3042,6 @@ class Trainer:
         uniq_kcs = probe_result.get("uniq_kcs", 0)
         kc_vocab_size = probe_result.get("kc_vocab_size", 1024)
 
-        # Collapse detection
         collapse_risk = max_top1 > 0.10 or entropy_norm < 0.85
         if collapse_risk:
             recommendations.append(
@@ -3333,7 +3049,6 @@ class Trainer:
                 "Try: reduce encoder_lr_factor (0.1→0.01) or freeze encoder for first 2 epochs."
             )
 
-        # Usage check
         usage_ratio = uniq_kcs / kc_vocab_size
         if usage_ratio < 0.5:
             recommendations.append(
@@ -3341,7 +3056,6 @@ class Trainer:
                 "Try: increase diversity_weight_thawed or lower temperature."
             )
 
-        # Structural quality check
         for head in ["lemma", "pos", "conjugated_form", "conjugated_type"]:
             auc = probe_result.get(f"head_{head}_auc", float("nan"))
             if not math.isnan(auc) and auc < 0.80:
@@ -3350,11 +3064,9 @@ class Trainer:
                     "Try: add KC auxiliary loss during STYLE or retrain KC decoders post-STYLE."
                 )
 
-        # Summary
         if not recommendations:
             recommendations.append("✅ KC health OK. No action needed.")
 
-        # Print compact summary
         if is_main_process():
             print(
                 f"  KCProbe: uniq={probe_result.get('uniq_kcs', 0)}/{probe_result.get('kc_vocab_size', 0)} "
