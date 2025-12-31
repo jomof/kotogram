@@ -1,6 +1,5 @@
 """I/O utilities for model checkpoints and weights."""
 
-import importlib.util
 import json
 import os
 import random
@@ -76,10 +75,10 @@ def get_rng_states() -> Dict[str, Any]:
     }
     if torch.cuda.is_available():
         states["cuda"] = torch.cuda.get_rng_state_all()
-    if importlib.util.find_spec("numpy"):
-        import numpy as np
 
-        states["numpy"] = np.random.get_state()
+    import numpy as np
+
+    states["numpy"] = np.random.get_state()
     return states
 
 
@@ -92,7 +91,7 @@ def set_rng_states(states: Dict[str, Any]) -> None:
     if "cuda" in states and torch.cuda.is_available():
         # states["cuda"] is a list of tensors for CUDA
         torch.cuda.set_rng_state_all([s.cpu() for s in states["cuda"]])
-    if "numpy" in states and importlib.util.find_spec("numpy"):
+    if "numpy" in states:
         import numpy as np
 
         np.random.set_state(states["numpy"])

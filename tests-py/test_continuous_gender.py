@@ -24,7 +24,7 @@ class TestContinuousGender(unittest.TestCase):
 
         # Check forward pass shapes
         bs = 2
-        # FEATURE_FIELDS: ['surface', 'pos', 'pos_detail1', 'pos_detail2', 'conjugated_type', 'conjugated_form', 'lemma', 'base_orth', 'reading']
+        # FEATURE_FIELDS: ['surface', 'pos', 'pos_detail_1', 'pos_detail_2', 'conjugated_type', 'conjugated_form', 'lemma', 'base_orth', 'reading']
         inputs = {}
         from kotogram.tokenizer import FEATURE_FIELDS
 

@@ -106,9 +106,9 @@ class ModelConfig:
         default_factory=lambda: {
             "surface": 64,
             "pos": 32,
-            "pos_detail1": 32,
-            "pos_detail2": 16,
-            "pos_detail3": 16,
+            "pos_detail_1": 32,
+            "pos_detail_2": 16,
+            "pos_detail_3": 16,
             "conjugated_type": 32,
             "conjugated_form": 32,
             "lemma": 64,
@@ -158,6 +158,16 @@ class ModelConfig:
         from dataclasses import fields
 
         valid_fields = {f.name for f in fields(cls)}
+
+        # Migration logic for old pos_detail naming in field_embed_dims
+        if "field_embed_dims" in d:
+            dims = d["field_embed_dims"]
+            for i in range(1, 4):
+                old_key = f"pos_detail{i}"
+                new_key = f"pos_detail_{i}"
+                if old_key in dims and new_key not in dims:
+                    dims[new_key] = dims.pop(old_key)
+
         return cls(**{k: v for k, v in d.items() if k in valid_fields})
 
 
@@ -597,9 +607,6 @@ def is_default_style_model_available() -> bool:
         return True
 
     # Package mode check
-    if importlib.util.find_spec("kotogram.model_data") is None:
-        return False
-
     if sys.version_info >= (3, 9):
         from importlib.resources import files  # type: ignore
 

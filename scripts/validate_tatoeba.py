@@ -11,7 +11,6 @@ Examples:
     python scripts/validate_tatoeba.py all          # Validate all sentences
 """
 
-import importlib.util
 import json
 import os
 import subprocess
@@ -19,20 +18,15 @@ import sys
 from collections import defaultdict
 from typing import Any, Dict, List, Optional, Set, Tuple
 
-if importlib.util.find_spec("_setup_path"):
-    import _setup_path  # type: ignore # noqa: F401 # pylint: disable=unused-import,import-private-name
-else:
-    # Fallback if run as module
-    from scripts import (
-        _setup_path,  # type: ignore # noqa: F401 # pylint: disable=unused-import,import-private-name
-    )
-
-# pylint: disable=wrong-import-position
-
 from kotogram import SudachiJapaneseParser, extract_token_features
 from kotogram.exceptions import MissingMappingError
 from kotogram.kotogram import split_kotogram
+from scripts import (
+    _setup_path,  # type: ignore # noqa: F401 # pylint: disable=import-private-name
+)
 from train.tsv import parse_tsv
+
+_vulture_marker = _setup_path  # Vulture: Used for side effects
 
 
 def validate_sentences(

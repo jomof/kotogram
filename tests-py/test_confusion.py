@@ -1,14 +1,9 @@
 import os
 import shutil
-import sys
 import tempfile
 import unittest
 from unittest.mock import patch
 
-# Add project root to path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-# pylint: disable=wrong-import-position
 from scripts.confusion import generate_reports
 
 

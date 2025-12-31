@@ -1,12 +1,6 @@
-import os
-import sys
 import unittest
 from unittest.mock import MagicMock
 
-# Ensure projects root is in path
-sys.path.append(os.getcwd())
-
-# pylint: disable=wrong-import-position
 from train.config import TrainerConfig
 
 

@@ -18,11 +18,12 @@ import sys
 import tempfile
 from pathlib import Path
 
-# Add parent to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent))
-
-# pylint: disable=wrong-import-position
 from kotogram import SudachiJapaneseParser, kotogram_to_japanese
+from scripts import (
+    _setup_path,  # type: ignore # noqa: F401 # pylint: disable=import-private-name
+)
+
+_vulture_marker = _setup_path  # Vulture: Used for side effects
 
 
 def generate_kotograms(data_path: Path) -> list[str]:

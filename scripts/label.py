@@ -1,6 +1,44 @@
 #!/usr/bin/env python3
-# pylint: disable=too-many-lines
-"""Standalone script to label and cache Japanese sentences for style classification (V2 Binary Format)."""
+
+"""
+Standalone script to label and cache Japanese sentences for style classification (V2 Binary Format).
+
+This script implements a high-performance, multi-phase data processing pipeline that converts raw
+Japanese text (or pre-parsed DB rows) into a binary dataset optimized for training deep learning models.
+
+The pipeline consists of three distinct phases:
+
+    Phase 1: Analysis & Vocabulary Building
+        - Parallel processing of sentences using `kotogram` analysis.
+        - Computes formality, register, and gender pragmatic scores.
+        - Builds global vocabulary counters for all feature fields.
+        - Buffers intermediate results (sentence text, kotograms, raw scores) to sharded temporary files.
+        - This phase is CPU-bound and scales linearly with `num_workers`.
+
+    Phase 2: Encoding & KC Target Computation
+        - Reads the intermediate kotograms generated in Phase 1.
+        - Encodes token features into integer IDs using the globally finalized tokenizer from Phase 1.
+        - Computes Knowledge Component (KC) targets (e.g., n-grams, structural hashes) for pretraining.
+        - Writes these encoded integer arrays to binary shard files.
+
+    Phase 3: Merging & Finalization
+        - Aggregates all sharded binary files into a single, contiguous memory-mappable dataset.
+        - Merges vocabulary and offset indices.
+        - Produces the final `models/style/dataset` directory structure.
+
+Usage:
+    python3 scripts/label.py --grammatic-pattern "data/*.tsv" --num-workers 16
+    python3 scripts/label.py --source-db data/corpus.db --num-workers 16
+
+Output:
+    The script populates the directory returned by `locations.get_style_dataset_cache_dir()`
+    (typically `models/style/dataset`) with:
+    - `sentences`: All unique sentences.
+    - `kotograms`: Analyzed kotogram representations.
+    - `labels_*`: Binary arrays for various style labels.
+    - `kc_*`: Binary arrays for Knowledge Component targets.
+    - `tokenizer.json`: The fitted tokenizer vocabulary.
+"""
 
 import glob
 import multiprocessing as mp
@@ -47,10 +85,16 @@ from train.kc import compute_kc_targets
 from train.profile import PhaseTimer, get_profile_dir
 from train.tsv import parse_tsv
 
-# Cache version for tokenizer compatibility
+# Version of the dataset cache format. Incrementing this invalidates old caches.
 CACHE_VERSION = 12
 
-# Global variable for worker processes only
+# Global state for worker processes.
+# These variables are initialized via `init_worker` in each child process.
+# pylint: disable=too-many-lines
+# pylint: disable=too-many-locals
+# pylint: disable=global-statement
+# pylint: disable=protected-access
+
 _WORKER_OVERRIDES: Optional[Dict[str, List[Any]]] = None
 _WORKER_ID: int = -1
 _SHARD_DIR: str = ""
@@ -66,13 +110,29 @@ def _build_and_save_vocab(
     cache_dir: str,
     cache_name: str,
 ) -> None:
-    """Build vocabulary from counters and save to disk."""
+    """
+    Build vocabulary from merged counters and save to disk.
+
+    This function takes the aggregated counters from all workers (Phase 1) and populates
+    the tokenizer's internal vocabulary structures. It then persists the tokenizer state
+    to a JSON file for use in Phase 2 and subsequent training.
+
+    Args:
+        tokenizer: The tokenizer instance to populate.
+        merged_counters: Dictionary mapping feature field names to Counter objects.
+        cache_dir: Directory to save the vocab file.
+        cache_name: Filename for the vocab file (e.g., 'tokenizer.json').
+    """
     for field in FEATURE_FIELDS:
         counter = merged_counters.get(field, Counter())
-        # Add values sorted by frequency (descending)
+        # Add tokens to tokenizer in order of frequency (most common first).
+        # This implicitly assigns lower integer IDs to more frequent tokens.
         for value, _ in counter.most_common():
-            # pylint: disable=protected-access
+            # _add_value is an internal method, but necessary here for direct population.
             tokenizer._add_value(field, value)
+
+    # Ensure the <READING_MASK> sentinel is in the vocabulary so it gets a stable ID.
+    tokenizer._add_value("reading", "<READING_MASK>")
 
     os.makedirs(cache_dir, exist_ok=True)
     vocab_path = os.path.join(cache_dir, cache_name)
@@ -85,8 +145,22 @@ def init_worker(
     overrides: Dict[str, List[Any]],
     tokenizer_state: Dict[str, Any],
 ) -> None:
-    """Initialize worker process with shard config, overrides, and tokenizer state."""
-    # pylint: disable=global-statement
+    """
+    Initialize worker process with shard config, overrides, and tokenizer state.
+
+    This function is called at the start of each worker process to set up global state.
+    It handles:
+    1. Setting the worker ID for unique shard naming.
+    2. Loading manual register overrides (if any).
+    3. Rehydrating the tokenizer from state (Phase 2 only).
+
+    Args:
+        worker_id: Unique 0-indexed ID for this worker.
+        shard_dir: Directory where shards should be written.
+        overrides: Dictionary of manual register level overrides.
+        tokenizer_state: State dict to restore the Tokenizer from (used in Phase 2).
+    """
+    # Use global keywords to set module-level variables in the worker process.
     global _WORKER_OVERRIDES, _WORKER_ID, _SHARD_DIR, _TOKENIZER
     _WORKER_OVERRIDES = overrides
     _WORKER_ID = worker_id
@@ -98,8 +172,22 @@ def init_worker(
 def analyze_batch(
     batch: List[Tuple[str, int]],
 ) -> Dict[str, Any]:
-    # pylint: disable=too-many-locals, redefined-outer-name, reimported
-    """Phase 1: Analyze labels, count vocab, return buffers."""
+    """
+    Phase 1: Analyze a batch of raw sentences.
+
+    This function performs the heavy lifting of linguistic analysis. It:
+    1. Parses sentences into `kotograms`.
+    2. Analyzes formality, gender, and register using rule-based heuristics.
+    3. Aggregates vocabulary counts for the global tokenizer.
+    4. Buffers all results for efficient batch writing to disk.
+
+    Args:
+        batch: List of tuples (sentence, grammatic_label).
+
+    Returns:
+        Dict containing buffered lists of features, stats counters, and sample registers.
+    """
+    # Import locally to avoid top-level dependency issues or circular imports if any.
     from kotogram.analysis import FormalityLevel, RegisterLevel
     from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
     from scripts.rule_based_analysis import (
@@ -112,7 +200,8 @@ def analyze_batch(
 
     parser = SudachiJapaneseParser()
 
-    # Buffers
+    # Initialize buffers for columnar data storage.
+    # These map directly to the binary output format.
     sentences_buf: List[str] = []
     kotograms_buf: List[str] = []
 
@@ -122,7 +211,7 @@ def analyze_batch(
     g_prag_buf: List[int] = []
     gram_buf: List[int] = []
     reg_ids_buf: List[int] = []
-    # Local offsets for this batch, starting at 0
+    # Offsets for jagged array of register IDs (one-to-many relationship).
     reg_offsets_buf: List[int] = [0]
     current_reg_offset = 0
 
@@ -142,7 +231,7 @@ def analyze_batch(
         formality_enum = analyze_formality(kotogram_obj)
         gender_enum = analyze_gender(kotogram_obj)
 
-        # Token features and vocabulary counting
+        # Tokenize and collect feature statistics for vocabulary building.
         tokens = split_kotogram(kotogram_obj)
 
         for token in tokens:
@@ -151,24 +240,25 @@ def analyze_batch(
                 val = getattr(token_feat, field)
                 vocab_counters[field][val] += 1
 
-        # Check for overrides
+        # Check for manual overrides for register analysis (used for corrections).
         overrides = _WORKER_OVERRIDES or {}
         if sentence in overrides:
             register_enums = overrides[sentence]
         else:
             register_enums = list(analyze_register(kotogram_obj))
 
-        # ID for stats only
+        # Convert Enums to integer IDs for storage.
         formality_id = FORMALITY_LABEL_TO_ID.get(
             formality_enum, FORMALITY_LABEL_TO_ID[FormalityLevel.NEUTRAL]
         )
 
-        # Calculate formality weight for training
+        # Convert formality level to a continuous weight (-1.0 to 1.0).
         f_val, f_prag = formality_to_weight(formality_enum)
         if f_prag == 0:
             f_val = float("nan")
 
-        # Assuming infer_gender_from_register is available in scope (it is)
+        # Infer gender probability based on register if explicit gender markers are missing.
+        # This helps propagate gender signals from register context.
         gender_val, gender_prag = infer_gender_from_register(
             gender_enum, register_enums
         )
@@ -181,17 +271,15 @@ def analyze_batch(
         if not register_ids:
             register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
 
-        # The gender_val assignment to NaN if gender_prag is 0 is already handled above.
-        # The diff snippet seems to imply a re-ordering or re-assignment, but the logic
-        # for g_val (gender_val) being NaN based on g_prag (gender_prag) is already in place.
-        # We will keep the existing placement of `if gender_prag == 0: gender_val = float("nan")`
-        # and just add the new `final_gram` logic.
-
-        # STRICT GRAMMATICALITY:
-        # gram=1 iff source=1 AND f_prag=1 AND g_prag=1
+        # Final grammaticality check.
+        # Logic: A sentence is "grammatic" for training ONLY if:
+        # 1. It was labeled as grammatic in source (gram_label=1).
+        # 2. It has pragmatic formality (f_prag=1).
+        # 3. It has pragmatic gender (gender_prag=1).
+        # This ensures we don't train on ambiguous or neutral-only data that adds noise.
         final_gram = gram_label and f_prag and gender_prag
 
-        # Accumulate
+        # Append to columnar buffers.
         sentences_buf.append(sentence)
         kotograms_buf.append(kotogram_obj)
         f_val_buf.append(f_val)
@@ -204,7 +292,7 @@ def analyze_batch(
         current_reg_offset += len(register_ids)
         reg_offsets_buf.append(current_reg_offset)
 
-        # Stats
+        # Update stats.
         label_stats["formality"][formality_id] += 1
         label_stats["gender_prag"][gender_prag] += 1
         label_stats["grammatic"][gram_label] += 1
@@ -240,14 +328,26 @@ def analyze_batch(
 def analyze_batch_from_db(
     batch: List[Tuple[Any, ...]],
 ) -> Dict[str, Any]:
-    """Phase 1 (DB): Process DB rows directly without re-analysis."""
-    # pylint: disable=too-many-locals, redefined-outer-name, reimported
+    """
+    Phase 1 (DB): Process DB rows directly without re-analysis.
+
+    This variant of `analyze_batch` optimizes for speed when the input source is a SQLite database
+    that already contains valid analysis results (golden labels). It trusts the DB columns for
+    key metrics but still re-computes `kotograms` to ensure the correct features are extracted
+    for the current tokenizer version.
+
+    Args:
+        batch: List of tuples (sentence, formality, gender, grammatic, r_ids_str).
+
+    Returns:
+        Dict containing buffered lists of features, stats counters, and sample registers.
+    """
     from kotogram.analysis import FormalityLevel, RegisterLevel
     from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 
     parser = SudachiJapaneseParser()
 
-    # Buffers
+    # Initialize buffers for columnar data storage.
     sentences_buf: List[str] = []
     kotograms_buf: List[str] = []
 
@@ -270,15 +370,15 @@ def analyze_batch_from_db(
     reg_samples: Dict[str, List[Any]] = {}
 
     for row in batch:
-        # row: (sentence, formality, gender, grammatic, register_ids_str)
+        # Unpack row from `corpus` table.
         sentence, formality, gender, grammatic, r_ids_str = row
 
-        # Parse Kotogram (Apply Masking)
+        # Always re-parse to get the latest feature extraction logic.
         kotogram_obj = parser.japanese_to_kotogram(
             sentence, fmt=KotogramFormat.TRAINING_MASK
         )
 
-        # Token features and vocabulary counting
+        # Tokenize and collect feature statistics.
         tokens = split_kotogram(kotogram_obj)
         for token in tokens:
             token_feat = extract_token_features(token)
@@ -286,29 +386,14 @@ def analyze_batch_from_db(
                 val = getattr(token_feat, field)
                 vocab_counters[field][val] += 1
 
-        # Use DB Labels directly
-        # Formality
+        # Use DB values for labels if present, otherwise set to NaN/Unpragmatic.
+        # This trusts that the DB content was generated by a valid analysis process.
         if formality is not None:
             f_val = float(formality)
             f_prag = 1
-            # Inverse map value to ID?
-            # `formality` in DB is float (-1.0 to 1.0).
-            # We need ID for stats.
-            # Map -1.0 -> VERY_CASUAL?
-            # Wait, `formality_to_weight` maps Enum -> (val, prag).
-            # Here we have val.
-            # We can't perfectly map float -> ID without thresholds.
-            # But we only use ID for STATS printing.
-            # Let's approximate or just map to NEUTRAL if unsure?
-            # Or skip stats for DB source?
-            # The user wants "Switch Labeling to Consume Corpus DB".
-            # The stats are displayed.
-            # If we just put them in NEUTRAL for stats, it's misleading.
-            # We can try to reverse map.
-            # 1.0 = Formal, -1.0 = Casual?
-            # Check `rule_based_analysis` or `constants`.
-            # Typically: 1.0 (Very Formal), 0.5 (Formal), 0.0 (Neutral), -0.5 (Casual), -1.0 (Very Casual).
-            # Let's implement a quick helper or logic here.
+            # Reconstruct FormalityLevel for stats tracking.
+            # Ideally we would store the Enum ID in the DB, but legacy format is float.
+            # Using cutoffs that match `formality_to_weight` logic.
             if f_val >= 0.75:
                 f_enum = FormalityLevel.VERY_FORMAL
             elif f_val >= 0.25:
@@ -325,7 +410,7 @@ def analyze_batch_from_db(
             f_prag = 0
             f_id = FORMALITY_LABEL_TO_ID[FormalityLevel.UNPRAGMATIC_FORMALITY]
 
-        # Gender
+        # Gender handling from DB columns.
         if gender is not None:
             g_val = float(gender)
             g_prag = 1
@@ -333,10 +418,10 @@ def analyze_batch_from_db(
             g_val = float("nan")
             g_prag = 0
 
-        # Grammaticality
-        final_gram = int(grammatic)  # DB stores 0/1
+        # Grammaticality flag from DB.
+        final_gram = int(grammatic)  # Typically 0 or 1.
 
-        # Registers
+        # Register IDs handling (stored as comma-separated string in DB).
         register_ids = []
         if r_ids_str:
             for s in r_ids_str.split(","):
@@ -346,7 +431,7 @@ def analyze_batch_from_db(
         if not register_ids:
             register_ids = [REGISTER_LABEL_TO_ID[RegisterLevel.NEUTRAL]]
 
-        # Accumulate
+        # Append to buffers.
         sentences_buf.append(sentence)
         kotograms_buf.append(kotogram_obj)
         f_val_buf.append(f_val)
@@ -359,9 +444,11 @@ def analyze_batch_from_db(
         current_reg_offset += len(register_ids)
         reg_offsets_buf.append(current_reg_offset)
 
-        # Stats
+        # Update stats.
         if f_prag:
-            label_stats["formality"][f_id] += 1  # ID might be fake
+            label_stats["formality"][f_id] += (
+                1  # Only count pragmatic samples for distribution.
+            )
         label_stats["gender_prag"][g_prag] += 1
         label_stats["grammatic"][final_gram] += 1
         for reg_id in register_ids:
@@ -384,16 +471,26 @@ def analyze_batch_from_db(
 
 
 def _encode_shard_phase2(worker_id: int) -> None:
-    # pylint: disable=too-many-locals
-    """Phase 2: Read kotograms, encode features/KC, write binaries."""
-    # This runs ONCE per worker, processing the entire shard file created in Phase 1.
+    """
+    Phase 2: Read kotograms, encode features/KC, and write binaries.
+
+    This function runs in Phase 2 workers. It:
+    1. Reads the intermediate `kotograms` text file written in Phase 1.
+    2. Re-tokenizes the kotograms to extract features.
+    3. Encodes features using the *final* tokenizer (which has global vocabulary).
+    4. Computes Knowledge Component (KC) targets (e.g. n-grams) based on feature IDs.
+    5. Writes the final binary arrays for training features and KC targets.
+
+    Args:
+        worker_id: The worker ID, used to locate the shard files.
+    """
     shard_prefix = os.path.join(_SHARD_DIR, f"shard_{worker_id}")
     koto_path = f"{shard_prefix}.{EXT_KOTOGRAMS}"
 
     if not os.path.exists(koto_path):
         return
 
-    # Buffers
+    # Buffers for encoded feature IDs (one array per feature field).
     feat_buffers: Dict[str, List[int]] = {f: [] for f in FEATURE_FIELDS}
     token_lengths_buf: List[int] = []
     offsets_buf: List[int] = [0]
@@ -413,28 +510,34 @@ def _encode_shard_phase2(worker_id: int) -> None:
             current_offset += len(tokens)
             offsets_buf.append(current_offset)
 
-            # Features
+            # Extract features and encode with tokenizer.
+            # Note: _TOKENIZER must be loaded with the full vocabulary at this point.
             feat_ids_map: Dict[str, List[int]] = {f: [] for f in FEATURE_FIELDS}
             for token in tokens:
                 token_feat = extract_token_features(token)
                 for field in FEATURE_FIELDS:
                     val = getattr(token_feat, field)
+
                     if _TOKENIZER:
                         fid = _TOKENIZER.get_id(field, val)
                         feat_buffers[field].append(fid)
                         feat_ids_map[field].append(fid)
 
-            # KC Targets
-            kc_targets = compute_kc_targets(cast(Any, feat_ids_map))
+            # Compute KC targets based on feature IDs.
+            # We pass the tokenizer so KC logic can derive reading_gram ids.
+            kc_targets = compute_kc_targets(
+                cast(Any, feat_ids_map), tokenizer=_TOKENIZER
+            )
             for k_key, vals in kc_targets.items():
                 if k_key not in kc_buffers:
                     kc_buffers[k_key] = {"ids": [], "offsets": [0], "cur_off": 0}
 
-                # compute_kc_targets returns Dict[str, List[int]] (ids)
-                # target is just list of IDs
+                # KC targets can be variable length per sentence (e.g. n-grams).
+                # We store them as a jagged array (flat values + offsets).
                 ids = vals
                 if isinstance(ids, list):
-                    # Mypy check passed via compute_kc_targets return type normally, but being safe
+                    # For list-type targets (like n-grams), extend the flat list.
+                    # Otherwise (scalar targets), we would append single values (not handled here).
                     cast(List[int], kc_buffers[k_key]["ids"]).extend(ids)
                     kc_buffers[k_key]["cur_off"] = cast(
                         int, kc_buffers[k_key]["cur_off"]
@@ -443,17 +546,17 @@ def _encode_shard_phase2(worker_id: int) -> None:
                         cast(int, kc_buffers[k_key]["cur_off"])
                     )
 
-    # Write Features
+    # Write the main sentence offsets (token boundaries).
     write_int_array(f"{shard_prefix}.{EXT_OFFSETS}", offsets_buf, "i")
 
     for field in FEATURE_FIELDS:
-        # Fixed: EXT_FEAT_PREFIX already includes '_'
+        # Write each feature field as a flat binary array used for embedding lookup.
         f_path = f"{shard_prefix}.{EXT_FEAT_PREFIX}{field}.bin"
         write_int_array(f_path, feat_buffers[field], "i")
 
-    # Write KC
+    # Write KC target binaries.
     for k_key, accum in kc_buffers.items():
-        # Fixed: EXT_KC_PREFIX already includes '_'
+        # Write the IDs and the Offsets for jagged access during training.
         write_int_array(
             f"{shard_prefix}.{EXT_KC_PREFIX}{k_key}_ids.bin", accum["ids"], "i"
         )
@@ -465,7 +568,6 @@ def _encode_shard_phase2(worker_id: int) -> None:
 
 
 def print_stats(label_stats: Dict[str, Counter]) -> None:
-    # pylint: disable=too-many-locals
     """Print attractive statistics about the labeling results."""
     if not label_stats:
         return
@@ -487,7 +589,6 @@ def print_stats(label_stats: Dict[str, Counter]) -> None:
             table.add_row(label, f"{count:,}", f"{100 * count / total:.1f}%")
         console.print(table)
 
-    # Formality
     _print_dist(
         "Formality Distribution",
         "bold magenta",
@@ -495,7 +596,6 @@ def print_stats(label_stats: Dict[str, Counter]) -> None:
         lambda x: FORMALITY_ID_TO_LABEL[x].value,
     )
 
-    # Gender
     _print_dist(
         "Gender Pragmatic Distribution",
         "bold cyan",
@@ -503,7 +603,6 @@ def print_stats(label_stats: Dict[str, Counter]) -> None:
         lambda x: {1: "Pragmatic", 0: "Unpragmatic"}[x],
     )
 
-    # Register
     _print_dist(
         "Register Distribution",
         "bold yellow",
@@ -511,7 +610,6 @@ def print_stats(label_stats: Dict[str, Counter]) -> None:
         lambda x: REGISTER_ID_TO_LABEL[x].value,
     )
 
-    # Grammaticality
     _print_dist(
         "Grammaticality Distribution",
         "bold green",
@@ -532,13 +630,11 @@ def worker_p1_wrapper(
     overrides: Dict[str, List[Any]],
     result_queue_arg: Any,
 ) -> None:
-    # pylint: disable=too-many-locals
     if overrides is None:
         overrides = {}
     init_worker(wid, s_dir, overrides, {})
     b_size = 2000
 
-    # Group buffers to reduce locals
     buffers = {
         "sentences": [],
         "kotograms": [],
@@ -565,7 +661,6 @@ def worker_p1_wrapper(
         batch = chunk[i : i + b_size]
         res = analyze_batch(batch)
 
-        # Extend data
         cast(List[str], buffers["sentences"]).extend(res["sentences"])
         cast(List[str], buffers["kotograms"]).extend(res["kotograms"])
         cast(List[float], buffers["f_val"]).extend(res["f_val"])
@@ -575,12 +670,10 @@ def worker_p1_wrapper(
         cast(List[int], buffers["gram"]).extend(res["gram"])
         cast(List[int], buffers["reg_ids"]).extend(res["reg_ids"])
 
-        # Handle offsets
         shifted = [o + total_reg_ids_so_far for o in res["reg_offsets"][1:]]
         cast(List[int], buffers["reg_offsets"]).extend(shifted)
         total_reg_ids_so_far += len(res["reg_ids"])
 
-        # Merge stats
         for f in FEATURE_FIELDS:
             cast(Dict[str, Counter], buffers["vocab"])[f].update(res["vocab"][f])
         for k in cast(Dict[str, Counter], buffers["stats"]):
@@ -592,7 +685,6 @@ def worker_p1_wrapper(
                 reg_samples_buf[rid] = []
             reg_samples_buf[rid].extend(samps)
 
-    # Write ALL data once
     _write_shard_data(wid, s_dir, buffers)
 
     result_queue_arg.put((buffers["vocab"], buffers["stats"], buffers["reg_samples"]))
@@ -605,7 +697,7 @@ def worker_p1_db_wrapper(
     result_queue_arg: Any,
 ) -> None:
     """Worker wrapper for DB source (skips overrides as DB has golden labels)."""
-    # pylint: disable=too-many-locals
+
     init_worker(wid, s_dir, {}, {})
     b_size = 2000
 
@@ -633,10 +725,9 @@ def worker_p1_db_wrapper(
 
     for i in range(0, len(chunk), b_size):
         batch = chunk[i : i + b_size]
-        # Use analyze_batch_from_db
+
         res = analyze_batch_from_db(batch)
 
-        # Extend data (Exact copy of p1 wrapper logic)
         cast(List[str], buffers["sentences"]).extend(res["sentences"])
         cast(List[str], buffers["kotograms"]).extend(res["kotograms"])
         cast(List[float], buffers["f_val"]).extend(res["f_val"])
@@ -714,7 +805,17 @@ def _write_shard_data(wid: int, s_dir: str, buffers: Dict[str, Any]) -> None:
 
 
 def main() -> None:
-    # pylint: disable=too-many-locals, too-many-statements
+    """
+    Main entry point for the labeling script.
+
+    Orchestrates the 3-phase pipeline:
+    1. Setup: Parses args, initializes timers and directories.
+    2. Phase 1 (Scanning & Analysis): Dispatches workers to process input data (DB or TSV)
+       and build vocabulary.
+    3. Phase 2 (Encoding): Re-spawns workers to encode feature IDs and KC targets using
+       the finalized vocabulary from Phase 1.
+    4. Phase 3 (Merging): Aggregates all sharded outputs into the final dataset directory.
+    """
     import argparse
     import sqlite3
 
@@ -732,23 +833,32 @@ def main() -> None:
     parser.add_argument(
         "--num-workers", type=int, default=0, help="Number of workers (default: CPU-1)"
     )
+    parser.add_argument(
+        "--force-relabel",
+        action="store_true",
+        help="Wipe existing cache results before starting",
+    )
 
     args = parser.parse_args()
 
-    # Validation
+    # validate arguments.
     if not args.source_db and not args.grammatic_pattern:
         parser.error("Must provide either --source-db or --grammatic-pattern")
 
-    # Resolve and inject paths from locations.py into args namespace
+    # standard cache directory setup.
     dataset_cache_dir = locations.get_style_dataset_cache_dir()
     shard_dir = os.path.join(dataset_cache_dir, "shards")
+
+    if args.force_relabel and os.path.exists(dataset_cache_dir):
+        console.print(f"Cleaning existing cache: {dataset_cache_dir}")
+        shutil.rmtree(dataset_cache_dir)
 
     profile_dir = get_profile_dir()
     if profile_dir:
         os.makedirs(profile_dir, exist_ok=True)
     timer = PhaseTimer(console, profile_dir)
 
-    # Clean up previous shards
+    # ensure shard directory is clean before starting.
     if os.path.exists(shard_dir):
         shutil.rmtree(shard_dir)
     os.makedirs(shard_dir, exist_ok=True)
@@ -761,41 +871,13 @@ def main() -> None:
     all_rows: List[Any] = []
 
     if args.source_db:
-        # Load from DB
+        # DB PATH: fast loading of golden labels.
         console.print(f"Loading data from DB: {args.source_db}")
         conn = sqlite3.connect(args.source_db)
         c = conn.cursor()
-        # Fetch expected columns
-        # Note: We need register_ids as string (DB stores text comma separated? Or needs join?)
-        # Let's check `curate` schema.
-        # `curate` uses `corpus` table.
-        # It likely stores `register_ids` as TEXT if it's a list, or it has a mapping table?
-        # `curate` script (recently modified) uses `corpus` table.
-        # User task "Refactor scripts/curate to use float formality column and remove formality table" etc.
-        # So everything is in `corpus` table?
-        # Let's assume `corpus` has `sentence`, `formality`, `gender`, `grammatic`.
-        # What about `register_ids`?
-        # Task 2 refers to `remove gender table`.
-        # Task 6 refers to `remove formality table`.
-        # Does `corpus` have `register_ids`?
-        # `curate` usually normalizes.
-        # If `register_ids` is missing, we might need a join or it might be in `corpus` as text.
-        # Actually `curate drink` populates `corpus`.
-        # I should assume `corpus` table has `sentence`, `formality`, `gender`, `grammatic`.
-        # And `registers`?
-        # If `registers` are not in `corpus`, we might need logic.
-        # BUT: The user said "use labels from that".
-        # If `corpus.db` is the golden source, it should have everything.
-        # Let's query `corpus` table for columns dynamically or trust it exists?
-        # Or `select *` and map?
-        # Safer: `SELECT sentence, formality, gender, grammatic, register_ids FROM corpus`
-        # If `register_ids` column exists.
-
-        # Let's peek at `scripts/curate` to see schema if possible, or assume it matches.
-        # `curate` script was open. Let's briefly check what it writes to corpus.
-        # Wait, I am mid-Replace.
-        # I will assume `register_ids` is a column (TEXT) based on typical simple-schema evolutions I've seen.
-        # If it fails, I'll fix it.
+        # Fetch all sentences and their metadata.
+        # This is memory-intensive but simple. For massive DBs, this might need chunking.
+        # But currently optimized for <10M rows which fits in RAM.
         c.execute(
             "SELECT sentence, formality, gender, grammatic, register_ids FROM corpus"
         )
@@ -804,7 +886,7 @@ def main() -> None:
         console.print(f"Loaded {len(all_rows):,} rows from DB.")
 
     else:
-        # File Loading Logic
+        # FILE PATH: parsing raw TSV files.
         def process_file_group(patterns: Any, gram_label: int) -> List[Tuple[str, int]]:
             if not patterns:
                 return []
@@ -833,7 +915,7 @@ def main() -> None:
         rows = process_file_group(gram_patterns, 1)
         all_rows.extend(rows)
         if args.agrammatic_pattern:
-            # Type ignore for list vs tuple usage in all_rows (Any covers it)
+            # Agrammatic sentences are explicitly labeled 0 for grammar task.
             rows = process_file_group([args.agrammatic_pattern], 0)
             all_rows.extend(rows)
 
@@ -849,7 +931,9 @@ def main() -> None:
 
     timer.mark("Scanning Input")
 
-    # Init main stats
+    # -------------------------------------------------------------------------
+    # Phase 1: Analysis
+    # -------------------------------------------------------------------------
     merged_counters: Dict[str, Counter] = {f: Counter() for f in FEATURE_FIELDS}
     merged_label_stats: Dict[str, Counter] = {
         "formality": Counter(),
@@ -861,10 +945,10 @@ def main() -> None:
 
     from scripts.rule_based_analysis import load_register_overrides
 
-    # We only use overrides if NOT using DB
+    # Load overrides mainly for file-based processing where heuristics are primary.
     register_overrides = load_register_overrides() if not args.source_db else {}
 
-    # PHASE 1: Analyze & Shard Text
+    # Use 'spawn' for safety with CUDA/torch (though not used here yet) and macOS.
     ctx = mp.get_context("spawn")
 
     with Progress(
@@ -876,7 +960,7 @@ def main() -> None:
     ) as progress:
         task1 = progress.add_task("[green]Phase 1: Analyzing...", total=len(all_rows))
 
-        # Split into N chunks
+        # Split work into chunks for parallel processing.
         chunk_size = (len(all_rows) + num_workers - 1) // num_workers
         chunks = [
             all_rows[i : i + chunk_size] for i in range(0, len(all_rows), chunk_size)
@@ -899,16 +983,16 @@ def main() -> None:
             procs.append(p)
             p.start()
 
-        # Collect results
+        # Collect results from workers as they finish.
         finished_count = 0
         while finished_count < len(procs):
             try:
-                # 1. Try to get result
+                # Poll queue with timeout to allow checking process aliveness.
                 res = result_queue.get(timeout=0.1)
 
-                # 2. Process result
+                # Aggregate stats from this chunk.
                 vc, ls, rs = res
-                # Merge global
+                # Merge counters.
                 for f in FEATURE_FIELDS:
                     merged_counters[f].update(vc[f])
                 for k, counter in merged_label_stats.items():
@@ -918,18 +1002,18 @@ def main() -> None:
                         merged_reg_samples[rid] = []
                     merged_reg_samples[rid].extend(samps)
 
-                # label_stats["grammatic"] has count of sentences.
+                # Advance progress bar by number of items processed in this batch stats.
                 count = sum(ls["grammatic"].values())
                 progress.update(task1, advance=count)
 
                 finished_count += 1
 
             except queue.Empty:
-                # 3. Check for dead workers
+                # Check for dead workers if queue is empty.
                 failed = False
                 for p in procs:
                     if not p.is_alive() and p.exitcode != 0:
-                        # Worker died without yielding result (since queue is empty and we are still looping)
+                        # Panic if any worker died unexpectedly (e.g. segfault, OOM).
                         console.print(
                             f"[red]Worker {p.pid} failed/died unexpectedly (exit code: {p.exitcode})[/red]"
                         )
@@ -946,25 +1030,27 @@ def main() -> None:
     timer.mark("Phase 1: Analysis Complete")
     print_stats(merged_label_stats)
 
-    # Build Vocab
+    # Build final tokenizer from aggregated counters.
     vocab_file = "vocab.json"
     dataset_cache_dir = locations.get_style_dataset_cache_dir()
     tokenizer = Tokenizer()
     _build_and_save_vocab(tokenizer, merged_counters, dataset_cache_dir, vocab_file)
     console.print(f"Saved vocab to {vocab_file}")
 
-    # PHASE 2: Encoding
-    # Run _encode_shard_phase2 via Pool/Process.
-    # Use Same N workers.
+    # -------------------------------------------------------------------------
+    # Phase 2: Encoding
+    # -------------------------------------------------------------------------
+    # Workers are respawned here because they need the *complete* tokenizer
+    # which was only finalized after Phase 1 completed across all workers.
 
     console.print("Phase 2: Encoding Shards...")
     procs_p2 = []
 
-    # Need to reload tokenizer state to pass to workers?
-    # Yes, we modified it.
-    # tokenizer state is picklable.
+    # Workers need the tokenizer state to encode features correctly.
+    # Passing state dict avoids pickling large objects or race conditions.
+    # Note: Using `tokenizer.field_vocabs` directly.
 
-    for i in range(len(chunks)):  # Same N workers
+    for i in range(len(chunks)):  # One P2 worker per P1 shard.
         p = ctx.Process(
             target=worker_p2_wrapper,
             args=(i, shard_dir, {"field_vocabs": tokenizer.field_vocabs}),
@@ -977,18 +1063,16 @@ def main() -> None:
 
     timer.mark("Phase 2: Encoding Complete")
 
-    # PHASE 3: Merge Shards (Main Process)
-    # We iterate N workers and cat their files.
-    # Also adjust offsets globally?
-    # Yes.
-    # Global 'dataset_offsets.bin' = [0, len(s1), len(s1)+len(s2)...]
-    # We need to read shard_offsets.bin (which are [0, l1, l2...])
-    # And offset them by the global cumulative total.
+    # -------------------------------------------------------------------------
+    # Phase 3: Merging
+    # -------------------------------------------------------------------------
+    # Combine all sharded files into single large binary files.
+    # This allows memory-mapping the entire dataset during training.
 
     console.print("Phase 3: Merging Shards...")
 
-    # Merge Offsets (Sentences)
-    # shard_{i}.offsets.bin
+    # 1. Merge sentence offsets (indexing into the text files).
+    # Essential for random access to sentences.
     console.print("  Merging sentence offsets...")
     merge_offset_shards(
         shard_dir,
@@ -997,7 +1081,7 @@ def main() -> None:
         "shard_{}." + EXT_OFFSETS,
     )
 
-    # Merge Features
+    # 2. Merge feature arrays.
     for field in FEATURE_FIELDS:
         console.print(f"  Merging feature: {field}...")
         merge_shards(
@@ -1007,7 +1091,7 @@ def main() -> None:
             "shard_{}." + f"{EXT_FEAT_PREFIX}{field}.bin",
         )
 
-    # Merge Text (Sentences, Kotograms) - Simple Concatenation
+    # 3. Merge raw text files (sentences and kotograms) for debugging/inspection.
     for ext in [EXT_SENTENCES, EXT_KOTOGRAMS]:
         out_f = os.path.join(dataset_cache_dir, ext)
         console.print(f"  Merging text: {ext}...")
@@ -1019,22 +1103,11 @@ def main() -> None:
                     with open(path, "r", encoding="utf-8") as infile:
                         shutil.copyfileobj(infile, outfile)
                 else:
-                    # Should not happen if worker ran successfully, but safe behavior?
+                    # Should not happen unless P2 failed silently.
                     pass
 
-    # Merge Labels
-    # Files are: "shard_{}_labels_f_val", etc. based on Phase 1 logic.
-    # Phase 1:
-    # write_float_array(f"{shard_prefix}.{EXT_LABELS}_f_val", f_val_buf, "f")
-    # shard_prefix = .../shard_{worker_id}
-    # So file is .../shard_{worker_id}.labels.bin_f_val
-    # Wait, EXT_LABELS is "labels.bin".
-    # So it's "shard_{}.labels.bin_f_val".
-
-    # Note: merge_shards uses a format string.
-    # If shard_template is "shard_{}." + f"{EXT_LABELS}_f_val"
-    # It formats to "shard_0.labels.bin_f_val". Correct.
-
+    # 4. Merge Label arrays.
+    # Include both scalar labels (f_val, gram) and variable-length (register IDs).
     label_suffixes = [
         f"{EXT_LABELS}_f_val",
         f"{EXT_LABELS}_f_prag",
@@ -1054,7 +1127,7 @@ def main() -> None:
             dtype_size=4 if "f_val" in lf or "g_val" in lf or "ids" in lf else 1,
         )
 
-    # Merge Register Offsets
+    # Merge register offsets (because register IDs are a jagged array).
     console.print("  Merging register offsets...")
     merge_offset_shards(
         shard_dir,
@@ -1063,54 +1136,29 @@ def main() -> None:
         "shard_{}." + f"{EXT_LABELS}_reg_ids_{EXT_OFFSETS}",
     )
 
-    # Merge KC Targets
-    # Check for KC files in first shard
+    # 5. Merge KC Targets.
+    # Discover which KC targets were generated (based on config/computation in P2).
     kc_files = glob.glob(os.path.join(shard_dir, f"shard_0.{EXT_KC_PREFIX}*"))
     kc_keys = set()
     for kf in kc_files:
-        # Expected: shard_0.kc_TargetName_ids.bin
-        # or shard_0.kc_TargetName_offsets.bin
+        # P2 generates keys dynamically, so we scan shard 0 to find them.
+        # Filename format: shard_0.kc_TARGETNAME_ids.bin
         base = os.path.basename(kf)
         if "_ids.bin" in base:
-            # remove shard_0.
-            # remove _ids.bin
-            # remove kc_ prefix
-            # base: shard_0.kc_trigram_ids.bin
+            # Found an IDs file, extract the key.
+            # examples: kc_ngram_ids.bin -> key="ngram"
+            #           kc_dep_ids.bin   -> key="dep"
 
-            # split by .
+            # Remove prefix/suffix to get raw key.
             parts = base.split(".")
-            # parts[0] = shard_0
-            # parts[1] = kc_trigram_ids
-            # parts[2] = bin
+            # parts expected: ['shard_0', 'kc_KEY_ids', 'bin']
+            # or simply rely on string splitting.
 
-            # actually we used f"{shard_prefix}.{EXT_KC_PREFIX}_{k_key}_ids.bin"
-            # EXT_KC_PREFIX = "kc_"
-            # So "shard_0.kc__trigram_ids.bin" ?
-            # Check Phase 2:
-            # write_int_array(f"{shard_prefix}.{EXT_KC_PREFIX}_{k_key}_ids.bin", ...)
-            # if k_key is "trigram", and EXT_KC_PREFIX is "kc_"
-            # "shard_0.kc__trigram_ids.bin" (double underscore?)
-            # No, line 396: f"{...}.{EXT_KC_PREFIX}_{k_key}_ids.bin"
-            # logic in label.py line 49: EXT_KC_PREFIX = "kc" (without underscore?)
-            # binary_io.py line 12: EXT_KC_PREFIX = "kc_"
-            # label.py imports it.
-            # So f"{...}.kc__{k_key}_ids.bin"
-            # That seems like a bug in Phase 2 writing if double underscore unintended.
-            # But consistent reading deals with it.
-
-            # Let's check imports in label.py content I viewed.
-            # Line 49: EXT_KC_PREFIX,
-            # It comes from train.binary_io
-            # In binary_io.py: EXT_KC_PREFIX = "kc_"
-            # So Phase 2 writes: f".../shard_i.kc__key_ids.bin"
-            # It has double underscore.
-            # I should support that here.
-
-            # parts[1] is e.g. "kc_trigram_ids"
+            # Robust parsing:
             mid = parts[1]
-            # EXT_KC_PREFIX is "kc_"
+            # mid is "kc_KEY_ids"
             if mid.startswith(EXT_KC_PREFIX):
-                key = mid[len(EXT_KC_PREFIX) :]  # "trigram_ids"
+                key = mid[len(EXT_KC_PREFIX) :]  # remove "kc_"
             else:
                 key = mid
 
@@ -1119,8 +1167,7 @@ def main() -> None:
 
     for key in kc_keys:
         console.print(f"  Merging KC target: {key}...")
-        # IDs
-        # Filename: ... .kc_{key}_ids.bin
+        # Merge ID array.
         suffix_ids = f"{EXT_KC_PREFIX}{key}_ids.bin"
         merge_shards(
             shard_dir,
@@ -1128,7 +1175,7 @@ def main() -> None:
             len(chunks),
             "shard_{}." + suffix_ids,
         )
-        # Offsets
+        # Merge Offset array.
         suffix_off = f"{EXT_KC_PREFIX}{key}_{EXT_OFFSETS}"
         merge_offset_shards(
             shard_dir,
@@ -1139,7 +1186,7 @@ def main() -> None:
 
     timer.mark("Phase 3: Merging Complete")
 
-    # Cleanup Shards
+    # Cleanup temporary shards to save space.
     console.print("Cleaning up shards...")
     if os.path.exists(shard_dir):
         shutil.rmtree(shard_dir)

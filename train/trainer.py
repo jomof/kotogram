@@ -41,6 +41,7 @@ from train.io import (
     load_training_state,
     save_training_state,
 )
+from train.kc_diagnostics import KCEpochDiag
 from train.models import StyleClassifierWithKC
 from train.profile import Timer, get_profile_dir
 from train.types import KCMetricsAccumulator, KCProbeConfig, TrainingMetrics
@@ -194,7 +195,12 @@ class KCTrainer:
             batch_size=self.config.batch_size,
             shuffle=(self.sampler is None),
             sampler=self.sampler,
-            collate_fn=partial(collate_fn, pad_id=pad_id, max_seq_len=max_seq_len),
+            collate_fn=partial(
+                collate_fn,
+                pad_id=pad_id,
+                max_seq_len=max_seq_len,
+                vocab_sizes=dataset.tokenizer.get_vocab_sizes(),
+            ),
             num_workers=dl_config.num_workers,
             pin_memory=dl_config.pin_memory,
             persistent_workers=dl_config.persistent_workers,
@@ -294,6 +300,7 @@ class KCTrainer:
             "sentence_count": [],
             "first_batch_separation": [],
             "first_batch_grad_norms": [],
+            "kc_diagnostics": [],
         }
         profile_dir = get_profile_dir()
         pid = os.getpid()
@@ -429,6 +436,9 @@ class KCTrainer:
         vocab_size: int,
         neg_count: int = 128,
         seed: int = 0,
+        diag: Optional[KCEpochDiag] = None,
+        family_name: str = "",
+        reading_mask_id: int = 0,
     ) -> torch.Tensor:
         """Compute BCE on (positives + sampled negatives) without dense targets.
 
@@ -465,7 +475,6 @@ class KCTrainer:
         idxs = torch.cat([pos_i, neg_i], dim=1)  # (B, P+K)
 
         # Targets: positives=1 where pos_mask else ignore; negatives=0
-        # Targets: positives=1 where pos_mask else ignore; negatives=0
         t_pos = pos_mask.float()
         t_neg = torch.zeros((batch_size, neg_c), device=device, dtype=torch.float)
         t = torch.cat([t_pos, t_neg], dim=1)
@@ -486,6 +495,22 @@ class KCTrainer:
         # Compute BCE elementwise then mask
         loss_elem = F.binary_cross_entropy_with_logits(gathered, t, reduction="none")
         loss = (loss_elem * valid.float()).sum() / valid.float().sum().clamp_min(1.0)
+
+        # Diagnostics
+        if diag is not None and family_name:
+            with torch.no_grad():
+                probs = torch.sigmoid(gathered)
+                # Filter to valid entries only for accuracy
+                valid_bool = valid.bool()
+                diag.update_family(
+                    family_name,
+                    pos_inds,  # The raw positive IDs (for collisions/stats)
+                    pos_mask,  # Mask for raw positives
+                    probs[valid_bool],  # Flattened probs for valid positions
+                    t[valid_bool],  # Flattened targets for valid positions
+                    loss.item(),
+                    mask_id=reading_mask_id,
+                )
         return loss
 
     # pylint: disable=too-many-locals
@@ -503,12 +528,14 @@ class KCTrainer:
             if i >= num_batches:
                 break
 
-            # MUST generate targets as they aren't pre-computed in the dataset
-            kc_targets = create_kc_batch(
-                batch=batch,
-                tokenizer=self.dataset.tokenizer,
-                target_specs=m.config.kc_target_specs,
-            )
+            # Use pre-collated targets if available, else generate on fly
+            kc_targets = batch
+            if not any(k.startswith("kc_") for k in batch):
+                kc_targets = create_kc_batch(
+                    batch=batch,
+                    tokenizer=self.dataset.tokenizer,
+                    target_specs=m.config.kc_target_specs,
+                )
 
             for name, vocab_size in m.config.kc_target_specs.items():
                 dense_key = f"kc_targets_{name}"
@@ -808,6 +835,14 @@ class KCTrainer:
             "sparsity": 0.0,
         }
 
+        # Round 21: Diagnostics
+        kc_diag = KCEpochDiag()
+        reading_mask_id = getattr(self.dataset.tokenizer, "unk_id", 0)
+        if "reading" in self.dataset.tokenizer.field_vocabs:
+            reading_mask_id = self.dataset.tokenizer.field_vocabs["reading"].get(
+                "<READING_MASK>", reading_mask_id
+            )
+
         # Zero gradients before starting the epoch loop
         self.optimizer.zero_grad(set_to_none=True)
 
@@ -836,13 +871,17 @@ class KCTrainer:
             raw = self.model.module if self.is_distributed else self.model
             m = cast(StyleClassifierWithKC, raw)
 
-            # Generate KC targets on-the-fly
-            kc_targets = create_kc_batch(
-                batch=batch,
-                tokenizer=self.dataset.tokenizer,
-                target_specs=m.config.kc_target_specs,
-            )
-            batch.update(kc_targets)
+            # Use pre-collated targets if available, else generate on fly (Legacy path)
+            if not any(
+                k.startswith("kc_targets_") or k.startswith("kc_pos_inds_")
+                for k in batch
+            ):
+                kc_targets = create_kc_batch(
+                    batch=batch,
+                    tokenizer=self.dataset.tokenizer,
+                    target_specs=m.config.kc_target_specs,
+                )
+                batch.update(kc_targets)
 
             field_inputs = {
                 k: v.to(self.device)
@@ -1375,9 +1414,76 @@ class KCTrainer:
                             mask = mask | pos_mask
 
                             if mask.any():
+                                subset_logits = logits_f[mask]
+                                subset_targets = targets[mask]
                                 task_loss = F.binary_cross_entropy_with_logits(
-                                    logits_f[mask], targets[mask]
+                                    subset_logits, subset_targets
                                 )
+                                # Dense Path Diagnostics (Large head with dense input)
+                                with torch.no_grad():
+                                    probs = torch.sigmoid(subset_logits)
+                                    # For dense, we construct pos_ids from mask if needed, but
+                                    # targets[mask] is 1D. We need per-example cardinality.
+                                    # Positives per example from dense targets:
+                                    # Just treat indices as unknown (NA) for collisions or infer?
+                                    # Usually dense is small vocab so collisions are trivial.
+                                    # Pass dummy pos_ids? (B, 1) dummy?
+                                    # Let's just pass empty pos_ids to skip collision/mask logic for dense.
+                                    dummy_pos = torch.zeros(
+                                        (batch_size_f, 0),
+                                        device=self.device,
+                                        dtype=torch.long,
+                                    )
+                                    dummy_mask = torch.zeros(
+                                        (batch_size_f, 0),
+                                        device=self.device,
+                                        dtype=torch.bool,
+                                    )
+
+                                    # But we want cardinality.
+                                    # reconstruct 'pos_mask' style from targets?
+                                    # KCEpochDiag expects (B, P) pos_mask to count cardinality.
+                                    # We can pass the full dense targets > 0.5 as pos_mask?
+                                    # Yes, if targets is (B, V), that works.
+                                    # But pos_ids needs to match size.
+                                    # We can pass pos_ids = ranges.
+                                    # It's expensive. Let's just compute cardinality manually and pass?
+                                    # update_family is rigid.
+                                    # Hack: pass targets>0.5 as pos_mask, and a dummy tensor as pos_ids with same shape?
+                                    # Yes, collisions will look at dummy IDs (all 0).
+                                    # So we disable collisions for dense logic if pos_ids are dummy.
+                                    # But we can't easily signal "dummy".
+                                    # Actually, let's just use the targets directly to update stats if possible.
+                                    # Given constraints, we skip detailed collision/mask stats for dense path.
+                                    # We feed the Sampled/Active Predictions.
+                                    kc_diag.update_family(
+                                        name,
+                                        dummy_pos,  # Skip card/coll/mask logic effectively
+                                        dummy_mask,
+                                        probs,
+                                        subset_targets,
+                                        task_loss.item(),
+                                    )
+                                    # Wait, if we pass dummy mask, cardinality will be 0.
+                                    # That makes diagnostics useless for cardinality.
+                                    # Let's fix KCEpochDiag.update_family to take optional cardinality override?
+                                    # No, let's stick to minimal edits.
+                                    # We can pass 'targets > 0.5' as pos_mask and 'indices' as pos_ids.
+                                    # shape (B, V).
+                                    # Arange V.
+                                    v_ids = (
+                                        torch.arange(vocab_size_f, device=self.device)
+                                        .unsqueeze(0)
+                                        .expand(batch_size_f, -1)
+                                    )
+                                    kc_diag.update_family(
+                                        name,
+                                        v_ids,
+                                        pos_mask,  # (B, V) bool
+                                        probs,
+                                        subset_targets,
+                                        task_loss.item(),
+                                    )
                             else:
                                 task_loss = torch.tensor(
                                     0.0, device=self.device, requires_grad=True
@@ -1387,6 +1493,23 @@ class KCTrainer:
                             task_loss = F.binary_cross_entropy_with_logits(
                                 logits_f, targets
                             )
+                            # Dense Diagnostics (Small head)
+                            with torch.no_grad():
+                                probs = torch.sigmoid(logits_f)
+                                pos_mask = targets > 0.5
+                                v_ids = (
+                                    torch.arange(vocab_size_f, device=self.device)
+                                    .unsqueeze(0)
+                                    .expand(batch_size_f, -1)
+                                )
+                                kc_diag.update_family(
+                                    name,
+                                    v_ids,
+                                    pos_mask,
+                                    probs.flatten(),
+                                    targets.flatten(),
+                                    task_loss.item(),
+                                )
 
                         structural_loss += task_loss
                         num_struct += 1
@@ -1405,6 +1528,9 @@ class KCTrainer:
                             vocab_size=vocab_size,
                             neg_count=128,
                             seed=(epoch * 100000 + batch_idx),
+                            diag=kc_diag,
+                            family_name=name,
+                            reading_mask_id=reading_mask_id,
                         )
 
                         structural_loss += task_loss
@@ -1780,6 +1906,7 @@ class KCTrainer:
             "uniq_kcs_epoch": uniq_kcs_epoch,
             "max_top1_epoch": max_top1,
             "avg_p_max": running_p_max / max(1, n_batches),
+            "kc_diagnostics": kc_diag.get_stats(),
         }
 
         avg_loss_components = {
@@ -1867,6 +1994,15 @@ class KCTrainer:
             else:
                 print(msg)
 
+        # Round 21: KC Diagnostics Report
+        if is_main_process():
+            diag_lines = kc_diag.finalize(epoch)
+            for line in diag_lines:
+                if pbar:
+                    pbar.log(line)
+                else:
+                    print(line)
+
         if pbar:
             pbar.stop()
 
@@ -1933,6 +2069,7 @@ class KCTrainer:
             self.history["first_batch_grad_norms"].append(
                 epoch_stats["first_batch_grad_norms"]
             )
+            self.history["kc_diagnostics"].append(epoch_stats.get("kc_diagnostics", {}))
 
             for k, v in kc_losses.items():
                 if k not in self.history["kc_losses"]:

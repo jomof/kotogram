@@ -34,7 +34,9 @@ class TestTrainStyleScript(unittest.TestCase):
                     bottle.snapshot("initial")
 
                     # Step 1: Pre-run labeling to setup cache/data
-                    bottle.train_style("--label")
+                    label_args = "--label --force-relabel"
+                    bottle.train_style(label_args)
+
                     shutil.rmtree(bottle.resolve_path("[data]"))
 
                     # Verify label phase output files using glob patterns
@@ -58,7 +60,21 @@ class TestTrainStyleScript(unittest.TestCase):
                     train_args = (
                         f"--epochs 1 --no-confusion {config['extra_args']}".strip()
                     )
-                    bottle.train_style(train_args)
+                    result = bottle.train_style(train_args)
+
+                    if "pretrain-kc" in config["name"]:
+                        # Verify diagnostics event in history
+                        history = bottle.get_epoch_history()
+                        diag_events = [
+                            e for e in history if e.get_type_name() == "KC_DIAG"
+                        ]
+                        self.assertTrue(
+                            len(diag_events) > 0,
+                            "KC diagnostics event missing from history",
+                        )
+                        # Basic validation of content
+                        stats = diag_events[0].stats
+                        self.assertIn("_global", stats)
 
                     # Verify epochs trained
                     # For pretrain-kc: expect [1, 1] (1 pretrain + 1 fine-tune)
@@ -186,40 +202,48 @@ class TestTrainStyleScript(unittest.TestCase):
                     # Calculate expected counts based on actual data in bottle
                     expected_counts = bottle.calculate_expected_counts()
 
+                    # Filter to just epoch events for sequence verification
+                    epoch_events = [
+                        e
+                        for e in history
+                        if e.get_type_name() in ["KC_EPOCH", "STYLE_EPOCH"]
+                    ]
+
                     if config["name"] == "regular":
-                        self.assertEqual(len(history), 2)
-                        self.assertEqual(history[0].get_type_name(), "STYLE_EPOCH")
+                        self.assertEqual(len(epoch_events), 2)
+                        self.assertEqual(epoch_events[0].get_type_name(), "STYLE_EPOCH")
                         # Style training uses full train split (labeled_train)
                         self.assertEqual(
-                            history[0].metrics["sentence_count"],
+                            epoch_events[0].metrics["sentence_count"],
                             expected_counts["total_train_split_size"],
                         )
                     elif config["name"] == "pretrain-kc":
-                        self.assertGreaterEqual(len(history), 3)
-                        self.assertEqual(history[0].get_type_name(), "KC_EPOCH")
+                        self.assertGreaterEqual(len(epoch_events), 2)
+                        self.assertEqual(epoch_events[0].get_type_name(), "KC_EPOCH")
 
                         # Verify counts
                         # KC pretraining uses ONLY grammatical sentences from the training split,
                         # so it must be strictly less than the total style training set (which includes agrammatic).
+                        # Note: epoch_events[0] is the KC_EPOCH
                         self.assertLess(
-                            history[0].metrics["sentence_count"],
+                            epoch_events[0].metrics["sentence_count"],
                             expected_counts["total_train_split_size"],
                         )
 
                         # KC metrics check
-                        self.assertIn("avg_struct_loss", history[0].metrics)
+                        self.assertIn("avg_struct_loss", epoch_events[0].metrics)
 
-                    # All remaining entries are always standard style fine-tuning
                     # Remaining entries are style fine-tuning
-                    start_idx = 1
-                    if config["name"] == "pretrain-kc":
-                        start_idx = 1
+                    # We start checking from the first style epoch
+                    start_idx = 1 if config["name"] == "pretrain-kc" else 0
 
-                    for i in range(start_idx, len(history)):
-                        self.assertEqual(history[i].get_type_name(), "STYLE_EPOCH")
+                    # Just verify remaining are style epochs
+                    for i in range(start_idx, len(epoch_events)):
+                        self.assertEqual(epoch_events[i].get_type_name(), "STYLE_EPOCH")
+
                         # Style fine-tuning uses the full training split (gram + agram)
                         self.assertEqual(
-                            history[i].metrics["sentence_count"],
+                            epoch_events[i].metrics["sentence_count"],
                             expected_counts["total_train_split_size"],
                         )
 

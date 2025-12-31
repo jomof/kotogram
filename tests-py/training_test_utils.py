@@ -902,12 +902,20 @@ class Bottle:
         """Asserts that no metric values in training-history.tsv are NaN."""
         import math
 
+        def check_no_nans(obj, path=""):
+            if isinstance(obj, float):
+                if math.isnan(obj):
+                    self.test_case.fail(f"NaN found in history at '{path}'")
+            elif isinstance(obj, dict):
+                for k, v in obj.items():
+                    check_no_nans(v, f"{path}.{k}" if path else k)
+            elif isinstance(obj, list):
+                for i, v in enumerate(obj):
+                    check_no_nans(v, f"{path}[{i}]")
+
         history_events = self.get_epoch_history()
         for event in history_events:
-            for key, value in event.metrics.items():
-                if isinstance(value, float):
-                    # Check for NaN
-                    if math.isnan(value):
-                        self.test_case.fail(
-                            f"NaN found in history epoch {event.epoch} for metric '{key}'"
-                        )
+            if hasattr(event, "metrics"):
+                check_no_nans(event.metrics, f"Epoch {event.epoch} metrics")
+            if hasattr(event, "stats"):
+                check_no_nans(event.stats, f"Epoch {event.epoch} stats")

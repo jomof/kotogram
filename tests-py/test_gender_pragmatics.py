@@ -1,11 +1,5 @@
-import os
-import sys
 import unittest
 
-# Add project root to path
-sys.path.append(os.getcwd())
-
-# pylint: disable=wrong-import-position
 from kotogram.analysis import GenderLevel, RegisterLevel
 from scripts.rule_based_analysis import infer_gender_from_register
 

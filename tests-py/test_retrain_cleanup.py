@@ -1,11 +1,7 @@
-import os
-import sys
 import unittest
 from unittest.mock import patch
 
-# Ensure scripts module can be imported
-sys.path.append(os.getcwd())
-# pylint: disable=wrong-import-position,too-many-positional-arguments
+# pylint: disable=too-many-positional-arguments
 from scripts.train_style import cleanup_profile_if_retrain
 
 

@@ -4,16 +4,6 @@ This script orchestrates the training pipeline, including argument parsing,
 data loading, and calling the trainers from the kotogram.train package.
 """
 
-import importlib.util
-
-if importlib.util.find_spec("_setup_path"):
-    import _setup_path  # type: ignore # noqa: F401 # pylint: disable=unused-import,import-private-name
-else:
-    from scripts import (
-        _setup_path,  # type: ignore # noqa: F401 # pylint: disable=unused-import,import-private-name
-    )
-
-# pylint: disable=wrong-import-position
 import glob
 import json
 import os
@@ -26,12 +16,10 @@ import torch
 import torch.distributed as dist
 
 from kotogram import locations
-from kotogram.model import (
-    StyleClassifier,
-)
-from kotogram.tokenizer import (
-    FEATURE_FIELDS,
-    Tokenizer,
+from kotogram.model import StyleClassifier
+from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
+from scripts import (
+    _setup_path,  # type: ignore # noqa: F401 # pylint: disable=import-private-name
 )
 from train import history
 from train.config import (
@@ -43,6 +31,8 @@ from train.io import save_model
 from train.models import StyleClassifierWithKC
 from train.profile import get_profile_dir, profiling_enabled
 from train.trainer import KCTrainer, Trainer
+
+_vulture_marker = _setup_path  # Vulture: Used for side effects
 
 
 def generate_profile_report() -> None:
@@ -244,7 +234,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--kc-target-heads",
         type=str,
-        default="lemma,pos,conjugated_form",
+        default="reading,pos,conjugated_form",
         help="Target heads for KC supervision",
     )
     parser.add_argument(
@@ -325,6 +315,15 @@ if __name__ == "__main__":
         if is_main_process():
             event: history.HistoryEvent
             if phase_type == "pretrain-kc":
+                # Check for diagnostics
+                if "kc_diagnostics" in raw_history:
+                    diags = raw_history["kc_diagnostics"]
+                    if idx < len(diags) and diags[idx]:
+                        diag_event = history.KcDiagEvent(
+                            epoch=current_epoch, stats=diags[idx]
+                        )
+                        history.append_event(history_path, diag_event)
+
                 event = history.KcEpochEvent(epoch=current_epoch, metrics=metrics)
             else:
                 event = history.StyleEpochEvent(epoch=current_epoch, metrics=metrics)
