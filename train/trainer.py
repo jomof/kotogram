@@ -187,9 +187,7 @@ class KCTrainer:
 
         self.kc_collapse_weight_thawed = self.kc_config.collapse_weight_thawed
 
-        self.kc_temperature_frozen = float(
-            getattr(self.model.config, "kc_temperature", 1.0)
-        )
+        self.kc_temperature_frozen = float(self.model.config.kc_temperature)
 
         self.kc_temperature_thawed = self.kc_config.temperature_thawed
 
@@ -1538,7 +1536,7 @@ class KCTrainer:
         uniq_kcs_epoch = int((topk_hist > 0).sum().item())
         max_top1 = float(top1_hist.max().item()) / max(1, kc_usage_total_samples)
 
-        k_val = int(getattr(self.model.config, "kc_topk", 8))
+        k_val = int(self.model.config.kc_topk)
 
         tv_mean = kc_tv_sum / max(1, kc_usage_total_samples * k_val)
         gap_mean = kc_gap_sum / max(1, kc_gap_count)
@@ -2353,7 +2351,7 @@ class Trainer:
                 self.model,
             )
 
-            if getattr(m_style.config, "kc_enabled", False):
+            if m_style.config.kc_enabled:
                 probe_loader = self._build_kc_probe_loader(_max_batches=25)
                 if probe_loader is not None:
                     kc_probe_result = self.evaluate_kc_probe(probe_loader)
@@ -2761,9 +2759,9 @@ class Trainer:
 
         config = KCProbeConfig(
             tau_usage=tau_usage,
-            vocab_size=int(getattr(m.config, "kc_vocab_size", 1024)),
-            topk=int(getattr(m.config, "kc_topk", 8)),
-            target_specs=getattr(m.config, "kc_target_specs", {}),
+            vocab_size=int(m.config.kc_vocab_size),
+            topk=int(m.config.kc_topk),
+            target_specs=m.config.kc_target_specs,
             max_samples_per_head=2000,
         )
 
