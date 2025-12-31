@@ -15,7 +15,7 @@ from torch import nn
 from torch.utils.data import DataLoader
 
 from kotogram import locations
-from kotogram.evaluator import Evaluator
+from kotogram.evaluator import EvalResultDict, Evaluator
 from kotogram.model import (
     NUM_REGISTER_CLASSES,
     REGISTER_ID_TO_LABEL,
@@ -77,7 +77,7 @@ console = Console()
 
 def calculate_metrics(
     model: nn.Module, loader: DataLoader, device: torch.device
-) -> Dict[str, Any]:
+) -> EvalResultDict:
     """Run inference using Evaluator."""
     evaluator = Evaluator(cast(StyleClassifier, model), device)
     result = evaluator.evaluate(loader)
@@ -565,7 +565,7 @@ def main() -> None:
     timer.mark("Load Dataset")
 
     # Calculate metrics
-    results = calculate_metrics(model, loader, device)
+    results = cast(Dict[str, Any], calculate_metrics(model, loader, device))
 
     # Inject lazy text lists into results
     if "indices" in results:

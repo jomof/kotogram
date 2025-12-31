@@ -4,20 +4,23 @@ This module provides an extensible framework for generating variations of Japane
 sentences (e.g. changing formality, dropping topics, swapping pronouns) and verifying
 their grammaticality using a neural model.
 """
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines, too-many-locals
 
 import time
 from abc import ABC, abstractmethod
-from dataclasses import asdict
 from itertools import product
-from typing import Any, Dict, List, Optional, Set, Tuple, Union
+from typing import Dict, List, Optional, Set, Tuple
 
-from kotogram.kotogram import Token, extract_token_features, split_kotogram
+from kotogram.kotogram import (
+    Token,
+    TokenFeatures,
+    extract_token_features,
+    split_kotogram,
+)
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 
-# Type alias for tokens (either surface string or feature dict wrapper)
-# Forward declaration issue? Just use class name strings or object
-AugmentationToken = Union[str, "Token"]
+# Type alias for tokens (restricted to Token object for strict type safety)
+AugmentationToken = Token
 
 
 # Constants and Patterns
@@ -88,7 +91,7 @@ PLURAL_PATTERNS = [
     ("俺達", "俺たち"),
 ]
 
-CONTRACTION_PATTERNS = [
+CONTRACTION_PATTERNS: List[Tuple[Tuple[str, ...], Tuple[str, ...]]] = [
     # de wa <-> ja
     (("で", "は"), ("じゃ",)),
     # te iru <-> te ru (progressive reduction)
@@ -119,7 +122,7 @@ def deduplicate_by_reading(
 
     for c in candidates:
         # Construct full reading
-        r = "".join(t.reading if isinstance(t, Token) else str(t) for t in c)
+        r = "".join(t.reading for t in c)
 
         if r not in by_reading:
             by_reading[r] = c
@@ -127,8 +130,8 @@ def deduplicate_by_reading(
             existing = by_reading[r]
 
             # Keep the one with shorter surface form
-            curr_surface = "".join(get_surface(t) for t in c)
-            exist_surface = "".join(get_surface(t) for t in existing)
+            curr_surface = "".join(t.surface for t in c)
+            exist_surface = "".join(t.surface for t in existing)
 
             if len(curr_surface) < len(exist_surface) or (
                 len(curr_surface) == len(exist_surface) and curr_surface < exist_surface
@@ -140,12 +143,8 @@ def deduplicate_by_reading(
 
 
 def get_surface(token: AugmentationToken) -> str:
-    """Extract surface form from a token (string or dict)."""
-    if isinstance(token, Token):
-        return token.surface
-    if isinstance(token, dict):
-        return token.get("surface", "")
-    return str(token)
+    """Extract surface form from a token."""
+    return token.surface
 
 
 HUMBLE_MAP = {
@@ -179,7 +178,11 @@ HONORIFIC_MAP = {
 
 def conjugate_to_masu_stem(lemma: str, ctype: str) -> Optional[str]:
     # pylint: disable=too-many-return-statements
-    """Conjugate a dictionary form verb to its masu-stem (ren'youkei)."""
+    """Conjugate a dictionary form verb to its masu-stem (ren'youkei).
+
+    Returns:
+        The conjugated stem string, or None if conjugation pattern not applicable.
+    """
     if not lemma or not ctype:
         return None
 
@@ -222,7 +225,11 @@ def conjugate_to_masu_stem(lemma: str, ctype: str) -> Optional[str]:
 
 def conjugate_to_irrealis_stem(lemma: str, ctype: str) -> Optional[str]:
     # pylint: disable=too-many-return-statements
-    """Conjugate a dictionary form verb to its irrealis-stem (mizenkei)."""
+    """Conjugate a dictionary form verb to its irrealis-stem (mizenkei).
+
+    Returns:
+        The conjugated stem string, or None if conjugation pattern not applicable.
+    """
     if not lemma or not ctype:
         return None
 
@@ -301,13 +308,13 @@ class VerbPolitenessRule(AugmentationRule):
             if not isinstance(token, Token):
                 continue
 
-            pos = token.get("pos", "")
+            pos = token.features.pos
             if pos != "verb":
                 continue
 
-            lemma = token.get("lemma", get_surface(token))
-            ctype = token.get("conjugated_type", "")
-            cform = token.get("conjugated_form", "")
+            lemma = token.features.lemma or get_surface(token)
+            ctype = token.features.conjugated_type or ""
+            cform = token.features.conjugated_form or ""
 
             # Case 1: Plain -> Polite
             # Verb (terminal) -> Verb (masu-stem) + ます
@@ -315,7 +322,28 @@ class VerbPolitenessRule(AugmentationRule):
                 stem = conjugate_to_masu_stem(lemma, ctype)
                 if stem:
                     # Valid conjugation found
-                    replacement: Tuple[AugmentationToken, ...] = (stem, "ます")
+                    replacement: Tuple[AugmentationToken, ...] = (
+                        Token(
+                            stem,
+                            features=TokenFeatures(
+                                surface=stem,
+                                pos="verb",
+                                lemma=lemma,
+                                conjugated_type=ctype,
+                                conjugated_form="continuative",
+                            ),
+                        ),
+                        Token(
+                            "ます",
+                            features=TokenFeatures(
+                                surface="ます",
+                                pos="aux-verb",
+                                lemma="ます",
+                                conjugated_type="fuku-go",
+                                conjugated_form="terminal",
+                            ),
+                        ),
+                    )
                     potential_swaps.append((i, 1, replacement))
 
             # Case 2: Polite -> Plain
@@ -330,7 +358,18 @@ class VerbPolitenessRule(AugmentationRule):
                 # Ideally check POS of next token if dict, but surface 'ます' is strong signal
                 if next_surf == "ます":
                     # Replace (Verb, ます) -> (Lemma,)
-                    replacement = (lemma,)
+                    replacement = (
+                        Token(
+                            lemma,
+                            features=TokenFeatures(
+                                surface=lemma,
+                                pos="verb",
+                                lemma=lemma,
+                                conjugated_type=ctype,
+                                conjugated_form="terminal",
+                            ),
+                        ),
+                    )
                     potential_swaps.append((i, 2, replacement))
 
         if potential_swaps:
@@ -389,7 +428,15 @@ class FirstPersonPronounRule(AugmentationRule):
         for combo in product(FIRST_PERSON_PRONOUNS, repeat=len(pronoun_indices)):
             new_tokens = list(tokens)
             for idx, new_pronoun in zip(pronoun_indices, combo):
-                new_tokens[idx] = new_pronoun  # Replace with string
+                # If the original was a Token, try to preserve its features if possible
+                original_token = tokens[idx]
+                if isinstance(original_token, Token):
+                    # Create a new Token with the new surface but original features
+                    new_tokens[idx] = Token(
+                        new_pronoun, features=original_token.features
+                    )
+                else:
+                    new_tokens[idx] = Token(new_pronoun)  # Replace with Token
             result.add(tuple(new_tokens))
 
         return result
@@ -413,7 +460,13 @@ class SecondPersonPronounRule(AugmentationRule):
         for combo in product(SECOND_PERSON_PRONOUNS, repeat=len(pronoun_indices)):
             new_tokens = list(tokens)
             for idx, new_pronoun in zip(pronoun_indices, combo):
-                new_tokens[idx] = new_pronoun
+                original_token = tokens[idx]
+                if isinstance(original_token, Token):
+                    new_tokens[idx] = Token(
+                        new_pronoun, features=original_token.features
+                    )
+                else:
+                    new_tokens[idx] = Token(new_pronoun)
             result.add(tuple(new_tokens))
 
         return result
@@ -437,7 +490,13 @@ class ThirdPersonPronounRule(AugmentationRule):
         for combo in product(THIRD_PERSON_PRONOUNS, repeat=len(pronoun_indices)):
             new_tokens = list(tokens)
             for idx, new_pronoun in zip(pronoun_indices, combo):
-                new_tokens[idx] = new_pronoun
+                original_token = tokens[idx]
+                if isinstance(original_token, Token):
+                    new_tokens[idx] = Token(
+                        new_pronoun, features=original_token.features
+                    )
+                else:
+                    new_tokens[idx] = Token(new_pronoun)
             result.add(tuple(new_tokens))
 
         return result
@@ -458,7 +517,21 @@ class CopulaRule(AugmentationRule):
                 len(tokens) >= len(da_toks)
                 and token_surfaces[-len(da_toks) :] == da_toks
             ):
-                new_tokens = list(tokens[: -len(da_toks)]) + list(desu_toks)
+                # Attempt to preserve features for the last token if it was a Token
+                new_ending_da: List[AugmentationToken] = []
+                for i, surf in enumerate(desu_toks):
+                    idx = len(tokens) - len(da_toks) + i
+                    if idx >= 0:
+                        original_token = tokens[idx]
+                        if isinstance(original_token, Token):
+                            new_ending_da.append(
+                                Token(surf, features=original_token.features)
+                            )
+                        else:
+                            new_ending_da.append(Token(surf))
+                    else:
+                        new_ending_da.append(Token(surf))
+                new_tokens = list(tokens[: -len(da_toks)]) + new_ending_da
                 result.add(tuple(new_tokens))
 
             # Check if sentence ends with desu_toks
@@ -466,7 +539,21 @@ class CopulaRule(AugmentationRule):
                 len(tokens) >= len(desu_toks)
                 and token_surfaces[-len(desu_toks) :] == desu_toks
             ):
-                new_tokens = list(tokens[: -len(desu_toks)]) + list(da_toks)
+                # Attempt to preserve features for the last token if it was a Token
+                new_ending_plain: List[AugmentationToken] = []
+                for i, surf in enumerate(da_toks):
+                    idx = len(tokens) - len(desu_toks) + i
+                    if idx >= 0:
+                        original_token = tokens[idx]
+                        if isinstance(original_token, Token):
+                            new_ending_plain.append(
+                                Token(surf, features=original_token.features)
+                            )
+                        else:
+                            new_ending_plain.append(Token(surf))
+                    else:
+                        new_ending_plain.append(Token(surf))
+                new_tokens = list(tokens[: -len(desu_toks)]) + new_ending_plain
                 result.add(tuple(new_tokens))
 
         return result
@@ -478,7 +565,7 @@ class ContractionRule(AugmentationRule):
     def apply(
         self, tokens: Tuple[AugmentationToken, ...]
     ) -> Set[Tuple[AugmentationToken, ...]]:
-        # pylint: disable=too-many-locals
+        # pylint: disable=too-many-locals, too-many-nested-blocks
         result = {tokens}
         token_surfaces = tuple(get_surface(t) for t in tokens)
 
@@ -507,7 +594,21 @@ class ContractionRule(AugmentationRule):
                     for i, do_replace in zip(matches, replacement_mask):
                         new_tokens.extend(tokens[last_idx:i])
                         if do_replace:
-                            new_tokens.extend(form_b)
+                            # Preserve features for the first token in the replacement if possible
+                            # pylint: disable=too-many-nested-blocks
+                            if len_a > 0:
+                                t_start = tokens[i]
+                                if isinstance(t_start, Token):
+                                    new_tokens.append(
+                                        Token(form_b[0], features=t_start.features)
+                                    )
+                                    new_tokens.extend(
+                                        [Token(str(s)) for s in form_b[1:]]
+                                    )
+                                else:
+                                    new_tokens.extend([Token(str(s)) for s in form_b])
+                            else:
+                                new_tokens.extend([Token(str(s)) for s in form_b])
                         else:
                             new_tokens.extend(tokens[i : i + len_a])
                         last_idx = i + len_a
@@ -537,7 +638,20 @@ class ContractionRule(AugmentationRule):
                     for i, do_replace in zip(matches, replacement_mask):
                         new_tokens.extend(tokens[last_idx:i])
                         if do_replace:
-                            new_tokens.extend(form_a)
+                            # Preserve features for the first token in the replacement if possible
+                            if len_b > 0:
+                                t_start = tokens[i]
+                                if isinstance(t_start, Token):
+                                    new_tokens.append(
+                                        Token(form_a[0], features=t_start.features)
+                                    )
+                                    new_tokens.extend(
+                                        [Token(str(s)) for s in form_a[1:]]
+                                    )
+                                else:
+                                    new_tokens.extend([Token(str(s)) for s in form_a])
+                            else:
+                                new_tokens.extend([Token(str(s)) for s in form_a])
                         else:
                             new_tokens.extend(tokens[i : i + len_b])
                         last_idx = i + len_b
@@ -562,7 +676,10 @@ class ParticleDropRule(AugmentationRule):
             if not isinstance(token, Token):
                 continue
 
-            if token.get("pos") == "particle" and token.surface in DROPPABLE_PARTICLES:
+            if (
+                token.features.pos == "particle"
+                and token.surface in DROPPABLE_PARTICLES
+            ):
                 # Safety check: Don't drop 'wa' part of split greetings (konnichi-wa, konban-wa)
                 if token.surface == "は" and i > 0:
                     prev = get_surface(tokens[i - 1])
@@ -630,14 +747,42 @@ class ProgressiveRule(AugmentationRule):
                 len(tokens) >= len(polite_toks)
                 and token_surfaces[-len(polite_toks) :] == polite_toks
             ):
-                new_tokens = list(tokens[: -len(polite_toks)]) + list(plain_toks)
+                # Attempt to preserve features for the last token if it was a Token
+                new_ending_variants: List[AugmentationToken] = []
+                for i, surf in enumerate(plain_toks):
+                    idx = len(tokens) - len(polite_toks) + i
+                    if idx >= 0:
+                        original_token = tokens[idx]
+                        if isinstance(original_token, Token):
+                            new_ending_variants.append(
+                                Token(surf, features=original_token.features)
+                            )
+                        else:
+                            new_ending_variants.append(Token(surf))
+                    else:
+                        new_ending_variants.append(Token(surf))
+                new_tokens = list(tokens[: -len(polite_toks)]) + new_ending_variants
                 result.add(tuple(new_tokens))
 
             if (
                 len(tokens) >= len(plain_toks)
                 and token_surfaces[-len(plain_toks) :] == plain_toks
             ):
-                new_tokens = list(tokens[: -len(plain_toks)]) + list(polite_toks)
+                # Attempt to preserve features for the last token if it was a Token
+                new_ending: List[AugmentationToken] = []
+                for i, surf in enumerate(polite_toks):
+                    idx = len(tokens) - len(plain_toks) + i
+                    if idx >= 0:
+                        original_token = tokens[idx]
+                        if isinstance(original_token, Token):
+                            new_ending.append(
+                                Token(surf, features=original_token.features)
+                            )
+                        else:
+                            new_ending.append(Token(surf))
+                    else:
+                        new_ending.append(Token(surf))
+                new_tokens = list(tokens[: -len(plain_toks)]) + new_ending
                 result.add(tuple(new_tokens))
 
         return result
@@ -658,7 +803,13 @@ class PluralRule(AugmentationRule):
                 for combo in product([kanji, hiragana], repeat=len(indices_kanji)):
                     new_tokens = list(tokens)
                     for idx, val in zip(indices_kanji, combo):
-                        new_tokens[idx] = val  # String replacement
+                        original_token = tokens[idx]
+                        if isinstance(original_token, Token):
+                            new_tokens[idx] = Token(
+                                val, features=original_token.features
+                            )
+                        else:
+                            new_tokens[idx] = val  # String replacement
                     result.add(tuple(new_tokens))
 
             indices_hiragana = [
@@ -668,7 +819,13 @@ class PluralRule(AugmentationRule):
                 for combo in product([kanji, hiragana], repeat=len(indices_hiragana)):
                     new_tokens = list(tokens)
                     for idx, val in zip(indices_hiragana, combo):
-                        new_tokens[idx] = val
+                        original_token = tokens[idx]
+                        if isinstance(original_token, Token):
+                            new_tokens[idx] = Token(
+                                val, features=original_token.features
+                            )
+                        else:
+                            new_tokens[idx] = val
                     result.add(tuple(new_tokens))
         return result
 
@@ -703,7 +860,11 @@ class PronunciationRule(AugmentationRule):
                 for idx, val in zip(match_indices, combo):
                     # If the original was a Token object and the replacement is a string,
                     # we keep it as a string for now as it's common in this module's other rules.
-                    new_tokens[idx] = val
+                    original_token = tokens[idx]
+                    if isinstance(original_token, Token):
+                        new_tokens[idx] = Token(val, features=original_token.features)
+                    else:
+                        new_tokens[idx] = val
                 result.add(tuple(new_tokens))
 
         return result
@@ -724,19 +885,24 @@ class RaNukiRule(AugmentationRule):
 
             # Check if potential ichidan
             v_f = get_features(v_tok)
+            aux_f = get_features(aux_tok)
+
             if (
-                "ichidan" in v_f.get("conjugated_type", "")
-                and v_f.get("conjugated_form") == "irrealis"
+                v_f
+                and v_f.conjugated_type == "ichidan"
+                and v_f.conjugated_form == "irrealis"
             ):
                 aux_surf = get_surface(aux_tok)
-                if aux_surf == "られる":
+                if aux_surf == "られる" and aux_f and aux_f.pos == "aux-verb":
                     # Replace られる with れる
                     new_tokens = list(tokens)
-                    new_tokens[i + 1] = "れる"
+                    # Preserve features of the original aux_tok
+                    new_tokens[i + 1] = Token("れる", features=aux_f)
                     result.add(tuple(new_tokens))
-                elif aux_surf == "られた":
+                elif aux_surf == "られた" and aux_f and aux_f.pos == "aux-verb":
                     new_tokens = list(tokens)
-                    new_tokens[i + 1] = "れた"
+                    # Preserve features of the original aux_tok
+                    new_tokens[i + 1] = Token("れた", features=aux_f)
                     result.add(tuple(new_tokens))
         return result
 
@@ -744,6 +910,9 @@ class RaNukiRule(AugmentationRule):
 class NegativeContractionRule(AugmentationRule):
     """Augments sentences by contracting negation (e.g. 分からない -> 分からん)."""
 
+    # pylint: disable=too-many-locals
+
+    # pylint: disable=too-many-locals
     def apply(
         self, tokens: Tuple[AugmentationToken, ...]
     ) -> Set[Tuple[AugmentationToken, ...]]:
@@ -753,11 +922,15 @@ class NegativeContractionRule(AugmentationRule):
             neg_tok = tokens[i + 1]
 
             v_f = get_features(v_tok)
-            if v_f.get("conjugated_form") == "irrealis":
+            neg_f = get_features(neg_tok)
+
+            if v_f and v_f.conjugated_form == "irrealis":
                 neg_surf = get_surface(neg_tok)
-                if neg_surf == "ない":
+                # pylint: disable=too-many-boolean-expressions
+                if neg_surf == "ない" and neg_f and neg_f.pos == "aux-verb":  # pylint: disable=too-many-boolean-expressions
                     new_tokens = list(tokens)
-                    new_tokens[i + 1] = "ん"
+                    # Preserve features of the original neg_tok
+                    new_tokens[i + 1] = Token("ん", features=neg_f)
                     result.add(tuple(new_tokens))
         return result
 
@@ -776,33 +949,83 @@ class NegationSwapRule(AugmentationRule):
 
             # Cases:
             # 1. Plain -> Polite: (verb irrealis) + ない
-            if v_f.get("conjugated_form") == "irrealis" and i + 1 < len(tokens):
+            if v_f and v_f.conjugated_form == "irrealis" and i + 1 < len(tokens):
                 neg_tok = tokens[i + 1]
-                if get_surface(neg_tok) == "ない":
+                neg_f = get_features(neg_tok)
+                if get_surface(neg_tok) == "ない" and neg_f and neg_f.pos == "aux-verb":
                     # Plain -> Polite
                     stem = conjugate_to_masu_stem(
-                        v_f.get("lemma", ""), v_f.get("conjugated_type", "")
+                        v_f.lemma or "", v_f.conjugated_type or ""
                     )
                     if stem:
+                        # Attempt to preserve features for the verb and aux-verb
+                        new_v_token = Token(stem, features=v_f)
+                        new_mase_token = Token(
+                            "ませ",
+                            features=TokenFeatures(
+                                surface="ませ",
+                                pos="aux-verb",
+                                lemma="ます",
+                                conjugated_type="fuku-go",
+                                conjugated_form="continuative",
+                            ),
+                        )
+                        new_n_token = Token(
+                            "ん",
+                            features=TokenFeatures(
+                                surface="ん",
+                                pos="aux-verb",
+                                lemma="ん",
+                                conjugated_type="fuku-go",
+                                conjugated_form="terminal",
+                            ),
+                        )
+
                         new_tokens = (
                             list(tokens[:i])
-                            + [stem, "ませ", "ん"]
+                            + [new_v_token, new_mase_token, new_n_token]
                             + list(tokens[i + 2 :])
                         )
                         result.add(tuple(new_tokens))
 
             # 2. Polite -> Plain: (verb continuative) + ませ + ん
-            if v_f.get("conjugated_form") == "continuative" and i + 2 < len(tokens):
+            if v_f and v_f.conjugated_form == "continuative" and i + 2 < len(tokens):
                 mase_tok = tokens[i + 1]
                 n_tok = tokens[i + 2]
-                if get_surface(mase_tok) == "ませ" and get_surface(n_tok) == "ん":
+                mase_f = get_features(mase_tok)
+                n_f = get_features(n_tok)
+
+                if (
+                    # pylint: disable=too-many-boolean-expressions
+                    get_surface(mase_tok) == "ませ"
+                    and mase_f
+                    and mase_f.pos == "aux-verb"
+                    and get_surface(n_tok) == "ん"
+                    and n_f
+                    and n_f.pos == "aux-verb"
+                ):
                     # Polite -> Plain
                     stem = conjugate_to_irrealis_stem(
-                        v_f.get("lemma", ""), v_f.get("conjugated_type", "")
+                        v_f.lemma or "", v_f.conjugated_type or ""
                     )
                     if stem:
+                        # Attempt to preserve features for the verb and aux-verb
+                        new_v_token = Token(stem, features=v_f)
+                        new_nai_token = Token(
+                            "ない",
+                            features=TokenFeatures(
+                                surface="ない",
+                                pos="aux-verb",
+                                lemma="ない",
+                                conjugated_type="fuku-go",
+                                conjugated_form="terminal",
+                            ),
+                        )
+
                         new_tokens = (
-                            list(tokens[:i]) + [stem, "ない"] + list(tokens[i + 3 :])
+                            list(tokens[:i])
+                            + [new_v_token, new_nai_token]
+                            + list(tokens[i + 3 :])
                         )
                         result.add(tuple(new_tokens))
             i += 1
@@ -827,10 +1050,9 @@ class SentenceFinalParticleRule(AugmentationRule):
         has_existing = False
         if target_idx > 0:
             feat = get_features(tokens[target_idx - 1])
-            if (
-                feat.get("pos") == "particle"
-                or get_surface(tokens[target_idx - 1]) in SENTENCE_FINAL_PARTICLES
-            ):
+            if (feat and feat.pos == "particle") or get_surface(
+                tokens[target_idx - 1]
+            ) in SENTENCE_FINAL_PARTICLES:
                 target_idx -= 1
                 has_existing = True
 
@@ -840,12 +1062,40 @@ class SentenceFinalParticleRule(AugmentationRule):
             result.add(tuple(list(tokens[:target_idx]) + list(tokens[last_idx:])))
             # Swap
             for p in SENTENCE_FINAL_PARTICLES:
-                new_tokens = list(tokens[:target_idx]) + [p] + list(tokens[last_idx:])
+                # Try to preserve features of the original particle if it was a Token
+                original_particle_token: Optional[Token] = None
+                if target_idx < len(tokens):
+                    cand = tokens[target_idx]
+                    if isinstance(cand, Token):
+                        original_particle_token = cand
+
+                if original_particle_token:
+                    new_particle_token = Token(
+                        p, features=original_particle_token.features
+                    )
+                else:
+                    new_particle_token = Token(
+                        p, features=TokenFeatures(surface=p, pos="particle", lemma=p)
+                    )  # Default features for a particle
+
+                new_tokens = (
+                    list(tokens[:target_idx])
+                    + [new_particle_token]
+                    + list(tokens[last_idx:])
+                )
                 result.add(tuple(new_tokens))
         else:
             # 2. Add new
             for p in SENTENCE_FINAL_PARTICLES:
-                new_tokens = list(tokens[:target_idx]) + [p] + list(tokens[last_idx:])
+                # Create a new Token for the particle
+                new_particle_token = Token(
+                    p, features=TokenFeatures(surface=p, pos="particle", lemma=p)
+                )
+                new_tokens = (
+                    list(tokens[:target_idx])
+                    + [new_particle_token]
+                    + list(tokens[last_idx:])
+                )
                 result.add(tuple(new_tokens))
 
         return result
@@ -862,14 +1112,26 @@ class LoanwordRule(AugmentationRule):
             surf = get_surface(tok)
             if surf in LOANWORD_VARIANTS:
                 new_tokens = list(tokens)
-                new_tokens[i] = LOANWORD_VARIANTS[surf]
+                original_token = tokens[i]
+                if isinstance(original_token, Token):
+                    new_tokens[i] = Token(
+                        LOANWORD_VARIANTS[surf], features=original_token.features
+                    )
+                else:
+                    new_tokens[i] = LOANWORD_VARIANTS[surf]
                 result.add(tuple(new_tokens))
             else:
                 # Reverse check
                 for common, variant in LOANWORD_VARIANTS.items():
                     if surf == variant:
                         new_tokens = list(tokens)
-                        new_tokens[i] = common
+                        original_token = tokens[i]
+                        if isinstance(original_token, Token):
+                            new_tokens[i] = Token(
+                                common, features=original_token.features
+                            )
+                        else:
+                            new_tokens[i] = common
                         result.add(tuple(new_tokens))
         return result
 
@@ -887,20 +1149,56 @@ class PastTenseSwapRule(AugmentationRule):
             v_f = get_features(v_tok)
 
             # v(continuative) + た(aux-ta) -> v(continuative) + まし(aux-masu) + た(aux-ta)
-            if v_f.get("conjugated_form") == "continuative" and i + 1 < len(tokens):
+            if v_f and v_f.conjugated_form == "continuative" and i + 1 < len(tokens):
                 ta_tok = tokens[i + 1]
+                ta_f = get_features(ta_tok)
                 if get_surface(ta_tok) == "た" and is_role(ta_tok, "aux-verb"):
+                    # Preserve features for 'まし' and 'た'
+                    new_mashi_token = Token(
+                        "まし",
+                        features=TokenFeatures(
+                            surface="まし",
+                            pos="aux-verb",
+                            lemma="ます",
+                            conjugated_type="fuku-go",
+                            conjugated_form="continuative",
+                        ),
+                    )
+                    new_ta_token = Token(
+                        "た", features=ta_f
+                    )  # Use original 'た' features
+
                     new_tokens = (
-                        list(tokens[: i + 1]) + ["まし", "た"] + list(tokens[i + 2 :])
+                        list(tokens[: i + 1])
+                        + [new_mashi_token, new_ta_token]
+                        + list(tokens[i + 2 :])
                     )
                     result.add(tuple(new_tokens))
 
             # v(continuative) + まし(aux-masu) + た(aux-ta) -> v(continuative) + た(aux-ta)
-            if v_f.get("conjugated_form") == "continuative" and i + 2 < len(tokens):
+            if v_f and v_f.conjugated_form == "continuative" and i + 2 < len(tokens):
                 mashi_tok = tokens[i + 1]
                 ta_tok = tokens[i + 2]
-                if get_surface(mashi_tok) == "まし" and get_surface(ta_tok) == "た":
-                    new_tokens = list(tokens[: i + 1]) + ["た"] + list(tokens[i + 3 :])
+                mashi_f = get_features(mashi_tok)
+                ta_f = get_features(ta_tok)
+
+                if (
+                    # pylint: disable=too-many-boolean-expressions
+                    get_surface(mashi_tok) == "まし"
+                    and mashi_f
+                    and mashi_f.pos == "aux-verb"
+                    and get_surface(ta_tok) == "た"
+                    and ta_f
+                    and ta_f.pos == "aux-verb"
+                ):
+                    # Preserve features for 'た'
+                    new_ta_token = Token(
+                        "た", features=ta_f
+                    )  # Use original 'た' features
+
+                    new_tokens = (
+                        list(tokens[: i + 1]) + [new_ta_token] + list(tokens[i + 3 :])
+                    )
                     result.add(tuple(new_tokens))
             i += 1
         return result
@@ -913,16 +1211,29 @@ class AdjectivePolitenessRule(AugmentationRule):
         self, tokens: Tuple[AugmentationToken, ...]
     ) -> Set[Tuple[AugmentationToken, ...]]:
         result = {tokens}
+        # pylint: disable=too-many-locals
         for i, tok in enumerate(tokens):
             f = get_features(tok)
             if (
-                f.get("conjugated_type") == "i-adjective"
-                and f.get("conjugated_form") == "terminal"
+                f
+                and f.conjugated_type == "i-adjective"
+                and f.conjugated_form == "terminal"
             ):
                 # Add 'desu' if not present
                 if i + 1 == len(tokens) or get_surface(tokens[i + 1]) != "です":
+                    # Create a new Token for 'です'
+                    new_desu_token = Token(
+                        "です",
+                        features=TokenFeatures(
+                            surface="です",
+                            pos="aux-verb",
+                            lemma="です",
+                            conjugated_type="fuku-go",
+                            conjugated_form="terminal",
+                        ),
+                    )
                     new_tokens = (
-                        list(tokens[: i + 1]) + ["です"] + list(tokens[i + 1 :])
+                        list(tokens[: i + 1]) + [new_desu_token] + list(tokens[i + 1 :])
                     )
                     result.add(tuple(new_tokens))
                 # Remove 'desu' if present
@@ -941,25 +1252,33 @@ class HumbleHonorificRule(AugmentationRule):
         result = {tokens}
         for i, tok in enumerate(tokens):
             f = get_features(tok)
-            if is_role(tok, "verb"):
-                lemma = f.get("lemma") or get_surface(tok)
-                cform = f.get("conjugated_form")
+            if is_role(tok, "verb") and f:
+                lemma = f.lemma or get_surface(tok)
+                cform = f.conjugated_form
 
                 if cform == "terminal":
                     if lemma in HUMBLE_MAP:
                         new_tokens = list(tokens)
-                        new_tokens[i] = HUMBLE_MAP[lemma]
-                        result.add(tuple(new_tokens))
+                        # Preserve features of the original verb
+                        # f is Optional[TokenFeatures], but we are in is_role(tok, "verb") check?
+                        # Actually strict mypy knows f could be None from get_features.
+                        if f:
+                            new_tokens[i] = Token(HUMBLE_MAP[lemma], features=f)
+                            result.add(tuple(new_tokens))
                     if lemma in HONORIFIC_MAP:
                         new_tokens = list(tokens)
-                        new_tokens[i] = HONORIFIC_MAP[lemma]
-                        result.add(tuple(new_tokens))
+                        # Preserve features of the original verb
+                        # Need to get features again because 'f' is outside this scope? No, 'f' is local.
+                        # But strict check on token type for safety.
+                        if isinstance(tokens[i], Token) and f:
+                            new_tokens[i] = Token(HONORIFIC_MAP[lemma], features=f)
+                            result.add(tuple(new_tokens))
         return result
 
 
 def is_role(token: AugmentationToken, role: str) -> bool:
     if isinstance(token, Token):
-        pos = token.get("pos", "")
+        pos = token.features.pos
         if role == "verb":
             return bool(pos == "verb")
         if role == "aux-verb":
@@ -971,10 +1290,10 @@ def is_role(token: AugmentationToken, role: str) -> bool:
     return False
 
 
-def get_features(token: AugmentationToken) -> Dict[str, Any]:
+def get_features(token: AugmentationToken) -> Optional[TokenFeatures]:
     if isinstance(token, Token):
         return token.features
-    return {}
+    return None
 
 
 class Augmenter:
@@ -1092,7 +1411,7 @@ class Augmenter:
                 match = re.search(r"ˢ(.*?)ᵖ", t)
                 f.surface = match.group(1) if match else t
 
-            token_features.append(Token(f.surface, asdict(f)))
+            token_features.append(Token(f.surface, features=f))
 
         if not token_features:
             return {clean_sentence}
@@ -1232,7 +1551,7 @@ def augment(sentences: List[str], timeout: Optional[float] = 1.0) -> List[str]:
 
                 match = re.search(r"ˢ(.*?)ᵖ", t)
                 f.surface = match.group(1) if match else t
-            token_features.append(Token(f.surface, asdict(f)))
+            token_features.append(Token(f.surface, features=f))
 
         if not token_features:
             all_candidates.add(s)

@@ -136,7 +136,7 @@ def _build_and_save_vocab(
 
     os.makedirs(cache_dir, exist_ok=True)
     vocab_path = os.path.join(cache_dir, cache_name)
-    tokenizer.save(vocab_path, version=CACHE_VERSION)
+    tokenizer.save(vocab_path, metadata={"version": CACHE_VERSION})
 
 
 def init_worker(

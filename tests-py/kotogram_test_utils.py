@@ -39,13 +39,12 @@ class KotogramTestUtils:
     @staticmethod
     def tokenize_sentence(sentence: str, parser: Any) -> List[Token]:
         """Tokenize a sentence into a list of Token objects using the provided parser."""
-        from dataclasses import asdict
 
         k = parser.japanese_to_kotogram(sentence)
         return [
             Token(
                 extract_token_features(t).surface or t,
-                asdict(extract_token_features(t)),
+                features=extract_token_features(t),
             )
             for t in split_kotogram(k)
         ]

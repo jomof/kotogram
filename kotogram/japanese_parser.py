@@ -1,6 +1,7 @@
 """Abstract base class for Japanese text parsing with shared mapping constants."""
 
 from abc import ABC, abstractmethod
+from typing import Dict, Final, Literal
 
 # Global mapping constants shared across all Japanese parser implementations
 OBSCURE_KOTOGRAM = 0  # 0=Standard, 1=Obfuscated (Base64)
@@ -23,12 +24,201 @@ __all__ = [
 class KotogramFormat:
     """Format options for kotogram generation."""
 
-    DEFAULT = "Default"
-    TRAINING_MASK = "TrainingMask"
+    DEFAULT: Literal["Default"] = "Default"
+    TRAINING_MASK: Literal["TrainingMask"] = "TrainingMask"
 
 
-# Part-of-speech mappings
-POS_MAP = {
+# Type definitions for TokenFeatures
+PosValue = Literal[
+    "noun",
+    "verb",
+    "adj",
+    "adv",
+    "particle",
+    "aux-verb",
+    "conj",
+    "interj",
+    "pron",
+    "adnom",
+    "prefix",
+    "suffix",
+    "adjectival-noun",
+    "symbol",
+    "aux-symbol",
+    "whitespace",
+    "",
+]
+
+PosDetail1Value = Literal[
+    "general",
+    "proper-noun",
+    "common-noun",
+    "numeral",
+    "case-particle",
+    "binding-particle",
+    "adverbial-particle",
+    "conjunctive-particle",
+    "sentence-final-particle",
+    "nominal-particle",
+    "aux-verb-stem",
+    "bound",
+    "verbal",
+    "adjectival",
+    "adjectival-noun-like",
+    "nominal",
+    "tari",
+    "filler",
+    "letter",
+    "ascii-art",
+    "period",
+    "comma",
+    "open-bracket",
+    "close-bracket",
+    "",
+]
+
+PosDetail2Value = Literal[
+    "general",
+    "verbal-suru",
+    "verbal-suru-adj",
+    "adverbial",
+    "adjectival-noun-possible",
+    "counter",
+    "counter-possible",
+    "place-name",
+    "person-name",
+    "kaomoji",
+    "",
+]
+
+PosDetail3Value = Literal["general", "country", "given-name", "surname", ""]
+
+ConjugatedTypeValue = Literal[
+    "aux-ta",
+    "aux-da",
+    "aux-desu",
+    "aux-masu",
+    "aux-nai",
+    "aux-nu",
+    "aux-reru",
+    "aux-tai",
+    "aux-rashii",
+    "aux-mai",
+    "aux-ja",
+    "aux-ya",
+    "aux-nanda",
+    "aux-hen",
+    "godan-ra",
+    "godan-ka",
+    "godan-ga",
+    "godan-sa",
+    "godan-ta",
+    "godan-na",
+    "godan-ba",
+    "godan-ma",
+    "godan-waa",
+    "upper-ichidan-a",
+    "upper-ichidan-ka",
+    "upper-ichidan-ga",
+    "upper-ichidan-za",
+    "upper-ichidan-ta",
+    "upper-ichidan-na",
+    "upper-ichidan-ha",
+    "upper-ichidan-ba",
+    "upper-ichidan-ma",
+    "upper-ichidan-ra",
+    "lower-ichidan-a",
+    "lower-ichidan-ka",
+    "lower-ichidan-ga",
+    "lower-ichidan-sa",
+    "lower-ichidan-za",
+    "lower-ichidan-ta",
+    "lower-ichidan-da",
+    "lower-ichidan-na",
+    "lower-ichidan-ha",
+    "lower-ichidan-ba",
+    "lower-ichidan-ma",
+    "lower-ichidan-ra",
+    "ka-irregular",
+    "sa-irregular",
+    "i-adjective",
+    "classical-sa-irregular",
+    "classical-ra-irregular",
+    "classical-adj-ku",
+    "classical-adj-shiku",
+    "classical-aux-tari-perfective",
+    "classical-aux-tari-assertive",
+    "classical-aux-nari",
+    "classical-aux-ri",
+    "classical-aux-beshi",
+    "classical-aux-zu",
+    "classical-aux-ki",
+    "classical-aux-keri",
+    "classical-aux-gotoshi",
+    "classical-aux-maji",
+    "classical-aux-mu",
+    "classical-aux-ji",
+    "classical-aux-nu",
+    "classical-aux-rashi",
+    "classical-aux-ramu",
+    "classical-aux-zamasu",
+    "classical-upper-nidan-ta",
+    "classical-upper-nidan-da",
+    "classical-upper-nidan-ba",
+    "classical-lower-nidan-a",
+    "classical-lower-nidan-ka",
+    "classical-lower-nidan-ga",
+    "classical-lower-nidan-sa",
+    "classical-lower-nidan-da",
+    "classical-lower-nidan-na",
+    "classical-lower-nidan-ha",
+    "classical-lower-nidan-ma",
+    "classical-lower-nidan-ra",
+    "classical-yodan-ka",
+    "classical-yodan-sa",
+    "classical-yodan-ta",
+    "classical-yodan-ha",
+    "classical-yodan-ma",
+    "classical-yodan-ra",
+    "fuku-go",
+    "",
+]
+
+ConjugatedFormValue = Literal[
+    "terminal",
+    "terminal-nasal",
+    "terminal-geminate",
+    "terminal-fused",
+    "terminal-u-euphonic",
+    "continuative",
+    "continuative-geminate",
+    "continuative-nasal",
+    "continuative-i-euphonic",
+    "continuative-u-euphonic",
+    "continuative-ni",
+    "continuative-abbreviated",
+    "continuative-fused",
+    "continuative-auxiliary",
+    "attributive",
+    "attributive-nasal",
+    "attributive-abbreviated",
+    "attributive-auxiliary",
+    "irrealis",
+    "irrealis-sa",
+    "irrealis-se",
+    "irrealis-nasal",
+    "irrealis-auxiliary",
+    "conditional",
+    "conditional-fused",
+    "imperative",
+    "volitional-presumptive",
+    "realis",
+    "stem",
+    "stem-sa",
+    "ku-form",
+    "",
+]
+POS_MAP: Final[Dict[str, PosValue]] = {
     "名詞": "noun",  # Noun
     "動詞": "verb",  # Verb
     "形容詞": "adj",  # Adjective
@@ -49,7 +239,7 @@ POS_MAP = {
 }
 
 # Part-of-speech detail level 1 mappings
-POS1_MAP = {
+POS1_MAP: Final[Dict[str, PosDetail1Value]] = {
     "一般": "general",  # General
     "固有名詞": "proper-noun",  # Proper noun
     "普通名詞": "common-noun",  # Common noun
@@ -78,7 +268,7 @@ POS1_MAP = {
 }
 
 # Part-of-speech detail level 2 mappings
-POS2_MAP = {
+POS2_MAP: Final[Dict[str, PosDetail2Value]] = {
     "一般": "general",  # General
     "サ変可能": "verbal-suru",  # Can be used with suru (する)
     "サ変形状詞可能": "verbal-suru-adj",  # Verbal suru + adjectival noun
@@ -93,7 +283,7 @@ POS2_MAP = {
 }
 
 # Part-of-speech detail level 3 mappings
-POS3_MAP = {
+POS3_MAP: Final[Dict[str, PosDetail3Value]] = {
     "一般": "general",  # General place/person names
     "国": "country",  # Country names (日本, アメリカ, etc.)
     "名": "given-name",  # Given names (太郎, 花子, etc.)
@@ -102,7 +292,7 @@ POS3_MAP = {
 }
 
 # Conjugation type mappings
-CONJUGATED_TYPE_MAP = {
+CONJUGATED_TYPE_MAP: Final[Dict[str, ConjugatedTypeValue]] = {
     # Auxiliary verbs
     "助動詞-タ": "aux-ta",  # Past tense auxiliary (だった)
     "助動詞-ダ": "aux-da",  # Copula (だ)
@@ -199,7 +389,7 @@ CONJUGATED_TYPE_MAP = {
 }
 
 # Conjugation form mappings
-CONJUGATED_FORM_MAP = {
+CONJUGATED_FORM_MAP: Final[Dict[str, ConjugatedFormValue]] = {
     "終止形-一般": "terminal",  # Terminal/conclusive form
     "終止形-撥音便": "terminal-nasal",  # Terminal with nasal euphony
     "終止形-促音便": "terminal-geminate",  # Terminal with geminate
@@ -231,7 +421,7 @@ CONJUGATED_FORM_MAP = {
     "語幹-一般": "stem",  # Verb stem
     "語幹-サ": "stem-sa",  # Stem sa form
     "ク語法": "ku-form",  # Ku-form (classical)
-    "*": "",  # Unspecified
+    "*": "",
 }
 
 # Part-of-speech to character mappings
@@ -327,7 +517,9 @@ class JapaneseParser(ABC):
     """
 
     @abstractmethod
-    def japanese_to_kotogram(self, text: str, fmt: str = "Default") -> str:
+    def japanese_to_kotogram(
+        self, text: str, fmt: Literal["Default", "TrainingMask"] = "Default"
+    ) -> str:
         """Parse Japanese text into Kotogram format.
 
         Args:
