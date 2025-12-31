@@ -8,9 +8,9 @@ fast imports in multiprocessing workers.
 import json
 import os
 from collections import Counter
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
-from kotogram.kotogram import extract_token_features, split_kotogram
+from kotogram.kotogram import TokenFeatures, extract_token_features, split_kotogram
 
 # Special token values for vocabulary
 PAD_TOKEN = "<PAD>"
@@ -49,6 +49,7 @@ class Tokenizer:
     def __init__(self) -> None:
         """Initialize feature tokenizer."""
         # Initialize vocabularies for each field with special tokens
+        # Vocabularies are stored as dicts for simple JSON serialization and compatibility.
         self.field_vocabs: Dict[str, Dict[str, int]] = {}
         self._field_counters: Dict[str, Counter[str]] = {}
         for f in FEATURE_FIELDS:
@@ -98,55 +99,51 @@ class Tokenizer:
         vocab = self.field_vocabs[field]
         return vocab.get(value, self.unk_id)
 
-    def extract_features(self, kotogram: str) -> List[Dict[str, str]]:
+    def extract_features(self, kotogram: str) -> List[TokenFeatures]:
         """Extract features from each token in a Kotogram string."""
         tokens = split_kotogram(kotogram)
         features_list = []
 
         for token in tokens:
             features = extract_token_features(token)
-            # Only keep the fields we use
-            # Explicit access avoids vulture flagging fields as unused
-            all_features = {
-                "surface": features.surface,
-                "pos": features.pos,
-                "pos_detail_1": features.pos_detail_1,
-                "pos_detail_2": features.pos_detail_2,
-                "pos_detail_3": features.pos_detail_3,
-                "conjugated_type": features.conjugated_type,
-                "conjugated_form": features.conjugated_form,
-                "lemma": features.lemma,
-                "base_orth": features.base_orth,
-                "reading": features.reading,
-            }
-            filtered = {field: all_features[field] for field in FEATURE_FIELDS}
-            features_list.append(filtered)
-
+            # Filter? TokenFeatures matches strict schema anyway.
+            # Using dataclass directly.
+            features_list.append(features)
         return features_list
 
     def encode_features(
         self,
-        features_list: List[Dict[str, str]],
+        features_list: List[TokenFeatures],
         add_cls: bool = True,
         add_to_vocab: bool = True,
     ) -> Dict[str, List[int]]:
-        """Convert list of feature dicts to sequences of field IDs."""
+        """Encode a list of token feature objects into field ID sequences."""
+        # Initialize result dictionary
         result: Dict[str, List[int]] = {f: [] for f in FEATURE_FIELDS}
 
+        # Add CLS token if requested
         if add_cls:
             for field in FEATURE_FIELDS:
-                result[field].append(self.cls_id)
+                cls_id = self.get_id(field, CLS_TOKEN)
+                result[field].append(cls_id)
 
+        # Encode each token
         for features in features_list:
             for field in FEATURE_FIELDS:
-                value = features.get(field, "")
+                # Access field from dataclass
+                val = getattr(features, field)
+                # Ensure string (TokenFeatures fields are strings, but just in case)
+                val_str = str(val) if val is not None else ""
+
+                # Special handling for missing/empty values?
+                # TokenFeatures defaults are sensible.
+
                 if add_to_vocab and not self._frozen:
-                    self._field_counters[field][value] += 1
-                    token_id = self._add_value(field, value)
+                    self._field_counters[field][val_str] += 1
+                    fid = self._add_value(field, val_str)
                 else:
-                    vocab = self.field_vocabs[field]
-                    token_id = vocab.get(value, self.unk_id)
-                result[field].append(token_id)
+                    fid = self.get_id(field, val_str)
+                result[field].append(fid)
 
         return result
 
@@ -160,13 +157,14 @@ class Tokenizer:
         features_list = self.extract_features(kotogram)
         return self.encode_features(features_list, add_cls, add_to_vocab)
 
-    def save(self, path: str, **kwargs: Any) -> None:
+    def save(self, path: str, metadata: Optional[Dict[str, Any]] = None) -> None:
         """Save tokenizer vocabularies to JSON file atomically."""
         data = {
             "field_vocabs": self.field_vocabs,
             "frozen": self._frozen,
         }
-        data.update(kwargs)
+        if metadata:
+            data.update(metadata)
 
         dir_name = os.path.dirname(path)
         if dir_name:
@@ -200,6 +198,9 @@ class Tokenizer:
 
     def load_state(self, state: Dict[str, Any]) -> None:
         """Load tokenizer state from dictionary."""
+        if not isinstance(state, dict):
+            raise TypeError(f"State must be a dictionary, got {type(state)}")
+
         # Migration logic for old pos_detail naming
         if "field_vocabs" in state:
             vocabs = state["field_vocabs"]

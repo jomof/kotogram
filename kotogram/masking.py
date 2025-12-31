@@ -9,21 +9,27 @@ from typing import List
 from kotogram.kotogram import Token
 
 
-def apply_training_mask(tokens: List[Token]) -> None:
-    """Apply training mask to anonymize given names in place.
+def apply_training_mask(tokens: List[Token]) -> List[Token]:
+    """Apply training mask to anonymize given names immutable.
 
     Replaces Japanese given names (First Names) with the placeholder "太郎" (Taro).
-    This operation is performed in-place on the provided token list.
+    Returns a new list of tokens.
 
     Args:
         tokens: List of kotogram.Token objects to process.
+
+    Returns:
+        New list of Token objects with masking applied.
     """
-    for i, token in enumerate(tokens):
+    masked_tokens = []
+    for token in tokens:
+        new_token = token
+        # ... logic to potentially replace new_token ...
         features = token.features
-        pos = features.get("pos")
-        detail1 = features.get("pos_detail_1")
-        detail2 = features.get("pos_detail_2")
-        detail3 = features.get("pos_detail_3")
+        pos = features.pos
+        detail1 = features.pos_detail_1
+        detail2 = features.pos_detail_2
+        detail3 = features.pos_detail_3
 
         # Base Proper Noun Check
         if pos == "noun" and detail1 == "proper-noun":
@@ -60,12 +66,18 @@ def apply_training_mask(tokens: List[Token]) -> None:
             # Apply Replacement
             # Create a NEW token with stripped features
             # Retain only POS information for grammatical stability
-            new_features = {
-                "pos": pos,
-                "pos_detail_1": detail1,
-                "pos_detail_2": detail2,
-                "pos_detail_3": detail3,
-                "lemma": "*",
-            }
-            # Replace token in list
-            tokens[i] = Token(target_surface, features=new_features)
+            from kotogram.kotogram import TokenFeatures
+
+            new_features = TokenFeatures(
+                pos=pos,
+                pos_detail_1=detail1,
+                pos_detail_2=detail2,
+                pos_detail_3=detail3,
+                lemma="*",
+            )
+            # Replace token
+            new_token = Token(target_surface, features=new_features)
+
+        masked_tokens.append(new_token)
+
+    return masked_tokens

@@ -4,6 +4,7 @@
 import argparse
 import json
 import sys
+from typing import Literal
 
 from kotogram.japanese_parser import KotogramFormat
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
@@ -37,7 +38,7 @@ def cmd_parse(args: argparse.Namespace) -> int:
     if text == "-":
         text = sys.stdin.read().strip()
 
-    fmt = KotogramFormat.DEFAULT
+    fmt: Literal["Default", "TrainingMask"] = KotogramFormat.DEFAULT
     if getattr(args, "format_training_mask", False):
         fmt = KotogramFormat.TRAINING_MASK
 

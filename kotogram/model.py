@@ -8,7 +8,7 @@ import json
 import math
 import os
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, NamedTuple, Optional, Tuple, cast
+from typing import Any, Dict, List, NamedTuple, Optional, Tuple, TypedDict, cast
 
 import torch
 import torch.nn.functional as F
@@ -19,8 +19,6 @@ from kotogram.tokenizer import (
     FEATURE_FIELDS,
     Tokenizer,
 )
-
-# Number of classes for each task
 
 NUM_FORMALITY_PRAGMATIC_CLASSES = 2
 NUM_GRAMMATICALITY_CLASSES = 2  # grammatic (1) vs agrammatic (0)
@@ -93,6 +91,29 @@ class StylePrediction(NamedTuple):
     kcs: Optional[torch.Tensor] = None
 
 
+class ModelConfigDict(TypedDict):
+    """Serialization format for ModelConfig."""
+
+    vocab_sizes: Dict[str, int]
+    num_formality_pragmatic_classes: int
+    num_gender_pragmatic_classes: int
+    num_grammaticality_classes: int
+    num_register_classes: int
+    field_embed_dims: Dict[str, int]
+    d_model: int
+    hidden_dim: int
+    num_layers: int
+    num_heads: int
+    dropout: float
+    max_seq_len: int
+    pooling: str
+    kc_enabled: bool
+    kc_vocab_size: int
+    kc_topk: int
+    kc_temperature: float
+    kc_target_specs: Dict[str, int]
+
+
 @dataclass
 class ModelConfig:
     """Configuration for StyleClassifier model."""
@@ -131,7 +152,7 @@ class ModelConfig:
         default_factory=dict
     )  # Target head name -> vocab size
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> ModelConfigDict:
         return {
             "vocab_sizes": self.vocab_sizes,
             "num_formality_pragmatic_classes": self.num_formality_pragmatic_classes,
@@ -154,7 +175,11 @@ class ModelConfig:
         }
 
     @classmethod
-    def from_dict(cls, d: Dict[str, Any]) -> "ModelConfig":
+    def from_dict(
+        cls, d: Dict[str, Any]
+    ) -> "ModelConfig":  # Keep Dict[str, Any] for flexibility or strict?
+        # Sticking to Dict[str, Any] for looser input, but validation happened if it came from to_dict
+        # Ideally input should be Union[ModelConfigDict, Dict[str, Any]] but Dict[str, Any] covers both
         from dataclasses import fields
 
         valid_fields = {f.name for f in fields(cls)}
@@ -171,7 +196,7 @@ class ModelConfig:
         return cls(**{k: v for k, v in d.items() if k in valid_fields})
 
 
-class PositionalEncoding(nn.Module):  # type: ignore[misc]
+class PositionalEncoding(nn.Module):
     """Sinusoidal positional encoding for Transformer."""
 
     def __init__(self, d_model: int, max_len: int = 512, dropout: float = 0.1):
@@ -255,6 +280,7 @@ class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
         return resized
 
 
+# Required for Mypy compatibility with torch.nn.Module
 class KCHead(nn.Module):  # type: ignore[misc]
     """Head for predicting Knowledge Components (sparse concepts)."""
 
@@ -275,6 +301,7 @@ class KCHead(nn.Module):  # type: ignore[misc]
         return raw, cast(torch.Tensor, out)
 
 
+# Required for Mypy compatibility with torch.nn.Module
 class StyleClassifier(nn.Module):  # type: ignore[misc]
     """Neural sequence classifier for multi-task style prediction."""
 
@@ -540,7 +567,9 @@ def load_model(
     # Load model
     model = StyleClassifier(config)
     # Always load to CPU first
-    state_dict = torch.load(os.path.join(path, "model.pt"), map_location="cpu")
+    state_dict: Dict[str, Any] = torch.load(
+        os.path.join(path, "model.pt"), map_location="cpu"
+    )
 
     # Convert weights back to float32
     def to_float32(v: torch.Tensor) -> torch.Tensor:

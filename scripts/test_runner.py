@@ -83,6 +83,34 @@ def print_error(message: str) -> None:
     print(f"{RED}[ERROR] {message}{RESET}")
 
 
+async def check_undone() -> CheckResult:
+    """
+    Enforce a strict "no UN-DONE" policy in comments.
+
+    "UN-DONE" is often used as a marker for incomplete code or technical debt.
+    We strictly forbid this to ensure all code committed is considered complete
+    and production-ready, or that debt is tracked in a more formal system than
+    code comments.
+    """
+    # Split the string to avoid this script itself triggering the check grep
+    undone_str = "UN" + "DONE"
+    cmd = f'grep -rnI "{undone_str}" kotogram scripts tests-py train train_style bin/kotogram'
+
+    proc = await asyncio.create_subprocess_shell(
+        cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
+    stdout, _ = await proc.communicate()
+    if proc.returncode == 0:
+        return CheckResult(
+            "undone check",
+            False,
+            f"Found forbidden '{undone_str}' comments! Fix them.\n{stdout.decode()}",
+        )
+
+    print_success(f"No '{undone_str}' comments found")
+    return CheckResult("undone check", True, "")
+
+
 async def check_noqa_e402() -> CheckResult:
     """
     Enforce strict import ordering by forbidding 'noqa: E402'.
@@ -520,6 +548,12 @@ async def main() -> None:
     auto_fix_whitespaces()
 
     initial_git_status = subprocess.check_output(["git", "status", "--short"]).decode()
+
+    # Run check_undone synchronously/blocking so it fails fast and prints first
+    undone_res = await check_undone()
+    if not undone_res.success:
+        print_error(undone_res.output)
+        sys.exit(1)
 
     process_noqa = check_noqa_e402()
 

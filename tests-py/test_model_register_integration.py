@@ -27,7 +27,7 @@ class TestModelRegisterIntegration(unittest.TestCase):
             "reading": [25, 26, 27],
         }
 
-    @patch("kotogram.analysis._load_style_model")
+    @patch("kotogram.analysis.StyleAnalyzer.load")
     def test_register_prediction(self, mock_load):
         mock_load.return_value = (self.mock_model, self.mock_tokenizer)
 
@@ -106,7 +106,7 @@ class TestModelRegisterIntegration(unittest.TestCase):
         self.assertIn(RegisterLevel.SONKEIGO, result.register_scores)
         self.assertIn(RegisterLevel.KANSAIBEN, result.register_scores)
 
-    @patch("kotogram.analysis._load_style_model")
+    @patch("kotogram.analysis.StyleAnalyzer.load")
     def test_style_function_includes_register(self, mock_load):
         mock_load.return_value = (self.mock_model, self.mock_tokenizer)
 

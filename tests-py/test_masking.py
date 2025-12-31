@@ -124,74 +124,74 @@ class TestMasking(unittest.TestCase):
 
     def test_generic_person_masking(self):
         """Test masking of generic person names (no given/surname detail)."""
-        from kotogram.kotogram import Token
+        from kotogram.kotogram import Token, TokenFeatures
         from kotogram.masking import apply_training_mask
 
         # Manually construct generic person token
         # noun:proper-noun:person-name:general (or empty)
         t = Token(
             "Somebody",
-            features={
-                "pos": "noun",
-                "pos_detail_1": "proper-noun",
-                "pos_detail_2": "person-name",
-                "pos_detail_3": "general",
-            },
+            features=TokenFeatures(
+                pos="noun",
+                pos_detail_1="proper-noun",
+                pos_detail_2="person-name",
+                pos_detail_3="general",
+            ),
         )
         tokens = [t]
-        apply_training_mask(tokens)
+        tokens = apply_training_mask(tokens)
         self.assertEqual(tokens[0].surface, "<person-name>")
-        self.assertEqual(tokens[0].features["lemma"], "*")
+        self.assertEqual(tokens[0].features.lemma, "*")
 
     def test_generic_place_masking(self):
         """Test masking of generic place names (no country detail)."""
-        from kotogram.kotogram import Token
+        from kotogram.kotogram import Token, TokenFeatures
         from kotogram.masking import apply_training_mask
 
         t = Token(
             "Somewhere",
-            features={
-                "pos": "noun",
-                "pos_detail_1": "proper-noun",
-                "pos_detail_2": "place-name",
-            },
+            features=TokenFeatures(
+                pos="noun",
+                pos_detail_1="proper-noun",
+                pos_detail_2="place-name",
+            ),
         )
         tokens = [t]
-        apply_training_mask(tokens)
+        tokens = apply_training_mask(tokens)
         self.assertEqual(tokens[0].surface, "<place-name>")
 
     def test_generic_proper_noun_masking(self):
         """Test masking of generic proper nouns (orgs, etc)."""
-        from kotogram.kotogram import Token
+        from kotogram.kotogram import Token, TokenFeatures
         from kotogram.masking import apply_training_mask
 
         t = Token(
             "SomeCorp",
-            features={
-                "pos": "noun",
-                "pos_detail_1": "proper-noun",
-                "pos_detail_2": "organization",
-            },
+            features=TokenFeatures(
+                pos="noun",
+                pos_detail_1="proper-noun",
+                pos_detail_2="organization",
+            ),
         )
         tokens = [t]
-        apply_training_mask(tokens)
+        tokens = apply_training_mask(tokens)
         self.assertEqual(tokens[0].surface, "<proper-noun>")
 
     def test_strict_hierarchy_assertions(self):
         """Test strict assertions verify hierarchy logic."""
-        from kotogram.kotogram import Token
+        from kotogram.kotogram import Token, TokenFeatures
         from kotogram.masking import apply_training_mask
 
         # Case 1: Claims given-name but hierarchy logic fails
         # (e.g. wrong pos_detail_2)
         bad_given = Token(
             "Bad",
-            features={
-                "pos": "noun",
-                "pos_detail_1": "proper-noun",
-                "pos_detail_2": "place-name",  # Wrong category
-                "pos_detail_3": "given-name",
-            },
+            features=TokenFeatures(
+                pos="noun",
+                pos_detail_1="proper-noun",
+                pos_detail_2="place-name",  # Wrong category
+                pos_detail_3="given-name",
+            ),
         )
         with self.assertRaisesRegex(RuntimeError, "failed hierarchy check"):
             apply_training_mask([bad_given])
@@ -199,12 +199,12 @@ class TestMasking(unittest.TestCase):
         # Retry Case 2: Noun:Proper-Noun but wrong sub-cat (e.g. place-name vs surname)
         bad_surname_2 = Token(
             "Bad",
-            features={
-                "pos": "noun",
-                "pos_detail_1": "proper-noun",
-                "pos_detail_2": "organization",  # Mismatch
-                "pos_detail_3": "surname",
-            },
+            features=TokenFeatures(
+                pos="noun",
+                pos_detail_1="proper-noun",
+                pos_detail_2="organization",  # Mismatch
+                pos_detail_3="surname",
+            ),
         )
         with self.assertRaisesRegex(RuntimeError, "failed hierarchy check"):
             apply_training_mask([bad_surname_2])
@@ -212,12 +212,12 @@ class TestMasking(unittest.TestCase):
         # Case 3: Country mismatch
         bad_country = Token(
             "Bad",
-            features={
-                "pos": "noun",
-                "pos_detail_1": "proper-noun",
-                "pos_detail_2": "person-name",  # Mismatch
-                "pos_detail_3": "country",
-            },
+            features=TokenFeatures(
+                pos="noun",
+                pos_detail_1="proper-noun",
+                pos_detail_2="person-name",  # Mismatch
+                pos_detail_3="country",
+            ),
         )
         with self.assertRaisesRegex(RuntimeError, "failed hierarchy check"):
             apply_training_mask([bad_country])

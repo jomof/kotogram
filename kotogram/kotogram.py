@@ -26,7 +26,16 @@ import base64
 import re
 from dataclasses import dataclass
 from functools import lru_cache
-from typing import Any, Dict, List, Optional
+from typing import List, Optional, cast
+
+from kotogram.japanese_parser import (
+    ConjugatedFormValue,
+    ConjugatedTypeValue,
+    PosDetail1Value,
+    PosDetail2Value,
+    PosDetail3Value,
+    PosValue,
+)
 
 # Pre-compiled regex patterns for performance
 # Matches standard ⌈...⌉ tokens OR obfuscated [Base64] tokens
@@ -42,12 +51,12 @@ class TokenFeatures:
     """Linguistic features extracted from a kotogram token."""
 
     surface: str = ""
-    pos: str = ""
-    pos_detail_1: str = ""
-    pos_detail_2: str = ""
-    pos_detail_3: str = ""
-    conjugated_type: str = ""
-    conjugated_form: str = ""
+    pos: PosValue = ""
+    pos_detail_1: PosDetail1Value = ""
+    pos_detail_2: PosDetail2Value = ""
+    pos_detail_3: PosDetail3Value = ""
+    conjugated_type: ConjugatedTypeValue = ""
+    conjugated_form: ConjugatedFormValue = ""
     base_orth: str = ""
     lemma: str = ""
     reading: str = ""
@@ -58,23 +67,21 @@ class Token:
 
     __slots__ = ("surface", "features", "_hash")
 
-    def __init__(self, surface: str, features: Optional[Dict[str, Any]] = None):
+    def __init__(self, surface: str, features: Optional[TokenFeatures] = None):
         self.surface = surface
-        self.features = features or {}
-        # Delay hash computation until needed or assume features don't change?
-        # Assuming immutable usage for hashing.
+        self.features = features or TokenFeatures()
         self._hash = 0
 
     def __hash__(self) -> int:
         if self._hash == 0:
-            # Optimized hash: sort only if needed
-            if hasattr(self.features, "items") and self.features:
-                # Use a specific order of keys we care about for identity?
-                # Or just standard tuple of sorted items.
-                # Sorting is expensive (O(N log N)), but N is small (5-10 features).
-                # Current usage: frequent creation.
-                f_items = tuple(sorted(self.features.items()))
-                self._hash = hash((self.surface, f_items))
+            if self.features:
+                # Use dataclasses to converting features to tuple for hashing
+                from dataclasses import astuple
+
+                # We can't import astuple at top level due to circular deps if we aren't careful?
+                # Actually astuple is standard lib.
+                # But TokenFeatures fields are fixed order, so astuple is stable.
+                self._hash = hash((self.surface, astuple(self.features)))
             else:
                 self._hash = hash((self.surface,))
         return self._hash
@@ -83,7 +90,7 @@ class Token:
         if isinstance(other, str):
             return self.surface == other
         if isinstance(other, Token):
-            # Fast path check hash first? No, default __eq__ doesn't used hash for correctness
+            # Fast equality check could try hash first if computed, but standard way:
             if self.surface != other.surface:
                 return False
             return self.features == other.features
@@ -92,15 +99,10 @@ class Token:
     def __repr__(self) -> str:
         return f"Token({self.surface}, {self.features})"
 
-    def get(self, key: str, default: Any = None) -> Any:
-        if key == "surface":
-            return self.surface
-        return self.features.get(key, default)
-
     @property
     def reading(self) -> str:
         """Returns the reading in Hiragana, or surface if not available."""
-        r = self.get("reading")
+        r = self.features.reading
         if not r:
             return self.surface
         # Convert Katakana to Hiragana (simple range check)
@@ -191,7 +193,7 @@ def kotogram_to_japanese(
 
     for token in tokens:
         # Extract features using robust API
-        features = extract_token_features(token)
+        features: TokenFeatures = extract_token_features(token)
         surface = features.surface
         if not surface:
             continue
@@ -257,7 +259,6 @@ def split_kotogram(kotogram: str) -> List[str]:
     ensure_string(kotogram, "kotogram")
 
     # Find all complete token annotations enclosed in ⌈⌉
-    # Pattern matches: ⌈ followed by any chars (non-greedy) until ⌉
     return _RE_KOTOGRAM_TOKEN.findall(kotogram)
 
 
@@ -354,7 +355,7 @@ def extract_token_features(token: str) -> TokenFeatures:
 
         if pos_data:
             parts = pos_data.split(":")
-            feature.pos = parts[0] if len(parts) > 0 else ""
+            feature.pos = cast(PosValue, parts[0] if len(parts) > 0 else "")
 
             for i in range(1, len(parts)):
                 value = parts[i]
@@ -363,32 +364,32 @@ def extract_token_features(token: str) -> TokenFeatures:
 
                 # Check maps (same logic as before)
                 if value in CONJUGATED_FORM_MAP.values():
-                    feature.conjugated_form = value
+                    feature.conjugated_form = cast(ConjugatedFormValue, value)
                 elif value in CONJUGATED_TYPE_MAP.values():
-                    feature.conjugated_type = value
+                    feature.conjugated_type = cast(ConjugatedTypeValue, value)
                 elif value in POS2_MAP.values():
                     if feature.pos_detail_1:
-                        feature.pos_detail_2 = value
+                        feature.pos_detail_2 = cast(PosDetail2Value, value)
                     else:
-                        feature.pos_detail_1 = value
+                        feature.pos_detail_1 = cast(PosDetail1Value, value)
                 elif value in POS3_MAP.values():
-                    feature.pos_detail_3 = value
+                    feature.pos_detail_3 = cast(PosDetail3Value, value)
                 elif value in POS1_MAP.values():
                     if not feature.pos_detail_1:
-                        feature.pos_detail_1 = value
+                        feature.pos_detail_1 = cast(PosDetail1Value, value)
                     else:
-                        feature.pos_detail_2 = value
+                        feature.pos_detail_2 = cast(PosDetail2Value, value)
                 else:
                     if not feature.pos_detail_1:
-                        feature.pos_detail_1 = value
+                        feature.pos_detail_1 = cast(PosDetail1Value, value)
                     elif not feature.pos_detail_2:
-                        feature.pos_detail_2 = value
+                        feature.pos_detail_2 = cast(PosDetail2Value, value)
                     elif not feature.pos_detail_3:
-                        feature.pos_detail_3 = value
+                        feature.pos_detail_3 = cast(PosDetail3Value, value)
                     elif not feature.conjugated_type:
-                        feature.conjugated_type = value
+                        feature.conjugated_type = cast(ConjugatedTypeValue, value)
                     elif not feature.conjugated_form:
-                        feature.conjugated_form = value
+                        feature.conjugated_form = cast(ConjugatedFormValue, value)
 
     # 3. Base: ᵇ to next marker
     if idx_b != -1:

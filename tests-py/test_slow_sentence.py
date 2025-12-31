@@ -32,7 +32,7 @@ class TestSlowSentence(unittest.TestCase):
         self.model.eval()
 
         patcher = patch(
-            "kotogram.analysis._load_style_model",
+            "kotogram.analysis.StyleAnalyzer.load",
             return_value=(self.model, self.tokenizer),
         )
         patcher.start()

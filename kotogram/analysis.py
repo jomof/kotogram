@@ -19,41 +19,45 @@ if TYPE_CHECKING:
     from kotogram.model import StyleClassifier
     from kotogram.tokenizer import Tokenizer
 
-# Global cache for loaded model (lazy loading)
-_STYLE_MODEL: Optional["StyleClassifier"] = None
-_STYLE_TOKENIZER: Optional["Tokenizer"] = None
-_STYLE_MODEL_PATH: str = "models/style"
+
+# Type alias for Knowledge Component distribution (KC ID -> Probability)
+KCDistribution = Dict[int, float]
 
 
-def _load_style_model() -> Tuple["StyleClassifier", "Tokenizer"]:
-    """Load and cache the style classifier model.
+class StyleAnalyzer:
+    """Encapsulates style analysis model and tokenizer state."""
 
-    Returns:
-        Tuple of (model, tokenizer) for style classification.
+    def __init__(self) -> None:
+        self._model: Optional["StyleClassifier"] = None
+        self._tokenizer: Optional["Tokenizer"] = None
 
-    Raises:
-        FileNotFoundError: If model files are not found at the expected path.
-    """
-    global _STYLE_MODEL, _STYLE_TOKENIZER  # pylint: disable=global-statement
+    def load(self) -> Tuple["StyleClassifier", "Tokenizer"]:
+        """Load and cache the style classifier model."""
+        if self._model is None or self._tokenizer is None:
+            from kotogram.model import load_default_style_model, load_model
 
-    if _STYLE_MODEL is None or _STYLE_TOKENIZER is None:
-        from kotogram.model import load_default_style_model, load_model
+            # Priority 1: Check for local model in style-output dir
+            model_dir = locations.get_style_output_dir()
+            if os.path.exists(os.path.join(model_dir, "model.pt")):
+                self._model, self._tokenizer = load_model(model_dir)
+            else:
+                # Priority 2: Fall back to package-default model
+                self._model, self._tokenizer = load_default_style_model()
 
-        # Priority 1: Check for local model in style-output dir (handles TRAIN_ROOT)
-        model_dir = locations.get_style_output_dir()
-        if os.path.exists(os.path.join(model_dir, "model.pt")):
-            _STYLE_MODEL, _STYLE_TOKENIZER = load_model(model_dir)
-        else:
-            # Priority 2: Fall back to package-default model
-            _STYLE_MODEL, _STYLE_TOKENIZER = load_default_style_model()
+        return self._model, self._tokenizer
 
-    return _STYLE_MODEL, _STYLE_TOKENIZER
+    def is_loaded(self) -> bool:
+        """Check if model is currently loaded."""
+        return self._model is not None
+
+
+# Global singleton instance
+_ANALYZER = StyleAnalyzer()
 
 
 def check_model_available() -> bool:
     """Check if the style model is available for loading."""
-    # Check if already loaded
-    if _STYLE_MODEL is not None:
+    if _ANALYZER.is_loaded():
         return True
 
     from kotogram.model import is_default_style_model_available
@@ -85,7 +89,7 @@ class GrammarAnalysis:
     # Grammaticality
     is_grammatic: bool
     grammaticality_score: float  # Probability of being grammatic
-    kc_top: Optional[Dict[int, float]] = None  # Top-K KC {id: prob}
+    kc_top: Optional[KCDistribution] = None  # Top-K KC {id: prob}
 
     def to_json(self) -> str:
         """Serialize analysis result to JSON string."""
@@ -130,7 +134,7 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     from kotogram.model import REGISTER_ID_TO_LABEL
     from kotogram.tokenizer import FEATURE_FIELDS
 
-    model, tokenizer = _load_style_model()
+    model, tokenizer = _ANALYZER.load()
 
     # Encode all kotograms
     encoded_list = [

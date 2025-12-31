@@ -1,11 +1,31 @@
 from dataclasses import dataclass, field
-from typing import Any, Dict, List
+from typing import Any, Dict, List, TypedDict
 
 import torch
 from torch.utils.data import DataLoader
 
 from kotogram.model import StyleClassifier
 from kotogram.tokenizer import FEATURE_FIELDS
+
+
+class EvalResultDict(TypedDict):
+    """Serialization format for EvalResult."""
+
+    formality_val_preds: List[float]
+    formality_val_labels: List[float]
+    formality_prag_preds: List[int]
+    formality_prag_labels: List[int]
+    gender_val_preds: List[float]
+    gender_val_labels: List[float]
+    gender_prag_preds: List[int]
+    gender_prag_labels: List[int]
+    grammaticality_preds: List[int]
+    grammaticality_labels: List[int]
+    register_preds: List[List[int]]
+    register_labels: List[List[int]]
+    sentences: List[str]
+    kotograms: List[str]
+    indices: List[int]
 
 
 @dataclass
@@ -34,9 +54,7 @@ class EvalResult:
     kotograms: List[str] = field(default_factory=list)
     indices: List[int] = field(default_factory=list)
 
-    # Store raw logits if needed later? Maybe too heavy.
-
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> EvalResultDict:
         """Convert to dictionary for backward compatibility."""
         return {
             "formality_val_preds": self.formality_val_preds,
@@ -108,20 +126,29 @@ class Evaluator:
         try:
             with torch.no_grad():
                 # Group accumulators to avoid too-many-locals
-                preds: Dict[str, List[Any]] = {
+                # Separate accumulators for better type safety
+                preds_val: Dict[str, List[torch.Tensor]] = {
                     "formality_val": [],
-                    "formality_val_targets": [],
-                    "formality_prag": [],
-                    "formality_prag_targets": [],
                     "gender_val": [],
-                    "gender_val_targets": [],
+                }
+                preds_class: Dict[str, List[torch.Tensor]] = {
+                    "formality_prag": [],
                     "gender_prag": [],
-                    "gender_prag_targets": [],
                     "grammaticality": [],
-                    "grammaticality_targets": [],
                     "register": [],
-                    "register_targets": [],
-                    "indices": [],
+                }
+                preds_indices: List[List[int]] = []
+
+                # Targets (Async transfer)
+                targets_val: Dict[str, List[torch.Tensor]] = {
+                    "formality_val": [],
+                    "gender_val": [],
+                }
+                targets_class: Dict[str, List[torch.Tensor]] = {
+                    "formality_prag": [],
+                    "gender_prag": [],
+                    "grammaticality": [],
+                    "register": [],
                 }
 
                 for batch in loader:
@@ -135,7 +162,7 @@ class Evaluator:
 
                     # Targets (Async transfer)
                     # pylint: disable=duplicate-code
-                    targets = {
+                    batch_targets = {
                         "formality_val": batch.formality_value.to(self.device),
                         "formality_prag": batch.formality_pragmatic.to(self.device),
                         "gender_val": batch.gender_value.to(self.device),
@@ -151,34 +178,38 @@ class Evaluator:
                     register_preds = (prediction.register_probs > 0.5).long()
 
                     # Accumulate tensors (detach to save memory)
-                    preds["formality_val"].append(
+                    preds_val["formality_val"].append(
                         prediction.formality_value.squeeze(-1)
                     )
-                    preds["formality_val_targets"].append(targets["formality_val"])
+                    targets_val["formality_val"].append(batch_targets["formality_val"])
 
-                    preds["formality_prag"].append(
+                    preds_class["formality_prag"].append(
                         prediction.formality_pragmatic_probs.argmax(dim=-1)
                     )
-                    preds["formality_prag_targets"].append(targets["formality_prag"])
+                    targets_class["formality_prag"].append(
+                        batch_targets["formality_prag"]
+                    )
 
-                    preds["gender_val"].append(prediction.gender_value.squeeze(-1))
-                    preds["gender_val_targets"].append(targets["gender_val"])
+                    preds_val["gender_val"].append(prediction.gender_value.squeeze(-1))
+                    targets_val["gender_val"].append(batch_targets["gender_val"])
 
-                    preds["gender_prag"].append(
+                    preds_class["gender_prag"].append(
                         prediction.gender_pragmatic_probs.argmax(dim=-1)
                     )
-                    preds["gender_prag_targets"].append(targets["gender_prag"])
+                    targets_class["gender_prag"].append(batch_targets["gender_prag"])
 
-                    preds["grammaticality"].append(
+                    preds_class["grammaticality"].append(
                         prediction.grammaticality_probs.argmax(dim=-1)
                     )
-                    preds["grammaticality_targets"].append(targets["grammaticality"])
+                    targets_class["grammaticality"].append(
+                        batch_targets["grammaticality"]
+                    )
 
-                    preds["register"].append(register_preds)
-                    preds["register_targets"].append(targets["register"].long())
+                    preds_class["register"].append(register_preds)
+                    targets_class["register"].append(batch_targets["register"].long())
 
                     if batch.indices is not None:
-                        preds["indices"].append(batch.indices)
+                        preds_indices.append(batch.indices)
 
                     result.sentences.extend(batch.original_sentence or [])
                     result.kotograms.extend(batch.kotogram or [])
@@ -187,53 +218,32 @@ class Evaluator:
                         progress_context.update(task_id, advance=1)
 
                 # Consolidate results (Single synchronization point)
-                if preds["formality_val"]:
-                    result.formality_val_preds = torch.cat(
-                        [x.cpu() for x in preds["formality_val"]]
-                    ).tolist()
-                    result.formality_val_labels = torch.cat(
-                        [x.cpu() for x in preds["formality_val_targets"]]
-                    ).tolist()
+                if preds_val["formality_val"]:
+                    # Helper to cat list of tensors
+                    def cat(ts: List[torch.Tensor]) -> List[Any]:
+                        return torch.cat([x.cpu() for x in ts]).tolist()
 
-                    result.formality_prag_preds = torch.cat(
-                        [x.cpu() for x in preds["formality_prag"]]
-                    ).tolist()
-                    result.formality_prag_labels = torch.cat(
-                        [x.cpu() for x in preds["formality_prag_targets"]]
-                    ).tolist()
+                    result.formality_val_preds = cat(preds_val["formality_val"])
+                    result.formality_val_labels = cat(targets_val["formality_val"])
 
-                    result.gender_val_preds = torch.cat(
-                        [x.cpu() for x in preds["gender_val"]]
-                    ).tolist()
-                    result.gender_val_labels = torch.cat(
-                        [x.cpu() for x in preds["gender_val_targets"]]
-                    ).tolist()
+                    result.formality_prag_preds = cat(preds_class["formality_prag"])
+                    result.formality_prag_labels = cat(targets_class["formality_prag"])
 
-                    result.gender_prag_preds = torch.cat(
-                        [x.cpu() for x in preds["gender_prag"]]
-                    ).tolist()
-                    result.gender_prag_labels = torch.cat(
-                        [x.cpu() for x in preds["gender_prag_targets"]]
-                    ).tolist()
+                    result.gender_val_preds = cat(preds_val["gender_val"])
+                    result.gender_val_labels = cat(targets_val["gender_val"])
 
-                    result.grammaticality_preds = torch.cat(
-                        [x.cpu() for x in preds["grammaticality"]]
-                    ).tolist()
-                    result.grammaticality_labels = torch.cat(
-                        [x.cpu() for x in preds["grammaticality_targets"]]
-                    ).tolist()
+                    result.gender_prag_preds = cat(preds_class["gender_prag"])
+                    result.gender_prag_labels = cat(targets_class["gender_prag"])
 
-                    result.register_preds = torch.cat(
-                        [x.cpu() for x in preds["register"]]
-                    ).tolist()
-                    result.register_labels = torch.cat(
-                        [x.cpu() for x in preds["register_targets"]]
-                    ).tolist()
+                    result.grammaticality_preds = cat(preds_class["grammaticality"])
+                    result.grammaticality_labels = cat(targets_class["grammaticality"])
 
-                    if preds["indices"]:
-                        result.indices = torch.cat(
-                            [x.cpu() for x in preds["indices"]]
-                        ).tolist()
+                    result.register_preds = cat(preds_class["register"])
+                    result.register_labels = cat(targets_class["register"])
+
+                    if preds_indices:
+                        val = torch.cat([torch.tensor(x) for x in preds_indices])
+                        result.indices = val.tolist()
 
         except KeyboardInterrupt:
             self.console.print("\n[bold red]Evaluation interrupted by user.[/bold red]")

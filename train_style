@@ -20,7 +20,7 @@ import os
 import subprocess
 import sys
 import time
-from typing import List, Optional, Any, Dict, IO
+from typing import List, Optional, Any, Dict, IO, cast
 
 
 from kotogram import locations
@@ -376,7 +376,7 @@ def generate_and_save_config(
     import json
 
     assert model_config is not None
-    combined_config = model_config.to_dict()
+    combined_config = cast(Dict[str, Any], model_config.to_dict())
     combined_config["trainer"] = trainer_config.to_dict()
 
     if args.show_config:

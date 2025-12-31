@@ -1,6 +1,6 @@
 """Sudachi-based implementation of Japanese parser."""
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Mapping, Optional
 
 from kotogram.exceptions import MissingMappingError
 from kotogram.kotogram import Token
@@ -40,7 +40,9 @@ class SudachiJapaneseParser(JapaneseParser):
         self.tokenizer = self.dict_obj.create()
         self.validate = validate
 
-    def japanese_to_kotogram(self, text: str, fmt: str = KotogramFormat.DEFAULT) -> str:
+    def japanese_to_kotogram(
+        self, text: str, fmt: Literal["Default", "TrainingMask"] = "Default"
+    ) -> str:
         """Convert Japanese text to kotogram compact representation.
 
         Args:
@@ -73,11 +75,12 @@ class SudachiJapaneseParser(JapaneseParser):
         if fmt == KotogramFormat.TRAINING_MASK:
             from kotogram.masking import apply_training_mask
 
-            apply_training_mask(tokens)
+            tokens = apply_training_mask(tokens)
 
         # Serialize to kotogram string
         return self._tokens_to_string(tokens)
 
+    # TODO(type safety): Define stub file for SudachiPy or use Any until Vulture supports Protocol usage better.
     def _to_kotogram_tokens(self, tokens: List[Any]) -> List["Token"]:
         # pylint: disable=cell-var-from-loop
         """Convert Sudachi tokens to Kotogram Token objects.
@@ -88,6 +91,7 @@ class SudachiJapaneseParser(JapaneseParser):
         Returns:
             List of kotogram.Token objects
         """
+        from kotogram.kotogram import TokenFeatures
 
         k_tokens = []
 
@@ -100,7 +104,8 @@ class SudachiJapaneseParser(JapaneseParser):
 
             # Parse POS tuple
             # Format: (POS, POS1, POS2, POS3, conjugation_type, conjugation_form)
-            features = {}
+            # Use a dict temporarily to accumulate features before constructing TokenFeatures
+            feature_dict: Dict[str, Any] = {}
 
             def add(field: str, value: Optional[str]) -> None:
                 """Add field to token dict if value is not empty."""
@@ -109,10 +114,10 @@ class SudachiJapaneseParser(JapaneseParser):
                 # Allow "*" specifically for lemma to indicate explicit surface identity
                 if value == "*" and field != "lemma":
                     return
-                features[field] = value
+                feature_dict[field] = value
 
             def validated_lookup(
-                mapping: Dict[str, str], key: str, map_name: str
+                mapping: Mapping[str, str], key: str, map_name: str
             ) -> Optional[str]:
                 """Lookup with validation support."""
                 if key in ("", "*"):
@@ -163,14 +168,16 @@ class SudachiJapaneseParser(JapaneseParser):
             # Explicitly use "*" if lemma matches surface
             add("lemma", dictionary_form if dictionary_form != surface else "*")
             add(
-                "base_orthography",
+                "base_orth",
                 dictionary_form if dictionary_form != surface else None,
             )
             add(
-                "surface_pronunciation",
+                "reading",
                 reading_form if reading_form != surface else None,
             )
 
+            # Construct TokenFeatures dataclass from dict
+            features = TokenFeatures(**feature_dict)
             k_tokens.append(Token(surface, features=features))
 
         return k_tokens
@@ -190,19 +197,19 @@ class SudachiJapaneseParser(JapaneseParser):
         )
 
         surface = token.surface
-        features = token.features or {}
+        features = token.features
 
-        # Access features with defaults
-        pos = features.get("pos")
-        pos_detail_1 = features.get("pos_detail_1")
-        pos_detail_2 = features.get("pos_detail_2")
-        pos_detail_3 = features.get("pos_detail_3")
+        # Access features with defaults via named properties (TokenFeatures default is "")
+        pos = features.pos
+        pos_detail_1 = features.pos_detail_1
+        pos_detail_2 = features.pos_detail_2
+        pos_detail_3 = features.pos_detail_3
 
-        conjugated_type = features.get("conjugated_type")
-        conjugated_form = features.get("conjugated_form")
-        lemma = features.get("lemma")
-        base = features.get("base_orthography")
-        pronunciation = features.get("surface_pronunciation")
+        conjugated_type = features.conjugated_type
+        conjugated_form = features.conjugated_form
+        lemma = features.lemma
+        base = features.base_orth
+        pronunciation = features.reading
 
         pos_code = pos if pos else ""
 
