@@ -82,6 +82,16 @@ class TrainingMetrics:
 
 
 @dataclass
+class KCDiagnosticHeadStats:
+    """Accumulator for KC head statistics."""
+
+    pos_logits: List[float] = field(default_factory=list)
+    neg_logits: List[float] = field(default_factory=list)
+    p_sum: float = 0.0
+    count: int = 0
+
+
+@dataclass
 class KCMetricsAccumulator:
     """Accumulate KC probe metrics."""
 
@@ -94,7 +104,7 @@ class KCMetricsAccumulator:
     sum_act_dens: float = 0.0
     topk_hist: torch.Tensor = field(default_factory=lambda: torch.tensor([]))
     top1_hist: torch.Tensor = field(default_factory=lambda: torch.tensor([]))
-    head_samples: Dict[str, Dict[str, Any]] = field(default_factory=dict)
+    head_samples: Dict[str, KCDiagnosticHeadStats] = field(default_factory=dict)
 
 
 @dataclass
