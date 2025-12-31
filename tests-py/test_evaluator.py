@@ -51,7 +51,8 @@ class TestEvaluator(unittest.TestCase):
 
     def test_evaluate_batch(self):
         # Create a dummy batch
-        batch = {
+        batch = unittest.mock.Mock()
+        batch.feature_inputs = {
             "input_ids_surface": torch.tensor([[1, 2], [3, 4]]),
             "input_ids_lemma": torch.tensor([[1, 2], [3, 4]]),
             "input_ids_pos": torch.tensor([[1, 2], [3, 4]]),
@@ -62,19 +63,20 @@ class TestEvaluator(unittest.TestCase):
             "input_ids_conjugated_form": torch.tensor([[1, 2], [3, 4]]),
             "input_ids_base_orth": torch.tensor([[1, 2], [3, 4]]),
             "input_ids_reading": torch.tensor([[1, 2], [3, 4]]),
-            "attention_mask": torch.tensor([[1, 1], [1, 1]]),
-            "formality_value": torch.tensor([0.0, 1.0]),
-            "formality_pragmatic": torch.tensor([0, 1]),
-            "gender_value": torch.tensor([0.0, 1.0]),
-            "gender_pragmatic": torch.tensor([0, 1]),
-            "grammaticality_labels": torch.tensor([1, 1]),
-            "register_labels": torch.zeros(2, 9),
-            "original_sentence": ["Sentence 1", "Sentence 2"],
-            "kotogram": [
-                "私/代名詞/ワタシ/ワタシ",
-                "彼/代名詞/カレ/カレ",
-            ],  # Realistic dummy kotograms
         }
+        batch.attention_mask = torch.tensor([[1, 1], [1, 1]])
+        batch.formality_value = torch.tensor([0.0, 1.0])
+        batch.formality_pragmatic = torch.tensor([0, 1])
+        batch.gender_value = torch.tensor([0.0, 1.0])
+        batch.gender_pragmatic = torch.tensor([0, 1])
+        batch.grammaticality_labels = torch.tensor([1, 1])
+        batch.register_labels = torch.zeros(2, 9)
+        batch.indices = None
+        batch.original_sentence = ["Sentence 1", "Sentence 2"]
+        batch.kotogram = [
+            "私/代名詞/ワタシ/ワタシ",
+            "彼/代名詞/カレ/カレ",
+        ]  # Realistic dummy kotograms
 
         # Mock DataLoader
         loader = [batch]

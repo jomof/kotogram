@@ -1,3 +1,5 @@
+import unittest.mock
+
 import torch
 
 from kotogram.model import KCHead, ModelConfig, StyleClassifier
@@ -128,15 +130,16 @@ def test_style_classifier_with_kc_mode():
 
 def test_create_kc_batch():
     tokenizer = MockTokenizer()
-    batch = {
+    batch = unittest.mock.Mock()
+    batch.feature_inputs = {
         "input_ids_pos": torch.tensor(
             [[1, 10, 11, 2], [1, 12, 0, 0]]
         ),  # Example with padding
         "input_ids_surface": torch.tensor(
             [[1, 100, 101, 2], [1, 102, 0, 0]]
         ),  # Surface needed for batch size
-        "attention_mask": torch.tensor([[1, 1, 1, 1], [1, 1, 0, 0]]),
     }
+    batch.attention_mask = torch.tensor([[1, 1, 1, 1], [1, 1, 0, 0]])
     target_specs = {"pos": 50}
 
     targets = create_kc_batch(batch, tokenizer, target_specs)

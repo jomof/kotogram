@@ -244,6 +244,34 @@ class KCProbeEvaluationResult:
 
 
 @dataclass
+class TrainingBatch:
+    """Typed batch for training."""
+
+    feature_inputs: Dict[str, torch.Tensor]  # e.g. "kanji" -> tensor
+    attention_mask: torch.Tensor
+    formality_value: torch.Tensor
+    formality_pragmatic: torch.Tensor
+    gender_value: torch.Tensor
+    gender_pragmatic: torch.Tensor
+    grammaticality_labels: torch.Tensor
+    register_labels: torch.Tensor
+    indices: torch.Tensor
+    original_sentence: List[str]
+    kotogram: List[str]
+
+
+@dataclass
+class TrainingLosses:
+    """Typed losses for training step."""
+
+    loss: torch.Tensor
+    f_loss: torch.Tensor
+    g_loss: torch.Tensor
+    gram_loss: torch.Tensor
+    reg_loss: torch.Tensor
+
+
+@dataclass
 class KCTrainingHistory(TrainingHistory):
     """Accumulated training history for KC training."""
 

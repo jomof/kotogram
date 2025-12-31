@@ -574,10 +574,11 @@ def test_create_kc_batch_dense_for_small_heads():
     """Test create_kc_batch returns dense targets for small heads (vocab <= 4096)."""
     from train.trainer import create_kc_batch
 
-    batch = {
+    batch = unittest.mock.Mock()
+    batch.feature_inputs = {
         "input_ids_lemma": torch.tensor([[4, 5, 6, 0], [10, 11, 0, 0]]),
-        "attention_mask": torch.tensor([[1, 1, 1, 0], [1, 1, 0, 0]]),
     }
+    batch.attention_mask = torch.tensor([[1, 1, 1, 0], [1, 1, 0, 0]])
     target_specs = {"lemma": 100}  # Small head: 100 < 4096
 
     tokenizer = unittest.mock.Mock(pad_id=0, unk_id=1, cls_id=2)
@@ -594,10 +595,11 @@ def test_create_kc_batch_sparse_for_large_heads():
     """Test create_kc_batch returns sparse indices for large heads (vocab > 4096)."""
     from train.trainer import create_kc_batch
 
-    batch = {
+    batch = unittest.mock.Mock()
+    batch.feature_inputs = {
         "input_ids_lemma": torch.tensor([[4, 5, 6, 0], [10, 11, 0, 0]]),
-        "attention_mask": torch.tensor([[1, 1, 1, 0], [1, 1, 0, 0]]),
     }
+    batch.attention_mask = torch.tensor([[1, 1, 1, 0], [1, 1, 0, 0]])
     target_specs = {"lemma": 10000}  # Large head: 10000 > 4096
 
     tokenizer = unittest.mock.Mock(pad_id=0, unk_id=1, cls_id=2)

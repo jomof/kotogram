@@ -52,7 +52,9 @@ from train.types import (
     KCTrainingHistory,
     TrainEpochResult,
     TrainEpochStats,
+    TrainingBatch,
     TrainingHistory,
+    TrainingLosses,
     TrainingMetrics,
     TrainingPredictions,
 )
@@ -179,7 +181,6 @@ class KCTrainer:
                 collate_fn,
                 pad_id=pad_id,
                 max_seq_len=max_seq_len,
-                vocab_sizes=dataset.tokenizer.get_vocab_sizes(),
             ),
             num_workers=dl_config.num_workers,
             pin_memory=dl_config.pin_memory,
@@ -451,13 +452,11 @@ class KCTrainer:
             if i >= num_batches:
                 break
 
-            kc_targets = batch
-            if not any(k.startswith("kc_") for k in batch):
-                kc_targets = create_kc_batch(
-                    batch=batch,
-                    tokenizer=self.dataset.tokenizer,
-                    target_specs=m.config.kc_target_specs,
-                )
+            kc_targets = create_kc_batch(
+                batch=batch,
+                tokenizer=self.dataset.tokenizer,
+                target_specs=m.config.kc_target_specs,
+            )
 
             for name, vocab_size in m.config.kc_target_specs.items():
                 dense_key = f"kc_targets_{name}"
@@ -758,23 +757,16 @@ class KCTrainer:
             raw = self.model.module if self.is_distributed else self.model
             m = cast(StyleClassifierWithKC, raw)
 
-            if not any(
-                k.startswith("kc_targets_") or k.startswith("kc_pos_inds_")
-                for k in batch
-            ):
-                kc_targets = create_kc_batch(
-                    batch=batch,
-                    tokenizer=self.dataset.tokenizer,
-                    target_specs=m.config.kc_target_specs,
-                )
-                batch.update(kc_targets)
+            kc_targets = create_kc_batch(
+                batch=batch,
+                tokenizer=self.dataset.tokenizer,
+                target_specs=m.config.kc_target_specs,
+            )
 
             field_inputs = {
-                k: v.to(self.device)
-                for k, v in batch.items()
-                if k.startswith("input_ids_")
+                k: v.to(self.device) for k, v in batch.feature_inputs.items()
             }
-            attention_mask = batch["attention_mask"].to(self.device)
+            attention_mask = batch.attention_mask.to(self.device)
 
             gumbel_scale = 0.0
             if epoch < self.freeze_encoder_epochs:
@@ -931,7 +923,7 @@ class KCTrainer:
                                 outputs["kc_probs"],
                                 outputs["sparse_activations"],
                                 outputs["target_logits"],
-                                batch,
+                                kc_targets,
                                 m.config.kc_topk,
                                 m.config.kc_vocab_size,
                                 self.device,
@@ -1144,7 +1136,7 @@ class KCTrainer:
 
                             for h in priority:
                                 if h in all_heads:
-                                    s = get_head_stat(h, batch, outputs)
+                                    s = get_head_stat(h, kc_targets, outputs)
                                     if s:
                                         selected_stats.append(s)
                                         seen.add(h)
@@ -1153,7 +1145,7 @@ class KCTrainer:
 
                             other_stats = []
                             for h in others:
-                                s = get_head_stat(h, batch, outputs)
+                                s = get_head_stat(h, kc_targets, outputs)
                                 if s:
                                     other_stats.append(s)
 
@@ -1202,9 +1194,9 @@ class KCTrainer:
 
                     for name, logits in outputs["target_logits"].items():
                         target_key = f"kc_targets_{name}"
-                        if target_key not in batch:
+                        if target_key not in kc_targets:
                             continue
-                        targets = batch[target_key].to(self.device).float()
+                        targets = kc_targets[target_key].to(self.device).float()
                         with torch.no_grad():
                             pos_mask = targets > 0.5
                             neg_mask = ~pos_mask
@@ -1228,8 +1220,8 @@ class KCTrainer:
                     mask_key = f"kc_pos_mask_{name}"
                     vocab_size = int(m.config.kc_target_specs.get(name, 0))
 
-                    if target_key in batch:
-                        targets = batch[target_key].to(self.device).float()
+                    if target_key in kc_targets:
+                        targets = kc_targets[target_key].to(self.device).float()
                         logits_f = logits.float()
 
                         batch_size_f, vocab_size_f = logits_f.shape
@@ -1320,9 +1312,9 @@ class KCTrainer:
                         num_struct += 1
                         batch_kc_losses[name] = task_loss.item()
 
-                    elif pos_key in batch and mask_key in batch:
-                        pos_inds = batch[pos_key].to(self.device)
-                        pos_mask_t = batch[mask_key].to(self.device)
+                    elif pos_key in kc_targets and mask_key in kc_targets:
+                        pos_inds = kc_targets[pos_key].to(self.device)
+                        pos_mask_t = kc_targets[mask_key].to(self.device)
                         logits_f = logits.float()
 
                         task_loss = self._bce_sampled_from_sparse(
@@ -1342,37 +1334,37 @@ class KCTrainer:
                         batch_kc_losses[name] = task_loss.item()
 
                     elif name == "formality_value":
-                        targets = batch["formality_value"].to(self.device)
+                        targets = batch.formality_value.to(self.device)
                         task_loss = self.mse_loss(logits.squeeze(-1), targets)
                         label_loss += task_loss
                         num_label += 1
                         batch_kc_losses[name] = task_loss.item()
                     elif name == "formality_pragmatic":
-                        targets = batch["formality_pragmatic"].to(self.device)
+                        targets = batch.formality_pragmatic.to(self.device)
                         task_loss = self.ce_loss(logits, targets)
                         label_loss += task_loss
                         num_label += 1
                         batch_kc_losses[name] = task_loss.item()
                     elif name == "gender_value":
-                        targets = batch["gender_value"].to(self.device)
+                        targets = batch.gender_value.to(self.device)
                         task_loss = self.mse_loss(logits.squeeze(-1), targets)
                         label_loss += task_loss
                         num_label += 1
                         batch_kc_losses[name] = task_loss.item()
                     elif name == "gender_pragmatic":
-                        targets = batch["gender_pragmatic"].to(self.device)
+                        targets = batch.gender_pragmatic.to(self.device)
                         task_loss = self.ce_loss(logits, targets)
                         label_loss += task_loss
                         num_label += 1
                         batch_kc_losses[name] = task_loss.item()
                     elif name == "grammaticality":
-                        targets = batch["grammaticality_labels"].to(self.device)
+                        targets = batch.grammaticality_labels.to(self.device)
                         task_loss = self.ce_loss(logits, targets)
                         label_loss += task_loss
                         num_label += 1
                         batch_kc_losses[name] = task_loss.item()
                     elif name == "register":
-                        targets = batch["register_labels"].to(self.device)
+                        targets = batch.register_labels.to(self.device)
                         task_loss = self.default_bce_loss(logits, targets)
                         label_loss += task_loss
                         num_label += 1
@@ -2156,20 +2148,20 @@ class Trainer:
         return loss_masked.sum() / (mask.sum() * loss_raw.size(-1) + 1e-6)
 
     def _unpack_training_batch(
-        self, batch: Dict[str, Any]
-    ) -> Tuple[Dict[str, Any], torch.Tensor, Dict[str, torch.Tensor]]:
+        self, batch: TrainingBatch
+    ) -> Tuple[Dict[str, torch.Tensor], torch.Tensor, Dict[str, torch.Tensor]]:
         field_inputs = {
-            f"input_ids_{f}": batch[f"input_ids_{f}"].to(self.device)
+            f"input_ids_{f}": batch.feature_inputs[f"input_ids_{f}"].to(self.device)
             for f in FEATURE_FIELDS
         }
-        attention_mask = batch["attention_mask"].to(self.device)
+        attention_mask = batch.attention_mask.to(self.device)
         targets = {
-            "f_val": batch["formality_value"].to(self.device),
-            "f_prag": batch["formality_pragmatic"].to(self.device),
-            "g_val": batch["gender_value"].to(self.device),
-            "g_prag": batch["gender_pragmatic"].to(self.device),
-            "gram": batch["grammaticality_labels"].to(self.device),
-            "reg": batch["register_labels"].to(self.device),
+            "f_val": batch.formality_value.to(self.device),
+            "f_prag": batch.formality_pragmatic.to(self.device),
+            "g_val": batch.gender_value.to(self.device),
+            "g_prag": batch.gender_pragmatic.to(self.device),
+            "gram": batch.grammaticality_labels.to(self.device),
+            "reg": batch.register_labels.to(self.device),
         }
         return field_inputs, attention_mask, targets
 
@@ -2213,7 +2205,7 @@ class Trainer:
 
     def _compute_training_loss(
         self, outputs: Tuple[torch.Tensor, ...], targets: Dict[str, torch.Tensor]
-    ) -> Dict[str, Any]:
+    ) -> TrainingLosses:
         is_gram = targets["gram"] == 1
         is_f_prag = targets["f_prag"] == 1
         is_g_prag = targets["g_prag"] == 1
@@ -2230,15 +2222,15 @@ class Trainer:
             + self.config.register_loss_weight * reg_loss
         ) / self.config.grad_accum_steps
 
-        return {
-            "loss": loss,
-            "f_loss": f_loss,
-            "g_loss": g_loss,
-            "gram_loss": gram_loss,
-            "reg_loss": reg_loss,
-        }
+        return TrainingLosses(
+            loss=loss,
+            f_loss=f_loss,
+            g_loss=g_loss,
+            gram_loss=gram_loss,
+            reg_loss=reg_loss,
+        )
 
-    def _train_batch(self, batch: Dict[str, Any], batch_idx: int) -> Dict[str, float]:
+    def _train_batch(self, batch: TrainingBatch, batch_idx: int) -> Dict[str, float]:
         field_inputs, attention_mask, targets = self._unpack_training_batch(batch)
 
         if batch_idx % self.config.grad_accum_steps == 0:
@@ -2246,7 +2238,7 @@ class Trainer:
 
         outputs = self.model(field_inputs, attention_mask)
         losses = self._compute_training_loss(outputs, targets)
-        loss = losses["loss"]
+        loss = losses.loss
 
         loss.backward()
 
@@ -2267,10 +2259,10 @@ class Trainer:
 
         return {
             "loss": _detach(loss) * gad,
-            "formality_loss": _detach(losses["f_loss"]),
-            "gender_loss": _detach(losses["g_loss"]),
-            "grammaticality_loss": _detach(losses["gram_loss"]),
-            "register_loss": _detach(losses["reg_loss"]),
+            "formality_loss": _detach(losses.f_loss),
+            "gender_loss": _detach(losses.g_loss),
+            "grammaticality_loss": _detach(losses.gram_loss),
+            "register_loss": _detach(losses.reg_loss),
         }
 
     def train_epoch(self, epoch: int) -> Tuple[float, float, float, float, float]:
@@ -2436,14 +2428,23 @@ class Trainer:
         self,
         outputs: Tuple[torch.Tensor, ...],
         targets: Dict[str, torch.Tensor],
-        batch: Dict[str, Any],
+        batch: TrainingBatch,
         metrics_sum: Dict[str, float],
         all_preds: Dict[str, List[Any]],
     ) -> None:
         losses = self._compute_training_loss(outputs, targets)
         preds = self._extract_predictions(outputs, targets)
 
-        for k, v in losses.items():
+        # Helper to convert TrainingLosses dataclass to dict for summation
+        losses_dict = {
+            "loss": losses.loss,
+            "f_loss": losses.f_loss,
+            "g_loss": losses.g_loss,
+            "gram_loss": losses.gram_loss,
+            "reg_loss": losses.reg_loss,
+        }
+
+        for k, v in losses_dict.items():
             val = v.item() if isinstance(v, torch.Tensor) else v
             metrics_sum[k] = metrics_sum.get(k, 0.0) + val
 
@@ -2460,8 +2461,8 @@ class Trainer:
         all_preds["reg_p"].extend(preds.reg_p)
         all_preds["reg_l"].extend(preds.reg_l)
         all_preds["is_valid"].extend(preds.is_valid)
-        all_preds["sentences"].extend(batch.get("original_sentence", []))
-        all_preds["kotograms"].extend(batch.get("kotogram", []))
+        all_preds["sentences"].extend(batch.original_sentence)
+        all_preds["kotograms"].extend(batch.kotogram)
 
     def train(
         self,
@@ -2584,14 +2585,14 @@ class Trainer:
 
     def _build_kc_probe_loader(
         self, _max_batches: int = 25
-    ) -> Optional[DataLoader[Dict[str, Any]]]:
-        return cast(DataLoader[Dict[str, Any]], self.val_loader)
+    ) -> Optional[DataLoader[TrainingBatch]]:
+        return cast(DataLoader[TrainingBatch], self.val_loader)
 
     def _update_kc_metrics(
         self,
         acc: KCMetricsAccumulator,
         outputs: Dict[str, Any],
-        batch: Dict[str, Any],
+        batch: TrainingBatch,
         config: KCProbeConfig,
     ) -> None:
         batch_size = outputs["kc_probs"].shape[0]
@@ -2676,7 +2677,7 @@ class Trainer:
         self,
         acc: KCMetricsAccumulator,
         outputs: Dict[str, Any],
-        batch: Dict[str, Any],
+        batch: TrainingBatch,
         config: KCProbeConfig,
     ) -> None:
         kc_targets = create_kc_batch(
@@ -2876,7 +2877,7 @@ class Trainer:
 
     def _run_kc_probe_loop(
         self,
-        probe_loader: DataLoader[Dict[str, Any]],
+        probe_loader: DataLoader[TrainingBatch],
         acc: KCMetricsAccumulator,
         config: KCProbeConfig,
         m: StyleClassifierWithKC,
@@ -2889,11 +2890,9 @@ class Trainer:
                     break
 
                 field_inputs = {
-                    k: v.to(self.device)
-                    for k, v in batch.items()
-                    if k.startswith("input_ids_")
+                    k: v.to(self.device) for k, v in batch.feature_inputs.items()
                 }
-                attention_mask = batch["attention_mask"].to(self.device)
+                attention_mask = batch.attention_mask.to(self.device)
 
                 outputs = m(
                     field_inputs,
@@ -2907,7 +2906,7 @@ class Trainer:
 
     def evaluate_kc_probe(
         self,
-        probe_loader: DataLoader[Dict[str, Any]],
+        probe_loader: DataLoader[TrainingBatch],
         max_batches: int = 25,
         temperature: float = 1.5,
         tau_usage: float = 2.0,

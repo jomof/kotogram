@@ -126,22 +126,22 @@ class Evaluator:
 
                 for batch in loader:
                     field_inputs = {
-                        f"input_ids_{f}": batch[f"input_ids_{f}"].to(self.device)
+                        f"input_ids_{f}": batch.feature_inputs[f"input_ids_{f}"].to(
+                            self.device
+                        )
                         for f in FEATURE_FIELDS
                     }
-                    attention_mask = batch["attention_mask"].to(self.device)
+                    attention_mask = batch.attention_mask.to(self.device)
 
                     # Targets (Async transfer)
                     # pylint: disable=duplicate-code
                     targets = {
-                        "formality_val": batch["formality_value"].to(self.device),
-                        "formality_prag": batch["formality_pragmatic"].to(self.device),
-                        "gender_val": batch["gender_value"].to(self.device),
-                        "gender_prag": batch["gender_pragmatic"].to(self.device),
-                        "grammaticality": batch["grammaticality_labels"].to(
-                            self.device
-                        ),
-                        "register": batch["register_labels"].to(self.device),
+                        "formality_val": batch.formality_value.to(self.device),
+                        "formality_prag": batch.formality_pragmatic.to(self.device),
+                        "gender_val": batch.gender_value.to(self.device),
+                        "gender_prag": batch.gender_pragmatic.to(self.device),
+                        "grammaticality": batch.grammaticality_labels.to(self.device),
+                        "register": batch.register_labels.to(self.device),
                     }
 
                     prediction = self.model.predict(field_inputs, attention_mask)
@@ -177,11 +177,11 @@ class Evaluator:
                     preds["register"].append(register_preds)
                     preds["register_targets"].append(targets["register"].long())
 
-                    if "indices" in batch:
-                        preds["indices"].append(batch["indices"])
+                    if batch.indices is not None:
+                        preds["indices"].append(batch.indices)
 
-                    result.sentences.extend(batch.get("original_sentence", []))
-                    result.kotograms.extend(batch.get("kotogram", []))
+                    result.sentences.extend(batch.original_sentence or [])
+                    result.kotograms.extend(batch.kotogram or [])
 
                     if progress_context and task_id is not None:
                         progress_context.update(task_id, advance=1)
