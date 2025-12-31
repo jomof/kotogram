@@ -74,7 +74,7 @@ class TestTrainStyleScript(unittest.TestCase):
                         )
                         # Basic validation of content
                         stats = diag_events[0].stats
-                        self.assertIn("_global", stats)
+                        self.assertIn("families", stats)
 
                     # Verify epochs trained
                     # For pretrain-kc: expect [1, 1] (1 pretrain + 1 fine-tune)

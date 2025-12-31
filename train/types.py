@@ -149,6 +149,25 @@ class TrainingHistory:
 
 
 @dataclass
+class KCDiagnosticFamilyStats:
+    """KC diagnostic statistics for a single family."""
+
+    rate: float
+    p50: int
+    p90: int
+    empty_pct: float
+    dnll: float
+    mask_pct: float
+
+
+@dataclass
+class KCDiagnosticReport:
+    """Full KC diagnostic report for an epoch."""
+
+    families: Dict[str, KCDiagnosticFamilyStats]  # UNDONE: Comment on what's in the key
+
+
+@dataclass
 class TrainEpochStats:
     """Statistics collected during a training epoch."""
 
@@ -165,7 +184,7 @@ class TrainEpochStats:
     avg_kl_to_uniform: float
     uniq_kcs_epoch: int
     avg_p_max: float
-    kc_diagnostics: Dict[str, Any] # UNDONE: Should be data class
+    kc_diagnostics: KCDiagnosticReport
 
 
 @dataclass
@@ -192,4 +211,4 @@ class KCTrainingHistory(TrainingHistory):
     avg_sparsity: List[float] = field(default_factory=list)
     first_batch_separation: List[Dict[str, float]] = field(default_factory=list)
     first_batch_grad_norms: List[Dict[str, float]] = field(default_factory=list)
-    kc_diagnostics: List[Dict[str, Any]] = field(default_factory=list)
+    kc_diagnostics: List[KCDiagnosticReport] = field(default_factory=list)

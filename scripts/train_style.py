@@ -4,6 +4,7 @@ This script orchestrates the training pipeline, including argument parsing,
 data loading, and calling the trainers from the kotogram.train package.
 """
 
+import dataclasses
 import glob
 import json
 import os
@@ -324,7 +325,10 @@ if __name__ == "__main__":
         metrics = {}
         for k, v in history_map.items():
             if isinstance(v, list) and len(v) > idx:
-                metrics[k] = v[idx]
+                val = v[idx]
+                if dataclasses.is_dataclass(val) and not isinstance(val, type):
+                    val = dataclasses.asdict(val)
+                metrics[k] = val
 
         if is_main_process():
             event: history.HistoryEvent
@@ -337,8 +341,13 @@ if __name__ == "__main__":
                 ):
                     diags = history_map["kc_diagnostics"]
                     if diags[idx]:
+                        d_val = diags[idx]
+                        if dataclasses.is_dataclass(d_val) and not isinstance(
+                            d_val, type
+                        ):
+                            d_val = dataclasses.asdict(d_val)
                         diag_event = history.KcDiagEvent(
-                            epoch=current_epoch, stats=diags[idx]
+                            epoch=current_epoch, stats=d_val
                         )
                         history.append_event(history_path, diag_event)
 
