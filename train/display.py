@@ -1,7 +1,7 @@
 """Display logic for training progress reporting."""
 
 import math
-from typing import Any, Dict, List, Optional, Tuple, cast
+from typing import Any, Dict, List, Optional, Tuple, Union, cast
 
 from rich.console import Console, Group
 from rich.panel import Panel
@@ -14,6 +14,8 @@ from rich.progress import (
     TimeRemainingColumn,
 )
 from rich.table import Table
+
+from train.types import TrainEpochStats
 
 console = Console(force_terminal=True)
 
@@ -424,7 +426,7 @@ def print_epoch_summary(
     primary_metrics: Dict[str, float],
     secondary_metrics: Optional[Dict[str, Any]] = None,
     phase: Optional[str] = None,
-    kc_epoch_stats: Optional[Dict[str, Any]] = None,
+    kc_epoch_stats: Optional[Union[Dict[str, Any], TrainEpochStats]] = None,
 ) -> None:
     """Print a formatted summary of the epoch using Rich."""
     # pylint: disable=too-many-locals, too-many-positional-arguments
@@ -518,13 +520,23 @@ def print_epoch_summary(
     if phase == "KC" and kc_epoch_stats:
         print("  KC Epoch Summary:")
         print(f"    total_loss={primary_metrics.get('Total Loss', 0.0):.4f}")
-        print(
-            f"    struct_loss(avg)={kc_epoch_stats.get('avg_struct_loss', 0.0):.4f} over {kc_epoch_stats.get('num_struct_heads_processed', 0)} struct batches"
-        )
-        print(
-            f"    label_loss(avg)={kc_epoch_stats.get('avg_label_loss', 0.0):.4f} over {kc_epoch_stats.get('num_label_heads_processed', 0)} label batches"
-        )
-        print(f"    sparsity={kc_epoch_stats.get('avg_sparsity', 0.0):.4f}")
+
+        if isinstance(kc_epoch_stats, dict):
+            avg_struct = kc_epoch_stats.get("avg_struct_loss", 0.0)
+            n_struct = kc_epoch_stats.get("num_struct_heads_processed", 0)
+            avg_label = kc_epoch_stats.get("avg_label_loss", 0.0)
+            n_label = kc_epoch_stats.get("num_label_heads_processed", 0)
+            sparsity = kc_epoch_stats.get("avg_sparsity", 0.0)
+        else:
+            avg_struct = kc_epoch_stats.avg_struct_loss
+            n_struct = kc_epoch_stats.num_struct_heads_processed
+            avg_label = kc_epoch_stats.avg_label_loss
+            n_label = kc_epoch_stats.num_label_heads_processed
+            sparsity = kc_epoch_stats.avg_sparsity
+
+        print(f"    struct_loss(avg)={avg_struct:.4f} over {n_struct} struct batches")
+        print(f"    label_loss(avg)={avg_label:.4f} over {n_label} label batches")
+        print(f"    sparsity={sparsity:.4f}")
 
 
 def print_best_model_saved(path: str, val_loss: float) -> None:

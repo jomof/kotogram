@@ -48,6 +48,8 @@ from train.types import (
     KCMetricsAccumulator,
     KCProbeConfig,
     KCTrainingHistory,
+    TrainEpochResult,
+    TrainEpochStats,
     TrainingHistory,
     TrainingMetrics,
 )
@@ -663,9 +665,7 @@ class KCTrainer:
         self.optimizer = Adam([pg_heads, pg_encoder])
 
     # pylint: disable=too-many-locals
-    def train_epoch(
-        self, epoch: int = 0
-    ) -> Tuple[float, Dict[str, float], float, Dict[str, float]]:
+    def train_epoch(self, epoch: int = 0) -> TrainEpochResult:
         should_freeze = epoch < self.freeze_encoder_epochs
         self._create_optimizer(freeze_encoder=should_freeze)
 
@@ -1595,7 +1595,6 @@ class KCTrainer:
             sys.stdout.flush()
 
         avg_kc_losses = {k: v / n_batches for k, v in kc_losses.items()}
-        avg_sparsity = total_sparsity / max(1, n_batches)
 
         if self.is_distributed and dist.is_initialized():
             hist_dev = topk_hist.to(self.device)
@@ -1649,23 +1648,22 @@ class KCTrainer:
         for idx_val, count_val in zip(top1_idx_hist, top1_vals_hist):
             top1_counts_list.append((int(idx_val.item()), int(count_val.item())))
 
-        epoch_stats = {
-            "avg_struct_loss": running_struct_loss / max(1, running_num_struct_total),
-            "avg_label_loss": running_label_loss / max(1, running_num_label_total),
-            "num_struct_heads_processed": running_num_struct_total,
-            "num_label_heads_processed": running_num_label_total,
-            "avg_sparsity": running_sparsity / max(1, n_batches),
-            "avg_prob": running_avg_prob / max(1, n_batches),
-            "act_dens": running_act_dens / max(1, n_batches),
-            "first_batch_separation": first_batch_separation,
-            "first_batch_grad_norms": first_batch_grad_norms,
-            "avg_entropy_norm": avg_entropy_norm,
-            "avg_kl_to_uniform": avg_kl_to_uniform,
-            "uniq_kcs_epoch": uniq_kcs_epoch,
-            "max_top1_epoch": max_top1,
-            "avg_p_max": running_p_max / max(1, n_batches),
-            "kc_diagnostics": kc_diag.get_stats(),
-        }
+        epoch_stats = TrainEpochStats(
+            avg_struct_loss=running_struct_loss / max(1, running_num_struct_total),
+            avg_label_loss=running_label_loss / max(1, running_num_label_total),
+            num_struct_heads_processed=running_num_struct_total,
+            num_label_heads_processed=running_num_label_total,
+            avg_sparsity=running_sparsity / max(1, n_batches),
+            avg_prob=running_avg_prob / max(1, n_batches),
+            act_dens=running_act_dens / max(1, n_batches),
+            first_batch_separation=first_batch_separation,
+            first_batch_grad_norms=first_batch_grad_norms,
+            avg_entropy_norm=avg_entropy_norm,
+            avg_kl_to_uniform=avg_kl_to_uniform,
+            uniq_kcs_epoch=uniq_kcs_epoch,
+            avg_p_max=running_p_max / max(1, n_batches),
+            kc_diagnostics=kc_diag.get_stats(),
+        )
 
         avg_loss_components = {
             k: v / max(1, n_batches) for k, v in running_loss_components.items()
@@ -1707,15 +1705,15 @@ class KCTrainer:
                         epoch + 1,
                         self.config.epochs,
                         total_loss / n_batches,
-                        cast(float, epoch_stats["avg_prob"]),
-                        cast(float, epoch_stats["act_dens"]),
-                        cast(float, epoch_stats["avg_struct_loss"]),
+                        epoch_stats.avg_prob,
+                        epoch_stats.act_dens,
+                        epoch_stats.avg_struct_loss,
                         top_losses,
                         amp_stats,
                         entropy_norm=avg_entropy_norm,
                         avg_kl_to_uniform=avg_kl_to_uniform,
                         uniq_kcs=uniq_kcs_epoch,
-                        avg_p_max=cast(float, epoch_stats.get("avg_p_max")),
+                        avg_p_max=epoch_stats.avg_p_max,
                     )
                 )
 
@@ -1741,7 +1739,7 @@ class KCTrainer:
         if is_main_process():
             msg = (
                 f"  KC Health: maxTop1={max_top1:.3f} uniqKCs={uniq_kcs_epoch}/{kc_vocab_size} "
-                f"avgProb={cast(float, epoch_stats['avg_prob']):.3f} actDens={cast(float, epoch_stats['act_dens']):.4f} "
+                f"avgProb={epoch_stats.avg_prob:.3f} actDens={epoch_stats.act_dens:.4f} "
                 f"entN={avg_entropy_norm:.3f} klU={avg_kl_to_uniform:.3f}"
             )
             if pbar:
@@ -1760,11 +1758,11 @@ class KCTrainer:
         if pbar:
             pbar.stop()
 
-        return (
-            total_loss / n_batches,
-            avg_kc_losses,
-            avg_sparsity,
-            cast(Dict[str, float], epoch_stats),
+        return TrainEpochResult(
+            total_loss=total_loss,
+            kc_losses=kc_losses,
+            avg_sparsity=total_sparsity / len(self.data_loader),
+            epoch_stats=epoch_stats,
         )
 
     def _log_training_progress(self) -> None:
@@ -1795,33 +1793,33 @@ class KCTrainer:
         for epoch in range(self.start_epoch, actual_epochs):
             if self.is_distributed:
                 cast(DistributedSampler, self.sampler).set_epoch(epoch)
-            total_loss, kc_losses, avg_sparsity, epoch_stats = self.train_epoch(
-                epoch=epoch
-            )
+            epoch_res = self.train_epoch(epoch=epoch)
+            total_loss = epoch_res.total_loss
+            kc_losses = epoch_res.kc_losses
+            avg_sparsity = epoch_res.avg_sparsity
+            epoch_stats = epoch_res.epoch_stats
 
             if is_main_process():
                 self._log_training_progress()
 
             self.history.total_loss.append(total_loss)
             self.history.kc_sparsity.append(avg_sparsity)
-            self.history.avg_struct_loss.append(epoch_stats["avg_struct_loss"])
-            self.history.avg_label_loss.append(epoch_stats["avg_label_loss"])
+            self.history.avg_struct_loss.append(epoch_stats.avg_struct_loss)
+            self.history.avg_label_loss.append(epoch_stats.avg_label_loss)
             self.history.num_struct_heads_processed.append(
-                epoch_stats["num_struct_heads_processed"]
+                float(epoch_stats.num_struct_heads_processed)
             )
             self.history.num_label_heads_processed.append(
-                epoch_stats["num_label_heads_processed"]
+                float(epoch_stats.num_label_heads_processed)
             )
-            self.history.avg_sparsity.append(epoch_stats["avg_sparsity"])
+            self.history.avg_sparsity.append(epoch_stats.avg_sparsity)
             self.history.first_batch_separation.append(
-                epoch_stats["first_batch_separation"]
+                epoch_stats.first_batch_separation
             )
             self.history.first_batch_grad_norms.append(
-                epoch_stats["first_batch_grad_norms"]
+                epoch_stats.first_batch_grad_norms
             )
-            self.history.kc_diagnostics.append(
-                cast(Dict[str, Any], epoch_stats.get("kc_diagnostics", {}))
-            )
+            self.history.kc_diagnostics.append(epoch_stats.kc_diagnostics)
 
             for k, v in kc_losses.items():
                 if k not in self.history.kc_losses:
