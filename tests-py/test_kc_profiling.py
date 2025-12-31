@@ -71,12 +71,15 @@ class TestKCProfiling(unittest.TestCase):
         mock_get_profile_dir.return_value = "/tmp/fake_profile_dir"
         mock_getpid.return_value = 12345
 
+        from train.config import KCConfig
+
         # Initialize KCTrainer
         trainer = KCTrainer(
             model=self.mock_model,
             dataset=self.mock_dataset,
             config=self.mock_config,
             dl_config=self.mock_dl_config,
+            kc_config=KCConfig(),
         )
 
         # Assertion: Check if timers are initialized with correct paths
@@ -96,11 +99,14 @@ class TestKCProfiling(unittest.TestCase):
         # Simulate TRAIN_PROFILE=0 case where get_profile_dir returns None
         mock_get_profile_dir.return_value = None
 
+        from train.config import KCConfig
+
         trainer = KCTrainer(
             model=self.mock_model,
             dataset=self.mock_dataset,
             config=self.mock_config,
             dl_config=self.mock_dl_config,
+            kc_config=KCConfig(),
         )
 
         # Assertion: Timers should have None as output_path

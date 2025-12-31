@@ -452,7 +452,6 @@ if __name__ == "__main__":
                     sparsity_weight=args.kc_sparsity_weight,
                     freeze_encoder_epochs=args.kc_freeze_encoder_epochs,
                 ),
-                args=args,
             )
             _ = kc_trainer.train(
                 epochs=trainer_config.kc_epochs,

@@ -1,5 +1,7 @@
 import unittest
 
+import torch
+
 from kotogram.model import ModelConfig
 from kotogram.tokenizer import Tokenizer
 from train.config import DataLoaderSettings, KCConfig, TrainerConfig
@@ -124,6 +126,7 @@ class TestPretrainDataFiltering(unittest.TestCase):
     def test_kc_trainer_filtering(self):
         dataset = MockDataset([self.grammatic_sample, self.agrammatic_sample])
         kc_config = KCConfig(sparsity_weight=0.01, freeze_encoder_epochs=1)
+        dl_config = self.config.resolve_dataloader_config(torch.device("cpu"))
 
         agrammatic_count = sum(
             1 for s in dataset.samples if s.grammaticality_label == 0
@@ -134,7 +137,13 @@ class TestPretrainDataFiltering(unittest.TestCase):
             "Dataset should contain one agrammatic sample for testing",
         )
 
-        trainer = KCTrainer(self.model, dataset, self.config, kc_config=kc_config)
+        trainer = KCTrainer(
+            self.model,
+            dataset,
+            self.config,
+            dl_config=dl_config,
+            kc_config=kc_config,
+        )
 
         def has_agrammatic(dataset):
             return any(s.grammaticality_label == 0 for s in dataset.samples)

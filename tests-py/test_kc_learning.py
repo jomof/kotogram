@@ -163,8 +163,20 @@ def test_kc_trainer_init():
     model = StyleClassifierWithKC(config)
     dataset = MockDataset()
     trainer_config = TrainerConfig(batch_size=2, device="cpu")
+    # Provide default dependencies
+    from train.config import KCConfig
 
-    trainer = KCTrainer(model, dataset, trainer_config)
+    # Needs a DataLoaderConfig, typically resolved from TrainerConfig but here we mock/default it
+    # But wait, TrainerConfig doesn't have resolve... oh it handles it internally usually?
+    # TrainerConfig has .dataloader which is DataLoaderSettings.
+    # But KCTrainer takes DataLoaderConfig.
+    # Helper: config.resolve_dataloader_config(device)
+    # But device is string in test. Need torch.device.
+    device = torch.device("cpu")
+    dl_config = trainer_config.resolve_dataloader_config(device)
+    kc_config = KCConfig()
+
+    trainer = KCTrainer(model, dataset, trainer_config, dl_config, kc_config)
     # Check simple property if any, or just successful init
     assert trainer.config.batch_size == 2
 
