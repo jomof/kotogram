@@ -10,7 +10,7 @@ import os
 import shutil
 import sys
 import time
-from typing import Any, Dict, List, Optional, cast
+from typing import Any, Dict, List, Optional, Union, cast
 
 import torch
 import torch.distributed as dist
@@ -32,8 +32,10 @@ from train.io import save_model
 from train.models import StyleClassifierWithKC
 from train.profile import get_profile_dir, profiling_enabled
 from train.trainer import KCTrainer, Trainer
+from train.types import KCTrainingHistory, TrainingHistory
 
-_vulture_marker = _setup_path  # Vulture: Used for side effects
+# Vulture: Used for side effects
+_vulture_marker: Any = [_setup_path]
 
 
 def generate_profile_report() -> None:
@@ -289,19 +291,30 @@ if __name__ == "__main__":
         history.clear_history(history_path)
 
     def _log_epoch_event(
-        raw_history: Dict[str, Any], phase_type: str, start_epoch: int = 0
+        raw_history: Union[TrainingHistory, KCTrainingHistory],
+        phase_type: str,
+        start_epoch: int = 0,
     ) -> None:
         """Log the latest epoch from raw_history to the TSV file."""
         if not raw_history:
             return
 
+        # Handle dataclass history objects
+        history_map = (
+            raw_history.to_dict()
+            if hasattr(raw_history, "to_dict")
+            else (
+                vars(raw_history) if not isinstance(raw_history, dict) else raw_history
+            )
+        )
+
         # Find a list column to determine current epoch index
-        valid_keys = [k for k, v in raw_history.items() if isinstance(v, list) and v]
+        valid_keys = [k for k, v in history_map.items() if isinstance(v, list) and v]
         if not valid_keys:
             return
 
         # Get latest index from the first valid key
-        idx = len(raw_history[valid_keys[0]]) - 1
+        idx = len(history_map[valid_keys[0]]) - 1
         if idx < 0:
             return
 
@@ -309,7 +322,7 @@ if __name__ == "__main__":
 
         # Extract metrics for this epoch
         metrics = {}
-        for k, v in raw_history.items():
+        for k, v in history_map.items():
             if isinstance(v, list) and len(v) > idx:
                 metrics[k] = v[idx]
 
@@ -317,9 +330,13 @@ if __name__ == "__main__":
             event: history.HistoryEvent
             if phase_type == "pretrain-kc":
                 # Check for diagnostics
-                if "kc_diagnostics" in raw_history:
-                    diags = raw_history["kc_diagnostics"]
-                    if idx < len(diags) and diags[idx]:
+                if (
+                    "kc_diagnostics" in history_map
+                    and isinstance(history_map["kc_diagnostics"], list)
+                    and len(history_map["kc_diagnostics"]) > idx
+                ):
+                    diags = history_map["kc_diagnostics"]
+                    if diags[idx]:
                         diag_event = history.KcDiagEvent(
                             epoch=current_epoch, stats=diags[idx]
                         )
@@ -453,10 +470,11 @@ if __name__ == "__main__":
                     freeze_encoder_epochs=args.kc_freeze_encoder_epochs,
                 ),
             )
-            _ = kc_trainer.train(
+            kc_hist: KCTrainingHistory = kc_trainer.train(
                 epochs=trainer_config.kc_epochs,
                 on_epoch_end=lambda h: _log_epoch_event(h, "pretrain-kc"),
             )
+            _vulture_marker.append(kc_hist)
             if is_main_process():
                 # Ensure final state is logged if not already (redundant if using callback)
                 # But callback might be skipped if 0 epochs? No, train loop handles it.
@@ -484,23 +502,23 @@ if __name__ == "__main__":
         # Auto-resume handled inside trainer.train() if checkpoint_dir set
         pass
 
-    _ = style_trainer.train(
+    style_hist: TrainingHistory = style_trainer.train(
         epochs=trainer_config.epochs,
         on_epoch_end=lambda h: _log_epoch_event(h, "style"),
     )
+    _vulture_marker.append(style_hist)
     # _log_epoch_event already logs during callbacks
     style_end = time.perf_counter()
 
     # Test evaluation and model saving
     res = style_trainer.evaluate()
     if is_main_process():
-        print("-" * 34)
-        print("Final Test Results:")
-        print("-" * 34)
+        print("----------------------------------")
         print(
-            f"Accuracy: form={res['formality_accuracy']:.4f}, gender={res['gender_accuracy']:.4f}, gram={res['grammaticality_accuracy']:.4f}, register={res['register_accuracy']:.4f}"
+            f"Final Test Results:\n"
+            f"Accuracy: form={res.formality_accuracy:.4f}, gender={res.gender_accuracy:.4f}, gram={res.grammaticality_accuracy:.4f}, register={res.register_accuracy:.4f}"
         )
-        print("-" * 34)
+        print("----------------------------------")
 
         # Save model
         output_dir = locations.get_style_output_dir()

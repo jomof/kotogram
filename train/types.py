@@ -106,3 +106,60 @@ class KCProbeConfig:
     topk: int
     target_specs: Dict[str, Any]
     max_samples_per_head: int
+
+
+@dataclass
+class EvaluationMetrics:
+    """Evaluation results for a validation pass."""
+
+    loss: float = 0.0
+    formality_loss: float = 0.0
+    gender_loss: float = 0.0
+    grammaticality_loss: float = 0.0
+    register_loss: float = 0.0
+    formality_accuracy: float = 0.0
+    formality_mse: float = 0.0
+    gender_accuracy: float = 0.0
+    gender_mse: float = 0.0
+    grammaticality_accuracy: float = 0.0
+    register_accuracy: float = 0.0
+
+
+@dataclass
+class TrainingHistory:
+    """Accumulated training history."""
+
+    train_loss: List[float] = field(default_factory=list)
+    train_formality_loss: List[float] = field(default_factory=list)
+    train_gender_loss: List[float] = field(default_factory=list)
+    train_grammaticality_loss: List[float] = field(default_factory=list)
+    train_register_loss: List[float] = field(default_factory=list)
+    val_loss: List[float] = field(default_factory=list)
+    val_formality_loss: List[float] = field(default_factory=list)
+    val_gender_loss: List[float] = field(default_factory=list)
+    val_grammaticality_loss: List[float] = field(default_factory=list)
+    val_register_loss: List[float] = field(default_factory=list)
+    val_formality_accuracy: List[float] = field(default_factory=list)
+    val_formality_mse: List[float] = field(default_factory=list)
+    val_gender_pragmatic_accuracy: List[float] = field(default_factory=list)
+    val_gender_value_mse: List[float] = field(default_factory=list)
+    val_grammaticality_accuracy: List[float] = field(default_factory=list)
+    val_register_accuracy: List[float] = field(default_factory=list)
+    sentence_count: List[int] = field(default_factory=list)
+
+
+@dataclass
+class KCTrainingHistory(TrainingHistory):
+    """Accumulated training history for KC training."""
+
+    total_loss: List[float] = field(default_factory=list)
+    kc_sparsity: List[float] = field(default_factory=list)
+    kc_losses: Dict[str, List[float]] = field(default_factory=dict)
+    avg_struct_loss: List[float] = field(default_factory=list)
+    avg_label_loss: List[float] = field(default_factory=list)
+    num_struct_heads_processed: List[float] = field(default_factory=list)
+    num_label_heads_processed: List[float] = field(default_factory=list)
+    avg_sparsity: List[float] = field(default_factory=list)
+    first_batch_separation: List[float] = field(default_factory=list)
+    first_batch_grad_norms: List[float] = field(default_factory=list)
+    kc_diagnostics: List[Dict[str, Any]] = field(default_factory=list)
