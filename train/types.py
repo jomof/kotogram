@@ -164,7 +164,26 @@ class KCDiagnosticFamilyStats:
 class KCDiagnosticReport:
     """Full KC diagnostic report for an epoch."""
 
-    families: Dict[str, KCDiagnosticFamilyStats]  # UNDONE: Comment on what's in the key
+    families: Dict[str, KCDiagnosticFamilyStats]  # Key is KC family name
+
+
+@dataclass
+class TrainingPredictions:
+    """Predictions extracted from a training batch."""
+
+    f_prag_p: List[int]
+    f_prag_l: List[int]
+    f_val_p: List[float]
+    f_val_l: List[float]
+    g_prag_p: List[int]
+    g_prag_l: List[int]
+    g_val_p: List[float]
+    g_val_l: List[float]
+    gram_p: List[int]
+    gram_l: List[int]
+    reg_p: List[int]
+    reg_l: List[int]
+    is_valid: List[bool]
 
 
 @dataclass
@@ -195,6 +214,23 @@ class TrainEpochResult:
     kc_losses: Dict[str, float]  # Key is KC head name
     avg_sparsity: float
     epoch_stats: TrainEpochStats
+
+
+@dataclass
+class KCProbeEvaluationResult:
+    """Result of KC probe evaluation."""
+
+    n_samples: int
+    uniq_kcs: int
+    max_top1: float
+    entropy_norm: float
+    kl_to_uniform: float
+    tv_mean: float
+    gap_mean: float
+    avg_prob: float
+    act_dens: float
+    kc_vocab_size: int
+    head_metrics: Dict[str, float] = field(default_factory=dict)
 
 
 @dataclass

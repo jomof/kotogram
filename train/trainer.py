@@ -47,11 +47,13 @@ from train.types import (
     EvaluationMetrics,
     KCMetricsAccumulator,
     KCProbeConfig,
+    KCProbeEvaluationResult,
     KCTrainingHistory,
     TrainEpochResult,
     TrainEpochStats,
     TrainingHistory,
     TrainingMetrics,
+    TrainingPredictions,
 )
 from train.worker import _worker_init_fn
 
@@ -2340,7 +2342,7 @@ class Trainer:
 
     def _extract_predictions(
         self, outputs: Tuple[torch.Tensor, ...], targets: Dict[str, torch.Tensor]
-    ) -> Dict[str, List[Any]]:
+    ) -> TrainingPredictions:
         (
             f_v_l,
             f_p_l,
@@ -2350,27 +2352,27 @@ class Trainer:
             r_l,
         ) = outputs
 
-        return {
-            "f_prag_p": f_p_l.argmax(-1).cpu().tolist(),
-            "f_prag_l": targets["f_prag"].cpu().tolist(),
-            "f_val_p": f_v_l.squeeze(-1).cpu().tolist(),
-            "f_val_l": targets["f_val"].cpu().tolist(),
-            "g_prag_p": g_p_l.argmax(-1).cpu().tolist(),
-            "g_prag_l": targets["g_prag"].cpu().tolist(),
-            "g_val_p": g_v_l.squeeze(-1).cpu().tolist(),
-            "g_val_l": targets["g_val"].cpu().tolist(),
-            "gram_p": gram_l.argmax(-1).cpu().tolist(),
-            "gram_l": targets["gram"].cpu().tolist(),
-            "reg_p": (torch.sigmoid(r_l) > 0.5).long().cpu().tolist(),
-            "reg_l": targets["reg"].long().cpu().tolist(),
-            "is_valid": (
+        return TrainingPredictions(
+            f_prag_p=f_p_l.argmax(-1).cpu().tolist(),
+            f_prag_l=targets["f_prag"].cpu().tolist(),
+            f_val_p=f_v_l.squeeze(-1).cpu().tolist(),
+            f_val_l=targets["f_val"].cpu().tolist(),
+            g_prag_p=g_p_l.argmax(-1).cpu().tolist(),
+            g_prag_l=targets["g_prag"].cpu().tolist(),
+            g_val_p=g_v_l.squeeze(-1).cpu().tolist(),
+            g_val_l=targets["g_val"].cpu().tolist(),
+            gram_p=gram_l.argmax(-1).cpu().tolist(),
+            gram_l=targets["gram"].cpu().tolist(),
+            reg_p=(torch.sigmoid(r_l) > 0.5).long().cpu().tolist(),
+            reg_l=targets["reg"].long().cpu().tolist(),
+            is_valid=(
                 (targets["gram"] == 1)
                 & (targets["f_prag"] == 1)
                 & (targets["g_prag"] == 1)
             )
             .cpu()
             .tolist(),
-        }
+        )
 
     @torch.no_grad()
     def evaluate(self) -> EvaluationMetrics:
@@ -2444,8 +2446,19 @@ class Trainer:
             val = v.item() if isinstance(v, torch.Tensor) else v
             metrics_sum[k] = metrics_sum.get(k, 0.0) + val
 
-        for k, v in preds.items():
-            all_preds[k].extend(v)
+        all_preds["f_prag_p"].extend(preds.f_prag_p)
+        all_preds["f_prag_l"].extend(preds.f_prag_l)
+        all_preds["f_val_p"].extend(preds.f_val_p)
+        all_preds["f_val_l"].extend(preds.f_val_l)
+        all_preds["g_prag_p"].extend(preds.g_prag_p)
+        all_preds["g_prag_l"].extend(preds.g_prag_l)
+        all_preds["g_val_p"].extend(preds.g_val_p)
+        all_preds["g_val_l"].extend(preds.g_val_l)
+        all_preds["gram_p"].extend(preds.gram_p)
+        all_preds["gram_l"].extend(preds.gram_l)
+        all_preds["reg_p"].extend(preds.reg_p)
+        all_preds["reg_l"].extend(preds.reg_l)
+        all_preds["is_valid"].extend(preds.is_valid)
         all_preds["sentences"].extend(batch.get("original_sentence", []))
         all_preds["kotograms"].extend(batch.get("kotogram", []))
 
@@ -2730,7 +2743,9 @@ class Trainer:
         pos_inds: torch.Tensor,
         pos_mask_t: torch.Tensor,
         logits_h: torch.Tensor,
-        hs: Dict[str, Any],
+        hs: Dict[
+            str, Any
+        ],  # Key type: "pos_logits" (List[float]), "neg_logits" (List[float]), etc.
         max_samples_per_head: int,
     ) -> None:
         batch_size = pos_inds.size(0)
@@ -2778,7 +2793,7 @@ class Trainer:
 
     def _compute_kc_metrics(
         self, acc: KCMetricsAccumulator, kc_vocab_size: int
-    ) -> Dict[str, Any]:
+    ) -> KCProbeEvaluationResult:
         if self.is_distributed:
             dist.all_reduce(acc.top1_hist, op=dist.ReduceOp.SUM)
             scalars = torch.tensor(
@@ -2807,28 +2822,28 @@ class Trainer:
         uniq_kcs = int((acc.topk_hist > 0).sum().item())
         max_top1 = float(acc.top1_hist.max().item()) / n_samples
 
-        result: Dict[str, Any] = {
-            "n_samples": n_samples,
-            "uniq_kcs": uniq_kcs,
-            "max_top1": max_top1,
-            "entropy_norm": acc.sum_entropy / n_samples,
-            "kl_to_uniform": acc.sum_kl / n_samples,
-            "tv_mean": acc.sum_tv / n_samples,
-            "gap_mean": acc.sum_gap / n_samples,
-            "avg_prob": acc.sum_avg_prob / n_samples,
-            "act_dens": acc.sum_act_dens / n_samples,
-            "kc_vocab_size": kc_vocab_size,
-        }
-
+        head_metrics = {}
         if is_main_process():
             for head_name, hs in acc.head_samples.items():
                 p_true, auc, delta_bce = self._compute_head_metrics(hs)
 
-                result[f"head_{head_name}_p_true"] = p_true
-                result[f"head_{head_name}_auc"] = auc
-                result[f"head_{head_name}_delta_bce"] = delta_bce
+                head_metrics[f"head_{head_name}_p_true"] = p_true
+                head_metrics[f"head_{head_name}_auc"] = auc
+                head_metrics[f"head_{head_name}_delta_bce"] = delta_bce
 
-        return result
+        return KCProbeEvaluationResult(
+            n_samples=n_samples,
+            uniq_kcs=uniq_kcs,
+            max_top1=max_top1,
+            entropy_norm=acc.sum_entropy / n_samples,
+            kl_to_uniform=acc.sum_kl / n_samples,
+            tv_mean=acc.sum_tv / n_samples,
+            gap_mean=acc.sum_gap / n_samples,
+            avg_prob=acc.sum_avg_prob / n_samples,
+            act_dens=acc.sum_act_dens / n_samples,
+            kc_vocab_size=kc_vocab_size,
+            head_metrics=head_metrics,
+        )
 
     def _compute_head_metrics(self, hs: Dict[str, Any]) -> Tuple[float, float, float]:
         p_true = hs["p_sum"] / max(1, hs["count"])
@@ -2895,7 +2910,7 @@ class Trainer:
         max_batches: int = 25,
         temperature: float = 1.5,
         tau_usage: float = 2.0,
-    ) -> Dict[str, Any]:
+    ) -> KCProbeEvaluationResult:
         m = cast(
             StyleClassifierWithKC,
             self.model.module if self.is_distributed else self.model,
@@ -2931,13 +2946,13 @@ class Trainer:
 
         return self._compute_kc_metrics(acc, config.vocab_size)
 
-    def _diagnose_kc_probe(self, probe_result: Dict[str, Any]) -> List[str]:
+    def _diagnose_kc_probe(self, probe_result: KCProbeEvaluationResult) -> List[str]:
         recommendations: List[str] = []
 
-        max_top1 = probe_result.get("max_top1", 0.0)
-        entropy_norm = probe_result.get("entropy_norm", 1.0)
-        uniq_kcs = probe_result.get("uniq_kcs", 0)
-        kc_vocab_size = probe_result.get("kc_vocab_size", 1024)
+        max_top1 = probe_result.max_top1
+        entropy_norm = probe_result.entropy_norm
+        uniq_kcs = probe_result.uniq_kcs
+        kc_vocab_size = probe_result.kc_vocab_size
 
         collapse_risk = max_top1 > 0.10 or entropy_norm < 0.85
         if collapse_risk:
@@ -2946,7 +2961,11 @@ class Trainer:
                 "Try: reduce encoder_lr_factor (0.1→0.01) or freeze encoder for first 2 epochs."
             )
 
-        usage_ratio = uniq_kcs / kc_vocab_size
+        # Avoid division by zero
+        usage_ratio = 0.0
+        if kc_vocab_size > 0:
+            usage_ratio = uniq_kcs / kc_vocab_size
+
         if usage_ratio < 0.5:
             recommendations.append(
                 f"⚠️ LOW DIVERSITY: only {uniq_kcs}/{kc_vocab_size} KCs used ({usage_ratio:.1%}). "
@@ -2954,7 +2973,7 @@ class Trainer:
             )
 
         for head in ["lemma", "pos", "conjugated_form", "conjugated_type"]:
-            auc = probe_result.get(f"head_{head}_auc", float("nan"))
+            auc = probe_result.head_metrics.get(f"head_{head}_auc", float("nan"))
             if not math.isnan(auc) and auc < 0.80:
                 recommendations.append(
                     f"⚠️ QUALITY DROP ({head}): AUC={auc:.3f} (want >0.85). "
@@ -2966,18 +2985,20 @@ class Trainer:
 
         if is_main_process():
             print(
-                f"  KCProbe: uniq={probe_result.get('uniq_kcs', 0)}/{probe_result.get('kc_vocab_size', 0)} "
-                f"maxTop1={probe_result.get('max_top1', 0):.3f} "
-                f"entN={probe_result.get('entropy_norm', 0):.3f} "
-                f"klU={probe_result.get('kl_to_uniform', 0):.3f} "
-                f"tv={probe_result.get('tv_mean', 0):.3f} "
-                f"gap={probe_result.get('gap_mean', 0):.3f} "
-                f"prob={probe_result.get('avg_prob', 0):.2f} "
-                f"dens={probe_result.get('act_dens', 0):.4f}"
+                f"  KCProbe: uniq={probe_result.uniq_kcs}/{probe_result.kc_vocab_size} "
+                f"maxTop1={probe_result.max_top1:.3f} "
+                f"entN={probe_result.entropy_norm:.3f} "
+                f"klU={probe_result.kl_to_uniform:.3f} "
+                f"tv={probe_result.tv_mean:.3f} "
+                f"gap={probe_result.gap_mean:.3f} "
+                f"prob={probe_result.avg_prob:.2f} "
+                f"dens={probe_result.act_dens:.4f}"
             )
             for head in ["lemma", "pos", "conjugated_form", "conjugated_type"]:
-                auc = probe_result.get(f"head_{head}_auc", float("nan"))
-                delta = probe_result.get(f"head_{head}_delta_bce", float("nan"))
+                auc = probe_result.head_metrics.get(f"head_{head}_auc", float("nan"))
+                delta = probe_result.head_metrics.get(
+                    f"head_{head}_delta_bce", float("nan")
+                )
                 if not math.isnan(auc):
                     print(f"    {head}: AUC={auc:.3f} ΔBCE={delta:+.4f}")
 
