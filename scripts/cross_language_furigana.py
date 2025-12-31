@@ -197,7 +197,9 @@ def main() -> None:
             if not mismatches:
                 print(f"  ✅ All {matches} conversions match!")
             else:
-                print(f"  ❌ {len(mismatches)} mismatches found out of {total} conversions")
+                print(
+                    f"  ❌ {len(mismatches)} mismatches found out of {total} conversions"
+                )
                 print()
                 print("  First 5 mismatches:")
                 for m in mismatches[:5]:

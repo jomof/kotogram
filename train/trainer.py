@@ -94,25 +94,23 @@ class KCTrainer:
         self,
         model: StyleClassifierWithKC,
         dataset: StyleDataset,
-        config: Optional[TrainerConfig] = None,
-        dl_config: Optional[DataLoaderConfig] = None,
-        kc_config: Optional[KCConfig] = None,
-        args: Optional[Any] = None,
+        config: TrainerConfig,
+        dl_config: DataLoaderConfig,
+        kc_config: KCConfig,
     ):
         dataset = dataset.filter_by_grammaticality(1)
 
         self.model = model
         self.dataset = dataset
-        self.config = config or TrainerConfig()
+        self.config = config
 
         _safe_configure_threads(self.config)
 
         configure_runtime_thread_limits(self.config)
 
-        self.kc_config = kc_config or KCConfig()
+        self.kc_config = kc_config
         self.kc_sparsity_weight = self.kc_config.sparsity_weight
         self.freeze_encoder_epochs = self.kc_config.freeze_encoder_epochs
-        self.args = args
 
         if dist.is_initialized():
             local_rank = int(os.environ.get("LOCAL_RANK", 0))
@@ -229,12 +227,6 @@ class KCTrainer:
         self.kc_show_grad_norms = self.kc_config.show_grad_norms
 
         self.kc_grad_cap = self.kc_config.kc_grad_cap
-        # self.kc_pos_weight_cap/eps are already set above, but let's keep consistent if they were repeated
-        # Actually in the original code they were repeated?
-        # Lines 199 and 241 in original (roughly).
-        # I'll just remove the second assignment or verify.
-        # The original code had them duplicated? Yes.
-        # I'll remove the second block of assignments for pos_weight if it exists.
 
         if self.kc_log_level == "debug":
             self.kc_show_epoch_table = True
@@ -296,7 +288,7 @@ class KCTrainer:
             history=self.history,
             global_step=self.global_step,
             batch_idx=batch_idx,
-            config=self.args or self.config,
+            config=self.config,
             filename="checkpoint_kc.pt",
         )
 
