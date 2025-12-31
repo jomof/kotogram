@@ -467,17 +467,6 @@ class Bottle:
         combined = str(result.stdout or "") + str(result.stderr or "")
 
         # Filter out known safe warnings
-        # DDP warning about unused parameters (expected for multi-task model)
-        # Note: The warning usually starts with "[... reducer.cpp:...] Warning: find_unused_parameters=True ..."
-        # We strip the specific message. Using .* to catch prefix might be risky if we match too much?
-        # Actually, we just need to remove the word "Warning" associated with this message.
-        # Let's replace the whole sentence.
-        combined = re.sub(
-            r"Warning: find_unused_parameters=True was specified in DDP constructor.*?(?=\n|\[)",
-            "",
-            combined,
-            flags=re.DOTALL,
-        )
 
         # Allow "Warning: Missing KC head weights" which is expected when upgrading checkpoints
         combined = re.sub(

@@ -13,7 +13,6 @@ class TestRetrainCleanup(unittest.TestCase):
             "exists": patch("scripts.train_style.os.path.exists"),
             "rmtree": patch("scripts.train_style.shutil.rmtree"),
             "makedirs": patch("scripts.train_style.os.makedirs"),
-            "is_main_process": patch("scripts.train_style.is_main_process"),
         }
         self.mocks = {k: p.start() for k, p in self.patches.items()}
         self.addCleanup(patch.stopall)
@@ -23,7 +22,6 @@ class TestRetrainCleanup(unittest.TestCase):
         # Setup
         self.mocks["get_profile_dir"].return_value = "/tmp/profile-test"
         self.mocks["exists"].return_value = True
-        self.mocks["is_main_process"].return_value = True
         args = ["train_style.py", "--config", "foo.json", "--retrain"]
 
         # Execute
@@ -51,7 +49,6 @@ class TestRetrainCleanup(unittest.TestCase):
         # Setup
         self.mocks["get_profile_dir"].return_value = "/tmp/profile-test"
         self.mocks["exists"].return_value = True
-        self.mocks["is_main_process"].return_value = True
 
         # Run the cleanup function with --retrain
         cleanup_profile_if_retrain(["script.py", "--retrain"])
@@ -67,7 +64,6 @@ class TestRetrainCleanup(unittest.TestCase):
         self.mocks["get_profile_dir"].return_value = "/tmp/profile-test"
         # The logic: if profile_dir and os.path.exists(profile_dir): ...
         self.mocks["exists"].return_value = False
-        self.mocks["is_main_process"].return_value = True
 
         # Execute
         cleanup_profile_if_retrain(["train_style.py", "--retrain"])
