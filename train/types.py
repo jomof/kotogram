@@ -149,6 +149,36 @@ class TrainingHistory:
 
 
 @dataclass
+class TrainEpochStats:
+    """Statistics collected during a training epoch."""
+
+    avg_struct_loss: float
+    avg_label_loss: float
+    num_struct_heads_processed: int
+    num_label_heads_processed: int
+    avg_sparsity: float
+    avg_prob: float
+    act_dens: float
+    first_batch_separation: Dict[str, float]
+    first_batch_grad_norms: Dict[str, float]
+    avg_entropy_norm: float
+    avg_kl_to_uniform: float
+    uniq_kcs_epoch: int
+    avg_p_max: float
+    kc_diagnostics: Dict[str, Any] # UNDONE: Should be data class
+
+
+@dataclass
+class TrainEpochResult:
+    """Result of a training epoch."""
+
+    total_loss: float
+    kc_losses: Dict[str, float]  # Key is KC head name
+    avg_sparsity: float
+    epoch_stats: TrainEpochStats
+
+
+@dataclass
 class KCTrainingHistory(TrainingHistory):
     """Accumulated training history for KC training."""
 
@@ -160,6 +190,6 @@ class KCTrainingHistory(TrainingHistory):
     num_struct_heads_processed: List[float] = field(default_factory=list)
     num_label_heads_processed: List[float] = field(default_factory=list)
     avg_sparsity: List[float] = field(default_factory=list)
-    first_batch_separation: List[float] = field(default_factory=list)
-    first_batch_grad_norms: List[float] = field(default_factory=list)
+    first_batch_separation: List[Dict[str, float]] = field(default_factory=list)
+    first_batch_grad_norms: List[Dict[str, float]] = field(default_factory=list)
     kc_diagnostics: List[Dict[str, Any]] = field(default_factory=list)
