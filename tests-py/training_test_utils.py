@@ -633,7 +633,7 @@ class Bottle:
         """Alias for resolve_path."""
         return self.resolve_path(path_template)
 
-    def assert_files_exist(self, paths: List[str]):  # vulture: ignore
+    def assert_files_exist(self, paths: List[str]):
         """Asserts that all files in the list exist."""
         for p in paths:
             abs_path = self.resolve_path(p)

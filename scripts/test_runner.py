@@ -138,6 +138,74 @@ async def check_noqa_e402() -> CheckResult:
     return CheckResult("noqa check", True, "")
 
 
+async def check_vulture_circumvention() -> CheckResult:
+    """
+    Detect potential circumvention of Vulture dead code analysis.
+
+    We strictly forbid files named '*vulture*' (e.g., custom whitelists) and
+    mentions of 'vulture' in code (e.g., in commit hooks or other scripts),
+    except for this runner script itself.
+    """
+    # 1. Check for files named *vulture*
+    # Exclude common noise directories
+    # Note: excluding .git, .venv, etc. happens naturally if we use 'find' with specific exclusions or logic,
+    # but a simple 'find . -name "*vulture*"' catches everything.
+    # We'll filter out .git/ and .venv/ in Python to be robust/portable-ish.
+    find_cmd = 'find . -name "*vulture*.py"'
+    proc_find = await asyncio.create_subprocess_shell(
+        find_cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
+    stdout_find, _ = await proc_find.communicate()
+
+    found_files = []
+    for line in stdout_find.decode().splitlines():
+        line = line.strip()
+        # Filter out hidden/system internal directories
+        if "/.git/" in line or "/.venv/" in line or "/__pycache__" in line or "/.mypy_cache" in line:
+            continue
+        # Allow usage in this specific file
+        if line.endswith("scripts/test_runner.py"):
+            continue
+        # Allow usage in this specific file (though file name itself doesn't match *vulture*)
+        found_files.append(line)
+
+    # 2. Check for content mentions of "vulture"
+    # grep -r "vulture" .
+    # Exclude binary files (-I), line numbers (-n)
+    grep_cmd = 'grep -rnI --include="*.py" "vulture" .'
+    proc_grep = await asyncio.create_subprocess_shell(
+        grep_cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
+    stdout_grep, _ = await proc_grep.communicate()
+
+    found_mentions = []
+    for line in stdout_grep.decode().splitlines():
+        line = line.strip()
+        # Exclude this file (scripts/test_runner.py)
+        if "scripts/test_runner.py" in line:
+            continue
+        # Filter out hidden/system internal directories
+        if "/.git/" in line or "/.venv/" in line or "/.mypy_cache" in line:
+            continue
+
+        # Format is filename:lineno:content
+        parts = line.split(":", 1)
+        if parts:
+            found_mentions.append(parts[0])  # Just the filename as requested
+
+    all_violations = sorted(list(set(found_files + found_mentions)))
+
+    if all_violations:
+        return CheckResult(
+            "vulture circumvention check",
+            False,
+            "Vulture circumvention detected. DO NOT CIRCUMVENT VULTURE IN ANY WAY, YOU WILL BE FLAGGED AT CODEREVIEW TIME. Remove dead code or move the code to the right location. Test only code goes in test-py, training only code goes in train/:\n" + "\n".join(all_violations),
+        )
+
+    print_success("No Vulture circumvention detected")
+    return CheckResult("vulture circumvention check", True, "")
+
+
 async def verify_exception_usage() -> CheckResult:
     """
     Enforce a strict whitelist of allowed exceptions in `except` blocks.
@@ -553,6 +621,12 @@ async def main() -> None:
     undone_res = await check_undone()
     if not undone_res.success:
         print_error(undone_res.output)
+        sys.exit(1)
+
+    # Run check_vulture_circumvention synchronously/blocking
+    vulture_res = await check_vulture_circumvention()
+    if not vulture_res.success:
+        print_error(vulture_res.output)
         sys.exit(1)
 
     process_noqa = check_noqa_e402()

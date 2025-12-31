@@ -22,13 +22,8 @@ from kotogram.model import (
     StyleClassifier,
     load_model,
 )
-from scripts import (
-    _setup_path,  # type: ignore # noqa: F401 # pylint: disable=import-private-name
-)
 from train.dataset import StyleDataset, collate_fn
 from train.profile import PhaseTimer, get_profile_dir
-
-_vulture_marker = _setup_path  # Vulture: Used for side effects
 
 
 class TextIndex:

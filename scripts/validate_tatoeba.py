@@ -21,12 +21,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 from kotogram import SudachiJapaneseParser, extract_token_features
 from kotogram.exceptions import MissingMappingError
 from kotogram.kotogram import split_kotogram
-from scripts import (
-    _setup_path,  # type: ignore # noqa: F401 # pylint: disable=import-private-name
-)
 from train.tsv import parse_tsv
-
-_vulture_marker = _setup_path  # Vulture: Used for side effects
 
 
 def validate_sentences(
