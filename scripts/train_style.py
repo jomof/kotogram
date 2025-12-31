@@ -23,6 +23,7 @@ from scripts import (
 )
 from train import history
 from train.config import (
+    KCConfig,
     TrainerConfig,
 )
 from train.dataset import DatasetConfig, StyleDataset
@@ -447,10 +448,10 @@ if __name__ == "__main__":
                 train_data,
                 trainer_config,
                 dl_config=trainer_config.resolve_dataloader_config(device),
-                kc_config={
-                    "sparsity_weight": args.kc_sparsity_weight,
-                    "freeze_encoder_epochs": args.kc_freeze_encoder_epochs,
-                },
+                kc_config=KCConfig(
+                    sparsity_weight=args.kc_sparsity_weight,
+                    freeze_encoder_epochs=args.kc_freeze_encoder_epochs,
+                ),
                 args=args,
             )
             _ = kc_trainer.train(

@@ -2,7 +2,7 @@ import unittest
 
 from kotogram.model import ModelConfig
 from kotogram.tokenizer import Tokenizer
-from train.config import DataLoaderSettings, TrainerConfig
+from train.config import DataLoaderSettings, KCConfig, TrainerConfig
 from train.dataset import StyleDataset
 from train.trainer import (
     KCTrainer,
@@ -123,7 +123,7 @@ class TestPretrainDataFiltering(unittest.TestCase):
 
     def test_kc_trainer_filtering(self):
         dataset = MockDataset([self.grammatic_sample, self.agrammatic_sample])
-        kc_config = {"sparsity_weight": 0.01, "freeze_encoder_epochs": 1}
+        kc_config = KCConfig(sparsity_weight=0.01, freeze_encoder_epochs=1)
 
         agrammatic_count = sum(
             1 for s in dataset.samples if s.grammaticality_label == 0

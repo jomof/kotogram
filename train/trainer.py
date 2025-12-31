@@ -21,6 +21,7 @@ from kotogram.model import (
 from kotogram.tokenizer import FEATURE_FIELDS
 from train.config import (
     DataLoaderConfig,
+    KCConfig,
     TrainerConfig,
     _safe_configure_threads,
     configure_runtime_thread_limits,
@@ -95,7 +96,7 @@ class KCTrainer:
         dataset: StyleDataset,
         config: Optional[TrainerConfig] = None,
         dl_config: Optional[DataLoaderConfig] = None,
-        kc_config: Optional[Dict[str, Any]] = None,
+        kc_config: Optional[KCConfig] = None,
         args: Optional[Any] = None,
     ):
         dataset = dataset.filter_by_grammaticality(1)
@@ -108,9 +109,9 @@ class KCTrainer:
 
         configure_runtime_thread_limits(self.config)
 
-        kc_config = kc_config or {}
-        self.kc_sparsity_weight = kc_config.get("sparsity_weight", 0.1)
-        self.freeze_encoder_epochs = kc_config.get("freeze_encoder_epochs", 1)
+        self.kc_config = kc_config or KCConfig()
+        self.kc_sparsity_weight = self.kc_config.sparsity_weight
+        self.freeze_encoder_epochs = self.kc_config.freeze_encoder_epochs
         self.args = args
 
         if dist.is_initialized():
@@ -196,50 +197,44 @@ class KCTrainer:
         self.train_timer_data = Timer("data_loading", output_path=data_log)
         self.train_timer_compute = Timer("compute", output_path=comp_log)
 
-        self.kc_pos_weight_cap = kc_config.get("pos_weight_cap", 50.0)
-        self.kc_pos_weight_eps = kc_config.get("pos_weight_eps", 1e-6)
+        self.kc_pos_weight_cap = self.kc_config.pos_weight_cap
+        self.kc_pos_weight_eps = self.kc_config.pos_weight_eps
 
-        self.kc_diversity_weight_frozen = float(kc_config.get("diversity_weight", 1e-3))
-        self.kc_diversity_weight_thawed = float(
-            kc_config.get("diversity_weight_thawed", 1e-1)
-        )
+        self.kc_diversity_weight_frozen = self.kc_config.diversity_weight
+        self.kc_diversity_weight_thawed = self.kc_config.diversity_weight_thawed
 
-        self.kc_diversity_eps = float(kc_config.get("diversity_eps", 1e-9))
-        self.kc_diversity_warmup_epochs = int(
-            kc_config.get("diversity_warmup_epochs", 0)
-        )
+        self.kc_diversity_eps = self.kc_config.diversity_eps
+        self.kc_diversity_warmup_epochs = self.kc_config.diversity_warmup_epochs
         self.kc_sparsity_mode = "target_density"
 
-        self.kc_lb_weight_frozen = float(kc_config.get("lb_weight", 0.0))
-        self.kc_lb_weight_thawed = float(kc_config.get("lb_weight_thawed", 2e-2))
+        self.kc_lb_weight_frozen = self.kc_config.lb_weight
+        self.kc_lb_weight_thawed = self.kc_config.lb_weight_thawed
 
-        self.kc_collapse_weight_thawed = float(
-            kc_config.get("collapse_weight_thawed", 1.0)
-        )
+        self.kc_collapse_weight_thawed = self.kc_config.collapse_weight_thawed
 
         self.kc_temperature_frozen = float(
             getattr(
                 getattr(self.model, "module", self.model).config, "kc_temperature", 1.0
             )
         )
-        self.kc_temperature_thawed = float(kc_config.get("temperature_thawed", 1.8))
+        self.kc_temperature_thawed = self.kc_config.temperature_thawed
 
-        self.kc_log_level = kc_config.get("log_level", "minimal")
-        self.kc_first_batch_debug_every = int(
-            kc_config.get("first_batch_debug_every", 1)
-        )
+        self.kc_log_level = self.kc_config.log_level
+        self.kc_first_batch_debug_every = self.kc_config.first_batch_debug_every
 
-        self.kc_first_batch_debug_epochs = kc_config.get(
-            "first_batch_debug_epochs", [0]
-        )
+        self.kc_first_batch_debug_epochs = list(self.kc_config.first_batch_debug_epochs)
 
-        self.kc_show_epoch_table = bool(kc_config.get("show_epoch_table", False))
-        self.kc_show_step_checks = bool(kc_config.get("show_step_checks", False))
-        self.kc_show_grad_norms = bool(kc_config.get("show_grad_norms", False))
+        self.kc_show_epoch_table = self.kc_config.show_epoch_table
+        self.kc_show_step_checks = self.kc_config.show_step_checks
+        self.kc_show_grad_norms = self.kc_config.show_grad_norms
 
-        self.kc_grad_cap = float(kc_config.get("kc_grad_cap", 5.0))
-        self.kc_pos_weight_cap = float(kc_config.get("pos_weight_cap", 50.0))
-        self.kc_pos_weight_eps = float(kc_config.get("pos_weight_eps", 1e-6))
+        self.kc_grad_cap = self.kc_config.kc_grad_cap
+        # self.kc_pos_weight_cap/eps are already set above, but let's keep consistent if they were repeated
+        # Actually in the original code they were repeated?
+        # Lines 199 and 241 in original (roughly).
+        # I'll just remove the second assignment or verify.
+        # The original code had them duplicated? Yes.
+        # I'll remove the second block of assignments for pos_weight if it exists.
 
         if self.kc_log_level == "debug":
             self.kc_show_epoch_table = True
@@ -287,7 +282,7 @@ class KCTrainer:
         self._consecutive_step_skips = 0
         self._total_step_skips = 0
         self._total_steps_applied = 0
-        self._max_consecutive_skips = int(kc_config.get("max_consecutive_skips", 25))
+        self._max_consecutive_skips = self.kc_config.max_consecutive_skips
 
     def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
         if not is_main_process() or self.config.checkpoint.dir is None:
