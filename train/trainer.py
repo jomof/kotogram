@@ -45,6 +45,7 @@ from train.models import StyleClassifierWithKC
 from train.profile import Timer, get_profile_dir
 from train.types import (
     EvaluationMetrics,
+    KCDiagnosticHeadStats,
     KCMetricsAccumulator,
     KCProbeConfig,
     KCProbeEvaluationResult,
@@ -2693,7 +2694,7 @@ class Trainer:
         head_name: str,
         logits_h: torch.Tensor,
         kc_targets: Dict[str, torch.Tensor],
-        hs: Dict[str, Any],
+        hs: KCDiagnosticHeadStats,
         config: KCProbeConfig,
     ) -> None:
         dense_key = f"kc_targets_{head_name}"
@@ -2716,26 +2717,26 @@ class Trainer:
         self,
         targets_h: torch.Tensor,
         logits_h: torch.Tensor,
-        hs: Dict[str, Any],
+        hs: KCDiagnosticHeadStats,
         max_samples_per_head: int,
     ) -> None:
         targets_h = targets_h.to(self.device).float()
 
-        hs["p_sum"] += targets_h.sum().item()
-        hs["count"] += targets_h.numel()
+        hs.p_sum += targets_h.sum().item()
+        hs.count += targets_h.numel()
 
         pos_mask = targets_h > 0.5
         neg_mask = ~pos_mask
 
-        if len(hs["pos_logits"]) < max_samples_per_head:
+        if len(hs.pos_logits) < max_samples_per_head:
             pos_logits = logits_h[pos_mask].cpu().tolist()
-            hs["pos_logits"].extend(
-                pos_logits[: max_samples_per_head - len(hs["pos_logits"])]
+            hs.pos_logits.extend(
+                pos_logits[: max_samples_per_head - len(hs.pos_logits)]
             )
-        if len(hs["neg_logits"]) < max_samples_per_head:
+        if len(hs.neg_logits) < max_samples_per_head:
             neg_logits = logits_h[neg_mask].cpu().tolist()
-            hs["neg_logits"].extend(
-                neg_logits[: max_samples_per_head - len(hs["neg_logits"])]
+            hs.neg_logits.extend(
+                neg_logits[: max_samples_per_head - len(hs.neg_logits)]
             )
 
     def _sample_sparse_logits(
@@ -2743,36 +2744,34 @@ class Trainer:
         pos_inds: torch.Tensor,
         pos_mask_t: torch.Tensor,
         logits_h: torch.Tensor,
-        hs: Dict[
-            str, Any
-        ],  # Key type: "pos_logits" (List[float]), "neg_logits" (List[float]), etc.
+        hs: KCDiagnosticHeadStats,
         max_samples_per_head: int,
     ) -> None:
         batch_size = pos_inds.size(0)
         vocab_size = logits_h.size(1)
 
-        if len(hs["pos_logits"]) < max_samples_per_head:
+        if len(hs.pos_logits) < max_samples_per_head:
             for i in range(min(batch_size, 4)):
                 valid_inds = pos_inds[i, pos_mask_t[i]]
                 if valid_inds.numel() > 0:
                     pos_log = logits_h[i, valid_inds].cpu().tolist()
-                    hs["pos_logits"].extend(
-                        pos_log[: max_samples_per_head - len(hs["pos_logits"])]
+                    hs.pos_logits.extend(
+                        pos_log[: max_samples_per_head - len(hs.pos_logits)]
                     )
 
-        if len(hs["neg_logits"]) < max_samples_per_head:
+        if len(hs.neg_logits) < max_samples_per_head:
             for i in range(min(batch_size, 4)):
                 neg_inds = torch.randint(4, vocab_size, (50,), device=self.device)
                 neg_log = logits_h[i, neg_inds].cpu().tolist()
-                hs["neg_logits"].extend(
-                    neg_log[: max_samples_per_head - len(hs["neg_logits"])]
+                hs.neg_logits.extend(
+                    neg_log[: max_samples_per_head - len(hs.neg_logits)]
                 )
 
     def _update_sparse_head_stats(
         self,
         sparse_data: Tuple[torch.Tensor, torch.Tensor],
         logits_h: torch.Tensor,
-        hs: Dict[str, Any],
+        hs: KCDiagnosticHeadStats,
         max_samples_per_head: int,
     ) -> None:
         pos_inds, pos_mask_t = sparse_data
@@ -2784,8 +2783,8 @@ class Trainer:
 
         n_pos = pos_mask_t.sum().item()
         n_total = batch_size * vocab_size
-        hs["p_sum"] += n_pos
-        hs["count"] += n_total
+        hs.p_sum += n_pos
+        hs.count += n_total
 
         self._sample_sparse_logits(
             pos_inds, pos_mask_t, logits_h, hs, max_samples_per_head
@@ -2845,13 +2844,15 @@ class Trainer:
             head_metrics=head_metrics,
         )
 
-    def _compute_head_metrics(self, hs: Dict[str, Any]) -> Tuple[float, float, float]:
-        p_true = hs["p_sum"] / max(1, hs["count"])
+    def _compute_head_metrics(
+        self, hs: KCDiagnosticHeadStats
+    ) -> Tuple[float, float, float]:
+        p_true = hs.p_sum / max(1, hs.count)
         auc = float("nan")
         delta_bce = float("nan")
 
-        pos_l = hs["pos_logits"]
-        neg_l = hs["neg_logits"]
+        pos_l = hs.pos_logits
+        neg_l = hs.neg_logits
         if len(pos_l) > 0 and len(neg_l) > 0:
             all_logits = pos_l + neg_l
             all_labels = [1.0] * len(pos_l) + [0.0] * len(neg_l)
@@ -2926,10 +2927,8 @@ class Trainer:
         )
 
         probe_heads = ["lemma", "pos", "conjugated_form", "conjugated_type"]
-        head_samples: Dict[str, Dict[str, Any]] = {
-            h: {"pos_logits": [], "neg_logits": [], "p_sum": 0.0, "count": 0}
-            for h in probe_heads
-            if h in config.target_specs
+        head_samples: Dict[str, KCDiagnosticHeadStats] = {
+            h: KCDiagnosticHeadStats() for h in probe_heads if h in config.target_specs
         }
 
         acc = KCMetricsAccumulator(
