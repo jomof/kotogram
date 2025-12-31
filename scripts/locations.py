@@ -8,14 +8,16 @@ the full kotogram package import, avoiding RuntimeWarnings.
 import sys
 
 from kotogram.locations import (
+    get_models_dir,
+    get_style_output_dir,
+    get_train_root,
+)
+from train.paths import (
     get_cache_dir,
     get_data_dir,
-    get_models_dir,
     get_shards_cache_dir,
     get_style_dataset_cache_dir,
-    get_style_output_dir,
     get_style_support_dir,
-    get_train_root,
 )
 
 if __name__ == "__main__":

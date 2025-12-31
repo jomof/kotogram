@@ -18,8 +18,11 @@ import torch.distributed as dist
 
 from kotogram import locations
 from kotogram.model import StyleClassifier
+
+# pylint: disable=ungrouped-imports
 from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
-from train import history
+from train import history, paths
+from train import io as train_io
 from train.config import (
     KCConfig,
     TrainerConfig,
@@ -271,11 +274,11 @@ if __name__ == "__main__":
         parser.error("--config is required for training/labeling")
 
     # Resolve and inject paths
-    cache_dir = locations.get_cache_dir()
+    cache_dir = paths.get_cache_dir()
     args.data = os.path.join(cache_dir, "grammatic_combined.tsv")
     args.agrammatic_data = os.path.join(cache_dir, "agrammatic_combined.tsv")
     args.output = locations.get_style_output_dir()
-    args.support_dir = locations.get_style_support_dir()
+    args.support_dir = paths.get_style_support_dir()
 
     rank, world_size, local_rank = setup_distributed()
 
@@ -362,7 +365,7 @@ if __name__ == "__main__":
     grammaticality_labels = [1]
 
     # Always prefer cached pre-processed files if available
-    cache_dir_data = locations.get_style_dataset_cache_dir()
+    cache_dir_data = paths.get_style_dataset_cache_dir()
     gram_cache = os.path.join(cache_dir_data, "grammatic_combined.tsv")
     agram_cache = os.path.join(cache_dir_data, "agrammatic_combined.tsv")
 
@@ -450,8 +453,9 @@ if __name__ == "__main__":
         model_config.vocab_sizes = new_vocab_sizes
         # Save updated tokenizer to output_dir so resumption finds it
         if is_main_process():
-            tokenizer.save(
-                os.path.join(locations.get_style_output_dir(), "tokenizer.json")
+            train_io.save_tokenizer(
+                tokenizer,
+                os.path.join(locations.get_style_output_dir(), "tokenizer.json"),
             )
 
     if args.preprocess_only:

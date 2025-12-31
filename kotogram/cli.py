@@ -4,9 +4,14 @@
 import argparse
 import json
 import sys
-from typing import Literal
+from typing import Any, Dict, Literal
 
+from sudachipy import dictionary
+
+from kotogram.analysis import _ANALYZER, check_model_available, grammar
+from kotogram.constants import FORMALITY_ID_TO_LABEL, GENDER_ID_TO_LABEL
 from kotogram.japanese_parser import KotogramFormat
+from kotogram.model import REGISTER_ID_TO_LABEL
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 
 
@@ -58,8 +63,6 @@ def cmd_raw(args: argparse.Namespace) -> int:
     print(f"Input: {text}")
     print()
 
-    from sudachipy import dictionary
-
     dict_obj = dictionary.Dictionary(dict="full")
     tokenizer = dict_obj.create()
     tokens = tokenizer.tokenize(text)
@@ -78,7 +81,6 @@ def cmd_raw(args: argparse.Namespace) -> int:
 
 def _check_model() -> bool:
     """Check if model exists and print error if not."""
-    from kotogram.analysis import check_model_available
 
     if not check_model_available():
         sys.stderr.write("\nError: Model file not found.\n")
@@ -93,7 +95,6 @@ def cmd_grammar(args: argparse.Namespace) -> int:
         return 1
 
     kotogram = _get_kotogram_from_args(args)
-    from kotogram.analysis import grammar
 
     result = grammar(kotogram)
 
@@ -109,7 +110,6 @@ def cmd_formality_score(args: argparse.Namespace) -> int:
         return 1
 
     kotogram = _get_kotogram_from_args(args)
-    from kotogram.analysis import grammar
 
     result = grammar(kotogram)
     print(result.formality_score)
@@ -122,7 +122,6 @@ def cmd_formality_is_pragmatic(args: argparse.Namespace) -> int:
         return 1
 
     kotogram = _get_kotogram_from_args(args)
-    from kotogram.analysis import grammar
 
     result = grammar(kotogram)
     print(str(result.formality_is_pragmatic).lower())
@@ -135,16 +134,127 @@ def cmd_grammaticality(args: argparse.Namespace) -> int:
         return 1
 
     kotogram = _get_kotogram_from_args(args)
-    from kotogram.analysis import grammar
 
     result = grammar(kotogram)
-    # The user asked for "grammaticality", but Vulture flagged "grammaticality_score".
+    # The user asked for "grammaticality", but the property is "grammaticality_score".
     # Printing the score is more informative.
     print(result.grammaticality_score)
     return 0
 
 
+def cmd_gender_score(args: argparse.Namespace) -> int:
+    """Get gender score."""
+    if not _check_model():
+        return 1
+
+    kotogram = _get_kotogram_from_args(args)
+
+    result = grammar(kotogram)
+    print(result.gender_score)
+    return 0
+
+
+def cmd_gender_is_pragmatic(args: argparse.Namespace) -> int:
+    """Get gender pragmatic status."""
+    if not _check_model():
+        return 1
+
+    kotogram = _get_kotogram_from_args(args)
+
+    result = grammar(kotogram)
+    print(str(result.gender_is_pragmatic).lower())
+    return 0
+
+
+def cmd_vocab(
+    _args: Any,
+) -> int:
+    """Show vocabulary sizes."""
+    if not _check_model():
+        return 1
+
+    _, tokenizer = _ANALYZER.load()
+    # Cast to Tokenizer to appease Pylint if inference fails
+    # (though explicit import should match if load returns Tokenizer)
+    # The error was E1101: Instance of 'Tokenizer' has no 'vocab_sizes' member
+    # If _ANALYZER.load() returns Tokenizer, Pylint should see it if it scans tokenizer.py properly.
+    # But maybe it doesn't.
+    print(json.dumps(tokenizer.get_vocab_sizes(), indent=2))
+    return 0
+
+
+def cmd_config(_args: Any) -> int:
+    """Show model configuration."""
+    if not _check_model():
+        return 1
+
+    model, _ = _ANALYZER.load()
+    # pylint: disable=protected-access
+    print(json.dumps(model.config.to_dict(), indent=2))
+    return 0
+
+
+def cmd_labels(_args: Any) -> int:
+    """Show label mappings."""
+    # Reconstruct inverse maps if needed or just dump what's available
+
+    # helper to serializable
+    def serialize(d: Dict[Any, Any]) -> Dict[str, Any]:
+        return {str(k): str(v) for k, v in d.items()}
+
+    data = {
+        "formality": serialize(FORMALITY_ID_TO_LABEL),
+        "register": serialize(REGISTER_ID_TO_LABEL),
+        "gender": serialize(GENDER_ID_TO_LABEL),
+    }
+
+    print(json.dumps(data, indent=2, ensure_ascii=False))
+    return 0
+
+
+def cmd_benchmark(args: argparse.Namespace) -> int:
+    """Run a simple benchmark/smoke test."""
+    if not _check_model():
+        return 1
+
+    kotogram = _get_kotogram_from_args(args)
+    import time
+
+    start = time.time()
+    for _ in range(args.iterations):
+        grammar(kotogram)
+    end = time.time()
+
+    print(f"Processed {args.iterations} iterations in {end - start:.4f}s")
+    return 0
+
+
+def cmd_augment(args: argparse.Namespace) -> int:
+    """Augment sentences via CLI."""
+    if not _check_model():
+        return 1
+
+    from kotogram.augment import augment
+
+    text = args.text
+    if text == "-":
+        text = sys.stdin.read().strip()
+
+    if not text:
+        return 0
+
+    sentences = [text]  # augment expects list of strings
+
+    # We might want to support bulk augmentation from file later,
+    # but for now single input to match other commands.
+
+    variations = augment(sentences, timeout=args.timeout)
+    print(json.dumps(variations, ensure_ascii=False, indent=2))
+    return 0
+
+
 def main() -> int:
+    # pylint: disable=too-many-locals
     parser = argparse.ArgumentParser(
         prog="kotogram",
         description="Command-line tool for working with kotograms",
@@ -214,6 +324,53 @@ def main() -> int:
     )
     g_parser.add_argument("text", help="Text to analyze")
     g_parser.set_defaults(func=cmd_grammaticality)
+
+    # gender_score
+    gs_parser = subparsers.add_parser(
+        "gender_score",
+        help="Get gender score (-1.0 to 1.0)",
+    )
+    gs_parser.add_argument("text", help="Text to analyze")
+    gs_parser.set_defaults(func=cmd_gender_score)
+
+    # gender_is_pragmatic
+    gp_parser = subparsers.add_parser(
+        "gender_is_pragmatic",
+        help="Check if gender is pragmatically determined",
+    )
+    gp_parser.add_argument("text", help="Text to analyze")
+    gp_parser.set_defaults(func=cmd_gender_is_pragmatic)
+
+    # augment
+    augment_parser = subparsers.add_parser(
+        "augment",
+        help="Augment Japanese text with grammatical variations",
+    )
+    augment_parser.add_argument("text", help="Text to augment")
+    augment_parser.add_argument(
+        "--timeout", type=float, default=1.0, help="Timeout in seconds"
+    )
+    augment_parser.set_defaults(func=cmd_augment)
+
+    # vocab
+    vocab_parser = subparsers.add_parser("vocab", help="Show vocabulary sizes")
+    vocab_parser.set_defaults(func=cmd_vocab)
+
+    # config
+    config_parser = subparsers.add_parser("config", help="Show model configuration")
+    config_parser.set_defaults(func=cmd_config)
+
+    # labels
+    labels_parser = subparsers.add_parser("labels", help="Show label mappings")
+    labels_parser.set_defaults(func=cmd_labels)
+
+    # benchmark
+    bench_parser = subparsers.add_parser("benchmark", help="Run smoke test")
+    bench_parser.add_argument("text", help="Text to analyze")
+    bench_parser.add_argument(
+        "--iterations", type=int, default=10, help="Number of iterations"
+    )
+    bench_parser.set_defaults(func=cmd_benchmark)
 
     args = parser.parse_args()
 

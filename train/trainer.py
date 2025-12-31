@@ -157,7 +157,7 @@ class KCTrainer:
                 ),
             )
 
-        pad_id = dataset.tokenizer.pad_id
+        pad_id = 0
         max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
 
         self.sampler: Optional[DistributedSampler] = (
@@ -1917,7 +1917,7 @@ class Trainer:
         self.train_dataset = train_dataset
         self.val_dataset = val_dataset
 
-        pad_id = train_dataset.tokenizer.pad_id
+        pad_id = 0
         max_seq_len = getattr(self.model, "module", self.model).config.max_seq_len
 
         if self.is_distributed:

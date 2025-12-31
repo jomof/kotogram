@@ -4,9 +4,9 @@ from unittest.mock import MagicMock
 import torch
 from torch.utils.data import DataLoader
 
-from kotogram.evaluator import EvalResult, Evaluator
 from kotogram.model import StyleClassifier, StylePrediction
 from kotogram.tokenizer import Tokenizer
+from train.evaluator import EvalResult, Evaluator
 
 
 class TestEvaluator(unittest.TestCase):

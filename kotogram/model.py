@@ -14,7 +14,7 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from kotogram.constants import FormalityLevel, GenderLevel, RegisterLevel
+from kotogram.constants import RegisterLevel
 from kotogram.tokenizer import (
     FEATURE_FIELDS,
     Tokenizer,
@@ -25,42 +25,8 @@ NUM_GRAMMATICALITY_CLASSES = 2  # grammatic (1) vs agrammatic (0)
 NUM_GENDER_PRAGMATIC_CLASSES = 2  # pragmatic (1) vs unpragmatic (0)
 
 # Label mappings
-FORMALITY_LABEL_TO_ID = {
-    FormalityLevel.VERY_FORMAL: 0,
-    FormalityLevel.FORMAL: 1,
-    FormalityLevel.NEUTRAL: 2,
-    FormalityLevel.CASUAL: 3,
-    FormalityLevel.VERY_CASUAL: 4,
-    FormalityLevel.UNPRAGMATIC_FORMALITY: 5,
-}
-FORMALITY_ID_TO_LABEL = {v: k for k, v in FORMALITY_LABEL_TO_ID.items()}
-
-GENDER_LABEL_TO_ID = {
-    GenderLevel.MASCULINE: 0,
-    GenderLevel.FEMININE: 1,
-    GenderLevel.NEUTRAL: 2,
-    GenderLevel.UNPRAGMATIC_GENDER: 3,
-}
-
-
 # Register classes
 NUM_REGISTER_CLASSES = 14
-REGISTER_LABEL_TO_ID = {
-    RegisterLevel.NEUTRAL: 0,
-    RegisterLevel.SONKEIGO: 1,
-    RegisterLevel.KENJOGO: 2,
-    RegisterLevel.KANSAIBEN: 3,
-    RegisterLevel.HAKATABEN: 4,
-    RegisterLevel.KYOSHIGO: 5,
-    RegisterLevel.NETSLANG: 6,
-    RegisterLevel.OJOUSAMA: 7,
-    RegisterLevel.GUNTAI: 8,
-    RegisterLevel.JOSEIGO: 9,
-    RegisterLevel.DANSEIGO: 10,
-    RegisterLevel.BURIKKO: 11,
-    RegisterLevel.TOHOKU: 12,
-    RegisterLevel.BUSHI: 13,
-}
 REGISTER_ID_TO_LABEL = {
     0: RegisterLevel.NEUTRAL,
     1: RegisterLevel.SONKEIGO,
@@ -374,20 +340,6 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
 
         if config.kc_enabled:
             self.kc_head = KCHead(config)
-
-    def reset_classifier(self) -> None:
-        """Reset classifier heads for fine-tuning."""
-
-        def reset(m: nn.Module) -> None:
-            if isinstance(m, nn.Linear):
-                m.reset_parameters()
-
-        self.formality_value_head.apply(reset)
-        self.formality_pragmatic_head.apply(reset)
-        self.gender_value_head.apply(reset)
-        self.gender_pragmatic_head.apply(reset)
-        self.grammaticality_classifier.apply(reset)
-        self.register_classifier.apply(reset)
 
     def get_encoder_output(
         self,

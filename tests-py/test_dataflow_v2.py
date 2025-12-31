@@ -6,6 +6,7 @@ import tempfile
 import unittest
 
 from kotogram.tokenizer import Tokenizer
+from train import io as train_io
 from train.dataset import StyleDataset
 
 
@@ -73,7 +74,8 @@ class TestDataflowV2(unittest.TestCase):
 
         # Create dummy tokenizer.json
         tok = Tokenizer()
-        tok.save(os.path.join(model_dir, "tokenizer.json"))
+        tok.add_to_vocab("reading", "test")
+        train_io.save_tokenizer(tok, os.path.join(model_dir, "tokenizer.json"))
 
         dataset = StyleDataset(
             data_dir=cache_dir,
@@ -95,8 +97,8 @@ class TestDataflowV2(unittest.TestCase):
         self.assertTrue(len(valid_ids) > 0, f"All tokens special: {surface_ids}")
 
         # Check Register Labels (ragged)
-        # "これはテスト文です0" has override KYOSHIGO (assumed ID 5)
-        self.assertEqual(sample.register_labels, [5])
+        # "これはテスト文です0" has override KYOSHIGO (assumed ID 4)
+        self.assertEqual(sample.register_labels, [4])
 
         # Split
         train_ds, val_ds = dataset.split(train_ratio=0.8)

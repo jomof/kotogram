@@ -28,6 +28,13 @@ if os.environ.get("VULTURE_WHITELIST"):
     from scripts import confine
 
     _v1 = confine.confine
+    from kotogram.model import StyleClassifier, PositionalEncoding, MultiFieldEmbedding, KCHead
+
+    _v2 = StyleClassifier.forward
+    _v3 = PositionalEncoding.forward
+    _v4 = MultiFieldEmbedding.forward
+    _v5 = KCHead.forward
+    _v6 = KCHead.forward_with_raw
 
 
 PYTHON_BASELINE = "tests/python_package_baseline.txt"
@@ -172,7 +179,7 @@ async def check_vulture_circumvention() -> CheckResult:
     # 2. Check for content mentions of "vulture"
     # grep -r "vulture" .
     # Exclude binary files (-I), line numbers (-n)
-    grep_cmd = 'grep -rnI --include="*.py" "vulture" .'
+    grep_cmd = 'grep -rnIi --include="*.py" "vulture" .'
     proc_grep = await asyncio.create_subprocess_shell(
         grep_cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
@@ -204,6 +211,177 @@ async def check_vulture_circumvention() -> CheckResult:
 
     print_success("No Vulture circumvention detected")
     return CheckResult("vulture circumvention check", True, "")
+
+
+async def check_kotogram_dependencies() -> CheckResult:
+    """
+    Ensure kotogram/ only references libraries, not local scripts/tests/train code.
+    """
+    # Look for imports of scripts, tests-py, train, train_style
+    # Also look for relative imports that might reach up, e.g. "from ..scripts" or "from ..train"
+    # But since kotogram is a package, ".." from inside it goes to root.
+    cmd = 'grep -rE "^(from|import) (scripts|tests-py|train|train_style)" kotogram/'
+    proc = await asyncio.create_subprocess_shell(
+        cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
+    stdout, _ = await proc.communicate()
+
+    # We want NO output (exit code 1 is good, 0 is bad if matches found)
+    if stdout:
+        return CheckResult(
+            "kotogram dependency check",
+            False,
+            f"Forbidden dependencies found in kotogram/:\n{stdout.decode()}",
+        )
+
+    print_success("Kotogram dependencies OK")
+    return CheckResult("kotogram dependency check", True, "")
+
+
+
+
+
+async def check_vulture_inference() -> CheckResult:
+    """
+    Phase 1: Inference-Only Check
+    Ensure code in kotogram/ is used by bin/kotogram.
+    If unused here, it might belong in train/ or scripts/.
+    """
+    # Min confidence 60 to catch everything
+    cmd = "vulture kotogram/ bin/kotogram scripts/test_runner.py --min-confidence 60"
+    proc = await asyncio.create_subprocess_shell(
+        cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
+    stdout, _ = await proc.communicate()
+    output = stdout.decode()
+
+    # Filter for violations in kotogram/ directory only
+    violations = [
+        line for line in output.splitlines()
+        if line.strip().startswith("kotogram/")
+    ]
+
+    if violations:
+        return CheckResult(
+            "vulture (inference)",
+            False,
+            f"Code in kotogram/ not reachable from bin/kotogram (Move to train/ or scripts/?):\n{chr(10).join(violations)}",
+        )
+
+    print_success("Vulture (Inference) OK")
+    return CheckResult("vulture (inference)", True, "")
+
+
+async def check_vulture_production() -> CheckResult:
+    """
+    Phase 2: Production Check
+    Ensure code in kotogram/ and train/ and scripts/ is used by production entry points.
+    If unused here, it might belong in tests-py/.
+    """
+    # exclude tests-py
+    cmd = "vulture kotogram/ train/ scripts/ bin/kotogram scripts/test_runner.py --exclude tests-py --min-confidence 60"
+    proc = await asyncio.create_subprocess_shell(
+        cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
+    stdout, _ = await proc.communicate()
+    output = stdout.decode()
+
+    # We care about violations in kotogram/, train/, scripts/
+    # (bin/kotogram is entry point)
+    violations = [
+        line for line in output.splitlines()
+        if "tests-py/" not in line # Should be excluded by --exclude but double check
+    ]
+
+    if violations:
+        return CheckResult(
+            "vulture (production)",
+            False,
+            f"Code unused in production (Move to tests-py/ or delete?):\n{chr(10).join(violations)}",
+        )
+
+    print_success("Vulture (Production) OK")
+    return CheckResult("vulture (production)", True, "")
+
+
+async def check_vulture_full() -> CheckResult:
+    """
+    Phase 3: Full Check
+    Ensure everything is used somewhere (including tests).
+    If unused here, it is dead code.
+    """
+    cmd = "vulture kotogram/ train/ scripts/ tests-py/ bin/kotogram scripts/test_runner.py --min-confidence 60"
+    proc = await asyncio.create_subprocess_shell(
+        cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
+    stdout, _ = await proc.communicate()
+
+    if stdout:
+        return CheckResult(
+            "vulture (full)",
+            False,
+            f"Dead code detected (Delete it!):\n{stdout.decode()}",
+        )
+
+    print_success("Vulture (Full) OK")
+    return CheckResult("vulture (full)", True, "")
+
+
+async def check_file_structure() -> CheckResult:
+    """
+    Ensure no .py files exist outside of approved source roots:
+    kotogram/, train/, scripts/, tests-py/.
+    """
+    # Allowed directories
+    allowed_dirs = {"kotogram", "train", "scripts", "tests-py"}
+
+    # Use git ls-files to respect .gitignore (e.g. node_modules)
+    # --cached: tracked files
+    # --others: untracked files
+    # --exclude-standard: respect .gitignore
+    cmd = 'git ls-files --cached --others --exclude-standard'
+    proc = await asyncio.create_subprocess_shell(
+        cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
+    stdout, _ = await proc.communicate()
+
+    violations = []
+    for line in stdout.decode().splitlines():
+        line = line.strip()
+        if not line.endswith(".py"):
+            continue
+
+        # line is path/to/file.py (git ls-files usually relative to root without ./)
+        path = line
+
+        # Ignore hidden/system dirs and build artifacts (extra safety)
+        if ".venv" in path or ".git" in path or ".mypy_cache" in path or "__pycache__" in path or "dist_py" in path:
+            continue
+        if "build/" in path or ".tmp" in path or "egg-info" in path or "models/" in path or "node_modules/" in path:
+            continue
+        if path.startswith("debug_") or path.startswith("tests/"):
+            continue
+
+        # Get top-level dir
+        parts = path.split(os.sep)
+        if len(parts) > 1:
+            top_dir = parts[0]
+            if top_dir not in allowed_dirs:
+                violations.append(path)
+        else:
+            # File in root (e.g. setup.py)
+            if path != "setup.py": # Whitelist setup.py if it exists
+                violations.append(path)
+
+    if violations:
+        return CheckResult(
+            "file structure check",
+            False,
+            "Found .py files in unapproved locations (Moved to scripts/ or delete?):\n" + "\n".join(violations),
+        )
+
+    print_success("File structure OK")
+    return CheckResult("file structure check", True, "")
 
 
 async def verify_exception_usage() -> CheckResult:
@@ -337,34 +515,7 @@ async def run_mypy() -> CheckResult:
     return CheckResult("mypy", True, "")
 
 
-async def run_vulture() -> CheckResult:
-    """
-    Run Vulture to detect dead code (unused functions, variables, etc.).
 
-    This runs in two passes:
-    1. Production Strict: Checks core modules to ensure every symbol is used by other production code.
-    2. Full (Permissive): Checks everything (including tests) to catch truly orphaned code.
-    """
-    cmd_prod = "vulture kotogram scripts train scripts/curate scripts/test_runner.py train_style bin/kotogram"
-    res_prod = await run_command(cmd_prod)
-    if not res_prod.success:
-        return CheckResult(
-            "vulture (production strict)",
-            False,
-            f"Vulture found unused production code (not used by other production code):\n{res_prod.output}",
-        )
-
-    cmd_full = "vulture kotogram scripts train tests-py scripts/test_runner.py train_style bin/kotogram"
-    res_full = await run_command(cmd_full)
-    if not res_full.success:
-        return CheckResult(
-            "vulture (full)",
-            False,
-            f"Vulture found unused code (likely in tests):\n{res_full.output}",
-        )
-
-    print_success("Vulture passed (strict production + full)")
-    return CheckResult("vulture", True, "")
 
 
 async def run_pylint() -> CheckResult:
@@ -639,9 +790,13 @@ async def main() -> None:
 
     tasks = [
         run_mypy(),
-        run_vulture(),
+        check_vulture_inference(),
+        check_vulture_production(),
+        check_vulture_full(),
         run_pylint(),
         check_python_package(),
+        check_kotogram_dependencies(),
+        check_file_structure(),
     ]
     tasks.insert(0, process_noqa)
 

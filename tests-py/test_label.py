@@ -5,7 +5,7 @@ import unittest
 from training_test_utils import Bottle
 
 # V2: We check for binary shards and text files instead of SQLite cache
-from kotogram import locations
+from train import paths as train_paths
 
 
 # pylint: disable=protected-access, unnecessary-dunder-call
@@ -37,7 +37,7 @@ class TestLabelScript(unittest.TestCase):
 
         with self.bottle.environment():
             # Verify V2 artifacts
-            cache_dir = locations.get_style_dataset_cache_dir()
+            cache_dir = train_paths.get_style_dataset_cache_dir()
             print(f"Checking results in {cache_dir}...")
 
             # Check for core text files
@@ -88,7 +88,7 @@ class TestLabelScript(unittest.TestCase):
         self.bottle.run_script("scripts/label.py", args)
 
         with self.bottle.environment():
-            cache_dir = locations.get_style_dataset_cache_dir()
+            cache_dir = train_paths.get_style_dataset_cache_dir()
             s_path = os.path.join(cache_dir, "sentences.txt")
             self.assertTrue(os.path.exists(s_path))
 
@@ -109,7 +109,7 @@ class TestLabelScript(unittest.TestCase):
         self.bottle.run_script("scripts/label.py", args_new)
 
         with self.bottle.environment():
-            cache_dir = locations.get_style_dataset_cache_dir()
+            cache_dir = train_paths.get_style_dataset_cache_dir()
             s_path = os.path.join(cache_dir, "sentences.txt")
 
             with open(s_path, "r", encoding="utf-8") as f:
@@ -124,7 +124,7 @@ class TestLabelScript(unittest.TestCase):
         self.bottle.run_script("scripts/label.py", args)
 
         with self.bottle.environment():
-            cache_dir = locations.get_style_dataset_cache_dir()
+            cache_dir = train_paths.get_style_dataset_cache_dir()
             s_path = os.path.join(cache_dir, "sentences.txt")
             self.assertTrue(os.path.exists(s_path))
 
@@ -138,7 +138,7 @@ class TestLabelScript(unittest.TestCase):
         self.bottle.run_script("scripts/label.py", args_force)
 
         with self.bottle.environment():
-            cache_dir = locations.get_style_dataset_cache_dir()
+            cache_dir = train_paths.get_style_dataset_cache_dir()
             s_path = os.path.join(cache_dir, "sentences.txt")
             self.assertTrue(os.path.exists(s_path))
             self.assertFalse(os.path.exists(os.path.join(cache_dir, "sentinel.txt")))
