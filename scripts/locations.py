@@ -5,22 +5,8 @@ This script provides CLI access to kotogram.locations without triggering
 the full kotogram package import, avoiding RuntimeWarnings.
 """
 
-import importlib.util
 import sys
 
-if importlib.util.find_spec("_setup_path"):
-    import _setup_path  # type: ignore # noqa: F401 # pylint: disable=unused-import,import-private-name
-
-    _ = _setup_path  # Vulture: Used for side effects
-else:
-    from scripts import (
-        _setup_path,  # type: ignore # noqa: F401 # pylint: disable=unused-import,import-private-name
-    )
-
-    _ = _setup_path  # Vulture: Used for side effects
-
-# Import all functions from the canonical locations module
-# pylint: disable=wrong-import-position
 from kotogram.locations import (
     get_cache_dir,
     get_data_dir,
@@ -31,6 +17,11 @@ from kotogram.locations import (
     get_style_support_dir,
     get_train_root,
 )
+from scripts import (
+    _setup_path,  # type: ignore # noqa: F401 # pylint: disable=import-private-name
+)
+
+_vulture_marker = _setup_path  # Vulture: Used for side effects
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:

@@ -45,7 +45,7 @@ class TestMasking(unittest.TestCase):
         # Identify the name token (first one)
         orig_features = extract_token_features(orig_tokens[0])
         self.assertEqual(orig_features.surface, "花子")
-        self.assertEqual(orig_features.pos_detail3, "given-name")
+        self.assertEqual(orig_features.pos_detail_3, "given-name")
 
         # 2. Parse masked
         masked_kotogram = self.parser.japanese_to_kotogram(
@@ -59,10 +59,10 @@ class TestMasking(unittest.TestCase):
 
         # 3. Assert POS tags are identical
         self.assertEqual(masked_features.pos, orig_features.pos)
-        self.assertEqual(masked_features.pos_detail1, orig_features.pos_detail1)
-        self.assertEqual(masked_features.pos_detail2, orig_features.pos_detail2)
-        # Note: pos_detail3 should also be "given-name" for placeholder
-        self.assertEqual(masked_features.pos_detail3, orig_features.pos_detail3)
+        self.assertEqual(masked_features.pos_detail_1, orig_features.pos_detail_1)
+        self.assertEqual(masked_features.pos_detail_2, orig_features.pos_detail_2)
+        # Note: pos_detail_3 should also be "given-name" for placeholder
+        self.assertEqual(masked_features.pos_detail_3, orig_features.pos_detail_3)
 
         # 4. Assert reading is stripped (defaults to empty string in TokenFeatures if missing)
         self.assertEqual(masked_features.reading, "")

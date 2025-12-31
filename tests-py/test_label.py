@@ -118,6 +118,31 @@ class TestLabelScript(unittest.TestCase):
                 # It might have duplicates if not deduped, but V2 label.py dedups globally in main logic
                 self.assertIn("これはテストです。", lines)
 
+    def test_force_relabel(self):
+        # First run to populate cache
+        args = ["--grammatic-pattern", self.data_file]
+        self.bottle.run_script("scripts/label.py", args)
+
+        with self.bottle.environment():
+            cache_dir = locations.get_style_dataset_cache_dir()
+            s_path = os.path.join(cache_dir, "sentences.txt")
+            self.assertTrue(os.path.exists(s_path))
+
+            # Create a sentinel file that should be deleted
+            sentinel = os.path.join(cache_dir, "sentinel.txt")
+            with open(sentinel, "w", encoding="utf-8") as f:
+                f.write("I should be deleted")
+
+        # Run with --force-relabel
+        args_force = ["--grammatic-pattern", self.data_file, "--force-relabel"]
+        self.bottle.run_script("scripts/label.py", args_force)
+
+        with self.bottle.environment():
+            cache_dir = locations.get_style_dataset_cache_dir()
+            s_path = os.path.join(cache_dir, "sentences.txt")
+            self.assertTrue(os.path.exists(s_path))
+            self.assertFalse(os.path.exists(os.path.join(cache_dir, "sentinel.txt")))
+
 
 if __name__ == "__main__":
     unittest.main()

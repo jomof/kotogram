@@ -16,18 +16,12 @@ Setup:
 """
 
 import argparse
-import importlib.util
 import os
 import subprocess
 import sys
 import time
 from typing import List, Optional, Any, Dict, IO
 
-# Ensure we can import kotogram from project root if running from source
-# pylint: disable=wrong-import-position
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-if PROJECT_ROOT not in sys.path:
-    sys.path.insert(0, PROJECT_ROOT)
 
 from kotogram import locations
 from kotogram.model import (
@@ -43,6 +37,9 @@ from train.config import (
     HardwareConfig,
     TrainerConfig,
 )
+from train.kc import KC_HASH_BUCKETS
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
 
@@ -51,12 +48,11 @@ from train.config import (
 
 def get_device_info() -> tuple[int, str]:
     """Detect the number and type of available devices."""
-    if importlib.util.find_spec("torch"):
-        import torch
-        if torch.cuda.is_available():
-            return torch.cuda.device_count(), "CUDA"
-        if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
-            return 1, "MPS"
+    import torch
+    if torch.cuda.is_available():
+        return torch.cuda.device_count(), "CUDA"
+    if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+        return 1, "MPS"
     return 1, "CPU"
 
 
@@ -322,6 +318,33 @@ def generate_and_save_config(
     print(f"Loaded tokenizer from {tokenizer_path_final}")
     tokenizer = Tokenizer.load(tokenizer_path_final)
 
+    # Define KC target specs based on train/kc.py
+    kc_target_specs = {}
+    if args.pretrain_kc:
+        vocab_sizes = tokenizer.get_vocab_sizes()
+
+        # Bag and Tail targets
+        for field in ["reading", "pos", "pos_detail1", "conjugated_form", "conjugated_type"]:
+            if field in vocab_sizes:
+                kc_target_specs[f"bag_{field}"] = vocab_sizes[field]
+                kc_target_specs[f"tail_{field}"] = vocab_sizes[field]
+
+        # Ngram targets
+        for field in ["pos", "pos_detail1", "conjugated_form", "conjugated_type"]:
+            if field in vocab_sizes: # Check if base field exists for ngrams
+                kc_target_specs[f"ngram_{field}"] = KC_HASH_BUCKETS
+
+        # Pair targets
+        # pair_pos_conj (pos + conjugated_form)
+        if "pos" in vocab_sizes and "conjugated_form" in vocab_sizes:
+            kc_target_specs["pair_pos_conj"] = KC_HASH_BUCKETS
+        # pair_pos1_conjform (pos_detail1 + conjugated_form)
+        if "pos_detail1" in vocab_sizes and "conjugated_form" in vocab_sizes:
+            kc_target_specs["pair_pos1_conjform"] = KC_HASH_BUCKETS
+        # pair_pos1_conjtype (pos_detail1 + conjugated_type)
+        if "pos_detail1" in vocab_sizes and "conjugated_type" in vocab_sizes:
+            kc_target_specs["pair_pos1_conjtype"] = KC_HASH_BUCKETS
+
     # Create configs
     config_loaded = False
     model_config = None  # type: ignore # Fix Pylint E0606
@@ -341,13 +364,7 @@ def generate_and_save_config(
             num_layers=args.num_layers,
             num_heads=args.num_heads,
             kc_enabled=args.pretrain_kc,
-            kc_target_specs={
-                h.strip(): tokenizer.get_vocab_sizes().get(h.strip(), 100)
-                for h in args.kc_target_heads.split(",")
-                if h.strip()
-            }
-            if args.pretrain_kc
-            else {},
+            kc_target_specs=kc_target_specs,
         )
 
     # Build TrainerConfig
@@ -417,7 +434,6 @@ def run_training_phase(
             "--kc-topk", str(args.kc_topk),
             "--kc-freeze-encoder-epochs", str(args.kc_freeze_encoder_epochs),
             "--kc-sparsity-weight", str(args.kc_sparsity_weight),
-            "--kc-target-heads", args.kc_target_heads,
         ])
     if args.resume:
         train_args.append("--resume")
@@ -522,11 +538,11 @@ def parse_arguments() -> argparse.Namespace:
         "--kc-freeze-encoder-epochs", type=int, default=1, help="Epochs to freeze encoder during KC training"
     )
     parser.add_argument("--kc-sparsity-weight", type=float, default=1e-3, help="Sparsity regularization weight")
-    parser.add_argument(
-        "--kc-target-heads",
-        default="lemma,pos,conjugated_form,conjugated_type",
-        help="Comma-separated target heads for KC supervision",
-    )
+    # parser.add_argument(
+    #     "--kc-target-heads",
+    #     default="lemma,pos,conjugated_form,conjugated_type",
+    #     help="Comma-separated target heads for KC supervision",
+    # )
 
     # Action flags
     parser.add_argument("--confusion", action="store_true", help="Print confusion matrices and exit")
@@ -590,7 +606,6 @@ def print_training_banner(
         print(f"KC Top-k:       {args.kc_topk}")
         print(f"KC Freeze:      {args.kc_freeze_encoder_epochs} epochs")
         print(f"KC Sparsity:    {args.kc_sparsity_weight}")
-        print(f"KC Targets:     {args.kc_target_heads}")
 
     if args.resume:
         print("Resume:         from checkpoint")
@@ -756,7 +771,6 @@ def main() -> int:
         print(f"  KC Epochs:        {args.kc_epochs} (freeze: {args.kc_freeze_encoder_epochs})")
         print(f"  KC Vocab (K):     {args.kc_k}")
         print(f"  KC Top-k:         {args.kc_topk}")
-        print(f"  KC Targets:       {args.kc_target_heads}")
     print("-" * 46)
     print()
 

@@ -83,7 +83,7 @@ class TestExtractTokenFeaturesSudachi(unittest.TestCase):
 
         self.assertEqual(features.surface, "は")
         self.assertEqual(features.pos, "particle")
-        self.assertIn("particle", features.pos_detail1)
+        self.assertIn("particle", features.pos_detail_1)
 
     def test_noun_extraction(self):
         """Test extracting features from a noun."""
@@ -96,7 +96,7 @@ class TestExtractTokenFeaturesSudachi(unittest.TestCase):
 
         self.assertEqual(features.surface, "学生")
         self.assertEqual(features.pos, "noun")
-        self.assertEqual(features.pos_detail1, "common-noun")
+        self.assertEqual(features.pos_detail_1, "common-noun")
         # Nouns don't have conjugation
         self.assertEqual(features.conjugated_type, "")
         self.assertEqual(features.conjugated_form, "")
@@ -112,7 +112,7 @@ class TestExtractTokenFeaturesSudachi(unittest.TestCase):
 
         self.assertEqual(features.surface, "高い")
         self.assertEqual(features.pos, "adj")
-        self.assertEqual(features.pos_detail1, "general")
+        self.assertEqual(features.pos_detail_1, "general")
         self.assertEqual(features.conjugated_type, "i-adjective")
 
     def test_empty_fields_default_to_empty_string(self):

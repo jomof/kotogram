@@ -22,9 +22,9 @@ CLS_TOKEN = "<CLS>"
 ALL_FEATURE_FIELDS = [
     "surface",
     "pos",
-    "pos_detail1",
-    "pos_detail2",
-    "pos_detail3",
+    "pos_detail_1",
+    "pos_detail_2",
+    "pos_detail_3",
     "conjugated_type",
     "conjugated_form",
     "lemma",
@@ -110,9 +110,9 @@ class Tokenizer:
             all_features = {
                 "surface": features.surface,
                 "pos": features.pos,
-                "pos_detail1": features.pos_detail1,
-                "pos_detail2": features.pos_detail2,
-                "pos_detail3": features.pos_detail3,
+                "pos_detail_1": features.pos_detail_1,
+                "pos_detail_2": features.pos_detail_2,
+                "pos_detail_3": features.pos_detail_3,
                 "conjugated_type": features.conjugated_type,
                 "conjugated_form": features.conjugated_form,
                 "lemma": features.lemma,
@@ -200,6 +200,15 @@ class Tokenizer:
 
     def load_state(self, state: Dict[str, Any]) -> None:
         """Load tokenizer state from dictionary."""
+        # Migration logic for old pos_detail naming
+        if "field_vocabs" in state:
+            vocabs = state["field_vocabs"]
+            for i in range(1, 4):
+                old_key = f"pos_detail{i}"
+                new_key = f"pos_detail_{i}"
+                if old_key in vocabs and new_key not in vocabs:
+                    vocabs[new_key] = vocabs.pop(old_key)
+
         self.field_vocabs.update(state.get("field_vocabs", {}))
         self._frozen = state.get("frozen", self._frozen)
 

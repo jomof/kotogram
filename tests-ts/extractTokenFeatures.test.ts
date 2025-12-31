@@ -58,7 +58,7 @@ test('extractTokenFeatures - verb basic extraction', () => {
 
   assert.strictEqual(features.surface, '食べる');
   assert.strictEqual(features.pos, 'verb');
-  assert.strictEqual(features.posDetail1, 'general');
+  assert.strictEqual(features.pos_detail_1, 'general');
   assert.strictEqual(features.conjugatedType, 'lower-ichidan-ba');
   assert.strictEqual(features.conjugatedForm, 'terminal');
   assert.strictEqual(features.baseOrth, '食べる');
@@ -114,7 +114,7 @@ test('extractTokenFeatures - particle wa', () => {
 
   assert.strictEqual(features.surface, 'は');
   assert.strictEqual(features.pos, 'particle');
-  assert.strictEqual(features.posDetail1, 'binding-particle');
+  assert.strictEqual(features.pos_detail_1, 'binding-particle');
 });
 
 test('extractTokenFeatures - particle wo', () => {
@@ -122,7 +122,7 @@ test('extractTokenFeatures - particle wo', () => {
 
   assert.strictEqual(features.surface, 'を');
   assert.strictEqual(features.pos, 'particle');
-  assert.strictEqual(features.posDetail1, 'case-particle');
+  assert.strictEqual(features.pos_detail_1, 'case-particle');
 });
 
 // ============================================================================
@@ -134,8 +134,8 @@ test('extractTokenFeatures - noun common', () => {
 
   assert.strictEqual(features.surface, '学生');
   assert.strictEqual(features.pos, 'noun');
-  assert.strictEqual(features.posDetail1, 'common-noun');
-  assert.strictEqual(features.posDetail2, 'general');
+  assert.strictEqual(features.pos_detail_1, 'common-noun');
+  assert.strictEqual(features.pos_detail_2, 'general');
   // Nouns don't have conjugation
   assert.strictEqual(features.conjugatedType, '');
   assert.strictEqual(features.conjugatedForm, '');
@@ -158,7 +158,7 @@ test('extractTokenFeatures - i-adjective', () => {
 
   assert.strictEqual(features.surface, '高い');
   assert.strictEqual(features.pos, 'adj');
-  assert.strictEqual(features.posDetail1, 'general');
+  assert.strictEqual(features.pos_detail_1, 'general');
   assert.strictEqual(features.conjugatedType, 'i-adjective');
 });
 
@@ -171,7 +171,7 @@ test('extractTokenFeatures - empty token', () => {
 
   assert.strictEqual(features.surface, '');
   assert.strictEqual(features.pos, '');
-  assert.strictEqual(features.posDetail1, '');
+  assert.strictEqual(features.pos_detail_1, '');
   assert.strictEqual(features.conjugatedType, '');
 });
 
@@ -218,9 +218,9 @@ test('extractTokenFeatures - all fields default to empty string', () => {
   // All fields should be empty strings, not undefined
   assert.strictEqual(features.surface, '');
   assert.strictEqual(features.pos, '');
-  assert.strictEqual(features.posDetail1, '');
-  assert.strictEqual(features.posDetail2, '');
-  assert.strictEqual(features.posDetail3, '');
+  assert.strictEqual(features.pos_detail_1, '');
+  assert.strictEqual(features.pos_detail_2, '');
+  assert.strictEqual(features.pos_detail_3, '');
   assert.strictEqual(features.conjugatedType, '');
   assert.strictEqual(features.conjugatedForm, '');
   assert.strictEqual(features.baseOrth, '');

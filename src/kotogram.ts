@@ -344,9 +344,9 @@ function escapeRegExp(string: string): string {
 export interface TokenFeatures {
   surface: string;
   pos: string;
-  posDetail1: string;
-  posDetail2: string;
-  posDetail3: string;
+  pos_detail_1: string;
+  pos_detail_2: string;
+  pos_detail_3: string;
   conjugatedType: string;
   conjugatedForm: string;
   baseOrth: string;
@@ -581,9 +581,9 @@ export function extractTokenFeatures(token: string): TokenFeatures {
   const feature: TokenFeatures = {
     surface: '',
     pos: '',
-    posDetail1: '',
-    posDetail2: '',
-    posDetail3: '',
+    pos_detail_1: '',
+    pos_detail_2: '',
+    pos_detail_3: '',
     conjugatedType: '',
     conjugatedForm: '',
     baseOrth: '',
@@ -621,29 +621,29 @@ export function extractTokenFeatures(token: string): TokenFeatures {
         feature.conjugatedType = value;
       } else if (POS2_MAP_VALUES.has(value)) {
         // pos_detail_2 comes after pos_detail_1, so check if we already have pos_detail_1
-        if (feature.posDetail1) {
-          feature.posDetail2 = value;
+        if (feature.pos_detail_1) {
+          feature.pos_detail_2 = value;
         } else {
-          feature.posDetail1 = value;
+          feature.pos_detail_1 = value;
         }
       } else if (POS3_MAP_VALUES.has(value)) {
         // pos_detail_3 usually comes last for details
-        feature.posDetail3 = value;
+        feature.pos_detail_3 = value;
       } else if (POS1_MAP_VALUES.has(value)) {
         // pos_detail_1 comes before pos_detail_2
-        if (!feature.posDetail1) {
-          feature.posDetail1 = value;
+        if (!feature.pos_detail_1) {
+          feature.pos_detail_1 = value;
         } else {
-          feature.posDetail2 = value;
+          feature.pos_detail_2 = value;
         }
       } else {
         // Unknown value - try to assign by position as fallback
-        if (!feature.posDetail1) {
-          feature.posDetail1 = value;
-        } else if (!feature.posDetail2) {
-          feature.posDetail2 = value;
-        } else if (!feature.posDetail3) {
-          feature.posDetail3 = value;
+        if (!feature.pos_detail_1) {
+          feature.pos_detail_1 = value;
+        } else if (!feature.pos_detail_2) {
+          feature.pos_detail_2 = value;
+        } else if (!feature.pos_detail_3) {
+          feature.pos_detail_3 = value;
         } else if (!feature.conjugatedType) {
           feature.conjugatedType = value;
         } else if (!feature.conjugatedForm) {

@@ -78,10 +78,35 @@ class StyleEpochEvent(HistoryEvent):
         return "STYLE_EPOCH"
 
 
+@dataclass
+class KcDiagEvent(HistoryEvent):
+    """Record of KC diagnostics for an epoch."""
+
+    epoch: int
+    stats: Dict[str, Any]
+
+    def to_row(self) -> List[str]:
+        return [str(self.epoch), json.dumps(self.stats)]
+
+    @classmethod
+    def from_row(cls, row: List[str]) -> "KcDiagEvent":
+        if len(row) < 2:
+            raise ValueError(f"KcDiagEvent row too short: {row}")
+        return cls(
+            epoch=int(row[0]),
+            stats=json.loads(row[1]),
+        )
+
+    @staticmethod
+    def get_type_name() -> str:
+        return "KC_DIAG"
+
+
 # Registry for event types
 _EVENT_TYPES: Dict[str, Type[HistoryEvent]] = {
     KcEpochEvent.get_type_name(): KcEpochEvent,
     StyleEpochEvent.get_type_name(): StyleEpochEvent,
+    KcDiagEvent.get_type_name(): KcDiagEvent,
 }
 
 

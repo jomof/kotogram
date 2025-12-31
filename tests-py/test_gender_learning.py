@@ -23,7 +23,7 @@ class TestGenderLearning(unittest.TestCase):
 
         # Dummy input
         batch_size = 4
-        # Default model uses all features: surface, pos, pos_detail1, pos_detail2, conjugated_type, conjugated_form, lemma
+        # Default model uses all features: surface, pos, pos_detail_1, pos_detail_2, conjugated_type, conjugated_form, lemma
         field_inputs = {}
         from kotogram.tokenizer import FEATURE_FIELDS
 

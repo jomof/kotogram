@@ -43,9 +43,9 @@ class TokenFeatures:
 
     surface: str = ""
     pos: str = ""
-    pos_detail1: str = ""
-    pos_detail2: str = ""
-    pos_detail3: str = ""
+    pos_detail_1: str = ""
+    pos_detail_2: str = ""
+    pos_detail_3: str = ""
     conjugated_type: str = ""
     conjugated_form: str = ""
     base_orth: str = ""
@@ -367,24 +367,24 @@ def extract_token_features(token: str) -> TokenFeatures:
                 elif value in CONJUGATED_TYPE_MAP.values():
                     feature.conjugated_type = value
                 elif value in POS2_MAP.values():
-                    if feature.pos_detail1:
-                        feature.pos_detail2 = value
+                    if feature.pos_detail_1:
+                        feature.pos_detail_2 = value
                     else:
-                        feature.pos_detail1 = value
+                        feature.pos_detail_1 = value
                 elif value in POS3_MAP.values():
-                    feature.pos_detail3 = value
+                    feature.pos_detail_3 = value
                 elif value in POS1_MAP.values():
-                    if not feature.pos_detail1:
-                        feature.pos_detail1 = value
+                    if not feature.pos_detail_1:
+                        feature.pos_detail_1 = value
                     else:
-                        feature.pos_detail2 = value
+                        feature.pos_detail_2 = value
                 else:
-                    if not feature.pos_detail1:
-                        feature.pos_detail1 = value
-                    elif not feature.pos_detail2:
-                        feature.pos_detail2 = value
-                    elif not feature.pos_detail3:
-                        feature.pos_detail3 = value
+                    if not feature.pos_detail_1:
+                        feature.pos_detail_1 = value
+                    elif not feature.pos_detail_2:
+                        feature.pos_detail_2 = value
+                    elif not feature.pos_detail_3:
+                        feature.pos_detail_3 = value
                     elif not feature.conjugated_type:
                         feature.conjugated_type = value
                     elif not feature.conjugated_form:

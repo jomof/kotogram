@@ -65,7 +65,7 @@ def rule_based_formality(features: List[TokenFeatures]) -> FormalityLevel:
 
     for i, feature in enumerate(features):
         pos = feature.pos
-        pos_detail1 = feature.pos_detail1
+        pos_detail_1 = feature.pos_detail_1
         conjugated_type = feature.conjugated_type
         surface = feature.surface
 
@@ -159,7 +159,7 @@ def rule_based_formality(features: List[TokenFeatures]) -> FormalityLevel:
             has_very_casual = True
 
         # Check for sentence-final particles
-        if pos == "particle" and pos_detail1 == "sentence-final-particle":
+        if pos == "particle" and pos_detail_1 == "sentence-final-particle":
             sentence_final_particles.append(surface)
 
     # Analyze sentence-final particles for casual/very casual markers
@@ -285,11 +285,11 @@ def rule_based_gender(features: List[TokenFeatures]) -> GenderLevel:
     has_feminine = False
 
     # Track particles and their positions for pattern detection
-    particle_sequence = []  # List of (index, surface, pos_detail1)
+    particle_sequence = []  # List of (index, surface, pos_detail_1)
 
     for i, feature in enumerate(features):
         pos = feature.pos
-        pos_detail1 = feature.pos_detail1
+        pos_detail_1 = feature.pos_detail_1
         surface = feature.surface
         lemma = feature.lemma
         conjugated_type = feature.conjugated_type
@@ -338,7 +338,7 @@ def rule_based_gender(features: List[TokenFeatures]) -> GenderLevel:
 
         # Track particles for pattern detection
         if pos == "particle":
-            particle_sequence.append((i, surface, pos_detail1))
+            particle_sequence.append((i, surface, pos_detail_1))
 
         # Check for かしら (kashira) - feminine wonder/question marker
         if surface in ["かしら", "カシラ"]:
@@ -369,8 +369,8 @@ def rule_based_gender(features: List[TokenFeatures]) -> GenderLevel:
                     has_feminine = True
 
     # Check individual sentence-final particles
-    for _, surface, pos_detail1 in particle_sequence:
-        if pos_detail1 in ["sentence-final-particle", "adverbial-particle"]:
+    for _, surface, pos_detail_1 in particle_sequence:
+        if pos_detail_1 in ["sentence-final-particle", "adverbial-particle"]:
             if surface in masculine_particles:
                 has_masculine = True
             elif surface in feminine_particles:
@@ -448,7 +448,7 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
 
     for i, feature in enumerate(features):  # iterate tokens
         pos = feature.pos
-        pos_detail1 = feature.pos_detail1
+        pos_detail_1 = feature.pos_detail_1
         surface = feature.surface
         lemma = (
             feature.lemma
@@ -489,7 +489,9 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
             else:
                 detected_registers.add(RegisterLevel.KANSAIBEN)
         # Check 'や' as surface if lemma missing (common in short parses)
-        if surface == "や" and (pos_detail1.startswith("aux") or pos.startswith("aux")):
+        if surface == "や" and (
+            pos_detail_1.startswith("aux") or pos.startswith("aux")
+        ):
             # Exclude やいなや pattern
             is_yainaya = False
             if i < len(features) - 1 and features[i + 1].surface in ["いな", "いなや"]:
@@ -501,7 +503,9 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
                 detected_registers.add(RegisterLevel.KANSAIBEN)
         # Check 'ん' (nu/negation) common in Kansai "shiran"
         # Exclude standard "masen" or "arimasen" where 'noun' is part of polite aux
-        if surface == "ん" and (pos_detail1.startswith("aux") or pos.startswith("aux")):
+        if surface == "ん" and (
+            pos_detail_1.startswith("aux") or pos.startswith("aux")
+        ):
             # Look behind to see if it's 'mase' + 'noun' (standard polite)
             if i > 0 and features[i - 1].surface == "ませ":
                 pass
@@ -627,7 +631,7 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
         # "ba" (variant of 'wo' in Kyushu, sometimes 'noun' + 'ba') - careful
         # "ken" (kara/because)
         if surface == "けん" and (
-            pos_detail1.startswith("brt") or pos_detail1.startswith("particle")
+            pos_detail_1.startswith("brt") or pos_detail_1.startswith("particle")
         ):
             detected_registers.add(RegisterLevel.HAKATABEN)
 
@@ -654,7 +658,7 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
         if (
             surface == "の"
             and pos == "particle"
-            and pos_detail1 == "sentence-final-particle"
+            and pos_detail_1 == "sentence-final-particle"
             and i > 0
             and features[i - 1].surface == "ます"
         ):
@@ -663,7 +667,7 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
         if (
             surface == "の"
             and pos == "particle"
-            and pos_detail1 == "sentence-final-particle"
+            and pos_detail_1 == "sentence-final-particle"
             and i > 0
             and features[i - 1].surface == "です"
         ):
@@ -672,7 +676,7 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
         if (
             surface == "の"
             and pos == "particle"
-            and pos_detail1 == "sentence-final-particle"
+            and pos_detail_1 == "sentence-final-particle"
             and i > 1
             and features[i - 1].surface == "ん"
             and features[i - 2].surface == "ませ"
@@ -862,8 +866,8 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
         # "MATE!", "SE-YO!", "MAMORE!"
         # Often: Verb(Imperative) + !
         if (
-            pos_detail1.endswith("imperative")
-            or "imperative" in pos_detail1
+            pos_detail_1.endswith("imperative")
+            or "imperative" in pos_detail_1
             or (feature.conjugated_form and "imperative" in feature.conjugated_form)
         ):
             # Check for exclamation or strong context
@@ -945,7 +949,7 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
             # Slang usage usually stand-alone or exclamation
             is_slang = True
             # Pos check: if it's a common noun, check for ordinals (A vs B)
-            if feature.pos_detail1 == "common-noun":
+            if feature.pos_detail_1 == "common-noun":
                 # Check if it looks like an ordinal (mostly near 'の' or '甲')
                 if i > 0 and features[i - 1].surface == "の":
                     is_slang = False
@@ -1055,7 +1059,7 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
         elif surface == "草" and feature.pos == "suff":  # NEVER slang as a suffix
             pass
         elif (
-            surface == "草" and feature.pos_detail1 != "common-noun"
+            surface == "草" and feature.pos_detail_1 != "common-noun"
         ):  # In slang context, it's often not parsed as a normal noun
             detected_registers.add(RegisterLevel.NETSLANG)
         elif surface == "草" and (
@@ -1165,14 +1169,14 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
                 detected_registers.add(RegisterLevel.BUSHI)
 
         # "noun" / "nu" (Negative archaic)
-        if surface == "ぬ" and pos_detail1.startswith("aux"):
+        if surface == "ぬ" and pos_detail_1.startswith("aux"):
             detected_registers.add(RegisterLevel.BUSHI)
-        if surface == "ん" and pos_detail1.startswith("aux"):
+        if surface == "ん" and pos_detail_1.startswith("aux"):
             # Too common ("imasen"), need constraints
             pass
 
         # "ran" (Speculative archaic)
-        if surface == "らん" and pos_detail1.startswith("aux"):
+        if surface == "らん" and pos_detail_1.startswith("aux"):
             detected_registers.add(RegisterLevel.BUSHI)
 
             # Exclude if followed by 'wa' (Topic marker usually means real grass)
@@ -1331,16 +1335,20 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
             surface == "見え"
             and i > 0
             and (
-                features[i - 1].surface == "お" or features[i - 1].pos_detail1 == "pref"
+                features[i - 1].surface == "お"
+                or features[i - 1].pos_detail_1 == "pref"
             )
         ):
             detected_registers.add(RegisterLevel.SONKEIGO)
         # o-Adj pattern (O-isogashii) and O-Verb-kudasai (Okake kudasai)
-        if (surface == "お" or surface == "ご" or pos_detail1 == "pref") and i < len(
+        if (surface == "お" or surface == "ご" or pos_detail_1 == "pref") and i < len(
             features
         ) - 1:
             next_pos = features[i + 1].pos
-            if next_pos.startswith("adj") or features[i + 1].pos_detail1 == "adjective":
+            if (
+                next_pos.startswith("adj")
+                or features[i + 1].pos_detail_1 == "adjective"
+            ):
                 detected_registers.add(RegisterLevel.SONKEIGO)
             # Catch o-kake (noun/verb)
             if features[i + 1].surface == "掛け" or features[i + 1].lemma == "掛ける":
@@ -1356,13 +1364,13 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
             # 'o'/'go' might be pos='pref' or just surface
             is_prefix = (
                 prev2.pos == "pref"
-                or prev2.pos_detail1 == "pref"
+                or prev2.pos_detail_1 == "pref"
                 or prev2.surface in ["お", "ご"]
             )
             if is_prefix and next1.lemma == "なる":
                 detected_registers.add(RegisterLevel.SONKEIGO)
         # Passive/Respectful 'reru'/'rareru'
-        if (pos_detail1.startswith("aux") or pos.startswith("aux")) and lemma in [
+        if (pos_detail_1.startswith("aux") or pos.startswith("aux")) and lemma in [
             "れる",
             "られる",
         ]:
@@ -1376,7 +1384,7 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
         if (
             surface == "わ"
             and pos == "particle"
-            and pos_detail1 == "sentence-final-particle"
+            and pos_detail_1 == "sentence-final-particle"
         ):
             # Exclude if already marked as OJOUSAMA (which uses わ after desu/masu)
             if not (i > 0 and features[i - 1].surface in ["です", "ます"]):
@@ -1386,7 +1394,7 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
         if (
             surface == "の"
             and pos == "particle"
-            and pos_detail1 == "sentence-final-particle"
+            and pos_detail_1 == "sentence-final-particle"
         ):
             # Exclude OJOUSAMA patterns (after masu/desu)
             if not (i > 0 and features[i - 1].surface in ["です", "ます"]):
@@ -1423,7 +1431,7 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
             detected_registers.add(RegisterLevel.DANSEIGO)
 
         # Blunt imperatives with masculine pronouns or markers
-        if pos_detail1 and "imperative" in pos_detail1:
+        if pos_detail_1 and "imperative" in pos_detail_1:
             # Check if accompanied by masculine markers
             if any(f.surface in ["俺", "お前", "僕", "ぼく"] for f in features):
                 detected_registers.add(RegisterLevel.DANSEIGO)
@@ -1484,7 +1492,7 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
         if "頂戴" in surface:
             detected_registers.add(RegisterLevel.KENJOGO)
         if lemma == "いただく" and i > 0 and features[i - 1].surface == "て":
-            if i > 1 and features[i - 2].pos_detail1.startswith("aux"):  # sase-te
+            if i > 1 and features[i - 2].pos_detail_1.startswith("aux"):  # sase-te
                 detected_registers.add(RegisterLevel.KENJOGO)
             # Relaxed: just 'te-itadaku' often humble
             detected_registers.add(RegisterLevel.KENJOGO)
@@ -1496,7 +1504,7 @@ def rule_based_register(features: List[TokenFeatures]) -> Set[RegisterLevel]:
             and (
                 features[i - 1].lemma == "お"
                 or features[i - 1].surface == "お"
-                or features[i - 1].pos_detail1 == "pref"
+                or features[i - 1].pos_detail_1 == "pref"
             )
         ):
             # Just presence of "o-me" often suggests kenjogo/sonkeigo in this context
