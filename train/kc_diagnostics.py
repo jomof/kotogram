@@ -3,9 +3,14 @@
 import math
 import random
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Set
+from typing import Dict, List, Optional, Set
 
 import torch
+
+from train.types import (
+    KCDiagnosticFamilyStats,
+    KCDiagnosticReport,
+)
 
 # Pylint suppressions for diagnostic complexity
 # pylint: disable=too-many-positional-arguments,too-many-locals,unused-argument
@@ -235,17 +240,10 @@ class KCEpochDiag:
 
         return lines
 
-    def get_stats(self) -> Dict[str, Dict[str, Any]]:
+    def get_stats(self) -> KCDiagnosticReport:
         """Return structured statistics."""
-        data = {}
+        data: Dict[str, KCDiagnosticFamilyStats] = {}
         sorted_families = sorted(self.families.keys())
-
-        # Global density
-        total_pos = sum(f.num_pos for f in self.families.values())
-        total_lbl = sum(f.num_total_labels for f in self.families.values())
-        global_dens = total_pos / max(1, total_lbl)
-
-        data["_global"] = {"density": global_dens, "num_families": len(sorted_families)}
 
         for name in sorted_families:
             s = self.families[name]
@@ -264,38 +262,26 @@ class KCEpochDiag:
             empty_pct = s.num_empty / max(1, s.num_examples)
 
             # Preds
-            pp = s.sum_prob_pos / max(1, s.count_prob_pos)
-            pn = s.sum_prob_neg / max(1, s.count_prob_neg)
-            sep = pp - pn
-
-            # NLL & Bias
             nll = s.sum_nll / max(1, s.count_nll)
             p = max(1e-6, min(rate, 1 - 1e-6))
             bias_nll = -(rate * math.log(p) + (1 - rate) * math.log(1 - p))
             dnll = nll - bias_nll
-
-            # Collisions
-            col_pct = 0.0
-            if not s.unique_capped:
-                total_t = s.total_targets_seen
-                uniq = len(s.unique_ids)
-                col_pct = 1.0 - (uniq / max(1, total_t))
 
             # Mask
             mask_pct = 0.0
             if s.total_token_count > 0:
                 mask_pct = s.mask_count / s.total_token_count
 
-            data[name] = {
-                "rate": rate,
-                "p50": p50,
-                "p90": p90,
-                "empty_pct": empty_pct,
-                "prob_pos": pp,
-                "prob_neg": pn,
-                "separation": sep,
-                "dnll": dnll,
-                "collision_pct": col_pct,
-                "mask_pct": mask_pct,
-            }
-        return data
+            family_stats = KCDiagnosticFamilyStats(
+                rate=rate,
+                p50=p50,
+                p90=p90,
+                empty_pct=empty_pct,
+                dnll=dnll,
+                mask_pct=mask_pct,
+            )
+            data[name] = family_stats
+
+        return KCDiagnosticReport(
+            families=data,
+        )
