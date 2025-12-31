@@ -80,7 +80,6 @@ class SudachiJapaneseParser(JapaneseParser):
         # Serialize to kotogram string
         return self._tokens_to_string(tokens)
 
-    # TODO(type safety): Define stub file for SudachiPy or use Any until Vulture supports Protocol usage better.
     def _to_kotogram_tokens(self, tokens: List[Any]) -> List["Token"]:
         # pylint: disable=cell-var-from-loop
         """Convert Sudachi tokens to Kotogram Token objects.

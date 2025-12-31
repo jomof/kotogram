@@ -12,7 +12,9 @@ from unittest.mock import patch
 
 import torch
 
+from kotogram import locations
 from train import history
+from train import paths as train_paths
 
 
 # pylint: disable=too-many-positional-arguments
@@ -61,10 +63,8 @@ def populate_test_data(root_dir: str, project_root: str):
     """Pre-populates test data in root_dir by sampling from data/corpus.db."""
     import sqlite3
 
-    from kotogram import locations
-
     with patch.dict(os.environ, {"TRAIN_ROOT": root_dir}):
-        data_dir = locations.get_data_dir()
+        data_dir = train_paths.get_data_dir()
 
     # Create data directory in the test root
     os.makedirs(data_dir, exist_ok=True)
@@ -193,12 +193,12 @@ def assert_directory_matches_manifest(
     7. '[.cache]', '[data]', and '[models]' in patterns are replaced by the actual relative directory names.
     """
 
-    from kotogram import locations
+    # pylint: disable=import-outside-toplevel
     from train.profile import get_profile_dir
 
     with patch.dict(os.environ, {"TRAIN_ROOT": root_dir}):
-        cache_dir = locations.get_cache_dir()
-        data_dir = locations.get_data_dir()
+        cache_dir = train_paths.get_cache_dir()
+        data_dir = train_paths.get_data_dir()
         models_dir = locations.get_models_dir()
         profile_dir = get_profile_dir()
 
@@ -359,12 +359,10 @@ class Bottle:
         Simulates the logic of StyleDataset and KCTrainer to provide ground truth.
         """
 
-        from kotogram import locations
-
         # Find cache directory in bottle (where script puts processed data)
         with patch.dict(os.environ, {"TRAIN_ROOT": self.root_dir}):
             # V2: Check sentences.txt in dataset cache
-            dataset_cache = locations.get_style_dataset_cache_dir()
+            dataset_cache = train_paths.get_style_dataset_cache_dir()
             sentences_path = os.path.join(dataset_cache, "sentences.txt")
 
         def count_lines(path):
@@ -598,12 +596,16 @@ class Bottle:
             path: Path with placeholders like '[models]', '[data]', '[.cache]'.
         """
 
-        from kotogram import locations
+        # pylint: disable=import-outside-toplevel
         from train.profile import get_profile_dir
 
         with patch.dict(os.environ, {"TRAIN_ROOT": self.root_dir}):
-            cache_dir = locations.get_cache_dir()
-            data_dir = locations.get_data_dir()
+            cache_dir = (
+                train_paths.get_cache_dir()
+            )  # Changed from locations.get_cache_dir()
+            data_dir = (
+                train_paths.get_data_dir()
+            )  # Changed from locations.get_data_dir()
             models_dir = locations.get_models_dir()
             profile_dir = get_profile_dir()
 
@@ -661,10 +663,10 @@ class Bottle:
     def get_epoch_history(self) -> List[history.HistoryEvent]:
         """Reads and returns the parsed content of training-history.tsv."""
         # Use resolve_path logic internally
-        from kotogram import locations
+        from train.paths import get_style_support_dir
 
         with patch.dict(os.environ, {"TRAIN_ROOT": self.root_dir}):
-            support_dir = locations.get_style_support_dir()
+            support_dir = get_style_support_dir()
 
         history_path = os.path.join(support_dir, "training-history.tsv")
         return history.read_events(history_path)
@@ -729,17 +731,17 @@ class Bottle:
             if path not in new_state:
                 actual_diffs.add(f"{path} DELETED")
 
-        # Resolve placeholders in expected diffs
+            # Resolve placeholders in expected diffs
 
-        from kotogram import locations
-        from train.profile import get_profile_dir
+            # pylint: disable=import-outside-toplevel
+            from train.profile import get_profile_dir
 
         env_patch = {"TRAIN_ROOT": self.root_dir}
         if self.env:
             env_patch.update(self.env)
         with patch.dict(os.environ, env_patch):
-            cache_dir = locations.get_cache_dir()
-            data_dir = locations.get_data_dir()
+            cache_dir = train_paths.get_cache_dir()
+            data_dir = train_paths.get_data_dir()
             models_dir = locations.get_models_dir()
             profile_dir = get_profile_dir()
 

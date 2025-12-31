@@ -6,9 +6,8 @@ fast imports in multiprocessing workers.
 """
 
 import json
-import os
 from collections import Counter
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
 from kotogram.kotogram import TokenFeatures, extract_token_features, split_kotogram
 
@@ -63,10 +62,6 @@ class Tokenizer:
         self._frozen = False
 
     @property
-    def pad_id(self) -> int:
-        return 0
-
-    @property
     def unk_id(self) -> int:
         return 1
 
@@ -98,6 +93,10 @@ class Tokenizer:
         """Get ID for a value in a field."""
         vocab = self.field_vocabs[field]
         return vocab.get(value, self.unk_id)
+
+    def add_to_vocab(self, field: str, value: str) -> int:
+        """Add a value to field vocabulary (public API)."""
+        return self._add_value(field, value)
 
     def extract_features(self, kotogram: str) -> List[TokenFeatures]:
         """Extract features from each token in a Kotogram string."""
@@ -157,44 +156,12 @@ class Tokenizer:
         features_list = self.extract_features(kotogram)
         return self.encode_features(features_list, add_cls, add_to_vocab)
 
-    def save(self, path: str, metadata: Optional[Dict[str, Any]] = None) -> None:
-        """Save tokenizer vocabularies to JSON file atomically."""
-        data = {
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert tokenizer state to a dictionary."""
+        return {
             "field_vocabs": self.field_vocabs,
             "frozen": self._frozen,
         }
-        if metadata:
-            data.update(metadata)
-
-        dir_name = os.path.dirname(path)
-        if dir_name:
-            os.makedirs(dir_name, exist_ok=True)
-
-        # Atomic write: dump to temp file then rename
-        # This prevents concurrent readers from seeing partial content
-        import tempfile
-
-        tmp_path = None
-        try:
-            with tempfile.NamedTemporaryFile(
-                "w", dir=dir_name, delete=False, encoding="utf-8"
-            ) as tmp_file:
-                # We save path to clean up in finally block if something goes wrong
-                tmp_path = tmp_file.name
-                json.dump(data, tmp_file, ensure_ascii=False, indent=2)
-                tmp_file.flush()
-                # fsync to ensure data is on disk before rename
-                os.fsync(tmp_file.fileno())
-
-            # Context manager closed the file. Now replace atomically.
-            os.replace(tmp_path, path)
-            # Sentinel to prevent deletion in finally
-            tmp_path = None
-
-        finally:
-            # If tmp_path is still set, it means we didn't complete the replace/success path
-            if tmp_path and os.path.exists(tmp_path):
-                os.remove(tmp_path)
 
     def load_state(self, state: Dict[str, Any]) -> None:
         """Load tokenizer state from dictionary."""

@@ -143,7 +143,7 @@ class TestKCTargets(unittest.TestCase):
         # Initialize cache to None so logic detects it missing
         mock_tokenizer._rev_pos_cache = None  # pylint: disable=protected-access
 
-        # Explicit usage to satisfy Vulture if necessary (though MagicMock handles lazy access)
+        # Explicit usage to satisfy static analysis if necessary (though MagicMock handles lazy access)
         assert mock_tokenizer.get_id.return_value == 999
 
         # Test Case 1: Japanese labels (must be normalized via POS_MAP)

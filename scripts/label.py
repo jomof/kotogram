@@ -40,11 +40,13 @@ Output:
     - `tokenizer.json`: The fitted tokenizer vocabulary.
 """
 
+import argparse
 import glob
 import multiprocessing as mp
 import os
 import queue
 import shutil
+import sqlite3
 import sys
 from collections import Counter
 from typing import Any, Dict, List, Optional, Tuple, cast
@@ -59,16 +61,27 @@ from rich.progress import (
 )
 from rich.table import Table
 
-from kotogram import locations
+from kotogram.analysis import FormalityLevel, RegisterLevel
+from kotogram.constants import (
+    FORMALITY_ID_TO_LABEL,
+    FORMALITY_LABEL_TO_ID,
+    REGISTER_LABEL_TO_ID,
+)
 from kotogram.japanese_parser import KotogramFormat
 from kotogram.kotogram import extract_token_features, split_kotogram
 from kotogram.model import (
-    FORMALITY_ID_TO_LABEL,
-    FORMALITY_LABEL_TO_ID,
     REGISTER_ID_TO_LABEL,
-    REGISTER_LABEL_TO_ID,
 )
+from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
+from scripts.rule_based_analysis import (
+    analyze_formality,
+    analyze_gender,
+    analyze_register,
+    formality_to_weight,
+    infer_gender_from_register,
+)
+from train import io as train_io
 from train.binary_io import (
     EXT_FEAT_PREFIX,
     EXT_KC_PREFIX,
@@ -136,7 +149,7 @@ def _build_and_save_vocab(
 
     os.makedirs(cache_dir, exist_ok=True)
     vocab_path = os.path.join(cache_dir, cache_name)
-    tokenizer.save(vocab_path, metadata={"version": CACHE_VERSION})
+    train_io.save_tokenizer(tokenizer, vocab_path, metadata={"version": CACHE_VERSION})
 
 
 def init_worker(
@@ -188,15 +201,6 @@ def analyze_batch(
         Dict containing buffered lists of features, stats counters, and sample registers.
     """
     # Import locally to avoid top-level dependency issues or circular imports if any.
-    from kotogram.analysis import FormalityLevel, RegisterLevel
-    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-    from scripts.rule_based_analysis import (
-        analyze_formality,
-        analyze_gender,
-        analyze_register,
-        formality_to_weight,
-        infer_gender_from_register,
-    )
 
     parser = SudachiJapaneseParser()
 
@@ -342,8 +346,6 @@ def analyze_batch_from_db(
     Returns:
         Dict containing buffered lists of features, stats counters, and sample registers.
     """
-    from kotogram.analysis import FormalityLevel, RegisterLevel
-    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 
     parser = SudachiJapaneseParser()
 
@@ -816,8 +818,6 @@ def main() -> None:
        the finalized vocabulary from Phase 1.
     4. Phase 3 (Merging): Aggregates all sharded outputs into the final dataset directory.
     """
-    import argparse
-    import sqlite3
 
     parser = argparse.ArgumentParser(description="Label and cache Japanese sentences.")
     parser.add_argument(
@@ -846,12 +846,15 @@ def main() -> None:
         parser.error("Must provide either --source-db or --grammatic-pattern")
 
     # standard cache directory setup.
-    dataset_cache_dir = locations.get_style_dataset_cache_dir()
-    shard_dir = os.path.join(dataset_cache_dir, "shards")
+    # pylint: disable=import-outside-toplevel
+    from train import paths as train_paths
 
-    if args.force_relabel and os.path.exists(dataset_cache_dir):
-        console.print(f"Cleaning existing cache: {dataset_cache_dir}")
-        shutil.rmtree(dataset_cache_dir)
+    cache_dir = train_paths.get_style_dataset_cache_dir()
+    shard_dir = os.path.join(cache_dir, "shards")
+
+    if args.force_relabel and os.path.exists(cache_dir):
+        console.print(f"Cleaning existing cache: {cache_dir}")
+        shutil.rmtree(cache_dir)
 
     profile_dir = get_profile_dir()
     if profile_dir:
@@ -1032,7 +1035,8 @@ def main() -> None:
 
     # Build final tokenizer from aggregated counters.
     vocab_file = "vocab.json"
-    dataset_cache_dir = locations.get_style_dataset_cache_dir()
+    # pylint: disable=import-outside-toplevel
+    dataset_cache_dir = train_paths.get_style_dataset_cache_dir()
     tokenizer = Tokenizer()
     _build_and_save_vocab(tokenizer, merged_counters, dataset_cache_dir, vocab_file)
     console.print(f"Saved vocab to {vocab_file}")

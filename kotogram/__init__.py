@@ -1,6 +1,6 @@
 """Kotogram - A dual Python/TypeScript library for Japanese text parsing and encoding."""
 
-__version__ = "0.0.22"
+__version__ = "00.0.22"
 
 from .analysis import GrammarAnalysis, grammar
 from .augment import augment
@@ -10,6 +10,7 @@ from .kotogram import extract_token_features, kotogram_to_japanese, split_kotogr
 from .sudachi_japanese_parser import SudachiJapaneseParser
 
 __all__ = [
+    "augment",
     "JapaneseParser",
     "SudachiJapaneseParser",
     "kotogram_to_japanese",
@@ -20,5 +21,4 @@ __all__ = [
     "GenderLevel",
     "RegisterLevel",
     "extract_token_features",
-    "augment",
 ]

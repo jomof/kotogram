@@ -37,6 +37,8 @@ from train.config import (
     HardwareConfig,
     TrainerConfig,
 )
+from train import io as train_io
+from train import paths as train_paths
 from train.kc import KC_HASH_BUCKETS
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -186,7 +188,7 @@ def run_preprocessing(
     env: dict,
 ) -> bool:
     """Run preprocessing/labeling phase."""
-    style_cache_dir = locations.get_style_dataset_cache_dir()
+    style_cache_dir = train_paths.get_style_dataset_cache_dir()
     offsets_bin = os.path.join(style_cache_dir, "offsets.bin")
 
     skip_label = False
@@ -201,7 +203,7 @@ def run_preprocessing(
     t_label_start = time.perf_counter()
 
     if not skip_label:
-        data_dir = locations.get_data_dir()
+        data_dir = train_paths.get_data_dir()
         corpus_db_path = os.path.join(data_dir, "corpus.db")
 
         if not os.path.exists(corpus_db_path):
@@ -291,8 +293,10 @@ def generate_and_save_config(
     grad_accum_steps: int,
 ) -> str:
     """Generate and save the unified configuration file."""
-    support_dir = locations.get_style_support_dir()
-    cache_dir = locations.get_cache_dir()
+    # pylint: disable=import-outside-toplevel
+    from train.paths import get_style_support_dir
+    support_dir = get_style_support_dir()
+    cache_dir = train_paths.get_cache_dir()
 
     config_path = os.path.join(support_dir, "config.json")
 
@@ -309,10 +313,10 @@ def generate_and_save_config(
         import shutil
         shutil.copy2(tokenizer_path_cache, tokenizer_path_final)
         print(f"Staged tokenizer to {tokenizer_path_final}")
-    elif not os.path.exists(tokenizer_path_final):
+    if not os.path.exists(tokenizer_path_final):
         # If no cache and no existing final tokenizer, create a fresh one (e.g. first run)
         print(f"Creating fresh tokenizer at {tokenizer_path_final}")
-        Tokenizer().save(tokenizer_path_final)
+        train_io.save_tokenizer(Tokenizer(), tokenizer_path_final)
 
     # Load strictly from the final location
     print(f"Loaded tokenizer from {tokenizer_path_final}")
@@ -410,7 +414,20 @@ def run_training_phase(
     num_devices: int,
 ) -> int:
     """Run the training phase using the generated configuration."""
-    support_dir = locations.get_style_support_dir()
+    # pylint: disable=import-outside-toplevel
+    from train.paths import get_style_support_dir
+
+    support_dir = get_style_support_dir()
+    # output_dir isn't used immediately here? Wait, let's look at 404 view.
+    # It just continues to "Training Phase".
+    # But look at line 682 in 405 view: output_dir = locations.get_style_output_dir().
+    # Line 414 corruption replaced SOMETHING.
+    # Previous code?
+    # View 404 shows line 413: """Run the training phase..."""
+    # So 414 was start of function body.
+    # Was there `support_dir = ...` at start of body?
+    # In Step 291 view, `run_training` (which became `run_training_phase`?) starts
+    # So I should restore that (but with new import).
     output_dir = locations.get_style_output_dir()
 
     # Training Phase
@@ -583,7 +600,7 @@ def print_training_banner(
 
     # We now strictly use corpus.db, so just print that.
     # Or resolve path if needed for clarity.
-    data_dir = locations.get_data_dir()
+    data_dir = train_paths.get_data_dir()
     corpus_db = os.path.join(data_dir, "corpus.db")
     print(f"Source Data:    {corpus_db}")
 
@@ -671,8 +688,8 @@ def main() -> int:
     # from kotogram import locations (moved to global)
 
 
-    cache_dir = locations.get_cache_dir()
-    support_dir = locations.get_style_support_dir()
+    cache_dir = train_paths.get_cache_dir()
+    support_dir = train_paths.get_style_support_dir()
     output_dir = locations.get_style_output_dir()
 
     # Print configuration header

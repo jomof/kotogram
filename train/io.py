@@ -8,14 +8,49 @@ from typing import Any, Dict, Optional, Union, cast
 import torch
 from torch import nn
 
-from kotogram.model import (
+from kotogram.constants import (
     FORMALITY_LABEL_TO_ID,
     GENDER_LABEL_TO_ID,
+)
+from kotogram.model import (
     ModelConfig,
     StyleClassifier,
 )
 from kotogram.tokenizer import Tokenizer
 from train.types import TrainingHistory
+
+
+def save_tokenizer(
+    tokenizer: Tokenizer, path: str, metadata: Optional[Dict[str, Any]] = None
+) -> None:
+    """Save tokenizer vocabularies to JSON file atomically."""
+    # pylint: disable=import-outside-toplevel
+    data = tokenizer.to_dict()
+    if metadata:
+        data.update(metadata)
+
+    dir_name = os.path.dirname(path)
+    if dir_name:
+        os.makedirs(dir_name, exist_ok=True)
+
+    # Atomic write pattern
+    import tempfile
+
+    tmp_path = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            "w", dir=dir_name, delete=False, encoding="utf-8"
+        ) as tmp_file:
+            tmp_path = tmp_file.name
+            json.dump(data, tmp_file, ensure_ascii=False, indent=2)
+            tmp_file.flush()
+            os.fsync(tmp_file.fileno())
+
+        os.replace(tmp_path, path)
+        tmp_path = None
+    finally:
+        if tmp_path and os.path.exists(tmp_path):
+            os.remove(tmp_path)
 
 
 def save_model(
@@ -41,7 +76,7 @@ def save_model(
 
     # Save tokenizer if provided
     if tokenizer is not None:
-        tokenizer.save(os.path.join(path, "tokenizer.json"))
+        save_tokenizer(tokenizer, os.path.join(path, "tokenizer.json"))
 
     # Save config
     config = config or model.config

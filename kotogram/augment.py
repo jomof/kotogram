@@ -1512,17 +1512,17 @@ def augment(sentences: List[str], timeout: Optional[float] = 1.0) -> List[str]:
     Returns:
         Sorted unique list of augmented, grammatically valid sentences.
     """
-    from kotogram.validation import ensure_list_of_strings
-
-    ensure_list_of_strings(sentences, "sentences")
+    if not isinstance(sentences, list) or not all(
+        isinstance(s, str) for s in sentences
+    ):
+        raise TypeError("sentences must be a list of strings")
 
     start_time = time.time()
     deadline = start_time + timeout if timeout else None
 
     augmenter = Augmenter()
 
-    # 1. Generate candidates for all sentences
-    all_candidates = set()
+    all_valid = set()
     for s in sentences:
         if deadline:
             remaining = deadline - time.time()
@@ -1531,39 +1531,7 @@ def augment(sentences: List[str], timeout: Optional[float] = 1.0) -> List[str]:
         else:
             remaining = None
 
-        # We pass timeout=remaining. We'll handle the final filtering ourselves for efficiency.
-        # But wait, process_sentence already filters.
-        # To avoid redundancy, let's just generate candidates directly.
-        # However, to keep it simple and respect the budget, let's use a modified process_sentence
-        # that doesn't filter if we want to batch filter at the end.
-        # On second thought, process_sentence is the standard unit.
-        # Let's just use the augmenter's low-level methods here to avoid redundant filtering.
+        valid = augmenter.process_sentence(s, timeout=remaining)
+        all_valid.update(valid)
 
-        parser = augmenter.get_parser()
-        kotogram = parser.japanese_to_kotogram(s)
-        tokens_kotogram = split_kotogram(kotogram)
-
-        token_features = []
-        for t in tokens_kotogram:
-            f = extract_token_features(t)
-            if not f.surface:
-                import re
-
-                match = re.search(r"ˢ(.*?)ᵖ", t)
-                f.surface = match.group(1) if match else t
-            token_features.append(Token(f.surface, features=f))
-
-        if not token_features:
-            all_candidates.add(s)
-            continue
-
-        token_tuple = tuple(token_features)
-        augmented_tuples = augmenter.augment_tokens(token_tuple, deadline=deadline)
-
-        for aug_tuple in augmented_tuples:
-            surface_list = [get_surface(token) for token in aug_tuple]
-            all_candidates.add("".join(surface_list))
-
-    # 2. Batch filter all candidates together (the most efficient way)
-    # We pass the deadline to allow early exit during the large batch filter
-    return augmenter.filter_grammatical(all_candidates, deadline=deadline)
+    return sorted(list(all_valid))

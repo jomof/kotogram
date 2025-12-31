@@ -38,7 +38,7 @@ from scripts.rule_based_analysis import (
     load_register_overrides,
 )
 from kotogram.analysis import FormalityLevel, RegisterLevel, GenderLevel
-from kotogram.model import (
+from kotogram.constants import (
     FORMALITY_LABEL_TO_ID,
     REGISTER_LABEL_TO_ID,
 )
@@ -368,7 +368,7 @@ def curate_summary(db_path: str):
     # Initialize Counters
     from collections import Counter
     from rich.table import Table
-    from kotogram.model import FORMALITY_ID_TO_LABEL, REGISTER_ID_TO_LABEL
+    from kotogram.constants import FORMALITY_ID_TO_LABEL, REGISTER_ID_TO_LABEL
     
     label_stats = {
         "formality": Counter(),
@@ -613,13 +613,15 @@ def curate_compress(db_path: str):
 def curate_compare(db_path: str):
     """Compare corpus.db against .cache."""
     import collections
-    from kotogram import locations, tokenizer
+    import collections
+    from kotogram import tokenizer
+    from train import paths
     from kotogram.kotogram import kotogram_to_japanese
     from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
     from train.dataset import StyleDataset
-    from kotogram.model import REGISTER_ID_TO_LABEL
+    from kotogram.constants import REGISTER_ID_TO_LABEL
     
-    cache_dir = locations.get_style_dataset_cache_dir()
+    cache_dir = paths.get_style_dataset_cache_dir()
     if not os.path.exists(cache_dir):
         console.print(f"[red]Cache not found at {cache_dir}[/red]")
         return

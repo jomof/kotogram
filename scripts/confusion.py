@@ -3,6 +3,7 @@
 Extracted from train_style.py.
 """
 
+import argparse
 import csv
 import os
 from typing import Any, Dict, List, Optional, cast
@@ -15,14 +16,15 @@ from torch import nn
 from torch.utils.data import DataLoader
 
 from kotogram import locations
-from kotogram.evaluator import EvalResultDict, Evaluator
 from kotogram.model import (
     NUM_REGISTER_CLASSES,
     REGISTER_ID_TO_LABEL,
     StyleClassifier,
     load_model,
 )
+from train import paths
 from train.dataset import StyleDataset, collate_fn
+from train.evaluator import EvalResultDict, Evaluator
 from train.profile import PhaseTimer, get_profile_dir
 
 
@@ -429,8 +431,6 @@ class ConfusionDataset(StyleDataset):
 
 def main() -> None:
     # pylint: disable=too-many-locals
-    import argparse
-
     parser = argparse.ArgumentParser(description="Generate confusion matrices")
     parser.add_argument(
         "--batch-size", type=int, default=512, help="Batch size for evaluation"
@@ -455,8 +455,10 @@ def main() -> None:
     timer = PhaseTimer(console, profile_dir)
 
     # Resolve and inject paths from locations.py into args namespace
-    cache_dir = locations.get_style_dataset_cache_dir()
-    args.output = locations.get_style_support_dir()
+    # pylint: disable=import-outside-toplevel
+    # Use existing 'paths' import (train.paths)
+    cache_dir = paths.get_style_dataset_cache_dir()
+    args.output = paths.get_style_support_dir()
     args.support_dir = args.output
     args.model_dir = locations.get_style_output_dir()
     args.data = os.path.join(cache_dir, "grammatic_combined.tsv")
@@ -549,9 +551,7 @@ def main() -> None:
         dataset,
         batch_size=args.batch_size,
         shuffle=False,
-        collate_fn=partial(
-            collate_fn, pad_id=tokenizer.pad_id, max_seq_len=model.config.max_seq_len
-        ),
+        collate_fn=partial(collate_fn, pad_id=0, max_seq_len=model.config.max_seq_len),
         num_workers=num_workers,
         pin_memory=(
             device.type == "cuda"

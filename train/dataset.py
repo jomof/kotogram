@@ -7,7 +7,6 @@ from typing import Any, Dict, List, Optional, Tuple, cast
 import torch
 from torch.utils.data import Dataset
 
-from kotogram import locations
 from kotogram.japanese_parser import JapaneseParser
 from kotogram.model import (
     NUM_FORMALITY_PRAGMATIC_CLASSES,
@@ -236,7 +235,9 @@ class StyleDataset(Dataset[Sample]):
         if config is None:
             config = DatasetConfig()
 
-        cache_dir = locations.get_style_dataset_cache_dir()
+        from train import paths as train_paths
+
+        cache_dir = train_paths.get_style_dataset_cache_dir()
 
         # Check for binary cache
         if not os.path.exists(os.path.join(cache_dir, EXT_OFFSETS)):
@@ -460,7 +461,7 @@ def create_kc_batch(
     result = {}
 
     # Get special tokens to ignore
-    special_ids = {tokenizer.pad_id, tokenizer.unk_id, tokenizer.cls_id}
+    special_ids = {0, tokenizer.unk_id, tokenizer.cls_id}
 
     # Helper for device
     # Look at attention mask (always tensor)
