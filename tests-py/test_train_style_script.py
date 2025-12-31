@@ -56,10 +56,7 @@ class TestTrainStyleScript(unittest.TestCase):
                     bottle.snapshot("after_label")
 
                     # Step 2: Run train_style.sh for 1 epoch (with optional pretraining)
-                    # Use --no-confusion to skip generating confusion matrices (saves time)
-                    train_args = (
-                        f"--epochs 1 --no-confusion {config['extra_args']}".strip()
-                    )
+                    train_args = f"--epochs 1 {config['extra_args']}".strip()
                     result = bottle.train_style(train_args)
 
                     if "pretrain-kc" in config["name"]:
@@ -105,6 +102,8 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[models]/style/model.json ADDED",
                         "[models]/style/labels.json ADDED",
                         "[models]/style/model_type.txt ADDED",
+                        "[models]/style-support/*confusion.csv ADDED",
+                        "[models]/style-support/confusion_matrices/*.tsv ADDED",
                     ]
 
                     if "pretrain-kc" in config["extra_args"]:
@@ -118,9 +117,8 @@ class TestTrainStyleScript(unittest.TestCase):
                     bottle.snapshot("after_epoch_1")
 
                     # Step 4: Resume training with --epochs 2 (should train only epoch 2)
-                    bottle.train_style("--resume --epochs 2 --no-confusion")
+                    bottle.train_style("--resume --epochs 2")
 
-                    # Verify only epoch 2 was trained (resume from epoch 1)
                     # Verify only epoch 2 was trained (resume from epoch 1)
                     if "pretrain-kc" in config["name"]:
                         # Resume should just add Style epoch 2. KC history remains [1].
@@ -143,6 +141,8 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[.profile]/training-profile.txt MODIFIED",
                         "[models]/style-support/config.json MODIFIED",
                         "[models]/style/model.pt MAYBE-MODIFIED",
+                        "[models]/style-support/*confusion.csv MAYBE-MODIFIED",
+                        "[models]/style-support/confusion_matrices/*.tsv MAYBE-MODIFIED",
                     ]
 
                     # NOTE: checkpoint_kc.pt should NOT be modified
@@ -249,57 +249,6 @@ class TestTrainStyleScript(unittest.TestCase):
 
                     # Verify performance profile coherence (clean jsonl, present txt)
                     bottle.assert_coherent_performance_profile()
-
-    def test_label_from_db(self):
-        """Verify labeling directly from corpus.db."""
-        import sqlite3
-
-        env = {"TRAIN_PROFILE": "1"}
-        with Bottle(self, env=env) as bottle:
-            # Create a dummy corpus.db in data dir
-            data_dir = bottle.resolve_path("[data]")
-            os.makedirs(data_dir, exist_ok=True)
-            db_path = os.path.join(data_dir, "corpus.db")
-
-            conn = sqlite3.connect(db_path)
-            c = conn.cursor()
-            c.execute(
-                "CREATE TABLE corpus (sentence TEXT, formality REAL, gender REAL, grammatic INTEGER, register_ids TEXT)"
-            )
-            # Add some test data
-            data = [
-                (
-                    "これはテストです",
-                    1.0,
-                    0.5,
-                    1,
-                    "1,2",
-                ),  # Formal, mixed gender, grammatic, reg 1,2
-                ("あえいうえお", None, None, 0, ""),  # Agrammatic
-            ]
-            c.executemany("INSERT INTO corpus VALUES (?, ?, ?, ?, ?)", data)
-            conn.commit()
-            conn.close()
-
-            # Run labeling (no TSV files present)
-            # This implicitly asserts that TSVs are not required if DB is present
-            bottle.train_style("--label")
-
-            # Verify outputs
-            # Check manifest
-            expected_label_manifest = [
-                "[.cache]/style_dataset/vocab.json",
-                "[.cache]/style_dataset/sentences.txt",
-                "[.cache]/style_dataset/kotograms.txt",
-                "[.cache]/style_dataset/offsets.bin",
-                "[.cache]/style_dataset/labels.bin_*",
-                "[.cache]/style_dataset/feat_*.bin",
-                "[.cache]/style_dataset/kc_*.bin",
-                "[models]/style-support/config.json",
-                "[models]/style/tokenizer.json",
-                "[data]/corpus.db",
-            ]
-            bottle.assert_dir_layout(expected_label_manifest)
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@
 
 import os
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Set, Tuple, cast
+from typing import Any, Dict, List, Optional, Tuple, cast
 
 import torch
 from torch.utils.data import Dataset
@@ -22,7 +22,7 @@ from train.binary_io import (
     EXT_OFFSETS,
 )
 from train.kc import compute_kc_targets
-from train.types import Sample
+from train.types import Sample, TrainingBatch
 
 # V2: No cache version check needed for raw binary files (handled by label.py generation)
 
@@ -377,84 +377,6 @@ def _collate_features(
     return feature_tensors
 
 
-def _get_kc_target_vocab_size(k: str, vocab_sizes: Optional[Dict[str, int]]) -> int:
-    """Determine vocab size for a KC target key."""
-    # Default large (force sparse if unknown)
-    vocab_size = 100000
-
-    base_field = k
-    if k.startswith("bag_"):
-        base_field = k[4:]
-    elif k.startswith("tail_"):
-        base_field = k[5:]
-
-    if vocab_sizes and base_field in vocab_sizes:
-        vocab_size = vocab_sizes[base_field]
-    elif k.startswith("ngram_") or k.startswith("pair_"):
-        vocab_size = 16384  # KC_HASH_BUCKETS fallback
-
-    return vocab_size
-
-
-def _collate_kc_targets(
-    batch: List[Sample],
-    vocab_sizes: Optional[Dict[str, int]] = None,
-) -> Dict[str, torch.Tensor]:
-    """Collate KC targets from samples."""
-    result: Dict[str, torch.Tensor] = {}
-    if not batch or not batch[0].kc_targets:
-        return result
-
-    # Determine all keys present in this batch
-    kc_keys: Set[str] = set()
-    for s in batch:
-        kc_keys.update(s.kc_targets.keys())
-
-    batch_size = len(batch)
-
-    for k in kc_keys:
-        # Determine vocab size for this head
-        vocab_size = _get_kc_target_vocab_size(k, vocab_sizes)
-
-        # Decision: Dense vs Sparse
-
-        # Decision: Dense vs Sparse
-        if vocab_size <= 4096:
-            # Dense Multi-hot
-            targets = torch.zeros((batch_size, vocab_size), dtype=torch.float)
-            for i, s in enumerate(batch):
-                vals = s.kc_targets.get(k, [])
-                if vals:
-                    # Filter valid?
-                    valid = [v for v in vals if v < vocab_size]
-                    if valid:
-                        targets[i, torch.tensor(valid, dtype=torch.long)] = 1.0
-            result[f"kc_targets_{k}"] = targets
-        else:
-            # Sparse
-            max_pos = 64
-            pos_inds = torch.zeros((batch_size, max_pos), dtype=torch.long)
-            pos_mask = torch.zeros((batch_size, max_pos), dtype=torch.bool)
-
-            for i, s in enumerate(batch):
-                vals = s.kc_targets.get(k, [])
-                if vals:
-                    valid = [v for v in vals if v < vocab_size]
-                    # Truncate
-                    if len(valid) > max_pos:
-                        valid = valid[:max_pos]
-                    if valid:
-                        pos_inds[i, : len(valid)] = torch.tensor(
-                            valid, dtype=torch.long
-                        )
-                        pos_mask[i, : len(valid)] = True
-
-            result[f"kc_pos_inds_{k}"] = pos_inds
-            result[f"kc_pos_mask_{k}"] = pos_mask
-
-    return result
-
-
 def _collate_register_labels(batch: List[Sample], batch_size: int) -> torch.Tensor:
     """Collate multi-hot register labels."""
     reg_targets = torch.zeros((batch_size, NUM_REGISTER_CLASSES), dtype=torch.float)
@@ -469,8 +391,7 @@ def collate_fn(
     batch: List[Sample],
     pad_id: int = 0,
     max_seq_len: Optional[int] = None,
-    vocab_sizes: Optional[Dict[str, int]] = None,
-) -> Dict[str, Any]:
+) -> TrainingBatch:
     """Collate samples into padded batches."""
 
     # Helper to count feature length robustly
@@ -496,49 +417,39 @@ def collate_fn(
 
     # Collect features
     feature_tensors = _collate_features(batch, batch_size, max_seq_len, pad_id)
+    reg_labels = _collate_register_labels(batch, batch_size)
 
-    result = {
-        "attention_mask": attention_mask,
-        "formality_value": torch.tensor(
+    return TrainingBatch(
+        feature_inputs=feature_tensors,
+        attention_mask=attention_mask,
+        formality_value=torch.tensor(
             [s.formality_value for s in batch], dtype=torch.float
         ),
-        "formality_pragmatic": torch.tensor(
+        formality_pragmatic=torch.tensor(
             [s.formality_pragmatic for s in batch], dtype=torch.long
         ),
-        "gender_value": torch.tensor(
-            [s.gender_value for s in batch], dtype=torch.float
-        ),
-        "gender_pragmatic": torch.tensor(
+        gender_value=torch.tensor([s.gender_value for s in batch], dtype=torch.float),
+        gender_pragmatic=torch.tensor(
             [s.gender_pragmatic for s in batch], dtype=torch.long
         ),
-        "grammaticality_labels": torch.tensor(
+        grammaticality_labels=torch.tensor(
             [s.grammaticality_label for s in batch], dtype=torch.long
         ),
-        "original_sentence": [s.original_sentence for s in batch],
-        "kotogram": [s.kotogram for s in batch],
-        "indices": torch.tensor([s.idx for s in batch], dtype=torch.long),
-    }
-    result.update(feature_tensors)
-
-    # Register Labels (Multi-hot)
-    result["register_labels"] = _collate_register_labels(batch, batch_size)
-
-    # KC Targets Handling
-    # V2: Collate pre-computed targets from Samples
-    kc_tensors = _collate_kc_targets(batch, vocab_sizes)
-    result.update(kc_tensors)
-
-    return result
+        register_labels=reg_labels,
+        original_sentence=[s.original_sentence for s in batch],
+        kotogram=[s.kotogram for s in batch],
+        indices=torch.tensor([s.idx for s in batch], dtype=torch.long),
+    )
 
 
 def create_kc_batch(
-    batch: Dict[str, Any], tokenizer: Tokenizer, target_specs: Dict[str, int]
+    batch: TrainingBatch, tokenizer: Tokenizer, target_specs: Dict[str, int]
 ) -> Dict[str, torch.Tensor]:
     """
     Create KC targets (multi-hot) from a batch of input IDs.
 
     Args:
-        batch: Dictionary of batched tensors (output of collate_fn)
+        batch: TrainingBatch (output of collate_fn)
         tokenizer: Tokenizer instance (to identify special tokens)
         target_specs: Dict mapping target name (field) to vocab size
 
@@ -552,18 +463,15 @@ def create_kc_batch(
     special_ids = {tokenizer.pad_id, tokenizer.unk_id, tokenizer.cls_id}
 
     # Helper for device
-    device = torch.device("cpu")
-    for v in batch.values():
-        if isinstance(v, torch.Tensor):
-            device = v.device
-            break
+    # Look at attention mask (always tensor)
+    device = batch.attention_mask.device
 
     for field, vocab_size in target_specs.items():
         key = f"input_ids_{field}"
-        if key not in batch:
+        if key not in batch.feature_inputs:
             continue
 
-        input_ids = batch[key]  # (batch, seq_len)
+        input_ids = batch.feature_inputs[key]  # (batch, seq_len)
         batch_size = input_ids.size(0)
 
         if vocab_size > 4096:

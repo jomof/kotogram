@@ -60,7 +60,7 @@ class TestDataFlow(unittest.TestCase):
         collated = collate_fn(batch, pad_id=0)
 
         # Check Register Labels (BCEWithLogitsLoss requires Float)
-        reg_labels = collated["register_labels"]
+        reg_labels = collated.register_labels
         self.assertTrue(
             torch.is_floating_point(reg_labels),
             f"Register labels must be float, got {reg_labels.dtype}",
@@ -79,7 +79,7 @@ class TestDataFlow(unittest.TestCase):
         self.assertEqual(reg_labels[1, 0].item(), 0.0)
 
         # Check Grammaticality Labels (CrossEntropy requires Long)
-        gram_labels = collated["grammaticality_labels"]
+        gram_labels = collated.grammaticality_labels
         self.assertFalse(
             torch.is_floating_point(gram_labels),
             f"Grammaticality labels must be long, got {gram_labels.dtype}",
@@ -90,12 +90,12 @@ class TestDataFlow(unittest.TestCase):
         self.assertEqual(gram_labels[1].item(), 0)
 
         # Check Formality/Gender Labels
-        form_val = collated["formality_value"]
-        form_prag = collated["formality_pragmatic"]
+        form_val = collated.formality_value
+        form_prag = collated.formality_pragmatic
         self.assertEqual(form_val.dtype, torch.float32)
         self.assertEqual(form_prag.dtype, torch.long)
 
-        gender_labels = collated["gender_pragmatic"]
+        gender_labels = collated.gender_pragmatic
         self.assertEqual(gender_labels.dtype, torch.long)
 
     def test_sample_defaults(self):
