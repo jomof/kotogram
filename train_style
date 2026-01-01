@@ -62,8 +62,9 @@ def get_device_info() -> tuple[int, str]:
 
 
 
-def run_command(cmd: List[str], env: dict, cwd: str, tee_log: Optional[str] = None) -> int:
+def run_command(cmd: List[str], env: dict, tee_log: Optional[str] = None) -> int:
     """Run a command, optionally teeing output to a log file."""
+    cwd = PROJECT_ROOT
     if tee_log:
         # Create parent directory if needed
         os.makedirs(os.path.dirname(tee_log), exist_ok=True)
@@ -115,7 +116,7 @@ def handle_special_modes(args: argparse.Namespace) -> Optional[int]:
 
     if args.report:
         # Just pass through to inner script
-        return run_command([sys.executable, "-m", "scripts.train_style", "--report"], os.environ.copy(), PROJECT_ROOT)
+        return run_command([sys.executable, "-m", "scripts.train_style", "--report"], os.environ.copy())
 
     return None
 
@@ -163,7 +164,7 @@ def run_preprocessing(
         # Legacy pattern arguments are dropped as per user request ("Don't fall back")
 
         print("Executing preprocessing script (Source: corpus.db)...")
-        ret = run_command(label_cmd, env, PROJECT_ROOT)
+        ret = run_command(label_cmd, env)
         print(f"Preprocessing script took {time.perf_counter() - t_label_start:.1f}s")
         if ret != 0:
             print("Preprocessing failed!", file=sys.stderr)
@@ -399,7 +400,7 @@ def run_training_phase(
     t_train_start = time.perf_counter()
 
     train_cmd = launcher + train_args
-    ret = run_command(train_cmd, env, PROJECT_ROOT, tee_log=training_log)
+    ret = run_command(train_cmd, env, tee_log=training_log)
 
     print(f"Training run took {time.perf_counter() - t_train_start:.1f}s")
     if ret != 0:
@@ -431,7 +432,7 @@ def run_confusion_phase(args: argparse.Namespace, env: dict, config_path: str) -
     ]
     if args.percent:
         confusion_cmd.extend(["--percent", str(args.percent)])
-    ret = run_command(confusion_cmd, env, PROJECT_ROOT)
+    ret = run_command(confusion_cmd, env)
     print(f"Confusion evaluation took {time.perf_counter() - t_confusion_start:.1f}s")
     return ret
 
