@@ -165,9 +165,10 @@ class ModelConfig:
 class PositionalEncoding(nn.Module):
     """Sinusoidal positional encoding for Transformer."""
 
-    def __init__(self, d_model: int, max_len: int = 512, dropout: float = 0.1):
+    def __init__(self, d_model: int):
         super().__init__()
-        self.dropout = nn.Dropout(p=dropout)
+        self.dropout = nn.Dropout(p=0.1)
+        max_len = 512
 
         pe = torch.zeros(max_len, d_model)
         position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
@@ -278,8 +279,6 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         self.embedding = MultiFieldEmbedding(config)
         self.pos_encoding = PositionalEncoding(
             config.d_model,
-            config.max_seq_len,
-            config.dropout,
         )
 
         encoder_layer = nn.TransformerEncoderLayer(
@@ -344,16 +343,13 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
     def get_encoder_output(
         self,
         field_inputs: Dict[str, torch.Tensor],
-        attention_mask: Optional[torch.Tensor] = None,
+        attention_mask: torch.Tensor,
     ) -> torch.Tensor:
         """Get the sequence of encoder hidden states."""
         x = self.embedding(field_inputs)
         x = self.pos_encoding(x)
 
-        if attention_mask is not None:
-            src_key_padding_mask = attention_mask == 0
-        else:
-            src_key_padding_mask = None
+        src_key_padding_mask = attention_mask == 0
 
         x = cast(
             torch.Tensor, self.encoder(x, src_key_padding_mask=src_key_padding_mask)
@@ -363,22 +359,18 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
     def _get_pooled_output(
         self,
         field_inputs: Dict[str, torch.Tensor],
-        attention_mask: Optional[torch.Tensor] = None,
+        attention_mask: torch.Tensor,
     ) -> torch.Tensor:
         x = self.get_encoder_output(field_inputs, attention_mask)
 
         if self.config.pooling == "cls":
             pooled = x[:, 0, :]
         elif self.config.pooling == "mean":
-            if attention_mask is not None:
-                mask = attention_mask.unsqueeze(-1).float()
-                pooled = (x * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1e-9)
-            else:
-                pooled = x.mean(dim=1)
+            mask = attention_mask.unsqueeze(-1).float()
+            pooled = (x * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1e-9)
         elif self.config.pooling == "max":
-            if attention_mask is not None:
-                mask = attention_mask.unsqueeze(-1).float()
-                x = x.masked_fill(mask == 0, float("-inf"))
+            mask = attention_mask.unsqueeze(-1).float()
+            x = x.masked_fill(mask == 0, float("-inf"))
             pooled = x.max(dim=1)[0]
         else:
             raise ValueError(f"Unknown pooling: {self.config.pooling}")
@@ -388,7 +380,7 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
     def forward(
         self,
         field_inputs: Dict[str, torch.Tensor],
-        attention_mask: Optional[torch.Tensor] = None,
+        attention_mask: torch.Tensor,
     ) -> Tuple[
         torch.Tensor,
         torch.Tensor,
@@ -410,7 +402,7 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
     def predict(
         self,
         field_inputs: Dict[str, torch.Tensor],
-        attention_mask: Optional[torch.Tensor] = None,
+        attention_mask: torch.Tensor,
     ) -> StylePrediction:
         formality_val, formality_prag, gender_val, gender_prag, gram, reg = self(
             field_inputs, attention_mask
@@ -435,7 +427,7 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
     def predict_kcs(
         self,
         field_inputs: Dict[str, torch.Tensor],
-        attention_mask: Optional[torch.Tensor] = None,
+        attention_mask: torch.Tensor,
     ) -> torch.Tensor:
         """Predict Knowledge Component activations for input sentences.
 
@@ -455,7 +447,7 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
     def predict_kcs_top(
         self,
         field_inputs: Dict[str, torch.Tensor],
-        attention_mask: Optional[torch.Tensor] = None,
+        attention_mask: torch.Tensor,
         topk: Optional[int] = None,
         min_prob: float = 0.0,
     ) -> List[List[Tuple[int, float]]]:
@@ -504,8 +496,7 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
 
 
 def load_model(
-    path: str,
-    device: Optional[str] = None,
+    path: str, device: Optional[torch.device] = None
 ) -> Tuple[StyleClassifier, Tokenizer]:
     """Load trained model and tokenizer."""
     # Load config
@@ -518,6 +509,9 @@ def load_model(
 
     # Load model
     model = StyleClassifier(config)
+    if device:
+        model.to(device)
+
     # Always load to CPU first
     state_dict: Dict[str, Any] = torch.load(
         os.path.join(path, "model.pt"), map_location="cpu"
@@ -531,7 +525,7 @@ def load_model(
             return v.float()
         return v
 
-    state_dict = {k: to_float32(v) for k, v in state_dict.items()}
+    state_dict = {k: to_float32(v).contiguous() for k, v in state_dict.items()}
 
     # Load with strict=False to allow architecture changes (e.g. gender head refactor)
     # We catch the error/warning to report relevant mismatches
@@ -541,16 +535,11 @@ def load_model(
     if incompatible.unexpected_keys:
         print(f"WARNING: Unexpected keys in state_dict: {incompatible.unexpected_keys}")
 
-    if device:
-        model.to(device)
-
     model.eval()
     return model, tokenizer
 
 
-def load_default_style_model(
-    device: Optional[str] = None,
-) -> Tuple[StyleClassifier, Tokenizer]:
+def load_default_style_model() -> Tuple[StyleClassifier, Tokenizer]:
     """Load the default trained style classification model included in the package."""
     import importlib.resources
     import sys
@@ -560,7 +549,7 @@ def load_default_style_model(
     # Dev/Source mode: Check if we are running in a project with a trained model
     dev_model_dir = locations.get_style_output_dir()
     if os.path.exists(os.path.join(dev_model_dir, "model.pt")):
-        return load_model(dev_model_dir, device=device)
+        return load_model(dev_model_dir)
 
     if sys.version_info >= (3, 9):
         from importlib.resources import as_file, files
@@ -568,11 +557,11 @@ def load_default_style_model(
         ref = files("kotogram.model_data").joinpath("model.pt")
         with as_file(ref) as model_file:
             model_dir = os.path.dirname(model_file)
-            return load_model(model_dir, device=device)
+            return load_model(model_dir)
     else:
         with importlib.resources.path("kotogram.model_data", "model.pt") as model_file:
             model_dir = os.path.dirname(model_file)
-            return load_model(model_dir, device=device)
+            return load_model(model_dir)
 
 
 def is_default_style_model_available() -> bool:

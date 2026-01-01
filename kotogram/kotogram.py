@@ -26,7 +26,7 @@ import base64
 import re
 from dataclasses import dataclass
 from functools import lru_cache
-from typing import List, Optional, cast
+from typing import List, cast
 
 from kotogram.japanese_parser import (
     ConjugatedFormValue,
@@ -67,9 +67,9 @@ class Token:
 
     __slots__ = ("surface", "features", "_hash")
 
-    def __init__(self, surface: str, features: Optional[TokenFeatures] = None):
+    def __init__(self, surface: str, features: TokenFeatures):
         self.surface = surface
-        self.features = features or TokenFeatures()
+        self.features = features
         self._hash = 0
 
     def __hash__(self) -> int:

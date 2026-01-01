@@ -11,7 +11,7 @@ class TestExtractTokenFeaturesSudachi(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        self.parser = SudachiJapaneseParser(dict_type="full")
+        self.parser = SudachiJapaneseParser()
 
     def test_verb_extraction_sudachi(self):
         """Test extracting verb features with Sudachi."""
@@ -140,7 +140,7 @@ class TestExtractTokenFeaturesEdgeCases(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        self.parser = SudachiJapaneseParser(dict_type="full")
+        self.parser = SudachiJapaneseParser()
 
     def test_empty_token(self):
         """Test handling of empty token."""

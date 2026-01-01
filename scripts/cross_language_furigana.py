@@ -25,7 +25,7 @@ def generate_kotograms(data_path: Path) -> list[str]:
     """Generate kotograms for all sentences using Sudachi parser."""
     from kotogram import SudachiJapaneseParser
 
-    parser = SudachiJapaneseParser(dict_type="full")
+    parser = SudachiJapaneseParser(validate=True)
 
     kotograms = []
 

@@ -57,7 +57,7 @@ class TestDataFlow(unittest.TestCase):
         )
 
         batch = [s1, s2]
-        collated = collate_fn(batch, pad_id=0)
+        collated = collate_fn(batch)
 
         # Check Register Labels (BCEWithLogitsLoss requires Float)
         reg_labels = collated.register_labels

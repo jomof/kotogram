@@ -436,7 +436,9 @@ class FirstPersonPronounRule(AugmentationRule):
                         new_pronoun, features=original_token.features
                     )
                 else:
-                    new_tokens[idx] = Token(new_pronoun)  # Replace with Token
+                    new_tokens[idx] = Token(
+                        new_pronoun, features=TokenFeatures(surface=new_pronoun)
+                    )  # Replace with Token
             result.add(tuple(new_tokens))
 
         return result
@@ -466,7 +468,9 @@ class SecondPersonPronounRule(AugmentationRule):
                         new_pronoun, features=original_token.features
                     )
                 else:
-                    new_tokens[idx] = Token(new_pronoun)
+                    new_tokens[idx] = Token(
+                        new_pronoun, features=TokenFeatures(surface=new_pronoun)
+                    )
             result.add(tuple(new_tokens))
 
         return result
@@ -496,7 +500,9 @@ class ThirdPersonPronounRule(AugmentationRule):
                         new_pronoun, features=original_token.features
                     )
                 else:
-                    new_tokens[idx] = Token(new_pronoun)
+                    new_tokens[idx] = Token(
+                        new_pronoun, features=TokenFeatures(surface=new_pronoun)
+                    )
             result.add(tuple(new_tokens))
 
         return result
@@ -528,9 +534,13 @@ class CopulaRule(AugmentationRule):
                                 Token(surf, features=original_token.features)
                             )
                         else:
-                            new_ending_da.append(Token(surf))
+                            new_ending_da.append(
+                                Token(surf, features=TokenFeatures(surface=surf))
+                            )
                     else:
-                        new_ending_da.append(Token(surf))
+                        new_ending_da.append(
+                            Token(surf, features=TokenFeatures(surface=surf))
+                        )
                 new_tokens = list(tokens[: -len(da_toks)]) + new_ending_da
                 result.add(tuple(new_tokens))
 
@@ -550,9 +560,13 @@ class CopulaRule(AugmentationRule):
                                 Token(surf, features=original_token.features)
                             )
                         else:
-                            new_ending_plain.append(Token(surf))
+                            new_ending_plain.append(
+                                Token(surf, features=TokenFeatures(surface=surf))
+                            )
                     else:
-                        new_ending_plain.append(Token(surf))
+                        new_ending_plain.append(
+                            Token(surf, features=TokenFeatures(surface=surf))
+                        )
                 new_tokens = list(tokens[: -len(desu_toks)]) + new_ending_plain
                 result.add(tuple(new_tokens))
 
@@ -603,12 +617,34 @@ class ContractionRule(AugmentationRule):
                                         Token(form_b[0], features=t_start.features)
                                     )
                                     new_tokens.extend(
-                                        [Token(str(s)) for s in form_b[1:]]
+                                        [
+                                            Token(
+                                                str(s),
+                                                features=TokenFeatures(surface=str(s)),
+                                            )
+                                            for s in form_b[1:]
+                                        ]
                                     )
                                 else:
-                                    new_tokens.extend([Token(str(s)) for s in form_b])
+                                    new_tokens.extend(
+                                        [
+                                            Token(
+                                                str(s),
+                                                features=TokenFeatures(surface=str(s)),
+                                            )
+                                            for s in form_b
+                                        ]
+                                    )
                             else:
-                                new_tokens.extend([Token(str(s)) for s in form_b])
+                                new_tokens.extend(
+                                    [
+                                        Token(
+                                            str(s),
+                                            features=TokenFeatures(surface=str(s)),
+                                        )
+                                        for s in form_b
+                                    ]
+                                )
                         else:
                             new_tokens.extend(tokens[i : i + len_a])
                         last_idx = i + len_a
@@ -646,12 +682,34 @@ class ContractionRule(AugmentationRule):
                                         Token(form_a[0], features=t_start.features)
                                     )
                                     new_tokens.extend(
-                                        [Token(str(s)) for s in form_a[1:]]
+                                        [
+                                            Token(
+                                                str(s),
+                                                features=TokenFeatures(surface=str(s)),
+                                            )
+                                            for s in form_a[1:]
+                                        ]
                                     )
                                 else:
-                                    new_tokens.extend([Token(str(s)) for s in form_a])
+                                    new_tokens.extend(
+                                        [
+                                            Token(
+                                                str(s),
+                                                features=TokenFeatures(surface=str(s)),
+                                            )
+                                            for s in form_a
+                                        ]
+                                    )
                             else:
-                                new_tokens.extend([Token(str(s)) for s in form_a])
+                                new_tokens.extend(
+                                    [
+                                        Token(
+                                            str(s),
+                                            features=TokenFeatures(surface=str(s)),
+                                        )
+                                        for s in form_a
+                                    ]
+                                )
                         else:
                             new_tokens.extend(tokens[i : i + len_b])
                         last_idx = i + len_b
@@ -758,9 +816,13 @@ class ProgressiveRule(AugmentationRule):
                                 Token(surf, features=original_token.features)
                             )
                         else:
-                            new_ending_variants.append(Token(surf))
+                            new_ending_variants.append(
+                                Token(surf, features=TokenFeatures(surface=surf))
+                            )
                     else:
-                        new_ending_variants.append(Token(surf))
+                        new_ending_variants.append(
+                            Token(surf, features=TokenFeatures(surface=surf))
+                        )
                 new_tokens = list(tokens[: -len(polite_toks)]) + new_ending_variants
                 result.add(tuple(new_tokens))
 
@@ -779,9 +841,13 @@ class ProgressiveRule(AugmentationRule):
                                 Token(surf, features=original_token.features)
                             )
                         else:
-                            new_ending.append(Token(surf))
+                            new_ending.append(
+                                Token(surf, features=TokenFeatures(surface=surf))
+                            )
                     else:
-                        new_ending.append(Token(surf))
+                        new_ending.append(
+                            Token(surf, features=TokenFeatures(surface=surf))
+                        )
                 new_tokens = list(tokens[: -len(plain_toks)]) + new_ending
                 result.add(tuple(new_tokens))
 
@@ -1165,7 +1231,7 @@ class PastTenseSwapRule(AugmentationRule):
                         ),
                     )
                     new_ta_token = Token(
-                        "た", features=ta_f
+                        "た", features=ta_f or TokenFeatures(surface="た")
                     )  # Use original 'た' features
 
                     new_tokens = (
@@ -1333,12 +1399,11 @@ class Augmenter:
     def get_parser(cls) -> SudachiJapaneseParser:
         """Get or initialize the shared parser instance."""
         if cls._parser is None:
-            # Use full dict for best accuracy
-            cls._parser = SudachiJapaneseParser(dict_type="full")
+            cls._parser = SudachiJapaneseParser(validate=True)
         return cls._parser
 
     def augment_tokens(
-        self, tokens: Tuple[AugmentationToken, ...], deadline: Optional[float] = None
+        self, tokens: Tuple[AugmentationToken, ...], deadline: float
     ) -> Set[Tuple[AugmentationToken, ...]]:
         """Apply rules iteratively until stable or limit reached, with hysteresis deduplication."""
         current_set = {tokens}
@@ -1380,9 +1445,7 @@ class Augmenter:
         # Final deduplication
         return deduplicate_by_reading(late_set)
 
-    def process_sentence(
-        self, sentence: str, timeout: Optional[float] = 1.0
-    ) -> Set[str]:
+    def process_sentence(self, sentence: str, timeout: float = 1.0) -> Set[str]:
         # pylint: disable=too-many-locals
         """Process a single unspaced Japanese sentence into augmented variations within a time budget."""
         if not sentence:
@@ -1419,7 +1482,9 @@ class Augmenter:
         token_tuple = tuple(token_features)
 
         # 1. Generation (with deadline)
-        augmented_tuples = self.augment_tokens(token_tuple, deadline=deadline)
+        augmented_tuples = self.augment_tokens(
+            token_tuple, deadline=deadline or float("inf")
+        )
 
         # 2. Join back surfaces
         candidate_surfaces = set()
@@ -1436,12 +1501,12 @@ class Augmenter:
                 return {clean_sentence}
             return set()
 
-        valid_sentences = self.filter_grammatical(candidate_surfaces, deadline=deadline)
+        valid_sentences = self.filter_grammatical(
+            candidate_surfaces, deadline=deadline or float("inf")
+        )
         return set(valid_sentences)
 
-    def filter_grammatical(
-        self, sentences: Set[str], deadline: Optional[float] = None
-    ) -> List[str]:
+    def filter_grammatical(self, sentences: Set[str], deadline: float) -> List[str]:
         """Filter input sentences using neural model batch inference (Smart Length-Based Batching)."""
         if not sentences:
             return []
@@ -1501,7 +1566,7 @@ class Augmenter:
         return sorted(list(set(valid_sentences)))
 
 
-def augment(sentences: List[str], timeout: Optional[float] = 1.0) -> List[str]:
+def augment(sentences: List[str], timeout: float = 1.0) -> List[str]:
     # pylint: disable=too-many-locals
     """Augment a list of Japanese sentences and filter for grammaticality within a time budget.
 
@@ -1531,7 +1596,7 @@ def augment(sentences: List[str], timeout: Optional[float] = 1.0) -> List[str]:
         else:
             remaining = None
 
-        valid = augmenter.process_sentence(s, timeout=remaining)
+        valid = augmenter.process_sentence(s, timeout=remaining or 1.0)
         all_valid.update(valid)
 
     return sorted(list(all_valid))

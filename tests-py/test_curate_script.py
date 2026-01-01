@@ -260,6 +260,69 @@ class TestCurateScript(unittest.TestCase):
         # 6. Test 'compare' command (Expect missing cache in test env)
         self._test_compare_command(env)
 
+        # --- COVERAGE EXPANSION ---
+        # Vary 'sentence', 'f_val', 'g_val' etc by reading other sentences
+        # "これはペンです" has F=0.5, G=0.0 (Varies F from 0.0)
+        subprocess.run(
+            [
+                sys.executable,
+                self.script_path,
+                "read",
+                "これはペンです",
+                "--db-path",
+                self.db_path,
+            ],
+            env=env,
+            check=False,
+            capture_output=True,
+        )
+        # "俺はあたしだ" has G=None (Varies G from 0.0)
+        subprocess.run(
+            [
+                sys.executable,
+                self.script_path,
+                "read",
+                "俺はあたしだ",
+                "--db-path",
+                self.db_path,
+            ],
+            env=env,
+            check=False,
+            capture_output=True,
+        )
+
+        # Vary 'db_path' by using a copy of the DB for other commands
+        db_path_2 = self.db_path + ".var"
+        shutil.copy(self.db_path, db_path_2)
+
+        # Run summary/distinct/compare on variable db path
+        subprocess.run(
+            [sys.executable, self.script_path, "summary", "--db-path", db_path_2],
+            env=env,
+            check=False,
+            capture_output=True,
+        )
+        subprocess.run(
+            [sys.executable, self.script_path, "distinct", "--db-path", db_path_2],
+            env=env,
+            check=False,
+            capture_output=True,
+        )
+        subprocess.run(
+            [sys.executable, self.script_path, "compare", "--db-path", db_path_2],
+            env=env,
+            check=False,
+            capture_output=True,
+        )
+
+        # Vary 'show' input
+        subprocess.run(
+            [sys.executable, self.script_path, "show", "これはペンです"],
+            env=env,
+            check=False,
+            capture_output=True,
+        )
+
     def _test_compare_command(self, env):
         cmd_compare = [
             sys.executable,

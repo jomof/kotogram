@@ -20,9 +20,9 @@ def write_int_array(path: str, data: List[int], typecode: str = "i") -> None:
         arr.tofile(f)
 
 
-def write_float_array(path: str, data: List[float], typecode: str = "f") -> None:
+def write_float_array(path: str, data: List[float]) -> None:
     """Write a list of floats to a raw binary file."""
-    arr = array.array(typecode, data)
+    arr = array.array("f", data)
     with open(path, "wb") as f:
         arr.tofile(f)
 

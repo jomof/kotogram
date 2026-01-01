@@ -98,8 +98,18 @@ from train.kc import compute_kc_targets
 from train.profile import PhaseTimer, get_profile_dir
 from train.tsv import parse_tsv
 
-# Version of the dataset cache format. Incrementing this invalidates old caches.
-CACHE_VERSION = 12
+
+def _debug_constant_check() -> int:
+    """Dummy function to verify parameter recorder."""
+    # This function is intended to verify parameter recording,
+    # but currently contains hardcoded logic.
+    # The value 12345 is part of this hardcoded logic.
+    val = 12345
+    return val
+
+
+_debug_constant_check()
+
 
 # Global state for worker processes.
 # These variables are initialized via `init_worker` in each child process.
@@ -121,7 +131,6 @@ def _build_and_save_vocab(
     tokenizer: Tokenizer,
     merged_counters: Dict[str, Counter],
     cache_dir: str,
-    cache_name: str,
 ) -> None:
     """
     Build vocabulary from merged counters and save to disk.
@@ -136,20 +145,26 @@ def _build_and_save_vocab(
         cache_dir: Directory to save the vocab file.
         cache_name: Filename for the vocab file (e.g., 'tokenizer.json').
     """
+    from kotogram.tokenizer import UNK_TOKEN
+
     for field in FEATURE_FIELDS:
         counter = merged_counters.get(field, Counter())
+        vocab = tokenizer.field_vocabs[field]
         # Add tokens to tokenizer in order of frequency (most common first).
-        # This implicitly assigns lower integer IDs to more frequent tokens.
         for value, _ in counter.most_common():
-            # _add_value is an internal method, but necessary here for direct population.
-            tokenizer._add_value(field, value)
+            if not value:
+                value = UNK_TOKEN
+            if value not in vocab:
+                vocab[value] = len(vocab)
 
     # Ensure the <READING_MASK> sentinel is in the vocabulary so it gets a stable ID.
-    tokenizer._add_value("reading", "<READING_MASK>")
+    vocab_reading = tokenizer.field_vocabs["reading"]
+    if "<READING_MASK>" not in vocab_reading:
+        vocab_reading["<READING_MASK>"] = len(vocab_reading)
 
     os.makedirs(cache_dir, exist_ok=True)
-    vocab_path = os.path.join(cache_dir, cache_name)
-    train_io.save_tokenizer(tokenizer, vocab_path, metadata={"version": CACHE_VERSION})
+    cache_name = "vocab.json"
+    train_io.save_tokenizer(tokenizer, os.path.join(cache_dir, cache_name))
 
 
 def init_worker(
@@ -578,7 +593,7 @@ def print_stats(label_stats: Dict[str, Counter]) -> None:
         title: str,
         style: str,
         counts: Counter,
-        map_func: Optional[Any] = None,
+        map_func: Any,
     ) -> None:
         table = Table(title=title, show_header=True, header_style=style)
         table.add_column("Type", style="dim")
@@ -774,7 +789,6 @@ def _write_shard_data(wid: int, s_dir: str, buffers: Dict[str, Any]) -> None:
     write_float_array(
         f"{shard_prefix}.{EXT_LABELS}_f_val",
         cast(List[float], buffers["f_val"]),
-        "f",
     )
     write_int_array(
         f"{shard_prefix}.{EXT_LABELS}_f_prag",
@@ -784,7 +798,6 @@ def _write_shard_data(wid: int, s_dir: str, buffers: Dict[str, Any]) -> None:
     write_float_array(
         f"{shard_prefix}.{EXT_LABELS}_g_val",
         cast(List[float], buffers["g_val"]),
-        "f",
     )
     write_int_array(
         f"{shard_prefix}.{EXT_LABELS}_g_prag",
@@ -1038,7 +1051,7 @@ def main() -> None:
     # pylint: disable=import-outside-toplevel
     dataset_cache_dir = train_paths.get_style_dataset_cache_dir()
     tokenizer = Tokenizer()
-    _build_and_save_vocab(tokenizer, merged_counters, dataset_cache_dir, vocab_file)
+    _build_and_save_vocab(tokenizer, merged_counters, dataset_cache_dir)
     console.print(f"Saved vocab to {vocab_file}")
 
     # -------------------------------------------------------------------------

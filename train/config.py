@@ -253,7 +253,9 @@ class TrainerConfig:
         return cls(**{k: v for k, v in d.items() if k in valid_fields})
 
     def resolve_dataloader_config(
-        self, device: torch.device, mode: str = "train"
+        self,
+        device: torch.device,
+        mode: str = "train",
     ) -> DataLoaderConfig:
         """Resolve a safe DataLoader configuration for the current process and environment."""
         return _get_safe_dataloader_config(self, device, mode)
@@ -299,7 +301,7 @@ def _choose_torch_threads(config: "TrainerConfig") -> Tuple[int, int]:
 def _get_safe_dataloader_config(
     config: TrainerConfig,
     device: torch.device,
-    mode: str = "train",
+    mode: str,
 ) -> DataLoaderConfig:
     """Determine safe and performant DataLoader settings based on environment and load."""
     cpu_count = os.cpu_count() or 1

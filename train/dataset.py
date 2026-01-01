@@ -52,12 +52,11 @@ class StyleDataset(Dataset[Sample]):
         tokenizer: Tokenizer,
         indices: Optional[torch.Tensor] = None,
         sample_ratio: float = 1.0,
-        verbose: bool = True,
     ):
         # pylint: disable=too-many-positional-arguments
         self.data_dir = data_dir
         self.tokenizer = tokenizer
-        self.verbose = verbose
+        self.verbose = True
 
         # Load Main Offsets (Sentences)
         offsets_path = os.path.join(data_dir, EXT_OFFSETS)
@@ -253,7 +252,6 @@ class StyleDataset(Dataset[Sample]):
             data_dir=cache_dir,
             tokenizer=tokenizer,
             sample_ratio=config.sample_ratio,
-            verbose=config.verbose,
         )
 
     def split(
@@ -269,12 +267,8 @@ class StyleDataset(Dataset[Sample]):
         val_idx = self.indices[perm[n_train:]]
 
         # Return new objects sharing same mmaps (handled by init)
-        train_ds = StyleDataset(
-            self.data_dir, self.tokenizer, indices=train_idx, verbose=self.verbose
-        )
-        val_ds = StyleDataset(
-            self.data_dir, self.tokenizer, indices=val_idx, verbose=self.verbose
-        )
+        train_ds = StyleDataset(self.data_dir, self.tokenizer, indices=train_idx)
+        val_ds = StyleDataset(self.data_dir, self.tokenizer, indices=val_idx)
 
         # Share the big mmaps to save file descriptors?
         # Python instances share underlying storage?
@@ -305,9 +299,7 @@ class StyleDataset(Dataset[Sample]):
         new_indices = self.indices[mask]
 
         # Create new dataset sharing mmaps
-        filtered_ds = StyleDataset(
-            self.data_dir, self.tokenizer, indices=new_indices, verbose=self.verbose
-        )
+        filtered_ds = StyleDataset(self.data_dir, self.tokenizer, indices=new_indices)
 
         # Optimization: Share existing mmaps manually to skip re-opening files
         filtered_ds.features = self.features
@@ -394,6 +386,7 @@ def collate_fn(
     max_seq_len: Optional[int] = None,
 ) -> TrainingBatch:
     """Collate samples into padded batches."""
+    assert pad_id == 0
 
     # Helper to count feature length robustly
     def _get_len(s: Sample) -> int:

@@ -6,7 +6,7 @@ Extracted from train_style.py.
 import argparse
 import csv
 import os
-from typing import Any, Dict, List, Optional, cast
+from typing import Any, Dict, List, cast
 
 import torch
 from rich.console import Console
@@ -401,7 +401,7 @@ def _save_mismatches(data: Dict[str, Any], save_dir: str) -> None:
     _save_register_mismatches(data, save_dir, sub_dir)
 
 
-def generate_reports(data: Dict[str, Any], save_dir: Optional[str]) -> None:
+def generate_reports(data: Dict[str, Any], save_dir: str) -> None:
     """Calculate and display reports."""
     # Summary Table
     summary = Table(
@@ -510,7 +510,7 @@ def main() -> None:
 
     # Load model and tokenizer
     # Load model and tokenizer
-    model, tokenizer = load_model(args.model_dir, device=device_name)
+    model, tokenizer = load_model(args.model_dir, device=device)
     timer.mark("Setup & Load Model")
 
     # V2 loads pre-built binary dataset from cache_dir.
@@ -523,7 +523,6 @@ def main() -> None:
         data_dir=cache_dir,
         tokenizer=tokenizer,
         sample_ratio=args.percent / 100.0 if args.percent else 1.0,
-        verbose=True,
     )
 
     # Init Lazy Maps
@@ -543,7 +542,7 @@ def main() -> None:
     if num_workers is None:
         # Enable workers on MPS/CUDA to saturate CPU while GPU works.
         # on macOS (MPS), multiprocessing works well with `spawn` (default).
-        num_workers = 4 if device.type in ["cuda", "mps"] else 0
+        num_workers = 4 if device.type == "cuda" else 0
 
     from functools import partial
 

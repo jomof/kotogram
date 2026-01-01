@@ -12,7 +12,7 @@ class TestRuleBasedFormality(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        self.parser = SudachiJapaneseParser(dict_type="full")
+        self.parser = SudachiJapaneseParser()
 
     def test_very_formal_humble(self):
         """Test humble verbs (keigo) -> VERY_FORMAL."""
@@ -98,7 +98,7 @@ class TestRuleBasedGender(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        self.parser = SudachiJapaneseParser(dict_type="full")
+        self.parser = SudachiJapaneseParser()
 
     def test_masculine_pronouns(self):
         """Test masculine pronouns."""

@@ -74,7 +74,7 @@ class TestDataflowV2(unittest.TestCase):
 
         # Create dummy tokenizer.json
         tok = Tokenizer()
-        tok.add_to_vocab("reading", "test")
+
         train_io.save_tokenizer(tok, os.path.join(model_dir, "tokenizer.json"))
 
         dataset = StyleDataset(

@@ -45,7 +45,7 @@ class StyleClassifierWithKC(StyleClassifier):
     def forward_kc(
         self,
         field_inputs: Dict[str, torch.Tensor],
-        attention_mask: Optional[torch.Tensor] = None,
+        attention_mask: torch.Tensor,
         temperature: Optional[float] = None,
         gumbel_scale: Optional[float] = None,
         grad_cap: Optional[float] = None,

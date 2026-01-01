@@ -156,7 +156,8 @@ if __name__ == "__main__":
     # Internal profiling when enabled
     from train.profile import setup_profiling
 
-    setup_profiling("train_style", include_kc_infix=True)
+    setup_profiling()
+
     print("Starting training script...", flush=True)
     import argparse
 
@@ -533,7 +534,6 @@ if __name__ == "__main__":
     save_model(
         cast(StyleClassifier, trained_model),
         output_dir,
-        None,  # Tokenizer already saved by wrapper/growth logic
         model_config,
     )
     print(f"Model saved to: {output_dir}")

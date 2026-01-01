@@ -15,7 +15,7 @@ class TestKotogramToJapanese(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        self.parser = SudachiJapaneseParser(dict_type="full")
+        self.parser = SudachiJapaneseParser()
 
     def test_basic_conversion(self):
         """Convert basic kotogram to Japanese."""
@@ -119,7 +119,7 @@ class TestSplitKotogram(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        self.parser = SudachiJapaneseParser(dict_type="full")
+        self.parser = SudachiJapaneseParser()
 
     def test_split_single_token(self):
         """Split kotogram with single token."""
