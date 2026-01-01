@@ -123,6 +123,71 @@ class TestDataFlow(unittest.TestCase):
         self.assertEqual(s.register_labels, [0])
         self.assertEqual(s.grammaticality_label, 1)
 
+    def test_collate_fn_variations(self):
+        """Test collate_fn with non-default parameters."""
+        s1 = Sample(
+            feature_ids={"surface": [1, 2]},
+            formality_value=0.0,
+            formality_pragmatic=0,
+            gender_value=0.0,
+            gender_pragmatic=0,
+            register_labels=[0],
+            grammaticality_label=1,
+            original_sentence="S1",
+            kotogram="S1",
+        )
+        s2 = Sample(
+            feature_ids={"surface": [3, 4, 5]},
+            formality_value=0.0,
+            formality_pragmatic=0,
+            gender_value=0.0,
+            gender_pragmatic=0,
+            register_labels=[0],
+            grammaticality_label=1,
+            original_sentence="S2",
+            kotogram="S2",
+        )
+        batch = [s1, s2]
+
+        # Vary max_seq_len (truncation) and implicit pad_id=0
+        collated = collate_fn(batch, max_seq_len=2)
+
+        # Check shapes
+        self.assertEqual(collated.feature_inputs["input_ids_surface"].shape, (2, 2))
+        # Check padding/truncation
+        # s1: [1, 2] -> [1, 2] (exact fit)
+        # s2: [3, 4, 5] -> [3, 4] (truncated)
+        self.assertTrue(
+            torch.equal(
+                collated.feature_inputs["input_ids_surface"][1],
+                torch.tensor([3, 4], dtype=torch.long),
+            )
+        )
+
+        # Check pad_id usage (needs a short sequence, should be 0)
+        s3 = Sample(
+            feature_ids={"surface": [6]},
+            formality_value=0.0,
+            formality_pragmatic=0,
+            gender_value=0.0,
+            gender_pragmatic=0,
+            register_labels=[0],
+            grammaticality_label=1,
+            original_sentence="S3",
+            kotogram="S3",
+        )
+        batch2 = [s1, s3]
+        collated2 = collate_fn(batch2, max_seq_len=3)
+        # s1: [1, 2] -> [1, 2, 0]
+        # s3: [6] -> [6, 0, 0]
+        self.assertEqual(collated2.feature_inputs["input_ids_surface"][0, 2].item(), 0)
+        self.assertEqual(collated2.feature_inputs["input_ids_surface"][1, 1].item(), 0)
+
+        # Vary batch size (3 items)
+        batch3 = [s1, s2, s3]
+        collated3 = collate_fn(batch3, max_seq_len=2)
+        self.assertEqual(collated3.feature_inputs["input_ids_surface"].shape[0], 3)
+
 
 if __name__ == "__main__":
     unittest.main()

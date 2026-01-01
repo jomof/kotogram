@@ -340,11 +340,14 @@ class StyleDataset(Dataset[Sample]):
 
 
 def _collate_features(
-    batch: List[Sample], batch_size: int, max_seq_len: int, pad_id: int
+    batch: List[Sample], batch_size: int, max_seq_len: int
 ) -> Dict[str, torch.Tensor]:
     feature_tensors: Dict[str, torch.Tensor] = {}
     if not batch:
         return feature_tensors
+
+    # Hardcoded pad_id=0
+    pad_id = 0
 
     for f in FEATURE_FIELDS:
         feature_tensors[f"input_ids_{f}"] = torch.full(
@@ -382,11 +385,10 @@ def _collate_register_labels(batch: List[Sample], batch_size: int) -> torch.Tens
 
 def collate_fn(
     batch: List[Sample],
-    pad_id: int = 0,
     max_seq_len: Optional[int] = None,
 ) -> TrainingBatch:
     """Collate samples into padded batches."""
-    assert pad_id == 0
+    # pad_id is always 0 for current tokenizers
 
     # Helper to count feature length robustly
     def _get_len(s: Sample) -> int:
@@ -410,7 +412,7 @@ def collate_fn(
             attention_mask[i, :use_len] = 1.0
 
     # Collect features
-    feature_tensors = _collate_features(batch, batch_size, max_seq_len, pad_id)
+    feature_tensors = _collate_features(batch, batch_size, max_seq_len)
     reg_labels = _collate_register_labels(batch, batch_size)
 
     return TrainingBatch(

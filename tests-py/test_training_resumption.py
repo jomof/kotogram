@@ -102,10 +102,11 @@ class TestTrainingResumption(unittest.TestCase):
             # Force retrain of style (ignore checkpoint).
             # This should wipe the style checkpoint and start over.
             # We'll ask for epochs 1 for speed.
-
-            res = bottle.train_style(f"--epochs 1 --retrain {common_args}")
+            # Vary percent to 50% and verify it's logged.
+            res = bottle.train_style(f"--epochs 1 --retrain --percent 50 {common_args}")
             bottle.assert_style_epochs_trained([1])
             self.assertIn("Retrain:        from scratch", res.stdout)
+            self.assertIn("Sampling 50.0% of dataset...", res.stdout)
 
             # KC should NOT have been touched/retrained unless we asked for it?
             # --retrain normally applies to the main loop (style).

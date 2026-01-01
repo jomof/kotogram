@@ -550,7 +550,7 @@ def main() -> None:
         dataset,
         batch_size=args.batch_size,
         shuffle=False,
-        collate_fn=partial(collate_fn, pad_id=0, max_seq_len=model.config.max_seq_len),
+        collate_fn=partial(collate_fn, max_seq_len=model.config.max_seq_len),
         num_workers=num_workers,
         pin_memory=(
             device.type == "cuda"

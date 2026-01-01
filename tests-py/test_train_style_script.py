@@ -12,15 +12,11 @@ class TestTrainStyleScript(unittest.TestCase):
 
     def test_train(self):
         # Common arguments to reduce model size for faster testing
-        common_args = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
+        common_args = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2 --batch-size 128"
 
         # Test both regular training and pretraining (KC)
         test_configs = [
             {"name": "regular", "extra_args": f"{common_args}"},
-            {
-                "name": "pretrain-kc",
-                "extra_args": f"{common_args} --pretrain-kc --kc-epochs 1 --kc-k 256",
-            },
         ]
 
         for config in test_configs:

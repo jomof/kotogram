@@ -323,6 +323,69 @@ class TestCurateScript(unittest.TestCase):
             capture_output=True,
         )
 
+    def test_cli_isolated_environment(self):
+        """Test variations in isolated environment (split from test_cli_commands)."""
+        # Setup env
+        env = os.environ.copy()
+        env["PYTHONPATH"] = self.old_cwd + ":" + env.get("PYTHONPATH", "")
+
+        # Vary DB path and verify effect
+        # Create a separate environment with a minimal corpus.tar.gz
+        var_dir = os.path.join(self.test_dir, "var_env")
+        var_data_dir = os.path.join(var_dir, "data")
+        os.makedirs(var_data_dir, exist_ok=True)
+
+        # Create single TSV
+        var_tsv = os.path.join(var_data_dir, "jpn_small.tsv")
+        with open(var_tsv, "w", encoding="utf-8") as f:
+            f.write("これはテストです\n")  # 1 sentence
+
+        # Create tar.gz
+        import tarfile
+
+        with tarfile.open(os.path.join(var_data_dir, "corpus.tar.gz"), "w:gz") as tar:
+            tar.add(var_tsv, arcname="jpn_small.tsv")
+
+        # Output DB path (inside var_dir for convenience)
+        db_path_fresh = os.path.join(var_dir, "fresh.db")
+
+        # Drink in new cwd
+        subprocess.run(
+            [sys.executable, self.script_path, "drink", "--db-path", db_path_fresh],
+            cwd=var_dir,
+            env=env,
+            check=True,
+            capture_output=True,
+        )
+
+        # Run summary on new DB
+        res_var = subprocess.run(
+            [sys.executable, self.script_path, "summary", "--db-path", db_path_fresh],
+            cwd=var_dir,
+            env=env,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        self.assertIn("Formal", res_var.stdout)
+        self.assertIn("100.0%", res_var.stdout)
+
+        # Also run read with varied path to keep the original variation intent
+        subprocess.run(
+            [
+                sys.executable,
+                self.script_path,
+                "read",
+                "猫",
+                "--db-path",
+                db_path_fresh,
+            ],
+            cwd=var_dir,
+            env=env,
+            check=False,
+            capture_output=True,
+        )
+
     def _test_compare_command(self, env):
         cmd_compare = [
             sys.executable,

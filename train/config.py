@@ -1,3 +1,4 @@
+import contextlib
 import json
 import os
 from dataclasses import dataclass, field
@@ -362,8 +363,9 @@ def _get_safe_dataloader_config(
 def configure_runtime_thread_limits(config: TrainerConfig) -> None:
     """Set torch and environment thread limits to prevent oversubscription."""
     torch.set_num_threads(config.hardware.cpu_threads)
-    if torch.get_num_interop_threads() != config.hardware.interop_threads:
-        torch.set_num_interop_threads(config.hardware.interop_threads)
+    with contextlib.suppress(RuntimeError):
+        if torch.get_num_interop_threads() != config.hardware.interop_threads:
+            torch.set_num_interop_threads(config.hardware.interop_threads)
 
     for env_var in [
         "OMP_NUM_THREADS",
@@ -381,5 +383,6 @@ def configure_runtime_thread_limits(config: TrainerConfig) -> None:
 def _safe_configure_threads(config: TrainerConfig) -> None:
     """Configures PyTorch threads safely, ignoring errors if already set."""
     torch.set_num_threads(config.hardware.cpu_threads)
-    if torch.get_num_interop_threads() != config.hardware.interop_threads:
-        torch.set_num_interop_threads(config.hardware.interop_threads)
+    with contextlib.suppress(RuntimeError):
+        if torch.get_num_interop_threads() != config.hardware.interop_threads:
+            torch.set_num_interop_threads(config.hardware.interop_threads)
