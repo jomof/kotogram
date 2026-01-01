@@ -73,30 +73,10 @@ class Tokenizer:
         """Get vocabulary sizes for all fields."""
         return {field: len(vocab) for field, vocab in self.field_vocabs.items()}
 
-    def _add_value(self, field: str, value: str) -> int:
-        """Add a value to field vocabulary and return its ID."""
-        if not value:
-            value = UNK_TOKEN
-
-        vocab = self.field_vocabs[field]
-        if value in vocab:
-            return vocab[value]
-
-        if self._frozen:
-            return self.unk_id
-
-        new_id = len(vocab)
-        vocab[value] = new_id
-        return new_id
-
     def get_id(self, field: str, value: str) -> int:
         """Get ID for a value in a field."""
         vocab = self.field_vocabs[field]
         return vocab.get(value, self.unk_id)
-
-    def add_to_vocab(self, field: str, value: str) -> int:
-        """Add a value to field vocabulary (public API)."""
-        return self._add_value(field, value)
 
     def extract_features(self, kotogram: str) -> List[TokenFeatures]:
         """Extract features from each token in a Kotogram string."""
@@ -113,18 +93,15 @@ class Tokenizer:
     def encode_features(
         self,
         features_list: List[TokenFeatures],
-        add_cls: bool = True,
-        add_to_vocab: bool = True,
     ) -> Dict[str, List[int]]:
         """Encode a list of token feature objects into field ID sequences."""
         # Initialize result dictionary
         result: Dict[str, List[int]] = {f: [] for f in FEATURE_FIELDS}
 
-        # Add CLS token if requested
-        if add_cls:
-            for field in FEATURE_FIELDS:
-                cls_id = self.get_id(field, CLS_TOKEN)
-                result[field].append(cls_id)
+        # Add CLS token
+        for field in FEATURE_FIELDS:
+            cls_id = self.get_id(field, CLS_TOKEN)
+            result[field].append(cls_id)
 
         # Encode each token
         for features in features_list:
@@ -137,11 +114,7 @@ class Tokenizer:
                 # Special handling for missing/empty values?
                 # TokenFeatures defaults are sensible.
 
-                if add_to_vocab and not self._frozen:
-                    self._field_counters[field][val_str] += 1
-                    fid = self._add_value(field, val_str)
-                else:
-                    fid = self.get_id(field, val_str)
+                fid = self.get_id(field, val_str)
                 result[field].append(fid)
 
         return result
@@ -149,12 +122,10 @@ class Tokenizer:
     def encode(
         self,
         kotogram: str,
-        add_cls: bool = True,
-        add_to_vocab: bool = True,
     ) -> Dict[str, List[int]]:
         """Encode a Kotogram string to feature ID sequences."""
         features_list = self.extract_features(kotogram)
-        return self.encode_features(features_list, add_cls, add_to_vocab)
+        return self.encode_features(features_list)
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert tokenizer state to a dictionary."""

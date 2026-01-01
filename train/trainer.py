@@ -128,13 +128,10 @@ class KCTrainer:
         self.device = torch.device(self.config.device)
         self.model.to(self.device)
 
-        pad_id = 0
-        max_seq_len = self.model.config.max_seq_len
-
         self.sampler = None
 
         if dl_config is None:
-            dl_config = self.config.resolve_dataloader_config(self.device)
+            dl_config = self.config.resolve_dataloader_config(self.device, mode="train")
 
         self.data_loader = DataLoader(
             dataset,
@@ -143,8 +140,7 @@ class KCTrainer:
             sampler=self.sampler,
             collate_fn=partial(
                 collate_fn,
-                pad_id=pad_id,
-                max_seq_len=max_seq_len,
+                # max_seq_len=max_seq_len, # Removed constant param
             ),
             num_workers=dl_config.num_workers,
             pin_memory=dl_config.pin_memory,
@@ -152,7 +148,7 @@ class KCTrainer:
             prefetch_factor=dl_config.prefetch_factor,
             worker_init_fn=_worker_init_fn,
         )
-        self._create_optimizer(freeze_encoder=True)
+        self._create_optimizer()
 
         self.default_bce_loss = nn.BCEWithLogitsLoss()
         self.mse_loss = nn.MSELoss()
@@ -211,12 +207,8 @@ class KCTrainer:
         profile_dir = get_profile_dir()
         pid = os.getpid()
         self.train_timer_data = Timer(
-            "kc_data",
-            os.path.join(profile_dir, f"kc_data_{pid}.jsonl") if profile_dir else None,
-        )
-        self.train_timer_compute = Timer(
-            "kc_compute",
-            os.path.join(profile_dir, f"kc_compute_{pid}.jsonl")
+            "kc_data_loading",
+            output_path=os.path.join(profile_dir, f"kc_data_{pid}.jsonl")
             if profile_dir
             else None,
         )
@@ -236,7 +228,7 @@ class KCTrainer:
         self._total_steps_applied = 0
         self._max_consecutive_skips = self.kc_config.max_consecutive_skips
 
-    def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
+    def save_checkpoint(self, epoch: int) -> None:
         if self.config.checkpoint.dir is None:
             return
 
@@ -247,7 +239,6 @@ class KCTrainer:
             epoch=epoch,
             history=self.history,
             global_step=self.global_step,
-            batch_idx=batch_idx,
             config=self.config,
             filename="checkpoint_kc.pt",
         )
@@ -262,7 +253,6 @@ class KCTrainer:
             model=getattr(self.model, "module", self.model),
             optimizer=self.optimizer,
             filename="checkpoint_kc.pt",
-            device=str(self.device),
         )
         self.start_epoch = checkpoint["epoch"]
         self.start_batch = checkpoint.get("batch_idx", 0)
@@ -464,31 +454,28 @@ class KCTrainer:
     def _perform_optimizer_step(
         self,
         m: StyleClassifierWithKC,
-        has_printed_step_check: bool,
         accum: int,
-        is_flush: bool = False,
     ) -> bool:
         w0_before = 0.0
         if self.kc_show_step_checks:
             w0 = m.kc_head.linear.weight
             w0_before = w0.detach().flatten()[0].item()
 
-        if not has_printed_step_check or is_flush:
-            if self.kc_show_grad_norms:
-                gn_kc = self._grad_norm(m.kc_head)
+        if self.kc_show_grad_norms:
+            gn_kc = self._grad_norm(m.kc_head)
 
-                dec_name = (
-                    "pos"
-                    if "pos" in m.kc_decoders.decoders
-                    else next(iter(m.kc_decoders.decoders.keys()))
-                )
-                dec = m.kc_decoders.decoders[dec_name]
-                gn_dec = self._grad_norm(dec) if dec is not None else 0.0
-                phase = "Flush" if is_flush else "Pre-Step"
-                print(
-                    f"  KC {phase} Grad Norms: kc_head={gn_kc:.6f} decoder={gn_dec:.6f}"
-                    + (f" (flush_accum={accum})" if is_flush else "")
-                )
+            dec_name = (
+                "pos"
+                if "pos" in m.kc_decoders.decoders
+                else next(iter(m.kc_decoders.decoders.keys()))
+            )
+            dec = m.kc_decoders.decoders[dec_name]
+            gn_dec = self._grad_norm(dec) if dec is not None else 0.0
+            phase = "Flush"  # was: "Flush" if is_flush else "Pre-Step"
+            print(
+                f"  KC {phase} Grad Norms: kc_head={gn_kc:.6f} decoder={gn_dec:.6f}"
+                + (f" (flush_accum={accum})")
+            )
 
         name_map: Dict[int, str] = {}
         for n, p in m.named_parameters():
@@ -585,19 +572,18 @@ class KCTrainer:
                 self._consecutive_step_skips = 0
                 self._total_steps_applied += 1
 
-        if not has_printed_step_check or is_flush:
-            if self.kc_show_step_checks:
-                w0 = m.kc_head.linear.weight
-                w0_after = w0.detach().flatten()[0].item()
-                print(
-                    f"  KC {'Flush ' if is_flush else ''}Step Check: kc_head.w0 {w0_before:.6f} -> {w0_after:.6f} "
-                    f"(delta={w0_after - w0_before:+.6f}, accum={accum}/{self.config.grad_accum_steps})"
-                )
+        if self.kc_show_step_checks:
+            w0 = m.kc_head.linear.weight
+            w0_after = w0.detach().flatten()[0].item()
+            print(
+                f"  KC Flush Step Check: kc_head.w0 {w0_before:.6f} -> {w0_after:.6f} "
+                f"(delta={w0_after - w0_before:+.6f}, accum={accum}/{self.config.grad_accum_steps})"
+            )
 
         self.optimizer.zero_grad(set_to_none=True)
         return skipped
 
-    def _create_optimizer(self, freeze_encoder: bool) -> None:
+    def _create_optimizer(self, freeze_encoder: bool = False) -> None:
         m = self.model
 
         pg_heads = {
@@ -641,13 +627,8 @@ class KCTrainer:
         first_batch_separation: Dict[str, float] = {}
         first_batch_grad_norms: Dict[str, float] = {}
 
-        has_printed_step_check = False
-
         opt_steps = 0
         flush_steps = 0
-        pending_accum = 0
-        did_any_backward = False
-
         pending_accum = 0
         did_any_backward = False
 
@@ -693,9 +674,8 @@ class KCTrainer:
 
         current_display_loss = 0.5
         pbar = RichTrainerProgressBar(
-            f"KC Epoch {epoch + 1}" + (" (Frozen)" if should_freeze else ""),
+            desc=f"KC Epoch {epoch + 1}" + (" (Frozen)" if should_freeze else ""),
             total_steps=total_batches,
-            transient=False,
         )
 
         self.train_timer_data.start()
@@ -1047,9 +1027,7 @@ class KCTrainer:
 
                                         bias_used = logits.mean().item()
 
-                                        pw = torch.tensor(
-                                            pos_w.item(), device=self.device
-                                        )
+                                        pw = torch.tensor(p.item(), device=self.device)
                                         hl = F.binary_cross_entropy_with_logits(
                                             logits, t, pos_weight=pw
                                         ).item()
@@ -1483,12 +1461,9 @@ class KCTrainer:
             pending_accum += 1
 
             if (batch_idx + 1) % self.config.grad_accum_steps == 0:
-                self._perform_optimizer_step(
-                    m, has_printed_step_check, pending_accum, is_flush=False
-                )
+                self._perform_optimizer_step(m, pending_accum)
 
                 opt_steps += 1
-                has_printed_step_check = True
                 pending_accum = 0
 
             total_loss += loss.item() * self.config.grad_accum_steps
@@ -1501,7 +1476,7 @@ class KCTrainer:
                 self.config.checkpoint.every_n_steps
                 and self.global_step % self.config.checkpoint.every_n_steps == 0
             ):
-                self.save_checkpoint(epoch, batch_idx)
+                self.save_checkpoint(epoch)
 
             if pbar:
                 if (
@@ -1521,17 +1496,12 @@ class KCTrainer:
             raw = self.model
 
             m = cast(StyleClassifierWithKC, raw)
-            self._perform_optimizer_step(
-                m, has_printed_step_check, pending_accum, is_flush=True
-            )
+            self._perform_optimizer_step(m, pending_accum)
 
             flush_steps += 1
-            has_printed_step_check = True
 
         sys.stdout.write("\n")
         sys.stdout.flush()
-
-        avg_kc_losses = {k: v / n_batches for k, v in kc_losses.items()}
 
         uniq_kcs_epoch = int((topk_hist > 0).sum().item())
         max_top1 = float(top1_hist.max().item()) / max(1, kc_usage_total_samples)
@@ -1581,71 +1551,68 @@ class KCTrainer:
         }
 
         if not self.kc_show_epoch_table:
-            if not self.kc_show_epoch_table:
-                top_losses = sorted(
-                    avg_kc_losses.items(), key=lambda x: x[1], reverse=True
-                )[:3]
-                amp_stats = {
-                    "skips": 0,
-                    "start": 1.0,
-                    "end": 1.0,
-                    "opt_steps": opt_steps,
-                    "flush_steps": flush_steps,
-                }
+            top_losses_list = sorted(
+                kc_losses.items(), key=lambda x: x[1], reverse=True
+            )[:3]
+            amp_stats = {
+                "skips": 0,
+                "start": 1.0,
+                "end": 1.0,
+                "opt_steps": opt_steps,
+                "flush_steps": flush_steps,
+            }
 
-                weights_dict = {
-                    "div": div_weight if "div_weight" in locals() else 0.0,
-                    "lb": lb_weight if "lb_weight" in locals() else 0.0,
-                    "collapse": self.kc_collapse_weight_thawed
-                    if epoch >= self.freeze_encoder_epochs
-                    else 0.0,
-                }
-                from train.display import (
-                    format_kc_epoch_compact_summary,
-                    format_kc_loss_breakdown,
-                    format_kc_usage_summary,
+            weights_dict = {
+                "div": div_weight if "div_weight" in locals() else 0.0,
+                "lb": lb_weight if "lb_weight" in locals() else 0.0,
+                "collapse": self.kc_collapse_weight_thawed
+                if epoch >= self.freeze_encoder_epochs
+                else 0.0,
+            }
+            from train.display import (
+                format_kc_epoch_compact_summary,
+                format_kc_loss_breakdown,
+                format_kc_usage_summary,
+            )
+
+            lines = []
+            lines.append(format_kc_loss_breakdown(avg_loss_components, weights_dict))
+
+            lines.append(
+                format_kc_epoch_compact_summary(
+                    epoch + 1,
+                    self.config.epochs,
+                    total_loss / n_batches,
+                    epoch_stats.avg_prob,
+                    epoch_stats.act_dens,
+                    epoch_stats.avg_struct_loss,
+                    top_losses_list,
+                    amp_stats,
+                    entropy_norm=avg_entropy_norm,
+                    avg_kl_to_uniform=avg_kl_to_uniform,
+                    uniq_kcs=uniq_kcs_epoch,
+                    avg_p_max=epoch_stats.avg_p_max,
                 )
+            )
 
-                lines = []
-                lines.append(
-                    format_kc_loss_breakdown(avg_loss_components, weights_dict)
+            lines.append(
+                format_kc_usage_summary(
+                    uniq=uniq_kcs_epoch,
+                    total=kc_usage_total_samples,
+                    max_top1=max_top1,
+                    tv_mean=tv_mean,
+                    gap_mean=gap_mean,
+                    topk_counts=topk_counts_list,
+                    top1_counts=top1_counts_list,
+                    k=k_val,
                 )
+            )
 
-                lines.append(
-                    format_kc_epoch_compact_summary(
-                        epoch + 1,
-                        self.config.epochs,
-                        total_loss / n_batches,
-                        epoch_stats.avg_prob,
-                        epoch_stats.act_dens,
-                        epoch_stats.avg_struct_loss,
-                        top_losses,
-                        amp_stats,
-                        entropy_norm=avg_entropy_norm,
-                        avg_kl_to_uniform=avg_kl_to_uniform,
-                        uniq_kcs=uniq_kcs_epoch,
-                        avg_p_max=epoch_stats.avg_p_max,
-                    )
-                )
-
-                lines.append(
-                    format_kc_usage_summary(
-                        uniq=uniq_kcs_epoch,
-                        total=kc_usage_total_samples,
-                        max_top1=max_top1,
-                        tv_mean=tv_mean,
-                        gap_mean=gap_mean,
-                        topk_counts=topk_counts_list,
-                        top1_counts=top1_counts_list,
-                        k=k_val,
-                    )
-                )
-
-                msg = "\n".join(lines)
-                if pbar:
-                    pbar.log(msg)
-                else:
-                    print(msg)
+            msg = "\n".join(lines)
+            if pbar:
+                pbar.log(msg)
+            else:
+                print(msg)
 
         msg = (
             f"  KC Health: maxTop1={max_top1:.3f} uniqKCs={uniq_kcs_epoch}/{kc_vocab_size} "
@@ -1689,8 +1656,8 @@ class KCTrainer:
 
     def train(
         self,
-        epochs: Optional[int] = None,
-        on_epoch_end: Optional[Callable[[KCTrainingHistory], None]] = None,
+        epochs: int,
+        on_epoch_end: Callable[[KCTrainingHistory], None],
     ) -> KCTrainingHistory:
         if self.config.checkpoint.resume_from:
             self.restore_from_checkpoint(self.config.checkpoint.resume_from)
@@ -1698,7 +1665,7 @@ class KCTrainer:
         if self.start_epoch == 0 and self.start_batch == 0:
             self._init_structural_decoder_biases()
 
-        actual_epochs = epochs or self.config.kc_epochs
+        actual_epochs = epochs
         for epoch in range(self.start_epoch, actual_epochs):
             epoch_res = self.train_epoch(epoch=epoch)
             total_loss = epoch_res.total_loss
@@ -1737,20 +1704,20 @@ class KCTrainer:
                     sorted(kc_losses.items(), key=lambda x: x[1], reverse=True)[:5]
                 )
                 print_epoch_summary(
-                    epoch + 1,
-                    actual_epochs,
-                    {"Total Loss": total_loss, "Sparsity": avg_sparsity},
-                    top_losses,
-                    phase="KC",
-                    kc_epoch_stats=epoch_stats,
+                    epoch=epoch + 1,
+                    total_epochs=actual_epochs,
+                    primary_metrics={
+                        "Total Loss": total_loss,
+                        "Sparsity": avg_sparsity,
+                    },
+                    secondary_metrics=top_losses,
                 )
 
             self.history.sentence_count.append(len(self.dataset))
 
-            self.save_checkpoint(epoch + 1, 0)
+            self.save_checkpoint(epoch + 1)
 
-            if on_epoch_end:
-                on_epoch_end(self.history)
+            on_epoch_end(self.history)
 
         return self.history
 
@@ -1782,16 +1749,15 @@ class Trainer:
         config: TrainerConfig,
         dl_config_train: DataLoaderConfig,
         dl_config_val: DataLoaderConfig,
-        output_path: Optional[str] = None,
-        kc_show_epoch_table: bool = True,
+        output_path: str,
     ):
         self.model = model
         self.train_dataset = train_dataset
         self.val_dataset = val_dataset
         self.config = config
         self.name = "style_model"
-        self.output_path = output_path or "checkpoints"
-        self.kc_show_epoch_table = kc_show_epoch_table
+        self.output_path = output_path
+        self.kc_show_epoch_table = True
         configure_runtime_thread_limits(self.config)
 
         self.device = torch.device(self.config.device)
@@ -1799,9 +1765,6 @@ class Trainer:
 
         self.train_dataset = train_dataset
         self.val_dataset = val_dataset
-
-        pad_id = 0
-        max_seq_len = self.model.config.max_seq_len
 
         self.train_sampler, self.val_sampler = None, None
         t_shuffle, v_shuffle = True, False
@@ -1816,9 +1779,7 @@ class Trainer:
             batch_size=self.config.batch_size,
             shuffle=t_shuffle,
             sampler=self.train_sampler,
-            collate_fn=partial(
-                collate_fn, pad_id=pad_id, max_seq_len=cast(Optional[int], max_seq_len)
-            ),
+            collate_fn=partial(collate_fn),
             num_workers=dl_config_train.num_workers,
             pin_memory=dl_config_train.pin_memory,
             persistent_workers=dl_config_train.persistent_workers,
@@ -1836,9 +1797,7 @@ class Trainer:
             batch_size=self.config.batch_size,
             shuffle=v_shuffle,
             sampler=self.val_sampler,
-            collate_fn=partial(
-                collate_fn, pad_id=pad_id, max_seq_len=cast(Optional[int], max_seq_len)
-            ),
+            collate_fn=partial(collate_fn),
             num_workers=dl_config_val.num_workers,
             pin_memory=dl_config_val.pin_memory,
             persistent_workers=dl_config_val.persistent_workers,
@@ -1925,7 +1884,7 @@ class Trainer:
             else None,
         )
 
-    def save_checkpoint(self, epoch: int, batch_idx: int = 0) -> None:
+    def save_checkpoint(self, epoch: int) -> None:
         if self.config.checkpoint.dir is None:
             return
 
@@ -1936,7 +1895,6 @@ class Trainer:
             epoch=epoch,
             history=self.history,
             global_step=self.global_step,
-            batch_idx=batch_idx,
             scheduler=self.scheduler,
             config=self.config,
             filename="checkpoint.pt",
@@ -1963,7 +1921,6 @@ class Trainer:
             optimizer=self.optimizer,
             scheduler=self.scheduler,
             filename="checkpoint.pt",
-            device=str(self.device),
         )
         self.start_epoch = checkpoint["epoch"]
         self.start_batch = checkpoint.get("batch_idx", 0)
@@ -2149,9 +2106,8 @@ class Trainer:
         pbar = None
         current_loss_val = None
         pbar = RichTrainerProgressBar(
-            f"Style Epoch {epoch + 1}/{self.config.epochs}",
+            desc=f"Style Epoch {epoch + 1}/{self.config.epochs}",
             total_steps=total_batches,
-            transient=False,
         )
 
         try:
@@ -2160,7 +2116,7 @@ class Trainer:
             for batch_idx, batch in enumerate(self.train_loader):
                 if batch_idx < self.start_batch:
                     if pbar:
-                        pbar.update(batch_idx, desc="Skipping...")
+                        pbar.update(batch_idx, loss=0.0)
                     continue
 
                 self.train_timer_data.stop(epoch=epoch, batch=batch_idx)
@@ -2175,7 +2131,7 @@ class Trainer:
                     ):
                         current_loss_val = metrics.get_avg_loss()
 
-                    pbar.update(batch_idx, loss=current_loss_val)
+                    pbar.update(batch_idx, loss=current_loss_val or 0.0)
 
                 if (batch_idx + 1) % self.config.grad_accum_steps == 0:
                     self.global_step += 1
@@ -2184,7 +2140,7 @@ class Trainer:
                         self.config.checkpoint.every_n_steps
                         and self.global_step % self.config.checkpoint.every_n_steps == 0
                     ):
-                        self.save_checkpoint(epoch, batch_idx)
+                        self.save_checkpoint(epoch)
 
                 self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
                 self.train_timer_data.start()
@@ -2332,13 +2288,13 @@ class Trainer:
 
     def train(
         self,
-        epochs: Optional[int] = None,
-        on_epoch_end: Optional[Callable[[TrainingHistory], None]] = None,
+        epochs: int,
+        on_epoch_end: Callable[[TrainingHistory], None],
     ) -> TrainingHistory:
         if self.config.checkpoint.resume_from:
             self.restore_from_checkpoint(self.config.checkpoint.resume_from)
 
-        actual_epochs = epochs or self.config.epochs
+        actual_epochs = epochs
 
         for epoch in range(self.start_epoch, actual_epochs):
             tl, tfl, tgl, tgraml, trl = self.train_epoch(epoch=epoch)
@@ -2387,7 +2343,8 @@ class Trainer:
             self.train_timer_data.reset()
             self.train_timer_compute.reset()
 
-            metrics = {
+            primary_metrics = {"Train Loss": tl, "Val Loss": eval_res.loss}
+            secondary_metrics = {
                 "Formality": {
                     "Train": tfl,
                     "Val": eval_res.formality_loss,
@@ -2410,11 +2367,10 @@ class Trainer:
                 },
             }
             print_epoch_summary(
-                epoch + 1,
-                self.config.epochs,
-                {"Train Loss": tl, "Val Loss": eval_res.loss},
-                metrics,
-                phase="Style",
+                epoch=epoch + 1,
+                total_epochs=self.config.epochs,
+                primary_metrics=primary_metrics,
+                secondary_metrics=secondary_metrics,
             )
 
             is_best = eval_res.loss < self.best_val_loss
@@ -2434,12 +2390,9 @@ class Trainer:
                     print(f"Early stopping at epoch {epoch + 1}")
                     break
 
-            self.save_checkpoint(epoch + 1, 0)
+            self.save_checkpoint(epoch + 1)
 
-            self.save_checkpoint(epoch + 1, 0)
-
-            if on_epoch_end:
-                on_epoch_end(self.history)
+            on_epoch_end(self.history)
 
         if self.best_state:
             self.model.load_state_dict(self.best_state, strict=False)

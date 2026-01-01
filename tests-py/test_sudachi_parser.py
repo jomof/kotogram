@@ -16,7 +16,7 @@ class TestSudachiJapaneseParser(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        self.parser = SudachiJapaneseParser(dict_type="full")
+        self.parser = SudachiJapaneseParser()
 
     def _has_feature(self, kotogram, surface=None, pos=None):
         """Helper to check if a kotogram contains a token with given features."""
@@ -77,7 +77,7 @@ class TestSudachiJapaneseParser(unittest.TestCase):
 
     def test_validation_mode_enabled(self):
         """Validation mode raises descriptive errors for unmapped keys."""
-        parser_strict = SudachiJapaneseParser(dict_type="full", validate=True)
+        parser_strict = SudachiJapaneseParser(validate=True)
 
         # Should parse without errors for normal text
         result = parser_strict.japanese_to_kotogram("これはテストです")
@@ -86,7 +86,7 @@ class TestSudachiJapaneseParser(unittest.TestCase):
 
     def test_validation_mode_disabled(self):
         """Validation mode disabled silently ignores unmapped keys."""
-        parser = SudachiJapaneseParser(dict_type="full", validate=False)
+        parser = SudachiJapaneseParser(validate=False)
 
         # Should not raise an error
         result = parser.japanese_to_kotogram("テスト")
@@ -118,7 +118,7 @@ class TestSudachiJapaneseParser(unittest.TestCase):
     def test_dict_type_parameter(self):
         """Can initialize with different dictionary types."""
         # We only care about the full dictionary being available
-        parser_full = SudachiJapaneseParser(dict_type="full")
+        parser_full = SudachiJapaneseParser()
         result = parser_full.japanese_to_kotogram("テスト")
         self.assertTrue(self._has_feature(result, surface="テスト"))
 

@@ -24,19 +24,17 @@ class SudachiJapaneseParser(JapaneseParser):
     Japanese text, converting it into kotogram compact format.
     """
 
-    def __init__(self, dict_type: str = "full", validate: bool = False) -> None:
+    def __init__(self, validate: bool = False) -> None:
         """Initialize the Sudachi Japanese parser.
 
         Args:
-            dict_type: Dictionary type to use ('small', 'core', or 'full').
-                      Default is 'full' for maximum coverage.
             validate: If True, raises descriptive exceptions when mapping lookups fail.
                      Useful for debugging unmapped linguistic features.
         """
         # Lazy import to avoid requiring Sudachi for the abstract interface
         from sudachipy import dictionary
 
-        self.dict_obj = dictionary.Dictionary(dict=dict_type)
+        self.dict_obj = dictionary.Dictionary(dict="full")
         self.tokenizer = self.dict_obj.create()
         self.validate = validate
 

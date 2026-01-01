@@ -1,7 +1,7 @@
 """Display logic for training progress reporting."""
 
 import math
-from typing import Any, Dict, List, Optional, Tuple, Union, cast
+from typing import Any, Dict, List, Optional, Tuple, cast
 
 from rich.console import Console, Group
 from rich.panel import Panel
@@ -15,8 +15,6 @@ from rich.progress import (
 )
 from rich.table import Table
 
-from train.types import TrainEpochStats
-
 console = Console(force_terminal=True)
 
 
@@ -27,11 +25,9 @@ class RichTrainerProgressBar:
         self,
         desc: str,
         total_steps: int,
-        console_: Optional[Console] = None,
-        transient: bool = False,
     ):
         # Use provided console or fall back to global forced-terminal console
-        self.console = console_ or console
+        self.console = console
         self.progress = Progress(
             SpinnerColumn(),
             TextColumn("[progress.description]{task.description}"),
@@ -40,7 +36,7 @@ class RichTrainerProgressBar:
             TimeRemainingColumn(),
             TextColumn("{task.fields[status]}"),
             console=self.console,
-            transient=transient,
+            transient=False,
         )
         self.task_id = self.progress.add_task(
             desc, total=total_steps, status="Initializing..."
@@ -50,27 +46,17 @@ class RichTrainerProgressBar:
     def update(
         self,
         step: int,
-        loss: Optional[float] = None,
-        desc: Optional[str] = None,
-        status: Optional[str] = None,
+        loss: float,
     ) -> None:
         """Update progress bar state."""
         # Build extra fields
         fields = {}
         if loss is not None:
             fields["status"] = f"loss={loss:.4f}"
-        if status is not None:
-            fields["status"] = status
 
-        # Update description if provided
         # Cast fields to Any for Mypy safety with typed kwargs in Progress.update
         fields_any = cast(Dict[str, Any], fields)
-        if desc is not None:
-            self.progress.update(
-                self.task_id, completed=step + 1, description=desc, **fields_any
-            )
-        else:
-            self.progress.update(self.task_id, completed=step + 1, **fields_any)
+        self.progress.update(self.task_id, completed=step + 1, **fields_any)
 
     def log(self, message: str) -> None:
         """Print a message above the progress bar."""
@@ -84,9 +70,9 @@ class RichTrainerProgressBar:
 
 def print_phase_header(
     phase: str,
+    epoch: int,
+    total_epochs: int,
     info: Optional[str] = None,
-    epoch: Optional[int] = None,
-    total_epochs: Optional[int] = None,
 ) -> None:
     """Print a header for a training phase."""
     icon = {
@@ -347,10 +333,10 @@ def format_kc_epoch_compact_summary(
     struct_avg: float,
     top_losses: List[Any],
     amp_stats: Dict[str, Any],
-    entropy_norm: Optional[float] = None,
-    avg_kl_to_uniform: Optional[float] = None,
-    uniq_kcs: Optional[int] = None,
-    avg_p_max: Optional[float] = None,
+    entropy_norm: float,
+    avg_kl_to_uniform: float,
+    uniq_kcs: int,
+    avg_p_max: float,
 ) -> str:
     """Compact single-line summary of epoch results."""
     # pylint: disable=too-many-positional-arguments
@@ -424,20 +410,14 @@ def print_epoch_summary(
     epoch: int,
     total_epochs: int,
     primary_metrics: Dict[str, float],
-    secondary_metrics: Optional[Dict[str, Any]] = None,
-    phase: Optional[str] = None,
-    kc_epoch_stats: Optional[Union[Dict[str, Any], TrainEpochStats]] = None,
+    secondary_metrics: Dict[str, Any],
 ) -> None:
     """Print a formatted summary of the epoch using Rich."""
     # pylint: disable=too-many-locals, too-many-positional-arguments
 
     title = f"Epoch {epoch} of {total_epochs}"
-    if phase:
-        icon = {
-            "KC": "🧠 ",
-            "Style": "🎨 ",
-        }.get(phase, "")
-        title = f"{icon}{phase} | {title}"
+    icon = "🎨 "
+    title = f"{icon}Style | {title}"
 
     # Primary Metrics Table
     p_table = Table(
@@ -516,27 +496,6 @@ def print_epoch_summary(
     console.print(
         Panel(group, title=f"[bold]{title}[/bold]", expand=False, border_style="blue")
     )
-
-    if phase == "KC" and kc_epoch_stats:
-        print("  KC Epoch Summary:")
-        print(f"    total_loss={primary_metrics.get('Total Loss', 0.0):.4f}")
-
-        if isinstance(kc_epoch_stats, dict):
-            avg_struct = kc_epoch_stats.get("avg_struct_loss", 0.0)
-            n_struct = kc_epoch_stats.get("num_struct_heads_processed", 0)
-            avg_label = kc_epoch_stats.get("avg_label_loss", 0.0)
-            n_label = kc_epoch_stats.get("num_label_heads_processed", 0)
-            sparsity = kc_epoch_stats.get("avg_sparsity", 0.0)
-        else:
-            avg_struct = kc_epoch_stats.avg_struct_loss
-            n_struct = kc_epoch_stats.num_struct_heads_processed
-            avg_label = kc_epoch_stats.avg_label_loss
-            n_label = kc_epoch_stats.num_label_heads_processed
-            sparsity = kc_epoch_stats.avg_sparsity
-
-        print(f"    struct_loss(avg)={avg_struct:.4f} over {n_struct} struct batches")
-        print(f"    label_loss(avg)={avg_label:.4f} over {n_label} label batches")
-        print(f"    sparsity={sparsity:.4f}")
 
 
 def print_best_model_saved(path: str, val_loss: float) -> None:

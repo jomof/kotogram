@@ -4,7 +4,6 @@ import cProfile
 import json
 import os
 import platform
-import pstats
 import re
 import resource
 import subprocess
@@ -172,11 +171,10 @@ class Timer:
     def _save_heavy_stats(self, name: str, elapsed: float) -> None:
         """Save cProfile and memray stats to disk."""
         save_combined_stats(
-            self.profile_dir,
+            self.profile_dir or "",
             name,
             elapsed,
-            self.profiler,
-            self.memray_file,
+            self.memray_file or "",
         )
 
 
@@ -205,11 +203,10 @@ def _clean_name(name: str) -> str:
 
 
 def save_combined_stats(
-    profile_dir: Optional[str],
+    profile_dir: str,
     name: str,
     elapsed: float,
-    profiler: Optional[cProfile.Profile],
-    memray_file: Optional[str],
+    memray_file: str,
 ) -> None:
     # pylint: disable=too-many-locals
     """Save cProfile and memray stats to disk (shared logic)."""
@@ -223,9 +220,7 @@ def save_combined_stats(
     base_path = os.path.join(profile_dir, base_name)
 
     # 1. Save cProfile .pstats
-    if profiler:
-        pstats_file = f"{base_path}.pstats"
-        profiler.dump_stats(pstats_file)
+    # (Removed dead code: profiler is always None)
 
     # 2. Text Report (Combine cProfile + Memray)
     txt_file = f"{base_path}.txt"
@@ -234,13 +229,7 @@ def save_combined_stats(
         f.write("=" * 80 + "\n")
 
         # cProfile Section
-        if profiler:
-            stats = pstats.Stats(profiler, stream=f)
-            stats.sort_stats("cumulative")
-            f.write("TOP 50 BY CUMULATIVE TIME (cProfile)\n")
-            f.write("-" * 80 + "\n")
-            stats.print_stats(50)
-            f.write("\n")
+        # (Removed dead code: profiler is always None)
 
         # Memray Section
         if memray_file and os.path.exists(memray_file):
@@ -283,7 +272,7 @@ def save_combined_stats(
                 )
 
 
-def setup_profiling(script_prefix: str, include_kc_infix: bool = False) -> None:
+def setup_profiling() -> None:
     """Enable cProfile if TRAIN_PROFILE is set and register exit handler."""
     if not profiling_enabled():
         return
@@ -303,12 +292,12 @@ def setup_profiling(script_prefix: str, include_kc_infix: bool = False) -> None:
         pid = os.getpid()
         timestamp = int(time.time() * 1000)
 
-        infix = "_kc" if include_kc_infix and "--pretrain-kc" in sys.argv else ""
+        infix = "_kc" if "--pretrain-kc" in sys.argv else ""
         # Use a temporary name until we know elapsed time?
         # actually we can just name it broadly.
         _memray_file = os.path.join(
             prof_dir,
-            f"{script_prefix}{infix}_global_{timestamp}_{pid}.bin",
+            f"train_style{infix}_global_{timestamp}_{pid}.bin",
         )
         _memray_tracker = memray.Tracker(_memray_file)
         _memray_tracker.__enter__()  # pylint: disable=unnecessary-dunder-call
@@ -329,14 +318,13 @@ def setup_profiling(script_prefix: str, include_kc_infix: bool = False) -> None:
             _memray_tracker.__exit__(None, None, None)
 
         if prof_dir:
-            infix = "_kc" if include_kc_infix and "--pretrain-kc" in sys.argv else ""
+            infix = "_kc" if "--pretrain-kc" in sys.argv else ""
             # Use unified saver
             save_combined_stats(
-                prof_dir,
-                f"{script_prefix}{infix}",
+                prof_dir or "",
+                f"train_style{infix}",
                 elapsed,
-                _profiler,
-                _memray_file,
+                _memray_file or "",
             )
 
     atexit.register(_save_profile)

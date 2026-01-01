@@ -16,7 +16,7 @@ class TestCrossLanguageBugs(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures."""
         # Initialize Sudachi parser
-        self.parser = SudachiJapaneseParser(dict_type="full")
+        self.parser = SudachiJapaneseParser()
 
     def test_bug1_small_tsu_compound_verb(self):
         """

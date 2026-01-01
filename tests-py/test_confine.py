@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import patch
 
 # pylint: disable=import-private-name
-from scripts.confine import _build_command, confine
+from lib_confine import _build_command, confine
 
 
 class TestConfine(unittest.TestCase):
@@ -50,7 +50,7 @@ class TestConfine(unittest.TestCase):
         """Test confine in default 'run' mode."""
         config = {"allow_network": True, "allow_write": ["[exec-root]/output"]}
         with patch(
-            "scripts.confine._build_command", return_value=["sandbox", "ls"]
+            "lib_confine._build_command", return_value=["sandbox", "ls"]
         ) as mock_build:
             with patch("subprocess.run") as mock_run:
                 confine(["ls"], config, env={"TEST": "1"}, cwd="/custom/cwd")
@@ -72,7 +72,7 @@ class TestConfine(unittest.TestCase):
     def test_confine_exec_mode(self):
         """Test confine in 'exec' mode."""
         config = {"mode": "exec", "allow_network": False}
-        with patch("scripts.confine._build_command", return_value=["sandbox", "ls"]):
+        with patch("lib_confine._build_command", return_value=["sandbox", "ls"]):
             with patch("os.execvpe") as mock_exec:
                 with patch("os.chdir") as mock_chdir:
                     with patch("os.environ", {"PATH": "/bin"}):
@@ -87,7 +87,7 @@ class TestConfine(unittest.TestCase):
     def test_variable_expansion_defaults(self):
         """Test variable expansion uses os.getcwd() if cwd not provided."""
         config = {"allow_read": ["[exec-root]/file", "[tmp]/temp"]}
-        with patch("scripts.confine._build_command") as mock_build:
+        with patch("lib_confine._build_command") as mock_build:
             with patch("subprocess.run"):
                 with patch("os.getcwd", return_value="/current/dir"):
                     confine(["ls"], config)

@@ -535,7 +535,9 @@ class Bottle:
         env = os.environ.copy()
         env["TRAIN_ROOT"] = self.root_dir
         # Ensure imports work for scripts not having path boilerplate (like scripts/label.py)
-        env["PYTHONPATH"] = self.project_root
+        env["PYTHONPATH"] = (
+            f"{self.project_root}:{os.path.join(self.project_root, 'tests-py')}:{env.get('PYTHONPATH', '')}"
+        )
         if env_overrides:
             env.update(env_overrides)
 

@@ -15,7 +15,7 @@ class TestFormalityModel(unittest.TestCase):
 
     def setUp(self):
         # pylint: disable=duplicate-code
-        self.parser = SudachiJapaneseParser(dict_type="full")
+        self.parser = SudachiJapaneseParser()
 
         # Manually setup mock model/tokenizer
         from kotogram.model import ModelConfig, StyleClassifier

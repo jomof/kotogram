@@ -40,6 +40,7 @@ def _build_mac_sandbox_profile(
         "(allow sysctl*)",
         "(allow ipc*)",
         "(allow file-read-metadata)",
+        "(allow file-map-executable)",
         # Allow basic system reads? No, user wants strict control via allow_read.
         # But we must ensure allow_read handles paths correctly (literals vs subpaths).
     ]
@@ -79,8 +80,8 @@ def _build_mac_sandbox_profile(
 def _build_command(
     args: List[str],
     allow_network: bool,
-    allow_read: Optional[List[str]],
-    allow_write: Optional[List[str]],
+    allow_read: Optional[List[str]] = None,
+    allow_write: Optional[List[str]] = None,
 ) -> List[str]:
     """Builds the full command with sandbox prefix."""
     # pylint: disable=unused-argument

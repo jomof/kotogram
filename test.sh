@@ -15,4 +15,4 @@ PYTHON_CMD="python3"
 # Delegate to the Python test runner
 # We pass --confinement-config here as a default for the full suite context
 # The runner handles argument parsing including --specific-python-test
-exec $PYTHON_CMD scripts/test_runner.py --confinement-config confine/python-test.json "$@"
+exec $PYTHON_CMD scripts/test_runner.py "$@"

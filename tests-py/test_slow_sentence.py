@@ -23,7 +23,7 @@ class TestSlowSentence(unittest.TestCase):
         from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 
         # pylint: disable=invalid-name
-        self.parser = SudachiJapaneseParser(dict_type="full")
+        self.parser = SudachiJapaneseParser()
         # pylint: disable=protected-access
         self.tokenizer._frozen = True
 

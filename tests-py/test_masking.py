@@ -11,7 +11,7 @@ from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 
 class TestMasking(unittest.TestCase):
     def setUp(self):
-        self.parser = SudachiJapaneseParser(dict_type="full")
+        self.parser = SudachiJapaneseParser()
 
     def test_basic_masking(self):
         """Test that a given name is masked to '<given-name>'."""

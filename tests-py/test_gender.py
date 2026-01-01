@@ -17,7 +17,7 @@ class TestGenderModel(unittest.TestCase):
     def setUp(self):
         # pylint: disable=duplicate-code
         """Set up test fixtures."""
-        self.parser = SudachiJapaneseParser(dict_type="full")
+        self.parser = SudachiJapaneseParser()
 
         # Manually setup mock model/tokenizer
         from kotogram.model import ModelConfig, StyleClassifier

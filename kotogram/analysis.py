@@ -137,9 +137,7 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     model, tokenizer = _ANALYZER.load()
 
     # Encode all kotograms
-    encoded_list = [
-        tokenizer.encode(k, add_cls=True, add_to_vocab=False) for k in kotograms
-    ]
+    encoded_list = [tokenizer.encode(k) for k in kotograms]
 
     # Padding logic to handle variable lengths in batch
     max_len = max(len(e[FEATURE_FIELDS[0]]) for e in encoded_list)

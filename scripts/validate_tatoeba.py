@@ -220,7 +220,7 @@ def main() -> None:
     )
     print("This may take a while...\n")
 
-    parser = SudachiJapaneseParser(dict_type="full", validate=True)
+    parser = SudachiJapaneseParser(validate=True)
     print(f"\n{'#' * 80}")
     print("# VALIDATING WITH SUDACHI")
     print(f"{'#' * 80}")
