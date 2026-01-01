@@ -15,7 +15,7 @@ class TestTrainingResumption(unittest.TestCase):
         3. KC Resumption
         4. Retrain behavior
         """
-        common_args = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2 --no-confusion"
+        common_args = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
 
         with Bottle(self) as bottle:
             bottle.populate_test_data()

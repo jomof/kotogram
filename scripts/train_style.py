@@ -284,7 +284,6 @@ if __name__ == "__main__":
     def _log_epoch_event(
         raw_history: Union[TrainingHistory, KCTrainingHistory],
         phase_type: str,
-        start_epoch: int = 0,
     ) -> None:
         """Log the latest epoch from raw_history to the TSV file."""
         if not raw_history:
@@ -309,7 +308,7 @@ if __name__ == "__main__":
         if idx < 0:
             return
 
-        current_epoch = start_epoch + idx + 1
+        current_epoch = idx + 1
 
         # Extract metrics for this epoch
         metrics = {}
