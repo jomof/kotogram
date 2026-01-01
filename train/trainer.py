@@ -148,7 +148,7 @@ class KCTrainer:
             prefetch_factor=dl_config.prefetch_factor,
             worker_init_fn=_worker_init_fn,
         )
-        self._create_optimizer()
+        self._create_optimizer(freeze_encoder=self.freeze_encoder_epochs > 0)
 
         self.default_bce_loss = nn.BCEWithLogitsLoss()
         self.mse_loss = nn.MSELoss()

@@ -34,6 +34,25 @@ class TestKCSaltKeys(unittest.TestCase):
         self.assertIn("Missing mapping in SALT", msg)
         self.assertIn(missing_key, msg)
 
+    def test_missing_different_salt_key(self):
+        # Vary the missing key to prevent 'key' arg constant value
+        missing_key = "ngram_pos"
+        self.assertIn(missing_key, kc.SALT)
+        del kc.SALT[missing_key]
+
+        feature_ids = {
+            "reading": [13],
+            "pos": [1],  # triggers SALT["ngram_pos"]
+            "pos_detail_1": [1],
+            "conjugated_form": [5],
+            "conjugated_type": [9],
+        }
+
+        with self.assertRaises(KeyError) as ctx:
+            kc.compute_kc_targets(feature_ids)
+
+        self.assertIn(missing_key, str(ctx.exception))
+
     def test_salt_present_allows_compute(self):
         feature_ids = {
             "reading": [13, 14, 15, 16],
@@ -48,6 +67,17 @@ class TestKCSaltKeys(unittest.TestCase):
         self.assertIn("tail_ngram_pos_detail_1", out)
         self.assertIsInstance(out["ngram_pos_detail_1"], list)
         self.assertIsInstance(out["tail_ngram_pos_detail_1"], list)
+
+    def test_custom_map_name_error(self):
+        """Test MissingMappingError with a custom map name."""
+        from kotogram.exceptions import MissingMappingError
+
+        with self.assertRaises(MissingMappingError) as ctx:
+            raise MissingMappingError("CUSTOM_MAP", "test_key", "Optional context")
+
+        msg = str(ctx.exception)
+        self.assertIn("Missing mapping in CUSTOM_MAP", msg)
+        self.assertIn("test_key", msg)
 
 
 if __name__ == "__main__":

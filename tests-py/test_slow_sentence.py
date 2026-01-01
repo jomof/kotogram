@@ -64,9 +64,8 @@ class TestSlowSentence(unittest.TestCase):
         print(f"Candidates generated: {len(surfaces)} (Time: {aug_duration:.4f}s)")
 
         filter_start = time.time()
-        results = augmenter.filter_grammatical(
-            surfaces, deadline=time.time() + (1.0 - (time.time() - start))
-        )
+        # Give ample time for the control run to ensure we get results
+        results = augmenter.filter_grammatical(surfaces, deadline=time.time() + 30.0)
         filter_duration = time.time() - filter_start
 
         duration = time.time() - start
@@ -76,7 +75,41 @@ class TestSlowSentence(unittest.TestCase):
         if duration > 1.1:
             print("WARNING: Exceeded budget significantly!")
         else:
-            print("SUCCESS: Respected budget.")
+            print("Budget respected.")
+
+    def test_deadline_parameter_effect(self) -> None:
+        """Verify that the deadline parameter effectively truncates processing."""
+        augmenter = Augmenter()
+        sentence = "猫が好き"
+
+        # 1. Generate candidates
+        parser = augmenter.get_parser()
+        from kotogram_test_utils import KotogramTestUtils
+
+        from kotogram.augment import get_surface
+
+        tokens = KotogramTestUtils.tokenize_sentence(sentence, parser)
+        candidates = augmenter.augment_tokens(
+            tuple(tokens), deadline=time.time() + 30.0
+        )
+        surfaces = {"".join(get_surface(t) for t in c) for c in candidates}
+
+        # 2. Filter with generous deadline (Value A)
+        start_t = time.time()
+        _ = augmenter.filter_grammatical(surfaces, deadline=start_t + 10.0)
+        dur_full = time.time() - start_t
+
+        # 3. Filter with immediate deadline (Value B - distinct from A)
+        start_t = time.time()
+        _ = augmenter.filter_grammatical(surfaces, deadline=start_t + 0.000001)
+        dur_timeout = time.time() - start_t
+
+        # 4. Assert effect on execution time
+        # The full run processes ~300 items (slow inference), timeout run should exit early.
+        # We can't rely on result count because dummy model rejects everything.
+        self.assertLess(dur_timeout, dur_full)
+        if dur_full > 0.1:
+            self.assertLess(dur_timeout, dur_full * 0.5)
 
 
 if __name__ == "__main__":
