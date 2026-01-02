@@ -10,10 +10,27 @@ on:
     - cron: '0 2 * * *'
 
 jobs:
-  canary:
-    name: Canary Build and Test
+  test:
+    name: Run Tests
     runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
 
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: source ./requirements.sh
+
+    - name: Run build and tests
+      run: ./test.sh
+
+  validation:
+    name: Cross-Language Validation
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -32,10 +49,8 @@ jobs:
     - name: Install dependencies
       run: source ./requirements.sh
 
-    - name: Run build and tests
-      run: ./test.sh
-
     - name: Run cross-language validation
       run: |
         source ./requirements.sh
+        npm run build
         python scripts/cross_language_furigana.py
