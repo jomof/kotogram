@@ -30,7 +30,7 @@ jobs:
         python-version: '3.11'
 
     - name: Install dependencies
-      run: ./requirements.sh
+      run: source ./requirements.sh
 
     - name: Run build and tests
       run: ./test.sh

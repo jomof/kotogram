@@ -2,10 +2,34 @@
 # Setup script for kotogram training environment
 # Run with: ./requirements.sh (or source requirements.sh)
 
-set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
+
+# Save original prompt to prevent clobbering by activate script
+ORIG_PS1="${PS1:-}"
+
+
+if [[ -n "$VIRTUAL_ENV" ]]; then
+    echo "Using existing virtual environment: $VIRTUAL_ENV"
+else
+    if [ ! -f ".venv/bin/activate" ]; then
+        echo "Creating virtual environment in .venv..."
+        python3 -m venv .venv
+    fi
+    
+    # Disable default venv prompt change, we'll restore user's prompt if needed
+    VIRTUAL_ENV_DISABLE_PROMPT=1 source .venv/bin/activate
+fi
+
+# Restore prompt if it was cleared or modified
+if [ -n "$ORIG_PS1" ]; then
+    PS1="$ORIG_PS1"
+    # Prepend (venv) if not already present
+    if [[ "$PS1" != *"(venv) "* ]]; then
+        PS1="(venv) $PS1"
+    fi
+fi
 
 echo "========================================"
 echo "Kotogram Environment Setup"
