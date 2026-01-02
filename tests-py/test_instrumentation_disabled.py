@@ -1,6 +1,5 @@
 import os
 import sys
-import time
 import unittest
 
 
@@ -45,19 +44,6 @@ class TestInstrumentationDisabled(unittest.TestCase):
                 current_profile,
                 f"sys.getprofile() should be None when disabled, got {current_profile}",
             )
-
-    def test_import_speed(self):
-        # Verify import speed of instrumentation
-        start = time.perf_counter()
-
-        # pylint: disable=import-outside-toplevel,unused-import
-
-        end = time.perf_counter()
-        duration = end - start
-
-        # Hard assertion: Import should be fast (< 1s) if 'train' is skipped
-        # kotogram init takes ~2s+ on fast machines, so <1s proves it's skipped
-        self.assertLess(duration, 2.0, f"Import too slow: {duration:.4f}s")
 
 
 if __name__ == "__main__":
