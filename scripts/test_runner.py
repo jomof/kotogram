@@ -727,6 +727,21 @@ def _strip_file(path: str) -> None:
             f.writelines(new_lines)
 
 
+def cleanup_profile_artifacts() -> None:
+    """Clean up instrumentation/profile artifacts before running tests."""
+    if os.getcwd() not in sys.path:
+        sys.path.append(os.getcwd())
+    from train import paths
+
+    profile_dir = paths.get_profile_dir()
+    if profile_dir and os.path.exists(profile_dir):
+        # We recursively delete the profile directory to ensure fresh state
+        try:
+            shutil.rmtree(profile_dir)
+        except OSError as e:
+            print_error(f"Failed to cleanup profile dir {profile_dir}: {e}")
+
+
 async def main() -> None:
     # pylint: disable=too-many-locals, too-many-nested-blocks, too-many-lines
     """
@@ -780,6 +795,7 @@ async def main() -> None:
         # Ensure we don't accidentally fail on const unless explicitly asked,
         # or maybe we should? User didn't specify default failure, just reporting.
         # "Also, make this mode the default for test_runner" -> implies reporting.
+        cleanup_profile_artifacts()
 
     # Remove specific-python-test block (superseded by --pytests)
 

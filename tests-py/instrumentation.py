@@ -28,9 +28,6 @@ MANY_VALUES_SENTINEL = object()
 GREEN = "\033[1;32m"
 RED = "\033[1;31m"
 BLUE = "\033[1;34m"
-YELLOW = "\033[1;33m"
-CYAN = "\033[1;36m"
-MAGENTA = "\033[1;35m"
 RESET = "\033[0m"
 BOLD_YELLOW = "\033[1;33m"
 
@@ -156,87 +153,34 @@ _RECORDER: Optional[ParameterRecorder] = None
 
 
 def generate_report() -> None:
-    """Generates and prints the constant parameter report."""
+    """Generates and prints the constant parameter report by aggregating files."""
     # pylint: disable=global-statement,global-variable-not-assigned
     global _RECORDER
-    if not _RECORDER:
+
+    # Flush current process state to file
+    if _RECORDER:
+        persist_state()
+
+    # If instrumentation was never configured (roots not set), do not generate a report.
+    if not os.environ.get(ENV_VAR_ROOTS):
         return
 
-    # Disable profiling to stop recording during reporting (if still active)
-    sys.setprofile(None)
+    from train import paths
 
-    # 1. Collect Constant Parameters
-    constants_found = []
-    sorted_keys = sorted(_RECORDER.param_states.keys())
+    output_dir = os.environ.get(ENV_VAR_OUTPUT)
+    if not output_dir:
+        output_dir = paths.get_profile_dir()
 
-    for key in sorted_keys:
-        state = _RECORDER.param_states[key]
-        if state is not MANY_VALUES_SENTINEL:
-            val, sources = state
-            filename, line, funcname, param = key
-            val_repr = repr(val)
-            if len(val_repr) > 100:
-                val_repr = val_repr[:97] + "..."
-
-            # For per-process reporting (fallback), maybe just show count of tests?
-            source_summary = f" (from {len(sources)} tests)" if len(sources) > 1 else ""
-            if len(sources) == 1:
-                source_summary = f" (from {list(sources)[0]})"
-
-            constants_found.append(
-                (filename, line, funcname, param, val_repr, source_summary)
-            )
-
-    # 2. Collect Never-None Optional Parameters
-    never_none_found = _scan_optional_never_none(
-        _RECORDER.param_states, _RECORDER.seen_none_params
-    )
-
-    if not constants_found and not never_none_found:
-        # Per-process empty reports should be silent/minimal?
-        return
-
-    # If we have findings in a worker process, we probably want to see them?
-    # Or maybe valid output from workers is confusing too?
-    # Usually workers shouldn't print, they should save to JSON.
-    # If this runs, it means falling back to stdout.
-
-    # Let's print styled if we do print.
-
-    if constants_found:
-        print("\n" + "=" * 80)
-        print(f"{BLUE}PARAMETER CONSTANT VALUE REPORT (PID: {os.getpid()}){RESET}")
-        print("=" * 80)
-        print(
-            f"[train-record] Found {len(constants_found)} parameters that were constant across the session:"
+    if output_dir and os.path.exists(output_dir):
+        # Determine project root for relative paths (heuristic: current dir or one up)
+        project_root = os.environ.get("TRAIN_RECORD_ROOTS", os.getcwd()).split(
+            os.pathsep
+        )[0]
+        aggregate_reports(
+            output_dir,
+            project_root=project_root,
+            fail_on_const=os.environ.get(ENV_VAR_FAIL) == "1",
         )
-        for item in constants_found:
-            filename, line, funcname, param, val, src = item
-            print(
-                f"{CYAN}{filename}:{line}{RESET} {GREEN}{funcname}{RESET}({YELLOW}{param}{RESET}={MAGENTA}{val}{RESET}){src}"
-            )
-
-        if _RECORDER.fail_on_const:
-            print(
-                f"\n{RED}[train-record] FAILING session due to {ENV_VAR_FAIL}=1{RESET}"
-            )
-            sys.exit(1)
-        print("=" * 80 + "\n")
-
-    if never_none_found:
-        print("\n" + "=" * 80)
-        print(f"{BLUE}OPTIONAL PARAMETERS NEVER NONE REPORT{RESET}")
-        print("=" * 80)
-
-        print(
-            f"[train-record] Found {len(never_none_found)} OPTIONAL parameters that were NEVER NONE:"
-        )
-        for item in never_none_found:
-            filename, line, funcname, param = item
-            print(
-                f"{CYAN}{filename}:{line}{RESET} {GREEN}{funcname}{RESET}({YELLOW}{param}{RESET})"
-            )
-        print("=" * 80 + "\n")
 
 
 def persist_state() -> None:
@@ -250,7 +194,16 @@ def persist_state() -> None:
     sys.setprofile(None)
 
     output_dir = os.environ.get(ENV_VAR_OUTPUT)
-    if output_dir and os.path.exists(output_dir):
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
+
+    from train import paths
+
+    if not output_dir:
+        output_dir = paths.get_profile_dir()
+
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
         # Save to file (JSON for easy aggregation)
         import json
 
@@ -279,19 +232,27 @@ def persist_state() -> None:
                 }
             )
 
+        if not serializable_state:
+            return
+
         pid = os.getpid()
         fname = os.path.join(output_dir, f"record_{pid}.json")
         try:
             with open(fname, "w", encoding="utf-8") as f:
                 json.dump(serializable_state, f)
         except Exception as e:  # pylint: disable=broad-exception-caught
-            print(f"[train-record] Failed to write report to {fname}: {e}")
-    else:
-        # Fallback to stdout report
-        generate_report()
+            # Fallback to stderr if file write fails, or just silence?
+            # User said "rather than stdout/stderr".
+            # We'll print to stderr only on failure.
+            print(
+                f"[train-record] Failed to write report to {fname}: {e}",
+                file=sys.stderr,
+            )
 
 
-def aggregate_reports(output_dir: str, project_root: Optional[str] = None) -> None:
+def aggregate_reports(
+    output_dir: str, project_root: Optional[str] = None, fail_on_const: bool = False
+) -> None:
     """Reads all JSON reports in output_dir and prints a merged report."""
     # pylint: disable=too-many-locals
     import glob
@@ -332,6 +293,9 @@ def aggregate_reports(output_dir: str, project_root: Optional[str] = None) -> No
 
                     if has_seen_none:
                         seen_none_keys.add(key)
+
+            # Clean up intermediate file
+            os.remove(fname)
 
         except Exception as e:  # pylint: disable=broad-exception-caught
             print(f"{RED}[train-record] Error reading {fname}: {e}{RESET}")
@@ -444,6 +408,10 @@ def aggregate_reports(output_dir: str, project_root: Optional[str] = None) -> No
                 f"  {nb_cyan}{dirname}{RESET}{basename}:{line} {nb_green}{funcname}{RESET}({nb_yellow}{param}{RESET})"
             )
         print("")
+
+    if fail_on_const and constants_found:
+        print(f"\n{RED}[train-record] FAILING session due to {ENV_VAR_FAIL}=1{RESET}")
+        sys.exit(1)
 
 
 def _scan_optional_never_none(
