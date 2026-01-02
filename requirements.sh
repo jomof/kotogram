@@ -10,8 +10,9 @@ cd "$SCRIPT_DIR"
 ORIG_PS1="${PS1:-}"
 
 
-if [[ -n "$VIRTUAL_ENV" ]]; then
+if [[ -n "$VIRTUAL_ENV" ]] && [ -f "$VIRTUAL_ENV/bin/python" ]; then
     echo "Using existing virtual environment: $VIRTUAL_ENV"
+    PYTHON_EXEC="$VIRTUAL_ENV/bin/python"
 else
     if [ ! -f ".venv/bin/activate" ]; then
         echo "Creating virtual environment in .venv..."
@@ -20,6 +21,7 @@ else
     
     # Disable default venv prompt change, we'll restore user's prompt if needed
     VIRTUAL_ENV_DISABLE_PROMPT=1 source .venv/bin/activate
+    PYTHON_EXEC=".venv/bin/python"
 fi
 
 # Restore prompt if it was cleared or modified
@@ -37,15 +39,15 @@ echo "========================================"
 
 # Install PyTorch
 echo "Installing PyTorch..."
-python3 -m pip install torch==2.7.1
+"$PYTHON_EXEC" -m pip install torch==2.7.1
 
 # Install Ruff
 echo "Installing Ruff..."
-python3 -m pip install ruff==0.14.10
+"$PYTHON_EXEC" -m pip install ruff==0.14.10
 
 # Install other requirements
 echo "Installing other dependencies..."
-python3 -m pip install -r requirements.txt
+"$PYTHON_EXEC" -m pip install -r requirements.txt
 
 # Add .local/bin to PATH for the duration of the script (fixes warnings)
 export PATH="$HOME/.local/bin:$PATH"

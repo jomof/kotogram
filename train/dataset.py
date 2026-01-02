@@ -2,7 +2,7 @@
 
 import os
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Tuple, cast
+from typing import Any, Dict, List, Optional, Set, Tuple, cast
 
 import torch
 from torch.utils.data import Dataset
@@ -435,7 +435,65 @@ def collate_fn(
         original_sentence=[s.original_sentence for s in batch],
         kotogram=[s.kotogram for s in batch],
         indices=torch.tensor([s.idx for s in batch], dtype=torch.long),
+        kc_targets=[s.kc_targets for s in batch],
     )
+
+
+def _get_kc_pos_indices(
+    kc_targets: List[Dict[str, List[int]]],
+    field: str,
+    vocab_size: int,
+    device: torch.device,
+    special_ids: Set[int],
+) -> Tuple[torch.Tensor, torch.Tensor]:
+    """Helper to compute sparse position indices and mask."""
+    batch_size = len(kc_targets)
+    max_pos = 64
+    pos_inds = torch.zeros((batch_size, max_pos), dtype=torch.long, device=device)
+    pos_mask = torch.zeros((batch_size, max_pos), dtype=torch.bool, device=device)
+
+    for i, target_dict in enumerate(kc_targets):
+        val_list = target_dict.get(field, [])
+        if not val_list:
+            continue
+
+        # Filter special IDs
+        valid_ids = [v for v in val_list if v < vocab_size and v not in special_ids]
+
+        # Truncate
+        if len(valid_ids) > max_pos:
+            valid_ids = valid_ids[:max_pos]
+
+        # Assign
+        if valid_ids:
+            pos_inds[i, : len(valid_ids)] = torch.tensor(
+                valid_ids, dtype=torch.long, device=device
+            )
+            pos_mask[i, : len(valid_ids)] = True
+
+    return pos_inds, pos_mask
+
+
+def _get_kc_dense_targets(
+    kc_targets: List[Dict[str, List[int]]],
+    field: str,
+    vocab_size: int,
+    device: torch.device,
+    special_ids: Set[int],
+) -> torch.Tensor:
+    """Helper to compute dense multi-hot targets."""
+    batch_size = len(kc_targets)
+    targets = torch.zeros((batch_size, vocab_size), dtype=torch.float, device=device)
+
+    for i, target_dict in enumerate(kc_targets):
+        val_list = target_dict.get(field, [])
+        if not val_list:
+            continue
+
+        for v in val_list:
+            if v < vocab_size and v not in special_ids:
+                targets[i, v] = 1.0
+    return targets
 
 
 def create_kc_batch(
@@ -452,84 +510,65 @@ def create_kc_batch(
     Returns:
         Dict mapping 'kc_targets_{field}' to (batch_size, vocab_size) float tensor
     """
-    # pylint: disable=too-many-locals
-    result = {}
+    result: Dict[str, torch.Tensor] = {}
 
     # Get special tokens to ignore
     special_ids = {0, tokenizer.unk_id, tokenizer.cls_id}
 
     # Helper for device
-    # Look at attention mask (always tensor)
     device = batch.attention_mask.device
 
-    for field, vocab_size in target_specs.items():
-        key = f"input_ids_{field}"
-        if key not in batch.feature_inputs:
-            continue
+    # Note: We rely on batch.kc_targets being populated by collate_fn from Sample objects
+    if not batch.kc_targets:
+        # Fallback if empty (shouldn't happen with valid collation)
+        return result
 
-        input_ids = batch.feature_inputs[key]  # (batch, seq_len)
-        batch_size = input_ids.size(0)
+    for field, vocab_size in target_specs.items():
+        source_field = field
+        # Check if this field exists in the first sample's targets
+        # Check if this field exists in the first sample's targets
+        if source_field not in batch.kc_targets[0]:
+            # Fallback for reading targets (aliased to reading_gram)
+            if source_field == "reading" and "bag_reading_gram" in batch.kc_targets[0]:
+                source_field = "bag_reading_gram"
+            elif (
+                source_field == "bag_reading"
+                and "bag_reading_gram" in batch.kc_targets[0]
+            ):
+                source_field = "bag_reading_gram"
+            elif (
+                source_field == "tail_reading"
+                and "tail_reading_gram" in batch.kc_targets[0]
+            ):
+                source_field = "tail_reading_gram"
+            elif (
+                source_field == "ngram_reading"
+                and "ngram_reading_gram" in batch.kc_targets[0]
+            ):
+                source_field = "ngram_reading_gram"
+            elif (
+                source_field == "tail_ngram_reading"
+                and "tail_ngram_reading_gram" in batch.kc_targets[0]
+            ):
+                source_field = "tail_ngram_reading_gram"
+            elif f"bag_{source_field}" in batch.kc_targets[0]:
+                source_field = f"bag_{source_field}"
+            else:
+                continue
 
         if vocab_size > 4096:
             # Sparse Implementation (Indices + Mask)
-            max_pos = 64
-
-            # Prepare outputs
-            pos_inds = torch.zeros(
-                (batch_size, max_pos), dtype=torch.long, device=device
+            pos_inds, pos_mask = _get_kc_pos_indices(
+                batch.kc_targets, source_field, vocab_size, device, special_ids
             )
-            pos_mask = torch.zeros(
-                (batch_size, max_pos), dtype=torch.bool, device=device
-            )
-
-            for i in range(batch_size):
-                # Filter out special IDs
-                row = input_ids[i]
-                # Keep only valid IDs (< vocab_size and not special)
-                # Note: special_ids might include IDs >= vocab_size? Unlikely.
-                # Only keep IDs in range [0, vocab_size) and not in special_ids
-                valid_ids = []
-
-                # Torch optimization: use unique on tensor row
-                u_vals = torch.unique(row)
-                for val_t in u_vals:
-                    val = val_t.item()
-                    if val < vocab_size and val not in special_ids:
-                        valid_ids.append(val)
-
-                # Truncate
-                if len(valid_ids) > max_pos:
-                    valid_ids = valid_ids[:max_pos]
-
-                # Assign
-                if valid_ids:
-                    pos_inds[i, : len(valid_ids)] = torch.tensor(
-                        valid_ids, dtype=torch.long, device=device
-                    )
-                    pos_mask[i, : len(valid_ids)] = True
-
             result[f"kc_pos_inds_{field}"] = pos_inds
             result[f"kc_pos_mask_{field}"] = pos_mask
 
         else:
             # Dense Implementation (Multi-hot)
-            # Create multi-hot target (batch, vocab_size)
-            targets = torch.zeros(
-                (batch_size, vocab_size), dtype=torch.float, device=device
+            targets = _get_kc_dense_targets(
+                batch.kc_targets, field, vocab_size, device, special_ids
             )
-
-            # Scatter 1.0
-            src = torch.ones_like(input_ids, dtype=torch.float)
-            targets.scatter_add_(1, input_ids, src)
-
-            # Zero out special strings
-            for sid in special_ids:
-                if sid < vocab_size:
-                    targets[:, sid] = 0.0
-
-            # Clamp to 1.0 (multi-hot, not count)
-            targets.clamp_(max=1.0)
-
             result[f"kc_targets_{field}"] = targets
 
     return result

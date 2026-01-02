@@ -579,6 +579,7 @@ def test_create_kc_batch_dense_for_small_heads():
         "input_ids_lemma": torch.tensor([[4, 5, 6, 0], [10, 11, 0, 0]]),
     }
     batch.attention_mask = torch.tensor([[1, 1, 1, 0], [1, 1, 0, 0]])
+    batch.kc_targets = [{"lemma": [4, 5, 6]}, {"lemma": [10, 11]}]
     target_specs = {"lemma": 100}  # Small head: 100 < 4096
 
     tokenizer = unittest.mock.Mock(pad_id=0, unk_id=1, cls_id=2)
@@ -600,6 +601,7 @@ def test_create_kc_batch_sparse_for_large_heads():
         "input_ids_lemma": torch.tensor([[4, 5, 6, 0], [10, 11, 0, 0]]),
     }
     batch.attention_mask = torch.tensor([[1, 1, 1, 0], [1, 1, 0, 0]])
+    batch.kc_targets = [{"lemma": [4, 5, 6]}, {"lemma": [10, 11]}]
     target_specs = {"lemma": 10000}  # Large head: 10000 > 4096
 
     tokenizer = unittest.mock.Mock(pad_id=0, unk_id=1, cls_id=2)

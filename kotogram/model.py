@@ -7,6 +7,7 @@ for the Japanese style classifier (formality + gender + grammaticality).
 import json
 import math
 import os
+import sys
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, NamedTuple, Optional, Tuple, TypedDict, cast
 
@@ -542,7 +543,6 @@ def load_model(
 def load_default_style_model() -> Tuple[StyleClassifier, Tokenizer]:
     """Load the default trained style classification model included in the package."""
     import importlib.resources
-    import sys
 
     from kotogram import locations
 
@@ -567,7 +567,6 @@ def load_default_style_model() -> Tuple[StyleClassifier, Tokenizer]:
 def is_default_style_model_available() -> bool:
     """Check if the default style model is available."""
     import importlib.util
-    import sys
 
     from kotogram import locations
 

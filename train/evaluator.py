@@ -137,7 +137,7 @@ class Evaluator:
                     "grammaticality": [],
                     "register": [],
                 }
-                preds_indices: List[List[int]] = []
+                preds_indices: List[torch.Tensor] = []
 
                 # Targets (Async transfer)
                 targets_val: Dict[str, List[torch.Tensor]] = {
@@ -242,7 +242,7 @@ class Evaluator:
                     result.register_labels = cat(targets_class["register"])
 
                     if preds_indices:
-                        val = torch.cat([torch.tensor(x) for x in preds_indices])
+                        val = torch.cat(preds_indices)
                         result.indices = val.tolist()
 
         except KeyboardInterrupt:

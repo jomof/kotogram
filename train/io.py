@@ -189,7 +189,11 @@ def load_training_state(
 
     # Filter out known safe missing keys (kc_head initialization)
     # If we are loading a non-KC checkpoint into a KC model, kc_head weights will be missing.
-    real_missing = [k for k in missing_keys if not k.startswith("kc_head.")]
+    real_missing = [
+        k
+        for k in missing_keys
+        if not k.startswith("kc_head.") and not k.startswith("kc_decoders.")
+    ]
 
     if real_missing or unexpected_keys:
         err_msgs = []

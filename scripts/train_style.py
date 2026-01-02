@@ -227,12 +227,7 @@ if __name__ == "__main__":
         default=1e-3,
         help="Sparsity regularization weight for KC activations",
     )
-    parser.add_argument(
-        "--kc-target-heads",
-        type=str,
-        default="reading,pos,conjugated_form",
-        help="Target heads for KC supervision",
-    )
+
     parser.add_argument(
         "--checkpoint-every",
         type=int,
@@ -406,9 +401,48 @@ if __name__ == "__main__":
     device = torch.device(trainer_config.device)
 
     # Initialize model if not already loaded from checkpoint
-    # Initialize model if not already loaded from checkpoint
     if model is None:
         if model_config.kc_enabled:
+            # Populate KC target specs based on vocab availability (Implicit "All Targets" policy)
+            current_vocab_sizes = tokenizer.get_vocab_sizes()
+            kc_specs = {}
+
+            # 1. Base Fields (Bag + Tail + Ngram)
+            # checking for "reading" and mapping to "bag_reading" is correct because
+            # dataset will alias "reading" -> "bag_reading_gram" if needed,
+            # but model spec "bag_reading" is what creates the decoder.
+            # Wait, dataset output keys are "kc_targets_bag_reading_gram".
+            # Trainer expects keys in batch to match keys in model.kc_target_specs?
+            # No, Trainer calculates losses for keys in `kc_losses` which comes from model forward.
+            # Model forward needs correct head names.
+            # Let's rely on the established naming convention from train/kc.py: "bag_{field}"
+
+            for field in [
+                "reading",
+                "pos",
+                "pos_detail1",
+                "conjugated_form",
+                "conjugated_type",
+            ]:
+                if field in current_vocab_sizes:
+                    v_size = current_vocab_sizes[field]
+                    kc_specs[f"bag_{field}"] = v_size
+                    kc_specs[f"tail_{field}"] = v_size
+                    kc_specs[f"ngram_{field}"] = (
+                        16384  # KC_HASH_BUCKETS constant, hardcoded for now or import
+                    )
+                    kc_specs[f"tail_ngram_{field}"] = 16384
+
+            # 2. Pairs
+            def add_pair(name: str, f1: str, f2: str) -> None:
+                if f1 in current_vocab_sizes and f2 in current_vocab_sizes:
+                    kc_specs[name] = 16384
+
+            add_pair("pair_pos_conj", "pos", "conjugated_form")
+            add_pair("pair_pos1_conjform", "pos_detail1", "conjugated_form")
+            add_pair("pair_pos1_conjtype", "pos_detail1", "conjugated_type")
+
+            model_config.kc_target_specs = kc_specs
             model = StyleClassifierWithKC(model_config)
         else:
             model = StyleClassifier(model_config)
