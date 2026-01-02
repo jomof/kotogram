@@ -622,11 +622,11 @@ async def verify_exception_usage() -> CheckResult:
 
 async def run_ruff() -> CheckResult:
     """Run Ruff for fast linting and auto-formatting."""
-    # Ensure we use the ruff from the current environment (same dir as python executable)
-    ruff_bin = os.path.join(os.path.dirname(sys.executable), "ruff")
+    # Run via python module to be robust against PATH issues in CI
+    python_exe = sys.executable
 
     # --fix applies safe fixes; format standardizes code style
-    cmd = f"{ruff_bin} check --fix . --config pyproject.toml && {ruff_bin} format ."
+    cmd = f"{python_exe} -m ruff check --fix . --config pyproject.toml && {python_exe} -m ruff format ."
     res = await run_command(cmd)
     if not res.success:
         return CheckResult("Ruff", False, f"Ruff failed:\n{res.output}")
