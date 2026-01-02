@@ -430,6 +430,10 @@ class Bottle:
 
         # Prepare environment
         env = os.environ.copy()
+        # Ensure imports work by adding project root to PYTHONPATH
+        env["PYTHONPATH"] = (
+            f"{self.project_root}:{os.path.join(self.project_root, 'tests-py')}:{env.get('PYTHONPATH', '')}"
+        )
         env.update(overrides)
 
         cmd = [sys.executable, self.script_path] + args.split()
@@ -496,6 +500,10 @@ class Bottle:
         bin_path = os.path.join(self.project_root, "bin", "kotogram")
         env = os.environ.copy()
         env["TRAIN_ROOT"] = self.root_dir
+        # Ensure imports work by adding project root to PYTHONPATH
+        env["PYTHONPATH"] = (
+            f"{self.project_root}:{os.path.join(self.project_root, 'tests-py')}:{env.get('PYTHONPATH', '')}"
+        )
         if self.env:
             env.update(self.env)
 

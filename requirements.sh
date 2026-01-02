@@ -39,6 +39,10 @@ echo "========================================"
 echo "Installing PyTorch..."
 python3 -m pip install torch==2.7.1
 
+# Install Ruff
+echo "Installing Ruff..."
+python3 -m pip install ruff==0.14.10
+
 # Install other requirements
 echo "Installing other dependencies..."
 python3 -m pip install -r requirements.txt

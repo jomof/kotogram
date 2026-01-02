@@ -3,7 +3,6 @@
 import cProfile
 import json
 import os
-import platform
 import re
 import resource
 import subprocess
@@ -13,6 +12,8 @@ from datetime import datetime
 from typing import Any, List, Optional
 
 import memray
+
+from train import paths
 
 memray: Any  # type: ignore # pylint: disable=no-member
 
@@ -26,9 +27,7 @@ def get_profile_dir() -> Optional[str]:
     """Get the directory for profiling output based on hostname."""
     if not profiling_enabled():
         return None
-    root = os.environ.get("TRAIN_ROOT", ".")
-    hostname = platform.node().split(".")[0]
-    return os.path.join(root, f".profile-{hostname}")
+    return paths.get_profile_dir()
 
 
 class Timer:

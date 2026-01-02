@@ -96,6 +96,10 @@ def test_trigger_execution():
         if fail_on_const:
             env["TRAIN_RECORD_FAIL_ON_CONST"] = fail_on_const
 
+        # Add project root to PYTHONPATH so 'train' and 'kotogram' can be imported
+        # This is needed now that instrumentation depends on train.paths -> kotogram.locations
+        env["PYTHONPATH"] = os.getcwd() + os.pathsep + env.get("PYTHONPATH", "")
+
         # 5. Run Pytest
         cmd = ["pytest", target_file, "-s"]
 
@@ -114,8 +118,7 @@ class TestTrainRecorder(unittest.TestCase):
         self.assertEqual(rc, 0)
 
         # Check output for report
-        self.assertIn("[train-record]", output)
-        self.assertIn("PARAMETER CONSTANT VALUE REPORT", output)
+        self.assertIn("Found 5 universally constant parameters", output)
 
         # Verify constant_func args are caught
         # a=1
@@ -124,7 +127,7 @@ class TestTrainRecorder(unittest.TestCase):
         self.assertIn("b='static'", output)
 
         # Check for Optional Never None Report
-        self.assertIn("OPTIONAL PARAMETERS NEVER NONE REPORT", output)
+        self.assertIn("Found 1 optional parameters that were never None", output)
         # optional_func(opt) should be listed because it was only called with 1, never None
         # and it has Optional in signature
         self.assertIn("optional_func(opt)", output)

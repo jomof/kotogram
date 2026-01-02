@@ -6,6 +6,8 @@ __all__ = ["pytest_configure", "pytest_sessionstart", "pytest_sessionfinish"]
 
 # Add current directory to path to allow importing sibling module
 sys.path.append(os.path.dirname(__file__))
+# Add project root to allow importing 'train' package
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import train_record_conftest  # pylint: disable=wrong-import-position
 

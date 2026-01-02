@@ -14,7 +14,18 @@ def pytest_configure(config: Any) -> None:  # pylint: disable=unused-argument
 def pytest_sessionstart(session: Any) -> None:  # pylint: disable=unused-argument
     # Re-enforce profiling if pytest messed with it, or just ensure it's on.
     # instrumentation.auto_enable() does this.
-    pass
+
+    # Cleanup only on main node (not xdist workers)
+    if not hasattr(session.config, "workerinput"):
+        import os
+        import shutil
+
+        from train import paths
+
+        profile_dir = paths.get_profile_dir()
+        if os.path.exists(profile_dir):
+            # Ensure clean state by removing stale profile artifacts from previous runs.
+            shutil.rmtree(profile_dir, ignore_errors=True)
 
 
 def pytest_sessionfinish(session: Any, exitstatus: int) -> None:  # pylint: disable=unused-argument

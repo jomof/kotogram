@@ -1,6 +1,7 @@
 """Path utilities for training infrastructure."""
 
 import os
+import platform
 
 from kotogram import locations
 
@@ -28,3 +29,10 @@ def get_shards_cache_dir() -> str:
 def get_style_dataset_cache_dir() -> str:
     """Returns the directory for style dataset metadata and vocabulary."""
     return os.path.join(get_cache_dir(), "style_dataset")
+
+
+def get_profile_dir() -> str:
+    """Returns the directory for profiling/instrumentation output."""
+    root = os.environ.get("TRAIN_ROOT", ".")
+    hostname = platform.node().split(".")[0]
+    return os.path.join(root, f".profile-{hostname}")
