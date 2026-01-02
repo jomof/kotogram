@@ -5,7 +5,8 @@ set -euo pipefail
 VENV_DIR=".venv"
 
 # --- Setup Python Environment ---
-if [ -z "${CI:-}" ] && [ -d "$VENV_DIR" ]; then
+# --- Setup Python Environment ---
+if [ -d "$VENV_DIR" ]; then
     source "$VENV_DIR/bin/activate"
 fi
 
