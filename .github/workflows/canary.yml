@@ -36,4 +36,6 @@ jobs:
       run: ./test.sh
 
     - name: Run cross-language validation
-      run: python scripts/cross_language_furigana.py
+      run: |
+        source ./requirements.sh
+        python scripts/cross_language_furigana.py
