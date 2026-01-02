@@ -23,10 +23,12 @@ SALT = {
     "ngram_pos_detail_1": 102,
     "ngram_conjugated_form": 103,
     "ngram_conjugated_type": 104,
+    "ngram_reading_gram": 105,
     "tail_ngram_pos": 201,
     "tail_ngram_pos_detail_1": 202,
     "tail_ngram_conjugated_form": 203,
     "tail_ngram_conjugated_type": 204,
+    "tail_ngram_reading_gram": 205,
     "pair_pos_conj": 301,
     "pair_pos1_conjform": 302,
     "pair_pos1_conjtype": 303,
@@ -160,7 +162,13 @@ def _compute_bag_targets(
 def _compute_ngram_targets(
     feature_ids: Dict[str, List[int]], targets: Dict[str, Any]
 ) -> None:
-    for field in ["pos", "pos_detail_1", "conjugated_form", "conjugated_type"]:
+    for field in [
+        "pos",
+        "pos_detail_1",
+        "conjugated_form",
+        "conjugated_type",
+        "reading_gram",
+    ]:
         if field in feature_ids:
             ids = feature_ids[field]
             hashes = set()
@@ -179,7 +187,13 @@ def _compute_tail_ngram_targets(
     feature_ids: Dict[str, List[int]], targets: Dict[str, Any]
 ) -> None:
     """Compute n-gram targets biased toward the end of the sentence."""
-    for field in ["pos", "pos_detail_1", "conjugated_form", "conjugated_type"]:
+    for field in [
+        "pos",
+        "pos_detail_1",
+        "conjugated_form",
+        "conjugated_type",
+        "reading_gram",
+    ]:
         if field in feature_ids:
             ids = feature_ids[field]
             tail_ids = ids[-KC_POS_BIASED_WINDOW:] if len(ids) > 0 else []

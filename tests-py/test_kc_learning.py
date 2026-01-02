@@ -141,6 +141,7 @@ def test_create_kc_batch():
     }
     batch.attention_mask = torch.tensor([[1, 1, 1, 1], [1, 1, 0, 0]])
     target_specs = {"pos": 50}
+    batch.kc_targets = [{"pos": [1, 10, 11]}, {"pos": [12]}]
 
     targets = create_kc_batch(batch, tokenizer, target_specs)
 

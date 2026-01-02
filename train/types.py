@@ -258,6 +258,7 @@ class TrainingBatch:
     indices: torch.Tensor
     original_sentence: List[str]
     kotogram: List[str]
+    kc_targets: List[Dict[str, Any]] = field(default_factory=list)
 
 
 @dataclass
@@ -285,4 +286,5 @@ class KCTrainingHistory(TrainingHistory):
     avg_sparsity: List[float] = field(default_factory=list)
     first_batch_separation: List[Dict[str, float]] = field(default_factory=list)
     first_batch_grad_norms: List[Dict[str, float]] = field(default_factory=list)
+    active_kc_targets: List[str] = field(default_factory=list)
     kc_diagnostics: List[KCDiagnosticReport] = field(default_factory=list)

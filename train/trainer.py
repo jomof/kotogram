@@ -122,9 +122,6 @@ class KCTrainer:
         self.kc_sparsity_weight = self.kc_config.sparsity_weight
         self.freeze_encoder_epochs = self.kc_config.freeze_encoder_epochs
 
-        self.kc_sparsity_weight = self.kc_config.sparsity_weight
-        self.freeze_encoder_epochs = self.kc_config.freeze_encoder_epochs
-
         self.device = torch.device(self.config.device)
         self.model.to(self.device)
 
@@ -599,11 +596,65 @@ class KCTrainer:
 
         self.optimizer = Adam([pg_heads, pg_encoder])
 
+    def _check_kc_coverage(
+        self, outputs: Dict[str, Any], kc_targets: Dict[str, Any]
+    ) -> None:
+        """Helper to check and report KC target coverage."""
+        coverage_counts = {
+            "dense": 0,
+            "sparse": 0,
+            "label": 0,
+            "missing": 0,
+        }
+        for name in outputs["target_logits"]:
+            if f"kc_targets_{name}" in kc_targets:
+                coverage_counts["dense"] += 1
+                continue
+            if f"kc_pos_inds_{name}" in kc_targets:
+                coverage_counts["sparse"] += 1
+                continue
+            if name in (
+                "formality_value",
+                "formality_pragmatic",
+                "gender_value",
+                "gender_pragmatic",
+                "grammaticality",
+                "register",
+            ):
+                coverage_counts["label"] += 1
+                continue
+            coverage_counts["missing"] += 1
+
+        if coverage_counts["missing"] > 0:
+            missing_keys = []
+            for name in outputs["target_logits"]:
+                if (
+                    f"kc_targets_{name}" not in kc_targets
+                    and f"kc_pos_inds_{name}" not in kc_targets
+                    and name
+                    not in (
+                        "formality_value",
+                        "formality_pragmatic",
+                        "gender_value",
+                        "gender_pragmatic",
+                        "grammaticality",
+                        "register",
+                    )
+                ):
+                    missing_keys.append(name)
+
+            # If missing keys exist, verify if they are legitimately missing or aliasing issues
+            if missing_keys:
+                raise ValueError(
+                    f"KC Targets MISSING for: {missing_keys}. Check dataset generation (kc.py) and collation."
+                )
+
+        if self.kc_log_level == "debug":
+            print(f"  Totals: {coverage_counts}")
+
     # pylint: disable=too-many-locals
     def train_epoch(self, epoch: int = 0) -> TrainEpochResult:
         should_freeze = epoch < self.freeze_encoder_epochs
-        self._create_optimizer(freeze_encoder=should_freeze)
-
         self._create_optimizer(freeze_encoder=should_freeze)
 
         print_phase_header(
@@ -695,6 +746,14 @@ class KCTrainer:
                 tokenizer=self.dataset.tokenizer,
                 target_specs=m.config.kc_target_specs,
             )
+
+            if m.config.kc_target_specs and not kc_targets and batch_idx == 0:
+                # One-off safety check (fails fast only on batch 0 to avoid noise if later batches are empty)
+                print(
+                    f"[KC Warning] Batch 0 produced no KC targets despite configured specs. "
+                    f"Specs: {list(m.config.kc_target_specs.keys())}. "
+                    f"Features: {list(batch.feature_inputs.keys())}."
+                )
 
             field_inputs = {
                 k: v.to(self.device) for k, v in batch.feature_inputs.items()
@@ -814,6 +873,54 @@ class KCTrainer:
                 kc_gap_count += int(gap.numel())
 
                 target_logits = outputs["target_logits"]
+
+                if batch_idx == 0:
+                    if not m.config.kc_target_specs:
+                        raise ValueError(
+                            "kc_target_specs is empty! Model has no KC targets configured."
+                        )
+
+                    if not outputs["target_logits"]:
+                        raise ValueError(
+                            "outputs['target_logits'] is empty! Model produced no KC outputs."
+                        )
+
+                    # Check for overlap
+                    has_match = False
+                    for name in outputs["target_logits"]:
+                        dense_key = f"kc_targets_{name}"
+                        sparse_key = f"kc_pos_inds_{name}"
+                        if dense_key in kc_targets:
+                            has_match = True
+                            break
+                        if sparse_key in kc_targets:
+                            has_match = True
+                            break
+                        if name in (
+                            "formality_value",
+                            "formality_pragmatic",
+                            "gender_value",
+                            "gender_pragmatic",
+                            "grammaticality",
+                            "register",
+                        ):
+                            has_match = True
+                            break
+
+                    if not has_match:
+                        tgt_keys = list(kc_targets.keys())
+
+                        msg = (
+                            f"Loss Loop Failure: No target_logits keys match available kc_targets.\n"
+                            f"  Configured Specs: {list(m.config.kc_target_specs.keys())}\n"
+                            f"  Batch Features: {list(batch.feature_inputs.keys())}\n"
+                            f"  KC Targets Keys: {tgt_keys[:20]}...\n"
+                        )
+                        raise ValueError(msg)
+
+                # Coverage Summary
+                if batch_idx == 0:
+                    self._check_kc_coverage(outputs, kc_targets)
 
                 if batch_idx == 0 and epoch != self._did_print_debug_for_epoch:
                     self._did_print_debug_for_epoch = epoch
@@ -1694,6 +1801,10 @@ class KCTrainer:
             )
             self.history.kc_diagnostics.append(epoch_stats.kc_diagnostics)
 
+            # Record active KC targets
+            active_targets = sorted(list(kc_losses.keys()))
+            self.history.active_kc_targets.append(",".join(active_targets))
+
             for k, v in kc_losses.items():
                 if k not in self.history.kc_losses:
                     self.history.kc_losses[k] = []
@@ -1707,7 +1818,7 @@ class KCTrainer:
                     epoch=epoch + 1,
                     total_epochs=actual_epochs,
                     primary_metrics={
-                        "Total Loss": total_loss,
+                        "Avg Loss": total_loss / max(1, len(self.data_loader)),
                         "Sparsity": avg_sparsity,
                     },
                     secondary_metrics=top_losses,
