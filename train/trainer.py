@@ -68,12 +68,15 @@ def tensor_finite_stats(x: Optional[torch.Tensor]) -> Dict[str, Any]:
         }
 
     if x.isfinite().all():
+        flat = x.detach().flatten().float()
+        min_val = float(flat.min().item()) if flat.numel() else float("nan")
+        max_val = float(flat.max().item()) if flat.numel() else float("nan")
         return {
             "finite": True,
             "n_nan": 0,
             "n_inf": 0,
-            "min": float("nan"),
-            "max": float("nan"),
+            "min": min_val,
+            "max": max_val,
         }
 
     flat = x.detach().flatten().float()
@@ -194,6 +197,9 @@ class KCTrainer:
         self.kc_show_grad_norms = self.kc_config.show_grad_norms
 
         self.kc_grad_cap = self.kc_config.kc_grad_cap
+
+        self.kc_entropy_floor = getattr(self.kc_config, "entropy_floor", 0.85)
+        self.kc_kl_cap = getattr(self.kc_config, "kl_cap", 0.15)
 
         if self.kc_log_level == "debug":
             self.kc_show_epoch_table = True
@@ -505,10 +511,6 @@ class KCTrainer:
             self._consecutive_step_skips += 1
             self._total_step_skips += 1
 
-        if found_nonfinite:
-            self._consecutive_step_skips += 1
-            self._total_step_skips += 1
-
             print(
                 f"  KC Step Skipped: non-finite grad detected "
                 f"consec={self._consecutive_step_skips}/{self._max_consecutive_skips}"
@@ -655,7 +657,13 @@ class KCTrainer:
     # pylint: disable=too-many-locals
     def train_epoch(self, epoch: int = 0) -> TrainEpochResult:
         should_freeze = epoch < self.freeze_encoder_epochs
-        self._create_optimizer(freeze_encoder=should_freeze)
+        # self._create_optimizer(freeze_encoder=should_freeze) <- REMOVED to preserve moment
+        # Instead, update LR in place for the encoder group
+        assert len(self.optimizer.param_groups) >= 2, (
+            "Optimizer must have heads+encoder groups"
+        )
+        enc_lr = 0.0 if should_freeze else (self.config.learning_rate * 0.01)
+        self.optimizer.param_groups[1]["lr"] = enc_lr
 
         print_phase_header(
             "KC",
@@ -693,6 +701,11 @@ class KCTrainer:
         kc_tv_max = float("-inf")
         kc_gap_sum = 0.0
         kc_gap_count = 0
+        kc_logit_gap_sum = 0.0
+        kc_logit_gap_count = 0
+        topk_std_sum = 0.0
+        topk_std_n = 0
+
         running_entropy_norm = 0.0
         running_kl_to_uniform = 0.0
         running_p_max = 0.0
@@ -837,10 +850,10 @@ class KCTrainer:
 
                 continue
 
-            self._nonfinite_streak = min(self._nonfinite_streak, 0)
+            self._nonfinite_streak = 0
 
             if epoch >= self.freeze_encoder_epochs:
-                topk_vals_clamped = outputs["topk_vals"].clamp(max=0.85)
+                topk_vals_clamped = outputs["topk_vals"].clamp(max=0.98)
 
                 sparse_clamped = torch.zeros_like(outputs["kc_probs"])
                 sparse_clamped.scatter_(1, outputs["topk_inds"], topk_vals_clamped)
@@ -851,26 +864,38 @@ class KCTrainer:
             topk_inds = outputs.get("topk_inds", None)
             topk_vals = outputs.get("topk_vals", None)
 
-            if topk_inds is not None and topk_vals is not None:
-                inds_cpu = topk_inds.detach().to("cpu")
-                vals_cpu = topk_vals.detach().to("cpu")
+            if topk_inds is None or topk_vals is None:
+                raise RuntimeError("KC training requires topk_inds and topk_vals")
 
-                batch_size = int(inds_cpu.size(0))
-                kc_usage_total_samples += batch_size
+            inds_cpu = topk_inds.detach().to("cpu")
+            vals_cpu = topk_vals.detach().to("cpu")
 
-                flat = inds_cpu.reshape(-1)
-                topk_hist += torch.bincount(flat, minlength=kc_vocab_size)
+            batch_size = int(inds_cpu.size(0))
+            kc_usage_total_samples += batch_size
 
-                top1 = inds_cpu[:, 0]
-                top1_hist += torch.bincount(top1, minlength=kc_vocab_size)
+            flat = inds_cpu.reshape(-1)
+            topk_hist += torch.bincount(flat, minlength=kc_vocab_size)
 
-                kc_tv_sum += float(vals_cpu.sum().item())
-                kc_tv_min = min(kc_tv_min, float(vals_cpu.min().item()))
-                kc_tv_max = max(kc_tv_max, float(vals_cpu.max().item()))
+            top1 = inds_cpu[:, 0]
+            top1_hist += torch.bincount(top1, minlength=kc_vocab_size)
 
-                gap = vals_cpu[:, 0] - vals_cpu[:, -1]
-                kc_gap_sum += float(gap.sum().item())
-                kc_gap_count += int(gap.numel())
+            kc_tv_sum += float(vals_cpu.sum().item())
+            kc_tv_min = min(kc_tv_min, float(vals_cpu.min().item()))
+            kc_tv_max = max(kc_tv_max, float(vals_cpu.max().item()))
+
+            gap = vals_cpu[:, 0] - vals_cpu[:, -1]
+            kc_gap_sum += float(gap.sum().item())
+            kc_gap_count += int(gap.numel())
+
+            topk_std_sum += float(vals_cpu.std().item())
+            topk_std_n += 1
+
+            logits_raw = outputs.get("kc_logits_raw")
+            if logits_raw is not None:
+                gathered = logits_raw.detach().gather(1, outputs["topk_inds"].detach())
+                logit_gap = gathered[:, 0] - gathered[:, -1]
+                kc_logit_gap_sum += float(logit_gap.sum().item())
+                kc_logit_gap_count += int(logit_gap.numel())
 
                 target_logits = outputs["target_logits"]
 
@@ -1254,65 +1279,92 @@ class KCTrainer:
 
                         batch_size_f, vocab_size_f = logits_f.shape
                         if vocab_size_f > 256:
-                            pos_mask = targets > 0.5
-                            neg_count = 128
+                            # 1) Per-row index sampling
+                            pos_mask_bool = targets > 0.5
+                            pos_rows = []
+                            max_pos = 0
+                            for i in range(batch_size_f):
+                                row_inds = torch.nonzero(
+                                    pos_mask_bool[i], as_tuple=True
+                                )[0]
+                                pos_rows.append(row_inds)
+                                max_pos = max(max_pos, row_inds.numel())
 
-                            neg_inds = torch.randint(
-                                0,
+                            max_pos = max(max_pos, 1)
+                            pos_ids_sampled = torch.zeros(
+                                (batch_size_f, max_pos),
+                                device=self.device,
+                                dtype=torch.long,
+                            )
+                            pos_mask_sampled = torch.zeros(
+                                (batch_size_f, max_pos),
+                                device=self.device,
+                                dtype=torch.bool,
+                            )
+
+                            for i in range(batch_size_f):
+                                n = pos_rows[i].numel()
+                                if n > 0:
+                                    pos_ids_sampled[i, :n] = pos_rows[i]
+                                    pos_mask_sampled[i, :n] = True
+
+                            neg_count = 128
+                            neg_ids = torch.randint(
+                                4,
                                 vocab_size_f,
                                 (batch_size_f, neg_count),
                                 device=self.device,
                             )
-                            mask = torch.zeros_like(logits_f, dtype=torch.bool)
-                            mask.scatter_(1, neg_inds, True)
-                            mask = mask | pos_mask
 
-                            if mask.any():
-                                subset_logits = logits_f[mask]
-                                subset_targets = targets[mask]
-                                task_loss = F.binary_cross_entropy_with_logits(
-                                    subset_logits, subset_targets
+                            idxs = torch.cat(
+                                [pos_ids_sampled, neg_ids], dim=1
+                            )  # (B, P+N)
+
+                            # 2) Gather Logits
+                            gathered_logits = logits_f.gather(1, idxs)
+
+                            # 3) Build Targets
+                            t_pos = pos_mask_sampled.float()
+                            t_neg = torch.zeros(
+                                (batch_size_f, neg_count), device=self.device
+                            )
+                            targets_sampled = torch.cat([t_pos, t_neg], dim=1)
+
+                            # 4) Compute Loss
+                            loss_mask = torch.cat(
+                                [
+                                    pos_mask_sampled,
+                                    torch.ones_like(t_neg, dtype=torch.bool),
+                                ],
+                                dim=1,
+                            )
+
+                            bce_loss = F.binary_cross_entropy_with_logits(
+                                gathered_logits, targets_sampled, reduction="none"
+                            )
+
+                            task_loss = (
+                                bce_loss * loss_mask.float()
+                            ).sum() / loss_mask.float().sum().clamp(min=1.0)
+
+                            # 6) Landmine #1: Non-finite loss HARD SKIP
+                            if not torch.isfinite(task_loss):
+                                self.optimizer.zero_grad()
+                                print(
+                                    f"WARNING: Non-finite KC loss for {name}. Skipping step."
                                 )
+                                task_loss = torch.tensor(0.0, device=self.device)
 
-                                with torch.no_grad():
-                                    probs = torch.sigmoid(subset_logits)
-
-                                    dummy_pos = torch.zeros(
-                                        (batch_size_f, 0),
-                                        device=self.device,
-                                        dtype=torch.long,
-                                    )
-                                    dummy_mask = torch.zeros(
-                                        (batch_size_f, 0),
-                                        device=self.device,
-                                        dtype=torch.bool,
-                                    )
-
-                                    kc_diag.update_family(
-                                        name,
-                                        dummy_pos,
-                                        dummy_mask,
-                                        probs,
-                                        subset_targets,
-                                        task_loss.item(),
-                                    )
-
-                                    v_ids = (
-                                        torch.arange(vocab_size_f, device=self.device)
-                                        .unsqueeze(0)
-                                        .expand(batch_size_f, -1)
-                                    )
-                                    kc_diag.update_family(
-                                        name,
-                                        v_ids,
-                                        pos_mask,
-                                        probs,
-                                        subset_targets,
-                                        task_loss.item(),
-                                    )
-                            else:
-                                task_loss = torch.tensor(
-                                    0.0, device=self.device, requires_grad=True
+                            # 5) Update Family with correct tensors
+                            with torch.no_grad():
+                                probs = torch.sigmoid(gathered_logits)
+                                kc_diag.update_family(
+                                    name,
+                                    pos_ids_sampled,
+                                    pos_mask_sampled,
+                                    probs,
+                                    targets_sampled,
+                                    task_loss.item(),
                                 )
                         else:
                             task_loss = F.binary_cross_entropy_with_logits(
@@ -1405,11 +1457,13 @@ class KCTrainer:
                     running_label_loss += label_loss.item()
                     running_num_label_total += 1
 
-                combined_loss = torch.tensor(0.0, device=self.device)
+                primary_loss = torch.tensor(0.0, device=self.device)
                 if num_struct > 0:
-                    combined_loss += 0.7 * (structural_loss / num_struct)
+                    primary_loss += 0.7 * (structural_loss / num_struct)
                 if num_label > 0:
-                    combined_loss += 0.3 * (label_loss / num_label)
+                    primary_loss += 0.3 * (label_loss / num_label)
+
+                combined_loss = primary_loss.clone()
 
                 if epoch < self.freeze_encoder_epochs:
                     div_weight = self.kc_diversity_weight_frozen
@@ -1441,7 +1495,7 @@ class KCTrainer:
                     log_p = (p + self.kc_diversity_eps).log()
                     entropy = -(p * log_p).sum()
                     entropy_norm = entropy / math.log(kc_vocab_size)
-                    diversity_loss = 1.0 - entropy_norm
+                    diversity_loss = F.relu(self.kc_entropy_floor - entropy_norm)
 
                     kl_val = (p * (p.clamp_min(1e-9) * kc_vocab_size).log()).sum()
                     load_balance_loss = kl_val / math.log(kc_vocab_size)
@@ -1467,10 +1521,11 @@ class KCTrainer:
                         loss_div_val = (div_weight * diversity_loss).item()
 
                     if lb_weight > 0:
-                        combined_loss += lb_weight * load_balance_loss
-                        loss_lb_val = (lb_weight * load_balance_loss).item()
+                        lb_loss = F.relu(load_balance_loss - self.kc_kl_cap)
+                        combined_loss += lb_weight * lb_loss
+                        loss_lb_val = (lb_weight * lb_loss).item()
 
-                    kl_to_uniform = kl_val
+                    kl_to_uniform = load_balance_loss
 
                 running_entropy_norm += entropy_norm.item()
                 running_kl_to_uniform += kl_to_uniform.item()
@@ -1484,7 +1539,15 @@ class KCTrainer:
 
                     act_dens = (outputs["sparse_activations"] > 0).float().mean()
 
-                    sparsity_term = avg_prob
+                    if epoch >= self.freeze_encoder_epochs:
+                        # sparsity_term = outputs["topk_vals"].clamp(max=0.98).mean()
+                        topk_inds = outputs["topk_inds"]
+                        topk_probs = outputs["kc_probs"].gather(1, topk_inds)
+                        sparsity_term = topk_probs.mean()
+                    else:
+                        topk_inds = outputs["topk_inds"]
+                        topk_probs = outputs["kc_probs"].gather(1, topk_inds)
+                        sparsity_term = topk_probs.mean()
                 else:
                     avg_prob = outputs["kc_probs"].mean()
                     act_dens = outputs["sparse_activations"].mean()
@@ -1509,7 +1572,7 @@ class KCTrainer:
                 loss_spar_val = (spar_w * sparsity_term).item()
 
                 current_epoch_comp = {
-                    "base": combined_loss.item(),
+                    "base": primary_loss.item(),
                     "struct": structural_loss.item(),
                     "label": label_loss.item(),
                     "div": loss_div_val,
@@ -1522,12 +1585,6 @@ class KCTrainer:
                 running_loss_components["div"] += current_epoch_comp["div"]
                 running_loss_components["lb"] += current_epoch_comp["lb"]
                 running_loss_components["collapse"] += current_epoch_comp["collapse"]
-
-                running_loss_components["base"] -= (
-                    current_epoch_comp["div"]
-                    + current_epoch_comp["lb"]
-                    + current_epoch_comp["collapse"]
-                )
 
                 running_loss_components["struct"] += (
                     (current_epoch_comp["struct"] / num_struct)
@@ -1542,26 +1599,12 @@ class KCTrainer:
                 if loss.item() == 0.0 and loss.requires_grad:
                     pass
 
-            nonfinite_reason = None
             if not torch.isfinite(loss):
-                nonfinite_reason = "loss"
-            elif not torch.isfinite(outputs.get("kc_probs", torch.tensor(0.0))).all():
-                nonfinite_reason = "kc_probs"
-            elif not torch.isfinite(outputs.get("topk_vals", torch.tensor(0.0))).all():
-                nonfinite_reason = "topk_vals"
-
-            if nonfinite_reason:
-                kc_logits_raw = outputs.get("kc_logits_raw", None)
-                kc_probs = outputs.get("kc_probs", None)
-                msg = f"  [KC][NON-FINITE {nonfinite_reason.upper()}] epoch={epoch} batch={batch_idx} loss={loss.item()}"
-                if kc_logits_raw is not None:
-                    msg += f" raw[min={kc_logits_raw.min().item():.3g} max={kc_logits_raw.max().item():.3g}]"
-                if kc_probs is not None:
-                    msg += f" probs[min={kc_probs.min().item():.3g} max={kc_probs.max().item():.3g}]"
-
-                print(msg)
-
+                print("WARNING: Non-finite loss detected, skipping batch")
                 self.optimizer.zero_grad(set_to_none=True)
+                self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
+                self.train_timer_data.start()
+                continue
 
             loss.backward()
             did_any_backward = True
@@ -1617,6 +1660,7 @@ class KCTrainer:
 
         tv_mean = kc_tv_sum / max(1, kc_usage_total_samples * k_val)
         gap_mean = kc_gap_sum / max(1, kc_gap_count)
+        avg_logit_gap = kc_logit_gap_sum / max(1, kc_logit_gap_count)
         avg_entropy_norm = running_entropy_norm / max(1, n_batches)
         avg_kl_to_uniform = running_kl_to_uniform / max(1, n_batches)
 
@@ -1647,6 +1691,7 @@ class KCTrainer:
             first_batch_separation=first_batch_separation,
             first_batch_grad_norms=first_batch_grad_norms,
             avg_entropy_norm=avg_entropy_norm,
+            avg_logit_gap=avg_logit_gap,
             avg_kl_to_uniform=avg_kl_to_uniform,
             uniq_kcs_epoch=uniq_kcs_epoch,
             avg_p_max=running_p_max / max(1, n_batches),
@@ -1689,7 +1734,7 @@ class KCTrainer:
                 format_kc_epoch_compact_summary(
                     epoch + 1,
                     self.config.epochs,
-                    total_loss / n_batches,
+                    total_loss / max(1, n_batches),
                     epoch_stats.avg_prob,
                     epoch_stats.act_dens,
                     epoch_stats.avg_struct_loss,
@@ -1724,8 +1769,11 @@ class KCTrainer:
         msg = (
             f"  KC Health: maxTop1={max_top1:.3f} uniqKCs={uniq_kcs_epoch}/{kc_vocab_size} "
             f"avgProb={epoch_stats.avg_prob:.3f} actDens={epoch_stats.act_dens:.4f} "
-            f"entN={avg_entropy_norm:.3f} klU={avg_kl_to_uniform:.3f}"
+            f"entN={avg_entropy_norm:.3f} klU={avg_kl_to_uniform:.3f} lGap={avg_logit_gap:.3f}"
         )
+        avg_topk_std = topk_std_sum / max(1, topk_std_n)
+        if avg_topk_std < 1e-4:
+            msg += " topkStd≈0"
         if pbar:
             pbar.log(msg)
         else:
@@ -1782,7 +1830,7 @@ class KCTrainer:
 
             self._log_training_progress()
 
-            self.history.total_loss.append(total_loss)
+            self.history.total_loss.append(total_loss / max(1, len(self.data_loader)))
             self.history.kc_sparsity.append(avg_sparsity)
             self.history.avg_struct_loss.append(epoch_stats.avg_struct_loss)
             self.history.avg_label_loss.append(epoch_stats.avg_label_loss)
@@ -2127,9 +2175,6 @@ class Trainer:
 
         g_val_target = torch.nan_to_num(targets["g_val"], nan=0.0)
         g_mse = self._masked_mse(g_val_l.squeeze(-1), g_val_target, mask)
-        g_loss = self.formality_criterion(g_prag_l, targets["g_prag"]) + (
-            g_mse * self.config.gender_mse_scaling_factor
-        )
 
         g_loss = self.gender_pragmatic_criterion(g_prag_l, targets["g_prag"]) + (
             g_mse * self.config.gender_mse_scaling_factor
