@@ -30,15 +30,34 @@ class StyleAnalyzer:
     def __init__(self) -> None:
         self._model: Optional["StyleClassifier"] = None
         self._tokenizer: Optional["Tokenizer"] = None
+        self._custom_model_dir: Optional[str] = None
+
+    def set_model_dir(self, path: str) -> None:
+        """Set a custom directory to load the model from."""
+        self._custom_model_dir = path
+        # Reset cache if dir changes
+        self._model = None
+        self._tokenizer = None
 
     def load(self) -> Tuple["StyleClassifier", "Tokenizer"]:
+        # pylint: disable=import-outside-toplevel
         """Load and cache the style classifier model."""
         if self._model is None or self._tokenizer is None:
             from kotogram.model import load_default_style_model, load_model
 
+            # Priority 0: Custom model dir from CLI
+            if self._custom_model_dir:
+                if not os.path.exists(os.path.join(self._custom_model_dir, "model.pt")):
+                    raise FileNotFoundError(
+                        f"Custom model not found at {self._custom_model_dir}"
+                    )
+                self._model, self._tokenizer = load_model(self._custom_model_dir)
+
             # Priority 1: Check for local model in style-output dir
-            model_dir = locations.get_style_output_dir()
-            if os.path.exists(os.path.join(model_dir, "model.pt")):
+            elif os.path.exists(
+                os.path.join(locations.get_style_output_dir(), "model.pt")
+            ):
+                model_dir = locations.get_style_output_dir()
                 self._model, self._tokenizer = load_model(model_dir)
             else:
                 # Priority 2: Fall back to package-default model
@@ -50,6 +69,18 @@ class StyleAnalyzer:
         """Check if model is currently loaded."""
         return self._model is not None
 
+    def is_available(self) -> bool:
+        """Check if a model is available to be loaded."""
+        if self.is_loaded():
+            return True
+
+        if self._custom_model_dir:
+            return os.path.exists(os.path.join(self._custom_model_dir, "model.pt"))
+
+        from kotogram.model import is_default_style_model_available
+
+        return is_default_style_model_available()
+
 
 # Global singleton instance
 _ANALYZER = StyleAnalyzer()
@@ -57,12 +88,7 @@ _ANALYZER = StyleAnalyzer()
 
 def check_model_available() -> bool:
     """Check if the style model is available for loading."""
-    if _ANALYZER.is_loaded():
-        return True
-
-    from kotogram.model import is_default_style_model_available
-
-    return is_default_style_model_available()
+    return _ANALYZER.is_available()
 
 
 @dataclass

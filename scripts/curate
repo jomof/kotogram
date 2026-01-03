@@ -4,12 +4,12 @@ Curate the training corpus.
 Command: curate drink
 """
 import argparse
-import glob
 import multiprocessing as mp
 import os
+import queue
 import sqlite3
 import sys
-import queue
+import tarfile
 from typing import Any, Dict, List, Tuple
 
 from rich.console import Console
@@ -28,21 +28,20 @@ elif os.path.exists("scripts"):
     # Prepend to path to ensure local modules override installed ones
     sys.path.insert(0, os.getcwd())
 
+from kotogram.analysis import RegisterLevel
+from kotogram.constants import (
+    REGISTER_LABEL_TO_ID,
+)
+from kotogram.kotogram import kotogram_to_japanese
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 from scripts.rule_based_analysis import (
     analyze_formality,
     analyze_gender,
     analyze_register,
-    infer_gender_from_register,
     formality_to_weight,
+    infer_gender_from_register,
     load_register_overrides,
 )
-from kotogram.analysis import FormalityLevel, RegisterLevel, GenderLevel
-from kotogram.constants import (
-    FORMALITY_LABEL_TO_ID,
-    REGISTER_LABEL_TO_ID,
-)
-from kotogram.kotogram import kotogram_to_japanese, extract_token_features
 from train.tsv import parse_tsv
 
 console = Console()
@@ -130,8 +129,6 @@ def worker_wrapper(_chunk_idx: int, chunk: List[Tuple[str, int]], overrides: Dic
     results = analyze_chunk(chunk)
     result_queue.put(results)
 
-
-import tarfile
 
 def get_all_sentences() -> List[Tuple[str, int]]:
     """Read all sentences from data/corpus.tar.gz."""
@@ -313,7 +310,7 @@ def print_record(sent: str, f_val: Any, g_val: Any, gram: int, r_ids_str: str, s
         r_labels = [REGISTER_ID_TO_LABEL[rid].name for rid in r_ids]
         console.print(f"[bold]Registers:[/bold] {', '.join(r_labels)}")
     else:
-        console.print(f"[bold]Registers:[/bold] (None)")
+        console.print("[bold]Registers:[/bold] (None)")
 
 
 def curate_show(sentence: str):
@@ -367,8 +364,10 @@ def curate_summary(db_path: str):
     
     # Initialize Counters
     from collections import Counter
+
     from rich.table import Table
-    from kotogram.constants import FORMALITY_ID_TO_LABEL, REGISTER_ID_TO_LABEL
+
+    from kotogram.constants import REGISTER_ID_TO_LABEL
     
     label_stats = {
         "formality": Counter(),
@@ -490,7 +489,9 @@ def curate_distinct(db_path: str, include_ungrammatic: bool):
     c = conn.cursor()
     
     from collections import Counter
+
     from rich.table import Table
+
     from kotogram.model import REGISTER_ID_TO_LABEL
     
     counts = Counter()
@@ -598,28 +599,78 @@ def curate_distinct(db_path: str, include_ungrammatic: bool):
     console.print(table)
 
 
-def curate_compress(db_path: str):
-    """Vacuum the database to reclaim space."""
-    if not os.path.exists(db_path):
-        console.print(f"[red]Database not found at {db_path}[/red]")
-        return
-    console.print(f"[bold blue]Vacuuming {db_path}...[/bold blue]")
-    conn = sqlite3.connect(db_path)
-    conn.execute("VACUUM")
-    conn.close()
-    console.print("[bold green]Done![/bold green]")
+
+def curate_contrast_sentences(sentences: List[str]):
+    """
+    Compare KCs of multiple sentences.
+    """
+    from rich.table import Table
+
+    from kotogram.analysis import grammars
+    from kotogram.japanese_parser import KotogramFormat
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    
+    # Analyze sentences
+    parser = SudachiJapaneseParser()
+    kotograms = []
+    for s in sentences:
+        kotograms.append(parser.japanese_to_kotogram(s, KotogramFormat.TRAINING_MASK))
+    
+    # Use grammars for batch efficiency
+    results = grammars(kotograms)
+    
+    # Collect all KCs and max weights
+    all_kcs = set()
+    kc_maps = []
+    
+    for res in results:
+        kc_map = res.kc_top if res.kc_top else {}
+        kc_maps.append(kc_map)
+        all_kcs.update(kc_map.keys())
+    
+    # Sort KCs by SUM of weights across all sentences (aggregate importance)
+    kc_list = []
+    for kc_id in all_kcs:
+        weights = [km.get(kc_id, 0.0) for km in kc_maps]
+        sum_weight = sum(weights)
+        kc_list.append((kc_id, sum_weight))
+    
+    # Sort descending by sum weight
+    kc_list.sort(key=lambda x: x[1], reverse=True)
+    sorted_kc_ids = [x[0] for x in kc_list]
+    
+    # Display
+    table = Table(title="Contrast Sentences (Sentences x KCs)")
+    table.add_column("Sentence", justify="left", style="bold blue")
+    
+    # Add KC columns
+    for kc_id, _ in kc_list:
+        table.add_column(f"KC {kc_id}", justify="center", style="cyan")
+        
+    # Add Rows
+    for i, s in enumerate(sentences):
+        row_cells = [s] # Sentence text
+        for kc_id in sorted_kc_ids:
+            if kc_id in kc_maps[i]:
+                weight = kc_maps[i][kc_id]
+                row_cells.append(f"[bold green]✔[/bold green] [grey70]{weight:.2f}[/grey70]")
+            else:
+                row_cells.append("[grey70]-[/grey70]")
+        table.add_row(*row_cells)
+        
+    console.print(table)
+
+
+
 
 
 def curate_compare(db_path: str):
     """Compare corpus.db against .cache."""
-    import collections
-    import collections
     from kotogram import tokenizer
-    from train import paths
     from kotogram.kotogram import kotogram_to_japanese
     from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    from train import paths
     from train.dataset import StyleDataset
-    from kotogram.constants import REGISTER_ID_TO_LABEL
     
     cache_dir = paths.get_style_dataset_cache_dir()
     if not os.path.exists(cache_dir):
@@ -867,6 +918,11 @@ def main():
     compare_parser = subparsers.add_parser("compare", help="Compare DB with Cache")
     compare_parser.add_argument("--db-path", default="data/corpus.db", help="Path to database")
 
+
+
+    parser_contrast_s = subparsers.add_parser("contrast-sentences", help="Contrast multiple sentences")
+    parser_contrast_s.add_argument("sentences", nargs="+", help="Sentences to compare")
+
     # Compress command
     compress_parser = subparsers.add_parser("compress", help="Vacuum the database")
     compress_parser.add_argument("--db-path", default="data/corpus.db", help="Path to database")
@@ -885,8 +941,9 @@ def main():
         curate_distinct(args.db_path, args.include_ungrammatic)
     elif args.command == "compare":
         curate_compare(args.db_path)
-    elif args.command == "compress":
-        curate_compress(args.db_path)
+
+    elif args.command == "contrast-sentences":
+        curate_contrast_sentences(args.sentences)
 
 
 if __name__ == "__main__":

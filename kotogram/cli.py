@@ -372,7 +372,16 @@ def main() -> int:
     )
     bench_parser.set_defaults(func=cmd_benchmark)
 
+    parser.add_argument(
+        "--model-dir",
+        help="Path to custom model directory containing model.pt",
+    )
+
     args = parser.parse_args()
+
+    # Configure analyzer with model dir if provided
+    if args.model_dir:
+        _ANALYZER.set_model_dir(args.model_dir)
 
     try:
         result = args.func(args)
