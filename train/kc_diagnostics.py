@@ -94,6 +94,19 @@ class KCEpochDiag:
             self.families[family_name] = FamilyStats()
         stats = self.families[family_name]
 
+        # A4: Validate shapes
+        if pos_ids.dim() != 2:
+            raise ValueError(
+                f"pos_ids must be 2D, got {pos_ids.shape} (family={family_name})"
+            )
+
+        if not pos_ids.shape == pos_mask.shape == probs.shape == targets.shape:
+            raise ValueError(
+                f"Shape mismatch in update_family({family_name}): "
+                f"ids={pos_ids.shape} mask={pos_mask.shape} "
+                f"probs={probs.shape} targets={targets.shape}"
+            )
+
         # 1. Target Rate & Cardinality
         # pos_ids/pos_mask represent the raw positive set per example
         batch_size = pos_mask.size(0)
