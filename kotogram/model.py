@@ -531,10 +531,14 @@ def load_model(
     # Load with strict=False to allow architecture changes (e.g. gender head refactor)
     # We catch the error/warning to report relevant mismatches
     incompatible = model.load_state_dict(state_dict, strict=False)
+    # Ignore kc_decoders keys (training artifacts)
+    unexpected = [
+        k for k in incompatible.unexpected_keys if not k.startswith("kc_decoders.")
+    ]
     if incompatible.missing_keys:
         print(f"WARNING: Missing keys in state_dict: {incompatible.missing_keys}")
-    if incompatible.unexpected_keys:
-        print(f"WARNING: Unexpected keys in state_dict: {incompatible.unexpected_keys}")
+    if unexpected:
+        print(f"WARNING: Unexpected keys in state_dict: {unexpected}")
 
     model.eval()
     return model, tokenizer

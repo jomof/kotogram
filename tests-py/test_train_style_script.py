@@ -17,6 +17,10 @@ class TestTrainStyleScript(unittest.TestCase):
         # Test both regular training and pretraining (KC)
         test_configs = [
             {"name": "regular", "extra_args": f"{common_args}"},
+            {
+                "name": "pretrain-kc",
+                "extra_args": f"{common_args} --pretrain-kc --kc-epochs 1",
+            },
         ]
 
         for config in test_configs:
@@ -154,6 +158,12 @@ class TestTrainStyleScript(unittest.TestCase):
                         result.stderr.strip(),
                         "",
                         msg=f"CLI stderr should be empty, but got:\n{result.stderr}",
+                    )
+                    # 1b. Verify no warnings in stdout (e.g. from model loading)
+                    self.assertNotIn(
+                        "WARNING:",
+                        result.stdout,
+                        msg=f"CLI stdout contains warnings:\n{result.stdout}",
                     )
 
                     # 2. Verify result is valid JSON
