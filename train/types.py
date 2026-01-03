@@ -210,6 +210,7 @@ class TrainEpochStats:
     first_batch_separation: Dict[str, float]
     first_batch_grad_norms: Dict[str, float]
     avg_entropy_norm: float
+    avg_logit_gap: float
     avg_kl_to_uniform: float
     uniq_kcs_epoch: int
     avg_p_max: float
