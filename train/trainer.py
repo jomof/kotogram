@@ -41,11 +41,19 @@ from train.models import StyleClassifierWithKC
 from train.profile import Timer, get_profile_dir
 from train.types import (
     EvaluationMetrics,
+    FirstBatchGradNorms,
+    FirstBatchSeparation,
+    KCCoverageCounts,
     KCDiagnosticHeadStats,
+    KCLosses,
     KCMetricsAccumulator,
     KCProbeConfig,
     KCProbeEvaluationResult,
+    KCSnapshot,
+    KCStructuralBiases,
     KCTrainingHistory,
+    RunningLossComponents,
+    TensorStats,
     TrainEpochResult,
     TrainEpochStats,
     TrainingBatch,
@@ -57,27 +65,27 @@ from train.types import (
 from train.worker import _worker_init_fn
 
 
-def tensor_finite_stats(x: Optional[torch.Tensor]) -> Dict[str, Any]:
+def tensor_finite_stats(x: Optional[torch.Tensor]) -> TensorStats:
     if x is None:
-        return {
-            "finite": True,
-            "n_nan": 0,
-            "n_inf": 0,
-            "min": float("nan"),
-            "max": float("nan"),
-        }
+        return TensorStats(
+            finite=True,
+            n_nan=0,
+            n_inf=0,
+            min=float("nan"),
+            max=float("nan"),
+        )
 
     if x.isfinite().all():
         flat = x.detach().flatten().float()
         min_val = float(flat.min().item()) if flat.numel() else float("nan")
         max_val = float(flat.max().item()) if flat.numel() else float("nan")
-        return {
-            "finite": True,
-            "n_nan": 0,
-            "n_inf": 0,
-            "min": min_val,
-            "max": max_val,
-        }
+        return TensorStats(
+            finite=True,
+            n_nan=0,
+            n_inf=0,
+            min=min_val,
+            max=max_val,
+        )
 
     flat = x.detach().flatten().float()
     is_finite = torch.isfinite(flat)
@@ -92,13 +100,13 @@ def tensor_finite_stats(x: Optional[torch.Tensor]) -> Dict[str, Any]:
         min_val = float("nan")
         max_val = float("nan")
 
-    return {
-        "finite": False,
-        "n_nan": n_nan,
-        "n_inf": n_inf,
-        "min": min_val,
-        "max": max_val,
-    }
+    return TensorStats(
+        finite=False,
+        n_nan=n_nan,
+        n_inf=n_inf,
+        min=min_val,
+        max=max_val,
+    )
 
 
 class KCTrainer:
@@ -198,8 +206,8 @@ class KCTrainer:
 
         self.kc_grad_cap = self.kc_config.kc_grad_cap
 
-        self.kc_entropy_floor = getattr(self.kc_config, "entropy_floor", 0.85)
-        self.kc_kl_cap = getattr(self.kc_config, "kl_cap", 0.15)
+        self.kc_entropy_floor = self.kc_config.entropy_floor
+        self.kc_kl_cap = self.kc_config.kl_cap
 
         if self.kc_log_level == "debug":
             self.kc_show_epoch_table = True
@@ -220,7 +228,7 @@ class KCTrainer:
         self.global_step = 0
         self._did_print_debug_for_epoch = -1
 
-        self._kc_last_good_state: Optional[Dict[str, Dict[str, torch.Tensor]]] = None
+        self._kc_last_good_state: Optional[KCSnapshot] = None
         self._nonfinite_streak = 0
         self._nonfinite_total = 0
         self._nonfinite_logged = 0
@@ -278,16 +286,19 @@ class KCTrainer:
     def _save_kc_snapshot(self) -> None:
         m = self.model
 
-        self._kc_last_good_state = {
-            "kc_head": {
-                k: v.detach().cpu().clone() for k, v in m.kc_head.state_dict().items()
-            },
+        head_state = {
+            k: v.detach().cpu().clone() for k, v in m.kc_head.state_dict().items()
         }
+        dec_state = None
         if hasattr(m, "kc_decoders"):
-            self._kc_last_good_state["kc_decoders"] = {
+            dec_state = {
                 k: v.detach().cpu().clone()
                 for k, v in m.kc_decoders.state_dict().items()
             }
+        self._kc_last_good_state = KCSnapshot(
+            kc_head=head_state,
+            kc_decoders=dec_state,
+        )
 
     def _restore_kc_snapshot(self) -> bool:
         if self._kc_last_good_state is None:
@@ -296,15 +307,17 @@ class KCTrainer:
 
         device = next(m.kc_head.parameters()).device
         restored_head = {
-            k: v.to(device) for k, v in self._kc_last_good_state["kc_head"].items()
+            k: v.to(device) for k, v in self._kc_last_good_state.kc_head.items()
         }
         m.kc_head.load_state_dict(restored_head, strict=True)
 
-        if "kc_decoders" in self._kc_last_good_state and hasattr(m, "kc_decoders"):
+        if self._kc_last_good_state.kc_decoders is not None and hasattr(
+            m, "kc_decoders"
+        ):
             device_dec = next(m.kc_decoders.parameters()).device
             restored_dec = {
                 k: v.to(device_dec)
-                for k, v in self._kc_last_good_state["kc_decoders"].items()
+                for k, v in self._kc_last_good_state.kc_decoders.items()
             }
             m.kc_decoders.load_state_dict(restored_dec, strict=True)
 
@@ -412,7 +425,6 @@ class KCTrainer:
         return loss
 
     # pylint: disable=too-many-locals
-    # pylint: disable=too-many-locals
     def _init_structural_decoder_biases(self, num_batches: int = 10) -> None:
         m = self.model
         if not hasattr(m, "kc_decoders"):
@@ -420,6 +432,7 @@ class KCTrainer:
 
         sums: Dict[str, float] = {}
         counts: Dict[str, int] = {}
+        biases = KCStructuralBiases(sums=sums, counts=counts)
 
         for i, batch in enumerate(self.data_loader):
             if i >= num_batches:
@@ -438,15 +451,15 @@ class KCTrainer:
                 if dense_key in kc_targets:
                     t = kc_targets[dense_key].float()
                     p = t.mean().item()
-                    sums[name] = sums.get(name, 0.0) + p
-                    counts[name] = counts.get(name, 0) + 1
+                    biases.sums[name] = biases.sums.get(name, 0.0) + p
+                    biases.counts[name] = biases.counts.get(name, 0) + 1
                 elif mask_key in kc_targets:
                     pos_mask_t = kc_targets[mask_key]
                     batch_size = pos_mask_t.size(0)
                     num_pos = pos_mask_t.sum().item()
                     p = num_pos / (batch_size * vocab_size)
-                    sums[name] = sums.get(name, 0.0) + p
-                    counts[name] = counts.get(name, 0) + 1
+                    biases.sums[name] = biases.sums.get(name, 0.0) + p
+                    biases.counts[name] = biases.counts.get(name, 0) + 1
 
         for name, _ in m.config.kc_target_specs.items():
             if name not in sums or counts.get(name, 0) == 0:
@@ -625,18 +638,17 @@ class KCTrainer:
         self, outputs: Dict[str, Any], kc_targets: Dict[str, Any]
     ) -> None:
         """Helper to check and report KC target coverage."""
-        coverage_counts = {
-            "dense": 0,
-            "sparse": 0,
-            "label": 0,
-            "missing": 0,
-        }
+        c_dense = 0
+        c_sparse = 0
+        c_label = 0
+        c_missing = 0
+
         for name in outputs["target_logits"]:
             if f"kc_targets_{name}" in kc_targets:
-                coverage_counts["dense"] += 1
+                c_dense += 1
                 continue
             if f"kc_pos_inds_{name}" in kc_targets:
-                coverage_counts["sparse"] += 1
+                c_sparse += 1
                 continue
             if name in (
                 "formality_value",
@@ -646,11 +658,18 @@ class KCTrainer:
                 "grammaticality",
                 "register",
             ):
-                coverage_counts["label"] += 1
+                c_label += 1
                 continue
-            coverage_counts["missing"] += 1
+            c_missing += 1
 
-        if coverage_counts["missing"] > 0:
+        counts = KCCoverageCounts(
+            dense=c_dense,
+            sparse=c_sparse,
+            label=c_label,
+            missing=c_missing,
+        )
+
+        if counts.missing > 0:
             missing_keys = []
             for name in outputs["target_logits"]:
                 if (
@@ -675,7 +694,10 @@ class KCTrainer:
                 )
 
         if self.kc_log_level == "debug":
-            print(f"  Totals: {coverage_counts}")
+            print(
+                f"  Totals: dense={counts.dense} sparse={counts.sparse} "
+                f"label={counts.label} missing={counts.missing}"
+            )
 
     # pylint: disable=too-many-locals
     def train_epoch(self, epoch: int = 0) -> TrainEpochResult:
@@ -698,7 +720,7 @@ class KCTrainer:
         self.model.train()
 
         total_loss, n_batches = 0.0, 0
-        kc_losses: Dict[str, float] = {}
+        kc_losses = KCLosses()
         total_sparsity = 0.0
 
         total_batches = len(self.data_loader)
@@ -706,8 +728,8 @@ class KCTrainer:
         running_struct_loss, running_label_loss = 0.0, 0.0
         running_num_struct_total, running_num_label_total = 0, 0
         running_sparsity = 0.0
-        first_batch_separation: Dict[str, float] = {}
-        first_batch_grad_norms: Dict[str, float] = {}
+        first_batch_separation = FirstBatchSeparation()
+        first_batch_grad_norms = FirstBatchGradNorms()
 
         opt_steps = 0
         flush_steps = 0
@@ -735,15 +757,7 @@ class KCTrainer:
         running_avg_prob = 0.0
         running_act_dens = 0.0
 
-        running_loss_components = {
-            "base": 0.0,
-            "struct": 0.0,
-            "label": 0.0,
-            "div": 0.0,
-            "lb": 0.0,
-            "collapse": 0.0,
-            "sparsity": 0.0,
-        }
+        running_loss_components = RunningLossComponents()
 
         kc_diag = KCEpochDiag()
         reading_mask_id = getattr(self.dataset.tokenizer, "unk_id", 0)
@@ -754,9 +768,6 @@ class KCTrainer:
 
         self.optimizer.zero_grad(set_to_none=True)
 
-        pbar = None
-
-        current_display_loss = 0.5
         pbar = None
 
         current_display_loss = 0.5
@@ -824,9 +835,7 @@ class KCTrainer:
             if should_check_nan:
                 logits_stats = tensor_finite_stats(outputs.get("kc_logits_raw"))
                 probs_stats = tensor_finite_stats(outputs.get("kc_probs"))
-                forward_nonfinite = (
-                    not logits_stats["finite"] or not probs_stats["finite"]
-                )
+                forward_nonfinite = not logits_stats.finite or not probs_stats.finite
             else:
                 forward_nonfinite = False
 
@@ -841,8 +850,8 @@ class KCTrainer:
                     self._nonfinite_logged += 1
                     msg = (
                         f"  [KC][FORWARD NaN] ep={epoch} b={batch_idx} streak={self._nonfinite_streak} "
-                        f"raw[nan={logits_stats['n_nan']} inf={logits_stats['n_inf']} "
-                        f"finite_range={logits_stats['min']:.2g}..{logits_stats['max']:.2g}] "
+                        f"raw[nan={logits_stats.n_nan} inf={logits_stats.n_inf} "
+                        f"finite_range={logits_stats.min:.2g}..{logits_stats.max:.2g}] "
                     )
                     if pbar:
                         pbar.log(msg)
@@ -992,8 +1001,6 @@ class KCTrainer:
                     )
 
                     if should_print_fb:
-                        m = cast(StyleClassifierWithKC, raw)
-
                         if self.kc_log_level == "debug":
                             print_kc_first_batch_debug(
                                 epoch,
@@ -1277,11 +1284,10 @@ class KCTrainer:
                             pos_mask = targets > 0.5
                             neg_mask = ~pos_mask
                             if pos_mask.any() and neg_mask.any():
-                                pmn = (
-                                    logits[pos_mask].mean().item()
-                                    - logits[neg_mask].mean().item()
+                                pmn = -logits[neg_mask].mean().item()
+                                first_batch_separation = (
+                                    first_batch_separation.with_entry(name, pmn)
                                 )
-                                first_batch_separation[name] = pmn
 
                 loss = torch.tensor(0.0, device=self.device)
                 batch_kc_losses = {}
@@ -1648,20 +1654,24 @@ class KCTrainer:
                     "sparsity": loss_spar_val,
                 }
 
-                running_loss_components["base"] += current_epoch_comp["base"]
-                running_loss_components["div"] += current_epoch_comp["div"]
-                running_loss_components["lb"] += current_epoch_comp["lb"]
-                running_loss_components["collapse"] += current_epoch_comp["collapse"]
-
-                running_loss_components["struct"] += (
-                    (current_epoch_comp["struct"] / num_struct)
-                    if num_struct > 0
-                    else 0.0
+                current_comp = RunningLossComponents(
+                    base=current_epoch_comp["base"],
+                    struct=(
+                        (current_epoch_comp["struct"] / num_struct)
+                        if num_struct > 0
+                        else 0.0
+                    ),
+                    label=(
+                        (current_epoch_comp["label"] / num_label)
+                        if num_label > 0
+                        else 0.0
+                    ),
+                    div=current_epoch_comp["div"],
+                    lb=current_epoch_comp["lb"],
+                    collapse=current_epoch_comp["collapse"],
+                    sparsity=current_epoch_comp["sparsity"],
                 )
-                running_loss_components["label"] += (
-                    (current_epoch_comp["label"] / num_label) if num_label > 0 else 0.0
-                )
-                running_loss_components["sparsity"] += current_epoch_comp["sparsity"]
+                running_loss_components = running_loss_components.add(current_comp)
 
                 if loss.item() == 0.0 and loss.requires_grad:
                     pass
@@ -1685,7 +1695,7 @@ class KCTrainer:
 
             total_loss += loss.item() * self.config.grad_accum_steps
             for k, v in batch_kc_losses.items():
-                kc_losses[k] = kc_losses.get(k, 0.0) + v
+                kc_losses = kc_losses.add(k, v)
             n_batches += 1
             self.global_step += 1
 
@@ -1710,10 +1720,7 @@ class KCTrainer:
         self.start_batch = 0
 
         if did_any_backward and pending_accum > 0:
-            raw = self.model
-
-            m = cast(StyleClassifierWithKC, raw)
-            self._perform_optimizer_step(m, pending_accum)
+            self._perform_optimizer_step(self.model, pending_accum)
 
             flush_steps += 1
 
@@ -1766,7 +1773,8 @@ class KCTrainer:
         )
 
         avg_loss_components = {
-            k: v / max(1, n_batches) for k, v in running_loss_components.items()
+            k: getattr(running_loss_components, k) / max(1, n_batches)
+            for k in running_loss_components.__dict__
         }
 
         if not self.kc_show_epoch_table:
@@ -1909,10 +1917,10 @@ class KCTrainer:
             )
             self.history.avg_sparsity.append(epoch_stats.avg_sparsity)
             self.history.first_batch_separation.append(
-                epoch_stats.first_batch_separation
+                epoch_stats.first_batch_separation.data
             )
             self.history.first_batch_grad_norms.append(
-                epoch_stats.first_batch_grad_norms
+                epoch_stats.first_batch_grad_norms.data
             )
             self.history.kc_diagnostics.append(epoch_stats.kc_diagnostics)
 
@@ -2993,9 +3001,6 @@ class Trainer:
                     f"⚠️ QUALITY DROP ({head}): AUC={auc:.3f} (want >0.85). "
                     "Try: add KC auxiliary loss during STYLE or retrain KC decoders post-STYLE."
                 )
-
-        if not recommendations:
-            recommendations.append("✅ KC health OK. No action needed.")
 
         if not recommendations:
             recommendations.append("✅ KC health OK. No action needed.")

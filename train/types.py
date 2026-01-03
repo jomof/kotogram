@@ -1,7 +1,7 @@
 """Data types for Kotogram training."""
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import torch
 
@@ -118,6 +118,68 @@ class KCProbeConfig:
     max_samples_per_head: int
 
 
+@dataclass(frozen=True)
+class TensorStats:
+    """Statistics for tensor finite checks."""
+
+    finite: bool
+    n_nan: int
+    n_inf: int
+    min: float
+    max: float
+
+
+@dataclass(frozen=True)
+class KCSnapshot:
+    """Snapshot of KC model state for restoration."""
+
+    kc_head: Dict[str, torch.Tensor]
+    kc_decoders: Optional[Dict[str, torch.Tensor]] = None
+
+
+@dataclass(frozen=True)
+class KCCoverageCounts:
+    """Counts for KC target coverage checks."""
+
+    dense: int = 0
+    sparse: int = 0
+    label: int = 0
+    missing: int = 0
+
+
+@dataclass(frozen=True)
+class KCStructuralBiases:
+    """Accumulators for structural decoder bias initialization."""
+
+    sums: Dict[str, float] = field(default_factory=dict)
+    counts: Dict[str, int] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class RunningLossComponents:
+    """Running loss components for an epoch."""
+
+    base: float = 0.0
+    struct: float = 0.0
+    label: float = 0.0
+    div: float = 0.0
+    lb: float = 0.0
+    collapse: float = 0.0
+    sparsity: float = 0.0
+
+    def add(self, other: "RunningLossComponents") -> "RunningLossComponents":
+        """Add another RunningLossComponents instance."""
+        return RunningLossComponents(
+            base=self.base + other.base,
+            struct=self.struct + other.struct,
+            label=self.label + other.label,
+            div=self.div + other.div,
+            lb=self.lb + other.lb,
+            collapse=self.collapse + other.collapse,
+            sparsity=self.sparsity + other.sparsity,
+        )
+
+
 @dataclass
 class EvaluationMetrics:
     """Evaluation results for a validation pass."""
@@ -196,6 +258,72 @@ class TrainingPredictions:
     is_valid: List[bool]
 
 
+@dataclass(frozen=True)
+class KCLosses:
+    """Immutable accumulator for KC losses."""
+
+    _losses: Dict[str, float] = field(default_factory=dict)
+
+    @property
+    def losses(self) -> Dict[str, float]:
+        """Return a copy of the losses."""
+        return dict(self._losses)
+
+    def add(self, key: str, value: float) -> "KCLosses":
+        """Add a loss value to the accumulator."""
+        new_losses = dict(self._losses)
+        new_losses[key] = new_losses.get(key, 0.0) + value
+        return KCLosses(_losses=new_losses)
+
+    def get(self, key: str, default: float = 0.0) -> float:
+        """Get a loss value."""
+        return self._losses.get(key, default)
+
+    def items(self) -> Any:
+        """Return items iterator."""
+        return self._losses.items()
+
+    def keys(self) -> Any:
+        """Return keys iterator."""
+        return self._losses.keys()
+
+
+@dataclass(frozen=True)
+class FirstBatchSeparation:
+    """Immutable accumulator for first batch separation."""
+
+    _data: Dict[str, float] = field(default_factory=dict)
+
+    @property
+    def data(self) -> Dict[str, float]:
+        """Return a copy of the data."""
+        return dict(self._data)
+
+    def with_entry(self, key: str, value: float) -> "FirstBatchSeparation":
+        """Add an entry."""
+        new_data = dict(self._data)
+        new_data[key] = value
+        return FirstBatchSeparation(_data=new_data)
+
+
+@dataclass(frozen=True)
+class FirstBatchGradNorms:
+    """Immutable accumulator for first batch gradient norms."""
+
+    _data: Dict[str, float] = field(default_factory=dict)
+
+    @property
+    def data(self) -> Dict[str, float]:
+        """Return a copy of the data."""
+        return dict(self._data)
+
+    def with_entry(self, key: str, value: float) -> "FirstBatchGradNorms":
+        """Add an entry."""
+        new_data = dict(self._data)
+        new_data[key] = value
+        return FirstBatchGradNorms(_data=new_data)
+
+
 @dataclass
 class TrainEpochStats:
     """Statistics collected during a training epoch."""
@@ -207,8 +335,8 @@ class TrainEpochStats:
     avg_sparsity: float
     avg_prob: float
     act_dens: float
-    first_batch_separation: Dict[str, float]
-    first_batch_grad_norms: Dict[str, float]
+    first_batch_separation: FirstBatchSeparation
+    first_batch_grad_norms: FirstBatchGradNorms
     avg_entropy_norm: float
     avg_logit_gap: float
     avg_kl_to_uniform: float
@@ -222,7 +350,7 @@ class TrainEpochResult:
     """Result of a training epoch."""
 
     total_loss: float
-    kc_losses: Dict[str, float]  # Key is KC head name
+    kc_losses: KCLosses
     avg_sparsity: float
     epoch_stats: TrainEpochStats
 
