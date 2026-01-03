@@ -376,15 +376,36 @@ class KCTrainer:
 
         if diag is not None and family_name:
             with torch.no_grad():
-                probs = torch.sigmoid(gathered)
+                if not family_name:
+                    raise ValueError("Family name cannot be empty")
 
-                valid_bool = valid.bool()
+                # A3: Pass 2D tensors to update_family (B, P+N)
+                diag_inds = idxs_safe
+                diag_pos_mask = torch.cat(
+                    [
+                        pos_mask,
+                        torch.zeros(
+                            (batch_size, neg_c), dtype=torch.bool, device=device
+                        ),
+                    ],
+                    dim=1,
+                )
+                diag_probs = torch.sigmoid(gathered)
+                diag_targets = t
+
+                assert (
+                    diag_inds.shape
+                    == diag_probs.shape
+                    == diag_targets.shape
+                    == diag_pos_mask.shape
+                )
+
                 diag.update_family(
                     family_name,
-                    pos_inds,
-                    pos_mask,
-                    probs[valid_bool],
-                    t[valid_bool],
+                    diag_inds,
+                    diag_pos_mask,
+                    diag_probs,
+                    diag_targets,
                     loss.item(),
                     mask_id=reading_mask_id,
                 )
@@ -532,15 +553,17 @@ class KCTrainer:
 
             return True
 
-        clip_val = self.config.gradient_clip if self.config.gradient_clip > 0 else 1.0
-        params_to_clip = [
-            p
-            for group in self.optimizer.param_groups
-            for p in group["params"]
-            if p.grad is not None
-        ]
-        if params_to_clip:
-            nn.utils.clip_grad_norm_(params_to_clip, clip_val)
+        # B1: Only clip gradients when config.gradient_clip > 0
+        if self.config.gradient_clip and self.config.gradient_clip > 0:
+            params_to_clip = [
+                p
+                for group in self.optimizer.param_groups
+                for p in group["params"]
+                if p.grad is not None
+            ]
+            if params_to_clip:
+                nn.utils.clip_grad_norm_(params_to_clip, self.config.gradient_clip)
+        # else: do not clip at all (0 means disabled)
 
         self.optimizer.step()
         self.optimizer.zero_grad(set_to_none=True)
@@ -660,7 +683,7 @@ class KCTrainer:
         # self._create_optimizer(freeze_encoder=should_freeze) <- REMOVED to preserve moment
         # Instead, update LR in place for the encoder group
         assert len(self.optimizer.param_groups) >= 2, (
-            "Optimizer must have heads+encoder groups"
+            f"Expected >=2 param_groups (heads, encoder), got {len(self.optimizer.param_groups)}"
         )
         enc_lr = 0.0 if should_freeze else (self.config.learning_rate * 0.01)
         self.optimizer.param_groups[1]["lr"] = enc_lr
@@ -1319,6 +1342,9 @@ class KCTrainer:
                             idxs = torch.cat(
                                 [pos_ids_sampled, neg_ids], dim=1
                             )  # (B, P+N)
+                            # C1: Validate sampled indices range
+                            assert idxs.min().item() >= 0
+                            assert idxs.max().item() < vocab_size_f
 
                             # 2) Gather Logits
                             gathered_logits = logits_f.gather(1, idxs)
@@ -1355,16 +1381,43 @@ class KCTrainer:
                                 )
                                 task_loss = torch.tensor(0.0, device=self.device)
 
-                            # 5) Update Family with correct tensors
+                            # 5) Update Family with correct tensors (A2)
                             with torch.no_grad():
-                                probs = torch.sigmoid(gathered_logits)
+                                if not name:
+                                    raise ValueError("Family name cannot be empty")
+
+                                diag_inds = idxs
+                                diag_pos_mask = torch.cat(
+                                    [
+                                        pos_mask_sampled,
+                                        torch.zeros(
+                                            (batch_size_f, neg_count),
+                                            device=self.device,
+                                            dtype=torch.bool,
+                                        ),
+                                    ],
+                                    dim=1,
+                                )
+                                diag_probs = torch.sigmoid(gathered_logits)
+                                diag_targets = targets_sampled
+
+                                assert (
+                                    diag_inds.shape
+                                    == diag_probs.shape
+                                    == diag_targets.shape
+                                    == diag_pos_mask.shape
+                                )
+                                assert diag_inds.dtype in (torch.int64, torch.int32)
+                                assert diag_pos_mask.dtype == torch.bool
+
                                 kc_diag.update_family(
                                     name,
-                                    pos_ids_sampled,
-                                    pos_mask_sampled,
-                                    probs,
-                                    targets_sampled,
+                                    diag_inds,
+                                    diag_pos_mask,
+                                    diag_probs,
+                                    diag_targets,
                                     task_loss.item(),
+                                    mask_id=reading_mask_id,
                                 )
                         else:
                             task_loss = F.binary_cross_entropy_with_logits(
@@ -1372,20 +1425,34 @@ class KCTrainer:
                             )
 
                             with torch.no_grad():
-                                probs = torch.sigmoid(logits_f)
-                                pos_mask = targets > 0.5
-                                v_ids = (
+                                if not name:
+                                    raise ValueError("Family name cannot be empty")
+
+                                # A1: Keep tensors 2D and aligned
+                                probs_2d = torch.sigmoid(logits_f)
+                                targets_2d = targets
+                                v_ids_2d = (
                                     torch.arange(vocab_size_f, device=self.device)
                                     .unsqueeze(0)
                                     .expand(batch_size_f, -1)
                                 )
+                                pos_mask_2d = targets_2d > 0.5
+
+                                assert (
+                                    probs_2d.shape
+                                    == targets_2d.shape
+                                    == pos_mask_2d.shape
+                                )
+                                assert v_ids_2d.shape == probs_2d.shape
+
                                 kc_diag.update_family(
                                     name,
-                                    v_ids,
-                                    pos_mask,
-                                    probs.flatten(),
-                                    targets.flatten(),
+                                    v_ids_2d,
+                                    pos_mask_2d,
+                                    probs_2d,
+                                    targets_2d,
                                     task_loss.item(),
+                                    mask_id=reading_mask_id,
                                 )
 
                         structural_loss += task_loss
