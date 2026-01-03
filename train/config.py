@@ -134,6 +134,10 @@ class KCConfig:
     show_step_checks: bool = False
     show_grad_norms: bool = False
 
+    # Dynamic Training Constraints
+    entropy_floor: float = 0.85
+    kl_cap: float = 0.15
+
     def to_dict(self) -> Dict[str, Any]:
         return dict(self.__dict__)
 

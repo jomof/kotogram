@@ -272,12 +272,12 @@ def test_tensor_finite_stats_clean():
     x = torch.tensor([1.0, 2.0, 3.0])
     stats = tensor_finite_stats(x)
 
-    assert stats["finite"] is True, "Clean tensor should be finite"
-    assert stats["n_nan"] == 0, "No NaNs expected"
-    assert stats["n_inf"] == 0, "No Infs expected"
+    assert stats.finite is True, "Clean tensor should be finite"
+    assert stats.n_nan == 0, "No NaNs expected"
+    assert stats.n_inf == 0, "No Infs expected"
     # min/max are skipped (NaN) for clean tensors to save syncs
-    # assert stats["min"] == 1.0, "Min should be 1.0"
-    # assert stats["max"] == 3.0, "Max should be 3.0"
+    # assert stats.min == 1.0, "Min should be 1.0"
+    # assert stats.max == 3.0, "Max should be 3.0"
 
 
 def test_tensor_finite_stats_with_nan():
@@ -287,11 +287,11 @@ def test_tensor_finite_stats_with_nan():
     x = torch.tensor([1.0, float("nan"), 3.0])
     stats = tensor_finite_stats(x)
 
-    assert stats["finite"] is False, "Tensor with NaN should not be finite"
-    assert stats["n_nan"] == 1, "One NaN expected"
-    assert stats["n_inf"] == 0, "No Infs expected"
-    assert stats["min"] == 1.0, "Min of finite values should be 1.0"
-    assert stats["max"] == 3.0, "Max of finite values should be 3.0"
+    assert stats.finite is False, "Tensor with NaN should not be finite"
+    assert stats.n_nan == 1, "One NaN expected"
+    assert stats.n_inf == 0, "No Infs expected"
+    assert stats.min == 1.0, "Min of finite values should be 1.0"
+    assert stats.max == 3.0, "Max of finite values should be 3.0"
 
 
 def test_tensor_finite_stats_with_inf():
@@ -301,11 +301,11 @@ def test_tensor_finite_stats_with_inf():
     x = torch.tensor([1.0, float("inf"), 3.0])
     stats = tensor_finite_stats(x)
 
-    assert stats["finite"] is False, "Tensor with Inf should not be finite"
-    assert stats["n_nan"] == 0, "No NaNs expected"
-    assert stats["n_inf"] == 1, "One Inf expected"
-    assert stats["min"] == 1.0, "Min of finite values should be 1.0"
-    assert stats["max"] == 3.0, "Max of finite values should be 3.0"
+    assert stats.finite is False, "Tensor with Inf should not be finite"
+    assert stats.n_nan == 0, "No NaNs expected"
+    assert stats.n_inf == 1, "One Inf expected"
+    assert stats.min == 1.0, "Min of finite values should be 1.0"
+    assert stats.max == 3.0, "Max of finite values should be 3.0"
 
 
 def test_tensor_finite_stats_all_nan():
@@ -316,10 +316,10 @@ def test_tensor_finite_stats_all_nan():
     x = torch.tensor([float("nan"), float("nan")])
     stats = tensor_finite_stats(x)
 
-    assert stats["finite"] is False
-    assert stats["n_nan"] == 2
-    assert math.isnan(stats["min"]), "Min should be NaN when all values non-finite"
-    assert math.isnan(stats["max"]), "Max should be NaN when all values non-finite"
+    assert stats.finite is False
+    assert stats.n_nan == 2
+    assert math.isnan(stats.min), "Min should be NaN when all values non-finite"
+    assert math.isnan(stats.max), "Max should be NaN when all values non-finite"
 
 
 def test_tensor_finite_stats_none():
@@ -328,9 +328,9 @@ def test_tensor_finite_stats_none():
 
     stats = tensor_finite_stats(None)
 
-    assert stats["finite"] is True, "None should be treated as finite"
-    assert stats["n_nan"] == 0
-    assert stats["n_inf"] == 0
+    assert stats.finite is True, "None should be treated as finite"
+    assert stats.n_nan == 0
+    assert stats.n_inf == 0
 
 
 def test_nan_recovery_log_spam_pattern():
