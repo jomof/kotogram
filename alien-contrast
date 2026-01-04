@@ -1,0 +1,36 @@
+#!/bin/bash
+# alien-contrast: A portable script to run contrast-sentences from anywhere.
+# This script is hardcoded to use the environment in the Kotogram project.
+
+PROJECT_ROOT="/Users/jomofisher/projects/kotogram"
+
+# Check if project root exists
+if [ ! -d "$PROJECT_ROOT" ]; then
+    echo "Error: Project root not found at $PROJECT_ROOT"
+    echo "This script relies on the Kotogram project availability."
+    exit 1
+fi
+
+cd "$PROJECT_ROOT"
+
+# Use the virtual environment python if available
+if [ -f ".venv/bin/python" ]; then
+    PYTHON_EXEC=".venv/bin/python"
+else
+    # Fallback to system python (assumes requirements are met globally or via other means)
+    PYTHON_EXEC="python3"
+fi
+
+# Ensure PYTHONPATH includes the project root
+export PYTHONPATH="$PROJECT_ROOT:$PYTHONPATH"
+
+# Check if first argument is --find
+if [[ "$1" == "--find" ]]; then
+    shift # Remove --find
+    # Next, we expect the query.
+    # We call 'find-kc-matches'
+    exec "$PYTHON_EXEC" scripts/curate find-kc-matches "$@"
+else
+    # Default to contrast-sentences for backward compatibility
+    exec "$PYTHON_EXEC" scripts/curate contrast-sentences "$@"
+fi
