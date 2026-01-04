@@ -130,6 +130,24 @@ def worker_wrapper(_chunk_idx: int, chunk: List[Tuple[str, int]], overrides: Dic
     result_queue.put(results)
 
 
+def tokenize_chunk(chunk: List[str]) -> List[Tuple[str, str]]:
+    """Convert a chunk of sentences to kotograms."""
+    parser = SudachiJapaneseParser()
+    results = []
+    from kotogram.japanese_parser import KotogramFormat
+    for sent in chunk:
+        # Use TRAINING_MASK format to match inference expectations
+        kotogram = parser.japanese_to_kotogram(sent, fmt=KotogramFormat.TRAINING_MASK)
+        results.append((sent, kotogram))
+    return results
+
+
+def worker_tokenize_wrapper(_chunk_idx: int, chunk: List[str], result_queue: Any):
+    """Wrapper for parallel tokenization."""
+    results = tokenize_chunk(chunk)
+    result_queue.put(results)
+
+
 def get_all_sentences() -> List[Tuple[str, int]]:
     """Read all sentences from data/corpus.tar.gz."""
     sentences = {}
@@ -592,11 +610,408 @@ def curate_distinct(db_path: str, include_ungrammatic: bool):
 
 
 
-    for key, count in counts.most_common():
-        pct = f"{100 * count / total:.1f}%"
-        table.add_row(f"{count:,}", pct, key)
-        
     console.print(table)
+
+
+def ensure_kc_index(corpus_db: str, index_db: str):
+    """Ensure the KC index exists, building it if necessary."""
+    if os.path.exists(index_db):
+        return
+
+    console.print(f"[bold yellow]Building KC Index at {index_db}...[/bold yellow]")
+    
+    # 1. Load Sentences
+    if not os.path.exists(corpus_db):
+        console.print(f"[red]Corpus DB not found at {corpus_db}[/red]")
+        sys.exit(1)
+        
+    conn = sqlite3.connect(corpus_db)
+    c = conn.cursor()
+    c.execute("SELECT sentence FROM corpus WHERE grammatic = 1")
+    rows = c.fetchall()
+    conn.close()
+    
+    sentences = [r[0] for r in rows]
+    console.print(f"Loaded {len(sentences)} grammatic sentences.")
+    
+    # 2. Parallel Tokenization
+    # We use the same pool logic as curate_drink broadly
+    num_processes = max(1, mp.cpu_count() - 1)
+    chunk_size = 1000
+    chunks = [sentences[i : i + chunk_size] for i in range(0, len(sentences), chunk_size)]
+    
+    manager = mp.Manager()
+    result_queue = manager.Queue()
+    pool = mp.Pool(num_processes)
+    
+    jobs = []
+    for i, chunk in enumerate(chunks):
+        job = pool.apply_async(worker_tokenize_wrapper, (i, chunk, result_queue))
+        jobs.append(job)
+        
+    pool.close()
+    
+    # Collect results
+    all_kotograms = [] # List of (sent, kotogram)
+    
+    from rich.progress import track
+    # Monitor progress
+    with Progress() as progress:
+        task_id = progress.add_task("Tokenizing...", total=len(jobs))
+        
+        finished_jobs = 0
+        while finished_jobs < len(jobs):
+            try:
+                # Non-blocking check?
+                # Actually queue.get is blocking.
+                # We expect one result per job.
+                chunk_res = result_queue.get(timeout=1.0)
+                all_kotograms.extend(chunk_res)
+                finished_jobs += 1
+                progress.advance(task_id)
+            except queue.Empty:
+                pass
+                
+    pool.join()
+    
+    # Sort by original Sentence to be deterministic?
+    # The queue might return out of order.
+    # It doesn't strictly matter for the index, but let's keep it stable.
+    # We stored (sent, kotogram).
+    
+    # 3. Batch Inference (KC Extraction)
+    from kotogram.analysis import grammars
+    
+    batch_size = 256
+    
+    # Prepare DB
+    idx_conn = sqlite3.connect(index_db)
+    idx_c = idx_conn.cursor()
+    idx_c.execute("CREATE TABLE IF NOT EXISTS sentences (id INTEGER PRIMARY KEY, text TEXT, length INTEGER)")
+    idx_c.execute("CREATE TABLE IF NOT EXISTS kcs (kc_id INTEGER, sentence_id INTEGER)")
+    idx_c.execute("CREATE INDEX IF NOT EXISTS idx_kcs_kc_id ON kcs (kc_id)")
+    idx_c.execute("CREATE INDEX IF NOT EXISTS idx_kcs_sentence_id ON kcs (sentence_id)")
+    idx_c.execute("CREATE INDEX IF NOT EXISTS idx_sentences_length ON sentences (length)")
+    
+    # We will insert sentences as we go? Or bulk at end?
+    # Bulk is faster.
+    
+    sent_buffer = [] # (id, text, len)
+    kc_buffer = []   # (kc_id, sent_id)
+    
+    current_sent_id = 0
+    
+    # Unzip
+    sent_list = [x[0] for x in all_kotograms]
+    koto_list = [x[1] for x in all_kotograms]
+    
+    total_batches = (len(koto_list) + batch_size - 1) // batch_size
+    
+    for i in track(range(0, len(koto_list), batch_size), description="Extracting KCs..."):
+        batch_koto = koto_list[i : i + batch_size]
+        batch_sent = sent_list[i : i + batch_size]
+        
+        # Run model
+        results = grammars(batch_koto)
+        
+        for sent, res in zip(batch_sent, results):
+            current_sent_id += 1
+            sent_buffer.append((current_sent_id, sent, len(sent)))
+            
+            if res.kc_top:
+                for kc_id in res.kc_top:
+                    kc_buffer.append((kc_id, current_sent_id))
+                    
+    # Bulk Insert
+    console.print("Indexing...")
+    idx_c.executemany("INSERT INTO sentences (id, text, length) VALUES (?, ?, ?)", sent_buffer)
+    idx_c.executemany("INSERT INTO kcs (kc_id, sentence_id) VALUES (?, ?)", kc_buffer)
+    idx_conn.commit()
+    idx_conn.close()
+    console.print(f"[green]Index built with {len(sent_buffer)} sentences.[/green]")
+
+
+def curate_find_kc_matches(query: str, db_path: str, index_path: str = "data/corpus-kc-index.db"):
+    """Find shortest sentences matching the KC query."""
+    # Parse Query
+    # Format: +458,-964
+    parts = [p.strip() for p in query.split(",")]
+    required_kcs = []
+    forbidden_kcs = []
+    
+    for p in parts:
+        if not p: continue
+        if p.startswith("+"):
+            val_str = p[1:]
+            if not val_str.isdigit():
+                console.print(f"[red]Invalid KC ID: {p}[/red]")
+                return
+            required_kcs.append(int(val_str))
+        elif p.startswith("-"):
+            val_str = p[1:]
+            if not val_str.isdigit():
+                console.print(f"[red]Invalid KC ID: {p}[/red]")
+                return
+            forbidden_kcs.append(int(val_str))
+        else:
+            # Assume + if no sign?
+            if not p.isdigit():
+                console.print(f"[red]Invalid KC format: {p}[/red]")
+                return
+            required_kcs.append(int(p))
+                
+    ensure_kc_index(db_path, index_path)
+    
+    conn = sqlite3.connect(index_path)
+    c = conn.cursor()
+    
+    # Construct Query
+    # Base
+    sql = "SELECT s.id, s.text, s.length FROM sentences s"
+    params = []
+    
+    # Joins for Required
+    for i, kc in enumerate(required_kcs):
+        alias = f"k{i}"
+        sql += f" JOIN kcs {alias} ON s.id = {alias}.sentence_id AND {alias}.kc_id = ?"
+        params.append(kc)
+        
+    # Validations
+    wheres = []
+    
+    # Forbidden
+    if forbidden_kcs:
+        placeholders = ",".join("?" * len(forbidden_kcs))
+        wheres.append(f"NOT EXISTS (SELECT 1 FROM kcs kn WHERE s.id = kn.sentence_id AND kn.kc_id IN ({placeholders}))")
+        params.extend(forbidden_kcs)
+        
+    if wheres:
+        sql += " WHERE " + " AND ".join(wheres)
+        
+    # LIMIT 20000 to find strictly increasing lengths
+    sql += " ORDER BY s.length ASC LIMIT 20000"
+    
+    # console.print(f"[dim]SQL: {sql} | Params: {params}[/dim]")
+    
+    c.execute(sql, params)
+    rows = c.fetchall()
+    conn.close()
+    
+    # Filter for increasing lengths
+    final_rows = []
+    current_max_len = 4 # Start looking for length > 4 (i.e. 5)
+    for r in rows:
+        length = r[2] # Index 2 is length now (id, text, length)
+        if length > current_max_len:
+            final_rows.append(r)
+            current_max_len = length
+            if len(final_rows) >= 10:
+                break
+    
+    # Display
+    from rich.table import Table
+    from collections import Counter
+    from kotogram.analysis import grammars
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser, KotogramFormat
+    
+    if not final_rows:
+         table = Table(title=f"Matches for {query} (Increasing Length)")
+         table.add_column("Sentence", style="blue")
+         table.add_column("Length", justify="right")
+         table.add_row("(No matches found)", "")
+         console.print(table)
+         return
+
+    # Fetch KCs via Inference (for weights)
+    # final_rows is list of (id, text, length)
+    texts = [r[1] for r in final_rows]
+    found_ids = [r[0] for r in final_rows]
+    
+    # Tokenize
+    parser = SudachiJapaneseParser()
+    kotograms = [parser.japanese_to_kotogram(t, KotogramFormat.TRAINING_MASK) for t in texts]
+    
+    # Inference
+    results = grammars(kotograms)
+    
+    # Organize Weights: sid -> {kcid: weight}
+    sent_weights = {}
+    all_found_kcs = []
+    
+    for r, res in zip(final_rows, results):
+        sid = r[0]
+        # res.kc_top is Dict[int, float]
+        weights = res.kc_top if res.kc_top else {}
+        sent_weights[sid] = weights
+        all_found_kcs.extend(weights.keys())
+
+    # Determine columns
+    # 1. Query KCs first
+    # 2. Round-Robin Lowest-Frequency Selection
+    
+    target_kcs = []
+    target_kcs.extend(sorted(list(required_kcs)))
+    target_kcs.extend(sorted(list(forbidden_kcs)))
+    
+    target_kc_set = set(target_kcs)
+    
+    # Global counts for uniqueness selection
+    counts = Counter(all_found_kcs)
+    
+    # Pre-calculate candidates for each sentence, sorted by rarity (asc freq)
+    sent_candidates = {}
+    for sid in found_ids:
+        weights = sent_weights.get(sid, {})
+        # Sort by frequency asc
+        candidates = sorted([(k, counts[k]) for k in weights.keys()], key=lambda x: x[1])
+        sent_candidates[sid] = [k for k, _ in candidates]
+        
+    # Round Robin to fill up to 24 columns
+    while len(target_kcs) < 24:
+        added_any = False
+        for sid in found_ids:
+            if len(target_kcs) >= 24:
+                break
+                
+            candidates = sent_candidates[sid]
+            # Find first candidate not in target_kcs
+            found_k = None
+            for k in candidates:
+                if k not in target_kc_set:
+                    found_k = k
+                    break
+            
+            if found_k is not None:
+                target_kcs.append(found_k)
+                target_kc_set.add(found_k)
+                added_any = True
+                
+        if not added_any:
+            break
+            
+    # Sort the grid KCs by Average Weight Descending (excluding Query KCs? Or all?)
+    # "Sort the columns by average weight descending".
+    # Query KCs should probably stay on left as anchor. Let's keep them separate.
+    # Actually user said "the columns", implies all.
+    # BUT keeping query on left is good for context.
+    # Let's keep Query KCs first, then sort the Discriminative ones.
+    
+    # Identify Discriminative vs Query
+    query_kc_set = set(required_kcs) | set(forbidden_kcs)
+    
+    discriminative_kcs = [k for k in target_kcs if k not in query_kc_set]
+    
+    # Calculate Avg Weight for Discriminative
+    def get_avg_weight(k):
+        total_w = 0
+        count = 0
+        for sid in found_ids:
+            weights = sent_weights.get(sid, {})
+            if k in weights:
+                total_w += weights[k]
+                count += 1 # Or divide by total rows? Avg over all rows or just present?
+                # "Average weight" usually implies over the dataset.
+        return total_w / len(final_rows)
+        
+    discriminative_kcs.sort(key=get_avg_weight, reverse=True)
+    
+    # Reassemble Target: Query + Sorted Discriminative
+    # Wait, we need to respect the original target_kcs list which has Query first?
+    # Yes, target_kcs was built as [Query...] + [RoundRobin...].
+    # But RoundRobin order was arbitrary (uniqueness). Sorting by weight improves it.
+    
+    # Re-build target_kcs
+    # 1. Query KCs (Sorted)
+    sorted_query = sorted(list(query_kc_set))
+    # 2. Discriminative (Sorted by Weight)
+    final_target = []
+    # Add Query KCs present in target_kcs (to respect any filtering)
+    # Actually all query KCs were added.
+    final_target.extend(sorted_query) 
+    final_target.extend(discriminative_kcs)
+    
+    # Footer Optimization: Separate uniform columns
+    grid_kcs = []
+    common_kcs = []
+    absent_kcs = []
+    
+    for kc in final_target:
+        # Check presence in all rows
+        present_count = 0
+        for sid in found_ids:
+            weights = sent_weights.get(sid, {})
+            if kc in weights and weights[kc] > 0:
+                present_count += 1
+                
+        if present_count == len(final_rows):
+            common_kcs.append(kc)
+        elif present_count == 0:
+            absent_kcs.append(kc)
+        else:
+            grid_kcs.append(kc)
+            
+    # Calculate Column Means (On vs Off) for Footer
+    kc_stats = {}
+    for kc in grid_kcs:
+        on_weights = []
+        off_weights = []
+        for sid in found_ids:
+            weights = sent_weights.get(sid, {})
+            if kc in weights:
+                on_weights.append(weights[kc])
+            else:
+                off_weights.append(0.0)
+                
+        mean_on = sum(on_weights) / len(on_weights) if on_weights else 0.0
+        mean_off = sum(off_weights) / len(off_weights) if off_weights else 0.0
+        kc_stats[kc] = (mean_on, mean_off)
+
+    # Format Helper
+    def fmt_w(val):
+        s = f"{val:.2f}"
+        if s.startswith("0."):
+            return s[1:] # .95
+        if s == "0.00":
+            return ".00"
+        return s
+
+    # Create Table
+    # Optimized for horizontal density: No "Len" column, compact KC headers, minimal padding
+    # show_footer=True is default if footers are present
+    table = Table(title=f"Matches for {query} (Increasing Length) - KC Indicators", box=None, padding=(0, 1), collapse_padding=True, show_footer=True)
+    
+    table.add_column("Sentence", style="blue", footer="Mean +\nMean -")
+    # table.add_column("Len", justify="right") # Removed per request
+    
+    for kc in grid_kcs:
+        m_on, m_off = kc_stats[kc]
+        footer_txt = f"{fmt_w(m_on)}\n{fmt_w(m_off)}"
+        table.add_column(str(kc), justify="center", footer=footer_txt)
+        
+    for r in final_rows:
+        sid, text, length = r
+        row_cells = [text]
+        
+        weights = sent_weights.get(sid, {})
+        
+        for kc in grid_kcs:
+            if kc in weights and weights[kc] > 0:
+                # Revert to checkmark
+                row_cells.append("[bold green]✔[/bold green]")
+            else:
+                row_cells.append("[grey70]-[/grey70]")
+                
+        table.add_row(*row_cells)
+        
+    # Use a wide console to prevent truncation
+    wide_console = Console(width=2000)
+    wide_console.print(table)
+
+    # Print Footers (Common/Absent only)
+    if common_kcs:
+        console.print(f"[bold green]Common (+):[/bold green] {', '.join(map(str, common_kcs))}")
+    if absent_kcs:
+        console.print(f"[grey70]Absent (-): {', '.join(map(str, absent_kcs))}[/grey70]")
 
 
 
@@ -641,7 +1056,7 @@ def curate_contrast_sentences(sentences: List[str]):
     
     # Display
     table = Table(title="Contrast Sentences (Sentences x KCs)")
-    table.add_column("Sentence", justify="left", style="bold blue")
+    table.add_column("Sentence", justify="left", style="bold blue", min_width=20)
     
     # Add KC columns
     for kc_id, _ in kc_list:
@@ -658,7 +1073,9 @@ def curate_contrast_sentences(sentences: List[str]):
                 row_cells.append("[grey70]-[/grey70]")
         table.add_row(*row_cells)
         
-    console.print(table)
+    # Use a wide console to prevent column truncation
+    wide_console = Console(width=2000)
+    wide_console.print(table)
 
 
 
@@ -923,6 +1340,12 @@ def main():
     parser_contrast_s = subparsers.add_parser("contrast-sentences", help="Contrast multiple sentences")
     parser_contrast_s.add_argument("sentences", nargs="+", help="Sentences to compare")
 
+    # Find matches command
+    parser_find = subparsers.add_parser("find-kc-matches", help="Find sentences matching KC query")
+    parser_find.add_argument("query", help="KC Query (e.g. +458,-964)")
+    parser_find.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
+    parser_find.add_argument("--index-path", default="data/corpus-kc-index.db", help="Path to index db")
+
     # Compress command
     compress_parser = subparsers.add_parser("compress", help="Vacuum the database")
     compress_parser.add_argument("--db-path", default="data/corpus.db", help="Path to database")
@@ -944,6 +1367,8 @@ def main():
 
     elif args.command == "contrast-sentences":
         curate_contrast_sentences(args.sentences)
+    elif args.command == "find-kc-matches":
+        curate_find_kc_matches(args.query, args.db_path, args.index_path)
 
 
 if __name__ == "__main__":
