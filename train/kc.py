@@ -14,7 +14,6 @@ KC_POS_BIASED_WINDOW = 5
 
 DEFAULT_HASH_BUCKET_SIZE = 16384
 
-
 class KcFamilyId(str, Enum):
     """Canonical opaque IDs for all KC families."""
 
