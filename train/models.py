@@ -6,16 +6,19 @@ import torch
 from torch import nn
 
 from kotogram.model import ModelConfig, StyleClassifier
+from train.kc import KcFamilyId
 
 
 class KCDecoder(nn.Module):
     """Decoder for predicting sentence-level attributes from KC activations."""
 
-    def __init__(self, kc_vocab_size: int, target_specs: Dict[str, int]):
+    def __init__(self, kc_vocab_size: int, target_specs: Dict[KcFamilyId, int]):
         super().__init__()
         self.decoders = nn.ModuleDict()
-        for name, vocab_size in target_specs.items():
-            self.decoders[name] = nn.Linear(kc_vocab_size, vocab_size)
+        for fid, vocab_size in target_specs.items():
+            # nn.ModuleDict requires string keys
+            # Note: vocab_size varies (actual size for dense, DEFAULT_HASH_BUCKET_SIZE for sparse)
+            self.decoders[fid.name.lower()] = nn.Linear(kc_vocab_size, vocab_size)
 
     def forward(self, kc_activations: torch.Tensor) -> Dict[str, torch.Tensor]:
         return {
@@ -26,10 +29,20 @@ class KCDecoder(nn.Module):
 class StyleClassifierWithKC(StyleClassifier):
     """Multi-task style classifier with KC pretraining support."""
 
-    def __init__(self, config: ModelConfig):
+    def __init__(
+        self,
+        config: ModelConfig,
+        kc_target_specs: Optional[Dict[KcFamilyId, int]] = None,
+    ):
         super().__init__(config)
-        if config.kc_enabled:
-            self.kc_decoders = KCDecoder(config.kc_vocab_size, config.kc_target_specs)
+        assert config.kc_enabled, (
+            "StyleClassifierWithKC requires config.kc_enabled=True"
+        )
+
+        if kc_target_specs is None:
+            kc_target_specs = {}
+
+        self.kc_decoders = KCDecoder(config.kc_vocab_size, kc_target_specs)
 
     def forward(
         self,

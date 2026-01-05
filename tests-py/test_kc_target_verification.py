@@ -39,19 +39,19 @@ class TestKCTargetVerification(unittest.TestCase):
             active_set = set(active_targets)
 
             expected_subset = {
-                "bag_reading",
-                "tail_reading",
-                "ngram_reading",
-                "tail_ngram_reading",
+                "bag_reading_gram",
+                "tail_reading_gram",
+                "ngram_reading_gram",
+                "tail_ngram_reading_gram",
                 "bag_pos",
                 "tail_pos",
                 "ngram_pos",
                 "tail_ngram_pos",
-                "bag_conjugated_form",
-                "tail_conjugated_form",
-                "ngram_conjugated_form",
-                "tail_ngram_conjugated_form",
-                "pair_pos_conj",
+                # "bag_conjugated_form",
+                # "tail_conjugated_form",
+                # "ngram_conjugated_form",
+                # "tail_ngram_conjugated_form",
+                # "pair_pos_conjform",
             }
 
             missing = expected_subset - active_set

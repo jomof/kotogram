@@ -6,6 +6,7 @@ import torch.nn.functional as F
 
 from kotogram.model import ModelConfig
 from kotogram.tokenizer import FEATURE_FIELDS
+from train.kc import KcFamilyId
 from train.trainer import StyleClassifierWithKC
 
 
@@ -136,7 +137,8 @@ def test_negative_sampling_logic():
     # Check that we have roughly neg_count + num_pos active
     # (Could be less if collision)
     active_0 = mask[0].sum().item()
-    assert neg_count <= active_0 <= neg_count + 1  # +1 for positive
+    # Relaxed check for collisions (randint is with replacement)
+    assert neg_count - 3 <= active_0 <= neg_count + 1  # Allow for collisions
 
     # Verify we can compute loss
     loss = F.binary_cross_entropy_with_logits(logits[mask], targets[mask])
@@ -570,50 +572,57 @@ def test_nan_guard_grad_skip_pattern():
 # =============================================================================
 
 
-def test_create_kc_batch_dense_for_small_heads():
-    """Test create_kc_batch returns dense targets for small heads (vocab <= 4096)."""
-    from train.trainer import create_kc_batch
+def test_create_kc_batch_sparse_for_small_heads():
+    """Test create_kc_batch returns sparse indices even for small heads (vocab <= 4096)."""
+    from train.dataset import create_kc_batch
 
     batch = unittest.mock.Mock()
     batch.feature_inputs = {
-        "input_ids_lemma": torch.tensor([[4, 5, 6, 0], [10, 11, 0, 0]]),
+        "input_ids_pos": torch.tensor([[4, 5, 6, 0], [10, 11, 0, 0]]),
     }
     batch.attention_mask = torch.tensor([[1, 1, 1, 0], [1, 1, 0, 0]])
-    batch.kc_targets = [{"lemma": [4, 5, 6]}, {"lemma": [10, 11]}]
-    target_specs = {"lemma": 100}  # Small head: 100 < 4096
+    batch.kc_targets = [{KcFamilyId.BAG_POS: [4, 5, 6]}, {KcFamilyId.BAG_POS: [10, 11]}]
+    target_specs = {KcFamilyId.BAG_POS: 100}  # Small head: 100 < 4096
 
     tokenizer = unittest.mock.Mock(pad_id=0, unk_id=1, cls_id=2)
     result = create_kc_batch(batch, tokenizer, target_specs)
 
-    assert "kc_targets_lemma" in result
-    assert result["kc_targets_lemma"].shape == (2, 100)
-    # Check multi-hot encoding
-    assert result["kc_targets_lemma"][0, 5] == 1.0
-    assert result["kc_targets_lemma"][0, 6] == 1.0
+    assert f"kc_pos_inds_{KcFamilyId.BAG_POS.name.lower()}" in result
+    assert f"kc_pos_mask_{KcFamilyId.BAG_POS.name.lower()}" in result
+
+    # Check sparse indices
+    inds = result[f"kc_pos_inds_{KcFamilyId.BAG_POS.name.lower()}"]
+    # Should contain [4, 5, 6] for first item
+    assert (inds[0] == 4).any()
+    assert (inds[0] == 5).any()
+    assert (inds[0] == 6).any()
+
+    mask = result[f"kc_pos_mask_{KcFamilyId.BAG_POS.name.lower()}"]
+    assert mask[0].sum() == 3
 
 
 def test_create_kc_batch_sparse_for_large_heads():
     """Test create_kc_batch returns sparse indices for large heads (vocab > 4096)."""
-    from train.trainer import create_kc_batch
+    from train.dataset import create_kc_batch
 
     batch = unittest.mock.Mock()
     batch.feature_inputs = {
-        "input_ids_lemma": torch.tensor([[4, 5, 6, 0], [10, 11, 0, 0]]),
+        "input_ids_pos": torch.tensor([[4, 5, 6, 0], [10, 11, 0, 0]]),
     }
     batch.attention_mask = torch.tensor([[1, 1, 1, 0], [1, 1, 0, 0]])
-    batch.kc_targets = [{"lemma": [4, 5, 6]}, {"lemma": [10, 11]}]
-    target_specs = {"lemma": 10000}  # Large head: 10000 > 4096
+    batch.kc_targets = [{KcFamilyId.BAG_POS: [4, 5, 6]}, {KcFamilyId.BAG_POS: [10, 11]}]
+    target_specs = {KcFamilyId.BAG_POS: 10000}  # Large head: 10000 > 4096
 
     tokenizer = unittest.mock.Mock(pad_id=0, unk_id=1, cls_id=2)
     result = create_kc_batch(batch, tokenizer, target_specs)
 
     # Should have sparse indices, not dense
-    assert "kc_targets_lemma" not in result
-    assert "kc_pos_inds_lemma" in result
-    assert "kc_pos_mask_lemma" in result
+    assert f"kc_targets_{KcFamilyId.BAG_POS.name.lower()}" not in result
+    assert f"kc_pos_inds_{KcFamilyId.BAG_POS.name.lower()}" in result
+    assert f"kc_pos_mask_{KcFamilyId.BAG_POS.name.lower()}" in result
 
-    pos_inds = result["kc_pos_inds_lemma"]
-    pos_mask = result["kc_pos_mask_lemma"]
+    pos_inds = result[f"kc_pos_inds_{KcFamilyId.BAG_POS.name.lower()}"]
+    pos_mask = result[f"kc_pos_mask_{KcFamilyId.BAG_POS.name.lower()}"]
 
     # Check shapes
     assert pos_inds.shape[0] == 2  # batch size

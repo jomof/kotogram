@@ -35,7 +35,7 @@ from train.io import (
     load_training_state,
     save_training_state,
 )
-from train.kc import SPARSE_FAMILY_PREFIXES
+from train.kc import SPARSE_FAMILY_NAMES, KcFamilyId
 from train.kc_diagnostics import (
     KCEpochDiag,
     assert_diagnostics_invariants,
@@ -472,10 +472,12 @@ class KCTrainer:
             kc_targets = create_kc_batch(
                 batch=batch,
                 tokenizer=self.dataset.tokenizer,
-                target_specs=m.config.kc_target_specs,
+                target_specs=self.config.kc_target_specs,
             )
 
-            for name, vocab_size in m.config.kc_target_specs.items():
+            for fid, vocab_size in self.config.kc_target_specs.items():
+                # fid is KcFamilyId
+                name = fid.name.lower()
                 dense_key = f"kc_targets_{name}"
                 mask_key = f"kc_pos_mask_{name}"
 
@@ -492,7 +494,10 @@ class KCTrainer:
                     biases.sums[name] = biases.sums.get(name, 0.0) + p
                     biases.counts[name] = biases.counts.get(name, 0) + 1
 
-        for name, _ in m.config.kc_target_specs.items():
+        for name_id, _ in self.config.kc_target_specs.items():
+            name = name_id.name.lower()
+            # Note: KCStructuralBiases implementation uses string keys currently, matching KCDecoder's ModuleDict.
+            # We must use strings here.
             if name not in sums or counts.get(name, 0) == 0:
                 continue
 
@@ -834,17 +839,17 @@ class KCTrainer:
             kc_targets = create_kc_batch(
                 batch=batch,
                 tokenizer=self.dataset.tokenizer,
-                target_specs=m.config.kc_target_specs,
+                target_specs=self.config.kc_target_specs,
             )
             # Ensure targets are on device (they come from CPU dataset/tokenizer)
             for k, v in kc_targets.items():
                 kc_targets[k] = v.to(self.device)
 
-            if m.config.kc_target_specs and not kc_targets and batch_idx == 0:
+            if self.config.kc_target_specs and not kc_targets and batch_idx == 0:
                 # One-off safety check (fails fast only on batch 0 to avoid noise if later batches are empty)
                 print(
                     f"[KC Warning] Batch 0 produced no KC targets despite configured specs. "
-                    f"Specs: {list(m.config.kc_target_specs.keys())}. "
+                    f"Specs: {list(self.config.kc_target_specs.keys())}. "
                     f"Features: {list(batch.feature_inputs.keys())}."
                 )
 
@@ -1131,7 +1136,7 @@ class KCTrainer:
                 target_logits = outputs["target_logits"]
 
                 if batch_idx == 0:
-                    if not m.config.kc_target_specs:
+                    if not self.config.kc_target_specs:
                         raise ValueError(
                             "kc_target_specs is empty! Model has no KC targets configured."
                         )
@@ -1168,7 +1173,7 @@ class KCTrainer:
 
                         msg = (
                             f"Loss Loop Failure: No target_logits keys match available kc_targets.\n"
-                            f"  Configured Specs: {list(m.config.kc_target_specs.keys())}\n"
+                            f"  Configured Specs: {list(self.config.kc_target_specs.keys())}\n"
                             f"  Batch Features: {list(batch.feature_inputs.keys())}\n"
                             f"  KC Targets Keys: {tgt_keys[:20]}...\n"
                         )
@@ -1208,8 +1213,8 @@ class KCTrainer:
                                 outputs["sparse_activations"],
                                 outputs["target_logits"],
                                 kc_targets,
-                                m.config.kc_topk,
-                                m.config.kc_vocab_size,
+                                int(m.config.kc_topk),
+                                int(m.config.kc_vocab_size),
                                 self.device,
                                 pos_weight_cap=self.kc_pos_weight_cap,
                                 pos_weight_eps=self.kc_pos_weight_eps,
@@ -1379,14 +1384,20 @@ class KCTrainer:
                 label_loss = torch.tensor(0.0, device=self.device)
                 num_label = 0
 
-                for name, logits in target_logits.items():
-                    target_key = f"kc_targets_{name}"
+                for fid, vocab_size in self.config.kc_target_specs.items():
+                    name = fid.name.lower()
+                    dense_key = f"kc_targets_{name}"
                     pos_key = f"kc_pos_inds_{name}"
                     mask_key = f"kc_pos_mask_{name}"
-                    vocab_size = int(m.config.kc_target_specs.get(name, 0))
 
-                    if target_key in kc_targets:
-                        targets = kc_targets[target_key].to(self.device).float()
+                    # Retrieve logits for this family from the outputs
+                    logits = target_logits.get(name)
+                    if logits is None:
+                        # This family might not have logits in the current batch, skip
+                        continue
+
+                    if dense_key in kc_targets:
+                        targets = kc_targets[dense_key].to(self.device).float()
                         logits_f = logits.float()
 
                         batch_size_f, vocab_size_f = logits_f.shape
@@ -2097,7 +2108,7 @@ class KCTrainer:
 
             # 3. Family Whitelisting & Epoch Gating
             # is_dense = fam_name in DENSE_FAMILIES (Unused, removed)
-            is_sparse = fam_name.startswith(SPARSE_FAMILY_PREFIXES)
+            is_sparse = fam_name in SPARSE_FAMILY_NAMES
 
             if fail_msg:
                 # Sparse families: Warn only if thawed + 1 epoch (conservative proxy for sampling check)
@@ -3046,11 +3057,12 @@ class Trainer:
         kc_targets = create_kc_batch(
             batch, self.val_dataset.tokenizer, config.target_specs
         )
-        for head_name in acc.head_samples:
+        for fid in acc.head_samples:
+            head_name = fid.name.lower()
             if head_name not in outputs["target_logits"]:
                 continue
             logits_h = outputs["target_logits"][head_name]
-            hs = acc.head_samples[head_name]
+            hs = acc.head_samples[fid]
             self._update_single_head_stats(head_name, logits_h, kc_targets, hs, config)
 
     def _update_single_head_stats(
@@ -3262,13 +3274,15 @@ class Trainer:
             tau_usage=tau_usage,
             vocab_size=int(m.config.kc_vocab_size),
             topk=int(m.config.kc_topk),
-            target_specs=m.config.kc_target_specs,
+            target_specs=self.config.kc_target_specs,
             max_samples_per_head=2000,
         )
 
-        probe_heads = ["lemma", "pos", "conjugated_form", "conjugated_type"]
-        head_samples: Dict[str, KCDiagnosticHeadStats] = {
-            h: KCDiagnosticHeadStats() for h in probe_heads if h in config.target_specs
+        # probe_heads were strings. Now we need IDs.
+        # But we only want to probe specific ones?
+        # Let's probe all active in target_specs
+        head_samples: Dict[KcFamilyId, KCDiagnosticHeadStats] = {
+            h: KCDiagnosticHeadStats() for h in config.target_specs
         }
 
         acc = KCMetricsAccumulator(

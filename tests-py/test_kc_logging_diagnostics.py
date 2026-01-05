@@ -9,7 +9,13 @@ from torch import nn
 # pylint: disable=no-name-in-module
 from kotogram.model import ModelConfig
 from train import display
-from train.config import CheckpointConfig, DataLoaderConfig, KCConfig, TrainerConfig
+from train.config import (
+    CheckpointConfig,
+    DataLoaderConfig,
+    KCConfig,
+    KcFamilyId,
+    TrainerConfig,
+)
 from train.trainer import KCTrainer
 
 
@@ -29,12 +35,20 @@ class DiagMockBatch:
 
         self.register_labels = torch.zeros(attention_mask.size(0), 1)
         batch_size = attention_mask.size(0)
-        self.kc_targets = [{"dummy": []} for _ in range(batch_size)]
+        # Simulate list of Sample.kc_targets (Dict[KcFamilyId, List[int]])
+        self.kc_targets = [{KcFamilyId.BAG_POS: [0]} for _ in range(batch_size)]
+
+    def __getitem__(self, key):
+        return getattr(self, key)
 
 
 class MockDecoders(nn.Module):
     def forward(self, x):
-        return {"dummy": torch.zeros(x.size(0), 10, requires_grad=True)}
+        return {
+            KcFamilyId.BAG_POS.name.lower(): torch.zeros(
+                x.size(0), 10, requires_grad=True
+            )
+        }
 
 
 class MockModel(nn.Module):
@@ -93,7 +107,9 @@ class MockModel(nn.Module):
                 "topk_inds": topk_inds,
                 "sparse_activations": sparse,
                 "target_logits": {
-                    "dummy": torch.zeros(batch_size, 10, requires_grad=True)
+                    KcFamilyId.BAG_POS.name.lower(): torch.zeros(
+                        batch_size, 10, requires_grad=True
+                    )
                 },
                 "logits_usage": torch.zeros(batch_size, vocab_size, requires_grad=True),
             }
@@ -111,6 +127,7 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
             batch_size=3,
             device="cpu",
             checkpoint=CheckpointConfig(),
+            kc_target_specs={KcFamilyId.BAG_POS: 10},
         )
         self.dl_config = DataLoaderConfig(
             num_workers=0,
@@ -125,7 +142,6 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
             vocab_sizes={"surface": 100},
             kc_topk=10,
             kc_vocab_size=100,
-            kc_target_specs={"dummy": 10},
         )
         m_cfg.kc_temperature = 1.0
 

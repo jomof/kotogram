@@ -27,9 +27,21 @@ from train.config import (
     TrainerConfig,
 )
 from train.dataset import DatasetConfig, StyleDataset
-from train.io import save_model
+from train.io import (
+    save_model,
+)
+from train.kc import (
+    ALL_KC_FAMILIES,
+    DEFAULT_HASH_BUCKET_SIZE,
+    FAMILY_FEATURES,
+    FAMILY_IS_SPARSE,
+    KcFamilyId,
+)
 from train.models import StyleClassifierWithKC
-from train.profile import get_profile_dir, profiling_enabled
+from train.profile import (
+    get_profile_dir,
+    profiling_enabled,
+)
 from train.trainer import KCTrainer, Trainer
 from train.types import KCTrainingHistory, TrainingHistory
 
@@ -403,47 +415,29 @@ if __name__ == "__main__":
     # Initialize model if not already loaded from checkpoint
     if model is None:
         if model_config.kc_enabled:
-            # Populate KC target specs based on vocab availability (Implicit "All Targets" policy)
-            current_vocab_sizes = tokenizer.get_vocab_sizes()
-            kc_specs = {}
+            # 2. Build KC specification
+            kc_specs: Dict[KcFamilyId, int] = {}
+            # Default hash bucket size
+            v_size_default = DEFAULT_HASH_BUCKET_SIZE
 
-            # 1. Base Fields (Bag + Tail + Ngram)
-            # checking for "reading" and mapping to "bag_reading" is correct because
-            # dataset will alias "reading" -> "bag_reading_gram" if needed,
-            # but model spec "bag_reading" is what creates the decoder.
-            # Wait, dataset output keys are "kc_targets_bag_reading_gram".
-            # Trainer expects keys in batch to match keys in model.kc_target_specs?
-            # No, Trainer calculates losses for keys in `kc_losses` which comes from model forward.
-            # Model forward needs correct head names.
-            # Let's rely on the established naming convention from train/kc.py: "bag_{field}"
+            # Add all standard families (Dynamically from IntEnum)
+            targets = ALL_KC_FAMILIES
 
-            for field in [
-                "reading",
-                "pos",
-                "pos_detail1",
-                "conjugated_form",
-                "conjugated_type",
-            ]:
-                if field in current_vocab_sizes:
-                    v_size = current_vocab_sizes[field]
-                    kc_specs[f"bag_{field}"] = v_size
-                    kc_specs[f"tail_{field}"] = v_size
-                    kc_specs[f"ngram_{field}"] = (
-                        16384  # KC_HASH_BUCKETS constant, hardcoded for now or import
-                    )
-                    kc_specs[f"tail_ngram_{field}"] = 16384
+            # Use actual vocab sizes for dense families, hash bucket size for sparse.
+            current_vocabs = tokenizer.get_vocab_sizes()
 
-            # 2. Pairs
-            def add_pair(name: str, f1: str, f2: str) -> None:
-                if f1 in current_vocab_sizes and f2 in current_vocab_sizes:
-                    kc_specs[name] = 16384
+            for fid in targets:
+                if FAMILY_IS_SPARSE.get(fid, True):
+                    kc_specs[fid] = v_size_default
+                else:
+                    fname = FAMILY_FEATURES[fid]
+                    # Direct lookup now that we've populated the key
+                    kc_specs[fid] = current_vocabs.get(fname, v_size_default)
 
-            add_pair("pair_pos_conj", "pos", "conjugated_form")
-            add_pair("pair_pos1_conjform", "pos_detail1", "conjugated_form")
-            add_pair("pair_pos1_conjtype", "pos_detail1", "conjugated_type")
-
-            model_config.kc_target_specs = kc_specs
-            model = StyleClassifierWithKC(model_config)
+            trainer_config = dataclasses.replace(
+                trainer_config, kc_target_specs=kc_specs
+            )
+            model = StyleClassifierWithKC(model_config, kc_target_specs=kc_specs)
         else:
             model = StyleClassifier(model_config)
 

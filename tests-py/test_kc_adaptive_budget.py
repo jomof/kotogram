@@ -7,6 +7,7 @@ from torch import nn
 # pylint: disable=no-name-in-module
 from kotogram.model import ModelConfig
 from train.config import CheckpointConfig, DataLoaderConfig, KCConfig, TrainerConfig
+from train.kc import KcFamilyId
 from train.models import StyleClassifierWithKC
 from train.trainer import KCTrainer
 
@@ -26,7 +27,7 @@ class MockBatch:
         )
         self.register_labels = torch.zeros(attention_mask.size(0), 1)
         batch_size = attention_mask.size(0)
-        self.kc_targets = [{"dummy": []} for _ in range(batch_size)]
+        self.kc_targets = [{KcFamilyId.BAG_READING_GRAM: []} for _ in range(batch_size)]
 
 
 class MockModel(nn.Module):
@@ -73,7 +74,9 @@ class MockModel(nn.Module):
                 "topk_inds": topk_inds,
                 "sparse_activations": sparse,
                 "target_logits": {
-                    "dummy": torch.randn(batch_size, 10, requires_grad=True)
+                    KcFamilyId.BAG_READING_GRAM.name.lower(): torch.randn(
+                        batch_size, 10, requires_grad=True
+                    )
                 },
                 "logits_usage": torch.randn(batch_size, vocab_size, requires_grad=True),
             }
@@ -100,6 +103,7 @@ class TestKCAdaptiveBudget(unittest.TestCase):
             grad_accum_steps=1,
             device="cpu",
             checkpoint=CheckpointConfig(),
+            kc_target_specs={KcFamilyId.BAG_READING_GRAM: 10},
         )
         self.dl_config = DataLoaderConfig(
             num_workers=0, pin_memory=False, persistent_workers=False
@@ -111,7 +115,6 @@ class TestKCAdaptiveBudget(unittest.TestCase):
             vocab_sizes={"surface": 100},
             kc_topk=8,
             kc_vocab_size=100,
-            kc_target_specs={"dummy": 10},
         )
         model_config.kc_temperature = 1.0  # Needed by trainer
 

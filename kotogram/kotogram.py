@@ -29,12 +29,18 @@ from functools import lru_cache
 from typing import List, cast
 
 from kotogram.japanese_parser import (
+    POS_MAP,
     ConjugatedFormValue,
     ConjugatedTypeValue,
     PosDetail1Value,
     PosDetail2Value,
     PosDetail3Value,
     PosValue,
+)
+from kotogram.masking import (
+    GRAMMAR_POS_WHITELIST,
+    PRESERVED_READING_MASKS,
+    READING_MASK,
 )
 
 # Pre-compiled regex patterns for performance
@@ -60,6 +66,7 @@ class TokenFeatures:
     base_orth: str = ""
     lemma: str = ""
     reading: str = ""
+    reading_gram: str = ""
 
 
 class Token:
@@ -295,6 +302,7 @@ def extract_token_features(token: str) -> TokenFeatures:
     - ᵇ : Base
     - ᵈ : Lemma
     - ʳ : Reading
+    - ᵍ : Reading Gram (Explicit)
     """
 
     from .japanese_parser import (
@@ -320,7 +328,7 @@ def extract_token_features(token: str) -> TokenFeatures:
     feature = TokenFeatures()
 
     # Find marker indices
-    # Token structure is generally: ⌈ˢ...ᵖ...ᵇ...ᵈ...ʳ...⌉
+    # Token structure is generally: ⌈ˢ...ᵖ...ᵇ...ᵈ...ʳ...ᵍ...⌉
     # But some fields might be missing. The order is consistent.
 
     # ˢ Surface (always present in valid tokens)
@@ -338,18 +346,21 @@ def extract_token_features(token: str) -> TokenFeatures:
     idx_b = token.find("ᵇ", idx_s)
     idx_d = token.find("ᵈ", idx_s)
     idx_r = token.find("ʳ", idx_s)
+    idx_g = token.find("ᵍ", idx_s)
     idx_end = token.find("⌉", idx_s)
 
     # 1. Surface: ˢ to next marker
     start = idx_s + 1
-    next_indices = [i for i in [idx_p, idx_b, idx_d, idx_r, idx_end] if i >= start]
+    next_indices = [
+        i for i in [idx_p, idx_b, idx_d, idx_r, idx_g, idx_end] if i >= start
+    ]
     end = min(next_indices) if next_indices else len(token)
     feature.surface = token[start:end]
 
     # 2. POS: ᵖ to next marker
     if idx_p != -1:
         start = idx_p + 1
-        next_indices = [i for i in [idx_b, idx_d, idx_r, idx_end] if i >= start]
+        next_indices = [i for i in [idx_b, idx_d, idx_r, idx_g, idx_end] if i >= start]
         end = min(next_indices) if next_indices else len(token)
         pos_data = token[start:end]
 
@@ -394,14 +405,14 @@ def extract_token_features(token: str) -> TokenFeatures:
     # 3. Base: ᵇ to next marker
     if idx_b != -1:
         start = idx_b + 1
-        next_indices = [i for i in [idx_d, idx_r, idx_end] if i >= start]
+        next_indices = [i for i in [idx_d, idx_r, idx_g, idx_end] if i >= start]
         end = min(next_indices) if next_indices else len(token)
         feature.base_orth = token[start:end]
 
     # 4. Lemma: ᵈ to next marker
     if idx_d != -1:
         start = idx_d + 1
-        next_indices = [i for i in [idx_r, idx_end] if i >= start]
+        next_indices = [i for i in [idx_r, idx_g, idx_end] if i >= start]
         end = min(next_indices) if next_indices else len(token)
         feature.lemma = token[start:end]
         if feature.lemma == "*":
@@ -410,8 +421,30 @@ def extract_token_features(token: str) -> TokenFeatures:
     # 5. Reading: ʳ to next marker
     if idx_r != -1:
         start = idx_r + 1
-        next_indices = [i for i in [idx_end] if i >= start]
+        next_indices = [i for i in [idx_g, idx_end] if i >= start]
         end = min(next_indices) if next_indices else len(token)
         feature.reading = token[start:end]
+
+    # 6. Reading Gram: ᵍ to next marker
+    if idx_g != -1:
+        start = idx_g + 1
+        next_indices = [i for i in [idx_end] if i >= start]
+        end = min(next_indices) if next_indices else len(token)
+        feature.reading_gram = token[start:end]
+
+    # 7. Reading Gram (Derived from Reading if not present)
+    if not feature.reading_gram and feature.reading:
+        # Normalize POS for whitelist check
+        # POS_MAP keys are raw strings, feature.pos is a string (PosValue)
+        pos_str = str(feature.pos)
+        pos_norm = POS_MAP.get(pos_str, pos_str)
+
+        if pos_norm in GRAMMAR_POS_WHITELIST:
+            feature.reading_gram = feature.reading
+        elif feature.reading in PRESERVED_READING_MASKS:
+            feature.reading_gram = feature.reading
+        else:
+            feature.reading_gram = READING_MASK
+    # else: reading_gram remains default ("")
 
     return feature

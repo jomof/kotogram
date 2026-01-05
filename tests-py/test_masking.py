@@ -21,9 +21,13 @@ class TestMasking(unittest.TestCase):
             text, fmt=KotogramFormat.TRAINING_MASK
         )
 
-        # Check surface form in kotogram string
-        self.assertIn("ˢ<given-name>", kotogram)
-        self.assertNotIn("ˢ花子", kotogram)
+        # Check surface form in kotogram string (SHOULD BE PRESERVED)
+        self.assertIn("ˢ花子", kotogram)
+        self.assertNotIn("ˢ<given-name>", kotogram)
+        # Check reading form (SHOULD BE CLEARED) -> No "ʳ<given-name>"
+        self.assertNotIn("ʳ<given-name>", kotogram)
+        # Check reading_gram form (SHOULD BE PRESENT via ᵍ)
+        self.assertIn("ᵍ<given-name>", kotogram)
 
     def test_round_trip_masked(self):
         """Test round trip reconstruction of a masked sentence."""
@@ -33,7 +37,8 @@ class TestMasking(unittest.TestCase):
         )
         reconstructed = kotogram_to_japanese(kotogram)
 
-        self.assertEqual(reconstructed, "<given-name>が走る")
+        # Reconstructed text should use SURFACE, so it matches ORIGINAL text now
+        self.assertEqual(reconstructed, "花子が走る")
 
     def test_pos_consistency(self):
         """Test that the masked token retains the grammatical role of the original."""
@@ -54,8 +59,10 @@ class TestMasking(unittest.TestCase):
         masked_tokens = split_kotogram(masked_kotogram)
 
         # Identify the masked token (first one)
+        # Identify the masked token (first one)
         masked_features = extract_token_features(masked_tokens[0])
-        self.assertEqual(masked_features.surface, "<given-name>")
+        # Surface should be preserved
+        self.assertEqual(masked_features.surface, "花子")
 
         # 3. Assert POS tags are identical
         self.assertEqual(masked_features.pos, orig_features.pos)
@@ -64,14 +71,17 @@ class TestMasking(unittest.TestCase):
         # Note: pos_detail_3 should also be "given-name" for placeholder
         self.assertEqual(masked_features.pos_detail_3, orig_features.pos_detail_3)
 
-        # 4. Assert reading is stripped (defaults to empty string in TokenFeatures if missing)
+        # 4. Assert reading is CLEARED (empty)
         self.assertEqual(masked_features.reading, "")
+        # 5. Assert reading_gram is MASKED to <given-name>
+        self.assertEqual(masked_features.reading_gram, "<given-name>")
 
         # 5. Assert lemma is stripped (defaults to *)
         # Actually in kotogram parser: if feature.lemma == "*", it sets it to surface.
         # But here we want to assert the underlying token has lemma="*"
-        # Let's check the kotogram string for "ᵈ*"
-        self.assertIn("ᵈ*", masked_tokens[0])
+        # 6. Assert lemma is stripped (empty string, no marker)
+        self.assertEqual(masked_features.lemma, "")
+        self.assertNotIn("ᵈ", masked_tokens[0])
 
     def test_common_noun_not_masked(self):
         """Test that common nouns are NOT masked."""
@@ -97,7 +107,10 @@ class TestMasking(unittest.TestCase):
         )
 
         reconstructed = kotogram_to_japanese(kotogram)
-        self.assertEqual(reconstructed, "<given-name>と<given-name>が遊ぶ")
+        # Surface preserved
+        self.assertEqual(reconstructed, "花子と次郎が遊ぶ")
+        # Readings masked (no R marker, yes G marker)
+        self.assertIn("ᵍ<given-name>", kotogram)
 
     def test_merge_prevention(self):
         """Regression test for surnames merging (e.g. 渡辺太郎)."""
@@ -107,11 +120,14 @@ class TestMasking(unittest.TestCase):
             text, fmt=KotogramFormat.TRAINING_MASK
         )
 
-        # Verify surface replacement
-        self.assertIn("ˢ<surname>", kotogram)
-        self.assertIn("ˢ<given-name>", kotogram)
+        # Verify surface replacement (SHOULD BE PRESERVED)
+        self.assertIn("ˢ渡辺", kotogram)
+        self.assertIn("ˢ五郎", kotogram)
+        # Verify reading replacement (Cleared R, added G)
+        self.assertIn("ᵍ<surname>", kotogram)
+        self.assertIn("ᵍ<given-name>", kotogram)
         reconstructed = kotogram_to_japanese(kotogram)
-        self.assertEqual(reconstructed, "こちらは<surname><given-name>です。")
+        self.assertEqual(reconstructed, "こちらは渡辺五郎です。")
 
     def test_pos_stability(self):
         """Regression test for adjacent particle POS stability ('ka')."""
@@ -120,7 +136,9 @@ class TestMasking(unittest.TestCase):
             text, fmt=KotogramFormat.TRAINING_MASK
         )
         # Should not raise RuntimeError
-        self.assertIn("ˢ<given-name>", kotogram)
+        # Should not raise RuntimeError
+        self.assertIn("ˢ啓太", kotogram)
+        self.assertIn("ᵍ<given-name>", kotogram)
 
     def test_generic_person_masking(self):
         """Test masking of generic person names (no given/surname detail)."""
@@ -132,8 +150,9 @@ class TestMasking(unittest.TestCase):
         tokens = split_kotogram(kotogram)
         t0 = extract_token_features(tokens[0])
 
-        self.assertEqual(t0.surface, "<person-name>")
-        self.assertEqual(t0.lemma, "<person-name>")
+        self.assertEqual(t0.surface, "ジョン")
+        self.assertEqual(t0.reading, "")
+        self.assertEqual(t0.reading_gram, "<person-name>")
         self.assertEqual(t0.pos_detail_1, "proper-noun")
         self.assertEqual(t0.pos_detail_2, "person-name")
 
@@ -147,8 +166,9 @@ class TestMasking(unittest.TestCase):
         tokens = split_kotogram(kotogram)
         t0 = extract_token_features(tokens[0])
 
-        self.assertEqual(t0.surface, "<place-name>")
-        self.assertEqual(t0.lemma, "<place-name>")
+        self.assertEqual(t0.surface, "東京")
+        self.assertEqual(t0.reading, "")
+        self.assertEqual(t0.reading_gram, "<place-name>")
         self.assertEqual(t0.pos_detail_1, "proper-noun")
         self.assertEqual(t0.pos_detail_2, "place-name")
 
@@ -163,8 +183,9 @@ class TestMasking(unittest.TestCase):
         tokens = split_kotogram(kotogram)
         t0 = extract_token_features(tokens[0])
 
-        self.assertEqual(t0.surface, "<proper-noun>")
-        self.assertEqual(t0.lemma, "<proper-noun>")
+        self.assertEqual(t0.surface, "トヨタ")
+        self.assertEqual(t0.reading, "")
+        self.assertEqual(t0.reading_gram, "<proper-noun>")
         self.assertEqual(t0.pos_detail_1, "proper-noun")
 
     def test_strict_hierarchy_assertions(self):
@@ -224,9 +245,12 @@ class TestMasking(unittest.TestCase):
         # First token is 500
         t0_features = extract_token_features(tokens[0])
 
-        self.assertEqual(t0_features.surface, "<number>")
+        self.assertEqual(t0_features.surface, "500")
         # Parser replaces '*' lemma with surface
-        self.assertEqual(t0_features.lemma, "<number>")
+        # Parser replaces '*' lemma with surface
+        self.assertIn(t0_features.lemma, {"", "*"})
+        self.assertEqual(t0_features.reading, "")
+        self.assertEqual(t0_features.reading_gram, "<number>")
         self.assertEqual(t0_features.pos, "noun")
         self.assertEqual(t0_features.pos_detail_1, "numeral")
 

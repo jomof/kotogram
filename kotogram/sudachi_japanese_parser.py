@@ -229,6 +229,10 @@ class SudachiJapaneseParser(JapaneseParser):
         if pronunciation and pronunciation != surface:
             inner += f"ʳ{pronunciation}"
 
+        reading_gram = features.reading_gram
+        if reading_gram and not pronunciation:
+            inner += f"ᵍ{reading_gram}"
+
         # Obfuscate if enabled
         from kotogram.kotogram import obscure_kotogram_token_string
 

@@ -94,7 +94,7 @@ from train.binary_io import (
     write_float_array,
     write_int_array,
 )
-from train.kc import compute_kc_targets
+from train.kc import KcFamilyId, compute_kc_targets
 from train.profile import PhaseTimer, get_profile_dir
 from train.tsv import parse_tsv
 
@@ -158,7 +158,7 @@ def _build_and_save_vocab(
                 vocab[value] = len(vocab)
 
     # Ensure the <READING_MASK> sentinel is in the vocabulary so it gets a stable ID.
-    vocab_reading = tokenizer.field_vocabs["reading"]
+    vocab_reading = tokenizer.field_vocabs["reading_gram"]
     if "<READING_MASK>" not in vocab_reading:
         vocab_reading["<READING_MASK>"] = len(vocab_reading)
 
@@ -513,7 +513,8 @@ def _encode_shard_phase2(worker_id: int) -> None:
     offsets_buf: List[int] = [0]
     current_offset = 0
 
-    kc_buffers: Dict[str, Dict[str, Any]] = {}
+    # Buffer for KC targets (keyed by ID)
+    kc_buffers: Dict[KcFamilyId, Dict[str, Any]] = {}
 
     with open(koto_path, "r", encoding="utf-8") as f:
         for line in f:
@@ -541,10 +542,8 @@ def _encode_shard_phase2(worker_id: int) -> None:
                         feat_ids_map[field].append(fid)
 
             # Compute KC targets based on feature IDs.
-            # We pass the tokenizer so KC logic can derive reading_gram ids.
-            kc_targets = compute_kc_targets(
-                cast(Any, feat_ids_map), tokenizer=_TOKENIZER
-            )
+            # Compute KC targets based on feature IDs.
+            kc_targets = compute_kc_targets(cast(Any, feat_ids_map))
             for k_key, vals in kc_targets.items():
                 if k_key not in kc_buffers:
                     kc_buffers[k_key] = {"ids": [], "offsets": [0], "cur_off": 0}
@@ -572,13 +571,23 @@ def _encode_shard_phase2(worker_id: int) -> None:
         write_int_array(f_path, feat_buffers[field], "i")
 
     # Write KC target binaries.
-    for k_key, accum in kc_buffers.items():
+    # Write KC target binaries.
+
+    # Actually: I need to update the logic above to ensure kc_buffers uses string keys OR handle conversion here.
+    # The simplest is to convert to string (value) for file writing.
+
+    for k_key_obj, accum in kc_buffers.items():
+        # k_key_obj is KcFamilyId
+        k_key_str = (
+            k_key_obj.value if isinstance(k_key_obj, KcFamilyId) else str(k_key_obj)
+        )
+
         # Write the IDs and the Offsets for jagged access during training.
         write_int_array(
-            f"{shard_prefix}.{EXT_KC_PREFIX}{k_key}_ids.bin", accum["ids"], "i"
+            f"{shard_prefix}.{EXT_KC_PREFIX}{k_key_str}_ids.bin", accum["ids"], "i"
         )
         write_int_array(
-            f"{shard_prefix}.{EXT_KC_PREFIX}{k_key}_{EXT_OFFSETS}",
+            f"{shard_prefix}.{EXT_KC_PREFIX}{k_key_str}_{EXT_OFFSETS}",
             accum["offsets"],
             "i",
         )
