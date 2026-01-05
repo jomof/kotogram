@@ -82,10 +82,11 @@ class TestKCDenseTraining(unittest.TestCase):
             "kc_logits": torch.zeros(
                 (batch_size, 10), requires_grad=True
             ),  # irrelevant
-            "kc_logits_raw": torch.zeros(
-                (batch_size, 10), requires_grad=True
-            ),  # irrelevant
-            "kc_probs": torch.zeros((batch_size, 10), requires_grad=True),  # irrelevant
+            "kc_logits_raw": torch.zeros((batch_size, 10), requires_grad=True),
+            "kc_logits_effective": torch.zeros((batch_size, 10), requires_grad=True),
+            "kc_probs": torch.sigmoid(
+                torch.zeros((batch_size, 10), requires_grad=True)
+            ),
             "topk_vals": torch.zeros((batch_size, 5), requires_grad=True),
             "topk_inds": torch.zeros((batch_size, 5), dtype=torch.long),
             "sparse_activations": torch.zeros((batch_size, 10), requires_grad=True),
@@ -144,13 +145,17 @@ class TestKCDenseTraining(unittest.TestCase):
     def test_missing_topk_raises_error(self, _mock_kc_diag_cls, mock_create_batch):
         # Setup batch
         mock_create_batch.return_value = {}
-        self.mock_loader.__iter__.return_value = iter([MagicMock()])
+        batch = MagicMock()
+        batch.attention_mask = torch.ones(2, 5)
+        batch.feature_inputs = {}
         self.mock_loader.__len__.return_value = 1
+        self.mock_loader.__iter__.return_value = iter([batch])
 
         # Outputs missing topk_inds
         outputs = {
             "kc_logits_raw": torch.zeros((2, 10)),
-            "kc_probs": torch.zeros((2, 10)),
+            "kc_logits_effective": torch.zeros((2, 10)),
+            "kc_probs": torch.sigmoid(torch.zeros((2, 10))),
             # "topk_inds" is purposefully missing
             "topk_vals": torch.zeros((2, 5)),
             "target_logits": {},
@@ -170,8 +175,11 @@ class TestKCDenseTraining(unittest.TestCase):
         mock_diag_instance = MagicMock()
         mock_kc_diag_cls.return_value = mock_diag_instance
 
-        self.mock_loader.__iter__.return_value = iter([MagicMock()])
+        batch = MagicMock()
+        batch.attention_mask = torch.ones(2, 5)
+        batch.feature_inputs = {}
         self.mock_loader.__len__.return_value = 1
+        self.mock_loader.__iter__.return_value = iter([batch])
 
         # Force dense path
         self.model.config.kc_target_specs = {"dense": 500}
@@ -182,7 +190,8 @@ class TestKCDenseTraining(unittest.TestCase):
         outputs = {
             "kc_logits": torch.zeros((2, 10)),
             "kc_logits_raw": torch.zeros((2, 10)),
-            "kc_probs": torch.zeros((2, 10)),
+            "kc_logits_effective": torch.zeros((2, 10)),
+            "kc_probs": torch.sigmoid(torch.zeros((2, 10))),
             "topk_inds": torch.zeros((2, 5), dtype=torch.long),
             "topk_vals": torch.zeros((2, 5)),
             "sparse_activations": torch.zeros((2, 10)),

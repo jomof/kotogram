@@ -41,7 +41,7 @@ class StyleClassifierWithKC(StyleClassifier):
             return self.forward_kc(*args, **kwargs)
         return super().forward(*args, **kwargs)
 
-    # pylint: disable=too-many-locals,too-many-positional-arguments
+    # pylint: disable=too-many-locals,too-many-positional-arguments,too-many-arguments
     def forward_kc(
         self,
         field_inputs: Dict[str, torch.Tensor],
@@ -49,6 +49,8 @@ class StyleClassifierWithKC(StyleClassifier):
         temperature: Optional[float] = None,
         gumbel_scale: Optional[float] = None,
         grad_cap: Optional[float] = None,
+        k_budget: Optional[torch.Tensor] = None,
+        long_sentence_mask: Optional[torch.Tensor] = None,
     ) -> Dict[str, Any]:
         pooled = self._get_pooled_output(field_inputs, attention_mask)
 
@@ -87,23 +89,65 @@ class StyleClassifierWithKC(StyleClassifier):
         logits_usage = kc_logits_raw.clamp(min=-8.0, max=8.0)
 
         # Compute probs from (possibly noisy) logits
-        cur_temp = (
+        cur_temp = float(
             temperature
             if temperature is not None
             else getattr(self.config, "kc_temperature", 1.0)
         )
-        kc_probs = torch.sigmoid(logits_select / cur_temp)
+        kc_logits_effective = logits_select / cur_temp
+        kc_probs = torch.sigmoid(kc_logits_effective)
+
+        # Long-Sentence Coverage Protection (Training Only)
+        if (
+            self.training
+            and long_sentence_mask is not None
+            and long_sentence_mask.any()
+        ):
+            if long_sentence_mask.device != kc_probs.device:
+                long_sentence_mask = long_sentence_mask.to(kc_probs.device)
+
+            # Check top-1 dominance on long sentences
+            # Check max prob
+            max_probs = kc_probs.max(dim=-1)[0]
+            violation_mask = (max_probs > 0.85) & long_sentence_mask
+
+            if violation_mask.any():
+                # Re-normalize with higher temperature for these rows
+                # Factor 1.5x temperature boost for violated rows
+                boosted_temp = cur_temp * 1.5
+                improved_logits = logits_select[violation_mask]
+                kc_logits_effective = kc_logits_effective.clone()
+                kc_logits_effective[violation_mask] = improved_logits / boosted_temp
+                kc_probs = kc_probs.clone()
+                kc_probs[violation_mask] = torch.sigmoid(
+                    kc_logits_effective[violation_mask]
+                )
 
         # Round 12: Guard against any non-finite values before topk
         kc_probs = torch.nan_to_num(kc_probs, nan=0.0, posinf=1.0, neginf=0.0)
 
+        # Determine K
+        if k_budget is not None:
+            # Variable k: take max required k for the batch
+            k = int(k_budget.max().item())
+        else:
+            k = getattr(self.config, "kc_topk", 8)
+
         # Get top-k
-        k = getattr(self.config, "kc_topk", 8)
         topk_vals, topk_inds = torch.topk(kc_probs, k, dim=-1)
 
-        # Round 14: Clamp topk_vals to 0.80 (Hard ceiling on confidence)
-        # This prevents deterministic "locking" where a KC gets 1.0 and stops exploring.
-        topk_vals = topk_vals.clamp(max=0.80)
+        # Apply per-sample budget masking if variable k
+        if k_budget is not None:
+            # Create mask: (B, K)
+            col_indices = torch.arange(k, device=topk_vals.device).unsqueeze(0)
+            budget_mask = col_indices < k_budget.unsqueeze(1)
+
+            # Zero out values beyond budget
+            topk_vals = topk_vals * budget_mask.float()
+            # Note: topk_inds beyond budget are technically invalid/pad.
+
+        # Removed: topk_vals.clamp(max=0.80) to separate presence from strength
+        # and allow natural activation range.
 
         # Create sparse activation (everything else zero)
         # We start with zeros and scatter the top-k values back
@@ -115,6 +159,7 @@ class StyleClassifierWithKC(StyleClassifier):
         return {
             "kc_logits": kc_logits,
             "kc_logits_raw": kc_logits_raw,
+            "kc_logits_effective": kc_logits_effective,
             "logits_usage": logits_usage,  # Round 14: Passed for use in train_epoch
             "kc_probs": kc_probs,
             "sparse_activations": sparse_activations,

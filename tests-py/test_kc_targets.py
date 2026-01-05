@@ -211,6 +211,70 @@ class TestKCTargets(unittest.TestCase):
         derived_no_unk = derive_reading_gram_ids(test_ids_jp, mock_tokenizer_no_unk)
         self.assertEqual(derived_no_unk, [0, 0])
 
+    def test_preserved_masks(self):
+        """Verify that specific masking tokens (surname, number, etc.) are preserved."""
+        from unittest.mock import MagicMock
+
+        from train.kc import derive_reading_gram_ids
+
+        mock_tokenizer = MagicMock()
+        mock_tokenizer.get_id.return_value = 999
+        mock_tokenizer._rev_pos_cache = None  # pylint: disable=protected-access
+
+        # "noun" and "numeral" are NOT in GRAMMAR_POS_WHITELIST
+        mock_tokenizer.field_vocabs = {
+            "pos": {"noun": 1, "numeral": 2},
+            "reading": {
+                "<READING_MASK>": 999,
+                "<surname>": 101,
+                "<given-name>": 102,
+                "<number>": 103,
+                "generic_reading": 200,
+            },
+        }
+
+        # 1. Noun with <surname> (101) -> Should be preserved
+        # 2. Noun with <given-name> (102) -> Should be preserved
+        # 3. Numeral with <number> (103) -> Should be preserved
+        # 4. Noun with generic reading (200) -> Should be masked to 999
+        feature_ids = {"pos": [1, 1, 2, 1], "reading": [101, 102, 103, 200]}
+
+        derived = derive_reading_gram_ids(feature_ids, mock_tokenizer)
+
+        self.assertEqual(derived[0], 101, "Should preserve <surname>")
+        self.assertEqual(derived[1], 102, "Should preserve <given-name>")
+        self.assertEqual(derived[2], 103, "Should preserve <number>")
+        self.assertEqual(derived[3], 999, "Should mask generic noun reading")
+
+    def test_get_kc_pos_indices_variations(self):
+        """Vary field and vocab_size in _get_kc_pos_indices."""
+        # pylint: disable=import-private-name
+        from train.dataset import _get_kc_pos_indices
+
+        kc_targets = [{"reading": [1, 2]}, {"pos": [3, 4]}]
+        device = torch.device("cpu")
+        special_ids = {0}
+
+        # 1. Vary field 'pos'
+        inds, mask = _get_kc_pos_indices(
+            kc_targets,
+            field="pos",
+            vocab_size=100,
+            device=device,
+            special_ids=special_ids,
+        )
+        # Should match index 1
+        self.assertEqual(inds[1, 0], 3)
+        self.assertEqual(mask[1, 0], True)
+        self.assertEqual(inds[0, 0], 0)  # field not in dict 0
+        self.assertEqual(mask[0, 0], False)  # empty
+
+        # 2. Vary vocab_size
+        inds_v, _ = _get_kc_pos_indices(
+            kc_targets, "reading", vocab_size=50, device=device, special_ids=special_ids
+        )
+        self.assertEqual(inds_v[0, 0], 1)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -188,6 +188,39 @@ class TestDataFlow(unittest.TestCase):
         collated3 = collate_fn(batch3, max_seq_len=2)
         self.assertEqual(collated3.feature_inputs["input_ids_surface"].shape[0], 3)
 
+    def test_filter_by_grammaticality_label(self):
+        """Vary label in filter_by_grammaticality."""
+        from train.dataset import StyleDataset
+
+        # Setup dataset with mocked I/O helper methods
+        # Setup dataset with mocked I/O helper methods
+        with (
+            unittest.mock.patch.object(
+                StyleDataset, "_check_exists", return_value=True
+            ),
+            unittest.mock.patch.object(StyleDataset, "_get_size", return_value=40),
+            unittest.mock.patch.object(
+                StyleDataset,
+                "_load_tensor",
+                return_value=torch.zeros(10, dtype=torch.int32),
+            ),
+        ):
+            dataset = StyleDataset(
+                "dummy_path", unittest.mock.MagicMock(), indices=torch.arange(10)
+            )
+            # dataset.labels["gram"] needs to exist
+            dataset.labels = {"gram": torch.randint(0, 3, (10,))}
+            dataset.features = {}
+            dataset.offsets = {}
+            dataset.kc_maps = {}
+            dataset.data_dir = "dummy_path"
+
+            # Filter for unlikely label 2
+            ds_2 = dataset.filter_by_grammaticality(label=2)
+            # Check filtered indices logic
+            expected = dataset.indices[dataset.labels["gram"][dataset.indices] == 2]
+            self.assertTrue(torch.equal(ds_2.indices, expected))
+
 
 if __name__ == "__main__":
     unittest.main()

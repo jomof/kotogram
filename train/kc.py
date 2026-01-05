@@ -1,6 +1,6 @@
 """KC target computation logic."""
 
-from typing import Any, Dict, List, Optional, Sequence, Union
+from typing import Any, Dict, List, Optional, Sequence, Set, Union
 
 import torch
 
@@ -11,6 +11,8 @@ from kotogram.japanese_parser import POS_MAP
 KC_HASH_BUCKETS = 16384
 KC_NGRAM_ORDER = 3
 KC_POS_BIASED_WINDOW = 5
+
+SPARSE_FAMILY_PREFIXES = ("ngram_", "tail_ngram_", "pair_")
 
 # Verification Checklist:
 # - Verify label.py Phase 1 injects "<READING_MASK>" into reading vocabulary
@@ -79,6 +81,48 @@ GRAMMAR_POS_WHITELIST = {
     "conj",
 }
 
+# Reading masks that should be preserved even if POS is masked.
+# These represent specific semantic categories (e.g. names, numbers)
+# that we want to distinguish in the reading grammar.
+PRESERVED_READING_MASKS = {
+    "<proper-noun>",
+    "<person-name>",
+    "<given-name>",
+    "<surname>",
+    "<place-name>",
+    "<country>",
+    "<number>",
+}
+
+
+def _get_preserved_mask_ids(tokenizer: Any) -> Set[int]:
+    """Helper to get IDs for preserved masks."""
+    ids = set()
+    if "reading" in tokenizer.field_vocabs:
+        reading_vocab = tokenizer.field_vocabs["reading"]
+        for mask_str in PRESERVED_READING_MASKS:
+            if mask_str in reading_vocab:
+                ids.add(reading_vocab[mask_str])
+    return ids
+
+
+def _get_rev_pos_map(tokenizer: Any) -> Dict[int, str]:
+    """Get efficient reverse lookup for POS strings with caching."""
+    pos_vocab = tokenizer.field_vocabs.get("pos", {})
+    ids = pos_vocab.values()
+    fp = (
+        len(pos_vocab),
+        max(ids, default=-1),
+        sum(ids) if pos_vocab else 0,
+    )
+    if getattr(tokenizer, "_rev_pos_cache_fingerprint", None) != fp:
+        rev_pos = {v: k for k, v in pos_vocab.items()}
+        setattr(tokenizer, "_rev_pos_cache", rev_pos)
+        setattr(tokenizer, "_rev_pos_cache_fingerprint", fp)
+    else:
+        rev_pos = getattr(tokenizer, "_rev_pos_cache", {})
+    return rev_pos
+
 
 def derive_reading_gram_ids(
     feature_ids: Dict[str, List[int]],
@@ -102,22 +146,11 @@ def derive_reading_gram_ids(
         if "<READING_MASK>" in reading_vocab:
             mask_id = reading_vocab["<READING_MASK>"]
 
-    # Efficient reverse lookup for POS strings with fingerprint-based cache invalidation.
-    # Slightly stronger than (len,max): catches reshuffles that keep len/max stable.
-    # We cache this on the tokenizer instance to avoid rebuilding it per sentence.
-    pos_vocab = tokenizer.field_vocabs.get("pos", {})
-    ids = pos_vocab.values()
-    fp = (
-        len(pos_vocab),
-        max(ids, default=-1),
-        sum(ids) if pos_vocab else 0,
-    )
-    if getattr(tokenizer, "_rev_pos_cache_fingerprint", None) != fp:
-        rev_pos = {v: k for k, v in pos_vocab.items()}
-        setattr(tokenizer, "_rev_pos_cache", rev_pos)
-        setattr(tokenizer, "_rev_pos_cache_fingerprint", fp)
-    else:
-        rev_pos = getattr(tokenizer, "_rev_pos_cache", {})
+    # Pre-compute IDs for preserved masks
+    preserved_mask_ids = _get_preserved_mask_ids(tokenizer)
+
+    # Get reverse POS map (cached)
+    rev_pos = _get_rev_pos_map(tokenizer)
 
     derived = []
     for r_id, p_id in zip(r_ids, p_ids):
@@ -127,6 +160,8 @@ def derive_reading_gram_ids(
         pos_norm = POS_MAP.get(pos_raw, pos_raw)
 
         if pos_norm in GRAMMAR_POS_WHITELIST:
+            derived.append(r_id)
+        elif r_id in preserved_mask_ids:
             derived.append(r_id)
         else:
             derived.append(mask_id)

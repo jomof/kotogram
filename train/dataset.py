@@ -60,15 +60,15 @@ class StyleDataset(Dataset[Sample]):
 
         # Load Main Offsets (Sentences)
         offsets_path = os.path.join(data_dir, EXT_OFFSETS)
-        if not os.path.exists(offsets_path):
+        if not self._check_exists(offsets_path):
             raise FileNotFoundError(
                 f"Dataset offsets not found at {offsets_path}. Please run 'bin/train_style --label'."
             )
 
         # MMap Offsets (Int32)
         # Note: torch.from_file requires size (number of elements)
-        size_bytes = os.path.getsize(offsets_path)
-        self.offsets = torch.from_file(
+        size_bytes = self._get_size(offsets_path)
+        self.offsets = self._load_tensor(
             offsets_path, shared=True, size=size_bytes // 4, dtype=torch.int32
         )
 
@@ -100,28 +100,39 @@ class StyleDataset(Dataset[Sample]):
 
         # Register Ragged Labels
         reg_ids_path = os.path.join(data_dir, f"{EXT_LABELS}_reg_ids.bin")
-        if os.path.exists(reg_ids_path):
-            sz = os.path.getsize(reg_ids_path) // 4
-            self.labels["reg_ids"] = torch.from_file(
+        if self._check_exists(reg_ids_path):
+            sz = self._get_size(reg_ids_path) // 4
+            self.labels["reg_ids"] = self._load_tensor(
                 reg_ids_path, shared=True, size=sz, dtype=torch.int32
             )
 
         reg_off_path = os.path.join(data_dir, f"{EXT_LABELS}_reg_ids_{EXT_OFFSETS}")
-        if os.path.exists(reg_off_path):
-            sz = os.path.getsize(reg_off_path) // 4
-            self.labels["reg_offsets"] = torch.from_file(
+        if self._check_exists(reg_off_path):
+            sz = self._get_size(reg_off_path) // 4
+            self.labels["reg_offsets"] = self._load_tensor(
                 reg_off_path, shared=True, size=sz, dtype=torch.int32
             )
 
         self.kc_maps: Dict[str, Dict[str, torch.Tensor]] = {}
 
+    def _check_exists(self, path: str) -> bool:
+        return os.path.exists(path)
+
+    def _get_size(self, path: str) -> int:
+        return os.path.getsize(path)
+
+    def _load_tensor(
+        self, path: str, shared: bool, size: int, dtype: torch.dtype
+    ) -> torch.Tensor:
+        return torch.from_file(path, shared=shared, size=size, dtype=dtype)
+
     def _init_features(self, data_dir: str) -> Dict[str, torch.Tensor]:
         features = {}
         for field in FEATURE_FIELDS:
             path = os.path.join(data_dir, f"{EXT_FEAT_PREFIX}{field}.bin")
-            if os.path.exists(path):
-                sz = os.path.getsize(path) // 4
-                features[field] = torch.from_file(
+            if self._check_exists(path):
+                sz = self._get_size(path) // 4
+                features[field] = self._load_tensor(
                     path, shared=True, size=sz, dtype=torch.int32
                 )
         return features
@@ -139,13 +150,15 @@ class StyleDataset(Dataset[Sample]):
         for name, dtype, itemsize in label_specs:
             fname = f"{EXT_LABELS}_{name}"
             path = os.path.join(data_dir, fname)
-            if os.path.exists(path):
-                sz = os.path.getsize(path) // itemsize
+            if self._check_exists(path):
+                sz = self._get_size(path) // itemsize
                 # Note: valid typecodes for array.array 'B' is unsigned char -> uint8
                 if name == "gram" or "prag" in name:
                     # torch.from_file supports uint8 (ByteTensor)
                     pass
-                labels[name] = torch.from_file(path, shared=True, size=sz, dtype=dtype)
+                labels[name] = self._load_tensor(
+                    path, shared=True, size=sz, dtype=dtype
+                )
         return labels
 
     def __len__(self) -> int:

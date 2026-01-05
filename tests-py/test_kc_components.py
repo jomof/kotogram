@@ -706,3 +706,111 @@ def test_float_sorting_not_string():
     assert sorted_stats[1]["p"] == 0.05, "Second should be 0.05"
     assert sorted_stats[2]["p"] == 0.1, "Third should be 0.1"
     assert sorted_stats[3]["p"] == 0.5, "Fourth should be 0.5"
+
+
+# =============================================================================
+# Round 15: Constant Parameter Coverage
+# =============================================================================
+
+
+def test_forward_kc_parameter_variations():
+    """Vary grad_cap and long_sentence_mask in StyleClassifierWithKC.forward_kc."""
+    # pylint: disable=protected-access, import-private-name
+    config = ModelConfig(
+        vocab_sizes={f: 50 for f in FEATURE_FIELDS},
+        kc_enabled=True,
+        kc_vocab_size=16,
+        kc_topk=4,
+        kc_temperature=1.0,
+    )
+    model = StyleClassifierWithKC(config)
+    model.train()
+
+    # Mock kc_head for manual control (and requires_grad)
+    logits_raw = torch.randn(2, 16, requires_grad=True)
+    model.kc_head.forward_with_raw = unittest.mock.MagicMock(
+        return_value=(logits_raw, logits_raw)
+    )
+    # Ensure pooled output is returned
+    model._get_pooled_output = unittest.mock.MagicMock(return_value=torch.randn(2, 32))
+
+    field_inputs = {
+        f"input_ids_{f}": torch.zeros(2, 5, dtype=torch.long) for f in FEATURE_FIELDS
+    }
+    attention_mask = torch.ones(2, 5)
+
+    # 1. Test with grad_cap
+    _ = model.forward_kc(field_inputs, attention_mask, grad_cap=1.0)
+
+    # Verify hook logic doesn't crash.
+    # To verify functional correctness: simulate backward pass
+    loss = logits_raw.sum()
+    loss.backward()
+    # If hook was registered, it ran.
+
+    # 2. Test with long_sentence_mask triggering re-normalization
+    # We need a logit that results in > 0.85 prob.
+    # Sigmoid(x) > 0.85 => x > 1.74. Let's use 5.0.
+    logits_trigger = torch.zeros(2, 16)
+    logits_trigger[0, 0] = 5.0
+    logits_trigger.requires_grad = True  # needed for hook logic if re-used? No.
+
+    model.kc_head.forward_with_raw.return_value = (logits_trigger, logits_trigger)
+
+    long_mask = torch.tensor([True, False])  # Sample 0 is long
+
+    # Should trigger the boost logic for sample 0
+    out = model.forward_kc(field_inputs, attention_mask, long_sentence_mask=long_mask)
+
+    # Check that sample 0 prob is DIFFERENT from what standard sigmoid(5.0) would be?
+    # Actually, it re-normalizes with temperature boost (1.5x)
+    # Original: sigmoid(5.0/1.0) = 0.9933
+    # Boosted: sigmoid(5.0/1.5) = sigmoid(3.33) = 0.965
+    # So prob should decrease.
+    p0 = out["kc_probs"][0, 0].item()
+    assert p0 < 0.99, f"Should have reduced confidence, got {p0}"
+
+
+def test_bce_sampled_parameter_variations():
+    """Vary neg_count, vocab_size, seed, family_name in _bce_sampled_from_sparse."""
+    # pylint: disable=protected-access,import-outside-toplevel
+    # We can test this by instantiating a KCTrainer wrapper or just using the method if it was static/separable.
+    # It's an instance method but doesn't use much self state except config for nothing critical here?
+    # Actually it's cleaner to mock KCTrainer or use kc_test_utils.
+
+    # We'll adapt to a simple mock style here to avoid test class overhead if possible,
+    # but since we are in test_kc_components.py we lack the wrapper.
+    # Let's mock the trainer instance.
+    from train.config import KCConfig, TrainerConfig
+    from train.trainer import KCTrainer
+
+    model = unittest.mock.MagicMock()
+    model.config.kc_vocab_size = 100
+    dataset = unittest.mock.MagicMock()
+
+    # Patch DataLoader to avoid instantiation issues
+    with unittest.mock.patch("train.trainer.DataLoader"):
+        trainer = KCTrainer(
+            model,
+            dataset,
+            TrainerConfig(device="cpu", batch_size=2),
+            unittest.mock.MagicMock(),
+            KCConfig(),
+        )
+
+    logits = torch.randn(2, 100)
+    pos_inds = torch.zeros(2, 10, dtype=torch.long)
+    pos_mask = torch.zeros(2, 10, dtype=torch.bool)
+
+    # Vary parameters
+    loss = trainer._bce_sampled_from_sparse(
+        logits,
+        pos_inds,
+        pos_mask,
+        vocab_size=100,
+        neg_count=10,
+        seed=42,
+        family_name="var_test",
+        reading_mask_id=999,
+    )
+    assert torch.isfinite(loss)

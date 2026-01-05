@@ -86,10 +86,13 @@ class KCTrainerTestBase(unittest.TestCase):
             },
             "kc_logits": torch.randn(batch_size, vocab_size, requires_grad=True),
             "kc_logits_raw": torch.randn(batch_size, vocab_size, requires_grad=True),
-            "kc_probs": torch.randn(batch_size, vocab_size, requires_grad=True),
-            "sparse_activations": torch.randn(
+            "kc_logits_effective": torch.randn(
                 batch_size, vocab_size, requires_grad=True
             ),
-            "topk_vals": torch.randn(batch_size, 3, requires_grad=True),
+            "kc_probs": torch.rand(batch_size, vocab_size, requires_grad=True),
+            "sparse_activations": torch.rand(
+                batch_size, vocab_size, requires_grad=True
+            ),
+            "topk_vals": torch.rand(batch_size, 3, requires_grad=True),
             "topk_inds": torch.randint(0, vocab_size, (batch_size, 3)),
         }

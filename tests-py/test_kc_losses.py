@@ -37,6 +37,7 @@ class TestKCLosses(KCTrainerTestBase):
 
         outputs = {
             "kc_logits_raw": logits_raw,
+            "kc_logits_effective": logits_raw,
             "kc_probs": probs,
             "topk_vals": topk_vals,
             "topk_inds": topk_inds,
@@ -44,9 +45,11 @@ class TestKCLosses(KCTrainerTestBase):
             "target_logits": {"test_target": target_logits_val},
         }
         self.model.return_value = outputs
+        self.model.config.kc_topk = 8
 
         res = self.trainer.train_epoch(epoch=0)
-        self.assertAlmostEqual(res.avg_sparsity, 0.5, places=4)
+        # k_i = ceil(0.4 * 5) = 2. spar = 8.0 / 2 = 4.0.
+        self.assertAlmostEqual(res.avg_sparsity, 4.0, places=4)
 
     @patch("train.trainer.create_kc_batch")
     def test_logit_gap_accumulation(self, mock_create_batch):
@@ -79,6 +82,7 @@ class TestKCLosses(KCTrainerTestBase):
 
         outputs = {
             "kc_logits_raw": logits_raw,
+            "kc_logits_effective": logits_raw,
             "kc_probs": torch.zeros_like(logits_raw, requires_grad=True),
             "topk_vals": torch.zeros((2, 10), requires_grad=True),
             "topk_inds": topk_inds,
@@ -108,6 +112,7 @@ class TestKCLosses(KCTrainerTestBase):
         logits_raw = torch.zeros((2, 10), requires_grad=True)
         outputs = {
             "kc_logits_raw": logits_raw,
+            "kc_logits_effective": logits_raw,
             "kc_probs": torch.zeros_like(logits_raw, requires_grad=True),
             "topk_vals": torch.zeros((2, 5), requires_grad=True),
             "topk_inds": torch.zeros(2, 5, dtype=torch.long),
@@ -151,6 +156,7 @@ class TestKCLosses(KCTrainerTestBase):
 
         outputs = {
             "kc_logits_raw": torch.zeros((2, 10), requires_grad=True),
+            "kc_logits_effective": torch.zeros((2, 10), requires_grad=True),
             "kc_probs": torch.zeros((2, 10), requires_grad=True),
             "topk_vals": torch.zeros((2, 5), requires_grad=True),
             "topk_inds": torch.zeros(2, 5, dtype=torch.long),
