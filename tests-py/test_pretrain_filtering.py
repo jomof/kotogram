@@ -119,7 +119,6 @@ class TestPretrainDataFiltering(unittest.TestCase):
             num_layers=1,
             num_heads=2,
             kc_enabled=True,
-            kc_target_specs={"lemma": 100},
         )
         self.model = StyleClassifierWithKC(self.model_config)
 

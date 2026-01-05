@@ -15,16 +15,15 @@ class TestModelRegisterIntegration(unittest.TestCase):
 
         # Setup tokenizer mock
         self.mock_tokenizer.encode.return_value = {
-            "surface": [1, 2, 3],
+            # "surface": [1, 2, 3],
             "pos": [4, 5, 6],
             "pos_detail_1": [7, 8, 9],
             "pos_detail_2": [10, 11, 12],
             "pos_detail_3": [10, 11, 12],
             "conjugated_type": [13, 14, 15],
-            "conjugated_form": [16, 17, 18],
-            "lemma": [19, 20, 21],
-            "base_orth": [22, 23, 24],
-            "reading": [25, 26, 27],
+            # "conjugated_form": [16, 17, 18],
+            # "base_orth": [22, 23, 24],
+            "reading_gram": [25, 26, 27],
         }
 
     @patch("kotogram.analysis.StyleAnalyzer.load")

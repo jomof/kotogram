@@ -19,16 +19,15 @@ CLS_TOKEN = "<CLS>"
 # Feature fields used for token embedding
 # NOTE: 'surface' is critical for gender detection (pronouns like 僕, 俺, あたし)
 ALL_FEATURE_FIELDS = [
-    "surface",
+    # "surface",
     "pos",
     "pos_detail_1",
     "pos_detail_2",
     "pos_detail_3",
     "conjugated_type",
-    "conjugated_form",
-    "lemma",
-    "base_orth",
-    "reading",
+    # "conjugated_form",
+    # "base_orth",
+    "reading_gram",
 ]
 FEATURE_FIELDS = ALL_FEATURE_FIELDS  # Default: use all features
 
@@ -105,17 +104,28 @@ class Tokenizer:
 
         # Encode each token
         for features in features_list:
-            for field in FEATURE_FIELDS:
-                # Access field from dataclass
-                val = getattr(features, field)
-                # Ensure string (TokenFeatures fields are strings, but just in case)
-                val_str = str(val) if val is not None else ""
-
-                # Special handling for missing/empty values?
-                # TokenFeatures defaults are sensible.
-
-                fid = self.get_id(field, val_str)
-                result[field].append(fid)
+            # Unrolled for type safety and static analysis visibility
+            # result["surface"].append(self.get_id("surface", features.surface))
+            result["pos"].append(self.get_id("pos", features.pos))
+            result["pos_detail_1"].append(
+                self.get_id("pos_detail_1", features.pos_detail_1)
+            )
+            result["pos_detail_2"].append(
+                self.get_id("pos_detail_2", features.pos_detail_2)
+            )
+            result["pos_detail_3"].append(
+                self.get_id("pos_detail_3", features.pos_detail_3)
+            )
+            result["conjugated_type"].append(
+                self.get_id("conjugated_type", features.conjugated_type)
+            )
+            # result["conjugated_form"].append(
+            #     self.get_id("conjugated_form", features.conjugated_form)
+            # )
+            # base_orth stripped
+            result["reading_gram"].append(
+                self.get_id("reading_gram", features.reading_gram)
+            )
 
         return result
 

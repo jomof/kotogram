@@ -20,7 +20,7 @@ from train.binary_io import (
     EXT_LABELS,
     EXT_OFFSETS,
 )
-from train.kc import compute_kc_targets
+from train.kc import KcFamilyId, compute_kc_targets
 from train.types import Sample, TrainingBatch
 
 # V2: No cache version check needed for raw binary files (handled by label.py generation)
@@ -211,27 +211,16 @@ class StyleDataset(Dataset[Sample]):
 
     def _get_kc_targets(
         self, _real_idx: int, _start: int, _end: int, feature_ids: Dict[str, List[int]]
-    ) -> Dict[str, Any]:
-        """Lazy load and retrieve KC targets."""
-        # Check if KC files exist for standard targets?
-        # Or compute on demand if missing?
-        # The user wanted to "Compute KC targets in Phase 2".
-        # So they should be in binary files.
-        # But for new/rare KCs, maybe fallback?
-        # For now, let's try to map if not mapped.
-
-        # Use simple glob-like check or just try generic keys?
-        # We don't know keys unless we list dir or are told.
-        # But Sample expects kc_targets to be populated?
-        # Usually only if needed.
-        # MMapStyleDataset is optimized.
-        # Let's implemented fallback: Compute on demand (using `compute_kc_targets`).
-        # But computing on demand requires CPU.
+    ) -> Dict[KcFamilyId, Any]:
+        # Lazy load and retrieve KC targets.
+        # Fallback: Compute on demand (using `compute_kc_targets`).
+        # This allows training without pre-computed KC target files, at the cost of CPU during dataloading.
+        # This allows training without pre-computed KC target files, at the cost of CPU during dataloading.
         # If binary files exist, use them.
 
         # Determining keys:
         # We can scan directory in __init__ for available KCs.
-        return compute_kc_targets(cast(Any, feature_ids), tokenizer=self.tokenizer)
+        return compute_kc_targets(cast(Any, feature_ids))
 
     @classmethod
     def from_multiple_tsv(
@@ -453,8 +442,8 @@ def collate_fn(
 
 
 def _get_kc_pos_indices(
-    kc_targets: List[Dict[str, List[int]]],
-    field: str,
+    kc_targets: List[Dict[Any, List[int]]],
+    field: Any,
     vocab_size: int,
     device: torch.device,
     special_ids: Set[int],
@@ -487,30 +476,8 @@ def _get_kc_pos_indices(
     return pos_inds, pos_mask
 
 
-def _get_kc_dense_targets(
-    kc_targets: List[Dict[str, List[int]]],
-    field: str,
-    vocab_size: int,
-    device: torch.device,
-    special_ids: Set[int],
-) -> torch.Tensor:
-    """Helper to compute dense multi-hot targets."""
-    batch_size = len(kc_targets)
-    targets = torch.zeros((batch_size, vocab_size), dtype=torch.float, device=device)
-
-    for i, target_dict in enumerate(kc_targets):
-        val_list = target_dict.get(field, [])
-        if not val_list:
-            continue
-
-        for v in val_list:
-            if v < vocab_size and v not in special_ids:
-                targets[i, v] = 1.0
-    return targets
-
-
 def create_kc_batch(
-    batch: TrainingBatch, tokenizer: Tokenizer, target_specs: Dict[str, int]
+    batch: TrainingBatch, tokenizer: Tokenizer, target_specs: Dict[KcFamilyId, int]
 ) -> Dict[str, torch.Tensor]:
     """
     Create KC targets (multi-hot) from a batch of input IDs.
@@ -536,52 +503,23 @@ def create_kc_batch(
         # Fallback if empty (shouldn't happen with valid collation)
         return result
 
-    for field, vocab_size in target_specs.items():
-        source_field = field
-        # Check if this field exists in the first sample's targets
-        # Check if this field exists in the first sample's targets
-        if source_field not in batch.kc_targets[0]:
-            # Fallback for reading targets (aliased to reading_gram)
-            if source_field == "reading" and "bag_reading_gram" in batch.kc_targets[0]:
-                source_field = "bag_reading_gram"
-            elif (
-                source_field == "bag_reading"
-                and "bag_reading_gram" in batch.kc_targets[0]
-            ):
-                source_field = "bag_reading_gram"
-            elif (
-                source_field == "tail_reading"
-                and "tail_reading_gram" in batch.kc_targets[0]
-            ):
-                source_field = "tail_reading_gram"
-            elif (
-                source_field == "ngram_reading"
-                and "ngram_reading_gram" in batch.kc_targets[0]
-            ):
-                source_field = "ngram_reading_gram"
-            elif (
-                source_field == "tail_ngram_reading"
-                and "tail_ngram_reading_gram" in batch.kc_targets[0]
-            ):
-                source_field = "tail_ngram_reading_gram"
-            elif f"bag_{source_field}" in batch.kc_targets[0]:
-                source_field = f"bag_{source_field}"
-            else:
-                continue
-
-        if vocab_size > 4096:
-            # Sparse Implementation (Indices + Mask)
-            pos_inds, pos_mask = _get_kc_pos_indices(
-                batch.kc_targets, source_field, vocab_size, device, special_ids
+    # Strict iteration over target_specs which MUST be Dict[KcFamilyId, int]
+    for target_family, vocab_size in target_specs.items():
+        # Strict data alignment: The batch MUST contain data for the requested target.
+        if target_family not in batch.kc_targets[0]:
+            raise KeyError(
+                f"Data for confirmed KcFamilyId '{target_family}' missing from batch targets."
             )
-            result[f"kc_pos_inds_{field}"] = pos_inds
-            result[f"kc_pos_mask_{field}"] = pos_mask
 
-        else:
-            # Dense Implementation (Multi-hot)
-            targets = _get_kc_dense_targets(
-                batch.kc_targets, field, vocab_size, device, special_ids
-            )
-            result[f"kc_targets_{field}"] = targets
+        kc_key = target_family
+
+        # Sparse Implementation (Indices + Mask)
+        # We use sparse representation for all vocab sizes for consistency.
+        pos_inds, pos_mask = _get_kc_pos_indices(
+            batch.kc_targets, kc_key, vocab_size, device, special_ids
+        )
+        # Using f"kc_pos_inds_{target_family.name}" is safer/readable than ID.
+        result[f"kc_pos_inds_{target_family.name.lower()}"] = pos_inds
+        result[f"kc_pos_mask_{target_family.name.lower()}"] = pos_mask
 
     return result

@@ -4,6 +4,7 @@ from unittest.mock import MagicMock, patch
 import torch
 
 from train.config import KCConfig, TrainerConfig
+from train.kc import KcFamilyId
 from train.trainer import KCTrainer
 
 
@@ -16,6 +17,7 @@ class TestKCDenseTraining(unittest.TestCase):
             kc_epochs=1,
             grad_accum_steps=1,
             learning_rate=0.001,
+            kc_target_specs={KcFamilyId.BAG_POS: 1000},
         )
         self.kc_config = KCConfig(
             # defaults
@@ -24,7 +26,7 @@ class TestKCDenseTraining(unittest.TestCase):
         # Mock model
         self.model = MagicMock()
         self.model.config.kc_target_specs = {
-            "test_dense": 1000
+            KcFamilyId.BAG_POS: 1000
         }  # > 256 to trigger dense path
         self.model.config.kc_vocab_size = 100
         del self.model.kc_decoders
@@ -76,7 +78,9 @@ class TestKCDenseTraining(unittest.TestCase):
         self.mock_loader.__iter__.return_value = iter([batch])
         self.mock_loader.__len__.return_value = 1
 
-        mock_create_batch.return_value = {"kc_targets_test_dense": targets}
+        mock_create_batch.return_value = {
+            f"kc_targets_{KcFamilyId.BAG_POS.name.lower()}": targets
+        }
 
         outputs = {
             "kc_logits": torch.zeros(
@@ -90,14 +94,14 @@ class TestKCDenseTraining(unittest.TestCase):
             "topk_vals": torch.zeros((batch_size, 5), requires_grad=True),
             "topk_inds": torch.zeros((batch_size, 5), dtype=torch.long),
             "sparse_activations": torch.zeros((batch_size, 10), requires_grad=True),
-            "target_logits": {"test_dense": logits},
+            "target_logits": {KcFamilyId.BAG_POS.name.lower(): logits},
         }
         self.model.return_value = outputs
 
         self.trainer.train_epoch(epoch=0)
 
         # Verify update_family arguments
-        # We expect one call for "test_dense"
+        # We expect one call for "bag_pos" from KcFamilyId.BAG_POS
         call_args = mock_diag_instance.update_family.call_args
         self.assertIsNotNone(call_args)
 
@@ -117,7 +121,7 @@ class TestKCDenseTraining(unittest.TestCase):
             probs = kwargs.get("probs") or call_args.args[3]
             targets_arg = kwargs.get("targets") or call_args.args[4]
 
-        self.assertEqual(family_name, "test_dense")
+        self.assertEqual(family_name, KcFamilyId.BAG_POS.name.lower())
 
         # Check shapes - The User Request Standard
         # pos_ids: (B, P_pos)
@@ -182,8 +186,10 @@ class TestKCDenseTraining(unittest.TestCase):
         self.mock_loader.__iter__.return_value = iter([batch])
 
         # Force dense path
-        self.model.config.kc_target_specs = {"dense": 500}
-        mock_create_batch.return_value = {"kc_targets_dense": torch.zeros((2, 500))}
+        self.model.config.kc_target_specs = {KcFamilyId.BAG_POS: 500}
+        mock_create_batch.return_value = {
+            f"kc_targets_{KcFamilyId.BAG_POS.name.lower()}": torch.zeros((2, 500))
+        }
 
         # Fake logits > 256
         logits = torch.randn(2, 500, requires_grad=True)
@@ -195,7 +201,7 @@ class TestKCDenseTraining(unittest.TestCase):
             "topk_inds": torch.zeros((2, 5), dtype=torch.long),
             "topk_vals": torch.zeros((2, 5)),
             "sparse_activations": torch.zeros((2, 10)),
-            "target_logits": {"dense": logits},
+            "target_logits": {KcFamilyId.BAG_POS.name.lower(): logits},
         }
         self.model.return_value = outputs
 

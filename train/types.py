@@ -5,6 +5,8 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import torch
 
+from train.kc import KcFamilyId
+
 
 @dataclass
 class Sample:
@@ -19,7 +21,7 @@ class Sample:
     register_labels: List[int] = field(default_factory=lambda: [0])
     original_sentence: str = ""
     kotogram: str = ""
-    kc_targets: Dict[str, Any] = field(default_factory=dict)
+    kc_targets: Dict[KcFamilyId, Any] = field(default_factory=dict)
     idx: int = -1
 
     def to_dict(self) -> Dict[str, Any]:
@@ -104,7 +106,7 @@ class KCMetricsAccumulator:
     sum_act_dens: float = 0.0
     topk_hist: torch.Tensor = field(default_factory=lambda: torch.tensor([]))
     top1_hist: torch.Tensor = field(default_factory=lambda: torch.tensor([]))
-    head_samples: Dict[str, KCDiagnosticHeadStats] = field(default_factory=dict)
+    head_samples: Dict[KcFamilyId, KCDiagnosticHeadStats] = field(default_factory=dict)
 
 
 @dataclass
@@ -114,7 +116,7 @@ class KCProbeConfig:
     tau_usage: float
     vocab_size: int
     topk: int
-    target_specs: Dict[str, Any]
+    target_specs: Dict[KcFamilyId, int]
     max_samples_per_head: int
 
 
@@ -387,7 +389,7 @@ class TrainingBatch:
     indices: torch.Tensor
     original_sentence: List[str]
     kotogram: List[str]
-    kc_targets: List[Dict[str, Any]] = field(default_factory=list)
+    kc_targets: List[Dict[KcFamilyId, Any]] = field(default_factory=list)
 
 
 @dataclass

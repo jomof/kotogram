@@ -1,48 +1,125 @@
 """KC target computation logic."""
 
-from typing import Any, Dict, List, Optional, Sequence, Set, Union
+from enum import Enum
+from typing import Any, Dict, List, Sequence, Union
 
 import torch
 
 from kotogram.exceptions import MissingMappingError
-from kotogram.japanese_parser import POS_MAP
 
 # KC Configuration
 KC_HASH_BUCKETS = 16384
 KC_NGRAM_ORDER = 3
 KC_POS_BIASED_WINDOW = 5
 
-SPARSE_FAMILY_PREFIXES = ("ngram_", "tail_ngram_", "pair_")
+DEFAULT_HASH_BUCKET_SIZE = 16384
 
-# Verification Checklist:
-# - Verify label.py Phase 1 injects "<READING_MASK>" into reading vocabulary
-# - Verify kc.py derived reading_gram logic is called during Phase 2 labeling
-# - Verify StyleDataset._init_features mmaps "reading" and "pos", populating feature_ids for kc.py
 
-# Constants for domain separation (SALT) to reduce accidental collisions between different feature families
-SALT = {
-    "ngram_pos": 101,
-    "ngram_pos_detail_1": 102,
-    "ngram_conjugated_form": 103,
-    "ngram_conjugated_type": 104,
-    "ngram_reading_gram": 105,
-    "tail_ngram_pos": 201,
-    "tail_ngram_pos_detail_1": 202,
-    "tail_ngram_conjugated_form": 203,
-    "tail_ngram_conjugated_type": 204,
-    "tail_ngram_reading_gram": 205,
-    "pair_pos_conj": 301,
-    "pair_pos1_conjform": 302,
-    "pair_pos1_conjtype": 303,
+class KcFamilyId(str, Enum):
+    """Canonical opaque IDs for all KC families."""
+
+    # Bag Families
+    BAG_READING_GRAM = "bag_reading_gram"
+    BAG_POS = "bag_pos"
+    BAG_POS_DETAIL_1 = "bag_pos_detail_1"
+    BAG_CONJUGATED_TYPE = "bag_conjugated_type"
+
+    # Tail Bag Families
+    TAIL_READING_GRAM = "tail_reading_gram"
+    TAIL_POS = "tail_pos"
+    TAIL_POS_DETAIL_1 = "tail_pos_detail_1"
+    TAIL_CONJUGATED_TYPE = "tail_conjugated_type"
+
+    # Ngram Families
+    NGRAM_POS = "ngram_pos"
+    NGRAM_POS_DETAIL_1 = "ngram_pos_detail_1"
+    NGRAM_CONJUGATED_TYPE = "ngram_conjugated_type"
+    NGRAM_READING_GRAM = "ngram_reading_gram"
+
+    # Tail Ngram Families
+    TAIL_NGRAM_POS = "tail_ngram_pos"
+    TAIL_NGRAM_POS_DETAIL_1 = "tail_ngram_pos_detail_1"
+    TAIL_NGRAM_CONJUGATED_TYPE = "tail_ngram_conjugated_type"
+    TAIL_NGRAM_READING_GRAM = "tail_ngram_reading_gram"
+
+
+ALL_KC_FAMILIES = list(KcFamilyId)
+
+# Map from KcFamilyId to boolean indicating if it uses sparse features
+FAMILY_IS_SPARSE: Dict[KcFamilyId, bool] = {
+    # Bag (Dense)
+    KcFamilyId.BAG_READING_GRAM: False,
+    KcFamilyId.BAG_POS: False,
+    KcFamilyId.BAG_POS_DETAIL_1: False,
+    KcFamilyId.BAG_CONJUGATED_TYPE: False,
+    # Tail (Dense)
+    KcFamilyId.TAIL_READING_GRAM: False,
+    KcFamilyId.TAIL_POS: False,
+    KcFamilyId.TAIL_POS_DETAIL_1: False,
+    KcFamilyId.TAIL_CONJUGATED_TYPE: False,
+    # Ngram (Sparse)
+    KcFamilyId.NGRAM_POS: True,
+    KcFamilyId.NGRAM_POS_DETAIL_1: True,
+    KcFamilyId.NGRAM_CONJUGATED_TYPE: True,
+    KcFamilyId.NGRAM_READING_GRAM: True,
+    # Tail Ngram (Sparse)
+    KcFamilyId.TAIL_NGRAM_POS: True,
+    KcFamilyId.TAIL_NGRAM_POS_DETAIL_1: True,
+    KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: True,
+    KcFamilyId.TAIL_NGRAM_READING_GRAM: True,
+}
+
+SPARSE_FAMILY_NAMES = {
+    f.name.lower() for f, is_sparse in FAMILY_IS_SPARSE.items() if is_sparse
 }
 
 
-def _salt(key: str) -> int:
+# Map from KcFamilyId to the input feature field name it consumes
+FAMILY_FEATURES: Dict[KcFamilyId, str] = {
+    # Bag
+    KcFamilyId.BAG_READING_GRAM: "reading_gram",
+    KcFamilyId.BAG_POS: "pos",
+    KcFamilyId.BAG_POS_DETAIL_1: "pos_detail_1",
+    KcFamilyId.BAG_CONJUGATED_TYPE: "conjugated_type",
+    # Tail
+    KcFamilyId.TAIL_READING_GRAM: "reading_gram",
+    KcFamilyId.TAIL_POS: "pos",
+    KcFamilyId.TAIL_POS_DETAIL_1: "pos_detail_1",
+    KcFamilyId.TAIL_CONJUGATED_TYPE: "conjugated_type",
+    # Ngram
+    KcFamilyId.NGRAM_POS: "pos",
+    KcFamilyId.NGRAM_POS_DETAIL_1: "pos_detail_1",
+    KcFamilyId.NGRAM_CONJUGATED_TYPE: "conjugated_type",
+    KcFamilyId.NGRAM_READING_GRAM: "reading_gram",
+    # Tail Ngram
+    KcFamilyId.TAIL_NGRAM_POS: "pos",
+    KcFamilyId.TAIL_NGRAM_POS_DETAIL_1: "pos_detail_1",
+    KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: "conjugated_type",
+    KcFamilyId.TAIL_NGRAM_READING_GRAM: "reading_gram",
+}
+
+
+# Constants for domain separation (SALT) to reduce accidental collisions between different feature families
+SALT: Dict[KcFamilyId, int] = {
+    KcFamilyId.NGRAM_POS: 101,
+    KcFamilyId.NGRAM_POS_DETAIL_1: 102,
+    KcFamilyId.NGRAM_CONJUGATED_TYPE: 104,
+    KcFamilyId.NGRAM_READING_GRAM: 105,
+    KcFamilyId.TAIL_NGRAM_POS: 201,
+    KcFamilyId.TAIL_NGRAM_POS_DETAIL_1: 202,
+    KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: 204,
+    KcFamilyId.TAIL_NGRAM_READING_GRAM: 205,
+}
+
+
+def _salt(key: KcFamilyId) -> int:
     """Robust lookup for SALT keys with descriptive error messages."""
     val = SALT.get(key)
     if val is None:
         raise MissingMappingError(
-            map_name="SALT", key=key, context=f"Available keys={sorted(SALT.keys())}"
+            map_name="SALT",
+            key=str(key),
+            context=f"Available keys={[k.name for k in SALT]}",
         )
     return val
 
@@ -70,144 +147,60 @@ def stable_hash_ints(ints: Sequence[int]) -> int:
     return h
 
 
-# Whitelist for grammar-heavy POS to keep reading.
-# Content-heavy POS (noun, adj, etc.) will have their reading masked.
-GRAMMAR_POS_WHITELIST = {
-    "particle",
-    "aux-verb",
-    "prefix",
-    "suffix",
-    "adnom",
-    "conj",
-}
-
-# Reading masks that should be preserved even if POS is masked.
-# These represent specific semantic categories (e.g. names, numbers)
-# that we want to distinguish in the reading grammar.
-PRESERVED_READING_MASKS = {
-    "<proper-noun>",
-    "<person-name>",
-    "<given-name>",
-    "<surname>",
-    "<place-name>",
-    "<country>",
-    "<number>",
-}
-
-
-def _get_preserved_mask_ids(tokenizer: Any) -> Set[int]:
-    """Helper to get IDs for preserved masks."""
-    ids = set()
-    if "reading" in tokenizer.field_vocabs:
-        reading_vocab = tokenizer.field_vocabs["reading"]
-        for mask_str in PRESERVED_READING_MASKS:
-            if mask_str in reading_vocab:
-                ids.add(reading_vocab[mask_str])
-    return ids
-
-
-def _get_rev_pos_map(tokenizer: Any) -> Dict[int, str]:
-    """Get efficient reverse lookup for POS strings with caching."""
-    pos_vocab = tokenizer.field_vocabs.get("pos", {})
-    ids = pos_vocab.values()
-    fp = (
-        len(pos_vocab),
-        max(ids, default=-1),
-        sum(ids) if pos_vocab else 0,
-    )
-    if getattr(tokenizer, "_rev_pos_cache_fingerprint", None) != fp:
-        rev_pos = {v: k for k, v in pos_vocab.items()}
-        setattr(tokenizer, "_rev_pos_cache", rev_pos)
-        setattr(tokenizer, "_rev_pos_cache_fingerprint", fp)
-    else:
-        rev_pos = getattr(tokenizer, "_rev_pos_cache", {})
-    return rev_pos
-
-
-def derive_reading_gram_ids(
-    feature_ids: Dict[str, List[int]],
-    tokenizer: Any,
-) -> List[int]:
-    """Derive reading_gram IDs (kept for grammar POS, masked for content POS)."""
-    if "reading" not in feature_ids or "pos" not in feature_ids or not tokenizer:
-        return []
-
-    r_ids = feature_ids["reading"]
-    p_ids = feature_ids["pos"]
-
-    if len(r_ids) != len(p_ids):
-        return []
-
-    # Get the ID for the special mask sentinel, falling back to unk_id.
-    # Fail safe via explicit check instead of try-except (KeyError forbidden).
-    mask_id = getattr(tokenizer, "unk_id", 0)
-    if "reading" in tokenizer.field_vocabs:
-        reading_vocab = tokenizer.field_vocabs["reading"]
-        if "<READING_MASK>" in reading_vocab:
-            mask_id = reading_vocab["<READING_MASK>"]
-
-    # Pre-compute IDs for preserved masks
-    preserved_mask_ids = _get_preserved_mask_ids(tokenizer)
-
-    # Get reverse POS map (cached)
-    rev_pos = _get_rev_pos_map(tokenizer)
-
-    derived = []
-    for r_id, p_id in zip(r_ids, p_ids):
-        # Resolve POS ID back to string.
-        pos_raw = rev_pos.get(p_id, "")
-        # Normalize if it's a Japanese label, otherwise keep for checking whitelist.
-        pos_norm = POS_MAP.get(pos_raw, pos_raw)
-
-        if pos_norm in GRAMMAR_POS_WHITELIST:
-            derived.append(r_id)
-        elif r_id in preserved_mask_ids:
-            derived.append(r_id)
-        else:
-            derived.append(mask_id)
-    return derived
-
-
 def _compute_bag_targets(
-    feature_ids: Dict[str, List[int]], targets: Dict[str, Any]
+    feature_ids: Dict[str, List[int]], targets: Dict[KcFamilyId, Any]
 ) -> None:
-    for field in [
-        "reading_gram",
-        "pos",
-        "pos_detail_1",
-        "conjugated_form",
-        "conjugated_type",
-    ]:
-        if field in feature_ids:
-            targets[f"bag_{field}"] = sorted(set(feature_ids[field]))
+    # Bag families
+    bag_families = {
+        KcFamilyId.BAG_READING_GRAM,
+        KcFamilyId.BAG_POS,
+        KcFamilyId.BAG_POS_DETAIL_1,
+        KcFamilyId.BAG_CONJUGATED_TYPE,
+    }
 
-    for field in [
-        "reading_gram",
-        "pos",
-        "pos_detail_1",
-        "conjugated_form",
-        "conjugated_type",
-    ]:
+    for family_id in bag_families:
+        field = FAMILY_FEATURES[family_id]
+        if field in feature_ids:
+            targets[family_id] = sorted(set(feature_ids[field]))
+
+
+def _compute_tail_targets(
+    feature_ids: Dict[str, List[int]], targets: Dict[KcFamilyId, Any]
+) -> None:
+    # Tail families
+    tail_families = {
+        KcFamilyId.TAIL_READING_GRAM,
+        KcFamilyId.TAIL_POS,
+        KcFamilyId.TAIL_POS_DETAIL_1,
+        # KcFamilyId.TAIL_CONJUGATED_FORM,
+        KcFamilyId.TAIL_CONJUGATED_TYPE,
+    }
+
+    for family_id in tail_families:
+        field = FAMILY_FEATURES[family_id]
         if field in feature_ids:
             ids = feature_ids[field]
             tail_ids = ids[-KC_POS_BIASED_WINDOW:] if len(ids) > 0 else []
-            targets[f"tail_{field}"] = sorted(set(tail_ids))
+            targets[family_id] = sorted(set(tail_ids))
 
 
 def _compute_ngram_targets(
-    feature_ids: Dict[str, List[int]], targets: Dict[str, Any]
+    feature_ids: Dict[str, List[int]], targets: Dict[KcFamilyId, Any]
 ) -> None:
-    for field in [
-        "pos",
-        "pos_detail_1",
-        "conjugated_form",
-        "conjugated_type",
-        "reading_gram",
-    ]:
+    # Ngram families
+    ngram_families = {
+        KcFamilyId.NGRAM_POS,
+        KcFamilyId.NGRAM_POS_DETAIL_1,
+        KcFamilyId.NGRAM_CONJUGATED_TYPE,
+        KcFamilyId.NGRAM_READING_GRAM,
+    }
+
+    for family_id in ngram_families:
+        field = FAMILY_FEATURES[family_id]
         if field in feature_ids:
             ids = feature_ids[field]
             hashes = set()
-            salt = _salt(f"ngram_{field}")
+            salt = _salt(family_id)
             for n_val in range(2, KC_NGRAM_ORDER + 1):
                 if len(ids) >= n_val:
                     for i in range(len(ids) - n_val + 1):
@@ -215,20 +208,22 @@ def _compute_ngram_targets(
                         # Prepend salt for domain separation
                         h = stable_hash_ints([salt, *ngram]) % KC_HASH_BUCKETS
                         hashes.add(h)
-            targets[f"ngram_{field}"] = sorted(hashes)
+            targets[family_id] = sorted(hashes)
 
 
 def _compute_tail_ngram_targets(
-    feature_ids: Dict[str, List[int]], targets: Dict[str, Any]
+    feature_ids: Dict[str, List[int]], targets: Dict[KcFamilyId, Any]
 ) -> None:
     """Compute n-gram targets biased toward the end of the sentence."""
-    for field in [
-        "pos",
-        "pos_detail_1",
-        "conjugated_form",
-        "conjugated_type",
-        "reading_gram",
-    ]:
+    tail_ngram_families = {
+        KcFamilyId.TAIL_NGRAM_POS,
+        KcFamilyId.TAIL_NGRAM_POS_DETAIL_1,
+        KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
+        KcFamilyId.TAIL_NGRAM_READING_GRAM,
+    }
+
+    for family_id in tail_ngram_families:
+        field = FAMILY_FEATURES[family_id]
         if field in feature_ids:
             ids = feature_ids[field]
             tail_ids = ids[-KC_POS_BIASED_WINDOW:] if len(ids) > 0 else []
@@ -236,60 +231,18 @@ def _compute_tail_ngram_targets(
                 continue
 
             hashes = set()
-            salt = _salt(f"tail_ngram_{field}")
+            salt = _salt(family_id)
             for n_val in range(2, KC_NGRAM_ORDER + 1):
                 if len(tail_ids) >= n_val:
                     for i in range(len(tail_ids) - n_val + 1):
                         ngram = tail_ids[i : i + n_val]
                         h = stable_hash_ints([salt, *ngram]) % KC_HASH_BUCKETS
                         hashes.add(h)
-            targets[f"tail_ngram_{field}"] = sorted(hashes)
-
-
-def _compute_pair_targets(
-    feature_ids: Dict[str, List[int]], targets: Dict[str, Any]
-) -> None:
-    # pair_pos_conj (pos, conjugated_form)
-    if "pos" in feature_ids and "conjugated_form" in feature_ids:
-        p_ids = feature_ids["pos"]
-        c_ids = feature_ids["conjugated_form"]
-        if len(p_ids) == len(c_ids):
-            pair_hashes = set()
-            salt = _salt("pair_pos_conj")
-            for i, p_id in enumerate(p_ids):
-                h = stable_hash_ints([salt, p_id, c_ids[i]]) % KC_HASH_BUCKETS
-                pair_hashes.add(h)
-            targets["pair_pos_conj"] = sorted(pair_hashes)
-
-    # pair_pos1_conjform (pos_detail_1, conjugated_form)
-    if "pos_detail_1" in feature_ids and "conjugated_form" in feature_ids:
-        p_ids = feature_ids["pos_detail_1"]
-        c_ids = feature_ids["conjugated_form"]
-        if len(p_ids) == len(c_ids):
-            pair_hashes = set()
-            salt = _salt("pair_pos1_conjform")
-            for i, p_id in enumerate(p_ids):
-                h = stable_hash_ints([salt, p_id, c_ids[i]]) % KC_HASH_BUCKETS
-                pair_hashes.add(h)
-            targets["pair_pos1_conjform"] = sorted(pair_hashes)
-
-    # pair_pos1_conjtype (pos_detail_1, conjugated_type)
-    if "pos_detail_1" in feature_ids and "conjugated_type" in feature_ids:
-        p_ids = feature_ids["pos_detail_1"]
-        c_ids = feature_ids["conjugated_type"]
-        if len(p_ids) == len(c_ids):
-            pair_hashes = set()
-            salt = _salt("pair_pos1_conjtype")
-            for i, p_id in enumerate(p_ids):
-                h = stable_hash_ints([salt, p_id, c_ids[i]]) % KC_HASH_BUCKETS
-                pair_hashes.add(h)
-            targets["pair_pos1_conjtype"] = sorted(pair_hashes)
-
+            targets[family_id] = sorted(hashes)
 
 def compute_kc_targets(
     feature_ids: Dict[str, Union[List[int], "torch.Tensor"]],
-    tokenizer: Optional[Any] = None,
-) -> Dict[str, Any]:
+) -> Dict[KcFamilyId, Any]:
     """Compute KC targets from feature IDs."""
     # Ensure inputs are lists, not tensors
     feature_ids_list: Dict[str, List[int]] = {}
@@ -301,18 +254,13 @@ def compute_kc_targets(
         else:
             feature_ids_list[k] = list(val)  # type: ignore
 
-    # Derive reading_gram IDs downstream if tokenizer is provided.
-    if tokenizer:
-        rg_ids = derive_reading_gram_ids(feature_ids_list, tokenizer)
-        if rg_ids:
-            feature_ids_list["reading_gram"] = rg_ids
-
     # Create targets dict
-    targets: Dict[str, Any] = {}
+    targets: Dict[KcFamilyId, Any] = {}
 
     _compute_bag_targets(feature_ids_list, targets)
+    _compute_tail_targets(feature_ids_list, targets)
     _compute_ngram_targets(feature_ids_list, targets)
     _compute_tail_ngram_targets(feature_ids_list, targets)
-    _compute_pair_targets(feature_ids_list, targets)
+    _compute_tail_ngram_targets(feature_ids_list, targets)
 
     return targets

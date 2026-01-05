@@ -78,7 +78,6 @@ class ModelConfigDict(TypedDict):
     kc_vocab_size: int
     kc_topk: int
     kc_temperature: float
-    kc_target_specs: Dict[str, int]
 
 
 @dataclass
@@ -92,14 +91,12 @@ class ModelConfig:
     num_register_classes: int = NUM_REGISTER_CLASSES
     field_embed_dims: Dict[str, int] = field(
         default_factory=lambda: {
-            "surface": 64,
             "pos": 32,
             "pos_detail_1": 32,
             "pos_detail_2": 16,
             "pos_detail_3": 16,
             "conjugated_type": 32,
-            "conjugated_form": 32,
-            "lemma": 64,
+            "reading_gram": 64,
         }
     )
     d_model: int = 256
@@ -115,9 +112,6 @@ class ModelConfig:
     kc_vocab_size: int = 1024  # Size of the sparse concept, vocabulary
     kc_topk: int = 8  # Number of active concepts to retrieve
     kc_temperature: float = 1.0  # Sparsification temperature
-    kc_target_specs: Dict[str, int] = field(
-        default_factory=dict
-    )  # Target head name -> vocab size
 
     def to_dict(self) -> ModelConfigDict:
         return {
@@ -138,7 +132,6 @@ class ModelConfig:
             "kc_vocab_size": self.kc_vocab_size,
             "kc_topk": self.kc_topk,
             "kc_temperature": self.kc_temperature,
-            "kc_target_specs": self.kc_target_specs,
         }
 
     @classmethod

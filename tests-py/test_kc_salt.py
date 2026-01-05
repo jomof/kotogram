@@ -1,6 +1,7 @@
 import unittest
 
 from train import kc
+from train.kc import KcFamilyId
 
 
 class TestKCSaltKeys(unittest.TestCase):
@@ -14,7 +15,8 @@ class TestKCSaltKeys(unittest.TestCase):
 
     def test_missing_salt_key_for_ngram_field_is_descriptive(self):
         # Remove a key that compute_kc_targets will look up via f"ngram_{field}"
-        missing_key = "ngram_pos_detail_1"
+        # We now look up by KcFamilyId
+        missing_key = KcFamilyId.NGRAM_POS_DETAIL_1
         self.assertIn(missing_key, kc.SALT, "Test assumes SALT initially has this key")
         del kc.SALT[missing_key]
 
@@ -32,11 +34,11 @@ class TestKCSaltKeys(unittest.TestCase):
         msg = str(ctx.exception)
         # MissingMappingError inherits from KeyError and includes standard message
         self.assertIn("Missing mapping in SALT", msg)
-        self.assertIn(missing_key, msg)
+        self.assertIn(str(missing_key), msg)
 
     def test_missing_different_salt_key(self):
         # Vary the missing key to prevent 'key' arg constant value
-        missing_key = "ngram_pos"
+        missing_key = KcFamilyId.NGRAM_POS
         self.assertIn(missing_key, kc.SALT)
         del kc.SALT[missing_key]
 
@@ -51,7 +53,7 @@ class TestKCSaltKeys(unittest.TestCase):
         with self.assertRaises(KeyError) as ctx:
             kc.compute_kc_targets(feature_ids)
 
-        self.assertIn(missing_key, str(ctx.exception))
+        self.assertIn(str(missing_key), str(ctx.exception))
 
     def test_salt_present_allows_compute(self):
         feature_ids = {
@@ -63,10 +65,10 @@ class TestKCSaltKeys(unittest.TestCase):
         }
         out = kc.compute_kc_targets(feature_ids)
         # Sanity: expect at least some ngram and tail_ngram outputs
-        self.assertIn("ngram_pos_detail_1", out)
-        self.assertIn("tail_ngram_pos_detail_1", out)
-        self.assertIsInstance(out["ngram_pos_detail_1"], list)
-        self.assertIsInstance(out["tail_ngram_pos_detail_1"], list)
+        self.assertIn(KcFamilyId.NGRAM_POS_DETAIL_1, out)
+        self.assertIn(KcFamilyId.TAIL_NGRAM_POS_DETAIL_1, out)
+        self.assertIsInstance(out[KcFamilyId.NGRAM_POS_DETAIL_1], list)
+        self.assertIsInstance(out[KcFamilyId.TAIL_NGRAM_POS_DETAIL_1], list)
 
     def test_custom_map_name_error(self):
         """Test MissingMappingError with a custom map name."""

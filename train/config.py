@@ -6,6 +6,8 @@ from typing import TYPE_CHECKING, Any, Dict, Optional, Tuple
 
 import torch
 
+from train.kc import KcFamilyId
+
 if TYPE_CHECKING:
     from kotogram.model import ModelConfig
 
@@ -202,6 +204,9 @@ class TrainerConfig:
     progress_update_every: int = 50  # Batches between progress bar updates
     log_flush_every: int = 200  # Batches between stdout flushes
 
+    # Knowledge Component Targets (Training only)
+    kc_target_specs: Dict[KcFamilyId, int] = field(default_factory=dict)
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             "learning_rate": self.learning_rate,
@@ -224,6 +229,7 @@ class TrainerConfig:
             "checkpoint": self.checkpoint.to_dict(),
             "progress_update_every": self.progress_update_every,
             "log_flush_every": self.log_flush_every,
+            "kc_target_specs": {k.value: v for k, v in self.kc_target_specs.items()},
         }
 
     @staticmethod
@@ -253,6 +259,18 @@ class TrainerConfig:
             d["dataloader"] = DataLoaderSettings.from_dict(d["dataloader"])
         if "checkpoint" in d:
             d["checkpoint"] = CheckpointConfig.from_dict(d["checkpoint"])
+
+        # Handle kc_target_specs
+        if "kc_target_specs" in d:
+            raw_specs = d["kc_target_specs"]
+            new_specs = {}
+            # We assume keys are integers (or strings of integers) mapping to vocab sizes
+
+            for k, v in raw_specs.items():
+                if isinstance(k, (int, str)):
+                    fid = KcFamilyId(int(k))
+                    new_specs[fid] = v
+            d["kc_target_specs"] = new_specs
 
         valid_fields = {f.name for f in fields(cls)}
         return cls(**{k: v for k, v in d.items() if k in valid_fields})

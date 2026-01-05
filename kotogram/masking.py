@@ -4,12 +4,44 @@ This module provides utilities to mask specific tokens in a kotogram stream,
 primarily for anonymization or data augmentation purposes.
 """
 
-from typing import List
+from typing import TYPE_CHECKING, List
 
-from kotogram.kotogram import Token
+if TYPE_CHECKING:
+    from kotogram.kotogram import Token
 
 
-def apply_training_mask(tokens: List[Token]) -> List[Token]:
+# -------------------------------------------------------------------------
+# KC Masking Constants
+# -------------------------------------------------------------------------
+
+# Whitelist for grammar-heavy POS to keep reading.
+# Content-heavy POS (noun, adj, etc.) will have their reading masked.
+GRAMMAR_POS_WHITELIST = {
+    "particle",
+    "aux-verb",
+    "prefix",
+    "suffix",
+    "adnom",
+    "conj",
+}
+
+# Reading masks that should be preserved even if POS is masked.
+# These represent specific semantic categories (e.g. names, numbers)
+# that we want to distinguish in the reading grammar.
+PRESERVED_READING_MASKS = {
+    "<proper-noun>",
+    "<person-name>",
+    "<given-name>",
+    "<surname>",
+    "<place-name>",
+    "<country>",
+    "<number>",
+}
+
+READING_MASK = "<READING_MASK>"
+
+
+def apply_training_mask(tokens: List["Token"]) -> List["Token"]:
     """Apply training mask to anonymize given names immutable.
 
     Replaces Japanese given names (First Names) with the placeholder "太郎" (Taro).
@@ -21,6 +53,8 @@ def apply_training_mask(tokens: List[Token]) -> List[Token]:
     Returns:
         New list of Token objects with masking applied.
     """
+    from kotogram.kotogram import Token  # Deferred import to avoid cycle
+
     masked_tokens = []
     for token in tokens:
         new_token = token
@@ -64,34 +98,49 @@ def apply_training_mask(tokens: List[Token]) -> List[Token]:
                 )
 
             # Apply Replacement
-            # Create a NEW token with stripped features
-            # Retain only POS information for grammatical stability
+            # Create a NEW token with modified features
+            # Retain original surface, but override reading_gram
             from kotogram.kotogram import TokenFeatures
 
             new_features = TokenFeatures(
+                surface=features.surface,  # Keep explicit surface in features if it was there? No, TokenFeatures init defaults.
+                # Actually Token.features usually has surface matching Token.surface.
+                # We should replicate all features but change reading_gram.
+                # But TokenFeatures is a dataclass.
                 pos=pos,
                 pos_detail_1=detail1,
                 pos_detail_2=detail2,
                 pos_detail_3=detail3,
-                lemma="*",
+                conjugated_type=features.conjugated_type,
+                conjugated_form=features.conjugated_form,
+                base_orth=features.base_orth,
+                lemma="",
+                reading="",  # CLEARED: Persisted via reading_gram marker ᵍ
+                reading_gram=target_surface,  # Explicitly set reading_gram mask
             )
-            # Replace token
-            new_token = Token(target_surface, features=new_features)
+            # Replace token features, KEEP SURFACE
+            new_token = Token(token.surface, features=new_features)
 
         # Numeral Masking
         elif pos == "noun" and detail1 == "numeral":
             target_surface = "<number>"
-            # Create a NEW token with stripped features
+            # Create a NEW token with modified features
             from kotogram.kotogram import TokenFeatures
 
             new_features = TokenFeatures(
+                surface=features.surface,
                 pos=pos,
                 pos_detail_1=detail1,
                 pos_detail_2=detail2,
                 pos_detail_3=detail3,
-                lemma="*",
+                conjugated_type=features.conjugated_type,
+                conjugated_form=features.conjugated_form,
+                base_orth=features.base_orth,
+                lemma="",
+                reading="",  # CLEARED
+                reading_gram=target_surface,
             )
-            new_token = Token(target_surface, features=new_features)
+            new_token = Token(token.surface, features=new_features)
 
         masked_tokens.append(new_token)
 

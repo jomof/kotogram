@@ -46,8 +46,10 @@ class TestDataflowV2(unittest.TestCase):
         cache_dir = os.path.join(self.test_dir, ".cache", "style_dataset")
         self.assertTrue(os.path.exists(cache_dir), "Cache dir not created")
         expected_files = [
-            "feat_surface.bin",
-            "feat_lemma.bin",
+            # "feat_surface.bin",
+            "feat_reading_gram.bin",
+            # "feat_lemma.bin",
+            # "feat_base_orth.bin",
             "offsets.bin",
             "sentences.txt",
             "kotograms.txt",
@@ -88,13 +90,13 @@ class TestDataflowV2(unittest.TestCase):
         # Check sample
         sample = dataset[0]
         self.assertIsInstance(sample.feature_ids, dict)
-        self.assertIn("lemma", sample.feature_ids)
-        self.assertTrue(len(sample.feature_ids["lemma"]) > 0)
+        # self.assertIn("lemma", sample.feature_ids)
+        # self.assertTrue(len(sample.feature_ids["lemma"]) > 0)
 
-        # Inspect surface IDs
-        surface_ids = sample.feature_ids["surface"]
-        valid_ids = [fid for fid in surface_ids if fid > 2]
-        self.assertTrue(len(valid_ids) > 0, f"All tokens special: {surface_ids}")
+        # Inspect reading_gram IDs (was surface)
+        rg_ids = sample.feature_ids["reading_gram"]
+        valid_ids = [fid for fid in rg_ids if fid > 2]
+        self.assertTrue(len(valid_ids) > 0, f"All tokens special: {rg_ids}")
 
         # Check Register Labels (ragged)
         # "これはテスト文です0" has override KYOSHIGO (assumed ID 4)

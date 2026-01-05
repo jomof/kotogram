@@ -4,6 +4,7 @@ from unittest.mock import MagicMock, patch
 import torch
 from kc_test_utils import KCTrainerTestBase
 
+from train.kc import KcFamilyId
 from train.kc_diagnostics import KCEpochDiag
 
 # pylint: disable=protected-access,too-many-locals,unused-variable
@@ -21,7 +22,7 @@ class TestKCDiagAlignment(KCTrainerTestBase):
 
         with self.assertRaisesRegex(ValueError, "pos_ids must be 2D"):
             diag.update_family(
-                "test",
+                KcFamilyId.BAG_POS.name.lower(),
                 inds.flatten(),
                 pos_mask.flatten(),
                 probs,
@@ -32,7 +33,12 @@ class TestKCDiagAlignment(KCTrainerTestBase):
         with self.assertRaisesRegex(ValueError, "Shape mismatch"):
             # Ensure all passed are 2D but mismatched
             diag.update_family(
-                "test", inds, pos_mask, torch.zeros((2, 6)), targets, 0.0
+                KcFamilyId.BAG_POS.name.lower(),
+                inds,
+                pos_mask,
+                torch.zeros((2, 6)),
+                targets,
+                0.0,
             )
 
     @patch("train.trainer.create_kc_batch")
@@ -48,7 +54,9 @@ class TestKCDiagAlignment(KCTrainerTestBase):
 
         batch_size = 3
 
-        self.model.config.kc_target_specs = {"dense_small": vocab_size}
+        object.__setattr__(
+            self.trainer.config, "kc_target_specs", {KcFamilyId.BAG_POS: vocab_size}
+        )
         self.model.config.kc_vocab_size = vocab_size
         self.trainer.data_loader.__len__.return_value = 1
 
@@ -60,10 +68,14 @@ class TestKCDiagAlignment(KCTrainerTestBase):
         # Targets
         targets = torch.zeros((batch_size, vocab_size))
         targets[0, 1] = 1.0
-        mock_create_batch.return_value = {"kc_targets_dense_small": targets}
+        mock_create_batch.return_value = {
+            f"kc_targets_{KcFamilyId.BAG_POS.name.lower()}": targets
+        }
 
         # Outputs
-        outputs = self._create_mock_outputs(batch_size, vocab_size, "dense_small")
+        outputs = self._create_mock_outputs(
+            batch_size, vocab_size, KcFamilyId.BAG_POS.name.lower()
+        )
         self.model.return_value = outputs
 
         self.trainer.train_epoch(0)
@@ -73,7 +85,7 @@ class TestKCDiagAlignment(KCTrainerTestBase):
         args = mock_diag.update_family.call_args.args
         name, v_ids, pos_mask, probs, tgs, _ = args[:6]
 
-        self.assertEqual(name, "dense_small")
+        self.assertEqual(name, KcFamilyId.BAG_POS.name.lower())
         self.assertEqual(v_ids.dim(), 2)
         self.assertEqual(pos_mask.dim(), 2)
         self.assertEqual(probs.dim(), 2)
@@ -92,7 +104,9 @@ class TestKCDiagAlignment(KCTrainerTestBase):
         vocab_size = 1000
         batch_size = 2
 
-        self.model.config.kc_target_specs = {"dense_large": vocab_size}
+        object.__setattr__(
+            self.trainer.config, "kc_target_specs", {KcFamilyId.BAG_POS: vocab_size}
+        )
         self.model.config.kc_vocab_size = vocab_size
         self.trainer.data_loader.__len__.return_value = 1
 
@@ -103,9 +117,13 @@ class TestKCDiagAlignment(KCTrainerTestBase):
 
         targets = torch.zeros((batch_size, vocab_size))
         targets[0, 100] = 1.0
-        mock_create_batch.return_value = {"kc_targets_dense_large": targets}
+        mock_create_batch.return_value = {
+            f"kc_targets_{KcFamilyId.BAG_POS.name.lower()}": targets
+        }
 
-        outputs = self._create_mock_outputs(batch_size, vocab_size, "dense_large")
+        outputs = self._create_mock_outputs(
+            batch_size, vocab_size, KcFamilyId.BAG_POS.name.lower()
+        )
         self.model.return_value = outputs
 
         self.trainer.train_epoch(0)
@@ -114,7 +132,7 @@ class TestKCDiagAlignment(KCTrainerTestBase):
         args = mock_diag.update_family.call_args.args
         name, inds, pos_mask, probs, tgs, _ = args[:6]
 
-        self.assertEqual(name, "dense_large")
+        self.assertEqual(name, KcFamilyId.BAG_POS.name.lower())
         self.assertEqual(inds.dim(), 2)
         # Should be (B, P + N). P depends on max positives in rows.
         # Row 0 has 1 pos. Row 1 has 0 pos. Max pos = 1 (or min 1).
@@ -145,14 +163,14 @@ class TestKCDiagAlignment(KCTrainerTestBase):
             vocab_size,
             neg_count=50,
             diag=mock_diag,
-            family_name="sparse_test",
+            family_name=KcFamilyId.BAG_POS.name.lower(),
         )
 
         mock_diag.update_family.assert_called()
         args = mock_diag.update_family.call_args.args
         name, inds, pm, probs, tgs, _ = args[:6]
 
-        self.assertEqual(name, "sparse_test")
+        self.assertEqual(name, KcFamilyId.BAG_POS.name.lower())
         self.assertEqual(inds.dim(), 2)
         # Width: P (2) + N (50) = 52
         self.assertEqual(inds.size(1), 52)

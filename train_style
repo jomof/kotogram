@@ -261,8 +261,6 @@ def generate_and_save_config(
     tokenizer = Tokenizer.load(tokenizer_path_final)
 
     # Define KC target specs (Handled dynamically by inner script)
-    kc_target_specs: Dict[str, int] = {}
-
     # Create configs
     config_loaded = False
     model_config = None  # type: ignore # Fix Pylint E0606
@@ -282,7 +280,6 @@ def generate_and_save_config(
             num_layers=args.num_layers,
             num_heads=args.num_heads,
             kc_enabled=args.pretrain_kc,
-            kc_target_specs=kc_target_specs,
         )
 
     # Build TrainerConfig
