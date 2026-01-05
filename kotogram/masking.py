@@ -78,6 +78,21 @@ def apply_training_mask(tokens: List[Token]) -> List[Token]:
             # Replace token
             new_token = Token(target_surface, features=new_features)
 
+        # Numeral Masking
+        elif pos == "noun" and detail1 == "numeral":
+            target_surface = "<number>"
+            # Create a NEW token with stripped features
+            from kotogram.kotogram import TokenFeatures
+
+            new_features = TokenFeatures(
+                pos=pos,
+                pos_detail_1=detail1,
+                pos_detail_2=detail2,
+                pos_detail_3=detail3,
+                lemma="*",
+            )
+            new_token = Token(target_surface, features=new_features)
+
         masked_tokens.append(new_token)
 
     return masked_tokens

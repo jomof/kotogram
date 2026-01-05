@@ -341,7 +341,7 @@ class TrainEpochStats:
     avg_logit_gap: float
     avg_kl_to_uniform: float
     uniq_kcs_epoch: int
-    avg_p_max: float
+    avg_pmax_mean: float  # Mean of max(kc_probs) per example
     kc_diagnostics: KCDiagnosticReport
 
 

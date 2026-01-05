@@ -53,6 +53,8 @@ class TestKCDiagAlignment(KCTrainerTestBase):
         self.trainer.data_loader.__len__.return_value = 1
 
         batch_iter = MagicMock()
+        batch_iter.feature_inputs = {}
+        batch_iter.attention_mask = torch.ones(batch_size, 10)
         self.trainer.data_loader.__iter__.return_value = iter([batch_iter])
 
         # Targets
@@ -93,7 +95,11 @@ class TestKCDiagAlignment(KCTrainerTestBase):
         self.model.config.kc_target_specs = {"dense_large": vocab_size}
         self.model.config.kc_vocab_size = vocab_size
         self.trainer.data_loader.__len__.return_value = 1
-        self.trainer.data_loader.__iter__.return_value = iter([MagicMock()])
+
+        batch_mock = MagicMock()
+        batch_mock.feature_inputs = {}
+        batch_mock.attention_mask = torch.ones(batch_size, 10)
+        self.trainer.data_loader.__iter__.return_value = iter([batch_mock])
 
         targets = torch.zeros((batch_size, vocab_size))
         targets[0, 100] = 1.0

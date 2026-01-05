@@ -124,58 +124,48 @@ class TestMasking(unittest.TestCase):
 
     def test_generic_person_masking(self):
         """Test masking of generic person names (no given/surname detail)."""
-        from kotogram.kotogram import Token, TokenFeatures
-        from kotogram.masking import apply_training_mask
-
-        # Manually construct generic person token
-        # noun:proper-noun:person-name:general (or empty)
-        t = Token(
-            "Somebody",
-            features=TokenFeatures(
-                pos="noun",
-                pos_detail_1="proper-noun",
-                pos_detail_2="person-name",
-                pos_detail_3="general",
-            ),
+        # "ジョン" (John) is parsed as noun:proper-noun:person-name (generic)
+        text = "ジョン"
+        kotogram = self.parser.japanese_to_kotogram(
+            text, fmt=KotogramFormat.TRAINING_MASK
         )
-        tokens = [t]
-        tokens = apply_training_mask(tokens)
-        self.assertEqual(tokens[0].surface, "<person-name>")
-        self.assertEqual(tokens[0].features.lemma, "*")
+        tokens = split_kotogram(kotogram)
+        t0 = extract_token_features(tokens[0])
+
+        self.assertEqual(t0.surface, "<person-name>")
+        self.assertEqual(t0.lemma, "<person-name>")
+        self.assertEqual(t0.pos_detail_1, "proper-noun")
+        self.assertEqual(t0.pos_detail_2, "person-name")
 
     def test_generic_place_masking(self):
         """Test masking of generic place names (no country detail)."""
-        from kotogram.kotogram import Token, TokenFeatures
-        from kotogram.masking import apply_training_mask
-
-        t = Token(
-            "Somewhere",
-            features=TokenFeatures(
-                pos="noun",
-                pos_detail_1="proper-noun",
-                pos_detail_2="place-name",
-            ),
+        # "東京" (Tokyo) is noun:proper-noun:place-name (generic/general)
+        text = "東京"
+        kotogram = self.parser.japanese_to_kotogram(
+            text, fmt=KotogramFormat.TRAINING_MASK
         )
-        tokens = [t]
-        tokens = apply_training_mask(tokens)
-        self.assertEqual(tokens[0].surface, "<place-name>")
+        tokens = split_kotogram(kotogram)
+        t0 = extract_token_features(tokens[0])
+
+        self.assertEqual(t0.surface, "<place-name>")
+        self.assertEqual(t0.lemma, "<place-name>")
+        self.assertEqual(t0.pos_detail_1, "proper-noun")
+        self.assertEqual(t0.pos_detail_2, "place-name")
 
     def test_generic_proper_noun_masking(self):
         """Test masking of generic proper nouns (orgs, etc)."""
-        from kotogram.kotogram import Token, TokenFeatures
-        from kotogram.masking import apply_training_mask
-
-        t = Token(
-            "SomeCorp",
-            features=TokenFeatures(
-                pos="noun",
-                pos_detail_1="proper-noun",
-                pos_detail_2="organization",
-            ),
+        # "トヨタ" (Toyota) is noun:proper-noun (generic, no detail2 in standard dict)
+        # Actually my probe showed D2="" for "トヨタ"
+        text = "トヨタ"
+        kotogram = self.parser.japanese_to_kotogram(
+            text, fmt=KotogramFormat.TRAINING_MASK
         )
-        tokens = [t]
-        tokens = apply_training_mask(tokens)
-        self.assertEqual(tokens[0].surface, "<proper-noun>")
+        tokens = split_kotogram(kotogram)
+        t0 = extract_token_features(tokens[0])
+
+        self.assertEqual(t0.surface, "<proper-noun>")
+        self.assertEqual(t0.lemma, "<proper-noun>")
+        self.assertEqual(t0.pos_detail_1, "proper-noun")
 
     def test_strict_hierarchy_assertions(self):
         """Test strict assertions verify hierarchy logic."""
@@ -221,6 +211,31 @@ class TestMasking(unittest.TestCase):
         )
         with self.assertRaisesRegex(RuntimeError, "failed hierarchy check"):
             apply_training_mask([bad_country])
+
+    def test_numeral_masking(self):
+        """Test validation of numeral masking to <number> using real parsing."""
+        # "500円" -> "500" should be masked to <number>
+        text = "500円"
+        kotogram = self.parser.japanese_to_kotogram(
+            text, fmt=KotogramFormat.TRAINING_MASK
+        )
+
+        tokens = split_kotogram(kotogram)
+        # First token is 500
+        t0_features = extract_token_features(tokens[0])
+
+        self.assertEqual(t0_features.surface, "<number>")
+        # Parser replaces '*' lemma with surface
+        self.assertEqual(t0_features.lemma, "<number>")
+        self.assertEqual(t0_features.pos, "noun")
+        self.assertEqual(t0_features.pos_detail_1, "numeral")
+
+        # Second token "円" (counter/noun) should remain or be masked if it falls into specific rules?
+        # It's a common noun / counter, usually not masked by existing rules unless it hits proper noun logic.
+        # "円" is noun:common-noun:counter-possible.
+        # So it stays as surface.
+        t1_features = extract_token_features(tokens[1])
+        self.assertEqual(t1_features.surface, "円")
 
 
 if __name__ == "__main__":

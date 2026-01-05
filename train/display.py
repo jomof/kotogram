@@ -1,7 +1,7 @@
 """Display logic for training progress reporting."""
 
 import math
-from typing import Any, Dict, List, Optional, Tuple, cast
+from typing import Any, Dict, List, Optional, cast
 
 from rich.console import Console, Group
 from rich.panel import Panel
@@ -322,88 +322,6 @@ def format_kc_first_batch_summary(
         )
 
     return "\n".join(lines)
-
-
-def format_kc_epoch_compact_summary(
-    epoch: int,
-    total_epochs: int,
-    total_loss: float,
-    avg_prob: float,
-    act_dens: float,
-    struct_avg: float,
-    top_losses: List[Any],
-    amp_stats: Dict[str, Any],
-    entropy_norm: float,
-    avg_kl_to_uniform: float,
-    uniq_kcs: int,
-    avg_p_max: float,
-) -> str:
-    """Compact single-line summary of epoch results."""
-    # pylint: disable=too-many-positional-arguments
-    top_str = ", ".join([f"{n} {loss:.3f}" for n, loss in top_losses])
-    return (
-        f"  KC Epoch {epoch} of {total_epochs}: loss={total_loss:.4f} "
-        f"prob={avg_prob:.2f} dens={act_dens:.4f} "
-        f"struct={struct_avg:.4f} "
-        f"{f'ent={entropy_norm:.3f} ' if entropy_norm is not None else ''}"
-        f"{f'kl={avg_kl_to_uniform:.3f} ' if avg_kl_to_uniform is not None else ''}"
-        f"{f'uniq={uniq_kcs} ' if uniq_kcs is not None else ''}"
-        f"{f'pmax={avg_p_max:.3f} ' if avg_p_max is not None else ''}"
-        f"top=[{top_str}] | "
-        f"AMP scale {amp_stats['start']:.0f}->{amp_stats['end']:.0f} "
-        f"skips={amp_stats['skips']} steps={amp_stats['opt_steps']}(+flush={amp_stats['flush_steps']})"
-    )
-
-
-def format_kc_loss_breakdown(parts: Dict[str, float], weights: Dict[str, float]) -> str:
-    """Print breakdown of KC loss components."""
-    # parts: base, struct, label, div, lb, collapse, sparsity
-    # weights: div, lb, sparsity, collapse
-    return (
-        f"  KC LossParts: base={parts.get('base', 0):.4f} "
-        f"struct={parts.get('struct', 0):.4f} "
-        f"label={parts.get('label', 0):.4f} | "
-        f"div={parts.get('div', 0):.4f} "
-        f"lb={parts.get('lb', 0):.4f} "
-        f"coll={parts.get('collapse', 0):.4f} "
-        f"spar={parts.get('sparsity', 0):.4f} "
-        f"(W: div={weights.get('div', 0):.2g} "
-        f"lb={weights.get('lb', 0):.2g} "
-        f"coll={weights.get('collapse', 0):.2g})"
-    )
-
-
-def format_kc_usage_summary(
-    uniq: int,
-    total: int,
-    max_top1: float,
-    tv_mean: float,
-    gap_mean: float,
-    topk_counts: List[Tuple[int, int]],
-    top1_counts: List[Tuple[int, int]],
-    k: int,
-) -> str:
-    """Print compact KC usage stats (histograms)."""
-    # pylint: disable=too-many-positional-arguments
-
-    def fmt_hist(counts: List[Tuple[int, int]], div: int) -> str:
-        parts = []
-        for idx, count in counts:
-            if count == 0:
-                continue
-            pct = count / max(1, div)
-            parts.append(f"{idx}:{count}:{pct:.1%}")
-        return ", ".join(parts)
-
-    topk_str = fmt_hist(topk_counts, total * k)
-    top1_str = fmt_hist(top1_counts, total)
-
-    return (
-        f"    KC Usage: uniqKCs={uniq} total={total} maxTop1={max_top1:.3f} "
-        f"topkVals μ={tv_mean:.3f} gapμ={gap_mean:.3f}\n"
-        f"      topK(topk): {topk_str}\n"
-        f"      topK(top1): {top1_str}"
-    )
 
 
 def print_epoch_summary(
