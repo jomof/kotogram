@@ -63,8 +63,7 @@ class TestInternalVariations(unittest.TestCase):
         kc_config = MagicMock()
         kc_config.sparsity_weight = 0.0
         kc_config.freeze_encoder_epochs = 0
-        kc_config.log_level = "info"
-        kc_config.first_batch_debug_epochs = []
+
         kc_config.kc_grad_cap = 1.0
 
         # Instantiate trainer
@@ -118,8 +117,7 @@ class TestInternalVariations(unittest.TestCase):
         kc_config = MagicMock()
         kc_config.sparsity_weight = 0.0
         kc_config.freeze_encoder_epochs = 1
-        kc_config.log_level = "info"
-        kc_config.first_batch_debug_epochs = []
+
         kc_config.kc_grad_cap = 1.0
 
         trainer = KCTrainer(model, dataset, config, dl_config, kc_config)

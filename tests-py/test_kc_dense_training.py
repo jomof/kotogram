@@ -79,21 +79,22 @@ class TestKCDenseTraining(unittest.TestCase):
         self.mock_loader.__len__.return_value = 1
 
         mock_create_batch.return_value = {
-            f"kc_targets_{KcFamilyId.BAG_POS.name.lower()}": targets
+            f"kc_targets_{KcFamilyId.BAG_POS.name.lower()}": targets,
+            "kc_has_pos_effective": torch.ones(batch_size, dtype=torch.bool),
         }
 
         outputs = {
             "kc_logits": torch.zeros(
-                (batch_size, 10), requires_grad=True
+                (batch_size, 100), requires_grad=True
             ),  # irrelevant
-            "kc_logits_raw": torch.zeros((batch_size, 10), requires_grad=True),
-            "kc_logits_effective": torch.zeros((batch_size, 10), requires_grad=True),
+            "kc_logits_raw": torch.zeros((batch_size, 100), requires_grad=True),
+            "kc_logits_effective": torch.zeros((batch_size, 100), requires_grad=True),
             "kc_probs": torch.sigmoid(
-                torch.zeros((batch_size, 10), requires_grad=True)
+                torch.zeros((batch_size, 100), requires_grad=True)
             ),
             "topk_vals": torch.zeros((batch_size, 5), requires_grad=True),
             "topk_inds": torch.zeros((batch_size, 5), dtype=torch.long),
-            "sparse_activations": torch.zeros((batch_size, 10), requires_grad=True),
+            "sparse_activations": torch.zeros((batch_size, 100), requires_grad=True),
             "target_logits": {KcFamilyId.BAG_POS.name.lower(): logits},
         }
         self.model.return_value = outputs
@@ -157,9 +158,9 @@ class TestKCDenseTraining(unittest.TestCase):
 
         # Outputs missing topk_inds
         outputs = {
-            "kc_logits_raw": torch.zeros((2, 10)),
-            "kc_logits_effective": torch.zeros((2, 10)),
-            "kc_probs": torch.sigmoid(torch.zeros((2, 10))),
+            "kc_logits_raw": torch.zeros((2, 100)),
+            "kc_logits_effective": torch.zeros((2, 100)),
+            "kc_probs": torch.sigmoid(torch.zeros((2, 100))),
             # "topk_inds" is purposefully missing
             "topk_vals": torch.zeros((2, 5)),
             "target_logits": {},
@@ -188,19 +189,20 @@ class TestKCDenseTraining(unittest.TestCase):
         # Force dense path
         self.model.config.kc_target_specs = {KcFamilyId.BAG_POS: 500}
         mock_create_batch.return_value = {
-            f"kc_targets_{KcFamilyId.BAG_POS.name.lower()}": torch.zeros((2, 500))
+            f"kc_targets_{KcFamilyId.BAG_POS.name.lower()}": torch.zeros((2, 500)),
+            "kc_has_pos_effective": torch.zeros(2, dtype=torch.bool),
         }
 
         # Fake logits > 256
         logits = torch.randn(2, 500, requires_grad=True)
         outputs = {
-            "kc_logits": torch.zeros((2, 10)),
-            "kc_logits_raw": torch.zeros((2, 10)),
-            "kc_logits_effective": torch.zeros((2, 10)),
-            "kc_probs": torch.sigmoid(torch.zeros((2, 10))),
+            "kc_logits": torch.zeros((2, 100)),
+            "kc_logits_raw": torch.zeros((2, 100)),
+            "kc_logits_effective": torch.zeros((2, 100)),
+            "kc_probs": torch.sigmoid(torch.zeros((2, 100))),
             "topk_inds": torch.zeros((2, 5), dtype=torch.long),
             "topk_vals": torch.zeros((2, 5)),
-            "sparse_activations": torch.zeros((2, 10)),
+            "sparse_activations": torch.zeros((2, 100)),
             "target_logits": {KcFamilyId.BAG_POS.name.lower(): logits},
         }
         self.model.return_value = outputs

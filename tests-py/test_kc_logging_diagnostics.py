@@ -1,3 +1,4 @@
+import re
 import unittest
 from io import StringIO
 from unittest.mock import MagicMock, patch
@@ -119,9 +120,7 @@ class MockModel(nn.Module):
 class TestKCLoggingDiagnostics(unittest.TestCase):
     def setUp(self):
         self.kc_config = KCConfig(
-            log_level="info",
             freeze_encoder_epochs=0,
-            first_batch_debug_epochs=(),
         )
         self.trainer_config = TrainerConfig(
             batch_size=3,
@@ -192,6 +191,8 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
                     trainer.train_epoch(0)
 
             output = mock_stdout.getvalue()
+            # Strip ANSI codes for regex matching
+            output = re.sub(r"\x1b\[[0-9;]*m", "", output)
 
         print(f"[Captured Output]\n{output}")
 
@@ -204,23 +205,44 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
         # Regex to match the core structure
         # KC EP1 Thawed loss=.* kEff=.*\[.*\] len=.*\[.*\] corrLxK=.*
 
-        self.assertRegex(output, r"KC EP1 Thawed loss=")
-        self.assertRegex(output, r"kEff=\d+\.\d+\[\d+,\d+,\d+\]")
-        self.assertRegex(output, r"len=\d+\.\d+\[\d+,\d+,\d+\]")
-        self.assertRegex(output, r"corrLxK=[\d\.\-]+")
+        # Verify the Block 0 Header
+        # KC EP1 Thawed | Loss: ... dStep=...
+        self.assertIn("KC EP1 Thawed | Loss:", output)
+        self.assertRegex(output, r"dStep=\d+")
+        self.assertRegex(output, r"Batch=\d+/\d+")
 
-        # Also check for "KC FAM TOP" (might not be present if no anomalies and level info?)
-        # Requirement: "only if log_level>=info or if any anomaly triggers"
-        # We set log_level="info", so it should print if there are families.
-        # But we only have "dummy" family with 0 loss and no targets populated properly in MockModel?
-        # MockBatch sets kc_targets = [{"dummy": []}]. So it's empty targets.
+        # Verify Block 1 Sizing Table Header
+        # Verify Block 1 Sizing Table Header
+        self.assertRegex(
+            output, r"Bin.*N.*Len.*K\(Avg\|P10/50/90\).*K/Len.*TailMask.*Keff.*Diff"
+        )
+        # Verify some row content (e.g. 1-3 bin)
+        # Note: bin logic depends on input length.
+        # Mock batch had lengths 2, 10, 30.
+        # Bins: "1-3" (for len 2), "8-15" (for len 10), "16-31" (for len 30).
+        self.assertRegex(output, r"1-3\s+1\s+2\.0")
+        self.assertRegex(output, r"8-15\s+1\s+10\.0")
 
-        # Check that VERBOSE stuff is GONE
-        # "BiasInit" should not be there (unless it ran init, but we mocked it or skipped it)
-        # "KCdiag fam=..." multi-line dump should be gone
+        # Verify Block 2 Activation
+        self.assertRegex(output, r"Act: AvgProb=.*Dens=")
+        self.assertRegex(output, r"Sat95=.*Sat99=")
+        self.assertRegex(output, r"SumK: P50=")
 
-        self.assertNotRegex(output, r"KCdiag fam=\d+ dens=")  # Old header
-        self.assertNotRegex(output, r"KC Health: maxTop1=")  # Old line
+        # Verify Block 3 Families
+        # "Family ... Loss ... Pos% ..."
+        # Verify Block 3 Families
+        self.assertRegex(output, r"Family.*Loss.*Pos%.*P\(\+/-\)")
+        self.assertRegex(output, r"ΔP.*Logit")
+        self.assertRegex(output, r"R@.1/.5.*FPR@.5.*Msk%")
+
+        # Verify Labels Line
+        # "Labels: ..."
+        # self.assertRegex(output, r"Labels: .*") # Might be empty if no labels in mock
+
+        # Old stuff should be gone
+        self.assertNotRegex(output, r"\[KC\] epoch=")
+        self.assertNotRegex(output, r"KCdiag fam=")
+        self.assertNotRegex(output, r"KC Health:")
 
 
 if __name__ == "__main__":

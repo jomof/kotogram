@@ -77,6 +77,8 @@ class TestKCDiagAlignment(KCTrainerTestBase):
             batch_size, vocab_size, KcFamilyId.BAG_POS.name.lower()
         )
         self.model.return_value = outputs
+        # Fix for unconditional decoding overwriting target_logits
+        self.model.kc_decoders.return_value = outputs["target_logits"]
 
         self.trainer.train_epoch(0)
 
@@ -125,6 +127,8 @@ class TestKCDiagAlignment(KCTrainerTestBase):
             batch_size, vocab_size, KcFamilyId.BAG_POS.name.lower()
         )
         self.model.return_value = outputs
+        # Fix for unconditional decoding overwriting target_logits
+        self.model.kc_decoders.return_value = outputs["target_logits"]
 
         self.trainer.train_epoch(0)
 
@@ -190,7 +194,7 @@ class TestKCDiagAlignment(KCTrainerTestBase):
 
         self.trainer.optimizer.param_groups = [{"params": [p]}]
 
-        self.trainer._perform_optimizer_step(self.model, 1)
+        self.trainer._perform_optimizer_step(self.model)
 
         mock_clip.assert_not_called()
 
@@ -199,7 +203,7 @@ class TestKCDiagAlignment(KCTrainerTestBase):
         p.grad = torch.tensor([10.0])  # Reset (zero_grad clears it?)
         # _perform_optimizer_step calls zero_grad at end.
 
-        self.trainer._perform_optimizer_step(self.model, 1)
+        self.trainer._perform_optimizer_step(self.model)
         mock_clip.assert_called()
 
 

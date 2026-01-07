@@ -23,12 +23,6 @@ class KCTrainerTestBase(unittest.TestCase):
             diversity_weight=0.1,
             lb_weight=0.1,
             temperature_thawed=1.0,
-            log_level="info",
-            show_epoch_table=False,
-            show_step_checks=False,
-            show_grad_norms=False,
-            first_batch_debug_every=0,
-            first_batch_debug_epochs=[],
         )
 
         # Mock model

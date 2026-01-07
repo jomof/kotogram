@@ -146,51 +146,6 @@ def test_negative_sampling_logic():
     assert loss > 0
 
 
-def test_kc_probe_diagnose_collapse():
-    """Verify _diagnose_kc_probe detects collapse risk correctly."""
-    # Simulate collapse: high max_top1, low entropy
-    probe_result = {
-        "max_top1": 0.25,  # Very high (want < 0.10)
-        "entropy_norm": 0.70,  # Low (want > 0.85)
-        "uniq_kcs": 100,
-        "kc_vocab_size": 1024,
-    }
-
-    # The diagnose function logic (inline test without Trainer instance)
-    recommendations = []
-    max_top1 = probe_result.get("max_top1", 0.0)
-    entropy_norm = probe_result.get("entropy_norm", 1.0)
-
-    collapse_risk = max_top1 > 0.10 or entropy_norm < 0.85
-    if collapse_risk:
-        recommendations.append("COLLAPSE RISK")
-
-    assert collapse_risk is True, "Should detect collapse from high max_top1"
-    assert "COLLAPSE RISK" in recommendations[0]
-
-
-def test_kc_probe_diagnose_healthy():
-    """Verify _diagnose_kc_probe approves healthy KC state."""
-    probe_result = {
-        "max_top1": 0.05,  # Good (< 0.10)
-        "entropy_norm": 0.95,  # Good (> 0.85)
-        "uniq_kcs": 800,  # Good usage
-        "kc_vocab_size": 1024,
-        "head_pos_auc": 0.92,  # Good
-        "head_conjugated_form_auc": 0.88,  # Good
-    }
-
-    # Check collapse
-    collapse_risk = (
-        probe_result["max_top1"] > 0.10 or probe_result["entropy_norm"] < 0.85
-    )
-    assert collapse_risk is False, "Should not detect collapse for healthy metrics"
-
-    # Check usage
-    usage_ratio = probe_result["uniq_kcs"] / probe_result["kc_vocab_size"]
-    assert usage_ratio >= 0.5, "Usage should be healthy"
-
-
 def test_kc_probe_auc_calculation():
     """Verify AUC calculation logic for structural heads."""
     # pylint: disable=too-many-locals

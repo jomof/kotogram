@@ -14,6 +14,7 @@ KC_POS_BIASED_WINDOW = 5
 
 DEFAULT_HASH_BUCKET_SIZE = 16384
 
+
 class KcFamilyId(str, Enum):
     """Canonical opaque IDs for all KC families."""
 
@@ -66,10 +67,6 @@ FAMILY_IS_SPARSE: Dict[KcFamilyId, bool] = {
     KcFamilyId.TAIL_NGRAM_POS_DETAIL_1: True,
     KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: True,
     KcFamilyId.TAIL_NGRAM_READING_GRAM: True,
-}
-
-SPARSE_FAMILY_NAMES = {
-    f.name.lower() for f, is_sparse in FAMILY_IS_SPARSE.items() if is_sparse
 }
 
 
@@ -238,6 +235,7 @@ def _compute_tail_ngram_targets(
                         h = stable_hash_ints([salt, *ngram]) % KC_HASH_BUCKETS
                         hashes.add(h)
             targets[family_id] = sorted(hashes)
+
 
 def compute_kc_targets(
     feature_ids: Dict[str, Union[List[int], "torch.Tensor"]],
