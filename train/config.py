@@ -152,7 +152,7 @@ class TrainerConfig:
     """Configuration for model training."""
 
     learning_rate: float = 1e-4
-    batch_size: int = 32
+    batch_size: int = -1
     epochs: int = 20  # Fine-tuning epochs
     kc_epochs: int = 3
     patience: int = 5  # Early stopping patience

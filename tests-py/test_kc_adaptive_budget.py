@@ -171,7 +171,9 @@ class TestKCAdaptiveBudget(unittest.TestCase):
         )
 
         # Mock loader
-        loader = [batch]
+        loader = MagicMock()
+        loader.__iter__.return_value = iter([batch])
+        loader.batch_size = 4
         trainer.data_loader = loader
         # dataset.__len__ is already set above
 

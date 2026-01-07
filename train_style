@@ -362,6 +362,9 @@ def run_training_phase(
             "--kc-freeze-encoder-epochs", str(args.kc_freeze_encoder_epochs),
             "--kc-sparsity-weight", str(args.kc_sparsity_weight),
         ])
+        if args.kc_batch_size is not None:
+            train_args.extend(["--kc-batch-size", str(args.kc_batch_size)])
+
     if args.resume:
         train_args.append("--resume")
     if args.retrain:
@@ -462,6 +465,12 @@ def parse_arguments() -> argparse.Namespace:
         "--kc-freeze-encoder-epochs", type=int, default=1, help="Epochs to freeze encoder during KC training"
     )
     parser.add_argument("--kc-sparsity-weight", type=float, default=1e-3, help="Sparsity regularization weight")
+    parser.add_argument(
+        "--kc-batch-size",
+        type=int,
+        default=None,
+        help="Explicit batch size for KC pretraining (overrides config/auto)",
+    )
 
 
     # Action flags

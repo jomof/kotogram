@@ -176,7 +176,10 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
                 kc_config=self.kc_config,
             )
 
-        trainer.data_loader = [batch]
+        mock_loader = MagicMock()
+        mock_loader.__iter__.return_value = iter([batch])
+        mock_loader.batch_size = 3
+        trainer.data_loader = mock_loader
         trainer.optimizer = MagicMock()
         trainer.optimizer.param_groups = [{"lr": 0.0}, {"lr": 0.0}]
 
