@@ -168,7 +168,7 @@ class TestParameterVariation(unittest.TestCase):
         trainer1 = KCTrainer(model, mock_dataset, config1, dl_config, kc_config1)
         trainer1.optimizer = MagicMock()
         # pylint: disable=protected-access
-        trainer1._perform_optimizer_step(model, accum=1)
+        trainer1._perform_optimizer_step(model)
 
         # Case 2: freeze_encoder_epochs = 0, accum=2
         config2 = TrainerConfig(device="cpu", grad_accum_steps=2)
@@ -176,7 +176,7 @@ class TestParameterVariation(unittest.TestCase):
         trainer2 = KCTrainer(model, mock_dataset, config2, dl_config, kc_config2)
         trainer2.optimizer = MagicMock()
         # pylint: disable=protected-access
-        trainer2._perform_optimizer_step(model, accum=2)
+        trainer2._perform_optimizer_step(model)
 
     def test_timer_variation(self):
         """Test Timer with varying initialization parameters."""

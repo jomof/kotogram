@@ -503,6 +503,10 @@ def create_kc_batch(
         # Fallback if empty (shouldn't happen with valid collation)
         return result
 
+    # Global effective mask initialization
+    batch_size = len(batch.kc_targets)
+    global_has_pos = torch.zeros(batch_size, dtype=torch.bool, device=device)
+
     # Strict iteration over target_specs which MUST be Dict[KcFamilyId, int]
     for target_family, vocab_size in target_specs.items():
         # Strict data alignment: The batch MUST contain data for the requested target.
@@ -521,5 +525,10 @@ def create_kc_batch(
         # Using f"kc_pos_inds_{target_family.name}" is safer/readable than ID.
         result[f"kc_pos_inds_{target_family.name.lower()}"] = pos_inds
         result[f"kc_pos_mask_{target_family.name.lower()}"] = pos_mask
+
+        # Accumulate global positive presence
+        global_has_pos |= pos_mask.any(dim=1)
+
+    result["kc_has_pos_effective"] = global_has_pos
 
     return result

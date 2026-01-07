@@ -105,8 +105,6 @@ class KCConfig:
 
     sparsity_weight: float = 0.1
     freeze_encoder_epochs: int = 1
-    pos_weight_cap: float = 50.0
-    pos_weight_eps: float = 1e-6
 
     # Diversity / Coverage
     diversity_weight: float = 1e-3
@@ -126,19 +124,14 @@ class KCConfig:
 
     # Optimization
     kc_grad_cap: float = 5.0
-    max_consecutive_skips: int = 25
-
-    # Diagnostics / Logging
-    log_level: str = "minimal"
-    first_batch_debug_every: int = 1
-    first_batch_debug_epochs: Tuple[int, ...] = (0,)
-    show_epoch_table: bool = False
-    show_step_checks: bool = False
-    show_grad_norms: bool = False
 
     # Dynamic Training Constraints
     entropy_floor: float = 0.85
+    # Dynamic Training Constraints
     kl_cap: float = 0.15
+
+    # Saturation Penalty
+    sat_weight: float = 1.0
 
     def to_dict(self) -> Dict[str, Any]:
         return dict(self.__dict__)
@@ -150,10 +143,7 @@ class KCConfig:
         valid = {f.name for f in fields(cls)}
         kwargs = {k: v for k, v in d.items() if k in valid}
         # Handle list -> tuple conversion for first_batch_debug_epochs if needed
-        if "first_batch_debug_epochs" in kwargs:
-            kwargs["first_batch_debug_epochs"] = tuple(
-                kwargs["first_batch_debug_epochs"]
-            )
+
         return cls(**kwargs)
 
 

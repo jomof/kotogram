@@ -368,6 +368,38 @@ async def check_kotogram_dependencies() -> CheckResult:
     return CheckResult("Kotogram dependency check", True, "")
 
 
+async def check_trainer_display_hygiene() -> CheckResult:
+    """
+    Ensure train/trainer.py delegates all display/logging to view classes.
+    Strictly forbids 'print(', 'sys.stdout', and 'sys.stderr'.
+    """
+    target_file = "train/trainer.py"
+    if not os.path.exists(target_file):
+        return CheckResult("Trainer display hygiene", True, "Skipped (file not found)")
+
+    # Grep for forbidden patterns
+    # -n: line number
+    # -H: filename
+    # -E: extended regex
+    pattern = r"print\(|sys\.stdout|sys\.stderr"
+    cmd = f'grep -nH -E "{pattern}" {target_file}'
+
+    proc = await asyncio.create_subprocess_shell(
+        cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
+    stdout, _ = await proc.communicate()
+
+    if proc.returncode == 0:
+        # Grep found matches -> Violation
+        msg = (
+            f"Display logic found in {target_file}. "
+            "Move strictly to View classes (TrainerView/KCTrainerView).\n"
+            f"Violations:\n{stdout.decode()}"
+        )
+        return CheckResult("Trainer display hygiene", False, msg)
+
+    return CheckResult("Trainer display hygiene", True, "")
+
 
 
 
@@ -831,6 +863,7 @@ async def main() -> None:
             check_vulture_full(),
             check_kotogram_dependencies(),
             check_file_structure(),
+            check_trainer_display_hygiene(),
             check_confinement_probe("confine/python-test.json"),
         ]
         tasks.insert(0, process_noqa)

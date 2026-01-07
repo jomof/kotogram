@@ -30,14 +30,23 @@ class MockBatch:
         self.kc_targets = [{KcFamilyId.BAG_READING_GRAM: []} for _ in range(batch_size)]
 
 
+class MockKCDecoders(nn.Module):
+    def __init__(self, in_features, out_features):
+        super().__init__()
+        self.linear = nn.Linear(in_features, out_features)
+
+    def forward(self, x):
+        return {KcFamilyId.BAG_READING_GRAM.name.lower(): self.linear(x)}
+
+
 class MockModel(nn.Module):
     def __init__(self, config):
         super().__init__()
         self.config = config
         self.last_k_budget = None
         self.last_long_mask = None
-        self.kc_decoders = nn.Linear(10, 10)  # dummy
-        self.kc_head = nn.Linear(10, 100)  # dummy
+        self.kc_decoders = MockKCDecoders(config.kc_vocab_size, 10)  # dummy wrapper
+        self.kc_head = nn.Linear(10, config.kc_vocab_size)  # dummy
 
     def forward(self, *args, **kwargs):
         if kwargs.get("mode") == "kc":
@@ -93,9 +102,7 @@ class TestKCAdaptiveBudget(unittest.TestCase):
             sparsity_weight=0.01,
             entropy_floor=0.5,
             collapse_weight_thawed=0.1,
-            log_level="info",
             freeze_encoder_epochs=1,
-            first_batch_debug_epochs=(),
         )
 
         self.trainer_config = TrainerConfig(
@@ -181,11 +188,11 @@ class TestKCAdaptiveBudget(unittest.TestCase):
         self.assertIsNotNone(k_budget)
 
         # Expected k:
-        # 0: len=2. alpha*2=0.8. ceil=1. min_k=2. -> 2
-        # 1: len=10. alpha*10=4. ceil=4. -> 4
-        # 2: len=30. alpha*30=12. ceil=12. max_k=8. -> 8
+        # 0: len=2. alpha=0.4. ceil=1. min_k=2. -> 2
+        # 1: len=10. alpha=0.4. ceil=4. -> 4
+        # 2: len=30. alpha=0.55. ceil=17. max_k=16. -> 16
 
-        expected = torch.tensor([2, 4, 8], dtype=torch.long)
+        expected = torch.tensor([2, 4, 16], dtype=torch.long)
         self.assertTrue(
             torch.equal(k_budget, expected), f"Expected {expected}, got {k_budget}"
         )

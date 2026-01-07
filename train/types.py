@@ -1,7 +1,7 @@
 """Data types for Kotogram training."""
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Tuple
 
 import torch
 
@@ -83,43 +83,6 @@ class TrainingMetrics:
         return float(val) / max(1, self.count)
 
 
-@dataclass
-class KCDiagnosticHeadStats:
-    """Accumulator for KC head statistics."""
-
-    pos_logits: List[float] = field(default_factory=list)
-    neg_logits: List[float] = field(default_factory=list)
-    p_sum: float = 0.0
-    count: int = 0
-
-
-@dataclass
-class KCMetricsAccumulator:
-    """Accumulate KC probe metrics."""
-
-    n_samples: int = 0
-    sum_entropy: float = 0.0
-    sum_kl: float = 0.0
-    sum_tv: float = 0.0
-    sum_gap: float = 0.0
-    sum_avg_prob: float = 0.0
-    sum_act_dens: float = 0.0
-    topk_hist: torch.Tensor = field(default_factory=lambda: torch.tensor([]))
-    top1_hist: torch.Tensor = field(default_factory=lambda: torch.tensor([]))
-    head_samples: Dict[KcFamilyId, KCDiagnosticHeadStats] = field(default_factory=dict)
-
-
-@dataclass
-class KCProbeConfig:
-    """Configuration for KC probe evaluation."""
-
-    tau_usage: float
-    vocab_size: int
-    topk: int
-    target_specs: Dict[KcFamilyId, int]
-    max_samples_per_head: int
-
-
 @dataclass(frozen=True)
 class TensorStats:
     """Statistics for tensor finite checks."""
@@ -129,24 +92,6 @@ class TensorStats:
     n_inf: int
     min: float
     max: float
-
-
-@dataclass(frozen=True)
-class KCSnapshot:
-    """Snapshot of KC model state for restoration."""
-
-    kc_head: Dict[str, torch.Tensor]
-    kc_decoders: Optional[Dict[str, torch.Tensor]] = None
-
-
-@dataclass(frozen=True)
-class KCCoverageCounts:
-    """Counts for KC target coverage checks."""
-
-    dense: int = 0
-    sparse: int = 0
-    label: int = 0
-    missing: int = 0
 
 
 @dataclass(frozen=True)
@@ -232,6 +177,67 @@ class KCDiagnosticFamilyStats:
     empty_pct: float
     dnll: float
     mask_pct: float
+    # New fields with defaults to preserve compatibility
+    loss_mean: float = 0.0
+    prob_pos_mean: float = 0.0
+    prob_neg_mean: float = 0.0
+    auc_proxy: float = 0.0
+    fp_rate: float = 0.0
+    fn_rate: float = 0.0
+    support: float = 0.0
+    logit_pos_mean: float = 0.0
+    logit_neg_mean: float = 0.0
+    delta_p: float = 0.0
+    recall_01: float = 0.0
+    recall_05: float = 0.0
+
+
+@dataclass
+class KcDynSizingBinStats:
+    """Stats for a single content-length bin."""
+
+    bin_label: str
+    count: int
+    len_mean: float
+    k_budget_mean: float
+    k_budget_p10: float
+    k_budget_p50: float
+    k_budget_p90: float
+    budget_ratio_mean: float
+    masked_tail_rate: float
+    keff_mean: float
+    keff_minus_budget_mean: float
+
+
+@dataclass
+class KcEpochActivationStats:
+    """Global activation stats for an epoch."""
+
+    pmax_global_max: float
+    pmax_p50: float
+    pmax_p90: float
+    pmax_p99: float
+    topk_sum_p50: float
+    topk_sum_p90: float
+    topk_sum_p99: float
+    ent_norm: float
+    kl_u_norm: float
+    act_dens_mean: float
+    kc_probs_mean: float
+    # Saturation Stats (Gated & Scaled)
+    sat_w: float = 0.0
+    sat_alpha: float = 0.0
+    sat_scale_mean: float = 0.0
+    sat_contrib_mean: float = 0.0
+    sat_contrib_ratio: float = 0.0
+    sat_pen_global: float = 0.0
+    sat_pen_pos: float = 0.0
+    pmax_logit_mean_global: float = 0.0
+    pmax_logit_max_global: float = 0.0
+    pmax_logit_mean_pos: float = 0.0
+    pmax_logit_max_pos: float = 0.0
+    frac_over_thr_pos: float = 0.0
+    frac_has_pos: float = 0.0
 
 
 @dataclass
@@ -239,6 +245,22 @@ class KCDiagnosticReport:
     """Full KC diagnostic report for an epoch."""
 
     families: Dict[str, KCDiagnosticFamilyStats]  # Key is KC family name
+
+
+@dataclass
+class KcEpochSummary:
+    """Full summary package for a KC epoch."""
+
+    epoch_idx: int
+    frozen: bool
+    loss_components: RunningLossComponents
+    global_step_delta: int
+    n_batches: int
+    total_batches: int
+    sizing_stats: List[KcDynSizingBinStats]
+    activation_stats: KcEpochActivationStats
+    diagnostics: KCDiagnosticReport
+    label_losses: Dict[str, float]
 
 
 @dataclass
@@ -290,42 +312,6 @@ class KCLosses:
         return self._losses.keys()
 
 
-@dataclass(frozen=True)
-class FirstBatchSeparation:
-    """Immutable accumulator for first batch separation."""
-
-    _data: Dict[str, float] = field(default_factory=dict)
-
-    @property
-    def data(self) -> Dict[str, float]:
-        """Return a copy of the data."""
-        return dict(self._data)
-
-    def with_entry(self, key: str, value: float) -> "FirstBatchSeparation":
-        """Add an entry."""
-        new_data = dict(self._data)
-        new_data[key] = value
-        return FirstBatchSeparation(_data=new_data)
-
-
-@dataclass(frozen=True)
-class FirstBatchGradNorms:
-    """Immutable accumulator for first batch gradient norms."""
-
-    _data: Dict[str, float] = field(default_factory=dict)
-
-    @property
-    def data(self) -> Dict[str, float]:
-        """Return a copy of the data."""
-        return dict(self._data)
-
-    def with_entry(self, key: str, value: float) -> "FirstBatchGradNorms":
-        """Add an entry."""
-        new_data = dict(self._data)
-        new_data[key] = value
-        return FirstBatchGradNorms(_data=new_data)
-
-
 @dataclass
 class TrainEpochStats:
     """Statistics collected during a training epoch."""
@@ -337,13 +323,7 @@ class TrainEpochStats:
     avg_sparsity: float
     avg_prob: float
     act_dens: float
-    first_batch_separation: FirstBatchSeparation
-    first_batch_grad_norms: FirstBatchGradNorms
-    avg_entropy_norm: float
-    avg_logit_gap: float
-    avg_kl_to_uniform: float
-    uniq_kcs_epoch: int
-    avg_pmax_mean: float  # Mean of max(kc_probs) per example
+
     kc_diagnostics: KCDiagnosticReport
 
 
@@ -355,23 +335,6 @@ class TrainEpochResult:
     kc_losses: KCLosses
     avg_sparsity: float
     epoch_stats: TrainEpochStats
-
-
-@dataclass
-class KCProbeEvaluationResult:
-    """Result of KC probe evaluation."""
-
-    n_samples: int
-    uniq_kcs: int
-    max_top1: float
-    entropy_norm: float
-    kl_to_uniform: float
-    tv_mean: float
-    gap_mean: float
-    avg_prob: float
-    act_dens: float
-    kc_vocab_size: int
-    head_metrics: Dict[str, float] = field(default_factory=dict)
 
 
 @dataclass
@@ -415,7 +378,6 @@ class KCTrainingHistory(TrainingHistory):
     num_struct_heads_processed: List[float] = field(default_factory=list)
     num_label_heads_processed: List[float] = field(default_factory=list)
     avg_sparsity: List[float] = field(default_factory=list)
-    first_batch_separation: List[Dict[str, float]] = field(default_factory=list)
-    first_batch_grad_norms: List[Dict[str, float]] = field(default_factory=list)
+
     active_kc_targets: List[str] = field(default_factory=list)
     kc_diagnostics: List[KCDiagnosticReport] = field(default_factory=list)
