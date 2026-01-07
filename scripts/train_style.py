@@ -239,6 +239,14 @@ if __name__ == "__main__":
         default=1e-3,
         help="Sparsity regularization weight for KC activations",
     )
+    # pylint: disable=duplicate-code
+    parser.add_argument(
+        "--kc-batch-size",
+        type=int,
+        default=None,
+        help="Explicit batch size for KC pretraining (overrides config/auto)",
+    )
+    # pylint: enable=duplicate-code
 
     parser.add_argument(
         "--checkpoint-every",
@@ -478,11 +486,18 @@ if __name__ == "__main__":
         events = history.read_events(history_path)
         kc_epochs_done = sum(1 for e in events if isinstance(e, history.KcEpochEvent))
         if kc_epochs_done < trainer_config.kc_epochs or args.retrain:
+            # Override batch size for KC if requested
+            actual_kc_config = trainer_config
+            if args.kc_batch_size is not None:
+                actual_kc_config = dataclasses.replace(
+                    trainer_config, batch_size=args.kc_batch_size
+                )
+
             kc_trainer = KCTrainer(
                 cast(StyleClassifierWithKC, model),
                 train_data,
-                trainer_config,
-                dl_config=trainer_config.resolve_dataloader_config(device),
+                actual_kc_config,
+                dl_config=actual_kc_config.resolve_dataloader_config(device),
                 kc_config=KCConfig(
                     sparsity_weight=args.kc_sparsity_weight,
                     freeze_encoder_epochs=args.kc_freeze_encoder_epochs,

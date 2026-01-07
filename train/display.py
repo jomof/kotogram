@@ -25,9 +25,11 @@ class RichTrainerProgressBar:
         self,
         desc: str,
         total_steps: int,
+        batch_size: int,
     ):
         # Use provided console or fall back to global forced-terminal console
         self.console = console
+        self.batch_size = batch_size
         self.progress = Progress(
             SpinnerColumn(),
             TextColumn("[progress.description]{task.description}"),
@@ -35,11 +37,15 @@ class RichTrainerProgressBar:
             TaskProgressColumn(),
             TimeRemainingColumn(),
             TextColumn("{task.fields[status]}"),
+            TextColumn("{task.fields[throughput]}"),
             console=self.console,
             transient=False,
         )
         self.task_id = self.progress.add_task(
-            desc, total=total_steps, status="Initializing..."
+            desc,
+            total=total_steps,
+            status="Initializing...",
+            throughput="",
         )
         self.progress.start()
 
@@ -53,6 +59,12 @@ class RichTrainerProgressBar:
         fields = {}
         if loss is not None:
             fields["status"] = f"loss={loss:.4f}"
+
+        # Calculate throughput
+        task = self.progress.tasks[int(self.task_id)]
+        if task.speed is not None and task.speed > 0:
+            samples_per_sec = task.speed * self.batch_size
+            fields["throughput"] = f"{samples_per_sec:.1f} el/s"
 
         # Cast fields to Any for Mypy safety with typed kwargs in Progress.update
         fields_any = cast(Dict[str, Any], fields)

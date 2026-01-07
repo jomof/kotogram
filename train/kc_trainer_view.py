@@ -2,7 +2,7 @@
 import math
 import random
 from collections import defaultdict
-from typing import Dict, List, Protocol
+from typing import Any, Dict, List, Protocol
 
 import torch
 from rich.table import Table
@@ -74,6 +74,8 @@ class KCTrainerView(Protocol):
         _ = data_frac
 
     def on_line_flush(self) -> None: ...
+
+    def on_auto_batch_size(self, batch_size: int, device: Any) -> None: ...
 
     # New Hooks
     # pylint: disable=too-many-positional-arguments
@@ -197,6 +199,11 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
     def on_line_flush(self) -> None:
         pass
+
+    def on_auto_batch_size(self, batch_size: int, device: Any) -> None:
+        console.print(
+            f"[bold cyan]Auto-tuning batch size: Detected device memory on {device}, selected batch size {batch_size}[/bold cyan]"
+        )
 
     def _get_bin_label(self, length: int) -> str:
         if length <= 3:

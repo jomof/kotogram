@@ -36,6 +36,7 @@ from train.kc_diagnostics import (
 from train.kc_trainer_view import KCTrainerDiagnosticsView, KCTrainerView
 from train.models import StyleClassifierWithKC
 from train.profile import Timer, get_profile_dir
+from train.pytorch_utils import estimate_optimal_batch_size
 from train.trainer_view import TrainerDiagnosticsView, TrainerView
 from train.types import (
     EvaluationMetrics,
@@ -139,9 +140,17 @@ class KCTrainer:
         if dl_config is None:
             dl_config = self.config.resolve_dataloader_config(self.device, mode="train")
 
+        batch_size = self.config.batch_size
+        if batch_size == -1:
+            batch_size = estimate_optimal_batch_size(
+                self.device, self.model.config, is_kc=True
+            )
+            # Log this via view if possible, or print
+            self.view.on_auto_batch_size(batch_size, self.device)
+
         self.data_loader = DataLoader(
             dataset,
-            batch_size=self.config.batch_size,
+            batch_size=batch_size,
             shuffle=(self.sampler is None),
             sampler=self.sampler,
             collate_fn=partial(
@@ -712,6 +721,7 @@ class KCTrainer:
         pbar = RichTrainerProgressBar(
             desc=f"KC Epoch {epoch + 1}" + (" (Frozen)" if should_freeze else ""),
             total_steps=total_batches,
+            batch_size=self.data_loader.batch_size or 1,
         )
         self.view.on_kc_progress_init(
             f"KC Epoch {epoch + 1}" + (" (Frozen)" if should_freeze else ""),
@@ -1929,9 +1939,18 @@ class Trainer:
                 self.device, mode="train"
             )
 
+        batch_size = self.config.batch_size
+        if batch_size == -1:
+            # Auto-tuning
+            optimal_bs = estimate_optimal_batch_size(
+                self.device, self.model.config, is_kc=False
+            )
+            self.view.on_auto_batch_size(optimal_bs, self.device)
+            batch_size = optimal_bs
+
         self.train_loader = DataLoader(
             train_dataset,
-            batch_size=self.config.batch_size,
+            batch_size=batch_size,
             shuffle=t_shuffle,
             sampler=self.train_sampler,
             collate_fn=partial(collate_fn),
@@ -1949,7 +1968,7 @@ class Trainer:
 
         self.val_loader = DataLoader(
             val_dataset,
-            batch_size=self.config.batch_size,
+            batch_size=batch_size,
             shuffle=v_shuffle,
             sampler=self.val_sampler,
             collate_fn=partial(collate_fn),
@@ -2262,6 +2281,7 @@ class Trainer:
         pbar = RichTrainerProgressBar(
             desc=f"Style Epoch {epoch + 1}/{self.config.epochs}",
             total_steps=total_batches,
+            batch_size=self.train_loader.batch_size or 1,
         )
         self.view.on_progress_init(
             f"Style Epoch {epoch + 1}/{self.config.epochs}", total_batches
