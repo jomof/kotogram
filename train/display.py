@@ -10,6 +10,7 @@ from rich.progress import (
     SpinnerColumn,
     TaskProgressColumn,
     TextColumn,
+    TimeElapsedColumn,
     TimeRemainingColumn,
 )
 
@@ -30,11 +31,14 @@ class RichTrainerProgressBar:
         # Use provided console or fall back to global forced-terminal console
         self.console = console
         self.batch_size = batch_size
+        # Display format: elapsed/remaining time (e.g., "1:30/2:00")
         self.progress = Progress(
             SpinnerColumn(),
             TextColumn("[progress.description]{task.description}"),
             BarColumn(bar_width=40),
             TaskProgressColumn(),
+            TimeElapsedColumn(),
+            TextColumn("/"),
             TimeRemainingColumn(),
             TextColumn("{task.fields[status]}"),
             TextColumn("{task.fields[throughput]}"),

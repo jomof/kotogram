@@ -138,17 +138,11 @@ class TestKCDiagAlignment(KCTrainerTestBase):
 
         self.assertEqual(name, KcFamilyId.BAG_POS.name.lower())
         self.assertEqual(inds.dim(), 2)
-        # Should be (B, P + N). P depends on max positives in rows.
-        # Row 0 has 1 pos. Row 1 has 0 pos. Max pos = 1 (or min 1).
-        # N = 128. Total width approx 129.
-        self.assertEqual(inds.size(1), 1 + 128)
+        # BAG_POS is a dense family, so uses full vocab width (not sampled)
+        self.assertEqual(inds.size(1), vocab_size)
         self.assertEqual(pos_mask.shape, inds.shape)
         self.assertEqual(probs.shape, inds.shape)
         self.assertEqual(tgs.shape, inds.shape)
-
-        # Check pos_mask populated correctly (should be first column True for row 0)
-        self.assertTrue(pos_mask[0, 0].item())
-        self.assertFalse(pos_mask[0, 1].item())  # Next is negative sample
 
     def test_sparse_bce_sampled_diag_alignment(self):
         # T4

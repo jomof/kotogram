@@ -28,8 +28,10 @@ from train.display import (
 )
 from train.io import (
     load_training_state,
+    save_model,
     save_training_state,
 )
+from train.kc import is_family_sparse
 from train.kc_diagnostics import (
     KCEpochDiag,
 )
@@ -40,6 +42,7 @@ from train.pytorch_utils import estimate_optimal_batch_size
 from train.trainer_view import TrainerDiagnosticsView, TrainerView
 from train.types import (
     EvaluationMetrics,
+    FamilyAccumulator,
     KcEpochActivationStats,
     KcEpochSummary,
     KCLosses,
@@ -348,6 +351,7 @@ class KCTrainer:
         diag: Optional[KCEpochDiag] = None,
         family_name: str = "",
         reading_mask_id: int = 0,
+        accumulator: Optional[FamilyAccumulator] = None,
     ) -> torch.Tensor:
         batch_size = int(logits_f.size(0))
         device = logits_f.device
@@ -449,6 +453,21 @@ class KCTrainer:
                     mask_id=reading_mask_id,
                     logits=gathered,
                 )
+
+        # Update accumulator for sparse path (no double-counting: this is the ONLY
+        # place sparse sampled targets are accumulated)
+        if accumulator is not None:
+            with torch.no_grad():
+                # t is [B, P+N]. Entries with 1.0 are pos.
+                full_pos_mask = t > 0.5
+                accumulator.update(
+                    logits=gathered.detach(),
+                    targets=t.detach(),
+                    pos_mask=full_pos_mask,
+                    valid_mask=None,  # all sampled entries are valid
+                    source="sparse",
+                )
+
         return loss
 
     # pylint: disable=too-many-locals
@@ -692,6 +711,7 @@ class KCTrainer:
         sat_active_batches: int = 0
 
         epoch_kc_losses: Dict[str, float] = {}
+        family_accumulators: Dict[str, FamilyAccumulator] = {}
 
         pending_accum = 0
         did_any_backward = False
@@ -714,6 +734,12 @@ class KCTrainer:
         all_lens_aligned = []
 
         self.optimizer.zero_grad(set_to_none=True)
+
+        # Capture decoder bias at start of epoch for delta tracking
+        bias_start: Dict[str, torch.Tensor] = {}
+        for name, decoder in self.model.kc_decoders.decoders.items():
+            if hasattr(decoder, "bias") and decoder.bias is not None:
+                bias_start[name] = decoder.bias.detach().clone()
 
         pbar = None
 
@@ -1053,12 +1079,20 @@ class KCTrainer:
                     # This family might not have logits in the current batch, skip
                     continue
 
+                # Get/Create accumulator
+                if name not in family_accumulators:
+                    family_accumulators[name] = FamilyAccumulator()
+                fam_acc = family_accumulators[name]
+
                 if dense_key in kc_targets:
                     targets = kc_targets[dense_key].to(self.device).float()
                     logits_f = logits.float()
 
                     batch_size_f, vocab_size_f = logits_f.shape
-                    if vocab_size_f > 256:
+                    # Use is_family_sparse to decide path, not vocab size
+                    # fid is already a KcFamilyId from the loop
+                    is_sparse = is_family_sparse(fid)
+                    if is_sparse:
                         # 1) Per-row index sampling
                         pos_mask_bool = targets > 0.5
                         pos_rows = []
@@ -1167,6 +1201,16 @@ class KCTrainer:
                                 task_loss.item(),
                                 logits=gathered_logits.detach(),
                             )
+
+                        if fam_acc is not None:
+                            with torch.no_grad():
+                                fam_acc.update(
+                                    logits=gathered_logits.detach(),
+                                    targets=targets_sampled.detach(),
+                                    pos_mask=(targets_sampled > 0.5).detach(),
+                                    valid_mask=None,  # all sampled entries valid
+                                    source="sparse",  # sampled P+N entries, not full-K
+                                )
                     else:
                         if not name:
                             raise ValueError("Family name cannot be empty")
@@ -1217,6 +1261,16 @@ class KCTrainer:
                                     logits=logits_f,
                                 )
 
+                            if fam_acc is not None:
+                                with torch.no_grad():
+                                    fam_acc.update(
+                                        logits=logits_f.detach(),
+                                        targets=targets.detach(),
+                                        pos_mask=(targets > 0.5).detach(),
+                                        valid_mask=None,  # dense targets, all valid
+                                        source="dense",
+                                    )
+
                     structural_loss += task_loss
                     num_struct += 1
                     batch_kc_losses[name] = task_loss.item()
@@ -1236,6 +1290,7 @@ class KCTrainer:
                         diag=kc_diag,
                         family_name=name,
                         reading_mask_id=reading_mask_id,
+                        accumulator=fam_acc,
                     )
 
                     structural_loss += task_loss
@@ -1785,6 +1840,55 @@ class KCTrainer:
 
         diag_report = kc_diag.get_stats()
 
+        # Update diag_report with FamilyAccumulator stats
+        for name, fam_acc in family_accumulators.items():
+            if name in diag_report.families:
+                fam_diag = diag_report.families[name]
+
+                if fam_acc.n_ex > 0:
+                    fam_diag.pos_ex_frac = fam_acc.n_pos_ex / fam_acc.n_ex
+                    # pos_label_density = avg pos labels per example
+                    fam_diag.pos_label_density = fam_acc.n_pos_labels / fam_acc.n_ex
+                    # mask_coverage: fraction of examples with valid supervision
+                    # If no valid_mask was ever seen, interpret as 1.0 (all valid)
+                    if fam_acc.saw_valid_mask:
+                        fam_diag.mask_coverage = fam_acc.sum_valid_any / fam_acc.n_ex
+                    else:
+                        fam_diag.mask_coverage = 1.0
+
+                if fam_acc.cnt_logit_pos > 0:
+                    fam_diag.logit_pos_mean = (
+                        fam_acc.sum_logit_pos / fam_acc.cnt_logit_pos
+                    )
+                else:
+                    fam_diag.logit_pos_mean = float("nan")
+
+                if fam_acc.cnt_logit_neg > 0:
+                    fam_diag.logit_neg_mean = (
+                        fam_acc.sum_logit_neg / fam_acc.cnt_logit_neg
+                    )
+                else:
+                    fam_diag.logit_neg_mean = float("nan")
+
+                # Build keys_present to reflect actual sources used
+                keys = []
+                if fam_acc.saw_dense:
+                    keys.append("dense")
+                if fam_acc.saw_sparse:
+                    keys.append("sparse")
+                if fam_acc.saw_valid_mask:
+                    keys.append("validmask")
+                fam_diag.keys_present = ",".join(keys)
+
+                # Compute bias delta for gradient flow diagnostic
+                if name in bias_start and name in m.kc_decoders.decoders:
+                    decoder_lin = m.kc_decoders.decoders[name]
+                    if hasattr(decoder_lin, "bias") and decoder_lin.bias is not None:
+                        # Use absolute sum of changes to detect learning
+                        # (mean would cancel out push-up vs push-down)
+                        bias_change = (decoder_lin.bias - bias_start[name]).abs().sum()
+                        fam_diag.bias_delta = float(bias_change.item())
+
         summary = KcEpochSummary(
             epoch_idx=epoch,
             frozen=should_freeze,
@@ -1795,7 +1899,6 @@ class KCTrainer:
             sizing_stats=[],  # Filled by View
             activation_stats=activation_stats,
             diagnostics=diag_report,
-            label_losses=epoch_kc_losses,  # Reuse existing accumulation
         )
 
         self.view.on_kc_epoch_summary(epoch, summary)
@@ -2572,13 +2675,14 @@ class Trainer:
             is_best = eval_res.loss < self.best_val_loss
             if is_best:
                 self.best_val_loss, self.patience_counter = eval_res.loss, 0
+                # Strip kc_decoders to reduce model size (~98% savings)
                 self.best_state = {
                     k: cast(torch.Tensor, v.cpu().clone())
                     for k, v in self.model.state_dict().items()
+                    if not k.startswith("kc_decoders.")
                 }
-                os.makedirs(self.output_path, exist_ok=True)
+                save_model(self.model, self.output_path, self.model.config)
                 model_path = os.path.join(self.output_path, "model.pt")
-                torch.save(self.best_state, model_path)
                 self.view.on_best_model_saved(model_path, self.best_val_loss)
             else:
                 self.patience_counter += 1

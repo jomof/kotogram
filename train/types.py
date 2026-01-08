@@ -1,7 +1,7 @@
 """Data types for Kotogram training."""
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import torch
 
@@ -102,6 +102,107 @@ class KCStructuralBiases:
     counts: Dict[str, int] = field(default_factory=dict)
 
 
+@dataclass
+class FamilyAccumulator:
+    """Accumulator for per-family wakefulness diagnostics.
+
+    Semantics:
+    - n_ex: total examples accumulated
+    - n_pos_ex: examples with ≥1 true positive label
+    - n_pos_labels: total count of true positive labels
+    - sum_valid_any: examples with ≥1 supervised/eligible entry (from valid_mask)
+    - sum_logit_pos/cnt_logit_pos: sum and count for logits at true positive positions
+    - sum_logit_neg/cnt_logit_neg: sum and count for logits at true negative positions
+    - saw_dense: saw dense target updates (source="dense")
+    - saw_sparse: saw sparse sampled target updates (source="sparse")
+    - saw_valid_mask: saw any valid_mask provided
+    """
+
+    n_ex: int = 0
+    n_batches: int = 0
+    n_pos_ex: int = 0
+    n_pos_labels: int = 0
+    sum_valid_any: int = 0  # renamed from sum_mask_any for clarity
+    sum_logit_pos: float = 0.0
+    cnt_logit_pos: int = 0
+    sum_logit_neg: float = 0.0
+    cnt_logit_neg: int = 0
+    saw_dense: bool = False
+    saw_sparse: bool = False
+    saw_valid_mask: bool = False
+
+    # pylint: disable=too-many-positional-arguments
+    def update(
+        self,
+        logits: torch.Tensor,
+        targets: torch.Tensor,
+        pos_mask: Optional[torch.Tensor] = None,
+        valid_mask: Optional[torch.Tensor] = None,
+        source: str = "dense",
+    ) -> None:
+        """Update stats from a batch.
+
+        Args:
+            logits: [B, K] or [B, P+N] logits tensor (detached)
+            targets: [B, K] or [B, P+N] target tensor (detached)
+            pos_mask: boolean mask for true positives; if None, derived from targets > 0.5
+            valid_mask: boolean mask for supervised/eligible entries; if None, all valid
+            source: "dense" or "sparse" to track provenance
+        """
+        with torch.no_grad():
+            batch_size = logits.size(0)
+            self.n_ex += batch_size
+            self.n_batches += 1
+
+            # Track provenance
+            if source == "dense":
+                self.saw_dense = True
+            else:
+                self.saw_sparse = True
+
+            if valid_mask is not None:
+                self.saw_valid_mask = True
+
+            # Derive pos_mask if not provided
+            if pos_mask is None:
+                pos_mask = targets > 0.5
+
+            # Positive example detection: examples with ≥1 true positive
+            has_pos = pos_mask.any(dim=1)
+            self.n_pos_ex += int(has_pos.sum().item())
+            self.n_pos_labels += int(pos_mask.sum().item())
+
+            # Valid/supervised coverage: examples with ≥1 eligible entry
+            if valid_mask is not None:
+                has_valid = valid_mask.any(dim=1)
+                self.sum_valid_any += int(has_valid.sum().item())
+            else:
+                # No valid_mask means all entries are valid (dense or sparse sampled)
+                self.sum_valid_any += batch_size
+
+            # Compute neg_mask respecting valid_mask
+            if valid_mask is not None:
+                # Only count valid entries as negatives
+                neg_mask = valid_mask & ~pos_mask
+                # Also restrict pos to valid (should already be, but defensive)
+                effective_pos_mask = valid_mask & pos_mask
+            else:
+                neg_mask = ~pos_mask
+                effective_pos_mask = pos_mask
+
+            # Logit stats for positives
+            if effective_pos_mask.any():
+                l_pos = logits[effective_pos_mask]
+                self.sum_logit_pos += float(l_pos.sum().item())
+                self.cnt_logit_pos += int(l_pos.numel())
+
+            # Logit stats for negatives
+            if neg_mask.any():
+                l_neg = logits[neg_mask]
+                self.sum_logit_neg += float(l_neg.sum().item())
+                self.cnt_logit_neg += int(l_neg.numel())
+
+
 @dataclass(frozen=True)
 class RunningLossComponents:
     """Running loss components for an epoch."""
@@ -190,6 +291,13 @@ class KCDiagnosticFamilyStats:
     delta_p: float = 0.0
     recall_01: float = 0.0
     recall_05: float = 0.0
+    # Wakefulness Diagnostics
+    pos_ex_frac: float = 0.0
+    pos_label_density: float = 0.0
+    mask_coverage: float = 0.0
+    keys_present: str = ""
+    # Gradient flow diagnostic
+    bias_delta: float = 0.0  # Mean bias change during epoch
 
 
 @dataclass
@@ -260,7 +368,6 @@ class KcEpochSummary:
     sizing_stats: List[KcDynSizingBinStats]
     activation_stats: KcEpochActivationStats
     diagnostics: KCDiagnosticReport
-    label_losses: Dict[str, float]
 
 
 @dataclass

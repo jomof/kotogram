@@ -108,13 +108,13 @@ class KCConfig:
 
     # Diversity / Coverage
     diversity_weight: float = 1e-3
-    diversity_weight_thawed: float = 0.1
+    diversity_weight_thawed: float = 0.4
     diversity_eps: float = 1e-9
     diversity_warmup_epochs: int = 0
 
     # Load Balancing
     lb_weight: float = 0.0
-    lb_weight_thawed: float = 0.02
+    lb_weight_thawed: float = 0.1
 
     # Collapse Prevention
     collapse_weight_thawed: float = 1.0
@@ -178,9 +178,7 @@ class TrainerConfig:
         else ("mps" if torch.backends.mps.is_available() else "cpu")
     )
     grad_accum_steps: int = 1  # Gradient accumulation steps
-    encoder_lr_factor: float = (
-        1.0  # LR multiplier for encoder during fine-tuning (< 1.0 after pretraining)
-    )
+    encoder_lr_factor: float = 0.0  # Freeze encoder during style training to preserve KC quality (set > 0 to fine-tune)
 
     # Orthogonal components
     hardware: HardwareConfig = field(default_factory=HardwareConfig)

@@ -45,29 +45,49 @@ class KcFamilyId(str, Enum):
 
 ALL_KC_FAMILIES = list(KcFamilyId)
 
-# Map from KcFamilyId to boolean indicating if it uses sparse features
-FAMILY_IS_SPARSE: Dict[KcFamilyId, bool] = {
-    # Bag (Dense)
-    KcFamilyId.BAG_READING_GRAM: False,
-    KcFamilyId.BAG_POS: False,
-    KcFamilyId.BAG_POS_DETAIL_1: False,
-    KcFamilyId.BAG_CONJUGATED_TYPE: False,
-    # Tail (Dense)
-    KcFamilyId.TAIL_READING_GRAM: False,
-    KcFamilyId.TAIL_POS: False,
-    KcFamilyId.TAIL_POS_DETAIL_1: False,
-    KcFamilyId.TAIL_CONJUGATED_TYPE: False,
-    # Ngram (Sparse)
-    KcFamilyId.NGRAM_POS: True,
-    KcFamilyId.NGRAM_POS_DETAIL_1: True,
-    KcFamilyId.NGRAM_CONJUGATED_TYPE: True,
-    KcFamilyId.NGRAM_READING_GRAM: True,
-    # Tail Ngram (Sparse)
-    KcFamilyId.TAIL_NGRAM_POS: True,
-    KcFamilyId.TAIL_NGRAM_POS_DETAIL_1: True,
-    KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: True,
-    KcFamilyId.TAIL_NGRAM_READING_GRAM: True,
-}
+
+def is_family_sparse(family: KcFamilyId) -> bool:
+    """Check if a KC family uses sparse (hash-based) features.
+
+    Dense families (Bag, Tail) use actual tokenizer vocab IDs.
+    Sparse families (Ngram, Tail Ngram) use hash-based n-gram features.
+
+    Args:
+        family: The KC family to check.
+
+    Returns:
+        True if the family uses sparse features, False for dense.
+
+    Raises:
+        ValueError: If the family is not recognized.
+    """
+    # Dense families (use actual tokenizer vocab)
+    if family in (
+        KcFamilyId.BAG_READING_GRAM,
+        KcFamilyId.BAG_POS,
+        KcFamilyId.BAG_POS_DETAIL_1,
+        KcFamilyId.BAG_CONJUGATED_TYPE,
+        KcFamilyId.TAIL_READING_GRAM,
+        KcFamilyId.TAIL_POS,
+        KcFamilyId.TAIL_POS_DETAIL_1,
+        KcFamilyId.TAIL_CONJUGATED_TYPE,
+    ):
+        return False
+
+    # Sparse families (use hash-based n-gram features)
+    if family in (
+        KcFamilyId.NGRAM_POS,
+        KcFamilyId.NGRAM_POS_DETAIL_1,
+        KcFamilyId.NGRAM_CONJUGATED_TYPE,
+        KcFamilyId.NGRAM_READING_GRAM,
+        KcFamilyId.TAIL_NGRAM_POS,
+        KcFamilyId.TAIL_NGRAM_POS_DETAIL_1,
+        KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
+        KcFamilyId.TAIL_NGRAM_READING_GRAM,
+    ):
+        return True
+
+    raise ValueError(f"Unknown KC family: {family}")
 
 
 # Map from KcFamilyId to the input feature field name it consumes

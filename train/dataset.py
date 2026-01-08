@@ -479,6 +479,7 @@ def _get_kc_pos_indices(
 def create_kc_batch(
     batch: TrainingBatch, tokenizer: Tokenizer, target_specs: Dict[KcFamilyId, int]
 ) -> Dict[str, torch.Tensor]:
+    # pylint: disable=too-many-locals
     """
     Create KC targets (multi-hot) from a batch of input IDs.
 
@@ -525,6 +526,21 @@ def create_kc_batch(
         # Using f"kc_pos_inds_{target_family.name}" is safer/readable than ID.
         result[f"kc_pos_inds_{target_family.name.lower()}"] = pos_inds
         result[f"kc_pos_mask_{target_family.name.lower()}"] = pos_mask
+
+        # Dense targets for non-sparse families
+        from train.kc import is_family_sparse
+
+        if not is_family_sparse(target_family):
+            # Create dense multi-hot targets
+            dense_targets = torch.zeros(
+                (batch_size, vocab_size), dtype=torch.float, device=device
+            )
+            for i, target_dict in enumerate(batch.kc_targets):
+                val_list = target_dict.get(kc_key, [])
+                for v in val_list:
+                    if 0 <= v < vocab_size and v not in special_ids:
+                        dense_targets[i, v] = 1.0
+            result[f"kc_targets_{target_family.name.lower()}"] = dense_targets
 
         # Accumulate global positive presence
         global_has_pos |= pos_mask.any(dim=1)

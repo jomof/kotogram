@@ -44,7 +44,12 @@ class DiagMockBatch:
 
 
 class MockDecoders(nn.Module):
-    def forward(self, x):
+    def __init__(self) -> None:
+        super().__init__()
+        # Need decoders dict for bias delta tracking in trainer
+        self.decoders: dict = {}
+
+    def forward(self, x: torch.Tensor) -> dict:
         return {
             KcFamilyId.BAG_POS.name.lower(): torch.zeros(
                 x.size(0), 10, requires_grad=True
@@ -234,9 +239,8 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
         # Verify Block 3 Families
         # "Family ... Loss ... Pos% ..."
         # Verify Block 3 Families
-        self.assertRegex(output, r"Family.*Loss.*Pos%.*P\(\+/-\)")
-        self.assertRegex(output, r"ΔP.*Logit")
-        self.assertRegex(output, r"R@.1/.5.*FPR@.5.*Msk%")
+        self.assertRegex(output, r"Family.*Loss.*Pos%.*Logit")
+        self.assertRegex(output, r"Gap.*Msk%")
 
         # Verify Labels Line
         # "Labels: ..."

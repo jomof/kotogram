@@ -10,20 +10,34 @@ from train.kc import KcFamilyId
 
 
 class KCDecoder(nn.Module):
-    """Decoder for predicting sentence-level attributes from KC activations."""
+    """Decoder for predicting sentence-level attributes from KC activations.
 
-    def __init__(self, kc_vocab_size: int, target_specs: Dict[KcFamilyId, int]):
+    Architecture:
+    - Shared hidden layer: kc_vocab_size -> hidden_dim (default 256)
+    - ReLU activation
+    - Per-family output heads: hidden_dim -> vocab_size
+    """
+
+    def __init__(
+        self,
+        kc_vocab_size: int,
+        target_specs: Dict[KcFamilyId, int],
+        hidden_dim: int = 256,
+    ):
         super().__init__()
+        # Shared hidden layer for all families
+        self.hidden = nn.Linear(kc_vocab_size, hidden_dim)
+        self.activation = nn.ReLU()
+
+        # Per-family output heads from shared hidden
         self.decoders = nn.ModuleDict()
         for fid, vocab_size in target_specs.items():
             # nn.ModuleDict requires string keys
-            # Note: vocab_size varies (actual size for dense, DEFAULT_HASH_BUCKET_SIZE for sparse)
-            self.decoders[fid.name.lower()] = nn.Linear(kc_vocab_size, vocab_size)
+            self.decoders[fid.name.lower()] = nn.Linear(hidden_dim, vocab_size)
 
     def forward(self, kc_activations: torch.Tensor) -> Dict[str, torch.Tensor]:
-        return {
-            name: decoder(kc_activations) for name, decoder in self.decoders.items()
-        }
+        h = self.activation(self.hidden(kc_activations))
+        return {name: decoder(h) for name, decoder in self.decoders.items()}
 
 
 class StyleClassifierWithKC(StyleClassifier):

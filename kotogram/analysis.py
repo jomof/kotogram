@@ -190,7 +190,7 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
         kc_top_results = None
         if model.config.kc_enabled:
             kc_top_results = model.predict_kcs_top(
-                field_inputs, attention_mask, min_prob=0.0, topk=24
+                field_inputs, attention_mask, min_prob=0.5, topk=16
             )
 
     results = []
