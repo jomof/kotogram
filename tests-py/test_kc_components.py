@@ -557,7 +557,7 @@ def test_create_kc_batch_sparse_for_small_heads():
 
 
 def test_create_kc_batch_sparse_for_large_heads():
-    """Test create_kc_batch returns sparse indices for large heads (vocab > 4096)."""
+    """Test create_kc_batch returns sparse indices for large heads (sparse families like NGRAM_POS)."""
     from train.dataset import create_kc_batch
 
     batch = unittest.mock.Mock()
@@ -565,19 +565,23 @@ def test_create_kc_batch_sparse_for_large_heads():
         "input_ids_pos": torch.tensor([[4, 5, 6, 0], [10, 11, 0, 0]]),
     }
     batch.attention_mask = torch.tensor([[1, 1, 1, 0], [1, 1, 0, 0]])
-    batch.kc_targets = [{KcFamilyId.BAG_POS: [4, 5, 6]}, {KcFamilyId.BAG_POS: [10, 11]}]
-    target_specs = {KcFamilyId.BAG_POS: 10000}  # Large head: 10000 > 4096
+    # Use NGRAM_POS which is a sparse family
+    batch.kc_targets = [
+        {KcFamilyId.NGRAM_POS: [4, 5, 6]},
+        {KcFamilyId.NGRAM_POS: [10, 11]},
+    ]
+    target_specs = {KcFamilyId.NGRAM_POS: 16384}  # Large sparse family
 
     tokenizer = unittest.mock.Mock(pad_id=0, unk_id=1, cls_id=2)
     result = create_kc_batch(batch, tokenizer, target_specs)
 
-    # Should have sparse indices, not dense
-    assert f"kc_targets_{KcFamilyId.BAG_POS.name.lower()}" not in result
-    assert f"kc_pos_inds_{KcFamilyId.BAG_POS.name.lower()}" in result
-    assert f"kc_pos_mask_{KcFamilyId.BAG_POS.name.lower()}" in result
+    # Should have sparse indices, not dense (NGRAM_POS is sparse)
+    assert f"kc_targets_{KcFamilyId.NGRAM_POS.name.lower()}" not in result
+    assert f"kc_pos_inds_{KcFamilyId.NGRAM_POS.name.lower()}" in result
+    assert f"kc_pos_mask_{KcFamilyId.NGRAM_POS.name.lower()}" in result
 
-    pos_inds = result[f"kc_pos_inds_{KcFamilyId.BAG_POS.name.lower()}"]
-    pos_mask = result[f"kc_pos_mask_{KcFamilyId.BAG_POS.name.lower()}"]
+    pos_inds = result[f"kc_pos_inds_{KcFamilyId.NGRAM_POS.name.lower()}"]
+    pos_mask = result[f"kc_pos_mask_{KcFamilyId.NGRAM_POS.name.lower()}"]
 
     # Check shapes
     assert pos_inds.shape[0] == 2  # batch size

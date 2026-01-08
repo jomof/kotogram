@@ -34,8 +34,8 @@ from train.kc import (
     ALL_KC_FAMILIES,
     DEFAULT_HASH_BUCKET_SIZE,
     FAMILY_FEATURES,
-    FAMILY_IS_SPARSE,
     KcFamilyId,
+    is_family_sparse,
 )
 from train.models import StyleClassifierWithKC
 from train.profile import (
@@ -435,7 +435,7 @@ if __name__ == "__main__":
             current_vocabs = tokenizer.get_vocab_sizes()
 
             for fid in targets:
-                if FAMILY_IS_SPARSE.get(fid, True):
+                if is_family_sparse(fid):
                     kc_specs[fid] = v_size_default
                 else:
                     fname = FAMILY_FEATURES[fid]

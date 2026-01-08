@@ -20,6 +20,11 @@ def main() -> None:
         "--output", default="models/style/model.pt", help="Path to output model file"
     )
     parser.add_argument("--fp8", action="store_true", help="Convert to fp8")
+    parser.add_argument(
+        "--keep-decoders",
+        action="store_true",
+        help="Keep kc_decoders weights (default: strip them for smaller file)",
+    )
 
     args = parser.parse_args()
 
@@ -41,6 +46,20 @@ def main() -> None:
         # Assume the file itself is the state dict if not a checkpoint wrapper
         print("Checkpoint structure not found; assuming direct state dict.")
         state_dict = checkpoint
+
+    # Strip kc_decoders by default (saves ~98% of file size, not needed for inference)
+    if not args.keep_decoders:
+        orig_count = len(state_dict)
+        orig_params = sum(v.numel() for v in state_dict.values())
+        state_dict = {
+            k: v for k, v in state_dict.items() if not k.startswith("kc_decoders.")
+        }
+        new_count = len(state_dict)
+        new_params = sum(v.numel() for v in state_dict.values())
+        print(
+            f"Stripped kc_decoders: {orig_count - new_count} keys, "
+            f"{(orig_params - new_params) * 4 / 1024 / 1024:.1f} MB saved"
+        )
 
     if args.fp8:
         if not hasattr(torch, "float8_e4m3fn"):

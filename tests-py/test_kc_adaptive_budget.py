@@ -31,12 +31,19 @@ class MockBatch:
 
 
 class MockKCDecoders(nn.Module):
-    def __init__(self, in_features, out_features):
+    def __init__(self, in_features: int, out_features: int):
         super().__init__()
-        self.linear = nn.Linear(in_features, out_features)
+        # Need decoders dict for bias delta tracking in trainer
+        self.decoders = nn.ModuleDict(
+            {
+                KcFamilyId.BAG_READING_GRAM.name.lower(): nn.Linear(
+                    in_features, out_features
+                )
+            }
+        )
 
-    def forward(self, x):
-        return {KcFamilyId.BAG_READING_GRAM.name.lower(): self.linear(x)}
+    def forward(self, x: torch.Tensor) -> dict:
+        return {name: decoder(x) for name, decoder in self.decoders.items()}
 
 
 class MockModel(nn.Module):

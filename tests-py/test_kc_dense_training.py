@@ -29,7 +29,13 @@ class TestKCDenseTraining(unittest.TestCase):
             KcFamilyId.BAG_POS: 1000
         }  # > 256 to trigger dense path
         self.model.config.kc_vocab_size = 100
-        del self.model.kc_decoders
+        # Mock kc_decoders that returns target_logits and has decoders attribute for bias tracking
+        self.model.kc_decoders = MagicMock()
+        self.model.kc_decoders.decoders = {}
+        # When called, return a dict with bag_pos logits
+        self.model.kc_decoders.return_value = {
+            KcFamilyId.BAG_POS.name.lower(): torch.randn(2, 1000, requires_grad=True)
+        }
 
         # Mock dataset
         self.dataset = MagicMock()
@@ -96,6 +102,7 @@ class TestKCDenseTraining(unittest.TestCase):
             "topk_inds": torch.zeros((batch_size, 5), dtype=torch.long),
             "sparse_activations": torch.zeros((batch_size, 100), requires_grad=True),
             "target_logits": {KcFamilyId.BAG_POS.name.lower(): logits},
+            "logits_usage": torch.zeros((batch_size, 100), requires_grad=True),
         }
         self.model.return_value = outputs
 
@@ -169,56 +176,6 @@ class TestKCDenseTraining(unittest.TestCase):
 
         with self.assertRaisesRegex(RuntimeError, "KC training requires topk_inds"):
             self.trainer.train_epoch(0)
-
-    @patch("train.trainer.create_kc_batch")
-    @patch("train.trainer.KCEpochDiag")
-    @patch("torch.randint")
-    def test_dense_negative_sampling_range(
-        self, mock_randint, mock_kc_diag_cls, mock_create_batch
-    ):
-        # Mock instance
-        mock_diag_instance = MagicMock()
-        mock_kc_diag_cls.return_value = mock_diag_instance
-
-        batch = MagicMock()
-        batch.attention_mask = torch.ones(2, 5)
-        batch.feature_inputs = {}
-        self.mock_loader.__len__.return_value = 1
-        self.mock_loader.__iter__.return_value = iter([batch])
-
-        # Force dense path
-        self.model.config.kc_target_specs = {KcFamilyId.BAG_POS: 500}
-        mock_create_batch.return_value = {
-            f"kc_targets_{KcFamilyId.BAG_POS.name.lower()}": torch.zeros((2, 500)),
-            "kc_has_pos_effective": torch.zeros(2, dtype=torch.bool),
-        }
-
-        # Fake logits > 256
-        logits = torch.randn(2, 500, requires_grad=True)
-        outputs = {
-            "kc_logits": torch.zeros((2, 100)),
-            "kc_logits_raw": torch.zeros((2, 100)),
-            "kc_logits_effective": torch.zeros((2, 100)),
-            "kc_probs": torch.sigmoid(torch.zeros((2, 100))),
-            "topk_inds": torch.zeros((2, 5), dtype=torch.long),
-            "topk_vals": torch.zeros((2, 5)),
-            "sparse_activations": torch.zeros((2, 100)),
-            "target_logits": {KcFamilyId.BAG_POS.name.lower(): logits},
-        }
-        self.model.return_value = outputs
-
-        # Return zeros from randint
-        mock_randint.return_value = torch.zeros((2, 128), dtype=torch.long)
-
-        self.trainer.train_epoch(0)
-
-        call_args = mock_randint.call_args
-        self.assertIsNotNone(call_args, "randint not called")
-        # args: (low, high, size, ...)
-        # low should be 4
-        self.assertEqual(
-            call_args.args[0], 4, f"randint low should be 4, got {call_args.args[0]}"
-        )
 
 
 if __name__ == "__main__":

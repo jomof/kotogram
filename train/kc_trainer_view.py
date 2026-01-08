@@ -2,7 +2,7 @@
 import math
 import random
 from collections import defaultdict
-from typing import Any, Dict, List, Protocol
+from typing import Any, Dict, List, Protocol, Tuple
 
 import torch
 from rich.table import Table
@@ -100,6 +100,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
     def __init__(self) -> None:  # pylint: disable=attribute-defined-outside-init
         self.reset_epoch_stats()
+        # Store previous epoch family stats for trajectory arrows
+        self.prev_family_stats: Dict[str, Dict[str, float]] = {}
 
     # pylint: disable=attribute-defined-outside-init
     def reset_epoch_stats(self) -> None:
@@ -416,7 +418,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             f"Ent: [{c_ent}]{act_stats.ent_norm:.3f}[/{c_ent}] KL={act_stats.kl_u_norm:.3f}"
         )
 
-        # BLOCK 3: Families
+        # BLOCK 3: Families (Wakefulness and Performance)
         # Pivot: High density separation metrics
         table_fam = Table(
             show_header=True, header_style="bold blue", box=None, padding=(0, 1)
@@ -424,13 +426,12 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         table_fam.add_column("Family")
         table_fam.add_column("Loss")
         table_fam.add_column("Pos%")
-        table_fam.add_column("P(+/-)")
-        table_fam.add_column("ΔP")
+        table_fam.add_column("PosDen")  # new
         table_fam.add_column("Logit(+/-)")
-        table_fam.add_column("R@.1/.5")
-        table_fam.add_column("FPR@.5")
+        table_fam.add_column("Gap")  # new
         table_fam.add_column("Msk%")
-        table_fam.add_column("Supp")
+        table_fam.add_column("Keys")  # new
+        table_fam.add_column("BΔ")  # bias delta for gradient flow check
 
         # Diagnosis Flag Accumulators
         flag_allneg05_count = 0
@@ -438,10 +439,26 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         flag_mask_triggered = False
         num_fams = 0
 
-        # Sort by name
-        fam_names = sorted(summary.diagnostics.families.keys())
-        for name in fam_names:
-            fam = summary.diagnostics.families[name]
+        # Sort by "most suspicious asleep" first
+        # Suspicion = 1.0 if pos_ex_frac < 0.001 (Starvation)
+        #             Or small logit gap?
+        # Let's sort by pos_ex_frac ascending, then logit gap ascending
+        def _sus_score(item: Any) -> Tuple[float, float, str]:
+            # item is (name, family_stats)
+            stats = item[1]
+            # Primary sort: low pos_ex_frac (starvation)
+            # Secondary: low logit gap (thresholding)
+            gap = stats.logit_pos_mean - stats.logit_neg_mean
+            if math.isnan(gap):
+                gap = -999.0
+            return (stats.pos_ex_frac, gap, item[0])
+
+        fam_items = sorted(summary.diagnostics.families.items(), key=_sus_score)
+
+        # Track stats for trajectory arrows
+        current_family_stats: Dict[str, Dict[str, float]] = {}
+
+        for name, fam in fam_items:
             num_fams += 1
 
             # Checks for Flags
@@ -449,41 +466,74 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 flag_allneg05_count += 1
             if fam.recall_01 < 0.05:
                 flag_allneg01_count += 1
-            if fam.mask_pct > 0.10:
+            # If less than half the examples have any valid supervision, flag it.
+            if fam.mask_coverage < 0.5:
                 flag_mask_triggered = True
 
+            # Wakefulness Diagnostics
+            gap = fam.logit_pos_mean - fam.logit_neg_mean
+            if math.isnan(gap):
+                s_gap = "nan"
+            else:
+                s_gap = f"{gap:.2f}"
+
+            # Trajectory arrows: compare to previous epoch
+            prev = self.prev_family_stats.get(name, {})
+            prev_loss = prev.get("loss", None)
+            prev_gap = prev.get("gap", None)
+
+            # Loss arrow: lower is better (green ↓, red ↑)
+            loss_arrow = ""
+            if prev_loss is not None:
+                delta = fam.loss_mean - prev_loss
+                if delta < -0.01:
+                    loss_arrow = "[green]↓[/green]"
+                elif delta > 0.01:
+                    loss_arrow = "[red]↑[/red]"
+
+            # Gap arrow: higher is better (green ↑, red ↓)
+            gap_arrow = ""
+            if prev_gap is not None and not math.isnan(gap):
+                delta = gap - prev_gap
+                if delta > 0.01:
+                    gap_arrow = "[green]↑[/green]"
+                elif delta < -0.01:
+                    gap_arrow = "[red]↓[/red]"
+
             # Colors
-            # Delta P
-            c_dp = "red" if fam.delta_p < 0.02 else "green"
+            c_pos = "red" if fam.pos_ex_frac < 0.001 else "green"
+            c_gap = "red" if (not math.isnan(gap) and gap < 0.5) else "dim"
+            # mask_coverage is "fraction of examples with any valid supervised entry"
+            # low coverage is suspicious -> red
+            c_msk = "red" if fam.mask_coverage < 0.5 else "dim"
 
-            # Recall@0.1
-            c_r01 = "red" if fam.recall_01 < 0.05 else "green"
-
-            # Mask
-            c_msk = "red" if fam.mask_pct > 0.1 else "dim"
-
+            # Compact "Single-Line" Summary style per family row
+            # Color for bias delta: green if moving, dim if near-zero
+            # bias_delta is now abs sum, so always positive. Use higher threshold.
+            c_bdelta = "green" if fam.bias_delta > 0.01 else "dim"
             table_fam.add_row(
                 name,
-                f"{fam.loss_mean:.4f}",
-                f"{fam.rate * 100:.1f}%",
-                f"{fam.prob_pos_mean:.2f}/{fam.prob_neg_mean:.2f}",
-                f"[{c_dp}]{fam.delta_p:.2f}[/{c_dp}]",
+                f"{fam.loss_mean:.4f}{loss_arrow}",
+                f"[{c_pos}]{fam.pos_ex_frac * 100:.2f}%[/{c_pos}]",
+                f"{fam.pos_label_density:.3f}",
                 f"{fam.logit_pos_mean:.1f}/{fam.logit_neg_mean:.1f}",
-                f"[{c_r01}]{fam.recall_01:.2f}[/{c_r01}]/{fam.recall_05:.2f}",
-                f"{fam.fp_rate:.2f}",
-                f"[{c_msk}]{fam.mask_pct * 100:.1f}%[/{c_msk}]",
-                f"{fam.support:.2f}",
+                f"[{c_gap}]{s_gap}[/{c_gap}]{gap_arrow}",
+                f"[{c_msk}]{fam.mask_coverage * 100:.1f}%[/{c_msk}]",
+                f"{fam.keys_present}",
+                f"[{c_bdelta}]{fam.bias_delta:.3f}[/{c_bdelta}]",
             )
+
+            # Store current stats for next epoch comparison
+            current_family_stats[name] = {"loss": fam.loss_mean, "gap": gap}
+
+        # Save for next epoch
+        self.prev_family_stats = current_family_stats
         console.print(table_fam)
 
-        # BLOCK 4: Label Heads
-        # One line
-        items = []
-        for k, v in summary.label_losses.items():
-            c = "red" if not math.isfinite(v) or v == 0.0 else "white"
-            items.append(f"{k}=[{c}]{v:.4f}[/{c}]")
-        if items:
-            console.print("Labels: " + " ".join(items))
+        # Print Warns if shape mismatch detected?
+        # (Not implemented in accumulator yet, relying on table visual for now)
+
+        # BLOCK 4: Label Heads - now integrated into family table as LLoss column
 
         # BLOCK 5: Diagnosis Flags
         flags = []
@@ -515,8 +565,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         if flag_mask_triggered:
             flags.append("MASK")
 
-        # COLL: EntNorm low, KL high
-        if act_stats.ent_norm < 0.6 and act_stats.kl_u_norm > 0.3:
+        # COLL: EntNorm low, KL high (relaxed threshold)
+        if act_stats.ent_norm < 0.5 and act_stats.kl_u_norm > 0.3:
             flags.append("COLL")
 
         if flags:

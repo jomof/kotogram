@@ -9,9 +9,14 @@ from train.kc import KcFamilyId
 
 
 class TestKCLosses(KCTrainerTestBase):
-    def setUp(self):
+    def setUp(self) -> None:
         super().setUp()
-        del self.model.kc_decoders
+        # Mock kc_decoders with decoders attribute for bias delta tracking
+        self.model.kc_decoders = MagicMock()
+        self.model.kc_decoders.decoders = {}
+        self.model.kc_decoders.return_value = {
+            KcFamilyId.BAG_POS.name.lower(): torch.randn(2, 10, requires_grad=True)
+        }
         object.__setattr__(
             self.trainer.config, "kc_target_specs", {KcFamilyId.BAG_POS: 10}
         )
