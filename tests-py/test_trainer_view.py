@@ -8,7 +8,8 @@ import torch
 
 from kotogram.model import NUM_REGISTER_CLASSES
 from train.config import HardwareConfig, TrainerConfig
-from train.trainer import Trainer, TrainerView
+from train.trainer import Trainer
+from train.trainer_view import TrainerView
 from train.types import EvaluationMetrics, TrainingHistory
 
 
@@ -240,7 +241,7 @@ class TestTrainerView(TestCase):
         # We must patch `train.trainer.save_model` to affect the Trainer.
         from unittest.mock import patch
 
-        with patch("train.trainer.save_model"):
+        with patch("train.style_trainer.save_model"):
             self.trainer.evaluate = MagicMock(return_value=EvaluationMetrics(loss=0.5))
 
             self.trainer.train(

@@ -62,8 +62,8 @@ class TestKCProfiling(unittest.TestCase):
             prefetch_factor=None,
         )
 
-    @patch("train.trainer.get_profile_dir")
-    @patch("train.trainer.os.getpid")
+    @patch("train.kc_trainer.get_profile_dir")
+    @patch("train.kc_trainer.os.getpid")
     def test_kc_trainer_timer_initialization(self, mock_getpid, mock_get_profile_dir):
         # Setup mocks
         mock_get_profile_dir.return_value = "/tmp/fake_profile_dir"
@@ -92,7 +92,7 @@ class TestKCProfiling(unittest.TestCase):
         expected_compute_path = "/tmp/fake_profile_dir/kc_compute_12345.jsonl"
         self.assertEqual(trainer.train_timer_compute.output_path, expected_compute_path)
 
-    @patch("train.trainer.get_profile_dir")
+    @patch("train.kc_trainer.get_profile_dir")
     def test_kc_trainer_timer_no_profile_env(self, mock_get_profile_dir):
         # Simulate TRAIN_PROFILE=0 case where get_profile_dir returns None
         mock_get_profile_dir.return_value = None

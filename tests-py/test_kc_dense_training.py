@@ -44,7 +44,7 @@ class TestKCDenseTraining(unittest.TestCase):
 
         # Mock DataLoader
         self.dl_config = MagicMock()
-        with patch("train.trainer.DataLoader"):
+        with patch("train.kc_trainer.DataLoader"):
             self.trainer = KCTrainer(
                 model=self.model,
                 dataset=self.dataset,
@@ -60,8 +60,8 @@ class TestKCDenseTraining(unittest.TestCase):
                 {"params": [], "lr": 0.001},
             ]
 
-    @patch("train.trainer.create_kc_batch")
-    @patch("train.trainer.KCEpochDiag")
+    @patch("train.kc_trainer.create_kc_batch")
+    @patch("train.kc_trainer.KCEpochDiag")
     def test_dense_sampling_shapes(self, mock_kc_diag_cls, mock_create_batch):
         # pylint: disable=too-many-locals
         # Setup batch with targets
@@ -156,8 +156,8 @@ class TestKCDenseTraining(unittest.TestCase):
         )
         self.assertEqual(targets_arg.shape, probs.shape, "targets should match probs")
 
-    @patch("train.trainer.create_kc_batch")
-    @patch("train.trainer.KCEpochDiag")
+    @patch("train.kc_trainer.create_kc_batch")
+    @patch("train.kc_trainer.KCEpochDiag")
     def test_missing_topk_raises_error(self, _mock_kc_diag_cls, mock_create_batch):
         # Setup batch
         mock_create_batch.return_value = {}

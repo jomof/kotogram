@@ -41,8 +41,8 @@ class TestKCDiagAlignment(KCTrainerTestBase):
                 0.0,
             )
 
-    @patch("train.trainer.create_kc_batch")
-    @patch("train.trainer.KCEpochDiag")
+    @patch("train.kc_trainer.create_kc_batch")
+    @patch("train.kc_trainer.KCEpochDiag")
     def test_dense_small_vocab_calls_update_family_with_2d_tensors(
         self, mock_kc_diag_cls, mock_create_batch
     ):
@@ -97,8 +97,8 @@ class TestKCDiagAlignment(KCTrainerTestBase):
         self.assertEqual(tgs.dim(), 2)
         self.assertEqual(v_ids.shape, (batch_size, vocab_size))
 
-    @patch("train.trainer.create_kc_batch")
-    @patch("train.trainer.KCEpochDiag")
+    @patch("train.kc_trainer.create_kc_batch")
+    @patch("train.kc_trainer.KCEpochDiag")
     def test_dense_large_vocab_sampled_diag_alignment(
         self, mock_kc_diag_cls, mock_create_batch
     ):

@@ -7,7 +7,7 @@ import torch.nn.functional as F
 from kotogram.model import ModelConfig
 from kotogram.tokenizer import FEATURE_FIELDS
 from train.kc import KcFamilyId
-from train.trainer import StyleClassifierWithKC
+from train.models import StyleClassifierWithKC
 
 
 def test_gumbel_noise_training_only():
@@ -753,7 +753,7 @@ def test_bce_sampled_parameter_variations():
     dataset = unittest.mock.MagicMock()
 
     # Patch DataLoader to avoid instantiation issues
-    with unittest.mock.patch("train.trainer.DataLoader"):
+    with unittest.mock.patch("train.kc_trainer.DataLoader"):
         trainer = KCTrainer(
             model,
             dataset,

@@ -21,7 +21,7 @@ class TestKCLosses(KCTrainerTestBase):
             self.trainer.config, "kc_target_specs", {KcFamilyId.BAG_POS: 10}
         )
 
-    @patch("train.trainer.create_kc_batch")
+    @patch("train.kc_trainer.create_kc_batch")
     def test_sparsity_term_uses_topk(self, mock_create_batch):
         """Test that sparsity term uses topk_vals instead of avg_prob."""
         self.trainer.kc_sparsity_weight = 1.0
