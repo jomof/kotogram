@@ -57,7 +57,7 @@ class KCTrainerTestBase(unittest.TestCase):
         self.dl_config.prefetch_factor = None
 
         # Create Trainer with patched DataLoader
-        with patch("train.trainer.DataLoader"):
+        with patch("train.kc_trainer.DataLoader"):
             self.trainer = KCTrainer(
                 model=self.model,
                 dataset=self.dataset,

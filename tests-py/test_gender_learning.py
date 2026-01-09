@@ -3,8 +3,7 @@ import unittest
 import torch
 from torch import nn
 
-from kotogram.model import ModelConfig
-from train.trainer import StyleClassifier
+from kotogram.model import ModelConfig, StyleClassifier
 
 
 # pylint: disable=too-many-locals

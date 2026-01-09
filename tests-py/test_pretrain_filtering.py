@@ -6,10 +6,8 @@ from kotogram.model import ModelConfig
 from kotogram.tokenizer import Tokenizer
 from train.config import DataLoaderSettings, KCConfig, TrainerConfig
 from train.dataset import StyleDataset
-from train.trainer import (
-    KCTrainer,
-    StyleClassifierWithKC,
-)
+from train.models import StyleClassifierWithKC
+from train.trainer import KCTrainer
 from train.types import Sample
 
 
