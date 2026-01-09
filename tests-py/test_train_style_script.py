@@ -3,6 +3,7 @@ import os
 import shutil
 import unittest
 
+import torch
 from training_test_utils import Bottle
 
 
@@ -13,13 +14,11 @@ class TestTrainStyleScript(unittest.TestCase):
     def test_train(self):
         # Common arguments to reduce model size for faster testing
         common_args = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2 --batch-size 128"
-
-        # Test both regular training and pretraining (KC)
+        # KC is always enabled now; test with kc-epochs 1 for speed
         test_configs = [
-            {"name": "regular", "extra_args": f"{common_args}"},
             {
-                "name": "pretrain-kc",
-                "extra_args": f"{common_args} --pretrain-kc --kc-epochs 1",
+                "name": "kc-training",
+                "extra_args": f"{common_args} --kc-epochs 1",
             },
         ]
 
@@ -34,6 +33,9 @@ class TestTrainStyleScript(unittest.TestCase):
                     bottle.snapshot("initial")
 
                     # Step 1: Pre-run labeling to setup cache/data
+                    # Calculate expected counts before DB is deleted
+                    expected_counts = bottle.calculate_expected_counts()
+
                     label_args = "--label --force-relabel"
                     bottle.train_style(label_args)
 
@@ -59,7 +61,7 @@ class TestTrainStyleScript(unittest.TestCase):
                     train_args = f"--epochs 1 {config['extra_args']}".strip()
                     result = bottle.train_style(train_args)
 
-                    if "pretrain-kc" in config["name"]:
+                    if "kc-training" in config["name"]:
                         # Verify diagnostics event in history
                         history = bottle.get_epoch_history()
                         diag_events = [
@@ -76,7 +78,7 @@ class TestTrainStyleScript(unittest.TestCase):
                     # Verify epochs trained
                     # For pretrain-kc: expect [1, 1] (1 pretrain + 1 fine-tune)
                     # For regular: expect [1] (just 1 fine-tune)
-                    if "pretrain-kc" in config["name"]:
+                    if "kc-training" in config["name"]:
                         # Expect 1 KC event and 1 Style event
                         bottle.assert_kc_epochs_trained([1])
                         bottle.assert_style_epochs_trained([1])
@@ -106,7 +108,7 @@ class TestTrainStyleScript(unittest.TestCase):
                         "[models]/style-support/confusion_matrices/*.tsv ADDED",
                     ]
 
-                    if "pretrain-kc" in config["extra_args"]:
+                    if "kc-training" in config["name"]:
                         expected_train_differences.append(
                             "[models]/style-support/checkpoint_kc.pt ADDED"
                         )
@@ -120,7 +122,7 @@ class TestTrainStyleScript(unittest.TestCase):
                     bottle.train_style("--resume --epochs 2")
 
                     # Verify only epoch 2 was trained (resume from epoch 1)
-                    if "pretrain-kc" in config["name"]:
+                    if "kc-training" in config["name"]:
                         # Resume should just add Style epoch 2. KC history remains [1].
                         bottle.assert_kc_epochs_trained([1])
                         bottle.assert_style_epochs_trained([1, 2])
@@ -171,42 +173,104 @@ class TestTrainStyleScript(unittest.TestCase):
                     self.assertIn("kotogram", data)
                     self.assertIn("formality", data)
 
-                    # Check for kcs if this is the KC model
-                    if "pretrain-kc" in config["extra_args"]:
-                        self.assertIn(
-                            "kc_top",
-                            data,
-                            "KC-trained model should output 'kc_top' field",
-                        )
-                        # Verify KC structure (should be a dict of {str(id): prob})
-                        # IMPORTANT: json.loads converts keys to strings!
-                        kc_top = data["kc_top"]
-                        self.assertIsInstance(kc_top, dict)
+                    self.assertIn(
+                        "kc_top",
+                        data,
+                        "KC-enabled model (ubiquitous) should always output 'kc_top' field",
+                    )
+                    # Verify KC structure (should be a dict of {str(id): prob})
+                    # IMPORTANT: json.loads converts keys to strings!
+                    kc_top = data["kc_top"]
+                    self.assertIsInstance(kc_top, dict)
 
-                        if len(kc_top) > 0:
-                            # Get first key/val
-                            k_id_str, prob = next(iter(kc_top.items()))
-                            # Key should be convertible to int
-                            self.assertTrue(
-                                k_id_str.isdigit(), f"Key {k_id_str} should be digits"
-                            )
-                            self.assertIsInstance(prob, float)
-                    else:
-                        self.assertNotIn(
-                            "kc_top",
-                            data,
-                            "Non-KC model should usually not output 'kc_top' (unless enabled)",
-                        )
+                    self.assertGreater(
+                        len(kc_top),
+                        0,
+                        "KC predictions should be present for ubiquitous KC model",
+                    )
+                    # Get first key/val
+                    k_id_str, prob = next(iter(kc_top.items()))
+                    # Key should be convertible to int
+                    self.assertTrue(
+                        k_id_str.isdigit(), f"Key {k_id_str} should be digits"
+                    )
+                    self.assertIsInstance(prob, float)
 
-                    model_path = bottle.get_file("[models]/style/model.pt")
-                    bottle.assert_model_is_fp8(model_path)
+                    # --- New Model Verification Logic ---
+                    style_model = bottle.get_file("[models]/style/model.pt")
+                    support_checkpoint = bottle.get_file(
+                        "[models]/style-support/checkpoint.pt"
+                    )
+                    style_config_path = bottle.get_file("[models]/style/model.json")
+
+                    # 1. Assert FP8 for export
+                    bottle.assert_model_is_fp8(style_model)
+
+                    # 2. Assert Slim vs Full Content using torch.load
+                    # Map location CPU to avoid CUDA errors if on CPU only machine
+                    slim_state = torch.load(
+                        style_model, map_location="cpu", weights_only=True
+                    )
+                    full_state = torch.load(
+                        support_checkpoint, map_location="cpu", weights_only=False
+                    )
+
+                    # Full state should contain kc_decoders
+                    # full_state is dict with "model_state_dict"
+                    self.assertTrue(
+                        any(
+                            k.startswith("kc_decoders.")
+                            for k in full_state["model_state_dict"]
+                        ),
+                        "Support checkpoint MUST contain kc_decoders (Full State)",
+                    )
+
+                    # Slim state should NOT contain kc_decoders
+                    # slim_state is the state dict directly
+                    self.assertFalse(
+                        any(k.startswith("kc_decoders.") for k in slim_state),
+                        "Exported model MUST NOT contain kc_decoders (Slim State)",
+                    )
+
+                    # 3. Assert Config Slimming
+                    with open(style_config_path, "r", encoding="utf-8") as f:
+                        style_config = json.load(f)
+
+                    self.assertNotIn(
+                        "kc_target_specs",
+                        style_config,
+                        "Exported model.json should NOT have kc_target_specs (Slim Config)",
+                    )
+
+                    # 4. Assert Physical Size
+                    # Calculate expected size based on the ACTUAL slim config
+
+                    from train.pytorch_utils import (
+                        calculate_detailed_size,
+                        verify_model_size_policy,
+                    )
+
+                    expected_breakdown = calculate_detailed_size(style_config)
+                    expected_size = sum(expected_breakdown.values())
+                    actual_size = os.path.getsize(style_model)
+
+                    def lazy_load_state_dict(path=style_model):
+                        return torch.load(path, map_location="cpu", weights_only=True)
+
+                    verify_model_size_policy(
+                        actual_size,
+                        expected_size,
+                        expected_breakdown,
+                        lazy_load_state_dict,
+                    )
 
                     # 4. Verify history in epochs.json
                     history = bottle.get_epoch_history()
                     self.assertTrue(len(history) > 0, "epochs.json should not be empty")
 
                     # Calculate expected counts based on actual data in bottle
-                    expected_counts = bottle.calculate_expected_counts()
+                    # (Taken before data/corpus.db is deleted)
+                    # expected_counts = bottle.calculate_expected_counts()
 
                     # Filter to just epoch events for sequence verification
                     epoch_events = [
@@ -223,17 +287,17 @@ class TestTrainStyleScript(unittest.TestCase):
                             epoch_events[0].metrics["sentence_count"],
                             expected_counts["total_train_split_size"],
                         )
-                    elif config["name"] == "pretrain-kc":
+                    elif config["name"] == "kc-training":
                         self.assertGreaterEqual(len(epoch_events), 2)
                         self.assertEqual(epoch_events[0].get_type_name(), "KC_EPOCH")
 
                         # Verify counts
-                        # KC pretraining uses ONLY grammatical sentences from the training split,
-                        # so it must be strictly less than the total style training set (which includes agrammatic).
+                        # KC pretraining now uses ALL grammatical sentences (full dataset, not split),
+                        # so it should equal the total grammatical count.
                         # Note: epoch_events[0] is the KC_EPOCH
-                        self.assertLess(
+                        self.assertEqual(
                             epoch_events[0].metrics["sentence_count"],
-                            expected_counts["total_train_split_size"],
+                            expected_counts["total_grammatic_sentences"],
                         )
 
                         # KC metrics check
@@ -241,7 +305,7 @@ class TestTrainStyleScript(unittest.TestCase):
 
                     # Remaining entries are style fine-tuning
                     # We start checking from the first style epoch
-                    start_idx = 1 if config["name"] == "pretrain-kc" else 0
+                    start_idx = 1 if config["name"] == "kc-training" else 0
 
                     # Just verify remaining are style epochs
                     for i in range(start_idx, len(epoch_events)):

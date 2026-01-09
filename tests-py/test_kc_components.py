@@ -14,7 +14,6 @@ def test_gumbel_noise_training_only():
     """Verify Gumbel noise is applied only during training and affects top-k."""
     config = ModelConfig(
         vocab_sizes={f: 100 for f in FEATURE_FIELDS},
-        kc_enabled=True,
         kc_vocab_size=10,
         kc_topk=1,  # Select top-1 to easily see noise impact
         kc_temperature=1.0,
@@ -344,7 +343,6 @@ def test_forward_kc_gumbel_stability():
 
     config = ModelConfig(
         vocab_sizes={f: 50 for f in FEATURE_FIELDS},
-        kc_enabled=True,
         kc_vocab_size=16,
         kc_topk=4,
         kc_temperature=1.0,
@@ -383,7 +381,6 @@ def test_forward_kc_nan_to_num_guard():
 
     config = ModelConfig(
         vocab_sizes={f: 50 for f in FEATURE_FIELDS},
-        kc_enabled=True,
         kc_vocab_size=16,
         kc_topk=4,
         kc_temperature=1.0,
@@ -686,7 +683,6 @@ def test_forward_kc_parameter_variations():
     # pylint: disable=protected-access, import-private-name
     config = ModelConfig(
         vocab_sizes={f: 50 for f in FEATURE_FIELDS},
-        kc_enabled=True,
         kc_vocab_size=16,
         kc_topk=4,
         kc_temperature=1.0,
@@ -771,7 +767,7 @@ def test_bce_sampled_parameter_variations():
     pos_mask = torch.zeros(2, 10, dtype=torch.bool)
 
     # Vary parameters
-    loss = trainer._bce_sampled_from_sparse(
+    loss, gap_val = trainer._bce_sampled_from_sparse(
         logits,
         pos_inds,
         pos_mask,
@@ -782,3 +778,4 @@ def test_bce_sampled_parameter_variations():
         reading_mask_id=999,
     )
     assert torch.isfinite(loss)
+    assert isinstance(gap_val, float)

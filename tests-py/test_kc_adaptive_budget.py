@@ -18,14 +18,14 @@ class MockBatch:
         self.attention_mask = attention_mask
 
         # Add dummy attributes accessed by trainer
-        self.formality_value = torch.zeros(attention_mask.size(0), 1)
+        self.formality_value = torch.zeros(attention_mask.size(0))  # 1D for CE loss
         self.formality_pragmatic = torch.zeros(attention_mask.size(0), dtype=torch.long)
-        self.gender_value = torch.zeros(attention_mask.size(0), 1)
+        self.gender_value = torch.zeros(attention_mask.size(0))  # 1D for CE loss
         self.gender_pragmatic = torch.zeros(attention_mask.size(0), dtype=torch.long)
         self.grammaticality_labels = torch.zeros(
             attention_mask.size(0), dtype=torch.long
         )
-        self.register_labels = torch.zeros(attention_mask.size(0), 1)
+        self.register_labels = torch.zeros(attention_mask.size(0), 14)  # [B, 14]
         batch_size = attention_mask.size(0)
         self.kc_targets = [{KcFamilyId.BAG_READING_GRAM: []} for _ in range(batch_size)]
 
@@ -225,7 +225,6 @@ class TestKCAdaptiveBudget(unittest.TestCase):
             kc_topk=8,
             kc_vocab_size=100,
             field_embed_dims={"surface": 16},
-            kc_enabled=True,
         )
 
         # Patch FEATURE_FIELDS to only allow 'surface' to suffice for get_embeddings

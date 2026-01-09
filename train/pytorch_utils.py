@@ -2,10 +2,14 @@
 
 import importlib.util
 import math
+from typing import Any, Callable, Dict, Mapping
 
 import torch
 
 from kotogram.model import NUM_REGISTER_CLASSES, ModelConfig
+
+# 50KB tolerance for header overhead
+SIZE_VERIFICATION_TOLERANCE = 50 * 1024
 
 
 def calculate_model_static_memory(config: ModelConfig) -> int:
@@ -36,8 +40,8 @@ def calculate_model_static_memory(config: ModelConfig) -> int:
         + config.num_grammaticality_classes
         + NUM_REGISTER_CLASSES
     )
-    if config.kc_enabled:
-        head_params += config.d_model * config.kc_vocab_size
+    # KC Head params (always enabled)
+    head_params += config.d_model * config.kc_vocab_size
 
     total_params = embed_params + transformer_params + head_params
 
@@ -61,7 +65,7 @@ def calculate_element_size_bytes(config: ModelConfig, is_kc: bool) -> int:
     # KC targets can be sparse but we might materialize things
     # If KC: The KC head logits are (1, kc_vocab_size) per sample (after pooling)
     head_size = 0
-    if is_kc and config.kc_enabled:
+    if is_kc:
         # Logits + Gradients for KC Head
         head_size += config.kc_vocab_size * 4 * 2  # Value + Grad
 
@@ -139,3 +143,155 @@ def estimate_optimal_batch_size(
     # Clamp min (32)
     target = max(32, target)
     return int(target)
+
+
+def calculate_detailed_size(config_dict: Mapping[str, Any]) -> Dict[str, int]:
+    """Calculate the expected size of model components in bytes (FP8)."""
+    # pylint: disable=too-many-locals
+
+    # FEATURE_FIELDS defaults logic matches MultiFieldEmbedding
+    from kotogram.tokenizer import FEATURE_FIELDS
+
+    d_model = int(config_dict.get("d_model", 256))
+    hidden_dim = int(config_dict.get("hidden_dim", 512))
+    num_layers = int(config_dict.get("num_layers", 3))
+
+    vocab_sizes = config_dict.get("vocab_sizes", {})
+    field_embed_dims = config_dict.get("field_embed_dims", {})
+
+    embed_params = 0
+    for field in FEATURE_FIELDS:
+        size = int(vocab_sizes.get(field, 100))
+        dim = int(field_embed_dims.get(field, 32))
+        embed_params += size * dim
+
+    total_embed_dim = sum(int(field_embed_dims.get(f, 32)) for f in FEATURE_FIELDS)
+    embed_params += total_embed_dim * d_model + d_model  # Project weights/bias
+    embed_params += 2 * d_model  # LayerNorm
+
+    layer_params = (
+        4 * (d_model * d_model + d_model)
+        + 4 * d_model
+        + 2 * (d_model * hidden_dim + hidden_dim)
+    )
+    transformer_params = num_layers * layer_params
+
+    final_norm_params = 2 * d_model
+
+    kc_vocab_size = int(config_dict.get("kc_vocab_size", 0))
+    classifier_input_dim = d_model + kc_vocab_size
+    head_mlp_hidden = hidden_dim
+
+    def mlp_params(out_dim: int) -> int:
+        l1 = classifier_input_dim * head_mlp_hidden + head_mlp_hidden
+        l2 = head_mlp_hidden * out_dim + out_dim
+        return int(l1 + l2)
+
+    num_formality = int(config_dict.get("num_formality_pragmatic_classes", 2))
+    num_gender = int(config_dict.get("num_gender_pragmatic_classes", 2))
+    num_gram = int(config_dict.get("num_grammaticality_classes", 2))
+    num_reg = NUM_REGISTER_CLASSES
+
+    head_params = 0
+    head_params += mlp_params(1)
+    head_params += mlp_params(num_formality)
+    head_params += mlp_params(1)
+    head_params += mlp_params(num_gender)
+    head_params += mlp_params(num_gram)
+    head_params += mlp_params(num_reg)
+
+    # KCHead: 2-layer MLP (d_model → hidden_dim → kc_vocab_size) + LayerNorm
+    # hidden: d_model * hidden_dim + hidden_dim (weights + bias)
+    # output: hidden_dim * kc_vocab_size + kc_vocab_size (weights + bias)
+    # layer_norm: 2 * kc_vocab_size (weight + bias)
+    kc_head_params = (
+        (d_model * hidden_dim + hidden_dim)  # hidden layer
+        + (hidden_dim * kc_vocab_size + kc_vocab_size)  # output layer
+        + (2 * kc_vocab_size)  # layer norm
+    )
+    pos_encoding_buffer = 512 * d_model
+
+    return {
+        "embeddings": int(embed_params),
+        "transformer": int(transformer_params),
+        "final_norm": int(final_norm_params),
+        "heads": int(head_params),
+        "kc_head": int(kc_head_params),
+        "pos_encoding": int(pos_encoding_buffer),
+    }
+
+
+def generate_size_breakdown_report(
+    state_dict: Mapping[str, torch.Tensor], expected_breakdown: Dict[str, int]
+) -> str:
+    """Generate a detailed report comparing actual vs expected component sizes."""
+    # Calculate approximate active breakdown for diagnostics
+    actual_breakdown = {
+        "embeddings": 0,
+        "transformer": 0,
+        "final_norm": 0,
+        "heads": 0,
+        "kc_head": 0,
+        "pos_encoding": 0,
+        "other": 0,
+    }
+
+    for k, v in state_dict.items():
+        # Estimate size: numel * element_size
+        size = v.numel() * v.element_size()
+
+        if k.startswith("embedding."):
+            actual_breakdown["embeddings"] += size
+        elif k.startswith("encoder."):
+            actual_breakdown["transformer"] += size
+        elif k == "pos_encoding.pe":
+            actual_breakdown["pos_encoding"] += size
+        elif (
+            k.startswith("formality_")
+            or k.startswith("gender_")
+            or k.startswith("grammaticality_")
+            or k.startswith("register_")
+        ):
+            actual_breakdown["heads"] += size
+        elif k.startswith("kc_head."):
+            actual_breakdown["kc_head"] += size
+        else:
+            # Catch-all for other params (norms, biases not captured above if naming differs)
+            actual_breakdown["other"] += size
+
+    # Breakdown message
+    breakdown_msg = "\nSize Breakdown (Bytes):\n"
+    breakdown_msg += (
+        f"{'Component':<20} {'Expected':<15} {'Approx. Tensor Payload':<20}\n"
+    )
+    breakdown_msg += "-" * 60 + "\n"
+
+    all_keys = set(expected_breakdown.keys()) | set(actual_breakdown.keys())
+    for key in sorted(all_keys):
+        exp = expected_breakdown.get(key, 0)
+        act = actual_breakdown.get(key, 0)
+        breakdown_msg += f"{key:<20} {exp:<15,} {act:<20,}\n"
+
+    return breakdown_msg
+
+
+def verify_model_size_policy(
+    actual_size: int,
+    expected_size: int,
+    expected_breakdown: Dict[str, int],
+    state_dict_provider: Callable[[], Mapping[str, torch.Tensor]],
+) -> None:
+    """
+    Verify that the actual model size on disk matches expectation within tolerance.
+    Raises RuntimeError with a detailed breakdown report if verification fails.
+    """
+    if not math.isclose(
+        actual_size, expected_size, abs_tol=SIZE_VERIFICATION_TOLERANCE
+    ):
+        state_dict = state_dict_provider()
+        report = generate_size_breakdown_report(state_dict, expected_breakdown)
+        raise RuntimeError(
+            f"Model size verification failed. Expected ~{expected_size:,} bytes, "
+            f"found {actual_size:,} bytes. (Tolerance: {SIZE_VERIFICATION_TOLERANCE:,} bytes)\n"
+            f"{report}"
+        )

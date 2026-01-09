@@ -55,7 +55,7 @@ def save_model(
     config: ModelConfig,
 ) -> None:
     """Save trained model, tokenizer, and config."""
-    # pylint: disable=too-many-positional-arguments
+    # pylint: disable=too-many-positional-arguments, too-many-locals
     os.makedirs(path, exist_ok=True)
 
     # Save model weights (Always use FP8 if available)
@@ -88,6 +88,25 @@ def save_model(
             f,
             indent=2,
         )
+
+    # Verify model size (Strict Architecture Verification)
+    # pylint: disable=import-outside-toplevel
+    from train.pytorch_utils import calculate_detailed_size, verify_model_size_policy
+
+    expected_breakdown = calculate_detailed_size(config.to_dict())
+    expected_size = sum(expected_breakdown.values())
+
+    # Check actual file size
+    model_pt_path = os.path.join(path, "model.pt")
+    actual_size = os.path.getsize(model_pt_path)
+
+    # Policy check (raises RuntimeError on failure)
+    verify_model_size_policy(
+        actual_size,
+        expected_size,
+        expected_breakdown,
+        lambda: state_dict,  # Lazy provider, though state_dict is already local
+    )
 
     # Mark as feature-based multi-task model
     with open(os.path.join(path, "model_type.txt"), "w", encoding="utf-8") as f:
@@ -164,7 +183,7 @@ def save_training_state(
     torch.save(checkpoint, os.path.join(path, filename))
 
 
-def load_training_state(
+def load_training_state(  # pylint: disable=too-many-locals
     path: str,
     model: nn.Module,
     optimizer: torch.optim.Optimizer,
@@ -184,36 +203,14 @@ def load_training_state(
     # Handle 'module.' prefix (legacy support for checkpoints)
     model_state = {k.replace("module.", ""): v for k, v in model_state.items()}
 
-    # Use strict=False to get missing keys without exception, avoiding banned try-except RuntimeError
-    missing_keys, unexpected_keys = model.load_state_dict(model_state, strict=False)
+    # Unwrap model if needed to match keys correctly (model_state has keys stripped of 'module.')
+    inner_model = model
+    if hasattr(model, "module"):
+        inner_model = cast(Any, model).module
 
-    # Filter out known safe missing keys (kc_head initialization)
-    # If we are loading a non-KC checkpoint into a KC model, kc_head weights will be missing.
-    real_missing = [
-        k
-        for k in missing_keys
-        if not k.startswith("kc_head.") and not k.startswith("kc_decoders.")
-    ]
-
-    if real_missing or unexpected_keys:
-        err_msgs = []
-        if real_missing:
-            err_msgs.append(
-                f"Missing key(s) in state_dict: {', '.join(map(repr, real_missing))}."
-            )
-        if unexpected_keys:
-            err_msgs.append(
-                f"Unexpected key(s) in state_dict: {', '.join(map(repr, unexpected_keys))}."
-            )
-        raise RuntimeError(
-            f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t"
-            + "\n\t".join(err_msgs)
-        )
-
-    if missing_keys:
-        print(
-            f"Warning: Missing KC head weights in checkpoint. Initializing from scratch. (Missing: {len(missing_keys)} keys)"
-        )
+    # With mandatory KC architecture, all checkpoints should have matching keys.
+    # Use strict=True to catch any mismatches early.
+    inner_model.load_state_dict(model_state, strict=True)
 
     # Load optimizer
     if optimizer is not None and "optimizer_state_dict" in checkpoint:

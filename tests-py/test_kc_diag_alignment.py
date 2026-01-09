@@ -63,6 +63,9 @@ class TestKCDiagAlignment(KCTrainerTestBase):
         batch_iter = MagicMock()
         batch_iter.feature_inputs = {}
         batch_iter.attention_mask = torch.ones(batch_size, 10)
+        batch_iter.formality_value = torch.zeros(batch_size)  # Neutral
+        batch_iter.gender_value = torch.zeros(batch_size)  # Neutral
+        batch_iter.register_labels = torch.zeros(batch_size, 14)  # [B, 14]
         self.trainer.data_loader.__iter__.return_value = iter([batch_iter])
 
         # Targets
@@ -115,6 +118,9 @@ class TestKCDiagAlignment(KCTrainerTestBase):
         batch_mock = MagicMock()
         batch_mock.feature_inputs = {}
         batch_mock.attention_mask = torch.ones(batch_size, 10)
+        batch_mock.formality_value = torch.zeros(batch_size)  # Neutral
+        batch_mock.gender_value = torch.zeros(batch_size)  # Neutral
+        batch_mock.register_labels = torch.zeros(batch_size, 14)  # [B, 14]
         self.trainer.data_loader.__iter__.return_value = iter([batch_mock])
 
         targets = torch.zeros((batch_size, vocab_size))

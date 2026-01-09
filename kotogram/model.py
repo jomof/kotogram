@@ -74,7 +74,7 @@ class ModelConfigDict(TypedDict):
     dropout: float
     max_seq_len: int
     pooling: str
-    kc_enabled: bool
+
     kc_vocab_size: int
     kc_topk: int
     kc_temperature: float
@@ -107,8 +107,7 @@ class ModelConfig:
     max_seq_len: int = 512
     pooling: str = "cls"
 
-    # KC Learning configuration
-    kc_enabled: bool = False
+    # KC Learning configuration (KC is always enabled)
     kc_vocab_size: int = 1024  # Size of the sparse concept, vocabulary
     kc_topk: int = 8  # Number of active concepts to retrieve
     kc_temperature: float = 1.0  # Sparsification temperature
@@ -128,7 +127,6 @@ class ModelConfig:
             "dropout": self.dropout,
             "max_seq_len": self.max_seq_len,
             "pooling": self.pooling,
-            "kc_enabled": self.kc_enabled,
             "kc_vocab_size": self.kc_vocab_size,
             "kc_topk": self.kc_topk,
             "kc_temperature": self.kc_temperature,
@@ -243,21 +241,34 @@ class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
 
 # Required for Mypy compatibility with torch.nn.Module
 class KCHead(nn.Module):  # type: ignore[misc]
-    """Head for predicting Knowledge Components (sparse concepts)."""
+    """Head for predicting Knowledge Components (sparse concepts).
+
+    Architecture: 2-layer MLP with GELU activation.
+    - Hidden layer: d_model -> hidden_dim (512)
+    - Output layer: hidden_dim -> kc_vocab_size
+    - LayerNorm on output
+    """
 
     def __init__(self, config: ModelConfig):
         super().__init__()
         self.config = config
-        self.linear = nn.Linear(config.d_model, config.kc_vocab_size)
+        # 2-layer MLP for richer representation capacity
+        self.hidden = nn.Linear(config.d_model, config.hidden_dim)
+        self.activation = nn.GELU()
+        self.output = nn.Linear(config.hidden_dim, config.kc_vocab_size)
         self.layer_norm = nn.LayerNorm(config.kc_vocab_size)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = self.linear(x)
+        x = self.hidden(x)
+        x = self.activation(x)
+        x = self.output(x)
         x = self.layer_norm(x)
         return cast(torch.Tensor, x)
 
     def forward_with_raw(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
-        raw = self.linear(x)
+        x = self.hidden(x)
+        x = self.activation(x)
+        raw = self.output(x)
         out = self.layer_norm(raw)
         return raw, cast(torch.Tensor, out)
 
@@ -287,8 +298,11 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             encoder_layer, config.num_layers, enable_nested_tensor=False
         )
 
+        # Classifier input dimension: d_model + kc_vocab_size (KC always enabled)
+        classifier_input_dim = config.d_model + config.kc_vocab_size
+
         self.formality_value_head = nn.Sequential(
-            nn.Linear(config.d_model, config.hidden_dim),
+            nn.Linear(classifier_input_dim, config.hidden_dim),
             nn.GELU(),
             nn.Dropout(config.dropout),
             nn.Linear(config.hidden_dim, 1),
@@ -296,14 +310,14 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         )
 
         self.formality_pragmatic_head = nn.Sequential(
-            nn.Linear(config.d_model, config.hidden_dim),
+            nn.Linear(classifier_input_dim, config.hidden_dim),
             nn.GELU(),
             nn.Dropout(config.dropout),
             nn.Linear(config.hidden_dim, config.num_formality_pragmatic_classes),
         )
 
         self.gender_value_head = nn.Sequential(
-            nn.Linear(config.d_model, config.hidden_dim),
+            nn.Linear(classifier_input_dim, config.hidden_dim),
             nn.GELU(),
             nn.Dropout(config.dropout),
             nn.Linear(config.hidden_dim, 1),
@@ -311,28 +325,27 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         )
 
         self.gender_pragmatic_head = nn.Sequential(
-            nn.Linear(config.d_model, config.hidden_dim),
+            nn.Linear(classifier_input_dim, config.hidden_dim),
             nn.GELU(),
             nn.Dropout(config.dropout),
             nn.Linear(config.hidden_dim, config.num_gender_pragmatic_classes),
         )
 
         self.grammaticality_classifier = nn.Sequential(
-            nn.Linear(config.d_model, config.hidden_dim),
+            nn.Linear(classifier_input_dim, config.hidden_dim),
             nn.GELU(),
             nn.Dropout(config.dropout),
             nn.Linear(config.hidden_dim, config.num_grammaticality_classes),
         )
 
         self.register_classifier = nn.Sequential(
-            nn.Linear(config.d_model, config.hidden_dim),
+            nn.Linear(classifier_input_dim, config.hidden_dim),
             nn.GELU(),
             nn.Dropout(config.dropout),
             nn.Linear(config.hidden_dim, config.num_register_classes),
         )
 
-        if config.kc_enabled:
-            self.kc_head = KCHead(config)
+        self.kc_head = KCHead(config)
 
     def get_encoder_output(
         self,
@@ -384,13 +397,19 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         torch.Tensor,
     ]:
         pooled = self._get_pooled_output(field_inputs, attention_mask)
+
+        # Concatenate KC probs with pooled output (KC always enabled)
+        kc_logits = self.kc_head(pooled)
+        kc_probs = torch.sigmoid(kc_logits / self.config.kc_temperature)
+        classifier_input = torch.cat([pooled, kc_probs], dim=-1)
+
         return (
-            self.formality_value_head(pooled),
-            self.formality_pragmatic_head(pooled),
-            self.gender_value_head(pooled),
-            self.gender_pragmatic_head(pooled),
-            self.grammaticality_classifier(pooled),
-            self.register_classifier(pooled),
+            self.formality_value_head(classifier_input),
+            self.formality_pragmatic_head(classifier_input),
+            self.gender_value_head(classifier_input),
+            self.gender_pragmatic_head(classifier_input),
+            self.grammaticality_classifier(classifier_input),
+            self.register_classifier(classifier_input),
         )
 
     def predict(
@@ -401,9 +420,7 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         formality_val, formality_prag, gender_val, gender_prag, gram, reg = self(
             field_inputs, attention_mask
         )
-        kcs = None
-        if self.config.kc_enabled:
-            kcs = self.predict_kcs(field_inputs, attention_mask)
+        kcs = self.predict_kcs(field_inputs, attention_mask)
 
         return StylePrediction(
             formality_value=formality_val,  # Already Tanh
@@ -432,8 +449,6 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         Returns:
             activations: (B, K) tensor of sparse KC activations (or logits)
         """
-        if not self.config.kc_enabled:
-            raise ValueError("KC learning is not enabled for this model.")
 
         pooled = self._get_pooled_output(field_inputs, attention_mask)
         return cast(torch.Tensor, self.kc_head(pooled))
@@ -459,8 +474,6 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             for a sample in the batch.
         """
         # Get dense logits
-        if not self.config.kc_enabled:
-            return []
 
         logits = self.predict_kcs(field_inputs, attention_mask)
         cur_temp = getattr(self.config, "kc_temperature", 1.0)
@@ -521,17 +534,9 @@ def load_model(
 
     state_dict = {k: to_float32(v).contiguous() for k, v in state_dict.items()}
 
-    # Load with strict=False to allow architecture changes (e.g. gender head refactor)
-    # We catch the error/warning to report relevant mismatches
-    incompatible = model.load_state_dict(state_dict, strict=False)
-    # Ignore kc_decoders keys (training artifacts)
-    unexpected = [
-        k for k in incompatible.unexpected_keys if not k.startswith("kc_decoders.")
-    ]
-    if incompatible.missing_keys:
-        print(f"WARNING: Missing keys in state_dict: {incompatible.missing_keys}")
-    if unexpected:
-        print(f"WARNING: Unexpected keys in state_dict: {unexpected}")
+    # Load with strict=True; mandatory KC architecture ensures consistent keys
+    # kc_decoders keys are stripped during save, so they won't be present
+    model.load_state_dict(state_dict, strict=True)
 
     model.eval()
     return model, tokenizer

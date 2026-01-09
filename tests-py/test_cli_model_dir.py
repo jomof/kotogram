@@ -40,7 +40,8 @@ class TestCliModelDir(unittest.TestCase):
 
         # Mock return value of load_model to avoid actual loading
         mock_model = MagicMock()
-        mock_model.config.kc_enabled = False  # Avoid KC calls
+        # KC is always enabled; mock predict_kcs_top to return list with one empty element per batch
+        mock_model.predict_kcs_top.return_value = [[]]  # One batch sample, no KCs
         mock_tokenizer = MagicMock()
         mock_load_model.return_value = (mock_model, mock_tokenizer)
 

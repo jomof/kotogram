@@ -474,7 +474,10 @@ def main() -> None:
         # But if the user didn't specify --batch-size, args.batch_size will be 512.
         # Let's check if it was changed from default.
         # For now, let's just always prefer the config if it's there.
-        args.batch_size = trainer_config.batch_size
+        # Handle -1 (auto-tune) by falling back to default 512
+        if trainer_config.batch_size > 0:
+            args.batch_size = trainer_config.batch_size
+        # else: keep the default 512 from argparse
         if trainer_config.dataloader.num_workers is not None:
             args.num_workers = trainer_config.dataloader.num_workers
 

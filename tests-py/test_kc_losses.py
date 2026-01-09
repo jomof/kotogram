@@ -31,6 +31,9 @@ class TestKCLosses(KCTrainerTestBase):
         batch = MagicMock()
         batch.feature_inputs = {}
         batch.attention_mask = torch.ones(2, 5)
+        batch.formality_value = torch.zeros(2)  # Neutral formality
+        batch.gender_value = torch.zeros(2)  # Neutral gender
+        batch.register_labels = torch.zeros(2, 14)  # All neutral registers
         self.mock_loader.__iter__.return_value = iter([batch])
         self.mock_loader.__len__.return_value = 1
 

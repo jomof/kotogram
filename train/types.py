@@ -207,24 +207,41 @@ class FamilyAccumulator:
 class RunningLossComponents:
     """Running loss components for an epoch."""
 
-    base: float = 0.0
     struct: float = 0.0
-    label: float = 0.0
+    gap: float = 0.0
     div: float = 0.0
     lb: float = 0.0
     collapse: float = 0.0
     sparsity: float = 0.0
+    formality: float = 0.0  # Prior KC cross-entropy loss (KC0-3)
+    gender: float = 0.0  # Prior KC cross-entropy loss (KC4-5)
+    register: float = 0.0  # Prior KC BCE multi-label loss (KC6-18)
+    # Accuracy tracking for prior KCs
+    formality_correct: int = 0
+    formality_total: int = 0
+    gender_correct: int = 0
+    gender_total: int = 0
+    register_correct: int = 0
+    register_total: int = 0
 
     def add(self, other: "RunningLossComponents") -> "RunningLossComponents":
         """Add another RunningLossComponents instance."""
         return RunningLossComponents(
-            base=self.base + other.base,
             struct=self.struct + other.struct,
-            label=self.label + other.label,
+            gap=self.gap + other.gap,
             div=self.div + other.div,
             lb=self.lb + other.lb,
             collapse=self.collapse + other.collapse,
             sparsity=self.sparsity + other.sparsity,
+            formality=self.formality + other.formality,
+            gender=self.gender + other.gender,
+            register=self.register + other.register,
+            formality_correct=self.formality_correct + other.formality_correct,
+            formality_total=self.formality_total + other.formality_total,
+            gender_correct=self.gender_correct + other.gender_correct,
+            gender_total=self.gender_total + other.gender_total,
+            register_correct=self.register_correct + other.register_correct,
+            register_total=self.register_total + other.register_total,
         )
 
 
@@ -362,9 +379,6 @@ class KcEpochSummary:
     epoch_idx: int
     frozen: bool
     loss_components: RunningLossComponents
-    global_step_delta: int
-    n_batches: int
-    total_batches: int
     sizing_stats: List[KcDynSizingBinStats]
     activation_stats: KcEpochActivationStats
     diagnostics: KCDiagnosticReport
@@ -424,9 +438,7 @@ class TrainEpochStats:
     """Statistics collected during a training epoch."""
 
     avg_struct_loss: float
-    avg_label_loss: float
     num_struct_heads_processed: int
-    num_label_heads_processed: int
     avg_sparsity: float
     avg_prob: float
     act_dens: float
@@ -481,9 +493,7 @@ class KCTrainingHistory(TrainingHistory):
     kc_sparsity: List[float] = field(default_factory=list)
     kc_losses: Dict[str, List[float]] = field(default_factory=dict)
     avg_struct_loss: List[float] = field(default_factory=list)
-    avg_label_loss: List[float] = field(default_factory=list)
     num_struct_heads_processed: List[float] = field(default_factory=list)
-    num_label_heads_processed: List[float] = field(default_factory=list)
     avg_sparsity: List[float] = field(default_factory=list)
 
     active_kc_targets: List[str] = field(default_factory=list)

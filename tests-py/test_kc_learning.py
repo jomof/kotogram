@@ -58,9 +58,7 @@ class MockDataset:
 
 
 def test_kc_head_shapes():
-    config = ModelConfig(
-        vocab_sizes={"surface": 100}, kc_enabled=True, kc_vocab_size=64, kc_topk=4
-    )
+    config = ModelConfig(vocab_sizes={"surface": 100}, kc_vocab_size=64, kc_topk=4)
     kc_head = KCHead(config)
 
     batch_size = 2
@@ -105,7 +103,6 @@ def test_style_classifier_with_kc_mode():
     vocab_sizes = {f: 100 for f in ALL_FEATURE_FIELDS}
     config = ModelConfig(
         vocab_sizes=vocab_sizes,
-        kc_enabled=True,
         kc_vocab_size=64,
     )
     model = StyleClassifierWithKC(config, kc_target_specs={KcFamilyId.BAG_POS: 50})
@@ -185,7 +182,6 @@ def test_create_kc_batch():
 def test_kc_trainer_init():
     config = ModelConfig(
         vocab_sizes={f: 100 for f in ALL_FEATURE_FIELDS},
-        kc_enabled=True,
         kc_vocab_size=32,
     )
     model = StyleClassifierWithKC(config)
@@ -213,7 +209,6 @@ def test_predict_kcs_top():
     vocab_sizes = {f: 100 for f in ALL_FEATURE_FIELDS}
     config = ModelConfig(
         vocab_sizes=vocab_sizes,
-        kc_enabled=True,
         kc_vocab_size=10,
         kc_topk=3,
         kc_temperature=1.0,  # Default
