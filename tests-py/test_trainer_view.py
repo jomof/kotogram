@@ -232,12 +232,21 @@ class TestTrainerView(TestCase):
     def test_train_calls_view_hooks(self):
         # Mock save_checkpoint to avoid IO
         self.trainer.save_checkpoint = MagicMock()
-        self.trainer.evaluate = MagicMock(return_value=EvaluationMetrics(loss=0.5))
+        # Mock save_model to avoid size verification on DummyModel
+        # Since train_io is imported in trainer.py, checking where to patch
+        # But we can just patch 'train.trainer.train_io.save_model' or mock the method
+        # Actually easier to use unittest.mock.patch
+        # Since Trainer imports save_model directly: `from train.io import save_model`
+        # We must patch `train.trainer.save_model` to affect the Trainer.
+        from unittest.mock import patch
 
-        self.trainer.train(
-            epochs=1,
-            on_epoch_end=lambda h: None,
-        )
+        with patch("train.trainer.save_model"):
+            self.trainer.evaluate = MagicMock(return_value=EvaluationMetrics(loss=0.5))
+
+            self.trainer.train(
+                epochs=1,
+                on_epoch_end=lambda h: None,
+            )
 
         calls = [c.name for c in self.view.calls]
 

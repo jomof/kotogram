@@ -15,7 +15,7 @@ class TestKCTargetVerification(unittest.TestCase):
 
             # Train with specific KC targets
             # Use minimal arguments for speed
-            cmd = "--pretrain-kc --kc-epochs 1 --epochs 0 --kc-freeze-encoder-epochs 0 "
+            cmd = "--kc-epochs 1 --epochs 0 --kc-freeze-encoder-epochs 0 "
 
             bottle.train_style(cmd)
 

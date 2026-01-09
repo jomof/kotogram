@@ -104,7 +104,7 @@ class KCConfig:
     """Pretraining (KC) hyperparameter configuration."""
 
     sparsity_weight: float = 0.1
-    freeze_encoder_epochs: int = 1
+    freeze_encoder_epochs: int = 0
 
     # Diversity / Coverage
     diversity_weight: float = 1e-3
@@ -117,7 +117,10 @@ class KCConfig:
     lb_weight_thawed: float = 0.1
 
     # Collapse Prevention
-    collapse_weight_thawed: float = 1.0
+    collapse_weight_thawed: float = 10.0
+
+    # Prior KC Exclusivity (false positive penalty for formality/gender/register)
+    prior_exclusivity_weight: float = 1.0
 
     # Temperature
     temperature_thawed: float = 1.8
@@ -154,7 +157,7 @@ class TrainerConfig:
     learning_rate: float = 1e-4
     batch_size: int = -1
     epochs: int = 20  # Fine-tuning epochs
-    kc_epochs: int = 3
+    kc_epochs: int = 11
     patience: int = 5  # Early stopping patience
     lr_scheduler_patience: int = 2
     lr_scheduler_factor: float = 0.5
@@ -178,7 +181,7 @@ class TrainerConfig:
         else ("mps" if torch.backends.mps.is_available() else "cpu")
     )
     grad_accum_steps: int = 1  # Gradient accumulation steps
-    encoder_lr_factor: float = 0.0  # Freeze encoder during style training to preserve KC quality (set > 0 to fine-tune)
+    # Encoder LR is hardcoded to 0.0 (frozen) during style training
 
     # Orthogonal components
     hardware: HardwareConfig = field(default_factory=HardwareConfig)
@@ -211,7 +214,6 @@ class TrainerConfig:
             "grammaticality_loss_weight": self.grammaticality_loss_weight,
             "register_loss_weight": self.register_loss_weight,
             "gender_mse_scaling_factor": self.gender_mse_scaling_factor,
-            "encoder_lr_factor": self.encoder_lr_factor,
             "hardware": self.hardware.to_dict(),
             "dataloader": self.dataloader.to_dict(),
             "checkpoint": self.checkpoint.to_dict(),

@@ -40,6 +40,7 @@ class TestKCDenseTraining(unittest.TestCase):
         # Mock dataset
         self.dataset = MagicMock()
         self.dataset.tokenizer.field_vocabs = {}
+        self.dataset.filter_by_grammaticality.return_value = self.dataset
 
         # Mock DataLoader
         self.dl_config = MagicMock()
@@ -81,6 +82,9 @@ class TestKCDenseTraining(unittest.TestCase):
         batch = MagicMock()
         batch.feature_inputs = {}
         batch.attention_mask = torch.ones(batch_size, 5)
+        batch.formality_value = torch.zeros(batch_size)  # Neutral formality
+        batch.gender_value = torch.zeros(batch_size)  # Neutral gender
+        batch.register_labels = torch.zeros(batch_size, 14)  # All neutral registers
         self.mock_loader.__iter__.return_value = iter([batch])
         self.mock_loader.__len__.return_value = 1
 
@@ -160,6 +164,9 @@ class TestKCDenseTraining(unittest.TestCase):
         batch = MagicMock()
         batch.attention_mask = torch.ones(2, 5)
         batch.feature_inputs = {}
+        batch.formality_value = torch.zeros(2)  # Neutral formality
+        batch.gender_value = torch.zeros(2)  # Neutral gender
+        batch.register_labels = torch.zeros(2, 14)  # All neutral registers
         self.mock_loader.__len__.return_value = 1
         self.mock_loader.__iter__.return_value = iter([batch])
 

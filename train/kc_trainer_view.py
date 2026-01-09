@@ -2,7 +2,7 @@
 import math
 import random
 from collections import defaultdict
-from typing import Any, Dict, List, Protocol, Tuple
+from typing import Any, Dict, List, Optional, Protocol, Tuple
 
 import torch
 from rich.table import Table
@@ -12,6 +12,7 @@ from train.types import (
     KcDynSizingBinStats,
     KcEpochSummary,
     KCTrainingHistory,
+    RunningLossComponents,
     TrainEpochResult,
 )
 
@@ -102,6 +103,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         self.reset_epoch_stats()
         # Store previous epoch family stats for trajectory arrows
         self.prev_family_stats: Dict[str, Dict[str, float]] = {}
+        # Store previous epoch loss components for delta arrows
+        self.prev_loss_components: Optional[RunningLossComponents] = None
 
     # pylint: disable=attribute-defined-outside-init
     def reset_epoch_stats(self) -> None:
@@ -284,7 +287,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
     # pylint: disable=too-many-locals
     def on_kc_epoch_summary(self, epoch: int, summary: KcEpochSummary) -> None:
-        # BLOCK 0: Header
+        # BLOCK 0: Loss breakdown
         lc = summary.loss_components
         f_state = "Frozen" if summary.frozen else "Thawed"
 
@@ -292,14 +295,135 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         def _f(v: float) -> str:
             return f"{v:.4f}"
 
-        header = (
-            f"[bold]KC EP{summary.epoch_idx + 1}[/bold] {f_state} | "
-            f"Loss: [cyan]{_f(lc.base)}[/cyan]+[magenta]{_f(lc.struct)}[/magenta]+"
-            f"[blue]{_f(lc.label)}[/blue]+div{_f(lc.div)}+lb{_f(lc.lb)}+"
-            f"col{_f(lc.collapse)}+sp{_f(lc.sparsity)} | "
-            f"dStep={summary.global_step_delta} Batch={summary.n_batches}/{summary.total_batches}"
+        # Loss breakdown as Table with delta arrows
+        act = summary.activation_stats
+
+        def _delta_arrow(curr: float, prev: Optional[float]) -> str:
+            """Return colored arrow showing % change from previous epoch."""
+            if prev is None or prev == 0.0:
+                return ""
+            diff = curr - prev
+            if abs(diff) < 1e-6:
+                return ""
+            pct = (diff / prev) * 100
+            if pct < 0:
+                return f"[green]↓{abs(pct):.1f}%[/green]"
+            return f"[red]↑{pct:.1f}%[/red]"
+
+        prev_lc = self.prev_loss_components
+        console.print(
+            f"[bold]KC EP{summary.epoch_idx + 1}[/bold] {f_state} Loss Breakdown:"
         )
-        console.print(header)
+        table_loss = Table(
+            show_header=True, header_style="bold", box=None, padding=(0, 1)
+        )
+        table_loss.add_column("Loss", style="dim", min_width=10)
+        table_loss.add_column("Value", justify="right", min_width=10)
+        table_loss.add_column("Δ", justify="left", min_width=8)
+        table_loss.add_column("Acc", justify="right", min_width=14)
+        table_loss.add_column("Detail", style="dim")
+
+        # Helper for accuracy display with delta arrow
+        def _acc(correct: int, total: int, prev_correct: int, prev_total: int) -> str:
+            if total == 0:
+                return ""
+            pct = 100.0 * correct / total
+            color = "green" if pct >= 50.0 else "yellow" if pct >= 25.0 else "red"
+            base = f"[{color}]{pct:.1f}%[/{color}]"
+            # Delta arrow (accuracy going UP is good)
+            if prev_total > 0:
+                prev_pct = 100.0 * prev_correct / prev_total
+                diff = pct - prev_pct
+                if abs(diff) >= 0.1:
+                    if diff > 0:
+                        base += f" [green]↑{diff:.1f}[/green]"
+                    else:
+                        base += f" [red]↓{abs(diff):.1f}[/red]"
+            return base
+
+        # Add rows
+        table_loss.add_row(
+            "[cyan]struct[/cyan]",
+            _f(lc.struct),
+            _delta_arrow(lc.struct, prev_lc.struct if prev_lc else None),
+            "",
+            "",
+        )
+        table_loss.add_row(
+            "[yellow]gap[/yellow]",
+            _f(lc.gap),
+            _delta_arrow(lc.gap, prev_lc.gap if prev_lc else None),
+            "",
+            "",
+        )
+        table_loss.add_row(
+            "[magenta]formality[/magenta]",
+            _f(lc.formality),
+            _delta_arrow(lc.formality, prev_lc.formality if prev_lc else None),
+            _acc(
+                lc.formality_correct,
+                lc.formality_total,
+                prev_lc.formality_correct if prev_lc else 0,
+                prev_lc.formality_total if prev_lc else 0,
+            ),
+            "(KC0-3)",
+        )
+        table_loss.add_row(
+            "[magenta]gender[/magenta]",
+            _f(lc.gender),
+            _delta_arrow(lc.gender, prev_lc.gender if prev_lc else None),
+            _acc(
+                lc.gender_correct,
+                lc.gender_total,
+                prev_lc.gender_correct if prev_lc else 0,
+                prev_lc.gender_total if prev_lc else 0,
+            ),
+            "(KC4-5)",
+        )
+        table_loss.add_row(
+            "[magenta]register[/magenta]",
+            _f(lc.register),
+            _delta_arrow(lc.register, prev_lc.register if prev_lc else None),
+            _acc(
+                lc.register_correct,
+                lc.register_total,
+                prev_lc.register_correct if prev_lc else 0,
+                prev_lc.register_total if prev_lc else 0,
+            ),
+            "(KC6-18)",
+        )
+        table_loss.add_row(
+            "diversity",
+            _f(lc.div),
+            _delta_arrow(lc.div, prev_lc.div if prev_lc else None),
+            "",
+            f"Ent={act.ent_norm:.3f}",
+        )
+        table_loss.add_row(
+            "load_bal",
+            _f(lc.lb),
+            _delta_arrow(lc.lb, prev_lc.lb if prev_lc else None),
+            "",
+            f"KL={act.kl_u_norm:.3f}",
+        )
+        table_loss.add_row(
+            "collapse",
+            _f(lc.collapse),
+            _delta_arrow(lc.collapse, prev_lc.collapse if prev_lc else None),
+            "",
+            f"Sat95={act.sat_contrib_mean:.2f} PMax={act.pmax_global_max:.3f}",
+        )
+        table_loss.add_row(
+            "sparsity",
+            _f(lc.sparsity),
+            _delta_arrow(lc.sparsity, prev_lc.sparsity if prev_lc else None),
+            "",
+            f"Dens={act.act_dens_mean:.3f}",
+        )
+        console.print(table_loss)
+
+        # Store for next epoch comparison
+        self.prev_loss_components = lc
 
         # BLOCK 1: Dynamic Sizing
         # Compute aggregates from stored bins
@@ -403,19 +527,17 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         c_pmax = (
             "red" if act_stats.pmax_global_max > 0.995 or pmax_p99 > 0.99 else "green"
         )
-        c_ent = "red" if act_stats.ent_norm < 0.2 else "cyan"  # heuristic
         c_sat = "red" if sat99_rate > 0.5 else "dim"
 
+        # Simplified Act line (Ent, KL, Dens now in loss breakdown above)
         console.print(
-            f"Act: AvgProb={act_stats.kc_probs_mean:.4f} Dens={act_stats.act_dens_mean:.3f} | "
-            f"PMax: [{c_pmax}]Glb={act_stats.pmax_global_max:.3f} P99={act_stats.pmax_p99:.3f}[/{c_pmax}] "
-            f"P50={act_stats.pmax_p50:.3f} | "
-            f"Sat95={sat95_rate:.2f} [{c_sat}]Sat99={sat99_rate:.2f}[/{c_sat}] | "
-            f"Sat: w={act_stats.sat_w:.2f} alpha={act_stats.sat_alpha:.3f} scaleμ={act_stats.sat_scale_mean:.1f} contribμ={act_stats.sat_contrib_mean:.2f} contrib/prim={act_stats.sat_contrib_ratio:.1%} | "
+            f"Act: AvgProb={act_stats.kc_probs_mean:.4f} | "
+            f"PMax: [{c_pmax}]Glb={act_stats.pmax_global_max:.3f} P99={pmax_p99:.3f} P50={pmax_p50:.3f}[/{c_pmax}] | "
+            f"Sat: [{c_sat}]95={sat95_rate:.2f} 99={sat99_rate:.2f}[/{c_sat}] "
+            f"scaleμ={act_stats.sat_scale_mean:.1f} contrib={act_stats.sat_contrib_ratio:.1%} | "
             f"Pos({act_stats.frac_has_pos:.0%}): pen={act_stats.sat_pen_pos:.2f} LM={act_stats.pmax_logit_mean_pos:.2f} >Thr={act_stats.frac_over_thr_pos:.1%} | "
-            f"Glb: pen={act_stats.sat_pen_global:.2f} LM={act_stats.pmax_logit_mean_global:.1f} "
-            f"SumK: P50={act_stats.topk_sum_p50:.1f} P90={act_stats.topk_sum_p90:.1f} P99={act_stats.topk_sum_p99:.1f} | "
-            f"Ent: [{c_ent}]{act_stats.ent_norm:.3f}[/{c_ent}] KL={act_stats.kl_u_norm:.3f}"
+            f"Glb: pen={act_stats.sat_pen_global:.2f} LM={act_stats.pmax_logit_mean_global:.1f} | "
+            f"SumK: P50={act_stats.topk_sum_p50:.1f} P90={act_stats.topk_sum_p90:.1f} P99={act_stats.topk_sum_p99:.1f}"
         )
 
         # BLOCK 3: Families (Wakefulness and Performance)
@@ -426,11 +548,12 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         table_fam.add_column("Family")
         table_fam.add_column("Loss")
         table_fam.add_column("Pos%")
-        table_fam.add_column("PosDen")  # new
+        table_fam.add_column("PosDen")
+        table_fam.add_column("PosP")  # avg probability for positives
         table_fam.add_column("Logit(+/-)")
-        table_fam.add_column("Gap")  # new
+        table_fam.add_column("Gap")
         table_fam.add_column("Msk%")
-        table_fam.add_column("Keys")  # new
+        table_fam.add_column("Keys")
         table_fam.add_column("BΔ")  # bias delta for gradient flow check
 
         # Diagnosis Flag Accumulators
@@ -507,6 +630,12 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             # low coverage is suspicious -> red
             c_msk = "red" if fam.mask_coverage < 0.5 else "dim"
 
+            # Color for PosProb: red if low, green if good
+            c_posp = (
+                "red"
+                if fam.prob_pos_mean < 0.3
+                else ("green" if fam.prob_pos_mean > 0.7 else "dim")
+            )
             # Compact "Single-Line" Summary style per family row
             # Color for bias delta: green if moving, dim if near-zero
             # bias_delta is now abs sum, so always positive. Use higher threshold.
@@ -516,6 +645,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 f"{fam.loss_mean:.4f}{loss_arrow}",
                 f"[{c_pos}]{fam.pos_ex_frac * 100:.2f}%[/{c_pos}]",
                 f"{fam.pos_label_density:.3f}",
+                f"[{c_posp}]{fam.prob_pos_mean:.2f}[/{c_posp}]",
                 f"{fam.logit_pos_mean:.1f}/{fam.logit_neg_mean:.1f}",
                 f"[{c_gap}]{s_gap}[/{c_gap}]{gap_arrow}",
                 f"[{c_msk}]{fam.mask_coverage * 100:.1f}%[/{c_msk}]",

@@ -218,11 +218,6 @@ if __name__ == "__main__":
         default=None,
         help="Percentage of data to use for training (1-100)",
     )
-    parser.add_argument(
-        "--pretrain-kc",
-        action="store_true",
-        help="Run Knowledge Component (KC) sparse concept pretraining",
-    )
     parser.add_argument("--kc-k", type=int, default=1024, help="KC vocabulary size")
     parser.add_argument(
         "--kc-topk", type=int, default=8, help="Number of active KCs per sample"
@@ -230,8 +225,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--kc-freeze-encoder-epochs",
         type=int,
-        default=1,
-        help="Number of epochs to freeze encoder during KC training",
+        default=None,
+        help="Number of epochs to freeze encoder during KC training (default: from config)",
     )
     parser.add_argument(
         "--kc-sparsity-weight",
@@ -407,9 +402,6 @@ if __name__ == "__main__":
                 trainer_config.checkpoint, "resume_from", args.support_dir
             )
 
-        # Override kc_enabled if specified in arguments (CLI takes precedence over config)
-        if args.pretrain_kc:
-            model_config.kc_enabled = True
     else:
         print(
             "ERROR: --config is required. Configuration must be passed from the wrapper script.",
@@ -420,34 +412,46 @@ if __name__ == "__main__":
     # Tokenizer and Device after config load
     device = torch.device(trainer_config.device)
 
-    # Initialize model if not already loaded from checkpoint
-    if model is None:
-        if model_config.kc_enabled:
-            # 2. Build KC specification
-            kc_specs: Dict[KcFamilyId, int] = {}
-            # Default hash bucket size
-            v_size_default = DEFAULT_HASH_BUCKET_SIZE
+    # Build KC specification (always enabled for ubiquity)
+    kc_specs: Dict[KcFamilyId, int] = {}
+    v_size_default = DEFAULT_HASH_BUCKET_SIZE
+    targets = ALL_KC_FAMILIES
+    current_vocabs = tokenizer.get_vocab_sizes()
 
-            # Add all standard families (Dynamically from IntEnum)
-            targets = ALL_KC_FAMILIES
-
-            # Use actual vocab sizes for dense families, hash bucket size for sparse.
-            current_vocabs = tokenizer.get_vocab_sizes()
-
-            for fid in targets:
-                if is_family_sparse(fid):
-                    kc_specs[fid] = v_size_default
-                else:
-                    fname = FAMILY_FEATURES[fid]
-                    # Direct lookup now that we've populated the key
-                    kc_specs[fid] = current_vocabs.get(fname, v_size_default)
-
-            trainer_config = dataclasses.replace(
-                trainer_config, kc_target_specs=kc_specs
-            )
-            model = StyleClassifierWithKC(model_config, kc_target_specs=kc_specs)
+    for fid in targets:
+        if is_family_sparse(fid):
+            kc_specs[fid] = v_size_default
         else:
-            model = StyleClassifier(model_config)
+            fname = FAMILY_FEATURES[fid]
+            kc_specs[fid] = current_vocabs.get(fname, v_size_default)
+
+    # Initialize model if not already loaded, OR upgrade if loaded model is not WithKC
+    if model is None:
+        trainer_config = dataclasses.replace(trainer_config, kc_target_specs=kc_specs)
+        model = StyleClassifierWithKC(model_config, kc_target_specs=kc_specs)
+    elif not isinstance(model, StyleClassifierWithKC):
+        # Ubiquity: Upgrade base StyleClassifier to StyleClassifierWithKC
+        # This handles cases where we resume from a checkpoint that matches the base
+        # StyleClassifier structure (e.g. stripped checkpoints).
+        print("Upgrading loaded model to StyleClassifierWithKC...")
+        new_model = StyleClassifierWithKC(model_config, kc_target_specs=kc_specs)
+        # Load weights from base model. strict=False is required because
+        # the base model lacks kc_decoders, which the new model has.
+
+        keys = new_model.load_state_dict(model.state_dict(), strict=False)
+        # Verify that only kc_decoders keys are missing in the source
+        non_kc_missing = [
+            k for k in keys.missing_keys if not k.startswith("kc_decoders.")
+        ]
+        if non_kc_missing:
+            raise RuntimeError(
+                f"Validation failed during model upgrade. Missing keys: {non_kc_missing}"
+            )
+        if keys.unexpected_keys:
+            raise RuntimeError(
+                f"Validation failed during model upgrade. Unexpected keys: {keys.unexpected_keys}"
+            )
+        model = new_model
 
     # Load labeled data for remaining phases
     old_vocab_sizes = model_config.vocab_sizes.copy()
@@ -481,44 +485,49 @@ if __name__ == "__main__":
     if args.preprocess_only:
         sys.exit(0)
 
-    if args.pretrain_kc and not args.preprocess_only:
-        # Load history to check KC progress
-        events = history.read_events(history_path)
-        kc_epochs_done = sum(1 for e in events if isinstance(e, history.KcEpochEvent))
-        if kc_epochs_done < trainer_config.kc_epochs or args.retrain:
-            # Override batch size for KC if requested
-            actual_kc_config = trainer_config
-            if args.kc_batch_size is not None:
-                actual_kc_config = dataclasses.replace(
-                    trainer_config, batch_size=args.kc_batch_size
-                )
+    # KC Pretraining - always runs (uses all grammatical sentences)
+    events = history.read_events(history_path)
+    kc_epochs_done = sum(1 for e in events if isinstance(e, history.KcEpochEvent))
+    if kc_epochs_done < trainer_config.kc_epochs or args.retrain:
+        # Filter to grammatical sentences only for KC training
+        kc_dataset = labeled_dataset.filter_by_grammaticality(label=1)
+        print(
+            f"KC training using {len(kc_dataset)} grammatical sentences (full dataset)"
+        )
 
-            kc_trainer = KCTrainer(
-                cast(StyleClassifierWithKC, model),
-                train_data,
-                actual_kc_config,
-                dl_config=actual_kc_config.resolve_dataloader_config(device),
-                kc_config=KCConfig(
-                    sparsity_weight=args.kc_sparsity_weight,
-                    freeze_encoder_epochs=args.kc_freeze_encoder_epochs,
-                ),
+        # Override batch size for KC if requested
+        actual_kc_config = trainer_config
+        if args.kc_batch_size is not None:
+            actual_kc_config = dataclasses.replace(
+                trainer_config, batch_size=args.kc_batch_size
             )
-            kc_hist: KCTrainingHistory = kc_trainer.train(
-                epochs=trainer_config.kc_epochs,
-                on_epoch_end=lambda h: _log_epoch_event(h, "pretrain-kc"),
-            )
-            if kc_hist.total_loss:
-                print(
-                    f"KC Pretraining finished. Final loss: {kc_hist.total_loss[-1]:.4f}"
-                )
-            # Ensure final state is logged if not already (redundant if using callback)
-            # But callback might be skipped if 0 epochs? No, train loop handles it.
 
-            # Update model reference (Trainer may have wrapped/moved it)
-            model = kc_trainer.model
-            if hasattr(model, "module"):
-                model = cast(StyleClassifierWithKC, model.module)
-            model.reset_classifier()
+        # Build KCConfig, only overriding values that were explicitly provided
+        kc_config_kwargs = {"sparsity_weight": args.kc_sparsity_weight}
+        if args.kc_freeze_encoder_epochs is not None:
+            kc_config_kwargs["freeze_encoder_epochs"] = args.kc_freeze_encoder_epochs
+
+        kc_trainer = KCTrainer(
+            cast(StyleClassifierWithKC, model),
+            kc_dataset,  # Uses all grammatical sentences, not train_data split
+            actual_kc_config,
+            dl_config=actual_kc_config.resolve_dataloader_config(device),
+            kc_config=KCConfig(**kc_config_kwargs),
+        )
+        kc_hist: KCTrainingHistory = kc_trainer.train(
+            epochs=trainer_config.kc_epochs,
+            on_epoch_end=lambda h: _log_epoch_event(h, "pretrain-kc"),
+        )
+        if kc_hist.total_loss:
+            print(f"KC Pretraining finished. Final loss: {kc_hist.total_loss[-1]:.4f}")
+        # Ensure final state is logged if not already (redundant if using callback)
+        # But callback might be skipped if 0 epochs? No, train loop handles it.
+
+        # Update model reference (Trainer may have wrapped/moved it)
+        model = kc_trainer.model
+        if hasattr(model, "module"):
+            model = cast(StyleClassifierWithKC, model.module)
+        model.reset_classifier()
 
     # Final supervised training
     style_trainer = Trainer(
@@ -584,8 +593,8 @@ if __name__ == "__main__":
     print("-" * 34)
     print("Performance Summary:")
     print("-" * 34)
-    if args.pretrain_kc and trainer_config.kc_epochs > 0:
-        # Approximate pretraining time using what logic we have left or just remove details
+    if trainer_config.kc_epochs > 0:
+        # KC timing would need a separate timer to measure accurately
         pass
     print(f"  Style Training: {style_end - style_start:.1f}s")
     print("-" * 34)

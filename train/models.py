@@ -13,7 +13,9 @@ class KCDecoder(nn.Module):
     """Decoder for predicting sentence-level attributes from KC activations.
 
     Architecture:
-    - Shared hidden layer: kc_vocab_size -> hidden_dim (default 256)
+    - Shared hidden layer 1: kc_vocab_size -> hidden_dim (default 256)
+    - ReLU activation
+    - Shared hidden layer 2: hidden_dim -> hidden_dim
     - ReLU activation
     - Per-family output heads: hidden_dim -> vocab_size
     """
@@ -25,8 +27,9 @@ class KCDecoder(nn.Module):
         hidden_dim: int = 256,
     ):
         super().__init__()
-        # Shared hidden layer for all families
-        self.hidden = nn.Linear(kc_vocab_size, hidden_dim)
+        # Shared hidden layers for all families
+        self.hidden1 = nn.Linear(kc_vocab_size, hidden_dim)
+        self.hidden2 = nn.Linear(hidden_dim, hidden_dim)
         self.activation = nn.ReLU()
 
         # Per-family output heads from shared hidden
@@ -36,7 +39,8 @@ class KCDecoder(nn.Module):
             self.decoders[fid.name.lower()] = nn.Linear(hidden_dim, vocab_size)
 
     def forward(self, kc_activations: torch.Tensor) -> Dict[str, torch.Tensor]:
-        h = self.activation(self.hidden(kc_activations))
+        h = self.activation(self.hidden1(kc_activations))
+        h = self.activation(self.hidden2(h))
         return {name: decoder(h) for name, decoder in self.decoders.items()}
 
 
@@ -49,9 +53,7 @@ class StyleClassifierWithKC(StyleClassifier):
         kc_target_specs: Optional[Dict[KcFamilyId, int]] = None,
     ):
         super().__init__(config)
-        assert config.kc_enabled, (
-            "StyleClassifierWithKC requires config.kc_enabled=True"
-        )
+        # KC is always enabled; kc_target_specs defines decoders for pretraining
 
         if kc_target_specs is None:
             kc_target_specs = {}

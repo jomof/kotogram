@@ -183,16 +183,17 @@ def run_preprocessing(
     return True
 
 
+# pylint: disable=too-many-positional-arguments
 def build_trainer_config(
     args: argparse.Namespace,
     env: dict,
     support_dir: str,
     explicit_resume: bool,
     grad_accum_steps: int,
+    loaded_config: Optional[TrainerConfig],
 ) -> TrainerConfig:
     """Build the TrainerConfig object from arguments."""
     trainer_kwargs: Dict[str, Any] = {
-        "kc_epochs": args.kc_epochs,
         "learning_rate": args.learning_rate,
 
 
@@ -219,6 +220,12 @@ def build_trainer_config(
         trainer_kwargs["gender_loss_weight"] = args.gender_weight
     if args.grammaticality_weight is not None:
         trainer_kwargs["grammaticality_loss_weight"] = args.grammaticality_weight
+
+    # Handle KC epochs logic (SSOT: rely on TrainerConfig default if not specified)
+    if args.kc_epochs is not None:
+        trainer_kwargs["kc_epochs"] = args.kc_epochs
+    elif loaded_config:
+        trainer_kwargs["kc_epochs"] = loaded_config.kc_epochs
 
     return TrainerConfig(**trainer_kwargs)
 
@@ -264,9 +271,11 @@ def generate_and_save_config(
     # Create configs
     config_loaded = False
     model_config = None  # type: ignore # Fix Pylint E0606
+    loaded_trainer_config = None
     if args.resume and os.path.exists(config_path):
         print(f"Resuming: Loading ModelConfig from {config_path}")
-        model_config, _ = TrainerConfig.load_config(config_path)
+        model_config, loaded_trainer_config = TrainerConfig.load_config(config_path)
+        # KC is always enabled; no override needed
         config_loaded = True
 
     if not config_loaded:
@@ -279,12 +288,12 @@ def generate_and_save_config(
             hidden_dim=args.hidden_dim,
             num_layers=args.num_layers,
             num_heads=args.num_heads,
-            kc_enabled=args.pretrain_kc,
+            # KC is always enabled
         )
 
     # Build TrainerConfig
     trainer_config = build_trainer_config(
-        args, env, support_dir, explicit_resume, grad_accum_steps
+        args, env, support_dir, explicit_resume, grad_accum_steps, loaded_trainer_config
     )
 
     # Save unified config
@@ -354,16 +363,16 @@ def run_training_phase(
         "--num-heads", str(args.num_heads),
     ]
 
-    if args.pretrain_kc:
-        train_args.append("--pretrain-kc")
-        train_args.extend([
-            "--kc-k", str(args.kc_k),
-            "--kc-topk", str(args.kc_topk),
-            "--kc-freeze-encoder-epochs", str(args.kc_freeze_encoder_epochs),
-            "--kc-sparsity-weight", str(args.kc_sparsity_weight),
-        ])
-        if args.kc_batch_size is not None:
-            train_args.extend(["--kc-batch-size", str(args.kc_batch_size)])
+    # Always pass KC config params (KC is always enabled)
+    train_args.extend([
+        "--kc-k", str(args.kc_k),
+        "--kc-topk", str(args.kc_topk),
+        "--kc-sparsity-weight", str(args.kc_sparsity_weight),
+    ])
+    if args.kc_freeze_encoder_epochs is not None:
+        train_args.extend(["--kc-freeze-encoder-epochs", str(args.kc_freeze_encoder_epochs)])
+    if args.kc_batch_size is not None:
+        train_args.extend(["--kc-batch-size", str(args.kc_batch_size)])
 
     if args.resume:
         train_args.append("--resume")
@@ -456,13 +465,14 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument("--resume", action="store_true", help="Resume training from checkpoint")
     parser.add_argument("--retrain", action="store_true", help="Retrain from scratch using params from checkpoint")
 
-    # KC Pretraining options
-    parser.add_argument("--pretrain-kc", action="store_true", help="Enable KC sparse concept pretraining")
-    parser.add_argument("--kc-epochs", type=int, default=3, help="KC pretraining epochs (default: 3)")
+    # KC Pretraining options (KC is always enabled)
+    # Use TrainerConfig default for help text to ensure Single Source of Truth
+    default_kc_epochs = TrainerConfig().kc_epochs
+    parser.add_argument("--kc-epochs", type=int, default=None, help=f"KC pretraining epochs (default: {default_kc_epochs})")
     parser.add_argument("--kc-k", type=int, default=1024, help="KC vocabulary size None (default: 1024)")
     parser.add_argument("--kc-topk", type=int, default=8, help="Number of active KCs per sample (default: 8)")
     parser.add_argument(
-        "--kc-freeze-encoder-epochs", type=int, default=1, help="Epochs to freeze encoder during KC training"
+        "--kc-freeze-encoder-epochs", type=int, default=None, help="Epochs to freeze encoder (default: from config)"
     )
     parser.add_argument("--kc-sparsity-weight", type=float, default=1e-3, help="Sparsity regularization weight")
     parser.add_argument(
@@ -529,12 +539,15 @@ def print_training_banner(
     print(f"Formality wt:   {args.formality_weight}")
     print(f"Gender wt:      {args.gender_weight}")
     print(f"Grammatic wt:   {args.grammaticality_weight}")
-    if args.pretrain_kc:
+    if args.kc_epochs is not None and args.kc_epochs > 0:
         print(f"KC pretrain:    {args.kc_epochs} epochs")
         print(f"KC K:           {args.kc_k}")
         print(f"KC Top-k:       {args.kc_topk}")
-        print(f"KC Freeze:      {args.kc_freeze_encoder_epochs} epochs")
+        freeze_str = str(args.kc_freeze_encoder_epochs) if args.kc_freeze_encoder_epochs is not None else "(default)"
+        print(f"KC Freeze:      {freeze_str}")
         print(f"KC Sparsity:    {args.kc_sparsity_weight}")
+    elif args.kc_epochs is None:
+        print("KC pretrain:    (default/saved)")
 
     if args.resume:
         print("Resume:         from checkpoint")
@@ -660,10 +673,13 @@ def main() -> int:
     print(f"  Grad accum:       {grad_accum_steps}")
     print(f"  Effective batch:  {micro_batch_size * grad_accum_steps * num_devices}")
     print(f"  Launcher:         {' '.join(launcher)}")
-    if args.pretrain_kc:
-        print(f"  KC Epochs:        {args.kc_epochs} (freeze: {args.kc_freeze_encoder_epochs})")
+    freeze_str = str(args.kc_freeze_encoder_epochs) if args.kc_freeze_encoder_epochs is not None else "(default)"
+    if args.kc_epochs is not None and args.kc_epochs > 0:
+        print(f"  KC Epochs:        {args.kc_epochs} (freeze: {freeze_str})")
         print(f"  KC Vocab (K):     {args.kc_k}")
         print(f"  KC Top-k:         {args.kc_topk}")
+    elif args.kc_epochs is None:
+        print(f"  KC Epochs:        (default/saved) (freeze: {freeze_str})")
     print("-" * 46)
     print()
 

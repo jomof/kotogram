@@ -24,7 +24,6 @@ class TestAutoBatchSize(unittest.TestCase):
             num_layers=2,
             max_seq_len=128,
             num_heads=4,
-            kc_enabled=True,
             kc_vocab_size=1000,
         )
 
@@ -85,7 +84,6 @@ class TestAutoBatchSize(unittest.TestCase):
         huge_kc_config = ModelConfig(
             vocab_sizes={"pos": 100},
             d_model=256,
-            kc_enabled=True,
             kc_vocab_size=100000,  # Large KC vocab
             num_layers=2,
         )

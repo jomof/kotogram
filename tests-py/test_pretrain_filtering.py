@@ -118,7 +118,6 @@ class TestPretrainDataFiltering(unittest.TestCase):
             hidden_dim=128,
             num_layers=1,
             num_heads=2,
-            kc_enabled=True,
         )
         self.model = StyleClassifierWithKC(self.model_config)
 

@@ -42,6 +42,7 @@ class RichTrainerProgressBar:
             TimeRemainingColumn(),
             TextColumn("{task.fields[status]}"),
             TextColumn("{task.fields[throughput]}"),
+            TextColumn("{task.fields[total_els]}"),
             console=self.console,
             transient=False,
         )
@@ -50,8 +51,10 @@ class RichTrainerProgressBar:
             total=total_steps,
             status="Initializing...",
             throughput="",
+            total_els="",
         )
         self.progress.start()
+        self.total_elements = 0
 
     def update(
         self,
@@ -64,11 +67,22 @@ class RichTrainerProgressBar:
         if loss is not None:
             fields["status"] = f"loss={loss:.4f}"
 
-        # Calculate throughput
+        # Accumulate elements (cast to int for test compatibility with mocks)
+        self.total_elements += int(self.batch_size)
+
+        # Calculate throughput and total elements display
         task = self.progress.tasks[int(self.task_id)]
         if task.speed is not None and task.speed > 0:
             samples_per_sec = task.speed * self.batch_size
             fields["throughput"] = f"{samples_per_sec:.1f} el/s"
+
+        # Format total elements with K/M suffix
+        if self.total_elements >= 1_000_000:
+            fields["total_els"] = f"[{self.total_elements / 1_000_000:.1f}M els]"
+        elif self.total_elements >= 1_000:
+            fields["total_els"] = f"[{self.total_elements / 1_000:.0f}K els]"
+        else:
+            fields["total_els"] = f"[{self.total_elements} els]"
 
         # Cast fields to Any for Mypy safety with typed kwargs in Progress.update
         fields_any = cast(Dict[str, Any], fields)

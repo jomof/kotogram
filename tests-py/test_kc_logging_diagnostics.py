@@ -30,11 +30,11 @@ class DiagMockBatch:
             attention_mask.size(0), dtype=torch.long
         )
         self.formality_pragmatic = torch.zeros(attention_mask.size(0), dtype=torch.long)
-        self.formality_value = torch.zeros(attention_mask.size(0), 1)
+        self.formality_value = torch.zeros(attention_mask.size(0))  # 1D for CE loss
         self.gender_pragmatic = torch.zeros(attention_mask.size(0), dtype=torch.long)
-        self.gender_value = torch.zeros(attention_mask.size(0), 1)
+        self.gender_value = torch.zeros(attention_mask.size(0))  # 1D for CE loss
 
-        self.register_labels = torch.zeros(attention_mask.size(0), 1)
+        self.register_labels = torch.zeros(attention_mask.size(0), 14)  # [B, 14]
         batch_size = attention_mask.size(0)
         # Simulate list of Sample.kc_targets (Dict[KcFamilyId, List[int]])
         self.kc_targets = [{KcFamilyId.BAG_POS: [0]} for _ in range(batch_size)]
@@ -213,11 +213,14 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
         # Regex to match the core structure
         # KC EP1 Thawed loss=.* kEff=.*\[.*\] len=.*\[.*\] corrLxK=.*
 
-        # Verify the Block 0 Header
-        # KC EP1 Thawed | Loss: ... dStep=...
-        self.assertIn("KC EP1 Thawed | Loss:", output)
-        self.assertRegex(output, r"dStep=\d+")
-        self.assertRegex(output, r"Batch=\d+/\d+")
+        # Verify the Block 0 Header (new format: loss breakdown with epoch info)
+        self.assertIn("KC EP1 Thawed Loss Breakdown:", output)
+        # Loss breakdown is now on separate lines
+        self.assertIn("struct", output)
+        self.assertIn("gap", output)
+        self.assertIn("formality", output)  # Prior KC loss for KC0-4
+        self.assertIn("diversity", output)
+        self.assertIn("load_bal", output)
 
         # Verify Block 1 Sizing Table Header
         # Verify Block 1 Sizing Table Header
@@ -232,8 +235,8 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
         self.assertRegex(output, r"8-15\s+1\s+10\.0")
 
         # Verify Block 2 Activation
-        self.assertRegex(output, r"Act: AvgProb=.*Dens=")
-        self.assertRegex(output, r"Sat95=.*Sat99=")
+        self.assertRegex(output, r"Act: AvgProb=.*PMax:")
+        self.assertRegex(output, r"Sat: 95=")
         self.assertRegex(output, r"SumK: P50=")
 
         # Verify Block 3 Families

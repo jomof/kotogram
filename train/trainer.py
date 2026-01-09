@@ -168,9 +168,7 @@ class KCTrainer:
         )
         self._create_optimizer(freeze_encoder=self.freeze_encoder_epochs > 0)
 
-        self.default_bce_loss = nn.BCEWithLogitsLoss()
         self.mse_loss = nn.MSELoss()
-        self.ce_loss = nn.CrossEntropyLoss()
 
         pid = os.getpid()
         profile_dir = get_profile_dir()
@@ -219,6 +217,8 @@ class KCTrainer:
         self.start_epoch = 0
         self.start_batch = 0
         self.global_step = 0
+        # Per-family positive densities for adaptive loss weighting
+        self.family_pos_densities: Dict[str, float] = {}
 
     def save_checkpoint(self, epoch: int) -> None:
         if self.config.checkpoint.dir is None:
@@ -269,8 +269,9 @@ class KCTrainer:
         pos_mask: torch.Tensor,
         neg_count: int,
         valid: torch.Tensor,
-    ) -> torch.Tensor:
-        """Computes balanced BCE loss (50/50 pos/neg) from gathered logits."""
+        pos_density: float = 8.0,
+    ) -> Tuple[torch.Tensor, float]:
+        """Computes balanced BCE loss with adaptive pos/neg weighting based on pos_density."""
         # gathered_logits: (B, P + N)
         # pos_mask: (B, P)
         # valid: (B, P + N) - typically [pos_mask, ones(neg_count)]
@@ -317,27 +318,44 @@ class KCTrainer:
         # Mean over NEGATIVES only
         loss_neg = masked_neg_loss.sum() / neg_valid.float().sum().clamp_min(1.0)
 
-        # Separation Margin Term
-        # Explicitly fight ALLNEG: ensure mean(pos) > mean(neg) + margin
+        # Gap Regularizer: Aggressively push mean(pos) > mean(neg) + target_gap
+        # This directly fights ALLNEG by ensuring positive logits are well separated
+        gap_weight = 0.5
         if pos_mask.any() and neg_valid.any():
-            # Re-compute means with gradients
-            # Filter pos_logits by mask
             flat_pos = pos_logits[pos_mask]
             flat_neg = neg_logits[neg_valid.bool()]
 
             if flat_pos.numel() > 0 and flat_neg.numel() > 0:
-                start_mean_pos = flat_pos.mean()
-                start_mean_neg = flat_neg.mean()
+                mean_pos = flat_pos.mean()
+                mean_neg = flat_neg.mean()
+                current_gap = mean_pos - mean_neg
 
-                margin = 0.5
-                # We want (mean_pos - mean_neg) > margin
-                sep_loss = F.relu(margin - (start_mean_pos - start_mean_neg))
+                # Target gap of 2.0 logit units (sigmoid diff ~0.46)
+                target_gap = 2.0
+
+                # Hinge + quadratic: penalize gaps below target, quadratic for very small
+                gap_deficit = F.relu(target_gap - current_gap)
+                # Add quadratic term for gaps below 0.5 (more aggressive push)
+                very_small_gap = F.relu(0.5 - current_gap)
+                gap_loss = gap_deficit + 0.5 * very_small_gap * very_small_gap
             else:
-                sep_loss = torch.tensor(0.0, device=gathered_logits.device)
+                gap_loss = torch.tensor(0.0, device=gathered_logits.device)
         else:
-            sep_loss = torch.tensor(0.0, device=gathered_logits.device)
+            gap_loss = torch.tensor(0.0, device=gathered_logits.device)
 
-        return 0.5 * loss_pos + 0.5 * loss_neg + 0.05 * sep_loss
+        # Adaptive pos/neg weighting based on pos_density
+        # Lower pos_density -> higher pos_weight to compensate for fewer positives
+        baseline_density = 8.0
+        adaptive_pos_weight = min(0.8, 0.5 * baseline_density / max(1.0, pos_density))
+        adaptive_neg_weight = 1.0 - adaptive_pos_weight
+
+        total = (
+            adaptive_pos_weight * loss_pos
+            + adaptive_neg_weight * loss_neg
+            + gap_weight * gap_loss
+        )
+        # Return (total_loss, gap_loss_contribution) for separate tracking
+        return total, (gap_weight * gap_loss).item()
 
     # pylint: disable=too-many-locals,too-many-positional-arguments
     def _bce_sampled_from_sparse(
@@ -352,7 +370,7 @@ class KCTrainer:
         family_name: str = "",
         reading_mask_id: int = 0,
         accumulator: Optional[FamilyAccumulator] = None,
-    ) -> torch.Tensor:
+    ) -> Tuple[torch.Tensor, float]:
         batch_size = int(logits_f.size(0))
         device = logits_f.device
         n_pos = int(pos_inds.size(1))
@@ -406,7 +424,13 @@ class KCTrainer:
         idxs_safe = idxs.clamp_min(0)
         gathered = logits_f.gather(1, idxs_safe)
 
-        loss = self._balanced_bce_loss(gathered, pos_mask, neg_count, valid)
+        loss, gap_loss_val = self._balanced_bce_loss(
+            gathered,
+            pos_mask,
+            neg_count,
+            valid,
+            pos_density=self.family_pos_densities.get(family_name, 8.0),
+        )
 
         if not torch.isfinite(loss):
             raise RuntimeError(f"Non-finite KC loss for {family_name}")
@@ -468,7 +492,7 @@ class KCTrainer:
                     source="sparse",
                 )
 
-        return loss
+        return loss, gap_loss_val
 
     # pylint: disable=too-many-locals
     def _init_structural_decoder_biases(self, num_batches: int = 10) -> None:
@@ -479,6 +503,9 @@ class KCTrainer:
         sums: Dict[str, float] = {}
         counts: Dict[str, int] = {}
         biases = KCStructuralBiases(sums=sums, counts=counts)
+        # Track positive densities (positives per example) for adaptive weighting
+        pos_density_sums: Dict[str, float] = {}
+        pos_density_counts: Dict[str, int] = {}
 
         for i, batch in enumerate(self.data_loader):
             if i >= num_batches:
@@ -501,6 +528,13 @@ class KCTrainer:
                     p = t.mean().item()
                     biases.sums[name] = biases.sums.get(name, 0.0) + p
                     biases.counts[name] = biases.counts.get(name, 0) + 1
+                    # PosDen for dense: sum of positives per example
+                    batch_size = t.size(0)
+                    total_pos = t.sum().item()
+                    pos_density_sums[name] = pos_density_sums.get(name, 0.0) + total_pos
+                    pos_density_counts[name] = (
+                        pos_density_counts.get(name, 0) + batch_size
+                    )
                 elif mask_key in kc_targets:
                     pos_mask_t = kc_targets[mask_key]
                     batch_size = pos_mask_t.size(0)
@@ -509,6 +543,11 @@ class KCTrainer:
                     # p = max(p, 1e-5)  # CLAMP FIX: Prevent initialization at -inf
                     biases.sums[name] = biases.sums.get(name, 0.0) + p
                     biases.counts[name] = biases.counts.get(name, 0) + 1
+                    # PosDen for sparse: num positives / num examples
+                    pos_density_sums[name] = pos_density_sums.get(name, 0.0) + num_pos
+                    pos_density_counts[name] = (
+                        pos_density_counts.get(name, 0) + batch_size
+                    )
 
         for name_id, vocab_size in self.config.kc_target_specs.items():
             name = name_id.name.lower()
@@ -526,6 +565,11 @@ class KCTrainer:
             lin = m.kc_decoders.decoders[name]
             if lin.bias is not None:
                 nn.init.constant_(lin.bias, b)
+
+            # Store pos_density for adaptive loss weighting
+            if name in pos_density_sums and pos_density_counts.get(name, 0) > 0:
+                pos_den = pos_density_sums[name] / pos_density_counts[name]
+                self.family_pos_densities[name] = pos_den
 
             self.view.on_kc_bias_init(
                 name=name, p_mean=p, bias=b, bias_count=int(lin.bias.numel())
@@ -621,7 +665,7 @@ class KCTrainer:
 
         pg_encoder = {
             "params": list(m.embedding.parameters()) + list(m.encoder.parameters()),
-            "lr": self.config.learning_rate * 0.01 if not freeze_encoder else 0.0,
+            "lr": self.config.learning_rate * 0.1 if not freeze_encoder else 0.0,
         }
 
         self.optimizer = Adam([pg_heads, pg_encoder])
@@ -635,15 +679,6 @@ class KCTrainer:
             if f"kc_targets_{name}" in kc_targets:
                 continue
             if f"kc_pos_inds_{name}" in kc_targets:
-                continue
-            if name in (
-                "formality_value",
-                "formality_pragmatic",
-                "gender_value",
-                "gender_pragmatic",
-                "grammaticality",
-                "register",
-            ):
                 continue
             missing_keys.append(name)
 
@@ -661,7 +696,7 @@ class KCTrainer:
         assert len(self.optimizer.param_groups) >= 2, (
             f"Expected >=2 param_groups (heads, encoder), got {len(self.optimizer.param_groups)}"
         )
-        enc_lr = 0.0 if should_freeze else (self.config.learning_rate * 0.01)
+        enc_lr = 0.0 if should_freeze else (self.config.learning_rate * 0.1)
         self.optimizer.param_groups[1]["lr"] = enc_lr
 
         self.view.on_kc_epoch_start(epoch, self.config.kc_epochs, should_freeze)
@@ -674,8 +709,8 @@ class KCTrainer:
 
         total_batches = len(self.data_loader)
 
-        running_struct_loss, running_label_loss = 0.0, 0.0
-        running_num_struct_total, running_num_label_total = 0, 0
+        running_struct_loss = 0.0
+        running_num_struct_total = 0
         running_sparsity = 0.0
         running_avg_prob, running_act_dens = 0.0, 0.0
         running_pmax_global = -1.0
@@ -1034,16 +1069,6 @@ class KCTrainer:
                     if sparse_key in kc_targets:
                         has_match = True
                         break
-                    if name in (
-                        "formality_value",
-                        "formality_pragmatic",
-                        "gender_value",
-                        "gender_pragmatic",
-                        "grammaticality",
-                        "register",
-                    ):
-                        has_match = True
-                        break
 
                 if not has_match:
                     tgt_keys = list(kc_targets.keys())
@@ -1063,9 +1088,8 @@ class KCTrainer:
             loss = torch.tensor(0.0, device=self.device)
             batch_kc_losses: Dict[str, float] = {}
             structural_loss = torch.tensor(0.0, device=self.device)
+            batch_gap_loss = 0.0
             num_struct = 0
-            label_loss = torch.tensor(0.0, device=self.device)
-            num_label = 0
 
             for fid, vocab_size in self.config.kc_target_specs.items():
                 name = fid.name.lower()
@@ -1167,8 +1191,12 @@ class KCTrainer:
                             dim=1,
                         )
 
-                        task_loss = self._balanced_bce_loss(
-                            gathered_logits, pos_mask_sampled, neg_count, valid
+                        task_loss, task_gap_val = self._balanced_bce_loss(
+                            gathered_logits,
+                            pos_mask_sampled,
+                            neg_count,
+                            valid,
+                            pos_density=self.family_pos_densities.get(name, 8.0),
                         )
 
                         if not torch.isfinite(task_loss):
@@ -1237,6 +1265,8 @@ class KCTrainer:
                             loss_neg_d = torch.tensor(0.0, device=self.device)
 
                         task_loss = 0.5 * loss_pos_d + 0.5 * loss_neg_d
+                        # Small-vocab dense path doesn't use gap regularizer
+                        task_gap_val = 0.0
 
                         if kc_diag is not None:
                             with torch.no_grad():
@@ -1272,6 +1302,7 @@ class KCTrainer:
                                     )
 
                     structural_loss += task_loss
+                    batch_gap_loss += task_gap_val
                     num_struct += 1
                     batch_kc_losses[name] = task_loss.item()
 
@@ -1280,7 +1311,7 @@ class KCTrainer:
                     pos_mask_t = kc_targets[mask_key].to(self.device)
                     logits_f = logits.float()
 
-                    task_loss = self._bce_sampled_from_sparse(
+                    task_loss, task_gap_val = self._bce_sampled_from_sparse(
                         logits_f=logits_f,
                         pos_inds=pos_inds,
                         pos_mask=pos_mask_t,
@@ -1294,58 +1325,16 @@ class KCTrainer:
                     )
 
                     structural_loss += task_loss
+                    batch_gap_loss += task_gap_val
                     num_struct += 1
-                    batch_kc_losses[name] = task_loss.item()
-
-                elif name == "formality_value":
-                    targets = batch.formality_value.to(self.device)
-                    task_loss = self.mse_loss(logits.squeeze(-1), targets)
-                    label_loss += task_loss
-                    num_label += 1
-                    batch_kc_losses[name] = task_loss.item()
-                elif name == "formality_pragmatic":
-                    targets = batch.formality_pragmatic.to(self.device)
-                    task_loss = self.ce_loss(logits, targets)
-                    label_loss += task_loss
-                    num_label += 1
-                    batch_kc_losses[name] = task_loss.item()
-                elif name == "gender_value":
-                    targets = batch.gender_value.to(self.device)
-                    task_loss = self.mse_loss(logits.squeeze(-1), targets)
-                    label_loss += task_loss
-                    num_label += 1
-                    batch_kc_losses[name] = task_loss.item()
-                elif name == "gender_pragmatic":
-                    targets = batch.gender_pragmatic.to(self.device)
-                    task_loss = self.ce_loss(logits, targets)
-                    label_loss += task_loss
-                    num_label += 1
-                    batch_kc_losses[name] = task_loss.item()
-                elif name == "grammaticality":
-                    targets = batch.grammaticality_labels.to(self.device)
-                    task_loss = self.ce_loss(logits, targets)
-                    label_loss += task_loss
-                    num_label += 1
-                    batch_kc_losses[name] = task_loss.item()
-                elif name == "register":
-                    targets = batch.register_labels.to(self.device)
-                    task_loss = self.default_bce_loss(logits, targets)
-                    label_loss += task_loss
-                    num_label += 1
                     batch_kc_losses[name] = task_loss.item()
 
             if num_struct > 0:
                 running_struct_loss += structural_loss.item()
                 running_num_struct_total += 1
-            if num_label > 0:
-                running_label_loss += label_loss.item()
-                running_num_label_total += 1
-
             primary_loss = torch.tensor(0.0, device=self.device)
             if num_struct > 0:
-                primary_loss += 0.7 * (structural_loss / num_struct)
-            if num_label > 0:
-                primary_loss += 0.3 * (label_loss / num_label)
+                primary_loss += structural_loss / num_struct
 
             loss_primary_val = primary_loss.item()
             combined_loss = primary_loss.clone()
@@ -1443,7 +1432,7 @@ class KCTrainer:
                             epoch >= self.freeze_encoder_epochs
                             and self.kc_collapse_weight_thawed > 0
                         ):
-                            thr = max(3.0 / max(1, kc_vocab_size), 0.002)
+                            thr = max(1.5 / max(1, kc_vocab_size), 0.001)
                             diff = (softmax_peak - thr).clamp_min(0.0)
                             c_pen = diff
                             c_loss = self.kc_collapse_weight_thawed * c_pen
@@ -1625,16 +1614,128 @@ class KCTrainer:
                 if epoch_idx_thawed < 3:
                     spar_w = 0.5 * self.kc_sparsity_weight
 
+            # --- STRUCTURAL LOSS (compute first, then average) ---
             loss = (
                 combined_loss + spar_w * sparsity_term
             ) / self.config.grad_accum_steps
 
+            # --- PRIOR KC LOSSES ---
+            # Prior losses are applied AFTER structural averaging so they aren't
+            # drowned by the 16-family structural loss mass.
+            kc_logits_raw = outputs["kc_logits_raw"]
+            prior_weight = 0.2
+
+            # --- Formality Prior (KC0-3): 4-class with exclusivity ---
+            # Map: {-1.0→0, -0.5→1, +0.5→2, +1.0→3}, neutral (0.0) excluded
+            formality_values = batch.formality_value.to(self.device)
+            formality_nonneutral = formality_values != 0.0
+            loss_formality_val = 0.0
+            form_correct = 0
+            form_total = 0
+            excl_w = self.kc_config.prior_exclusivity_weight
+            if formality_nonneutral.any():
+                f_vals = formality_values[formality_nonneutral]
+                # Map: -1→0, -0.5→1, +0.5→2, +1→3
+                f_bucket = ((f_vals + 1.0) * 1.5).round().long().clamp(0, 3)
+                f_logits = kc_logits_raw[formality_nonneutral, 0:4]
+                f_probs = torch.sigmoid(f_logits)
+
+                # Build target: one-hot for the correct class
+                f_target = torch.zeros_like(f_probs)
+                f_target.scatter_(1, f_bucket.unsqueeze(1), 1.0)
+
+                # BCE loss: target class should fire, others should not
+                f_loss = F.binary_cross_entropy_with_logits(f_logits, f_target)
+
+                # False positive penalty: penalize non-target probs (linear)
+                non_target_probs = f_probs * (1.0 - f_target)  # zero out target
+                fp_penalty = non_target_probs.mean()
+                f_loss_total = f_loss + excl_w * fp_penalty
+
+                loss_formality_val = f_loss_total.item()
+                loss = loss + prior_weight * f_loss_total
+
+                # Accuracy: ALL classes correct (target > 0.5, non-targets < 0.5)
+                f_preds = (f_probs > 0.5).float()
+                all_correct = (f_preds == f_target).all(dim=1)
+                form_correct = int(all_correct.sum().item())
+                form_total = f_bucket.numel()
+
+            # --- Gender Prior (KC4-5): 2-class with exclusivity ---
+            # Map: {-1.0→0 (feminine), +1.0→1 (masculine)}, neutral (0.0) excluded
+            gender_values = batch.gender_value.to(self.device)
+            gender_nonneutral = gender_values != 0.0
+            loss_gender_val = 0.0
+            gend_correct = 0
+            gend_total = 0
+            if gender_nonneutral.any():
+                g_vals = gender_values[gender_nonneutral]
+                g_bucket = ((g_vals + 1.0) / 2.0).round().long().clamp(0, 1)
+                g_logits = kc_logits_raw[gender_nonneutral, 4:6]
+                g_probs = torch.sigmoid(g_logits)
+
+                # Build target: one-hot for the correct class
+                g_target = torch.zeros_like(g_probs)
+                g_target.scatter_(1, g_bucket.unsqueeze(1), 1.0)
+
+                # BCE loss: target class should fire, non-target should not
+                g_loss = F.binary_cross_entropy_with_logits(g_logits, g_target)
+
+                # False positive penalty: penalize non-target probs (linear)
+                non_target_probs = g_probs * (1.0 - g_target)
+                fp_penalty = non_target_probs.mean()
+                g_loss_total = g_loss + excl_w * fp_penalty
+
+                loss_gender_val = g_loss_total.item()
+                loss = loss + prior_weight * g_loss_total
+
+                # Accuracy: ALL classes correct (target > 0.5, non-target < 0.5)
+                g_preds = (g_probs > 0.5).float()
+                all_correct = (g_preds == g_target).all(dim=1)
+                gend_correct = int(all_correct.sum().item())
+                gend_total = g_bucket.numel()
+
+            # --- Register Prior (KC6-18): 13-class multi-label BCE ---
+            # register_labels is [batch, 14] one-hot; we skip ID=0 (neutral)
+            register_targets = batch.register_labels.to(self.device)
+            # Take only columns 1-13 (skip neutral at index 0)
+            reg_correct = 0
+            reg_total = 0
+            if register_targets.dim() == 2 and register_targets.size(1) >= 14:
+                r_targets = register_targets[:, 1:14].float()  # [B, 13]
+                # Only compute loss for samples with at least one non-neutral register
+                r_has_label = r_targets.sum(dim=1) > 0
+                loss_register_val = 0.0
+                if r_has_label.any():
+                    r_logits = kc_logits_raw[r_has_label, 6:19]
+                    r_tgt = r_targets[r_has_label]
+                    r_probs = torch.sigmoid(r_logits)
+                    r_loss = F.binary_cross_entropy_with_logits(r_logits, r_tgt)
+
+                    # False positive penalty: penalize probs where target=0 (linear)
+                    fp_probs = r_probs * (1.0 - r_tgt)  # zero out correct targets
+                    fp_penalty = fp_probs.mean()
+                    r_loss_total = r_loss + excl_w * fp_penalty
+
+                    loss_register_val = r_loss_total.item()
+                    loss = loss + prior_weight * r_loss_total
+
+                    # Accuracy: all 13 flags correct (sigmoid > 0.5 == target)
+                    r_preds = (r_probs > 0.5).float()
+                    all_correct = (r_preds == r_tgt).all(dim=1)
+                    reg_correct = int(all_correct.sum().item())
+                    reg_total = int(r_tgt.size(0))
+            else:
+                loss_register_val = 0.0
+
             loss_spar_val = (spar_w * sparsity_term).item()
 
             current_epoch_comp = {
-                "base": primary_loss.item(),
                 "struct": structural_loss.item(),
-                "label": label_loss.item(),
+                "gap": batch_gap_loss,
+                "formality": loss_formality_val,
+                "gender": loss_gender_val,
+                "register": loss_register_val,
                 "div": loss_div_val,
                 "lb": loss_lb_val,
                 "collapse": loss_coll_val,
@@ -1642,19 +1743,27 @@ class KCTrainer:
             }
 
             current_comp = RunningLossComponents(
-                base=current_epoch_comp["base"],
                 struct=(
                     (current_epoch_comp["struct"] / num_struct)
                     if num_struct > 0
                     else 0.0
                 ),
-                label=(
-                    (current_epoch_comp["label"] / num_label) if num_label > 0 else 0.0
+                gap=(
+                    (current_epoch_comp["gap"] / num_struct) if num_struct > 0 else 0.0
                 ),
+                formality=current_epoch_comp["formality"],
+                gender=current_epoch_comp["gender"],
+                register=current_epoch_comp["register"],
                 div=current_epoch_comp["div"],
                 lb=current_epoch_comp["lb"],
                 collapse=current_epoch_comp["collapse"],
                 sparsity=current_epoch_comp["sparsity"],
+                formality_correct=form_correct,
+                formality_total=form_total,
+                gender_correct=gend_correct,
+                gender_total=gend_total,
+                register_correct=reg_correct,
+                register_total=reg_total,
             )
             running_loss_components = running_loss_components.add(current_comp)
 
@@ -1730,7 +1839,7 @@ class KCTrainer:
             )
 
             # Explicitly clear loop variables to prevent graph retention across batches
-            del loss, combined_loss, structural_loss, label_loss, outputs
+            del loss, combined_loss, structural_loss, outputs
 
             self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
             self.train_timer_data.start()
@@ -1744,9 +1853,7 @@ class KCTrainer:
 
         epoch_stats = TrainEpochStats(
             avg_struct_loss=running_struct_loss / max(1, running_num_struct_total),
-            avg_label_loss=running_label_loss / max(1, running_num_label_total),
             num_struct_heads_processed=running_num_struct_total,
-            num_label_heads_processed=running_num_label_total,
             avg_sparsity=running_sparsity / max(1, n_batches),
             avg_prob=running_avg_prob / max(1, n_batches),
             act_dens=running_act_dens / max(1, n_batches),
@@ -1893,9 +2000,6 @@ class KCTrainer:
             epoch_idx=epoch,
             frozen=should_freeze,
             loss_components=running_loss_components,
-            global_step_delta=n_batches,  # Approximate for now
-            n_batches=n_batches,
-            total_batches=total_batches,
             sizing_stats=[],  # Filled by View
             activation_stats=activation_stats,
             diagnostics=diag_report,
@@ -1957,12 +2061,8 @@ class KCTrainer:
             self.history.total_loss.append(total_loss / max(1, len(self.data_loader)))
             self.history.kc_sparsity.append(avg_sparsity)
             self.history.avg_struct_loss.append(epoch_stats.avg_struct_loss)
-            self.history.avg_label_loss.append(epoch_stats.avg_label_loss)
             self.history.num_struct_heads_processed.append(
                 float(epoch_stats.num_struct_heads_processed)
-            )
-            self.history.num_label_heads_processed.append(
-                float(epoch_stats.num_label_heads_processed)
             )
             self.history.avg_sparsity.append(epoch_stats.avg_sparsity)
 
@@ -2123,7 +2223,7 @@ class Trainer:
             [
                 {
                     "params": enc_p,
-                    "lr": self.config.learning_rate * self.config.encoder_lr_factor,
+                    "lr": 0.0,  # Encoder frozen during style training
                 },
                 {"params": cls_p, "lr": self.config.learning_rate},
             ]
@@ -2675,12 +2775,16 @@ class Trainer:
             is_best = eval_res.loss < self.best_val_loss
             if is_best:
                 self.best_val_loss, self.patience_counter = eval_res.loss, 0
-                # Strip kc_decoders to reduce model size (~98% savings)
-                self.best_state = {
-                    k: cast(torch.Tensor, v.cpu().clone())
-                    for k, v in self.model.state_dict().items()
-                    if not k.startswith("kc_decoders.")
-                }
+                # Save copy of best state dict (FULL state)
+                if hasattr(self.model, "module"):
+                    state = cast(Any, self.model).module.state_dict()
+                else:
+                    state = self.model.state_dict()
+
+                # Deep copy to avoid reference issues if model mutates?
+                # State dict tensors share storage, but we don't mutate weights in place usually.
+                # However, to be safe and independent:
+                self.best_state = {k: v.cpu().clone() for k, v in state.items()}
                 save_model(self.model, self.output_path, self.model.config)
                 model_path = os.path.join(self.output_path, "model.pt")
                 self.view.on_best_model_saved(model_path, self.best_val_loss)
@@ -2710,7 +2814,12 @@ class Trainer:
             )
 
         if self.best_state:
-            self.model.load_state_dict(self.best_state, strict=False)
+            # Restore best state (FULL state including kc_decoders).
+            # We used to strip kc_decoders here, but now we keep best_state fully aligned
+            # with the training architecture to allow strict loading.
+            # Stripping happens ONLY during export to 'models/style/model.pt'.
+            self.model.load_state_dict(self.best_state, strict=True)
+            # No need for manual missing/unexpected key validation with strict=True.
 
         self.view.on_train_end(self.history)
         return self.history
