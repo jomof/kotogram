@@ -103,7 +103,7 @@ _GENDER_MSE_SCALING_FACTOR_DEFAULT = 10.0
 class KCConfig:
     """Pretraining (KC) hyperparameter configuration."""
 
-    sparsity_weight: float = 0.1
+    sparsity_weight: float = 50.0  # Scaled to match formality loss magnitude
     freeze_encoder_epochs: int = 0
 
     # Diversity / Coverage
@@ -135,6 +135,9 @@ class KCConfig:
 
     # Saturation Penalty
     sat_weight: float = 1.0
+
+    # Performance: Skip diagnostic metrics until epoch N
+    skip_first_metrics: int = 0
 
     def to_dict(self) -> Dict[str, Any]:
         return dict(self.__dict__)

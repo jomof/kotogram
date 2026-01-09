@@ -10,7 +10,7 @@ from train.config import HardwareConfig, KCConfig, TrainerConfig
 from train.kc import KcFamilyId
 from train.kc_trainer_view import KCTrainerView
 from train.trainer import KCTrainer
-from train.types import TrainEpochResult
+from train.types import KcEpochSummary, TrainEpochResult
 
 
 def create_dummy_trainer_config():
@@ -226,6 +226,30 @@ class RecordingKCTrainerView(KCTrainerView):
     def on_line_flush(self) -> None:
         self._record("on_line_flush")
 
+    # pylint: disable=too-many-positional-arguments,too-many-arguments
+    def on_kc_batch_stats(
+        self,
+        epoch: int,
+        batch_idx: int,
+        content_len: torch.Tensor,
+        k_budget_t: torch.Tensor,
+        topk_vals: torch.Tensor,
+        pmax_per_ex: torch.Tensor,
+        topk_sum_per_ex: torch.Tensor,
+        kc_probs: torch.Tensor,
+    ) -> None:
+        self._record(
+            "on_kc_batch_stats",
+            epoch=epoch,
+            batch_idx=batch_idx,
+        )
+
+    def on_kc_epoch_summary(self, epoch: int, summary: KcEpochSummary) -> None:
+        self._record("on_kc_epoch_summary", epoch=epoch)
+
+    def on_kc_epoch_metrics_skipped(self, epoch: int, total_loss: float) -> None:
+        self._record("on_kc_epoch_metrics_skipped", epoch=epoch, total_loss=total_loss)
+
 
 class TestKCTrainerView(TestCase):
     def setUp(self):
@@ -299,3 +323,49 @@ class TestKCTrainerView(TestCase):
         # Direct invocation validation
         self.trainer.view.on_kc_checkpoint_restored("path", 0, 0, 0)
         self.assertIn("on_kc_checkpoint_restored", [c.name for c in self.view.calls])
+
+    def test_skip_first_metrics(self):
+        """Test that skip_first_metrics skips on_kc_batch_stats and on_kc_epoch_summary."""
+        # Create trainer with skip_first_metrics=2 (skip epochs 0 and 1)
+        kc_config_skip = KCConfig(freeze_encoder_epochs=0, skip_first_metrics=2)
+        view_skip = RecordingKCTrainerView()
+
+        trainer_skip = KCTrainer(
+            model=DummyKCModel(kc_config_skip, 100),
+            dataset=self.dataset,
+            config=self.config,
+            dl_config=self.config.resolve_dataloader_config(
+                torch.device("cpu"), "train"
+            ),
+            kc_config=kc_config_skip,
+            view=view_skip,
+        )
+        trainer_skip.save_checkpoint = MagicMock()
+
+        # Train for 1 epoch (epoch 0, should be skipped)
+        trainer_skip.train(epochs=1, on_epoch_end=lambda h: None)
+
+        calls = [c.name for c in view_skip.calls]
+
+        # on_kc_batch_stats and on_kc_epoch_summary should NOT be called
+        self.assertNotIn("on_kc_batch_stats", calls)
+        self.assertNotIn("on_kc_epoch_summary", calls)
+
+        # But on_kc_epoch_metrics_skipped should be called instead
+        self.assertIn("on_kc_epoch_metrics_skipped", calls)
+
+        # And lifecycle hooks should still be called
+        self.assertIn("on_kc_epoch_start", calls)
+        self.assertIn("on_kc_epoch_end", calls)
+
+    def test_skip_first_metrics_zero_means_no_skip(self):
+        """Test that skip_first_metrics=0 (default) calls all metrics."""
+        # Default kc_config has skip_first_metrics=0
+        self.trainer.save_checkpoint = MagicMock()
+        self.trainer.train(epochs=1, on_epoch_end=lambda h: None)
+
+        calls = [c.name for c in self.view.calls]
+
+        # Both should be called when skip_first_metrics=0
+        self.assertIn("on_kc_batch_stats", calls)
+        self.assertIn("on_kc_epoch_summary", calls)

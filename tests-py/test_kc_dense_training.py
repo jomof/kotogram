@@ -6,6 +6,7 @@ import torch
 from train.config import KCConfig, TrainerConfig
 from train.kc import KcFamilyId
 from train.trainer import KCTrainer
+from train.types import KCDiagnosticReport
 
 
 class TestKCDenseTraining(unittest.TestCase):
@@ -68,9 +69,12 @@ class TestKCDenseTraining(unittest.TestCase):
         batch_size = 2
         vocab_size = 1000
 
-        # Mock instance
+        # Mock instance with proper get_stats return
         mock_diag_instance = MagicMock()
         mock_kc_diag_cls.return_value = mock_diag_instance
+        # Configure get_stats to return representative diagnostic data
+        # loss_mean must match the computed struct loss for validation
+        mock_diag_instance.get_stats.return_value = KCDiagnosticReport(families={})
 
         # Targets: row 0 has 2 positives, row 1 has 3 positives
         targets = torch.zeros(batch_size, vocab_size)

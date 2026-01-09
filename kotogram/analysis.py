@@ -186,10 +186,9 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
     model.eval()
     with torch.no_grad():
         prediction = model.predict(field_inputs, attention_mask)
-        # Get Interpretable KCs (always enabled)
-        kc_top_results = model.predict_kcs_top(
-            field_inputs, attention_mask, min_prob=0.5, topk=16
-        )
+        # Get Interpretable KCs (uses adaptive k based on sentence length)
+        # No min_prob filter - k_budget determines count exactly as in training
+        kc_top_results = model.predict_kcs_top(field_inputs, attention_mask)
 
     results = []
     for i in range(batch_size):

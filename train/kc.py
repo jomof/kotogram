@@ -6,6 +6,7 @@ from typing import Any, Dict, List, Sequence, Union
 import torch
 
 from kotogram.exceptions import MissingMappingError
+from kotogram.tokenizer import CLS_ID, PAD_ID, UNK_ID
 
 # KC Configuration
 KC_HASH_BUCKETS = 16384
@@ -13,6 +14,11 @@ KC_NGRAM_ORDER = 3
 KC_POS_BIASED_WINDOW = 5
 
 DEFAULT_HASH_BUCKET_SIZE = 16384
+
+# Special token IDs to exclude from KC targets
+# CLS is non-discriminative as it appears in every sequence
+# PAD and UNK are kept for analysis purposes
+SPECIAL_TOKEN_IDS = {CLS_ID}
 
 
 class KcFamilyId(str, Enum):
@@ -177,7 +183,30 @@ def _compute_bag_targets(
     for family_id in bag_families:
         field = FAMILY_FEATURES[family_id]
         if field in feature_ids:
-            targets[family_id] = sorted(set(feature_ids[field]))
+            # Exclude special tokens (CLS only - PAD/UNK kept for analysis)
+            filtered = [v for v in feature_ids[field] if v not in SPECIAL_TOKEN_IDS]
+            targets[family_id] = sorted(set(filtered))
+
+    # Validate: BAG_READING_GRAM should never contain special tokens
+    # All reading_gram values should be in vocabulary after masking logic
+    if KcFamilyId.BAG_READING_GRAM in targets:
+        if UNK_ID in targets[KcFamilyId.BAG_READING_GRAM]:
+            raise RuntimeError(
+                "BAG_READING_GRAM contains UNK token. "
+                "This indicates a reading_gram value is not in the vocabulary. "
+                "Check the GRAMMAR_POS_WHITELIST in masking.py or re-run labeling."
+            )
+        if PAD_ID in targets[KcFamilyId.BAG_READING_GRAM]:
+            raise RuntimeError(
+                "BAG_READING_GRAM contains PAD token. "
+                "This indicates an empty reading_gram value. "
+                "Check extract_token_features in kotogram.py."
+            )
+        if CLS_ID in targets[KcFamilyId.BAG_READING_GRAM]:
+            raise RuntimeError(
+                "BAG_READING_GRAM contains CLS token. "
+                "CLS should be filtered by SPECIAL_TOKEN_IDS."
+            )
 
 
 def _compute_tail_targets(
@@ -197,7 +226,9 @@ def _compute_tail_targets(
         if field in feature_ids:
             ids = feature_ids[field]
             tail_ids = ids[-KC_POS_BIASED_WINDOW:] if len(ids) > 0 else []
-            targets[family_id] = sorted(set(tail_ids))
+            # Exclude special tokens (PAD, UNK, CLS)
+            filtered = [v for v in tail_ids if v not in SPECIAL_TOKEN_IDS]
+            targets[family_id] = sorted(set(filtered))
 
 
 def _compute_ngram_targets(
@@ -214,7 +245,8 @@ def _compute_ngram_targets(
     for family_id in ngram_families:
         field = FAMILY_FEATURES[family_id]
         if field in feature_ids:
-            ids = feature_ids[field]
+            # Filter out special tokens before computing ngrams
+            ids = [v for v in feature_ids[field] if v not in SPECIAL_TOKEN_IDS]
             hashes = set()
             salt = _salt(family_id)
             for n_val in range(2, KC_NGRAM_ORDER + 1):
@@ -243,6 +275,8 @@ def _compute_tail_ngram_targets(
         if field in feature_ids:
             ids = feature_ids[field]
             tail_ids = ids[-KC_POS_BIASED_WINDOW:] if len(ids) > 0 else []
+            # Filter out special tokens
+            tail_ids = [v for v in tail_ids if v not in SPECIAL_TOKEN_IDS]
             if not tail_ids:
                 continue
 

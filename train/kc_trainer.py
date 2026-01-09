@@ -38,6 +38,7 @@ from train.types import (
     KcEpochActivationStats,
     KcEpochSummary,
     KCLosses,
+    KcLossWeights,
     KCStructuralBiases,
     KCTrainingHistory,
     RunningLossComponents,
@@ -678,6 +679,8 @@ class KCTrainer:
     # pylint: disable=too-many-locals
     def train_epoch(self, epoch: int = 0) -> TrainEpochResult:
         should_freeze = epoch < self.freeze_encoder_epochs
+        # Performance: Skip diagnostic metrics gathering for early epochs
+        skip_metrics = epoch < self.kc_config.skip_first_metrics
         # self._create_optimizer(freeze_encoder=should_freeze) <- REMOVED to preserve moment
         # Instead, update LR in place for the encoder group
         assert len(self.optimizer.param_groups) >= 2, (
@@ -833,21 +836,24 @@ class KCTrainer:
             # Use attention_mask for robust length calculation even if feature_inputs is empty (e.g. in tests)
             content_len = attention_mask.sum(dim=1).float()
 
-            # Improved Dynamic Sizing
-            # alpha: 0.4 (short) / 0.55 (long)
-            # max_k: 8 (short) / 16 (long)
-            # Transition at len=20
+            # Dynamic Sizing using k_budget params from model config
+            # This ensures training and inference use identical k_budget logic
+            alpha_short = float(getattr(m.config, "kc_alpha_short", 0.40))
+            alpha_long = float(getattr(m.config, "kc_alpha_long", 0.55))
+            long_threshold = float(getattr(m.config, "kc_long_threshold", 20))
+            min_k = float(getattr(m.config, "kc_min_k", 2))
+            max_k_long_cfg = float(getattr(m.config, "kc_max_k_long", 16))
 
-            is_long = content_len >= 20.0
+            is_long = content_len >= long_threshold
             alpha = torch.where(
                 is_long,
-                torch.tensor(0.55, device=self.device),
-                torch.tensor(0.40, device=self.device),
+                torch.tensor(alpha_long, device=self.device),
+                torch.tensor(alpha_short, device=self.device),
             )
             k_raw = torch.ceil(alpha * content_len)
 
             max_k_short = float(m.config.kc_topk)
-            max_k_long = min(16.0, max(max_k_short, max_k_short * 2))
+            max_k_long = min(float(max_k_long_cfg), max(max_k_short, max_k_short * 2))
 
             max_k_t = torch.where(
                 is_long,
@@ -856,11 +862,11 @@ class KCTrainer:
             )
 
             k_budget_t = k_raw.clamp(
-                min=torch.tensor(2.0, device=self.device), max=max_k_t
+                min=torch.tensor(float(min_k), device=self.device), max=max_k_t
             ).long()
 
-            # Long sentence mask (>= 20 tokens)
-            long_sentence_mask = content_len >= 20
+            # Long sentence mask (>= long_threshold tokens)
+            long_sentence_mask = content_len >= long_threshold
 
             gumbel_scale = 0.0
             if epoch < self.freeze_encoder_epochs:
@@ -1207,17 +1213,18 @@ class KCTrainer:
                                 ],
                                 dim=1,
                             )
-                            kc_diag.update_family(
-                                name,
-                                idxs.detach().cpu(),
-                                diag_pos_mask.detach().cpu(),
-                                torch.sigmoid(gathered_logits).detach().cpu(),
-                                targets_sampled.detach().cpu(),
-                                task_loss.item(),
-                                logits=gathered_logits.detach(),
-                            )
+                            if not skip_metrics:
+                                kc_diag.update_family(
+                                    name,
+                                    idxs.detach().cpu(),
+                                    diag_pos_mask.detach().cpu(),
+                                    torch.sigmoid(gathered_logits).detach().cpu(),
+                                    targets_sampled.detach().cpu(),
+                                    task_loss.item(),
+                                    logits=gathered_logits.detach(),
+                                )
 
-                        if fam_acc is not None:
+                        if fam_acc is not None and not skip_metrics:
                             with torch.no_grad():
                                 fam_acc.update(
                                     logits=gathered_logits.detach(),
@@ -1267,18 +1274,19 @@ class KCTrainer:
                                 )
                                 pos_mask_2d = targets_2d > 0.5
 
-                                kc_diag.update_family(
-                                    name,
-                                    v_ids_2d.detach(),
-                                    pos_mask_2d.detach(),
-                                    probs_2d.detach(),
-                                    targets_2d.detach(),
-                                    task_loss.item(),
-                                    mask_id=reading_mask_id,
-                                    logits=logits_f,
-                                )
+                                if not skip_metrics:
+                                    kc_diag.update_family(
+                                        name,
+                                        v_ids_2d.detach(),
+                                        pos_mask_2d.detach(),
+                                        probs_2d.detach(),
+                                        targets_2d.detach(),
+                                        task_loss.item(),
+                                        mask_id=reading_mask_id,
+                                        logits=logits_f,
+                                    )
 
-                            if fam_acc is not None:
+                            if fam_acc is not None and not skip_metrics:
                                 with torch.no_grad():
                                     fam_acc.update(
                                         logits=logits_f.detach(),
@@ -1305,10 +1313,10 @@ class KCTrainer:
                         vocab_size=vocab_size,
                         neg_count=128,
                         seed=(epoch * 100000 + batch_idx),
-                        diag=kc_diag,
+                        diag=None if skip_metrics else kc_diag,
                         family_name=name,
                         reading_mask_id=reading_mask_id,
-                        accumulator=fam_acc,
+                        accumulator=None if skip_metrics else fam_acc,
                     )
 
                     structural_loss += task_loss
@@ -1785,23 +1793,24 @@ class KCTrainer:
                 current_display_loss = total_loss / max(1, n_batches)
                 pbar.update(batch_idx, current_display_loss)
 
-            # Update running usage for Entropy calc
+            # Update running usage for Entropy calc (skip for early epochs)
             # We use logits_usage if available (for consistency with diversity), else raw
             # Note: logits_usage depends on epoch >= warmup.
             # We want global coverage.
-            if "logits_usage" in outputs:
-                l_usage = outputs["logits_usage"]
-            else:
-                l_usage = outputs["kc_logits_raw"]
+            if not skip_metrics:
+                if "logits_usage" in outputs:
+                    l_usage = outputs["logits_usage"]
+                else:
+                    l_usage = outputs["kc_logits_raw"]
 
-            # Accumulate sum of softmax probabilities
-            # Detach to save memory
-            usage_probs = F.softmax(l_usage.detach(), dim=1)
-            running_usage_probs_sum += usage_probs.sum(dim=0)
-            total_samples_seen += usage_probs.size(0)
+                # Accumulate sum of softmax probabilities
+                # Detach to save memory
+                usage_probs = F.softmax(l_usage.detach(), dim=1)
+                running_usage_probs_sum += usage_probs.sum(dim=0)
+                total_samples_seen += usage_probs.size(0)
 
-            # View Batch Stats
-            if "topk_vals" in outputs:
+            # View Batch Stats (skip for early epochs if configured)
+            if "topk_vals" in outputs and not skip_metrics:
                 topk_v = outputs["topk_vals"].detach()
                 topk_s = topk_v.sum(dim=1)
 
@@ -1817,6 +1826,7 @@ class KCTrainer:
                     topk_vals=topk_v,
                     pmax_per_ex=pmax_per_ex.detach(),
                     topk_sum_per_ex=topk_s,
+                    kc_probs=outputs["kc_probs"].detach(),
                 )
 
             self.view.on_kc_progress_update(
@@ -1844,7 +1854,8 @@ class KCTrainer:
             avg_sparsity=running_sparsity / max(1, n_batches),
             avg_prob=running_avg_prob / max(1, n_batches),
             act_dens=running_act_dens / max(1, n_batches),
-            kc_diagnostics=kc_diag.get_stats(),
+            # Only include diagnostics when metrics are not skipped
+            kc_diagnostics=None if skip_metrics else kc_diag.get_stats(),
         )
 
         pbar.stop()
@@ -1983,6 +1994,11 @@ class KCTrainer:
                         bias_change = (decoder_lin.bias - bias_start[name]).abs().sum()
                         fam_diag.bias_delta = float(bias_change.item())
 
+        # KcLossWeights for display - most losses are already weighted in storage,
+        # only prior losses (formality/gender/register) need their weight applied.
+        # Use defaults: struct=1.0, gap=1.0, prior=0.2, others=1.0 (already weighted)
+        loss_weights = KcLossWeights()
+
         summary = KcEpochSummary(
             epoch_idx=epoch,
             frozen=should_freeze,
@@ -1990,9 +2006,16 @@ class KCTrainer:
             sizing_stats=[],  # Filled by View
             activation_stats=activation_stats,
             diagnostics=diag_report,
+            weights=loss_weights,
+            n_batches=n_batches,
+            total_loss=total_loss / n_batches,  # Per-batch average for validation
         )
 
-        self.view.on_kc_epoch_summary(epoch, summary)
+        # Skip full diagnostics for early epochs (performance optimization)
+        if skip_metrics:
+            self.view.on_kc_epoch_metrics_skipped(epoch, total_loss)
+        else:
+            self.view.on_kc_epoch_summary(epoch, summary)
 
         self.view.on_kc_epoch_end(
             epoch,
@@ -2053,6 +2076,7 @@ class KCTrainer:
             )
             self.history.avg_sparsity.append(epoch_stats.avg_sparsity)
 
+            # Always append to keep list aligned with epoch indices (None if skipped)
             self.history.kc_diagnostics.append(epoch_stats.kc_diagnostics)
 
             # Record active KC targets

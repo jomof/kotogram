@@ -78,7 +78,6 @@ class KCTrainerView(Protocol):
 
     def on_auto_batch_size(self, batch_size: int, device: Any) -> None: ...
 
-    # New Hooks
     # pylint: disable=too-many-positional-arguments
     def on_kc_batch_stats(
         self,
@@ -89,11 +88,15 @@ class KCTrainerView(Protocol):
         topk_vals: torch.Tensor,
         pmax_per_ex: torch.Tensor,
         topk_sum_per_ex: torch.Tensor,
+        kc_probs: torch.Tensor,
     ) -> None:
         pass
 
     def on_kc_epoch_summary(self, epoch: int, summary: KcEpochSummary) -> None:
         pass
+
+    def on_kc_epoch_metrics_skipped(self, epoch: int, total_loss: float) -> None:
+        """Called when metrics are skipped for early epochs."""
 
 
 class KCTrainerDiagnosticsView(KCTrainerView):
@@ -105,6 +108,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         self.prev_family_stats: Dict[str, Dict[str, float]] = {}
         # Store previous epoch loss components for delta arrows
         self.prev_loss_components: Optional[RunningLossComponents] = None
+        # Store previous epoch spill stats for bin trajectory arrows
+        self.prev_bin_spill: Dict[str, float] = {}
 
     # pylint: disable=attribute-defined-outside-init
     def reset_epoch_stats(self) -> None:
@@ -116,6 +121,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         self.bin_masked_tail_sum: Dict[str, float] = defaultdict(float)
         self.bin_keff_sum: Dict[str, float] = defaultdict(float)
         self.bin_keff_minus_budget_sum: Dict[str, float] = defaultdict(float)
+        self.bin_spill_prob_sum: Dict[str, float] = defaultdict(float)  # (k+1)th prob
 
         # Reservoirs for percentiles
         self.bin_k_reservoirs: Dict[str, List[float]] = defaultdict(list)
@@ -231,6 +237,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         topk_vals: torch.Tensor,
         pmax_per_ex: torch.Tensor,
         topk_sum_per_ex: torch.Tensor,
+        kc_probs: torch.Tensor,
     ) -> None:
         # Move to CPU for stats
         lens = content_len.cpu().tolist()
@@ -244,6 +251,19 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         is_zero = (topk_vals == 0).float()
         masked_rate = is_zero.mean(dim=1).cpu().tolist()
         keff = (topk_vals > 0).float().sum(dim=1).cpu().tolist()
+
+        # Compute spill probability: prob of (k+1)th KC (first outside budget)
+        # Sort probs descending and get the (k+1)th value for each example
+        probs_sorted, _ = torch.sort(kc_probs, dim=1, descending=True)
+        batch_size = kc_probs.size(0)
+        vocab_size = kc_probs.size(1)
+        spill_probs = []
+        for i in range(batch_size):
+            k = int(budgets[i])
+            if k < vocab_size:
+                spill_probs.append(probs_sorted[i, k].item())  # (k+1)th is index k
+            else:
+                spill_probs.append(0.0)  # Budget exceeds vocab, no spill
 
         # Update reservoirs
         self.pmax_reservoir.extend(pmax)  # Allow growing large? N=50k max.
@@ -277,6 +297,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             kf = keff[i]
             self.bin_keff_sum[label] += kf
             self.bin_keff_minus_budget_sum[label] += kf - k
+            self.bin_spill_prob_sum[label] += spill_probs[i]
 
             # K Budget Reservoir
             if len(self.bin_k_reservoirs[label]) < 1000:
@@ -284,6 +305,12 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             elif random.random() < 0.1:  # simple sub-sampling
                 idx = random.randint(0, 999)
                 self.bin_k_reservoirs[label][idx] = k
+
+    def on_kc_epoch_metrics_skipped(self, epoch: int, total_loss: float) -> None:
+        """Display abbreviated summary when metrics are skipped."""
+        console.print(
+            f"[dim]KC EP{epoch + 1} (metrics skipped): loss={total_loss:.4f}[/dim]"
+        )
 
     # pylint: disable=too-many-locals
     def on_kc_epoch_summary(self, epoch: int, summary: KcEpochSummary) -> None:
@@ -341,24 +368,28 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                         base += f" [red]↓{abs(diff):.1f}[/red]"
             return base
 
-        # Add rows
+        # Get weights and divisor from summary
+        w = summary.weights
+        nb = max(1, summary.n_batches)  # Avoid div-by-zero
+
+        # Add rows with weighted and averaged values (so they sum to epoch loss)
         table_loss.add_row(
             "[cyan]struct[/cyan]",
-            _f(lc.struct),
+            _f(lc.struct * w.struct / nb),
             _delta_arrow(lc.struct, prev_lc.struct if prev_lc else None),
             "",
             "",
         )
         table_loss.add_row(
             "[yellow]gap[/yellow]",
-            _f(lc.gap),
+            _f(lc.gap * w.gap / nb),
             _delta_arrow(lc.gap, prev_lc.gap if prev_lc else None),
             "",
             "",
         )
         table_loss.add_row(
             "[magenta]formality[/magenta]",
-            _f(lc.formality),
+            _f(lc.formality * w.prior / nb),
             _delta_arrow(lc.formality, prev_lc.formality if prev_lc else None),
             _acc(
                 lc.formality_correct,
@@ -370,7 +401,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         )
         table_loss.add_row(
             "[magenta]gender[/magenta]",
-            _f(lc.gender),
+            _f(lc.gender * w.prior / nb),
             _delta_arrow(lc.gender, prev_lc.gender if prev_lc else None),
             _acc(
                 lc.gender_correct,
@@ -382,7 +413,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         )
         table_loss.add_row(
             "[magenta]register[/magenta]",
-            _f(lc.register),
+            _f(lc.register * w.prior / nb),
             _delta_arrow(lc.register, prev_lc.register if prev_lc else None),
             _acc(
                 lc.register_correct,
@@ -394,33 +425,54 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         )
         table_loss.add_row(
             "diversity",
-            _f(lc.div),
+            _f(lc.div * w.div / nb),
             _delta_arrow(lc.div, prev_lc.div if prev_lc else None),
             "",
             f"Ent={act.ent_norm:.3f}",
         )
         table_loss.add_row(
             "load_bal",
-            _f(lc.lb),
+            _f(lc.lb * w.lb / nb),
             _delta_arrow(lc.lb, prev_lc.lb if prev_lc else None),
             "",
             f"KL={act.kl_u_norm:.3f}",
         )
         table_loss.add_row(
             "collapse",
-            _f(lc.collapse),
+            _f(lc.collapse * w.collapse / nb),
             _delta_arrow(lc.collapse, prev_lc.collapse if prev_lc else None),
             "",
             f"Sat95={act.sat_contrib_mean:.2f} PMax={act.pmax_global_max:.3f}",
         )
         table_loss.add_row(
             "sparsity",
-            _f(lc.sparsity),
+            _f(lc.sparsity * w.sparsity / nb),
             _delta_arrow(lc.sparsity, prev_lc.sparsity if prev_lc else None),
             "",
             f"Dens={act.act_dens_mean:.3f}",
         )
         console.print(table_loss)
+
+        # Validate: loss breakdown should sum to epoch loss (within 10% tolerance)
+        loss_sum = (
+            lc.struct * w.struct / nb
+            + lc.gap * w.gap / nb
+            + lc.formality * w.prior / nb
+            + lc.gender * w.prior / nb
+            + lc.register * w.prior / nb
+            + lc.div * w.div / nb
+            + lc.lb * w.lb / nb
+            + lc.collapse * w.collapse / nb
+            + lc.sparsity * w.sparsity / nb
+        )
+        expected_loss = summary.total_loss
+        if expected_loss > 0.1:  # Only check if loss is significant
+            tolerance = 0.1 * expected_loss  # 10% tolerance
+            if abs(loss_sum - expected_loss) > tolerance:
+                raise RuntimeError(
+                    f"Loss breakdown sum mismatch: sum={loss_sum:.4f} vs "
+                    f"epoch_loss={expected_loss:.4f} (diff={abs(loss_sum - expected_loss):.4f})"
+                )
 
         # Store for next epoch comparison
         self.prev_loss_components = lc
@@ -438,6 +490,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         table_sizing.add_column("TailMask")
         table_sizing.add_column("Keff")
         table_sizing.add_column("Diff")
+        table_sizing.add_column("Spill")  # Prob of (k+1)th KC
 
         sorted_labels = ["1-3", "4-7", "8-15", "16-31", "32+"]
 
@@ -467,6 +520,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 masked_tail_rate=self.bin_masked_tail_sum[label] / n,
                 keff_mean=self.bin_keff_sum[label] / n,
                 keff_minus_budget_mean=self.bin_keff_minus_budget_sum[label] / n,
+                spill_prob_mean=self.bin_spill_prob_sum[label] / n,
             )
             summary.sizing_stats.append(stats)
 
@@ -480,6 +534,23 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             )
             c_diff = "red" if abs(s.keff_minus_budget_mean) > 0.2 else "dim"
 
+            # Color for spill: red if high (>0.3), yellow if moderate (>0.1), green otherwise
+            c_spill = (
+                "red"
+                if s.spill_prob_mean > 0.3
+                else ("yellow" if s.spill_prob_mean > 0.1 else "green")
+            )
+
+            # Spill trajectory arrow (lower is better)
+            spill_arrow = ""
+            prev_spill = self.prev_bin_spill.get(s.bin_label)
+            if prev_spill is not None:
+                delta = s.spill_prob_mean - prev_spill
+                if delta < -0.01:
+                    spill_arrow = "[green]↓[/green]"
+                elif delta > 0.01:
+                    spill_arrow = "[red]↑[/red]"
+
             table_sizing.add_row(
                 s.bin_label,
                 str(s.count),
@@ -489,8 +560,29 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 f"[{c_mask}]{s.masked_tail_rate:.3f}[/{c_mask}]",
                 f"{s.keff_mean:.1f}",
                 f"[{c_diff}]{s.keff_minus_budget_mean:.2f}[/{c_diff}]",
+                f"[{c_spill}]{s.spill_prob_mean:.3f}[/{c_spill}]{spill_arrow}",
             )
+
+        # Store current spill values for next epoch trajectory arrows
+        self.prev_bin_spill = {
+            s.bin_label: s.spill_prob_mean for s in summary.sizing_stats
+        }
+
         console.print(table_sizing)
+
+        # SPARSE flag detection: high spill across most bins indicates sparsity penalty too low
+        # Per-bin ↑K? indicator: if specific bins have high spill but SPARSE isn't triggered
+        high_spill_bins = [s for s in summary.sizing_stats if s.spill_prob_mean > 0.2]
+        total_bins = len(summary.sizing_stats)
+        sparse_triggered = total_bins > 0 and len(high_spill_bins) / total_bins >= 0.7
+
+        # If SPARSE not triggered but some bins have high spill, those bins may need more K
+        if not sparse_triggered and high_spill_bins:
+            bin_labels = [s.bin_label for s in high_spill_bins]
+            console.print(
+                f"[yellow]↑K? Bins [{', '.join(bin_labels)}] may need more k_budget "
+                f"(Spill>{0.2:.1f})[/yellow]"
+            )
 
         # BLOCK 2: Activations
         # Compute percentiles from self.pmax_reservoir
@@ -640,9 +732,13 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             # Color for bias delta: green if moving, dim if near-zero
             # bias_delta is now abs sum, so always positive. Use higher threshold.
             c_bdelta = "green" if fam.bias_delta > 0.01 else "dim"
+
+            # Scale loss to match struct in breakdown (divide by num_families)
+            num_families = len(summary.diagnostics.families)
+            scaled_loss = fam.loss_mean / max(1, num_families)
             table_fam.add_row(
                 name,
-                f"{fam.loss_mean:.4f}{loss_arrow}",
+                f"{scaled_loss:.4f}{loss_arrow}",
                 f"[{c_pos}]{fam.pos_ex_frac * 100:.2f}%[/{c_pos}]",
                 f"{fam.pos_label_density:.3f}",
                 f"[{c_posp}]{fam.prob_pos_mean:.2f}[/{c_posp}]",
@@ -659,6 +755,22 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         # Save for next epoch
         self.prev_family_stats = current_family_stats
         console.print(table_fam)
+
+        # Validate: family losses should sum to struct loss (within 10% tolerance)
+        # Skip if no families in diagnostics (metrics skipped or not collected)
+        if summary.diagnostics.families:
+            family_loss_sum = sum(
+                fam.loss_mean / max(1, num_families)
+                for fam in summary.diagnostics.families.values()
+            )
+            struct_loss = lc.struct * w.struct / nb
+            if struct_loss > 0.01:  # Only check if struct loss is significant
+                tolerance = 0.1 * struct_loss  # 10% tolerance
+                if abs(family_loss_sum - struct_loss) > tolerance:
+                    raise RuntimeError(
+                        f"Family loss sum mismatch: sum={family_loss_sum:.4f} vs "
+                        f"struct={struct_loss:.4f} (diff={abs(family_loss_sum - struct_loss):.4f})"
+                    )
 
         # Print Warns if shape mismatch detected?
         # (Not implemented in accumulator yet, relying on table visual for now)
@@ -698,6 +810,10 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         # COLL: EntNorm low, KL high (relaxed threshold)
         if act_stats.ent_norm < 0.5 and act_stats.kl_u_norm > 0.3:
             flags.append("COLL")
+
+        # SPARSE: High spill across most bins - sparsity penalty too low
+        if sparse_triggered:
+            flags.append("SPARSE")
 
         if flags:
             console.print(f"[bold red]Flags: {' '.join(flags)}[/bold red]")

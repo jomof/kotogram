@@ -19,6 +19,8 @@ if TYPE_CHECKING:
 GRAMMAR_POS_WHITELIST = {
     "particle",
     "aux-verb",
+    "aux-symbol",
+    "verb",
     "prefix",
     "suffix",
     "adnom",
@@ -115,7 +117,7 @@ def apply_training_mask(tokens: List["Token"]) -> List["Token"]:
                 conjugated_form=features.conjugated_form,
                 base_orth=features.base_orth,
                 lemma="",
-                reading="",  # CLEARED: Persisted via reading_gram marker ᵍ
+                reading="",
                 reading_gram=target_surface,  # Explicitly set reading_gram mask
             )
             # Replace token features, KEEP SURFACE

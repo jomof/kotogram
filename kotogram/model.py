@@ -25,6 +25,7 @@ NUM_FORMALITY_PRAGMATIC_CLASSES = 2
 NUM_GRAMMATICALITY_CLASSES = 2  # grammatic (1) vs agrammatic (0)
 NUM_GENDER_PRAGMATIC_CLASSES = 2  # pragmatic (1) vs unpragmatic (0)
 
+
 # Label mappings
 # Register classes
 NUM_REGISTER_CLASSES = 14
@@ -79,6 +80,13 @@ class ModelConfigDict(TypedDict):
     kc_topk: int
     kc_temperature: float
 
+    # K-Budget parameters (saved to ensure training/inference parity)
+    kc_alpha_short: float
+    kc_alpha_long: float
+    kc_long_threshold: int
+    kc_min_k: int
+    kc_max_k_long: int
+
 
 @dataclass
 class ModelConfig:
@@ -112,6 +120,13 @@ class ModelConfig:
     kc_topk: int = 8  # Number of active concepts to retrieve
     kc_temperature: float = 1.0  # Sparsification temperature
 
+    # K-Budget parameters (persisted to model.json for training/inference parity)
+    kc_alpha_short: float = 0.40  # Multiplier for short sentences (< 20 tokens)
+    kc_alpha_long: float = 0.55  # Multiplier for long sentences (>= 20 tokens)
+    kc_long_threshold: int = 20  # Token count threshold for long/short
+    kc_min_k: int = 2  # Minimum k_budget
+    kc_max_k_long: int = 16  # Maximum k for long sentences
+
     def to_dict(self) -> ModelConfigDict:
         return {
             "vocab_sizes": self.vocab_sizes,
@@ -130,6 +145,11 @@ class ModelConfig:
             "kc_vocab_size": self.kc_vocab_size,
             "kc_topk": self.kc_topk,
             "kc_temperature": self.kc_temperature,
+            "kc_alpha_short": self.kc_alpha_short,
+            "kc_alpha_long": self.kc_alpha_long,
+            "kc_long_threshold": self.kc_long_threshold,
+            "kc_min_k": self.kc_min_k,
+            "kc_max_k_long": self.kc_max_k_long,
         }
 
     @classmethod
@@ -463,10 +483,14 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         # pylint: disable=too-many-locals
         """Predict top-K Knowledge Components with probabilities.
 
+        Uses adaptive k_budget based on sentence length, matching training behavior:
+        - For short sentences (< 20 tokens): k = ceil(0.40 * len), clamped [2, kc_topk]
+        - For long sentences (>= 20 tokens): k = ceil(0.55 * len), clamped [2, kc_topk*2]
+
         Args:
             field_inputs: Input features
             attention_mask: Attention mask
-            topk: Number of KCs to return (defaults to filtered by config.kc_topk)
+            topk: Override for K (if None, uses adaptive k based on sentence length)
             min_prob: Minimum probability threshold
 
         Returns:
@@ -474,29 +498,52 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             for a sample in the batch.
         """
         # Get dense logits
-
         logits = self.predict_kcs(field_inputs, attention_mask)
         cur_temp = getattr(self.config, "kc_temperature", 1.0)
         probs = torch.sigmoid(logits / cur_temp)
 
-        # Determine K
-        k = topk if topk is not None else getattr(self.config, "kc_topk", 8)
-        k = min(k, probs.size(-1))
+        batch_size = probs.size(0)
+        kc_vocab_size = probs.size(-1)
 
-        # Get top-k
-        topk_vals, topk_inds = torch.topk(probs, k, dim=-1)
+        # Compute adaptive k_budget per sample (using config values from training)
+        if topk is not None:
+            # Fixed topk override
+            k_budgets = [min(topk, kc_vocab_size)] * batch_size
+        else:
+            content_lens = attention_mask.sum(dim=-1).float()  # (B,)
+
+            # Read k_budget params from config (saved during training)
+            kc_topk = int(getattr(self.config, "kc_topk", 8))
+            alpha_short = getattr(self.config, "kc_alpha_short", 0.40)
+            alpha_long = getattr(self.config, "kc_alpha_long", 0.55)
+            long_threshold = getattr(self.config, "kc_long_threshold", 20)
+            min_k = getattr(self.config, "kc_min_k", 2)
+            max_k_long = getattr(self.config, "kc_max_k_long", 16)
+
+            k_budgets = []
+            for i in range(batch_size):
+                content_len = content_lens[i].item()
+                is_long = content_len >= long_threshold
+                alpha = alpha_long if is_long else alpha_short
+                max_k = (
+                    min(float(max_k_long), kc_topk * 2) if is_long else float(kc_topk)
+                )
+
+                k_raw = math.ceil(alpha * content_len)
+                k = int(max(min_k, min(k_raw, max_k, kc_vocab_size)))
+                k_budgets.append(k)
 
         results = []
-        # Convert to python lists
-        probs_list = topk_vals.tolist()
-        inds_list = topk_inds.tolist()
+        for i in range(batch_size):
+            k = k_budgets[i]
+            sample_probs = probs[i]  # (kc_vocab_size,)
 
-        for prob_row, ind_row in zip(probs_list, inds_list):
+            topk_vals, topk_inds = torch.topk(sample_probs, k)
             sample_res = []
             for j in range(k):
-                p = prob_row[j]
+                p = topk_vals[j].item()
                 if p >= min_prob:
-                    sample_res.append((int(ind_row[j]), float(p)))
+                    sample_res.append((int(topk_inds[j].item()), float(p)))
             results.append(sample_res)
 
         return results

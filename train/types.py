@@ -332,6 +332,7 @@ class KcDynSizingBinStats:
     masked_tail_rate: float
     keff_mean: float
     keff_minus_budget_mean: float
+    spill_prob_mean: float = 0.0  # Mean prob of (k+1)th KC (outside budget)
 
 
 @dataclass
@@ -372,6 +373,24 @@ class KCDiagnosticReport:
     families: Dict[str, KCDiagnosticFamilyStats]  # Key is KC family name
 
 
+@dataclass(frozen=True)
+class KcLossWeights:
+    """Weights used for each loss component (for display scaling).
+
+    Note: div/lb/collapse/sparsity are stored ALREADY WEIGHTED in RunningLossComponents,
+    so their display weight should always be 1.0. Only struct/gap/prior losses are raw.
+    """
+
+    struct: float = 1.0  # Raw, normalized by num_struct
+    gap: float = 1.0  # Raw, normalized by num_struct
+    prior: float = 0.2  # Weight for formality/gender/register (raw losses)
+    # These are stored ALREADY WEIGHTED, so display weight is 1.0:
+    div: float = 1.0  # Already weighted in RunningLossComponents
+    lb: float = 1.0  # Already weighted in RunningLossComponents
+    collapse: float = 1.0  # Already weighted in RunningLossComponents
+    sparsity: float = 1.0  # Already weighted in RunningLossComponents
+
+
 @dataclass
 class KcEpochSummary:
     """Full summary package for a KC epoch."""
@@ -382,6 +401,9 @@ class KcEpochSummary:
     sizing_stats: List[KcDynSizingBinStats]
     activation_stats: KcEpochActivationStats
     diagnostics: KCDiagnosticReport
+    weights: KcLossWeights = field(default_factory=KcLossWeights)
+    n_batches: int = 1  # Number of batches (for averaging loss components)
+    total_loss: float = 0.0  # Epoch total loss for validation
 
 
 @dataclass
@@ -443,7 +465,8 @@ class TrainEpochStats:
     avg_prob: float
     act_dens: float
 
-    kc_diagnostics: KCDiagnosticReport
+    # Optional when metrics are skipped (skip_first_metrics flag)
+    kc_diagnostics: Optional[KCDiagnosticReport] = None
 
 
 @dataclass
@@ -497,4 +520,5 @@ class KCTrainingHistory(TrainingHistory):
     avg_sparsity: List[float] = field(default_factory=list)
 
     active_kc_targets: List[str] = field(default_factory=list)
-    kc_diagnostics: List[KCDiagnosticReport] = field(default_factory=list)
+    # List can contain None for epochs where metrics were skipped
+    kc_diagnostics: List[Optional[KCDiagnosticReport]] = field(default_factory=list)
