@@ -103,7 +103,7 @@ _GENDER_MSE_SCALING_FACTOR_DEFAULT = 10.0
 class KCConfig:
     """Pretraining (KC) hyperparameter configuration."""
 
-    sparsity_weight: float = 50.0  # Scaled to match formality loss magnitude
+    sparsity_weight: float = 0.5  # Scaled to match formality loss magnitude (~0.2)
     freeze_encoder_epochs: int = 0
 
     # Diversity / Coverage
