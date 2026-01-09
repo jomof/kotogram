@@ -3,7 +3,7 @@ import unittest.mock
 import torch
 
 from kotogram.model import KCHead, ModelConfig, StyleClassifier
-from kotogram.tokenizer import ALL_FEATURE_FIELDS
+from kotogram.tokenizer import ALL_FEATURE_FIELDS, CLS_ID, PAD_ID, UNK_ID
 from train.config import TrainerConfig
 from train.dataset import create_kc_batch
 from train.kc import KcFamilyId
@@ -14,9 +14,9 @@ from train.trainer import KCTrainer
 # Mock classes for Trainer dependencies
 class MockTokenizer:
     def __init__(self):
-        self.pad_id = 0
-        self.unk_id = 1
-        self.cls_id = 2
+        self.pad_id = PAD_ID
+        self.unk_id = UNK_ID
+        self.cls_id = CLS_ID
 
     def get_vocab_sizes(self):
         return {f: 100 for f in ALL_FEATURE_FIELDS}

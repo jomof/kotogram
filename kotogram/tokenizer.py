@@ -16,6 +16,12 @@ PAD_TOKEN = "<PAD>"
 UNK_TOKEN = "<UNK>"
 CLS_TOKEN = "<CLS>"
 
+# Special token IDs - single source of truth
+# These must match the order tokens are added to vocabularies in Tokenizer.__init__
+PAD_ID = 0
+UNK_ID = 1
+CLS_ID = 2
+
 # Feature fields used for token embedding
 # NOTE: 'surface' is critical for gender detection (pronouns like 僕, 俺, あたし)
 ALL_FEATURE_FIELDS = [
@@ -52,9 +58,9 @@ class Tokenizer:
         self._field_counters: Dict[str, Counter[str]] = {}
         for f in FEATURE_FIELDS:
             self.field_vocabs[f] = {
-                PAD_TOKEN: 0,
-                UNK_TOKEN: 1,
-                CLS_TOKEN: 2,
+                PAD_TOKEN: PAD_ID,
+                UNK_TOKEN: UNK_ID,
+                CLS_TOKEN: CLS_ID,
             }
             self._field_counters[f] = Counter()
 
@@ -62,11 +68,11 @@ class Tokenizer:
 
     @property
     def unk_id(self) -> int:
-        return 1
+        return UNK_ID
 
     @property
     def cls_id(self) -> int:
-        return 2
+        return CLS_ID
 
     def get_vocab_sizes(self) -> Dict[str, int]:
         """Get vocabulary sizes for all fields."""
@@ -77,15 +83,14 @@ class Tokenizer:
         vocab = self.field_vocabs[field]
         return vocab.get(value, self.unk_id)
 
-    def extract_features(self, kotogram: str) -> List[TokenFeatures]:
+    @staticmethod
+    def extract_features(kotogram: str) -> List[TokenFeatures]:
         """Extract features from each token in a Kotogram string."""
         tokens = split_kotogram(kotogram)
         features_list = []
 
         for token in tokens:
             features = extract_token_features(token)
-            # Filter? TokenFeatures matches strict schema anyway.
-            # Using dataclass directly.
             features_list.append(features)
         return features_list
 
@@ -105,7 +110,6 @@ class Tokenizer:
         # Encode each token
         for features in features_list:
             # Unrolled for type safety and static analysis visibility
-            # result["surface"].append(self.get_id("surface", features.surface))
             result["pos"].append(self.get_id("pos", features.pos))
             result["pos_detail_1"].append(
                 self.get_id("pos_detail_1", features.pos_detail_1)
@@ -119,10 +123,6 @@ class Tokenizer:
             result["conjugated_type"].append(
                 self.get_id("conjugated_type", features.conjugated_type)
             )
-            # result["conjugated_form"].append(
-            #     self.get_id("conjugated_form", features.conjugated_form)
-            # )
-            # base_orth stripped
             result["reading_gram"].append(
                 self.get_id("reading_gram", features.reading_gram)
             )

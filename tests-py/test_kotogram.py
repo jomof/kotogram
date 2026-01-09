@@ -167,5 +167,112 @@ class TestSplitKotogram(unittest.TestCase):
         self.assertEqual(rejoined, kotogram)
 
 
+class TestExtractTokenFeatures(unittest.TestCase):
+    """Test cases for extract_token_features function."""
+
+    def test_reading_gram_uses_surface_when_no_reading_for_grammar_pos(self):
+        """Grammar POS tokens without reading should use surface for reading_gram."""
+        # Craft a particle token without reading - should use surface
+        token = "⌈ˢをᵖparticle:case-particle⌉"
+        features = extract_token_features(token)
+        self.assertEqual(features.surface, "を")
+        # Particle is on grammar whitelist, so reading_gram should be surface
+        self.assertEqual(features.reading_gram, "を")
+
+    def test_reading_gram_uses_mask_when_no_reading_for_content_word(self):
+        """Content words without reading should use READING_MASK for reading_gram."""
+        from kotogram.masking import READING_MASK
+
+        # Craft a noun token without reading - should use mask
+        token = "⌈ˢテストᵖnoun⌉"
+        features = extract_token_features(token)
+        self.assertEqual(features.surface, "テスト")
+        # Noun is NOT on grammar whitelist, so reading_gram should be masked
+        self.assertEqual(features.reading_gram, READING_MASK)
+
+    def test_reading_gram_uses_reading_when_available(self):
+        """Tokens with reading should use reading-based logic."""
+        from kotogram.masking import READING_MASK
+
+        # Token with reading - content word (noun) gets masked
+        token = "⌈ˢ猫ᵖnounʳネコ⌉"
+        features = extract_token_features(token)
+        self.assertEqual(features.surface, "猫")
+        self.assertEqual(features.reading, "ネコ")
+        # Noun with reading should be masked
+        self.assertEqual(features.reading_gram, READING_MASK)
+
+    def test_verb_reading_gram_preserved(self):
+        """Verbs should preserve their reading for reading_gram (grammatically important)."""
+        # Verb with reading - should keep reading since verb conjugations carry grammar
+        token = "⌈ˢ行きᵖverbʳイキ⌉"
+        features = extract_token_features(token)
+        self.assertEqual(features.surface, "行き")
+        self.assertEqual(features.reading, "イキ")
+        # Verb is on grammar whitelist, reading should be preserved
+        self.assertEqual(features.reading_gram, "イキ")
+
+    def test_punctuation_uses_surface_for_reading_gram(self):
+        """Punctuation (aux-symbol) without reading should use surface for reading_gram."""
+        # Period without reading - aux-symbol is on grammar whitelist
+        token = "⌈ˢ。ᵖaux-symbol:period⌉"
+        features = extract_token_features(token)
+        self.assertEqual(features.surface, "。")
+        self.assertEqual(features.pos, "aux-symbol")
+        # aux-symbol is on grammar whitelist, so reading_gram should be surface
+        self.assertEqual(features.reading_gram, "。")
+
+    def test_comma_uses_surface_for_reading_gram(self):
+        """Comma (aux-symbol) without reading should use surface for reading_gram."""
+        token = "⌈ˢ、ᵖaux-symbol:comma⌉"
+        features = extract_token_features(token)
+        self.assertEqual(features.surface, "、")
+        self.assertEqual(features.reading_gram, "、")
+
+    def test_question_mark_uses_surface_for_reading_gram(self):
+        """Question mark (aux-symbol) without reading should use surface for reading_gram."""
+        token = "⌈ˢ？ᵖaux-symbol⌉"
+        features = extract_token_features(token)
+        self.assertEqual(features.surface, "？")
+        self.assertEqual(features.reading_gram, "？")
+
+    def test_punctuation_reading_gram_in_real_sentence(self):
+        """Punctuation in real parsed sentence should have surface as reading_gram."""
+        parser = SudachiJapaneseParser()
+        # Parse a sentence ending with period
+        kotogram = parser.japanese_to_kotogram("行きました。")
+        tokens = split_kotogram(kotogram)
+
+        # Last token should be the period
+        last_token = tokens[-1]
+        features = extract_token_features(last_token)
+        self.assertEqual(features.surface, "。")
+        self.assertEqual(features.pos, "aux-symbol")
+        # Period should use surface as reading_gram
+        self.assertEqual(features.reading_gram, "。")
+
+    def test_reading_gram_never_empty(self):
+        """reading_gram must never be empty string - should fall back to READING_MASK."""
+        from kotogram.masking import READING_MASK
+
+        # Token with no reading and no valid surface replacement
+        # (simulating edge case where both are empty or missing)
+        token = "⌈ˢᵖnoun⌉"  # No surface, no reading
+        features = extract_token_features(token)
+        # Should fall back to READING_MASK, never empty string
+        self.assertEqual(features.reading_gram, READING_MASK)
+        self.assertTrue(features.reading_gram)  # Must be truthy
+
+    def test_reading_gram_explicit_empty_marker_gets_mask(self):
+        """Explicit empty reading_gram marker should still result in READING_MASK."""
+        from kotogram.masking import READING_MASK
+
+        # Token with explicit empty reading_gram marker
+        token = "⌈ˢテストᵖnounᵍ⌉"  # Empty ᵍ marker
+        features = extract_token_features(token)
+        # Should fall back to READING_MASK
+        self.assertEqual(features.reading_gram, READING_MASK)
+
+
 if __name__ == "__main__":
     unittest.main()

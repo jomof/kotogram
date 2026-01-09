@@ -370,19 +370,22 @@ async def check_kotogram_dependencies() -> CheckResult:
 
 async def check_trainer_display_hygiene() -> CheckResult:
     """
-    Ensure train/trainer.py delegates all display/logging to view classes.
+    Ensure trainer files delegate all display/logging to view classes.
     Strictly forbids 'print(', 'sys.stdout', and 'sys.stderr'.
     """
-    target_file = "train/trainer.py"
-    if not os.path.exists(target_file):
-        return CheckResult("Trainer display hygiene", True, "Skipped (file not found)")
+    target_files = ["train/trainer.py", "train/kc_trainer.py", "train/style_trainer.py"]
+    existing_files = [f for f in target_files if os.path.exists(f)]
+
+    if not existing_files:
+        return CheckResult("Trainer display hygiene", True, "Skipped (no files found)")
 
     # Grep for forbidden patterns
     # -n: line number
     # -H: filename
     # -E: extended regex
     pattern = r"print\(|sys\.stdout|sys\.stderr"
-    cmd = f'grep -nH -E "{pattern}" {target_file}'
+    files_arg = " ".join(existing_files)
+    cmd = f'grep -nH -E "{pattern}" {files_arg}'
 
     proc = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
@@ -392,7 +395,7 @@ async def check_trainer_display_hygiene() -> CheckResult:
     if proc.returncode == 0:
         # Grep found matches -> Violation
         msg = (
-            f"Display logic found in {target_file}. "
+            "Display logic found in trainer files. "
             "Move strictly to View classes (TrainerView/KCTrainerView).\n"
             f"Violations:\n{stdout.decode()}"
         )

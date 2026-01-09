@@ -35,6 +35,13 @@ class KCTrainerTestBase(unittest.TestCase):
         self.model.config.kc_temperature = 1.0
         self.model.config.kc_vocab_size = 100
         self.model.config.kc_target_specs = {"test_target": 10}
+        self.model.config.kc_topk = 8
+        # K-Budget params for adaptive k_budget computation
+        self.model.config.kc_alpha_short = 0.40
+        self.model.config.kc_alpha_long = 0.55
+        self.model.config.kc_long_threshold = 20
+        self.model.config.kc_min_k = 2
+        self.model.config.kc_max_k_long = 16
 
         # Mock head parameters
         self.model.kc_head.linear.weight = nn.Parameter(torch.randn(10, 10))

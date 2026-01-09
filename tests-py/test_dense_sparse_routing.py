@@ -2,6 +2,7 @@
 
 import torch
 
+from kotogram.tokenizer import CLS_ID, UNK_ID
 from train.dataset import create_kc_batch
 from train.kc import ALL_KC_FAMILIES, KcFamilyId, is_family_sparse
 from train.types import TrainingBatch
@@ -10,8 +11,8 @@ from train.types import TrainingBatch
 class DummyTokenizer:
     """Minimal tokenizer for testing."""
 
-    unk_id = 1
-    cls_id = 2
+    unk_id = UNK_ID
+    cls_id = CLS_ID
 
 
 def _make_dummy_batch(

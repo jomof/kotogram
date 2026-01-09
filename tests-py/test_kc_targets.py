@@ -8,8 +8,9 @@ from train.kc import SALT, KcFamilyId, compute_kc_targets, stable_hash_ints
 class TestKCTargets(unittest.TestCase):
     def test_compute_kc_targets_with_pos_detail(self):
         # Input with pos_detail_1 and conjugated_type
+        # Note: Avoid IDs 0 (PAD), 1 (UNK), 2 (CLS) as they have special handling
         feature_ids = {
-            "pos": [1, 2, 3],
+            "pos": [3, 4, 5],
             "pos_detail_1": [10, 11, 10],  # Includes duplicate
             "conjugated_type": [20, 21, 22],
             "conjugated_form": [30, 31, 32],
@@ -26,9 +27,9 @@ class TestKCTargets(unittest.TestCase):
         # Mock field_vocabs for reverse lookup in kc.py
         mock_tokenizer.field_vocabs = {
             "pos": {
-                "verb": 1,
-                "noun": 2,
-                "particle": 3,
+                "verb": 3,
+                "noun": 4,
+                "particle": 5,
             },
             "reading": {"<READING_MASK>": 999},
         }
@@ -36,8 +37,7 @@ class TestKCTargets(unittest.TestCase):
         targets = compute_kc_targets(feature_ids)
 
         # Verify bag targets (sorted)
-        # Verify bag targets (sorted)
-        self.assertEqual(targets[KcFamilyId.BAG_POS], [1, 2, 3])
+        self.assertEqual(targets[KcFamilyId.BAG_POS], [3, 4, 5])
         self.assertEqual(
             targets[KcFamilyId.BAG_POS_DETAIL_1], [10, 11]
         )  # Sorted, unique
@@ -68,9 +68,9 @@ class TestKCTargets(unittest.TestCase):
         # self.assertIn(KcFamilyId.PAIR_POS1_CONJTYPE, targets)
 
     def test_compute_kc_targets_missing_fields(self):
-        # Input missing pos_detail_1
+        # Input missing pos_detail_1 - use IDs > 2 to avoid special tokens
         feature_ids = {
-            "pos": [1, 2, 3],
+            "pos": [3, 4, 5],
             "conjugated_form": [30, 31, 32],
             "reading": [100, 101, 102],
         }
@@ -126,12 +126,13 @@ class TestKCTargets(unittest.TestCase):
         self.assertEqual(len(set(SALT.values())), len(SALT))
 
     def test_tensor_input(self):
+        # Use IDs > 2 to avoid CLS exclusion
         feature_ids = {
-            "pos": torch.tensor([3, 1, 2]),
+            "pos": torch.tensor([5, 3, 4]),
             "pos_detail_1": torch.tensor([11, 10, 12]),
         }
         targets = compute_kc_targets(feature_ids)
-        self.assertEqual(targets[KcFamilyId.BAG_POS], [1, 2, 3])  # Sorted
+        self.assertEqual(targets[KcFamilyId.BAG_POS], [3, 4, 5])  # Sorted
         self.assertEqual(targets[KcFamilyId.BAG_POS_DETAIL_1], [10, 11, 12])
         # Verify tail_reading_gram exists if reading and pos are present (even without tokenizer, rg_ids will be empty)
         # Actually with rg_ids being empty, bag_reading_gram won't exist in targets.
@@ -165,6 +166,56 @@ class TestKCTargets(unittest.TestCase):
             kc_targets, "reading", vocab_size=50, device=device, special_ids=special_ids
         )
         self.assertEqual(inds_v[0, 0], 1)
+
+    def test_cls_token_excluded_from_targets(self):
+        """CLS token (ID 2) should be excluded from all KC family targets."""
+        from train.kc import SPECIAL_TOKEN_IDS
+
+        # Verify CLS is in special tokens
+        self.assertIn(2, SPECIAL_TOKEN_IDS)
+
+        # Input with CLS token (ID 2) mixed with real tokens
+        feature_ids = {
+            "pos": [2, 10, 11, 12],  # CLS at start, then real tokens
+            "pos_detail_1": [2, 20, 21, 22],
+            "conjugated_type": [2, 30, 31, 32],
+            "reading_gram": [2, 40, 41, 42],
+        }
+
+        targets = compute_kc_targets(feature_ids)
+
+        # CLS (ID 2) should NOT appear in any bag targets
+        self.assertNotIn(2, targets[KcFamilyId.BAG_POS])
+        self.assertNotIn(2, targets[KcFamilyId.BAG_POS_DETAIL_1])
+        self.assertNotIn(2, targets[KcFamilyId.BAG_CONJUGATED_TYPE])
+        self.assertNotIn(2, targets[KcFamilyId.BAG_READING_GRAM])
+
+        # Verify real tokens are still present
+        self.assertEqual(targets[KcFamilyId.BAG_POS], [10, 11, 12])
+        self.assertEqual(targets[KcFamilyId.BAG_POS_DETAIL_1], [20, 21, 22])
+
+        # CLS should NOT appear in tail targets either
+        self.assertNotIn(2, targets[KcFamilyId.TAIL_POS])
+        self.assertNotIn(2, targets[KcFamilyId.TAIL_POS_DETAIL_1])
+
+    def test_pad_and_unk_not_excluded(self):
+        """PAD (ID 0) and UNK (ID 1) should NOT be excluded - kept for analysis."""
+        from train.kc import SPECIAL_TOKEN_IDS
+
+        # Verify PAD and UNK are NOT in special tokens
+        self.assertNotIn(0, SPECIAL_TOKEN_IDS)
+        self.assertNotIn(1, SPECIAL_TOKEN_IDS)
+
+        # Input with PAD and UNK tokens
+        feature_ids = {
+            "pos": [0, 1, 10, 11],  # PAD, UNK, then real tokens
+        }
+
+        targets = compute_kc_targets(feature_ids)
+
+        # PAD and UNK should still appear
+        self.assertIn(0, targets[KcFamilyId.BAG_POS])
+        self.assertIn(1, targets[KcFamilyId.BAG_POS])
 
 
 if __name__ == "__main__":

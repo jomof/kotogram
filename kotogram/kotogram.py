@@ -46,10 +46,10 @@ from kotogram.masking import (
 # Pre-compiled regex patterns for performance
 # Matches standard ⌈...⌉ tokens OR obfuscated [Base64] tokens
 # Obfuscated tokens use brackets and strictly Base64 characters to avoid false positives with text like "foo [bar]"
-_RE_KOTOGRAM_TOKEN = re.compile(r"⌈[^⌉]*⌉|\[[A-Za-z0-9+/=]+\]")
+_RE_KOTOGRAM_TOKEN = re.compile(r"⌈[^⌉]*⌉|\[[A-Za-z0-9+/=]+]")
 _RE_SURFACE = re.compile(r"ˢ(.*?)ᵖ", re.DOTALL)
 
-_RE_READING_FULL = re.compile(r"ʳ(.*?)(?:⌉|ᵇ|ᵈ)")
+_RE_READING_FULL = re.compile(r"ʳ(.*?)[⌉ᵇᵈ]")
 
 
 @dataclass
@@ -302,7 +302,6 @@ def extract_token_features(token: str) -> TokenFeatures:
     - ᵇ : Base
     - ᵈ : Lemma
     - ʳ : Reading
-    - ᵍ : Reading Gram (Explicit)
     """
 
     from .japanese_parser import (
@@ -328,7 +327,7 @@ def extract_token_features(token: str) -> TokenFeatures:
     feature = TokenFeatures()
 
     # Find marker indices
-    # Token structure is generally: ⌈ˢ...ᵖ...ᵇ...ᵈ...ʳ...ᵍ...⌉
+    # Token structure is generally: ⌈ˢ...ᵖ...ᵇ...ᵈ...ʳ...⌉
     # But some fields might be missing. The order is consistent.
 
     # ˢ Surface (always present in valid tokens)
@@ -433,18 +432,36 @@ def extract_token_features(token: str) -> TokenFeatures:
         feature.reading_gram = token[start:end]
 
     # 7. Reading Gram (Derived from Reading if not present)
-    if not feature.reading_gram and feature.reading:
-        # Normalize POS for whitelist check
-        # POS_MAP keys are raw strings, feature.pos is a string (PosValue)
-        pos_str = str(feature.pos)
-        pos_norm = POS_MAP.get(pos_str, pos_str)
+    if not feature.reading_gram:
+        if feature.reading:
+            # Normalize POS for whitelist check
+            # POS_MAP keys are raw strings, feature.pos is a string (PosValue)
+            pos_str = str(feature.pos)
+            pos_norm = POS_MAP.get(pos_str, pos_str)
 
-        if pos_norm in GRAMMAR_POS_WHITELIST:
-            feature.reading_gram = feature.reading
-        elif feature.reading in PRESERVED_READING_MASKS:
-            feature.reading_gram = feature.reading
+            if pos_norm in GRAMMAR_POS_WHITELIST:
+                feature.reading_gram = feature.reading
+            elif feature.reading in PRESERVED_READING_MASKS:
+                feature.reading_gram = feature.reading
+            else:
+                feature.reading_gram = READING_MASK
+        elif feature.surface:
+            # No reading available but surface exists - use surface with the same logic
+            pos_str = str(feature.pos)
+            pos_norm = POS_MAP.get(pos_str, pos_str)
+
+            if pos_norm in GRAMMAR_POS_WHITELIST:
+                feature.reading_gram = feature.surface
+            elif feature.surface in PRESERVED_READING_MASKS:
+                feature.reading_gram = feature.surface
+            else:
+                feature.reading_gram = READING_MASK
         else:
+            # No reading and no surface - use mask
             feature.reading_gram = READING_MASK
-    # else: reading_gram remains default ("")
+
+    # Final guard: reading_gram must never be empty string
+    if not feature.reading_gram:
+        feature.reading_gram = READING_MASK
 
     return feature

@@ -68,9 +68,8 @@ class TestKC(unittest.TestCase):
         self.assertEqual(
             set(targets[KcFamilyId.BAG_READING_GRAM]), {5, 6, 7, 8, 9, 999}
         )
-        # bag_pos -> 10, 20, 30
-        # bag_pos -> 0..9 (all passed through since basic compute logic might presumes validity or test mock behavior)
-        self.assertEqual(set(targets[KcFamilyId.BAG_POS]), set(range(10)))
+        # bag_pos -> 0..9 except 2 (CLS excluded by SPECIAL_TOKEN_IDS)
+        self.assertEqual(set(targets[KcFamilyId.BAG_POS]), {0, 1, 3, 4, 5, 6, 7, 8, 9})
         # ngram_pos -> hashed values
         self.assertTrue(len(targets[KcFamilyId.NGRAM_POS]) > 0)
         self.assertTrue(all(isinstance(x, int) for x in targets[KcFamilyId.NGRAM_POS]))
@@ -78,7 +77,8 @@ class TestKC(unittest.TestCase):
     def test_compute_kc_targets_long(self):
         """Test with long input (checking truncation/windowing)."""
         long_ids = list(range(100))
-        # Add "reading" for derivation
+        # Use reading_gram IDs that don't include UNK (ID 1) - start from 3
+        long_rg_ids = list(range(3, 103))  # 3..102
         from unittest.mock import MagicMock
 
         mock_tokenizer = MagicMock()
@@ -91,7 +91,7 @@ class TestKC(unittest.TestCase):
 
         # We need "reading" and "pos" in input
         targets_long = compute_kc_targets(
-            {"reading": long_ids, "pos": long_ids, "reading_gram": long_ids}
+            {"reading": long_ids, "pos": long_ids, "reading_gram": long_rg_ids}
         )
 
         # tail_pos should only have last KC_POS_BIASED_WINDOW items
@@ -102,7 +102,7 @@ class TestKC(unittest.TestCase):
 
     def test_compute_kc_targets_short(self):
         """Test with short input."""
-        short_ids = [1]
+        short_ids = [5]  # Avoid UNK (1) and CLS (2)
         from unittest.mock import MagicMock
 
         mock_tokenizer = MagicMock()
@@ -116,9 +116,9 @@ class TestKC(unittest.TestCase):
             {"reading": short_ids, "pos": short_ids, "reading_gram": short_ids}
         )
         # Should be present
-        self.assertEqual(targets[KcFamilyId.BAG_POS], [1])
+        self.assertEqual(targets[KcFamilyId.BAG_POS], [5])
         # Tail should calculate even if short
-        self.assertEqual(targets[KcFamilyId.TAIL_POS], [1])
+        self.assertEqual(targets[KcFamilyId.TAIL_POS], [5])
         # Ngram order 3 requires 3 items?
         # compute_kc_targets logic: range(2, ORDER+1) -> 2, 3.
         # If len < 2, no ngrams.

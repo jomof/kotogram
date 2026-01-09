@@ -231,7 +231,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--kc-sparsity-weight",
         type=float,
-        default=1e-3,
+        default=None,
         help="Sparsity regularization weight for KC activations",
     )
     # pylint: disable=duplicate-code
@@ -240,6 +240,12 @@ if __name__ == "__main__":
         type=int,
         default=None,
         help="Explicit batch size for KC pretraining (overrides config/auto)",
+    )
+    parser.add_argument(
+        "--kc-skip-first-metrics",
+        type=int,
+        default=0,
+        help="Skip diagnostic metrics gathering until epoch N (0=disabled)",
     )
     # pylint: enable=duplicate-code
 
@@ -503,7 +509,11 @@ if __name__ == "__main__":
             )
 
         # Build KCConfig, only overriding values that were explicitly provided
-        kc_config_kwargs = {"sparsity_weight": args.kc_sparsity_weight}
+        kc_config_kwargs: Dict[str, Any] = {
+            "skip_first_metrics": args.kc_skip_first_metrics,
+        }
+        if args.kc_sparsity_weight is not None:
+            kc_config_kwargs["sparsity_weight"] = args.kc_sparsity_weight
         if args.kc_freeze_encoder_epochs is not None:
             kc_config_kwargs["freeze_encoder_epochs"] = args.kc_freeze_encoder_epochs
 

@@ -1015,6 +1015,280 @@ def curate_find_kc_matches(query: str, db_path: str, index_path: str = "data/cor
 
 
 
+def curate_kc_families(sentence: str):
+    """
+    Show KC target families for a single Japanese sentence.
+    
+    This helps visualize what the KCTrainer sees during training for each
+    morphological family (bags, tails, ngrams, tail-ngrams).
+    """
+    from rich.table import Table
+    
+    from kotogram.japanese_parser import KotogramFormat
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    from kotogram.tokenizer import Tokenizer
+    from train.kc import (
+        ALL_KC_FAMILIES,
+        FAMILY_FEATURES,
+        KC_HASH_BUCKETS,
+        KC_POS_BIASED_WINDOW,
+        compute_kc_targets,
+        is_family_sparse,
+    )
+    
+    # Parse sentence
+    parser = SudachiJapaneseParser()
+    kotogram = parser.japanese_to_kotogram(sentence, KotogramFormat.TRAINING_MASK)
+    
+    # Tokenize
+    # We need a tokenizer to get feature IDs. Use default vocab if exists.
+    from train import paths
+    import os
+    
+    vocab_path = os.path.join(paths.get_style_dataset_cache_dir(), "vocab.json")
+    if not os.path.exists(vocab_path):
+        console.print(f"[red]Vocab not found at {vocab_path}. Run 'bin/train_style --label' first.[/red]")
+        return
+    
+    tokenizer = Tokenizer.load(vocab_path)
+    
+    # Encode the kotogram to get feature IDs
+    encoded = tokenizer.encode(kotogram)
+    
+    # Compute KC targets
+    targets = compute_kc_targets(encoded)
+    
+    # Display header
+    console.print(f"\n[bold blue]KC Families for:[/bold blue] {sentence}")
+    console.print(f"[dim]Kotogram:[/dim] {kotogram}")
+    console.print(f"[dim]Length:[/dim] {len(encoded.get('pos', []))} tokens")
+    console.print()
+    
+    # Group families
+    bag_families = [f for f in ALL_KC_FAMILIES if f.name.startswith("BAG_")]
+    tail_families = [f for f in ALL_KC_FAMILIES if f.name.startswith("TAIL_") and not f.name.startswith("TAIL_NGRAM")]
+    ngram_families = [f for f in ALL_KC_FAMILIES if f.name.startswith("NGRAM_")]
+    tail_ngram_families = [f for f in ALL_KC_FAMILIES if f.name.startswith("TAIL_NGRAM")]
+    
+    def _print_family_group(title: str, families: list, color: str):
+        table = Table(title=title, show_header=True, header_style=f"bold {color}")
+        table.add_column("Family", style="cyan", min_width=25)
+        table.add_column("Field", style="dim", min_width=15)
+        table.add_column("Type", justify="center", min_width=8)
+        table.add_column("Count", justify="right", min_width=6)
+        table.add_column("Values", style="green", min_width=40)
+        
+        for family in families:
+            field = FAMILY_FEATURES.get(family, "?")
+            is_sparse = is_family_sparse(family)
+            type_str = "[yellow]sparse[/yellow]" if is_sparse else "[green]dense[/green]"
+            
+            vals = targets.get(family, [])
+            count = len(vals)
+            
+            # Format values
+            if is_sparse:
+                # Show hash bucket IDs (cap at 10 for readability)
+                if len(vals) > 10:
+                    val_str = f"{vals[:10]}... ({len(vals)} total, mod {KC_HASH_BUCKETS})"
+                else:
+                    val_str = str(vals) if vals else "(empty)"
+            else:
+                # Dense: Show actual vocab IDs and try to decode
+                if count == 0:
+                    val_str = "(empty)"
+                elif count <= 10:
+                    # Try to reverse lookup the field vocab
+                    field_vocab = tokenizer.field_vocabs.get(field, {})
+                    id_to_token = {v: k for k, v in field_vocab.items()}
+                    decoded = []
+                    for v in vals:
+                        token = id_to_token.get(v, f"#{v}")
+                        decoded.append(token)
+                    val_str = ", ".join(decoded)
+                else:
+                    val_str = f"{vals[:10]}... ({len(vals)} total)"
+            
+            table.add_row(
+                family.name,
+                field,
+                type_str,
+                str(count),
+                val_str,
+            )
+        
+        console.print(table)
+        console.print()
+    
+    # Print each group
+    _print_family_group("Bag Families (Full Sentence)", bag_families, "magenta")
+    _print_family_group(f"Tail Families (Last {KC_POS_BIASED_WINDOW} Tokens)", tail_families, "cyan")
+    _print_family_group("N-gram Families (2-3 grams, hashed)", ngram_families, "yellow")
+    _print_family_group(f"Tail N-gram Families (Last {KC_POS_BIASED_WINDOW} Tokens, hashed)", tail_ngram_families, "blue")
+    
+    # Summary stats
+    total_dense = sum(len(targets.get(f, [])) for f in bag_families + tail_families)
+    total_sparse = sum(len(targets.get(f, [])) for f in ngram_families + tail_ngram_families)
+    
+    console.print(f"[bold]Summary:[/bold] {total_dense} dense targets, {total_sparse} sparse targets")
+
+
+# Globals for worker initialization
+_KC_LINT_PARSER: Any = None
+_KC_LINT_TOKENIZER: Any = None
+
+
+def _init_kc_lint_worker(tokenizer_path: str):
+    """Initialize KC lint worker with parser and tokenizer."""
+    global _KC_LINT_PARSER, _KC_LINT_TOKENIZER
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    from kotogram.tokenizer import Tokenizer
+    _KC_LINT_PARSER = SudachiJapaneseParser()
+    _KC_LINT_TOKENIZER = Tokenizer.load(tokenizer_path)
+
+
+def _check_sentence_for_unk(sentence: str):
+    """Check a single sentence for UNK in reading_gram. Returns tuple if found, else None."""
+    from kotogram.japanese_parser import KotogramFormat
+    from kotogram.kotogram import extract_token_features, split_kotogram
+    from kotogram.tokenizer import UNK_ID
+    from train.kc import KcFamilyId, compute_kc_targets
+
+    kotogram = _KC_LINT_PARSER.japanese_to_kotogram(sentence, KotogramFormat.TRAINING_MASK)
+    encoded = _KC_LINT_TOKENIZER.encode(kotogram)
+    targets = compute_kc_targets(encoded)
+
+    reading_gram_targets = targets.get(KcFamilyId.BAG_READING_GRAM, [])
+    if UNK_ID in reading_gram_targets:
+        tokens = split_kotogram(kotogram)
+        for token in tokens:
+            features = extract_token_features(token)
+            rg = features.reading_gram
+            rg_id = _KC_LINT_TOKENIZER.get_id("reading_gram", rg)
+            # Skip punctuation - we want non-punctuation UNK cases
+            if rg_id == UNK_ID and features.pos != "aux-symbol":
+                return ("unk", sentence, features.surface, features.pos, rg)
+    return None
+
+
+def _check_sentence_for_pad(sentence: str):
+    """Check a single sentence for PAD in reading_gram. Returns tuple if found, else None."""
+    from kotogram.japanese_parser import KotogramFormat
+    from kotogram.kotogram import extract_token_features, split_kotogram
+    from kotogram.tokenizer import PAD_ID
+    from train.kc import KcFamilyId, compute_kc_targets
+
+    kotogram = _KC_LINT_PARSER.japanese_to_kotogram(sentence, KotogramFormat.TRAINING_MASK)
+    encoded = _KC_LINT_TOKENIZER.encode(kotogram)
+    targets = compute_kc_targets(encoded)
+
+    reading_gram_targets = targets.get(KcFamilyId.BAG_READING_GRAM, [])
+    if PAD_ID in reading_gram_targets:
+        tokens = split_kotogram(kotogram)
+        for token in tokens:
+            features = extract_token_features(token)
+            rg = features.reading_gram
+            rg_id = _KC_LINT_TOKENIZER.get_id("reading_gram", rg)
+            if rg_id == PAD_ID:
+                return ("pad", sentence, features.surface, features.pos, rg)
+    return None
+
+
+def _check_sentence_lint(sentence: str):
+    """Check a sentence for all lint issues. Returns first issue found or None."""
+    result = _check_sentence_for_unk(sentence)
+    if result:
+        return result
+    result = _check_sentence_for_pad(sentence)
+    if result:
+        return result
+    return None
+
+
+def curate_kc_lint(db_path: str):
+    """
+    Scan corpus.db for KC lint issues.
+
+    Checks for sentences with UNK or PAD in BAG_READING_GRAM.
+    """
+    import os
+
+    from train import paths
+
+    # Find tokenizer
+    vocab_path = os.path.join(paths.get_style_dataset_cache_dir(), "vocab.json")
+    if not os.path.exists(vocab_path):
+        console.print(f"[red]Vocab not found at {vocab_path}. Run 'bin/train_style --label' first.[/red]")
+        return
+
+    # Load sentences from corpus
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    cursor.execute("SELECT sentence FROM corpus")
+    sentences = [row[0] for row in cursor.fetchall()]
+    conn.close()
+
+    console.print(f"[bold]KC Lint:[/bold] Scanning {len(sentences):,} sentences...")
+
+    # Run parallel scan
+    num_workers = mp.cpu_count()
+    unk_examples: List[Tuple[str, str, str, str, str]] = []
+    pad_examples: List[Tuple[str, str, str, str, str]] = []
+    unk_count = 0
+    pad_count = 0
+
+    with mp.Pool(
+        num_workers,
+        initializer=_init_kc_lint_worker,
+        initargs=(vocab_path,),
+    ) as pool:
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(),
+            MofNCompleteColumn(),
+            console=console,
+        ) as progress:
+            task = progress.add_task("Checking sentences...", total=len(sentences))
+
+            for result in pool.imap_unordered(_check_sentence_lint, sentences, chunksize=500):
+                progress.advance(task)
+                if result:
+                    issue_type = result[0]
+                    if issue_type == "unk":
+                        unk_count += 1
+                        if len(unk_examples) < 5:
+                            unk_examples.append(result)
+                    elif issue_type == "pad":
+                        pad_count += 1
+                        if len(pad_examples) < 5:
+                            pad_examples.append(result)
+
+    # Report results
+    console.print()
+    console.print("[bold]Results:[/bold]")
+
+    # UNK in reading_gram
+    if unk_count == 0:
+        console.print("  [green]✓[/green] No UNK in BAG_READING_GRAM (non-punctuation)")
+    else:
+        console.print(f"  [yellow]![/yellow] {unk_count:,} sentences with UNK in BAG_READING_GRAM")
+        for _, sent, surface, pos, rg in unk_examples:
+            truncated = sent[:60] + "..." if len(sent) > 60 else sent
+            console.print(f"      [dim]{surface}[/dim] ({pos}) → {repr(rg)}")
+            console.print(f"        {truncated}")
+
+    # PAD in reading_gram
+    if pad_count == 0:
+        console.print("  [green]✓[/green] No PAD in BAG_READING_GRAM")
+    else:
+        console.print(f"  [yellow]![/yellow] {pad_count:,} sentences with PAD in BAG_READING_GRAM")
+        for _, sent, surface, pos, rg in pad_examples:
+            truncated = sent[:60] + "..." if len(sent) > 60 else sent
+            console.print(f"      [dim]{surface}[/dim] ({pos}) → {repr(rg)}")
+            console.print(f"        {truncated}")
+
+
 def curate_contrast_sentences(sentences: List[str]):
     """
     Compare KCs of multiple sentences.
@@ -1340,6 +1614,10 @@ def main():
     parser_contrast_s = subparsers.add_parser("contrast-sentences", help="Contrast multiple sentences")
     parser_contrast_s.add_argument("sentences", nargs="+", help="Sentences to compare")
 
+    # KC Families command
+    parser_kc_fam = subparsers.add_parser("kc-families", help="Show KC target families for a sentence")
+    parser_kc_fam.add_argument("sentence", help="Japanese sentence to analyze")
+
     # Find matches command
     parser_find = subparsers.add_parser("find-kc-matches", help="Find sentences matching KC query")
     parser_find.add_argument("query", help="KC Query (e.g. +458,-964)")
@@ -1349,6 +1627,10 @@ def main():
     # Compress command
     compress_parser = subparsers.add_parser("compress", help="Vacuum the database")
     compress_parser.add_argument("--db-path", default="data/corpus.db", help="Path to database")
+
+    # KC Lint command
+    parser_kc_lint = subparsers.add_parser("kc-lint", help="Scan corpus for KC issues")
+    parser_kc_lint.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
 
     args = parser.parse_args()
     
@@ -1369,6 +1651,10 @@ def main():
         curate_contrast_sentences(args.sentences)
     elif args.command == "find-kc-matches":
         curate_find_kc_matches(args.query, args.db_path, args.index_path)
+    elif args.command == "kc-families":
+        curate_kc_families(args.sentence)
+    elif args.command == "kc-lint":
+        curate_kc_lint(args.db_path)
 
 
 if __name__ == "__main__":

@@ -6,6 +6,7 @@ from kc_test_utils import KCTrainerTestBase
 
 from train.kc import KcFamilyId
 from train.kc_diagnostics import KCEpochDiag
+from train.types import KCDiagnosticReport
 
 # pylint: disable=protected-access,too-many-locals,unused-variable
 
@@ -49,6 +50,8 @@ class TestKCDiagAlignment(KCTrainerTestBase):
         # T2
         mock_diag = MagicMock()
         mock_kc_diag_cls.return_value = mock_diag
+        # Return empty families to skip family validation (this tests shape alignment, not sums)
+        mock_diag.get_stats.return_value = KCDiagnosticReport(families={})
 
         vocab_size = 12
 
@@ -105,6 +108,8 @@ class TestKCDiagAlignment(KCTrainerTestBase):
         # T3
         mock_diag = MagicMock()
         mock_kc_diag_cls.return_value = mock_diag
+        # Return empty families to skip family validation (this tests diagnostics alignment, not sums)
+        mock_diag.get_stats.return_value = KCDiagnosticReport(families={})
 
         vocab_size = 1000
         batch_size = 2

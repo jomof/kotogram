@@ -36,6 +36,7 @@ from train.config import (
     CheckpointConfig,
     DataLoaderSettings,
     HardwareConfig,
+    KCConfig,
     TrainerConfig,
 )
 from train import io as train_io
@@ -367,12 +368,15 @@ def run_training_phase(
     train_args.extend([
         "--kc-k", str(args.kc_k),
         "--kc-topk", str(args.kc_topk),
-        "--kc-sparsity-weight", str(args.kc_sparsity_weight),
     ])
+    if args.kc_sparsity_weight is not None:
+        train_args.extend(["--kc-sparsity-weight", str(args.kc_sparsity_weight)])
     if args.kc_freeze_encoder_epochs is not None:
         train_args.extend(["--kc-freeze-encoder-epochs", str(args.kc_freeze_encoder_epochs)])
     if args.kc_batch_size is not None:
         train_args.extend(["--kc-batch-size", str(args.kc_batch_size)])
+    if args.kc_skip_first_metrics > 0:
+        train_args.extend(["--kc-skip-first-metrics", str(args.kc_skip_first_metrics)])
 
     if args.resume:
         train_args.append("--resume")
@@ -474,12 +478,18 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument(
         "--kc-freeze-encoder-epochs", type=int, default=None, help="Epochs to freeze encoder (default: from config)"
     )
-    parser.add_argument("--kc-sparsity-weight", type=float, default=1e-3, help="Sparsity regularization weight")
+    parser.add_argument("--kc-sparsity-weight", type=float, default=None, help="Sparsity regularization weight")
     parser.add_argument(
         "--kc-batch-size",
         type=int,
         default=None,
         help="Explicit batch size for KC pretraining (overrides config/auto)",
+    )
+    parser.add_argument(
+        "--kc-skip-first-metrics",
+        type=int,
+        default=0,
+        help="Skip diagnostic metrics gathering until epoch N (0=disabled)",
     )
 
 
@@ -545,7 +555,8 @@ def print_training_banner(
         print(f"KC Top-k:       {args.kc_topk}")
         freeze_str = str(args.kc_freeze_encoder_epochs) if args.kc_freeze_encoder_epochs is not None else "(default)"
         print(f"KC Freeze:      {freeze_str}")
-        print(f"KC Sparsity:    {args.kc_sparsity_weight}")
+        sparsity_str = str(args.kc_sparsity_weight) if args.kc_sparsity_weight is not None else f"(default: {KCConfig().sparsity_weight})"
+        print(f"KC Sparsity:    {sparsity_str}")
     elif args.kc_epochs is None:
         print("KC pretrain:    (default/saved)")
 
