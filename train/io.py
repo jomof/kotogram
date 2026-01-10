@@ -91,22 +91,14 @@ def save_model(
 
     # Verify model size (Strict Architecture Verification)
     # pylint: disable=import-outside-toplevel
-    from train.pytorch_utils import calculate_detailed_size, verify_model_size_policy
-
-    expected_breakdown = calculate_detailed_size(config.to_dict())
-    expected_size = sum(expected_breakdown.values())
+    from train.pytorch_utils import verify_model_size
 
     # Check actual file size
     model_pt_path = os.path.join(path, "model.pt")
     actual_size = os.path.getsize(model_pt_path)
 
     # Policy check (raises RuntimeError on failure)
-    verify_model_size_policy(
-        actual_size,
-        expected_size,
-        expected_breakdown,
-        lambda: state_dict,  # Lazy provider, though state_dict is already local
-    )
+    verify_model_size(model, actual_size)
 
     # Mark as feature-based multi-task model
     with open(os.path.join(path, "model_type.txt"), "w", encoding="utf-8") as f:

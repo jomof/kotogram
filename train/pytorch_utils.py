@@ -2,11 +2,14 @@
 
 import importlib.util
 import math
-from typing import Any, Callable, Dict, Mapping
+from typing import TYPE_CHECKING
 
 import torch
 
 from kotogram.model import NUM_REGISTER_CLASSES, ModelConfig
+
+if TYPE_CHECKING:
+    from kotogram.model import StyleClassifier
 
 # 50KB tolerance for header overhead
 SIZE_VERIFICATION_TOLERANCE = 50 * 1024
@@ -145,152 +148,58 @@ def estimate_optimal_batch_size(
     return int(target)
 
 
-def calculate_detailed_size(config_dict: Mapping[str, Any]) -> Dict[str, int]:
-    """Calculate the expected size of model components in bytes (FP8)."""
-    # pylint: disable=too-many-locals
-
-    # FEATURE_FIELDS defaults logic matches MultiFieldEmbedding
-    from kotogram.tokenizer import FEATURE_FIELDS
-
-    d_model = int(config_dict.get("d_model", 256))
-    hidden_dim = int(config_dict.get("hidden_dim", 512))
-    num_layers = int(config_dict.get("num_layers", 3))
-
-    vocab_sizes = config_dict.get("vocab_sizes", {})
-    field_embed_dims = config_dict.get("field_embed_dims", {})
-
-    embed_params = 0
-    for field in FEATURE_FIELDS:
-        size = int(vocab_sizes.get(field, 100))
-        dim = int(field_embed_dims.get(field, 32))
-        embed_params += size * dim
-
-    total_embed_dim = sum(int(field_embed_dims.get(f, 32)) for f in FEATURE_FIELDS)
-    embed_params += total_embed_dim * d_model + d_model  # Project weights/bias
-    embed_params += 2 * d_model  # LayerNorm
-
-    layer_params = (
-        4 * (d_model * d_model + d_model)
-        + 4 * d_model
-        + 2 * (d_model * hidden_dim + hidden_dim)
-    )
-    transformer_params = num_layers * layer_params
-
-    final_norm_params = 2 * d_model
-
-    kc_vocab_size = int(config_dict.get("kc_vocab_size", 0))
-    classifier_input_dim = d_model + kc_vocab_size
-    head_mlp_hidden = hidden_dim
-
-    def mlp_params(out_dim: int) -> int:
-        l1 = classifier_input_dim * head_mlp_hidden + head_mlp_hidden
-        l2 = head_mlp_hidden * out_dim + out_dim
-        return int(l1 + l2)
-
-    num_formality = int(config_dict.get("num_formality_pragmatic_classes", 2))
-    num_gender = int(config_dict.get("num_gender_pragmatic_classes", 2))
-    num_gram = int(config_dict.get("num_grammaticality_classes", 2))
-    num_reg = NUM_REGISTER_CLASSES
-
-    head_params = 0
-    head_params += mlp_params(1)
-    head_params += mlp_params(num_formality)
-    head_params += mlp_params(1)
-    head_params += mlp_params(num_gender)
-    head_params += mlp_params(num_gram)
-    head_params += mlp_params(num_reg)
-
-    # KCHead: Single linear projection (d_model → kc_vocab_size) + LayerNorm
-    # Architecture matches kotogram/model.py KCHead:
-    #   self.output = nn.Linear(config.d_model, config.kc_vocab_size)
-    #   self.layer_norm = nn.LayerNorm(config.kc_vocab_size)
-    kc_head_params = (
-        (d_model * kc_vocab_size + kc_vocab_size)  # output layer: weights + bias
-        + (2 * kc_vocab_size)  # layer norm: weight + bias
-    )
-    pos_encoding_buffer = 512 * d_model
-
-    return {
-        "embeddings": int(embed_params),
-        "transformer": int(transformer_params),
-        "final_norm": int(final_norm_params),
-        "heads": int(head_params),
-        "kc_head": int(kc_head_params),
-        "pos_encoding": int(pos_encoding_buffer),
-    }
-
-
-def generate_size_breakdown_report(
-    state_dict: Mapping[str, torch.Tensor], expected_breakdown: Dict[str, int]
-) -> str:
-    """Generate a detailed report comparing actual vs expected component sizes."""
-    # Calculate approximate active breakdown for diagnostics
-    actual_breakdown = {
-        "embeddings": 0,
-        "transformer": 0,
-        "final_norm": 0,
-        "heads": 0,
-        "kc_head": 0,
-        "pos_encoding": 0,
-        "other": 0,
-    }
-
-    for k, v in state_dict.items():
-        # Estimate size: numel * element_size
-        size = v.numel() * v.element_size()
-
-        if k.startswith("embedding."):
-            actual_breakdown["embeddings"] += size
-        elif k.startswith("encoder."):
-            actual_breakdown["transformer"] += size
-        elif k == "pos_encoding.pe":
-            actual_breakdown["pos_encoding"] += size
-        elif (
-            k.startswith("formality_")
-            or k.startswith("gender_")
-            or k.startswith("grammaticality_")
-            or k.startswith("register_")
-        ):
-            actual_breakdown["heads"] += size
-        elif k.startswith("kc_head."):
-            actual_breakdown["kc_head"] += size
-        else:
-            # Catch-all for other params (norms, biases not captured above if naming differs)
-            actual_breakdown["other"] += size
-
-    # Breakdown message
-    breakdown_msg = "\nSize Breakdown (Bytes):\n"
-    breakdown_msg += (
-        f"{'Component':<20} {'Expected':<15} {'Approx. Tensor Payload':<20}\n"
-    )
-    breakdown_msg += "-" * 60 + "\n"
-
-    all_keys = set(expected_breakdown.keys()) | set(actual_breakdown.keys())
-    for key in sorted(all_keys):
-        exp = expected_breakdown.get(key, 0)
-        act = actual_breakdown.get(key, 0)
-        breakdown_msg += f"{key:<20} {exp:<15,} {act:<20,}\n"
-
-    return breakdown_msg
-
-
-def verify_model_size_policy(
-    actual_size: int,
-    expected_size: int,
-    expected_breakdown: Dict[str, int],
-    state_dict_provider: Callable[[], Mapping[str, torch.Tensor]],
+def verify_model_size(
+    model: "StyleClassifier",
+    actual_file_size: int,
 ) -> None:
+    """Verify model file size matches ArchitectureReport expectations.
+
+    Args:
+        model: The StyleClassifier model to verify.
+        actual_file_size: The actual file size in bytes from disk.
+
+    Raises:
+        RuntimeError: If the file size differs from expected by more than tolerance.
     """
-    Verify that the actual model size on disk matches expectation within tolerance.
-    Raises RuntimeError with a detailed breakdown report if verification fails.
-    """
+    # Import here to avoid circular imports
+    from train.architecture_report import generate_architecture_report
+
+    report = generate_architecture_report(model)
+
+    # The report gives us actual model sizes in memory (FP32 = 4 bytes/param).
+    # The saved file uses FP8 (1 byte/param), so divide by 4.
+    # Note: kc_decoders are excluded from the saved file, so filter them out.
+    saved_layers = [
+        layer for layer in report.layers if not layer.name.startswith("kc_decoders")
+    ]
+    expected_size = sum(layer.size_bytes for layer in saved_layers) // 4
+
     if not math.isclose(
-        actual_size, expected_size, abs_tol=SIZE_VERIFICATION_TOLERANCE
+        actual_file_size, expected_size, abs_tol=SIZE_VERIFICATION_TOLERANCE
     ):
-        state_dict = state_dict_provider()
-        report = generate_size_breakdown_report(state_dict, expected_breakdown)
+        # Generate detailed breakdown for error message
+        breakdown_lines = ["", "Size Breakdown (FP8 bytes):"]
+        breakdown_lines.append(f"{'Component':<30} {'Size':<15}")
+        breakdown_lines.append("-" * 50)
+
+        # Group by top-level component (using saved_layers, not all layers)
+        component_sizes: dict[str, int] = {}
+        for layer in saved_layers:
+            top_component = layer.name.split(".")[0]
+            fp8_size = layer.size_bytes // 4  # Convert to FP8
+            component_sizes[top_component] = (
+                component_sizes.get(top_component, 0) + fp8_size
+            )
+
+        for component, size in sorted(component_sizes.items()):
+            breakdown_lines.append(f"{component:<30} {size:<15,}")
+
+        breakdown_lines.append("-" * 50)
+        breakdown_lines.append(f"{'Total (expected)':<30} {expected_size:<15,}")
+        breakdown_lines.append(f"{'Actual file size':<30} {actual_file_size:<15,}")
+
         raise RuntimeError(
             f"Model size verification failed. Expected ~{expected_size:,} bytes, "
-            f"found {actual_size:,} bytes. (Tolerance: {SIZE_VERIFICATION_TOLERANCE:,} bytes)\n"
-            f"{report}"
+            f"found {actual_file_size:,} bytes. (Tolerance: {SIZE_VERIFICATION_TOLERANCE:,} bytes)\n"
+            + "\n".join(breakdown_lines)
         )

@@ -215,26 +215,15 @@ class TestTrainStyleScript(unittest.TestCase):
             )
 
             # 4. Assert Physical Size
-            # Calculate expected size based on the ACTUAL slim config
+            # Load the model and verify size matches ArchitectureReport expectations
+            from kotogram.model import load_model
+            from train.pytorch_utils import verify_model_size
 
-            from train.pytorch_utils import (
-                calculate_detailed_size,
-                verify_model_size_policy,
-            )
-
-            expected_breakdown = calculate_detailed_size(style_config)
-            expected_size = sum(expected_breakdown.values())
+            style_model_dir = bottle.get_file("[models]/style")
+            model, _ = load_model(style_model_dir)
             actual_size = os.path.getsize(style_model)
 
-            def lazy_load_state_dict(path=style_model):
-                return torch.load(path, map_location="cpu", weights_only=True)
-
-            verify_model_size_policy(
-                actual_size,
-                expected_size,
-                expected_breakdown,
-                lazy_load_state_dict,
-            )
+            verify_model_size(model, actual_size)
 
             # 5. Verify history in epochs.json
             history = bottle.get_epoch_history()
