@@ -157,7 +157,7 @@ class KCConfig:
 class TrainerConfig:
     """Configuration for model training."""
 
-    learning_rate: float = 1e-4
+    learning_rate: float = 5e-5
     batch_size: int = -1
     epochs: int = 20  # Fine-tuning epochs
     kc_epochs: int = 11

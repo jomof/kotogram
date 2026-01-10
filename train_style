@@ -189,7 +189,7 @@ def build_trainer_config(
     args: argparse.Namespace,
     env: dict,
     support_dir: str,
-    explicit_resume: bool,
+    should_resume: bool,
     grad_accum_steps: int,
     loaded_config: Optional[TrainerConfig],
 ) -> TrainerConfig:
@@ -201,7 +201,7 @@ def build_trainer_config(
         "grad_accum_steps": grad_accum_steps,
         "checkpoint": CheckpointConfig(
             dir=support_dir,
-            resume_from=support_dir if explicit_resume else None,
+            resume_from=support_dir if should_resume else None,
         ),
         "hardware": HardwareConfig(
             cpu_reserve_cores=int(env.get("CPU_RESERVE_CORES", 2)),
@@ -235,7 +235,7 @@ def build_trainer_config(
 def generate_and_save_config(
     args: argparse.Namespace,
     env: dict,
-    explicit_resume: bool,
+    should_resume: bool,
     grad_accum_steps: int,
 ) -> str:
     """Generate and save the unified configuration file."""
@@ -273,7 +273,7 @@ def generate_and_save_config(
     config_loaded = False
     model_config = None  # type: ignore # Fix Pylint E0606
     loaded_trainer_config = None
-    if args.resume and os.path.exists(config_path):
+    if should_resume and os.path.exists(config_path):
         print(f"Resuming: Loading ModelConfig from {config_path}")
         model_config, loaded_trainer_config = TrainerConfig.load_config(config_path)
         # KC is always enabled; no override needed
@@ -294,7 +294,7 @@ def generate_and_save_config(
 
     # Build TrainerConfig
     trainer_config = build_trainer_config(
-        args, env, support_dir, explicit_resume, grad_accum_steps, loaded_trainer_config
+        args, env, support_dir, should_resume, grad_accum_steps, loaded_trainer_config
     )
 
     # Save unified config
@@ -378,8 +378,6 @@ def run_training_phase(
     if args.kc_skip_first_metrics > 0:
         train_args.extend(["--kc-skip-first-metrics", str(args.kc_skip_first_metrics)])
 
-    if args.resume:
-        train_args.append("--resume")
     if args.retrain:
         train_args.append("--retrain")
     if args.percent:
@@ -464,10 +462,8 @@ def parse_arguments() -> argparse.Namespace:
 
 
 
-
-    # Resume/retrain
-    parser.add_argument("--resume", action="store_true", help="Resume training from checkpoint")
-    parser.add_argument("--retrain", action="store_true", help="Retrain from scratch using params from checkpoint")
+    # Retrain flag (resume is now the default when checkpoints exist)
+    parser.add_argument("--retrain", action="store_true", help="Retrain from scratch, ignoring checkpoints")
 
     # KC Pretraining options (KC is always enabled)
     # Use TrainerConfig default for help text to ensure Single Source of Truth
@@ -560,8 +556,6 @@ def print_training_banner(
     elif args.kc_epochs is None:
         print("KC pretrain:    (default/saved)")
 
-    if args.resume:
-        print("Resume:         from checkpoint")
     if args.retrain:
         print("Retrain:        from scratch using parameters from checkpoint")
     if args.confusion:
@@ -637,15 +631,16 @@ def main() -> int:
     if not args.label:
         os.makedirs(output_dir, exist_ok=True)
 
-    # Auto-resume logic
+    # Resume logic: always resume when checkpoints exist, unless --retrain
     checkpoint_path = os.path.join(support_dir, "checkpoint.pt")
+    kc_checkpoint_path = os.path.join(support_dir, "checkpoint_kc.pt")
 
-    # Capture original --resume flag value before auto-resume may modify it
-    # Used for config generation to keep config stable across runs
-    explicit_resume = args.resume
-    if not args.resume and not args.retrain and os.path.exists(checkpoint_path):
-        args.resume = True
-        print(f"Auto-resume enabled (found checkpoint: {checkpoint_path})")
+    # Resume is the default when any checkpoint exists (unless --retrain)
+    should_resume = False
+    if not args.retrain:
+        if os.path.exists(checkpoint_path) or os.path.exists(kc_checkpoint_path):
+            should_resume = True
+            print(f"Auto-resume enabled (found checkpoint: {checkpoint_path if os.path.exists(checkpoint_path) else kc_checkpoint_path})")
 
     # Determine process count and launcher
     num_devices, device_type = get_device_info()
@@ -699,7 +694,7 @@ def main() -> int:
         return 1
 
     # Phase 2: Configuration
-    config_path = generate_and_save_config(args, env, explicit_resume, grad_accum_steps)
+    config_path = generate_and_save_config(args, env, should_resume, grad_accum_steps)
     if args.show_config:
         return 0
 

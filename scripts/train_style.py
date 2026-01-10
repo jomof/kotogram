@@ -32,9 +32,9 @@ from train.io import (
 )
 from train.kc import (
     ALL_KC_FAMILIES,
-    DEFAULT_HASH_BUCKET_SIZE,
     FAMILY_FEATURES,
     KcFamilyId,
+    get_family_bucket_size,
     is_family_sparse,
 )
 from train.models import StyleClassifierWithKC
@@ -202,14 +202,9 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--resume",
-        action="store_true",
-        help="Resume training from checkpoint",
-    )
-    parser.add_argument(
         "--retrain",
         action="store_true",
-        help="Retrain from scratch using parameters from existing checkpoint",
+        help="Retrain from scratch, ignoring checkpoints",
     )
 
     parser.add_argument(
@@ -293,8 +288,8 @@ if __name__ == "__main__":
     # Epoch history logging
     history_path = os.path.join(args.support_dir, "training-history.tsv")
 
-    # Clear history if starting fresh (and not just labeling)
-    if not args.resume and not args.label:
+    # Clear history if starting fresh (retrain mode, and not just labeling)
+    if args.retrain and not args.label:
         history.clear_history(history_path)
 
     def _log_epoch_event(
@@ -400,13 +395,16 @@ if __name__ == "__main__":
     if args.config and os.path.exists(args.config):
         model_config, trainer_config = TrainerConfig.load_config(args.config)
 
-        # Override resume_from if --resume flag is present but not in config
-        # This handles auto-resume from the wrapper while keeping config.json stable
-        if args.resume and not trainer_config.checkpoint.resume_from:
-            # type: ignore[misc]
-            object.__setattr__(
-                trainer_config.checkpoint, "resume_from", args.support_dir
-            )
+        # Auto-enable resume when checkpoint files exist (unless --retrain)
+        # This ensures KC and style trainers can resume without explicit flag
+        if not args.retrain and not trainer_config.checkpoint.resume_from:
+            kc_ckpt = os.path.join(args.support_dir, "checkpoint_kc.pt")
+            style_ckpt = os.path.join(args.support_dir, "checkpoint.pt")
+            if os.path.exists(kc_ckpt) or os.path.exists(style_ckpt):
+                # type: ignore[misc]
+                object.__setattr__(
+                    trainer_config.checkpoint, "resume_from", args.support_dir
+                )
 
     else:
         print(
@@ -420,16 +418,15 @@ if __name__ == "__main__":
 
     # Build KC specification (always enabled for ubiquity)
     kc_specs: Dict[KcFamilyId, int] = {}
-    v_size_default = DEFAULT_HASH_BUCKET_SIZE
     targets = ALL_KC_FAMILIES
     current_vocabs = tokenizer.get_vocab_sizes()
 
     for fid in targets:
         if is_family_sparse(fid):
-            kc_specs[fid] = v_size_default
+            kc_specs[fid] = get_family_bucket_size(fid)
         else:
             fname = FAMILY_FEATURES[fid]
-            kc_specs[fid] = current_vocabs.get(fname, v_size_default)
+            kc_specs[fid] = current_vocabs[fname]
 
     # Initialize model if not already loaded, OR upgrade if loaded model is not WithKC
     if model is None:
@@ -490,6 +487,18 @@ if __name__ == "__main__":
 
     if args.preprocess_only:
         sys.exit(0)
+
+    # Scale learning rate inversely with sample_ratio
+    # 100% training set = base LR, smaller percentages = proportionally higher LR
+    # This compensates for fewer gradient samples per epoch when training on subsets
+    sample_ratio = args.percent / 100.0 if args.percent else 1.0
+    if sample_ratio < 1.0:
+        lr_scale = 1.0 / sample_ratio
+        scaled_lr = trainer_config.learning_rate * lr_scale
+        print(
+            f"Scaling learning rate: {trainer_config.learning_rate:.2e} × {lr_scale:.2f} = {scaled_lr:.2e} (for {sample_ratio:.1%} sample)"
+        )
+        trainer_config = dataclasses.replace(trainer_config, learning_rate=scaled_lr)
 
     # KC Pretraining - always runs (uses all grammatical sentences)
     events = history.read_events(history_path)
@@ -552,9 +561,7 @@ if __name__ == "__main__":
 
     style_start = time.perf_counter()
     style_end = style_start
-    if args.resume:
-        # Auto-resume handled inside trainer.train() if checkpoint_dir set
-        pass
+    # Auto-resume handled inside trainer.train() if checkpoint_dir set
 
     style_hist: TrainingHistory = style_trainer.train(
         epochs=trainer_config.epochs,

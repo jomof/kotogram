@@ -129,7 +129,6 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         # Activation Stats
         self.pmax_reservoir: List[float] = []
         self.topk_sum_reservoir: List[float] = []
-        self.sat95_count: int = 0
         self.sat99_count: int = 0
         self.total_ex_count: int = 0
 
@@ -279,8 +278,6 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         self.total_ex_count += len(pmax)
         # pmax is already a list of floats
         for val in pmax:
-            if val >= 0.95:
-                self.sat95_count += 1
             if val >= 0.99:
                 self.sat99_count += 1
 
@@ -389,7 +386,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         )
         table_loss.add_row(
             "[magenta]formality[/magenta]",
-            _f(lc.formality * w.prior / nb),
+            _f(lc.formality / nb),  # Already weighted
             _delta_arrow(lc.formality, prev_lc.formality if prev_lc else None),
             _acc(
                 lc.formality_correct,
@@ -401,7 +398,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         )
         table_loss.add_row(
             "[magenta]gender[/magenta]",
-            _f(lc.gender * w.prior / nb),
+            _f(lc.gender / nb),  # Already weighted
             _delta_arrow(lc.gender, prev_lc.gender if prev_lc else None),
             _acc(
                 lc.gender_correct,
@@ -413,7 +410,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         )
         table_loss.add_row(
             "[magenta]register[/magenta]",
-            _f(lc.register * w.prior / nb),
+            _f(lc.register / nb),  # Already weighted
             _delta_arrow(lc.register, prev_lc.register if prev_lc else None),
             _acc(
                 lc.register_correct,
@@ -428,7 +425,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             _f(lc.div * w.div / nb),
             _delta_arrow(lc.div, prev_lc.div if prev_lc else None),
             "",
-            f"Ent={act.ent_norm:.3f}",
+            f"Ent={act.ent_norm:.3f} AvgP={act.kc_probs_mean:.3f}",
         )
         table_loss.add_row(
             "load_bal",
@@ -449,25 +446,35 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             _f(lc.sparsity * w.sparsity / nb),
             _delta_arrow(lc.sparsity, prev_lc.sparsity if prev_lc else None),
             "",
-            f"Dens={act.act_dens_mean:.3f}",
+            f"Dens={act.act_dens_mean:.3f} K={act.topk_sum_p50:.0f}/{act.topk_sum_p90:.0f}/{act.topk_sum_p99:.0f}",
+        )
+        table_loss.add_row(
+            "saturation",
+            _f(lc.saturation / nb),
+            _delta_arrow(lc.saturation, prev_lc.saturation if prev_lc else None),
+            "",
+            f"sc={act.sat_scale_mean:.0f} c={act.sat_contrib_ratio:.0%} pen={act.sat_pen_global:.2f}/{act.sat_pen_pos:.2f} LM={act.pmax_logit_mean_global:.1f}/{act.pmax_logit_mean_pos:.1f} P={act.frac_has_pos:.0%}>{act.frac_over_thr_pos:.0%}",
         )
         console.print(table_loss)
 
-        # Validate: loss breakdown should sum to epoch loss (within 10% tolerance)
+        # Validate: loss breakdown should sum to epoch loss (within 1% tolerance)
         loss_sum = (
             lc.struct * w.struct / nb
             + lc.gap * w.gap / nb
-            + lc.formality * w.prior / nb
-            + lc.gender * w.prior / nb
-            + lc.register * w.prior / nb
+            + lc.formality / nb  # Already weighted in kc_trainer
+            + lc.gender / nb  # Already weighted in kc_trainer
+            + lc.register / nb  # Already weighted in kc_trainer
             + lc.div * w.div / nb
             + lc.lb * w.lb / nb
             + lc.collapse * w.collapse / nb
             + lc.sparsity * w.sparsity / nb
+            + lc.saturation / nb  # Already weighted in kc_trainer
         )
         expected_loss = summary.total_loss
         if expected_loss > 0.1:  # Only check if loss is significant
-            tolerance = 0.1 * expected_loss  # 10% tolerance
+            tolerance = (
+                0.01 * expected_loss
+            )  # 1% tolerance (tight to catch issues early)
             if abs(loss_sum - expected_loss) > tolerance:
                 raise RuntimeError(
                     f"Loss breakdown sum mismatch: sum={loss_sum:.4f} vs "
@@ -534,11 +541,11 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             )
             c_diff = "red" if abs(s.keff_minus_budget_mean) > 0.2 else "dim"
 
-            # Color for spill: red if high (>0.3), yellow if moderate (>0.1), green otherwise
+            # Color for spill: red if high (>0.75), green if low (<0.25), dim otherwise
             c_spill = (
                 "red"
-                if s.spill_prob_mean > 0.3
-                else ("yellow" if s.spill_prob_mean > 0.1 else "green")
+                if s.spill_prob_mean > 0.75
+                else ("green" if s.spill_prob_mean < 0.25 else "dim")
             )
 
             # Spill trajectory arrow (lower is better)
@@ -600,11 +607,6 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         topk_p90 = _res_p(self.topk_sum_reservoir, 0.9)
         topk_p99 = _res_p(self.topk_sum_reservoir, 0.99)
 
-        # Saturation rates
-        n_ex = max(1, self.total_ex_count)
-        sat95_rate = self.sat95_count / n_ex
-        sat99_rate = self.sat99_count / n_ex
-
         act_stats = summary.activation_stats
 
         # Populate act_stats with reservoirs for correctness
@@ -614,23 +616,6 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         act_stats.topk_sum_p50 = topk_p50
         act_stats.topk_sum_p90 = topk_p90
         act_stats.topk_sum_p99 = topk_p99
-
-        # Outlier Logic
-        c_pmax = (
-            "red" if act_stats.pmax_global_max > 0.995 or pmax_p99 > 0.99 else "green"
-        )
-        c_sat = "red" if sat99_rate > 0.5 else "dim"
-
-        # Simplified Act line (Ent, KL, Dens now in loss breakdown above)
-        console.print(
-            f"Act: AvgProb={act_stats.kc_probs_mean:.4f} | "
-            f"PMax: [{c_pmax}]Glb={act_stats.pmax_global_max:.3f} P99={pmax_p99:.3f} P50={pmax_p50:.3f}[/{c_pmax}] | "
-            f"Sat: [{c_sat}]95={sat95_rate:.2f} 99={sat99_rate:.2f}[/{c_sat}] "
-            f"scaleμ={act_stats.sat_scale_mean:.1f} contrib={act_stats.sat_contrib_ratio:.1%} | "
-            f"Pos({act_stats.frac_has_pos:.0%}): pen={act_stats.sat_pen_pos:.2f} LM={act_stats.pmax_logit_mean_pos:.2f} >Thr={act_stats.frac_over_thr_pos:.1%} | "
-            f"Glb: pen={act_stats.sat_pen_global:.2f} LM={act_stats.pmax_logit_mean_global:.1f} | "
-            f"SumK: P50={act_stats.topk_sum_p50:.1f} P90={act_stats.topk_sum_p90:.1f} P99={act_stats.topk_sum_p99:.1f}"
-        )
 
         # BLOCK 3: Families (Wakefulness and Performance)
         # Pivot: High density separation metrics
@@ -789,6 +774,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             flags.append("ALLNEG01")
 
         # SAT: Sat99 > 0.5 or AvgProb > 0.7
+        sat99_rate = self.sat99_count / max(1, self.total_ex_count)
         if sat99_rate > 0.5 or act_stats.kc_probs_mean > 0.7:
             flags.append("SAT")
 

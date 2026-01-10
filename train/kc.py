@@ -9,11 +9,8 @@ from kotogram.exceptions import MissingMappingError
 from kotogram.tokenizer import CLS_ID, PAD_ID, UNK_ID
 
 # KC Configuration
-KC_HASH_BUCKETS = 16384
 KC_NGRAM_ORDER = 3
 KC_POS_BIASED_WINDOW = 5
-
-DEFAULT_HASH_BUCKET_SIZE = 16384
 
 # Special token IDs to exclude from KC targets
 # CLS is non-discriminative as it appears in every sequence
@@ -50,6 +47,29 @@ class KcFamilyId(str, Enum):
 
 
 ALL_KC_FAMILIES = list(KcFamilyId)
+
+
+# Per-family bucket sizes for sparse (ngram) families
+# Based on collision analysis: reading_gram needs more buckets due to larger vocabulary
+FAMILY_BUCKET_SIZES: Dict[KcFamilyId, int] = {
+    KcFamilyId.NGRAM_POS: 2048,
+    KcFamilyId.NGRAM_POS_DETAIL_1: 4096,
+    KcFamilyId.NGRAM_CONJUGATED_TYPE: 8192,
+    KcFamilyId.NGRAM_READING_GRAM: 262144,  # 2^18: 234K unique ngrams
+    KcFamilyId.TAIL_NGRAM_POS: 2048,
+    KcFamilyId.TAIL_NGRAM_POS_DETAIL_1: 4096,
+    KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: 8192,
+    KcFamilyId.TAIL_NGRAM_READING_GRAM: 131072,  # 2^17: 115K unique ngrams
+}
+
+
+def get_family_bucket_size(family_id: KcFamilyId) -> int:
+    """Get the hash bucket size for a sparse KC family.
+
+    Raises:
+        KeyError: If family_id is not a sparse ngram family.
+    """
+    return FAMILY_BUCKET_SIZES[family_id]
 
 
 def is_family_sparse(family: KcFamilyId) -> bool:
@@ -185,6 +205,13 @@ def _compute_bag_targets(
         if field in feature_ids:
             # Exclude special tokens (CLS only - PAD/UNK kept for analysis)
             filtered = [v for v in feature_ids[field] if v not in SPECIAL_TOKEN_IDS]
+            # For pos_detail_1 and conjugated_type, also filter out UNK
+            # These fields can have UNK when morphology is ambiguous
+            if family_id in (
+                KcFamilyId.BAG_POS_DETAIL_1,
+                KcFamilyId.BAG_CONJUGATED_TYPE,
+            ):
+                filtered = [v for v in filtered if v != UNK_ID]
             targets[family_id] = sorted(set(filtered))
 
     # Validate: BAG_READING_GRAM should never contain special tokens
@@ -226,8 +253,15 @@ def _compute_tail_targets(
         if field in feature_ids:
             ids = feature_ids[field]
             tail_ids = ids[-KC_POS_BIASED_WINDOW:] if len(ids) > 0 else []
-            # Exclude special tokens (PAD, UNK, CLS)
+            # Exclude special tokens (CLS)
             filtered = [v for v in tail_ids if v not in SPECIAL_TOKEN_IDS]
+            # For pos_detail_1 and conjugated_type, also filter out UNK
+            # These fields can have UNK when morphology is ambiguous
+            if family_id in (
+                KcFamilyId.TAIL_POS_DETAIL_1,
+                KcFamilyId.TAIL_CONJUGATED_TYPE,
+            ):
+                filtered = [v for v in filtered if v != UNK_ID]
             targets[family_id] = sorted(set(filtered))
 
 
@@ -249,12 +283,13 @@ def _compute_ngram_targets(
             ids = [v for v in feature_ids[field] if v not in SPECIAL_TOKEN_IDS]
             hashes = set()
             salt = _salt(family_id)
+            bucket_size = get_family_bucket_size(family_id)
             for n_val in range(2, KC_NGRAM_ORDER + 1):
                 if len(ids) >= n_val:
                     for i in range(len(ids) - n_val + 1):
                         ngram = ids[i : i + n_val]
                         # Prepend salt for domain separation
-                        h = stable_hash_ints([salt, *ngram]) % KC_HASH_BUCKETS
+                        h = stable_hash_ints([salt, *ngram]) % bucket_size
                         hashes.add(h)
             targets[family_id] = sorted(hashes)
 
@@ -282,11 +317,12 @@ def _compute_tail_ngram_targets(
 
             hashes = set()
             salt = _salt(family_id)
+            bucket_size = get_family_bucket_size(family_id)
             for n_val in range(2, KC_NGRAM_ORDER + 1):
                 if len(tail_ids) >= n_val:
                     for i in range(len(tail_ids) - n_val + 1):
                         ngram = tail_ids[i : i + n_val]
-                        h = stable_hash_ints([salt, *ngram]) % KC_HASH_BUCKETS
+                        h = stable_hash_ints([salt, *ngram]) % bucket_size
                         hashes.add(h)
             targets[family_id] = sorted(hashes)
 
