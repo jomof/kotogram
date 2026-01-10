@@ -42,8 +42,16 @@ from train.profile import (
     get_profile_dir,
     profiling_enabled,
 )
+from train.train_style_view import (
+    FinalResults,
+    TrainStyleDiagnosticsView,
+    TrainStyleView,
+)
 from train.trainer import KCTrainer, Trainer
 from train.types import KCTrainingHistory, TrainingHistory
+
+# Global view instance for display output
+_view: TrainStyleView = TrainStyleDiagnosticsView()
 
 
 def generate_profile_report() -> None:
@@ -60,11 +68,11 @@ def generate_profile_report() -> None:
     # Let's use training-profile.txt in the profile dir.
     profile_report_path = os.path.join(prof_dir, "training-profile.txt")
 
-    print(f"Generating profile report from {prof_dir}...")
+    _view.on_profile_report_start(prof_dir)
 
     files = glob.glob(os.path.join(prof_dir, "*.jsonl"))
     if not files:
-        print("No .jsonl profile files found.")
+        _view.on_profile_no_data()
         return
 
     all_entries = []
@@ -75,7 +83,7 @@ def generate_profile_report() -> None:
                     all_entries.append(json.loads(line))
 
     if not all_entries:
-        print("No valid entries found.")
+        _view.on_profile_no_data()
         return
 
     # Sort by timestamp
@@ -143,12 +151,12 @@ def generate_profile_report() -> None:
                 )
             report_file.write("\n")
 
-    print(f"Report written to {profile_report_path}")
+    _view.on_profile_report_complete(profile_report_path)
 
     # Cleanup JSONL files
     for p in files:
         os.remove(p)
-    print(f"Cleaned up {len(files)} .jsonl profile files.")
+    _view.on_profile_cleanup(len(files))
 
 
 def cleanup_profile_if_retrain(argv_list: List[str]) -> None:
@@ -157,7 +165,7 @@ def cleanup_profile_if_retrain(argv_list: List[str]) -> None:
         # Use get_profile_dir to ensure we clean the correct machine-specific directory
         profile_dir = get_profile_dir()
         if profile_dir and os.path.exists(profile_dir):
-            print(f"Cleaning up profile directory: {profile_dir}")
+            _view.on_profile_dir_cleanup(profile_dir)
             shutil.rmtree(profile_dir, ignore_errors=True)
             os.makedirs(profile_dir, exist_ok=True)
 
@@ -170,7 +178,7 @@ if __name__ == "__main__":
 
     setup_profiling()
 
-    print("Starting training script...", flush=True)
+    _view.on_script_start()
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -302,7 +310,7 @@ if __name__ == "__main__":
         )
 
     tokenizer = Tokenizer.load(tokenizer_path)
-    print(f"Loaded tokenizer from {tokenizer_path}")
+    _view.on_tokenizer_loaded(tokenizer_path)
 
     # Auto-enable resume when checkpoint files exist (unless --retrain)
     # This ensures KC and style trainers can resume without explicit flag
@@ -336,7 +344,7 @@ if __name__ == "__main__":
         # Ubiquity: Upgrade base StyleClassifier to StyleClassifierWithKC
         # This handles cases where we resume from a checkpoint that matches the base
         # StyleClassifier structure (e.g. stripped checkpoints).
-        print("Upgrading loaded model to StyleClassifierWithKC...")
+        _view.on_model_upgrade()
         new_model = StyleClassifierWithKC(model_config, kc_target_specs=kc_specs)
         # Load weights from base model. strict=False is required because
         # the base model lacks kc_decoders, which the new model has.
@@ -355,6 +363,14 @@ if __name__ == "__main__":
                 f"Validation failed during model upgrade. Unexpected keys: {keys.unexpected_keys}"
             )
         model = new_model
+
+    # Generate and display architecture report
+    from train.architecture_report import generate_architecture_report
+
+    arch_report = generate_architecture_report(
+        model, model_name="StyleClassifierWithKC"
+    )
+    _view.on_architecture_report(arch_report)
 
     # Load labeled data for remaining phases
     old_vocab_sizes = model_config.vocab_sizes.copy()
@@ -395,8 +411,11 @@ if __name__ == "__main__":
     if sample_ratio < 1.0:
         lr_scale = 1.0 / sample_ratio
         scaled_lr = trainer_config.learning_rate * lr_scale
-        print(
-            f"Scaling learning rate: {trainer_config.learning_rate:.2e} × {lr_scale:.2f} = {scaled_lr:.2e} (for {sample_ratio:.1%} sample)"
+        _view.on_lr_scaled(
+            trainer_config.learning_rate,
+            lr_scale,
+            scaled_lr,
+            sample_ratio,
         )
         trainer_config = dataclasses.replace(trainer_config, learning_rate=scaled_lr)
 
@@ -406,9 +425,7 @@ if __name__ == "__main__":
     if kc_epochs_done < trainer_config.kc_epochs or trainer_config.retrain:
         # Filter to grammatical sentences only for KC training
         kc_dataset = labeled_dataset.filter_by_grammaticality(label=1)
-        print(
-            f"KC training using {len(kc_dataset)} grammatical sentences (full dataset)"
-        )
+        _view.on_kc_training_info(len(kc_dataset))
 
         kc_trainer = KCTrainer(
             cast(StyleClassifierWithKC, model),
@@ -422,7 +439,7 @@ if __name__ == "__main__":
             on_epoch_end=lambda h: _log_epoch_event(h, "pretrain-kc"),
         )
         if kc_hist.total_loss:
-            print(f"KC Pretraining finished. Final loss: {kc_hist.total_loss[-1]:.4f}")
+            _view.on_kc_training_complete(kc_hist.total_loss[-1])
         # Ensure final state is logged if not already (redundant if using callback)
         # But callback might be skipped if 0 epochs? No, train loop handles it.
 
@@ -452,19 +469,21 @@ if __name__ == "__main__":
         on_epoch_end=lambda h: _log_epoch_event(h, "style"),
     )
     if style_hist.train_loss:
-        print(f"Style Training finished. Final loss: {style_hist.train_loss[-1]:.4f}")
+        _view.on_style_training_complete(style_hist.train_loss[-1])
 
     # _log_epoch_event already logs during callbacks
     style_end = time.perf_counter()
 
     # Test evaluation and model saving
     res = style_trainer.evaluate()
-    print("----------------------------------")
-    print(
-        f"Final Test Results:\n"
-        f"Accuracy: form={res.formality_accuracy:.4f}, gender={res.gender_accuracy:.4f}, gram={res.grammaticality_accuracy:.4f}, register={res.register_accuracy:.4f}"
+    _view.on_final_results(
+        FinalResults(
+            formality_accuracy=res.formality_accuracy,
+            gender_accuracy=res.gender_accuracy,
+            grammaticality_accuracy=res.grammaticality_accuracy,
+            register_accuracy=res.register_accuracy,
+        )
     )
-    print("----------------------------------")
 
     # Save model
     output_dir = locations.get_style_output_dir()
@@ -488,17 +507,10 @@ if __name__ == "__main__":
         output_dir,
         model_config,
     )
-    print(f"Model saved to: {output_dir}")
+    _view.on_model_saved(output_dir)
 
     # Final timing report
-    print("-" * 34)
-    print("Performance Summary:")
-    print("-" * 34)
-    if trainer_config.kc_epochs > 0:
-        # KC timing would need a separate timer to measure accurately
-        pass
-    print(f"  Style Training: {style_end - style_start:.1f}s")
-    print("-" * 34)
+    _view.on_timing_summary(style_end - style_start)
 
     # Auto-generate report and cleanup if profiling was enabled
     # We check environment because arguments might not settle it alone (defaults)

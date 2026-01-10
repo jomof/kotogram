@@ -404,6 +404,42 @@ async def check_trainer_display_hygiene() -> CheckResult:
     return CheckResult("Trainer display hygiene", True, "")
 
 
+async def check_train_style_display_hygiene() -> CheckResult:
+    """
+    Ensure train_style files delegate all display/logging to view classes.
+    Strictly forbids 'print(', 'sys.stdout', and 'sys.stderr'.
+    """
+    target_files = ["train_style", "scripts/train_style.py"]
+    existing_files = [f for f in target_files if os.path.exists(f)]
+
+    if not existing_files:
+        return CheckResult("train_style display hygiene", True, "Skipped (no files found)")
+
+    # Grep for forbidden patterns
+    # -n: line number
+    # -H: filename
+    # -E: extended regex
+    pattern = r"print\(|sys\.stdout|sys\.stderr"
+    files_arg = " ".join(existing_files)
+    cmd = f'grep -nH -E "{pattern}" {files_arg}'
+
+    proc = await asyncio.create_subprocess_shell(
+        cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
+    stdout, _ = await proc.communicate()
+
+    if proc.returncode == 0:
+        # Grep found matches -> Violation
+        msg = (
+            "Display logic found in train_style files. "
+            "Move strictly to train/train_style_view.py.\n"
+            f"Violations:\n{stdout.decode()}"
+        )
+        return CheckResult("train_style display hygiene", False, msg)
+
+    return CheckResult("train_style display hygiene", True, "")
+
+
 async def check_train_style_config_only() -> CheckResult:
     """
     Ensure scripts/train_style.py receives parameters only via --config.
@@ -930,6 +966,7 @@ async def main() -> None:
             check_kotogram_dependencies(),
             check_file_structure(),
             check_trainer_display_hygiene(),
+            check_train_style_display_hygiene(),
             check_train_style_config_only(),
             check_confinement_probe("confine/python-test.json"),
         ]

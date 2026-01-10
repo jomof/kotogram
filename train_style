@@ -41,6 +41,14 @@ from train.config import (
 )
 from train import io as train_io
 from train import paths as train_paths
+from train.train_style_view import (
+    PreprocessingResult,
+    TrainStyleDiagnosticsView,
+    TrainStyleView,
+)
+
+# Global view instance for display output
+_view: TrainStyleView = TrainStyleDiagnosticsView()
 
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -70,29 +78,11 @@ def run_command(cmd: List[str], env: dict, tee_log: Optional[str] = None) -> int
     """Run a command, optionally teeing output to a log file."""
     cwd = PROJECT_ROOT
     if tee_log:
-        # Create parent directory if needed
-        os.makedirs(os.path.dirname(tee_log), exist_ok=True)
-        with open(tee_log, "ab") as log_file:
-            with subprocess.Popen(
-                cmd, env=env, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=0
-            ) as process:
-                if process.stdout is None:
-                    raise RuntimeError("Failed to capture stdout")
-                while True:
-                    # Read chunks to allow real-time progress bar updates without newline buffering issues
-                    chunk = process.stdout.read(4096)
-                    if not chunk:
-                        break
-                    sys.stdout.buffer.write(chunk)
-                    sys.stdout.flush()
-                    log_file.write(chunk)
-                    log_file.flush()
-
-                process.wait()
-                return process.returncode
-    else:
-        result = subprocess.run(cmd, env=env, cwd=cwd, check=False)
-        return result.returncode
+        # Use utility function for binary passthrough
+        from train.subprocess_io import run_command_with_tee
+        return run_command_with_tee(cmd, env, cwd, tee_log)
+    result = subprocess.run(cmd, env=env, cwd=cwd, check=False)
+    return result.returncode
 
 
 
@@ -103,10 +93,36 @@ def run_command(cmd: List[str], env: dict, tee_log: Optional[str] = None) -> int
 
 
 def handle_special_modes(args: argparse.Namespace) -> Optional[int]:
-    """Handle special modes like --show-config and --report."""
+    """Handle special modes like --show-config, --show-model, and --report."""
     if args.show_config:
-        import json
-        print(json.dumps(TrainerConfig().to_dict(), indent=2))
+        _view.on_config_json(TrainerConfig().to_dict())
+        return 0
+
+    if args.show_model:
+        # Build model and show architecture report
+        from kotogram.model import StyleClassifier
+        from train.architecture_report import generate_architecture_report
+
+        # Try to load real vocab sizes from tokenizer if available
+        tokenizer_path = os.path.join(locations.get_style_output_dir(), "tokenizer.json")
+        if os.path.exists(tokenizer_path):
+            tokenizer = Tokenizer.load(tokenizer_path)
+            vocab_sizes = tokenizer.get_vocab_sizes()
+        else:
+            # Fall back to default vocab sizes for architecture visualization
+            vocab_sizes = {
+                "pos": 100,
+                "pos_detail_1": 100,
+                "pos_detail_2": 100,
+                "pos_detail_3": 100,
+                "conjugated_type": 100,
+                "reading_gram": 16384,
+            }
+
+        config = ModelConfig(vocab_sizes=vocab_sizes)
+        model = StyleClassifier(config)
+        report = generate_architecture_report(model)
+        _view.on_architecture_report(report)
         return 0
 
     if args.report:
@@ -127,11 +143,9 @@ def run_preprocessing(
     skip_label = False
     if os.path.exists(offsets_bin) and not args.force_relabel:
         skip_label = True
-        print("Using cached labels (V2 Binary)")
+        _view.on_preprocessing_cached()
 
-    print("=" * 46)
-    print("Running Preprocessing Phase...")
-    print("=" * 46)
+    _view.on_preprocessing_start()
 
     t_label_start = time.perf_counter()
 
@@ -140,9 +154,9 @@ def run_preprocessing(
         corpus_db_path = os.path.join(data_dir, "corpus.db")
 
         if not os.path.exists(corpus_db_path):
-            print(f"ERROR: corpus.db not found at {corpus_db_path}.", file=sys.stderr)
-            print("train_style now requires corpus.db for labeling.", file=sys.stderr)
-            print("Please run 'curate drink' to generate the database.", file=sys.stderr)
+            _view.on_preprocessing_error(f"corpus.db not found at {corpus_db_path}.")
+            _view.on_preprocessing_error("train_style now requires corpus.db for labeling.")
+            _view.on_preprocessing_error("Please run 'curate drink' to generate the database.")
             return False
 
         label_cmd = [
@@ -158,23 +172,24 @@ def run_preprocessing(
 
         # Legacy pattern arguments are dropped as per user request ("Don't fall back")
 
-        print("Executing preprocessing script (Source: corpus.db)...")
+        _view.on_preprocessing_db_source()
         ret = run_command(label_cmd, env)
-        print(f"Preprocessing script took {time.perf_counter() - t_label_start:.1f}s")
+        duration = time.perf_counter() - t_label_start
         if ret != 0:
-            print("Preprocessing failed!", file=sys.stderr)
+            _view.on_preprocessing_error("Preprocessing failed!")
             return False
     else:
-        print(
-            f"Preprocessing skipped (using cached labels). Took {time.perf_counter() - t_label_start:.1f}s"
-        )
+        duration = time.perf_counter() - t_label_start
 
     # Report size if possible
+    dataset_size = 0
     if os.path.exists(offsets_bin):
         sz = os.path.getsize(offsets_bin)
-        count = sz // 4 - 1
-        print(f"Dataset size: {count} samples")
-    print("Preprocessing complete.")
+        dataset_size = sz // 4 - 1
+
+    _view.on_preprocessing_complete(
+        PreprocessingResult(dataset_size=dataset_size, cached=skip_label, duration_s=duration)
+    )
     return True
 
 
@@ -266,14 +281,14 @@ def generate_and_save_config(
         # Always overwrite from cache (latest labels) to ensure consistency
         import shutil
         shutil.copy2(tokenizer_path_cache, tokenizer_path_final)
-        print(f"Staged tokenizer to {tokenizer_path_final}")
+        _view.on_tokenizer_staged(tokenizer_path_final)
     if not os.path.exists(tokenizer_path_final):
         # If no cache and no existing final tokenizer, create a fresh one (e.g. first run)
-        print(f"Creating fresh tokenizer at {tokenizer_path_final}")
+        _view.on_tokenizer_created(tokenizer_path_final)
         train_io.save_tokenizer(Tokenizer(), tokenizer_path_final)
 
     # Load strictly from the final location
-    print(f"Loaded tokenizer from {tokenizer_path_final}")
+    _view.on_tokenizer_loaded(tokenizer_path_final)
     tokenizer = Tokenizer.load(tokenizer_path_final)
 
     # Define KC target specs (Handled dynamically by inner script)
@@ -282,7 +297,7 @@ def generate_and_save_config(
     model_config = None  # type: ignore # Fix Pylint E0606
     loaded_trainer_config = None
     if should_resume and os.path.exists(config_path):
-        print(f"Resuming: Loading ModelConfig from {config_path}")
+        _view.on_config_resuming(config_path)
         model_config, loaded_trainer_config = TrainerConfig.load_config(config_path)
         # KC is always enabled; no override needed
         config_loaded = True
@@ -322,7 +337,7 @@ def generate_and_save_config(
     combined_config["trainer"] = trainer_config.to_dict()
 
     if args.show_config:
-        print(json.dumps(trainer_config.to_dict(), indent=2))
+        _view.on_config_json(trainer_config.to_dict())
         return ""
 
     new_config_json = json.dumps(combined_config, indent=2)
@@ -335,10 +350,9 @@ def generate_and_save_config(
     if write_config:
         with open(config_path, "w", encoding="utf-8") as f:
             f.write(new_config_json)
-        print(f"Orchestrated configuration saved to: {config_path}")
+        _view.on_config_saved(config_path)
     else:
-        print(f"Configuration unchanged: {config_path}")
-    print()
+        _view.on_config_unchanged(config_path)
 
     return config_path
 
@@ -367,7 +381,7 @@ def run_training_phase(
     output_dir = locations.get_style_output_dir()
 
     # Training Phase
-    print("Starting training run...")
+    _view.on_training_start()
 
     # All parameters now passed via config.json
     train_args = [
@@ -383,26 +397,19 @@ def run_training_phase(
     train_cmd = launcher + train_args
     ret = run_command(train_cmd, env, tee_log=training_log)
 
-    print(f"Training run took {time.perf_counter() - t_train_start:.1f}s")
+    duration = time.perf_counter() - t_train_start
+    _view.on_training_duration(duration)
     if ret != 0:
-        print("Training failed!", file=sys.stderr)
+        _view.on_training_error("")
         return ret
 
-    print()
-    print("=" * 46)
-    print("Training complete!")
-    print(f"Model saved to: {output_dir}")
-    print(f"Training log:   {training_log}")
-    print("=" * 46)
-    print()
+    _view.on_training_complete(output_dir, training_log)
     return 0
 
 
 def run_confusion_phase(args: argparse.Namespace, env: dict, config_path: str) -> int:
     """Run confusion matrix evaluation."""
-    print("=" * 46)
-    print("Running Confusion Matrix Evaluation...")
-    print("=" * 46)
+    _view.on_confusion_start()
     t_confusion_start = time.perf_counter()
     confusion_cmd = [
         sys.executable,
@@ -414,7 +421,7 @@ def run_confusion_phase(args: argparse.Namespace, env: dict, config_path: str) -
     if args.percent:
         confusion_cmd.extend(["--percent", str(args.percent)])
     ret = run_command(confusion_cmd, env)
-    print(f"Confusion evaluation took {time.perf_counter() - t_confusion_start:.1f}s")
+    _view.on_confusion_complete(time.perf_counter() - t_confusion_start)
     return ret
 
 
@@ -489,6 +496,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument("--label", action="store_true", help="Run ONLY the labeling/preprocessing phase")
     parser.add_argument("--force-relabel", action="store_true", help="Force re-running labeling phase")
     parser.add_argument("--show-config", action="store_true", help="Print configuration as JSON and exit")
+    parser.add_argument("--show-model", action="store_true", help="Show model architecture and exit")
 
     # Data sampling
     parser.add_argument("--percent", type=float, default=None, help="Percentage of data to use (1-100)")
@@ -516,50 +524,35 @@ def print_training_banner(
     if args.show_config:
         return
 
-    print("=" * 56)
-    print("Style Classifier Training (Formality + Gender + Grammaticality)")
-    print("=" * 56)
-
-    # We now strictly use corpus.db, so just print that.
-    # Or resolve path if needed for clarity.
+    # Resolve paths for banner
     data_dir = train_paths.get_data_dir()
     corpus_db = os.path.join(data_dir, "corpus.db")
-    print(f"Source Data:    {corpus_db}")
 
-    print(f"Output:         {output_dir}")
-    if args.epochs is not None:
-        print(f"Epochs:         {args.epochs}")
-    else:
-        print("Epochs:         (default or restored from checkpoint)")
-    print(f"Learning rate:  {args.learning_rate}")
-    print(f"Model dim:      {args.embed_dim}")
-    print(f"Hidden dim:     {args.hidden_dim}")
-    print(f"Num layers:     {args.num_layers}")
-    print(f"Num heads:      {args.num_heads}")
-    print(f"Formality wt:   {args.formality_weight}")
-    print(f"Gender wt:      {args.gender_weight}")
-    print(f"Grammatic wt:   {args.grammaticality_weight}")
-    if args.kc_epochs is not None:
-        print(f"KC pretrain:    {args.kc_epochs} epochs")
-        print(f"KC K:           {args.kc_k}")
-        print(f"KC Top-k:       {args.kc_topk}")
-        freeze_str = str(args.kc_freeze_encoder_epochs) if args.kc_freeze_encoder_epochs is not None else "(default)"
-        print(f"KC Freeze:      {freeze_str}")
-        sparsity_str = str(args.kc_sparsity_weight) if args.kc_sparsity_weight is not None else f"(default: {KCConfig().sparsity_weight})"
-        print(f"KC Sparsity:    {sparsity_str}")
-    else:
-        print("KC pretrain:    (default/saved)")
+    freeze_str = str(args.kc_freeze_encoder_epochs) if args.kc_freeze_encoder_epochs is not None else "(default)"
+    sparsity_str = str(args.kc_sparsity_weight) if args.kc_sparsity_weight is not None else f"(default: {KCConfig().sparsity_weight})"
 
-    if args.retrain:
-        print("Retrain:        from scratch using parameters from checkpoint")
-    if args.confusion:
-        print("Action:         Print confusion matrices (no training)")
-    if args.label:
-        print("Action:         Preprocessing/Labeling only")
-    if args.percent:
-        print(f"Data usage:     {args.percent}%")
-    print("=" * 46)
-    print()
+    _view.on_config_banner(
+        corpus_db=corpus_db,
+        output_dir=output_dir,
+        epochs=args.epochs,
+        learning_rate=args.learning_rate,
+        embed_dim=args.embed_dim,
+        hidden_dim=args.hidden_dim,
+        num_layers=args.num_layers,
+        num_heads=args.num_heads,
+        formality_weight=args.formality_weight,
+        gender_weight=args.gender_weight,
+        grammaticality_weight=args.grammaticality_weight,
+        kc_epochs=args.kc_epochs,
+        kc_k=args.kc_k,
+        kc_topk=args.kc_topk,
+        kc_freeze_str=freeze_str,
+        kc_sparsity_str=sparsity_str,
+        retrain=args.retrain,
+        confusion_only=args.confusion,
+        label_only=args.label,
+        percent=args.percent,
+    )
 
 
 # pylint: disable=too-many-return-statements
@@ -605,7 +598,7 @@ def main() -> int:
             profile_dir = p_dir
             os.makedirs(profile_dir, exist_ok=True)
             if not args.show_config:
-                print(f"Profiling enabled. Results will be written to: {profile_dir}")
+                _view.on_profiling_enabled(profile_dir)
 
     # Get paths from locations module
     # Get paths from locations module
@@ -634,7 +627,8 @@ def main() -> int:
     if not args.retrain:
         if os.path.exists(checkpoint_path) or os.path.exists(kc_checkpoint_path):
             should_resume = True
-            print(f"Auto-resume enabled (found checkpoint: {checkpoint_path if os.path.exists(checkpoint_path) else kc_checkpoint_path})")
+            found_ckpt = checkpoint_path if os.path.exists(checkpoint_path) else kc_checkpoint_path
+            _view.on_auto_resume(found_ckpt)
 
     # Determine process count and launcher
     num_devices, device_type = get_device_info()
@@ -665,23 +659,19 @@ def main() -> int:
     grad_accum_steps = max(grad_accum_steps, 1)
 
     # Print effective configuration
-    print("-" * 46)
-    print("Effective Training Configuration:")
-    print("-" * 46)
-    print(f"  Devices:          {num_devices} ({device_type})")
-    print(f"  Micro batch:      {micro_batch_size}")
-    print(f"  Grad accum:       {grad_accum_steps}")
-    print(f"  Effective batch:  {micro_batch_size * grad_accum_steps * num_devices}")
-    print(f"  Launcher:         {' '.join(launcher)}")
     freeze_str = str(args.kc_freeze_encoder_epochs) if args.kc_freeze_encoder_epochs is not None else "(default)"
-    if args.kc_epochs is not None:
-        print(f"  KC Epochs:        {args.kc_epochs} (freeze: {freeze_str})")
-        print(f"  KC Vocab (K):     {args.kc_k}")
-        print(f"  KC Top-k:         {args.kc_topk}")
-    else:
-        print(f"  KC Epochs:        (default/saved) (freeze: {freeze_str})")
-    print("-" * 46)
-    print()
+    _view.on_effective_config(
+        num_devices=num_devices,
+        device_type=device_type,
+        micro_batch=micro_batch_size,
+        grad_accum=grad_accum_steps,
+        effective_batch=micro_batch_size * grad_accum_steps * num_devices,
+        launcher=" ".join(launcher),
+        kc_epochs=args.kc_epochs,
+        kc_freeze_str=freeze_str,
+        kc_k=args.kc_k,
+        kc_topk=args.kc_topk,
+    )
 
     # Phase 1: Preprocessing/Labeling
     if not run_preprocessing(args, env):
@@ -693,7 +683,7 @@ def main() -> int:
         return 0
 
     if args.label:
-        print("Labeling only requested. Exiting.")
+        _view.on_label_only_exit()
         return 0
 
     if args.confusion:
@@ -710,10 +700,10 @@ def main() -> int:
 
     # Phase 4: Confusion evaluation (after training)
     if not args.no_confusion:
-        print("Generating confusion report...")
+        _view.on_confusion_generate()
         run_confusion_phase(args, env, config_path)
     else:
-        print("Skipping confusion report (--no-confusion)")
+        _view.on_confusion_skip()
 
     return 0
 

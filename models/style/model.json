@@ -5,7 +5,7 @@
     "pos_detail_2": 12,
     "pos_detail_3": 6,
     "conjugated_type": 89,
-    "reading_gram": 751
+    "reading_gram": 8340
   },
   "num_formality_pragmatic_classes": 2,
   "num_gender_pragmatic_classes": 2,
@@ -28,5 +28,10 @@
   "pooling": "cls",
   "kc_vocab_size": 1024,
   "kc_topk": 8,
-  "kc_temperature": 1.0
+  "kc_temperature": 1.0,
+  "kc_alpha_short": 0.4,
+  "kc_alpha_long": 0.55,
+  "kc_long_threshold": 20,
+  "kc_min_k": 2,
+  "kc_max_k_long": 16
 }
