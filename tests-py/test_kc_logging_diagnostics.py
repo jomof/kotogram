@@ -234,10 +234,15 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
         self.assertRegex(output, r"1-3\s+1\s+2\.0")
         self.assertRegex(output, r"8-15\s+1\s+10\.0")
 
-        # Verify Block 2 Activation
-        self.assertRegex(output, r"Act: AvgProb=.*PMax:")
-        self.assertRegex(output, r"Sat: 95=")
-        self.assertRegex(output, r"SumK: P50=")
+        # Verify Block 2 Activation stats are now in loss table rows
+        # AvgP is on diversity line
+        self.assertRegex(output, r"diversity.*AvgP=")
+        # PMax is on collapse line
+        self.assertRegex(output, r"collapse.*PMax=")
+        # sparsity shows density and K
+        self.assertRegex(output, r"sparsity.*Dens=.*K=")
+        # saturation shows sc and pen
+        self.assertRegex(output, r"saturation.*sc=.*pen=")
 
         # Verify Block 3 Families
         # "Family ... Loss ... Pos% ..."

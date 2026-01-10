@@ -200,14 +200,13 @@ def calculate_detailed_size(config_dict: Mapping[str, Any]) -> Dict[str, int]:
     head_params += mlp_params(num_gram)
     head_params += mlp_params(num_reg)
 
-    # KCHead: 2-layer MLP (d_model → hidden_dim → kc_vocab_size) + LayerNorm
-    # hidden: d_model * hidden_dim + hidden_dim (weights + bias)
-    # output: hidden_dim * kc_vocab_size + kc_vocab_size (weights + bias)
-    # layer_norm: 2 * kc_vocab_size (weight + bias)
+    # KCHead: Single linear projection (d_model → kc_vocab_size) + LayerNorm
+    # Architecture matches kotogram/model.py KCHead:
+    #   self.output = nn.Linear(config.d_model, config.kc_vocab_size)
+    #   self.layer_norm = nn.LayerNorm(config.kc_vocab_size)
     kc_head_params = (
-        (d_model * hidden_dim + hidden_dim)  # hidden layer
-        + (hidden_dim * kc_vocab_size + kc_vocab_size)  # output layer
-        + (2 * kc_vocab_size)  # layer norm
+        (d_model * kc_vocab_size + kc_vocab_size)  # output layer: weights + bias
+        + (2 * kc_vocab_size)  # layer norm: weight + bias
     )
     pos_encoding_buffer = 512 * d_model
 

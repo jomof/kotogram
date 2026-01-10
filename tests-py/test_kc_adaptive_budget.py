@@ -197,11 +197,11 @@ class TestKCAdaptiveBudget(unittest.TestCase):
         self.assertIsNotNone(k_budget)
 
         # Expected k:
-        # 0: len=2. alpha=0.4. ceil=1. min_k=2. -> 2
-        # 1: len=10. alpha=0.4. ceil=4. -> 4
-        # 2: len=30. alpha=0.55. ceil=17. max_k=16. -> 16
+        # 0: len=2. alpha=0.4. ceil=1. +3 bonus = 4. clamp [2,8] -> 4
+        # 1: len=10. alpha=0.4. ceil=4. +3 bonus = 7. clamp [2,8] -> 7
+        # 2: len=30. alpha=0.55. ceil=17. no bonus. clamp [2,16] -> 16
 
-        expected = torch.tensor([2, 4, 16], dtype=torch.long)
+        expected = torch.tensor([4, 7, 16], dtype=torch.long)
         self.assertTrue(
             torch.equal(k_budget, expected), f"Expected {expected}, got {k_budget}"
         )

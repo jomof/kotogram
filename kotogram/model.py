@@ -174,6 +174,62 @@ class ModelConfig:
         return cls(**{k: v for k, v in d.items() if k in valid_fields})
 
 
+def compute_k_budget(  # pylint: disable=too-many-locals
+    content_len: torch.Tensor,
+    config: ModelConfig,
+    device: torch.device,
+) -> torch.Tensor:
+    """Compute k_budget based on sentence length and model config.
+
+    This function centralizes the adaptive k_budget logic used in both training
+    (kc_trainer.py) and inference (model.py) to ensure parity.
+
+    Args:
+        content_len: (B,) tensor of sentence lengths (typically attention_mask.sum(dim=1))
+        config: ModelConfig containing k_budget parameters
+        device: Device to create tensors on
+
+    Returns:
+        k_budget: (B,) long tensor of per-sample k budgets
+    """
+    alpha_short = float(getattr(config, "kc_alpha_short", 0.40))
+    alpha_long = float(getattr(config, "kc_alpha_long", 0.55))
+    long_threshold = float(getattr(config, "kc_long_threshold", 20))
+    min_k = float(getattr(config, "kc_min_k", 2))
+    max_k_long_cfg = float(getattr(config, "kc_max_k_long", 16))
+    kc_topk = float(getattr(config, "kc_topk", 8))
+
+    is_long = content_len >= long_threshold
+    alpha = torch.where(
+        is_long,
+        torch.tensor(alpha_long, device=device),
+        torch.tensor(alpha_short, device=device),
+    )
+    k_raw = torch.ceil(alpha * content_len)
+
+    # Add k_bonus of 3 for short sentences (bins 1-3, 4-7, 8-15)
+    # to reserve headroom for high-K samples
+    k_bonus = torch.where(
+        content_len <= 15,
+        torch.tensor(3.0, device=device),
+        torch.tensor(0.0, device=device),
+    )
+    k_raw = k_raw + k_bonus
+
+    max_k_short = kc_topk
+    max_k_long = min(max_k_long_cfg, max(max_k_short, max_k_short * 2))
+
+    max_k_t = torch.where(
+        is_long,
+        torch.tensor(max_k_long, device=device),
+        torch.tensor(max_k_short, device=device),
+    )
+
+    k_budget = k_raw.clamp(min=torch.tensor(min_k, device=device), max=max_k_t).long()
+
+    return k_budget
+
+
 class PositionalEncoding(nn.Module):
     """Sinusoidal positional encoding for Transformer."""
 
@@ -263,31 +319,23 @@ class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
 class KCHead(nn.Module):  # type: ignore[misc]
     """Head for predicting Knowledge Components (sparse concepts).
 
-    Architecture: 2-layer MLP with GELU activation.
-    - Hidden layer: d_model -> hidden_dim (512)
-    - Output layer: hidden_dim -> kc_vocab_size
+    Architecture: Single linear projection with LayerNorm.
+    - Output layer: d_model -> kc_vocab_size
     - LayerNorm on output
     """
 
     def __init__(self, config: ModelConfig):
         super().__init__()
         self.config = config
-        # 2-layer MLP for richer representation capacity
-        self.hidden = nn.Linear(config.d_model, config.hidden_dim)
-        self.activation = nn.GELU()
-        self.output = nn.Linear(config.hidden_dim, config.kc_vocab_size)
+        self.output = nn.Linear(config.d_model, config.kc_vocab_size)
         self.layer_norm = nn.LayerNorm(config.kc_vocab_size)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = self.hidden(x)
-        x = self.activation(x)
         x = self.output(x)
         x = self.layer_norm(x)
         return cast(torch.Tensor, x)
 
     def forward_with_raw(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
-        x = self.hidden(x)
-        x = self.activation(x)
         raw = self.output(x)
         out = self.layer_norm(raw)
         return raw, cast(torch.Tensor, out)
@@ -511,27 +559,9 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             k_budgets = [min(topk, kc_vocab_size)] * batch_size
         else:
             content_lens = attention_mask.sum(dim=-1).float()  # (B,)
-
-            # Read k_budget params from config (saved during training)
-            kc_topk = int(getattr(self.config, "kc_topk", 8))
-            alpha_short = getattr(self.config, "kc_alpha_short", 0.40)
-            alpha_long = getattr(self.config, "kc_alpha_long", 0.55)
-            long_threshold = getattr(self.config, "kc_long_threshold", 20)
-            min_k = getattr(self.config, "kc_min_k", 2)
-            max_k_long = getattr(self.config, "kc_max_k_long", 16)
-
-            k_budgets = []
-            for i in range(batch_size):
-                content_len = content_lens[i].item()
-                is_long = content_len >= long_threshold
-                alpha = alpha_long if is_long else alpha_short
-                max_k = (
-                    min(float(max_k_long), kc_topk * 2) if is_long else float(kc_topk)
-                )
-
-                k_raw = math.ceil(alpha * content_len)
-                k = int(max(min_k, min(k_raw, max_k, kc_vocab_size)))
-                k_budgets.append(k)
+            device = probs.device
+            k_budget_t = compute_k_budget(content_lens, self.config, device)
+            k_budgets = k_budget_t.tolist()
 
         results = []
         for i in range(batch_size):
@@ -591,7 +621,6 @@ def load_model(
 
 def load_default_style_model() -> Tuple[StyleClassifier, Tokenizer]:
     """Load the default trained style classification model included in the package."""
-    import importlib.resources
 
     from kotogram import locations
 
@@ -600,22 +629,16 @@ def load_default_style_model() -> Tuple[StyleClassifier, Tokenizer]:
     if os.path.exists(os.path.join(dev_model_dir, "model.pt")):
         return load_model(dev_model_dir)
 
-    if sys.version_info >= (3, 9):
-        from importlib.resources import as_file, files
+    from importlib.resources import as_file, files
 
-        ref = files("kotogram.model_data").joinpath("model.pt")
-        with as_file(ref) as model_file:
-            model_dir = os.path.dirname(model_file)
-            return load_model(model_dir)
-    else:
-        with importlib.resources.path("kotogram.model_data", "model.pt") as model_file:
-            model_dir = os.path.dirname(model_file)
-            return load_model(model_dir)
+    ref = files("kotogram.model_data").joinpath("model.pt")
+    with as_file(ref) as model_file:
+        model_dir = os.path.dirname(model_file)
+        return load_model(model_dir)
 
 
 def is_default_style_model_available() -> bool:
     """Check if the default style model is available."""
-    import importlib.util
 
     from kotogram import locations
 

@@ -9,10 +9,10 @@ class TestTrainingResumption(unittest.TestCase):
     def test_combined_resumption_scenarios(self):
         """
         Combines resumption scenarios to save test execution time:
-        1. Style Auto-Resume & Manual Resume
+        1. Style Auto-Resume (default when checkpoint exists)
         2. Config Transition (Style -> KC)
-        3. KC Resumption
-        4. Retrain behavior
+        3. KC Resumption (implicit - no flag needed)
+        4. Retrain behavior (--retrain to start fresh)
         """
         common_args = "--embed-dim 64 --hidden-dim 128 --num-layers 1 --num-heads 2"
 
@@ -41,16 +41,16 @@ class TestTrainingResumption(unittest.TestCase):
             # Config no longer has kc_enabled field
 
             print("\n[UnifiedTest] Part 1: Style Training - Epoch 2 (Auto-Resume)")
-            # 1.B: Train Epoch 2 (Auto-Resume)
+            # 1.B: Train Epoch 2 (Auto-Resume) - resume is default when checkpoint exists
             res = bottle.train_style(f"--epochs 2 --kc-epochs 0 {common_args}")
             bottle.assert_style_epochs_trained([1, 2])
             self.assertIn("Auto-resume enabled", res.stdout)
 
-            print("\n[UnifiedTest] Part 1: Style Training - Epoch 3 (Explicit Resume)")
-            # 1.C: Train Epoch 3 (Explicit Resume)
-            res = bottle.train_style(f"--epochs 3 --resume --kc-epochs 0 {common_args}")
+            print("\n[UnifiedTest] Part 1: Style Training - Epoch 3 (Auto-Resume)")
+            # 1.C: Train Epoch 3 (Auto-Resume continues) - no explicit flag needed
+            res = bottle.train_style(f"--epochs 3 --kc-epochs 0 {common_args}")
             bottle.assert_style_epochs_trained([1, 2, 3])
-            self.assertIn("Resume:         from checkpoint", res.stdout)
+            self.assertIn("Auto-resume enabled", res.stdout)
 
             # =========================================================================
             # PART 2: Config Transition & KC Pretrain (From test_kc_pretrain.py)
@@ -73,10 +73,19 @@ class TestTrainingResumption(unittest.TestCase):
             # =========================================================================
             # PART 3: KC Resumption (From test_resume_pretrain.py)
             # =========================================================================
-            print("\n[UnifiedTest] Part 3: KC Resumption - Epoch 2")
+            # 3.A: IMPLICIT KC Resume (NO --resume flag)
+            # This is the critical regression test: running with higher --kc-epochs
+            # WITHOUT explicit --resume should still resume from KC checkpoint, not restart.
+            print("\n[UnifiedTest] Part 3A: KC Implicit Resume - Epoch 2 (NO --resume)")
 
-            res = bottle.train_style(f"--resume --kc-epochs 2 --epochs 3 {common_args}")
+            res = bottle.train_style(f"--kc-epochs 2 --epochs 3 {common_args}")
+            # Must train epoch 2, not restart at epoch 1
             bottle.assert_kc_epochs_trained([1, 2])
+
+            # 3.B: KC Resume Epoch 3 (implicit, no flag needed)
+            print("\n[UnifiedTest] Part 3B: KC Resume - Epoch 3")
+            res = bottle.train_style(f"--kc-epochs 3 --epochs 3 {common_args}")
+            bottle.assert_kc_epochs_trained([1, 2, 3])
 
             # =========================================================================
             # PART 4: Retrain Behavior (From test_auto_resume.py)

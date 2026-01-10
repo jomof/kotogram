@@ -213,6 +213,7 @@ class RunningLossComponents:
     lb: float = 0.0
     collapse: float = 0.0
     sparsity: float = 0.0
+    saturation: float = 0.0  # Anti-saturation penalty
     formality: float = 0.0  # Prior KC cross-entropy loss (KC0-3)
     gender: float = 0.0  # Prior KC cross-entropy loss (KC4-5)
     register: float = 0.0  # Prior KC BCE multi-label loss (KC6-18)
@@ -233,6 +234,7 @@ class RunningLossComponents:
             lb=self.lb + other.lb,
             collapse=self.collapse + other.collapse,
             sparsity=self.sparsity + other.sparsity,
+            saturation=self.saturation + other.saturation,
             formality=self.formality + other.formality,
             gender=self.gender + other.gender,
             register=self.register + other.register,
@@ -377,13 +379,13 @@ class KCDiagnosticReport:
 class KcLossWeights:
     """Weights used for each loss component (for display scaling).
 
-    Note: div/lb/collapse/sparsity are stored ALREADY WEIGHTED in RunningLossComponents,
-    so their display weight should always be 1.0. Only struct/gap/prior losses are raw.
+    Note: All losses except struct/gap are stored ALREADY WEIGHTED in
+    RunningLossComponents, so their display weight is 1.0. Full formula:
+        lc.<component> * w.<component> / n_batches
     """
 
     struct: float = 1.0  # Raw, normalized by num_struct
     gap: float = 1.0  # Raw, normalized by num_struct
-    prior: float = 0.2  # Weight for formality/gender/register (raw losses)
     # These are stored ALREADY WEIGHTED, so display weight is 1.0:
     div: float = 1.0  # Already weighted in RunningLossComponents
     lb: float = 1.0  # Already weighted in RunningLossComponents

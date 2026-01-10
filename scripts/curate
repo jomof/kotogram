@@ -1289,6 +1289,212 @@ def curate_kc_lint(db_path: str):
             console.print(f"        {truncated}")
 
 
+# ============================================================================
+# KC Hash Analysis
+# ============================================================================
+
+_KC_HASH_PARSER = None
+_KC_HASH_TOKENIZER = None
+
+
+def _init_kc_hash_worker(vocab_path: str):
+    """Initialize worker for KC hash analysis."""
+    global _KC_HASH_PARSER, _KC_HASH_TOKENIZER
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    from kotogram.tokenizer import Tokenizer
+
+    _KC_HASH_PARSER = SudachiJapaneseParser()
+    _KC_HASH_TOKENIZER = Tokenizer.load(vocab_path)
+
+
+def _compute_sentence_hashes(sentence: str) -> Dict[str, List[Tuple[Tuple[int, ...], int]]]:
+    """
+    Compute ngrams and their hashes for a sentence.
+    Returns dict: family_name -> list of (ngram_tuple, hash_value).
+    """
+    from kotogram.japanese_parser import KotogramFormat
+    from train.kc import (
+        KC_NGRAM_ORDER,
+        FAMILY_FEATURES,
+        KcFamilyId,
+        SPECIAL_TOKEN_IDS,
+        _salt,
+        get_family_bucket_size,
+        stable_hash_ints,
+    )
+
+    kotogram = _KC_HASH_PARSER.japanese_to_kotogram(sentence, KotogramFormat.TRAINING_MASK)
+    encoded = _KC_HASH_TOKENIZER.encode(kotogram)
+
+    result: Dict[str, List[Tuple[Tuple[int, ...], int]]] = {}
+
+    # Regular ngram families
+    ngram_families = [
+        KcFamilyId.NGRAM_POS,
+        KcFamilyId.NGRAM_POS_DETAIL_1,
+        KcFamilyId.NGRAM_CONJUGATED_TYPE,
+        KcFamilyId.NGRAM_READING_GRAM,
+    ]
+
+    for family_id in ngram_families:
+        field = FAMILY_FEATURES[family_id]
+        if field in encoded:
+            ids = [v for v in encoded[field] if v not in SPECIAL_TOKEN_IDS]
+            salt = _salt(family_id)
+            family_hashes = []
+            bucket_size = get_family_bucket_size(family_id)
+            for n_val in range(2, KC_NGRAM_ORDER + 1):
+                if len(ids) >= n_val:
+                    for i in range(len(ids) - n_val + 1):
+                        ngram = tuple(ids[i : i + n_val])
+                        h = stable_hash_ints([salt, *ngram]) % bucket_size
+                        family_hashes.append((ngram, h))
+            if family_hashes:
+                result[family_id.name] = family_hashes
+
+    # Tail ngram families
+    tail_ngram_families = [
+        KcFamilyId.TAIL_NGRAM_POS,
+        KcFamilyId.TAIL_NGRAM_POS_DETAIL_1,
+        KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
+        KcFamilyId.TAIL_NGRAM_READING_GRAM,
+    ]
+
+    from train.kc import KC_POS_BIASED_WINDOW
+
+    for family_id in tail_ngram_families:
+        field = FAMILY_FEATURES[family_id]
+        if field in encoded:
+            ids = encoded[field]
+            tail_ids = ids[-KC_POS_BIASED_WINDOW:] if len(ids) > 0 else []
+            tail_ids = [v for v in tail_ids if v not in SPECIAL_TOKEN_IDS]
+            if not tail_ids:
+                continue
+            salt = _salt(family_id)
+            family_hashes = []
+            bucket_size = get_family_bucket_size(family_id)
+            for n_val in range(2, KC_NGRAM_ORDER + 1):
+                if len(tail_ids) >= n_val:
+                    for i in range(len(tail_ids) - n_val + 1):
+                        ngram = tuple(tail_ids[i : i + n_val])
+                        h = stable_hash_ints([salt, *ngram]) % bucket_size
+                        family_hashes.append((ngram, h))
+            if family_hashes:
+                result[family_id.name] = family_hashes
+
+    return result
+
+
+def curate_kc_hash(db_path: str):
+    """
+    Analyze hash collision frequency for sparse KC families.
+
+    Reports collision rates and bucket utilization per ngram family,
+    and suggests minimum safe bucket sizes.
+    """
+    import os
+    from collections import defaultdict
+
+    from rich.table import Table
+
+    from train import paths
+    from train.kc import FAMILY_BUCKET_SIZES, KcFamilyId, get_family_bucket_size
+
+    # Find tokenizer
+    vocab_path = os.path.join(paths.get_style_dataset_cache_dir(), "vocab.json")
+    if not os.path.exists(vocab_path):
+        console.print(f"[red]Vocab not found at {vocab_path}. Run 'bin/train_style --label' first.[/red]")
+        return
+
+    # Load grammatical sentences from corpus
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    cursor.execute("SELECT sentence FROM corpus WHERE grammatic = 1")
+    sentences = [row[0] for row in cursor.fetchall()]
+    conn.close()
+
+    console.print(f"[bold]KC Hash Analysis:[/bold] Scanning {len(sentences):,} grammatical sentences...")
+
+    # Aggregate: family -> hash -> set of unique ngrams
+    family_hash_to_ngrams: Dict[str, Dict[int, set]] = defaultdict(lambda: defaultdict(set))
+
+    # Run parallel scan
+    num_workers = mp.cpu_count()
+
+    with mp.Pool(
+        num_workers,
+        initializer=_init_kc_hash_worker,
+        initargs=(vocab_path,),
+    ) as pool:
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(),
+            MofNCompleteColumn(),
+            console=console,
+        ) as progress:
+            task = progress.add_task("Computing hashes...", total=len(sentences))
+
+            for sent_result in pool.imap_unordered(_compute_sentence_hashes, sentences, chunksize=500):
+                progress.advance(task)
+                for family_name, ngram_hash_list in sent_result.items():
+                    for ngram, h in ngram_hash_list:
+                        family_hash_to_ngrams[family_name][h].add(ngram)
+
+    # Compute statistics
+    console.print()
+    table = Table(title="KC Hash Collision Analysis", show_header=True, header_style="bold cyan")
+    table.add_column("Family", style="dim")
+    table.add_column("Ngrams", justify="right")
+    table.add_column("BktSz", justify="right")
+    table.add_column("Used", justify="right")
+    table.add_column("Coll", justify="right")
+    table.add_column("Exp", justify="right")
+    table.add_column("Rate", justify="right")
+    table.add_column("Max", justify="right")
+
+    for family_name in sorted(family_hash_to_ngrams.keys()):
+        hash_to_ngrams = family_hash_to_ngrams[family_name]
+
+        # Get per-family bucket size
+        family_id = KcFamilyId[family_name]
+        bucket_count = get_family_bucket_size(family_id)
+
+        # Count stats
+        used_buckets = len(hash_to_ngrams)
+        total_ngrams = sum(len(ngrams) for ngrams in hash_to_ngrams.values())
+        collisions = sum(len(ngrams) - 1 for ngrams in hash_to_ngrams.values() if len(ngrams) > 1)
+        max_bucket = max(len(ngrams) for ngrams in hash_to_ngrams.values()) if hash_to_ngrams else 0
+
+        collision_rate = collisions / total_ngrams if total_ngrams > 0 else 0.0
+
+        # Expected collisions:
+        # - When n > B: pigeonhole principle (n - B)
+        # - When n <= B: birthday paradox (n²/2B)
+        if total_ngrams > bucket_count:
+            expected_collisions = total_ngrams - bucket_count
+        else:
+            expected_collisions = (total_ngrams * total_ngrams) / (2 * bucket_count)
+
+        rate_color = "green" if collision_rate < 0.01 else "yellow" if collision_rate < 0.05 else "red"
+
+        table.add_row(
+            family_name,
+            f"{total_ngrams:,}",
+            f"{bucket_count:,}",
+            f"{used_buckets:,}",
+            f"{collisions:,}",
+            f"{expected_collisions:,.0f}",
+            f"[{rate_color}]{collision_rate:.2%}[/{rate_color}]",
+            f"{max_bucket:,}",
+        )
+
+    console.print(table)
+
+    # Summary
+    console.print()
+
+
 def curate_contrast_sentences(sentences: List[str]):
     """
     Compare KCs of multiple sentences.
@@ -1632,6 +1838,10 @@ def main():
     parser_kc_lint = subparsers.add_parser("kc-lint", help="Scan corpus for KC issues")
     parser_kc_lint.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
 
+    # KC Hash command
+    parser_kc_hash = subparsers.add_parser("kc-hash", help="Analyze hash collisions for sparse KC families")
+    parser_kc_hash.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
+
     args = parser.parse_args()
     
     if args.command == "drink":
@@ -1655,6 +1865,8 @@ def main():
         curate_kc_families(args.sentence)
     elif args.command == "kc-lint":
         curate_kc_lint(args.db_path)
+    elif args.command == "kc-hash":
+        curate_kc_hash(args.db_path)
 
 
 if __name__ == "__main__":

@@ -101,7 +101,8 @@ class TestTrainStyleScript(unittest.TestCase):
             bottle.snapshot("after_epoch_1")
 
             # Step 4: Resume training with --epochs 2 (should train only style epoch 2)
-            bottle.train_style("--resume --epochs 2")
+            # Resume is now the default behavior when checkpoints exist
+            bottle.train_style("--epochs 2")
 
             # Verify only style epoch 2 was trained. KC history remains [1, 2].
             bottle.assert_kc_epochs_trained([1, 2])

@@ -63,8 +63,8 @@ class TestKCLosses(KCTrainerTestBase):
         self.model.config.kc_topk = 8
 
         res = self.trainer.train_epoch(epoch=0)
-        # k_i = ceil(0.4 * 5) = 2. spar = 8.0 / 2 = 4.0.
-        self.assertAlmostEqual(res.avg_sparsity, 4.0, places=4)
+        # k_i = ceil(0.4 * 5) + 3 (k_bonus for short) = 5. spar = 8.0 / 5 = 1.6.
+        self.assertAlmostEqual(res.avg_sparsity, 1.6, places=4)
 
 
 if __name__ == "__main__":

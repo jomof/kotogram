@@ -10,6 +10,7 @@ from torch import nn
 from torch.optim import Adam
 from torch.utils.data import DataLoader
 
+from kotogram.model import compute_k_budget
 from train.config import (
     DataLoaderConfig,
     KCConfig,
@@ -308,26 +309,25 @@ class KCTrainer:
 
         # Gap Regularizer: Aggressively push mean(pos) > mean(neg) + target_gap
         # This directly fights ALLNEG by ensuring positive logits are well separated
+        # NOTE: Use mask-weighted means instead of boolean indexing to avoid
+        # variable-sized tensors that can cause shape mismatches during backward.
         gap_weight = 0.5
-        if pos_mask.any() and neg_valid.any():
-            flat_pos = pos_logits[pos_mask]
-            flat_neg = neg_logits[neg_valid.bool()]
+        pos_count = pos_mask.float().sum()
+        neg_count_f = neg_valid.float().sum()
+        if pos_count > 0 and neg_count_f > 0:
+            # Masked mean: sum(x * mask) / sum(mask)
+            mean_pos = (pos_logits * pos_mask.float()).sum() / pos_count
+            mean_neg = (neg_logits * neg_valid.float()).sum() / neg_count_f
+            current_gap = mean_pos - mean_neg
 
-            if flat_pos.numel() > 0 and flat_neg.numel() > 0:
-                mean_pos = flat_pos.mean()
-                mean_neg = flat_neg.mean()
-                current_gap = mean_pos - mean_neg
+            # Target gap of 2.0 logit units (sigmoid diff ~0.46)
+            target_gap = 2.0
 
-                # Target gap of 2.0 logit units (sigmoid diff ~0.46)
-                target_gap = 2.0
-
-                # Hinge + quadratic: penalize gaps below target, quadratic for very small
-                gap_deficit = F.relu(target_gap - current_gap)
-                # Add quadratic term for gaps below 0.5 (more aggressive push)
-                very_small_gap = F.relu(0.5 - current_gap)
-                gap_loss = gap_deficit + 0.5 * very_small_gap * very_small_gap
-            else:
-                gap_loss = torch.tensor(0.0, device=gathered_logits.device)
+            # Hinge + quadratic: penalize gaps below target, quadratic for very small
+            gap_deficit = F.relu(target_gap - current_gap)
+            # Add quadratic term for gaps below 0.5 (more aggressive push)
+            very_small_gap = F.relu(0.5 - current_gap)
+            gap_loss = gap_deficit + 0.5 * very_small_gap * very_small_gap
         else:
             gap_loss = torch.tensor(0.0, device=gathered_logits.device)
 
@@ -821,6 +821,15 @@ class KCTrainer:
             for k, v in kc_targets.items():
                 kc_targets[k] = v.to(self.device)
 
+            # INVARIANT: kc_targets batch dimension must match batch
+            expected_batch_size = batch.attention_mask.size(0)
+            for tgt_key, tgt_val in kc_targets.items():
+                if tgt_val.size(0) != expected_batch_size:
+                    raise ValueError(
+                        f"kc_targets['{tgt_key}'] batch mismatch: "
+                        f"{tgt_val.size(0)} vs expected {expected_batch_size}"
+                    )
+
             if self.config.kc_target_specs and not kc_targets and batch_idx == 0:
                 # One-off safety check (fails fast only on batch 0 to avoid noise if later batches are empty)
                 self.view.on_kc_warning(
@@ -838,34 +847,10 @@ class KCTrainer:
 
             # Dynamic Sizing using k_budget params from model config
             # This ensures training and inference use identical k_budget logic
-            alpha_short = float(getattr(m.config, "kc_alpha_short", 0.40))
-            alpha_long = float(getattr(m.config, "kc_alpha_long", 0.55))
-            long_threshold = float(getattr(m.config, "kc_long_threshold", 20))
-            min_k = float(getattr(m.config, "kc_min_k", 2))
-            max_k_long_cfg = float(getattr(m.config, "kc_max_k_long", 16))
-
-            is_long = content_len >= long_threshold
-            alpha = torch.where(
-                is_long,
-                torch.tensor(alpha_long, device=self.device),
-                torch.tensor(alpha_short, device=self.device),
-            )
-            k_raw = torch.ceil(alpha * content_len)
-
-            max_k_short = float(m.config.kc_topk)
-            max_k_long = min(float(max_k_long_cfg), max(max_k_short, max_k_short * 2))
-
-            max_k_t = torch.where(
-                is_long,
-                torch.tensor(max_k_long, device=self.device),
-                torch.tensor(max_k_short, device=self.device),
-            )
-
-            k_budget_t = k_raw.clamp(
-                min=torch.tensor(float(min_k), device=self.device), max=max_k_t
-            ).long()
+            k_budget_t = compute_k_budget(content_len, m.config, self.device)
 
             # Long sentence mask (>= long_threshold tokens)
+            long_threshold = float(getattr(m.config, "kc_long_threshold", 20))
             long_sentence_mask = content_len >= long_threshold
 
             gumbel_scale = 0.0
@@ -1029,6 +1014,15 @@ class KCTrainer:
             if hasattr(m, "kc_decoders"):
                 outputs["target_logits"] = m.kc_decoders(sparse_clamped)
 
+            # INVARIANT: target_logits batch dimension must match attention_mask
+            target_logits = outputs["target_logits"]
+            for tl_name, tl_tensor in target_logits.items():
+                if tl_tensor.size(0) != expected_batch_size:
+                    raise ValueError(
+                        f"target_logits['{tl_name}'] batch mismatch: "
+                        f"{tl_tensor.size(0)} vs expected {expected_batch_size}"
+                    )
+
             # Update Diagnostic Accumulators
             # k_eff_t = (outputs["sparse_activations"] > 0).float().sum(dim=1).cpu()
             len_t = content_len.detach().cpu().float()
@@ -1037,8 +1031,6 @@ class KCTrainer:
             # all_keff_aligned.extend(k_eff_t.tolist())
 
             # Update kc usage stats
-
-            target_logits = outputs["target_logits"]
 
             if batch_idx == 0:
                 if not self.config.kc_target_specs:
@@ -1104,6 +1096,14 @@ class KCTrainer:
                 if dense_key in kc_targets:
                     targets = kc_targets[dense_key].to(self.device).float()
                     logits_f = logits.float()
+
+                    # INVARIANT: targets and logits must have same shape
+                    if targets.shape != logits_f.shape:
+                        raise ValueError(
+                            f"Shape mismatch for family '{name}': "
+                            f"targets={targets.shape} vs logits={logits_f.shape}. "
+                            f"batch_idx={batch_idx}"
+                        )
 
                     batch_size_f, vocab_size_f = logits_f.shape
                     # Use is_family_sparse to decide path, not vocab size
@@ -1238,6 +1238,7 @@ class KCTrainer:
                             raise ValueError("Family name cannot be empty")
 
                         # Balanced Dense Loss (computed WITH gradients)
+                        # Shape already validated above when logits_f was assigned
                         pos_mask_d = targets > 0.5
                         if pos_mask_d.any():
                             loss_pos_d = F.binary_cross_entropy_with_logits(
@@ -1328,11 +1329,15 @@ class KCTrainer:
                 running_struct_loss += structural_loss.item()
                 running_num_struct_total += 1
             primary_loss = torch.tensor(0.0, device=self.device)
+            gap_loss_tensor = torch.tensor(0.0, device=self.device)
             if num_struct > 0:
                 primary_loss += structural_loss / num_struct
+                gap_loss_tensor = torch.tensor(
+                    batch_gap_loss / num_struct, device=self.device
+                )
 
             loss_primary_val = primary_loss.item()
-            combined_loss = primary_loss.clone()
+            combined_loss = primary_loss.clone() + gap_loss_tensor
 
             if epoch < self.freeze_encoder_epochs:
                 div_weight = self.kc_diversity_weight_frozen
@@ -1596,12 +1601,13 @@ class KCTrainer:
 
                 contrib_val = loss_sat_term.detach().item()
                 sat_contrib_sum += contrib_val
+                loss_sat_val = contrib_val  # Track for loss breakdown
 
                 ratio_val = contrib_val / max(eps, loss_prim_det)
                 sat_contrib_ratio_sum += ratio_val
             else:
                 # Keep alpha for logging even if w=0 (metrics placeholder)
-                pass
+                loss_sat_val = 0.0
 
             spar_w = self.kc_sparsity_weight
             if epoch >= self.freeze_encoder_epochs:
@@ -1647,7 +1653,7 @@ class KCTrainer:
                 fp_penalty = non_target_probs.mean()
                 f_loss_total = f_loss + excl_w * fp_penalty
 
-                loss_formality_val = f_loss_total.item()
+                loss_formality_val = (prior_weight * f_loss_total).item()
                 loss = loss + prior_weight * f_loss_total
 
                 # Accuracy: ALL classes correct (target > 0.5, non-targets < 0.5)
@@ -1681,7 +1687,7 @@ class KCTrainer:
                 fp_penalty = non_target_probs.mean()
                 g_loss_total = g_loss + excl_w * fp_penalty
 
-                loss_gender_val = g_loss_total.item()
+                loss_gender_val = (prior_weight * g_loss_total).item()
                 loss = loss + prior_weight * g_loss_total
 
                 # Accuracy: ALL classes correct (target > 0.5, non-target < 0.5)
@@ -1712,7 +1718,7 @@ class KCTrainer:
                     fp_penalty = fp_probs.mean()
                     r_loss_total = r_loss + excl_w * fp_penalty
 
-                    loss_register_val = r_loss_total.item()
+                    loss_register_val = (prior_weight * r_loss_total).item()
                     loss = loss + prior_weight * r_loss_total
 
                     # Accuracy: all 13 flags correct (sigmoid > 0.5 == target)
@@ -1725,16 +1731,22 @@ class KCTrainer:
 
             loss_spar_val = (spar_w * sparsity_term).item()
 
+            # Scale prior losses by grad_accum_steps to match total_loss calculation
+            # Prior losses are added AFTER combined_loss is divided by gas, then total_loss
+            # multiplies by gas, so prior losses end up scaled by gas.
+            # Saturation is part of combined_loss (already divided by gas), so no scaling.
+            gas = self.config.grad_accum_steps
             current_epoch_comp = {
                 "struct": structural_loss.item(),
                 "gap": batch_gap_loss,
-                "formality": loss_formality_val,
-                "gender": loss_gender_val,
-                "register": loss_register_val,
+                "formality": loss_formality_val * gas,
+                "gender": loss_gender_val * gas,
+                "register": loss_register_val * gas,
                 "div": loss_div_val,
                 "lb": loss_lb_val,
                 "collapse": loss_coll_val,
                 "sparsity": loss_spar_val,
+                "saturation": loss_sat_val,  # Part of combined_loss, no gas scaling
             }
 
             current_comp = RunningLossComponents(
@@ -1753,6 +1765,7 @@ class KCTrainer:
                 lb=current_epoch_comp["lb"],
                 collapse=current_epoch_comp["collapse"],
                 sparsity=current_epoch_comp["sparsity"],
+                saturation=current_epoch_comp["saturation"],
                 formality_correct=form_correct,
                 formality_total=form_total,
                 gender_correct=gend_correct,
