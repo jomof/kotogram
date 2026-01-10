@@ -404,6 +404,69 @@ async def check_trainer_display_hygiene() -> CheckResult:
     return CheckResult("Trainer display hygiene", True, "")
 
 
+async def check_train_style_config_only() -> CheckResult:
+    """
+    Ensure scripts/train_style.py receives parameters only via --config.
+
+    This enforces that all training configuration should come from a config file,
+    not from command-line arguments. The only allowed parameter is --config itself.
+    """
+    target_file = "scripts/train_style.py"
+    if not os.path.exists(target_file):
+        return CheckResult("train_style config-only", True, "Skipped (file not found)")
+
+    # Find lines containing quoted argument names like "--embed-dim"
+    # These are the first arguments to add_argument() calls
+    # Pattern matches: "--something" (the argument definition)
+    cmd = f'grep -nH -E \'"--[a-z]\' {target_file}'
+
+    proc = await asyncio.create_subprocess_shell(
+        cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
+    stdout, _ = await proc.communicate()
+
+    if proc.returncode != 0:
+        # No argument definitions found - clean
+        return CheckResult("train_style config-only", True, "")
+
+    import re
+    violations = []
+    for line in stdout.decode().splitlines():
+        line = line.strip()
+        if not line:
+            continue
+
+        # Extract the argument name from the line
+        # Lines look like: scripts/train_style.py:181:        "--embed-dim", type=int, ...
+        # We need to find what's between the quotes
+        match = re.search(r'["\'](-{1,2}[a-zA-Z][a-zA-Z0-9-]*)["\']', line)
+        if match:
+            arg_name = match.group(1)
+            # Allow --config only
+            if arg_name == "--config":
+                continue
+            # Skip lines that are not add_argument definitions
+            # (e.g., `if "--retrain" in argv`, `parser.error("--config is required")`)
+            # Check for the content portion after the line number
+            parts = line.split(":", 2)
+            if len(parts) >= 3:
+                content = parts[2]
+                # Skip if this is a condition check, not an argument definition
+                if " in " in content or "parser.error" in content:
+                    continue
+            violations.append(line)
+
+    if violations:
+        msg = (
+            "Parameters should be received via --config.\n"
+            "The following command-line arguments are not allowed:\n"
+            + "\n".join(violations)
+        )
+        return CheckResult("train_style config-only", False, msg)
+
+    return CheckResult("train_style config-only", True, "")
+
+
 
 
 async def check_vulture_inference() -> CheckResult:
@@ -444,7 +507,7 @@ async def check_vulture_production() -> CheckResult:
     If unused here, it might belong in tests-py/.
     """
     # exclude tests-py
-    cmd = "vulture kotogram/ train/ scripts/ bin/kotogram scripts/test_runner.py --exclude tests-py --min-confidence 60"
+    cmd = "vulture kotogram/ train/ scripts/ bin/kotogram train_style scripts/test_runner.py --exclude tests-py --min-confidence 60"
     proc = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
@@ -867,6 +930,7 @@ async def main() -> None:
             check_kotogram_dependencies(),
             check_file_structure(),
             check_trainer_display_hygiene(),
+            check_train_style_config_only(),
             check_confinement_probe("confine/python-test.json"),
         ]
         tasks.insert(0, process_noqa)

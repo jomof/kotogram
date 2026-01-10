@@ -201,6 +201,12 @@ class TrainerConfig:
     # Knowledge Component Targets (Training only)
     kc_target_specs: Dict[KcFamilyId, int] = field(default_factory=dict)
 
+    # Runtime flags (from wrapper, not persisted to model)
+    retrain: bool = False  # Start from scratch, ignore checkpoints
+    sample_ratio: float = 1.0  # Data sampling ratio (1.0 = 100%)
+    label_only: bool = False  # Run only preprocessing/labeling phase
+    report_only: bool = False  # Generate performance report and exit
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             "learning_rate": self.learning_rate,
@@ -223,6 +229,10 @@ class TrainerConfig:
             "progress_update_every": self.progress_update_every,
             "log_flush_every": self.log_flush_every,
             "kc_target_specs": {k.value: v for k, v in self.kc_target_specs.items()},
+            "retrain": self.retrain,
+            "sample_ratio": self.sample_ratio,
+            "label_only": self.label_only,
+            "report_only": self.report_only,
         }
 
     @staticmethod

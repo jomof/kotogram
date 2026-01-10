@@ -462,7 +462,6 @@ def main() -> None:
     args.support_dir = args.output
     args.model_dir = locations.get_style_output_dir()
     args.data = os.path.join(cache_dir, "grammatic_combined.tsv")
-    args.agrammatic_data = os.path.join(cache_dir, "agrammatic_combined.tsv")
 
     from train.config import TrainerConfig
 
