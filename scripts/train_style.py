@@ -58,7 +58,7 @@ def generate_profile_report() -> None:
     # Use a dynamic summary filename based on hostname/pid or just "summary.txt"?
     # User said "aggregate .txt summary reports".
     # Let's use training-profile.txt in the profile dir.
-    output_path = os.path.join(prof_dir, "training-profile.txt")
+    profile_report_path = os.path.join(prof_dir, "training-profile.txt")
 
     print(f"Generating profile report from {prof_dir}...")
 
@@ -85,7 +85,7 @@ def generate_profile_report() -> None:
     epochs = sorted(list(set(e.get("epoch", 0) for e in all_entries)))
     thrashing_events = [e for e in all_entries if e.get("majflt", 0) > 0]
 
-    with open(output_path, "w", encoding="utf-8") as report_file:
+    with open(profile_report_path, "w", encoding="utf-8") as report_file:
         report_file.write("KOTOGRAM TRAINING PERFORMANCE PROFILE\n")
         report_file.write("======================================\n")
         report_file.write(f"Generated at: {time.ctime()}\n")
@@ -143,7 +143,7 @@ def generate_profile_report() -> None:
                 )
             report_file.write("\n")
 
-    print(f"Report written to {output_path}")
+    print(f"Report written to {profile_report_path}")
 
     # Cleanup JSONL files
     for p in files:
@@ -176,120 +176,33 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Train style classifier (formality + gender)"
     )
-    # Model architecture args (these define ModelConfig, not TrainerConfig)
+    # Config file (required - contains all configuration)
     parser.add_argument(
-        "--embed-dim", type=int, default=192, help="Model dimension (d_model)"
-    )
-    parser.add_argument(
-        "--hidden-dim", type=int, default=384, help="Hidden layer dimension"
-    )
-    parser.add_argument(
-        "--num-layers", type=int, default=3, help="Number of encoder layers"
-    )
-    parser.add_argument(
-        "--num-heads", type=int, default=6, help="Number of attention heads"
-    )
-    # Training phase flags
-    # Config file (required - contains TrainerConfig)
-    parser.add_argument(
-        "--config", type=str, required=False, help="Path to unified config.json file"
-    )
-    parser.add_argument(
-        "--agrammatic-pattern",
-        type=str,
-        default=None,
-        help="Pattern for agrammatic data",
-    )
-
-    parser.add_argument(
-        "--retrain",
-        action="store_true",
-        help="Retrain from scratch, ignoring checkpoints",
-    )
-
-    parser.add_argument(
-        "--percent",
-        type=float,
-        default=None,
-        help="Percentage of data to use for training (1-100)",
-    )
-    parser.add_argument("--kc-k", type=int, default=1024, help="KC vocabulary size")
-    parser.add_argument(
-        "--kc-topk", type=int, default=8, help="Number of active KCs per sample"
-    )
-    parser.add_argument(
-        "--kc-freeze-encoder-epochs",
-        type=int,
-        default=None,
-        help="Number of epochs to freeze encoder during KC training (default: from config)",
-    )
-    parser.add_argument(
-        "--kc-sparsity-weight",
-        type=float,
-        default=None,
-        help="Sparsity regularization weight for KC activations",
-    )
-    # pylint: disable=duplicate-code
-    parser.add_argument(
-        "--kc-batch-size",
-        type=int,
-        default=None,
-        help="Explicit batch size for KC pretraining (overrides config/auto)",
-    )
-    parser.add_argument(
-        "--kc-skip-first-metrics",
-        type=int,
-        default=0,
-        help="Skip diagnostic metrics gathering until epoch N (0=disabled)",
-    )
-    # pylint: enable=duplicate-code
-
-    parser.add_argument(
-        "--checkpoint-every",
-        type=int,
-        default=None,
-        help="Save checkpoint every N steps",
-    )
-
-    parser.add_argument(
-        "--label",
-        action="store_true",
-        help="Run labeling/preprocessing only",
-    )
-
-    parser.add_argument(
-        "--report",
-        action="store_true",
-        help="Generate performance report from .profile logs and exit",
-    )
-
-    parser.add_argument(
-        "--preprocess-only",
-        action="store_true",
-        help="Exit after loading and caching data",
+        "--config", type=str, required=True, help="Path to unified config.json file"
     )
 
     args = parser.parse_args()
 
-    if args.report:
+    # Load configuration
+    model_config, trainer_config = TrainerConfig.load_config(args.config)
+
+    # Handle report_only mode
+    if trainer_config.report_only:
         generate_profile_report()
         sys.exit(0)
 
-    if not args.config:
-        parser.error("--config is required for training/labeling")
-
-    # Resolve and inject paths
+    # Resolve paths
     cache_dir = paths.get_cache_dir()
-    args.data = os.path.join(cache_dir, "grammatic_combined.tsv")
-    args.agrammatic_data = os.path.join(cache_dir, "agrammatic_combined.tsv")
-    args.output = locations.get_style_output_dir()
-    args.support_dir = paths.get_style_support_dir()
+    data_path = os.path.join(cache_dir, "grammatic_combined.tsv")
+    agrammatic_data_path = os.path.join(cache_dir, "agrammatic_combined.tsv")
+    output_path = locations.get_style_output_dir()
+    support_dir = paths.get_style_support_dir()
 
     # Epoch history logging
-    history_path = os.path.join(args.support_dir, "training-history.tsv")
+    history_path = os.path.join(support_dir, "training-history.tsv")
 
     # Clear history if starting fresh (retrain mode, and not just labeling)
-    if args.retrain and not args.label:
+    if trainer_config.retrain and not trainer_config.label_only:
         history.clear_history(history_path)
 
     def _log_epoch_event(
@@ -358,7 +271,7 @@ if __name__ == "__main__":
     checkpoint: Optional[Dict[str, Any]] = None
     vocab_grew = False
 
-    data_files = [args.data]
+    data_files = [data_path]
     grammaticality_labels = [1]
 
     # Always prefer cached pre-processed files if available
@@ -373,8 +286,8 @@ if __name__ == "__main__":
         if os.path.exists(agram_cache):
             data_files.append(agram_cache)
             grammaticality_labels.append(0)
-    elif os.path.exists(args.agrammatic_data):
-        data_files.append(args.agrammatic_data)
+    elif os.path.exists(agrammatic_data_path):
+        data_files.append(agrammatic_data_path)
         grammaticality_labels.append(0)
 
     # --- Model and Data Initialization ---
@@ -391,27 +304,14 @@ if __name__ == "__main__":
     tokenizer = Tokenizer.load(tokenizer_path)
     print(f"Loaded tokenizer from {tokenizer_path}")
 
-    # Create a single TrainerConfig and ModelConfig
-    if args.config and os.path.exists(args.config):
-        model_config, trainer_config = TrainerConfig.load_config(args.config)
-
-        # Auto-enable resume when checkpoint files exist (unless --retrain)
-        # This ensures KC and style trainers can resume without explicit flag
-        if not args.retrain and not trainer_config.checkpoint.resume_from:
-            kc_ckpt = os.path.join(args.support_dir, "checkpoint_kc.pt")
-            style_ckpt = os.path.join(args.support_dir, "checkpoint.pt")
-            if os.path.exists(kc_ckpt) or os.path.exists(style_ckpt):
-                # type: ignore[misc]
-                object.__setattr__(
-                    trainer_config.checkpoint, "resume_from", args.support_dir
-                )
-
-    else:
-        print(
-            "ERROR: --config is required. Configuration must be passed from the wrapper script.",
-            file=sys.stderr,
-        )
-        sys.exit(1)
+    # Auto-enable resume when checkpoint files exist (unless --retrain)
+    # This ensures KC and style trainers can resume without explicit flag
+    if not trainer_config.retrain and not trainer_config.checkpoint.resume_from:
+        kc_ckpt = os.path.join(support_dir, "checkpoint_kc.pt")
+        style_ckpt = os.path.join(support_dir, "checkpoint.pt")
+        if os.path.exists(kc_ckpt) or os.path.exists(style_ckpt):
+            # type: ignore[misc]
+            object.__setattr__(trainer_config.checkpoint, "resume_from", support_dir)
 
     # Tokenizer and Device after config load
     device = torch.device(trainer_config.device)
@@ -466,7 +366,7 @@ if __name__ == "__main__":
         config=DatasetConfig(
             verbose=True,
             grammaticality_labels=grammaticality_labels,
-            sample_ratio=args.percent / 100.0 if args.percent else 1.0,
+            sample_ratio=trainer_config.sample_ratio,
         ),
     )
     train_data, val_data = labeled_dataset.split()
@@ -485,13 +385,13 @@ if __name__ == "__main__":
             os.path.join(locations.get_style_output_dir(), "tokenizer.json"),
         )
 
-    if args.preprocess_only:
+    if trainer_config.label_only:
         sys.exit(0)
 
     # Scale learning rate inversely with sample_ratio
     # 100% training set = base LR, smaller percentages = proportionally higher LR
     # This compensates for fewer gradient samples per epoch when training on subsets
-    sample_ratio = args.percent / 100.0 if args.percent else 1.0
+    sample_ratio = trainer_config.sample_ratio
     if sample_ratio < 1.0:
         lr_scale = 1.0 / sample_ratio
         scaled_lr = trainer_config.learning_rate * lr_scale
@@ -503,35 +403,19 @@ if __name__ == "__main__":
     # KC Pretraining - always runs (uses all grammatical sentences)
     events = history.read_events(history_path)
     kc_epochs_done = sum(1 for e in events if isinstance(e, history.KcEpochEvent))
-    if kc_epochs_done < trainer_config.kc_epochs or args.retrain:
+    if kc_epochs_done < trainer_config.kc_epochs or trainer_config.retrain:
         # Filter to grammatical sentences only for KC training
         kc_dataset = labeled_dataset.filter_by_grammaticality(label=1)
         print(
             f"KC training using {len(kc_dataset)} grammatical sentences (full dataset)"
         )
 
-        # Override batch size for KC if requested
-        actual_kc_config = trainer_config
-        if args.kc_batch_size is not None:
-            actual_kc_config = dataclasses.replace(
-                trainer_config, batch_size=args.kc_batch_size
-            )
-
-        # Build KCConfig, only overriding values that were explicitly provided
-        kc_config_kwargs: Dict[str, Any] = {
-            "skip_first_metrics": args.kc_skip_first_metrics,
-        }
-        if args.kc_sparsity_weight is not None:
-            kc_config_kwargs["sparsity_weight"] = args.kc_sparsity_weight
-        if args.kc_freeze_encoder_epochs is not None:
-            kc_config_kwargs["freeze_encoder_epochs"] = args.kc_freeze_encoder_epochs
-
         kc_trainer = KCTrainer(
             cast(StyleClassifierWithKC, model),
             kc_dataset,  # Uses all grammatical sentences, not train_data split
-            actual_kc_config,
-            dl_config=actual_kc_config.resolve_dataloader_config(device),
-            kc_config=KCConfig(**kc_config_kwargs),
+            trainer_config,
+            dl_config=trainer_config.resolve_dataloader_config(device),
+            kc_config=KCConfig(),
         )
         kc_hist: KCTrainingHistory = kc_trainer.train(
             epochs=trainer_config.kc_epochs,
@@ -556,7 +440,7 @@ if __name__ == "__main__":
         trainer_config,
         dl_config_train=trainer_config.resolve_dataloader_config(device, mode="train"),
         dl_config_val=trainer_config.resolve_dataloader_config(device, mode="val"),
-        output_path=args.output,
+        output_path=output_path,
     )
 
     style_start = time.perf_counter()
@@ -619,6 +503,6 @@ if __name__ == "__main__":
     # Auto-generate report and cleanup if profiling was enabled
     # We check environment because arguments might not settle it alone (defaults)
     # But usually if we ran code, we generated logs.
-    if profiling_enabled() and not args.report:
-        # args.report exits early, so we only need to do this for a normal run
+    if profiling_enabled() and not trainer_config.report_only:
+        # report_only exits early, so we only need to do this for a normal run
         generate_profile_report()

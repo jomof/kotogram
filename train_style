@@ -45,6 +45,9 @@ from train import paths as train_paths
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+# Import epoch specification parser (supports absolute "10" and relative "+5" syntax)
+from train.epoch_spec import parse_epoch_spec  # pylint: disable=wrong-import-position
+
 
 
 
@@ -90,15 +93,6 @@ def run_command(cmd: List[str], env: dict, tee_log: Optional[str] = None) -> int
     else:
         result = subprocess.run(cmd, env=env, cwd=cwd, check=False)
         return result.returncode
-
-
-def get_free_port() -> int:
-    """Find a free port on localhost."""
-    import socket
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.bind(('', 0))
-        return int(s.getsockname()[1])
-
 
 
 
@@ -192,12 +186,17 @@ def build_trainer_config(
     should_resume: bool,
     grad_accum_steps: int,
     loaded_config: Optional[TrainerConfig],
+    current_kc_epochs: int = 0,
+    current_style_epochs: int = 0,
 ) -> TrainerConfig:
-    """Build the TrainerConfig object from arguments."""
+    """Build the TrainerConfig object from arguments.
+
+    Args:
+        current_kc_epochs: Number of KC epochs already completed (for +N syntax)
+        current_style_epochs: Number of style epochs already completed (for +N syntax)
+    """
     trainer_kwargs: Dict[str, Any] = {
         "learning_rate": args.learning_rate,
-
-
         "grad_accum_steps": grad_accum_steps,
         "checkpoint": CheckpointConfig(
             dir=support_dir,
@@ -209,10 +208,18 @@ def build_trainer_config(
         "dataloader": DataLoaderSettings(
             num_workers=args.dataloader_num_workers,
         ),
+        # Runtime flags
+        "retrain": args.retrain,
+        "sample_ratio": args.percent / 100.0 if args.percent else 1.0,
+        "label_only": args.label,
+        "report_only": args.report,
     }
 
-    if args.epochs is not None:
-        trainer_kwargs["epochs"] = args.epochs
+    # Parse epoch specs (supports both absolute "10" and relative "+5" syntax)
+    parsed_epochs = parse_epoch_spec(args.epochs, current_style_epochs)
+    if parsed_epochs is not None:
+        trainer_kwargs["epochs"] = parsed_epochs
+
     if args.batch_size is not None:
         trainer_kwargs["batch_size"] = args.batch_size
     if args.formality_weight is not None:
@@ -222,9 +229,10 @@ def build_trainer_config(
     if args.grammaticality_weight is not None:
         trainer_kwargs["grammaticality_loss_weight"] = args.grammaticality_weight
 
-    # Handle KC epochs logic (SSOT: rely on TrainerConfig default if not specified)
-    if args.kc_epochs is not None:
-        trainer_kwargs["kc_epochs"] = args.kc_epochs
+    # Handle KC epochs logic (supports +N syntax, SSOT: rely on TrainerConfig default if not specified)
+    parsed_kc_epochs = parse_epoch_spec(args.kc_epochs, current_kc_epochs)
+    if parsed_kc_epochs is not None:
+        trainer_kwargs["kc_epochs"] = parsed_kc_epochs
     elif loaded_config:
         trainer_kwargs["kc_epochs"] = loaded_config.kc_epochs
 
@@ -292,9 +300,18 @@ def generate_and_save_config(
             # KC is always enabled
         )
 
+    # Read history to get current epoch counts (for +N syntax support)
+    from train import history
+    history_path = os.path.join(support_dir, "training-history.tsv")
+    events = history.read_events(history_path) if os.path.exists(history_path) else []
+    current_kc_epochs = sum(1 for e in events if isinstance(e, history.KcEpochEvent))
+    current_style_epochs = sum(1 for e in events if isinstance(e, history.StyleEpochEvent))
+
     # Build TrainerConfig
     trainer_config = build_trainer_config(
-        args, env, support_dir, should_resume, grad_accum_steps, loaded_trainer_config
+        args, env, support_dir, should_resume, grad_accum_steps, loaded_trainer_config,
+        current_kc_epochs=current_kc_epochs,
+        current_style_epochs=current_style_epochs,
     )
 
     # Save unified config
@@ -327,7 +344,6 @@ def generate_and_save_config(
 
 # pylint: disable=too-many-positional-arguments
 def run_training_phase(
-    args: argparse.Namespace,
     env: dict,
     config_path: str,
     launcher: List[str],
@@ -353,35 +369,13 @@ def run_training_phase(
     # Training Phase
     print("Starting training run...")
 
+    # All parameters now passed via config.json
     train_args = [
         "-m",
         "scripts.train_style",
         "--config",
         config_path,
-        "--embed-dim", str(args.embed_dim),
-        "--hidden-dim", str(args.hidden_dim),
-        "--num-layers", str(args.num_layers),
-        "--num-heads", str(args.num_heads),
     ]
-
-    # Always pass KC config params (KC is always enabled)
-    train_args.extend([
-        "--kc-k", str(args.kc_k),
-        "--kc-topk", str(args.kc_topk),
-    ])
-    if args.kc_sparsity_weight is not None:
-        train_args.extend(["--kc-sparsity-weight", str(args.kc_sparsity_weight)])
-    if args.kc_freeze_encoder_epochs is not None:
-        train_args.extend(["--kc-freeze-encoder-epochs", str(args.kc_freeze_encoder_epochs)])
-    if args.kc_batch_size is not None:
-        train_args.extend(["--kc-batch-size", str(args.kc_batch_size)])
-    if args.kc_skip_first_metrics > 0:
-        train_args.extend(["--kc-skip-first-metrics", str(args.kc_skip_first_metrics)])
-
-    if args.retrain:
-        train_args.append("--retrain")
-    if args.percent:
-        train_args.extend(["--percent", str(args.percent)])
 
     training_log = os.path.join(support_dir, "training.log")
     t_train_start = time.perf_counter()
@@ -444,7 +438,7 @@ def parse_arguments() -> argparse.Namespace:
     )
 
     # Training options
-    parser.add_argument("--epochs", type=int, default=None, help="Training epochs")
+    parser.add_argument("--epochs", type=str, default=None, help="Training epochs (e.g., '10' or '+5')")
     parser.add_argument("--batch-size", type=int, default=None, help="Batch size per device")
     parser.add_argument("--embed-dim", type=int, default=256, help="Model dimension (default: 256)")
     parser.add_argument("--hidden-dim", type=int, default=512, help="Hidden layer dimension (default: 512)")
@@ -468,7 +462,7 @@ def parse_arguments() -> argparse.Namespace:
     # KC Pretraining options (KC is always enabled)
     # Use TrainerConfig default for help text to ensure Single Source of Truth
     default_kc_epochs = TrainerConfig().kc_epochs
-    parser.add_argument("--kc-epochs", type=int, default=None, help=f"KC pretraining epochs (default: {default_kc_epochs})")
+    parser.add_argument("--kc-epochs", type=str, default=None, help=f"KC epochs (e.g., '6' or '+2', default: {default_kc_epochs})")
     parser.add_argument("--kc-k", type=int, default=1024, help="KC vocabulary size None (default: 1024)")
     parser.add_argument("--kc-topk", type=int, default=8, help="Number of active KCs per sample (default: 8)")
     parser.add_argument(
@@ -545,7 +539,7 @@ def print_training_banner(
     print(f"Formality wt:   {args.formality_weight}")
     print(f"Gender wt:      {args.gender_weight}")
     print(f"Grammatic wt:   {args.grammaticality_weight}")
-    if args.kc_epochs is not None and args.kc_epochs > 0:
+    if args.kc_epochs is not None:
         print(f"KC pretrain:    {args.kc_epochs} epochs")
         print(f"KC K:           {args.kc_k}")
         print(f"KC Top-k:       {args.kc_topk}")
@@ -553,7 +547,7 @@ def print_training_banner(
         print(f"KC Freeze:      {freeze_str}")
         sparsity_str = str(args.kc_sparsity_weight) if args.kc_sparsity_weight is not None else f"(default: {KCConfig().sparsity_weight})"
         print(f"KC Sparsity:    {sparsity_str}")
-    elif args.kc_epochs is None:
+    else:
         print("KC pretrain:    (default/saved)")
 
     if args.retrain:
@@ -680,11 +674,11 @@ def main() -> int:
     print(f"  Effective batch:  {micro_batch_size * grad_accum_steps * num_devices}")
     print(f"  Launcher:         {' '.join(launcher)}")
     freeze_str = str(args.kc_freeze_encoder_epochs) if args.kc_freeze_encoder_epochs is not None else "(default)"
-    if args.kc_epochs is not None and args.kc_epochs > 0:
+    if args.kc_epochs is not None:
         print(f"  KC Epochs:        {args.kc_epochs} (freeze: {freeze_str})")
         print(f"  KC Vocab (K):     {args.kc_k}")
         print(f"  KC Top-k:         {args.kc_topk}")
-    elif args.kc_epochs is None:
+    else:
         print(f"  KC Epochs:        (default/saved) (freeze: {freeze_str})")
     print("-" * 46)
     print()
@@ -707,7 +701,7 @@ def main() -> int:
 
     # Phase 3: Training
     ret = run_training_phase(
-        args, env, config_path, launcher
+        env, config_path, launcher
     )
     if ret != 0:
         return ret
