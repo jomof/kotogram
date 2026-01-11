@@ -77,16 +77,16 @@ class TestDenseSparseRouting:
         assert "kc_pos_mask_ngram_pos" in result
 
     def test_all_dense_families_have_targets(self) -> None:
-        """Verify all 8 dense families are correctly routed."""
+        """Verify all 10 dense families are correctly routed."""
         dense_families = [fid for fid in ALL_KC_FAMILIES if not is_family_sparse(fid)]
         sparse_families = [fid for fid in ALL_KC_FAMILIES if is_family_sparse(fid)]
 
-        # Verify we have exactly 8 of each
-        assert len(dense_families) == 8, (
-            f"Expected 8 dense families, got {len(dense_families)}"
+        # Verify we have exactly 10 of each (5 bag + 5 tail = 10 dense, 5 ngram + 5 tail_ngram = 10 sparse)
+        assert len(dense_families) == 10, (
+            f"Expected 10 dense families, got {len(dense_families)}"
         )
-        assert len(sparse_families) == 8, (
-            f"Expected 8 sparse families, got {len(sparse_families)}"
+        assert len(sparse_families) == 10, (
+            f"Expected 10 sparse families, got {len(sparse_families)}"
         )
 
         # Create specs for all families

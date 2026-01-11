@@ -127,7 +127,8 @@ class TestMasking(unittest.TestCase):
         self.assertIn("ᵍ<surname>", kotogram)
         self.assertIn("ᵍ<given-name>", kotogram)
         reconstructed = kotogram_to_japanese(kotogram)
-        self.assertEqual(reconstructed, "こちらは渡辺五郎です。")
+        # Masking removes sentence-final punctuation for boundary noise reduction
+        self.assertEqual(reconstructed, "こちらは渡辺五郎です")
 
     def test_pos_stability(self):
         """Regression test for adjacent particle POS stability ('ka')."""

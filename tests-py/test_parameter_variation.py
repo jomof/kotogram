@@ -36,6 +36,9 @@ class DummyKCModel(nn.Module):
         self.grammaticality_head = nn.Linear(1, 1)
         self.register_head = nn.Linear(1, 1)
 
+        # Unified pooler required by Trainer
+        self.pooler = nn.Linear(1, 1)
+
         # Legacy/Alias support
         self.grammaticality_classifier = self.grammaticality_head
         self.register_classifier = self.register_head

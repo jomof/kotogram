@@ -81,7 +81,9 @@ class StyleClassifierWithKC(StyleClassifier):
         k_budget: Optional[torch.Tensor] = None,
         long_sentence_mask: Optional[torch.Tensor] = None,
     ) -> Dict[str, Any]:
-        pooled = self._get_pooled_output(field_inputs, attention_mask)
+        # Use unified pooler for KC (shared with style classifier)
+        encoder_output = self.get_encoder_output(field_inputs, attention_mask)
+        pooled = self.pooler(encoder_output, attention_mask)
 
         # Get raw and normalized logits
         if hasattr(self.kc_head, "forward_with_raw"):
@@ -196,20 +198,3 @@ class StyleClassifierWithKC(StyleClassifier):
             "topk_inds": topk_inds,
             "target_logits": target_logits,
         }
-
-    def reset_classifier(self) -> None:
-        """Reinitialize all classifier head weights."""
-        for classifier in [
-            self.formality_value_head,
-            self.formality_pragmatic_head,
-            self.gender_value_head,
-            self.gender_pragmatic_head,
-            self.grammaticality_classifier,
-            self.register_classifier,
-        ]:
-            if isinstance(classifier, nn.Module):
-                for module in classifier.modules():
-                    if isinstance(module, nn.Linear):
-                        nn.init.xavier_uniform_(module.weight)
-                        if module.bias is not None:
-                            nn.init.zeros_(module.bias)

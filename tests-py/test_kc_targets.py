@@ -77,11 +77,14 @@ class TestKCTargets(unittest.TestCase):
 
         targets = compute_kc_targets(feature_ids)
 
-        self.assertNotIn(KcFamilyId.BAG_POS_DETAIL_1, targets)
-        self.assertNotIn(KcFamilyId.NGRAM_POS_DETAIL_1, targets)
-        self.assertNotIn(KcFamilyId.TAIL_NGRAM_POS_DETAIL_1, targets)
-        # reading_gram will be empty because no tokenizer was passed
-        self.assertNotIn(KcFamilyId.BAG_READING_GRAM, targets)
+        # All 20 families are present (initialized with empty lists)
+        self.assertEqual(len(targets), 20)
+        # pos_detail_1 should be empty (not in input)
+        self.assertEqual(targets[KcFamilyId.BAG_POS_DETAIL_1], [])
+        self.assertEqual(targets[KcFamilyId.NGRAM_POS_DETAIL_1], [])
+        self.assertEqual(targets[KcFamilyId.TAIL_NGRAM_POS_DETAIL_1], [])
+        # reading_gram should be empty (no tokenizer was passed)
+        self.assertEqual(targets[KcFamilyId.BAG_READING_GRAM], [])
 
     def test_empty_sequences(self):
         feature_ids = {
@@ -135,8 +138,8 @@ class TestKCTargets(unittest.TestCase):
         self.assertEqual(targets[KcFamilyId.BAG_POS], [3, 4, 5])  # Sorted
         self.assertEqual(targets[KcFamilyId.BAG_POS_DETAIL_1], [10, 11, 12])
         # Verify tail_reading_gram exists if reading and pos are present (even without tokenizer, rg_ids will be empty)
-        # Actually with rg_ids being empty, bag_reading_gram won't exist in targets.
-        self.assertNotIn(KcFamilyId.BAG_READING_GRAM, targets)
+        # All families are present, reading_gram should be empty
+        self.assertEqual(targets[KcFamilyId.BAG_READING_GRAM], [])
 
     def test_get_kc_pos_indices_variations(self):
         """Vary field and vocab_size in _get_kc_pos_indices."""

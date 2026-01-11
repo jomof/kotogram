@@ -25,6 +25,9 @@ GRAMMAR_POS_WHITELIST = {
     "suffix",
     "adnom",
     "conj",
+    "pron",
+    "adv",
+    "interj",
 }
 
 # Reading masks that should be preserved even if POS is masked.
@@ -43,11 +46,32 @@ PRESERVED_READING_MASKS = {
 READING_MASK = "<READING_MASK>"
 
 
+def katakana_to_hiragana(text: str) -> str:
+    """Convert katakana characters to hiragana.
+
+    Katakana range: U+30A1 to U+30F6
+    Hiragana range: U+3041 to U+3096
+    Offset: 0x60 (96)
+    """
+    result = []
+    for char in text:
+        code = ord(char)
+        # Check if character is in katakana range
+        if 0x30A1 <= code <= 0x30F6:
+            # Convert to hiragana by subtracting offset
+            result.append(chr(code - 0x60))
+        else:
+            result.append(char)
+    return "".join(result)
+
+
 def apply_training_mask(tokens: List["Token"]) -> List["Token"]:
     """Apply training mask to anonymize given names immutable.
 
     Replaces Japanese given names (First Names) with the placeholder "太郎" (Taro).
     Returns a new list of tokens.
+
+    Also removes trailing "。" (Japanese period) from the end of the sentence.
 
     Args:
         tokens: List of kotogram.Token objects to process.
@@ -56,6 +80,10 @@ def apply_training_mask(tokens: List["Token"]) -> List["Token"]:
         New list of Token objects with masking applied.
     """
     from kotogram.kotogram import Token  # Deferred import to avoid cycle
+
+    # Remove trailing "。" (Japanese period) if present at end of sentence
+    if tokens and tokens[-1].surface == "。":
+        tokens = tokens[:-1]
 
     masked_tokens = []
     for token in tokens:

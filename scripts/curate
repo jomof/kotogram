@@ -1026,14 +1026,17 @@ def curate_kc_families(sentence: str):
     
     from kotogram.japanese_parser import KotogramFormat
     from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
-    from kotogram.tokenizer import Tokenizer
+    from kotogram.tokenizer import CLS_ID, Tokenizer
     from train.kc import (
         ALL_KC_FAMILIES,
         FAMILY_FEATURES,
-        KC_HASH_BUCKETS,
+        KC_NGRAM_ORDER,
         KC_POS_BIASED_WINDOW,
+        SALT,
         compute_kc_targets,
+        get_family_bucket_size,
         is_family_sparse,
+        stable_hash_ints,
     )
     
     # Parse sentence
@@ -1070,7 +1073,66 @@ def curate_kc_families(sentence: str):
     ngram_families = [f for f in ALL_KC_FAMILIES if f.name.startswith("NGRAM_")]
     tail_ngram_families = [f for f in ALL_KC_FAMILIES if f.name.startswith("TAIL_NGRAM")]
     
-    def _print_family_group(title: str, families: list, color: str):
+    # Build reverse lookup for all fields
+    id_to_token_map = {}
+    for field in ["pos", "pos_detail_1", "pos_detail_2", "conjugated_type", "reading_gram"]:
+        field_vocab = tokenizer.field_vocabs.get(field, {})
+        id_to_token_map[field] = {v: k for k, v in field_vocab.items()}
+    
+    def _decode_id(val: int, family) -> str:
+        """Decode an ID using direct field vocabulary lookup."""
+        field = FAMILY_FEATURES.get(family, "")
+        id_map = id_to_token_map.get(field, {})
+        return id_map.get(val, f"#{val}")
+
+    def _compute_ngram_details(family, is_tail: bool):
+        """Compute ngrams with their source tokens and hash values."""
+        from kotogram.tokenizer import UNK_ID
+        from train.kc import KcFamilyId, _get_hierarchical_ids
+        
+        field = FAMILY_FEATURES.get(family, "")
+        if field not in encoded:
+            return []
+        
+        # Get IDs - now includes composite tokens from vocabulary
+        ids = _get_hierarchical_ids(encoded, family)
+        # Filter CLS
+        ids = [v for v in ids if v != CLS_ID]
+        
+        # For tail ngrams, take only the last KC_POS_BIASED_WINDOW tokens
+        if is_tail:
+            ids = ids[-KC_POS_BIASED_WINDOW:] if ids else []
+        
+        # For pos_detail_1, pos_detail_2, and conjugated_type, also filter out UNK
+        if family in (
+            KcFamilyId.NGRAM_POS_DETAIL_1,
+            KcFamilyId.NGRAM_POS_DETAIL_2,
+            KcFamilyId.NGRAM_CONJUGATED_TYPE,
+            KcFamilyId.TAIL_NGRAM_POS_DETAIL_1,
+            KcFamilyId.TAIL_NGRAM_POS_DETAIL_2,
+            KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
+        ):
+            ids = [v for v in ids if v != UNK_ID]
+        
+        if not ids:
+            return []
+        
+        salt = SALT.get(family, 0)
+        bucket_size = get_family_bucket_size(family)
+        
+        ngram_details = []
+        for n_val in range(2, KC_NGRAM_ORDER + 1):
+            if len(ids) >= n_val:
+                for i in range(len(ids) - n_val + 1):
+                    ngram_ids = ids[i : i + n_val]
+                    h = stable_hash_ints([salt, *ngram_ids]) % bucket_size
+                    # Decode using vocabulary lookup (now contains composite tokens)
+                    tokens = [_decode_id(v, family) for v in ngram_ids]
+                    ngram_details.append((h, tokens))
+        
+        return ngram_details
+    
+    def _print_family_group(title: str, families: list, color: str, show_ngram_content: bool = False):
         table = Table(title=title, show_header=True, header_style=f"bold {color}")
         table.add_column("Family", style="cyan", min_width=25)
         table.add_column("Field", style="dim", min_width=15)
@@ -1087,24 +1149,38 @@ def curate_kc_families(sentence: str):
             count = len(vals)
             
             # Format values
-            if is_sparse:
+            if is_sparse and show_ngram_content:
+                # Compute and show ngrams with content
+                is_tail = family.name.startswith("TAIL_NGRAM")
+                ngram_details = _compute_ngram_details(family, is_tail)
+                if ngram_details:
+                    # Format: hash→[tokens]
+                    parts = [f"{h}→{'|'.join(toks)}" for h, toks in ngram_details]
+                    if len(parts) > 8:
+                        val_str = ", ".join(parts[:8]) + f"... ({len(parts)} total)"
+                    else:
+                        val_str = ", ".join(parts)
+                else:
+                    val_str = "(empty)"
+            elif is_sparse:
                 # Show hash bucket IDs (cap at 10 for readability)
                 if len(vals) > 10:
-                    val_str = f"{vals[:10]}... ({len(vals)} total, mod {KC_HASH_BUCKETS})"
+                    bucket_size = get_family_bucket_size(family)
+                    val_str = f"{vals[:10]}... ({len(vals)} total, mod {bucket_size})"
                 else:
                     val_str = str(vals) if vals else "(empty)"
             else:
-                # Dense: Show actual vocab IDs and try to decode
+                # Dense: Show actual vocab IDs with single-field decode
+                # (Dense families use original field IDs, not composite hashes)
                 if count == 0:
                     val_str = "(empty)"
                 elif count <= 10:
-                    # Try to reverse lookup the field vocab
-                    field_vocab = tokenizer.field_vocabs.get(field, {})
-                    id_to_token = {v: k for k, v in field_vocab.items()}
                     decoded = []
+                    field = FAMILY_FEATURES.get(family, "")
+                    id_to_token = id_to_token_map.get(field, {})
                     for v in vals:
                         token = id_to_token.get(v, f"#{v}")
-                        decoded.append(token)
+                        decoded.append(f"{v}:{token}")
                     val_str = ", ".join(decoded)
                 else:
                     val_str = f"{vals[:10]}... ({len(vals)} total)"
@@ -1123,8 +1199,8 @@ def curate_kc_families(sentence: str):
     # Print each group
     _print_family_group("Bag Families (Full Sentence)", bag_families, "magenta")
     _print_family_group(f"Tail Families (Last {KC_POS_BIASED_WINDOW} Tokens)", tail_families, "cyan")
-    _print_family_group("N-gram Families (2-3 grams, hashed)", ngram_families, "yellow")
-    _print_family_group(f"Tail N-gram Families (Last {KC_POS_BIASED_WINDOW} Tokens, hashed)", tail_ngram_families, "blue")
+    _print_family_group("N-gram Families (2-3 grams, hashed)", ngram_families, "yellow", show_ngram_content=True)
+    _print_family_group(f"Tail N-gram Families (Last {KC_POS_BIASED_WINDOW} Tokens, hashed)", tail_ngram_families, "blue", show_ngram_content=True)
     
     # Summary stats
     total_dense = sum(len(targets.get(f, [])) for f in bag_families + tail_families)
@@ -1495,6 +1571,305 @@ def curate_kc_hash(db_path: str):
     console.print()
 
 
+# ============================================================================
+# KC Tail Stats Analysis
+# ============================================================================
+
+_KC_TAIL_STATS_PARSER = None
+_KC_TAIL_STATS_TOKENIZER = None
+
+
+def _init_kc_tail_stats_worker(vocab_path: str):
+    """Initialize worker for KC tail stats analysis."""
+    global _KC_TAIL_STATS_PARSER, _KC_TAIL_STATS_TOKENIZER
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    from kotogram.tokenizer import Tokenizer
+    from train.kc import initialize_disallow_filter
+    _KC_TAIL_STATS_PARSER = SudachiJapaneseParser()
+    _KC_TAIL_STATS_TOKENIZER = Tokenizer.load(vocab_path)
+    # Initialize disallow filter from tokenizer vocab
+    pos_detail_1_vocab = _KC_TAIL_STATS_TOKENIZER.field_vocabs.get("pos_detail_1", {})
+    initialize_disallow_filter(pos_detail_1_vocab)
+
+
+def _compute_tail_bag_for_sentence(sentence: str) -> Tuple[Tuple[int, ...], str]:
+    """Compute tail bag for pos_detail_1 for a single sentence.
+    
+    Returns the tail bag as a tuple of sorted IDs and the original sentence.
+    """
+    from kotogram.japanese_parser import KotogramFormat
+    from train.kc import get_disallowed_positions, get_tail_ids
+
+    kotogram = _KC_TAIL_STATS_PARSER.japanese_to_kotogram(
+        sentence, KotogramFormat.TRAINING_MASK
+    )
+    encoded = _KC_TAIL_STATS_TOKENIZER.encode(kotogram)
+    
+    # Get disallowed positions using module-level cached disallow IDs
+    disallowed_positions = get_disallowed_positions(encoded)
+    
+    # Use the shared get_tail_ids function, filtering UNK and disallowed positions
+    tail_ids = get_tail_ids(encoded, "pos_detail_1", filter_unk=True, disallowed_positions=disallowed_positions)
+    return (tuple(tail_ids), sentence)
+
+
+def curate_kc_tail_stats(db_path: str, sentence: str = None):
+    """
+    Analyze tail bag distributions for pos_detail_1 across the corpus.
+    
+    Shows frequency counts per unique tail bag, with the 8 most and 
+    8 least common patterns. Optionally shows the tail bag for a given sentence.
+    """
+    import os
+    from collections import Counter
+
+    from rich.table import Table
+
+    from train import paths
+
+    # Find tokenizer
+    vocab_path = os.path.join(paths.get_style_dataset_cache_dir(), "vocab.json")
+    if not os.path.exists(vocab_path):
+        console.print(f"[red]Vocab not found at {vocab_path}. Run 'bin/train_style --label' first.[/red]")
+        return
+
+    # Load sentences from corpus
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    cursor.execute("SELECT sentence FROM corpus")
+    sentences = [row[0] for row in cursor.fetchall()]
+    conn.close()
+
+    console.print(f"[bold]KC Tail Stats:[/bold] Scanning {len(sentences):,} sentences for pos_detail_1 tails...")
+
+    # Run parallel scan
+    num_workers = mp.cpu_count()
+    tail_counts: Counter[Tuple[int, ...]] = Counter()
+    # Track shortest sentence for each tail bag
+    shortest_example: Dict[Tuple[int, ...], str] = {}
+
+    with mp.Pool(
+        num_workers,
+        initializer=_init_kc_tail_stats_worker,
+        initargs=(vocab_path,),
+    ) as pool:
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(),
+            MofNCompleteColumn(),
+            console=console,
+        ) as progress:
+            task = progress.add_task("Computing tail bags...", total=len(sentences))
+
+            for tail_bag, sent in pool.imap_unordered(_compute_tail_bag_for_sentence, sentences, chunksize=500):
+                progress.advance(task)
+                tail_counts[tail_bag] += 1
+                # Track shortest example
+                if tail_bag not in shortest_example or len(sent) < len(shortest_example[tail_bag]):
+                    shortest_example[tail_bag] = sent
+
+    # Load tokenizer for decoding
+    from kotogram.tokenizer import Tokenizer
+    tokenizer = Tokenizer.load(vocab_path)
+    
+    # Build reverse vocab for pos_detail_1
+    id_to_token = {v: k for k, v in tokenizer.field_vocabs.get("pos_detail_1", {}).items()}
+    
+    def decode_tail(tail: Tuple[int, ...]) -> str:
+        """Decode a tail bag to human-readable tokens."""
+        tokens = [id_to_token.get(tid, f"#{tid}") for tid in tail]
+        return " | ".join(tokens) if tokens else "(empty)"
+
+    def truncate(s: str, max_len: int = 40) -> str:
+        """Truncate a string for display."""
+        return s[:max_len] + "..." if len(s) > max_len else s
+
+    # Report results
+    console.print()
+    console.print(f"[bold]Summary:[/bold]")
+    console.print(f"  Total sentences: {len(sentences):,}")
+    console.print(f"  Distinct tail bags: {len(tail_counts):,}")
+    console.print()
+
+    # Most common tails
+    console.print("[bold]8 Most Common Tail Bags:[/bold]")
+    table_top = Table()
+    table_top.add_column("Rank", style="dim")
+    table_top.add_column("Count", style="cyan")
+    table_top.add_column("Tail Bag (pos_detail_1)")
+    table_top.add_column("Shortest Example", style="dim")
+    
+    for rank, (tail, count) in enumerate(tail_counts.most_common(8), 1):
+        example = truncate(shortest_example.get(tail, ""))
+        table_top.add_row(f"#{rank}", f"{count:,}", decode_tail(tail), example)
+    console.print(table_top)
+
+    # Optional: Show query sentence's tail bag
+    if sentence:
+        console.print()
+        console.print("[bold]Query Sentence Tail Bag:[/bold]")
+        
+        # Compute tail bag for the query sentence
+        from kotogram.japanese_parser import KotogramFormat
+        from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+        from train.kc import get_disallowed_positions, get_tail_ids, initialize_disallow_filter
+        
+        # Initialize disallow filter (idempotent if already done)
+        pos_detail_1_vocab = tokenizer.field_vocabs.get("pos_detail_1", {})
+        initialize_disallow_filter(pos_detail_1_vocab)
+        
+        parser = SudachiJapaneseParser()
+        kotogram = parser.japanese_to_kotogram(sentence, KotogramFormat.TRAINING_MASK)
+        encoded = tokenizer.encode(kotogram)
+        
+        # Get disallowed positions using module-level cached disallow IDs
+        disallowed_positions = get_disallowed_positions(encoded)
+        query_tail = tuple(get_tail_ids(encoded, "pos_detail_1", filter_unk=True, disallowed_positions=disallowed_positions))
+        
+        query_count = tail_counts.get(query_tail, 0)
+        # Find rank
+        all_tails_sorted = tail_counts.most_common()
+        query_rank = next((i for i, (t, _) in enumerate(all_tails_sorted, 1) if t == query_tail), None)
+        
+        table_query = Table()
+        table_query.add_column("Rank", style="dim")
+        table_query.add_column("Count", style="cyan")
+        table_query.add_column("Tail Bag (pos_detail_1)")
+        table_query.add_column("Query Sentence")
+        
+        rank_str = f"#{query_rank}" if query_rank else "(not in corpus)"
+        table_query.add_row(rank_str, f"{query_count:,}", decode_tail(query_tail), truncate(sentence))
+        console.print(table_query)
+
+    # Least common tails
+    console.print()
+    console.print("[bold]8 Least Common Tail Bags:[/bold]")
+    table_bottom = Table()
+    table_bottom.add_column("Rank", style="dim")
+    table_bottom.add_column("Count", style="cyan")
+    table_bottom.add_column("Tail Bag (pos_detail_1)")
+    table_bottom.add_column("Shortest Example", style="dim")
+    
+    least_common = tail_counts.most_common()[:-9:-1]  # Last 8, reversed
+    for rank, (tail, count) in enumerate(least_common, 1):
+        example = truncate(shortest_example.get(tail, ""))
+        table_bottom.add_row(f"#{len(tail_counts) - 8 + rank}", f"{count:,}", decode_tail(tail), example)
+    console.print(table_bottom)
+
+
+# ============================================================================
+# Token Stats Analysis
+# ============================================================================
+
+_TOKEN_STATS_PARSER = None  # pylint: disable=invalid-name
+
+
+def _init_token_stats_worker():
+    """Initialize worker for token stats analysis."""
+    global _TOKEN_STATS_PARSER  # pylint: disable=global-statement
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    _TOKEN_STATS_PARSER = SudachiJapaneseParser()
+
+
+def _get_tokens_for_sentence(sentence: str) -> Tuple[List[str], str]:
+    """Parse sentence to kotogram and return (tokens, sentence) tuple."""
+    from kotogram.kotogram import split_kotogram
+    kotogram = _TOKEN_STATS_PARSER.japanese_to_kotogram(sentence)
+    return (split_kotogram(kotogram), sentence)
+
+
+
+def curate_token_stats(db_path: str):
+    """
+    Analyze kotogram token frequencies across the corpus.
+
+    Shows the 8 most common and 8 least common actual token strings.
+    """
+    from collections import Counter
+
+    from rich.table import Table
+
+    # Load sentences from corpus
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    cursor.execute("SELECT sentence FROM corpus")
+    sentences = [row[0] for row in cursor.fetchall()]
+    conn.close()
+
+    console.print(f"[bold]Token Stats:[/bold] Scanning {len(sentences):,} sentences for token frequencies...")
+
+    # Run parallel scan
+    num_workers = mp.cpu_count()
+    token_counts: Counter[str] = Counter()
+    # Track shortest sentence for each token
+    shortest_example: Dict[str, str] = {}
+
+    with mp.Pool(
+        num_workers,
+        initializer=_init_token_stats_worker,
+    ) as pool:
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(),
+            MofNCompleteColumn(),
+            console=console,
+        ) as progress:
+            task = progress.add_task("Counting tokens...", total=len(sentences))
+
+            for tokens, sent in pool.imap_unordered(
+                _get_tokens_for_sentence,
+                sentences,
+                chunksize=500
+            ):
+                progress.advance(task)
+                for token in tokens:
+                    token_counts[token] += 1
+                    # Track shortest example
+                    if token not in shortest_example or len(sent) < len(shortest_example[token]):
+                        shortest_example[token] = sent
+
+    def truncate(s: str, max_len: int = 60) -> str:
+        """Truncate a string for display."""
+        return s[:max_len] + "..." if len(s) > max_len else s
+
+    # Report results
+    console.print()
+    console.print("[bold]Summary:[/bold]")
+    console.print(f"  Total sentences: {len(sentences):,}")
+    console.print(f"  Distinct tokens: {len(token_counts):,}")
+    console.print(f"  Total token occurrences: {sum(token_counts.values()):,}")
+    console.print()
+
+    # Most common tokens
+    console.print("[bold]35 Most Common Tokens:[/bold]")
+    table_top = Table()
+    table_top.add_column("Rank", style="dim")
+    table_top.add_column("Count", style="cyan")
+    table_top.add_column("Token")
+    table_top.add_column("Shortest Example", style="dim")
+
+    for rank, (token, count) in enumerate(token_counts.most_common(35), 1):
+        example = truncate(shortest_example.get(token, ""))
+        table_top.add_row(f"#{rank}", f"{count:,}", token, example)
+    console.print(table_top)
+
+    # Least common tokens
+    console.print()
+    console.print("[bold]8 Least Common Tokens:[/bold]")
+    table_bottom = Table()
+    table_bottom.add_column("Rank", style="dim")
+    table_bottom.add_column("Count", style="cyan")
+    table_bottom.add_column("Token")
+    table_bottom.add_column("Shortest Example", style="dim")
+
+    least_common = token_counts.most_common()[:-9:-1]  # Last 8, reversed
+    for rank, (token, count) in enumerate(least_common, 1):
+        example = truncate(shortest_example.get(token, ""))
+        table_bottom.add_row(f"#{len(token_counts) - 8 + rank}", f"{count:,}", token, example)
+    console.print(table_bottom)
+
 def curate_contrast_sentences(sentences: List[str]):
     """
     Compare KCs of multiple sentences.
@@ -1842,6 +2217,15 @@ def main():
     parser_kc_hash = subparsers.add_parser("kc-hash", help="Analyze hash collisions for sparse KC families")
     parser_kc_hash.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
 
+    # KC Tail Stats command
+    parser_kc_tail_stats = subparsers.add_parser("kc-tail-stats", help="Analyze tail bag distributions")
+    parser_kc_tail_stats.add_argument("sentence", nargs="?", default=None, help="Optional sentence to show in context")
+    parser_kc_tail_stats.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
+
+    # Token Stats command
+    parser_token_stats = subparsers.add_parser("token-stats", help="Show most/least common kotogram tokens")
+    parser_token_stats.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
+
     args = parser.parse_args()
     
     if args.command == "drink":
@@ -1867,6 +2251,10 @@ def main():
         curate_kc_lint(args.db_path)
     elif args.command == "kc-hash":
         curate_kc_hash(args.db_path)
+    elif args.command == "kc-tail-stats":
+        curate_kc_tail_stats(args.db_path, args.sentence)
+    elif args.command == "token-stats":
+        curate_token_stats(args.db_path)
 
 
 if __name__ == "__main__":

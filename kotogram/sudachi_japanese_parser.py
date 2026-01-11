@@ -108,8 +108,8 @@ class SudachiJapaneseParser(JapaneseParser):
                 """Add field to token dict if value is not empty."""
                 if value is None or value == '""' or value == "":
                     return
-                # Allow "*" specifically for lemma to indicate explicit surface identity
-                if value == "*" and field != "lemma":
+                # Allow "*" for lemma and reading to indicate explicit surface identity
+                if value == "*" and field not in ("lemma", "reading"):
                     return
                 feature_dict[field] = value
 
@@ -162,16 +162,30 @@ class SudachiJapaneseParser(JapaneseParser):
                 )
 
             # Lexical information
-            # Explicitly use "*" if lemma matches surface
-            add("lemma", dictionary_form if dictionary_form != surface else "*")
+            # Use "*" compression if lemma/reading matches surface.
+            # Encode literal "*" as "<star>" to distinguish from compression convention.
+            def encode_star(value: str) -> str:
+                """Encode literal asterisks as <star> escape token."""
+                return "<star>" if value == "*" else value
+
+            if dictionary_form != surface:
+                add("lemma", encode_star(dictionary_form))
+            elif surface == "*":
+                # Surface is literal "*" - can't use "*" compression, use <star>
+                add("lemma", "<star>")
+            else:
+                add("lemma", "*")  # Compression: means "same as surface"
             add(
                 "base_orth",
                 dictionary_form if dictionary_form != surface else None,
             )
-            add(
-                "reading",
-                reading_form if reading_form != surface else None,
-            )
+            if reading_form != surface:
+                add("reading", encode_star(reading_form))
+            elif surface == "*":
+                # Surface is literal "*" - can't use "*" compression, use <star>
+                add("reading", "<star>")
+            else:
+                add("reading", "*")  # Compression: means "same as surface"
 
             # Construct TokenFeatures dataclass from dict
             features = TokenFeatures(**feature_dict)
@@ -210,23 +224,36 @@ class SudachiJapaneseParser(JapaneseParser):
 
         pos_code = pos if pos else ""
 
+        # Use distinct markers for each field to ensure lossless round-trip:
+        # ᵖ = pos, ᵖ¹ = pos_detail_1, ᵖ² = pos_detail_2, ᵖ³ = pos_detail_3, ᵗ = conjugated_type
         inner = f"ˢ{surface}ᵖ{pos_code}"
 
         if pos_detail_1:
-            inner += f":{pos_detail_1}"
-        if pos_detail_2 and pos_detail_2 != "general":
-            inner += f":{pos_detail_2}"
-        if pos_detail_3 and pos_detail_3 != "general":
-            inner += f":{pos_detail_3}"
+            inner += f"ᵖ¹{pos_detail_1}"
+        if pos_detail_2:
+            inner += f"ᵖ²{pos_detail_2}"
+        if pos_detail_3:
+            inner += f"ᵖ³{pos_detail_3}"
         if conjugated_type:
-            inner += f":{conjugated_type}"
+            inner += f"ᵗ{conjugated_type}"
+        # Use dedicated marker ᶜ for conjugated_form to avoid parsing ambiguity
         if conjugated_form:
-            inner += f":{conjugated_form}"
+            inner += f"ᶜ{conjugated_form}"
         if base:
             inner += f"ᵇ{base}"
-        if lemma and lemma != surface:
+
+        # Write lemma - features.lemma already contains:
+        # - "*" for compression (lemma equals surface)
+        # - "<star>" for literal asterisk
+        # - actual lemma value otherwise
+        if lemma:
             inner += f"ᵈ{lemma}"
-        if pronunciation and pronunciation != surface:
+
+        # Write reading - features.reading already contains:
+        # - "*" for compression (reading equals surface)
+        # - "<star>" for literal asterisk
+        # - actual reading value otherwise
+        if pronunciation:
             inner += f"ʳ{pronunciation}"
 
         reading_gram = features.reading_gram
@@ -234,11 +261,20 @@ class SudachiJapaneseParser(JapaneseParser):
             inner += f"ᵍ{reading_gram}"
 
         # Obfuscate if enabled
-        from kotogram.kotogram import obscure_kotogram_token_string
+        from kotogram.kotogram import (
+            _SHORTHAND_FROM_FULL,
+            obscure_kotogram_token_string,
+        )
 
         inner = obscure_kotogram_token_string(inner)
 
         if OBSCURE_KOTOGRAM == 1:
             return f"[{inner}]"
 
-        return f"⌈{inner}⌉"
+        full_token = f"⌈{inner}⌉"
+
+        # Use shorthand compression if available
+        if full_token in _SHORTHAND_FROM_FULL:
+            return _SHORTHAND_FROM_FULL[full_token]
+
+        return full_token

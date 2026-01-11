@@ -195,6 +195,11 @@ def load_training_state(  # pylint: disable=too-many-locals
     # Handle 'module.' prefix (legacy support for checkpoints)
     model_state = {k.replace("module.", ""): v for k, v in model_state.items()}
 
+    # Backward compatibility: remap old key names to new names
+    from kotogram.model import remap_checkpoint_key
+
+    model_state = {remap_checkpoint_key(k): v for k, v in model_state.items()}
+
     # Unwrap model if needed to match keys correctly (model_state has keys stripped of 'module.')
     inner_model = model
     if hasattr(model, "module"):

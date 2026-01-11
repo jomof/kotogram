@@ -46,7 +46,7 @@ def _get_kc_trainer_modules() -> set[str]:
     - embedding: shared encoder (trained at 10% LR)
     - encoder: shared transformer encoder (trained at 10% LR)
     """
-    return {"kc_head", "kc_decoders", "embedding", "encoder", "pos_encoding"}
+    return {"kc_head", "kc_decoders", "embedding", "encoder", "position_encoding"}
 
 
 def _get_style_trainer_modules() -> set[str]:
@@ -65,7 +65,7 @@ def _get_style_trainer_modules() -> set[str]:
         "register_classifier",
         "embedding",
         "encoder",
-        "pos_encoding",
+        "position_encoding",
     }
 
 

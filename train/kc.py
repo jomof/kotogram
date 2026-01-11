@@ -1,7 +1,7 @@
 """KC target computation logic."""
 
 from enum import Enum
-from typing import Any, Dict, List, Sequence, Union
+from typing import Any, Dict, List, Optional, Sequence, Set, Union
 
 import torch
 
@@ -17,6 +17,11 @@ KC_POS_BIASED_WINDOW = 5
 # PAD and UNK are kept for analysis purposes
 SPECIAL_TOKEN_IDS = {CLS_ID}
 
+# pos_detail_1 tokens to exclude from tail and ngram families.
+# These tokens are high-frequency but low-information for style discrimination.
+# Format: composite token strings matching pos_detail_1 vocabulary (e.g., "noun:common-noun")
+TAIL_NGRAM_DISALLOW_LIST = frozenset({"noun:common-noun", "noun:numeral"})
+
 
 class KcFamilyId(str, Enum):
     """Canonical opaque IDs for all KC families."""
@@ -25,23 +30,27 @@ class KcFamilyId(str, Enum):
     BAG_READING_GRAM = "bag_reading_gram"
     BAG_POS = "bag_pos"
     BAG_POS_DETAIL_1 = "bag_pos_detail_1"
+    BAG_POS_DETAIL_2 = "bag_pos_detail_2"
     BAG_CONJUGATED_TYPE = "bag_conjugated_type"
 
     # Tail Bag Families
     TAIL_READING_GRAM = "tail_reading_gram"
     TAIL_POS = "tail_pos"
     TAIL_POS_DETAIL_1 = "tail_pos_detail_1"
+    TAIL_POS_DETAIL_2 = "tail_pos_detail_2"
     TAIL_CONJUGATED_TYPE = "tail_conjugated_type"
 
     # Ngram Families
     NGRAM_POS = "ngram_pos"
     NGRAM_POS_DETAIL_1 = "ngram_pos_detail_1"
+    NGRAM_POS_DETAIL_2 = "ngram_pos_detail_2"
     NGRAM_CONJUGATED_TYPE = "ngram_conjugated_type"
     NGRAM_READING_GRAM = "ngram_reading_gram"
 
     # Tail Ngram Families
     TAIL_NGRAM_POS = "tail_ngram_pos"
     TAIL_NGRAM_POS_DETAIL_1 = "tail_ngram_pos_detail_1"
+    TAIL_NGRAM_POS_DETAIL_2 = "tail_ngram_pos_detail_2"
     TAIL_NGRAM_CONJUGATED_TYPE = "tail_ngram_conjugated_type"
     TAIL_NGRAM_READING_GRAM = "tail_ngram_reading_gram"
 
@@ -54,10 +63,12 @@ ALL_KC_FAMILIES = list(KcFamilyId)
 FAMILY_BUCKET_SIZES: Dict[KcFamilyId, int] = {
     KcFamilyId.NGRAM_POS: 2048,
     KcFamilyId.NGRAM_POS_DETAIL_1: 4096,
+    KcFamilyId.NGRAM_POS_DETAIL_2: 4096,
     KcFamilyId.NGRAM_CONJUGATED_TYPE: 8192,
     KcFamilyId.NGRAM_READING_GRAM: 262144,  # 2^18: 234K unique ngrams
     KcFamilyId.TAIL_NGRAM_POS: 2048,
     KcFamilyId.TAIL_NGRAM_POS_DETAIL_1: 4096,
+    KcFamilyId.TAIL_NGRAM_POS_DETAIL_2: 4096,
     KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: 8192,
     KcFamilyId.TAIL_NGRAM_READING_GRAM: 131072,  # 2^17: 115K unique ngrams
 }
@@ -92,10 +103,12 @@ def is_family_sparse(family: KcFamilyId) -> bool:
         KcFamilyId.BAG_READING_GRAM,
         KcFamilyId.BAG_POS,
         KcFamilyId.BAG_POS_DETAIL_1,
+        KcFamilyId.BAG_POS_DETAIL_2,
         KcFamilyId.BAG_CONJUGATED_TYPE,
         KcFamilyId.TAIL_READING_GRAM,
         KcFamilyId.TAIL_POS,
         KcFamilyId.TAIL_POS_DETAIL_1,
+        KcFamilyId.TAIL_POS_DETAIL_2,
         KcFamilyId.TAIL_CONJUGATED_TYPE,
     ):
         return False
@@ -104,10 +117,12 @@ def is_family_sparse(family: KcFamilyId) -> bool:
     if family in (
         KcFamilyId.NGRAM_POS,
         KcFamilyId.NGRAM_POS_DETAIL_1,
+        KcFamilyId.NGRAM_POS_DETAIL_2,
         KcFamilyId.NGRAM_CONJUGATED_TYPE,
         KcFamilyId.NGRAM_READING_GRAM,
         KcFamilyId.TAIL_NGRAM_POS,
         KcFamilyId.TAIL_NGRAM_POS_DETAIL_1,
+        KcFamilyId.TAIL_NGRAM_POS_DETAIL_2,
         KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
         KcFamilyId.TAIL_NGRAM_READING_GRAM,
     ):
@@ -122,20 +137,24 @@ FAMILY_FEATURES: Dict[KcFamilyId, str] = {
     KcFamilyId.BAG_READING_GRAM: "reading_gram",
     KcFamilyId.BAG_POS: "pos",
     KcFamilyId.BAG_POS_DETAIL_1: "pos_detail_1",
+    KcFamilyId.BAG_POS_DETAIL_2: "pos_detail_2",
     KcFamilyId.BAG_CONJUGATED_TYPE: "conjugated_type",
     # Tail
     KcFamilyId.TAIL_READING_GRAM: "reading_gram",
     KcFamilyId.TAIL_POS: "pos",
     KcFamilyId.TAIL_POS_DETAIL_1: "pos_detail_1",
+    KcFamilyId.TAIL_POS_DETAIL_2: "pos_detail_2",
     KcFamilyId.TAIL_CONJUGATED_TYPE: "conjugated_type",
     # Ngram
     KcFamilyId.NGRAM_POS: "pos",
     KcFamilyId.NGRAM_POS_DETAIL_1: "pos_detail_1",
+    KcFamilyId.NGRAM_POS_DETAIL_2: "pos_detail_2",
     KcFamilyId.NGRAM_CONJUGATED_TYPE: "conjugated_type",
     KcFamilyId.NGRAM_READING_GRAM: "reading_gram",
     # Tail Ngram
     KcFamilyId.TAIL_NGRAM_POS: "pos",
     KcFamilyId.TAIL_NGRAM_POS_DETAIL_1: "pos_detail_1",
+    KcFamilyId.TAIL_NGRAM_POS_DETAIL_2: "pos_detail_2",
     KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: "conjugated_type",
     KcFamilyId.TAIL_NGRAM_READING_GRAM: "reading_gram",
 }
@@ -145,10 +164,12 @@ FAMILY_FEATURES: Dict[KcFamilyId, str] = {
 SALT: Dict[KcFamilyId, int] = {
     KcFamilyId.NGRAM_POS: 101,
     KcFamilyId.NGRAM_POS_DETAIL_1: 102,
+    KcFamilyId.NGRAM_POS_DETAIL_2: 103,
     KcFamilyId.NGRAM_CONJUGATED_TYPE: 104,
     KcFamilyId.NGRAM_READING_GRAM: 105,
     KcFamilyId.TAIL_NGRAM_POS: 201,
     KcFamilyId.TAIL_NGRAM_POS_DETAIL_1: 202,
+    KcFamilyId.TAIL_NGRAM_POS_DETAIL_2: 203,
     KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: 204,
     KcFamilyId.TAIL_NGRAM_READING_GRAM: 205,
 }
@@ -189,6 +210,20 @@ def stable_hash_ints(ints: Sequence[int]) -> int:
     return h
 
 
+def _get_hierarchical_ids(
+    feature_ids: Dict[str, List[int]], family_id: KcFamilyId
+) -> List[int]:
+    """Get IDs for a family.
+
+    For pos_detail families, the tokenizer now creates composite vocabulary tokens
+    (e.g., "noun:proper-noun" for pos_detail_1), so we just return the field IDs directly.
+    """
+    field = FAMILY_FEATURES[family_id]
+    if field not in feature_ids:
+        return []
+    return list(feature_ids[field])
+
+
 def _compute_bag_targets(
     feature_ids: Dict[str, List[int]], targets: Dict[KcFamilyId, Any]
 ) -> None:
@@ -197,18 +232,22 @@ def _compute_bag_targets(
         KcFamilyId.BAG_READING_GRAM,
         KcFamilyId.BAG_POS,
         KcFamilyId.BAG_POS_DETAIL_1,
+        KcFamilyId.BAG_POS_DETAIL_2,
         KcFamilyId.BAG_CONJUGATED_TYPE,
     }
 
     for family_id in bag_families:
         field = FAMILY_FEATURES[family_id]
         if field in feature_ids:
+            # Get hierarchical IDs (includes parent fields for pos_detail families)
+            ids = _get_hierarchical_ids(feature_ids, family_id)
             # Exclude special tokens (CLS only - PAD/UNK kept for analysis)
-            filtered = [v for v in feature_ids[field] if v not in SPECIAL_TOKEN_IDS]
-            # For pos_detail_1 and conjugated_type, also filter out UNK
+            filtered = [v for v in ids if v not in SPECIAL_TOKEN_IDS]
+            # For pos_detail_1, pos_detail_2, and conjugated_type, also filter out UNK
             # These fields can have UNK when morphology is ambiguous
             if family_id in (
                 KcFamilyId.BAG_POS_DETAIL_1,
+                KcFamilyId.BAG_POS_DETAIL_2,
                 KcFamilyId.BAG_CONJUGATED_TYPE,
             ):
                 filtered = [v for v in filtered if v != UNK_ID]
@@ -236,51 +275,161 @@ def _compute_bag_targets(
             )
 
 
+def get_tail_ids(
+    feature_ids: Dict[str, List[int]],
+    field: str,
+    window: int = KC_POS_BIASED_WINDOW,
+    filter_unk: bool = False,
+    disallowed_positions: Optional[Set[int]] = None,
+) -> List[int]:
+    """Extract the tail IDs for a given field.
+
+    This is the core tail selection logic used by KC training.
+    Returns the last `window` tokens' IDs, excluding CLS and optionally UNK.
+
+    Args:
+        feature_ids: Dictionary mapping field names to ID lists.
+        field: The feature field to extract (e.g., "pos_detail_1").
+        window: Number of tokens from the end to include (default: KC_POS_BIASED_WINDOW).
+        filter_unk: If True, also filter out UNK tokens.
+        disallowed_positions: Optional set of position indices to exclude.
+
+    Returns:
+        List of unique, sorted tail IDs for the field.
+    """
+    if field not in feature_ids:
+        return []
+    ids = list(feature_ids[field])
+    seq_len = len(ids)
+    if seq_len == 0:
+        return []
+
+    # Get tail positions (last `window` tokens)
+    tail_start = max(0, seq_len - window)
+
+    # Filter by position, special tokens, and optionally UNK
+    if disallowed_positions is None:
+        disallowed_positions = set()
+
+    filtered = []
+    for i in range(tail_start, seq_len):
+        if i in disallowed_positions:
+            continue
+        v = ids[i]
+        if v in SPECIAL_TOKEN_IDS:
+            continue
+        if filter_unk and v == UNK_ID:
+            continue
+        filtered.append(v)
+
+    return sorted(set(filtered))
+
+
+# Module-level cache for resolved disallow IDs
+_DISALLOW_IDS_CACHE: Optional[Set[int]] = None
+
+
+def initialize_disallow_filter(pos_detail_1_vocab: Dict[str, int]) -> None:
+    """Initialize the module-level disallow filter from tokenizer vocab.
+
+    Call this once during startup (e.g., after loading tokenizer) to resolve
+    TAIL_NGRAM_DISALLOW_LIST tokens to IDs. All subsequent calls to
+    compute_kc_targets will use the cached disallow IDs automatically.
+
+    Args:
+        pos_detail_1_vocab: Dictionary mapping pos_detail_1 tokens to IDs.
+    """
+    global _DISALLOW_IDS_CACHE  # pylint: disable=global-statement
+    _DISALLOW_IDS_CACHE = set()
+    for token in TAIL_NGRAM_DISALLOW_LIST:
+        if token in pos_detail_1_vocab:
+            _DISALLOW_IDS_CACHE.add(pos_detail_1_vocab[token])
+
+
+def get_disallowed_positions(feature_ids: Dict[str, List[int]]) -> Set[int]:
+    """Get position indices where pos_detail_1 matches disallow list.
+
+    Uses the module-level cached disallow IDs (set via initialize_disallow_filter).
+
+    Returns:
+        Set of position indices to exclude from all tail/ngram families.
+    """
+    if _DISALLOW_IDS_CACHE is None or "pos_detail_1" not in feature_ids:
+        return set()
+
+    pos_detail_1_ids = feature_ids["pos_detail_1"]
+    return {i for i, pid in enumerate(pos_detail_1_ids) if pid in _DISALLOW_IDS_CACHE}
+
+
 def _compute_tail_targets(
-    feature_ids: Dict[str, List[int]], targets: Dict[KcFamilyId, Any]
+    feature_ids: Dict[str, List[int]],
+    targets: Dict[KcFamilyId, Any],
+    disallowed_positions: Optional[Set[int]] = None,
 ) -> None:
     # Tail families
     tail_families = {
         KcFamilyId.TAIL_READING_GRAM,
         KcFamilyId.TAIL_POS,
         KcFamilyId.TAIL_POS_DETAIL_1,
-        # KcFamilyId.TAIL_CONJUGATED_FORM,
+        KcFamilyId.TAIL_POS_DETAIL_2,
         KcFamilyId.TAIL_CONJUGATED_TYPE,
     }
 
     for family_id in tail_families:
         field = FAMILY_FEATURES[family_id]
         if field in feature_ids:
-            ids = feature_ids[field]
-            tail_ids = ids[-KC_POS_BIASED_WINDOW:] if len(ids) > 0 else []
-            # Exclude special tokens (CLS)
-            filtered = [v for v in tail_ids if v not in SPECIAL_TOKEN_IDS]
-            # For pos_detail_1 and conjugated_type, also filter out UNK
-            # These fields can have UNK when morphology is ambiguous
-            if family_id in (
+            # For pos_detail_1, pos_detail_2, and conjugated_type, also filter UNK
+            filter_unk = family_id in (
                 KcFamilyId.TAIL_POS_DETAIL_1,
+                KcFamilyId.TAIL_POS_DETAIL_2,
                 KcFamilyId.TAIL_CONJUGATED_TYPE,
-            ):
-                filtered = [v for v in filtered if v != UNK_ID]
-            targets[family_id] = sorted(set(filtered))
+            )
+            targets[family_id] = get_tail_ids(
+                feature_ids,
+                field,
+                filter_unk=filter_unk,
+                disallowed_positions=disallowed_positions,
+            )
 
 
 def _compute_ngram_targets(
-    feature_ids: Dict[str, List[int]], targets: Dict[KcFamilyId, Any]
+    feature_ids: Dict[str, List[int]],
+    targets: Dict[KcFamilyId, Any],
+    disallowed_positions: Optional[Set[int]] = None,
 ) -> None:
+    # pylint: disable=too-many-locals
     # Ngram families
     ngram_families = {
         KcFamilyId.NGRAM_POS,
         KcFamilyId.NGRAM_POS_DETAIL_1,
+        KcFamilyId.NGRAM_POS_DETAIL_2,
         KcFamilyId.NGRAM_CONJUGATED_TYPE,
         KcFamilyId.NGRAM_READING_GRAM,
     }
 
+    if disallowed_positions is None:
+        disallowed_positions = set()
+
     for family_id in ngram_families:
         field = FAMILY_FEATURES[family_id]
         if field in feature_ids:
-            # Filter out special tokens before computing ngrams
-            ids = [v for v in feature_ids[field] if v not in SPECIAL_TOKEN_IDS]
+            # Get hierarchical IDs with position info for filtering
+            raw_ids = _get_hierarchical_ids(feature_ids, family_id)
+            # Filter by position: exclude disallowed positions, special tokens, and UNK for some families
+            ids = []
+            for i, v in enumerate(raw_ids):
+                if i in disallowed_positions:
+                    continue
+                if v in SPECIAL_TOKEN_IDS:
+                    continue
+                ids.append(v)
+            # For pos_detail_1, pos_detail_2, and conjugated_type, also filter out UNK
+            if family_id in (
+                KcFamilyId.NGRAM_POS_DETAIL_1,
+                KcFamilyId.NGRAM_POS_DETAIL_2,
+                KcFamilyId.NGRAM_CONJUGATED_TYPE,
+            ):
+                ids = [v for v in ids if v != UNK_ID]
             hashes = set()
             salt = _salt(family_id)
             bucket_size = get_family_bucket_size(family_id)
@@ -295,23 +444,46 @@ def _compute_ngram_targets(
 
 
 def _compute_tail_ngram_targets(
-    feature_ids: Dict[str, List[int]], targets: Dict[KcFamilyId, Any]
+    feature_ids: Dict[str, List[int]],
+    targets: Dict[KcFamilyId, Any],
+    disallowed_positions: Optional[Set[int]] = None,
 ) -> None:
+    # pylint: disable=too-many-locals
     """Compute n-gram targets biased toward the end of the sentence."""
     tail_ngram_families = {
         KcFamilyId.TAIL_NGRAM_POS,
         KcFamilyId.TAIL_NGRAM_POS_DETAIL_1,
+        KcFamilyId.TAIL_NGRAM_POS_DETAIL_2,
         KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
         KcFamilyId.TAIL_NGRAM_READING_GRAM,
     }
 
+    if disallowed_positions is None:
+        disallowed_positions = set()
+
     for family_id in tail_ngram_families:
         field = FAMILY_FEATURES[family_id]
         if field in feature_ids:
-            ids = feature_ids[field]
-            tail_ids = ids[-KC_POS_BIASED_WINDOW:] if len(ids) > 0 else []
-            # Filter out special tokens
-            tail_ids = [v for v in tail_ids if v not in SPECIAL_TOKEN_IDS]
+            # Get hierarchical IDs
+            raw_ids = _get_hierarchical_ids(feature_ids, family_id)
+            seq_len = len(raw_ids)
+            # Get tail positions (last KC_POS_BIASED_WINDOW)
+            tail_start = max(0, seq_len - KC_POS_BIASED_WINDOW)
+            # Filter: position in tail window AND not disallowed AND not special
+            tail_ids = []
+            for i in range(tail_start, seq_len):
+                if i in disallowed_positions:
+                    continue
+                if raw_ids[i] in SPECIAL_TOKEN_IDS:
+                    continue
+                tail_ids.append(raw_ids[i])
+            # For pos_detail_1, pos_detail_2, and conjugated_type, also filter out UNK
+            if family_id in (
+                KcFamilyId.TAIL_NGRAM_POS_DETAIL_1,
+                KcFamilyId.TAIL_NGRAM_POS_DETAIL_2,
+                KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
+            ):
+                tail_ids = [v for v in tail_ids if v != UNK_ID]
             if not tail_ids:
                 continue
 
@@ -330,7 +502,15 @@ def _compute_tail_ngram_targets(
 def compute_kc_targets(
     feature_ids: Dict[str, Union[List[int], "torch.Tensor"]],
 ) -> Dict[KcFamilyId, Any]:
-    """Compute KC targets from feature IDs."""
+    """Compute KC targets from feature IDs.
+
+    Args:
+        feature_ids: Dictionary mapping field names to token ID lists/tensors.
+
+    Note:
+        Call initialize_disallow_filter() once at startup to enable automatic
+        filtering of TAIL_NGRAM_DISALLOW_LIST tokens from tail/ngram families.
+    """
     # Ensure inputs are lists, not tensors
     feature_ids_list: Dict[str, List[int]] = {}
     for k, val in feature_ids.items():
@@ -341,13 +521,16 @@ def compute_kc_targets(
         else:
             feature_ids_list[k] = list(val)  # type: ignore
 
-    # Create targets dict
-    targets: Dict[KcFamilyId, Any] = {}
+    # Compute disallowed positions using module-level cached disallow IDs
+    disallowed_positions = get_disallowed_positions(feature_ids_list)
+
+    # Initialize all families with empty lists
+    # This ensures all families are present in the returned dict
+    targets: Dict[KcFamilyId, Any] = {family: [] for family in ALL_KC_FAMILIES}
 
     _compute_bag_targets(feature_ids_list, targets)
-    _compute_tail_targets(feature_ids_list, targets)
-    _compute_ngram_targets(feature_ids_list, targets)
-    _compute_tail_ngram_targets(feature_ids_list, targets)
-    _compute_tail_ngram_targets(feature_ids_list, targets)
+    _compute_tail_targets(feature_ids_list, targets, disallowed_positions)
+    _compute_ngram_targets(feature_ids_list, targets, disallowed_positions)
+    _compute_tail_ngram_targets(feature_ids_list, targets, disallowed_positions)
 
     return targets

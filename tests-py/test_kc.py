@@ -136,11 +136,12 @@ class TestKC(unittest.TestCase):
             "reading": {"<READING_MASK>": 999},
         }
         targets = compute_kc_targets({})
-        # Should be empty dict or dict with empty values?
-        # Implementation creates keys if field present. If field not present, key not created?
-        # Re-reading kc.py: "if field in feature_ids: ... targets[family_id] = ..."
-        # So if input empty, output dict is empty.
-        self.assertEqual(len(targets), 0)
+        # All 20 families are initialized with empty lists
+        # (5 bag + 5 tail + 5 ngram + 5 tail_ngram = 20)
+        self.assertEqual(len(targets), 20)
+        # All should be empty lists
+        for family_id, vals in targets.items():
+            self.assertEqual(vals, [], f"Family {family_id} should be empty")
 
     def test_compute_kc_targets_missing_fields(self):
         """Test with partial fields."""
@@ -157,9 +158,17 @@ class TestKC(unittest.TestCase):
         }
         targets = compute_kc_targets(feature_ids)
 
+        # All 20 families are present (initialized with empty lists)
+        self.assertEqual(len(targets), 20)
+        # BAG_POS should have values
         self.assertIn(KcFamilyId.BAG_POS, targets)
-        self.assertNotIn(KcFamilyId.BAG_READING_GRAM, targets)
+        self.assertTrue(len(targets[KcFamilyId.BAG_POS]) > 0)
+        # BAG_READING_GRAM should be present but empty (no reading_gram in input)
+        self.assertIn(KcFamilyId.BAG_READING_GRAM, targets)
+        self.assertEqual(targets[KcFamilyId.BAG_READING_GRAM], [])
+        # NGRAM_POS should have values
         self.assertIn(KcFamilyId.NGRAM_POS, targets)
+        self.assertTrue(len(targets[KcFamilyId.NGRAM_POS]) > 0)
 
 
 if __name__ == "__main__":
