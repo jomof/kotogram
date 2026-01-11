@@ -196,8 +196,8 @@ def init_worker(
     _TOKENIZER = Tokenizer()
     _TOKENIZER.load_state(tokenizer_state)
     # Initialize disallow filter once per worker
-    pos_detail_1_vocab = _TOKENIZER.field_vocabs.get("pos_detail_1", {})
-    initialize_disallow_filter(pos_detail_1_vocab)
+    compound_1_vocab = _TOKENIZER.field_vocabs.get("compound_1", {})
+    initialize_disallow_filter(compound_1_vocab)
 
 
 def analyze_batch(
@@ -538,8 +538,10 @@ def _encode_shard_phase2(worker_id: int) -> None:
             feat_ids_map: Dict[str, List[int]] = {f: [] for f in FEATURE_FIELDS}
             for token in tokens:
                 token_feat = extract_token_features(token)
+                # Get vocab-ready strings using centralized function (same as Phase 1)
+                vocab_strings = get_vocab_strings(token_feat)
                 for field in FEATURE_FIELDS:
-                    val = getattr(token_feat, field)
+                    val = vocab_strings[field]
 
                     if _TOKENIZER:
                         fid = _TOKENIZER.get_id(field, val)

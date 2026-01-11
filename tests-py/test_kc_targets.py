@@ -7,11 +7,11 @@ from train.kc import SALT, KcFamilyId, compute_kc_targets, stable_hash_ints
 
 class TestKCTargets(unittest.TestCase):
     def test_compute_kc_targets_with_pos_detail(self):
-        # Input with pos_detail_1 and conjugated_type
+        # Input with compound_1 and conjugated_type
         # Note: Avoid IDs 0 (PAD), 1 (UNK), 2 (CLS) as they have special handling
         feature_ids = {
             "pos": [3, 4, 5],
-            "pos_detail_1": [10, 11, 10],  # Includes duplicate
+            "compound_1": [10, 11, 10],  # Includes duplicate
             "conjugated_type": [20, 21, 22],
             "conjugated_form": [30, 31, 32],
             "reading": [100, 101, 102],
@@ -38,9 +38,7 @@ class TestKCTargets(unittest.TestCase):
 
         # Verify bag targets (sorted)
         self.assertEqual(targets[KcFamilyId.BAG_POS], [3, 4, 5])
-        self.assertEqual(
-            targets[KcFamilyId.BAG_POS_DETAIL_1], [10, 11]
-        )  # Sorted, unique
+        self.assertEqual(targets[KcFamilyId.BAG_COMPOUND_1], [10, 11])  # Sorted, unique
         # reading_gram derivation:
         # 100 (verb) -> 999 (mask), 101 (noun) -> 999 (mask), 102 (particle) -> 102
         self.assertEqual(targets[KcFamilyId.BAG_READING_GRAM], [102, 999])
@@ -48,17 +46,17 @@ class TestKCTargets(unittest.TestCase):
         # self.assertEqual(targets[KcFamilyId.BAG_CONJUGATED_FORM], [30, 31, 32])
 
         # Verify tail targets
-        self.assertIn(KcFamilyId.TAIL_POS_DETAIL_1, targets)
+        self.assertIn(KcFamilyId.TAIL_COMPOUND_1, targets)
 
         # Verify ngram targets
         self.assertIn(KcFamilyId.NGRAM_POS, targets)
-        self.assertIn(KcFamilyId.NGRAM_POS_DETAIL_1, targets)
+        self.assertIn(KcFamilyId.NGRAM_COMPOUND_1, targets)
         # self.assertIn(KcFamilyId.NGRAM_CONJUGATED_FORM, targets)
         self.assertIn(KcFamilyId.NGRAM_CONJUGATED_TYPE, targets)
 
         # Verify tail ngram targets
         self.assertIn(KcFamilyId.TAIL_NGRAM_POS, targets)
-        self.assertIn(KcFamilyId.TAIL_NGRAM_POS_DETAIL_1, targets)
+        self.assertIn(KcFamilyId.TAIL_NGRAM_COMPOUND_1, targets)
         # self.assertIn(KcFamilyId.TAIL_NGRAM_CONJUGATED_FORM, targets)
         self.assertIn(KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE, targets)
 
@@ -68,7 +66,7 @@ class TestKCTargets(unittest.TestCase):
         # self.assertIn(KcFamilyId.PAIR_POS1_CONJTYPE, targets)
 
     def test_compute_kc_targets_missing_fields(self):
-        # Input missing pos_detail_1 - use IDs > 2 to avoid special tokens
+        # Input missing compound_1 - use IDs > 2 to avoid special tokens
         feature_ids = {
             "pos": [3, 4, 5],
             "conjugated_form": [30, 31, 32],
@@ -79,17 +77,17 @@ class TestKCTargets(unittest.TestCase):
 
         # All 20 families are present (initialized with empty lists)
         self.assertEqual(len(targets), 20)
-        # pos_detail_1 should be empty (not in input)
-        self.assertEqual(targets[KcFamilyId.BAG_POS_DETAIL_1], [])
-        self.assertEqual(targets[KcFamilyId.NGRAM_POS_DETAIL_1], [])
-        self.assertEqual(targets[KcFamilyId.TAIL_NGRAM_POS_DETAIL_1], [])
+        # compound_1 should be empty (not in input)
+        self.assertEqual(targets[KcFamilyId.BAG_COMPOUND_1], [])
+        self.assertEqual(targets[KcFamilyId.NGRAM_COMPOUND_1], [])
+        self.assertEqual(targets[KcFamilyId.TAIL_NGRAM_COMPOUND_1], [])
         # reading_gram should be empty (no tokenizer was passed)
         self.assertEqual(targets[KcFamilyId.BAG_READING_GRAM], [])
 
     def test_empty_sequences(self):
         feature_ids = {
             "pos": [],
-            "pos_detail_1": [],
+            "compound_1": [],
             "conjugated_form": [],
             "reading": [],
         }
@@ -122,7 +120,7 @@ class TestKCTargets(unittest.TestCase):
         # Different SALT should lead to different hashes for same sequence
         ngram = [1, 2, 3]
         h1 = stable_hash_ints([SALT[KcFamilyId.NGRAM_POS], *ngram])
-        h2 = stable_hash_ints([SALT[KcFamilyId.NGRAM_POS_DETAIL_1], *ngram])
+        h2 = stable_hash_ints([SALT[KcFamilyId.NGRAM_COMPOUND_1], *ngram])
         self.assertNotEqual(h1, h2)
 
         # Verify SALT constants are unique
@@ -132,11 +130,11 @@ class TestKCTargets(unittest.TestCase):
         # Use IDs > 2 to avoid CLS exclusion
         feature_ids = {
             "pos": torch.tensor([5, 3, 4]),
-            "pos_detail_1": torch.tensor([11, 10, 12]),
+            "compound_1": torch.tensor([11, 10, 12]),
         }
         targets = compute_kc_targets(feature_ids)
         self.assertEqual(targets[KcFamilyId.BAG_POS], [3, 4, 5])  # Sorted
-        self.assertEqual(targets[KcFamilyId.BAG_POS_DETAIL_1], [10, 11, 12])
+        self.assertEqual(targets[KcFamilyId.BAG_COMPOUND_1], [10, 11, 12])
         # Verify tail_reading_gram exists if reading and pos are present (even without tokenizer, rg_ids will be empty)
         # All families are present, reading_gram should be empty
         self.assertEqual(targets[KcFamilyId.BAG_READING_GRAM], [])
@@ -180,7 +178,7 @@ class TestKCTargets(unittest.TestCase):
         # Input with CLS token (ID 2) mixed with real tokens
         feature_ids = {
             "pos": [2, 10, 11, 12],  # CLS at start, then real tokens
-            "pos_detail_1": [2, 20, 21, 22],
+            "compound_1": [2, 20, 21, 22],
             "conjugated_type": [2, 30, 31, 32],
             "reading_gram": [2, 40, 41, 42],
         }
@@ -189,17 +187,17 @@ class TestKCTargets(unittest.TestCase):
 
         # CLS (ID 2) should NOT appear in any bag targets
         self.assertNotIn(2, targets[KcFamilyId.BAG_POS])
-        self.assertNotIn(2, targets[KcFamilyId.BAG_POS_DETAIL_1])
+        self.assertNotIn(2, targets[KcFamilyId.BAG_COMPOUND_1])
         self.assertNotIn(2, targets[KcFamilyId.BAG_CONJUGATED_TYPE])
         self.assertNotIn(2, targets[KcFamilyId.BAG_READING_GRAM])
 
         # Verify real tokens are still present
         self.assertEqual(targets[KcFamilyId.BAG_POS], [10, 11, 12])
-        self.assertEqual(targets[KcFamilyId.BAG_POS_DETAIL_1], [20, 21, 22])
+        self.assertEqual(targets[KcFamilyId.BAG_COMPOUND_1], [20, 21, 22])
 
         # CLS should NOT appear in tail targets either
         self.assertNotIn(2, targets[KcFamilyId.TAIL_POS])
-        self.assertNotIn(2, targets[KcFamilyId.TAIL_POS_DETAIL_1])
+        self.assertNotIn(2, targets[KcFamilyId.TAIL_COMPOUND_1])
 
     def test_pad_and_unk_not_excluded(self):
         """PAD (ID 0) and UNK (ID 1) should NOT be excluded - kept for analysis."""

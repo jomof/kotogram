@@ -12,8 +12,8 @@ from kotogram.tokenizer import Tokenizer, get_vocab_strings
 class TestGetVocabStringsConsistency:
     """Tests that get_vocab_strings produces correct vocab strings."""
 
-    def test_pos_detail_1_includes_conjugated_form(self):
-        """Verify pos_detail_1 composite includes conjugated_form when present."""
+    def test_compound_1_includes_conjugated_form(self):
+        """Verify compound_1 composite includes conjugated_form when present."""
         features = TokenFeatures(
             surface="走れ",
             pos="verb",
@@ -28,10 +28,10 @@ class TestGetVocabStringsConsistency:
             reading_gram="はしれ",
         )
         vocab_strings = get_vocab_strings(features)
-        assert vocab_strings["pos_detail_1"] == "verb:general:imperative"
+        assert vocab_strings["compound_1"] == "verb:general:imperative"
 
-    def test_pos_detail_1_without_conjugated_form(self):
-        """Verify pos_detail_1 composite works without conjugated_form."""
+    def test_compound_1_without_conjugated_form(self):
+        """Verify compound_1 composite works without conjugated_form."""
         features = TokenFeatures(
             surface="が",
             pos="particle",
@@ -46,10 +46,10 @@ class TestGetVocabStringsConsistency:
             reading_gram="が",
         )
         vocab_strings = get_vocab_strings(features)
-        assert vocab_strings["pos_detail_1"] == "particle:case-particle"
+        assert vocab_strings["compound_1"] == "particle:case-particle"
 
-    def test_pos_detail_2_composite(self):
-        """Verify pos_detail_2 composite is correctly built."""
+    def test_compound_2_composite(self):
+        """Verify compound_2 composite is correctly built."""
         features = TokenFeatures(
             surface="太郎",
             pos="noun",
@@ -64,7 +64,7 @@ class TestGetVocabStringsConsistency:
             reading_gram="たろう",
         )
         vocab_strings = get_vocab_strings(features)
-        assert vocab_strings["pos_detail_2"] == "noun:proper-noun:person-name"
+        assert vocab_strings["compound_2"] == "noun:proper-noun:person-name"
 
     def test_raw_fields_passed_through(self):
         """Verify non-composite fields are passed through unchanged."""
@@ -123,7 +123,7 @@ class TestGetVocabStringsConsistency:
 
         # Tokenizer should use same strings as get_vocab_strings
         expected = get_vocab_strings(features)
-        for field in ["pos", "pos_detail_1", "conjugated_type", "reading_gram"]:
+        for field in ["pos", "compound_1", "conjugated_type", "reading_gram"]:
             assert strings_passed.get(field) == expected[field], (
                 f"Mismatch for {field}: tokenizer passed '{strings_passed.get(field)}' "
                 f"but get_vocab_strings returns '{expected[field]}'"

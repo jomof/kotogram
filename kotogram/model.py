@@ -53,11 +53,18 @@ def remap_checkpoint_key(key: str) -> str:
     Handles:
     - pos_encoding.* -> position_encoding.* (renamed for clarity)
     - style_pooler.* -> pooler.* (renamed for consistency)
+    - *pos_detail_1* -> *compound_1* (vocab field rename)
+    - *pos_detail_2* -> *compound_2* (vocab field rename)
     """
     if key.startswith("pos_encoding."):
         return key.replace("pos_encoding.", "position_encoding.")
     if key.startswith("style_pooler."):
         return key.replace("style_pooler.", "pooler.")
+    # Migrate pos_detail_1/2 -> compound_1/2 (field rename)
+    if "pos_detail_1" in key:
+        key = key.replace("pos_detail_1", "compound_1")
+    if "pos_detail_2" in key:
+        key = key.replace("pos_detail_2", "compound_2")
     return key
 
 
@@ -114,8 +121,8 @@ class ModelConfig:
     field_embed_dims: Dict[str, int] = field(
         default_factory=lambda: {
             "pos": 32,
-            "pos_detail_1": 32,
-            "pos_detail_2": 16,
+            "compound_1": 32,
+            "compound_2": 16,
             "pos_detail_3": 16,
             "conjugated_type": 32,
             "reading_gram": 128,  # Increased from 64 for more expressive power
@@ -179,9 +186,16 @@ class ModelConfig:
         # Migration logic for old pos_detail naming in field_embed_dims
         if "field_embed_dims" in d:
             dims = d["field_embed_dims"]
+            # Step 1: pos_detail1 -> pos_detail_1 (old migration)
             for i in range(1, 4):
                 old_key = f"pos_detail{i}"
                 new_key = f"pos_detail_{i}"
+                if old_key in dims and new_key not in dims:
+                    dims[new_key] = dims.pop(old_key)
+            # Step 2: pos_detail_1/2 -> compound_1/2 (new migration)
+            for i in [1, 2]:
+                old_key = f"pos_detail_{i}"
+                new_key = f"compound_{i}"
                 if old_key in dims and new_key not in dims:
                     dims[new_key] = dims.pop(old_key)
 
