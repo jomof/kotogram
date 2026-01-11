@@ -173,7 +173,7 @@ class TestExtractTokenFeatures(unittest.TestCase):
     def test_reading_gram_uses_surface_when_no_reading_for_grammar_pos(self):
         """Grammar POS tokens without reading should use surface for reading_gram."""
         # Craft a particle token without reading - should use surface
-        token = "⌈ˢをᵖparticle:case-particle⌉"
+        token = "⌈ˢをᵖparticleᵖ¹case-particle⌉"
         features = extract_token_features(token)
         self.assertEqual(features.surface, "を")
         # Particle is on grammar whitelist, so reading_gram should be surface
@@ -210,12 +210,13 @@ class TestExtractTokenFeatures(unittest.TestCase):
         self.assertEqual(features.surface, "行き")
         self.assertEqual(features.reading, "イキ")
         # Verb is on grammar whitelist, reading should be preserved
-        self.assertEqual(features.reading_gram, "イキ")
+        # reading_gram is normalized to hiragana for consistency
+        self.assertEqual(features.reading_gram, "いき")
 
     def test_punctuation_uses_surface_for_reading_gram(self):
         """Punctuation (aux-symbol) without reading should use surface for reading_gram."""
         # Period without reading - aux-symbol is on grammar whitelist
-        token = "⌈ˢ。ᵖaux-symbol:period⌉"
+        token = "⌈ˢ。ᵖaux-symbolᵖ¹period⌉"
         features = extract_token_features(token)
         self.assertEqual(features.surface, "。")
         self.assertEqual(features.pos, "aux-symbol")
@@ -224,7 +225,7 @@ class TestExtractTokenFeatures(unittest.TestCase):
 
     def test_comma_uses_surface_for_reading_gram(self):
         """Comma (aux-symbol) without reading should use surface for reading_gram."""
-        token = "⌈ˢ、ᵖaux-symbol:comma⌉"
+        token = "⌈ˢ、ᵖaux-symbolᵖ¹comma⌉"
         features = extract_token_features(token)
         self.assertEqual(features.surface, "、")
         self.assertEqual(features.reading_gram, "、")

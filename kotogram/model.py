@@ -47,6 +47,20 @@ REGISTER_ID_TO_LABEL = {
 }
 
 
+def remap_checkpoint_key(key: str) -> str:
+    """Remap old checkpoint key names to new names for backward compatibility.
+
+    Handles:
+    - pos_encoding.* -> position_encoding.* (renamed for clarity)
+    - style_pooler.* -> pooler.* (renamed for consistency)
+    """
+    if key.startswith("pos_encoding."):
+        return key.replace("pos_encoding.", "position_encoding.")
+    if key.startswith("style_pooler."):
+        return key.replace("style_pooler.", "pooler.")
+    return key
+
+
 class StylePrediction(NamedTuple):
     """Output prediction from the style classifier."""
 
@@ -104,11 +118,11 @@ class ModelConfig:
             "pos_detail_2": 16,
             "pos_detail_3": 16,
             "conjugated_type": 32,
-            "reading_gram": 64,
+            "reading_gram": 128,  # Increased from 64 for more expressive power
         }
     )
     d_model: int = 256
-    hidden_dim: int = 512
+    hidden_dim: int = 768  # Increased from 512 for more capacity
     num_layers: int = 3
     num_heads: int = 8
     dropout: float = 0.1
@@ -319,26 +333,86 @@ class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
 class KCHead(nn.Module):  # type: ignore[misc]
     """Head for predicting Knowledge Components (sparse concepts).
 
-    Architecture: Single linear projection with LayerNorm.
-    - Output layer: d_model -> kc_vocab_size
+    Architecture: Hidden layer with GELU activation followed by output layer.
+    - Hidden layer: d_model -> hidden_dim with GELU
+    - Output layer: hidden_dim -> kc_vocab_size
     - LayerNorm on output
     """
 
     def __init__(self, config: ModelConfig):
         super().__init__()
         self.config = config
-        self.output = nn.Linear(config.d_model, config.kc_vocab_size)
+        # Add hidden layer for more complex KC transformations
+        self.hidden = nn.Linear(config.d_model, config.hidden_dim)
+        self.activation = nn.GELU()
+        self.dropout = nn.Dropout(config.dropout)
+        self.output = nn.Linear(config.hidden_dim, config.kc_vocab_size)
         self.layer_norm = nn.LayerNorm(config.kc_vocab_size)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+        x = self.hidden(x)
+        x = self.activation(x)
+        x = self.dropout(x)
         x = self.output(x)
         x = self.layer_norm(x)
         return cast(torch.Tensor, x)
 
     def forward_with_raw(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+        x = self.hidden(x)
+        x = self.activation(x)
+        x = self.dropout(x)
         raw = self.output(x)
         out = self.layer_norm(raw)
         return raw, cast(torch.Tensor, out)
+
+
+# Required for Mypy compatibility with torch.nn.Module
+class AttentionPooler(nn.Module):  # type: ignore[misc]
+    """Attention-weighted pooling with learnable query.
+
+    Uses a learnable query vector to compute attention weights over
+    encoder hidden states, producing a single pooled representation.
+    """
+
+    def __init__(self, d_model: int, num_heads: int = 8, dropout: float = 0.1):
+        super().__init__()
+        self.query = nn.Parameter(torch.randn(1, 1, d_model))
+        self.attention = nn.MultiheadAttention(
+            d_model, num_heads, dropout=dropout, batch_first=True
+        )
+        self.layer_norm = nn.LayerNorm(d_model)
+
+    def forward(
+        self, encoder_output: torch.Tensor, attention_mask: torch.Tensor
+    ) -> torch.Tensor:
+        """Pool encoder output using attention-weighted mechanism.
+
+        Args:
+            encoder_output: (B, S, D) encoder hidden states
+            attention_mask: (B, S) attention mask (1=valid, 0=padding)
+
+        Returns:
+            pooled: (B, D) pooled representation
+        """
+        batch_size = encoder_output.size(0)
+        # Expand query to batch size: (1, 1, D) -> (B, 1, D)
+        query = self.query.expand(batch_size, -1, -1)
+
+        # Create key_padding_mask for attention (True=ignore)
+        key_padding_mask = attention_mask == 0
+
+        # Cross-attention: query attends to encoder_output
+        attn_output, _ = self.attention(
+            query=query,
+            key=encoder_output,
+            value=encoder_output,
+            key_padding_mask=key_padding_mask,
+        )
+
+        # attn_output: (B, 1, D) -> squeeze to (B, D)
+        pooled = attn_output.squeeze(1)
+        pooled = self.layer_norm(pooled)
+        return cast(torch.Tensor, pooled)
 
 
 # Required for Mypy compatibility with torch.nn.Module
@@ -350,7 +424,7 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         self.config = config
 
         self.embedding = MultiFieldEmbedding(config)
-        self.pos_encoding = PositionalEncoding(
+        self.position_encoding = PositionalEncoding(
             config.d_model,
         )
 
@@ -366,8 +440,11 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
             encoder_layer, config.num_layers, enable_nested_tensor=False
         )
 
-        # Classifier input dimension: d_model + kc_vocab_size (KC always enabled)
-        classifier_input_dim = config.d_model + config.kc_vocab_size
+        # Classifier input dimension: d_model (using attention pooler)
+        classifier_input_dim = config.d_model
+
+        # Unified attention pooler for both KC and style classification
+        self.pooler = AttentionPooler(config.d_model, config.num_heads, config.dropout)
 
         self.formality_value_head = nn.Sequential(
             nn.Linear(classifier_input_dim, config.hidden_dim),
@@ -422,7 +499,7 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
     ) -> torch.Tensor:
         """Get the sequence of encoder hidden states."""
         x = self.embedding(field_inputs)
-        x = self.pos_encoding(x)
+        x = self.position_encoding(x)
 
         src_key_padding_mask = attention_mask == 0
 
@@ -464,12 +541,11 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         torch.Tensor,
         torch.Tensor,
     ]:
-        pooled = self._get_pooled_output(field_inputs, attention_mask)
+        # Get encoder hidden states
+        encoder_output = self.get_encoder_output(field_inputs, attention_mask)
 
-        # Concatenate KC probs with pooled output (KC always enabled)
-        kc_logits = self.kc_head(pooled)
-        kc_probs = torch.sigmoid(kc_logits / self.config.kc_temperature)
-        classifier_input = torch.cat([pooled, kc_probs], dim=-1)
+        # Use unified attention pooler for style classification
+        classifier_input = self.pooler(encoder_output, attention_mask)
 
         return (
             self.formality_value_head(classifier_input),
@@ -610,6 +686,9 @@ def load_model(
         return v
 
     state_dict = {k: to_float32(v).contiguous() for k, v in state_dict.items()}
+
+    # Backward compatibility: remap old key names to new names
+    state_dict = {remap_checkpoint_key(k): v for k, v in state_dict.items()}
 
     # Load with strict=True; mandatory KC architecture ensures consistent keys
     # kc_decoders keys are stripped during save, so they won't be present

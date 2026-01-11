@@ -108,10 +108,12 @@ ConjugatedTypeValue = Literal[
     "aux-ya",
     "aux-nanda",
     "aux-hen",
+    "aux-dosu",
     "godan-ra",
     "godan-ka",
     "godan-ga",
     "godan-sa",
+    "invariable",
     "godan-ta",
     "godan-na",
     "godan-ba",
@@ -174,6 +176,7 @@ ConjugatedTypeValue = Literal[
     "classical-lower-nidan-ha",
     "classical-lower-nidan-ma",
     "classical-lower-nidan-ra",
+    "classical-lower-nidan-ta",
     "classical-yodan-ka",
     "classical-yodan-sa",
     "classical-yodan-ta",
@@ -199,10 +202,12 @@ ConjugatedFormValue = Literal[
     "continuative-abbreviated",
     "continuative-fused",
     "continuative-auxiliary",
+    "continuative-okurigana-abbr",
     "attributive",
     "attributive-nasal",
     "attributive-abbreviated",
     "attributive-auxiliary",
+    "attributive-okurigana-abbr",
     "irrealis",
     "irrealis-sa",
     "irrealis-se",
@@ -308,11 +313,13 @@ CONJUGATED_TYPE_MAP: Final[Dict[str, ConjugatedTypeValue]] = {
     "助動詞-ヤ": "aux-ya",  # Classical auxiliary (や)
     "助動詞-ナンダ": "aux-nanda",  # Colloquial (なんだ)
     "助動詞-ヘン": "aux-hen",  # Kansai dialect negative (へん)
+    "助動詞-ドス": "aux-dosu",  # Kyoto dialect copula (どす)
     # Godan (五段) verbs - 5-row conjugation
     "五段-ラ行": "godan-ra",  # Ra-row godan (作る to make)
     "五段-カ行": "godan-ka",  # Ka-row godan (書く to write)
     "五段-ガ行": "godan-ga",  # Ga-row godan (泳ぐ to swim)
     "五段-サ行": "godan-sa",  # Sa-row godan (話す to speak)
+    "無変化型": "invariable",  # Invariable (no conjugation changes)
     "五段-タ行": "godan-ta",  # Ta-row godan (立つ to stand)
     "五段-ナ行": "godan-na",  # Na-row godan (死ぬ to die, rare)
     "五段-バ行": "godan-ba",  # Ba-row godan (遊ぶ to play)
@@ -379,6 +386,7 @@ CONJUGATED_TYPE_MAP: Final[Dict[str, ConjugatedTypeValue]] = {
     "文語下二段-ハ行": "classical-lower-nidan-ha",  # Classical lower nidan ha
     "文語下二段-マ行": "classical-lower-nidan-ma",  # Classical lower nidan ma
     "文語下二段-ラ行": "classical-lower-nidan-ra",  # Classical lower nidan ra
+    "文語下二段-タ行": "classical-lower-nidan-ta",  # Classical lower nidan ta
     "文語四段-カ行": "classical-yodan-ka",  # Classical yodan ka
     "文語四段-サ行": "classical-yodan-sa",  # Classical yodan sa
     "文語四段-タ行": "classical-yodan-ta",  # Classical yodan ta
@@ -408,6 +416,8 @@ CONJUGATED_FORM_MAP: Final[Dict[str, ConjugatedFormValue]] = {
     "連体形-撥音便": "attributive-nasal",  # Attributive with nasal
     "連体形-省略": "attributive-abbreviated",  # Abbreviated attributive
     "連体形-補助": "attributive-auxiliary",  # Auxiliary attributive
+    "連体形-一般+送り仮名省略": "attributive-okurigana-abbr",  # Attributive with okurigana abbreviation
+    "連用形-一般+送り仮名省略": "continuative-okurigana-abbr",  # Continuative with okurigana abbreviation
     "未然形-一般": "irrealis",  # Irrealis/imperfective form
     "未然形-サ": "irrealis-sa",  # Irrealis sa form
     "未然形-セ": "irrealis-se",  # Irrealis se form (causative)

@@ -218,7 +218,7 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
         # Loss breakdown is now on separate lines
         self.assertIn("struct", output)
         self.assertIn("gap", output)
-        self.assertIn("formality", output)  # Prior KC loss for KC0-4
+        # Prior KC losses (formality, gender, register) removed - handled by style classifier
         self.assertIn("diversity", output)
         self.assertIn("load_bal", output)
 

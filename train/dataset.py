@@ -20,7 +20,7 @@ from train.binary_io import (
     EXT_LABELS,
     EXT_OFFSETS,
 )
-from train.kc import KcFamilyId, compute_kc_targets
+from train.kc import KcFamilyId, compute_kc_targets, initialize_disallow_filter
 from train.types import Sample, TrainingBatch
 
 # V2: No cache version check needed for raw binary files (handled by label.py generation)
@@ -57,6 +57,10 @@ class StyleDataset(Dataset[Sample]):
         self.data_dir = data_dir
         self.tokenizer = tokenizer
         self.verbose = True
+
+        # Initialize disallow filter for KC target computation
+        pos_detail_1_vocab = tokenizer.field_vocabs.get("pos_detail_1", {})
+        initialize_disallow_filter(pos_detail_1_vocab)
 
         # Load Main Offsets (Sentences)
         offsets_path = os.path.join(data_dir, EXT_OFFSETS)

@@ -234,10 +234,14 @@ class TestTrainStyleScript(unittest.TestCase):
                 e for e in history if e.get_type_name() in ["KC_EPOCH", "STYLE_EPOCH"]
             ]
 
-            # Expect at least 4 events: 2 KC epochs + 2 style epochs
+            # Expect at least 4 events: 2 KC epochs + 2 style epochs (interleaved)
             self.assertGreaterEqual(len(epoch_events), 4)
+
+            # With interleaving, pattern is: KC, Style, KC, Style, ...
             self.assertEqual(epoch_events[0].get_type_name(), "KC_EPOCH")
-            self.assertEqual(epoch_events[1].get_type_name(), "KC_EPOCH")
+            self.assertEqual(epoch_events[1].get_type_name(), "STYLE_EPOCH")
+            self.assertEqual(epoch_events[2].get_type_name(), "KC_EPOCH")
+            self.assertEqual(epoch_events[3].get_type_name(), "STYLE_EPOCH")
 
             # Verify KC pretraining uses ALL grammatical sentences
             self.assertEqual(
@@ -248,15 +252,13 @@ class TestTrainStyleScript(unittest.TestCase):
             # KC metrics check
             self.assertIn("avg_struct_loss", epoch_events[0].metrics)
 
-            # Remaining entries (after KC epochs) are style fine-tuning
-            for i in range(2, len(epoch_events)):
-                self.assertEqual(epoch_events[i].get_type_name(), "STYLE_EPOCH")
-
-                # Style fine-tuning uses the full training split (gram + agram)
-                self.assertEqual(
-                    epoch_events[i].metrics["sentence_count"],
-                    expected_counts["total_train_split_size"],
-                )
+            # Verify style epochs use full training split (gram + agram)
+            for e in epoch_events:
+                if e.get_type_name() == "STYLE_EPOCH":
+                    self.assertEqual(
+                        e.metrics["sentence_count"],
+                        expected_counts["total_train_split_size"],
+                    )
 
             # Verify performance profile coherence (clean jsonl, present txt)
             bottle.assert_coherent_performance_profile()

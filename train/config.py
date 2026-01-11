@@ -119,8 +119,7 @@ class KCConfig:
     # Collapse Prevention
     collapse_weight_thawed: float = 10.0
 
-    # Prior KC Exclusivity (false positive penalty for formality/gender/register)
-    prior_exclusivity_weight: float = 1.0
+    # Prior KC Exclusivity removed (prior losses now handled by style classifier)
 
     # Temperature
     temperature_thawed: float = 1.8

@@ -73,6 +73,7 @@ class DummyModel(torch.nn.Module):
         self.gender_pragmatic_head = torch.nn.Linear(1, 1)
         self.grammaticality_head = torch.nn.Linear(1, 1)
         self.register_head = torch.nn.Linear(1, NUM_REGISTER_CLASSES)
+        self.pooler = torch.nn.Linear(1, 1)
         self.grammaticality_classifier = self.grammaticality_head
         self.register_classifier = self.register_head
 

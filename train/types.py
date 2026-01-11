@@ -258,10 +258,23 @@ class EvaluationMetrics:
     register_loss: float = 0.0
     formality_accuracy: float = 0.0
     formality_mse: float = 0.0
+    formality_class0_accuracy: float = 0.0  # Non-pragmatic recall
+    formality_class1_accuracy: float = 0.0  # Pragmatic recall
+    formality_class0_count: int = 0  # Non-pragmatic formality samples
+    formality_class1_count: int = 0  # Pragmatic formality samples
     gender_accuracy: float = 0.0
     gender_mse: float = 0.0
+    gender_class0_accuracy: float = 0.0  # Non-pragmatic recall
+    gender_class1_accuracy: float = 0.0  # Pragmatic recall
+    gender_class0_count: int = 0  # Non-pragmatic gender samples
+    gender_class1_count: int = 0  # Pragmatic gender samples
     grammaticality_accuracy: float = 0.0
+    gram_class0_accuracy: float = 0.0  # Agrammatical recall
+    gram_class1_accuracy: float = 0.0  # Grammatical recall
+    gram_class0_count: int = 0  # Number of agrammatical samples
+    gram_class1_count: int = 0  # Number of grammatical samples
     register_accuracy: float = 0.0
+    register_count: int = 0  # Number of register samples evaluated
 
 
 @dataclass

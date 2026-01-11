@@ -404,5 +404,56 @@ class TestCurateScript(unittest.TestCase):
         self.assertIn("Cache not found", res_compare.stdout)
 
 
+class TestCurateKcFamiliesImports(unittest.TestCase):
+    """Test that kc-families imports work correctly after KC_HASH_BUCKETS refactoring."""
+
+    def test_kc_families_imports(self):
+        """Verify the imports used by curate_kc_families are available."""
+        # These imports mirror what curate_kc_families uses
+        from train.kc import (
+            ALL_KC_FAMILIES,
+            FAMILY_FEATURES,
+            KC_POS_BIASED_WINDOW,
+            get_family_bucket_size,
+            is_family_sparse,
+        )
+
+        # Verify key values exist
+        self.assertIsInstance(ALL_KC_FAMILIES, list)
+        self.assertGreater(len(ALL_KC_FAMILIES), 0)
+        self.assertIsInstance(FAMILY_FEATURES, dict)
+        self.assertIsInstance(KC_POS_BIASED_WINDOW, int)
+
+        # Test get_family_bucket_size for sparse families
+        sparse_families = [f for f in ALL_KC_FAMILIES if is_family_sparse(f)]
+        self.assertGreater(len(sparse_families), 0)
+
+        for family in sparse_families:
+            bucket_size = get_family_bucket_size(family)
+            self.assertIsInstance(bucket_size, int)
+            self.assertGreater(bucket_size, 0)
+
+    def test_compute_kc_targets_basic(self):
+        """Test compute_kc_targets with minimal input."""
+        from train.kc import ALL_KC_FAMILIES, compute_kc_targets
+
+        # Minimal feature dict (empty lists)
+        feature_ids = {
+            "pos": [2, 3, 4],  # Sample IDs (not special tokens)
+            "pos_detail_1": [2, 3, 4],
+            "conjugated_type": [2, 3, 4],
+            "reading_gram": [2, 3, 4],
+        }
+
+        targets = compute_kc_targets(feature_ids)
+
+        # Should return a dict with KC families as keys
+        self.assertIsInstance(targets, dict)
+
+        # Check that at least some families have targets
+        non_empty = [f for f in ALL_KC_FAMILIES if targets.get(f)]
+        self.assertGreater(len(non_empty), 0)
+
+
 if __name__ == "__main__":
     unittest.main()

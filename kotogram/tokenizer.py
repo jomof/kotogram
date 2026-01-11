@@ -38,6 +38,88 @@ ALL_FEATURE_FIELDS = [
 FEATURE_FIELDS = ALL_FEATURE_FIELDS  # Default: use all features
 
 
+def build_pos_detail_1_composite(
+    pos: str, pos_detail_1: str, conjugated_form: str, conjugated_type: str = ""
+) -> str:
+    """Build the composite token string for pos_detail_1 field.
+
+    This is the single source of truth for how pos_detail_1 composites are built.
+    Format: "pos:detail:conjugated_form" where detail is pos_detail_1 or
+    conjugated_type (for aux-verbs).
+
+    For aux-verbs (ます/です/だ), Sudachi provides conjugated_type (aux-masu)
+    but no pos_detail_1, so we use conjugated_type as the detail component.
+
+    Args:
+        pos: Part of speech (e.g., "verb", "particle")
+        pos_detail_1: Detail level 1 (e.g., "general", "case-particle")
+        conjugated_form: Conjugated form (e.g., "imperative", "terminal") or ""
+        conjugated_type: Conjugated type (e.g., "aux-masu") - used as fallback
+
+    Returns:
+        Composite token string, or "" if both pos_detail_1 and conjugated_type are empty.
+    """
+    # Use pos_detail_1 if present, otherwise fall back to conjugated_type
+    detail = pos_detail_1 or conjugated_type
+    if not detail:
+        return ""
+    if conjugated_form:
+        return f"{pos}:{detail}:{conjugated_form}"
+    return f"{pos}:{detail}"
+
+
+def build_pos_detail_2_composite(pos: str, pos_detail_1: str, pos_detail_2: str) -> str:
+    """Build the composite token string for pos_detail_2 field.
+
+    This is the single source of truth for how pos_detail_2 composites are built.
+    Format: "pos:pos_detail_1:pos_detail_2" (only if pos_detail_2 exists).
+
+    Must be used by both vocabulary building (label.py) and encoding (tokenizer.py)
+    to ensure consistency.
+
+    Args:
+        pos: Part of speech (e.g., "verb", "noun")
+        pos_detail_1: Detail level 1 (e.g., "general", "proper-noun")
+        pos_detail_2: Detail level 2 (e.g., "person-name", "place-name") or ""
+
+    Returns:
+        Composite token string, or "" if pos_detail_2 is empty.
+    """
+    if not pos_detail_2:
+        return ""
+    return f"{pos}:{pos_detail_1}:{pos_detail_2}"
+
+
+def get_vocab_strings(features: "TokenFeatures") -> Dict[str, str]:
+    """Transform TokenFeatures into vocab-ready strings for all feature fields.
+
+    This is the single source of truth for how TokenFeatures are converted to
+    vocabulary strings. Both vocabulary building (label.py) and encoding
+    (tokenizer.py) must use this function to ensure consistency.
+
+    Args:
+        features: A TokenFeatures object with morphological information.
+
+    Returns:
+        Dict mapping field name to vocab-ready string for that field.
+    """
+    return {
+        "pos": features.pos,
+        "pos_detail_1": build_pos_detail_1_composite(
+            features.pos,
+            features.pos_detail_1,
+            features.conjugated_form,
+            features.conjugated_type,
+        ),
+        "pos_detail_2": build_pos_detail_2_composite(
+            features.pos, features.pos_detail_1, features.pos_detail_2
+        ),
+        "pos_detail_3": features.pos_detail_3,
+        "conjugated_type": features.conjugated_type,
+        "reading_gram": features.reading_gram,
+    }
+
+
 class Tokenizer:
     """Tokenizer that extracts morphological features from Kotogram tokens.
 
@@ -109,23 +191,10 @@ class Tokenizer:
 
         # Encode each token
         for features in features_list:
-            # Unrolled for type safety and static analysis visibility
-            result["pos"].append(self.get_id("pos", features.pos))
-            result["pos_detail_1"].append(
-                self.get_id("pos_detail_1", features.pos_detail_1)
-            )
-            result["pos_detail_2"].append(
-                self.get_id("pos_detail_2", features.pos_detail_2)
-            )
-            result["pos_detail_3"].append(
-                self.get_id("pos_detail_3", features.pos_detail_3)
-            )
-            result["conjugated_type"].append(
-                self.get_id("conjugated_type", features.conjugated_type)
-            )
-            result["reading_gram"].append(
-                self.get_id("reading_gram", features.reading_gram)
-            )
+            # Get vocab-ready strings for all fields using centralized function
+            vocab_strings = get_vocab_strings(features)
+            for field in FEATURE_FIELDS:
+                result[field].append(self.get_id(field, vocab_strings[field]))
 
         return result
 

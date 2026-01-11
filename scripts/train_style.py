@@ -364,12 +364,11 @@ if __name__ == "__main__":
             )
         model = new_model
 
-    # Generate and display architecture report
+    # Generate and display architecture report (uses slim model to show export size)
     from train.architecture_report import generate_architecture_report
 
-    arch_report = generate_architecture_report(
-        model, model_name="StyleClassifierWithKC"
-    )
+    slim_model = StyleClassifier(model_config)
+    arch_report = generate_architecture_report(slim_model, model_name="StyleClassifier")
     _view.on_architecture_report(arch_report)
 
     # Load labeled data for remaining phases
@@ -419,37 +418,27 @@ if __name__ == "__main__":
         )
         trainer_config = dataclasses.replace(trainer_config, learning_rate=scaled_lr)
 
-    # KC Pretraining - always runs (uses all grammatical sentences)
+    # Interleaved KC + Style Training
+    # KC epochs run first in each round to prevent forgetting
     events = history.read_events(history_path)
     kc_epochs_done = sum(1 for e in events if isinstance(e, history.KcEpochEvent))
-    if kc_epochs_done < trainer_config.kc_epochs or trainer_config.retrain:
-        # Filter to grammatical sentences only for KC training
-        kc_dataset = labeled_dataset.filter_by_grammaticality(label=1)
-        _view.on_kc_training_info(len(kc_dataset))
+    style_epochs_done = sum(1 for e in events if isinstance(e, history.StyleEpochEvent))
 
-        kc_trainer = KCTrainer(
-            cast(StyleClassifierWithKC, model),
-            kc_dataset,  # Uses all grammatical sentences, not train_data split
-            trainer_config,
-            dl_config=trainer_config.resolve_dataloader_config(device),
-            kc_config=KCConfig(),
-        )
-        kc_hist: KCTrainingHistory = kc_trainer.train(
-            epochs=trainer_config.kc_epochs,
-            on_epoch_end=lambda h: _log_epoch_event(h, "pretrain-kc"),
-        )
-        if kc_hist.total_loss:
-            _view.on_kc_training_complete(kc_hist.total_loss[-1])
-        # Ensure final state is logged if not already (redundant if using callback)
-        # But callback might be skipped if 0 epochs? No, train loop handles it.
+    kc_epochs_target = trainer_config.kc_epochs
+    style_epochs_target = trainer_config.epochs
 
-        # Update model reference (Trainer may have wrapped/moved it)
-        model = kc_trainer.model
-        if hasattr(model, "module"):
-            model = cast(StyleClassifierWithKC, model.module)
-        model.reset_classifier()
+    # Filter to grammatical sentences only for KC training
+    kc_dataset = labeled_dataset.filter_by_grammaticality(label=1)
 
-    # Final supervised training
+    # Create both trainers upfront
+    kc_trainer = KCTrainer(
+        cast(StyleClassifierWithKC, model),
+        kc_dataset,
+        trainer_config,
+        dl_config=trainer_config.resolve_dataloader_config(device),
+        kc_config=KCConfig(),
+    )
+
     style_trainer = Trainer(
         model,
         train_data,
@@ -460,19 +449,44 @@ if __name__ == "__main__":
         output_path=output_path,
     )
 
+    _view.on_kc_training_info(len(kc_dataset))
+
     style_start = time.perf_counter()
-    style_end = style_start
-    # Auto-resume handled inside trainer.train() if checkpoint_dir set
 
-    style_hist: TrainingHistory = style_trainer.train(
-        epochs=trainer_config.epochs,
-        on_epoch_end=lambda h: _log_epoch_event(h, "style"),
-    )
-    if style_hist.train_loss:
-        _view.on_style_training_complete(style_hist.train_loss[-1])
+    # Interleaving loop: KC first, then style, until both are done
+    max_rounds = max(kc_epochs_target, style_epochs_target)
+    for _ in range(max_rounds):
+        # KC epoch (if remaining)
+        if kc_epochs_done < kc_epochs_target:
+            kc_trainer.train(
+                epochs=kc_epochs_done + 1,  # Train up to next epoch
+                on_epoch_end=lambda h: _log_epoch_event(h, "pretrain-kc"),
+                start_epoch=kc_epochs_done,
+            )
+            kc_epochs_done += 1
 
-    # _log_epoch_event already logs during callbacks
+        # Style epoch (if remaining)
+        if style_epochs_done < style_epochs_target:
+            style_trainer.train(
+                epochs=style_epochs_done + 1,  # Train up to next epoch
+                on_epoch_end=lambda h: _log_epoch_event(h, "style"),
+                start_epoch=style_epochs_done,
+            )
+            style_epochs_done += 1
+
+        # Both done?
+        if (
+            kc_epochs_done >= kc_epochs_target
+            and style_epochs_done >= style_epochs_target
+        ):
+            break
+
     style_end = time.perf_counter()
+
+    if kc_trainer.history.total_loss:
+        _view.on_kc_training_complete(kc_trainer.history.total_loss[-1])
+    if style_trainer.history.train_loss:
+        _view.on_style_training_complete(style_trainer.history.train_loss[-1])
 
     # Test evaluation and model saving
     res = style_trainer.evaluate()

@@ -31,7 +31,17 @@ from train.io import (
 )
 from train.profile import Timer, get_profile_dir
 from train.pytorch_utils import estimate_optimal_batch_size
-from train.trainer_view import TrainerDiagnosticsView, TrainerView
+from train.trainer_view import (
+    BinaryMetric,
+    ClassPopulation,
+    GradientNorms,
+    GrammaticalityMetric,
+    MseMetric,
+    RegisterMetric,
+    StyleEpochStats,
+    TrainerDiagnosticsView,
+    TrainerView,
+)
 from train.types import (
     EvaluationMetrics,
     TrainingBatch,
@@ -47,6 +57,14 @@ def _acc(p: List[int], labels: List[int]) -> float:
     return sum(x == y for x, y in zip(p, labels)) / len(labels) if labels else 0.0
 
 
+def _acc_per_class(p: List[int], labels: List[int], target_class: int) -> float:
+    """Compute recall for a specific class (how many of that class were correctly predicted)."""
+    class_preds = [pred for pred, lbl in zip(p, labels) if lbl == target_class]
+    if not class_preds:
+        return 0.0
+    return sum(pred == target_class for pred in class_preds) / len(class_preds)
+
+
 def _mse(p: List[float], labels: List[float], ids: List[int]) -> float:
     return sum((p[i] - labels[i]) ** 2 for i in ids) / len(ids) if ids else 0.0
 
@@ -58,6 +76,33 @@ def _reg_acc(p: List[List[int]], labels: List[List[int]], ids: List[int]) -> flo
         if ids
         else 0.0
     )
+
+
+def _compute_head_grad_norms(model: Any) -> Dict[str, float]:
+    """Compute L2 gradient norms for each classifier head.
+
+    Returns dict with keys: formality, gender, grammaticality, register, encoder, pooler
+    """
+    head_names = {
+        "formality": ["formality_value_head", "formality_pragmatic_head"],
+        "gender": ["gender_value_head", "gender_pragmatic_head"],
+        "grammaticality": ["grammaticality_classifier"],
+        "register": ["register_classifier"],
+        "encoder": ["encoder"],
+        "pooler": ["pooler"],  # Unified pooler (shared by KC and style)
+    }
+
+    norms: Dict[str, float] = {}
+    for group_name, module_names in head_names.items():
+        total_norm = 0.0
+        for mod_name in module_names:
+            if hasattr(model, mod_name):
+                module = getattr(model, mod_name)
+                for param in module.parameters():
+                    if param.grad is not None:
+                        total_norm += param.grad.data.norm(2).item() ** 2
+        norms[group_name] = total_norm**0.5  # L2 norm
+    return norms
 
 
 class Trainer:
@@ -165,9 +210,13 @@ class Trainer:
 
         mod = cast(StyleClassifier, self.model)
 
+        # Encoder params: unfrozen with lower LR to preserve KC pretraining
         enc_p = list(mod.embedding.parameters()) + list(mod.encoder.parameters())
-        cls_p = (
-            list(mod.formality_value_head.parameters())
+
+        # Style-specific params: pooler + classifier heads (full LR)
+        style_p = (
+            list(mod.pooler.parameters())
+            + list(mod.formality_value_head.parameters())
             + list(mod.formality_pragmatic_head.parameters())
             + list(mod.gender_value_head.parameters())
             + list(mod.gender_pragmatic_head.parameters())
@@ -178,9 +227,9 @@ class Trainer:
             [
                 {
                     "params": enc_p,
-                    "lr": 0.0,  # Encoder frozen during style training
+                    "lr": self.config.learning_rate * 0.1,  # Fine-tune encoder
                 },
-                {"params": cls_p, "lr": self.config.learning_rate},
+                {"params": style_p, "lr": self.config.learning_rate},
             ]
         )
         self.scheduler = ReduceLROnPlateau(
@@ -200,6 +249,9 @@ class Trainer:
         _safe_configure_threads(self.config)
 
         self.history = TrainingHistory()
+
+        # Gradient norm tracking per head (reset each epoch)
+        self.last_epoch_grad_norms: Dict[str, float] = {}
         profile_dir = get_profile_dir()
 
         pid = os.getpid()
@@ -388,7 +440,7 @@ class Trainer:
             reg_loss=reg_loss,
         )
 
-    def _train_batch(self, batch: TrainingBatch, batch_idx: int) -> Dict[str, float]:
+    def _train_batch(self, batch: TrainingBatch, batch_idx: int) -> Dict[str, Any]:
         field_inputs, attention_mask, targets = self._unpack_training_batch(batch)
 
         if batch_idx % self.config.grad_accum_steps == 0:
@@ -399,6 +451,9 @@ class Trainer:
         loss = losses.loss
 
         loss.backward()
+
+        # Compute gradient norms per head (before clipping/stepping)
+        grad_norms = _compute_head_grad_norms(self.model)
 
         if (batch_idx + 1) % self.config.grad_accum_steps == 0:
             if self.config.gradient_clip > 0:
@@ -421,6 +476,7 @@ class Trainer:
             "gender_loss": _detach(losses.g_loss),
             "grammaticality_loss": _detach(losses.gram_loss),
             "register_loss": _detach(losses.reg_loss),
+            "grad_norms": grad_norms,
         }
 
     def train_epoch(self, epoch: int) -> Tuple[float, float, float, float, float]:
@@ -429,6 +485,10 @@ class Trainer:
         self.model.train()
 
         metrics = TrainingMetrics()
+
+        # Gradient norm accumulators
+        grad_norm_sums: Dict[str, float] = {}
+        grad_norm_count = 0
 
         total_batches = len(self.train_loader)
         if total_batches == 0:
@@ -460,8 +520,14 @@ class Trainer:
                 self.train_timer_data.stop(epoch=epoch, batch=batch_idx)
                 self.train_timer_compute.start()
 
-                losses = self._train_batch(batch, batch_idx)
-                metrics.update(losses)
+                batch_result = self._train_batch(batch, batch_idx)
+                metrics.update(batch_result)
+
+                # Accumulate gradient norms
+                grad_norms = batch_result.get("grad_norms", {})
+                for key, val in grad_norms.items():
+                    grad_norm_sums[key] = grad_norm_sums.get(key, 0.0) + val
+                grad_norm_count += 1
 
                 if pbar:
                     current_loss_val = metrics.get_avg_loss()
@@ -491,6 +557,12 @@ class Trainer:
         self.start_batch = 0
         self.train_timer_data.stop()
         self.view.on_line_flush()
+
+        # Compute average gradient norms for epoch
+        if grad_norm_count > 0:
+            self.last_epoch_grad_norms = {
+                k: v / grad_norm_count for k, v in grad_norm_sums.items()
+            }
 
         return metrics.average()
 
@@ -569,6 +641,21 @@ class Trainer:
         avg_metrics = {k: v / n for k, v in metrics_sum.items()}
         valid_idxs = [i for i, v in enumerate(all_preds["is_valid"]) if v]
 
+        # Compute population counts for all tasks
+        f_prag_labels = all_preds["f_prag_l"]
+        formality_class0_count = sum(1 for lbl in f_prag_labels if lbl == 0)
+        formality_class1_count = sum(1 for lbl in f_prag_labels if lbl == 1)
+
+        g_prag_labels = all_preds["g_prag_l"]
+        gender_class0_count = sum(1 for lbl in g_prag_labels if lbl == 0)
+        gender_class1_count = sum(1 for lbl in g_prag_labels if lbl == 1)
+
+        gram_labels = all_preds["gram_l"]
+        gram_class0_count = sum(1 for lbl in gram_labels if lbl == 0)
+        gram_class1_count = sum(1 for lbl in gram_labels if lbl == 1)
+
+        register_count = len(valid_idxs)
+
         return EvaluationMetrics(
             loss=avg_metrics.get("loss", 0.0) * self.config.grad_accum_steps,
             formality_loss=avg_metrics.get("f_loss", 0.0),
@@ -577,12 +664,37 @@ class Trainer:
             register_loss=avg_metrics.get("reg_loss", 0.0),
             formality_accuracy=_acc(all_preds["f_prag_p"], all_preds["f_prag_l"]),
             formality_mse=_mse(all_preds["f_val_p"], all_preds["f_val_l"], valid_idxs),
+            formality_class0_accuracy=_acc_per_class(
+                all_preds["f_prag_p"], all_preds["f_prag_l"], 0
+            ),
+            formality_class1_accuracy=_acc_per_class(
+                all_preds["f_prag_p"], all_preds["f_prag_l"], 1
+            ),
+            formality_class0_count=formality_class0_count,
+            formality_class1_count=formality_class1_count,
             gender_accuracy=_acc(all_preds["g_prag_p"], all_preds["g_prag_l"]),
             gender_mse=_mse(all_preds["g_val_p"], all_preds["g_val_l"], valid_idxs),
+            gender_class0_accuracy=_acc_per_class(
+                all_preds["g_prag_p"], all_preds["g_prag_l"], 0
+            ),
+            gender_class1_accuracy=_acc_per_class(
+                all_preds["g_prag_p"], all_preds["g_prag_l"], 1
+            ),
+            gender_class0_count=gender_class0_count,
+            gender_class1_count=gender_class1_count,
             grammaticality_accuracy=_acc(all_preds["gram_p"], all_preds["gram_l"]),
+            gram_class0_accuracy=_acc_per_class(
+                all_preds["gram_p"], all_preds["gram_l"], 0
+            ),
+            gram_class1_accuracy=_acc_per_class(
+                all_preds["gram_p"], all_preds["gram_l"], 1
+            ),
+            gram_class0_count=gram_class0_count,
+            gram_class1_count=gram_class1_count,
             register_accuracy=_reg_acc(
                 all_preds["reg_p"], all_preds["reg_l"], valid_idxs
             ),
+            register_count=register_count,
         )
 
     def _accumulate_eval_batch(
@@ -629,15 +741,16 @@ class Trainer:
         self,
         epochs: int,
         on_epoch_end: Callable[[TrainingHistory], None],
+        start_epoch: Optional[int] = None,
     ) -> TrainingHistory:
         if self.config.checkpoint.resume_from:
             self.restore_from_checkpoint(self.config.checkpoint.resume_from)
 
-        self.view.on_train_start(epochs, self.start_epoch, self.start_batch)
+        # Use explicit start_epoch if provided, otherwise use self.start_epoch from checkpoint
+        effective_start = start_epoch if start_epoch is not None else self.start_epoch
+        self.view.on_train_start(epochs, effective_start, self.start_batch)
 
-        actual_epochs = epochs
-
-        for epoch in range(self.start_epoch, actual_epochs):
+        for epoch in range(effective_start, epochs):
             tl, tfl, tgl, tgraml, trl = self.train_epoch(epoch=epoch)
             eval_res = self.evaluate()
             self.scheduler.step(eval_res.loss)
@@ -679,53 +792,70 @@ class Trainer:
                 + eval_res.register_accuracy
             ) / 4.0
 
-            # Log detailed evaluation stats
-            eval_stats: List[Dict[str, Any]] = [
-                {
-                    "label": "Formality Pragmatic Accuracy",
-                    "loss": eval_res.formality_loss,
-                    "value": eval_res.formality_accuracy,
-                    "is_percent": True,
-                },
-                {
-                    "label": "Formality Value MSE (Pragmatic samples)",
-                    "loss": None,
-                    "value": eval_res.formality_mse,
-                    "is_mse": True,
-                },
-                {
-                    "label": "Gender Pragmatic Accuracy",
-                    "loss": eval_res.gender_loss,
-                    "value": eval_res.gender_accuracy,
-                    "is_percent": True,
-                },
-                {
-                    "label": "Gender Value MSE (Pragmatic samples)",
-                    "loss": None,
-                    "value": eval_res.gender_mse,
-                    "is_mse": True,
-                },
-                {
-                    "label": "Grammaticality Accuracy",
-                    "loss": eval_res.grammaticality_loss,
-                    "value": eval_res.grammaticality_accuracy,
-                    "is_percent": True,
-                },
-                {
-                    "label": "Register Exact Match Accuracy",
-                    "loss": eval_res.register_loss,
-                    "value": eval_res.register_accuracy,
-                    "is_percent": True,
-                },
-                {
-                    "label": "Total",
-                    "loss": eval_res.loss,
-                    "value": avg_acc,
-                    "is_percent": True,
-                    "is_total": True,
-                },
-            ]
-            self.view.on_style_epoch_eval_stats(epoch + 1, eval_stats)
+            # Build semantic epoch stats
+            f_population = ClassPopulation(
+                class0_count=eval_res.formality_class0_count,
+                class1_count=eval_res.formality_class1_count,
+            )
+            g_population = ClassPopulation(
+                class0_count=eval_res.gender_class0_count,
+                class1_count=eval_res.gender_class1_count,
+            )
+
+            grad_norms = None
+            if self.last_epoch_grad_norms:
+                gn = self.last_epoch_grad_norms
+                grad_norms = GradientNorms(
+                    formality=gn.get("formality", 0.0),
+                    gender=gn.get("gender", 0.0),
+                    grammaticality=gn.get("grammaticality", 0.0),
+                    register=gn.get("register", 0.0),
+                    encoder=gn.get("encoder", 0.0),
+                    pooler=gn.get("pooler", 0.0),
+                )
+
+            epoch_stats = StyleEpochStats(
+                formality=BinaryMetric(
+                    loss=eval_res.formality_loss,
+                    accuracy=eval_res.formality_accuracy,
+                    class0_accuracy=eval_res.formality_class0_accuracy,
+                    class1_accuracy=eval_res.formality_class1_accuracy,
+                    population=f_population,
+                ),
+                formality_mse=MseMetric(
+                    value=eval_res.formality_mse,
+                    sample_count=f_population.total,
+                ),
+                gender=BinaryMetric(
+                    loss=eval_res.gender_loss,
+                    accuracy=eval_res.gender_accuracy,
+                    class0_accuracy=eval_res.gender_class0_accuracy,
+                    class1_accuracy=eval_res.gender_class1_accuracy,
+                    population=g_population,
+                ),
+                gender_mse=MseMetric(
+                    value=eval_res.gender_mse,
+                    sample_count=g_population.total,
+                ),
+                grammaticality=GrammaticalityMetric(
+                    loss=eval_res.grammaticality_loss,
+                    accuracy=eval_res.grammaticality_accuracy,
+                    class0_accuracy=eval_res.gram_class0_accuracy,
+                    class1_accuracy=eval_res.gram_class1_accuracy,
+                    class0_count=eval_res.gram_class0_count,
+                    class1_count=eval_res.gram_class1_count,
+                ),
+                register=RegisterMetric(
+                    loss=eval_res.register_loss,
+                    accuracy=eval_res.register_accuracy,
+                    sample_count=eval_res.register_count,
+                ),
+                total_loss=eval_res.loss,
+                avg_accuracy=avg_acc,
+                grad_norms=grad_norms,
+            )
+
+            self.view.on_style_epoch_eval_stats(epoch + 1, epoch_stats)
 
             is_best = eval_res.loss < self.best_val_loss
             if is_best:

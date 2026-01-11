@@ -384,42 +384,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             "",
             "",
         )
-        table_loss.add_row(
-            "[magenta]formality[/magenta]",
-            _f(lc.formality / nb),  # Already weighted
-            _delta_arrow(lc.formality, prev_lc.formality if prev_lc else None),
-            _acc(
-                lc.formality_correct,
-                lc.formality_total,
-                prev_lc.formality_correct if prev_lc else 0,
-                prev_lc.formality_total if prev_lc else 0,
-            ),
-            "(KC0-3)",
-        )
-        table_loss.add_row(
-            "[magenta]gender[/magenta]",
-            _f(lc.gender / nb),  # Already weighted
-            _delta_arrow(lc.gender, prev_lc.gender if prev_lc else None),
-            _acc(
-                lc.gender_correct,
-                lc.gender_total,
-                prev_lc.gender_correct if prev_lc else 0,
-                prev_lc.gender_total if prev_lc else 0,
-            ),
-            "(KC4-5)",
-        )
-        table_loss.add_row(
-            "[magenta]register[/magenta]",
-            _f(lc.register / nb),  # Already weighted
-            _delta_arrow(lc.register, prev_lc.register if prev_lc else None),
-            _acc(
-                lc.register_correct,
-                lc.register_total,
-                prev_lc.register_correct if prev_lc else 0,
-                prev_lc.register_total if prev_lc else 0,
-            ),
-            "(KC6-18)",
-        )
+        # Prior KC losses (formality KC0-3, gender KC4-5, register KC6-18) removed
+        # - now handled by style classifier
         table_loss.add_row(
             "diversity",
             _f(lc.div * w.div / nb),
@@ -461,9 +427,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         loss_sum = (
             lc.struct * w.struct / nb
             + lc.gap * w.gap / nb
-            + lc.formality / nb  # Already weighted in kc_trainer
-            + lc.gender / nb  # Already weighted in kc_trainer
-            + lc.register / nb  # Already weighted in kc_trainer
+            # Prior KC losses (formality, gender, register) removed - handled by style classifier
             + lc.div * w.div / nb
             + lc.lb * w.lb / nb
             + lc.collapse * w.collapse / nb
@@ -741,20 +705,23 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         self.prev_family_stats = current_family_stats
         console.print(table_fam)
 
-        # Validate: family losses should sum to struct loss (within 10% tolerance)
+        # Validate: family losses should average to struct loss (within 10% tolerance)
+        # The diagnostic tracks loss_mean = avg(nll) per family.
+        # The trainer computes lc.struct = avg(sum_task_loss / num_struct) per batch,
+        # which is approximately the average of all family loss_means.
         # Skip if no families in diagnostics (metrics skipped or not collected)
         if summary.diagnostics.families:
-            family_loss_sum = sum(
-                fam.loss_mean / max(1, num_families)
-                for fam in summary.diagnostics.families.values()
-            )
+            # Average of family losses should match struct (both are averaged by count)
+            family_loss_avg = sum(
+                fam.loss_mean for fam in summary.diagnostics.families.values()
+            ) / max(1, num_families)
             struct_loss = lc.struct * w.struct / nb
             if struct_loss > 0.01:  # Only check if struct loss is significant
                 tolerance = 0.1 * struct_loss  # 10% tolerance
-                if abs(family_loss_sum - struct_loss) > tolerance:
+                if abs(family_loss_avg - struct_loss) > tolerance:
                     raise RuntimeError(
-                        f"Family loss sum mismatch: sum={family_loss_sum:.4f} vs "
-                        f"struct={struct_loss:.4f} (diff={abs(family_loss_sum - struct_loss):.4f})"
+                        f"Family loss avg mismatch: avg={family_loss_avg:.4f} vs "
+                        f"struct={struct_loss:.4f} (diff={abs(family_loss_avg - struct_loss):.4f})"
                     )
 
         # Print Warns if shape mismatch detected?

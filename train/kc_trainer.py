@@ -1620,114 +1620,18 @@ class KCTrainer:
                 combined_loss + spar_w * sparsity_term
             ) / self.config.grad_accum_steps
 
-            # --- PRIOR KC LOSSES ---
-            # Prior losses are applied AFTER structural averaging so they aren't
-            # drowned by the 16-family structural loss mass.
-            kc_logits_raw = outputs["kc_logits_raw"]
-            prior_weight = 0.2
-
-            # --- Formality Prior (KC0-3): 4-class with exclusivity ---
-            # Map: {-1.0→0, -0.5→1, +0.5→2, +1.0→3}, neutral (0.0) excluded
-            formality_values = batch.formality_value.to(self.device)
-            formality_nonneutral = formality_values != 0.0
+            # --- PRIOR KC LOSSES: REMOVED ---
+            # Formality (KC0-3), Gender (KC4-5), and Register (KC6-18) supervision
+            # is now handled by the style classifier to prevent interference
             loss_formality_val = 0.0
             form_correct = 0
             form_total = 0
-            excl_w = self.kc_config.prior_exclusivity_weight
-            if formality_nonneutral.any():
-                f_vals = formality_values[formality_nonneutral]
-                # Map: -1→0, -0.5→1, +0.5→2, +1→3
-                f_bucket = ((f_vals + 1.0) * 1.5).round().long().clamp(0, 3)
-                f_logits = kc_logits_raw[formality_nonneutral, 0:4]
-                f_probs = torch.sigmoid(f_logits)
-
-                # Build target: one-hot for the correct class
-                f_target = torch.zeros_like(f_probs)
-                f_target.scatter_(1, f_bucket.unsqueeze(1), 1.0)
-
-                # BCE loss: target class should fire, others should not
-                f_loss = F.binary_cross_entropy_with_logits(f_logits, f_target)
-
-                # False positive penalty: penalize non-target probs (linear)
-                non_target_probs = f_probs * (1.0 - f_target)  # zero out target
-                fp_penalty = non_target_probs.mean()
-                f_loss_total = f_loss + excl_w * fp_penalty
-
-                loss_formality_val = (prior_weight * f_loss_total).item()
-                loss = loss + prior_weight * f_loss_total
-
-                # Accuracy: ALL classes correct (target > 0.5, non-targets < 0.5)
-                f_preds = (f_probs > 0.5).float()
-                all_correct = (f_preds == f_target).all(dim=1)
-                form_correct = int(all_correct.sum().item())
-                form_total = f_bucket.numel()
-
-            # --- Gender Prior (KC4-5): 2-class with exclusivity ---
-            # Map: {-1.0→0 (feminine), +1.0→1 (masculine)}, neutral (0.0) excluded
-            gender_values = batch.gender_value.to(self.device)
-            gender_nonneutral = gender_values != 0.0
             loss_gender_val = 0.0
             gend_correct = 0
             gend_total = 0
-            if gender_nonneutral.any():
-                g_vals = gender_values[gender_nonneutral]
-                g_bucket = ((g_vals + 1.0) / 2.0).round().long().clamp(0, 1)
-                g_logits = kc_logits_raw[gender_nonneutral, 4:6]
-                g_probs = torch.sigmoid(g_logits)
-
-                # Build target: one-hot for the correct class
-                g_target = torch.zeros_like(g_probs)
-                g_target.scatter_(1, g_bucket.unsqueeze(1), 1.0)
-
-                # BCE loss: target class should fire, non-target should not
-                g_loss = F.binary_cross_entropy_with_logits(g_logits, g_target)
-
-                # False positive penalty: penalize non-target probs (linear)
-                non_target_probs = g_probs * (1.0 - g_target)
-                fp_penalty = non_target_probs.mean()
-                g_loss_total = g_loss + excl_w * fp_penalty
-
-                loss_gender_val = (prior_weight * g_loss_total).item()
-                loss = loss + prior_weight * g_loss_total
-
-                # Accuracy: ALL classes correct (target > 0.5, non-target < 0.5)
-                g_preds = (g_probs > 0.5).float()
-                all_correct = (g_preds == g_target).all(dim=1)
-                gend_correct = int(all_correct.sum().item())
-                gend_total = g_bucket.numel()
-
-            # --- Register Prior (KC6-18): 13-class multi-label BCE ---
-            # register_labels is [batch, 14] one-hot; we skip ID=0 (neutral)
-            register_targets = batch.register_labels.to(self.device)
-            # Take only columns 1-13 (skip neutral at index 0)
+            loss_register_val = 0.0
             reg_correct = 0
             reg_total = 0
-            if register_targets.dim() == 2 and register_targets.size(1) >= 14:
-                r_targets = register_targets[:, 1:14].float()  # [B, 13]
-                # Only compute loss for samples with at least one non-neutral register
-                r_has_label = r_targets.sum(dim=1) > 0
-                loss_register_val = 0.0
-                if r_has_label.any():
-                    r_logits = kc_logits_raw[r_has_label, 6:19]
-                    r_tgt = r_targets[r_has_label]
-                    r_probs = torch.sigmoid(r_logits)
-                    r_loss = F.binary_cross_entropy_with_logits(r_logits, r_tgt)
-
-                    # False positive penalty: penalize probs where target=0 (linear)
-                    fp_probs = r_probs * (1.0 - r_tgt)  # zero out correct targets
-                    fp_penalty = fp_probs.mean()
-                    r_loss_total = r_loss + excl_w * fp_penalty
-
-                    loss_register_val = (prior_weight * r_loss_total).item()
-                    loss = loss + prior_weight * r_loss_total
-
-                    # Accuracy: all 13 flags correct (sigmoid > 0.5 == target)
-                    r_preds = (r_probs > 0.5).float()
-                    all_correct = (r_preds == r_tgt).all(dim=1)
-                    reg_correct = int(all_correct.sum().item())
-                    reg_total = int(r_tgt.size(0))
-            else:
-                loss_register_val = 0.0
 
             loss_spar_val = (spar_w * sparsity_term).item()
 
@@ -2062,17 +1966,20 @@ class KCTrainer:
         self,
         epochs: int,
         on_epoch_end: Callable[[KCTrainingHistory], None],
+        start_epoch: Optional[int] = None,
     ) -> KCTrainingHistory:
         if self.config.checkpoint.resume_from:
             self.restore_from_checkpoint(self.config.checkpoint.resume_from)
 
-        if self.start_epoch == 0 and self.start_batch == 0:
+        # Use explicit start_epoch if provided, otherwise use self.start_epoch from checkpoint
+        effective_start = start_epoch if start_epoch is not None else self.start_epoch
+
+        if effective_start == 0 and self.start_batch == 0:
             self._init_structural_decoder_biases()
 
-        self.view.on_kc_train_start(epochs, self.start_epoch, self.start_batch)
+        self.view.on_kc_train_start(epochs, effective_start, self.start_batch)
 
-        actual_epochs = epochs
-        for epoch in range(self.start_epoch, actual_epochs):
+        for epoch in range(effective_start, epochs):
             epoch_res = self.train_epoch(epoch=epoch)
             total_loss = epoch_res.total_loss
             kc_losses = epoch_res.kc_losses
