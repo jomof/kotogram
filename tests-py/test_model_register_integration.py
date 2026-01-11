@@ -17,8 +17,8 @@ class TestModelRegisterIntegration(unittest.TestCase):
         self.mock_tokenizer.encode.return_value = {
             # "surface": [1, 2, 3],
             "pos": [4, 5, 6],
-            "pos_detail_1": [7, 8, 9],
-            "pos_detail_2": [10, 11, 12],
+            "compound_1": [7, 8, 9],
+            "compound_2": [10, 11, 12],
             "pos_detail_3": [10, 11, 12],
             "conjugated_type": [13, 14, 15],
             # "conjugated_form": [16, 17, 18],

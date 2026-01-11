@@ -16,14 +16,14 @@ class TestKCSaltKeys(unittest.TestCase):
     def test_missing_salt_key_for_ngram_field_is_descriptive(self):
         # Remove a key that compute_kc_targets will look up via f"ngram_{field}"
         # We now look up by KcFamilyId
-        missing_key = KcFamilyId.NGRAM_POS_DETAIL_1
+        missing_key = KcFamilyId.NGRAM_COMPOUND_1
         self.assertIn(missing_key, kc.SALT, "Test assumes SALT initially has this key")
         del kc.SALT[missing_key]
 
         feature_ids = {
             "reading": [13, 14, 15, 16],
             "pos": [1, 1, 1, 1],
-            "pos_detail_1": [1, 2, 3, 4],  # triggers SALT["ngram_pos_detail_1"]
+            "compound_1": [1, 2, 3, 4],  # triggers SALT["ngram_compound_1"]
             "conjugated_form": [5, 6, 7, 8],
             "conjugated_type": [9, 10, 11, 12],
         }
@@ -45,7 +45,7 @@ class TestKCSaltKeys(unittest.TestCase):
         feature_ids = {
             "reading": [13],
             "pos": [1],  # triggers SALT["ngram_pos"]
-            "pos_detail_1": [1],
+            "compound_1": [1],
             "conjugated_form": [5],
             "conjugated_type": [9],
         }
@@ -59,16 +59,16 @@ class TestKCSaltKeys(unittest.TestCase):
         feature_ids = {
             "reading": [13, 14, 15, 16],
             "pos": [1, 1, 1, 1],
-            "pos_detail_1": [1, 2, 3, 4],
+            "compound_1": [1, 2, 3, 4],
             "conjugated_form": [5, 6, 7, 8],
             "conjugated_type": [9, 10, 11, 12],
         }
         out = kc.compute_kc_targets(feature_ids)
         # Sanity: expect at least some ngram and tail_ngram outputs
-        self.assertIn(KcFamilyId.NGRAM_POS_DETAIL_1, out)
-        self.assertIn(KcFamilyId.TAIL_NGRAM_POS_DETAIL_1, out)
-        self.assertIsInstance(out[KcFamilyId.NGRAM_POS_DETAIL_1], list)
-        self.assertIsInstance(out[KcFamilyId.TAIL_NGRAM_POS_DETAIL_1], list)
+        self.assertIn(KcFamilyId.NGRAM_COMPOUND_1, out)
+        self.assertIn(KcFamilyId.TAIL_NGRAM_COMPOUND_1, out)
+        self.assertIsInstance(out[KcFamilyId.NGRAM_COMPOUND_1], list)
+        self.assertIsInstance(out[KcFamilyId.TAIL_NGRAM_COMPOUND_1], list)
 
     def test_custom_map_name_error(self):
         """Test MissingMappingError with a custom map name."""

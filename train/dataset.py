@@ -59,8 +59,8 @@ class StyleDataset(Dataset[Sample]):
         self.verbose = True
 
         # Initialize disallow filter for KC target computation
-        pos_detail_1_vocab = tokenizer.field_vocabs.get("pos_detail_1", {})
-        initialize_disallow_filter(pos_detail_1_vocab)
+        compound_1_vocab = tokenizer.field_vocabs.get("compound_1", {})
+        initialize_disallow_filter(compound_1_vocab)
 
         # Load Main Offsets (Sentences)
         offsets_path = os.path.join(data_dir, EXT_OFFSETS)

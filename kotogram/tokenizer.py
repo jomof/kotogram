@@ -27,8 +27,8 @@ CLS_ID = 2
 ALL_FEATURE_FIELDS = [
     # "surface",
     "pos",
-    "pos_detail_1",
-    "pos_detail_2",
+    "compound_1",  # Composite of pos + pos_detail_1 + conjugated_form
+    "compound_2",  # Composite of pos + pos_detail_1 + pos_detail_2
     "pos_detail_3",
     "conjugated_type",
     # "conjugated_form",
@@ -38,12 +38,12 @@ ALL_FEATURE_FIELDS = [
 FEATURE_FIELDS = ALL_FEATURE_FIELDS  # Default: use all features
 
 
-def build_pos_detail_1_composite(
+def build_compound_1(
     pos: str, pos_detail_1: str, conjugated_form: str, conjugated_type: str = ""
 ) -> str:
-    """Build the composite token string for pos_detail_1 field.
+    """Build the compound_1 composite token string.
 
-    This is the single source of truth for how pos_detail_1 composites are built.
+    This is the single source of truth for how compound_1 composites are built.
     Format: "pos:detail:conjugated_form" where detail is pos_detail_1 or
     conjugated_type (for aux-verbs).
 
@@ -68,10 +68,10 @@ def build_pos_detail_1_composite(
     return f"{pos}:{detail}"
 
 
-def build_pos_detail_2_composite(pos: str, pos_detail_1: str, pos_detail_2: str) -> str:
-    """Build the composite token string for pos_detail_2 field.
+def build_compound_2(pos: str, pos_detail_1: str, pos_detail_2: str) -> str:
+    """Build the compound_2 composite token string.
 
-    This is the single source of truth for how pos_detail_2 composites are built.
+    This is the single source of truth for how compound_2 composites are built.
     Format: "pos:pos_detail_1:pos_detail_2" (only if pos_detail_2 exists).
 
     Must be used by both vocabulary building (label.py) and encoding (tokenizer.py)
@@ -105,13 +105,13 @@ def get_vocab_strings(features: "TokenFeatures") -> Dict[str, str]:
     """
     return {
         "pos": features.pos,
-        "pos_detail_1": build_pos_detail_1_composite(
+        "compound_1": build_compound_1(
             features.pos,
             features.pos_detail_1,
             features.conjugated_form,
             features.conjugated_type,
         ),
-        "pos_detail_2": build_pos_detail_2_composite(
+        "compound_2": build_compound_2(
             features.pos, features.pos_detail_1, features.pos_detail_2
         ),
         "pos_detail_3": features.pos_detail_3,
@@ -221,9 +221,16 @@ class Tokenizer:
         # Migration logic for old pos_detail naming
         if "field_vocabs" in state:
             vocabs = state["field_vocabs"]
+            # Migrate pos_detail1/2/3 -> pos_detail_1/2/3 (old migration)
             for i in range(1, 4):
                 old_key = f"pos_detail{i}"
                 new_key = f"pos_detail_{i}"
+                if old_key in vocabs and new_key not in vocabs:
+                    vocabs[new_key] = vocabs.pop(old_key)
+            # Migrate pos_detail_1/2 -> compound_1/2 (new migration)
+            for i in [1, 2]:
+                old_key = f"pos_detail_{i}"
+                new_key = f"compound_{i}"
                 if old_key in vocabs and new_key not in vocabs:
                     vocabs[new_key] = vocabs.pop(old_key)
 

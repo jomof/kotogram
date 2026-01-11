@@ -44,8 +44,8 @@ class TestPretrainDataFiltering(unittest.TestCase):
                 for f in [
                     "surface",
                     "pos",
-                    "pos_detail_1",
-                    "pos_detail_2",
+                    "compound_1",
+                    "compound_2",
                     "conjugated_type",
                     "conjugated_form",
                     "lemma",
@@ -69,8 +69,8 @@ class TestPretrainDataFiltering(unittest.TestCase):
                 for f in [
                     "surface",
                     "pos",
-                    "pos_detail_1",
-                    "pos_detail_2",
+                    "compound_1",
+                    "compound_2",
                     "conjugated_type",
                     "conjugated_form",
                     "lemma",
@@ -102,8 +102,8 @@ class TestPretrainDataFiltering(unittest.TestCase):
                 for f in [
                     "surface",
                     "pos",
-                    "pos_detail_1",
-                    "pos_detail_2",
+                    "compound_1",
+                    "compound_2",
                     "conjugated_type",
                     "conjugated_form",
                     "lemma",

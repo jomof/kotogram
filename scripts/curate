@@ -1075,7 +1075,7 @@ def curate_kc_families(sentence: str):
     
     # Build reverse lookup for all fields
     id_to_token_map = {}
-    for field in ["pos", "pos_detail_1", "pos_detail_2", "conjugated_type", "reading_gram"]:
+    for field in ["pos", "compound_1", "compound_2", "conjugated_type", "reading_gram"]:
         field_vocab = tokenizer.field_vocabs.get(field, {})
         id_to_token_map[field] = {v: k for k, v in field_vocab.items()}
     
@@ -1103,13 +1103,13 @@ def curate_kc_families(sentence: str):
         if is_tail:
             ids = ids[-KC_POS_BIASED_WINDOW:] if ids else []
         
-        # For pos_detail_1, pos_detail_2, and conjugated_type, also filter out UNK
+        # For compound_1, compound_2, and conjugated_type, also filter out UNK
         if family in (
-            KcFamilyId.NGRAM_POS_DETAIL_1,
-            KcFamilyId.NGRAM_POS_DETAIL_2,
+            KcFamilyId.NGRAM_COMPOUND_1,
+            KcFamilyId.NGRAM_COMPOUND_2,
             KcFamilyId.NGRAM_CONJUGATED_TYPE,
-            KcFamilyId.TAIL_NGRAM_POS_DETAIL_1,
-            KcFamilyId.TAIL_NGRAM_POS_DETAIL_2,
+            KcFamilyId.TAIL_NGRAM_COMPOUND_1,
+            KcFamilyId.TAIL_NGRAM_COMPOUND_2,
             KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
         ):
             ids = [v for v in ids if v != UNK_ID]
@@ -1407,7 +1407,7 @@ def _compute_sentence_hashes(sentence: str) -> Dict[str, List[Tuple[Tuple[int, .
     # Regular ngram families
     ngram_families = [
         KcFamilyId.NGRAM_POS,
-        KcFamilyId.NGRAM_POS_DETAIL_1,
+        KcFamilyId.NGRAM_COMPOUND_1,
         KcFamilyId.NGRAM_CONJUGATED_TYPE,
         KcFamilyId.NGRAM_READING_GRAM,
     ]
@@ -1431,7 +1431,7 @@ def _compute_sentence_hashes(sentence: str) -> Dict[str, List[Tuple[Tuple[int, .
     # Tail ngram families
     tail_ngram_families = [
         KcFamilyId.TAIL_NGRAM_POS,
-        KcFamilyId.TAIL_NGRAM_POS_DETAIL_1,
+        KcFamilyId.TAIL_NGRAM_COMPOUND_1,
         KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
         KcFamilyId.TAIL_NGRAM_READING_GRAM,
     ]
@@ -1588,12 +1588,12 @@ def _init_kc_tail_stats_worker(vocab_path: str):
     _KC_TAIL_STATS_PARSER = SudachiJapaneseParser()
     _KC_TAIL_STATS_TOKENIZER = Tokenizer.load(vocab_path)
     # Initialize disallow filter from tokenizer vocab
-    pos_detail_1_vocab = _KC_TAIL_STATS_TOKENIZER.field_vocabs.get("pos_detail_1", {})
-    initialize_disallow_filter(pos_detail_1_vocab)
+    compound_1_vocab = _KC_TAIL_STATS_TOKENIZER.field_vocabs.get("compound_1", {})
+    initialize_disallow_filter(compound_1_vocab)
 
 
 def _compute_tail_bag_for_sentence(sentence: str) -> Tuple[Tuple[int, ...], str]:
-    """Compute tail bag for pos_detail_1 for a single sentence.
+    """Compute tail bag for compound_1 for a single sentence.
     
     Returns the tail bag as a tuple of sorted IDs and the original sentence.
     """
@@ -1609,13 +1609,13 @@ def _compute_tail_bag_for_sentence(sentence: str) -> Tuple[Tuple[int, ...], str]
     disallowed_positions = get_disallowed_positions(encoded)
     
     # Use the shared get_tail_ids function, filtering UNK and disallowed positions
-    tail_ids = get_tail_ids(encoded, "pos_detail_1", filter_unk=True, disallowed_positions=disallowed_positions)
+    tail_ids = get_tail_ids(encoded, "compound_1", filter_unk=True, disallowed_positions=disallowed_positions)
     return (tuple(tail_ids), sentence)
 
 
 def curate_kc_tail_stats(db_path: str, sentence: str = None):
     """
-    Analyze tail bag distributions for pos_detail_1 across the corpus.
+    Analyze tail bag distributions for compound_1 across the corpus.
     
     Shows frequency counts per unique tail bag, with the 8 most and 
     8 least common patterns. Optionally shows the tail bag for a given sentence.
@@ -1640,7 +1640,7 @@ def curate_kc_tail_stats(db_path: str, sentence: str = None):
     sentences = [row[0] for row in cursor.fetchall()]
     conn.close()
 
-    console.print(f"[bold]KC Tail Stats:[/bold] Scanning {len(sentences):,} sentences for pos_detail_1 tails...")
+    console.print(f"[bold]KC Tail Stats:[/bold] Scanning {len(sentences):,} sentences for compound_1 tails...")
 
     # Run parallel scan
     num_workers = mp.cpu_count()
@@ -1673,8 +1673,8 @@ def curate_kc_tail_stats(db_path: str, sentence: str = None):
     from kotogram.tokenizer import Tokenizer
     tokenizer = Tokenizer.load(vocab_path)
     
-    # Build reverse vocab for pos_detail_1
-    id_to_token = {v: k for k, v in tokenizer.field_vocabs.get("pos_detail_1", {}).items()}
+    # Build reverse vocab for compound_1
+    id_to_token = {v: k for k, v in tokenizer.field_vocabs.get("compound_1", {}).items()}
     
     def decode_tail(tail: Tuple[int, ...]) -> str:
         """Decode a tail bag to human-readable tokens."""
@@ -1697,7 +1697,7 @@ def curate_kc_tail_stats(db_path: str, sentence: str = None):
     table_top = Table()
     table_top.add_column("Rank", style="dim")
     table_top.add_column("Count", style="cyan")
-    table_top.add_column("Tail Bag (pos_detail_1)")
+    table_top.add_column("Tail Bag (compound_1)")
     table_top.add_column("Shortest Example", style="dim")
     
     for rank, (tail, count) in enumerate(tail_counts.most_common(8), 1):
@@ -1716,8 +1716,8 @@ def curate_kc_tail_stats(db_path: str, sentence: str = None):
         from train.kc import get_disallowed_positions, get_tail_ids, initialize_disallow_filter
         
         # Initialize disallow filter (idempotent if already done)
-        pos_detail_1_vocab = tokenizer.field_vocabs.get("pos_detail_1", {})
-        initialize_disallow_filter(pos_detail_1_vocab)
+        compound_1_vocab = tokenizer.field_vocabs.get("compound_1", {})
+        initialize_disallow_filter(compound_1_vocab)
         
         parser = SudachiJapaneseParser()
         kotogram = parser.japanese_to_kotogram(sentence, KotogramFormat.TRAINING_MASK)
@@ -1725,7 +1725,7 @@ def curate_kc_tail_stats(db_path: str, sentence: str = None):
         
         # Get disallowed positions using module-level cached disallow IDs
         disallowed_positions = get_disallowed_positions(encoded)
-        query_tail = tuple(get_tail_ids(encoded, "pos_detail_1", filter_unk=True, disallowed_positions=disallowed_positions))
+        query_tail = tuple(get_tail_ids(encoded, "compound_1", filter_unk=True, disallowed_positions=disallowed_positions))
         
         query_count = tail_counts.get(query_tail, 0)
         # Find rank
@@ -1735,7 +1735,7 @@ def curate_kc_tail_stats(db_path: str, sentence: str = None):
         table_query = Table()
         table_query.add_column("Rank", style="dim")
         table_query.add_column("Count", style="cyan")
-        table_query.add_column("Tail Bag (pos_detail_1)")
+        table_query.add_column("Tail Bag (compound_1)")
         table_query.add_column("Query Sentence")
         
         rank_str = f"#{query_rank}" if query_rank else "(not in corpus)"
@@ -1748,7 +1748,7 @@ def curate_kc_tail_stats(db_path: str, sentence: str = None):
     table_bottom = Table()
     table_bottom.add_column("Rank", style="dim")
     table_bottom.add_column("Count", style="cyan")
-    table_bottom.add_column("Tail Bag (pos_detail_1)")
+    table_bottom.add_column("Tail Bag (compound_1)")
     table_bottom.add_column("Shortest Example", style="dim")
     
     least_common = tail_counts.most_common()[:-9:-1]  # Last 8, reversed

@@ -17,9 +17,9 @@ KC_POS_BIASED_WINDOW = 5
 # PAD and UNK are kept for analysis purposes
 SPECIAL_TOKEN_IDS = {CLS_ID}
 
-# pos_detail_1 tokens to exclude from tail and ngram families.
+# compound_1 tokens to exclude from tail and ngram families.
 # These tokens are high-frequency but low-information for style discrimination.
-# Format: composite token strings matching pos_detail_1 vocabulary (e.g., "noun:common-noun")
+# Format: composite token strings matching compound_1 vocabulary (e.g., "noun:common-noun")
 TAIL_NGRAM_DISALLOW_LIST = frozenset({"noun:common-noun", "noun:numeral"})
 
 
@@ -29,28 +29,28 @@ class KcFamilyId(str, Enum):
     # Bag Families
     BAG_READING_GRAM = "bag_reading_gram"
     BAG_POS = "bag_pos"
-    BAG_POS_DETAIL_1 = "bag_pos_detail_1"
-    BAG_POS_DETAIL_2 = "bag_pos_detail_2"
+    BAG_COMPOUND_1 = "bag_compound_1"
+    BAG_COMPOUND_2 = "bag_compound_2"
     BAG_CONJUGATED_TYPE = "bag_conjugated_type"
 
     # Tail Bag Families
     TAIL_READING_GRAM = "tail_reading_gram"
     TAIL_POS = "tail_pos"
-    TAIL_POS_DETAIL_1 = "tail_pos_detail_1"
-    TAIL_POS_DETAIL_2 = "tail_pos_detail_2"
+    TAIL_COMPOUND_1 = "tail_compound_1"
+    TAIL_COMPOUND_2 = "tail_compound_2"
     TAIL_CONJUGATED_TYPE = "tail_conjugated_type"
 
     # Ngram Families
     NGRAM_POS = "ngram_pos"
-    NGRAM_POS_DETAIL_1 = "ngram_pos_detail_1"
-    NGRAM_POS_DETAIL_2 = "ngram_pos_detail_2"
+    NGRAM_COMPOUND_1 = "ngram_compound_1"
+    NGRAM_COMPOUND_2 = "ngram_compound_2"
     NGRAM_CONJUGATED_TYPE = "ngram_conjugated_type"
     NGRAM_READING_GRAM = "ngram_reading_gram"
 
     # Tail Ngram Families
     TAIL_NGRAM_POS = "tail_ngram_pos"
-    TAIL_NGRAM_POS_DETAIL_1 = "tail_ngram_pos_detail_1"
-    TAIL_NGRAM_POS_DETAIL_2 = "tail_ngram_pos_detail_2"
+    TAIL_NGRAM_COMPOUND_1 = "tail_ngram_compound_1"
+    TAIL_NGRAM_COMPOUND_2 = "tail_ngram_compound_2"
     TAIL_NGRAM_CONJUGATED_TYPE = "tail_ngram_conjugated_type"
     TAIL_NGRAM_READING_GRAM = "tail_ngram_reading_gram"
 
@@ -62,13 +62,13 @@ ALL_KC_FAMILIES = list(KcFamilyId)
 # Based on collision analysis: reading_gram needs more buckets due to larger vocabulary
 FAMILY_BUCKET_SIZES: Dict[KcFamilyId, int] = {
     KcFamilyId.NGRAM_POS: 2048,
-    KcFamilyId.NGRAM_POS_DETAIL_1: 4096,
-    KcFamilyId.NGRAM_POS_DETAIL_2: 4096,
+    KcFamilyId.NGRAM_COMPOUND_1: 8192 * 4,
+    KcFamilyId.NGRAM_COMPOUND_2: 4096,
     KcFamilyId.NGRAM_CONJUGATED_TYPE: 8192,
     KcFamilyId.NGRAM_READING_GRAM: 262144,  # 2^18: 234K unique ngrams
-    KcFamilyId.TAIL_NGRAM_POS: 2048,
-    KcFamilyId.TAIL_NGRAM_POS_DETAIL_1: 4096,
-    KcFamilyId.TAIL_NGRAM_POS_DETAIL_2: 4096,
+    KcFamilyId.TAIL_NGRAM_POS: 1024,
+    KcFamilyId.TAIL_NGRAM_COMPOUND_1: 8192 * 2,
+    KcFamilyId.TAIL_NGRAM_COMPOUND_2: 4096,
     KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: 8192,
     KcFamilyId.TAIL_NGRAM_READING_GRAM: 131072,  # 2^17: 115K unique ngrams
 }
@@ -102,13 +102,13 @@ def is_family_sparse(family: KcFamilyId) -> bool:
     if family in (
         KcFamilyId.BAG_READING_GRAM,
         KcFamilyId.BAG_POS,
-        KcFamilyId.BAG_POS_DETAIL_1,
-        KcFamilyId.BAG_POS_DETAIL_2,
+        KcFamilyId.BAG_COMPOUND_1,
+        KcFamilyId.BAG_COMPOUND_2,
         KcFamilyId.BAG_CONJUGATED_TYPE,
         KcFamilyId.TAIL_READING_GRAM,
         KcFamilyId.TAIL_POS,
-        KcFamilyId.TAIL_POS_DETAIL_1,
-        KcFamilyId.TAIL_POS_DETAIL_2,
+        KcFamilyId.TAIL_COMPOUND_1,
+        KcFamilyId.TAIL_COMPOUND_2,
         KcFamilyId.TAIL_CONJUGATED_TYPE,
     ):
         return False
@@ -116,13 +116,13 @@ def is_family_sparse(family: KcFamilyId) -> bool:
     # Sparse families (use hash-based n-gram features)
     if family in (
         KcFamilyId.NGRAM_POS,
-        KcFamilyId.NGRAM_POS_DETAIL_1,
-        KcFamilyId.NGRAM_POS_DETAIL_2,
+        KcFamilyId.NGRAM_COMPOUND_1,
+        KcFamilyId.NGRAM_COMPOUND_2,
         KcFamilyId.NGRAM_CONJUGATED_TYPE,
         KcFamilyId.NGRAM_READING_GRAM,
         KcFamilyId.TAIL_NGRAM_POS,
-        KcFamilyId.TAIL_NGRAM_POS_DETAIL_1,
-        KcFamilyId.TAIL_NGRAM_POS_DETAIL_2,
+        KcFamilyId.TAIL_NGRAM_COMPOUND_1,
+        KcFamilyId.TAIL_NGRAM_COMPOUND_2,
         KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
         KcFamilyId.TAIL_NGRAM_READING_GRAM,
     ):
@@ -136,25 +136,25 @@ FAMILY_FEATURES: Dict[KcFamilyId, str] = {
     # Bag
     KcFamilyId.BAG_READING_GRAM: "reading_gram",
     KcFamilyId.BAG_POS: "pos",
-    KcFamilyId.BAG_POS_DETAIL_1: "pos_detail_1",
-    KcFamilyId.BAG_POS_DETAIL_2: "pos_detail_2",
+    KcFamilyId.BAG_COMPOUND_1: "compound_1",
+    KcFamilyId.BAG_COMPOUND_2: "compound_2",
     KcFamilyId.BAG_CONJUGATED_TYPE: "conjugated_type",
     # Tail
     KcFamilyId.TAIL_READING_GRAM: "reading_gram",
     KcFamilyId.TAIL_POS: "pos",
-    KcFamilyId.TAIL_POS_DETAIL_1: "pos_detail_1",
-    KcFamilyId.TAIL_POS_DETAIL_2: "pos_detail_2",
+    KcFamilyId.TAIL_COMPOUND_1: "compound_1",
+    KcFamilyId.TAIL_COMPOUND_2: "compound_2",
     KcFamilyId.TAIL_CONJUGATED_TYPE: "conjugated_type",
     # Ngram
     KcFamilyId.NGRAM_POS: "pos",
-    KcFamilyId.NGRAM_POS_DETAIL_1: "pos_detail_1",
-    KcFamilyId.NGRAM_POS_DETAIL_2: "pos_detail_2",
+    KcFamilyId.NGRAM_COMPOUND_1: "compound_1",
+    KcFamilyId.NGRAM_COMPOUND_2: "compound_2",
     KcFamilyId.NGRAM_CONJUGATED_TYPE: "conjugated_type",
     KcFamilyId.NGRAM_READING_GRAM: "reading_gram",
     # Tail Ngram
     KcFamilyId.TAIL_NGRAM_POS: "pos",
-    KcFamilyId.TAIL_NGRAM_POS_DETAIL_1: "pos_detail_1",
-    KcFamilyId.TAIL_NGRAM_POS_DETAIL_2: "pos_detail_2",
+    KcFamilyId.TAIL_NGRAM_COMPOUND_1: "compound_1",
+    KcFamilyId.TAIL_NGRAM_COMPOUND_2: "compound_2",
     KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: "conjugated_type",
     KcFamilyId.TAIL_NGRAM_READING_GRAM: "reading_gram",
 }
@@ -163,13 +163,13 @@ FAMILY_FEATURES: Dict[KcFamilyId, str] = {
 # Constants for domain separation (SALT) to reduce accidental collisions between different feature families
 SALT: Dict[KcFamilyId, int] = {
     KcFamilyId.NGRAM_POS: 101,
-    KcFamilyId.NGRAM_POS_DETAIL_1: 102,
-    KcFamilyId.NGRAM_POS_DETAIL_2: 103,
+    KcFamilyId.NGRAM_COMPOUND_1: 102,
+    KcFamilyId.NGRAM_COMPOUND_2: 103,
     KcFamilyId.NGRAM_CONJUGATED_TYPE: 104,
     KcFamilyId.NGRAM_READING_GRAM: 105,
     KcFamilyId.TAIL_NGRAM_POS: 201,
-    KcFamilyId.TAIL_NGRAM_POS_DETAIL_1: 202,
-    KcFamilyId.TAIL_NGRAM_POS_DETAIL_2: 203,
+    KcFamilyId.TAIL_NGRAM_COMPOUND_1: 202,
+    KcFamilyId.TAIL_NGRAM_COMPOUND_2: 203,
     KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: 204,
     KcFamilyId.TAIL_NGRAM_READING_GRAM: 205,
 }
@@ -216,7 +216,7 @@ def _get_hierarchical_ids(
     """Get IDs for a family.
 
     For pos_detail families, the tokenizer now creates composite vocabulary tokens
-    (e.g., "noun:proper-noun" for pos_detail_1), so we just return the field IDs directly.
+    (e.g., "noun:proper-noun" for compound_1), so we just return the field IDs directly.
     """
     field = FAMILY_FEATURES[family_id]
     if field not in feature_ids:
@@ -231,8 +231,8 @@ def _compute_bag_targets(
     bag_families = {
         KcFamilyId.BAG_READING_GRAM,
         KcFamilyId.BAG_POS,
-        KcFamilyId.BAG_POS_DETAIL_1,
-        KcFamilyId.BAG_POS_DETAIL_2,
+        KcFamilyId.BAG_COMPOUND_1,
+        KcFamilyId.BAG_COMPOUND_2,
         KcFamilyId.BAG_CONJUGATED_TYPE,
     }
 
@@ -243,11 +243,11 @@ def _compute_bag_targets(
             ids = _get_hierarchical_ids(feature_ids, family_id)
             # Exclude special tokens (CLS only - PAD/UNK kept for analysis)
             filtered = [v for v in ids if v not in SPECIAL_TOKEN_IDS]
-            # For pos_detail_1, pos_detail_2, and conjugated_type, also filter out UNK
+            # For compound_1, compound_2, and conjugated_type, also filter out UNK
             # These fields can have UNK when morphology is ambiguous
             if family_id in (
-                KcFamilyId.BAG_POS_DETAIL_1,
-                KcFamilyId.BAG_POS_DETAIL_2,
+                KcFamilyId.BAG_COMPOUND_1,
+                KcFamilyId.BAG_COMPOUND_2,
                 KcFamilyId.BAG_CONJUGATED_TYPE,
             ):
                 filtered = [v for v in filtered if v != UNK_ID]
@@ -289,7 +289,7 @@ def get_tail_ids(
 
     Args:
         feature_ids: Dictionary mapping field names to ID lists.
-        field: The feature field to extract (e.g., "pos_detail_1").
+        field: The feature field to extract (e.g., "compound_1").
         window: Number of tokens from the end to include (default: KC_POS_BIASED_WINDOW).
         filter_unk: If True, also filter out UNK tokens.
         disallowed_positions: Optional set of position indices to exclude.
@@ -329,7 +329,7 @@ def get_tail_ids(
 _DISALLOW_IDS_CACHE: Optional[Set[int]] = None
 
 
-def initialize_disallow_filter(pos_detail_1_vocab: Dict[str, int]) -> None:
+def initialize_disallow_filter(compound_1_vocab: Dict[str, int]) -> None:
     """Initialize the module-level disallow filter from tokenizer vocab.
 
     Call this once during startup (e.g., after loading tokenizer) to resolve
@@ -337,28 +337,28 @@ def initialize_disallow_filter(pos_detail_1_vocab: Dict[str, int]) -> None:
     compute_kc_targets will use the cached disallow IDs automatically.
 
     Args:
-        pos_detail_1_vocab: Dictionary mapping pos_detail_1 tokens to IDs.
+        compound_1_vocab: Dictionary mapping compound_1 tokens to IDs.
     """
     global _DISALLOW_IDS_CACHE  # pylint: disable=global-statement
     _DISALLOW_IDS_CACHE = set()
     for token in TAIL_NGRAM_DISALLOW_LIST:
-        if token in pos_detail_1_vocab:
-            _DISALLOW_IDS_CACHE.add(pos_detail_1_vocab[token])
+        if token in compound_1_vocab:
+            _DISALLOW_IDS_CACHE.add(compound_1_vocab[token])
 
 
 def get_disallowed_positions(feature_ids: Dict[str, List[int]]) -> Set[int]:
-    """Get position indices where pos_detail_1 matches disallow list.
+    """Get position indices where compound_1 matches disallow list.
 
     Uses the module-level cached disallow IDs (set via initialize_disallow_filter).
 
     Returns:
         Set of position indices to exclude from all tail/ngram families.
     """
-    if _DISALLOW_IDS_CACHE is None or "pos_detail_1" not in feature_ids:
+    if _DISALLOW_IDS_CACHE is None or "compound_1" not in feature_ids:
         return set()
 
-    pos_detail_1_ids = feature_ids["pos_detail_1"]
-    return {i for i, pid in enumerate(pos_detail_1_ids) if pid in _DISALLOW_IDS_CACHE}
+    compound_1_ids = feature_ids["compound_1"]
+    return {i for i, pid in enumerate(compound_1_ids) if pid in _DISALLOW_IDS_CACHE}
 
 
 def _compute_tail_targets(
@@ -370,18 +370,18 @@ def _compute_tail_targets(
     tail_families = {
         KcFamilyId.TAIL_READING_GRAM,
         KcFamilyId.TAIL_POS,
-        KcFamilyId.TAIL_POS_DETAIL_1,
-        KcFamilyId.TAIL_POS_DETAIL_2,
+        KcFamilyId.TAIL_COMPOUND_1,
+        KcFamilyId.TAIL_COMPOUND_2,
         KcFamilyId.TAIL_CONJUGATED_TYPE,
     }
 
     for family_id in tail_families:
         field = FAMILY_FEATURES[family_id]
         if field in feature_ids:
-            # For pos_detail_1, pos_detail_2, and conjugated_type, also filter UNK
+            # For compound_1, compound_2, and conjugated_type, also filter UNK
             filter_unk = family_id in (
-                KcFamilyId.TAIL_POS_DETAIL_1,
-                KcFamilyId.TAIL_POS_DETAIL_2,
+                KcFamilyId.TAIL_COMPOUND_1,
+                KcFamilyId.TAIL_COMPOUND_2,
                 KcFamilyId.TAIL_CONJUGATED_TYPE,
             )
             targets[family_id] = get_tail_ids(
@@ -401,8 +401,8 @@ def _compute_ngram_targets(
     # Ngram families
     ngram_families = {
         KcFamilyId.NGRAM_POS,
-        KcFamilyId.NGRAM_POS_DETAIL_1,
-        KcFamilyId.NGRAM_POS_DETAIL_2,
+        KcFamilyId.NGRAM_COMPOUND_1,
+        KcFamilyId.NGRAM_COMPOUND_2,
         KcFamilyId.NGRAM_CONJUGATED_TYPE,
         KcFamilyId.NGRAM_READING_GRAM,
     }
@@ -423,10 +423,10 @@ def _compute_ngram_targets(
                 if v in SPECIAL_TOKEN_IDS:
                     continue
                 ids.append(v)
-            # For pos_detail_1, pos_detail_2, and conjugated_type, also filter out UNK
+            # For compound_1, compound_2, and conjugated_type, also filter out UNK
             if family_id in (
-                KcFamilyId.NGRAM_POS_DETAIL_1,
-                KcFamilyId.NGRAM_POS_DETAIL_2,
+                KcFamilyId.NGRAM_COMPOUND_1,
+                KcFamilyId.NGRAM_COMPOUND_2,
                 KcFamilyId.NGRAM_CONJUGATED_TYPE,
             ):
                 ids = [v for v in ids if v != UNK_ID]
@@ -452,8 +452,8 @@ def _compute_tail_ngram_targets(
     """Compute n-gram targets biased toward the end of the sentence."""
     tail_ngram_families = {
         KcFamilyId.TAIL_NGRAM_POS,
-        KcFamilyId.TAIL_NGRAM_POS_DETAIL_1,
-        KcFamilyId.TAIL_NGRAM_POS_DETAIL_2,
+        KcFamilyId.TAIL_NGRAM_COMPOUND_1,
+        KcFamilyId.TAIL_NGRAM_COMPOUND_2,
         KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
         KcFamilyId.TAIL_NGRAM_READING_GRAM,
     }
@@ -477,10 +477,10 @@ def _compute_tail_ngram_targets(
                 if raw_ids[i] in SPECIAL_TOKEN_IDS:
                     continue
                 tail_ids.append(raw_ids[i])
-            # For pos_detail_1, pos_detail_2, and conjugated_type, also filter out UNK
+            # For compound_1, compound_2, and conjugated_type, also filter out UNK
             if family_id in (
-                KcFamilyId.TAIL_NGRAM_POS_DETAIL_1,
-                KcFamilyId.TAIL_NGRAM_POS_DETAIL_2,
+                KcFamilyId.TAIL_NGRAM_COMPOUND_1,
+                KcFamilyId.TAIL_NGRAM_COMPOUND_2,
                 KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
             ):
                 tail_ids = [v for v in tail_ids if v != UNK_ID]

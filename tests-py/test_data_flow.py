@@ -15,8 +15,8 @@ class TestDataFlow(unittest.TestCase):
             feature_ids={
                 # "surface": [1, 2, 3],
                 "pos": [1, 2, 3],
-                "pos_detail_1": [1, 2, 3],
-                "pos_detail_2": [1, 2, 3],
+                "compound_1": [1, 2, 3],
+                "compound_2": [1, 2, 3],
                 "pos_detail_3": [1, 2, 3],
                 "conjugated_type": [1, 2, 3],
                 # "conjugated_form": [1, 2, 3],
@@ -37,8 +37,8 @@ class TestDataFlow(unittest.TestCase):
             feature_ids={
                 # "surface": [4, 5],
                 "pos": [4, 5],
-                "pos_detail_1": [4, 5],
-                "pos_detail_2": [4, 5],
+                "compound_1": [4, 5],
+                "compound_2": [4, 5],
                 "pos_detail_3": [4, 5],
                 "conjugated_type": [4, 5],
                 # "conjugated_form": [4, 5],
@@ -104,8 +104,8 @@ class TestDataFlow(unittest.TestCase):
             feature_ids={
                 # "surface": [1],
                 "pos": [1],
-                "pos_detail_1": [1],
-                "pos_detail_2": [1],
+                "compound_1": [1],
+                "compound_2": [1],
                 "pos_detail_3": [1],
                 "conjugated_type": [1],
                 # "conjugated_form": [1],
