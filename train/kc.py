@@ -17,10 +17,20 @@ KC_POS_BIASED_WINDOW = 5
 # PAD and UNK are kept for analysis purposes
 SPECIAL_TOKEN_IDS = {CLS_ID}
 
-# compound_1 tokens to exclude from tail and ngram families.
+# compound_1 tokens to exclude from all tail families.
 # These tokens are high-frequency but low-information for style discrimination.
 # Format: composite token strings matching compound_1 vocabulary (e.g., "noun:common-noun")
-TAIL_NGRAM_DISALLOW_LIST = frozenset({"noun:common-noun", "noun:numeral"})
+TAIL_DISALLOW = frozenset(
+    {"noun:common-noun", 
+    "noun:numeral", 
+    "aux-symbol:comma", 
+    "aux-symbol:period",
+    "aux-symbol:general",
+    "aux-symbol:close-bracket",
+    "aux-symbol:open-bracket",
+    "suffix:nominal", 
+    "noun:proper-noun"}
+)
 
 
 class KcFamilyId(str, Enum):
@@ -333,7 +343,7 @@ def initialize_disallow_filter(compound_1_vocab: Dict[str, int]) -> None:
     """Initialize the module-level disallow filter from tokenizer vocab.
 
     Call this once during startup (e.g., after loading tokenizer) to resolve
-    TAIL_NGRAM_DISALLOW_LIST tokens to IDs. All subsequent calls to
+    TAIL_DISALLOW tokens to IDs. All subsequent calls to
     compute_kc_targets will use the cached disallow IDs automatically.
 
     Args:
@@ -341,7 +351,7 @@ def initialize_disallow_filter(compound_1_vocab: Dict[str, int]) -> None:
     """
     global _DISALLOW_IDS_CACHE  # pylint: disable=global-statement
     _DISALLOW_IDS_CACHE = set()
-    for token in TAIL_NGRAM_DISALLOW_LIST:
+    for token in TAIL_DISALLOW:
         if token in compound_1_vocab:
             _DISALLOW_IDS_CACHE.add(compound_1_vocab[token])
 
@@ -509,7 +519,7 @@ def compute_kc_targets(
 
     Note:
         Call initialize_disallow_filter() once at startup to enable automatic
-        filtering of TAIL_NGRAM_DISALLOW_LIST tokens from tail/ngram families.
+        filtering of TAIL_DISALLOW tokens from tail/ngram families.
     """
     # Ensure inputs are lists, not tensors
     feature_ids_list: Dict[str, List[int]] = {}
