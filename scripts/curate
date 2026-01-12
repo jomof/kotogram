@@ -1035,29 +1035,34 @@ def curate_kc_families(sentence: str):
         SALT,
         compute_kc_targets,
         get_family_bucket_size,
+        initialize_disallow_filter,
         is_family_sparse,
         stable_hash_ints,
     )
-    
+
     # Parse sentence
     parser = SudachiJapaneseParser()
     kotogram = parser.japanese_to_kotogram(sentence, KotogramFormat.TRAINING_MASK)
-    
+
     # Tokenize
     # We need a tokenizer to get feature IDs. Use default vocab if exists.
     from train import paths
     import os
-    
+
     vocab_path = os.path.join(paths.get_style_dataset_cache_dir(), "vocab.json")
     if not os.path.exists(vocab_path):
         console.print(f"[red]Vocab not found at {vocab_path}. Run 'bin/train_style --label' first.[/red]")
         return
-    
+
     tokenizer = Tokenizer.load(vocab_path)
-    
+
+    # Initialize disallow filter (matches production code in dataset.py and label.py)
+    compound_1_vocab = tokenizer.field_vocabs.get("compound_1", {})
+    initialize_disallow_filter(compound_1_vocab)
+
     # Encode the kotogram to get feature IDs
     encoded = tokenizer.encode(kotogram)
-    
+
     # Compute KC targets
     targets = compute_kc_targets(encoded)
     
@@ -1086,40 +1091,68 @@ def curate_kc_families(sentence: str):
         return id_map.get(val, f"#{val}")
 
     def _compute_ngram_details(family, is_tail: bool):
-        """Compute ngrams with their source tokens and hash values."""
-        from kotogram.tokenizer import UNK_ID
-        from train.kc import KcFamilyId, _get_hierarchical_ids
+        """Compute ngrams with their source tokens and hash values.
         
+        IMPORTANT: This must mirror the logic in train/kc.py to show accurate data.
+        For tail ngrams, we must filter by position using disallowed_positions.
+        """
+        from kotogram.tokenizer import UNK_ID
+        from train.kc import KcFamilyId, _get_hierarchical_ids, get_disallowed_positions, SPECIAL_TOKEN_IDS
+
         field = FAMILY_FEATURES.get(family, "")
         if field not in encoded:
             return []
-        
-        # Get IDs - now includes composite tokens from vocabulary
-        ids = _get_hierarchical_ids(encoded, family)
-        # Filter CLS
-        ids = [v for v in ids if v != CLS_ID]
-        
-        # For tail ngrams, take only the last KC_POS_BIASED_WINDOW tokens
+
+        # Get raw IDs
+        raw_ids = _get_hierarchical_ids(encoded, family)
+        seq_len = len(raw_ids)
+
         if is_tail:
-            ids = ids[-KC_POS_BIASED_WINDOW:] if ids else []
-        
-        # For compound_1, compound_2, and conjugated_type, also filter out UNK
-        if family in (
-            KcFamilyId.NGRAM_COMPOUND_1,
-            KcFamilyId.NGRAM_COMPOUND_2,
-            KcFamilyId.NGRAM_CONJUGATED_TYPE,
-            KcFamilyId.TAIL_NGRAM_COMPOUND_1,
-            KcFamilyId.TAIL_NGRAM_COMPOUND_2,
-            KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
-        ):
-            ids = [v for v in ids if v != UNK_ID]
-        
+            # For tail ngrams, use position-aware filtering (matches _compute_tail_ngram_targets)
+            disallowed_positions = get_disallowed_positions(encoded)
+            tail_start = max(0, seq_len - KC_POS_BIASED_WINDOW)
+
+            # Filter by position: skip disallowed positions and special tokens
+            ids = []
+            for i in range(tail_start, seq_len):
+                if i in disallowed_positions:
+                    continue
+                if raw_ids[i] in SPECIAL_TOKEN_IDS:
+                    continue
+                ids.append(raw_ids[i])
+
+            # For compound families, also filter UNK
+            if family in (
+                KcFamilyId.TAIL_NGRAM_COMPOUND_1,
+                KcFamilyId.TAIL_NGRAM_COMPOUND_2,
+                KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
+            ):
+                ids = [v for v in ids if v != UNK_ID]
+        else:
+            # For non-tail ngrams, just filter CLS (matches _compute_ngram_targets)
+            disallowed_positions = get_disallowed_positions(encoded)
+            ids = []
+            for i, v in enumerate(raw_ids):
+                if i in disallowed_positions:
+                    continue
+                if v == CLS_ID:
+                    continue
+                ids.append(v)
+
+            # For compound families, also filter UNK
+            if family in (
+                KcFamilyId.NGRAM_COMPOUND_1,
+                KcFamilyId.NGRAM_COMPOUND_2,
+                KcFamilyId.NGRAM_CONJUGATED_TYPE,
+            ):
+                ids = [v for v in ids if v != UNK_ID]
+
         if not ids:
             return []
-        
+
         salt = SALT.get(family, 0)
         bucket_size = get_family_bucket_size(family)
-        
+
         ngram_details = []
         for n_val in range(2, KC_NGRAM_ORDER + 1):
             if len(ids) >= n_val:
@@ -1129,7 +1162,7 @@ def curate_kc_families(sentence: str):
                     # Decode using vocabulary lookup (now contains composite tokens)
                     tokens = [_decode_id(v, family) for v in ngram_ids]
                     ngram_details.append((h, tokens))
-        
+
         return ngram_details
     
     def _print_family_group(title: str, families: list, color: str, show_ngram_content: bool = False):
@@ -1593,7 +1626,7 @@ def _init_kc_tail_stats_worker(vocab_path: str):
 
 
 def _compute_tail_bag_for_sentence(sentence: str) -> Tuple[Tuple[int, ...], str]:
-    """Compute tail bag for compound_1 for a single sentence.
+    """Compute TAIL_COMPOUND_1 bag for a single sentence.
     
     Returns the tail bag as a tuple of sorted IDs and the original sentence.
     """
@@ -1613,9 +1646,9 @@ def _compute_tail_bag_for_sentence(sentence: str) -> Tuple[Tuple[int, ...], str]
     return (tuple(tail_ids), sentence)
 
 
-def curate_kc_tail_stats(db_path: str, sentence: str = None):
+def curate_kc_tail_stats(db_path: str, sentence: str = None, filter_str: str = None):
     """
-    Analyze tail bag distributions for compound_1 across the corpus.
+    Analyze TAIL_COMPOUND_1 distributions across the corpus.
     
     Shows frequency counts per unique tail bag, with the 8 most and 
     8 least common patterns. Optionally shows the tail bag for a given sentence.
@@ -1640,7 +1673,7 @@ def curate_kc_tail_stats(db_path: str, sentence: str = None):
     sentences = [row[0] for row in cursor.fetchall()]
     conn.close()
 
-    console.print(f"[bold]KC Tail Stats:[/bold] Scanning {len(sentences):,} sentences for compound_1 tails...")
+    console.print(f"[bold]KC Tail Stats:[/bold] Scanning {len(sentences):,} sentences for TAIL_COMPOUND_1...")
 
     # Run parallel scan
     num_workers = mp.cpu_count()
@@ -1697,7 +1730,7 @@ def curate_kc_tail_stats(db_path: str, sentence: str = None):
     table_top = Table()
     table_top.add_column("Rank", style="dim")
     table_top.add_column("Count", style="cyan")
-    table_top.add_column("Tail Bag (compound_1)")
+    table_top.add_column("TAIL_COMPOUND_1")
     table_top.add_column("Shortest Example", style="dim")
     
     for rank, (tail, count) in enumerate(tail_counts.most_common(8), 1):
@@ -1735,7 +1768,7 @@ def curate_kc_tail_stats(db_path: str, sentence: str = None):
         table_query = Table()
         table_query.add_column("Rank", style="dim")
         table_query.add_column("Count", style="cyan")
-        table_query.add_column("Tail Bag (compound_1)")
+        table_query.add_column("TAIL_COMPOUND_1")
         table_query.add_column("Query Sentence")
         
         rank_str = f"#{query_rank}" if query_rank else "(not in corpus)"
@@ -1748,14 +1781,71 @@ def curate_kc_tail_stats(db_path: str, sentence: str = None):
     table_bottom = Table()
     table_bottom.add_column("Rank", style="dim")
     table_bottom.add_column("Count", style="cyan")
-    table_bottom.add_column("Tail Bag (compound_1)")
+    table_bottom.add_column("TAIL_COMPOUND_1")
     table_bottom.add_column("Shortest Example", style="dim")
-    
+
     least_common = tail_counts.most_common()[:-9:-1]  # Last 8, reversed
     for rank, (tail, count) in enumerate(least_common, 1):
         example = truncate(shortest_example.get(tail, ""))
         table_bottom.add_row(f"#{len(tail_counts) - 8 + rank}", f"{count:,}", decode_tail(tail), example)
     console.print(table_bottom)
+
+    # Distinct element frequencies
+    # Count how often each individual token appears across all sentences
+    # Also track shortest sentence example per element
+    element_counts: Counter[int] = Counter()
+    element_example: Dict[int, str] = {}
+    for tail_bag, count in tail_counts.items():
+        example_sent = shortest_example.get(tail_bag, "")
+        for token_id in tail_bag:
+            element_counts[token_id] += count
+            # Track shortest sentence containing this element
+            if token_id not in element_example or len(example_sent) < len(element_example[token_id]):
+                element_example[token_id] = example_sent
+
+    console.print()
+    # Apply filter if provided
+    if filter_str:
+        filtered_counts: Counter[int] = Counter()
+        for token_id, count in element_counts.items():
+            token_str = id_to_token.get(token_id, f"#{token_id}")
+            if filter_str in token_str:
+                filtered_counts[token_id] = count
+        element_counts = filtered_counts
+        console.print(f"[bold]Distinct TAIL_COMPOUND_1 Elements (filter: '{filter_str}'):[/bold] {len(element_counts):,} unique tokens")
+    else:
+        console.print(f"[bold]Distinct TAIL_COMPOUND_1 Elements:[/bold] {len(element_counts):,} unique tokens")
+
+    # Most common elements
+    console.print()
+    console.print("[bold]8 Most Common Elements:[/bold]")
+    table_elem_top = Table()
+    table_elem_top.add_column("Rank", style="dim")
+    table_elem_top.add_column("Count", style="cyan")
+    table_elem_top.add_column("Element")
+    table_elem_top.add_column("Shortest Example", style="dim")
+
+    for rank, (token_id, count) in enumerate(element_counts.most_common(8), 1):
+        token_str = id_to_token.get(token_id, f"#{token_id}")
+        example = truncate(element_example.get(token_id, ""))
+        table_elem_top.add_row(f"#{rank}", f"{count:,}", token_str, example)
+    console.print(table_elem_top)
+
+    # Least common elements
+    console.print()
+    console.print("[bold]8 Least Common Elements:[/bold]")
+    table_elem_bottom = Table()
+    table_elem_bottom.add_column("Rank", style="dim")
+    table_elem_bottom.add_column("Count", style="cyan")
+    table_elem_bottom.add_column("Element")
+    table_elem_bottom.add_column("Shortest Example", style="dim")
+
+    least_common_elems = element_counts.most_common()[:-9:-1]  # Last 8, reversed
+    for rank, (token_id, count) in enumerate(least_common_elems, 1):
+        token_str = id_to_token.get(token_id, f"#{token_id}")
+        example = truncate(element_example.get(token_id, ""))
+        table_elem_bottom.add_row(f"#{len(element_counts) - 8 + rank}", f"{count:,}", token_str, example)
+    console.print(table_elem_bottom)
 
 
 # ============================================================================
@@ -2221,6 +2311,7 @@ def main():
     parser_kc_tail_stats = subparsers.add_parser("kc-tail-stats", help="Analyze tail bag distributions")
     parser_kc_tail_stats.add_argument("sentence", nargs="?", default=None, help="Optional sentence to show in context")
     parser_kc_tail_stats.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
+    parser_kc_tail_stats.add_argument("--filter", dest="filter_str", default=None, help="Filter elements containing this string")
 
     # Token Stats command
     parser_token_stats = subparsers.add_parser("token-stats", help="Show most/least common kotogram tokens")
@@ -2252,7 +2343,7 @@ def main():
     elif args.command == "kc-hash":
         curate_kc_hash(args.db_path)
     elif args.command == "kc-tail-stats":
-        curate_kc_tail_stats(args.db_path, args.sentence)
+        curate_kc_tail_stats(args.db_path, args.sentence, args.filter_str)
     elif args.command == "token-stats":
         curate_token_stats(args.db_path)
 

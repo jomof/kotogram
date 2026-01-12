@@ -1,7 +1,7 @@
 """Tests for the disallow list functionality in train.kc."""
 
 from train.kc import (
-    TAIL_NGRAM_DISALLOW_LIST,
+    TAIL_DISALLOW,
     KcFamilyId,
     compute_kc_targets,
     get_disallowed_positions,
@@ -11,11 +11,11 @@ from train.kc import (
 
 
 class TestDisallowList:
-    """Tests for the TAIL_NGRAM_DISALLOW_LIST filtering functionality."""
+    """Tests for the TAIL_DISALLOW filtering functionality."""
 
     def test_disallow_list_contains_common_noun(self):
         """Verify the disallow list contains the expected tokens."""
-        assert "noun:common-noun" in TAIL_NGRAM_DISALLOW_LIST
+        assert "noun:common-noun" in TAIL_DISALLOW
 
     def test_initialize_disallow_filter_caches_ids(self):
         """Verify that initialize_disallow_filter resolves tokens to IDs."""
