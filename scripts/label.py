@@ -49,7 +49,7 @@ import shutil
 import sqlite3
 import sys
 from collections import Counter
-from typing import Any, Dict, List, Optional, Tuple, cast
+from typing import Any, Dict, List, Optional, Set, Tuple, cast
 
 from rich.console import Console
 from rich.progress import (
@@ -521,6 +521,9 @@ def _encode_shard_phase2(worker_id: int) -> None:
     # Buffer for KC targets (keyed by ID)
     kc_buffers: Dict[KcFamilyId, Dict[str, Any]] = {}
 
+    # Track unique KC IDs per family for collision detection (amortized to label phase)
+    kc_unique_ids: Dict[KcFamilyId, Set[int]] = {}
+
     with open(koto_path, "r", encoding="utf-8") as f:
         for line in f:
             kotogram_obj = line.strip()
@@ -569,6 +572,11 @@ def _encode_shard_phase2(worker_id: int) -> None:
                         cast(int, kc_buffers[k_key]["cur_off"])
                     )
 
+                    # Track unique IDs for collision detection (amortized)
+                    if k_key not in kc_unique_ids:
+                        kc_unique_ids[k_key] = set()
+                    kc_unique_ids[k_key].update(ids)
+
     # Write the main sentence offsets (token boundaries).
     write_int_array(f"{shard_prefix}.{EXT_OFFSETS}", offsets_buf, "i")
 
@@ -598,6 +606,16 @@ def _encode_shard_phase2(worker_id: int) -> None:
             accum["offsets"],
             "i",
         )
+
+    # Write unique ID counts per KC family (for collision detection at training time)
+    import json
+
+    unique_counts = {
+        (k.value if isinstance(k, KcFamilyId) else str(k)): len(v)
+        for k, v in kc_unique_ids.items()
+    }
+    with open(f"{shard_prefix}.kc_unique_counts.json", "w", encoding="utf-8") as jf:
+        json.dump(unique_counts, jf)
 
 
 def print_stats(label_stats: Dict[str, Counter]) -> None:
@@ -1218,6 +1236,28 @@ def main() -> None:
         )
 
     timer.mark("Phase 3: Merging Complete")
+
+    # 6. Merge unique KC ID counts from all shards
+    # These are used at training time for collision detection (amortized from training)
+    console.print("  Merging KC unique ID counts...")
+    import json
+
+    merged_unique_counts: Dict[str, int] = {}
+    for shard_idx in range(len(chunks)):
+        shard_json = os.path.join(shard_dir, f"shard_{shard_idx}.kc_unique_counts.json")
+        if os.path.exists(shard_json):
+            with open(shard_json, "r", encoding="utf-8") as jf:
+                shard_counts = json.load(jf)
+                for key, count in shard_counts.items():
+                    # Note: Unique counts across shards need to be summed as an approximation
+                    # (true unique count would require set union, but sum is a useful lower bound)
+                    merged_unique_counts[key] = merged_unique_counts.get(key, 0) + count
+
+    # Write merged counts to dataset directory
+    with open(
+        os.path.join(dataset_cache_dir, "kc_unique_counts.json"), "w", encoding="utf-8"
+    ) as jf:
+        json.dump(merged_unique_counts, jf, indent=2)
 
     # Cleanup temporary shards to save space.
     console.print("Cleaning up shards...")

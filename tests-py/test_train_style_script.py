@@ -43,6 +43,7 @@ class TestTrainStyleScript(unittest.TestCase):
                 "[.cache]/style_dataset/sentences.txt",
                 "[.cache]/style_dataset/kotograms.txt",
                 "[.cache]/style_dataset/kc_*.bin",
+                "[.cache]/style_dataset/kc_unique_counts.json",
                 "[.cache]/style_dataset/feat_*.bin",
                 "[.cache]/style_dataset/labels.bin_*",
                 "[.cache]/style_dataset/offsets.bin",
