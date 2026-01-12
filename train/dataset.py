@@ -17,6 +17,7 @@ from kotogram.model import (
 from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
 from train.binary_io import (
     EXT_FEAT_PREFIX,
+    EXT_KC_PREFIX,
     EXT_LABELS,
     EXT_OFFSETS,
 )
@@ -117,7 +118,9 @@ class StyleDataset(Dataset[Sample]):
                 reg_off_path, shared=True, size=sz, dtype=torch.int32
             )
 
-        self.kc_maps: Dict[str, Dict[str, torch.Tensor]] = {}
+        self.kc_maps: Dict[str, Dict[str, torch.Tensor]] = self._init_kc_targets(
+            data_dir
+        )
 
     def _check_exists(self, path: str) -> bool:
         return os.path.exists(path)
@@ -164,6 +167,40 @@ class StyleDataset(Dataset[Sample]):
                     path, shared=True, size=sz, dtype=dtype
                 )
         return labels
+
+    def _init_kc_targets(self, data_dir: str) -> Dict[str, Dict[str, torch.Tensor]]:
+        """Load pre-computed KC targets from binary files.
+
+        The label phase writes KC targets as jagged arrays:
+        - kc_{family}_ids.bin: flat array of KC IDs
+        - kc_{family}_offsets.bin: offset array for sample boundaries
+
+        Returns:
+            Dict mapping family name to {"ids": tensor, "offsets": tensor}.
+        """
+        kc_maps: Dict[str, Dict[str, torch.Tensor]] = {}
+
+        # Scan for all KC families that were pre-computed
+        for family in KcFamilyId:
+            family_name = family.value  # e.g., "bag_reading_gram"
+            ids_path = os.path.join(data_dir, f"{EXT_KC_PREFIX}{family_name}_ids.bin")
+            off_path = os.path.join(
+                data_dir, f"{EXT_KC_PREFIX}{family_name}_{EXT_OFFSETS}"
+            )
+
+            if self._check_exists(ids_path) and self._check_exists(off_path):
+                ids_sz = self._get_size(ids_path) // 4
+                off_sz = self._get_size(off_path) // 4
+                kc_maps[family_name] = {
+                    "ids": self._load_tensor(
+                        ids_path, shared=True, size=ids_sz, dtype=torch.int32
+                    ),
+                    "offsets": self._load_tensor(
+                        off_path, shared=True, size=off_sz, dtype=torch.int32
+                    ),
+                }
+
+        return kc_maps
 
     def __len__(self) -> int:
         return self._len
@@ -214,16 +251,29 @@ class StyleDataset(Dataset[Sample]):
         )
 
     def _get_kc_targets(
-        self, _real_idx: int, _start: int, _end: int, feature_ids: Dict[str, List[int]]
+        self, real_idx: int, _start: int, _end: int, feature_ids: Dict[str, List[int]]
     ) -> Dict[KcFamilyId, Any]:
-        # Lazy load and retrieve KC targets.
-        # Fallback: Compute on demand (using `compute_kc_targets`).
-        # This allows training without pre-computed KC target files, at the cost of CPU during dataloading.
-        # This allows training without pre-computed KC target files, at the cost of CPU during dataloading.
-        # If binary files exist, use them.
+        """Get KC targets for a sample.
 
-        # Determining keys:
-        # We can scan directory in __init__ for available KCs.
+        Uses pre-computed targets from binary files if available,
+        otherwise falls back to computing on-the-fly.
+        """
+        # If pre-computed KC targets are available, use them
+        if self.kc_maps:
+            result: Dict[KcFamilyId, Any] = {}
+            for family in KcFamilyId:
+                family_name = family.value
+                if family_name in self.kc_maps:
+                    data = self.kc_maps[family_name]
+                    # Get the jagged slice for this sample
+                    kc_start = int(data["offsets"][real_idx].item())
+                    kc_end = int(data["offsets"][real_idx + 1].item())
+                    result[family] = data["ids"][kc_start:kc_end].tolist()
+                else:
+                    result[family] = []
+            return result
+
+        # Fallback: Compute on demand (slower, for backwards compatibility)
         return compute_kc_targets(cast(Any, feature_ids))
 
     @classmethod
@@ -445,6 +495,7 @@ def collate_fn(
     )
 
 
+# pylint: disable=too-many-locals
 def _get_kc_pos_indices(
     kc_targets: List[Dict[Any, List[int]]],
     field: Any,
@@ -453,29 +504,34 @@ def _get_kc_pos_indices(
     special_ids: Set[int],
 ) -> Tuple[torch.Tensor, torch.Tensor]:
     """Helper to compute sparse position indices and mask."""
-    batch_size = len(kc_targets)
     max_pos = 64
-    pos_inds = torch.zeros((batch_size, max_pos), dtype=torch.long, device=device)
-    pos_mask = torch.zeros((batch_size, max_pos), dtype=torch.bool, device=device)
 
-    for i, target_dict in enumerate(kc_targets):
+    # OPTIMIZED: Pre-collect all valid IDs as Python lists, then create tensors in bulk
+    # This avoids creating torch.tensor() per sample in the loop
+    all_pos_data: List[List[int]] = []
+    all_mask_data: List[List[bool]] = []
+
+    for target_dict in kc_targets:
         val_list = target_dict.get(field, [])
-        if not val_list:
-            continue
 
-        # Filter special IDs
+        # Filter special IDs and out-of-vocab
         valid_ids = [v for v in val_list if v < vocab_size and v not in special_ids]
 
-        # Truncate
+        # Truncate to max_pos
         if len(valid_ids) > max_pos:
             valid_ids = valid_ids[:max_pos]
 
-        # Assign
-        if valid_ids:
-            pos_inds[i, : len(valid_ids)] = torch.tensor(
-                valid_ids, dtype=torch.long, device=device
-            )
-            pos_mask[i, : len(valid_ids)] = True
+        # Pad to max_pos
+        n_valid = len(valid_ids)
+        padded_ids = valid_ids + [0] * (max_pos - n_valid)
+        mask = [True] * n_valid + [False] * (max_pos - n_valid)
+
+        all_pos_data.append(padded_ids)
+        all_mask_data.append(mask)
+
+    # Create tensors in bulk (single torch.tensor call per batch)
+    pos_inds = torch.tensor(all_pos_data, dtype=torch.long, device=device)
+    pos_mask = torch.tensor(all_mask_data, dtype=torch.bool, device=device)
 
     return pos_inds, pos_mask
 
@@ -535,15 +591,20 @@ def create_kc_batch(
         from train.kc import is_family_sparse
 
         if not is_family_sparse(target_family):
-            # Create dense multi-hot targets
+            # OPTIMIZED: Use scatter_ with pos_inds/pos_mask instead of nested Python loops
             dense_targets = torch.zeros(
                 (batch_size, vocab_size), dtype=torch.float, device=device
             )
-            for i, target_dict in enumerate(batch.kc_targets):
-                val_list = target_dict.get(kc_key, [])
-                for v in val_list:
-                    if 0 <= v < vocab_size and v not in special_ids:
-                        dense_targets[i, v] = 1.0
+            # Use torch.where instead of clone() to avoid allocation
+            # Where pos_mask is True, use pos_inds; where False, use 0
+            valid_inds = torch.where(pos_mask, pos_inds, torch.zeros_like(pos_inds))
+
+            # Scatter 1.0 to all valid positions
+            dense_targets.scatter_(1, valid_inds, 1.0)
+
+            # Clear any accidental assignments to index 0 (special token)
+            dense_targets[:, 0] = 0.0
+
             result[f"kc_targets_{target_family.name.lower()}"] = dense_targets
 
         # Accumulate global positive presence

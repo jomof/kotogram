@@ -5,15 +5,17 @@ import json
 import os
 import re
 import resource
-import subprocess
 import sys
 import time
 from datetime import datetime
 from typing import Any, List, Optional
 
 import memray
+from rich.console import Console
 
 from train import paths
+
+_console = Console()
 
 memray: Any  # type: ignore # pylint: disable=no-member
 
@@ -87,10 +89,9 @@ class Timer:
                 self.memray_tracker = memray.Tracker(self.memray_file)
                 self.memray_tracker.__enter__()  # pylint: disable=unnecessary-dunder-call
 
-            # cProfile (Only if memray is NOT active)
-            if not self.memray_tracker:
-                self.profiler = cProfile.Profile()
-                self.profiler.enable()
+            # cProfile - run alongside memray for CPU profiling
+            self.profiler = cProfile.Profile()
+            self.profiler.enable()
 
     def stop(
         self, epoch: int = 0, batch: int = 0, phase_name: Optional[str] = None
@@ -174,6 +175,7 @@ class Timer:
             name,
             elapsed,
             self.memray_file or "",
+            self.profiler,
         )
 
 
@@ -201,11 +203,195 @@ def _clean_name(name: str) -> str:
     return re.sub(r"_+", "_", clean).strip("_")
 
 
+def _find_user_callsite(
+    stack_trace: List[tuple[str, str, int]],
+) -> Optional[tuple[str, str, int]]:
+    """Find the first frame in user code (not in .venv/) from a stack trace.
+
+    Args:
+        stack_trace: List of (function, file_path, line_number) tuples.
+
+    Returns:
+        The first frame tuple that's in user code, or None if all frames are library code.
+    """
+    for frame in stack_trace:
+        file_path = frame[1]
+        if ".venv/" not in file_path and "site-packages/" not in file_path:
+            return frame
+    return None
+
+
+def _format_location(func: str, file_path: str, line: int) -> str:
+    """Format a location for display."""
+    return f"{func}:{file_path}:{line}"
+
+
+def _format_size(size_bytes: int) -> str:
+    """Format a size in human-readable form."""
+    if size_bytes >= 1024 * 1024 * 1024:
+        return f"{size_bytes / (1024 * 1024 * 1024):.3f}GB"
+    if size_bytes >= 1024 * 1024:
+        return f"{size_bytes / (1024 * 1024):.3f}MB"
+    if size_bytes >= 1024:
+        return f"{size_bytes / 1024:.3f}kB"
+    return f"{size_bytes}B"
+
+
+def _generate_callsite_report(memray_file: str, top_n: int = 20) -> str:
+    """Generate a custom top allocators report with user-code callsite lookup.
+
+    For each allocation location that's in library code (.venv/), this looks up
+    the stack trace to find the first frame in user code.
+
+    Args:
+        memray_file: Path to the memray .bin file.
+        top_n: Number of top allocators to report.
+
+    Returns:
+        A formatted string report.
+    """
+    # pylint: disable=too-many-locals
+    from collections import defaultdict
+
+    from memray import FileReader
+
+    # Aggregate allocations by location
+    # Key: (function, file_path, line_number)
+    # Value: {"size": total_bytes, "count": total_allocations, "callsites": set()}
+    location_stats: dict[tuple[str, str, int], dict[str, Any]] = defaultdict(
+        lambda: {"size": 0, "count": 0, "callsites": set()}
+    )
+
+    # Sampling rate: process every Nth record for speed while maintaining
+    # representative distribution. With ~85M records, every 100th gives ~850K
+    # which is still representative but processes in seconds not minutes.
+    sample_rate = 100
+    record_idx = 0
+
+    with FileReader(memray_file) as reader:
+        # Get total allocation count for progress
+        metadata = reader.metadata
+        total_records = getattr(metadata, "total_allocations", 0) or 0
+
+        # If we don't have a total, use an estimate based on typical training runs
+        if total_records == 0:
+            total_records = 80_000_000  # Estimate ~80M allocations
+
+        # Use all allocation records to find O(n) hotspots via allocation counts.
+        # Sample for speed while maintaining representative distribution.
+        progress_update_rate = (
+            1_000_000  # Update every 1M records for reasonable display
+        )
+        start_time = time.perf_counter()
+        for record in reader.get_allocation_records():
+            record_idx += 1
+
+            # Print progress every 1M records
+            if record_idx % progress_update_rate == 0:
+                pct = min(100, record_idx * 100 // total_records)
+                elapsed = time.perf_counter() - start_time
+                if pct > 0:
+                    remaining = elapsed * (100 - pct) / pct
+                else:
+                    remaining = 0
+                print(
+                    f"\rCallsite analysis: {pct:3d}% "
+                    f"({record_idx // 1_000_000}M/{total_records // 1_000_000}M) "
+                    f"[{elapsed:.0f}s / {remaining:.0f}s remaining]",
+                    end="",
+                    flush=True,
+                )
+
+            if record_idx % sample_rate != 0:
+                continue
+
+            # Skip deallocations - they don't have stack traces
+            # AllocatorType enum: PYMALLOC_FREE=1, FREE=5, MUNMAP=15
+            allocator_int = int(record.allocator)
+            if allocator_int in (1, 5, 15):
+                continue
+
+            stack = record.stack_trace()
+            if not stack:
+                continue
+
+            # Top of stack is the immediate allocation location
+            top_frame = stack[0]
+            key = (top_frame[0], top_frame[1], top_frame[2])
+            location_stats[key]["size"] += record.size
+            location_stats[key]["count"] += record.n_allocations
+
+            # If top frame is library code, find the user callsite
+            if ".venv/" in top_frame[1] or "site-packages/" in top_frame[1]:
+                user_frame = _find_user_callsite(stack)
+                if user_frame:
+                    location_stats[key]["callsites"].add(user_frame)
+
+        # Print final progress with elapsed time
+        final_elapsed = time.perf_counter() - start_time
+        print(
+            f"\rCallsite analysis: 100% ({record_idx // 1_000_000}M records) "
+            f"[{final_elapsed:.1f}s]                    "
+        )
+
+    # Sort by size (descending) for top allocators by size
+    by_size = sorted(
+        location_stats.items(),
+        key=lambda x: x[1]["size"],
+        reverse=True,
+    )[:top_n]
+
+    # Sort by count (descending) for top allocators by count
+    by_count = sorted(
+        location_stats.items(),
+        key=lambda x: x[1]["count"],
+        reverse=True,
+    )[:top_n]
+
+    lines = []
+    lines.append("")
+    lines.append("=" * 80)
+    lines.append("CALLSITE REPORT (user code locations for library allocations)")
+    lines.append("-" * 80)
+    lines.append("")
+    lines.append(
+        "🔍 Top 20 largest allocating locations (by size) with user callsites:"
+    )
+
+    for (func, file_path, line), stats in by_size:
+        loc = _format_location(func, file_path, line)
+        size_str = _format_size(stats["size"])
+        lines.append(f"\t- {loc} -> {size_str}")
+        # Show user callsites for library code
+        if stats["callsites"]:
+            for cs in sorted(stats["callsites"], key=lambda x: x[1]):
+                cs_loc = _format_location(cs[0], cs[1], cs[2])
+                lines.append(f"\t    <- {cs_loc}")
+
+    lines.append("")
+    lines.append(
+        "🔍 Top 20 largest allocating locations (by count) with user callsites:"
+    )
+
+    for (func, file_path, line), stats in by_count:
+        loc = _format_location(func, file_path, line)
+        lines.append(f"\t- {loc} -> {stats['count']}")
+        # Show user callsites for library code
+        if stats["callsites"]:
+            for cs in sorted(stats["callsites"], key=lambda x: x[1]):
+                cs_loc = _format_location(cs[0], cs[1], cs[2])
+                lines.append(f"\t    <- {cs_loc}")
+
+    lines.append("")
+    return "\n".join(lines)
+
+
 def save_combined_stats(
     profile_dir: str,
     name: str,
     elapsed: float,
     memray_file: str,
+    profiler: Optional[cProfile.Profile] = None,
 ) -> None:
     # pylint: disable=too-many-locals
     """Save cProfile and memray stats to disk (shared logic)."""
@@ -219,56 +405,90 @@ def save_combined_stats(
     base_path = os.path.join(profile_dir, base_name)
 
     # 1. Save cProfile .pstats
-    # (Removed dead code: profiler is always None)
+    # (Removed dead code: profiler is always None when memray is active)
 
-    # 2. Text Report (Combine cProfile + Memray)
+    # 2. Text Report (Combine CPU + Memray)
     txt_file = f"{base_path}.txt"
     with open(txt_file, "w", encoding="utf-8") as f:
         f.write(f"PROFILE: {name} ({elapsed_str})\n")
         f.write("=" * 80 + "\n")
 
-        # cProfile Section
-        # (Removed dead code: profiler is always None)
+        # CPU Section using resource.getrusage()
+        f.write("=" * 80 + "\n")
+        f.write("CPU REPORT (resource usage)\n")
+        f.write("-" * 80 + "\n")
 
-        # Memray Section
+        usage = resource.getrusage(resource.RUSAGE_SELF)
+        user_time = usage.ru_utime
+        sys_time = usage.ru_stime
+        total_cpu = user_time + sys_time
+
+        # Calculate CPU percentage
+        if elapsed > 0:
+            cpu_percent = (total_cpu / elapsed) * 100
+        else:
+            cpu_percent = 0
+
+        # Format memory in MB
+        max_rss_mb = usage.ru_maxrss / (1024 * 1024)  # Convert bytes to MB on macOS
+        # Note: On Linux, ru_maxrss is in KB, on macOS it's in bytes
+
+        f.write("\n⏱️ Timing:\n")
+        f.write(f"\tWall time: {elapsed:.2f}s\n")
+        f.write(f"\tUser time: {user_time:.2f}s\n")
+        f.write(f"\tSystem time: {sys_time:.2f}s\n")
+        f.write(f"\tCPU utilization: {cpu_percent:.1f}%\n")
+
+        f.write("\n🧠 Memory:\n")
+        f.write(f"\tPeak RSS: {max_rss_mb:.1f}MB\n")
+
+        f.write("\n📊 Context Switches:\n")
+        f.write(f"\tVoluntary: {usage.ru_nvcsw:,}\n")
+        f.write(f"\tInvoluntary: {usage.ru_nivcsw:,}\n")
+
+        f.write("\n📄 Page Faults:\n")
+        f.write(f"\tMinor (no I/O): {usage.ru_minflt:,}\n")
+        f.write(f"\tMajor (I/O required): {usage.ru_majflt:,}\n")
+
+        f.write("\n")
+
+        # cProfile Section - CPU hotspots (user code only)
+        if profiler is not None:
+            import io
+            import pstats
+
+            f.write("=" * 80 + "\n")
+            f.write("CPU HOTSPOTS (user code, by cumulative time)\n")
+            f.write("-" * 80 + "\n\n")
+
+            # Capture pstats output - filter to kotogram project files only
+            step_start = time.perf_counter()
+            with _console.status("[bold blue]Generating cProfile stats..."):
+                stats_stream = io.StringIO()
+                stats = pstats.Stats(profiler, stream=stats_stream)
+                # Sort by cumulative time (total time including callees)
+                stats.sort_stats("cumulative")
+                # Filter to show only functions in our project (not .venv or stdlib)
+                stats.print_stats("kotogram", 30)  # Top 30 kotogram functions
+            step_time = time.perf_counter() - step_start
+            _console.print(f"[green]✓[/green] cProfile stats ({step_time:.1f}s)")
+
+            f.write(stats_stream.getvalue())
+            f.write("\n")
+
+        # Memray Section - generate callsite report directly (skip memray stats subprocess)
         if memray_file and os.path.exists(memray_file):
             f.write("=" * 80 + "\n")
-            f.write("MEMORY REPORT (memray tree)\n")
+            f.write("MEMORY REPORT (callsite analysis)\n")
             f.write("-" * 80 + "\n")
             f.flush()
 
-            # Execute memray tree (better context than summary)
-            # Execute memray stats (cleaner text output than tree/summary)
+            # Generate custom callsite report with user-code lookup (has its own progress bar)
+            callsite_report = _generate_callsite_report(memray_file)
+            f.write(callsite_report)
+
             f.write("\n")
-            f.write("=" * 80 + "\n")
-            f.write("MEMORY REPORT (memray stats)\n")
-            f.write("-" * 80 + "\n")
-            f.flush()
-
-            env = os.environ.copy()
-            env["COLUMNS"] = "200"
-
-            cmd_stats = [
-                sys.executable,
-                "-m",
-                "memray",
-                "stats",
-                "-n",
-                "20",
-                memray_file,
-            ]
-            res = subprocess.run(cmd_stats, stdout=f, stderr=f, env=env, check=False)
-
-            if res.returncode == 0:
-                f.write("\n")
-                f.write(f"Raw memray file: {os.path.basename(memray_file)}\n")
-                # Cleanup huge bin file if successful
-                if os.path.exists(memray_file):
-                    os.remove(memray_file)
-            else:
-                f.write(
-                    f"Error generating memray report: return code {res.returncode}\n"
-                )
+            f.write(f"Raw memray file: {memray_file}\n")
 
 
 def setup_profiling() -> None:
@@ -301,9 +521,9 @@ def setup_profiling() -> None:
         _memray_tracker = memray.Tracker(_memray_file)
         _memray_tracker.__enter__()  # pylint: disable=unnecessary-dunder-call
 
-    if not _memray_tracker:
-        _profiler = cProfile.Profile()
-        _profiler.enable()
+    # Enable cProfile alongside memray
+    _profiler = cProfile.Profile()
+    _profiler.enable()
 
     start_time = time.perf_counter()
 
@@ -324,6 +544,7 @@ def setup_profiling() -> None:
                 f"train_style{infix}",
                 elapsed,
                 _memray_file or "",
+                _profiler,
             )
 
     atexit.register(_save_profile)

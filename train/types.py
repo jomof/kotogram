@@ -131,7 +131,7 @@ class FamilyAccumulator:
     saw_sparse: bool = False
     saw_valid_mask: bool = False
 
-    # pylint: disable=too-many-positional-arguments
+    # pylint: disable=too-many-positional-arguments,too-many-locals
     def update(
         self,
         logits: torch.Tensor,
@@ -169,38 +169,41 @@ class FamilyAccumulator:
 
             # Positive example detection: examples with ≥1 true positive
             has_pos = pos_mask.any(dim=1)
-            self.n_pos_ex += int(has_pos.sum().item())
-            self.n_pos_labels += int(pos_mask.sum().item())
-
-            # Valid/supervised coverage: examples with ≥1 eligible entry
-            if valid_mask is not None:
-                has_valid = valid_mask.any(dim=1)
-                self.sum_valid_any += int(has_valid.sum().item())
-            else:
-                # No valid_mask means all entries are valid (dense or sparse sampled)
-                self.sum_valid_any += batch_size
 
             # Compute neg_mask respecting valid_mask
             if valid_mask is not None:
-                # Only count valid entries as negatives
+                has_valid = valid_mask.any(dim=1)
                 neg_mask = valid_mask & ~pos_mask
-                # Also restrict pos to valid (should already be, but defensive)
                 effective_pos_mask = valid_mask & pos_mask
             else:
+                has_valid = None
                 neg_mask = ~pos_mask
                 effective_pos_mask = pos_mask
 
+            # Logit stats - OPTIMIZED: use multiplication to avoid intermediate tensors
+            pos_mask_float = effective_pos_mask.float()
+            neg_mask_float = neg_mask.float()
+
+            # OPTIMIZED: Compute sums directly without torch.stack to avoid allocations
+            self.n_pos_ex += int(has_pos.sum().item())
+            self.n_pos_labels += int(pos_mask.sum().item())
+            n_pos = int(pos_mask_float.sum().item())
+            n_neg = int(neg_mask_float.sum().item())
+
+            if valid_mask is not None:
+                self.sum_valid_any += int(has_valid.sum().item())  # type: ignore[union-attr]
+            else:
+                self.sum_valid_any += batch_size
+
             # Logit stats for positives
-            if effective_pos_mask.any():
-                l_pos = logits[effective_pos_mask]
-                self.sum_logit_pos += float(l_pos.sum().item())
-                self.cnt_logit_pos += int(l_pos.numel())
+            if n_pos > 0:
+                self.sum_logit_pos += (logits * pos_mask_float).sum().item()
+                self.cnt_logit_pos += n_pos
 
             # Logit stats for negatives
-            if neg_mask.any():
-                l_neg = logits[neg_mask]
-                self.sum_logit_neg += float(l_neg.sum().item())
-                self.cnt_logit_neg += int(l_neg.numel())
+            if n_neg > 0:
+                self.sum_logit_neg += (logits * neg_mask_float).sum().item()
+                self.cnt_logit_neg += n_neg
 
 
 @dataclass(frozen=True)

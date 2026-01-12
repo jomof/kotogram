@@ -751,6 +751,8 @@ class KCTrainer:
         running_loss_components = RunningLossComponents()
 
         kc_diag = KCEpochDiag()
+        # Load precomputed unique ID counts from label phase (amortized collision tracking)
+        kc_diag.load_precomputed_unique_counts(self.dataset.data_dir)
         reading_mask_id = getattr(self.dataset.tokenizer, "unk_id", 0)
         if "reading" in self.dataset.tokenizer.field_vocabs:
             reading_mask_id = self.dataset.tokenizer.field_vocabs["reading"].get(
