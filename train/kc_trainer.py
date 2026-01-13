@@ -26,7 +26,7 @@ from train.io import (
     load_training_state,
     save_training_state,
 )
-from train.kc import is_family_sparse
+from train.kc import is_family_db_sourced, is_family_sparse
 from train.kc_diagnostics import (
     KCEpochDiag,
 )
@@ -345,6 +345,85 @@ class KCTrainer:
         # Return (total_loss, gap_loss_contribution) for separate tracking
         return total, (gap_weight * gap_loss).item()
 
+    def _grammar_point_pnu_loss(
+        self,
+        logits: torch.Tensor,
+        pos_ids: torch.Tensor,
+        pos_mask: torch.Tensor,
+        neg_ids: torch.Tensor,
+        neg_mask: torch.Tensor,
+        vocab_size: int,
+        unlab_weight: float = 0.001,
+    ) -> torch.Tensor:
+        """Compute PNU (Positive-Negative-Unlabeled) loss for grammar points.
+
+        Args:
+            logits: (B, vocab_size) logits from the KC decoder
+            pos_ids: (B, max_pos) positive grammar point IDs
+            pos_mask: (B, max_pos) mask for valid positive IDs
+            neg_ids: (B, max_neg) negative grammar point IDs
+            neg_mask: (B, max_neg) mask for valid negative IDs
+            vocab_size: number of grammar points
+            unlab_weight: weight for unlabeled (soft negative) loss
+
+        Returns:
+            Scalar loss tensor
+        """
+        batch_size = logits.size(0)
+        device = logits.device
+
+        # Build labeled masks
+        # Create a (B, vocab_size) tensor indicating labeled status
+        labeled_pos = torch.zeros(batch_size, vocab_size, device=device)
+        labeled_neg = torch.zeros(batch_size, vocab_size, device=device)
+
+        # Scatter 1.0 to positive positions
+        valid_pos = pos_ids.clamp(0, vocab_size - 1)
+        labeled_pos.scatter_(1, valid_pos, pos_mask.float())
+
+        # Scatter 1.0 to negative positions
+        valid_neg = neg_ids.clamp(0, vocab_size - 1)
+        labeled_neg.scatter_(1, valid_neg, neg_mask.float())
+
+        # Positive loss: BCE for labeled positives
+        pos_count = labeled_pos.sum()
+        if pos_count > 0:
+            pos_loss = F.binary_cross_entropy_with_logits(
+                logits, torch.ones_like(logits), reduction="none"
+            )
+            pos_loss = (pos_loss * labeled_pos).sum() / pos_count
+        else:
+            pos_loss = torch.tensor(0.0, device=device)
+
+        # Negative loss: BCE for labeled negatives
+        neg_count = labeled_neg.sum()
+        if neg_count > 0:
+            neg_loss = F.binary_cross_entropy_with_logits(
+                logits, torch.zeros_like(logits), reduction="none"
+            )
+            neg_loss = (neg_loss * labeled_neg).sum() / neg_count
+        else:
+            neg_loss = torch.tensor(0.0, device=device)
+
+        # Unlabeled loss: soft negative for all unlabeled positions
+        # unlabeled = ~(pos | neg)
+        unlabeled_mask = 1.0 - labeled_pos - labeled_neg
+        unlabeled_mask = unlabeled_mask.clamp(0, 1)  # Handle overlap
+
+        if unlab_weight > 0 and unlabeled_mask.sum() > 0:
+            unlab_loss = F.binary_cross_entropy_with_logits(
+                logits, torch.zeros_like(logits), reduction="none"
+            )
+            unlab_loss = (
+                unlab_weight
+                * (unlab_loss * unlabeled_mask).sum()
+                / unlabeled_mask.sum()
+            )
+        else:
+            unlab_loss = torch.tensor(0.0, device=device)
+
+        return pos_loss + neg_loss + unlab_loss
+
     # pylint: disable=too-many-locals,too-many-positional-arguments
     def _bce_sampled_from_sparse(
         self,
@@ -536,6 +615,24 @@ class KCTrainer:
                     pos_density_counts[name] = (
                         pos_density_counts.get(name, 0) + batch_size
                     )
+                else:
+                    # DB-sourced families (GRAMMAR_POINT) use different key pattern
+                    gp_mask_key = f"kc_gp_pos_mask_{name}"
+                    if gp_mask_key in kc_targets:
+                        pos_mask_t = kc_targets[gp_mask_key]
+                        batch_size = pos_mask_t.size(0)
+                        num_pos = pos_mask_t.sum().item()
+                        # For DB-sourced families, use the actual positive rate
+                        # (not divided by vocab_size like sparse families)
+                        p = num_pos / max(1, batch_size * pos_mask_t.size(1))
+                        biases.sums[name] = biases.sums.get(name, 0.0) + p
+                        biases.counts[name] = biases.counts.get(name, 0) + 1
+                        pos_density_sums[name] = (
+                            pos_density_sums.get(name, 0.0) + num_pos
+                        )
+                        pos_density_counts[name] = (
+                            pos_density_counts.get(name, 0) + batch_size
+                        )
 
         for name_id, vocab_size in self.config.kc_target_specs.items():
             name = name_id.name.lower()
@@ -667,6 +764,9 @@ class KCTrainer:
             if f"kc_targets_{name}" in kc_targets:
                 continue
             if f"kc_pos_inds_{name}" in kc_targets:
+                continue
+            # DB-sourced families (GRAMMAR_POINT) use gp_ prefix
+            if f"kc_gp_pos_inds_{name}" in kc_targets:
                 continue
             missing_keys.append(name)
 
@@ -1094,6 +1194,81 @@ class KCTrainer:
                 if name not in family_accumulators:
                     family_accumulators[name] = FamilyAccumulator()
                 fam_acc = family_accumulators[name]
+
+                # Special handling for DB-sourced families (e.g., GRAMMAR_POINT)
+                # These use PNU loss with pos/neg separate arrays
+                if is_family_db_sourced(fid):
+                    gp_pos_key = f"kc_gp_pos_inds_{name}"
+                    gp_pos_mask_key = f"kc_gp_pos_mask_{name}"
+                    gp_neg_key = f"kc_gp_neg_inds_{name}"
+                    gp_neg_mask_key = f"kc_gp_neg_mask_{name}"
+
+                    if gp_pos_key in kc_targets:
+                        pos_ids = kc_targets[gp_pos_key].to(self.device)
+                        pos_mask = kc_targets[gp_pos_mask_key].to(self.device)
+                        neg_ids = kc_targets[gp_neg_key].to(self.device)
+                        neg_mask = kc_targets[gp_neg_mask_key].to(self.device)
+
+                        task_loss = self._grammar_point_pnu_loss(
+                            logits.float(),
+                            pos_ids,
+                            pos_mask,
+                            neg_ids,
+                            neg_mask,
+                            vocab_size=vocab_size,
+                            unlab_weight=self.kc_config.gp_unlab_weight,
+                        )
+
+                        task_loss = task_loss * self.kc_config.gp_loss_weight
+                        loss = loss + task_loss
+                        batch_kc_losses[f"{name}"] = task_loss.item()
+                        structural_loss = structural_loss + task_loss
+                        num_struct += 1
+
+                        # Accumulator tracking for GRAMMAR_POINT:
+                        # Build synthetic targets from pos/neg for diagnostics
+                        # labeled_pos = 1 where positive, labeled_neg = 1 where negative
+                        labeled_pos = torch.zeros(
+                            logits.size(0), vocab_size, device=self.device
+                        )
+                        labeled_neg = torch.zeros(
+                            logits.size(0), vocab_size, device=self.device
+                        )
+                        valid_pos = pos_ids.clamp(0, vocab_size - 1)
+                        labeled_pos.scatter_(1, valid_pos, pos_mask.float())
+                        valid_neg = neg_ids.clamp(0, vocab_size - 1)
+                        labeled_neg.scatter_(1, valid_neg, neg_mask.float())
+
+                        # targets = labeled_pos (positives are 1, rest 0)
+                        # valid_mask = labeled_pos + labeled_neg (only labeled are valid)
+                        targets_gp = labeled_pos
+                        valid_mask_gp = (labeled_pos + labeled_neg).clamp(0, 1)
+
+                        fam_acc.update(
+                            logits.detach(),
+                            targets_gp.detach(),
+                            pos_mask=None,  # Let update derive from targets
+                            valid_mask=valid_mask_gp.bool(),
+                            source="dense",
+                        )
+
+                        # Update kc_diag so DB-sourced families appear in diagnostics
+                        if not skip_metrics:
+                            # Build sampled representation for kc_diag
+                            # Use valid (labeled) positions only
+                            probs_gp = torch.sigmoid(logits.float()).detach()
+                            gathered_logits_gp = logits.gather(1, valid_pos).detach()
+                            kc_diag.update_family(
+                                name,
+                                pos_ids.detach().cpu(),
+                                pos_mask.detach().cpu(),
+                                probs_gp.gather(1, valid_pos).detach().cpu(),
+                                labeled_pos.gather(1, valid_pos).detach().cpu(),
+                                task_loss.item(),
+                                logits=gathered_logits_gp.cpu(),
+                            )
+
+                    continue  # Skip standard dense/sparse path
 
                 if dense_key in kc_targets:
                     targets = kc_targets[dense_key].to(self.device).float()

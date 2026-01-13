@@ -167,7 +167,7 @@ class TestCurateKcTailStatsSync(unittest.TestCase):
         as what training actually uses. Tests ALL KC families, not just
         TAIL_COMPOUND_1.
         """
-        from train.kc import ALL_KC_FAMILIES, compute_kc_targets
+        from train.kc import ALL_KC_FAMILIES, compute_kc_targets, is_family_db_sourced
 
         # Sample a few indices to test
         sample_size = min(50, len(self.dataset))
@@ -184,8 +184,13 @@ class TestCurateKcTailStatsSync(unittest.TestCase):
             # Compute KC targets using kc-families logic (compute_kc_targets)
             computed_targets = compute_kc_targets(sample.feature_ids)
 
-            # Compare all families
+            # Compare all families except DB-sourced ones (GRAMMAR_POINT)
+            # DB-sourced families have different data structures (dict with pos/neg)
+            # and are not included in compute_kc_targets output
             for family in ALL_KC_FAMILIES:
+                if is_family_db_sourced(family):
+                    continue  # Skip DB-sourced families
+
                 training_set = set(training_targets.get(family, []))
                 computed_set = set(computed_targets.get(family, []))
 

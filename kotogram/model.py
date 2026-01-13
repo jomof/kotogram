@@ -47,31 +47,6 @@ REGISTER_ID_TO_LABEL = {
 }
 
 
-def remap_checkpoint_key(key: str) -> str:
-    """Remap old checkpoint key names to new names for backward compatibility.
-
-    Handles:
-    - pos_encoding.* -> position_encoding.* (renamed for clarity)
-    - style_pooler.* -> pooler.* (renamed for consistency)
-    - *pos_detail_1* -> *compound_1* (vocab field rename)
-    - *pos_detail_2* -> *compound_2* (vocab field rename)
-    - *reading_gram* -> *reading* (encoder feature change)
-    """
-    if key.startswith("pos_encoding."):
-        return key.replace("pos_encoding.", "position_encoding.")
-    if key.startswith("style_pooler."):
-        return key.replace("style_pooler.", "pooler.")
-    # Migrate pos_detail_1/2 -> compound_1/2 (field rename)
-    if "pos_detail_1" in key:
-        key = key.replace("pos_detail_1", "compound_1")
-    if "pos_detail_2" in key:
-        key = key.replace("pos_detail_2", "compound_2")
-    # Migrate reading_gram -> reading (encoder feature change)
-    if "reading_gram" in key:
-        key = key.replace("reading_gram", "reading")
-    return key
-
-
 class StylePrediction(NamedTuple):
     """Output prediction from the style classifier."""
 
@@ -187,25 +162,6 @@ class ModelConfig:
         from dataclasses import fields
 
         valid_fields = {f.name for f in fields(cls)}
-
-        # Migration logic for old pos_detail naming in field_embed_dims
-        if "field_embed_dims" in d:
-            dims = d["field_embed_dims"]
-            # Step 1: pos_detail1 -> pos_detail_1 (old migration)
-            for i in range(1, 4):
-                old_key = f"pos_detail{i}"
-                new_key = f"pos_detail_{i}"
-                if old_key in dims and new_key not in dims:
-                    dims[new_key] = dims.pop(old_key)
-            # Step 2: pos_detail_1/2 -> compound_1/2 (new migration)
-            for i in [1, 2]:
-                old_key = f"pos_detail_{i}"
-                new_key = f"compound_{i}"
-                if old_key in dims and new_key not in dims:
-                    dims[new_key] = dims.pop(old_key)
-            # Step 3: reading_gram -> reading (encoder feature change)
-            if "reading_gram" in dims and "reading" not in dims:
-                dims["reading"] = dims.pop("reading_gram")
 
         return cls(**{k: v for k, v in d.items() if k in valid_fields})
 
@@ -703,9 +659,6 @@ def load_model(
         return v
 
     state_dict = {k: to_float32(v).contiguous() for k, v in state_dict.items()}
-
-    # Backward compatibility: remap old key names to new names
-    state_dict = {remap_checkpoint_key(k): v for k, v in state_dict.items()}
 
     # Load with strict=True; mandatory KC architecture ensures consistent keys
     # kc_decoders keys are stripped during save, so they won't be present

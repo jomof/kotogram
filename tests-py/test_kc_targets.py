@@ -2,7 +2,14 @@ import unittest
 
 import torch
 
-from train.kc import SALT, KcFamilyId, compute_kc_targets, stable_hash_ints
+from train.kc import (
+    ALL_KC_FAMILIES,
+    KcFamilyId,
+    compute_kc_targets,
+    get_family,
+    is_family_db_sourced,
+    stable_hash_ints,
+)
 
 
 class TestKCTargets(unittest.TestCase):
@@ -75,8 +82,11 @@ class TestKCTargets(unittest.TestCase):
 
         targets = compute_kc_targets(feature_ids)
 
-        # All 20 families are present (initialized with empty lists)
-        self.assertEqual(len(targets), 20)
+        # All computed families (excluding DB-sourced) are present
+        expected_count = sum(
+            1 for fid in ALL_KC_FAMILIES if not is_family_db_sourced(fid)
+        )
+        self.assertEqual(len(targets), expected_count)
         # compound_1 should be empty (not in input)
         self.assertEqual(targets[KcFamilyId.BAG_COMPOUND_1], [])
         self.assertEqual(targets[KcFamilyId.NGRAM_COMPOUND_1], [])
@@ -116,15 +126,19 @@ class TestKCTargets(unittest.TestCase):
         self.assertEqual(stable_hash_ints([1, 2]), 0x53A9C5FDCEF668D7)
 
     def test_domain_separation(self):
-        # Different SALT should lead to different hashes for same sequence
-        # Different SALT should lead to different hashes for same sequence
+        # Different families have different salt values for domain separation
         ngram = [1, 2, 3]
-        h1 = stable_hash_ints([SALT[KcFamilyId.NGRAM_POS], *ngram])
-        h2 = stable_hash_ints([SALT[KcFamilyId.NGRAM_COMPOUND_1], *ngram])
+        salt_pos = get_family(KcFamilyId.NGRAM_POS).salt
+        salt_compound = get_family(KcFamilyId.NGRAM_COMPOUND_1).salt
+        assert salt_pos is not None and salt_compound is not None
+        h1 = stable_hash_ints([salt_pos, *ngram])
+        h2 = stable_hash_ints([salt_compound, *ngram])
         self.assertNotEqual(h1, h2)
 
-        # Verify SALT constants are unique
-        self.assertEqual(len(set(SALT.values())), len(SALT))
+        # Verify salt values are unique across ngram families
+        ngram_families = [fid for fid in KcFamilyId if get_family(fid).salt is not None]
+        salt_values = [get_family(fid).salt for fid in ngram_families]
+        self.assertEqual(len(set(salt_values)), len(salt_values))
 
     def test_tensor_input(self):
         # Use IDs > 2 to avoid CLS exclusion
