@@ -21,15 +21,17 @@ SPECIAL_TOKEN_IDS = {CLS_ID}
 # These tokens are high-frequency but low-information for style discrimination.
 # Format: composite token strings matching compound_1 vocabulary (e.g., "noun:common-noun")
 TAIL_DISALLOW = frozenset(
-    {"noun:common-noun", 
-    "noun:numeral", 
-    "aux-symbol:comma", 
-    "aux-symbol:period",
-    "aux-symbol:general",
-    "aux-symbol:close-bracket",
-    "aux-symbol:open-bracket",
-    "suffix:nominal", 
-    "noun:proper-noun"}
+    {
+        "noun:common-noun",
+        "noun:numeral",
+        "aux-symbol:comma",
+        "aux-symbol:period",
+        "aux-symbol:general",
+        "aux-symbol:close-bracket",
+        "aux-symbol:open-bracket",
+        "suffix:nominal",
+        "noun:proper-noun",
+    }
 )
 
 

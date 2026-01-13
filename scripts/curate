@@ -2250,6 +2250,718 @@ def curate_compare(db_path: str):
             count += 1
 
 
+# ============================================================================
+# BERT-like Layer Visualization
+# ============================================================================
+
+
+def curate_bert_like(sentence: str):
+    """
+    Show the input data as seen by the BERT-like transformer encoder layer.
+
+    Displays each token's features (pos, compound_1, reading) with their
+    vocabulary IDs and human-readable values. Helps debug why the model
+    may fall down on certain sentences.
+    """
+    from rich.table import Table
+
+    from kotogram.japanese_parser import KotogramFormat
+    from kotogram.kotogram import split_kotogram
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    from kotogram.tokenizer import ENCODER_FEATURE_FIELDS, Tokenizer, UNK_ID
+    from train import paths
+
+    # Parse sentence to kotogram
+    parser = SudachiJapaneseParser()
+    kotogram = parser.japanese_to_kotogram(sentence, KotogramFormat.TRAINING_MASK)
+
+    # Load tokenizer vocabulary
+    vocab_path = os.path.join(paths.get_style_dataset_cache_dir(), "vocab.json")
+    if not os.path.exists(vocab_path):
+        console.print(f"[red]Vocab not found at {vocab_path}. Run labeling first.[/red]")
+        return
+
+    tokenizer = Tokenizer.load(vocab_path)
+
+    # Encode kotogram to get feature IDs
+    encoded = tokenizer.encode(kotogram)
+
+    # Get raw tokens for display
+    raw_tokens = ["<CLS>"] + split_kotogram(kotogram)
+
+    # Build reverse vocab lookup for encoder fields
+    id_to_str: Dict[str, Dict[int, str]] = {}
+    for field in ENCODER_FEATURE_FIELDS:
+        vocab = tokenizer.field_vocabs.get(field, {})
+        id_to_str[field] = {v: k for k, v in vocab.items()}
+
+    # Display header
+    console.print()
+    console.print(f"[bold blue]BERT-like Layer Input for:[/bold blue] {sentence}")
+    console.print(f"[dim]Kotogram:[/dim] {kotogram}")
+    console.print(f"[dim]Sequence Length:[/dim] {len(raw_tokens)} tokens (including CLS)")
+    console.print()
+
+    # Embedding dimension info from ModelConfig (centralized source of truth)
+    from kotogram.model import ModelConfig
+
+    # Get default field_embed_dims from ModelConfig (use empty vocab_sizes since we only need dims)
+    config = ModelConfig(vocab_sizes={})
+    field_dims = config.field_embed_dims
+    total_embed = sum(field_dims.get(f, 32) for f in ENCODER_FEATURE_FIELDS)
+    console.print(f"[dim]Embedding dims:[/dim] {total_embed} total → {config.d_model}-dim projection")
+    console.print()
+
+    # Create table
+    table = Table(title="Token Features → Transformer Encoder Input")
+    table.add_column("Pos", style="dim", justify="right")
+    table.add_column("Token", style="bold")
+
+    # Add column for each feature field
+    for field in ENCODER_FEATURE_FIELDS:
+        dim = field_dims.get(field, 32)
+        table.add_column(f"{field} (→{dim})", overflow="fold")
+
+    # Add rows for each token
+    for i, token in enumerate(raw_tokens):
+        row: List[str] = [str(i), token[:20] + "..." if len(token) > 20 else token]
+
+        for field in ENCODER_FEATURE_FIELDS:
+            feat_ids = encoded.get(field, [])
+            if i < len(feat_ids):
+                feat_id = feat_ids[i]
+                feat_str = id_to_str[field].get(feat_id, f"?{feat_id}")
+                # Truncate long strings
+                if len(feat_str) > 25:
+                    feat_str = feat_str[:22] + "..."
+                # Highlight UNK tokens
+                if feat_id == UNK_ID:
+                    cell = f"[red]{feat_id}: {feat_str}[/red]"
+                else:
+                    cell = f"{feat_id}: {feat_str}"
+                row.append(cell)
+            else:
+                row.append("[dim]-[/dim]")
+
+        table.add_row(*row)
+
+    console.print(table)
+
+    # Summary: count UNKs per field
+    console.print()
+    unk_counts = {}
+    for field in ENCODER_FEATURE_FIELDS:
+        feat_ids = encoded.get(field, [])
+        unk_count = sum(1 for fid in feat_ids if fid == UNK_ID)
+        if unk_count > 0:
+            unk_counts[field] = unk_count
+
+    if unk_counts:
+        console.print("[yellow]⚠ UNK tokens found:[/yellow]")
+        for field, count in unk_counts.items():
+            console.print(f"  {field}: {count} UNK(s)")
+    else:
+        console.print("[green]✓ No UNK tokens - all features recognized[/green]")
+
+
+# ============================================================================
+# Confusion Analysis
+# ============================================================================
+
+_CONFUSION_PARSER = None  # pylint: disable=invalid-name
+
+
+def _init_confusion_worker():
+    """Initialize worker for confusion analysis."""
+    global _CONFUSION_PARSER  # pylint: disable=global-statement
+    from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
+    _CONFUSION_PARSER = SudachiJapaneseParser()
+
+
+def _sentence_to_kotogram(sentence: str) -> str:
+    """Convert a sentence to kotogram format for analysis."""
+    from kotogram.japanese_parser import KotogramFormat
+    return _CONFUSION_PARSER.japanese_to_kotogram(sentence, KotogramFormat.TRAINING_MASK)
+
+
+def curate_confusion_grammatic(db_path: str):
+    """
+    Scan corpus for grammaticality disagreements between labels and model.
+
+    Calls grammars() in batch for efficiency, computes disagreement certainty,
+    and reports the top 1 percentile where model most confidently disagrees.
+
+    Output sections:
+    1. Model believes GRAMMATIC but label says AGRAMMATIC
+    2. Model believes AGRAMMATIC but label says GRAMMATIC
+    """
+    from dataclasses import dataclass
+
+    from rich.table import Table
+
+    from kotogram.analysis import grammars
+
+    @dataclass
+    class Disagreement:
+        """Represents a disagreement between label and model."""
+        sentence: str
+        label: int
+        model_score: float
+        certainty: float
+
+    # Load sentences and labels from corpus
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    cursor.execute("SELECT sentence, grammatic FROM corpus")
+    rows = cursor.fetchall()
+    conn.close()
+
+    console.print(f"[bold]Confusion Grammatic:[/bold] Analyzing {len(rows):,} sentences...")
+
+    # Convert sentences to kotograms (parallel for speed)
+    sentences = [row[0] for row in rows]
+    labels = [row[1] for row in rows]
+
+    num_workers = mp.cpu_count()
+    kotograms: List[str] = []
+
+    with mp.Pool(num_workers, initializer=_init_confusion_worker) as pool:
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(),
+            MofNCompleteColumn(),
+            console=console,
+        ) as progress:
+            task = progress.add_task("Converting to kotograms...", total=len(sentences))
+            for kotogram in pool.imap(_sentence_to_kotogram, sentences, chunksize=500):
+                progress.advance(task)
+                kotograms.append(kotogram)
+
+    # Call grammars() in batches for efficiency
+    BATCH_SIZE = 500
+    all_results = []
+
+    with Progress(
+        SpinnerColumn(),
+        TextColumn("[progress.description]{task.description}"),
+        BarColumn(),
+        MofNCompleteColumn(),
+        console=console,
+    ) as progress:
+        task = progress.add_task("Running model inference...", total=len(kotograms))
+        for i in range(0, len(kotograms), BATCH_SIZE):
+            batch = kotograms[i:i + BATCH_SIZE]
+            results = grammars(batch)
+            all_results.extend(results)
+            progress.advance(task, len(batch))
+
+    # Find disagreements and calculate certainty
+    model_grammatic_label_agrammatic: List[Disagreement] = []
+    model_agrammatic_label_grammatic: List[Disagreement] = []
+
+    for i, (sentence, label) in enumerate(zip(sentences, labels)):
+        result = all_results[i]
+        model_score = result.grammaticality_score
+        model_is_grammatic = result.is_grammatic
+
+        if label == 1 and not model_is_grammatic:
+            # Label says grammatic, model says agrammatic
+            certainty = 1 - model_score  # How sure model is it's agrammatic
+            model_agrammatic_label_grammatic.append(
+                Disagreement(sentence, label, model_score, certainty)
+            )
+        elif label == 0 and model_is_grammatic:
+            # Label says agrammatic, model says grammatic
+            certainty = model_score  # How sure model is it's grammatic
+            model_grammatic_label_agrammatic.append(
+                Disagreement(sentence, label, model_score, certainty)
+            )
+
+    # Sort by certainty descending
+    model_grammatic_label_agrammatic.sort(key=lambda d: d.certainty, reverse=True)
+    model_agrammatic_label_grammatic.sort(key=lambda d: d.certainty, reverse=True)
+
+    # Top 1 percentile
+    def top_percentile(items: List[Disagreement]) -> List[Disagreement]:
+        count = max(1, len(items) // 100)  # At least 1 if any exist
+        return items[:count]
+
+    top_grammatic = top_percentile(model_grammatic_label_agrammatic)
+    top_agrammatic = top_percentile(model_agrammatic_label_grammatic)
+
+    # Print results
+    console.print()
+    console.print("[bold]Summary:[/bold]")
+    console.print(f"  Total sentences: {len(rows):,}")
+    console.print(f"  Model=grammatic, Label=agrammatic: {len(model_grammatic_label_agrammatic):,}")
+    console.print(f"  Model=agrammatic, Label=grammatic: {len(model_agrammatic_label_grammatic):,}")
+    console.print()
+
+    # Section 1: Model believes grammatic but label says agrammatic
+    console.print(f"[bold cyan]Top {len(top_grammatic)} (1%): Model believes GRAMMATIC, Label says AGRAMMATIC[/bold cyan]")
+    if top_grammatic:
+        table1 = Table()
+        table1.add_column("Certainty", style="green", justify="right")
+        table1.add_column("Score", style="dim", justify="right")
+        table1.add_column("Sentence")
+
+        for d in top_grammatic:
+            table1.add_row(f"{d.certainty:.3f}", f"{d.model_score:.3f}", d.sentence)
+        console.print(table1)
+    else:
+        console.print("[dim]No disagreements in this category.[/dim]")
+
+    console.print()
+
+    # Section 2: Model believes agrammatic but label says grammatic
+    console.print(f"[bold red]Top {len(top_agrammatic)} (1%): Model believes AGRAMMATIC, Label says GRAMMATIC[/bold red]")
+    if top_agrammatic:
+        table2 = Table()
+        table2.add_column("Certainty", style="red", justify="right")
+        table2.add_column("Score", style="dim", justify="right")
+        table2.add_column("Sentence")
+
+        for d in top_agrammatic:
+            table2.add_row(f"{d.certainty:.3f}", f"{d.model_score:.3f}", d.sentence)
+        console.print(table2)
+    else:
+        console.print("[dim]No disagreements in this category.[/dim]")
+
+
+def curate_drink_gp(yaml_dir: str, db_path: str):
+    """Extract grammar point examples from YAML files into corpus-gp.db.
+
+    Schema:
+    - grammar(id TEXT PRIMARY KEY, name TEXT)
+    - corpus(sentence TEXT PRIMARY KEY, grammar TEXT, grammar_negative TEXT)
+      where grammar and grammar_negative are comma-separated grammar point IDs
+    """
+    import glob
+    import re
+
+    import yaml
+
+    console.print(f"[bold blue]Reading grammar point YAMLs from: {yaml_dir}[/bold blue]")
+
+    yaml_files = sorted(glob.glob(os.path.join(yaml_dir, "*.yaml")))
+    if not yaml_files:
+        console.print(f"[bold red]No YAML files found in {yaml_dir}[/bold red]")
+        return
+
+    console.print(f"Found {len(yaml_files)} YAML files")
+
+    # Data structures
+    # name -> (yaml_id, yaml_path) for tracking
+    gp_name_to_info: Dict[str, Tuple[str, str]] = {}
+    # (japanese, gp_name, is_positive)
+    raw_sentences: List[Tuple[str, str, int]] = []
+
+    def clean_sentence(s: str) -> str:
+        """Remove spaces and {brackets} from sentence."""
+        # Remove {brackets} but keep content
+        s = re.sub(r"\{([^}]*)\}", r"\1", s)
+        # Remove spaces
+        s = s.replace(" ", "")
+        return s.strip()
+
+    # Initialize Sudachi tokenizer for reading extraction
+    from sudachipy import dictionary
+    sudachi_dict = dictionary.Dictionary(dict="full")
+    sudachi_tokenizer = sudachi_dict.create()
+
+    def get_reading(sentence: str) -> str:
+        """Extract reading (kana) sequence from a sentence using Sudachi."""
+        tokens = sudachi_tokenizer.tokenize(sentence)
+        return "".join(t.reading_form() for t in tokens)
+
+    errors: List[str] = []
+
+    with Progress(
+        SpinnerColumn(),
+        TextColumn("[progress.description]{task.description}"),
+        BarColumn(),
+        MofNCompleteColumn(),
+        console=console,
+    ) as progress:
+        task = progress.add_task("Processing YAMLs", total=len(yaml_files))
+
+        for yaml_path in yaml_files:
+            progress.advance(task)
+            with open(yaml_path, encoding="utf-8") as f:
+                data = yaml.safe_load(f)
+
+            if not data:
+                errors.append(f"Empty YAML: {yaml_path}")
+                continue
+
+            gp_name = data.get("grammar_point")
+            yaml_id = data.get("id", "")
+
+            if not gp_name:
+                errors.append(f"Missing 'grammar_point' field in {yaml_path}")
+                continue
+
+            # Check for duplicate grammar point names
+            if gp_name in gp_name_to_info:
+                prev_id, prev_path = gp_name_to_info[gp_name]
+                errors.append(
+                    f"Duplicate grammar_point '{gp_name}': "
+                    f"first in {prev_path} (id={prev_id}), "
+                    f"duplicate in {yaml_path} (id={yaml_id})"
+                )
+                continue
+
+            gp_name_to_info[gp_name] = (yaml_id, yaml_path)
+
+            # Extract examples
+            examples = data.get("examples", [])
+
+            # First pass: collect all positive examples for this grammar point
+            positive_in_this_file: set[str] = set()
+            positive_readings_in_this_file: set[str] = set()
+            for example in examples:
+                japanese_list = example.get("japanese", [])
+                for jp_raw in japanese_list:
+                    jp_clean = clean_sentence(jp_raw)
+                    if jp_clean:
+                        positive_in_this_file.add(jp_clean)
+                        # Compute reading for this sentence
+                        jp_reading = get_reading(jp_clean)
+                        positive_readings_in_this_file.add(jp_reading)
+                        raw_sentences.append((jp_clean, gp_name, 1))
+
+            # Second pass: collect competing examples, excluding those that match positives
+            # by surface form OR by reading (to catch よい vs 良い cases)
+            for example in examples:
+                competing_grammar = example.get("competing_grammar", [])
+                for competing in competing_grammar:
+                    competing_japanese = competing.get("competing_japanese", [])
+                    for comp_raw in competing_japanese:
+                        comp_clean = clean_sentence(comp_raw)
+                        if not comp_clean:
+                            continue
+                        # Skip if surface form matches a positive
+                        if comp_clean in positive_in_this_file:
+                            continue
+                        # Skip if reading matches a positive (catches よい vs 良い)
+                        comp_reading = get_reading(comp_clean)
+                        if comp_reading in positive_readings_in_this_file:
+                            continue
+                        raw_sentences.append((comp_clean, gp_name, 0))
+
+    # Report errors
+    if errors:
+        console.print("[bold red]Errors found:[/bold red]")
+        for err in errors:
+            console.print(f"  [red]• {err}[/red]")
+        console.print()
+
+    # === Create sequential gapless IDs ===
+    # Strategy: Sort grammar points by their yaml_id (for those that have valid ones),
+    # then assign sequential IDs gp0001-gp{N}
+
+    # Separate into those with valid yaml IDs and those without
+    with_yaml_id: List[Tuple[int, str, str]] = []  # (yaml_id_num, yaml_id, gp_name)
+    without_yaml_id: List[str] = []  # gp_names
+
+    for gp_name, (yaml_id, _) in gp_name_to_info.items():
+        # Check if this is a usable ID (not gp9999, matches gpXXXX format)
+        if yaml_id and yaml_id.startswith("gp") and yaml_id != "gp9999":
+            num_part = yaml_id[2:]
+            if num_part.isdigit():
+                with_yaml_id.append((int(num_part), yaml_id, gp_name))
+            else:
+                without_yaml_id.append(gp_name)
+        else:
+            without_yaml_id.append(gp_name)
+
+    # Sort by yaml_id number (preserves ordering from original files)
+    with_yaml_id.sort(key=lambda x: x[0])
+
+    # Resolve duplicate yaml_id numbers: keep first, move others to without_yaml_id
+    seen_yaml_nums: Dict[int, str] = {}
+    resolved_with_yaml_id: List[Tuple[int, str, str]] = []
+    duplicates_resolved = 0
+    for num, yaml_id, gp_name in with_yaml_id:
+        if num in seen_yaml_nums:
+            # Conflict: move to without_yaml_id list (will get new ID)
+            without_yaml_id.append(gp_name)
+            duplicates_resolved += 1
+        else:
+            seen_yaml_nums[num] = gp_name
+            resolved_with_yaml_id.append((num, yaml_id, gp_name))
+
+    # Sort names without IDs alphabetically for determinism
+    without_yaml_id.sort()
+
+    # Create ordered list: first those with yaml IDs (by number), then those without
+    ordered_names = [gp_name for _, _, gp_name in resolved_with_yaml_id] + without_yaml_id
+
+    # Assign sequential IDs gp0001, gp0002, ..., gp{N}
+    name_to_id: Dict[str, str] = {}
+    for i, gp_name in enumerate(ordered_names, start=1):
+        name_to_id[gp_name] = f"gp{i:04d}"
+
+    # Verify we have sequential gapless IDs
+    all_ids = sorted(name_to_id.values())
+    expected_count = len(gp_name_to_info)
+    actual_count = len(all_ids)
+
+    if actual_count != expected_count:
+        errors.append(f"ID count mismatch: expected {expected_count}, got {actual_count}")
+
+    # Check for gaps
+    for i, gp_id in enumerate(all_ids):
+        expected_id = f"gp{i+1:04d}"
+        if gp_id != expected_id:
+            errors.append(f"Gap in IDs: expected {expected_id}, got {gp_id}")
+            break
+
+    expected_last_id = f"gp{expected_count:04d}"
+    actual_last_id = all_ids[-1] if all_ids else "none"
+    if actual_last_id != expected_last_id:
+        errors.append(f"Last ID should be {expected_last_id}, got {actual_last_id}")
+
+    console.print(f"[green]Grammar points: {len(name_to_id)}[/green]")
+    console.print(f"[green]ID range: {all_ids[0]} - {all_ids[-1]}[/green]")
+
+    # === Merge sentences by japanese text ===
+    # sentence -> (set of positive gp_ids, set of negative gp_ids)
+    merged: Dict[str, Tuple[set, set]] = {}
+    for jp, gp_name, is_positive in raw_sentences:
+        if jp not in merged:
+            merged[jp] = (set(), set())
+        gp_id = name_to_id[gp_name]
+        if is_positive:
+            merged[jp][0].add(gp_id)
+        else:
+            merged[jp][1].add(gp_id)
+
+    # Count statistics
+    total_raw = len(raw_sentences)
+    total_merged = len(merged)
+    total_pos_raw = sum(1 for _, _, p in raw_sentences if p == 1)
+    total_neg_raw = total_raw - total_pos_raw
+
+    multi_positive = sum(1 for pos, _ in merged.values() if len(pos) > 1)
+    multi_negative = sum(1 for _, neg in merged.values() if len(neg) > 1)
+    multi_either = sum(1 for pos, neg in merged.values() if len(pos) + len(neg) > 1)
+    no_grammar_points = sum(1 for pos, neg in merged.values() if len(pos) == 0 and len(neg) == 0)
+    overlap_pos_neg = sum(1 for pos, neg in merged.values() if pos & neg)  # set intersection
+
+    # Check for duplicate raw records (same sentence + same gp + same is_positive)
+    # This detects if the same grammar point appears multiple times in raw data for one sentence
+    raw_record_counts: Dict[Tuple[str, str, int], int] = {}
+    for jp, gp_name, is_pos in raw_sentences:
+        key = (jp, gp_name, is_pos)
+        raw_record_counts[key] = raw_record_counts.get(key, 0) + 1
+    duplicate_in_positive = sum(1 for (_, _, is_pos), cnt in raw_record_counts.items() if is_pos == 1 and cnt > 1)
+    duplicate_in_negative = sum(1 for (_, _, is_pos), cnt in raw_record_counts.items() if is_pos == 0 and cnt > 1)
+
+    console.print(f"[green]Total raw sentence records: {total_raw}[/green]")
+    console.print(f"  [dim]Positives: {total_pos_raw}, Hard negatives: {total_neg_raw}[/dim]")
+    console.print(f"[green]Unique sentences (merged): {total_merged}[/green]")
+
+    # Create database
+    console.print(f"\n[bold blue]Creating database: {db_path}[/bold blue]")
+
+    if os.path.exists(db_path):
+        os.remove(db_path)
+
+    conn = sqlite3.connect(db_path)
+    c = conn.cursor()
+
+    # Create tables
+    c.execute("""
+        CREATE TABLE grammar (
+            id TEXT PRIMARY KEY,
+            name TEXT NOT NULL
+        ) WITHOUT ROWID
+    """)
+
+    c.execute("""
+        CREATE TABLE corpus (
+            sentence TEXT PRIMARY KEY,
+            grammar TEXT NOT NULL,
+            grammar_negative TEXT NOT NULL
+        ) WITHOUT ROWID
+    """)
+
+    # Create indexes
+    c.execute("CREATE INDEX idx_corpus_grammar ON corpus(grammar)")
+    c.execute("CREATE INDEX idx_corpus_negative ON corpus(grammar_negative)")
+
+    # Insert grammar points (id -> name)
+    gp_data = [(gp_id, gp_name) for gp_name, gp_id in sorted(name_to_id.items(), key=lambda x: x[1])]
+    c.executemany("INSERT INTO grammar VALUES (?, ?)", gp_data)
+
+    # Insert merged sentences
+    corpus_data = []
+    for jp, (pos_ids, neg_ids) in merged.items():
+        pos_str = ",".join(sorted(pos_ids)) if pos_ids else ""
+        neg_str = ",".join(sorted(neg_ids)) if neg_ids else ""
+        corpus_data.append((jp, pos_str, neg_str))
+
+    c.executemany("INSERT INTO corpus VALUES (?, ?, ?)", corpus_data)
+
+    conn.commit()
+
+    # Vacuum for smaller file size
+    console.print("[bold blue]Vacuuming database...[/bold blue]")
+    c.execute("VACUUM")
+    conn.commit()
+
+    # Post-write sanity check: read data back and check for duplicate GPs in columns
+    console.print("[bold blue]Verifying database integrity...[/bold blue]")
+    c.execute("SELECT sentence, grammar, grammar_negative FROM corpus")
+    db_dup_positive = 0
+    db_dup_negative = 0
+    for jp, pos_str, neg_str in c.fetchall():
+        if pos_str:
+            pos_list = pos_str.split(",")
+            if len(pos_list) != len(set(pos_list)):
+                db_dup_positive += 1
+        if neg_str:
+            neg_list = neg_str.split(",")
+            if len(neg_list) != len(set(neg_list)):
+                db_dup_negative += 1
+
+    conn.close()
+
+    console.print("[bold green]Done![/bold green]")
+
+    # Summary stats
+    console.print("\n[bold]Summary:[/bold]")
+    console.print(f"  Database: {db_path}")
+    console.print(f"  Grammar points written: {len(name_to_id)}")
+    if duplicates_resolved > 0:
+        console.print(f"  ID conflicts resolved: {duplicates_resolved}")
+    console.print(f"  ID range: {all_ids[0]} - {all_ids[-1]}")
+    console.print(f"  Unique sentences: {total_merged}")
+    console.print(f"\n[bold]Multi-grammar-point sentences:[/bold]")
+    console.print(f"  Sentences with multiple positive GPs: {multi_positive}")
+    console.print(f"  Sentences with multiple negative GPs: {multi_negative}")
+    console.print(f"  Sentences with multiple GPs (either): {multi_either}")
+    console.print(f"\n[bold]Sanity checks:[/bold]")
+    console.print(f"  Sentences with no grammar points: {no_grammar_points}")
+    console.print(f"  Sentences with same GP in positive & negative: {overlap_pos_neg}")
+    console.print(f"  Duplicate GP mentions in positive (raw): {duplicate_in_positive}")
+    console.print(f"  Duplicate GP mentions in negative (raw): {duplicate_in_negative}")
+    console.print(f"  Duplicate GPs in DB positive column: {db_dup_positive}")
+    console.print(f"  Duplicate GPs in DB negative column: {db_dup_negative}")
+
+    # Count grammar points with no positive or no negative sentences
+    gps_with_positives: set[str] = set()
+    gps_with_negatives: set[str] = set()
+    for _, (pos_ids, neg_ids) in merged.items():
+        gps_with_positives.update(pos_ids)
+        gps_with_negatives.update(neg_ids)
+
+    all_gp_ids = set(name_to_id.values())
+    gps_no_positives = len(all_gp_ids - gps_with_positives)
+    gps_no_negatives = len(all_gp_ids - gps_with_negatives)
+    console.print(f"  Grammar points with no positive sentences: {gps_no_positives}")
+    console.print(f"  Grammar points with no negative sentences: {gps_no_negatives}")
+
+    # Check overlap with main corpus.db for merge compatibility
+    main_corpus_path = "data/corpus.db"
+    if os.path.exists(main_corpus_path):
+        main_conn = sqlite3.connect(main_corpus_path)
+        main_c = main_conn.cursor()
+        main_c.execute("SELECT sentence FROM corpus")
+        main_sentences = {row[0] for row in main_c.fetchall()}
+
+        gp_sentences = set(merged.keys())
+        to_be_merged = len(gp_sentences & main_sentences)
+        to_be_added = len(gp_sentences - main_sentences)
+        console.print(f"\n[bold]Corpus merge compatibility:[/bold]")
+        console.print(f"  Sentences to be merged (exist in corpus.db): {to_be_merged}")
+        console.print(f"  Sentences to be added (new to corpus.db): {to_be_added}")
+
+        # Merge: Add grammar point columns if they don't exist
+        console.print(f"\n[bold blue]Merging grammar points into corpus.db...[/bold blue]")
+
+        # Check if columns exist
+        main_c.execute("PRAGMA table_info(corpus)")
+        existing_cols = {row[1] for row in main_c.fetchall()}
+
+        if "grammar" not in existing_cols:
+            main_c.execute("ALTER TABLE corpus ADD COLUMN grammar TEXT NOT NULL DEFAULT ''")
+            console.print("  Added 'grammar' column")
+        if "grammar_negative" not in existing_cols:
+            main_c.execute("ALTER TABLE corpus ADD COLUMN grammar_negative TEXT NOT NULL DEFAULT ''")
+            console.print("  Added 'grammar_negative' column")
+
+        # Update existing sentences with grammar point data (skip sentences not in corpus.db)
+        updated_count = 0
+        skipped_count = 0
+        for jp, (pos_ids, neg_ids) in merged.items():
+            if jp not in main_sentences:
+                skipped_count += 1
+                continue
+
+            pos_str = ",".join(sorted(pos_ids)) if pos_ids else ""
+            neg_str = ",".join(sorted(neg_ids)) if neg_ids else ""
+
+            main_c.execute(
+                "UPDATE corpus SET grammar = ?, grammar_negative = ? WHERE sentence = ?",
+                (pos_str, neg_str, jp)
+            )
+            updated_count += 1
+
+        main_conn.commit()
+        console.print(f"  Updated: {updated_count} sentences")
+        console.print(f"  Skipped (not in corpus.db): {skipped_count} sentences")
+
+        # Insert grammar table if not exists
+        main_c.execute("""
+            CREATE TABLE IF NOT EXISTS grammar (
+                id TEXT PRIMARY KEY,
+                name TEXT NOT NULL
+            ) WITHOUT ROWID
+        """)
+        main_c.execute("DELETE FROM grammar")
+        gp_data = [(gp_id, gp_name) for gp_name, gp_id in sorted(name_to_id.items(), key=lambda x: x[1])]
+        main_c.executemany("INSERT INTO grammar VALUES (?, ?)", gp_data)
+        main_conn.commit()
+        console.print(f"  Grammar points table: {len(gp_data)} entries")
+
+        # Run sanity checks on merged corpus.db
+        console.print(f"\n[bold]Sanity checks on merged corpus.db:[/bold]")
+
+        main_c.execute("SELECT COUNT(*) FROM corpus")
+        total_corpus_sentences = main_c.fetchone()[0]
+        console.print(f"  Total sentences in corpus.db: {total_corpus_sentences}")
+
+        main_c.execute("SELECT COUNT(*) FROM corpus WHERE grammar != ''")
+        with_positives = main_c.fetchone()[0]
+        console.print(f"  Sentences with positive GPs: {with_positives}")
+
+        main_c.execute("SELECT COUNT(*) FROM corpus WHERE grammar_negative != ''")
+        with_negatives = main_c.fetchone()[0]
+        console.print(f"  Sentences with negative GPs: {with_negatives}")
+
+        main_c.execute("SELECT COUNT(*) FROM corpus WHERE grammar = '' AND grammar_negative = ''")
+        no_gp = main_c.fetchone()[0]
+        console.print(f"  Sentences with no GP data: {no_gp}")
+
+        main_c.execute("SELECT COUNT(*) FROM grammar")
+        gp_count = main_c.fetchone()[0]
+        console.print(f"  Grammar points in DB: {gp_count}")
+
+        main_conn.close()
+    else:
+        console.print(f"\n[yellow]corpus.db not found at {main_corpus_path} - skipping merge[/yellow]")
+    if errors:
+        console.print(f"\n[bold red]Errors ({len(errors)}):[/bold red]")
+        for err in errors:
+            console.print(f"  [red]•[/red] {err}")
+
+
+
+
+
 def main():
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -2257,6 +2969,19 @@ def main():
     # Drink command
     drink_parser = subparsers.add_parser("drink", help="Curate the corpus")
     drink_parser.add_argument("--db-path", default="data/corpus.db", help="Path to output database")
+
+    # Drink-GP command
+    drink_gp_parser = subparsers.add_parser("drink-gp", help="Extract grammar point examples from YAMLs")
+    drink_gp_parser.add_argument(
+        "--yaml-dir",
+        default=".tmp-inspiration/cloze-data/resources/processed/ai-cleaned-merge-grammars",
+        help="Path to directory containing grammar point YAML files"
+    )
+    drink_gp_parser.add_argument(
+        "--db-path",
+        default="data/corpus-gp.db",
+        help="Path to output database"
+    )
 
     # Show command
     show_parser = subparsers.add_parser("show", help="Show labels for a sentence (Calculated)")
@@ -2317,10 +3042,23 @@ def main():
     parser_token_stats = subparsers.add_parser("token-stats", help="Show most/least common kotogram tokens")
     parser_token_stats.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
 
+    # BERT-like command
+    parser_bert_like = subparsers.add_parser("bert-like", help="Show transformer encoder input features")
+    parser_bert_like.add_argument("sentence", help="Japanese sentence to analyze")
+
+    # Confusion command (nested subparsers)
+    confusion_parser = subparsers.add_parser("confusion", help="Find label confusion/disagreements")
+    confusion_subparsers = confusion_parser.add_subparsers(dest="confusion_command", required=True)
+    # grammatic subcommand
+    grammatic_parser = confusion_subparsers.add_parser("grammatic", help="Find grammaticality label confusion")
+    grammatic_parser.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
+
     args = parser.parse_args()
     
     if args.command == "drink":
         curate_drink(args.db_path)
+    elif args.command == "drink-gp":
+        curate_drink_gp(args.yaml_dir, args.db_path)
     elif args.command == "show":
         curate_show(args.sentence)
     elif args.command == "read":
@@ -2346,6 +3084,11 @@ def main():
         curate_kc_tail_stats(args.db_path, args.sentence, args.filter_str)
     elif args.command == "token-stats":
         curate_token_stats(args.db_path)
+    elif args.command == "bert-like":
+        curate_bert_like(args.sentence)
+    elif args.command == "confusion":
+        if args.confusion_command == "grammatic":
+            curate_confusion_grammatic(args.db_path)
 
 
 if __name__ == "__main__":
