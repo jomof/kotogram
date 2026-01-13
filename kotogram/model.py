@@ -17,7 +17,7 @@ from torch import nn
 
 from kotogram.constants import RegisterLevel
 from kotogram.tokenizer import (
-    FEATURE_FIELDS,
+    ENCODER_FEATURE_FIELDS,
     Tokenizer,
 )
 
@@ -55,6 +55,7 @@ def remap_checkpoint_key(key: str) -> str:
     - style_pooler.* -> pooler.* (renamed for consistency)
     - *pos_detail_1* -> *compound_1* (vocab field rename)
     - *pos_detail_2* -> *compound_2* (vocab field rename)
+    - *reading_gram* -> *reading* (encoder feature change)
     """
     if key.startswith("pos_encoding."):
         return key.replace("pos_encoding.", "position_encoding.")
@@ -65,6 +66,9 @@ def remap_checkpoint_key(key: str) -> str:
         key = key.replace("pos_detail_1", "compound_1")
     if "pos_detail_2" in key:
         key = key.replace("pos_detail_2", "compound_2")
+    # Migrate reading_gram -> reading (encoder feature change)
+    if "reading_gram" in key:
+        key = key.replace("reading_gram", "reading")
     return key
 
 
@@ -121,11 +125,12 @@ class ModelConfig:
     field_embed_dims: Dict[str, int] = field(
         default_factory=lambda: {
             "pos": 32,
-            "compound_1": 32,
-            "compound_2": 16,
+            "pos_detail_1": 32,
+            "pos_detail_2": 16,
             "pos_detail_3": 16,
-            "conjugated_type": 32,
-            "reading_gram": 128,  # Increased from 64 for more expressive power
+            "conjugated_form": 16,
+            "conjugated_type": 16,
+            "reading": 64,  # Raw reading for encoder
         }
     )
     d_model: int = 256
@@ -198,6 +203,9 @@ class ModelConfig:
                 new_key = f"compound_{i}"
                 if old_key in dims and new_key not in dims:
                     dims[new_key] = dims.pop(old_key)
+            # Step 3: reading_gram -> reading (encoder feature change)
+            if "reading_gram" in dims and "reading" not in dims:
+                dims["reading"] = dims.pop("reading_gram")
 
         return cls(**{k: v for k, v in d.items() if k in valid_fields})
 
@@ -285,7 +293,10 @@ class PositionalEncoding(nn.Module):
 
 
 class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
-    """Embedding layer that combines multiple categorical feature embeddings."""
+    """Embedding layer that combines multiple categorical feature embeddings.
+
+    Uses ENCODER_FEATURE_FIELDS (pos, compound_1, reading) for the transformer encoder.
+    """
 
     def __init__(self, config: ModelConfig):
         super().__init__()
@@ -294,7 +305,7 @@ class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
         self.embeddings = nn.ModuleDict()
         total_embed_dim = 0
 
-        for field_name in FEATURE_FIELDS:
+        for field_name in ENCODER_FEATURE_FIELDS:
             vocab_size = config.vocab_sizes.get(field_name, 100)
             embed_dim = config.field_embed_dims.get(field_name, 32)
             self.embeddings[field_name] = nn.Embedding(
@@ -310,7 +321,7 @@ class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
 
     def forward(self, field_inputs: Dict[str, torch.Tensor]) -> torch.Tensor:
         field_embeds = []
-        for field_name in FEATURE_FIELDS:
+        for field_name in ENCODER_FEATURE_FIELDS:
             input_ids = field_inputs[f"input_ids_{field_name}"]
             embed = self.embeddings[field_name](input_ids)
             field_embeds.append(embed)
@@ -322,7 +333,7 @@ class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
 
     def resize_embeddings(self, new_vocab_sizes: Dict[str, int]) -> Dict[str, int]:
         resized = {}
-        for field_name in FEATURE_FIELDS:
+        for field_name in ENCODER_FEATURE_FIELDS:
             embedding = self.embeddings[field_name]
             assert isinstance(embedding, nn.Embedding)  # Type hint for mypy
             old_size = embedding.num_embeddings
@@ -347,33 +358,25 @@ class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
 class KCHead(nn.Module):  # type: ignore[misc]
     """Head for predicting Knowledge Components (sparse concepts).
 
-    Architecture: Hidden layer with GELU activation followed by output layer.
-    - Hidden layer: d_model -> hidden_dim with GELU
-    - Output layer: hidden_dim -> kc_vocab_size
+    Architecture: Direct projection from encoder output to KC vocabulary.
+    - Output layer: d_model -> kc_vocab_size
     - LayerNorm on output
     """
 
     def __init__(self, config: ModelConfig):
         super().__init__()
         self.config = config
-        # Add hidden layer for more complex KC transformations
-        self.hidden = nn.Linear(config.d_model, config.hidden_dim)
-        self.activation = nn.GELU()
         self.dropout = nn.Dropout(config.dropout)
-        self.output = nn.Linear(config.hidden_dim, config.kc_vocab_size)
+        self.output = nn.Linear(config.d_model, config.kc_vocab_size)
         self.layer_norm = nn.LayerNorm(config.kc_vocab_size)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = self.hidden(x)
-        x = self.activation(x)
         x = self.dropout(x)
         x = self.output(x)
         x = self.layer_norm(x)
         return cast(torch.Tensor, x)
 
     def forward_with_raw(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
-        x = self.hidden(x)
-        x = self.activation(x)
         x = self.dropout(x)
         raw = self.output(x)
         out = self.layer_norm(raw)

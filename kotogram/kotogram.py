@@ -44,6 +44,7 @@ from kotogram.japanese_parser import (
     PosValue,
 )
 from kotogram.masking import (
+    GRAMMAR_COMPOUND_WHITELIST,
     GRAMMAR_POS_WHITELIST,
     PRESERVED_READING_MASKS,
     READING_MASK,
@@ -547,7 +548,12 @@ def extract_token_features(token: str) -> TokenFeatures:
             pos_str = str(feature.pos)
             pos_norm = POS_MAP.get(pos_str, pos_str)
 
+            # Build compound string for more specific whitelist check
+            compound_str = f"{pos_norm}:{feature.pos_detail_1}:{feature.pos_detail_2}"
+
             if pos_norm in GRAMMAR_POS_WHITELIST:
+                feature.reading_gram = feature.reading
+            elif compound_str in GRAMMAR_COMPOUND_WHITELIST:
                 feature.reading_gram = feature.reading
             elif feature.reading in PRESERVED_READING_MASKS:
                 feature.reading_gram = feature.reading
@@ -558,7 +564,12 @@ def extract_token_features(token: str) -> TokenFeatures:
             pos_str = str(feature.pos)
             pos_norm = POS_MAP.get(pos_str, pos_str)
 
+            # Build compound string for more specific whitelist check
+            compound_str = f"{pos_norm}:{feature.pos_detail_1}:{feature.pos_detail_2}"
+
             if pos_norm in GRAMMAR_POS_WHITELIST:
+                feature.reading_gram = feature.surface
+            elif compound_str in GRAMMAR_COMPOUND_WHITELIST:
                 feature.reading_gram = feature.surface
             elif feature.surface in PRESERVED_READING_MASKS:
                 feature.reading_gram = feature.surface

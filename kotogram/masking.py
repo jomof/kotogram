@@ -28,6 +28,15 @@ GRAMMAR_POS_WHITELIST = {
     "pron",
     "adv",
     "interj",
+    "adj",
+    "adjectival-noun",
+}
+
+# Compound whitelist for more specific categories.
+# Format: "pos:pos_detail_1:pos_detail_2" (use "*" for wildcard)
+# These compound strings get reading preserved even if base POS is masked.
+GRAMMAR_COMPOUND_WHITELIST = {
+    "noun:common-noun:adverbial",  # Adverbial nouns like 限り, 今日, 今月
 }
 
 # Reading masks that should be preserved even if POS is masked.

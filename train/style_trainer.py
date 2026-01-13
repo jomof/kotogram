@@ -13,7 +13,7 @@ from torch.utils.data import DataLoader
 from kotogram.model import (
     StyleClassifier,
 )
-from kotogram.tokenizer import FEATURE_FIELDS
+from kotogram.tokenizer import ENCODER_FEATURE_FIELDS
 from train.config import (
     DataLoaderConfig,
     TrainerConfig,
@@ -365,7 +365,7 @@ class Trainer:
     ) -> Tuple[Dict[str, torch.Tensor], torch.Tensor, Dict[str, torch.Tensor]]:
         field_inputs = {
             f"input_ids_{f}": batch.feature_inputs[f"input_ids_{f}"].to(self.device)
-            for f in FEATURE_FIELDS
+            for f in ENCODER_FEATURE_FIELDS
         }
         attention_mask = batch.attention_mask.to(self.device)
         targets = {

@@ -22,20 +22,36 @@ PAD_ID = 0
 UNK_ID = 1
 CLS_ID = 2
 
-# Feature fields used for token embedding
+# Feature fields used for token embedding (full set for KC targets)
 # NOTE: 'surface' is critical for gender detection (pronouns like 僕, 俺, あたし)
 ALL_FEATURE_FIELDS = [
     # "surface",
     "pos",
+    "pos_detail_1",
+    "pos_detail_2",
+    "pos_detail_3",
+    "conjugated_form",
+    "conjugated_type",
     "compound_1",  # Composite of pos + pos_detail_1 + conjugated_form
     "compound_2",  # Composite of pos + pos_detail_1 + pos_detail_2
-    "pos_detail_3",
-    "conjugated_type",
-    # "conjugated_form",
     # "base_orth",
     "reading_gram",
+    "reading",  # Raw reading for encoder (not masked)
 ]
-FEATURE_FIELDS = ALL_FEATURE_FIELDS  # Default: use all features
+FEATURE_FIELDS = ALL_FEATURE_FIELDS  # Default: use all features for labeling/KC
+
+# Feature fields used for transformer encoder embedding (BERT-like layer)
+# Uses atomic morphological fields instead of compound composites
+# Uses 'reading' (raw) instead of 'reading_gram' (masked)
+ENCODER_FEATURE_FIELDS = [
+    "pos",
+    "pos_detail_1",
+    "pos_detail_2",
+    "pos_detail_3",
+    "conjugated_form",
+    "conjugated_type",
+    "reading",
+]
 
 
 def build_compound_1(
@@ -105,6 +121,11 @@ def get_vocab_strings(features: "TokenFeatures") -> Dict[str, str]:
     """
     return {
         "pos": features.pos,
+        "pos_detail_1": features.pos_detail_1,
+        "pos_detail_2": features.pos_detail_2,
+        "pos_detail_3": features.pos_detail_3,
+        "conjugated_form": features.conjugated_form,
+        "conjugated_type": features.conjugated_type,
         "compound_1": build_compound_1(
             features.pos,
             features.pos_detail_1,
@@ -114,9 +135,8 @@ def get_vocab_strings(features: "TokenFeatures") -> Dict[str, str]:
         "compound_2": build_compound_2(
             features.pos, features.pos_detail_1, features.pos_detail_2
         ),
-        "pos_detail_3": features.pos_detail_3,
-        "conjugated_type": features.conjugated_type,
         "reading_gram": features.reading_gram,
+        "reading": features.reading,  # Raw reading for encoder
     }
 
 
