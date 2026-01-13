@@ -200,6 +200,43 @@ class StyleDataset(Dataset[Sample]):
                     ),
                 }
 
+        # Load grammar point targets (pos/neg jagged arrays from DB source)
+        gp_pos_ids_path = os.path.join(data_dir, "gp_pos_ids.bin")
+        gp_pos_off_path = os.path.join(data_dir, "gp_pos_offsets.bin")
+        if self._check_exists(gp_pos_ids_path) and self._check_exists(gp_pos_off_path):
+            kc_maps["grammar_point_pos"] = {
+                "ids": self._load_tensor(
+                    gp_pos_ids_path,
+                    shared=True,
+                    size=self._get_size(gp_pos_ids_path) // 4,
+                    dtype=torch.int32,
+                ),
+                "offsets": self._load_tensor(
+                    gp_pos_off_path,
+                    shared=True,
+                    size=self._get_size(gp_pos_off_path) // 4,
+                    dtype=torch.int32,
+                ),
+            }
+
+        gp_neg_ids_path = os.path.join(data_dir, "gp_neg_ids.bin")
+        gp_neg_off_path = os.path.join(data_dir, "gp_neg_offsets.bin")
+        if self._check_exists(gp_neg_ids_path) and self._check_exists(gp_neg_off_path):
+            kc_maps["grammar_point_neg"] = {
+                "ids": self._load_tensor(
+                    gp_neg_ids_path,
+                    shared=True,
+                    size=self._get_size(gp_neg_ids_path) // 4,
+                    dtype=torch.int32,
+                ),
+                "offsets": self._load_tensor(
+                    gp_neg_off_path,
+                    shared=True,
+                    size=self._get_size(gp_neg_off_path) // 4,
+                    dtype=torch.int32,
+                ),
+            }
+
         return kc_maps
 
     def __len__(self) -> int:
@@ -257,12 +294,32 @@ class StyleDataset(Dataset[Sample]):
 
         Uses pre-computed targets from binary files if available,
         otherwise falls back to computing on-the-fly.
+
+        For GRAMMAR_POINT family, returns a dict with "pos" and "neg" lists.
         """
         # If pre-computed KC targets are available, use them
         if self.kc_maps:
             result: Dict[KcFamilyId, Any] = {}
             for family in KcFamilyId:
                 family_name = family.value
+
+                # Special handling for GRAMMAR_POINT (has pos/neg arrays)
+                if family == KcFamilyId.GRAMMAR_POINT:
+                    gp_pos = []
+                    gp_neg = []
+                    if "grammar_point_pos" in self.kc_maps:
+                        data = self.kc_maps["grammar_point_pos"]
+                        gp_start = int(data["offsets"][real_idx].item())
+                        gp_end = int(data["offsets"][real_idx + 1].item())
+                        gp_pos = data["ids"][gp_start:gp_end].tolist()
+                    if "grammar_point_neg" in self.kc_maps:
+                        data = self.kc_maps["grammar_point_neg"]
+                        gp_start = int(data["offsets"][real_idx].item())
+                        gp_end = int(data["offsets"][real_idx + 1].item())
+                        gp_neg = data["ids"][gp_start:gp_end].tolist()
+                    result[family] = {"pos": gp_pos, "neg": gp_neg}
+                    continue
+
                 if family_name in self.kc_maps:
                     data = self.kc_maps[family_name]
                     # Get the jagged slice for this sample
@@ -578,6 +635,59 @@ def create_kc_batch(
 
         kc_key = target_family
 
+        # Import here to avoid circular import
+        from train.kc import is_family_db_sourced, is_family_sparse
+
+        # Special handling for DB-sourced families (e.g., GRAMMAR_POINT)
+        # These have a different data structure: {"pos": [...], "neg": [...]}
+        if is_family_db_sourced(target_family):
+            name = target_family.name.lower()
+            max_pos = 64
+
+            # Extract pos and neg IDs separately
+            all_pos_data: List[List[int]] = []
+            all_pos_mask_data: List[List[bool]] = []
+            all_neg_data: List[List[int]] = []
+            all_neg_mask_data: List[List[bool]] = []
+
+            for target_dict in batch.kc_targets:
+                gp_data = target_dict.get(kc_key, {"pos": [], "neg": []})
+                pos_ids = gp_data.get("pos", [])
+                neg_ids = gp_data.get("neg", [])
+
+                # Filter and pad positive IDs
+                valid_pos = [v for v in pos_ids if v < vocab_size][:max_pos]
+                n_pos = len(valid_pos)
+                all_pos_data.append(valid_pos + [0] * (max_pos - n_pos))
+                all_pos_mask_data.append([True] * n_pos + [False] * (max_pos - n_pos))
+
+                # Filter and pad negative IDs
+                valid_neg = [v for v in neg_ids if v < vocab_size][:max_pos]
+                n_neg = len(valid_neg)
+                all_neg_data.append(valid_neg + [0] * (max_pos - n_neg))
+                all_neg_mask_data.append([True] * n_neg + [False] * (max_pos - n_neg))
+
+            result[f"kc_gp_pos_inds_{name}"] = torch.tensor(
+                all_pos_data, dtype=torch.long, device=device
+            )
+            result[f"kc_gp_pos_mask_{name}"] = torch.tensor(
+                all_pos_mask_data, dtype=torch.bool, device=device
+            )
+            result[f"kc_gp_neg_inds_{name}"] = torch.tensor(
+                all_neg_data, dtype=torch.long, device=device
+            )
+            result[f"kc_gp_neg_mask_{name}"] = torch.tensor(
+                all_neg_mask_data, dtype=torch.bool, device=device
+            )
+
+            # Update global positive presence
+            global_has_pos |= torch.tensor(
+                [len(t.get(kc_key, {}).get("pos", [])) > 0 for t in batch.kc_targets],
+                dtype=torch.bool,
+                device=device,
+            )
+            continue
+
         # Sparse Implementation (Indices + Mask)
         # We use sparse representation for all vocab sizes for consistency.
         pos_inds, pos_mask = _get_kc_pos_indices(
@@ -588,8 +698,6 @@ def create_kc_batch(
         result[f"kc_pos_mask_{target_family.name.lower()}"] = pos_mask
 
         # Dense targets for non-sparse families
-        from train.kc import is_family_sparse
-
         if not is_family_sparse(target_family):
             # OPTIMIZED: Use scatter_ with pos_inds/pos_mask instead of nested Python loops
             dense_targets = torch.zeros(

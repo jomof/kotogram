@@ -35,6 +35,7 @@ from train.kc import (
     FAMILY_FEATURES,
     KcFamilyId,
     get_family_bucket_size,
+    is_family_db_sourced,
     is_family_sparse,
 )
 from train.models import StyleClassifierWithKC
@@ -329,7 +330,34 @@ if __name__ == "__main__":
     targets = ALL_KC_FAMILIES
     current_vocabs = tokenizer.get_vocab_sizes()
 
+    # Compute GP vocab size from dataset (max ID + 1)
+    gp_vocab_size = 0
+    gp_pos_path = os.path.join(cache_dir_data, "gp_pos_ids.bin")
+    gp_neg_path = os.path.join(cache_dir_data, "gp_neg_ids.bin")
+    if os.path.exists(gp_pos_path):
+        # Read the int32 IDs and find max
+        with open(gp_pos_path, "rb") as f:
+            import numpy as np
+
+            ids = np.frombuffer(f.read(), dtype=np.int32)
+            if len(ids) > 0:
+                gp_vocab_size = max(gp_vocab_size, int(ids.max()) + 1)
+    if os.path.exists(gp_neg_path):
+        with open(gp_neg_path, "rb") as f:
+            import numpy as np
+
+            ids = np.frombuffer(f.read(), dtype=np.int32)
+            if len(ids) > 0:
+                gp_vocab_size = max(gp_vocab_size, int(ids.max()) + 1)
+
     for fid in targets:
+        # DB-sourced families (like GRAMMAR_POINT) don't have tokenizer vocabs
+        # Use dynamically computed GP vocab size from dataset
+        if is_family_db_sourced(fid):
+            if gp_vocab_size > 0:
+                kc_specs[fid] = gp_vocab_size
+            # If no GP data exists, skip this family
+            continue
         if is_family_sparse(fid):
             kc_specs[fid] = get_family_bucket_size(fid)
         else:

@@ -138,6 +138,10 @@ class KCConfig:
     # Performance: Skip diagnostic metrics until epoch N
     skip_first_metrics: int = 0
 
+    # Grammar Point (PNU) Loss
+    gp_loss_weight: float = 1.0  # Weight for GRAMMAR_POINT family loss
+    gp_unlab_weight: float = 0.001  # Soft negative weight for unlabeled GPs
+
     def to_dict(self) -> Dict[str, Any]:
         return dict(self.__dict__)
 

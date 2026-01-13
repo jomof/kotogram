@@ -1,5 +1,7 @@
-"""KC target computation logic."""
+"""KC target computation logic with ABC-based family hierarchy."""
 
+from abc import ABC, abstractmethod
+from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Dict, List, Optional, Sequence, Set, Union
 
@@ -42,47 +44,342 @@ class KcFamilyId(str, Enum):
     BAG_READING_GRAM = "bag_reading_gram"
     BAG_POS = "bag_pos"
     BAG_COMPOUND_1 = "bag_compound_1"
-    BAG_COMPOUND_2 = "bag_compound_2"
     BAG_CONJUGATED_TYPE = "bag_conjugated_type"
 
     # Tail Bag Families
     TAIL_READING_GRAM = "tail_reading_gram"
     TAIL_POS = "tail_pos"
     TAIL_COMPOUND_1 = "tail_compound_1"
-    TAIL_COMPOUND_2 = "tail_compound_2"
     TAIL_CONJUGATED_TYPE = "tail_conjugated_type"
 
     # Ngram Families
     NGRAM_POS = "ngram_pos"
     NGRAM_COMPOUND_1 = "ngram_compound_1"
-    NGRAM_COMPOUND_2 = "ngram_compound_2"
     NGRAM_CONJUGATED_TYPE = "ngram_conjugated_type"
     NGRAM_READING_GRAM = "ngram_reading_gram"
 
     # Tail Ngram Families
     TAIL_NGRAM_POS = "tail_ngram_pos"
     TAIL_NGRAM_COMPOUND_1 = "tail_ngram_compound_1"
-    TAIL_NGRAM_COMPOUND_2 = "tail_ngram_compound_2"
     TAIL_NGRAM_CONJUGATED_TYPE = "tail_ngram_conjugated_type"
     TAIL_NGRAM_READING_GRAM = "tail_ngram_reading_gram"
+
+    # DB-Sourced Families (labels from corpus.db, not computed)
+    GRAMMAR_POINT = "grammar_point"
+
+
+# =============================================================================
+# KC Family ABC and Subclasses
+# =============================================================================
+
+
+@dataclass(frozen=True)
+class KcFamily(ABC):
+    """Abstract base class for all KC families.
+
+    Attributes are immutable properties that define family behavior.
+    Subclasses set these via dataclass fields.
+    """
+
+    family_id: KcFamilyId
+
+    @property
+    @abstractmethod
+    def is_sparse(self) -> bool:
+        """True if uses hash-bucket sparse features, False for dense tokenizer vocab."""
+
+    @property
+    @abstractmethod
+    def is_db_sourced(self) -> bool:
+        """True if targets come from DB labels, not computed from morphology."""
+
+    @property
+    @abstractmethod
+    def feature_field(self) -> str:
+        """The tokenizer feature field this family uses (empty for DB-sourced)."""
+
+    @property
+    def is_tail(self) -> bool:
+        """True if this family uses only tail-window tokens."""
+        return False
+
+    @property
+    def bucket_size(self) -> Optional[int]:
+        """Hash bucket size for sparse families, None for dense."""
+        return None
+
+    @property
+    def salt(self) -> Optional[int]:
+        """Domain separation salt for ngram hashing, None for non-ngram."""
+        return None
+
+    @property
+    def filter_unk(self) -> bool:
+        """Whether to filter UNK tokens from this family's targets."""
+        return False
+
+
+@dataclass(frozen=True)
+class KcBagFamily(KcFamily):
+    """Bag-of-words dense families using full sequence."""
+
+    _feature_field: str
+    _filter_unk: bool = False
+
+    @property
+    def is_sparse(self) -> bool:
+        return False
+
+    @property
+    def is_db_sourced(self) -> bool:
+        return False
+
+    @property
+    def feature_field(self) -> str:
+        return self._feature_field
+
+    @property
+    def filter_unk(self) -> bool:
+        return self._filter_unk
+
+
+@dataclass(frozen=True)
+class KcTailFamily(KcFamily):
+    """Tail-window dense families."""
+
+    _feature_field: str
+    _filter_unk: bool = False
+
+    @property
+    def is_sparse(self) -> bool:
+        return False
+
+    @property
+    def is_db_sourced(self) -> bool:
+        return False
+
+    @property
+    def feature_field(self) -> str:
+        return self._feature_field
+
+    @property
+    def is_tail(self) -> bool:
+        return True
+
+    @property
+    def filter_unk(self) -> bool:
+        return self._filter_unk
+
+
+@dataclass(frozen=True)
+class KcNgramFamily(KcFamily):
+    """Full-sequence n-gram sparse families."""
+
+    _feature_field: str
+    _bucket_size: int
+    _salt: int
+    _filter_unk: bool = False
+
+    @property
+    def is_sparse(self) -> bool:
+        return True
+
+    @property
+    def is_db_sourced(self) -> bool:
+        return False
+
+    @property
+    def feature_field(self) -> str:
+        return self._feature_field
+
+    @property
+    def bucket_size(self) -> Optional[int]:
+        return self._bucket_size
+
+    @property
+    def salt(self) -> Optional[int]:
+        return self._salt
+
+    @property
+    def filter_unk(self) -> bool:
+        return self._filter_unk
+
+
+@dataclass(frozen=True)
+class KcTailNgramFamily(KcFamily):
+    """Tail-window n-gram sparse families."""
+
+    _feature_field: str
+    _bucket_size: int
+    _salt: int
+    _filter_unk: bool = False
+
+    @property
+    def is_sparse(self) -> bool:
+        return True
+
+    @property
+    def is_db_sourced(self) -> bool:
+        return False
+
+    @property
+    def feature_field(self) -> str:
+        return self._feature_field
+
+    @property
+    def is_tail(self) -> bool:
+        return True
+
+    @property
+    def bucket_size(self) -> Optional[int]:
+        return self._bucket_size
+
+    @property
+    def salt(self) -> Optional[int]:
+        return self._salt
+
+    @property
+    def filter_unk(self) -> bool:
+        return self._filter_unk
+
+
+@dataclass(frozen=True)
+class KcDbFamily(KcFamily):
+    """DB-sourced families with targets from corpus.db labels."""
+
+    @property
+    def is_sparse(self) -> bool:
+        return False  # Dense vocab (e.g., 1374 grammar points)
+
+    @property
+    def is_db_sourced(self) -> bool:
+        return True
+
+    @property
+    def feature_field(self) -> str:
+        return ""  # No tokenizer feature, targets from DB
+
+
+# =============================================================================
+# Family Registry
+# =============================================================================
+
+# All KC family instances, keyed by their ID
+KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
+    # Bag families (dense, full sequence)
+    KcFamilyId.BAG_READING_GRAM: KcBagFamily(
+        family_id=KcFamilyId.BAG_READING_GRAM,
+        _feature_field="reading_gram",
+    ),
+    KcFamilyId.BAG_POS: KcBagFamily(
+        family_id=KcFamilyId.BAG_POS,
+        _feature_field="pos",
+    ),
+    KcFamilyId.BAG_COMPOUND_1: KcBagFamily(
+        family_id=KcFamilyId.BAG_COMPOUND_1,
+        _feature_field="compound_1",
+        _filter_unk=True,
+    ),
+    KcFamilyId.BAG_CONJUGATED_TYPE: KcBagFamily(
+        family_id=KcFamilyId.BAG_CONJUGATED_TYPE,
+        _feature_field="conjugated_type",
+        _filter_unk=True,
+    ),
+    # Tail families (dense, tail window)
+    KcFamilyId.TAIL_READING_GRAM: KcTailFamily(
+        family_id=KcFamilyId.TAIL_READING_GRAM,
+        _feature_field="reading_gram",
+    ),
+    KcFamilyId.TAIL_POS: KcTailFamily(
+        family_id=KcFamilyId.TAIL_POS,
+        _feature_field="pos",
+    ),
+    KcFamilyId.TAIL_COMPOUND_1: KcTailFamily(
+        family_id=KcFamilyId.TAIL_COMPOUND_1,
+        _feature_field="compound_1",
+        _filter_unk=True,
+    ),
+    KcFamilyId.TAIL_CONJUGATED_TYPE: KcTailFamily(
+        family_id=KcFamilyId.TAIL_CONJUGATED_TYPE,
+        _feature_field="conjugated_type",
+        _filter_unk=True,
+    ),
+    # Ngram families (sparse, full sequence)
+    KcFamilyId.NGRAM_POS: KcNgramFamily(
+        family_id=KcFamilyId.NGRAM_POS,
+        _feature_field="pos",
+        _bucket_size=2048,
+        _salt=101,
+    ),
+    KcFamilyId.NGRAM_COMPOUND_1: KcNgramFamily(
+        family_id=KcFamilyId.NGRAM_COMPOUND_1,
+        _feature_field="compound_1",
+        _bucket_size=8192 * 4,
+        _salt=102,
+        _filter_unk=True,
+    ),
+    KcFamilyId.NGRAM_CONJUGATED_TYPE: KcNgramFamily(
+        family_id=KcFamilyId.NGRAM_CONJUGATED_TYPE,
+        _feature_field="conjugated_type",
+        _bucket_size=8192,
+        _salt=104,
+        _filter_unk=True,
+    ),
+    KcFamilyId.NGRAM_READING_GRAM: KcNgramFamily(
+        family_id=KcFamilyId.NGRAM_READING_GRAM,
+        _feature_field="reading_gram",
+        _bucket_size=262144,  # 2^18: 234K unique ngrams
+        _salt=105,
+    ),
+    # Tail ngram families (sparse, tail window)
+    KcFamilyId.TAIL_NGRAM_POS: KcTailNgramFamily(
+        family_id=KcFamilyId.TAIL_NGRAM_POS,
+        _feature_field="pos",
+        _bucket_size=1024,
+        _salt=201,
+    ),
+    KcFamilyId.TAIL_NGRAM_COMPOUND_1: KcTailNgramFamily(
+        family_id=KcFamilyId.TAIL_NGRAM_COMPOUND_1,
+        _feature_field="compound_1",
+        _bucket_size=8192 * 2,
+        _salt=202,
+        _filter_unk=True,
+    ),
+    KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: KcTailNgramFamily(
+        family_id=KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
+        _feature_field="conjugated_type",
+        _bucket_size=8192,
+        _salt=204,
+        _filter_unk=True,
+    ),
+    KcFamilyId.TAIL_NGRAM_READING_GRAM: KcTailNgramFamily(
+        family_id=KcFamilyId.TAIL_NGRAM_READING_GRAM,
+        _feature_field="reading_gram",
+        _bucket_size=131072,  # 2^17: 115K unique ngrams
+        _salt=205,
+    ),
+    # DB-sourced families
+    KcFamilyId.GRAMMAR_POINT: KcDbFamily(
+        family_id=KcFamilyId.GRAMMAR_POINT,
+    ),
+}
+
+
+def get_family(family_id: KcFamilyId) -> KcFamily:
+    """Get the family instance for a given family ID."""
+    return KC_FAMILIES[family_id]
 
 
 ALL_KC_FAMILIES = list(KcFamilyId)
 
 
-# Per-family bucket sizes for sparse (ngram) families
-# Based on collision analysis: reading_gram needs more buckets due to larger vocabulary
-FAMILY_BUCKET_SIZES: Dict[KcFamilyId, int] = {
-    KcFamilyId.NGRAM_POS: 2048,
-    KcFamilyId.NGRAM_COMPOUND_1: 8192 * 4,
-    KcFamilyId.NGRAM_COMPOUND_2: 4096,
-    KcFamilyId.NGRAM_CONJUGATED_TYPE: 8192,
-    KcFamilyId.NGRAM_READING_GRAM: 262144,  # 2^18: 234K unique ngrams
-    KcFamilyId.TAIL_NGRAM_POS: 1024,
-    KcFamilyId.TAIL_NGRAM_COMPOUND_1: 8192 * 2,
-    KcFamilyId.TAIL_NGRAM_COMPOUND_2: 4096,
-    KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: 8192,
-    KcFamilyId.TAIL_NGRAM_READING_GRAM: 131072,  # 2^17: 115K unique ngrams
+# =============================================================================
+# Backward-Compatible Function Wrappers
+# =============================================================================
+
+# Legacy dictionary - kept for backward compatibility
+FAMILY_FEATURES: Dict[KcFamilyId, str] = {
+    fid: fam.feature_field for fid, fam in KC_FAMILIES.items()
 }
 
 
@@ -92,7 +389,10 @@ def get_family_bucket_size(family_id: KcFamilyId) -> int:
     Raises:
         KeyError: If family_id is not a sparse ngram family.
     """
-    return FAMILY_BUCKET_SIZES[family_id]
+    family = get_family(family_id)
+    if family.bucket_size is None:
+        raise KeyError(f"Family {family_id} is not a sparse family")
+    return family.bucket_size
 
 
 def is_family_sparse(family: KcFamilyId) -> bool:
@@ -106,97 +406,40 @@ def is_family_sparse(family: KcFamilyId) -> bool:
 
     Returns:
         True if the family uses sparse features, False for dense.
-
-    Raises:
-        ValueError: If the family is not recognized.
     """
-    # Dense families (use actual tokenizer vocab)
-    if family in (
-        KcFamilyId.BAG_READING_GRAM,
-        KcFamilyId.BAG_POS,
-        KcFamilyId.BAG_COMPOUND_1,
-        KcFamilyId.BAG_COMPOUND_2,
-        KcFamilyId.BAG_CONJUGATED_TYPE,
-        KcFamilyId.TAIL_READING_GRAM,
-        KcFamilyId.TAIL_POS,
-        KcFamilyId.TAIL_COMPOUND_1,
-        KcFamilyId.TAIL_COMPOUND_2,
-        KcFamilyId.TAIL_CONJUGATED_TYPE,
-    ):
-        return False
-
-    # Sparse families (use hash-based n-gram features)
-    if family in (
-        KcFamilyId.NGRAM_POS,
-        KcFamilyId.NGRAM_COMPOUND_1,
-        KcFamilyId.NGRAM_COMPOUND_2,
-        KcFamilyId.NGRAM_CONJUGATED_TYPE,
-        KcFamilyId.NGRAM_READING_GRAM,
-        KcFamilyId.TAIL_NGRAM_POS,
-        KcFamilyId.TAIL_NGRAM_COMPOUND_1,
-        KcFamilyId.TAIL_NGRAM_COMPOUND_2,
-        KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
-        KcFamilyId.TAIL_NGRAM_READING_GRAM,
-    ):
-        return True
-
-    raise ValueError(f"Unknown KC family: {family}")
+    return get_family(family).is_sparse
 
 
-# Map from KcFamilyId to the input feature field name it consumes
-FAMILY_FEATURES: Dict[KcFamilyId, str] = {
-    # Bag
-    KcFamilyId.BAG_READING_GRAM: "reading_gram",
-    KcFamilyId.BAG_POS: "pos",
-    KcFamilyId.BAG_COMPOUND_1: "compound_1",
-    KcFamilyId.BAG_COMPOUND_2: "compound_2",
-    KcFamilyId.BAG_CONJUGATED_TYPE: "conjugated_type",
-    # Tail
-    KcFamilyId.TAIL_READING_GRAM: "reading_gram",
-    KcFamilyId.TAIL_POS: "pos",
-    KcFamilyId.TAIL_COMPOUND_1: "compound_1",
-    KcFamilyId.TAIL_COMPOUND_2: "compound_2",
-    KcFamilyId.TAIL_CONJUGATED_TYPE: "conjugated_type",
-    # Ngram
-    KcFamilyId.NGRAM_POS: "pos",
-    KcFamilyId.NGRAM_COMPOUND_1: "compound_1",
-    KcFamilyId.NGRAM_COMPOUND_2: "compound_2",
-    KcFamilyId.NGRAM_CONJUGATED_TYPE: "conjugated_type",
-    KcFamilyId.NGRAM_READING_GRAM: "reading_gram",
-    # Tail Ngram
-    KcFamilyId.TAIL_NGRAM_POS: "pos",
-    KcFamilyId.TAIL_NGRAM_COMPOUND_1: "compound_1",
-    KcFamilyId.TAIL_NGRAM_COMPOUND_2: "compound_2",
-    KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: "conjugated_type",
-    KcFamilyId.TAIL_NGRAM_READING_GRAM: "reading_gram",
-}
+def is_family_db_sourced(family: KcFamilyId) -> bool:
+    """Check if a KC family's targets come from DB labels (not computed from morphology).
+
+    DB-sourced families have targets stored in corpus.db columns (e.g., grammar, grammar_negative)
+    rather than being computed from token features during labeling.
+
+    Args:
+        family: The KC family to check.
+
+    Returns:
+        True if the family uses DB-sourced labels, False for computed targets.
+    """
+    return get_family(family).is_db_sourced
 
 
-# Constants for domain separation (SALT) to reduce accidental collisions between different feature families
-SALT: Dict[KcFamilyId, int] = {
-    KcFamilyId.NGRAM_POS: 101,
-    KcFamilyId.NGRAM_COMPOUND_1: 102,
-    KcFamilyId.NGRAM_COMPOUND_2: 103,
-    KcFamilyId.NGRAM_CONJUGATED_TYPE: 104,
-    KcFamilyId.NGRAM_READING_GRAM: 105,
-    KcFamilyId.TAIL_NGRAM_POS: 201,
-    KcFamilyId.TAIL_NGRAM_COMPOUND_1: 202,
-    KcFamilyId.TAIL_NGRAM_COMPOUND_2: 203,
-    KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: 204,
-    KcFamilyId.TAIL_NGRAM_READING_GRAM: 205,
-}
+# =============================================================================
+# Hashing Utilities
+# =============================================================================
 
 
 def _salt(key: KcFamilyId) -> int:
     """Robust lookup for SALT keys with descriptive error messages."""
-    val = SALT.get(key)
-    if val is None:
+    family = get_family(key)
+    if family.salt is None:
         raise MissingMappingError(
             map_name="SALT",
             key=str(key),
-            context=f"Available keys={[k.name for k in SALT]}",
+            context=f"Family {key} is not an ngram family",
         )
-    return val
+    return family.salt
 
 
 def _mix64(x: int) -> int:
@@ -222,6 +465,11 @@ def stable_hash_ints(ints: Sequence[int]) -> int:
     return h
 
 
+# =============================================================================
+# Target Computation Helpers
+# =============================================================================
+
+
 def _get_hierarchical_ids(
     feature_ids: Dict[str, List[int]], family_id: KcFamilyId
 ) -> List[int]:
@@ -230,7 +478,8 @@ def _get_hierarchical_ids(
     For pos_detail families, the tokenizer now creates composite vocabulary tokens
     (e.g., "noun:proper-noun" for compound_1), so we just return the field IDs directly.
     """
-    field = FAMILY_FEATURES[family_id]
+    family = get_family(family_id)
+    field = family.feature_field
     if field not in feature_ids:
         return []
     return list(feature_ids[field])
@@ -240,28 +489,20 @@ def _compute_bag_targets(
     feature_ids: Dict[str, List[int]], targets: Dict[KcFamilyId, Any]
 ) -> None:
     # Bag families
-    bag_families = {
-        KcFamilyId.BAG_READING_GRAM,
-        KcFamilyId.BAG_POS,
-        KcFamilyId.BAG_COMPOUND_1,
-        KcFamilyId.BAG_COMPOUND_2,
-        KcFamilyId.BAG_CONJUGATED_TYPE,
-    }
+    bag_families = [
+        fid for fid, fam in KC_FAMILIES.items() if isinstance(fam, KcBagFamily)
+    ]
 
     for family_id in bag_families:
-        field = FAMILY_FEATURES[family_id]
+        family = get_family(family_id)
+        field = family.feature_field
         if field in feature_ids:
             # Get hierarchical IDs (includes parent fields for pos_detail families)
             ids = _get_hierarchical_ids(feature_ids, family_id)
             # Exclude special tokens (CLS only - PAD/UNK kept for analysis)
             filtered = [v for v in ids if v not in SPECIAL_TOKEN_IDS]
-            # For compound_1, compound_2, and conjugated_type, also filter out UNK
-            # These fields can have UNK when morphology is ambiguous
-            if family_id in (
-                KcFamilyId.BAG_COMPOUND_1,
-                KcFamilyId.BAG_COMPOUND_2,
-                KcFamilyId.BAG_CONJUGATED_TYPE,
-            ):
+            # For families that filter UNK, remove UNK tokens
+            if family.filter_unk:
                 filtered = [v for v in filtered if v != UNK_ID]
             targets[family_id] = sorted(set(filtered))
 
@@ -379,27 +620,18 @@ def _compute_tail_targets(
     disallowed_positions: Optional[Set[int]] = None,
 ) -> None:
     # Tail families
-    tail_families = {
-        KcFamilyId.TAIL_READING_GRAM,
-        KcFamilyId.TAIL_POS,
-        KcFamilyId.TAIL_COMPOUND_1,
-        KcFamilyId.TAIL_COMPOUND_2,
-        KcFamilyId.TAIL_CONJUGATED_TYPE,
-    }
+    tail_families = [
+        fid for fid, fam in KC_FAMILIES.items() if isinstance(fam, KcTailFamily)
+    ]
 
     for family_id in tail_families:
-        field = FAMILY_FEATURES[family_id]
+        family = get_family(family_id)
+        field = family.feature_field
         if field in feature_ids:
-            # For compound_1, compound_2, and conjugated_type, also filter UNK
-            filter_unk = family_id in (
-                KcFamilyId.TAIL_COMPOUND_1,
-                KcFamilyId.TAIL_COMPOUND_2,
-                KcFamilyId.TAIL_CONJUGATED_TYPE,
-            )
             targets[family_id] = get_tail_ids(
                 feature_ids,
                 field,
-                filter_unk=filter_unk,
+                filter_unk=family.filter_unk,
                 disallowed_positions=disallowed_positions,
             )
 
@@ -411,19 +643,18 @@ def _compute_ngram_targets(
 ) -> None:
     # pylint: disable=too-many-locals
     # Ngram families
-    ngram_families = {
-        KcFamilyId.NGRAM_POS,
-        KcFamilyId.NGRAM_COMPOUND_1,
-        KcFamilyId.NGRAM_COMPOUND_2,
-        KcFamilyId.NGRAM_CONJUGATED_TYPE,
-        KcFamilyId.NGRAM_READING_GRAM,
-    }
+    ngram_families = [
+        fid
+        for fid, fam in KC_FAMILIES.items()
+        if isinstance(fam, KcNgramFamily) and not fam.is_tail
+    ]
 
     if disallowed_positions is None:
         disallowed_positions = set()
 
     for family_id in ngram_families:
-        field = FAMILY_FEATURES[family_id]
+        family = get_family(family_id)
+        field = family.feature_field
         if field in feature_ids:
             # Get hierarchical IDs with position info for filtering
             raw_ids = _get_hierarchical_ids(feature_ids, family_id)
@@ -435,22 +666,19 @@ def _compute_ngram_targets(
                 if v in SPECIAL_TOKEN_IDS:
                     continue
                 ids.append(v)
-            # For compound_1, compound_2, and conjugated_type, also filter out UNK
-            if family_id in (
-                KcFamilyId.NGRAM_COMPOUND_1,
-                KcFamilyId.NGRAM_COMPOUND_2,
-                KcFamilyId.NGRAM_CONJUGATED_TYPE,
-            ):
+            # For families that filter UNK, remove UNK tokens
+            if family.filter_unk:
                 ids = [v for v in ids if v != UNK_ID]
             hashes = set()
-            salt = _salt(family_id)
-            bucket_size = get_family_bucket_size(family_id)
+            salt_val = family.salt
+            bucket_size = family.bucket_size
+            assert salt_val is not None and bucket_size is not None
             for n_val in range(2, KC_NGRAM_ORDER + 1):
                 if len(ids) >= n_val:
                     for i in range(len(ids) - n_val + 1):
                         ngram = ids[i : i + n_val]
                         # Prepend salt for domain separation
-                        h = stable_hash_ints([salt, *ngram]) % bucket_size
+                        h = stable_hash_ints([salt_val, *ngram]) % bucket_size
                         hashes.add(h)
             targets[family_id] = sorted(hashes)
 
@@ -462,19 +690,16 @@ def _compute_tail_ngram_targets(
 ) -> None:
     # pylint: disable=too-many-locals
     """Compute n-gram targets biased toward the end of the sentence."""
-    tail_ngram_families = {
-        KcFamilyId.TAIL_NGRAM_POS,
-        KcFamilyId.TAIL_NGRAM_COMPOUND_1,
-        KcFamilyId.TAIL_NGRAM_COMPOUND_2,
-        KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
-        KcFamilyId.TAIL_NGRAM_READING_GRAM,
-    }
+    tail_ngram_families = [
+        fid for fid, fam in KC_FAMILIES.items() if isinstance(fam, KcTailNgramFamily)
+    ]
 
     if disallowed_positions is None:
         disallowed_positions = set()
 
     for family_id in tail_ngram_families:
-        field = FAMILY_FEATURES[family_id]
+        family = get_family(family_id)
+        field = family.feature_field
         if field in feature_ids:
             # Get hierarchical IDs
             raw_ids = _get_hierarchical_ids(feature_ids, family_id)
@@ -489,24 +714,21 @@ def _compute_tail_ngram_targets(
                 if raw_ids[i] in SPECIAL_TOKEN_IDS:
                     continue
                 tail_ids.append(raw_ids[i])
-            # For compound_1, compound_2, and conjugated_type, also filter out UNK
-            if family_id in (
-                KcFamilyId.TAIL_NGRAM_COMPOUND_1,
-                KcFamilyId.TAIL_NGRAM_COMPOUND_2,
-                KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
-            ):
+            # For families that filter UNK, remove UNK tokens
+            if family.filter_unk:
                 tail_ids = [v for v in tail_ids if v != UNK_ID]
             if not tail_ids:
                 continue
 
             hashes = set()
-            salt = _salt(family_id)
-            bucket_size = get_family_bucket_size(family_id)
+            salt_val = family.salt
+            bucket_size = family.bucket_size
+            assert salt_val is not None and bucket_size is not None
             for n_val in range(2, KC_NGRAM_ORDER + 1):
                 if len(tail_ids) >= n_val:
                     for i in range(len(tail_ids) - n_val + 1):
                         ngram = tail_ids[i : i + n_val]
-                        h = stable_hash_ints([salt, *ngram]) % bucket_size
+                        h = stable_hash_ints([salt_val, *ngram]) % bucket_size
                         hashes.add(h)
             targets[family_id] = sorted(hashes)
 
@@ -536,9 +758,11 @@ def compute_kc_targets(
     # Compute disallowed positions using module-level cached disallow IDs
     disallowed_positions = get_disallowed_positions(feature_ids_list)
 
-    # Initialize all families with empty lists
-    # This ensures all families are present in the returned dict
-    targets: Dict[KcFamilyId, Any] = {family: [] for family in ALL_KC_FAMILIES}
+    # Initialize all computed (non-DB-sourced) families with empty lists
+    # DB-sourced families (like GRAMMAR_POINT) get targets from corpus.db, not from tokens
+    targets: Dict[KcFamilyId, Any] = {
+        family_id: [] for family_id, fam in KC_FAMILIES.items() if not fam.is_db_sourced
+    }
 
     _compute_bag_targets(feature_ids_list, targets)
     _compute_tail_targets(feature_ids_list, targets, disallowed_positions)

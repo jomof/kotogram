@@ -1,8 +1,10 @@
 import unittest
 
 from train.kc import (
+    ALL_KC_FAMILIES,
     KcFamilyId,
     compute_kc_targets,
+    is_family_db_sourced,
 )
 
 
@@ -136,9 +138,11 @@ class TestKC(unittest.TestCase):
             "reading": {"<READING_MASK>": 999},
         }
         targets = compute_kc_targets({})
-        # All 20 families are initialized with empty lists
-        # (5 bag + 5 tail + 5 ngram + 5 tail_ngram = 20)
-        self.assertEqual(len(targets), 20)
+        # All computed families (excluding DB-sourced) are present
+        expected_count = sum(
+            1 for fid in ALL_KC_FAMILIES if not is_family_db_sourced(fid)
+        )
+        self.assertEqual(len(targets), expected_count)
         # All should be empty lists
         for family_id, vals in targets.items():
             self.assertEqual(vals, [], f"Family {family_id} should be empty")
@@ -158,8 +162,11 @@ class TestKC(unittest.TestCase):
         }
         targets = compute_kc_targets(feature_ids)
 
-        # All 20 families are present (initialized with empty lists)
-        self.assertEqual(len(targets), 20)
+        # All computed families are present (excluding DB-sourced)
+        expected_count = sum(
+            1 for fid in ALL_KC_FAMILIES if not is_family_db_sourced(fid)
+        )
+        self.assertEqual(len(targets), expected_count)
         # BAG_POS should have values
         self.assertIn(KcFamilyId.BAG_POS, targets)
         self.assertTrue(len(targets[KcFamilyId.BAG_POS]) > 0)

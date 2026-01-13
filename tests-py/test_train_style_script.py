@@ -47,6 +47,7 @@ class TestTrainStyleScript(unittest.TestCase):
                 "[.cache]/style_dataset/feat_*.bin",
                 "[.cache]/style_dataset/labels.bin_*",
                 "[.cache]/style_dataset/offsets.bin",
+                "[.cache]/style_dataset/gp_*.bin",  # Grammar point ids/offsets
                 "[models]/style-support/config.json",
                 "[models]/style/tokenizer.json",
             ]

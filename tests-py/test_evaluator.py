@@ -53,15 +53,15 @@ class TestEvaluator(unittest.TestCase):
         # Create a dummy batch
         batch = unittest.mock.Mock()
         batch.feature_inputs = {
-            # "input_ids_surface": torch.tensor([[1, 2], [3, 4]]),
+            # ENCODER_FEATURE_FIELDS: pos, pos_detail_1, pos_detail_2, pos_detail_3,
+            # conjugated_form, conjugated_type, reading
             "input_ids_pos": torch.tensor([[1, 2], [3, 4]]),
-            "input_ids_compound_1": torch.tensor([[1, 2], [3, 4]]),
-            "input_ids_compound_2": torch.tensor([[1, 2], [3, 4]]),
+            "input_ids_pos_detail_1": torch.tensor([[1, 2], [3, 4]]),
+            "input_ids_pos_detail_2": torch.tensor([[1, 2], [3, 4]]),
             "input_ids_pos_detail_3": torch.tensor([[1, 2], [3, 4]]),
+            "input_ids_conjugated_form": torch.tensor([[1, 2], [3, 4]]),
             "input_ids_conjugated_type": torch.tensor([[1, 2], [3, 4]]),
-            # "input_ids_conjugated_form": torch.tensor([[1, 2], [3, 4]]),
-            # "input_ids_base_orth": torch.tensor([[1, 2], [3, 4]]),
-            "input_ids_reading_gram": torch.tensor([[1, 2], [3, 4]]),
+            "input_ids_reading": torch.tensor([[1, 2], [3, 4]]),
         }
         batch.attention_mask = torch.tensor([[1, 1], [1, 1]])
         batch.formality_value = torch.tensor([0.0, 1.0])

@@ -120,6 +120,9 @@ def populate_test_data(root_dir: str, project_root: str):
     add_samples("grammatic = 1", grammatic_samples)
     add_samples("grammatic = 0", agrammatic_samples)
 
+    # 5. Grammar Point Coverage (ensure we have sentences with grammar labels for PNU)
+    add_samples("grammar IS NOT NULL AND grammar != ''", grammatic_samples)
+
     conn.close()
 
     # Write sampled data to corpus.db in data_dir for train_style to consume
@@ -141,7 +144,7 @@ def populate_test_data(root_dir: str, project_root: str):
     target_conn = sqlite3.connect(new_db_path)
     target_c = target_conn.cursor()
     target_c.execute(
-        "CREATE TABLE corpus (sentence TEXT, formality REAL, gender REAL, grammatic INTEGER, register_ids TEXT)"
+        "CREATE TABLE corpus (sentence TEXT, formality REAL, gender REAL, grammatic INTEGER, register_ids TEXT, grammar TEXT, grammar_negative TEXT)"
     )
 
     all_sentences = grammatic_samples.union(agrammatic_samples)
@@ -157,12 +160,12 @@ def populate_test_data(root_dir: str, project_root: str):
         # register_ids might not be a column in source if it is old.
         # But let's try.
         source_c.execute(
-            "SELECT sentence, formality, gender, grammatic, register_ids FROM corpus WHERE sentence = ?",
+            "SELECT sentence, formality, gender, grammatic, register_ids, grammar, grammar_negative FROM corpus WHERE sentence = ?",
             (sent,),
         )
         row = source_c.fetchone()
         if row:
-            target_c.execute("INSERT INTO corpus VALUES (?, ?, ?, ?, ?)", row)
+            target_c.execute("INSERT INTO corpus VALUES (?, ?, ?, ?, ?, ?, ?)", row)
         else:
             # Fallback if sentence not found (unlikely)
             pass

@@ -16,8 +16,18 @@ class TestModelLoadUnit(unittest.TestCase):
         self.model_path = os.path.join(self.test_dir, "model")
         os.makedirs(self.model_path)
 
-        # Create dummy model
-        config = ModelConfig(vocab_sizes={"surface": 10})
+        # Create dummy model - use ENCODER_FEATURE_FIELDS vocab sizes
+        config = ModelConfig(
+            vocab_sizes={
+                "pos": 100,
+                "pos_detail_1": 100,
+                "pos_detail_2": 100,
+                "pos_detail_3": 100,
+                "conjugated_form": 100,
+                "conjugated_type": 100,
+                "reading": 100,
+            }
+        )
         model = StyleClassifier(config)
 
         # Save dummy model using io

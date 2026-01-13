@@ -1032,8 +1032,8 @@ def curate_kc_families(sentence: str):
         FAMILY_FEATURES,
         KC_NGRAM_ORDER,
         KC_POS_BIASED_WINDOW,
-        SALT,
         compute_kc_targets,
+        get_family,
         get_family_bucket_size,
         initialize_disallow_filter,
         is_family_sparse,
@@ -1072,12 +1072,14 @@ def curate_kc_families(sentence: str):
     console.print(f"[dim]Length:[/dim] {len(encoded.get('pos', []))} tokens")
     console.print()
     
-    # Group families
-    bag_families = [f for f in ALL_KC_FAMILIES if f.name.startswith("BAG_")]
-    tail_families = [f for f in ALL_KC_FAMILIES if f.name.startswith("TAIL_") and not f.name.startswith("TAIL_NGRAM")]
-    ngram_families = [f for f in ALL_KC_FAMILIES if f.name.startswith("NGRAM_")]
-    tail_ngram_families = [f for f in ALL_KC_FAMILIES if f.name.startswith("TAIL_NGRAM")]
-    
+    # Group families using is_family_* helpers
+    from train.kc import get_family, is_family_sparse, is_family_db_sourced
+    bag_families = [f for f in ALL_KC_FAMILIES if not is_family_sparse(f) and not is_family_db_sourced(f) and not get_family(f).is_tail]
+    tail_families = [f for f in ALL_KC_FAMILIES if not is_family_sparse(f) and not is_family_db_sourced(f) and get_family(f).is_tail]
+    ngram_families = [f for f in ALL_KC_FAMILIES if is_family_sparse(f) and not get_family(f).is_tail]
+    tail_ngram_families = [f for f in ALL_KC_FAMILIES if is_family_sparse(f) and get_family(f).is_tail]
+    db_families = [f for f in ALL_KC_FAMILIES if is_family_db_sourced(f)]
+
     # Build reverse lookup for all fields
     id_to_token_map = {}
     for field in ["pos", "compound_1", "compound_2", "conjugated_type", "reading_gram"]:
@@ -1121,12 +1123,8 @@ def curate_kc_families(sentence: str):
                     continue
                 ids.append(raw_ids[i])
 
-            # For compound families, also filter UNK
-            if family in (
-                KcFamilyId.TAIL_NGRAM_COMPOUND_1,
-                KcFamilyId.TAIL_NGRAM_COMPOUND_2,
-                KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
-            ):
+            # Filter UNK if family has filter_unk=True
+            if get_family(family).filter_unk:
                 ids = [v for v in ids if v != UNK_ID]
         else:
             # For non-tail ngrams, just filter CLS (matches _compute_ngram_targets)
@@ -1139,18 +1137,14 @@ def curate_kc_families(sentence: str):
                     continue
                 ids.append(v)
 
-            # For compound families, also filter UNK
-            if family in (
-                KcFamilyId.NGRAM_COMPOUND_1,
-                KcFamilyId.NGRAM_COMPOUND_2,
-                KcFamilyId.NGRAM_CONJUGATED_TYPE,
-            ):
+            # Filter UNK if family has filter_unk=True
+            if get_family(family).filter_unk:
                 ids = [v for v in ids if v != UNK_ID]
 
         if not ids:
             return []
 
-        salt = SALT.get(family, 0)
+        salt = get_family(family).salt or 0
         bucket_size = get_family_bucket_size(family)
 
         ngram_details = []
@@ -1176,15 +1170,23 @@ def curate_kc_families(sentence: str):
         for family in families:
             field = FAMILY_FEATURES.get(family, "?")
             is_sparse = is_family_sparse(family)
-            type_str = "[yellow]sparse[/yellow]" if is_sparse else "[green]dense[/green]"
+            is_db = is_family_db_sourced(family)
+            if is_db:
+                type_str = "[red]db[/red]"
+            elif is_sparse:
+                type_str = "[yellow]sparse[/yellow]"
+            else:
+                type_str = "[green]dense[/green]"
             
             vals = targets.get(family, [])
-            count = len(vals)
+            count = len(vals) if isinstance(vals, list) else 0
             
             # Format values
-            if is_sparse and show_ngram_content:
+            if is_db:
+                val_str = "(DB-sourced - not computed from tokens)"
+            elif is_sparse and show_ngram_content:
                 # Compute and show ngrams with content
-                is_tail = family.name.startswith("TAIL_NGRAM")
+                is_tail = get_family(family).is_tail
                 ngram_details = _compute_ngram_details(family, is_tail)
                 if ngram_details:
                     # Format: hash→[tokens]
@@ -1234,12 +1236,14 @@ def curate_kc_families(sentence: str):
     _print_family_group(f"Tail Families (Last {KC_POS_BIASED_WINDOW} Tokens)", tail_families, "cyan")
     _print_family_group("N-gram Families (2-3 grams, hashed)", ngram_families, "yellow", show_ngram_content=True)
     _print_family_group(f"Tail N-gram Families (Last {KC_POS_BIASED_WINDOW} Tokens, hashed)", tail_ngram_families, "blue", show_ngram_content=True)
+    if db_families:
+        _print_family_group("DB-Sourced Families", db_families, "red")
     
     # Summary stats
     total_dense = sum(len(targets.get(f, [])) for f in bag_families + tail_families)
     total_sparse = sum(len(targets.get(f, [])) for f in ngram_families + tail_ngram_families)
     
-    console.print(f"[bold]Summary:[/bold] {total_dense} dense targets, {total_sparse} sparse targets")
+    console.print(f"[bold]Summary:[/bold] {total_dense} dense targets, {total_sparse} sparse targets, {len(db_families)} DB-sourced families")
 
 
 # Globals for worker initialization
@@ -1437,12 +1441,11 @@ def _compute_sentence_hashes(sentence: str) -> Dict[str, List[Tuple[Tuple[int, .
 
     result: Dict[str, List[Tuple[Tuple[int, ...], int]]] = {}
 
-    # Regular ngram families
+    # Regular ngram families (sparse, non-tail)
+    from train.kc import ALL_KC_FAMILIES, is_family_sparse, get_family
     ngram_families = [
-        KcFamilyId.NGRAM_POS,
-        KcFamilyId.NGRAM_COMPOUND_1,
-        KcFamilyId.NGRAM_CONJUGATED_TYPE,
-        KcFamilyId.NGRAM_READING_GRAM,
+        fid for fid in ALL_KC_FAMILIES
+        if is_family_sparse(fid) and not get_family(fid).is_tail
     ]
 
     for family_id in ngram_families:
@@ -1461,12 +1464,10 @@ def _compute_sentence_hashes(sentence: str) -> Dict[str, List[Tuple[Tuple[int, .
             if family_hashes:
                 result[family_id.name] = family_hashes
 
-    # Tail ngram families
+    # Tail ngram families (sparse, tail)
     tail_ngram_families = [
-        KcFamilyId.TAIL_NGRAM_POS,
-        KcFamilyId.TAIL_NGRAM_COMPOUND_1,
-        KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
-        KcFamilyId.TAIL_NGRAM_READING_GRAM,
+        fid for fid in ALL_KC_FAMILIES
+        if is_family_sparse(fid) and get_family(fid).is_tail
     ]
 
     from train.kc import KC_POS_BIASED_WINDOW

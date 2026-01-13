@@ -381,6 +381,14 @@ def analyze_batch_from_db(
     reg_offsets_buf: List[int] = [0]
     current_reg_offset = 0
 
+    # Grammar point buffers (jagged arrays with offsets)
+    gp_pos_ids_buf: List[int] = []
+    gp_pos_offsets_buf: List[int] = [0]
+    gp_neg_ids_buf: List[int] = []
+    gp_neg_offsets_buf: List[int] = [0]
+    current_gp_pos_offset = 0
+    current_gp_neg_offset = 0
+
     vocab_counters: Dict[str, Counter[Any]] = {f: Counter() for f in FEATURE_FIELDS}
     label_stats: Dict[str, Counter] = {
         "formality": Counter(),
@@ -391,8 +399,10 @@ def analyze_batch_from_db(
     reg_samples: Dict[str, List[Any]] = {}
 
     for row in batch:
-        # Unpack row from `corpus` table.
-        sentence, formality, gender, grammatic, r_ids_str = row
+        # Unpack row from `corpus` table (including grammar columns).
+        sentence, formality, gender, grammatic, r_ids_str, grammar, grammar_negative = (
+            row
+        )
 
         # Always re-parse to get the latest feature extraction logic.
         kotogram_obj = parser.japanese_to_kotogram(
@@ -466,6 +476,30 @@ def analyze_batch_from_db(
         current_reg_offset += len(register_ids)
         reg_offsets_buf.append(current_reg_offset)
 
+        # Parse and buffer grammar point IDs (format: "gp0597,gp0123" → [597, 123])
+        def parse_gp_ids(gp_str: str) -> List[int]:
+            if not gp_str:
+                return []
+            result = []
+            for gp in gp_str.split(","):
+                gp = gp.strip()
+                if gp.startswith("gp") and len(gp) > 2:
+                    gp_num = gp[2:]
+                    if gp_num.isdigit():
+                        result.append(int(gp_num))
+            return result
+
+        gp_pos_ids = parse_gp_ids(grammar if grammar else "")
+        gp_neg_ids = parse_gp_ids(grammar_negative if grammar_negative else "")
+
+        gp_pos_ids_buf.extend(gp_pos_ids)
+        current_gp_pos_offset += len(gp_pos_ids)
+        gp_pos_offsets_buf.append(current_gp_pos_offset)
+
+        gp_neg_ids_buf.extend(gp_neg_ids)
+        current_gp_neg_offset += len(gp_neg_ids)
+        gp_neg_offsets_buf.append(current_gp_neg_offset)
+
         # Update stats.
         if f_prag:
             label_stats["formality"][f_id] += (
@@ -486,6 +520,10 @@ def analyze_batch_from_db(
         "gram": gram_buf,
         "reg_ids": reg_ids_buf,
         "reg_offsets": reg_offsets_buf,
+        "gp_pos_ids": gp_pos_ids_buf,
+        "gp_pos_offsets": gp_pos_offsets_buf,
+        "gp_neg_ids": gp_neg_ids_buf,
+        "gp_neg_offsets": gp_neg_offsets_buf,
         "vocab": vocab_counters,
         "stats": label_stats,
         "reg_samples": reg_samples,
@@ -762,6 +800,10 @@ def worker_p1_db_wrapper(
         "gram": [],
         "reg_ids": [],
         "reg_offsets": [0],
+        "gp_pos_ids": [],
+        "gp_pos_offsets": [0],
+        "gp_neg_ids": [],
+        "gp_neg_offsets": [0],
         "vocab": {f: Counter() for f in FEATURE_FIELDS},
         "stats": {
             "formality": Counter(),
@@ -773,6 +815,8 @@ def worker_p1_db_wrapper(
     }
 
     total_reg_ids_so_far = 0
+    total_gp_pos_ids_so_far = 0
+    total_gp_neg_ids_so_far = 0
 
     for i in range(0, len(chunk), b_size):
         batch = chunk[i : i + b_size]
@@ -791,6 +835,21 @@ def worker_p1_db_wrapper(
         shifted = [o + total_reg_ids_so_far for o in res["reg_offsets"][1:]]
         cast(List[int], buffers["reg_offsets"]).extend(shifted)
         total_reg_ids_so_far += len(res["reg_ids"])
+
+        # Grammar point aggregation
+        cast(List[int], buffers["gp_pos_ids"]).extend(res["gp_pos_ids"])
+        shifted_gp_pos = [
+            o + total_gp_pos_ids_so_far for o in res["gp_pos_offsets"][1:]
+        ]
+        cast(List[int], buffers["gp_pos_offsets"]).extend(shifted_gp_pos)
+        total_gp_pos_ids_so_far += len(res["gp_pos_ids"])
+
+        cast(List[int], buffers["gp_neg_ids"]).extend(res["gp_neg_ids"])
+        shifted_gp_neg = [
+            o + total_gp_neg_ids_so_far for o in res["gp_neg_offsets"][1:]
+        ]
+        cast(List[int], buffers["gp_neg_offsets"]).extend(shifted_gp_neg)
+        total_gp_neg_ids_so_far += len(res["gp_neg_ids"])
 
         for f in FEATURE_FIELDS:
             cast(Dict[str, Counter], buffers["vocab"])[f].update(res["vocab"][f])
@@ -851,6 +910,30 @@ def _write_shard_data(wid: int, s_dir: str, buffers: Dict[str, Any]) -> None:
         cast(List[int], buffers["reg_offsets"]),
         "i",
     )
+
+    # Grammar point shard files (jagged arrays)
+    # Only write if grammar data exists (DB source)
+    if "gp_pos_ids" in buffers:
+        write_int_array(
+            f"{shard_prefix}.gp_pos_ids.bin",
+            cast(List[int], buffers["gp_pos_ids"]),
+            "i",
+        )
+        write_int_array(
+            f"{shard_prefix}.gp_pos_{EXT_OFFSETS}",
+            cast(List[int], buffers["gp_pos_offsets"]),
+            "i",
+        )
+        write_int_array(
+            f"{shard_prefix}.gp_neg_ids.bin",
+            cast(List[int], buffers["gp_neg_ids"]),
+            "i",
+        )
+        write_int_array(
+            f"{shard_prefix}.gp_neg_{EXT_OFFSETS}",
+            cast(List[int], buffers["gp_neg_offsets"]),
+            "i",
+        )
 
 
 def main() -> None:
@@ -929,7 +1012,7 @@ def main() -> None:
         # This is memory-intensive but simple. For massive DBs, this might need chunking.
         # But currently optimized for <10M rows which fits in RAM.
         c.execute(
-            "SELECT sentence, formality, gender, grammatic, register_ids FROM corpus"
+            "SELECT sentence, formality, gender, grammatic, register_ids, grammar, grammar_negative FROM corpus"
         )
         all_rows = c.fetchall()
         conn.close()
@@ -1186,6 +1269,37 @@ def main() -> None:
         len(chunks),
         "shard_{}." + f"{EXT_LABELS}_reg_ids_{EXT_OFFSETS}",
     )
+
+    # 4b. Merge Grammar Point arrays (only if DB source was used)
+    gp_pos_path = os.path.join(shard_dir, "shard_0.gp_pos_ids.bin")
+    if os.path.exists(gp_pos_path):
+        console.print("  Merging grammar point labels...")
+        # Positive GP IDs
+        merge_shards(
+            shard_dir,
+            os.path.join(dataset_cache_dir, "gp_pos_ids.bin"),
+            len(chunks),
+            "shard_{}.gp_pos_ids.bin",
+        )
+        merge_offset_shards(
+            shard_dir,
+            os.path.join(dataset_cache_dir, f"gp_pos_{EXT_OFFSETS}"),
+            len(chunks),
+            "shard_{}.gp_pos_" + EXT_OFFSETS,
+        )
+        # Negative GP IDs
+        merge_shards(
+            shard_dir,
+            os.path.join(dataset_cache_dir, "gp_neg_ids.bin"),
+            len(chunks),
+            "shard_{}.gp_neg_ids.bin",
+        )
+        merge_offset_shards(
+            shard_dir,
+            os.path.join(dataset_cache_dir, f"gp_neg_{EXT_OFFSETS}"),
+            len(chunks),
+            "shard_{}.gp_neg_" + EXT_OFFSETS,
+        )
 
     # 5. Merge KC Targets.
     # Discover which KC targets were generated (based on config/computation in P2).
