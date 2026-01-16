@@ -174,7 +174,7 @@ class TrainStyleView(Protocol):
         """Notify inner training script is starting."""
 
     def on_model_upgrade(self) -> None:
-        """Notify model is being upgraded to StyleClassifierWithKC."""
+        """Notify model is being upgraded to TrainingClassifier."""
 
     def on_lr_scaled(
         self, base_lr: float, scale: float, scaled_lr: float, sample_ratio: float
@@ -445,7 +445,7 @@ class TrainStyleDiagnosticsView(TrainStyleView):
         console.print("[dim]Starting training script...[/dim]")
 
     def on_model_upgrade(self) -> None:
-        console.print("[dim]Upgrading loaded model to StyleClassifierWithKC...[/dim]")
+        console.print("[dim]Upgrading loaded model to TrainingClassifier...[/dim]")
 
     def on_lr_scaled(
         self, base_lr: float, scale: float, scaled_lr: float, sample_ratio: float

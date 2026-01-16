@@ -26,12 +26,12 @@ from train.io import (
     load_training_state,
     save_training_state,
 )
-from train.kc import is_family_db_sourced, is_family_sparse
+from train.kc import get_family, is_family_db_sourced, is_family_sparse
 from train.kc_diagnostics import (
     KCEpochDiag,
 )
 from train.kc_trainer_view import KCTrainerDiagnosticsView, KCTrainerView
-from train.models import StyleClassifierWithKC
+from train.models import TrainingClassifier
 from train.profile import Timer, get_profile_dir
 from train.pytorch_utils import estimate_optimal_batch_size
 from train.types import (
@@ -98,7 +98,7 @@ class KCTrainer:
     # pylint: disable=too-many-positional-arguments,too-many-locals
     def __init__(
         self,
-        model: StyleClassifierWithKC,
+        model: TrainingClassifier,
         dataset: StyleDataset,
         config: TrainerConfig,
         dl_config: DataLoaderConfig,
@@ -128,6 +128,16 @@ class KCTrainer:
 
         self.val_sampler = None
         self.sampler = None
+
+        # Create style-aware sampler if enabled (oversamples non-neutral examples)
+        if kc_config.style_oversample and hasattr(dataset, "create_style_oversampler"):
+            self.sampler = dataset.create_style_oversampler(
+                formality_boost=kc_config.formality_boost,
+                gender_boost=kc_config.gender_boost,
+            )
+            self.view.on_style_oversampling_enabled(
+                kc_config.formality_boost, kc_config.gender_boost
+            )
 
         if dl_config is None:
             dl_config = self.config.resolve_dataloader_config(self.device, mode="train")
@@ -345,6 +355,29 @@ class KCTrainer:
         # Return (total_loss, gap_loss_contribution) for separate tracking
         return total, (gap_weight * gap_loss).item()
 
+    def _continuous_mse_loss(
+        self,
+        logits: torch.Tensor,
+        targets: torch.Tensor,
+    ) -> torch.Tensor:
+        """Compute MSE loss for continuous targets.
+
+        Uses Tanh output range [-1, 1] where:
+        - 0 = neutral
+        - -1 = one extreme (e.g., masculine/informal)
+        - +1 = other extreme (e.g., feminine/formal)
+
+        Args:
+            logits: (B, 1) predictions from the KC decoder (Tanh-bounded to [-1, 1])
+            targets: (B,) float targets in range [-1, 1]
+
+        Returns:
+            Scalar MSE loss tensor
+        """
+        # Squeeze logits from (B, 1) to (B,)
+        preds = logits.squeeze(-1)
+        return torch.nn.functional.mse_loss(preds, targets)
+
     def _grammar_point_pnu_loss(
         self,
         logits: torch.Tensor,
@@ -437,6 +470,7 @@ class KCTrainer:
         family_name: str = "",
         reading_mask_id: int = 0,
         accumulator: Optional[FamilyAccumulator] = None,
+        loss_weight: float = 1.0,
     ) -> Tuple[torch.Tensor, float]:
         batch_size = int(logits_f.size(0))
         device = logits_f.device
@@ -506,6 +540,9 @@ class KCTrainer:
                 f"KC sparse loss scale bug: loss={loss.item()} for {family_name}. "
                 f"n_pos={pos_mask.sum().item()}, n_neg={neg_count}"
             )
+
+        # Apply per-family loss weight for balanced training
+        loss = loss * loss_weight
 
         if diag is not None and family_name:
             with torch.no_grad():
@@ -616,9 +653,13 @@ class KCTrainer:
                         pos_density_counts.get(name, 0) + batch_size
                     )
                 else:
-                    # DB-sourced families (GRAMMAR_POINT) use different key pattern
+                    # DB-sourced families have different key patterns
                     gp_mask_key = f"kc_gp_pos_mask_{name}"
+                    continuous_key = f"kc_continuous_{name}"
+                    class_key = f"kc_class_{name}"
+
                     if gp_mask_key in kc_targets:
+                        # PNU families (GRAMMAR_POINT)
                         pos_mask_t = kc_targets[gp_mask_key]
                         batch_size = pos_mask_t.size(0)
                         num_pos = pos_mask_t.sum().item()
@@ -629,6 +670,26 @@ class KCTrainer:
                         biases.counts[name] = biases.counts.get(name, 0) + 1
                         pos_density_sums[name] = (
                             pos_density_sums.get(name, 0.0) + num_pos
+                        )
+                        pos_density_counts[name] = (
+                            pos_density_counts.get(name, 0) + batch_size
+                        )
+                    elif continuous_key in kc_targets:
+                        # MSE families (GENDER, FORMALITY) - no bias init needed
+                        # (Tanh output, bias doesn't affect learning much)
+                        pass
+                    elif class_key in kc_targets:
+                        # Classification families (GENDER_CLASS, FORMALITY_CLASS)
+                        # Compute class distribution for bias initialization
+                        class_targets = kc_targets[class_key]
+                        batch_size = class_targets.size(0)
+                        # Average probability per class (1/num_classes for uniform init)
+                        p = 1.0 / vocab_size  # vocab_size = num_classes
+                        biases.sums[name] = biases.sums.get(name, 0.0) + p
+                        biases.counts[name] = biases.counts.get(name, 0) + 1
+                        # Density = 1 (every example has exactly 1 true class)
+                        pos_density_sums[name] = (
+                            pos_density_sums.get(name, 0.0) + batch_size
                         )
                         pos_density_counts[name] = (
                             pos_density_counts.get(name, 0) + batch_size
@@ -647,9 +708,17 @@ class KCTrainer:
             p = max(1e-6, min(1.0 - 1e-6, p))
             b = float(-torch.log(torch.tensor(1.0 / p - 1.0)).item())
 
-            lin = m.kc_decoders.decoders[name]
-            if lin.bias is not None:
-                nn.init.constant_(lin.bias, b)
+            # Check if this is a label family or MSE family
+            if name in m.kc_decoders.decoders:
+                lin = m.kc_decoders.decoders[name]
+                if lin.bias is not None:
+                    nn.init.constant_(lin.bias, b)
+            elif name in m.kc_decoders.mse_decoders:
+                lin = m.kc_decoders.mse_decoders[name]
+                if lin.bias is not None:
+                    nn.init.constant_(lin.bias, b)
+            else:
+                continue  # Family not in either decoder dict
 
             # Store pos_density for adaptive loss weighting
             if name in pos_density_sums and pos_density_counts.get(name, 0) > 0:
@@ -663,7 +732,7 @@ class KCTrainer:
     # pylint: disable=too-many-locals,too-many-positional-arguments
     def _perform_optimizer_step(
         self,
-        m: StyleClassifierWithKC,
+        m: TrainingClassifier,
     ) -> bool:
         name_map: Dict[int, str] = {}
         for n, p in m.named_parameters():
@@ -765,8 +834,14 @@ class KCTrainer:
                 continue
             if f"kc_pos_inds_{name}" in kc_targets:
                 continue
-            # DB-sourced families (GRAMMAR_POINT) use gp_ prefix
+            # DB-sourced PNU families (GRAMMAR_POINT) use gp_ prefix
             if f"kc_gp_pos_inds_{name}" in kc_targets:
+                continue
+            # DB-sourced continuous families (gender/formality) use continuous_ prefix
+            if f"kc_continuous_{name}" in kc_targets:
+                continue
+            # DB-sourced classification families (gender_class/formality_class) use class_ prefix
+            if f"kc_class_{name}" in kc_targets:
                 continue
             missing_keys.append(name)
 
@@ -814,6 +889,7 @@ class KCTrainer:
             sat_w = 0.25 + 0.75 * ramp
 
         # Saturation Usage Accumulators
+        sat_alpha: float = 0.0  # Initialize for empty/skipped batch cases
         sat_global_batches: int = 0
         sat_pen_global_sum: float = 0.0
         pmax_logit_mean_global_sum: float = 0.0
@@ -1114,7 +1190,11 @@ class KCTrainer:
                 raise RuntimeError("sparse_clamped > 1")
 
             if hasattr(m, "kc_decoders"):
-                outputs["target_logits"] = m.kc_decoders(sparse_clamped)
+                # Pass kc_probs so MSE families can use full probabilities
+                # for gradient flow to KC selection
+                outputs["target_logits"] = m.kc_decoders(
+                    sparse_clamped, kc_probs=outputs["kc_probs"]
+                )
 
             # INVARIANT: target_logits batch dimension must match attention_mask
             target_logits = outputs["target_logits"]
@@ -1172,6 +1252,10 @@ class KCTrainer:
             if batch_idx == 0:
                 self._check_kc_coverage(outputs, kc_targets)
 
+            # Loss accumulation for this batch:
+            # - structural_loss = sum of task_loss for each family (the "struct" component)
+            # - Each family contributes its task_loss.item() directly
+            # - INVARIANT: sum(family loss_means) = struct (validated by checksum)
             loss = torch.tensor(0.0, device=self.device)
             batch_kc_losses: Dict[str, float] = {}
             structural_loss = torch.tensor(0.0, device=self.device)
@@ -1195,78 +1279,215 @@ class KCTrainer:
                     family_accumulators[name] = FamilyAccumulator()
                 fam_acc = family_accumulators[name]
 
-                # Special handling for DB-sourced families (e.g., GRAMMAR_POINT)
-                # These use PNU loss with pos/neg separate arrays
+                # Special handling for DB-sourced families (e.g., GRAMMAR_POINT, GENDER, FORMALITY)
+                # These use PNU loss (KcPnuFamily), MSE loss (KcMseFamily), or CE loss (KcDbClassFamily)
                 if is_family_db_sourced(fid):
-                    gp_pos_key = f"kc_gp_pos_inds_{name}"
-                    gp_pos_mask_key = f"kc_gp_pos_mask_{name}"
-                    gp_neg_key = f"kc_gp_neg_inds_{name}"
-                    gp_neg_mask_key = f"kc_gp_neg_mask_{name}"
+                    from train.kc import KcDbClassFamily, KcPnuFamily
 
-                    if gp_pos_key in kc_targets:
-                        pos_ids = kc_targets[gp_pos_key].to(self.device)
-                        pos_mask = kc_targets[gp_pos_mask_key].to(self.device)
-                        neg_ids = kc_targets[gp_neg_key].to(self.device)
-                        neg_mask = kc_targets[gp_neg_mask_key].to(self.device)
+                    family_def = get_family(fid)
 
-                        task_loss = self._grammar_point_pnu_loss(
-                            logits.float(),
-                            pos_ids,
-                            pos_mask,
-                            neg_ids,
-                            neg_mask,
-                            vocab_size=vocab_size,
-                            unlab_weight=self.kc_config.gp_unlab_weight,
+                    if isinstance(family_def, KcPnuFamily):
+                        # PNU loss for grammar points (pos/neg arrays)
+                        gp_pos_key = f"kc_gp_pos_inds_{name}"
+                        gp_pos_mask_key = f"kc_gp_pos_mask_{name}"
+                        gp_neg_key = f"kc_gp_neg_inds_{name}"
+                        gp_neg_mask_key = f"kc_gp_neg_mask_{name}"
+
+                        if gp_pos_key in kc_targets:
+                            pos_ids = kc_targets[gp_pos_key].to(self.device)
+                            pos_mask = kc_targets[gp_pos_mask_key].to(self.device)
+                            neg_ids = kc_targets[gp_neg_key].to(self.device)
+                            neg_mask = kc_targets[gp_neg_mask_key].to(self.device)
+
+                            task_loss = self._grammar_point_pnu_loss(
+                                logits.float(),
+                                pos_ids,
+                                pos_mask,
+                                neg_ids,
+                                neg_mask,
+                                vocab_size=vocab_size,
+                                unlab_weight=self.kc_config.gp_unlab_weight,
+                            )
+
+                            # Apply per-family loss weight for balanced training
+                            task_loss = task_loss * family_def.loss_weight
+                            batch_kc_losses[f"{name}"] = task_loss.item()
+                            structural_loss = structural_loss + task_loss
+                            num_struct += 1
+
+                            # Accumulator tracking for GRAMMAR_POINT:
+                            # Build synthetic targets from pos/neg for diagnostics
+                            # labeled_pos = 1 where positive, labeled_neg = 1 where negative
+                            labeled_pos = torch.zeros(
+                                logits.size(0), vocab_size, device=self.device
+                            )
+                            labeled_neg = torch.zeros(
+                                logits.size(0), vocab_size, device=self.device
+                            )
+                            valid_pos = pos_ids.clamp(0, vocab_size - 1)
+                            labeled_pos.scatter_(1, valid_pos, pos_mask.float())
+                            valid_neg = neg_ids.clamp(0, vocab_size - 1)
+                            labeled_neg.scatter_(1, valid_neg, neg_mask.float())
+
+                            # targets = labeled_pos (positives are 1, rest 0)
+                            # valid_mask = labeled_pos + labeled_neg (only labeled are valid)
+                            targets_gp = labeled_pos
+                            valid_mask_gp = (labeled_pos + labeled_neg).clamp(0, 1)
+
+                            fam_acc.update(
+                                logits.detach(),
+                                targets_gp.detach(),
+                                pos_mask=None,  # Let update derive from targets
+                                valid_mask=valid_mask_gp.bool(),
+                                source="dense",
+                            )
+
+                            # Update kc_diag so DB-sourced families appear in diagnostics
+                            if not skip_metrics:
+                                # Build sampled representation for kc_diag
+                                # Use valid (labeled) positions only
+                                probs_gp = torch.sigmoid(logits.float()).detach()
+                                gathered_logits_gp = logits.gather(
+                                    1, valid_pos
+                                ).detach()
+                                kc_diag.update_family(
+                                    name,
+                                    pos_ids.detach().cpu(),
+                                    pos_mask.detach().cpu(),
+                                    probs_gp.gather(1, valid_pos).detach().cpu(),
+                                    labeled_pos.gather(1, valid_pos).detach().cpu(),
+                                    task_loss.item(),
+                                    logits=gathered_logits_gp.cpu(),
+                                )
+
+                    elif isinstance(family_def, KcDbClassFamily):
+                        # Multi-class classification for gender_class/formality_class
+                        # Targets are class indices [B] (e.g., 0, 1, 2 for gender)
+                        class_targets = (
+                            kc_targets[f"kc_class_{name}"].to(self.device).long()
                         )
 
-                        task_loss = task_loss * self.kc_config.gp_loss_weight
-                        loss = loss + task_loss
+                        # logits shape: [B, num_classes]
+                        raw_ce_loss = F.cross_entropy(logits, class_targets)
+
+                        # Apply per-family loss weight for balanced training
+                        task_loss = raw_ce_loss * family_def.loss_weight
                         batch_kc_losses[f"{name}"] = task_loss.item()
                         structural_loss = structural_loss + task_loss
                         num_struct += 1
 
-                        # Accumulator tracking for GRAMMAR_POINT:
-                        # Build synthetic targets from pos/neg for diagnostics
-                        # labeled_pos = 1 where positive, labeled_neg = 1 where negative
-                        labeled_pos = torch.zeros(
-                            logits.size(0), vocab_size, device=self.device
-                        )
-                        labeled_neg = torch.zeros(
-                            logits.size(0), vocab_size, device=self.device
-                        )
-                        valid_pos = pos_ids.clamp(0, vocab_size - 1)
-                        labeled_pos.scatter_(1, valid_pos, pos_mask.float())
-                        valid_neg = neg_ids.clamp(0, vocab_size - 1)
-                        labeled_neg.scatter_(1, valid_neg, neg_mask.float())
-
-                        # targets = labeled_pos (positives are 1, rest 0)
-                        # valid_mask = labeled_pos + labeled_neg (only labeled are valid)
-                        targets_gp = labeled_pos
-                        valid_mask_gp = (labeled_pos + labeled_neg).clamp(0, 1)
-
+                        # Update FamilyAccumulator for pos_ex_frac tracking
+                        # Create synthetic binary targets: true class = 1, others = 0
+                        dense_binary = torch.zeros_like(logits)
+                        dense_binary.scatter_(1, class_targets.unsqueeze(1), 1.0)
                         fam_acc.update(
                             logits.detach(),
-                            targets_gp.detach(),
-                            pos_mask=None,  # Let update derive from targets
-                            valid_mask=valid_mask_gp.bool(),
+                            dense_binary.detach(),
+                            pos_mask=None,
+                            valid_mask=None,  # All positions valid for classification
                             source="dense",
                         )
 
-                        # Update kc_diag so DB-sourced families appear in diagnostics
-                        if not skip_metrics:
-                            # Build sampled representation for kc_diag
-                            # Use valid (labeled) positions only
-                            probs_gp = torch.sigmoid(logits.float()).detach()
-                            gathered_logits_gp = logits.gather(1, valid_pos).detach()
+                        # Update diagnostics for classification families
+                        # Treat as binary: true class (positive) vs. all other classes (negatives)
+                        if not skip_metrics and kc_diag is not None:
+                            probs = torch.softmax(logits.float(), dim=-1).detach()
+                            batch_size = logits.size(0)
+                            num_classes = logits.size(1)
+
+                            # Build sampled representation: true class + sample of wrong classes
+                            max_samples = 32  # Sample up to 32 positions per example
+                            pos_ids_list = []
+                            pos_mask_list = []
+                            probs_list = []
+                            targets_list = []
+                            logits_list = []
+
+                            for i in range(batch_size):
+                                true_cls = class_targets[i].item()
+                                # Collect: [true_class, other_classes...]
+                                ids = [true_cls]
+                                target_vals = [1.0]  # True class is positive
+
+                                # Add all other classes as negatives
+                                for c in range(num_classes):
+                                    if c != true_cls and len(ids) < max_samples:
+                                        ids.append(c)
+                                        target_vals.append(0.0)  # Negative
+
+                                # Pad to max_samples
+                                n = len(ids)
+                                ids += [0] * (max_samples - n)
+                                target_vals += [0.0] * (max_samples - n)
+
+                                # Gather probs and logits
+                                ids_tensor = torch.tensor(
+                                    ids[:max_samples], device=self.device
+                                )
+                                probs_vals = probs[i, ids_tensor].cpu().tolist()
+                                logits_vals = (
+                                    logits[i, ids_tensor].detach().cpu().tolist()
+                                )
+
+                                pos_ids_list.append(ids)
+                                pos_mask_list.append(
+                                    [True] * n + [False] * (max_samples - n)
+                                )
+                                probs_list.append(probs_vals)
+                                targets_list.append(target_vals)
+                                logits_list.append(logits_vals)
+
+                            # Convert to tensors
+                            pos_ids_t = torch.tensor(pos_ids_list, dtype=torch.long)
+                            pos_mask_t = torch.tensor(pos_mask_list, dtype=torch.bool)
+                            probs_t = torch.tensor(probs_list, dtype=torch.float32)
+                            targets_t = torch.tensor(targets_list, dtype=torch.float32)
+                            logits_t = torch.tensor(logits_list, dtype=torch.float32)
+
                             kc_diag.update_family(
                                 name,
-                                pos_ids.detach().cpu(),
-                                pos_mask.detach().cpu(),
-                                probs_gp.gather(1, valid_pos).detach().cpu(),
-                                labeled_pos.gather(1, valid_pos).detach().cpu(),
+                                pos_ids_t,
+                                pos_mask_t,
+                                probs_t,
+                                targets_t,
                                 task_loss.item(),
-                                logits=gathered_logits_gp.cpu(),
+                                logits=logits_t,
                             )
+                    else:
+                        # MSE loss for continuous families (gender/formality)
+                        # Get target values from the original batch
+                        target_key = f"kc_continuous_{name}"
+                        if target_key in kc_targets:
+                            targets_cont = (
+                                kc_targets[target_key].to(self.device).float()
+                            )
+
+                            # Invariant: KC samples are all grammatic, no NaNs allowed
+                            if torch.isnan(targets_cont).any():
+                                raise RuntimeError(
+                                    f"NaN detected in MSE targets for {name}. "
+                                    "KC samples must be grammatic with valid targets."
+                                )
+
+                            raw_mse_loss = self._continuous_mse_loss(
+                                logits.float(),
+                                targets_cont,
+                            )
+
+                            # Apply per-family loss weight for balanced training
+                            task_loss = raw_mse_loss * family_def.loss_weight
+                            batch_kc_losses[f"{name}"] = task_loss.item()
+                            structural_loss = structural_loss + task_loss
+                            num_struct += 1
+
+                            # Update MSE family diagnostics separately from label families
+                            if not skip_metrics and kc_diag is not None:
+                                kc_diag.update_mse_family(
+                                    name,
+                                    logits.float(),
+                                    targets_cont,
+                                    task_loss.item(),
+                                )
 
                     continue  # Skip standard dense/sparse path
 
@@ -1377,6 +1598,10 @@ class KCTrainer:
                                 f"n_pos={pos_mask_sampled.sum().item()}, n_neg={neg_count}"
                             )
 
+                        # Apply per-family loss weight for balanced training
+                        family_def_sparse_block = get_family(fid)
+                        task_loss = task_loss * family_def_sparse_block.loss_weight
+
                         if kc_diag is not None:
                             # Construct full-width mask for diagnostics to match idxs/logits
                             diag_pos_mask = torch.cat(
@@ -1440,6 +1665,10 @@ class KCTrainer:
                         # Small-vocab dense path doesn't use gap regularizer
                         task_gap_val = 0.0
 
+                        # Apply per-family loss weight for balanced training
+                        family_def_dense_block = get_family(fid)
+                        task_loss = task_loss * family_def_dense_block.loss_weight
+
                         if kc_diag is not None:
                             with torch.no_grad():
                                 # A1: Keep tensors 2D and aligned (Restore scaffolds)
@@ -1484,6 +1713,8 @@ class KCTrainer:
                     pos_mask_t = kc_targets[mask_key].to(self.device)
                     logits_f = logits.float()
 
+                    # Get family loss weight
+                    family_def_sparse = get_family(fid)
                     task_loss, task_gap_val = self._bce_sampled_from_sparse(
                         logits_f=logits_f,
                         pos_inds=pos_inds,
@@ -1495,6 +1726,7 @@ class KCTrainer:
                         family_name=name,
                         reading_mask_id=reading_mask_id,
                         accumulator=None if skip_metrics else fam_acc,
+                        loss_weight=family_def_sparse.loss_weight,
                     )
 
                     structural_loss += task_loss
@@ -1505,13 +1737,9 @@ class KCTrainer:
             if num_struct > 0:
                 running_struct_loss += structural_loss.item()
                 running_num_struct_total += 1
-            primary_loss = torch.tensor(0.0, device=self.device)
-            gap_loss_tensor = torch.tensor(0.0, device=self.device)
-            if num_struct > 0:
-                primary_loss += structural_loss / num_struct
-                gap_loss_tensor = torch.tensor(
-                    batch_gap_loss / num_struct, device=self.device
-                )
+            # Build combined_loss from components (struct = sum of family losses)
+            primary_loss = structural_loss.clone()
+            gap_loss_tensor = torch.tensor(batch_gap_loss, device=self.device)
 
             loss_primary_val = primary_loss.item()
             combined_loss = primary_loss.clone() + gap_loss_tensor
@@ -1587,8 +1815,8 @@ class KCTrainer:
                     entropy = -(p * log_p).sum()
                     ent_n = entropy / math.log(kc_vocab_size)
 
-                    # Diversity
-                    d_loss = F.relu(s["floor"] - ent_n)
+                    # Diversity (unhinge: always active, targeting entropy_floor)
+                    d_loss = s["floor"] - ent_n
                     if div_weight > 0:
                         div_accum += weight * (div_weight * d_loss)
 
@@ -1597,7 +1825,8 @@ class KCTrainer:
                     lb_val = kl_val / math.log(kc_vocab_size)
 
                     if lb_weight > 0:
-                        lb_l = F.relu(lb_val - self.kc_kl_cap)
+                        # Load balance (unhinge: always active, targeting kl_cap)
+                        lb_l = lb_val - self.kc_kl_cap
                         combined_loss += weight * (lb_weight * lb_l)
                         loss_lb_val += (weight * lb_weight * lb_l).item()
 
@@ -1812,10 +2041,7 @@ class KCTrainer:
 
             loss_spar_val = (spar_w * sparsity_term).item()
 
-            # Scale prior losses by grad_accum_steps to match total_loss calculation
-            # Prior losses are added AFTER combined_loss is divided by gas, then total_loss
-            # multiplies by gas, so prior losses end up scaled by gas.
-            # Saturation is part of combined_loss (already divided by gas), so no scaling.
+            # Build loss components for display (all values are raw sums per batch)
             gas = self.config.grad_accum_steps
             current_epoch_comp = {
                 "struct": structural_loss.item(),
@@ -1830,15 +2056,10 @@ class KCTrainer:
                 "saturation": loss_sat_val,  # Part of combined_loss, no gas scaling
             }
 
+            # Accumulate for epoch summary (values match what goes into loss)
             current_comp = RunningLossComponents(
-                struct=(
-                    (current_epoch_comp["struct"] / num_struct)
-                    if num_struct > 0
-                    else 0.0
-                ),
-                gap=(
-                    (current_epoch_comp["gap"] / num_struct) if num_struct > 0 else 0.0
-                ),
+                struct=current_epoch_comp["struct"],
+                gap=current_epoch_comp["gap"],
                 formality=current_epoch_comp["formality"],
                 gender=current_epoch_comp["gender"],
                 register=current_epoch_comp["register"],
@@ -2088,6 +2309,16 @@ class KCTrainer:
                         bias_change = (decoder_lin.bias - bias_start[name]).abs().sum()
                         fam_diag.bias_delta = float(bias_change.item())
 
+        # Compute bias_delta for MSE families
+        for mse_name, mse_diag in diag_report.mse_families.items():
+            if mse_name in bias_start and mse_name in m.kc_decoders.decoders:
+                mse_decoder = m.kc_decoders.decoders[mse_name]
+                if hasattr(mse_decoder, "bias") and mse_decoder.bias is not None:
+                    mse_bias_change = (
+                        (mse_decoder.bias - bias_start[mse_name]).abs().sum()
+                    )
+                    mse_diag.bias_delta = float(mse_bias_change.item())
+
         # KcLossWeights for display - most losses are already weighted in storage,
         # only prior losses (formality/gender/register) need their weight applied.
         # Use defaults: struct=1.0, gap=1.0, prior=0.2, others=1.0 (already weighted)
@@ -2102,7 +2333,8 @@ class KCTrainer:
             diagnostics=diag_report,
             weights=loss_weights,
             n_batches=n_batches,
-            total_loss=total_loss / n_batches,  # Per-batch average for validation
+            total_loss=total_loss
+            / max(1, n_batches),  # Per-batch average (guard div-by-zero)
         )
 
         # Skip full diagnostics for early epochs (performance optimization)

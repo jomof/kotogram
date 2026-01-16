@@ -5,7 +5,7 @@ import torch
 
 from train.config import DataLoaderConfig, TrainerConfig
 from train.dataset import StyleDataset
-from train.models import StyleClassifierWithKC
+from train.models import TrainingClassifier
 from train.trainer import KCTrainer
 
 
@@ -14,6 +14,12 @@ class DummyDataset(StyleDataset):
     def __init__(self):
         self.tokenizer = MagicMock()
         self.tokenizer.pad_id = 0
+        # Add required attributes for style oversampling
+        self.indices = torch.arange(10)
+        self.labels = {
+            "f_val": torch.zeros(10, dtype=torch.float32),
+            "g_val": torch.zeros(10, dtype=torch.float32),
+        }
 
     def __len__(self):
         return 10
@@ -27,7 +33,7 @@ class DummyDataset(StyleDataset):
 
 class TestKCProfiling(unittest.TestCase):
     def setUp(self):
-        self.mock_model = MagicMock(spec=StyleClassifierWithKC)
+        self.mock_model = MagicMock(spec=TrainingClassifier)
         # Mocking config within model
         # We need to explicitly set the config mock to allow setting attributes on it
         self.mock_model.config = MagicMock()

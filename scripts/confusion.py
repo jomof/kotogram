@@ -19,7 +19,7 @@ from kotogram import locations
 from kotogram.model import (
     NUM_REGISTER_CLASSES,
     REGISTER_ID_TO_LABEL,
-    StyleClassifier,
+    InferenceClassifier,
     load_model,
 )
 from train import paths
@@ -76,7 +76,7 @@ def calculate_metrics(
     model: nn.Module, loader: DataLoader, device: torch.device
 ) -> EvalResultDict:
     """Run inference using Evaluator."""
-    evaluator = Evaluator(cast(StyleClassifier, model), device)
+    evaluator = Evaluator(cast(InferenceClassifier, model), device)
     result = evaluator.evaluate(loader)
     return result.to_dict()
 

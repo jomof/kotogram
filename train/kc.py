@@ -66,6 +66,10 @@ class KcFamilyId(str, Enum):
 
     # DB-Sourced Families (labels from corpus.db, not computed)
     GRAMMAR_POINT = "grammar_point"
+    GENDER = "gender"
+    FORMALITY = "formality"
+    GENDER_CLASS = "gender_class"  # Classification version (3 classes: -1, 0, +1)
+    FORMALITY_CLASS = "formality_class"  # Classification version (5 classes)
 
 
 # =============================================================================
@@ -118,6 +122,20 @@ class KcFamily(ABC):
         """Whether to filter UNK tokens from this family's targets."""
         return False
 
+    @property
+    def is_slim_decoder(self) -> bool:
+        """True if this decoder should be stripped from slim (exported) models."""
+        return True
+
+    @property
+    def loss_weight(self) -> float:
+        """Per-family loss multiplier for balanced training.
+
+        Weights are calibrated so all families contribute roughly equally
+        on epoch 1 and sum to ~10.0 total. Derived from calibration runs.
+        """
+        return 1.0
+
 
 @dataclass(frozen=True)
 class KcBagFamily(KcFamily):
@@ -125,6 +143,7 @@ class KcBagFamily(KcFamily):
 
     _feature_field: str
     _filter_unk: bool = False
+    _loss_weight: float = 1.0
 
     @property
     def is_sparse(self) -> bool:
@@ -142,6 +161,10 @@ class KcBagFamily(KcFamily):
     def filter_unk(self) -> bool:
         return self._filter_unk
 
+    @property
+    def loss_weight(self) -> float:
+        return self._loss_weight
+
 
 @dataclass(frozen=True)
 class KcTailFamily(KcFamily):
@@ -149,6 +172,7 @@ class KcTailFamily(KcFamily):
 
     _feature_field: str
     _filter_unk: bool = False
+    _loss_weight: float = 1.0
 
     @property
     def is_sparse(self) -> bool:
@@ -169,6 +193,10 @@ class KcTailFamily(KcFamily):
     @property
     def filter_unk(self) -> bool:
         return self._filter_unk
+
+    @property
+    def loss_weight(self) -> float:
+        return self._loss_weight
 
 
 @dataclass(frozen=True)
@@ -179,6 +207,7 @@ class KcNgramFamily(KcFamily):
     _bucket_size: int
     _salt: int
     _filter_unk: bool = False
+    _loss_weight: float = 1.0
 
     @property
     def is_sparse(self) -> bool:
@@ -204,6 +233,10 @@ class KcNgramFamily(KcFamily):
     def filter_unk(self) -> bool:
         return self._filter_unk
 
+    @property
+    def loss_weight(self) -> float:
+        return self._loss_weight
+
 
 @dataclass(frozen=True)
 class KcTailNgramFamily(KcFamily):
@@ -213,6 +246,7 @@ class KcTailNgramFamily(KcFamily):
     _bucket_size: int
     _salt: int
     _filter_unk: bool = False
+    _loss_weight: float = 1.0
 
     @property
     def is_sparse(self) -> bool:
@@ -242,10 +276,20 @@ class KcTailNgramFamily(KcFamily):
     def filter_unk(self) -> bool:
         return self._filter_unk
 
+    @property
+    def loss_weight(self) -> float:
+        return self._loss_weight
+
 
 @dataclass(frozen=True)
-class KcDbFamily(KcFamily):
-    """DB-sourced families with targets from corpus.db labels."""
+class KcPnuFamily(KcFamily):
+    """DB-sourced families using PNU (Positive-Negative-Unlabeled) loss.
+
+    Used for families like GRAMMAR_POINT where targets come from corpus.db
+    and use pos/neg separate arrays for training.
+    """
+
+    _loss_weight: float = 1.0
 
     @property
     def is_sparse(self) -> bool:
@@ -259,57 +303,143 @@ class KcDbFamily(KcFamily):
     def feature_field(self) -> str:
         return ""  # No tokenizer feature, targets from DB
 
+    @property
+    def is_slim_decoder(self) -> bool:
+        return False  # Needed at inference time for grammar point prediction
+
+    @property
+    def loss_weight(self) -> float:
+        return self._loss_weight
+
+
+@dataclass(frozen=True)
+class KcMseFamily(KcFamily):
+    """DB-sourced families using MSE loss for continuous scalar targets.
+
+    Used for families like GENDER and FORMALITY where targets are
+    continuous float values (typically in range [0, 1]).
+    """
+
+    _loss_weight: float = 1.0
+
+    @property
+    def is_sparse(self) -> bool:
+        return False  # Single scalar output
+
+    @property
+    def is_db_sourced(self) -> bool:
+        return True
+
+    @property
+    def feature_field(self) -> str:
+        return ""  # No tokenizer feature, targets from batch
+
+    @property
+    def is_slim_decoder(self) -> bool:
+        return False  # Needed at inference time
+
+    @property
+    def loss_weight(self) -> float:
+        return self._loss_weight
+
+
+@dataclass(frozen=True)
+class KcDbClassFamily(KcFamily):
+    """DB-sourced families using multi-class classification (dense BCE/CE loss).
+
+    Used for classification versions of GENDER and FORMALITY where continuous
+    values are discretized into class labels for comparison with MSE approach.
+    """
+
+    _num_classes: int = 3
+    _loss_weight: float = 1.0
+
+    @property
+    def is_sparse(self) -> bool:
+        return False  # Dense multi-class output
+
+    @property
+    def is_db_sourced(self) -> bool:
+        return True
+
+    @property
+    def feature_field(self) -> str:
+        return ""  # No tokenizer feature, targets from batch
+
+    @property
+    def is_slim_decoder(self) -> bool:
+        return True  # Experimental, not needed at inference
+
+    @property
+    def loss_weight(self) -> float:
+        return self._loss_weight
+
+    @property
+    def num_classes(self) -> int:
+        return self._num_classes
+
 
 # =============================================================================
 # Family Registry
 # =============================================================================
 
 # All KC family instances, keyed by their ID
+# Loss weights calibrated so all families contribute ~0.526 (10/19) on epoch 1.
+# weight = 0.526 / epoch1_loss
 KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
-    # Bag families (dense, full sequence)
+    # Bag families (dense, full sequence) - Reduced to 20% for style family balance
     KcFamilyId.BAG_READING_GRAM: KcBagFamily(
         family_id=KcFamilyId.BAG_READING_GRAM,
         _feature_field="reading_gram",
+        _loss_weight=0.030,  # Reduced from 0.149 (20%)
     ),
     KcFamilyId.BAG_POS: KcBagFamily(
         family_id=KcFamilyId.BAG_POS,
         _feature_field="pos",
+        _loss_weight=0.137,  # Reduced from 0.683 (20%)
     ),
     KcFamilyId.BAG_COMPOUND_1: KcBagFamily(
         family_id=KcFamilyId.BAG_COMPOUND_1,
         _feature_field="compound_1",
         _filter_unk=True,
+        _loss_weight=0.057,  # Reduced from 0.283 (20%)
     ),
     KcFamilyId.BAG_CONJUGATED_TYPE: KcBagFamily(
         family_id=KcFamilyId.BAG_CONJUGATED_TYPE,
         _feature_field="conjugated_type",
         _filter_unk=True,
+        _loss_weight=0.062,  # Reduced from 0.308 (20%)
     ),
-    # Tail families (dense, tail window)
+    # Tail families (dense, tail window) - Reduced to 20%
     KcFamilyId.TAIL_READING_GRAM: KcTailFamily(
         family_id=KcFamilyId.TAIL_READING_GRAM,
         _feature_field="reading_gram",
+        _loss_weight=0.028,  # Reduced from 0.139 (20%)
     ),
     KcFamilyId.TAIL_POS: KcTailFamily(
         family_id=KcFamilyId.TAIL_POS,
         _feature_field="pos",
+        _loss_weight=0.107,  # Reduced from 0.537 (20%)
     ),
     KcFamilyId.TAIL_COMPOUND_1: KcTailFamily(
         family_id=KcFamilyId.TAIL_COMPOUND_1,
         _feature_field="compound_1",
         _filter_unk=True,
+        _loss_weight=0.048,  # Reduced from 0.240 (20%)
     ),
     KcFamilyId.TAIL_CONJUGATED_TYPE: KcTailFamily(
         family_id=KcFamilyId.TAIL_CONJUGATED_TYPE,
         _feature_field="conjugated_type",
         _filter_unk=True,
+        _loss_weight=0.057,  # Reduced from 0.284 (20%)
     ),
-    # Ngram families (sparse, full sequence)
+    # Ngram families (sparse, full sequence) - Reduced to 20%
     KcFamilyId.NGRAM_POS: KcNgramFamily(
         family_id=KcFamilyId.NGRAM_POS,
         _feature_field="pos",
         _bucket_size=2048,
         _salt=101,
+        _loss_weight=0.004,  # Reduced from 0.022 (20%)
     ),
     KcFamilyId.NGRAM_COMPOUND_1: KcNgramFamily(
         family_id=KcFamilyId.NGRAM_COMPOUND_1,
@@ -317,6 +447,7 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         _bucket_size=8192 * 4,
         _salt=102,
         _filter_unk=True,
+        _loss_weight=0.003,  # Reduced from 0.015 (20%)
     ),
     KcFamilyId.NGRAM_CONJUGATED_TYPE: KcNgramFamily(
         family_id=KcFamilyId.NGRAM_CONJUGATED_TYPE,
@@ -324,19 +455,22 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         _bucket_size=8192,
         _salt=104,
         _filter_unk=True,
+        _loss_weight=0.0005,  # Reduced from 0.0025 (20%)
     ),
     KcFamilyId.NGRAM_READING_GRAM: KcNgramFamily(
         family_id=KcFamilyId.NGRAM_READING_GRAM,
         _feature_field="reading_gram",
         _bucket_size=262144,  # 2^18: 234K unique ngrams
         _salt=105,
+        _loss_weight=0.004,  # Reduced from 0.022 (20%)
     ),
-    # Tail ngram families (sparse, tail window)
+    # Tail ngram families (sparse, tail window) - Reduced to 20%
     KcFamilyId.TAIL_NGRAM_POS: KcTailNgramFamily(
         family_id=KcFamilyId.TAIL_NGRAM_POS,
         _feature_field="pos",
         _bucket_size=1024,
         _salt=201,
+        _loss_weight=0.001,  # Reduced from 0.0046 (20%)
     ),
     KcFamilyId.TAIL_NGRAM_COMPOUND_1: KcTailNgramFamily(
         family_id=KcFamilyId.TAIL_NGRAM_COMPOUND_1,
@@ -344,6 +478,7 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         _bucket_size=8192 * 2,
         _salt=202,
         _filter_unk=True,
+        _loss_weight=0.0006,  # Reduced from 0.0032 (20%)
     ),
     KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE: KcTailNgramFamily(
         family_id=KcFamilyId.TAIL_NGRAM_CONJUGATED_TYPE,
@@ -351,16 +486,38 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
         _bucket_size=8192,
         _salt=204,
         _filter_unk=True,
+        _loss_weight=0.0003,  # Reduced from 0.0017 (20%)
     ),
     KcFamilyId.TAIL_NGRAM_READING_GRAM: KcTailNgramFamily(
         family_id=KcFamilyId.TAIL_NGRAM_READING_GRAM,
         _feature_field="reading_gram",
         _bucket_size=131072,  # 2^17: 115K unique ngrams
         _salt=205,
+        _loss_weight=0.0007,  # Reduced from 0.0034 (20%)
     ),
     # DB-sourced families
-    KcFamilyId.GRAMMAR_POINT: KcDbFamily(
+    KcFamilyId.GRAMMAR_POINT: KcPnuFamily(
         family_id=KcFamilyId.GRAMMAR_POINT,
+        _loss_weight=0.088,  # epoch1_loss=6.00
+    ),
+    KcFamilyId.GENDER: KcMseFamily(
+        family_id=KcFamilyId.GENDER,
+        _loss_weight=2.0,  # Original weight (not 100x)
+    ),
+    KcFamilyId.FORMALITY: KcMseFamily(
+        family_id=KcFamilyId.FORMALITY,
+        _loss_weight=1.74,  # Original weight (not 100x)
+    ),
+    # Classification versions (for comparison with MSE)
+    KcFamilyId.GENDER_CLASS: KcDbClassFamily(
+        family_id=KcFamilyId.GENDER_CLASS,
+        _num_classes=3,  # Masculine (-1), Neutral (0), Feminine (+1)
+        _loss_weight=1.0,
+    ),
+    KcFamilyId.FORMALITY_CLASS: KcDbClassFamily(
+        family_id=KcFamilyId.FORMALITY_CLASS,
+        _num_classes=5,  # Very Casual, Casual, Neutral, Formal, Very Formal
+        _loss_weight=1.0,
     ),
 }
 

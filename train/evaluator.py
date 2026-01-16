@@ -4,7 +4,7 @@ from typing import Any, Dict, List, TypedDict
 import torch
 from torch.utils.data import DataLoader
 
-from kotogram.model import StyleClassifier
+from kotogram.model import InferenceClassifier
 from kotogram.tokenizer import ENCODER_FEATURE_FIELDS
 
 
@@ -79,7 +79,7 @@ class Evaluator:
     """Encapsulates model evaluation logic."""
 
     def __init__(
-        self, model: StyleClassifier, device: torch.device, verbose: bool = True
+        self, model: InferenceClassifier, device: torch.device, verbose: bool = True
     ):
         self.model = model
         self.device = device

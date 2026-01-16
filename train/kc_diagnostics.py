@@ -10,6 +10,7 @@ import torch
 from train.types import (
     KCDiagnosticFamilyStats,
     KCDiagnosticReport,
+    KCMseFamilyStats,
 )
 
 # Pylint suppressions for diagnostic complexity
@@ -37,9 +38,9 @@ class FamilyStats:
     num_examples: int = 0
     num_empty: int = 0
 
-    # Loss
-    sum_nll: float = 0.0
-    count_nll: int = 0
+    # Loss (true contribution tracking)
+    sum_loss: float = 0.0  # Sum of task_loss.item() across batches
+    batch_count: int = 0  # Number of batches
 
     # Predictions (New)
     sum_prob_pos: float = 0.0
@@ -94,11 +95,28 @@ class FamilyStats:
                 self.unique_ids.clear()  # Free memory
 
 
+@dataclass
+class MseFamilyStats:
+    """Accumulator for MSE (regression) family statistics."""
+
+    # Accumulators for online statistics
+    batch_count: int = 0  # Number of batches
+    sample_count: int = 0  # Number of samples (for other metrics)
+    sum_loss: float = 0.0  # Sum of task_loss.item() across batches
+    sum_pred: float = 0.0
+    sum_target: float = 0.0
+    sum_pred_sq: float = 0.0  # For variance
+    sum_target_sq: float = 0.0
+    sum_cross: float = 0.0  # For correlation (sum of pred * target)
+    correct_01: int = 0  # Count within ±0.1
+
+
 class KCEpochDiag:
     """Accumulates and reports per-epoch KC diagnostics."""
 
     def __init__(self) -> None:
         self.families: Dict[str, FamilyStats] = {}
+        self.mse_families: Dict[str, MseFamilyStats] = {}
         # We need a stable hash capability if we want to report collisions on hashed values,
         # but the inputs to update are typically already hashed or raw IDs.
         # We assume 'pos_ids' passed to update are the relevant IDs for collision checking.
@@ -154,19 +172,22 @@ class KCEpochDiag:
             )
 
         # 1. Target Rate & Cardinality
-        batch_size = pos_mask.size(0)
 
-        # Count positives per example (stays on GPU, just get int counts)
-        pos_counts = pos_mask.sum(dim=1)
-        total_pos = int(pos_counts.sum().item())
+        # Count actual positives (targets == 1 where pos_mask is True)
+        targets_float = targets.float()
+        actual_positives = (targets_float * pos_mask.float()).sum()
+        total_pos = int(actual_positives.item())
         stats.num_pos += total_pos
 
-        # Cardinality tracking - convert counts to CPU once
+        # Cardinality tracking: count positives per example
+        pos_counts = (targets_float * pos_mask.float()).sum(dim=1)
         counts_list = pos_counts.cpu().tolist()
         for c in counts_list:
-            stats.add_cardinality(c)
+            stats.add_cardinality(int(c))
 
-        stats.num_total_labels += int(targets.numel())
+        # Count only valid labels (where pos_mask is True), not all tensor elements
+        total_valid_labels = int(pos_mask.sum().item())
+        stats.num_total_labels += total_valid_labels
 
         # 2. Collisions (Track usage of IDs) - OPTIMIZED
         # Only compute valid_pos_ids_cached if we need it for:
@@ -232,14 +253,49 @@ class KCEpochDiag:
             stats.sum_logit_neg += (l_detach * neg_mask_float).sum().item()
             stats.count_logit_neg += num_neg_samples
 
-        # 4. Loss
-        stats.sum_nll += nll * batch_size
-        stats.count_nll += batch_size
+        # 4. Loss (true contribution per batch)
+        stats.sum_loss += nll  # nll = task_loss.item() per batch
+        stats.batch_count += 1
 
         # 5. Masking (specific to reading_gram) - OPTIMIZED: reuse cached valid_pos_ids
         if mask_id is not None and valid_pos_ids_cached is not None:
             stats.mask_count += int((valid_pos_ids_cached == mask_id).sum().item())
             stats.total_token_count += total_pos
+
+    def update_mse_family(
+        self,
+        family_name: str,
+        preds: torch.Tensor,  # [B] or [B, 1] predictions
+        targets: torch.Tensor,  # [B] or [B, 1] targets
+        loss: float,  # Batch MSE loss (already computed)
+    ) -> None:
+        """Update MSE family diagnostics with a batch of predictions."""
+        if family_name not in self.mse_families:
+            self.mse_families[family_name] = MseFamilyStats()
+        stats = self.mse_families[family_name]
+
+        # Flatten to 1D
+        p = preds.squeeze().detach()
+        t = targets.squeeze().detach()
+        if p.dim() == 0:
+            p = p.unsqueeze(0)
+            t = t.unsqueeze(0)
+
+        batch_size = p.numel()
+        stats.batch_count += 1  # Count batches for loss averaging
+        stats.sample_count += batch_size  # Count samples for other metrics
+        stats.sum_loss += loss  # loss = task_loss.item() per batch
+
+        # Accumulate for mean/variance/correlation
+        stats.sum_pred += p.sum().item()
+        stats.sum_target += t.sum().item()
+        stats.sum_pred_sq += (p**2).sum().item()
+        stats.sum_target_sq += (t**2).sum().item()
+        stats.sum_cross += (p * t).sum().item()
+
+        # Accuracy within ±0.1
+        correct = ((p - t).abs() < 0.1).sum().item()
+        stats.correct_01 += int(correct)
 
     def get_stats(self) -> KCDiagnosticReport:
         """Return structured statistics."""
@@ -262,11 +318,11 @@ class KCEpochDiag:
 
             empty_pct = s.num_empty / max(1, s.num_examples)
 
-            # Preds
-            nll = s.sum_nll / max(1, s.count_nll)
+            # Loss per batch (true contribution)
+            loss_per_batch = s.sum_loss / max(1, s.batch_count)
             p = max(1e-6, min(rate, 1 - 1e-6))
             bias_nll = -(rate * math.log(p) + (1 - rate) * math.log(1 - p))
-            dnll = nll - bias_nll
+            dnll = loss_per_batch - bias_nll
 
             # Mask
             mask_pct = 0.0
@@ -292,6 +348,13 @@ class KCEpochDiag:
             recall_01 = s.tp_01_count / max(1, s.count_prob_pos)
             recall_05 = s.tp_05_count / max(1, s.count_prob_pos)
 
+            # Accuracy = (TP + TN) / (TP + TN + FP + FN)
+            # TN = total_neg - FP
+            tp_count = s.tp_05_count  # Using 0.5 threshold
+            tn_count = max(0, s.count_prob_neg - s.fp_count)
+            total_count = s.count_prob_pos + s.count_prob_neg
+            accuracy = (tp_count + tn_count) / max(1, total_count)
+
             family_stats = KCDiagnosticFamilyStats(
                 rate=rate,
                 p50=p50,
@@ -299,7 +362,7 @@ class KCEpochDiag:
                 empty_pct=empty_pct,
                 dnll=dnll,
                 mask_pct=mask_pct,
-                loss_mean=nll,
+                loss_mean=loss_per_batch,
                 prob_pos_mean=prob_pos_mean,
                 prob_neg_mean=prob_neg_mean,
                 auc_proxy=auc_proxy,
@@ -311,10 +374,49 @@ class KCEpochDiag:
                 delta_p=delta_p,
                 recall_01=recall_01,
                 recall_05=recall_05,
+                accuracy=accuracy,
             )
             data[name] = family_stats
 
-        return KCDiagnosticReport(families=data)
+        # Compute MSE family stats
+        mse_data: Dict[str, KCMseFamilyStats] = {}
+        mse_name: str
+        mse_s: MseFamilyStats
+        for mse_name, mse_s in sorted(self.mse_families.items()):
+            n_batches = max(1, mse_s.batch_count)
+            n_samples = max(1, mse_s.sample_count)
+
+            # Loss per batch (true contribution)
+            loss_per_batch = mse_s.sum_loss / n_batches
+            accuracy_01 = mse_s.correct_01 / n_samples
+
+            # Mean values (per sample)
+            mean_pred = mse_s.sum_pred / n_samples
+            mean_target = mse_s.sum_target / n_samples
+            mean_bias = mean_pred - mean_target
+
+            # Variance of predictions: E[X^2] - E[X]^2
+            var_pred = max(0, mse_s.sum_pred_sq / n_samples - mean_pred**2)
+            pred_std = math.sqrt(var_pred)
+
+            # Pearson correlation: cov(P,T) / (std_P * std_T)
+            var_target = max(0, mse_s.sum_target_sq / n_samples - mean_target**2)
+            cov_pt = mse_s.sum_cross / n_samples - mean_pred * mean_target
+            std_target = math.sqrt(var_target)
+            if pred_std > 1e-6 and std_target > 1e-6:
+                correlation = cov_pt / (pred_std * std_target)
+            else:
+                correlation = 0.0
+
+            mse_data[mse_name] = KCMseFamilyStats(
+                loss_mean=loss_per_batch,
+                accuracy_01=accuracy_01,
+                correlation=correlation,
+                mean_bias=mean_bias,
+                pred_std=pred_std,
+            )
+
+        return KCDiagnosticReport(families=data, mse_families=mse_data)
 
 
 # --- Formatting ---

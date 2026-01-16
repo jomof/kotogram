@@ -5,19 +5,31 @@ from typing import Any, Dict, Optional
 import torch
 from torch import nn
 
-from kotogram.model import ModelConfig, StyleClassifier
+from kotogram.model import InferenceClassifier, ModelConfig
 from train.kc import KcFamilyId
 
 
 class KCDecoder(nn.Module):
     """Decoder for predicting sentence-level attributes from KC activations.
 
-    Architecture:
-    - Shared hidden layer 1: kc_vocab_size -> hidden_dim (default 256)
-    - ReLU activation
-    - Shared hidden layer 2: hidden_dim -> hidden_dim
-    - ReLU activation
-    - Per-family output heads: hidden_dim -> vocab_size
+    Architecture (Separated Pathways):
+    - For MSE families (gender/formality - style features):
+      - Dedicated hidden layer 1: kc_vocab_size -> hidden_dim (default 256)
+      - ReLU activation
+      - Dedicated hidden layer 2: hidden_dim -> hidden_dim
+      - ReLU activation
+      - Per-family output heads: hidden_dim -> 1
+      - Tanh activation (bounded to [-1, 1])
+
+    - For label families (structural features - grammar_point, n-grams, etc.):
+      - Dedicated hidden layer 1: kc_vocab_size -> hidden_dim (default 256)
+      - ReLU activation
+      - Dedicated hidden layer 2: hidden_dim -> hidden_dim
+      - ReLU activation
+      - Per-family output heads: hidden_dim -> vocab_size
+
+    Rationale: Style features (continuous regression) and structural features
+    (multi-label classification) benefit from separate representation pathways.
     """
 
     def __init__(
@@ -27,25 +39,97 @@ class KCDecoder(nn.Module):
         hidden_dim: int = 256,
     ):
         super().__init__()
-        # Shared hidden layers for all families
-        self.hidden1 = nn.Linear(kc_vocab_size, hidden_dim)
-        self.hidden2 = nn.Linear(hidden_dim, hidden_dim)
         self.activation = nn.ReLU()
+        self.tanh = nn.Tanh()
 
-        # Per-family output heads from shared hidden
+        # Derive MSE families from registry
+        from train.kc import KC_FAMILIES, KcMseFamily
+
+        self._mse_families = frozenset(
+            fid.name.lower()
+            for fid, fam in KC_FAMILIES.items()
+            if isinstance(fam, KcMseFamily) and fid in target_specs
+        )
+
+        # Separate hidden layers for MSE families (style features)
+        self.mse_hidden1 = nn.Linear(kc_vocab_size, hidden_dim)
+        self.mse_hidden2 = nn.Linear(hidden_dim, hidden_dim)
+
+        # Separate hidden layers for label families (structural features)
+        self.label_hidden1 = nn.Linear(kc_vocab_size, hidden_dim)
+        self.label_hidden2 = nn.Linear(hidden_dim, hidden_dim)
+
+        # Per-family output heads
         self.decoders = nn.ModuleDict()
+        self.mse_decoders = nn.ModuleDict()
+
         for fid, vocab_size in target_specs.items():
-            # nn.ModuleDict requires string keys
-            self.decoders[fid.name.lower()] = nn.Linear(hidden_dim, vocab_size)
+            name = fid.name.lower()
+            if name in self._mse_families:
+                # MSE families: use MSE hidden pathway → output → Tanh
+                self.mse_decoders[name] = nn.Linear(hidden_dim, vocab_size)
+            else:
+                # Label families: use label hidden pathway → output
+                self.decoders[name] = nn.Linear(hidden_dim, vocab_size)
 
-    def forward(self, kc_activations: torch.Tensor) -> Dict[str, torch.Tensor]:
-        h = self.activation(self.hidden1(kc_activations))
-        h = self.activation(self.hidden2(h))
-        return {name: decoder(h) for name, decoder in self.decoders.items()}
+    def forward(
+        self,
+        kc_activations: torch.Tensor,
+        kc_probs: torch.Tensor,
+    ) -> Dict[str, torch.Tensor]:
+        """Decode KC activations to family outputs.
+
+        Args:
+            kc_activations: Sparse KC activations [B, kc_vocab_size] (top-k non-zero)
+            kc_probs: Full KC probabilities [B, kc_vocab_size] (all values)
+
+        Returns:
+            Dict mapping family name to output tensor.
+
+        Strategy:
+            - Style families (gender, formality, gender_class, formality_class):
+              Use kc_probs (full distribution) since style is encoded diffusely
+            - Structural families (grammar_point, n-grams, particles):
+              Use kc_activations (sparse top-k) since structure is localized
+        """
+        result = {}
+
+        # MSE pathway: Process style features (gender, formality)
+        # Uses FULL KC probabilities (not sparse top-k) since style is diffuse
+        if self.mse_decoders:
+            h_mse = self.activation(self.mse_hidden1(kc_probs))
+            h_mse = self.activation(self.mse_hidden2(h_mse))
+
+            for name, decoder in self.mse_decoders.items():
+                out = decoder(h_mse)
+                out = self.tanh(out)  # Bound to [-1, 1]
+                result[name] = out
+
+        # Label pathway: Structural features use sparse, style classification uses full
+        if self.decoders:
+            # Style classification families (also diffuse like MSE)
+            style_class_families = {"gender_class", "formality_class"}
+
+            for name, decoder in self.decoders.items():
+                if name in style_class_families:
+                    # Style classification: use full KC probs (diffuse signal)
+                    h_label = self.activation(self.label_hidden1(kc_probs))
+                    h_label = self.activation(self.label_hidden2(h_label))
+                else:
+                    # Structural features: use sparse activations (localized signal)
+                    h_label = self.activation(self.label_hidden1(kc_activations))
+                    h_label = self.activation(self.label_hidden2(h_label))
+
+                result[name] = decoder(h_label)
+
+        return result
 
 
-class StyleClassifierWithKC(StyleClassifier):
+class TrainingClassifier(InferenceClassifier):
     """Multi-task style classifier with KC pretraining support."""
+
+    # Override type from base class - training uses KCDecoder, inference uses KCDecoderInference
+    kc_decoders: KCDecoder  # type: ignore[assignment]
 
     def __init__(
         self,
@@ -185,7 +269,7 @@ class StyleClassifierWithKC(StyleClassifier):
         sparse_activations = torch.zeros_like(kc_probs)
         sparse_activations.scatter_(1, topk_inds, topk_vals)
 
-        target_logits = self.kc_decoders(sparse_activations)
+        target_logits = self.kc_decoders(sparse_activations, kc_probs)
 
         return {
             "kc_logits": kc_logits,

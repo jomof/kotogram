@@ -27,20 +27,20 @@ class TestComputeKBudget(unittest.TestCase):
         content_len = torch.tensor([2.0, 3.0])
         k_budget = compute_k_budget(content_len, self.config, self.device)
 
-        # len=2: ceil(0.4 * 2) = 1, +3 bonus = 4, clamp [2, 8] -> 4
-        # len=3: ceil(0.4 * 3) = 2, +3 bonus = 5, clamp [2, 8] -> 5
-        expected = torch.tensor([4, 5], dtype=torch.long)
+        # len=2: ceil(0.4 * 2) = 1, +6 bonus = 7, clamp [2, 8] -> 7
+        # len=3: ceil(0.4 * 3) = 2, +6 bonus = 8, clamp [2, 8] -> 8
+        expected = torch.tensor([7, 8], dtype=torch.long)
         self.assertTrue(torch.equal(k_budget, expected), f"Got {k_budget}")
 
     def test_medium_sentence_with_bonus(self):
-        """Bin 4-7 and 8-15: Medium sentences (4-15 tokens) get +3 bonus."""
+        """Bin 4-7 and 8-15: Medium sentences (4-15 tokens) get +6 bonus."""
         content_len = torch.tensor([6.0, 10.0, 15.0])
         k_budget = compute_k_budget(content_len, self.config, self.device)
 
-        # len=6: ceil(0.4 * 6) = 3, +3 bonus = 6, clamp [2, 8] -> 6
-        # len=10: ceil(0.4 * 10) = 4, +3 bonus = 7, clamp [2, 8] -> 7
-        # len=15: ceil(0.4 * 15) = 6, +3 bonus = 9, clamp [2, 8] -> 8 (clamped)
-        expected = torch.tensor([6, 7, 8], dtype=torch.long)
+        # len=6: ceil(0.4 * 6) = 3, +6 bonus = 9, clamp [2, 8] -> 8
+        # len=10: ceil(0.4 * 10) = 4, +6 bonus = 10, clamp [2, 8] -> 8
+        # len=15: ceil(0.4 * 15) = 6, +6 bonus = 12, clamp [2, 8] -> 8 (clamped)
+        expected = torch.tensor([8, 8, 8], dtype=torch.long)
         self.assertTrue(torch.equal(k_budget, expected), f"Got {k_budget}")
 
     def test_long_sentence_no_bonus(self):
@@ -59,7 +59,7 @@ class TestComputeKBudget(unittest.TestCase):
         content_len = torch.tensor([15.0, 16.0, 19.0, 20.0])
         k_budget = compute_k_budget(content_len, self.config, self.device)
 
-        # len=15: ceil(0.4 * 15) = 6, +3 bonus = 9, clamp [2, 8] -> 8
+        # len=15: ceil(0.4 * 15) = 6, +6 bonus = 12, clamp [2, 8] -> 8
         # len=16: ceil(0.4 * 16) = 7, no bonus (>15), clamp [2, 8] -> 7
         # len=19: ceil(0.4 * 19) = 8, no bonus, clamp [2, 8] -> 8
         # len=20: ceil(0.55 * 20) = 11, no bonus, clamp [2, 16] -> 11
@@ -71,9 +71,9 @@ class TestComputeKBudget(unittest.TestCase):
         content_len = torch.tensor([1.0])
         k_budget = compute_k_budget(content_len, self.config, self.device)
 
-        # len=1: ceil(0.4 * 1) = 1, +3 bonus = 4, clamp [2, 8] -> 4
+        # len=1: ceil(0.4 * 1) = 1, +6 bonus = 7, clamp [2, 8] -> 7
         # (min_k would only matter if result < 2)
-        expected = torch.tensor([4], dtype=torch.long)
+        expected = torch.tensor([7], dtype=torch.long)
         self.assertTrue(torch.equal(k_budget, expected), f"Got {k_budget}")
 
     def test_batch_dimension(self):

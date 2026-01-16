@@ -32,11 +32,11 @@
   "max_seq_len": 512,
   "pooling": "cls",
   "kc_vocab_size": 1024,
-  "kc_topk": 8,
+  "kc_topk": 16,
   "kc_temperature": 1.0,
-  "kc_alpha_short": 0.4,
-  "kc_alpha_long": 0.55,
+  "kc_alpha_short": 0.8,
+  "kc_alpha_long": 1.1,
   "kc_long_threshold": 20,
   "kc_min_k": 2,
-  "kc_max_k_long": 16
+  "kc_max_k_long": 32
 }

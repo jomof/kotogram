@@ -422,6 +422,43 @@ class StyleDataset(Dataset[Sample]):
 
         return filtered_ds
 
+    def create_style_oversampler(
+        self,
+        formality_boost: float = 5.0,
+        gender_boost: float = 15.0,
+    ) -> "torch.utils.data.WeightedRandomSampler":
+        """Create a sampler that oversamples non-neutral formality and gender examples.
+
+        Args:
+            formality_boost: Multiplier for non-neutral formality (|f| > 0.25)
+            gender_boost: Multiplier for non-neutral gender (|g| > 0.25)
+
+        Returns:
+            WeightedRandomSampler for use in DataLoader
+        """
+        from torch.utils.data import WeightedRandomSampler
+
+        weights = torch.ones(len(self), dtype=torch.float32)
+
+        # Get formality and gender values for all samples in the dataset
+        for i in range(len(self)):
+            real_idx = self.indices[i]
+            f_val = float(self.labels["f_val"][int(real_idx)].item())
+            g_val = float(self.labels["g_val"][int(real_idx)].item())
+
+            # Boost non-neutral formality (|f| > 0.25)
+            if abs(f_val) > 0.25:
+                weights[i] *= formality_boost
+
+            # Boost non-neutral gender (|g| > 0.25)
+            if abs(g_val) > 0.25:
+                weights[i] *= gender_boost
+
+        # Use replacement=True to allow oversampling
+        return WeightedRandomSampler(
+            weights.tolist(), num_samples=len(self), replacement=True
+        )
+
     def get_formality_class_weights(self) -> torch.Tensor:
         # compute from self.labels["f_prag"] (subset by self.indices)
         if "f_prag" not in self.labels:
@@ -636,56 +673,90 @@ def create_kc_batch(
         kc_key = target_family
 
         # Import here to avoid circular import
-        from train.kc import is_family_db_sourced, is_family_sparse
+        from train.kc import (
+            KcPnuFamily,
+            get_family,
+            is_family_db_sourced,
+            is_family_sparse,
+        )
 
-        # Special handling for DB-sourced families (e.g., GRAMMAR_POINT)
-        # These have a different data structure: {"pos": [...], "neg": [...]}
+        # Special handling for DB-sourced families (e.g., GRAMMAR_POINT, GENDER, FORMALITY)
+        # These use different data structures: KcPnuFamily uses pos/neg arrays, KcMseFamily uses scalars
         if is_family_db_sourced(target_family):
+            family_def = get_family(target_family)
             name = target_family.name.lower()
-            max_pos = 64
 
-            # Extract pos and neg IDs separately
-            all_pos_data: List[List[int]] = []
-            all_pos_mask_data: List[List[bool]] = []
-            all_neg_data: List[List[int]] = []
-            all_neg_mask_data: List[List[bool]] = []
+            if isinstance(family_def, KcPnuFamily):
+                # PNU families (e.g., GRAMMAR_POINT) have pos/neg arrays
+                max_pos = 64
 
-            for target_dict in batch.kc_targets:
-                gp_data = target_dict.get(kc_key, {"pos": [], "neg": []})
-                pos_ids = gp_data.get("pos", [])
-                neg_ids = gp_data.get("neg", [])
+                # Extract pos and neg IDs separately
+                all_pos_data: List[List[int]] = []
+                all_pos_mask_data: List[List[bool]] = []
+                all_neg_data: List[List[int]] = []
+                all_neg_mask_data: List[List[bool]] = []
 
-                # Filter and pad positive IDs
-                valid_pos = [v for v in pos_ids if v < vocab_size][:max_pos]
-                n_pos = len(valid_pos)
-                all_pos_data.append(valid_pos + [0] * (max_pos - n_pos))
-                all_pos_mask_data.append([True] * n_pos + [False] * (max_pos - n_pos))
+                for target_dict in batch.kc_targets:
+                    gp_data = target_dict.get(kc_key, {"pos": [], "neg": []})
+                    pos_ids = gp_data.get("pos", [])
+                    neg_ids = gp_data.get("neg", [])
 
-                # Filter and pad negative IDs
-                valid_neg = [v for v in neg_ids if v < vocab_size][:max_pos]
-                n_neg = len(valid_neg)
-                all_neg_data.append(valid_neg + [0] * (max_pos - n_neg))
-                all_neg_mask_data.append([True] * n_neg + [False] * (max_pos - n_neg))
+                    # Filter and pad positive IDs
+                    valid_pos = [v for v in pos_ids if v < vocab_size][:max_pos]
+                    n_pos = len(valid_pos)
+                    all_pos_data.append(valid_pos + [0] * (max_pos - n_pos))
+                    all_pos_mask_data.append(
+                        [True] * n_pos + [False] * (max_pos - n_pos)
+                    )
 
-            result[f"kc_gp_pos_inds_{name}"] = torch.tensor(
-                all_pos_data, dtype=torch.long, device=device
-            )
-            result[f"kc_gp_pos_mask_{name}"] = torch.tensor(
-                all_pos_mask_data, dtype=torch.bool, device=device
-            )
-            result[f"kc_gp_neg_inds_{name}"] = torch.tensor(
-                all_neg_data, dtype=torch.long, device=device
-            )
-            result[f"kc_gp_neg_mask_{name}"] = torch.tensor(
-                all_neg_mask_data, dtype=torch.bool, device=device
-            )
+                    # Filter and pad negative IDs
+                    valid_neg = [v for v in neg_ids if v < vocab_size][:max_pos]
+                    n_neg = len(valid_neg)
+                    all_neg_data.append(valid_neg + [0] * (max_pos - n_neg))
+                    all_neg_mask_data.append(
+                        [True] * n_neg + [False] * (max_pos - n_neg)
+                    )
 
-            # Update global positive presence
-            global_has_pos |= torch.tensor(
-                [len(t.get(kc_key, {}).get("pos", [])) > 0 for t in batch.kc_targets],
-                dtype=torch.bool,
-                device=device,
-            )
+                result[f"kc_gp_pos_inds_{name}"] = torch.tensor(
+                    all_pos_data, dtype=torch.long, device=device
+                )
+                result[f"kc_gp_pos_mask_{name}"] = torch.tensor(
+                    all_pos_mask_data, dtype=torch.bool, device=device
+                )
+                result[f"kc_gp_neg_inds_{name}"] = torch.tensor(
+                    all_neg_data, dtype=torch.long, device=device
+                )
+                result[f"kc_gp_neg_mask_{name}"] = torch.tensor(
+                    all_neg_mask_data, dtype=torch.bool, device=device
+                )
+
+                # Update global positive presence
+                global_has_pos |= torch.tensor(
+                    [
+                        len(t.get(kc_key, {}).get("pos", [])) > 0
+                        for t in batch.kc_targets
+                    ],
+                    dtype=torch.bool,
+                    device=device,
+                )
+            else:
+                # Continuous families (gender/formality) get scalar values from batch
+                if name == "gender":
+                    result[f"kc_continuous_{name}"] = batch.gender_value.to(device)
+                elif name == "formality":
+                    result[f"kc_continuous_{name}"] = batch.formality_value.to(device)
+                # Classification versions: map continuous to class indices
+                elif name == "gender_class":
+                    # Map: -1.0 → 0, 0.0 → 1, 1.0 → 2
+                    gender_class = ((batch.gender_value + 1.0) / 2.0 * 2).long()
+                    gender_class = gender_class.clamp(0, 2)
+                    result[f"kc_class_{name}"] = gender_class.to(device)
+                elif name == "formality_class":
+                    # Map: -1.0 → 0, -0.5 → 1, 0.0 → 2, 0.5 → 3, 1.0 → 4
+                    formality_class = ((batch.formality_value + 1.0) / 0.5).long()
+                    formality_class = formality_class.clamp(0, 4)
+                    result[f"kc_class_{name}"] = formality_class.to(device)
+
             continue
 
         # Sparse Implementation (Indices + Mask)

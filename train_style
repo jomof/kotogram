@@ -100,7 +100,7 @@ def handle_special_modes(args: argparse.Namespace) -> Optional[int]:
 
     if args.show_model:
         # Build model and show architecture report
-        from kotogram.model import StyleClassifier
+        from kotogram.model import InferenceClassifier
         from train.architecture_report import generate_architecture_report
 
         # Try to load real vocab sizes from tokenizer if available
@@ -120,7 +120,7 @@ def handle_special_modes(args: argparse.Namespace) -> Optional[int]:
             }
 
         config = ModelConfig(vocab_sizes=vocab_sizes)
-        model = StyleClassifier(config)
+        model = InferenceClassifier(config)
         report = generate_architecture_report(model)
         _view.on_architecture_report(report)
         return 0

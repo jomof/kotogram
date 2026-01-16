@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from unittest.mock import MagicMock
 
-from kotogram.model import ModelConfig, StyleClassifier
+from kotogram.model import InferenceClassifier, ModelConfig
 from train.trainer import KCTrainer
 from train.types import TrainingMetrics
 
@@ -18,7 +18,7 @@ class TestInternalVariations(unittest.TestCase):
 
     def test_restore_from_checkpoint_variations(self):
         # Mock dependencies for KCTrainer
-        model = MagicMock(spec=StyleClassifier)
+        model = MagicMock(spec=InferenceClassifier)
         model.config = ModelConfig(vocab_sizes={})
 
         # Explicitly attach sub-mocks that spec might miss or to be safe
@@ -63,7 +63,9 @@ class TestInternalVariations(unittest.TestCase):
         kc_config = MagicMock()
         kc_config.sparsity_weight = 0.0
         kc_config.freeze_encoder_epochs = 0
-
+        kc_config.style_oversample = False  # Disable oversampling for mock dataset
+        kc_config.formality_boost = 5.0
+        kc_config.gender_boost = 15.0
         kc_config.kc_grad_cap = 1.0
 
         # Instantiate trainer
@@ -82,7 +84,7 @@ class TestInternalVariations(unittest.TestCase):
     def test_init_structural_decoder_biases_variations(self):
         # pylint: disable=protected-access
         # Create minimal mock trainer
-        model = MagicMock(spec=StyleClassifier)
+        model = MagicMock(spec=InferenceClassifier)
         model.config = ModelConfig(vocab_sizes={})
         model.config.kc_target_specs = {}
 
@@ -117,7 +119,9 @@ class TestInternalVariations(unittest.TestCase):
         kc_config = MagicMock()
         kc_config.sparsity_weight = 0.0
         kc_config.freeze_encoder_epochs = 1
-
+        kc_config.style_oversample = False  # Disable oversampling for mock dataset
+        kc_config.formality_boost = 5.0
+        kc_config.gender_boost = 15.0
         kc_config.kc_grad_cap = 1.0
 
         trainer = KCTrainer(model, dataset, config, dl_config, kc_config)

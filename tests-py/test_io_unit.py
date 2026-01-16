@@ -5,7 +5,7 @@ import unittest
 
 import torch
 
-from kotogram.model import ModelConfig, StyleClassifier
+from kotogram.model import InferenceClassifier, ModelConfig
 from train import io as train_io
 
 
@@ -18,7 +18,7 @@ class TestIOUnit(unittest.TestCase):
 
     def test_save_model_variations(self):
         config = ModelConfig(vocab_sizes={})
-        model = StyleClassifier(config)
+        model = InferenceClassifier(config)
 
         # Call 1
         path1 = os.path.join(self.test_dir, "model1")
@@ -32,7 +32,7 @@ class TestIOUnit(unittest.TestCase):
 
     def test_training_state_variations(self):
         config = ModelConfig(vocab_sizes={})
-        model = StyleClassifier(config)
+        model = InferenceClassifier(config)
         optimizer = torch.optim.Adam(model.parameters())
 
         # Call 1

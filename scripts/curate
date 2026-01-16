@@ -13,13 +13,7 @@ import tarfile
 from typing import Any, Dict, List, Tuple
 
 from rich.console import Console
-from rich.progress import (
-    BarColumn,
-    MofNCompleteColumn,
-    Progress,
-    SpinnerColumn,
-    TextColumn,
-)
+from rich.progress import Progress
 
 # Ensure we can import from local modules
 if os.path.basename(os.getcwd()) == "scripts":
@@ -29,6 +23,7 @@ elif os.path.exists("scripts"):
     sys.path.insert(0, os.getcwd())
 
 from kotogram.analysis import RegisterLevel
+from scripts.progress_utils import create_progress
 from kotogram.constants import (
     REGISTER_LABEL_TO_ID,
 )
@@ -41,6 +36,10 @@ from scripts.rule_based_analysis import (
     formality_to_weight,
     infer_gender_from_register,
     load_register_overrides,
+)
+from scripts.curate_relabel_candidates import (
+    apply_relabel_candidates,
+    find_relabel_candidates,
 )
 from train.tsv import parse_tsv
 
@@ -219,13 +218,7 @@ def curate_drink(db_path: str):
     procs = []
     
     try:
-        with Progress(
-            SpinnerColumn(),
-            TextColumn("[progress.description]{task.description}"),
-            BarColumn(),
-            MofNCompleteColumn(),
-            console=console,
-        ) as progress:
+        with create_progress(console) as progress:
             task = progress.add_task("[green]Analyzing...", total=total_sentences)
             
             for i, chunk in enumerate(chunks):
@@ -1355,13 +1348,7 @@ def curate_kc_lint(db_path: str):
         initializer=_init_kc_lint_worker,
         initargs=(vocab_path,),
     ) as pool:
-        with Progress(
-            SpinnerColumn(),
-            TextColumn("[progress.description]{task.description}"),
-            BarColumn(),
-            MofNCompleteColumn(),
-            console=console,
-        ) as progress:
+        with create_progress(console) as progress:
             task = progress.add_task("Checking sentences...", total=len(sentences))
 
             for result in pool.imap_unordered(_check_sentence_lint, sentences, chunksize=500):
@@ -1508,7 +1495,7 @@ def curate_kc_hash(db_path: str):
     from rich.table import Table
 
     from train import paths
-    from train.kc import FAMILY_BUCKET_SIZES, KcFamilyId, get_family_bucket_size
+    from train.kc import KcFamilyId, get_family_bucket_size
 
     # Find tokenizer
     vocab_path = os.path.join(paths.get_style_dataset_cache_dir(), "vocab.json")
@@ -1536,13 +1523,7 @@ def curate_kc_hash(db_path: str):
         initializer=_init_kc_hash_worker,
         initargs=(vocab_path,),
     ) as pool:
-        with Progress(
-            SpinnerColumn(),
-            TextColumn("[progress.description]{task.description}"),
-            BarColumn(),
-            MofNCompleteColumn(),
-            console=console,
-        ) as progress:
+        with create_progress(console) as progress:
             task = progress.add_task("Computing hashes...", total=len(sentences))
 
             for sent_result in pool.imap_unordered(_compute_sentence_hashes, sentences, chunksize=500):
@@ -1687,13 +1668,7 @@ def curate_kc_tail_stats(db_path: str, sentence: str = None, filter_str: str = N
         initializer=_init_kc_tail_stats_worker,
         initargs=(vocab_path,),
     ) as pool:
-        with Progress(
-            SpinnerColumn(),
-            TextColumn("[progress.description]{task.description}"),
-            BarColumn(),
-            MofNCompleteColumn(),
-            console=console,
-        ) as progress:
+        with create_progress(console) as progress:
             task = progress.add_task("Computing tail bags...", total=len(sentences))
 
             for tail_bag, sent in pool.imap_unordered(_compute_tail_bag_for_sentence, sentences, chunksize=500):
@@ -1900,13 +1875,7 @@ def curate_token_stats(db_path: str):
         num_workers,
         initializer=_init_token_stats_worker,
     ) as pool:
-        with Progress(
-            SpinnerColumn(),
-            TextColumn("[progress.description]{task.description}"),
-            BarColumn(),
-            MofNCompleteColumn(),
-            console=console,
-        ) as progress:
+        with create_progress(console) as progress:
             task = progress.add_task("Counting tokens...", total=len(sentences))
 
             for tokens, sent in pool.imap_unordered(
@@ -2427,13 +2396,7 @@ def curate_confusion_grammatic(db_path: str):
     kotograms: List[str] = []
 
     with mp.Pool(num_workers, initializer=_init_confusion_worker) as pool:
-        with Progress(
-            SpinnerColumn(),
-            TextColumn("[progress.description]{task.description}"),
-            BarColumn(),
-            MofNCompleteColumn(),
-            console=console,
-        ) as progress:
+        with create_progress(console) as progress:
             task = progress.add_task("Converting to kotograms...", total=len(sentences))
             for kotogram in pool.imap(_sentence_to_kotogram, sentences, chunksize=500):
                 progress.advance(task)
@@ -2443,13 +2406,7 @@ def curate_confusion_grammatic(db_path: str):
     BATCH_SIZE = 500
     all_results = []
 
-    with Progress(
-        SpinnerColumn(),
-        TextColumn("[progress.description]{task.description}"),
-        BarColumn(),
-        MofNCompleteColumn(),
-        console=console,
-    ) as progress:
+    with create_progress(console) as progress:
         task = progress.add_task("Running model inference...", total=len(kotograms))
         for i in range(0, len(kotograms), BATCH_SIZE):
             batch = kotograms[i:i + BATCH_SIZE]
@@ -2578,13 +2535,7 @@ def curate_drink_gp(yaml_dir: str, db_path: str):
 
     errors: List[str] = []
 
-    with Progress(
-        SpinnerColumn(),
-        TextColumn("[progress.description]{task.description}"),
-        BarColumn(),
-        MofNCompleteColumn(),
-        console=console,
-    ) as progress:
+    with create_progress(console) as progress:
         task = progress.add_task("Processing YAMLs", total=len(yaml_files))
 
         for yaml_path in yaml_files:
@@ -3054,6 +3005,27 @@ def main():
     grammatic_parser = confusion_subparsers.add_parser("grammatic", help="Find grammaticality label confusion")
     grammatic_parser.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
 
+    # Relabel candidates command
+    relabel_parser = subparsers.add_parser(
+        "relabel-candidates",
+        help="Find likely mislabeled sentences based on model predictions"
+    )
+    relabel_parser.add_argument("--db-path", default="data/corpus.db", help="Path to corpus.db")
+    relabel_parser.add_argument(
+        "--top-n", type=int, default=20,
+        help="Number of candidates to show per family"
+    )
+    relabel_parser.add_argument(
+        "--families", nargs="*",
+        default=["formality", "gender", "grammar_point"],
+        help="Families to check (formality, gender, grammar_point)"
+    )
+    relabel_parser.add_argument(
+        "--apply",
+        action="store_true",
+        help="Apply relabel suggestions from relabel-candidates.txt to corpus.db"
+    )
+
     args = parser.parse_args()
     
     if args.command == "drink":
@@ -3090,6 +3062,14 @@ def main():
     elif args.command == "confusion":
         if args.confusion_command == "grammatic":
             curate_confusion_grammatic(args.db_path)
+    elif args.command == "relabel-candidates":
+        if args.apply:
+            candidates_file = os.path.join(
+                os.path.dirname(args.db_path), "relabel-candidates.txt"
+            )
+            apply_relabel_candidates(args.db_path, candidates_file)
+        else:
+            find_relabel_candidates(args.db_path, args.top_n, args.families)
 
 
 if __name__ == "__main__":

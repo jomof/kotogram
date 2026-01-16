@@ -1621,3 +1621,24 @@ def formality_to_weight(formality: FormalityLevel) -> Tuple[float, int]:
 
     # Unpragmatic
     return 0.0, 0
+
+
+def parse_gp_ids(gp_str: str) -> List[int]:
+    """Parse grammar point ID string like 'gp0597,gp0123' to list of integers.
+
+    Args:
+        gp_str: Comma-separated string of grammar point IDs (e.g., 'gp0597,gp0123')
+
+    Returns:
+        List of integer grammar point IDs (e.g., [597, 123])
+    """
+    if not gp_str:
+        return []
+    result = []
+    for gp in gp_str.split(","):
+        gp = gp.strip()
+        if gp.startswith("gp") and len(gp) > 2:
+            gp_num = gp[2:]
+            if gp_num.isdigit():
+                result.append(int(gp_num))
+    return result
