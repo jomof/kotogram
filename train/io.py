@@ -13,10 +13,11 @@ from kotogram.constants import (
     GENDER_LABEL_TO_ID,
 )
 from kotogram.model import (
+    InferenceClassifier,
     ModelConfig,
-    StyleClassifier,
 )
 from kotogram.tokenizer import Tokenizer
+from train.kc import KC_FAMILIES, KcMseFamily
 from train.types import TrainingHistory
 
 
@@ -50,12 +51,68 @@ def save_tokenizer(tokenizer: Tokenizer, path: str) -> None:
 
 
 def save_model(
-    model: StyleClassifier,
+    model: InferenceClassifier,
     path: str,
     config: ModelConfig,
 ) -> None:
     """Save trained model, tokenizer, and config."""
     # pylint: disable=too-many-positional-arguments, too-many-locals
+
+    def _has_needed_mse_families() -> bool:
+        """Check if any MSE family decoder should be kept."""
+        return any(
+            isinstance(fam, KcMseFamily) and not fam.is_slim_decoder
+            for fam in KC_FAMILIES.values()
+        )
+
+    def _has_needed_label_families() -> bool:
+        """Check if any label (non-MSE) family decoder should be kept."""
+        return any(
+            not isinstance(fam, KcMseFamily) and not fam.is_slim_decoder
+            for fam in KC_FAMILIES.values()
+        )
+
+    def _should_strip_key(key: str) -> bool:
+        """Returns True if this key should be stripped from slim model."""
+        if not key.startswith("kc_decoders."):
+            return False
+
+        parts = key.split(".")
+        if len(parts) < 3:
+            raise ValueError(f"Unexpected kc_decoders key pattern: {key}")
+
+        sublayer = parts[1]
+
+        # Check pathway layers (MSE and label)
+        pathway_checks = {
+            ("mse_hidden1", "mse_hidden2", "tanh"): _has_needed_mse_families,
+            (
+                "label_hidden1",
+                "label_hidden2",
+                "activation",
+            ): _has_needed_label_families,
+        }
+
+        for layer_names, check_func in pathway_checks.items():
+            if sublayer in layer_names:
+                return not check_func()  # Strip if no families need this pathway
+
+        # Handle per-family decoders
+        if sublayer in ("decoders", "mse_decoders"):
+            if len(parts) < 4:
+                raise ValueError(
+                    f"Unexpected kc_decoders.{sublayer} key pattern: {key}"
+                )
+            family_name = parts[2]
+            for fid, fam in KC_FAMILIES.items():
+                if fid.name.lower() == family_name:
+                    return fam.is_slim_decoder
+            raise ValueError(
+                f"Unknown KC family in state_dict: {family_name} (key: {key})"
+            )
+
+        raise ValueError(f"Unexpected kc_decoders sublayer: {sublayer} (key: {key})")
+
     os.makedirs(path, exist_ok=True)
 
     # Save model weights (Always use FP8 if available)
@@ -65,7 +122,7 @@ def save_model(
     state_dict = {
         k: v.cpu().to(torch.float8_e4m3fn) if v.dtype == torch.float32 else v.cpu()
         for k, v in model.state_dict().items()
-        if not k.startswith("kc_decoders.")
+        if not _should_strip_key(k)
     }
     torch.save(state_dict, os.path.join(path, "model.pt"))
 

@@ -16,7 +16,7 @@ from typing import Any, Dict, List, Optional, Union, cast
 import torch
 
 from kotogram import locations
-from kotogram.model import StyleClassifier
+from kotogram.model import InferenceClassifier
 
 # pylint: disable=ungrouped-imports
 from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
@@ -38,7 +38,7 @@ from train.kc import (
     is_family_db_sourced,
     is_family_sparse,
 )
-from train.models import StyleClassifierWithKC
+from train.models import TrainingClassifier
 from train.profile import (
     get_profile_dir,
     profiling_enabled,
@@ -274,7 +274,7 @@ if __name__ == "__main__":
 
         history.append_event(history_path, event)
 
-    model: Optional[StyleClassifier] = None
+    model: Optional[InferenceClassifier] = None
     tokenizer: Optional[Tokenizer] = None
     # pylint: disable=invalid-name
     checkpoint: Optional[Dict[str, Any]] = None
@@ -351,12 +351,21 @@ if __name__ == "__main__":
                 gp_vocab_size = max(gp_vocab_size, int(ids.max()) + 1)
 
     for fid in targets:
-        # DB-sourced families (like GRAMMAR_POINT) don't have tokenizer vocabs
-        # Use dynamically computed GP vocab size from dataset
+        # DB-sourced families need special handling based on type
         if is_family_db_sourced(fid):
-            if gp_vocab_size > 0:
-                kc_specs[fid] = gp_vocab_size
-            # If no GP data exists, skip this family
+            from train.kc import KcDbClassFamily, KcPnuFamily, get_family
+
+            family_def = get_family(fid)
+            if isinstance(family_def, KcPnuFamily):
+                # PNU families (GRAMMAR_POINT) use dynamically computed GP vocab size
+                if gp_vocab_size > 0:
+                    kc_specs[fid] = gp_vocab_size
+            elif isinstance(family_def, KcDbClassFamily):
+                # Multi-class DB families (GENDER_CLASS/FORMALITY_CLASS)
+                kc_specs[fid] = family_def.num_classes
+            else:
+                # MSE families (GENDER/FORMALITY) output a single scalar
+                kc_specs[fid] = 1
             continue
         if is_family_sparse(fid):
             kc_specs[fid] = get_family_bucket_size(fid)
@@ -367,13 +376,13 @@ if __name__ == "__main__":
     # Initialize model if not already loaded, OR upgrade if loaded model is not WithKC
     if model is None:
         trainer_config = dataclasses.replace(trainer_config, kc_target_specs=kc_specs)
-        model = StyleClassifierWithKC(model_config, kc_target_specs=kc_specs)
-    elif not isinstance(model, StyleClassifierWithKC):
-        # Ubiquity: Upgrade base StyleClassifier to StyleClassifierWithKC
+        model = TrainingClassifier(model_config, kc_target_specs=kc_specs)
+    elif not isinstance(model, TrainingClassifier):
+        # Ubiquity: Upgrade base InferenceClassifier to TrainingClassifier
         # This handles cases where we resume from a checkpoint that matches the base
-        # StyleClassifier structure (e.g. stripped checkpoints).
+        # InferenceClassifier structure (e.g. stripped checkpoints).
         _view.on_model_upgrade()
-        new_model = StyleClassifierWithKC(model_config, kc_target_specs=kc_specs)
+        new_model = TrainingClassifier(model_config, kc_target_specs=kc_specs)
         # Load weights from base model. strict=False is required because
         # the base model lacks kc_decoders, which the new model has.
 
@@ -395,8 +404,10 @@ if __name__ == "__main__":
     # Generate and display architecture report (uses slim model to show export size)
     from train.architecture_report import generate_architecture_report
 
-    slim_model = StyleClassifier(model_config)
-    arch_report = generate_architecture_report(slim_model, model_name="StyleClassifier")
+    slim_model = InferenceClassifier(model_config)
+    arch_report = generate_architecture_report(
+        slim_model, model_name="InferenceClassifier"
+    )
     _view.on_architecture_report(arch_report)
 
     # Load labeled data for remaining phases
@@ -460,7 +471,7 @@ if __name__ == "__main__":
 
     # Create both trainers upfront
     kc_trainer = KCTrainer(
-        cast(StyleClassifierWithKC, model),
+        cast(TrainingClassifier, model),
         kc_dataset,
         trainer_config,
         dl_config=trainer_config.resolve_dataloader_config(device),
@@ -536,7 +547,7 @@ if __name__ == "__main__":
     # Ensure we use the trained model
     trained_model = style_trainer.model
     if hasattr(trained_model, "module"):
-        trained_model = cast(StyleClassifier, trained_model.module)
+        trained_model = cast(InferenceClassifier, trained_model.module)
 
     # Create __init__.py to make the model directory a valid Python package
     # This is required for 'kotogram.model_data' redirection in pyproject.toml
@@ -545,7 +556,7 @@ if __name__ == "__main__":
         pass
 
     save_model(
-        cast(StyleClassifier, trained_model),
+        cast(InferenceClassifier, trained_model),
         output_dir,
         model_config,
     )

@@ -52,13 +52,6 @@ from collections import Counter
 from typing import Any, Dict, List, Optional, Set, Tuple, cast
 
 from rich.console import Console
-from rich.progress import (
-    BarColumn,
-    MofNCompleteColumn,
-    Progress,
-    SpinnerColumn,
-    TextColumn,
-)
 from rich.table import Table
 
 from kotogram.analysis import FormalityLevel, RegisterLevel
@@ -74,12 +67,14 @@ from kotogram.model import (
 )
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer, get_vocab_strings
+from scripts.progress_utils import create_progress
 from scripts.rule_based_analysis import (
     analyze_formality,
     analyze_gender,
     analyze_register,
     formality_to_weight,
     infer_gender_from_register,
+    parse_gp_ids,
 )
 from train import io as train_io
 from train.binary_io import (
@@ -476,19 +471,7 @@ def analyze_batch_from_db(
         current_reg_offset += len(register_ids)
         reg_offsets_buf.append(current_reg_offset)
 
-        # Parse and buffer grammar point IDs (format: "gp0597,gp0123" → [597, 123])
-        def parse_gp_ids(gp_str: str) -> List[int]:
-            if not gp_str:
-                return []
-            result = []
-            for gp in gp_str.split(","):
-                gp = gp.strip()
-                if gp.startswith("gp") and len(gp) > 2:
-                    gp_num = gp[2:]
-                    if gp_num.isdigit():
-                        result.append(int(gp_num))
-            return result
-
+        # Grammar point IDs (format: "gp0597,gp0123" → [597, 123])
         gp_pos_ids = parse_gp_ids(grammar if grammar else "")
         gp_neg_ids = parse_gp_ids(grammar_negative if grammar_negative else "")
 
@@ -1084,13 +1067,7 @@ def main() -> None:
     # Use 'spawn' for safety with CUDA/torch (though not used here yet) and macOS.
     ctx = mp.get_context("spawn")
 
-    with Progress(
-        SpinnerColumn(),
-        TextColumn("[progress.description]{task.description}"),
-        BarColumn(),
-        MofNCompleteColumn(),
-        console=console,
-    ) as progress:
+    with create_progress(console) as progress:
         task1 = progress.add_task("[green]Phase 1: Analyzing...", total=len(all_rows))
 
         # Split work into chunks for parallel processing.

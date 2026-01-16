@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 import torch
 from torch.utils.data import DataLoader
 
-from kotogram.model import StyleClassifier, StylePrediction
+from kotogram.model import InferenceClassifier, StylePrediction
 from kotogram.tokenizer import Tokenizer
 from train.evaluator import EvalResult, Evaluator
 
@@ -17,7 +17,7 @@ class TestEvaluator(unittest.TestCase):
         self.tokenizer = MagicMock(spec=Tokenizer)
         self.tokenizer.pad_id = 0
 
-        self.model = MagicMock(spec=StyleClassifier)
+        self.model = MagicMock(spec=InferenceClassifier)
         self.model.eval.return_value = None
         self.model.to.return_value = self.model
 

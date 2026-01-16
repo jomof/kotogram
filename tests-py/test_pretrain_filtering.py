@@ -6,7 +6,7 @@ from kotogram.model import ModelConfig
 from kotogram.tokenizer import Tokenizer
 from train.config import DataLoaderSettings, KCConfig, TrainerConfig
 from train.dataset import StyleDataset
-from train.models import StyleClassifierWithKC
+from train.models import TrainingClassifier
 from train.trainer import KCTrainer
 from train.types import Sample
 
@@ -16,6 +16,16 @@ class MockDataset(StyleDataset):
         # pylint: disable=super-init-not-called
         self._samples = samples
         self.tokenizer = Tokenizer()
+        # Add required attributes for style oversampling
+        self.indices = torch.arange(len(samples))
+        self.labels = {
+            "f_val": torch.tensor(
+                [s.formality_value for s in samples], dtype=torch.float32
+            ),
+            "g_val": torch.tensor(
+                [s.gender_value for s in samples], dtype=torch.float32
+            ),
+        }
 
     def __len__(self):
         return len(self._samples)
@@ -117,7 +127,7 @@ class TestPretrainDataFiltering(unittest.TestCase):
             num_layers=1,
             num_heads=2,
         )
-        self.model = StyleClassifierWithKC(self.model_config)
+        self.model = TrainingClassifier(self.model_config)
 
     def test_kc_trainer_filtering(self):
         dataset = MockDataset([self.grammatic_sample, self.agrammatic_sample])

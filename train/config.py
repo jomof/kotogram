@@ -103,7 +103,7 @@ _GENDER_MSE_SCALING_FACTOR_DEFAULT = 10.0
 class KCConfig:
     """Pretraining (KC) hyperparameter configuration."""
 
-    sparsity_weight: float = 0.5  # Scaled to match formality loss magnitude (~0.2)
+    sparsity_weight: float = 0.1  # Scaled to match formality loss magnitude (~0.2)
     freeze_encoder_epochs: int = 0
 
     # Diversity / Coverage
@@ -128,9 +128,9 @@ class KCConfig:
     kc_grad_cap: float = 5.0
 
     # Dynamic Training Constraints
-    entropy_floor: float = 0.85
+    entropy_floor: float = 0.95
     # Dynamic Training Constraints
-    kl_cap: float = 0.15
+    kl_cap: float = 0.05
 
     # Saturation Penalty
     sat_weight: float = 1.0
@@ -139,8 +139,12 @@ class KCConfig:
     skip_first_metrics: int = 0
 
     # Grammar Point (PNU) Loss
-    gp_loss_weight: float = 1.0  # Weight for GRAMMAR_POINT family loss
     gp_unlab_weight: float = 0.001  # Soft negative weight for unlabeled GPs
+
+    # Style Oversampling (for addressing class imbalance in gender/formality)
+    style_oversample: bool = True  # Enable oversampling of non-neutral examples
+    formality_boost: float = 5.0  # Multiplier for |formality| > 0.25
+    gender_boost: float = 50.0  # Multiplier for |gender| > 0.25 (was 15.0, increased for 96% neutral problem)
 
     def to_dict(self) -> Dict[str, Any]:
         return dict(self.__dict__)

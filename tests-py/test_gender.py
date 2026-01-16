@@ -20,7 +20,7 @@ class TestGenderModel(unittest.TestCase):
         self.parser = SudachiJapaneseParser()
 
         # Manually setup mock model/tokenizer
-        from kotogram.model import ModelConfig, StyleClassifier
+        from kotogram.model import InferenceClassifier, ModelConfig
         from kotogram.tokenizer import Tokenizer
 
         self.tokenizer = Tokenizer()
@@ -28,7 +28,7 @@ class TestGenderModel(unittest.TestCase):
         self.tokenizer._frozen = True
 
         config = ModelConfig(vocab_sizes=self.tokenizer.get_vocab_sizes())
-        self.model = StyleClassifier(config)
+        self.model = InferenceClassifier(config)
         self.model.eval()
 
         patcher = patch(

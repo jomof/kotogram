@@ -9,14 +9,22 @@ import os
 from dataclasses import asdict, dataclass
 from typing import TYPE_CHECKING, Dict, List, Optional, Set, Tuple
 
-from kotogram.constants import FormalityLevel, GenderLevel, RegisterLevel
+from kotogram.constants import (
+    FormalityLevel,
+    FormalityThresholds,
+    GenderLevel,
+    GenderThresholds,
+    GrammaticalityThresholds,
+    PragmaticThresholds,
+    RegisterLevel,
+)
 
 from . import locations
 
 # This is required for cross-language furigana support to work on typescript
 # canary CI machine without installing pytorch.
 if TYPE_CHECKING:
-    from kotogram.model import StyleClassifier
+    from kotogram.model import InferenceClassifier
     from kotogram.tokenizer import Tokenizer
 
 
@@ -28,7 +36,7 @@ class StyleAnalyzer:
     """Encapsulates style analysis model and tokenizer state."""
 
     def __init__(self) -> None:
-        self._model: Optional["StyleClassifier"] = None
+        self._model: Optional["InferenceClassifier"] = None
         self._tokenizer: Optional["Tokenizer"] = None
         self._custom_model_dir: Optional[str] = None
 
@@ -39,7 +47,7 @@ class StyleAnalyzer:
         self._model = None
         self._tokenizer = None
 
-    def load(self) -> Tuple["StyleClassifier", "Tokenizer"]:
+    def load(self) -> Tuple["InferenceClassifier", "Tokenizer"]:
         # pylint: disable=import-outside-toplevel
         """Load and cache the style classifier model."""
         if self._model is None or self._tokenizer is None:
@@ -117,6 +125,9 @@ class GrammarAnalysis:
     grammaticality_score: float  # Probability of being grammatic
     kc_top: Optional[KCDistribution] = None  # Top-K KC {id: prob}
 
+    # Grammar Point predictions (optional, available if model has grammar_point decoder)
+    grammar_point_probs: Optional[List[float]] = None  # Per-GP probabilities
+
     def to_json(self) -> str:
         """Serialize analysis result to JSON string."""
         d = asdict(self)
@@ -130,6 +141,8 @@ class GrammarAnalysis:
         # kc_top: Dict[int, float] -> json.dump will convert int keys to strings automatically
         if self.kc_top is None:
             del d["kc_top"]
+        if self.grammar_point_probs is None:
+            del d["grammar_point_probs"]
         return json.dumps(d, ensure_ascii=False)
 
 
@@ -189,35 +202,43 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
         # Get Interpretable KCs (uses adaptive k based on sentence length)
         # No min_prob filter - k_budget determines count exactly as in training
         kc_top_results = model.predict_kcs_top(field_inputs, attention_mask)
+        # Get grammar point predictions if decoder is available
+        gp_probs_tensor = model.predict_grammar_points(field_inputs, attention_mask)
 
     results = []
     for i in range(batch_size):
         # 1. Formality
         f_val = float(prediction.formality_value[i].item())
-        f_is_pragmatic = prediction.formality_pragmatic_probs[i][1].item() > 0.5
+        f_is_pragmatic = (
+            prediction.formality_pragmatic_probs[i][1].item()
+            > PragmaticThresholds.PRAGMATIC_MIN
+        )
 
         if not f_is_pragmatic:
             formality_res = FormalityLevel.UNPRAGMATIC_FORMALITY
-        elif f_val >= 0.75:
+        elif f_val >= FormalityThresholds.VERY_FORMAL_MIN:
             formality_res = FormalityLevel.VERY_FORMAL
-        elif f_val >= 0.25:
+        elif f_val >= FormalityThresholds.FORMAL_MIN:
             formality_res = FormalityLevel.FORMAL
-        elif f_val >= -0.25:
+        elif f_val >= FormalityThresholds.NEUTRAL_MIN:
             formality_res = FormalityLevel.NEUTRAL
-        elif f_val >= -0.75:
+        elif f_val >= FormalityThresholds.CASUAL_MIN:
             formality_res = FormalityLevel.CASUAL
         else:
             formality_res = FormalityLevel.VERY_CASUAL
 
         # 2. Gender
         g_val = float(prediction.gender_value[i].item())
-        g_is_pragmatic = prediction.gender_pragmatic_probs[i][1].item() > 0.5
+        g_is_pragmatic = (
+            prediction.gender_pragmatic_probs[i][1].item()
+            > PragmaticThresholds.PRAGMATIC_MIN
+        )
 
         if not g_is_pragmatic:
             gender_res = GenderLevel.UNPRAGMATIC_GENDER
-        elif g_val <= -0.5:
+        elif g_val <= GenderThresholds.MASCULINE_MAX:
             gender_res = GenderLevel.MASCULINE
-        elif g_val >= 0.5:
+        elif g_val >= GenderThresholds.FEMININE_MIN:
             gender_res = GenderLevel.FEMININE
         else:
             gender_res = GenderLevel.NEUTRAL
@@ -240,13 +261,19 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
 
         # 4. Grammaticality
         gram_score = float(prediction.grammaticality_probs[i][1].item())
-        is_grammatic = gram_score > 0.5
+        is_grammatic = gram_score > GrammaticalityThresholds.GRAMMATIC_MIN
 
         kc_top_sample = None
         if kc_top_results is not None:
             # Convert list of (int, float) tuples to {int: float} dict
             # We strictly cast int(k_id) to ensure it's an int.
             kc_top_sample = {int(k_id): prob for k_id, prob in kc_top_results[i]}
+
+        # Extract grammar point probabilities for this sample
+        gp_probs_sample = None
+        if gp_probs_tensor is not None:
+            gp_probs_sample = gp_probs_tensor[i].tolist()
+
         results.append(
             GrammarAnalysis(
                 kotogram=kotograms[i],
@@ -261,6 +288,7 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
                 is_grammatic=is_grammatic,
                 grammaticality_score=gram_score,
                 kc_top=kc_top_sample,
+                grammar_point_probs=gp_probs_sample,
             )
         )
 

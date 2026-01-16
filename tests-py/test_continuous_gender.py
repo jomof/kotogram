@@ -10,12 +10,12 @@ from kotogram.model import ModelConfig
 class TestContinuousGender(unittest.TestCase):
     def test_model_output_shapes(self):
         """Test that the model architecture produces correct shapes."""
-        # This test would ideally import the REAL StyleClassifier and check if it has the new heads.
+        # This test would ideally import the REAL InferenceClassifier and check if it has the new heads.
         # But we can check if model.py was updated by importing it.
-        from kotogram.model import StyleClassifier as RealStyleClassifier
+        from kotogram.model import InferenceClassifier as RealInferenceClassifier
 
         config = ModelConfig(vocab_sizes={"surface": 100})
-        model = RealStyleClassifier(config)
+        model = RealInferenceClassifier(config)
 
         # Check if new heads exist
         self.assertTrue(hasattr(model, "gender_value_head"))

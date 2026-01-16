@@ -35,6 +35,42 @@ export enum RegisterLevel {
   BUSHI = 'bushi',
 }
 
+/**
+ * Thresholds for classifying formality scores into discrete levels.
+ * Score range: -1.0 (very casual) to +1.0 (very formal)
+ */
+export const FormalityThresholds = {
+  VERY_FORMAL_MIN: 0.75, // >= 0.75 → VERY_FORMAL
+  FORMAL_MIN: 0.25, // >= 0.25 → FORMAL
+  NEUTRAL_MIN: -0.25, // >= -0.25 → NEUTRAL
+  CASUAL_MIN: -0.75, // >= -0.75 → CASUAL
+  // < -0.75 → VERY_CASUAL
+} as const;
+
+/**
+ * Thresholds for classifying gender scores into discrete levels.
+ * Score range: -1.0 (masculine) to +1.0 (feminine)
+ */
+export const GenderThresholds = {
+  MASCULINE_MAX: -0.5, // <= -0.5 → MASCULINE
+  FEMININE_MIN: 0.5, // >= 0.5 → FEMININE
+  // Between these → NEUTRAL
+} as const;
+
+/**
+ * Thresholds for pragmatic vs unpragmatic classification.
+ */
+export const PragmaticThresholds = {
+  PRAGMATIC_MIN: 0.5, // >= 0.5 probability → pragmatic
+} as const;
+
+/**
+ * Thresholds for grammaticality classification.
+ */
+export const GrammaticalityThresholds = {
+  GRAMMATIC_MIN: 0.5, // > 0.5 probability → grammatic
+} as const;
+
 export interface GrammarAnalysisData {
   kotogram: string;
   formality: FormalityLevel;
@@ -48,6 +84,7 @@ export interface GrammarAnalysisData {
   is_grammatic: boolean;
   grammaticality_score: number;
   kc_top?: Record<string, number>;
+  grammar_point_probs?: number[];
 }
 
 export class GrammarAnalysis {
@@ -64,6 +101,7 @@ export class GrammarAnalysis {
     public readonly is_grammatic: boolean,
     public readonly grammaticality_score: number,
     public readonly kc_top?: Record<string, number>,
+    public readonly grammar_point_probs?: number[],
   ) {}
 
   /**
@@ -85,6 +123,7 @@ export class GrammarAnalysis {
       is_grammatic: this.is_grammatic,
       grammaticality_score: this.grammaticality_score,
       kc_top: this.kc_top,
+      grammar_point_probs: this.grammar_point_probs,
     };
     return JSON.stringify(data);
   }
@@ -112,6 +151,7 @@ export class GrammarAnalysis {
       data.is_grammatic,
       data.grammaticality_score,
       data.kc_top,
+      data.grammar_point_probs,
     );
   }
 }

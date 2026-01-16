@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch
 
 from kotogram.analysis import grammar, grammars
-from kotogram.model import ModelConfig, StyleClassifier
+from kotogram.model import InferenceClassifier, ModelConfig
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 from kotogram.tokenizer import Tokenizer
 
@@ -17,7 +17,7 @@ class TestBatchGrammar(unittest.TestCase):
         self.tokenizer._frozen = True
 
         config = ModelConfig(vocab_sizes=self.tokenizer.get_vocab_sizes())
-        self.model = StyleClassifier(config)
+        self.model = InferenceClassifier(config)
         self.model.eval()
 
         patcher = patch(

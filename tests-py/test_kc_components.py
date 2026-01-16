@@ -7,7 +7,7 @@ import torch.nn.functional as F
 from kotogram.model import ModelConfig
 from kotogram.tokenizer import FEATURE_FIELDS
 from train.kc import KcFamilyId
-from train.models import StyleClassifierWithKC
+from train.models import TrainingClassifier
 
 
 def test_gumbel_noise_training_only():
@@ -18,7 +18,7 @@ def test_gumbel_noise_training_only():
         kc_topk=1,  # Select top-1 to easily see noise impact
         kc_temperature=1.0,
     )
-    model = StyleClassifierWithKC(config)
+    model = TrainingClassifier(config)
 
     # Mock inputs
     field_inputs = {}
@@ -347,7 +347,7 @@ def test_forward_kc_gumbel_stability():
         kc_topk=4,
         kc_temperature=1.0,
     )
-    model = StyleClassifierWithKC(config)
+    model = TrainingClassifier(config)
     model.train()
 
     field_inputs = {
@@ -385,7 +385,7 @@ def test_forward_kc_nan_to_num_guard():
         kc_topk=4,
         kc_temperature=1.0,
     )
-    model = StyleClassifierWithKC(config)
+    model = TrainingClassifier(config)
     model.train()
 
     field_inputs = {
@@ -679,7 +679,7 @@ def test_float_sorting_not_string():
 
 
 def test_forward_kc_parameter_variations():
-    """Vary grad_cap and long_sentence_mask in StyleClassifierWithKC.forward_kc."""
+    """Vary grad_cap and long_sentence_mask in TrainingClassifier.forward_kc."""
     # pylint: disable=protected-access, import-private-name
     config = ModelConfig(
         vocab_sizes={f: 50 for f in FEATURE_FIELDS},
@@ -687,7 +687,7 @@ def test_forward_kc_parameter_variations():
         kc_topk=4,
         kc_temperature=1.0,
     )
-    model = StyleClassifierWithKC(config)
+    model = TrainingClassifier(config)
     model.train()
 
     # Mock kc_head for manual control (and requires_grad)

@@ -5,7 +5,7 @@ import unittest
 
 import torch
 
-from kotogram.model import ModelConfig, StyleClassifier, load_model
+from kotogram.model import InferenceClassifier, ModelConfig, load_model
 from kotogram.tokenizer import Tokenizer
 from train import io as train_io
 
@@ -28,7 +28,7 @@ class TestModelLoadUnit(unittest.TestCase):
                 "reading": 100,
             }
         )
-        model = StyleClassifier(config)
+        model = InferenceClassifier(config)
 
         # Save dummy model using io
         train_io.save_model(model, self.model_path, config)
@@ -43,11 +43,11 @@ class TestModelLoadUnit(unittest.TestCase):
     def test_load_model_device_variation(self):
         # Call 1: Default device (None)
         m1, _ = load_model(self.model_path)
-        self.assertIsInstance(m1, StyleClassifier)
+        self.assertIsInstance(m1, InferenceClassifier)
 
         # Call 2: Specific device (CPU)
         m2, _ = load_model(self.model_path, device=torch.device("cpu"))
-        self.assertIsInstance(m2, StyleClassifier)
+        self.assertIsInstance(m2, InferenceClassifier)
 
 
 if __name__ == "__main__":

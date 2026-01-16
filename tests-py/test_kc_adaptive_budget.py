@@ -8,7 +8,7 @@ from torch import nn
 from kotogram.model import ModelConfig
 from train.config import CheckpointConfig, DataLoaderConfig, KCConfig, TrainerConfig
 from train.kc import KcFamilyId
-from train.models import StyleClassifierWithKC
+from train.models import TrainingClassifier
 from train.trainer import KCTrainer
 
 
@@ -42,7 +42,8 @@ class MockKCDecoders(nn.Module):
             }
         )
 
-    def forward(self, x: torch.Tensor) -> dict:
+    # pylint: disable=unused-argument
+    def forward(self, x: torch.Tensor, kc_probs: torch.Tensor) -> dict:
         return {name: decoder(x) for name, decoder in self.decoders.items()}
 
 
@@ -196,12 +197,12 @@ class TestKCAdaptiveBudget(unittest.TestCase):
         k_budget = model.last_k_budget
         self.assertIsNotNone(k_budget)
 
-        # Expected k:
-        # 0: len=2. alpha=0.4. ceil=1. +3 bonus = 4. clamp [2,8] -> 4
-        # 1: len=10. alpha=0.4. ceil=4. +3 bonus = 7. clamp [2,8] -> 7
-        # 2: len=30. alpha=0.55. ceil=17. no bonus. clamp [2,16] -> 16
+        # Expected k (using ModelConfig defaults: alpha_short=0.80, alpha_long=1.10):
+        # 0: len=2. alpha=0.8. ceil=2. +6 bonus = 8. clamp [2,8] -> 8
+        # 1: len=10. alpha=0.8. ceil=8. +6 bonus = 14. clamp [2,8] -> 8
+        # 2: len=30. alpha=1.1. ceil=33. no bonus. clamp [2,16] -> 16
 
-        expected = torch.tensor([4, 7, 16], dtype=torch.long)
+        expected = torch.tensor([8, 8, 16], dtype=torch.long)
         self.assertTrue(
             torch.equal(k_budget, expected), f"Expected {expected}, got {k_budget}"
         )
@@ -230,7 +231,7 @@ class TestKCAdaptiveBudget(unittest.TestCase):
         # Patch ENCODER_FEATURE_FIELDS to only allow 'pos' to suffice for get_embeddings
         # (ENCODER_FEATURE_FIELDS is imported into model from tokenizer)
         with patch("kotogram.model.ENCODER_FEATURE_FIELDS", ["pos"]):
-            model = StyleClassifierWithKC(config)
+            model = TrainingClassifier(config)
             model.to("cpu")
 
             batch_size = 2

@@ -326,6 +326,7 @@ class KCDiagnosticFamilyStats:
     delta_p: float = 0.0
     recall_01: float = 0.0
     recall_05: float = 0.0
+    accuracy: float = 0.0  # (TP + TN) / Total at threshold 0.5
     # Wakefulness Diagnostics
     pos_ex_frac: float = 0.0
     pos_label_density: float = 0.0
@@ -385,23 +386,39 @@ class KcEpochActivationStats:
 
 
 @dataclass
+class KCMseFamilyStats:
+    """KC diagnostic statistics for a single MSE (regression) family."""
+
+    loss_mean: float  # MSE loss
+    accuracy_01: float  # Fraction within ±0.1 of target
+    correlation: float  # Pearson correlation
+    mean_bias: float  # Mean(pred) - Mean(target)
+    pred_std: float  # Std dev of predictions
+    bias_delta: float = 0.0  # Decoder bias change during epoch
+
+
+@dataclass
 class KCDiagnosticReport:
     """Full KC diagnostic report for an epoch."""
 
-    families: Dict[str, KCDiagnosticFamilyStats]  # Key is KC family name
+    families: Dict[str, KCDiagnosticFamilyStats]  # Label family stats
+    mse_families: Dict[str, KCMseFamilyStats] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
 class KcLossWeights:
     """Weights used for each loss component (for display scaling).
 
-    Note: All losses except struct/gap are stored ALREADY WEIGHTED in
-    RunningLossComponents, so their display weight is 1.0. Full formula:
-        lc.<component> * w.<component> / n_batches
+    All loss components are stored as raw sums in RunningLossComponents.
+    Display formula: lc.<component> * w.<component> / n_batches
+
+    INVARIANTS (enforced by checksums):
+    1. struct = sum(all family losses) - each family contributes its task_loss directly
+    2. total_loss = struct + gap + div + lb + collapse + sparsity + saturation
     """
 
-    struct: float = 1.0  # Raw, normalized by num_struct
-    gap: float = 1.0  # Raw, normalized by num_struct
+    struct: float = 1.0  # Sum of all family task_losses
+    gap: float = 1.0  # Sum of all family gaps
     # These are stored ALREADY WEIGHTED, so display weight is 1.0:
     div: float = 1.0  # Already weighted in RunningLossComponents
     lb: float = 1.0  # Already weighted in RunningLossComponents

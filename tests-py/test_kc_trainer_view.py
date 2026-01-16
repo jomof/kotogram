@@ -24,12 +24,18 @@ def create_dummy_trainer_config():
 
 
 def create_dummy_kc_config():
-    return KCConfig(freeze_encoder_epochs=0)
+    return KCConfig(freeze_encoder_epochs=0, style_oversample=False)
 
 
 def create_tiny_style_dataset():
     mock = MagicMock()
     mock.__len__.return_value = 10
+    # Add required attributes for style oversampling
+    mock.indices = torch.arange(10)
+    mock.labels = {
+        "f_val": torch.zeros(10, dtype=torch.float32),
+        "g_val": torch.zeros(10, dtype=torch.float32),
+    }
 
     # Create a valid sample object
     sample = MagicMock()

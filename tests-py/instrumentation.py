@@ -183,6 +183,66 @@ def generate_report() -> None:
         )
 
 
+def _build_serializable_state(recorder: "ParameterRecorder") -> List[Dict[str, Any]]:
+    """Convert recorder state to JSON-serializable format."""
+    serializable_state = []
+    for key, value in recorder.param_states.items():
+        if value is MANY_VALUES_SENTINEL:
+            val_str = "<<MANY>>"
+            test_sources: List[str] = []
+        else:
+            val, sources = value
+            val_str = repr(val)
+            test_sources = list(sources)
+
+        has_seen_none = key in recorder.seen_none_params
+        serializable_state.append(
+            {
+                "key": list(key),
+                "value": val_str,
+                "seen_none": has_seen_none,
+                "sources": test_sources,
+            }
+        )
+    return serializable_state
+
+
+def _write_state_to_file(
+    serializable_state: List[Dict[str, Any]], output_dir: str
+) -> None:
+    """Write serializable state to a JSON file atomically."""
+    import json
+    import tempfile
+
+    pid = os.getpid()
+    fname = os.path.join(output_dir, f"record_{pid}.json")
+    temp_file = None
+    try:
+        temp_file = tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=output_dir,
+            prefix=f"record_{pid}.",
+            suffix=".tmp",
+            delete=False,
+        )
+        with temp_file as f:
+            json.dump(serializable_state, f)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(temp_file.name, fname)
+    except Exception as e:  # pylint: disable=broad-exception-caught
+        print(
+            f"[train-record] Failed to write report to {fname}: {e}",
+            file=sys.stderr,
+        )
+        if temp_file is not None:
+            try:
+                os.remove(temp_file.name)
+            except OSError:
+                pass
+
+
 def persist_state() -> None:
     """Persists the recorded state to file or stdout on exit."""
     # pylint: disable=global-variable-not-assigned
@@ -204,50 +264,9 @@ def persist_state() -> None:
 
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
-        # Save to file (JSON for easy aggregation)
-        import json
-
-        # Convert state keys to strings for JSON
-        # Key: (filename, firstlineno, qualname, param_name)
-        # Value: value OR "MANY_VALUES_SENTINEL"
-
-        serializable_state = []
-        for key, value in _RECORDER.param_states.items():
-            # filename, line, func, param = key
-            if value is MANY_VALUES_SENTINEL:
-                val_str = "<<MANY>>"
-                test_sources = []
-            else:
-                val, sources = value
-                val_str = repr(val)
-                test_sources = list(sources)
-
-            has_seen_none = key in _RECORDER.seen_none_params
-            serializable_state.append(
-                {
-                    "key": list(key),
-                    "value": val_str,
-                    "seen_none": has_seen_none,
-                    "sources": test_sources,
-                }
-            )
-
-        if not serializable_state:
-            return
-
-        pid = os.getpid()
-        fname = os.path.join(output_dir, f"record_{pid}.json")
-        try:
-            with open(fname, "w", encoding="utf-8") as f:
-                json.dump(serializable_state, f)
-        except Exception as e:  # pylint: disable=broad-exception-caught
-            # Fallback to stderr if file write fails, or just silence?
-            # User said "rather than stdout/stderr".
-            # We'll print to stderr only on failure.
-            print(
-                f"[train-record] Failed to write report to {fname}: {e}",
-                file=sys.stderr,
-            )
+        serializable_state = _build_serializable_state(_RECORDER)
+        if serializable_state:
+            _write_state_to_file(serializable_state, output_dir)
 
 
 def aggregate_reports(

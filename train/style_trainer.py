@@ -11,7 +11,7 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau
 from torch.utils.data import DataLoader
 
 from kotogram.model import (
-    StyleClassifier,
+    InferenceClassifier,
 )
 from kotogram.tokenizer import ENCODER_FEATURE_FIELDS
 from train.config import (
@@ -109,7 +109,7 @@ class Trainer:
     # pylint: disable=too-many-locals,too-many-positional-arguments
     def __init__(
         self,
-        model: StyleClassifier,
+        model: InferenceClassifier,
         train_dataset: StyleDataset,
         val_dataset: StyleDataset,
         config: TrainerConfig,
@@ -208,7 +208,7 @@ class Trainer:
             weight=train_dataset.get_grammaticality_class_weights().to(self.device)
         )
 
-        mod = cast(StyleClassifier, self.model)
+        mod = cast(InferenceClassifier, self.model)
 
         # Encoder params: unfrozen with lower LR to preserve KC pretraining
         enc_p = list(mod.embedding.parameters()) + list(mod.encoder.parameters())
@@ -338,16 +338,6 @@ class Trainer:
         return True
 
     @staticmethod
-    def _masked_mse(
-        pred: torch.Tensor, target: torch.Tensor, mask: torch.Tensor
-    ) -> torch.Tensor:
-        loss_raw = F.mse_loss(pred, target, reduction="none")
-
-        loss_masked = loss_raw * mask
-
-        return loss_masked.sum() / (mask.sum() + 1e-6)
-
-    @staticmethod
     def _masked_bce(
         pred: torch.Tensor, target: torch.Tensor, mask: torch.Tensor
     ) -> torch.Tensor:
@@ -395,17 +385,15 @@ class Trainer:
 
         mask = is_valid_style.float()
 
-        f_val_target = torch.nan_to_num(targets["f_val"], nan=0.0)
-        f_mse = self._masked_mse(f_val_l.squeeze(-1), f_val_target, mask)
+        # NOTE: MSE losses for formality and gender values are now handled by
+        # the KC trainer (KcFamilyId.FORMALITY and KcFamilyId.GENDER).
+        # Style trainer only handles pragmatics (classification) losses.
+        _ = f_val_l  # Suppress unused warning
+        _ = g_val_l  # Suppress unused warning
 
-        f_loss = self.formality_criterion(f_prag_l, targets["f_prag"]) + f_mse
+        f_loss = self.formality_criterion(f_prag_l, targets["f_prag"])
 
-        g_val_target = torch.nan_to_num(targets["g_val"], nan=0.0)
-        g_mse = self._masked_mse(g_val_l.squeeze(-1), g_val_target, mask)
-
-        g_loss = self.gender_pragmatic_criterion(g_prag_l, targets["g_prag"]) + (
-            g_mse * self.config.gender_mse_scaling_factor
-        )
+        g_loss = self.gender_pragmatic_criterion(g_prag_l, targets["g_prag"])
 
         gram_loss = self.grammaticality_criterion(gram_l, targets["gram"])
 

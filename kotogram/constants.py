@@ -61,3 +61,43 @@ class RegisterLevel(Enum):
 
 REGISTER_LABEL_TO_ID = {v: i for i, v in enumerate(RegisterLevel)}
 REGISTER_ID_TO_LABEL = {v: k for k, v in REGISTER_LABEL_TO_ID.items()}
+
+
+# Score-to-level classification thresholds
+# These define how continuous scores [-1.0, 1.0] map to discrete levels
+
+
+class FormalityThresholds:
+    """Thresholds for classifying formality scores into discrete levels.
+
+    Score range: -1.0 (very casual) to +1.0 (very formal)
+    """
+
+    VERY_FORMAL_MIN = 0.75  # >= 0.75 → VERY_FORMAL
+    FORMAL_MIN = 0.25  # >= 0.25 → FORMAL
+    NEUTRAL_MIN = -0.25  # >= -0.25 → NEUTRAL
+    CASUAL_MIN = -0.75  # >= -0.75 → CASUAL
+    # < -0.75 → VERY_CASUAL
+
+
+class GenderThresholds:
+    """Thresholds for classifying gender scores into discrete levels.
+
+    Score range: -1.0 (masculine) to +1.0 (feminine)
+    """
+
+    MASCULINE_MAX = -0.5  # <= -0.5 → MASCULINE
+    FEMININE_MIN = 0.5  # >= 0.5 → FEMININE
+    # Between these → NEUTRAL
+
+
+class PragmaticThresholds:
+    """Thresholds for pragmatic vs unpragmatic classification."""
+
+    PRAGMATIC_MIN = 0.5  # >= 0.5 probability → pragmatic
+
+
+class GrammaticalityThresholds:
+    """Thresholds for grammaticality classification."""
+
+    GRAMMATIC_MIN = 0.5  # > 0.5 probability → grammatic

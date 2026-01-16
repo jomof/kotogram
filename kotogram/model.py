@@ -90,7 +90,7 @@ class ModelConfigDict(TypedDict):
 
 @dataclass
 class ModelConfig:
-    """Configuration for StyleClassifier model."""
+    """Configuration for InferenceClassifier model."""
 
     vocab_sizes: Dict[str, int]  # Field name -> vocabulary size
     num_formality_pragmatic_classes: int = NUM_FORMALITY_PRAGMATIC_CLASSES
@@ -118,15 +118,15 @@ class ModelConfig:
 
     # KC Learning configuration (KC is always enabled)
     kc_vocab_size: int = 1024  # Size of the sparse concept, vocabulary
-    kc_topk: int = 8  # Number of active concepts to retrieve
+    kc_topk: int = 16  # Number of active concepts to retrieve
     kc_temperature: float = 1.0  # Sparsification temperature
 
     # K-Budget parameters (persisted to model.json for training/inference parity)
-    kc_alpha_short: float = 0.40  # Multiplier for short sentences (< 20 tokens)
-    kc_alpha_long: float = 0.55  # Multiplier for long sentences (>= 20 tokens)
+    kc_alpha_short: float = 0.80  # Multiplier for short sentences (< 20 tokens)
+    kc_alpha_long: float = 1.10  # Multiplier for long sentences (>= 20 tokens)
     kc_long_threshold: int = 20  # Token count threshold for long/short
     kc_min_k: int = 2  # Minimum k_budget
-    kc_max_k_long: int = 16  # Maximum k for long sentences
+    kc_max_k_long: int = 32  # Maximum k for long sentences
 
     def to_dict(self) -> ModelConfigDict:
         return {
@@ -199,11 +199,11 @@ def compute_k_budget(  # pylint: disable=too-many-locals
     )
     k_raw = torch.ceil(alpha * content_len)
 
-    # Add k_bonus of 3 for short sentences (bins 1-3, 4-7, 8-15)
+    # Add k_bonus of 6 for short sentences (bins 1-3, 4-7, 8-15)
     # to reserve headroom for high-K samples
     k_bonus = torch.where(
         content_len <= 15,
-        torch.tensor(3.0, device=device),
+        torch.tensor(6.0, device=device),
         torch.tensor(0.0, device=device),
     )
     k_raw = k_raw + k_bonus
@@ -314,29 +314,130 @@ class MultiFieldEmbedding(nn.Module):  # type: ignore[misc]
 class KCHead(nn.Module):  # type: ignore[misc]
     """Head for predicting Knowledge Components (sparse concepts).
 
-    Architecture: Direct projection from encoder output to KC vocabulary.
+    Architecture: Multi-layer MLP for richer KC encoding.
+    - Hidden layer 1: d_model -> d_model * 2 (expansion)
+    - ReLU + Dropout
+    - Hidden layer 2: d_model * 2 -> d_model
+    - ReLU + Dropout
     - Output layer: d_model -> kc_vocab_size
     - LayerNorm on output
+
+    Rationale: Deeper/wider head gives more capacity to encode subtle signals
+    (like gender markers) into KC space alongside structural features.
     """
 
     def __init__(self, config: ModelConfig):
         super().__init__()
         self.config = config
-        self.dropout = nn.Dropout(config.dropout)
+        intermediate_dim = config.d_model * 2  # Expansion layer
+
+        # Multi-layer projection
+        self.hidden1 = nn.Linear(config.d_model, intermediate_dim)
+        self.hidden2 = nn.Linear(intermediate_dim, config.d_model)
         self.output = nn.Linear(config.d_model, config.kc_vocab_size)
+
+        self.activation = nn.ReLU()
+        self.dropout = nn.Dropout(config.dropout)
         self.layer_norm = nn.LayerNorm(config.kc_vocab_size)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = self.dropout(x)
+        # Through hidden layers
+        x = self.dropout(self.activation(self.hidden1(x)))
+        x = self.dropout(self.activation(self.hidden2(x)))
+        # Output projection
         x = self.output(x)
         x = self.layer_norm(x)
         return cast(torch.Tensor, x)
 
     def forward_with_raw(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
-        x = self.dropout(x)
+        # Through hidden layers
+        x = self.dropout(self.activation(self.hidden1(x)))
+        x = self.dropout(self.activation(self.hidden2(x)))
+        # Output projection
         raw = self.output(x)
         out = self.layer_norm(raw)
         return raw, cast(torch.Tensor, out)
+
+
+# Constants for inference-time KC decoder
+KC_DECODER_HIDDEN_DIM = 256  # Must match train/models.py KCDecoder
+
+
+# Required for Mypy compatibility with torch.nn.Module
+class KCDecoderInference(nn.Module):  # type: ignore[misc]
+    """Lightweight KC decoder for inference-time grammar_point predictions.
+
+    This mirrors the structure of train/models.py KCDecoder to load saved weights,
+    but only supports the families needed at inference (grammar_point).
+
+    Architecture matches training:
+    - hidden1: kc_vocab_size -> hidden_dim (256)
+    - hidden2: hidden_dim -> hidden_dim
+    - activation: ReLU
+    - decoders.grammar_point: hidden_dim -> num_grammar_points
+    """
+
+    def __init__(self, config: ModelConfig, num_grammar_points: int):
+        super().__init__()
+        kc_vocab_size = config.kc_vocab_size
+
+        # Label pathway hidden layers (grammar_point is a label family)
+        # Must match train/models.py KCDecoder architecture for weight loading
+        self.label_hidden1 = nn.Linear(kc_vocab_size, KC_DECODER_HIDDEN_DIM)
+        self.label_hidden2 = nn.Linear(KC_DECODER_HIDDEN_DIM, KC_DECODER_HIDDEN_DIM)
+        self.activation = nn.ReLU()
+
+        # MSE pathway (not used for inference but kept for weight loading structure)
+        self.mse_hidden1 = nn.Linear(kc_vocab_size, KC_DECODER_HIDDEN_DIM)
+        self.mse_hidden2 = nn.Linear(KC_DECODER_HIDDEN_DIM, KC_DECODER_HIDDEN_DIM)
+        self.tanh = nn.Tanh()
+
+        # Per-family decoders (only grammar_point for inference)
+        self.decoders = nn.ModuleDict(
+            {"grammar_point": nn.Linear(KC_DECODER_HIDDEN_DIM, num_grammar_points)}
+        )
+        # Empty MSE decoders (for weight loading structure)
+        self.mse_decoders = nn.ModuleDict()
+
+        self.num_grammar_points = num_grammar_points
+
+    def forward(self, kc_activations: torch.Tensor) -> torch.Tensor:
+        """Predict grammar point probabilities from KC activations.
+
+        Args:
+            kc_activations: Sparse KC activations [B, kc_vocab_size]
+
+        Returns:
+            grammar_point_probs: [B, num_grammar_points] probabilities
+        """
+        # Through label pathway (grammar_point is a label family)
+        h = self.activation(self.label_hidden1(kc_activations))
+        h = self.activation(self.label_hidden2(h))
+
+        # Through grammar_point decoder
+        logits = self.decoders["grammar_point"](h)
+        probs = torch.sigmoid(logits)
+
+        return cast(torch.Tensor, probs)
+
+    @property
+    def weight_loading_modules(self) -> List[nn.Module]:
+        """Return all modules needed for weight loading from training checkpoints.
+
+        These modules are defined to match the training KCDecoder structure,
+        even though not all are used at inference time. This ensures that
+        state_dict loading works correctly.
+        """
+        return [
+            self.label_hidden1,
+            self.label_hidden2,
+            self.mse_hidden1,
+            self.mse_hidden2,
+            self.activation,
+            self.tanh,
+            self.decoders,
+            self.mse_decoders,
+        ]
 
 
 # Required for Mypy compatibility with torch.nn.Module
@@ -389,7 +490,7 @@ class AttentionPooler(nn.Module):  # type: ignore[misc]
 
 
 # Required for Mypy compatibility with torch.nn.Module
-class StyleClassifier(nn.Module):  # type: ignore[misc]
+class InferenceClassifier(nn.Module):  # type: ignore[misc]
     """Neural sequence classifier for multi-task style prediction."""
 
     def __init__(self, config: ModelConfig):
@@ -464,6 +565,11 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
         )
 
         self.kc_head = KCHead(config)
+
+        # Optional KC decoders for inference-time grammar_point predictions
+        # Initialized by load_model if decoder weights are present in saved model
+        # Note: TrainingClassifier overrides this with KCDecoder during training
+        self.kc_decoders: Optional[KCDecoderInference] = None
 
     def get_encoder_output(
         self,
@@ -627,10 +733,52 @@ class StyleClassifier(nn.Module):  # type: ignore[misc]
 
         return results
 
+    def predict_grammar_points(
+        self,
+        field_inputs: Dict[str, torch.Tensor],
+        attention_mask: torch.Tensor,
+    ) -> Optional[torch.Tensor]:
+        """Predict grammar point probabilities for input sentences.
+
+        Args:
+            field_inputs: Input features
+            attention_mask: Attention mask
+
+        Returns:
+            grammar_point_probs: [B, num_grammar_points] tensor of probabilities,
+                                 or None if kc_decoders not available
+        """
+        if self.kc_decoders is None:
+            return None
+
+        # Only KCDecoderInference is supported for inference-time grammar_point
+        if not isinstance(self.kc_decoders, KCDecoderInference):
+            return None
+
+        # Get KC logits and probabilities
+        logits = self.predict_kcs(field_inputs, attention_mask)
+        cur_temp = getattr(self.config, "kc_temperature", 1.0)
+        probs = torch.sigmoid(logits / cur_temp)
+
+        # Compute k_budget for each sample (same as training)
+        batch_size = attention_mask.size(0)
+        content_lens = attention_mask.sum(dim=1)
+        device = logits.device
+        k_budgets = compute_k_budget(content_lens, self.config, device)
+
+        # Create sparse activations (keep only top-k per sample, zero the rest)
+        sparse_activations = torch.zeros_like(probs)
+        for i in range(batch_size):
+            k = int(k_budgets[i].item())
+            topk_vals, topk_inds = torch.topk(probs[i], k)
+            sparse_activations[i, topk_inds] = topk_vals
+
+        return cast(torch.Tensor, self.kc_decoders(sparse_activations))
+
 
 def load_model(
     path: str, device: Optional[torch.device] = None
-) -> Tuple[StyleClassifier, Tokenizer]:
+) -> Tuple[InferenceClassifier, Tokenizer]:
     """Load trained model and tokenizer."""
     # Load config
     with open(os.path.join(path, "model.json"), "r", encoding="utf-8") as f:
@@ -641,7 +789,7 @@ def load_model(
     tokenizer = Tokenizer.load(os.path.join(path, "tokenizer.json"))
 
     # Load model
-    model = StyleClassifier(config)
+    model = InferenceClassifier(config)
     if device:
         model.to(device)
 
@@ -660,15 +808,36 @@ def load_model(
 
     state_dict = {k: to_float32(v).contiguous() for k, v in state_dict.items()}
 
-    # Load with strict=True; mandatory KC architecture ensures consistent keys
-    # kc_decoders keys are stripped during save, so they won't be present
-    model.load_state_dict(state_dict, strict=True)
+    # Check if grammar_point decoder weights are present
+    gp_weight_key = "kc_decoders.decoders.grammar_point.weight"
+    if gp_weight_key in state_dict:
+        # Infer num_grammar_points from weight shape
+        num_grammar_points = state_dict[gp_weight_key].shape[0]
+
+        # Initialize kc_decoders module
+        model.kc_decoders = KCDecoderInference(config, num_grammar_points)
+        if device:
+            model.kc_decoders.to(device)
+
+        # Verify all weight loading modules are initialized
+        _ = model.kc_decoders.weight_loading_modules
+
+    # Load with strict=False; some KC decoder keys may be present for grammar_point
+    result = model.load_state_dict(state_dict, strict=False)
+
+    # Validate that only expected extra keys are present
+    # With kc_decoders initialized, those keys should load; only unexpected are errors
+    unexpected = [k for k in result.unexpected_keys if not k.startswith("kc_decoders.")]
+    if unexpected:
+        raise RuntimeError(
+            f"Unexpected keys in state_dict (not kc_decoders): {unexpected}"
+        )
 
     model.eval()
     return model, tokenizer
 
 
-def load_default_style_model() -> Tuple[StyleClassifier, Tokenizer]:
+def load_default_style_model() -> Tuple[InferenceClassifier, Tokenizer]:
     """Load the default trained style classification model included in the package."""
 
     from kotogram import locations

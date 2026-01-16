@@ -78,6 +78,11 @@ class KCTrainerView(Protocol):
 
     def on_auto_batch_size(self, batch_size: int, device: Any) -> None: ...
 
+    def on_style_oversampling_enabled(
+        self, formality_boost: float, gender_boost: float
+    ) -> None:
+        """Called when style oversampling is enabled."""
+
     # pylint: disable=too-many-positional-arguments
     def on_kc_batch_stats(
         self,
@@ -106,6 +111,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         self.reset_epoch_stats()
         # Store previous epoch family stats for trajectory arrows
         self.prev_family_stats: Dict[str, Dict[str, float]] = {}
+        self.prev_mse_stats: Dict[str, Dict[str, float]] = {}  # MSE family tracking
         # Store previous epoch loss components for delta arrows
         self.prev_loss_components: Optional[RunningLossComponents] = None
         # Store previous epoch spill stats for bin trajectory arrows
@@ -213,6 +219,14 @@ class KCTrainerDiagnosticsView(KCTrainerView):
     def on_auto_batch_size(self, batch_size: int, device: Any) -> None:
         console.print(
             f"[bold cyan]Auto-tuning batch size: Detected device memory on {device}, selected batch size {batch_size}[/bold cyan]"
+        )
+
+    def on_style_oversampling_enabled(
+        self, formality_boost: float, gender_boost: float
+    ) -> None:
+        console.print(
+            f"[bold yellow]Style oversampling enabled:[/bold yellow] "
+            f"formality×{formality_boost:.1f}, gender×{gender_boost:.1f}"
         )
 
     def _get_bin_label(self, length: int) -> str:
@@ -423,7 +437,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         )
         console.print(table_loss)
 
-        # Validate: loss breakdown should sum to epoch loss (within 1% tolerance)
+        # INVARIANT: total_loss = struct + gap + div + lb + collapse + sparsity + saturation
+        # All components are on the same scale (per-batch sums), so they add to epoch loss.
         loss_sum = (
             lc.struct * w.struct / nb
             + lc.gap * w.gap / nb
@@ -435,15 +450,12 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             + lc.saturation / nb  # Already weighted in kc_trainer
         )
         expected_loss = summary.total_loss
-        if expected_loss > 0.1:  # Only check if loss is significant
-            tolerance = (
-                0.01 * expected_loss
-            )  # 1% tolerance (tight to catch issues early)
-            if abs(loss_sum - expected_loss) > tolerance:
-                raise RuntimeError(
-                    f"Loss breakdown sum mismatch: sum={loss_sum:.4f} vs "
-                    f"epoch_loss={expected_loss:.4f} (diff={abs(loss_sum - expected_loss):.4f})"
-                )
+        tolerance = 1e-3
+        if abs(loss_sum - expected_loss) > tolerance:
+            raise RuntimeError(
+                f"Loss breakdown sum mismatch: sum={loss_sum:.4f} vs "
+                f"epoch_loss={expected_loss:.4f} (diff={abs(loss_sum - expected_loss):.4f})"
+            )
 
         # Store for next epoch comparison
         self.prev_loss_components = lc
@@ -581,8 +593,89 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         act_stats.topk_sum_p90 = topk_p90
         act_stats.topk_sum_p99 = topk_p99
 
-        # BLOCK 3: Families (Wakefulness and Performance)
-        # Pivot: High density separation metrics
+        # BLOCK 3a: MSE Families (Regression Diagnostics)
+        if summary.diagnostics.mse_families:
+            table_mse = Table(
+                show_header=True, header_style="bold magenta", box=None, padding=(0, 1)
+            )
+            table_mse.add_column("MSE Family")
+            table_mse.add_column("Loss")
+            table_mse.add_column("Acc±")  # Within ±0.1
+            table_mse.add_column("Corr")  # Pearson correlation
+            table_mse.add_column("Bias")  # Mean prediction bias
+            table_mse.add_column("σ(Pred)")  # Prediction std
+            table_mse.add_column("BΔ")  # Gradient flow
+
+            mse_loss_sum = 0.0
+            for name, mse in sorted(summary.diagnostics.mse_families.items()):
+                mse_loss_sum += mse.loss_mean
+
+                # Loss arrow: lower is better
+                prev_mse = self.prev_mse_stats.get(name, {})
+                prev_loss = prev_mse.get("loss", None)
+                loss_arrow = ""
+                if prev_loss is not None:
+                    delta = mse.loss_mean - prev_loss
+                    if delta < -0.001:
+                        loss_arrow = "[green]↓[/green]"
+                    elif delta > 0.001:
+                        loss_arrow = "[red]↑[/red]"
+
+                # Acc arrow: higher is better
+                prev_acc = prev_mse.get("acc", None)
+                acc_arrow = ""
+                if prev_acc is not None:
+                    delta = mse.accuracy_01 - prev_acc
+                    if delta > 0.01:
+                        acc_arrow = "[green]↑[/green]"
+                    elif delta < -0.01:
+                        acc_arrow = "[red]↓[/red]"
+
+                # Corr arrow: higher is better
+                prev_corr = prev_mse.get("corr", None)
+                corr_arrow = ""
+                if prev_corr is not None and not math.isnan(mse.correlation):
+                    delta = mse.correlation - prev_corr
+                    if delta > 0.01:
+                        corr_arrow = "[green]↑[/green]"
+                    elif delta < -0.01:
+                        corr_arrow = "[red]↓[/red]"
+
+                # Colors
+                c_acc = (
+                    "green"
+                    if mse.accuracy_01 > 0.7
+                    else ("red" if mse.accuracy_01 < 0.3 else "dim")
+                )
+                c_corr = (
+                    "green"
+                    if mse.correlation > 0.5
+                    else ("red" if mse.correlation < 0.1 else "dim")
+                )
+                c_bias = "red" if abs(mse.mean_bias) > 0.1 else "dim"
+                c_std = "red" if mse.pred_std < 0.05 else "dim"  # Low diversity = bad
+                c_bdelta = "green" if mse.bias_delta > 0.01 else "dim"
+
+                table_mse.add_row(
+                    name,
+                    f"{mse.loss_mean:.4f}{loss_arrow}",
+                    f"[{c_acc}]{mse.accuracy_01 * 100:.1f}%[/{c_acc}]{acc_arrow}",
+                    f"[{c_corr}]{mse.correlation:.3f}[/{c_corr}]{corr_arrow}",
+                    f"[{c_bias}]{mse.mean_bias:.3f}[/{c_bias}]",
+                    f"[{c_std}]{mse.pred_std:.3f}[/{c_std}]",
+                    f"[{c_bdelta}]{mse.bias_delta:.3f}[/{c_bdelta}]",
+                )
+
+                # Store for next epoch
+                self.prev_mse_stats[name] = {
+                    "loss": mse.loss_mean,
+                    "acc": mse.accuracy_01,
+                    "corr": mse.correlation,
+                }
+
+            console.print(table_mse)
+
+        # BLOCK 3b: Label Families (Classification Diagnostics)
         table_fam = Table(
             show_header=True, header_style="bold blue", box=None, padding=(0, 1)
         )
@@ -591,6 +684,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         table_fam.add_column("Pos%")
         table_fam.add_column("PosDen")
         table_fam.add_column("PosP")  # avg probability for positives
+        table_fam.add_column("Acc")  # overall accuracy at threshold 0.5
         table_fam.add_column("Logit(+/-)")
         table_fam.add_column("Gap")
         table_fam.add_column("Msk%")
@@ -645,6 +739,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             prev = self.prev_family_stats.get(name, {})
             prev_loss = prev.get("loss", None)
             prev_gap = prev.get("gap", None)
+            prev_posp = prev.get("posp", None)
+            prev_acc = prev.get("acc", None)
 
             # Loss arrow: lower is better (green ↓, red ↑)
             loss_arrow = ""
@@ -664,6 +760,24 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 elif delta < -0.01:
                     gap_arrow = "[red]↓[/red]"
 
+            # PosP arrow: higher is better (green ↑, red ↓)
+            posp_arrow = ""
+            if prev_posp is not None:
+                delta = fam.prob_pos_mean - prev_posp
+                if delta > 0.05:  # 5% threshold for significance
+                    posp_arrow = "[green]↑[/green]"
+                elif delta < -0.05:
+                    posp_arrow = "[red]↓[/red]"
+
+            # Accuracy arrow: higher is better (green ↑, red ↓)
+            acc_arrow = ""
+            if prev_acc is not None:
+                delta = fam.accuracy - prev_acc
+                if delta > 0.02:  # 2% threshold for significance
+                    acc_arrow = "[green]↑[/green]"
+                elif delta < -0.02:
+                    acc_arrow = "[red]↓[/red]"
+
             # Colors
             c_pos = "red" if fam.pos_ex_frac < 0.001 else "green"
             c_gap = "red" if (not math.isnan(gap) and gap < 0.5) else "dim"
@@ -682,15 +796,21 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             # bias_delta is now abs sum, so always positive. Use higher threshold.
             c_bdelta = "green" if fam.bias_delta > 0.01 else "dim"
 
-            # Scale loss to match struct in breakdown (divide by num_families)
-            num_families = len(summary.diagnostics.families)
-            scaled_loss = fam.loss_mean / max(1, num_families)
+            # Color for accuracy: green if good (>0.9), yellow if ok (>0.7), red if poor
+            c_acc = (
+                "green"
+                if fam.accuracy > 0.9
+                else ("yellow" if fam.accuracy > 0.7 else "red")
+            )
+
+            # Display true per-batch loss contribution (no scaling)
             table_fam.add_row(
                 name,
-                f"{scaled_loss:.4f}{loss_arrow}",
+                f"{fam.loss_mean:.4f}{loss_arrow}",
                 f"[{c_pos}]{fam.pos_ex_frac * 100:.2f}%[/{c_pos}]",
                 f"{fam.pos_label_density:.3f}",
-                f"[{c_posp}]{fam.prob_pos_mean:.2f}[/{c_posp}]",
+                f"[{c_posp}]{fam.prob_pos_mean * 100:.0f}%[/{c_posp}]{posp_arrow}",
+                f"[{c_acc}]{fam.accuracy * 100:.0f}%[/{c_acc}]{acc_arrow}",
                 f"{fam.logit_pos_mean:.1f}/{fam.logit_neg_mean:.1f}",
                 f"[{c_gap}]{s_gap}[/{c_gap}]{gap_arrow}",
                 f"[{c_msk}]{fam.mask_coverage * 100:.1f}%[/{c_msk}]",
@@ -699,30 +819,34 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             )
 
             # Store current stats for next epoch comparison
-            current_family_stats[name] = {"loss": fam.loss_mean, "gap": gap}
+            current_family_stats[name] = {
+                "loss": fam.loss_mean,
+                "gap": gap,
+                "posp": fam.prob_pos_mean,
+                "acc": fam.accuracy,
+            }
 
         # Save for next epoch
         self.prev_family_stats = current_family_stats
         console.print(table_fam)
 
-        # Validate: family losses should average to struct loss (within 10% tolerance)
-        # The diagnostic tracks loss_mean = avg(nll) per family.
-        # The trainer computes lc.struct = avg(sum_task_loss / num_struct) per batch,
-        # which is approximately the average of all family loss_means.
-        # Skip if no families in diagnostics (metrics skipped or not collected)
-        if summary.diagnostics.families:
-            # Average of family losses should match struct (both are averaged by count)
-            family_loss_avg = sum(
-                fam.loss_mean for fam in summary.diagnostics.families.values()
-            ) / max(1, num_families)
+        # INVARIANT: struct = sum(all family losses)
+        # Each family's loss_mean is its per-batch contribution to struct.
+        # This checksum validates that the diagnostic tracking matches the trainer.
+        # Skip if no families (minimal test scenarios).
+        all_label_families = list(summary.diagnostics.families.values())
+        all_mse_families = list(summary.diagnostics.mse_families.values())
+        if all_label_families or all_mse_families:
+            label_loss_sum = sum(fam.loss_mean for fam in all_label_families)
+            mse_loss_sum = sum(fam.loss_mean for fam in all_mse_families)
+            family_loss_sum = label_loss_sum + mse_loss_sum
             struct_loss = lc.struct * w.struct / nb
-            if struct_loss > 0.01:  # Only check if struct loss is significant
-                tolerance = 0.1 * struct_loss  # 10% tolerance
-                if abs(family_loss_avg - struct_loss) > tolerance:
-                    raise RuntimeError(
-                        f"Family loss avg mismatch: avg={family_loss_avg:.4f} vs "
-                        f"struct={struct_loss:.4f} (diff={abs(family_loss_avg - struct_loss):.4f})"
-                    )
+            tolerance = 1e-3
+            if abs(family_loss_sum - struct_loss) > tolerance:
+                raise RuntimeError(
+                    f"Family loss sum mismatch: sum={family_loss_sum:.4f} vs "
+                    f"struct={struct_loss:.4f} (diff={abs(family_loss_sum - struct_loss):.4f})"
+                )
 
         # Print Warns if shape mismatch detected?
         # (Not implemented in accumulator yet, relying on table visual for now)

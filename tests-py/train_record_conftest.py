@@ -31,6 +31,10 @@ def pytest_sessionstart(session: Any) -> None:  # pylint: disable=unused-argumen
 def pytest_sessionfinish(session: Any, exitstatus: int) -> None:  # pylint: disable=unused-argument
     _ = exitstatus
 
+    # Avoid aggregating reports in xdist workers; the main process aggregates.
+    if hasattr(session.config, "workerinput"):
+        return
+
     # Generate report at end of session (visible in pytest capture)
     # This might duplicate atexit report but ensures visibility in test failure logs.
     instrumentation.generate_report()

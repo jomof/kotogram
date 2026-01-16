@@ -1,7 +1,7 @@
 """Model architecture introspection and reporting.
 
 This module provides data structures and utilities to introspect a constructed
-StyleClassifier model and generate a structured architecture report.
+InferenceClassifier model and generate a structured architecture report.
 """
 
 from dataclasses import dataclass
@@ -9,7 +9,7 @@ from typing import List, Tuple
 
 from torch import nn
 
-from kotogram.model import StyleClassifier
+from kotogram.model import InferenceClassifier
 
 
 @dataclass
@@ -150,8 +150,8 @@ def _get_layer_dims(module: nn.Module) -> Tuple[int, int]:
 
 
 def generate_architecture_report(  # pylint: disable=too-many-locals
-    model: StyleClassifier,
-    model_name: str = "StyleClassifier",
+    model: InferenceClassifier,
+    model_name: str = "InferenceClassifier",
 ) -> ArchitectureReport:
     """Generate an architecture report by introspecting a model.
 

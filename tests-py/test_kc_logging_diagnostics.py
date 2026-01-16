@@ -49,7 +49,8 @@ class MockDecoders(nn.Module):
         # Need decoders dict for bias delta tracking in trainer
         self.decoders: dict = {}
 
-    def forward(self, x: torch.Tensor) -> dict:
+    # pylint: disable=unused-argument
+    def forward(self, x: torch.Tensor, kc_probs: torch.Tensor) -> dict:
         return {
             KcFamilyId.BAG_POS.name.lower(): torch.zeros(
                 x.size(0), 10, requires_grad=True

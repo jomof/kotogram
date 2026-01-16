@@ -57,6 +57,8 @@ class TestCliModelDir(unittest.TestCase):
         mock_prediction.register_probs = torch.tensor([[0.0] * 10])
         mock_prediction.grammaticality_probs = torch.tensor([[0.0, 1.0]])
         mock_model.predict.return_value = mock_prediction
+        # Mock predict_grammar_points to return None (no decoder available)
+        mock_model.predict_grammar_points.return_value = None
 
         # Mock tokenizer encode
         mock_tokenizer.encode.return_value = {

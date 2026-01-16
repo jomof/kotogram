@@ -2,12 +2,12 @@ import unittest.mock
 
 import torch
 
-from kotogram.model import KCHead, ModelConfig, StyleClassifier
+from kotogram.model import InferenceClassifier, KCHead, ModelConfig
 from kotogram.tokenizer import ALL_FEATURE_FIELDS, CLS_ID, PAD_ID, UNK_ID
 from train.config import TrainerConfig
 from train.dataset import create_kc_batch
 from train.kc import KcFamilyId
-from train.models import KCDecoder, StyleClassifierWithKC
+from train.models import KCDecoder, TrainingClassifier
 from train.trainer import KCTrainer
 
 
@@ -63,12 +63,12 @@ def test_kc_head_shapes():
 
     batch_size = 2
     # KCHead likely expects config.d_model input size as per standard transformer heads?
-    # Let's verify: In StyleClassifier, pooled output comes from get_encoder_output which is d_model (256).
+    # Let's verify: In InferenceClassifier, pooled output comes from get_encoder_output which is d_model (256).
     # Wait, KCHead definition uses config.hidden_dim usually?
     # kotogram/model.py says:
     # self.kc_head = KCHead(config)
     # And KCHead usually is nn.Linear(config.hidden_dim, ...).
-    # But StyleClassifier hidden size is 512, d_model is 256.
+    # But InferenceClassifier hidden size is 512, d_model is 256.
     # The error "mat1 and mat2 shapes cannot be multiplied (2x512 and 256x64)"
     # means input was 512 (hidden_dim), but mat2 (weights) expects 256 (d_model).
     # So KCHead expects d_model (256).
@@ -88,8 +88,9 @@ def test_kc_decoder_shapes():
 
     batch_size = 2
     kc_activations = torch.randn(batch_size, kc_vocab_size)
+    kc_probs = torch.sigmoid(torch.randn(batch_size, kc_vocab_size))
 
-    logits_dict = decoder(kc_activations)
+    logits_dict = decoder(kc_activations, kc_probs)
     assert KcFamilyId.BAG_POS.name.lower() in logits_dict
     # assert KcFamilyId.BAG_CONJUGATED_FORM.name.lower() in logits_dict
     assert logits_dict[KcFamilyId.BAG_POS.name.lower()].shape == (batch_size, 50)
@@ -105,7 +106,7 @@ def test_style_classifier_with_kc_mode():
         vocab_sizes=vocab_sizes,
         kc_vocab_size=64,
     )
-    model = StyleClassifierWithKC(config, kc_target_specs={KcFamilyId.BAG_POS: 50})
+    model = TrainingClassifier(config, kc_target_specs={KcFamilyId.BAG_POS: 50})
 
     batch_size = 2
     seq_len = 10
@@ -184,7 +185,7 @@ def test_kc_trainer_init():
         vocab_sizes={f: 100 for f in ALL_FEATURE_FIELDS},
         kc_vocab_size=32,
     )
-    model = StyleClassifierWithKC(config)
+    model = TrainingClassifier(config)
     dataset = MockDataset()
     trainer_config = TrainerConfig(batch_size=2, device="cpu")
     # Provide default dependencies
@@ -213,7 +214,7 @@ def test_predict_kcs_top():
         kc_topk=3,
         kc_temperature=1.0,  # Default
     )
-    model = StyleClassifier(config)
+    model = InferenceClassifier(config)
 
     batch_size = 2
     seq_len = 5

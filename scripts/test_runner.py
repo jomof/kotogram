@@ -30,9 +30,9 @@ if os.environ.get("VULTURE_WHITELIST"):
     import lib_confine  # type: ignore
 
     _v1 = lib_confine.confine  # type: ignore
-    from kotogram.model import StyleClassifier, PositionalEncoding, MultiFieldEmbedding, KCHead
+    from kotogram.model import InferenceClassifier, PositionalEncoding, MultiFieldEmbedding, KCHead
 
-    _v2 = StyleClassifier.forward
+    _v2 = InferenceClassifier.forward
     _v3 = PositionalEncoding.forward
     _v4 = MultiFieldEmbedding.forward
     _v5 = KCHead.forward
@@ -543,7 +543,7 @@ async def check_vulture_production() -> CheckResult:
     If unused here, it might belong in tests-py/.
     """
     # exclude tests-py
-    cmd = "vulture kotogram/ train/ scripts/ bin/kotogram train_style scripts/test_runner.py --exclude tests-py --min-confidence 60"
+    cmd = "vulture kotogram/ train/ scripts/ bin/kotogram train_style scripts/test_runner.py scripts/curate --exclude tests-py --min-confidence 60"
     proc = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
@@ -574,7 +574,7 @@ async def check_vulture_full() -> CheckResult:
     Ensure everything is used somewhere (including tests).
     If unused here, it is dead code.
     """
-    cmd = "vulture kotogram/ train/ scripts/ tests-py/ bin/kotogram scripts/test_runner.py --min-confidence 60"
+    cmd = "vulture kotogram/ train/ scripts/ tests-py/ bin/kotogram scripts/test_runner.py scripts/curate --min-confidence 60"
     proc = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )

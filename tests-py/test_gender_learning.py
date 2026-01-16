@@ -3,7 +3,7 @@ import unittest
 import torch
 from torch import nn
 
-from kotogram.model import ModelConfig, StyleClassifier
+from kotogram.model import InferenceClassifier, ModelConfig
 
 
 # pylint: disable=too-many-locals
@@ -18,7 +18,7 @@ class TestGenderLearning(unittest.TestCase):
             num_grammaticality_classes=2,
             num_register_classes=7,
         )
-        model = StyleClassifier(config)
+        model = InferenceClassifier(config)
 
         # Dummy input
         batch_size = 4
