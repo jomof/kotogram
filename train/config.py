@@ -135,11 +135,19 @@ class KCConfig:
     # Saturation Penalty
     sat_weight: float = 1.0
 
+    # Gap Regularizer
+    gap_weight: float = 0.001
+    gap_target: float = 0.1
+
     # Performance: Skip diagnostic metrics until epoch N
     skip_first_metrics: int = 0
 
     # Grammar Point (PNU) Loss
-    gp_unlab_weight: float = 0.001  # Soft negative weight for unlabeled GPs
+    gp_unlab_weight: float = 0.01  # Soft negative weight for unlabeled GPs (increased from 0.001 to reduce false positives)
+    gp_hard_neg_threshold: float = 0.7  # Probability threshold for hard negative mining
+    gp_hard_neg_multiplier: float = (
+        10.0  # Weight multiplier for high-confidence false positives
+    )
 
     # Style Oversampling (for addressing class imbalance in gender/formality)
     style_oversample: bool = True  # Enable oversampling of non-neutral examples

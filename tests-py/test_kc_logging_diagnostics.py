@@ -247,8 +247,10 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
 
         # Verify Block 3 Families
         # "Family ... Loss ... Pos% ..."
-        # Verify Block 3 Families
-        self.assertRegex(output, r"Family.*Loss.*Pos%.*Logit")
+        # Verify Block 3 Families (with possible truncation in narrow terminals)
+        self.assertRegex(
+            output, r"Fam.*Loss.*Pos%.*Logi"
+        )  # UnlabFP column may or may not be present, columns may be truncated (e.g., "Logi…")
         self.assertRegex(output, r"Gap.*Msk%")
 
         # Verify Labels Line
