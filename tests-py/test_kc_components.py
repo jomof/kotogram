@@ -778,4 +778,7 @@ def test_bce_sampled_parameter_variations():
         reading_mask_id=999,
     )
     assert torch.isfinite(loss)
-    assert isinstance(gap_val, float)
+    # gap_val is now a tensor (changed with gap regularizer)
+    assert isinstance(gap_val, (float, torch.Tensor))
+    if isinstance(gap_val, torch.Tensor):
+        assert torch.isfinite(gap_val)

@@ -269,7 +269,7 @@ class KCTrainer:
         neg_count: int,
         valid: torch.Tensor,
         pos_density: float = 8.0,
-    ) -> Tuple[torch.Tensor, float]:
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
         """Computes balanced BCE loss with adaptive pos/neg weighting based on pos_density."""
         # gathered_logits: (B, P + N)
         # pos_mask: (B, P)
@@ -317,11 +317,11 @@ class KCTrainer:
         # Mean over NEGATIVES only
         loss_neg = masked_neg_loss.sum() / neg_valid.float().sum().clamp_min(1.0)
 
-        # Gap Regularizer: Aggressively push mean(pos) > mean(neg) + target_gap
+        # Gap Regularizer: Aggressively push mean(pos) > mean(neg) + gap_target
         # This directly fights ALLNEG by ensuring positive logits are well separated
         # NOTE: Use mask-weighted means instead of boolean indexing to avoid
         # variable-sized tensors that can cause shape mismatches during backward.
-        gap_weight = 0.5
+        gap_weight = self.kc_config.gap_weight
         pos_count = pos_mask.float().sum()
         neg_count_f = neg_valid.float().sum()
         if pos_count > 0 and neg_count_f > 0:
@@ -330,8 +330,8 @@ class KCTrainer:
             mean_neg = (neg_logits * neg_valid.float()).sum() / neg_count_f
             current_gap = mean_pos - mean_neg
 
-            # Target gap of 2.0 logit units (sigmoid diff ~0.46)
-            target_gap = 2.0
+            # Target gap from config
+            target_gap = self.kc_config.gap_target
 
             # Hinge + quadratic: penalize gaps below target, quadratic for very small
             gap_deficit = F.relu(target_gap - current_gap)
@@ -347,13 +347,11 @@ class KCTrainer:
         adaptive_pos_weight = min(0.8, 0.5 * baseline_density / max(1.0, pos_density))
         adaptive_neg_weight = 1.0 - adaptive_pos_weight
 
-        total = (
-            adaptive_pos_weight * loss_pos
-            + adaptive_neg_weight * loss_neg
-            + gap_weight * gap_loss
-        )
-        # Return (total_loss, gap_loss_contribution) for separate tracking
-        return total, (gap_weight * gap_loss).item()
+        bce = adaptive_pos_weight * loss_pos + adaptive_neg_weight * loss_neg
+        gap_part = gap_weight * gap_loss
+
+        # Return (bce_loss, gap_loss) for separate tracking and accumulation
+        return bce, gap_part
 
     def _continuous_mse_loss(
         self,
@@ -387,6 +385,8 @@ class KCTrainer:
         neg_mask: torch.Tensor,
         vocab_size: int,
         unlab_weight: float = 0.001,
+        hard_negative_threshold: float = 0.7,
+        hard_negative_multiplier: float = 10.0,
     ) -> torch.Tensor:
         """Compute PNU (Positive-Negative-Unlabeled) loss for grammar points.
 
@@ -398,6 +398,8 @@ class KCTrainer:
             neg_mask: (B, max_neg) mask for valid negative IDs
             vocab_size: number of grammar points
             unlab_weight: weight for unlabeled (soft negative) loss
+            hard_negative_threshold: probability threshold for hard negative mining
+            hard_negative_multiplier: weight multiplier for hard negatives
 
         Returns:
             Scalar loss tensor
@@ -439,19 +441,48 @@ class KCTrainer:
             neg_loss = torch.tensor(0.0, device=device)
 
         # Unlabeled loss: soft negative for all unlabeled positions
+        # With hard negative mining for high-confidence predictions
         # unlabeled = ~(pos | neg)
         unlabeled_mask = 1.0 - labeled_pos - labeled_neg
         unlabeled_mask = unlabeled_mask.clamp(0, 1)  # Handle overlap
 
         if unlab_weight > 0 and unlabeled_mask.sum() > 0:
+            # Hard negative mining: upweight unlabeled examples where model is confident
+            # This reduces false positives by making overconfident predictions more expensive
+            probs = torch.sigmoid(logits)
+            hard_negative_mask = (
+                probs > hard_negative_threshold
+            ).float() * unlabeled_mask
+            soft_negative_mask = unlabeled_mask - hard_negative_mask
+
             unlab_loss = F.binary_cross_entropy_with_logits(
                 logits, torch.zeros_like(logits), reduction="none"
             )
-            unlab_loss = (
-                unlab_weight
-                * (unlab_loss * unlabeled_mask).sum()
-                / unlabeled_mask.sum()
-            )
+
+            # Hard negatives: high weight (these are likely false positives)
+            hard_neg_count = hard_negative_mask.sum()
+            if hard_neg_count > 0:
+                hard_neg_loss = (
+                    unlab_weight
+                    * hard_negative_multiplier
+                    * (unlab_loss * hard_negative_mask).sum()
+                    / hard_neg_count
+                )
+            else:
+                hard_neg_loss = torch.tensor(0.0, device=device)
+
+            # Soft negatives: normal weight
+            soft_neg_count = soft_negative_mask.sum()
+            if soft_neg_count > 0:
+                soft_neg_loss = (
+                    unlab_weight
+                    * (unlab_loss * soft_negative_mask).sum()
+                    / soft_neg_count
+                )
+            else:
+                soft_neg_loss = torch.tensor(0.0, device=device)
+
+            unlab_loss = hard_neg_loss + soft_neg_loss
         else:
             unlab_loss = torch.tensor(0.0, device=device)
 
@@ -471,7 +502,7 @@ class KCTrainer:
         reading_mask_id: int = 0,
         accumulator: Optional[FamilyAccumulator] = None,
         loss_weight: float = 1.0,
-    ) -> Tuple[torch.Tensor, float]:
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
         batch_size = int(logits_f.size(0))
         device = logits_f.device
         n_pos = int(pos_inds.size(1))
@@ -525,7 +556,7 @@ class KCTrainer:
         idxs_safe = idxs.clamp_min(0)
         gathered = logits_f.gather(1, idxs_safe)
 
-        loss, gap_loss_val = self._balanced_bce_loss(
+        bce, gap = self._balanced_bce_loss(
             gathered,
             pos_mask,
             neg_count,
@@ -533,16 +564,12 @@ class KCTrainer:
             pos_density=self.family_pos_densities.get(family_name, 8.0),
         )
 
-        if not torch.isfinite(loss):
+        if not torch.isfinite(bce) or not torch.isfinite(gap):
             raise RuntimeError(f"Non-finite KC loss for {family_name}")
-        if loss.item() > 500.0:
-            raise RuntimeError(
-                f"KC sparse loss scale bug: loss={loss.item()} for {family_name}. "
-                f"n_pos={pos_mask.sum().item()}, n_neg={neg_count}"
-            )
 
-        # Apply per-family loss weight for balanced training
-        loss = loss * loss_weight
+        # Scale by per-family loss weight
+        bce = bce * loss_weight
+        gap = gap * loss_weight
 
         if diag is not None and family_name:
             with torch.no_grad():
@@ -570,14 +597,15 @@ class KCTrainer:
                     == diag_pos_mask.shape
                 )
 
-                # Explicitly detach diagnostics components to prevent graph retention
+                loss_bce_val = bce.item()
+                loss_gap_val = gap.item()
                 diag.update_family(
                     family_name,
                     diag_inds.detach(),
                     diag_pos_mask.detach(),
                     diag_probs.detach(),
                     diag_targets.detach(),
-                    loss.item(),
+                    loss_bce_val + loss_gap_val,
                     mask_id=reading_mask_id,
                     logits=gathered,
                 )
@@ -596,7 +624,7 @@ class KCTrainer:
                     source="sparse",
                 )
 
-        return loss, gap_loss_val
+        return bce, gap
 
     # pylint: disable=too-many-locals
     def _init_structural_decoder_biases(self, num_batches: int = 10) -> None:
@@ -1307,6 +1335,8 @@ class KCTrainer:
                                 neg_mask,
                                 vocab_size=vocab_size,
                                 unlab_weight=self.kc_config.gp_unlab_weight,
+                                hard_negative_threshold=self.kc_config.gp_hard_neg_threshold,
+                                hard_negative_multiplier=self.kc_config.gp_hard_neg_multiplier,
                             )
 
                             # Apply per-family loss weight for balanced training
@@ -1582,7 +1612,7 @@ class KCTrainer:
                             dim=1,
                         )
 
-                        task_loss, task_gap_val = self._balanced_bce_loss(
+                        task_bce, task_gap = self._balanced_bce_loss(
                             gathered_logits,
                             pos_mask_sampled,
                             neg_count,
@@ -1590,17 +1620,15 @@ class KCTrainer:
                             pos_density=self.family_pos_densities.get(name, 8.0),
                         )
 
-                        if not torch.isfinite(task_loss):
+                        if not torch.isfinite(task_bce) or not torch.isfinite(task_gap):
                             raise RuntimeError(f"Non-finite KC loss for {name} (dense)")
-                        if task_loss.item() > 500.0:
-                            raise RuntimeError(
-                                f"KC dense loss scale bug: loss={task_loss.item()} for {name}. "
-                                f"n_pos={pos_mask_sampled.sum().item()}, n_neg={neg_count}"
-                            )
 
                         # Apply per-family loss weight for balanced training
                         family_def_sparse_block = get_family(fid)
-                        task_loss = task_loss * family_def_sparse_block.loss_weight
+                        w = family_def_sparse_block.loss_weight
+                        task_bce = task_bce * w
+                        task_gap = task_gap * w
+                        task_gap_val = task_gap.item()
 
                         if kc_diag is not None:
                             # Construct full-width mask for diagnostics to match idxs/logits
@@ -1622,7 +1650,7 @@ class KCTrainer:
                                     diag_pos_mask.detach().cpu(),
                                     torch.sigmoid(gathered_logits).detach().cpu(),
                                     targets_sampled.detach().cpu(),
-                                    task_loss.item(),
+                                    (task_bce + task_gap).item(),
                                     logits=gathered_logits.detach(),
                                 )
 
@@ -1635,6 +1663,11 @@ class KCTrainer:
                                     valid_mask=None,  # all sampled entries valid
                                     source="sparse",  # sampled P+N entries, not full-K
                                 )
+
+                        structural_loss += task_bce
+                        batch_gap_loss += task_gap_val
+                        num_struct += 1
+                        batch_kc_losses[name] = (task_bce + task_gap).item()
                     else:
                         if not name:
                             raise ValueError("Family name cannot be empty")
@@ -1663,11 +1696,13 @@ class KCTrainer:
 
                         task_loss = 0.5 * loss_pos_d + 0.5 * loss_neg_d
                         # Small-vocab dense path doesn't use gap regularizer
+                        task_gap = torch.tensor(0.0, device=self.device)
                         task_gap_val = 0.0
 
                         # Apply per-family loss weight for balanced training
                         family_def_dense_block = get_family(fid)
-                        task_loss = task_loss * family_def_dense_block.loss_weight
+                        w = family_def_dense_block.loss_weight
+                        task_loss = task_loss * w
 
                         if kc_diag is not None:
                             with torch.no_grad():
@@ -1706,7 +1741,7 @@ class KCTrainer:
                     structural_loss += task_loss
                     batch_gap_loss += task_gap_val
                     num_struct += 1
-                    batch_kc_losses[name] = task_loss.item()
+                    batch_kc_losses[name] = (task_loss + task_gap).item()
 
                 elif pos_key in kc_targets and mask_key in kc_targets:
                     pos_inds = kc_targets[pos_key].to(self.device)
@@ -1715,7 +1750,7 @@ class KCTrainer:
 
                     # Get family loss weight
                     family_def_sparse = get_family(fid)
-                    task_loss, task_gap_val = self._bce_sampled_from_sparse(
+                    task_bce, task_gap_tensor = self._bce_sampled_from_sparse(
                         logits_f=logits_f,
                         pos_inds=pos_inds,
                         pos_mask=pos_mask_t,
@@ -1729,20 +1764,19 @@ class KCTrainer:
                         loss_weight=family_def_sparse.loss_weight,
                     )
 
-                    structural_loss += task_loss
-                    batch_gap_loss += task_gap_val
+                    structural_loss += task_bce
+                    batch_gap_loss += task_gap_tensor.item()
                     num_struct += 1
-                    batch_kc_losses[name] = task_loss.item()
+                    batch_kc_losses[name] = (task_bce + task_gap_tensor).item()
 
             if num_struct > 0:
                 running_struct_loss += structural_loss.item()
                 running_num_struct_total += 1
-            # Build combined_loss from components (struct = sum of family losses)
-            primary_loss = structural_loss.clone()
+            # Build combined_loss from components
+            # primary_loss = structural_loss (BCE only) + gap_loss
+            loss_primary_val = structural_loss.item()
             gap_loss_tensor = torch.tensor(batch_gap_loss, device=self.device)
-
-            loss_primary_val = primary_loss.item()
-            combined_loss = primary_loss.clone() + gap_loss_tensor
+            combined_loss = structural_loss + gap_loss_tensor
 
             if epoch < self.freeze_encoder_epochs:
                 div_weight = self.kc_diversity_weight_frozen
@@ -2335,6 +2369,7 @@ class KCTrainer:
             n_batches=n_batches,
             total_loss=total_loss
             / max(1, n_batches),  # Per-batch average (guard div-by-zero)
+            accumulators=family_accumulators,
         )
 
         # Skip full diagnostics for early epochs (performance optimization)

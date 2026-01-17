@@ -1014,6 +1014,7 @@ async def main() -> None:
             "auto",
             "-x",
             "--no-header",
+            "--failed-first",
             "--junitxml=test-results.xml",
         ]
 

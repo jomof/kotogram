@@ -685,6 +685,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         table_fam.add_column("PosDen")
         table_fam.add_column("PosP")  # avg probability for positives
         table_fam.add_column("Acc")  # overall accuracy at threshold 0.5
+        table_fam.add_column("UnlabFP")  # unlabeled predicted positive rate
         table_fam.add_column("Logit(+/-)")
         table_fam.add_column("Gap")
         table_fam.add_column("Msk%")
@@ -803,6 +804,22 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 else ("yellow" if fam.accuracy > 0.7 else "red")
             )
 
+            # Compute unlabeled FP rate from accumulator stats
+            unlab_fp_rate_str = "-"
+            if hasattr(summary, "accumulators") and name in summary.accumulators:
+                acc = summary.accumulators[name]
+                if acc.cnt_unlabeled > 0:
+                    unlab_fp_rate = acc.cnt_unlabeled_pred_pos / acc.cnt_unlabeled
+                    # Color: green if low (<10%), yellow if medium, red if high (>30%)
+                    c_unlab = (
+                        "green"
+                        if unlab_fp_rate < 0.1
+                        else ("yellow" if unlab_fp_rate < 0.3 else "red")
+                    )
+                    unlab_fp_rate_str = (
+                        f"[{c_unlab}]{unlab_fp_rate * 100:.1f}%[/{c_unlab}]"
+                    )
+
             # Display true per-batch loss contribution (no scaling)
             table_fam.add_row(
                 name,
@@ -811,6 +828,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                 f"{fam.pos_label_density:.3f}",
                 f"[{c_posp}]{fam.prob_pos_mean * 100:.0f}%[/{c_posp}]{posp_arrow}",
                 f"[{c_acc}]{fam.accuracy * 100:.0f}%[/{c_acc}]{acc_arrow}",
+                unlab_fp_rate_str,
                 f"{fam.logit_pos_mean:.1f}/{fam.logit_neg_mean:.1f}",
                 f"[{c_gap}]{s_gap}[/{c_gap}]{gap_arrow}",
                 f"[{c_msk}]{fam.mask_coverage * 100:.1f}%[/{c_msk}]",
@@ -830,8 +848,8 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         self.prev_family_stats = current_family_stats
         console.print(table_fam)
 
-        # INVARIANT: struct = sum(all family losses)
-        # Each family's loss_mean is its per-batch contribution to struct.
+        # INVARIANT: struct + gap = sum(all family losses)
+        # Each family's loss_mean is its per-batch contribution to struct (including per-family gap).
         # This checksum validates that the diagnostic tracking matches the trainer.
         # Skip if no families (minimal test scenarios).
         all_label_families = list(summary.diagnostics.families.values())
@@ -840,12 +858,13 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             label_loss_sum = sum(fam.loss_mean for fam in all_label_families)
             mse_loss_sum = sum(fam.loss_mean for fam in all_mse_families)
             family_loss_sum = label_loss_sum + mse_loss_sum
-            struct_loss = lc.struct * w.struct / nb
+            # struct is BCE only, gap is separate regularizer (both weighted)
+            struct_loss = (lc.struct * w.struct + lc.gap * w.gap) / nb
             tolerance = 1e-3
             if abs(family_loss_sum - struct_loss) > tolerance:
                 raise RuntimeError(
                     f"Family loss sum mismatch: sum={family_loss_sum:.4f} vs "
-                    f"struct={struct_loss:.4f} (diff={abs(family_loss_sum - struct_loss):.4f})"
+                    f"struct+gap={struct_loss:.4f} (diff={abs(family_loss_sum - struct_loss):.4f})"
                 )
 
         # Print Warns if shape mismatch detected?

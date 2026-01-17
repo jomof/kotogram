@@ -131,6 +131,10 @@ class FamilyAccumulator:
     saw_sparse: bool = False
     saw_valid_mask: bool = False
 
+    # Unlabeled tracking (for PNU families like grammar_point)
+    cnt_unlabeled: int = 0  # Total unlabeled positions
+    cnt_unlabeled_pred_pos: int = 0  # Unlabeled predicted positive (potential FPs)
+
     # pylint: disable=too-many-positional-arguments,too-many-locals
     def update(
         self,
@@ -204,6 +208,16 @@ class FamilyAccumulator:
             if n_neg > 0:
                 self.sum_logit_neg += (logits * neg_mask_float).sum().item()
                 self.cnt_logit_neg += n_neg
+
+            # Track unlabeled predictions (for PNU families)
+            # Unlabeled = not positive and not explicitly negative (when valid_mask exists)
+            if valid_mask is not None:
+                unlabeled_mask = ~valid_mask  # Positions with no label
+                self.cnt_unlabeled += int(unlabeled_mask.sum().item())
+                # Count how many unlabeled positions are predicted positive (prob > 0.5)
+                probs = torch.sigmoid(logits)
+                unlabeled_pred_pos = unlabeled_mask & (probs > 0.5)
+                self.cnt_unlabeled_pred_pos += int(unlabeled_pred_pos.sum().item())
 
 
 @dataclass(frozen=True)
@@ -439,6 +453,9 @@ class KcEpochSummary:
     weights: KcLossWeights = field(default_factory=KcLossWeights)
     n_batches: int = 1  # Number of batches (for averaging loss components)
     total_loss: float = 0.0  # Epoch total loss for validation
+    accumulators: Dict[str, "FamilyAccumulator"] = field(
+        default_factory=dict
+    )  # Per-family accumulators
 
 
 @dataclass
