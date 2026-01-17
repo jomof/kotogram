@@ -116,6 +116,18 @@ class KCConfig:
     lb_weight: float = 0.0
     lb_weight_thawed: float = 0.1
 
+    # Coverage Loss (encourage all KC logits to be used)
+    coverage_weight: float = 0.0  # Start at 0, can enable after diversity is working
+    coverage_weight_thawed: float = (
+        0.1  # Weight when encoder is thawed (comparable to load_bal)
+    )
+    # Minimum probability threshold for a KC logit to be considered "used".
+    # For each KC logit, we compute its maximum probability across all samples in the batch.
+    # If that max probability is below this threshold, the logit is penalized.
+    # A value of 0.05 means each KC should reach at least 5% probability for at least one sample.
+    # Lower values (e.g., 0.01) are more lenient; higher values (e.g., 0.1) require stronger activations.
+    coverage_min_prob: float = 0.5  # Minimum max probability per KC logit
+
     # Collapse Prevention
     collapse_weight_thawed: float = 10.0
 

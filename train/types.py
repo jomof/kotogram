@@ -231,6 +231,7 @@ class RunningLossComponents:
     collapse: float = 0.0
     sparsity: float = 0.0
     saturation: float = 0.0  # Anti-saturation penalty
+    coverage: float = 0.0  # Coverage loss (encourage all KC logits to fire)
     formality: float = 0.0  # Prior KC cross-entropy loss (KC0-3)
     gender: float = 0.0  # Prior KC cross-entropy loss (KC4-5)
     register: float = 0.0  # Prior KC BCE multi-label loss (KC6-18)
@@ -252,6 +253,7 @@ class RunningLossComponents:
             collapse=self.collapse + other.collapse,
             sparsity=self.sparsity + other.sparsity,
             saturation=self.saturation + other.saturation,
+            coverage=self.coverage + other.coverage,
             formality=self.formality + other.formality,
             gender=self.gender + other.gender,
             register=self.register + other.register,
@@ -428,7 +430,7 @@ class KcLossWeights:
 
     INVARIANTS (enforced by checksums):
     1. struct = sum(all family losses) - each family contributes its task_loss directly
-    2. total_loss = struct + gap + div + lb + collapse + sparsity + saturation
+    2. total_loss = struct + gap + div + lb + collapse + sparsity + saturation + coverage
     """
 
     struct: float = 1.0  # Sum of all family task_losses
@@ -438,6 +440,7 @@ class KcLossWeights:
     lb: float = 1.0  # Already weighted in RunningLossComponents
     collapse: float = 1.0  # Already weighted in RunningLossComponents
     sparsity: float = 1.0  # Already weighted in RunningLossComponents
+    coverage: float = 1.0  # Already weighted in RunningLossComponents
 
 
 @dataclass
@@ -456,6 +459,8 @@ class KcEpochSummary:
     accumulators: Dict[str, "FamilyAccumulator"] = field(
         default_factory=dict
     )  # Per-family accumulators
+    kc_logits_used_count: int = 0  # Number of unique KC logits that fired
+    kc_logits_used_percent: float = 0.0  # Percent of KC logits utilized
 
 
 @dataclass

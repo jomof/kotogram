@@ -954,6 +954,9 @@ class KCTrainer:
 
         running_loss_components = RunningLossComponents()
 
+        # Track which KC logits are used (fire) for at least one sample
+        kc_logits_used_set: set = set()
+
         kc_diag = KCEpochDiag()
         # Load precomputed unique ID counts from label phase (amortized collision tracking)
         kc_diag.load_precomputed_unique_counts(self.dataset.data_dir)
@@ -1239,6 +1242,11 @@ class KCTrainer:
 
             all_lens_aligned.extend(len_t.tolist())
             # all_keff_aligned.extend(k_eff_t.tolist())
+
+            # Track which KC logits fire for at least one sample
+            # topk_inds shape: [batch_size, k]
+            unique_indices = topk_inds.unique().cpu().tolist()
+            kc_logits_used_set.update(unique_indices)
 
             # Update kc usage stats
 
@@ -1788,6 +1796,7 @@ class KCTrainer:
             loss_div_val = 0.0
             loss_lb_val = 0.0
             loss_coll_val = 0.0
+            loss_coverage_val = 0.0
 
             # p_max removed
 
@@ -1884,7 +1893,32 @@ class KCTrainer:
                 combined_loss += div_accum
                 loss_div_val = div_accum.item()
 
+            # Coverage Loss: Encourage all KC logits to be used
+            # For each KC logit, find its max probability across the batch
+            # Penalize if many logits have low max probability
+            coverage_weight = (
+                self.kc_config.coverage_weight
+                if epoch < self.freeze_encoder_epochs
+                else self.kc_config.coverage_weight_thawed
+            )
+
             kc_probs = torch.sigmoid(outputs["kc_logits_effective"])
+
+            if coverage_weight > 0:
+                # Max probability each KC achieves across the batch
+                # Shape: kc_probs is [batch_size, vocab_size]
+                max_probs_per_kc = kc_probs.max(dim=0)[0]  # [vocab_size]
+
+                # Penalize KCs that don't reach minimum threshold
+                min_threshold = self.kc_config.coverage_min_prob
+                coverage_violations = torch.nn.functional.relu(
+                    min_threshold - max_probs_per_kc
+                )
+                coverage_loss = coverage_violations.mean()
+
+                weighted_coverage_loss = coverage_weight * coverage_loss
+                combined_loss += weighted_coverage_loss
+                loss_coverage_val += weighted_coverage_loss.item()
 
             # Fail-Fast: Bounds
             if not (kc_probs.min() >= -1e-6 and kc_probs.max() <= 1 + 1e-6):
@@ -2088,6 +2122,7 @@ class KCTrainer:
                 "collapse": loss_coll_val,
                 "sparsity": loss_spar_val,
                 "saturation": loss_sat_val,  # Part of combined_loss, no gas scaling
+                "coverage": loss_coverage_val,  # Part of combined_loss, no gas scaling
             }
 
             # Accumulate for epoch summary (values match what goes into loss)
@@ -2102,6 +2137,7 @@ class KCTrainer:
                 collapse=current_epoch_comp["collapse"],
                 sparsity=current_epoch_comp["sparsity"],
                 saturation=current_epoch_comp["saturation"],
+                coverage=current_epoch_comp["coverage"],
                 formality_correct=form_correct,
                 formality_total=form_total,
                 gender_correct=gend_correct,
@@ -2358,6 +2394,12 @@ class KCTrainer:
         # Use defaults: struct=1.0, gap=1.0, prior=0.2, others=1.0 (already weighted)
         loss_weights = KcLossWeights()
 
+        # Calculate KC logit utilization
+        kc_logits_used_count = len(kc_logits_used_set)
+        kc_logits_used_percent = (
+            (100.0 * kc_logits_used_count / kc_vocab_size) if kc_vocab_size > 0 else 0.0
+        )
+
         summary = KcEpochSummary(
             epoch_idx=epoch,
             frozen=should_freeze,
@@ -2370,6 +2412,8 @@ class KCTrainer:
             total_loss=total_loss
             / max(1, n_batches),  # Per-batch average (guard div-by-zero)
             accumulators=family_accumulators,
+            kc_logits_used_count=kc_logits_used_count,
+            kc_logits_used_percent=kc_logits_used_percent,
         )
 
         # Skip full diagnostics for early epochs (performance optimization)
