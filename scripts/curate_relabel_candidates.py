@@ -41,6 +41,7 @@ class _RelabelThresholds:
 
     MSE_MIN_DISAGREEMENT = 0.3  # Minimum score difference to suggest relabel
     GP_POSITIVE_MIN_PROB = 0.6  # Minimum probability to suggest positive label
+    GP_FALSE_POSITIVE_MIN_PROB = 0.7  # High confidence threshold for FP detection
 
 
 _GP_PARALLEL_MIN = 2000
@@ -660,27 +661,35 @@ def _compute_and_collect_candidates(
         console.print("[bold blue]Computing grammar_point candidates...[/bold blue]")
         add_top_candidates(
             _compute_grammar_point_candidates(
-                sentences, db_grammar, model_gp_probs, gp_names, max_sentence_len
+                sentences,
+                db_grammar,
+                model_gp_probs,
+                gp_names,
+                max_sentence_len,
+                detect_false_positives=True,
             ),
         )
 
     return results
 
 
-def _compute_grammar_point_candidates(
+def _compute_grammar_point_candidates(  # pylint: disable=too-many-positional-arguments
     sentences: List[str],
     db_grammar: GPLabelsDict,
     model_gp_probs: GPProbsDict,
     gp_names: Dict[str, str],
     max_sentence_len: int = 30,
+    detect_false_positives: bool = True,
 ) -> List[RelabelCandidate]:
     """Find grammar point mislabeling candidates.
 
     Looks for:
     1. High prob for GP that is unlabeled in DB (propose positive)
+    2. Very high prob for unlabeled GP (likely false positive, propose negative for manual review)
 
     Args:
         max_sentence_len: Exclude sentences longer than this (character count)
+        detect_false_positives: If True, flag very high confidence as potential FPs
     """
     eligible_sents = [
         s for s in sentences if len(s) <= max_sentence_len and s in model_gp_probs
@@ -689,6 +698,7 @@ def _compute_grammar_point_candidates(
         return []
 
     prob_threshold = _RelabelThresholds.GP_POSITIVE_MIN_PROB
+    fp_threshold = _RelabelThresholds.GP_FALSE_POSITIVE_MIN_PROB
 
     # Worker closure for threading (doesn't need globals)
     def compute_for_sent(sent: str) -> List[RelabelCandidate]:
@@ -697,19 +707,51 @@ def _compute_grammar_point_candidates(
             return []
         pos_gp_ids, neg_gp_ids = db_grammar.get(sent, ([], []))
         labeled_ids = set(pos_gp_ids) | set(neg_gp_ids)
-        return [
-            RelabelCandidate(
-                family="grammar_point",
-                sentence=sent,
-                current_value="unlabeled",
-                predicted_value="positive",
-                confidence=prob,
-                gp_id=(gp_id_str := f"gp{gp_id:04d}"),
-                gp_name=gp_names.get(gp_id_str),
+
+        candidates = []
+        for gp_id, prob in enumerate(gp_probs):
+            if gp_id in labeled_ids:
+                continue
+            if prob <= prob_threshold:
+                continue
+
+            gp_id_str = f"gp{gp_id:04d}"
+
+            # Heuristic: Very high confidence (>0.7) on unlabeled is suspicious
+            # These are more likely false positives that need manual review as negatives
+            if detect_false_positives and prob > fp_threshold:
+                # Check if we have many negative labels already (suggests model overpredicting)
+                num_negatives = len(neg_gp_ids)
+                # If sentence has 3+ explicit negatives, model may be overpredicting
+                # Suggest negative for manual review
+                if num_negatives >= 3:
+                    candidates.append(
+                        RelabelCandidate(
+                            family="grammar_point",
+                            sentence=sent,
+                            current_value="unlabeled",
+                            predicted_value="negative",  # Suggest negative for review
+                            confidence=prob,
+                            gp_id=gp_id_str,
+                            gp_name=gp_names.get(gp_id_str),
+                        )
+                    )
+                    continue
+
+            # Default: suggest positive
+            candidates.append(
+                RelabelCandidate(
+                    family="grammar_point",
+                    sentence=sent,
+                    current_value="unlabeled",
+                    predicted_value="positive",
+                    confidence=prob,
+                    gp_id=gp_id_str,
+                    gp_name=gp_names.get(gp_id_str),
+                )
             )
-            for gp_id, prob in enumerate(gp_probs)
-            if gp_id not in labeled_ids and prob > prob_threshold
-        ]
+
+        return candidates
 
     # Choose parallelization strategy
     use_fork = (

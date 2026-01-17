@@ -435,9 +435,16 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             "",
             f"sc={act.sat_scale_mean:.0f} c={act.sat_contrib_ratio:.0%} pen={act.sat_pen_global:.2f}/{act.sat_pen_pos:.2f} LM={act.pmax_logit_mean_global:.1f}/{act.pmax_logit_mean_pos:.1f} P={act.frac_has_pos:.0%}>{act.frac_over_thr_pos:.0%}",
         )
+        table_loss.add_row(
+            "coverage",
+            _f(lc.coverage * w.coverage / nb),
+            _delta_arrow(lc.coverage, prev_lc.coverage if prev_lc else None),
+            "",
+            f"Used={summary.kc_logits_used_count} ({summary.kc_logits_used_percent:.1f}%)",
+        )
         console.print(table_loss)
 
-        # INVARIANT: total_loss = struct + gap + div + lb + collapse + sparsity + saturation
+        # INVARIANT: total_loss = struct + gap + div + lb + collapse + sparsity + saturation + coverage
         # All components are on the same scale (per-batch sums), so they add to epoch loss.
         loss_sum = (
             lc.struct * w.struct / nb
@@ -448,6 +455,7 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             + lc.collapse * w.collapse / nb
             + lc.sparsity * w.sparsity / nb
             + lc.saturation / nb  # Already weighted in kc_trainer
+            + lc.coverage * w.coverage / nb  # Already weighted in kc_trainer
         )
         expected_loss = summary.total_loss
         tolerance = 1e-3
