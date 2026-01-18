@@ -603,7 +603,6 @@ if __name__ == "__main__":
             formality_accuracy=res.formality_accuracy,
             gender_accuracy=res.gender_accuracy,
             grammaticality_accuracy=res.grammaticality_accuracy,
-            register_accuracy=res.register_accuracy,
         )
     )
 

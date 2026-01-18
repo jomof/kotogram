@@ -3016,11 +3016,6 @@ def main():
         help="Number of candidates to show per family"
     )
     relabel_parser.add_argument(
-        "--families", nargs="*",
-        default=["formality", "gender", "grammar_point"],
-        help="Families to check (formality, gender, grammar_point)"
-    )
-    relabel_parser.add_argument(
         "--apply",
         action="store_true",
         help="Apply relabel suggestions from relabel-candidates.txt to corpus.db"
@@ -3069,7 +3064,7 @@ def main():
             )
             apply_relabel_candidates(args.db_path, candidates_file)
         else:
-            find_relabel_candidates(args.db_path, args.top_n, args.families)
+            find_relabel_candidates(args.db_path, args.top_n)
 
 
 if __name__ == "__main__":

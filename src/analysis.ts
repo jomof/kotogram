@@ -85,6 +85,7 @@ export interface GrammarAnalysisData {
   grammaticality_score: number;
   kc_top?: Record<string, number>;
   grammar_point_probs?: number[];
+  register_probs?: number[];
 }
 
 export class GrammarAnalysis {
@@ -102,6 +103,7 @@ export class GrammarAnalysis {
     public readonly grammaticality_score: number,
     public readonly kc_top?: Record<string, number>,
     public readonly grammar_point_probs?: number[],
+    public readonly register_probs?: number[],
   ) {}
 
   /**
@@ -124,6 +126,7 @@ export class GrammarAnalysis {
       grammaticality_score: this.grammaticality_score,
       kc_top: this.kc_top,
       grammar_point_probs: this.grammar_point_probs,
+      register_probs: this.register_probs,
     };
     return JSON.stringify(data);
   }
@@ -152,6 +155,7 @@ export class GrammarAnalysis {
       data.grammaticality_score,
       data.kc_top,
       data.grammar_point_probs,
+      data.register_probs,
     );
   }
 }

@@ -128,6 +128,9 @@ class GrammarAnalysis:
     # Grammar Point predictions (optional, available if model has grammar_point decoder)
     grammar_point_probs: Optional[List[float]] = None  # Per-GP probabilities
 
+    # Register predictions (optional, raw probabilities for each register class)
+    register_probs: Optional[List[float]] = None  # Per-register probabilities
+
     def to_json(self) -> str:
         """Serialize analysis result to JSON string."""
         d = asdict(self)
@@ -143,6 +146,8 @@ class GrammarAnalysis:
             del d["kc_top"]
         if self.grammar_point_probs is None:
             del d["grammar_point_probs"]
+        if self.register_probs is None:
+            del d["register_probs"]
         return json.dumps(d, ensure_ascii=False)
 
 
@@ -274,6 +279,9 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
         if gp_probs_tensor is not None:
             gp_probs_sample = gp_probs_tensor[i].tolist()
 
+        # Extract raw register probabilities for this sample
+        reg_probs_sample = prediction.register_probs[i].tolist()
+
         results.append(
             GrammarAnalysis(
                 kotogram=kotograms[i],
@@ -289,6 +297,7 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
                 grammaticality_score=gram_score,
                 kc_top=kc_top_sample,
                 grammar_point_probs=gp_probs_sample,
+                register_probs=reg_probs_sample,
             )
         )
 

@@ -135,7 +135,7 @@ class KCConfig:
     skip_first_metrics: int = 0
 
     # Grammar Point (PNU) Loss
-    gp_unlab_weight: float = 0.01  # Soft negative weight for unlabeled GPs (increased from 0.001 to reduce false positives)
+    gp_unlab_weight: float = 0.1  # Soft negative weight for unlabeled GPs (increased to reduce false positives)
     gp_hard_neg_threshold: float = 0.7  # Probability threshold for hard negative mining
     gp_hard_neg_multiplier: float = (
         10.0  # Weight multiplier for high-confidence false positives
