@@ -55,6 +55,11 @@ class MockModel(nn.Module):
         self.last_long_mask = None
         self.kc_decoders = MockKCDecoders(config.kc_vocab_size, 10)  # dummy wrapper
         self.kc_head = nn.Linear(10, config.kc_vocab_size)  # dummy
+        # Encoder pipeline stubs for frozen epoch handling (adaptive budget tests)
+        self.embedding = nn.Identity()
+        self.position_encoding = nn.Identity()
+        self.encoder = nn.Identity()
+        self.pooler = nn.Identity()
 
     def forward(self, *args, **kwargs):
         if kwargs.get("mode") == "kc":

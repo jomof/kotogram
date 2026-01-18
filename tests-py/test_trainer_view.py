@@ -67,6 +67,7 @@ class DummyModel(torch.nn.Module):
         self.config = config
         self.encoder = torch.nn.Linear(1, 1)
         self.embedding = torch.nn.Linear(1, 1)
+        self.position_encoding = torch.nn.Identity()  # For frozen epoch handling
         self.formality_value_head = torch.nn.Linear(1, 1)
         self.formality_pragmatic_head = torch.nn.Linear(1, 1)
         self.gender_value_head = torch.nn.Linear(1, 1)

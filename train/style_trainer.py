@@ -410,7 +410,24 @@ class Trainer:
         enc_lr = 0.0 if should_freeze else (self.config.learning_rate * 0.1)
         self.optimizer.param_groups[0]["lr"] = enc_lr
 
-        self.model.train()
+        # Set training mode with special handling for frozen epochs:
+        # During frozen epochs, put encoder pipeline in eval mode to disable dropout
+        # for deterministic outputs, while keeping classifier heads in train mode.
+        if should_freeze:
+            # Encoder pipeline: eval mode (disable dropout)
+            self.model.embedding.eval()
+            self.model.position_encoding.eval()
+            self.model.encoder.eval()
+            self.model.pooler.eval()
+            # Classifier heads: train mode (keep dropout active for regularization)
+            self.model.formality_value_head.train()
+            self.model.formality_pragmatic_head.train()
+            self.model.gender_value_head.train()
+            self.model.gender_pragmatic_head.train()
+            self.model.grammaticality_classifier.train()
+            self.model.register_classifier.train()
+        else:
+            self.model.train()
         self.view.on_epoch_start(epoch, self.config.epochs, should_freeze)
 
         metrics = TrainingMetrics()
