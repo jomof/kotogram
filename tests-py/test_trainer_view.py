@@ -68,9 +68,8 @@ class DummyModel(torch.nn.Module):
         self.encoder = torch.nn.Linear(1, 1)
         self.embedding = torch.nn.Linear(1, 1)
         self.position_encoding = torch.nn.Identity()  # For frozen epoch handling
-        self.formality_value_head = torch.nn.Linear(1, 1)
+        # Pragmatic/classification heads only - value predictions via KC decoder
         self.formality_pragmatic_head = torch.nn.Linear(1, 1)
-        self.gender_value_head = torch.nn.Linear(1, 1)
         self.gender_pragmatic_head = torch.nn.Linear(1, 1)
         self.grammaticality_head = torch.nn.Linear(1, 1)
         self.register_head = torch.nn.Linear(1, NUM_REGISTER_CLASSES)
@@ -80,10 +79,9 @@ class DummyModel(torch.nn.Module):
 
     def forward(self, *_args, **_kwargs):
         batch_size = 2
+        # forward() now returns 4 outputs: pragmatic heads only
         return (
-            torch.randn(batch_size, 1, requires_grad=True),  # f_val [B, 1]
             torch.randn(batch_size, 5, requires_grad=True),  # f_prag [B, 5]
-            torch.randn(batch_size, 1, requires_grad=True),  # g_val [B, 1]
             torch.randn(batch_size, 3, requires_grad=True),  # g_prag [B, 3]
             torch.randn(batch_size, 2, requires_grad=True),  # gram [B, 2]
             torch.randn(

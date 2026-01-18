@@ -94,10 +94,9 @@ class DummyKCModel(torch.nn.Module):
         }
         self.encoder = torch.nn.Linear(1, 1)
         self.embedding = torch.nn.Linear(1, 1)
-        # Add head attributes required by Trainer
-        self.formality_value_head = torch.nn.Linear(1, 1)
+        # Pragmatic/classification heads required by Trainer
+        # Note: value heads removed - MSE predictions via KC decoder
         self.formality_pragmatic_head = torch.nn.Linear(1, 1)
-        self.gender_value_head = torch.nn.Linear(1, 1)
         self.gender_pragmatic_head = torch.nn.Linear(1, 1)
         self.grammaticality_head = torch.nn.Linear(1, 1)
         self.register_head = torch.nn.Linear(1, 1)

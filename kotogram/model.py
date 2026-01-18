@@ -56,7 +56,6 @@ class StylePrediction(NamedTuple):
     gender_pragmatic_probs: torch.Tensor
     grammaticality_probs: torch.Tensor
     register_probs: torch.Tensor
-    kcs: Optional[torch.Tensor] = None
 
 
 class ModelConfigDict(TypedDict):
@@ -365,19 +364,30 @@ KC_DECODER_HIDDEN_DIM = 256  # Must match train/models.py KCDecoder
 
 # Required for Mypy compatibility with torch.nn.Module
 class KCDecoderInference(nn.Module):  # type: ignore[misc]
-    """Lightweight KC decoder for inference-time grammar_point predictions.
+    """Lightweight KC decoder for inference-time predictions.
 
-    This mirrors the structure of train/models.py KCDecoder to load saved weights,
-    but only supports the families needed at inference (grammar_point).
+    This mirrors the structure of train/models.py KCDecoder to load saved weights.
+    Supports:
+    - grammar_point: Multi-label classification via label pathway
+    - formality/gender: Continuous regression via MSE pathway
 
     Architecture matches training:
-    - hidden1: kc_vocab_size -> hidden_dim (256)
-    - hidden2: hidden_dim -> hidden_dim
-    - activation: ReLU
+    - label_hidden1: kc_vocab_size -> hidden_dim (256)
+    - label_hidden2: hidden_dim -> hidden_dim
+    - mse_hidden1: kc_vocab_size -> hidden_dim (256)
+    - mse_hidden2: hidden_dim -> hidden_dim
     - decoders.grammar_point: hidden_dim -> num_grammar_points
+    - mse_decoders.formality: hidden_dim -> 1
+    - mse_decoders.gender: hidden_dim -> 1
     """
 
-    def __init__(self, config: ModelConfig, num_grammar_points: int):
+    def __init__(
+        self,
+        config: ModelConfig,
+        num_grammar_points: int,
+        has_formality: bool = False,
+        has_gender: bool = False,
+    ):
         super().__init__()
         kc_vocab_size = config.kc_vocab_size
 
@@ -387,17 +397,22 @@ class KCDecoderInference(nn.Module):  # type: ignore[misc]
         self.label_hidden2 = nn.Linear(KC_DECODER_HIDDEN_DIM, KC_DECODER_HIDDEN_DIM)
         self.activation = nn.ReLU()
 
-        # MSE pathway (not used for inference but kept for weight loading structure)
+        # MSE pathway (for formality/gender regression)
         self.mse_hidden1 = nn.Linear(kc_vocab_size, KC_DECODER_HIDDEN_DIM)
         self.mse_hidden2 = nn.Linear(KC_DECODER_HIDDEN_DIM, KC_DECODER_HIDDEN_DIM)
         self.tanh = nn.Tanh()
 
-        # Per-family decoders (only grammar_point for inference)
+        # Per-family label decoders
         self.decoders = nn.ModuleDict(
             {"grammar_point": nn.Linear(KC_DECODER_HIDDEN_DIM, num_grammar_points)}
         )
-        # Empty MSE decoders (for weight loading structure)
+
+        # MSE decoders for continuous style predictions
         self.mse_decoders = nn.ModuleDict()
+        if has_formality:
+            self.mse_decoders["formality"] = nn.Linear(KC_DECODER_HIDDEN_DIM, 1)
+        if has_gender:
+            self.mse_decoders["gender"] = nn.Linear(KC_DECODER_HIDDEN_DIM, 1)
 
         self.num_grammar_points = num_grammar_points
 
@@ -419,6 +434,37 @@ class KCDecoderInference(nn.Module):  # type: ignore[misc]
         probs = torch.sigmoid(logits)
 
         return cast(torch.Tensor, probs)
+
+    def predict_style_values(
+        self, kc_probs: torch.Tensor
+    ) -> Tuple[Optional[torch.Tensor], Optional[torch.Tensor]]:
+        """Predict formality and gender values from KC probabilities.
+
+        Uses the MSE pathway which processes full KC probabilities (not sparse).
+
+        Args:
+            kc_probs: Full KC probabilities [B, kc_vocab_size]
+
+        Returns:
+            Tuple of (formality_value, gender_value), each [B, 1] or None if not available
+        """
+        formality_val = None
+        gender_val = None
+
+        if not self.mse_decoders:
+            return formality_val, gender_val
+
+        # Through MSE pathway
+        h = self.activation(self.mse_hidden1(kc_probs))
+        h = self.activation(self.mse_hidden2(h))
+
+        if "formality" in self.mse_decoders:
+            formality_val = self.tanh(self.mse_decoders["formality"](h))
+
+        if "gender" in self.mse_decoders:
+            gender_val = self.tanh(self.mse_decoders["gender"](h))
+
+        return formality_val, gender_val
 
     @property
     def weight_loading_modules(self) -> List[nn.Module]:
@@ -491,7 +537,12 @@ class AttentionPooler(nn.Module):  # type: ignore[misc]
 
 # Required for Mypy compatibility with torch.nn.Module
 class InferenceClassifier(nn.Module):  # type: ignore[misc]
-    """Neural sequence classifier for multi-task style prediction."""
+    """Neural sequence classifier for multi-task style prediction.
+
+    Style values (formality_value, gender_value) are predicted via the KC decoder's
+    MSE pathway. Classification heads (pragmatic, grammaticality, register) are
+    predicted directly from the pooled encoder output.
+    """
 
     def __init__(self, config: ModelConfig):
         super().__init__()
@@ -520,27 +571,12 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         # Unified attention pooler for both KC and style classification
         self.pooler = AttentionPooler(config.d_model, config.num_heads, config.dropout)
 
-        self.formality_value_head = nn.Sequential(
-            nn.Linear(classifier_input_dim, config.hidden_dim),
-            nn.GELU(),
-            nn.Dropout(config.dropout),
-            nn.Linear(config.hidden_dim, 1),
-            nn.Tanh(),
-        )
-
+        # Pragmatic classification heads (is the style dimension pragmatically relevant?)
         self.formality_pragmatic_head = nn.Sequential(
             nn.Linear(classifier_input_dim, config.hidden_dim),
             nn.GELU(),
             nn.Dropout(config.dropout),
             nn.Linear(config.hidden_dim, config.num_formality_pragmatic_classes),
-        )
-
-        self.gender_value_head = nn.Sequential(
-            nn.Linear(classifier_input_dim, config.hidden_dim),
-            nn.GELU(),
-            nn.Dropout(config.dropout),
-            nn.Linear(config.hidden_dim, 1),
-            nn.Tanh(),
         )
 
         self.gender_pragmatic_head = nn.Sequential(
@@ -566,8 +602,8 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
 
         self.kc_head = KCHead(config)
 
-        # Optional KC decoders for inference-time grammar_point predictions
-        # Initialized by load_model if decoder weights are present in saved model
+        # KC decoders for inference-time predictions (grammar_point, formality, gender)
+        # Initialized by load_model with decoder weights from saved model
         # Note: TrainingClassifier overrides this with KCDecoder during training
         self.kc_decoders: Optional[KCDecoderInference] = None
 
@@ -617,9 +653,13 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         torch.Tensor,
         torch.Tensor,
         torch.Tensor,
-        torch.Tensor,
-        torch.Tensor,
     ]:
+        """Forward pass for classification heads only.
+
+        Returns:
+            Tuple of (formality_prag, gender_prag, grammaticality, register) logits.
+            Style values (formality_value, gender_value) come from KC decoder.
+        """
         # Get encoder hidden states
         encoder_output = self.get_encoder_output(field_inputs, attention_mask)
 
@@ -627,9 +667,7 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         classifier_input = self.pooler(encoder_output, attention_mask)
 
         return (
-            self.formality_value_head(classifier_input),
             self.formality_pragmatic_head(classifier_input),
-            self.gender_value_head(classifier_input),
             self.gender_pragmatic_head(classifier_input),
             self.grammaticality_classifier(classifier_input),
             self.register_classifier(classifier_input),
@@ -640,19 +678,41 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         field_inputs: Dict[str, torch.Tensor],
         attention_mask: torch.Tensor,
     ) -> StylePrediction:
-        formality_val, formality_prag, gender_val, gender_prag, gram, reg = self(
-            field_inputs, attention_mask
-        )
-        kcs = self.predict_kcs(field_inputs, attention_mask)
+        """Full prediction including style values from KC decoder."""
+        formality_prag, gender_prag, gram, reg = self(field_inputs, attention_mask)
+
+        # Get KC probabilities for style value prediction
+        kc_logits = self.predict_kcs(field_inputs, attention_mask)
+        cur_temp = getattr(self.config, "kc_temperature", 1.0)
+        kc_probs = torch.sigmoid(kc_logits / cur_temp)
+
+        # Get style values from KC decoder
+        if self.kc_decoders is not None:
+            formality_val, gender_val = self.kc_decoders.predict_style_values(kc_probs)
+        else:
+            # Fallback: return zeros if kc_decoders not initialized
+            batch_size = formality_prag.size(0)
+            device = formality_prag.device
+            formality_val = torch.zeros(batch_size, 1, device=device)
+            gender_val = torch.zeros(batch_size, 1, device=device)
+
+        # Handle None from predict_style_values
+        if formality_val is None:
+            batch_size = formality_prag.size(0)
+            device = formality_prag.device
+            formality_val = torch.zeros(batch_size, 1, device=device)
+        if gender_val is None:
+            batch_size = gender_prag.size(0)
+            device = gender_prag.device
+            gender_val = torch.zeros(batch_size, 1, device=device)
 
         return StylePrediction(
-            formality_value=formality_val,  # Already Tanh
+            formality_value=formality_val,
             formality_pragmatic_probs=F.softmax(formality_prag, dim=-1),
-            gender_value=gender_val,  # Already Tanh
+            gender_value=gender_val,
             gender_pragmatic_probs=F.softmax(gender_prag, dim=-1),
             grammaticality_probs=F.softmax(gram, dim=-1),
             register_probs=torch.sigmoid(reg),
-            kcs=kcs,
         )
 
     def resize_embeddings(self, new_vocab_sizes: Dict[str, int]) -> Dict[str, int]:
@@ -776,7 +836,7 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         return cast(torch.Tensor, self.kc_decoders(sparse_activations))
 
 
-def load_model(
+def load_model(  # pylint: disable=too-many-locals
     path: str, device: Optional[torch.device] = None
 ) -> Tuple[InferenceClassifier, Tokenizer]:
     """Load trained model and tokenizer."""
@@ -808,21 +868,35 @@ def load_model(
 
     state_dict = {k: to_float32(v).contiguous() for k, v in state_dict.items()}
 
-    # Check if grammar_point decoder weights are present
+    # Check for KC decoder weights
     gp_weight_key = "kc_decoders.decoders.grammar_point.weight"
-    if gp_weight_key in state_dict:
-        # Infer num_grammar_points from weight shape
-        num_grammar_points = state_dict[gp_weight_key].shape[0]
+    formality_weight_key = "kc_decoders.mse_decoders.formality.weight"
+    gender_weight_key = "kc_decoders.mse_decoders.gender.weight"
 
-        # Initialize kc_decoders module
-        model.kc_decoders = KCDecoderInference(config, num_grammar_points)
+    has_grammar_point = gp_weight_key in state_dict
+    has_formality = formality_weight_key in state_dict
+    has_gender = gender_weight_key in state_dict
+
+    if has_grammar_point or has_formality or has_gender:
+        # Infer num_grammar_points from weight shape (default to 1 if not present)
+        num_grammar_points = (
+            state_dict[gp_weight_key].shape[0] if has_grammar_point else 1
+        )
+
+        # Initialize kc_decoders module with appropriate families
+        model.kc_decoders = KCDecoderInference(
+            config,
+            num_grammar_points,
+            has_formality=has_formality,
+            has_gender=has_gender,
+        )
         if device:
             model.kc_decoders.to(device)
 
         # Verify all weight loading modules are initialized
         _ = model.kc_decoders.weight_loading_modules
 
-    # Load with strict=False; some KC decoder keys may be present for grammar_point
+    # Load with strict=False; some KC decoder keys may be present
     result = model.load_state_dict(state_dict, strict=False)
 
     # Validate that only expected extra keys are present
