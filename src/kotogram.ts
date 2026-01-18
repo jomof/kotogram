@@ -46,6 +46,39 @@ export interface KotogramToJapaneseOptions {
   furigana?: boolean;
 }
 
+// =============================================================================
+// Token Shorthands for Compression
+// =============================================================================
+// Common tokens can be compressed to just their surface form.
+// This dict maps shorthand -> full token expansion.
+// The shorthand is JUST the surface form (no ⌈⌉ markers).
+// MUST match Python's TOKEN_SHORTHANDS exactly for cross-language compatibility.
+const TOKEN_SHORTHANDS: {[key: string]: string} = {
+  '。': '⌈ˢ。ᵖaux-symbolᵖ¹periodᵈ*ʳ*⌉',
+  は: '⌈ˢはᵖparticleᵖ¹binding-particleᵈ*ʳハ⌉',
+  を: '⌈ˢをᵖparticleᵖ¹case-particleᵈ*ʳヲ⌉',
+  に: '⌈ˢにᵖparticleᵖ¹case-particleᵈ*ʳニ⌉',
+  の: '⌈ˢのᵖparticleᵖ¹case-particleᵈ*ʳノ⌉',
+  た: '⌈ˢたᵖaux-verbᵗaux-taᶜterminalᵈ*ʳタ⌉',
+  て: '⌈ˢてᵖparticleᵖ¹conjunctive-particleᵈ*ʳテ⌉',
+  が: '⌈ˢがᵖparticleᵖ¹case-particleᵈ*ʳガ⌉',
+  '、': '⌈ˢ、ᵖaux-symbolᵖ¹commaᵈ*ʳ*⌉',
+  です: '⌈ˢですᵖaux-verbᵗaux-desuᶜterminalᵈ*ʳデス⌉',
+  し: '⌈ˢしᵖverbᵖ¹boundᵗsa-irregularᶜcontinuativeᵇするᵈするʳシ⌉',
+  と: '⌈ˢとᵖparticleᵖ¹case-particleᵈ*ʳト⌉',
+  だ: '⌈ˢだᵖaux-verbᵗaux-daᶜterminalᵈ*ʳダ⌉',
+  わ: '⌈ˢわᵖparticleᵖ¹sentence-final-particleᵈ*ʳワ⌉',
+  で: '⌈ˢでᵖparticleᵖ¹case-particleᵈ*ʳデ⌉',
+  ぜ: '⌈ˢぜᵖparticleᵖ¹sentence-final-particleᵈ*ʳゼ⌉',
+  ます: '⌈ˢますᵖaux-verbᵗaux-masuᶜterminalᵈ*ʳマス⌉',
+  いる: '⌈ˢいるᵖverbᵖ¹boundᵗupper-ichidan-aᶜterminalᵈ*ʳイル⌉',
+  も: '⌈ˢもᵖparticleᵖ¹binding-particleᵈ*ʳモ⌉',
+  ぞ: '⌈ˢぞᵖparticleᵖ¹sentence-final-particleᵈ*ʳゾ⌉',
+  こと: '⌈ˢことᵖnounᵖ¹common-nounᵖ²generalᵈ*ʳコト⌉',
+  か: '⌈ˢかᵖparticleᵖ¹sentence-final-particleᵈ*ʳカ⌉',
+  な: '⌈ˢなᵖaux-verbᵗaux-daᶜattributiveᵇだᵈだʳナ⌉',
+};
+
 // Part-of-speech to character mappings for punctuation
 // Must match Python's POS_TO_CHARS['auxs'] exactly for cross-language compatibility
 const POS_TO_CHARS: {[key: string]: string[]} = {
@@ -235,13 +268,21 @@ export function kotogramToJapanese(
       return true;
     }
 
-    for (const token of tokens) {
+    for (let token of tokens) {
+      // Expand shorthand tokens first (must match Python behavior)
+      if (TOKEN_SHORTHANDS[token]) {
+        token = TOKEN_SHORTHANDS[token];
+      }
+
       // Extract surface form
       const surfaceMatch = token.match(/ˢ(.*?)ᵖ/s);
       if (!surfaceMatch) {
         continue;
       }
       const surface = surfaceMatch[1];
+      if (!surface) {
+        continue;
+      }
 
       // For IME-style furigana, we only add readings for kanji or mixed text
       // Pure kana (hiragana/katakana) already shows the IME input
@@ -251,14 +292,19 @@ export function kotogramToJapanese(
       } else {
         // Surface contains kanji - extract reading for IME input
         const readingMatch = token.match(/ʳ(.*?)(?:⌉|ᵇ|ᵈ)/);
-        const readingKatakana = readingMatch ? readingMatch[1] : null;
+        let readingKatakana = readingMatch ? readingMatch[1] : null;
 
-        if (readingKatakana) {
+        // Handle '*' compression: reading='*' means use surface form
+        if (readingKatakana === '*') {
+          readingKatakana = null; // Treat as "no separate reading needed"
+        }
+
+        if (readingKatakana && readingKatakana !== surface) {
           // Convert pronunciation to hiragana for IME-style furigana
           const readingHiragana = toHiragana(readingKatakana);
           resultParts.push(`${surface}[${readingHiragana}]`);
         } else {
-          // No reading available
+          // No reading available or reading equals surface
           resultParts.push(surface);
         }
       }
@@ -327,11 +373,45 @@ export function kotogramToJapanese(
  * @see {@link kotogramToJapanese} - Extract surface forms from tokens
  */
 export function splitKotogram(kotogram: string): string[] {
-  // Find all complete token annotations enclosed in ⌈⌉
-  // Pattern matches: ⌈ followed by any chars (non-greedy) until ⌉
-  const pattern = /⌈[^⌉]*⌉/g;
-  const matches = kotogram.match(pattern);
-  return matches || [];
+  // Parse tokens including both standard ⌈⌉ tokens and shorthand tokens
+  // This must match Python's split_kotogram behavior exactly
+  const tokens: string[] = [];
+  let i = 0;
+
+  while (i < kotogram.length) {
+    // Check for standard ⌈...⌉ token
+    if (kotogram[i] === '⌈') {
+      const end = kotogram.indexOf('⌉', i);
+      if (end !== -1) {
+        tokens.push(kotogram.slice(i, end + 1));
+        i = end + 1;
+        continue;
+      }
+    }
+
+    // Check for shorthand token (longest match first)
+    // Sort shorthands by length descending to match longest first
+    const shorthandKeys = Object.keys(TOKEN_SHORTHANDS).sort(
+      (a, b) => b.length - a.length,
+    );
+    let matched = false;
+    for (const shorthand of shorthandKeys) {
+      if (kotogram.slice(i).startsWith(shorthand)) {
+        tokens.push(shorthand);
+        i += shorthand.length;
+        matched = true;
+        break;
+      }
+    }
+    if (matched) {
+      continue;
+    }
+
+    // Skip unrecognized characters (shouldn't happen in valid input)
+    i += 1;
+  }
+
+  return tokens;
 }
 
 function escapeRegExp(string: string): string {
