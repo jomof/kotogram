@@ -340,6 +340,7 @@ class KCTrainer:
         unlab_weight: float = 0.001,
         hard_negative_threshold: float = 0.7,
         hard_negative_multiplier: float = 10.0,
+        progressive_fp_weight: float = 0.0,
     ) -> torch.Tensor:
         """Compute PNU (Positive-Negative-Unlabeled) loss for grammar points.
 
@@ -353,6 +354,7 @@ class KCTrainer:
             unlab_weight: weight for unlabeled (soft negative) loss
             hard_negative_threshold: probability threshold for hard negative mining
             hard_negative_multiplier: weight multiplier for hard negatives
+            progressive_fp_weight: weight for progressive false positive penalty
 
         Returns:
             Scalar loss tensor
@@ -399,6 +401,7 @@ class KCTrainer:
         unlabeled_mask = 1.0 - labeled_pos - labeled_neg
         unlabeled_mask = unlabeled_mask.clamp(0, 1)  # Handle overlap
 
+        unlab_loss = torch.tensor(0.0, device=device)
         if unlab_weight > 0 and unlabeled_mask.sum() > 0:
             # Hard negative mining: upweight unlabeled examples where model is confident
             # This reduces false positives by making overconfident predictions more expensive
@@ -408,7 +411,7 @@ class KCTrainer:
             ).float() * unlabeled_mask
             soft_negative_mask = unlabeled_mask - hard_negative_mask
 
-            unlab_loss = F.binary_cross_entropy_with_logits(
+            unlab_bce = F.binary_cross_entropy_with_logits(
                 logits, torch.zeros_like(logits), reduction="none"
             )
 
@@ -418,7 +421,7 @@ class KCTrainer:
                 hard_neg_loss = (
                     unlab_weight
                     * hard_negative_multiplier
-                    * (unlab_loss * hard_negative_mask).sum()
+                    * (unlab_bce * hard_negative_mask).sum()
                     / hard_neg_count
                 )
             else:
@@ -429,17 +432,32 @@ class KCTrainer:
             if soft_neg_count > 0:
                 soft_neg_loss = (
                     unlab_weight
-                    * (unlab_loss * soft_negative_mask).sum()
+                    * (unlab_bce * soft_negative_mask).sum()
                     / soft_neg_count
                 )
             else:
                 soft_neg_loss = torch.tensor(0.0, device=device)
 
             unlab_loss = hard_neg_loss + soft_neg_loss
-        else:
-            unlab_loss = torch.tensor(0.0, device=device)
 
-        return pos_loss + neg_loss + unlab_loss
+        # Progressive false positive penalty:
+        # Count unlabeled positions predicted positive (prob > 0.5) per sample
+        # Cost grows superlinearly: (count - 1)^1.5 * weight
+        # First unlabeled positive is free, subsequent ones get progressively expensive
+        progressive_loss = torch.tensor(0.0, device=device)
+        if progressive_fp_weight > 0 and unlabeled_mask.sum() > 0:
+            probs = torch.sigmoid(logits)
+            # Count unlabeled positives per sample: (B,)
+            unlabeled_positive_count = ((probs > 0.5).float() * unlabeled_mask).sum(
+                dim=1
+            )
+
+            # Cost = (count - 1)^1.5 for count > 1, else 0
+            # This makes: f(1)=0, f(2)=1, f(3)=2.83, f(10)=27, f(20)=83
+            cost_per_sample = torch.pow(F.relu(unlabeled_positive_count - 1), 1.5)
+            progressive_loss = progressive_fp_weight * cost_per_sample.mean()
+
+        return pos_loss + neg_loss + unlab_loss + progressive_loss
 
     # pylint: disable=too-many-locals,too-many-positional-arguments
     def _bce_sampled_from_sparse(
@@ -1348,6 +1366,7 @@ class KCTrainer:
                                 unlab_weight=self.kc_config.gp_unlab_weight,
                                 hard_negative_threshold=self.kc_config.gp_hard_neg_threshold,
                                 hard_negative_multiplier=self.kc_config.gp_hard_neg_multiplier,
+                                progressive_fp_weight=self.kc_config.gp_progressive_fp_weight,
                             )
 
                             # Apply per-family loss weight for balanced training
