@@ -84,7 +84,7 @@ class KCConfig:
     """Pretraining (KC) hyperparameter configuration."""
 
     sparsity_weight: float = 0.1  # Scaled to match formality loss magnitude (~0.2)
-    freeze_encoder_epochs: int = 3
+    freeze_encoder_epochs: int = 0
 
     # Diversity / Coverage
     diversity_weight: float = 1e-3
@@ -140,6 +140,12 @@ class KCConfig:
     gp_hard_neg_multiplier: float = (
         10.0  # Weight multiplier for high-confidence false positives
     )
+    # Progressive penalty for multiple unlabeled positive predictions
+    # Cost grows superlinearly: (count - 1)^1.5 * weight
+    # First unlabeled positive is free, subsequent ones become progressively expensive
+    gp_progressive_fp_weight: float = (
+        0.01  # Weight for progressive false positive penalty
+    )
 
     # Style Oversampling (for addressing class imbalance in gender/formality)
     style_oversample: bool = True  # Enable oversampling of non-neutral examples
@@ -168,7 +174,7 @@ class TrainerConfig:
     batch_size: int = -1
     epochs: int = 20  # Fine-tuning epochs
     kc_epochs: int = 11
-    freeze_encoder_epochs: int = 3
+    freeze_encoder_epochs: int = 0
     patience: int = 5  # Early stopping patience
     lr_scheduler_patience: int = 2
     lr_scheduler_factor: float = 0.5
