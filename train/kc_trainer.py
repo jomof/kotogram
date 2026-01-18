@@ -22,10 +22,6 @@ from train.dataset import StyleDataset, collate_fn, create_kc_batch
 from train.display import (
     RichTrainerProgressBar,
 )
-from train.io import (
-    load_training_state,
-    save_training_state,
-)
 from train.kc import get_family, is_family_db_sourced, is_family_sparse
 from train.kc_diagnostics import (
     KCEpochDiag,
@@ -214,53 +210,10 @@ class KCTrainer:
             else None,
         )
         self.start_epoch = 0
+        self.session_start_epoch: Optional[int] = None
         self.start_batch = 0
-        self.global_step = 0
         # Per-family positive densities for adaptive loss weighting
         self.family_pos_densities: Dict[str, float] = {}
-
-    def save_checkpoint(self, epoch: int) -> None:
-        if self.config.checkpoint.dir is None:
-            return
-
-        save_training_state(
-            path=self.config.checkpoint.dir,
-            model=self.model,
-            optimizer=self.optimizer,
-            epoch=epoch,
-            history=self.history,
-            global_step=self.global_step,
-            config=self.config,
-            filename="checkpoint_kc.pt",
-        )
-
-    def restore_from_checkpoint(self, path: str) -> bool:
-        full_path = os.path.join(path, "checkpoint_kc.pt")
-        if not os.path.exists(full_path):
-            return False
-
-        checkpoint = load_training_state(
-            path=path,
-            model=getattr(self.model, "module", self.model),
-            optimizer=self.optimizer,
-            filename="checkpoint_kc.pt",
-        )
-        self.start_epoch = checkpoint["epoch"]
-        self.start_batch = checkpoint.get("batch_idx", 0)
-        self.global_step = checkpoint.get("global_step", 0)
-        history_data = checkpoint["history"]
-        if isinstance(history_data, dict):
-            for k, v in history_data.items():
-                if hasattr(self.history, k):
-                    setattr(self.history, k, v)
-            if isinstance(self.history, dict):
-                self.history.update(history_data)
-        else:
-            self.history = history_data
-        self.view.on_kc_checkpoint_restored(
-            path, self.start_epoch, self.start_batch, self.global_step
-        )
-        return True
 
     def _balanced_bce_loss(
         self,
@@ -881,7 +834,14 @@ class KCTrainer:
 
     # pylint: disable=too-many-locals
     def train_epoch(self, epoch: int = 0) -> TrainEpochResult:
-        should_freeze = epoch < self.freeze_encoder_epochs
+        # Use relative epoch from session start for freezing (warm-up)
+        # If session_start_epoch is None (e.g. direct call), fall back to absolute
+        base_epoch = (
+            self.session_start_epoch if self.session_start_epoch is not None else 0
+        )
+        relative_epoch = max(0, epoch - base_epoch)
+
+        should_freeze = relative_epoch < self.freeze_encoder_epochs
         # Performance: Skip diagnostic metrics gathering for early epochs
         skip_metrics = epoch < self.kc_config.skip_first_metrics
         # self._create_optimizer(freeze_encoder=should_freeze) <- REMOVED to preserve moment
@@ -910,9 +870,9 @@ class KCTrainer:
 
         # --- Saturation Penalty Config (Per Epoch) ---
         sat_w = 0.0
-        if epoch >= self.freeze_encoder_epochs:
+        if relative_epoch >= self.freeze_encoder_epochs:
             # Stronger ramp: 0.25 -> 1.0 over 3 epochs
-            epoch_idx_thawed = max(0, epoch - self.freeze_encoder_epochs)
+            epoch_idx_thawed = max(0, relative_epoch - self.freeze_encoder_epochs)
             ramp = min(1.0, epoch_idx_thawed / 3.0)
             sat_w = 0.25 + 0.75 * ramp
 
@@ -995,13 +955,13 @@ class KCTrainer:
 
             # --- Saturation Scale Ramp ---
             ramp_val = 0.0
-            if epoch >= self.freeze_encoder_epochs:
+            if relative_epoch >= self.freeze_encoder_epochs:
                 # Ramp up sat_w/alpha linearly over 1 epoch (or defined steps)
                 # Typically we want it fully active quickly after thawing.
                 # Let's say ramp over 1000 steps or 1 epoch.
                 # Just use epoch-based ramp for simplicity if step tracking is complex
                 # Actually, let's use intra-epoch ramp:
-                epoch_since_thaw = epoch - self.freeze_encoder_epochs
+                epoch_since_thaw = relative_epoch - self.freeze_encoder_epochs
                 # Linear ramp from 0.0 to 1.0 over first thawed epoch
                 if epoch_since_thaw == 0:
                     ramp_val = min(1.0, (batch_idx + 1) / max(1, n_batches))
@@ -1010,7 +970,7 @@ class KCTrainer:
 
             # --- Pre-calculate Saturation Weight ---
             sat_w = 0.0
-            if self.kc_sat_weight > 0 and epoch >= self.freeze_encoder_epochs:
+            if self.kc_sat_weight > 0 and relative_epoch >= self.freeze_encoder_epochs:
                 # Saturation penalty: Ramp up from 0 to full weight
                 sat_w = self.kc_sat_weight * ramp_val
 
@@ -1063,14 +1023,14 @@ class KCTrainer:
             long_sentence_mask = content_len >= long_threshold
 
             gumbel_scale = 0.0
-            if epoch < self.freeze_encoder_epochs:
+            if relative_epoch < self.freeze_encoder_epochs:
                 t_val = self.kc_temperature_frozen
             else:
                 t_val = self.kc_temperature_thawed
 
                 total_kc_epochs = self.config.kc_epochs or self.config.epochs or 3
                 epochs_remaining = max(1, total_kc_epochs - self.freeze_encoder_epochs)
-                epoch_idx_thawed = max(0, epoch - self.freeze_encoder_epochs)
+                epoch_idx_thawed = max(0, relative_epoch - self.freeze_encoder_epochs)
                 ratio = min(1.0, epoch_idx_thawed / float(epochs_remaining))
                 gumbel_scale = 0.6 * (1.0 - ratio) + 0.2 * ratio
 
@@ -1786,7 +1746,7 @@ class KCTrainer:
             gap_loss_tensor = torch.tensor(batch_gap_loss, device=self.device)
             combined_loss = structural_loss + gap_loss_tensor
 
-            if epoch < self.freeze_encoder_epochs:
+            if relative_epoch < self.freeze_encoder_epochs:
                 div_weight = self.kc_diversity_weight_frozen
                 lb_weight = self.kc_lb_weight_frozen
             else:
@@ -1802,7 +1762,7 @@ class KCTrainer:
 
             if epoch >= self.kc_diversity_warmup_epochs:
                 logits_usage = outputs.get("logits_usage", outputs["kc_logits_raw"])
-                tau_usage = 1.0 if epoch < self.freeze_encoder_epochs else 2.0
+                tau_usage = 1.0 if relative_epoch < self.freeze_encoder_epochs else 2.0
 
                 logit_ref = logits_usage
                 # Adaptive Divergence / Collapse Logic
@@ -1878,7 +1838,7 @@ class KCTrainer:
 
                     if s["apply_collapse"]:
                         if (
-                            epoch >= self.freeze_encoder_epochs
+                            relative_epoch >= self.freeze_encoder_epochs
                             and self.kc_collapse_weight_thawed > 0
                         ):
                             thr = max(1.5 / max(1, kc_vocab_size), 0.001)
@@ -1898,7 +1858,7 @@ class KCTrainer:
             # Penalize if many logits have low max probability
             coverage_weight = (
                 self.kc_config.coverage_weight
-                if epoch < self.freeze_encoder_epochs
+                if relative_epoch < self.freeze_encoder_epochs
                 else self.kc_config.coverage_weight_thawed
             )
 
@@ -2034,7 +1994,7 @@ class KCTrainer:
 
                 # Safety Assertion: First batch of first thawed epoch
                 if (
-                    epoch == self.freeze_encoder_epochs
+                    relative_epoch == self.freeze_encoder_epochs
                     and batch_idx == 0
                     and has_pos_mask.any()
                 ):
@@ -2084,8 +2044,8 @@ class KCTrainer:
                 loss_sat_val = 0.0
 
             spar_w = self.kc_sparsity_weight
-            if epoch >= self.freeze_encoder_epochs:
-                epoch_idx_thawed = max(0, epoch - self.freeze_encoder_epochs)
+            if relative_epoch >= self.freeze_encoder_epochs:
+                epoch_idx_thawed = max(0, relative_epoch - self.freeze_encoder_epochs)
                 if epoch_idx_thawed < 3:
                     spar_w = 0.5 * self.kc_sparsity_weight
 
@@ -2164,13 +2124,7 @@ class KCTrainer:
                 for k_loss, v_loss in batch_kc_losses.items():
                     epoch_kc_losses[k_loss] = epoch_kc_losses.get(k_loss, 0.0) + v_loss  # type: ignore
                 n_batches += 1
-                self.global_step += 1
 
-                if (
-                    self.config.checkpoint.every_n_steps
-                    and self.global_step % self.config.checkpoint.every_n_steps == 0
-                ):
-                    self.save_checkpoint(epoch)
             else:
                 raise RuntimeError("Non-finite loss detected")
 
@@ -2456,11 +2410,12 @@ class KCTrainer:
         on_epoch_end: Callable[[KCTrainingHistory], None],
         start_epoch: Optional[int] = None,
     ) -> KCTrainingHistory:
-        if self.config.checkpoint.resume_from:
-            self.restore_from_checkpoint(self.config.checkpoint.resume_from)
-
-        # Use explicit start_epoch if provided, otherwise use self.start_epoch from checkpoint
+        # Use explicit start_epoch if provided
         effective_start = start_epoch if start_epoch is not None else self.start_epoch
+
+        # Record when this session started to support relative freezing/warmups
+        if self.session_start_epoch is None:
+            self.session_start_epoch = effective_start
 
         if effective_start == 0 and self.start_batch == 0:
             self._init_structural_decoder_biases()
@@ -2497,8 +2452,6 @@ class KCTrainer:
                 self.history.kc_losses[k].append(v)
 
             self.history.sentence_count.append(len(self.dataset))
-
-            self.save_checkpoint(epoch + 1)
 
             on_epoch_end(self.history)
 

@@ -6,7 +6,7 @@ from torch import nn
 
 # pylint: disable=no-name-in-module
 from kotogram.model import ModelConfig
-from train.config import CheckpointConfig, DataLoaderConfig, KCConfig, TrainerConfig
+from train.config import DataLoaderConfig, KCConfig, TrainerConfig
 from train.kc import KcFamilyId
 from train.models import TrainingClassifier
 from train.trainer import KCTrainer
@@ -117,7 +117,6 @@ class TestKCAdaptiveBudget(unittest.TestCase):
             batch_size=4,
             grad_accum_steps=1,
             device="cpu",
-            checkpoint=CheckpointConfig(),
             kc_target_specs={KcFamilyId.BAG_READING_GRAM: 10},
         )
         self.dl_config = DataLoaderConfig(

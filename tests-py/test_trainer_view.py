@@ -167,28 +167,6 @@ class RecordingTrainerView(TrainerView):
             data_frac=data_frac,
         )
 
-    def on_checkpoint_restored(
-        self, path: str, epoch: int, batch_idx: int, global_step: int
-    ) -> None:
-        self._record(
-            "on_checkpoint_restored",
-            path=path,
-            epoch=epoch,
-            batch_idx=batch_idx,
-            global_step=global_step,
-        )
-
-    def on_checkpoint_saved(
-        self, path: str, epoch: int, global_step: int, filename: str
-    ) -> None:
-        self._record(
-            "on_checkpoint_saved",
-            path=path,
-            epoch=epoch,
-            global_step=global_step,
-            filename=filename,
-        )
-
     def on_best_model_saved(self, model_path: str, best_val_loss: float) -> None:
         self._record(
             "on_best_model_saved", model_path=model_path, best_val_loss=best_val_loss
@@ -232,8 +210,6 @@ class TestTrainerView(TestCase):
         )
 
     def test_train_calls_view_hooks(self):
-        # Mock save_checkpoint to avoid IO
-        self.trainer.save_checkpoint = MagicMock()
         # Mock save_model to avoid size verification on DummyModel
         # Since train_io is imported in trainer.py, checking where to patch
         # But we can just patch 'train.trainer.train_io.save_model' or mock the method
@@ -260,4 +236,3 @@ class TestTrainerView(TestCase):
         self.assertIn("on_epoch_end", calls)
         self.assertIn("on_train_end", calls)
         self.assertIn("on_timing_summary", calls)
-        self.assertIn("on_checkpoint_saved", calls)

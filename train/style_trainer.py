@@ -25,9 +25,7 @@ from train.display import (
     RichTrainerProgressBar,
 )
 from train.io import (
-    load_training_state,
     save_model,
-    save_training_state,
 )
 from train.profile import Timer, get_profile_dir
 from train.pytorch_utils import estimate_optimal_batch_size
@@ -244,7 +242,6 @@ class Trainer:
         self.best_state: Optional[Dict[str, torch.Tensor]] = None
         self.start_epoch = 0
         self.start_batch = 0
-        self.global_step = 0
 
         _safe_configure_threads(self.config)
 
@@ -267,75 +264,6 @@ class Trainer:
             if profile_dir
             else None,
         )
-
-    def save_checkpoint(self, epoch: int) -> None:
-        if self.config.checkpoint.dir is None:
-            return
-
-        save_training_state(
-            path=self.config.checkpoint.dir,
-            model=self.model,
-            optimizer=self.optimizer,
-            epoch=epoch,
-            history=self.history,
-            global_step=self.global_step,
-            scheduler=self.scheduler,
-            config=self.config,
-            filename="checkpoint.pt",
-        )
-
-        checkpoint_meta = {
-            "best_val_loss": self.best_val_loss,
-            "patience_counter": self.patience_counter,
-            "best_state": self.best_state,
-        }
-        torch.save(
-            checkpoint_meta,
-            os.path.join(self.config.checkpoint.dir, "checkpoint_meta.pt"),
-        )
-
-    def restore_from_checkpoint(self, path: str) -> bool:
-        full_path = os.path.join(path, "checkpoint.pt")
-        if not os.path.exists(full_path):
-            return False
-
-        checkpoint = load_training_state(
-            path=path,
-            model=getattr(self.model, "module", self.model),
-            optimizer=self.optimizer,
-            scheduler=self.scheduler,
-            filename="checkpoint.pt",
-        )
-        self.start_epoch = checkpoint["epoch"]
-        self.start_batch = checkpoint.get("batch_idx", 0)
-        self.global_step = checkpoint.get("global_step", 0)
-        history_data = checkpoint["history"]
-
-        # Try to update existing history object (dataclass) from dict to preserve type
-        if isinstance(history_data, dict):
-            # We assume self.history is initialized correctly in __init__
-            for k, v in history_data.items():
-                if hasattr(self.history, k):
-                    setattr(self.history, k, v)
-
-            # Fallback: if self.history is a dict (legacy), update it
-            if isinstance(self.history, dict):
-                self.history.update(history_data)
-        else:
-            # history_data is already an object (e.g. from newer checkpoint?), replace
-            self.history = history_data
-
-        meta_path = os.path.join(path, "checkpoint_meta.pt")
-        if os.path.exists(meta_path):
-            meta = torch.load(meta_path, map_location="cpu")
-            self.best_val_loss = meta.get("best_val_loss", float("inf"))
-            self.patience_counter = meta.get("patience_counter", 0)
-            self.best_state = meta.get("best_state")
-
-        self.view.on_checkpoint_restored(
-            path, self.start_epoch, self.start_batch, self.global_step
-        )
-        return True
 
     @staticmethod
     def _masked_bce(
@@ -524,15 +452,6 @@ class Trainer:
                 self.view.on_progress_update(
                     batch_idx, current_loss_val or 0.0, total_batches
                 )
-
-                if (batch_idx + 1) % self.config.grad_accum_steps == 0:
-                    self.global_step += 1
-
-                    if (
-                        self.config.checkpoint.every_n_steps
-                        and self.global_step % self.config.checkpoint.every_n_steps == 0
-                    ):
-                        self.save_checkpoint(epoch)
 
                 self.train_timer_compute.stop(epoch=epoch, batch=batch_idx)
                 self.train_timer_data.start()
@@ -731,10 +650,7 @@ class Trainer:
         on_epoch_end: Callable[[TrainingHistory], None],
         start_epoch: Optional[int] = None,
     ) -> TrainingHistory:
-        if self.config.checkpoint.resume_from:
-            self.restore_from_checkpoint(self.config.checkpoint.resume_from)
-
-        # Use explicit start_epoch if provided, otherwise use self.start_epoch from checkpoint
+        # Use explicit start_epoch if provided
         effective_start = start_epoch if start_epoch is not None else self.start_epoch
         self.view.on_train_start(epochs, effective_start, self.start_batch)
 
@@ -866,14 +782,6 @@ class Trainer:
                 if self.patience_counter >= self.config.patience:
                     self.view.on_early_stopping(epoch + 1)
                     break
-
-            self.save_checkpoint(epoch + 1)
-            self.view.on_checkpoint_saved(
-                self.config.checkpoint.dir or "",
-                epoch + 1,
-                self.global_step,
-                "checkpoint.pt",
-            )
 
             on_epoch_end(self.history)
 

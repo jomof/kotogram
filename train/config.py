@@ -71,26 +71,6 @@ class DataLoaderSettings:
         return cls(**d)
 
 
-@dataclass(frozen=True)
-class CheckpointConfig:
-    """Checkpoint and resumption settings."""
-
-    dir: Optional[str] = None
-    every_n_steps: Optional[int] = None
-    resume_from: Optional[str] = None
-
-    def to_dict(self) -> Dict[str, Any]:
-        return {
-            "dir": self.dir,
-            "every_n_steps": self.every_n_steps,
-            "resume_from": self.resume_from,
-        }
-
-    @classmethod
-    def from_dict(cls, d: Dict[str, Any]) -> "CheckpointConfig":
-        return cls(**d)
-
-
 # Loss Weights
 _FORMALITY_LOSS_WEIGHT_DEFAULT = 1.0
 _GRAMMATICALITY_LOSS_WEIGHT_DEFAULT = 1.0
@@ -104,7 +84,7 @@ class KCConfig:
     """Pretraining (KC) hyperparameter configuration."""
 
     sparsity_weight: float = 0.1  # Scaled to match formality loss magnitude (~0.2)
-    freeze_encoder_epochs: int = 0
+    freeze_encoder_epochs: int = 3
 
     # Diversity / Coverage
     diversity_weight: float = 1e-3
@@ -216,7 +196,6 @@ class TrainerConfig:
     # Orthogonal components
     hardware: HardwareConfig = field(default_factory=HardwareConfig)
     dataloader: DataLoaderSettings = field(default_factory=DataLoaderSettings)
-    checkpoint: CheckpointConfig = field(default_factory=CheckpointConfig)
 
     # Process-specific Configuration
     # (Removed ProcessSettings as unused)
@@ -252,7 +231,6 @@ class TrainerConfig:
             "gender_mse_scaling_factor": self.gender_mse_scaling_factor,
             "hardware": self.hardware.to_dict(),
             "dataloader": self.dataloader.to_dict(),
-            "checkpoint": self.checkpoint.to_dict(),
             "progress_update_every": self.progress_update_every,
             "log_flush_every": self.log_flush_every,
             "kc_target_specs": {k.value: v for k, v in self.kc_target_specs.items()},
@@ -287,8 +265,6 @@ class TrainerConfig:
             d["hardware"] = HardwareConfig.from_dict(d["hardware"])
         if "dataloader" in d:
             d["dataloader"] = DataLoaderSettings.from_dict(d["dataloader"])
-        if "checkpoint" in d:
-            d["checkpoint"] = CheckpointConfig.from_dict(d["checkpoint"])
 
         # Handle kc_target_specs
         if "kc_target_specs" in d:

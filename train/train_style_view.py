@@ -146,10 +146,6 @@ class TrainStyleView(Protocol):
     def on_confusion_generate(self) -> None:
         """Notify confusion report is being generated after training."""
 
-    # --- Resumption ---
-    def on_auto_resume(self, checkpoint_path: str) -> None:
-        """Notify auto-resume is enabled due to checkpoint detection."""
-
     # --- Profiling ---
     def on_profiling_enabled(self, profile_dir: str) -> None:
         """Notify profiling is enabled."""
@@ -175,6 +171,9 @@ class TrainStyleView(Protocol):
 
     def on_model_upgrade(self) -> None:
         """Notify model is being upgraded to TrainingClassifier."""
+
+    def on_model_loaded(self, path: str) -> None:
+        """Notify model was loaded from exported model.pt."""
 
     def on_lr_scaled(
         self, base_lr: float, scale: float, scaled_lr: float, sample_ratio: float
@@ -258,7 +257,8 @@ class TrainStyleDiagnosticsView(TrainStyleView):
         if epochs is not None:
             console.print(f"Epochs:         {epochs}")
         else:
-            console.print("Epochs:         (default or restored from checkpoint)")
+            # We no longer use 'checkpoint' terminology
+            console.print("Epochs:         (default or restored)")
 
         console.print(f"Learning rate:  {learning_rate}")
         console.print(f"Model dim:      {embed_dim}")
@@ -279,9 +279,7 @@ class TrainStyleDiagnosticsView(TrainStyleView):
             console.print("KC pretrain:    (default/saved)")
 
         if retrain:
-            console.print(
-                "Retrain:        from scratch using parameters from checkpoint"
-            )
+            console.print("Retrain:        from scratch")
         if confusion_only:
             console.print("Action:         Print confusion matrices (no training)")
         if label_only:
@@ -413,12 +411,6 @@ class TrainStyleDiagnosticsView(TrainStyleView):
     def on_confusion_generate(self) -> None:
         console.print("[dim]Generating confusion report...[/dim]")
 
-    # --- Resumption ---
-    def on_auto_resume(self, checkpoint_path: str) -> None:
-        console.print(
-            f"[dim]Auto-resume enabled (found checkpoint: {checkpoint_path})[/dim]"
-        )
-
     # --- Profiling ---
     def on_profiling_enabled(self, profile_dir: str) -> None:
         console.print(
@@ -446,6 +438,9 @@ class TrainStyleDiagnosticsView(TrainStyleView):
 
     def on_model_upgrade(self) -> None:
         console.print("[dim]Upgrading loaded model to TrainingClassifier...[/dim]")
+
+    def on_model_loaded(self, path: str) -> None:
+        console.print(f"[cyan]Resuming: Loaded model weights from {path}[/cyan]")
 
     def on_lr_scaled(
         self, base_lr: float, scale: float, scaled_lr: float, sample_ratio: float
@@ -664,7 +659,6 @@ TrainStyleView.on_confusion_start
 TrainStyleView.on_confusion_complete
 TrainStyleView.on_confusion_skip
 TrainStyleView.on_confusion_generate
-TrainStyleView.on_auto_resume
 TrainStyleView.on_profiling_enabled
 TrainStyleView.on_label_only_exit
 TrainStyleView.on_architecture_report

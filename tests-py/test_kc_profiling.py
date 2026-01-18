@@ -59,7 +59,6 @@ class TestKCProfiling(unittest.TestCase):
         self.mock_config = TrainerConfig(
             device="cpu",
             batch_size=2,
-            checkpoint=MagicMock(dir="/tmp/ckpt"),
         )
         self.mock_dl_config = DataLoaderConfig(
             num_workers=0,

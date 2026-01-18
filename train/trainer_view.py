@@ -123,14 +123,6 @@ class TrainerView(Protocol):
 
     def on_progress_log(self, message: str) -> None: ...
 
-    def on_checkpoint_saved(
-        self, path: str, epoch: int, global_step: int, filename: str
-    ) -> None: ...
-
-    def on_checkpoint_restored(
-        self, path: str, epoch: int, batch_idx: int, global_step: int
-    ) -> None: ...
-
     def on_best_model_saved(self, model_path: str, best_val_loss: float) -> None: ...
 
     def on_timing_summary(
@@ -209,22 +201,6 @@ class TrainerDiagnosticsView(TrainerView):
 
     def on_progress_log(self, message: str) -> None:
         _ = message
-
-    def on_checkpoint_saved(
-        self, path: str, epoch: int, global_step: int, filename: str
-    ) -> None:
-        _ = path
-        _ = epoch
-        _ = global_step
-        _ = filename
-
-    def on_checkpoint_restored(
-        self, path: str, epoch: int, batch_idx: int, global_step: int
-    ) -> None:
-        _ = path
-        _ = epoch
-        _ = batch_idx
-        _ = global_step
 
     def on_best_model_saved(self, model_path: str, best_val_loss: float) -> None:
         print_best_model_saved(model_path, best_val_loss)

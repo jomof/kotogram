@@ -458,8 +458,7 @@ def main() -> None:
     # pylint: disable=import-outside-toplevel
     # Use existing 'paths' import (train.paths)
     cache_dir = paths.get_style_dataset_cache_dir()
-    args.output = paths.get_style_support_dir()
-    args.support_dir = args.output
+    args.output = paths.get_style_history_dir()
     args.model_dir = locations.get_style_output_dir()
     args.data = os.path.join(cache_dir, "grammatic_combined.tsv")
 
@@ -479,20 +478,6 @@ def main() -> None:
         # else: keep the default 512 from argparse
         if trainer_config.dataloader.num_workers is not None:
             args.num_workers = trainer_config.dataloader.num_workers
-
-    # Restore percent from checkpoint if not explicitly provided
-    checkpoint_path = os.path.join(args.support_dir, "checkpoint.pt")
-    if args.percent is None and os.path.exists(checkpoint_path):
-        checkpoint_data = torch.load(
-            checkpoint_path, map_location="cpu", weights_only=False
-        )
-        saved_args = checkpoint_data.get("args", {})
-        saved_percent = saved_args.get("percent")
-        if saved_percent is not None:
-            args.percent = saved_percent
-            console.print(
-                f"[dim]Restored --percent {args.percent} from checkpoint[/dim]"
-            )
 
     device_name = (
         "cuda"

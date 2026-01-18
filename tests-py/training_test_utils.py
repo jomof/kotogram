@@ -2,6 +2,7 @@ import contextlib
 import fnmatch
 import glob
 import hashlib
+import json
 import os
 import subprocess
 import sys
@@ -203,6 +204,7 @@ def assert_directory_matches_manifest(
         cache_dir = train_paths.get_cache_dir()
         data_dir = train_paths.get_data_dir()
         models_dir = locations.get_models_dir()
+        history_dir = train_paths.get_style_history_dir()
         profile_dir = get_profile_dir()
 
     # Check for duplicates in expected_manifest
@@ -214,6 +216,7 @@ def assert_directory_matches_manifest(
     rel_cache_dir = os.path.relpath(cache_dir, root_dir)
     rel_data_dir = os.path.relpath(data_dir, root_dir)
     rel_models_dir = os.path.relpath(models_dir, root_dir)
+    rel_history_dir = os.path.relpath(history_dir, root_dir)
     rel_profile_dir = (
         os.path.relpath(profile_dir, root_dir) if profile_dir else ".profile-disabled"
     )
@@ -228,6 +231,8 @@ def assert_directory_matches_manifest(
             p = p.replace("[data]", rel_data_dir)
         if "[models]" in p:
             p = p.replace("[models]", rel_models_dir)
+        if "[history]" in p:
+            p = p.replace("[history]", rel_history_dir)
         if "[.profile]" in p:
             p = p.replace("[.profile]", rel_profile_dir)
         resolved_manifest.append(p)
@@ -607,26 +612,24 @@ class Bottle:
                 train_paths.get_data_dir()
             )  # Changed from locations.get_data_dir()
             models_dir = locations.get_models_dir()
+            history_dir = train_paths.get_style_history_dir()
             profile_dir = get_profile_dir()
 
         rel_cache = os.path.relpath(cache_dir, self.root_dir)
         rel_data = os.path.relpath(data_dir, self.root_dir)
         rel_models = os.path.relpath(models_dir, self.root_dir)
+        rel_history = os.path.relpath(history_dir, self.root_dir)
         rel_profile = (
             os.path.relpath(profile_dir, self.root_dir)
             if profile_dir
             else ".profile-disabled"
         )
 
-        if path == "[models]/style-support/epochs.json":
-            raise ValueError(
-                "Use bottle.get_epoch_history() instead of resolving epochs.json directly."
-            )
-
         resolved = (
             path.replace("[.cache]", rel_cache)
             .replace("[data]", rel_data)
             .replace("[models]", rel_models)
+            .replace("[history]", rel_history)
             .replace("[.profile]", rel_profile)
         )
         return os.path.join(self.root_dir, resolved)
@@ -663,12 +666,12 @@ class Bottle:
     def get_epoch_history(self) -> List[history.HistoryEvent]:
         """Reads and returns the parsed content of training-history.tsv."""
         # Use resolve_path logic internally
-        from train.paths import get_style_support_dir
+        from train.paths import get_style_history_dir
 
         with patch.dict(os.environ, {"TRAIN_ROOT": self.root_dir}):
-            support_dir = get_style_support_dir()
+            history_dir = get_style_history_dir()
 
-        history_path = os.path.join(support_dir, "training-history.tsv")
+        history_path = os.path.join(history_dir, "training-history.tsv")
         return history.read_events(history_path)
 
     def assert_kc_epochs_trained(self, expected_epochs: List[int]):
@@ -694,6 +697,14 @@ class Bottle:
             expected_epochs,
             f"Expected Style epochs {expected_epochs}, found {epochs_found} in history.",
         )
+
+    def assert_continuation_epochs(self, kc: int, style: int):
+        """Asserts that continuation.json contains expected epoch counts."""
+        cont_path = self.resolve_path("[models]/style/continuation.json")
+        with open(cont_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        self.test_case.assertEqual(data["kc_epochs_trained"], kc)
+        self.test_case.assertEqual(data["style_epochs_trained"], style)
 
     # pylint: disable=too-many-locals,too-many-nested-blocks
     def assert_dir_diff(self, snap_name: str, expected_diffs: List[str]):
@@ -743,11 +754,13 @@ class Bottle:
             cache_dir = train_paths.get_cache_dir()
             data_dir = train_paths.get_data_dir()
             models_dir = locations.get_models_dir()
+            history_dir = train_paths.get_style_history_dir()
             profile_dir = get_profile_dir()
 
         rel_cache = os.path.relpath(cache_dir, self.root_dir)
         rel_data = os.path.relpath(data_dir, self.root_dir)
         rel_models = os.path.relpath(models_dir, self.root_dir)
+        rel_history = os.path.relpath(history_dir, self.root_dir)
         rel_profile = (
             os.path.relpath(profile_dir, self.root_dir)
             if profile_dir
@@ -760,6 +773,7 @@ class Bottle:
                 diff.replace("[.cache]", rel_cache)
                 .replace("[data]", rel_data)
                 .replace("[models]", rel_models)
+                .replace("[history]", rel_history)
                 .replace("[.profile]", rel_profile)
             )
             resolved_expected.add(resolved)
