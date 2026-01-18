@@ -168,6 +168,7 @@ class TrainerConfig:
     batch_size: int = -1
     epochs: int = 20  # Fine-tuning epochs
     kc_epochs: int = 11
+    freeze_encoder_epochs: int = 3
     patience: int = 5  # Early stopping patience
     lr_scheduler_patience: int = 2
     lr_scheduler_factor: float = 0.5

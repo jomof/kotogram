@@ -241,6 +241,7 @@ class Trainer:
         self.patience_counter = 0
         self.best_state: Optional[Dict[str, torch.Tensor]] = None
         self.start_epoch = 0
+        self.session_start_epoch: Optional[int] = None
         self.start_batch = 0
 
         _safe_configure_threads(self.config)
@@ -396,9 +397,21 @@ class Trainer:
         }
 
     def train_epoch(self, epoch: int) -> Tuple[float, float, float, float, float]:
-        self.view.on_epoch_start(epoch, self.config.epochs)
+        # Use relative epoch from session start for freezing (warm-up)
+        # If session_start_epoch is None (e.g. direct call), fall back to absolute
+        base_epoch = (
+            self.session_start_epoch if self.session_start_epoch is not None else 0
+        )
+        relative_epoch = max(0, epoch - base_epoch)
+
+        should_freeze = relative_epoch < self.config.freeze_encoder_epochs
+
+        # Update encoder LR (param group 0) based on freezing
+        enc_lr = 0.0 if should_freeze else (self.config.learning_rate * 0.1)
+        self.optimizer.param_groups[0]["lr"] = enc_lr
 
         self.model.train()
+        self.view.on_epoch_start(epoch, self.config.epochs, should_freeze)
 
         metrics = TrainingMetrics()
 
@@ -412,14 +425,16 @@ class Trainer:
 
         pbar = None
         current_loss_val = None
+        pbar_desc = f"Style Epoch {epoch + 1}/{self.config.epochs}"
+        if should_freeze:
+            pbar_desc += " (Encoder Frozen)"
+
         pbar = RichTrainerProgressBar(
-            desc=f"Style Epoch {epoch + 1}/{self.config.epochs}",
+            desc=pbar_desc,
             total_steps=total_batches,
             batch_size=self.train_loader.batch_size or 1,
         )
-        self.view.on_progress_init(
-            f"Style Epoch {epoch + 1}/{self.config.epochs}", total_batches
-        )
+        self.view.on_progress_init(pbar_desc, total_batches)
 
         try:
             self.train_timer_data.start()
@@ -652,6 +667,10 @@ class Trainer:
     ) -> TrainingHistory:
         # Use explicit start_epoch if provided
         effective_start = start_epoch if start_epoch is not None else self.start_epoch
+
+        # Record when this session started to support relative freezing/warmups
+        if self.session_start_epoch is None:
+            self.session_start_epoch = effective_start
         self.view.on_train_start(epochs, effective_start, self.start_batch)
 
         for epoch in range(effective_start, epochs):

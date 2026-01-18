@@ -938,13 +938,17 @@ class KCTrainer:
         pbar = None
 
         current_display_loss = 0.5
+        pbar_desc = f"KC Epoch {epoch + 1}/{self.config.kc_epochs}"
+        if should_freeze:
+            pbar_desc += " (Encoder Frozen)"
+
         pbar = RichTrainerProgressBar(
-            desc=f"KC Epoch {epoch + 1}" + (" (Frozen)" if should_freeze else ""),
+            desc=pbar_desc,
             total_steps=total_batches,
             batch_size=self.data_loader.batch_size or 1,
         )
         self.view.on_kc_progress_init(
-            f"KC Epoch {epoch + 1}" + (" (Frozen)" if should_freeze else ""),
+            pbar_desc,
             total_steps=total_batches,
         )
 

@@ -96,7 +96,9 @@ class TrainerView(Protocol):
         self, epochs: int, start_epoch: int, start_batch: int
     ) -> None: ...
 
-    def on_epoch_start(self, epoch: int, total_epochs: int) -> None: ...
+    def on_epoch_start(
+        self, epoch: int, total_epochs: int, encoder_frozen: bool
+    ) -> None: ...
 
     # pylint: disable=too-many-positional-arguments
     def on_epoch_end(
@@ -164,8 +166,15 @@ class TrainerDiagnosticsView(TrainerView):
         _ = start_epoch
         _ = start_batch
 
-    def on_epoch_start(self, epoch: int, total_epochs: int) -> None:
-        print_phase_header("Style", epoch=epoch + 1, total_epochs=total_epochs)
+    def on_epoch_start(
+        self, epoch: int, total_epochs: int, encoder_frozen: bool
+    ) -> None:
+        print_phase_header(
+            "Style",
+            epoch=epoch + 1,
+            total_epochs=total_epochs,
+            info="Encoder Frozen" if encoder_frozen else "Encoder Thawed",
+        )
 
     # pylint: disable=too-many-positional-arguments
     def on_epoch_end(

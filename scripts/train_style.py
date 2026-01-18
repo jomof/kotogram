@@ -510,6 +510,9 @@ if __name__ == "__main__":
         )
         trainer_config = dataclasses.replace(trainer_config, learning_rate=scaled_lr)
 
+    if trainer_config.retrain:
+        trainer_config = dataclasses.replace(trainer_config, freeze_encoder_epochs=0)
+
     # Interleaved KC + Style Training
     # KC epochs run first in each round to prevent forgetting
     kc_epochs_done = initial_kc_epochs
@@ -527,7 +530,9 @@ if __name__ == "__main__":
         kc_dataset,
         trainer_config,
         dl_config=trainer_config.resolve_dataloader_config(device),
-        kc_config=KCConfig(),
+        kc_config=KCConfig(
+            freeze_encoder_epochs=0 if trainer_config.retrain else 3,
+        ),
     )
 
     style_trainer = Trainer(
