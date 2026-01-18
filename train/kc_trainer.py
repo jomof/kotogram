@@ -854,7 +854,20 @@ class KCTrainer:
 
         self.view.on_kc_epoch_start(epoch, self.config.kc_epochs, should_freeze)
 
-        self.model.train()
+        # Set training mode with special handling for frozen epochs:
+        # During frozen epochs, put encoder pipeline in eval mode to disable dropout
+        # for deterministic outputs, while keeping decoder heads in train mode.
+        if should_freeze:
+            # Encoder pipeline: eval mode (disable dropout)
+            self.model.embedding.eval()
+            self.model.position_encoding.eval()
+            self.model.encoder.eval()
+            self.model.pooler.eval()
+            # Decoder heads: train mode (keep dropout active for regularization)
+            self.model.kc_head.train()
+            self.model.kc_decoders.train()
+        else:
+            self.model.train()
 
         total_loss, n_batches = 0.0, 0
 

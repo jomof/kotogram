@@ -63,11 +63,17 @@ class MockModel(nn.Module):
         self.config = config
         self.kc_decoders = MockDecoders()
         self.kc_head = nn.Linear(10, 100)
-        self.embedding = nn.Linear(10, 10)
-        self.encoder = nn.Linear(10, 10)
+        # Encoder pipeline stubs for frozen epoch handling (logging diagnostics tests)
+        self.embedding = nn.Identity()
+        self.encoder = nn.Identity()
+        self.position_encoding = (
+            nn.Identity()
+        )  # Order differs from adaptive_budget tests
+        self.pooler = nn.Identity()
 
     def forward(self, *args, **kwargs):
-        if kwargs.get("mode") == "kc":
+        mode = kwargs.get("mode")
+        if mode == "kc":
             batch_size = args[0]["input_ids_surface"].size(0)
             vocab_size = self.config.kc_vocab_size
 
