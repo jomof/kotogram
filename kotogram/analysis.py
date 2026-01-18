@@ -125,8 +125,8 @@ class GrammarAnalysis:
     grammaticality_score: float  # Probability of being grammatic
     kc_top: Optional[KCDistribution] = None  # Top-K KC {id: prob}
 
-    # Grammar Point predictions (optional, available if model has grammar_point decoder)
-    grammar_point_probs: Optional[List[float]] = None  # Per-GP probabilities
+    # Grammar Point predictions (optional, maps "gpXXXX" to probability)
+    grammar_point_probs: Optional[Dict[str, float]] = None  # Per-GP probabilities
 
     # Register predictions (optional, maps register name to probability)
     register_probs: Optional[Dict[str, float]] = None  # Per-register probabilities
@@ -144,6 +144,7 @@ class GrammarAnalysis:
         # kc_top: Dict[int, float] -> json.dump will convert int keys to strings automatically
         if self.kc_top is None:
             del d["kc_top"]
+        # grammar_point_probs is already Dict[str, float], no conversion needed
         if self.grammar_point_probs is None:
             del d["grammar_point_probs"]
         # register_probs is already Dict[str, float], no conversion needed
@@ -275,10 +276,13 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
             # We strictly cast int(k_id) to ensure it's an int.
             kc_top_sample = {int(k_id): prob for k_id, prob in kc_top_results[i]}
 
-        # Extract grammar point probabilities for this sample
-        gp_probs_sample = None
+        # Extract grammar point probabilities as a map: "gpXXXX" -> probability
+        gp_probs_sample: Optional[Dict[str, float]] = None
         if gp_probs_tensor is not None:
-            gp_probs_sample = gp_probs_tensor[i].tolist()
+            gp_probs_sample = {
+                f"gp{gp_id:04d}": float(prob)
+                for gp_id, prob in enumerate(gp_probs_tensor[i].tolist())
+            }
 
         # Extract register probabilities as a map: register_name -> probability
         reg_probs_sample: Dict[str, float] = {}
