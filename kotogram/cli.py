@@ -122,6 +122,12 @@ def cmd_grammar(args: argparse.Namespace) -> int:
             sorted(filtered.items(), key=lambda x: -x[1])
         )
 
+    # Round kc_top to 2 decimal places and sort by probability descending
+    if "kc_top" in data and data["kc_top"]:
+        rounded = {kc_id: round(prob, 2) for kc_id, prob in data["kc_top"].items()}
+        # Sort by probability descending
+        data["kc_top"] = dict(sorted(rounded.items(), key=lambda x: -x[1]))
+
     print(json.dumps(data, indent=2, ensure_ascii=False))
     return 0
 

@@ -273,8 +273,10 @@ def grammars(kotograms: List[str]) -> List[GrammarAnalysis]:
         kc_top_sample = None
         if kc_top_results is not None:
             # Convert list of (int, float) tuples to {int: float} dict
-            # We strictly cast int(k_id) to ensure it's an int.
-            kc_top_sample = {int(k_id): prob for k_id, prob in kc_top_results[i]}
+            # Only include KCs with probability > 50%
+            kc_top_sample = {
+                int(k_id): prob for k_id, prob in kc_top_results[i] if prob > 0.5
+            }
 
         # Extract grammar point probabilities as a map: "gpXXXX" -> probability
         gp_probs_sample: Optional[Dict[str, float]] = None
