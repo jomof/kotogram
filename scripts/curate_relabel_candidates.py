@@ -158,33 +158,56 @@ class RelabelCandidate:
 def _shuffle_by_confidence_and_dedupe(
     candidates: List[RelabelCandidate],
 ) -> List[RelabelCandidate]:
-    """Group by confidence, shuffle within groups, and remove duplicate sentences."""
+    """Group by confidence, shuffle within groups, and remove duplicate sentences.
+
+    Also ensures diversity by interleaving different current_value types.
+    """
     from collections import defaultdict
 
-    # Group by confidence (rounded to 2 decimals)
-    confidence_groups: Dict[float, List[RelabelCandidate]] = defaultdict(list)
-    for candidate in candidates:
-        conf_rounded = round(candidate.confidence, 2)
-        confidence_groups[conf_rounded].append(candidate)
+    if not candidates:
+        return []
 
-    # Randomly shuffle within each confidence group
-    for group in confidence_groups.values():
-        random.shuffle(group)
+    # Group by current_value to ensure diversity
+    by_current_value: Dict[str, List[RelabelCandidate]] = defaultdict(list)
+    for c in candidates:
+        by_current_value[c.current_value].append(c)
 
-    # Flatten back to a single list, sorted by confidence descending
-    sorted_candidates = []
-    for conf in sorted(confidence_groups.keys(), reverse=True):
-        sorted_candidates.extend(confidence_groups[conf])
+    # Within each current_value group, sort by confidence and shuffle ties
+    for group in by_current_value.values():
+        # Group by rounded confidence
+        conf_groups: Dict[float, List[RelabelCandidate]] = defaultdict(list)
+        for c in group:
+            conf_groups[round(c.confidence, 2)].append(c)
+        # Shuffle within confidence groups
+        for conf_group in conf_groups.values():
+            random.shuffle(conf_group)
+        # Flatten sorted by confidence descending
+        group.clear()
+        for conf in sorted(conf_groups.keys(), reverse=True):
+            group.extend(conf_groups[conf])
 
-    # Remove duplicate sentences (keep first occurrence after shuffling)
-    seen_sentences = set()
-    unique_candidates = []
-    for candidate in sorted_candidates:
-        if candidate.sentence not in seen_sentences:
-            seen_sentences.add(candidate.sentence)
-            unique_candidates.append(candidate)
+    # Interleave from each current_value group for diversity
+    result: List[RelabelCandidate] = []
+    seen_sentences: Set[str] = set()
+    groups = list(by_current_value.values())
+    indices = [0] * len(groups)
 
-    return unique_candidates
+    # Round-robin through groups until all are exhausted
+    while True:
+        made_progress = False
+        for i, group in enumerate(groups):
+            while indices[i] < len(group):
+                candidate = group[indices[i]]
+                indices[i] += 1
+                if candidate.sentence not in seen_sentences:
+                    seen_sentences.add(candidate.sentence)
+                    result.append(candidate)
+                    made_progress = True
+                    break  # Move to next group
+        if not made_progress:
+            break
+
+    return result
 
 
 def _compute_mse_candidates(
