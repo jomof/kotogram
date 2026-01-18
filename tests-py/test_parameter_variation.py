@@ -28,10 +28,9 @@ class DummyKCModel(nn.Module):
         self.config.kc_vocab_size = 10
         self.kc_decoders = nn.Linear(1, 1)
 
-        # Heads required by Trainer
-        self.formality_value_head = nn.Linear(1, 1)
+        # Pragmatic/classification heads required by Trainer
+        # Note: value heads removed - MSE predictions via KC decoder
         self.formality_pragmatic_head = nn.Linear(1, 1)
-        self.gender_value_head = nn.Linear(1, 1)
         self.gender_pragmatic_head = nn.Linear(1, 1)
         self.grammaticality_head = nn.Linear(1, 1)
         self.register_head = nn.Linear(1, 1)
@@ -71,7 +70,7 @@ class TestParameterVariation(unittest.TestCase):
         """Test Trainer initialization with varying output paths."""
         mock_model = DummyKCModel()
         # Explicit usage to satisfy dead code analysis
-        self.assertIsNotNone(mock_model.formality_value_head)
+        self.assertIsNotNone(mock_model.formality_pragmatic_head)
 
         mock_dataset = self._create_mock_dataset()
         config = TrainerConfig(

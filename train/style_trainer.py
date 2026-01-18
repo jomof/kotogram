@@ -82,8 +82,8 @@ def _compute_head_grad_norms(model: Any) -> Dict[str, float]:
     Returns dict with keys: formality, gender, grammaticality, register, encoder, pooler
     """
     head_names = {
-        "formality": ["formality_value_head", "formality_pragmatic_head"],
-        "gender": ["gender_value_head", "gender_pragmatic_head"],
+        "formality": ["formality_pragmatic_head"],
+        "gender": ["gender_pragmatic_head"],
         "grammaticality": ["grammaticality_classifier"],
         "register": ["register_classifier"],
         "encoder": ["encoder"],
@@ -212,11 +212,10 @@ class Trainer:
         enc_p = list(mod.embedding.parameters()) + list(mod.encoder.parameters())
 
         # Style-specific params: pooler + classifier heads (full LR)
+        # Note: formality/gender value predictions come from KC decoder MSE pathway
         style_p = (
             list(mod.pooler.parameters())
-            + list(mod.formality_value_head.parameters())
             + list(mod.formality_pragmatic_head.parameters())
-            + list(mod.gender_value_head.parameters())
             + list(mod.gender_pragmatic_head.parameters())
             + list(mod.grammaticality_classifier.parameters())
             + list(mod.register_classifier.parameters())
@@ -303,22 +302,11 @@ class Trainer:
         targets: Dict[str, torch.Tensor],
         is_valid_style: torch.Tensor,
     ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
-        (
-            f_val_l,
-            f_prag_l,
-            g_val_l,
-            g_prag_l,
-            gram_l,
-            reg_l,
-        ) = outputs
+        # forward() now returns 4 outputs: pragmatic heads only
+        # Formality/gender values come from KC decoder MSE pathway
+        (f_prag_l, g_prag_l, gram_l, reg_l) = outputs
 
         mask = is_valid_style.float()
-
-        # NOTE: MSE losses for formality and gender values are now handled by
-        # the KC trainer (KcFamilyId.FORMALITY and KcFamilyId.GENDER).
-        # Style trainer only handles pragmatics (classification) losses.
-        _ = f_val_l  # Suppress unused warning
-        _ = g_val_l  # Suppress unused warning
 
         f_loss = self.formality_criterion(f_prag_l, targets["f_prag"])
 
@@ -420,9 +408,7 @@ class Trainer:
             self.model.encoder.eval()
             self.model.pooler.eval()
             # Classifier heads: train mode (keep dropout active for regularization)
-            self.model.formality_value_head.train()
             self.model.formality_pragmatic_head.train()
-            self.model.gender_value_head.train()
             self.model.gender_pragmatic_head.train()
             self.model.grammaticality_classifier.train()
             self.model.register_classifier.train()
@@ -508,23 +494,22 @@ class Trainer:
     def _extract_predictions(
         self, outputs: Tuple[torch.Tensor, ...], targets: Dict[str, torch.Tensor]
     ) -> TrainingPredictions:
-        (
-            f_v_l,
-            f_p_l,
-            g_v_l,
-            g_p_l,
-            gram_l,
-            r_l,
-        ) = outputs
+        # forward() now returns 4 outputs: pragmatic heads only
+        # Formality/gender value predictions are handled by KC trainer
+        (f_p_l, g_p_l, gram_l, r_l) = outputs
+
+        batch_size = f_p_l.size(0)
+        # Use zeros for value predictions (KC trainer tracks MSE)
+        zeros_list = [0.0] * batch_size
 
         return TrainingPredictions(
             f_prag_p=f_p_l.argmax(-1).cpu().tolist(),
             f_prag_l=targets["f_prag"].cpu().tolist(),
-            f_val_p=f_v_l.squeeze(-1).cpu().tolist(),
+            f_val_p=zeros_list,
             f_val_l=targets["f_val"].cpu().tolist(),
             g_prag_p=g_p_l.argmax(-1).cpu().tolist(),
             g_prag_l=targets["g_prag"].cpu().tolist(),
-            g_val_p=g_v_l.squeeze(-1).cpu().tolist(),
+            g_val_p=zeros_list,
             g_val_l=targets["g_val"].cpu().tolist(),
             gram_p=gram_l.argmax(-1).cpu().tolist(),
             gram_l=targets["gram"].cpu().tolist(),

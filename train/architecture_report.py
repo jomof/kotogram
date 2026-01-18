@@ -55,11 +55,10 @@ def _get_style_trainer_modules() -> set[str]:
     Based on Trainer.__init__ optimizer parameter groups:
     - embedding + encoder: frozen (LR=0), but still in param groups
     - All classifier heads: trained at full LR
+    Note: formality/gender value predictions come from KC decoder MSE pathway
     """
     return {
-        "formality_value_head",
         "formality_pragmatic_head",
-        "gender_value_head",
         "gender_pragmatic_head",
         "grammaticality_classifier",
         "register_classifier",
