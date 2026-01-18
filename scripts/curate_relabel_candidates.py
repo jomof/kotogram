@@ -34,7 +34,7 @@ ValueDict = Dict[str, Optional[float]]
 GPLabelsDict = Dict[
     str, Tuple[List[int], List[int]]
 ]  # sentence -> (pos_gp_ids, neg_gp_ids)
-GPProbsDict = Dict[str, List[float]]  # sentence -> grammar_point_probs
+GPProbsDict = Dict[str, Dict[str, float]]  # sentence -> {"gpXXXX": prob}
 RegisterLabelsDict = Dict[str, List[int]]  # sentence -> register_ids
 RegisterProbsDict = Dict[str, Dict[str, float]]  # sentence -> {reg_name: prob}
 
@@ -758,8 +758,6 @@ def _compute_grammar_point_candidates(  # pylint: disable=too-many-positional-ar
     """
     import json
 
-    import numpy as np
-
     if seen_sentences is None:
         seen_sentences = set()
 
@@ -796,29 +794,27 @@ def _compute_grammar_point_candidates(  # pylint: disable=too-many-positional-ar
                     continue  # No cache entry
 
                 processed += 1
-                gp_probs = json.loads(row[0])
+                gp_probs: Dict[str, float] = json.loads(row[0])
 
                 pos_gp_ids, _ = db_grammar.get(sent, ([], []))
                 positive_ids = set(pos_gp_ids)
 
-                probs_array = np.array(gp_probs, dtype=np.float32)
-
                 # Find high confidence predictions not already positively labeled
-                high_prob_indices = np.where(probs_array > min_prob)[0]
-                for gp_id in high_prob_indices:
-                    gp_id_int = int(gp_id)
+                for gp_key, prob in gp_probs.items():
+                    if prob <= min_prob:
+                        continue
+                    # Extract GP ID from key (e.g., "gp0123" -> 123)
+                    gp_id_int = int(gp_key[2:])
                     if gp_id_int in positive_ids:
                         continue
-                    prob = float(probs_array[gp_id])
-                    gp_id_str = f"gp{gp_id_int:04d}"
                     candidate = RelabelCandidate(
                         family="grammar_point",
                         sentence=sent,
                         current_value="unlabeled",
                         predicted_value="negative",
                         confidence=prob,
-                        gp_id=gp_id_str,
-                        gp_name=gp_names.get(gp_id_str),
+                        gp_id=gp_key,
+                        gp_name=gp_names.get(gp_key),
                     )
                     heap.add_candidate(candidate, gp_id_int)
 
@@ -904,26 +900,14 @@ def _compute_register_candidates(  # pylint: disable=too-many-positional-argumen
                     continue  # No cache entry
 
                 processed += 1
-                reg_probs = json.loads(row[0])
+                reg_probs: Dict[str, float] = json.loads(row[0])
 
                 current_reg_ids = set(db_register.get(sent, []))
-
-                # reg_probs is now Dict[str, float] (reg_name -> prob)
-                # Handle both old list format and new dict format for cache compatibility
-                if isinstance(reg_probs, list):
-                    # Old cache format: convert list to dict
-                    reg_probs_dict: Dict[str, float] = {}
-                    for reg_id, prob in enumerate(reg_probs):
-                        label = REGISTER_ID_TO_LABEL.get(reg_id)
-                        if label:
-                            reg_probs_dict[label.value] = prob
-                else:
-                    reg_probs_dict = reg_probs
 
                 # Find high confidence predictions not already labeled
                 # Build value-to-id mapping (REGISTER_LABEL_TO_ID has RegisterLevel keys)
                 val_to_id = {r.value: i for r, i in REGISTER_LABEL_TO_ID.items()}
-                for reg_name, prob in reg_probs_dict.items():
+                for reg_name, prob in reg_probs.items():
                     if prob <= min_prob:
                         continue
                     # Convert register name (string) to ID using value lookup

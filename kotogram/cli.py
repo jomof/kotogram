@@ -109,6 +109,19 @@ def cmd_grammar(args: argparse.Namespace) -> int:
             if prob >= 0.5
         }
 
+    # Filter grammar_point_probs: only include >= 50%, round to 2 decimal places,
+    # and sort by probability descending
+    if "grammar_point_probs" in data and data["grammar_point_probs"]:
+        filtered = {
+            gp_id: round(prob, 2)
+            for gp_id, prob in data["grammar_point_probs"].items()
+            if prob >= 0.5
+        }
+        # Sort by probability descending
+        data["grammar_point_probs"] = dict(
+            sorted(filtered.items(), key=lambda x: -x[1])
+        )
+
     print(json.dumps(data, indent=2, ensure_ascii=False))
     return 0
 
