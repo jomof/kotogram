@@ -4,7 +4,6 @@ from functools import partial
 from typing import Any, Callable, Dict, List, Optional, Tuple, cast
 
 import torch
-import torch.nn.functional as F
 from torch import nn
 from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
@@ -79,13 +78,13 @@ def _reg_acc(p: List[List[int]], labels: List[List[int]], ids: List[int]) -> flo
 def _compute_head_grad_norms(model: Any) -> Dict[str, float]:
     """Compute L2 gradient norms for each classifier head.
 
-    Returns dict with keys: formality, gender, grammaticality, register, encoder, pooler
+    Returns dict with keys: formality, gender, grammaticality, encoder, pooler
+    Note: register is handled by KC decoder, not a separate head
     """
     head_names = {
         "formality": ["formality_pragmatic_head"],
         "gender": ["gender_pragmatic_head"],
         "grammaticality": ["grammaticality_classifier"],
-        "register": ["register_classifier"],
         "encoder": ["encoder"],
         "pooler": ["pooler"],  # Unified pooler (shared by KC and style)
     }
@@ -213,12 +212,12 @@ class Trainer:
 
         # Style-specific params: pooler + classifier heads (full LR)
         # Note: formality/gender value predictions come from KC decoder MSE pathway
+        # Note: Register is handled by KC decoder, not included here
         style_p = (
             list(mod.pooler.parameters())
             + list(mod.formality_pragmatic_head.parameters())
             + list(mod.gender_pragmatic_head.parameters())
             + list(mod.grammaticality_classifier.parameters())
-            + list(mod.register_classifier.parameters())
         )
         self.optimizer = Adam(
             [
@@ -265,18 +264,7 @@ class Trainer:
             else None,
         )
 
-    @staticmethod
-    def _masked_bce(
-        pred: torch.Tensor, target: torch.Tensor, mask: torch.Tensor
-    ) -> torch.Tensor:
-        loss_raw = F.binary_cross_entropy_with_logits(pred, target, reduction="none")
-
-        if mask.dim() < loss_raw.dim():
-            mask = mask.unsqueeze(-1)
-
-        loss_masked = loss_raw * mask
-
-        return loss_masked.sum() / (mask.sum() * loss_raw.size(-1) + 1e-6)
+    # Note: _masked_bce removed - register loss now handled by KC trainer
 
     def _unpack_training_batch(
         self, batch: TrainingBatch
@@ -300,13 +288,10 @@ class Trainer:
         self,
         outputs: Tuple[torch.Tensor, ...],
         targets: Dict[str, torch.Tensor],
-        is_valid_style: torch.Tensor,
     ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
-        # forward() now returns 4 outputs: pragmatic heads only
-        # Formality/gender values come from KC decoder MSE pathway
-        (f_prag_l, g_prag_l, gram_l, reg_l) = outputs
-
-        mask = is_valid_style.float()
+        # forward() now returns 3 outputs: formality, gender, grammaticality pragmatic heads
+        # Register loss is handled by KC trainer
+        (f_prag_l, g_prag_l, gram_l) = outputs
 
         f_loss = self.formality_criterion(f_prag_l, targets["f_prag"])
 
@@ -314,20 +299,16 @@ class Trainer:
 
         gram_loss = self.grammaticality_criterion(gram_l, targets["gram"])
 
-        reg_loss = self._masked_bce(reg_l, targets["reg"], mask)
+        # Register loss is zero here - it's handled by KC trainer
+        reg_loss = torch.tensor(0.0, device=f_prag_l.device)
 
         return f_loss, g_loss, gram_loss, reg_loss
 
     def _compute_training_loss(
         self, outputs: Tuple[torch.Tensor, ...], targets: Dict[str, torch.Tensor]
     ) -> TrainingLosses:
-        is_gram = targets["gram"] == 1
-        is_f_prag = targets["f_prag"] == 1
-        is_g_prag = targets["g_prag"] == 1
-        is_valid_style = is_gram & is_f_prag & is_g_prag
-
         f_loss, g_loss, gram_loss, reg_loss = self._compute_component_losses(
-            outputs, targets, is_valid_style
+            outputs, targets
         )
 
         loss = (
@@ -411,7 +392,7 @@ class Trainer:
             self.model.formality_pragmatic_head.train()
             self.model.gender_pragmatic_head.train()
             self.model.grammaticality_classifier.train()
-            self.model.register_classifier.train()
+            # Note: register_classifier removed, register handled by KC decoder
         else:
             self.model.train()
         self.view.on_epoch_start(epoch, self.config.epochs, should_freeze)
@@ -494,13 +475,15 @@ class Trainer:
     def _extract_predictions(
         self, outputs: Tuple[torch.Tensor, ...], targets: Dict[str, torch.Tensor]
     ) -> TrainingPredictions:
-        # forward() now returns 4 outputs: pragmatic heads only
-        # Formality/gender value predictions are handled by KC trainer
-        (f_p_l, g_p_l, gram_l, r_l) = outputs
+        # forward() now returns 3 outputs: formality, gender, grammaticality pragmatic heads
+        # Register predictions are handled by KC decoder during evaluation
+        (f_p_l, g_p_l, gram_l) = outputs
 
         batch_size = f_p_l.size(0)
         # Use zeros for value predictions (KC trainer tracks MSE)
         zeros_list = [0.0] * batch_size
+        # Use zeros for register predictions (KC decoder handles this)
+        reg_zeros = [[0] * 14 for _ in range(batch_size)]
 
         return TrainingPredictions(
             f_prag_p=f_p_l.argmax(-1).cpu().tolist(),
@@ -513,7 +496,7 @@ class Trainer:
             g_val_l=targets["g_val"].cpu().tolist(),
             gram_p=gram_l.argmax(-1).cpu().tolist(),
             gram_l=targets["gram"].cpu().tolist(),
-            reg_p=(torch.sigmoid(r_l) > 0.5).long().cpu().tolist(),
+            reg_p=reg_zeros,
             reg_l=targets["reg"].long().cpu().tolist(),
             is_valid=(
                 (targets["gram"] == 1)
@@ -734,7 +717,7 @@ class Trainer:
                     formality=gn.get("formality", 0.0),
                     gender=gn.get("gender", 0.0),
                     grammaticality=gn.get("grammaticality", 0.0),
-                    register=gn.get("register", 0.0),
+                    register=0.0,  # Register handled by KC decoder
                     encoder=gn.get("encoder", 0.0),
                     pooler=gn.get("pooler", 0.0),
                 )

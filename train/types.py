@@ -477,8 +477,8 @@ class TrainingPredictions:
     g_val_l: List[float]
     gram_p: List[int]
     gram_l: List[int]
-    reg_p: List[int]
-    reg_l: List[int]
+    reg_p: List[List[int]]  # Multi-label: [B, num_classes]
+    reg_l: List[List[int]]  # Multi-label: [B, num_classes]
     is_valid: List[bool]
 
 

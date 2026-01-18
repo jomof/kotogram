@@ -29,8 +29,9 @@ class TestGenderLearning(unittest.TestCase):
             field_inputs[f"input_ids_{field}"] = torch.randint(0, 100, (batch_size, 10))
         attention_mask = torch.ones((batch_size, 10))
 
-        # Forward pass - now returns 4 outputs (pragmatic heads only)
-        _formality_prag, gender_prag, _gram, _reg = model(field_inputs, attention_mask)
+        # Forward pass - now returns 3 outputs (pragmatic heads only)
+        # Register is handled by KC decoder
+        _formality_prag, gender_prag, _gram = model(field_inputs, attention_mask)
 
         # Dummy targets
         gender_prag_targets = torch.randint(0, 2, (batch_size,))

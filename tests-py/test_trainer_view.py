@@ -6,7 +6,6 @@ from unittest.mock import MagicMock
 
 import torch
 
-from kotogram.model import NUM_REGISTER_CLASSES
 from train.config import HardwareConfig, TrainerConfig
 from train.trainer import Trainer
 from train.trainer_view import TrainerView
@@ -69,24 +68,21 @@ class DummyModel(torch.nn.Module):
         self.embedding = torch.nn.Linear(1, 1)
         self.position_encoding = torch.nn.Identity()  # For frozen epoch handling
         # Pragmatic/classification heads only - value predictions via KC decoder
+        # Note: Register is now handled by KC decoder, not a separate head
         self.formality_pragmatic_head = torch.nn.Linear(1, 1)
         self.gender_pragmatic_head = torch.nn.Linear(1, 1)
         self.grammaticality_head = torch.nn.Linear(1, 1)
-        self.register_head = torch.nn.Linear(1, NUM_REGISTER_CLASSES)
         self.pooler = torch.nn.Linear(1, 1)
         self.grammaticality_classifier = self.grammaticality_head
-        self.register_classifier = self.register_head
 
     def forward(self, *_args, **_kwargs):
         batch_size = 2
-        # forward() now returns 4 outputs: pragmatic heads only
+        # forward() now returns 3 outputs: formality, gender, grammaticality pragmatic heads
+        # Register is handled by KC decoder
         return (
             torch.randn(batch_size, 5, requires_grad=True),  # f_prag [B, 5]
             torch.randn(batch_size, 3, requires_grad=True),  # g_prag [B, 3]
             torch.randn(batch_size, 2, requires_grad=True),  # gram [B, 2]
-            torch.randn(
-                batch_size, NUM_REGISTER_CLASSES, requires_grad=True
-            ),  # reg [B, NUM_REGISTER_CLASSES]
         )
 
 

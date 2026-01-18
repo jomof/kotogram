@@ -30,17 +30,16 @@ class DummyKCModel(nn.Module):
 
         # Pragmatic/classification heads required by Trainer
         # Note: value heads removed - MSE predictions via KC decoder
+        # Note: Register is now handled by KC decoder, not a separate head
         self.formality_pragmatic_head = nn.Linear(1, 1)
         self.gender_pragmatic_head = nn.Linear(1, 1)
         self.grammaticality_head = nn.Linear(1, 1)
-        self.register_head = nn.Linear(1, 1)
 
         # Unified pooler required by Trainer
         self.pooler = nn.Linear(1, 1)
 
         # Legacy/Alias support
         self.grammaticality_classifier = self.grammaticality_head
-        self.register_classifier = self.register_head
 
     def forward(self, *args, **kwargs):
         raise NotImplementedError("Not used in these tests")
@@ -111,7 +110,6 @@ class TestParameterVariation(unittest.TestCase):
         model = DummyKCModel()
         # Explicit usage to satisfy dead code analysis
         self.assertIsNotNone(model.grammaticality_head)
-        self.assertIsNotNone(model.register_head)
         self.assertIsNotNone(model.formality_pragmatic_head)
         self.assertIsNotNone(model.gender_pragmatic_head)
 
