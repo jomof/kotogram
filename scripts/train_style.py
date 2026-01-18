@@ -404,7 +404,12 @@ if __name__ == "__main__":
     for fid in targets:
         # DB-sourced families need special handling based on type
         if is_family_db_sourced(fid):
-            from train.kc import KcDbClassFamily, KcPnuFamily, get_family
+            from train.kc import (
+                KcDbClassFamily,
+                KcDbMultilabelFamily,
+                KcPnuFamily,
+                get_family,
+            )
 
             family_def = get_family(fid)
             if isinstance(family_def, KcPnuFamily):
@@ -413,6 +418,9 @@ if __name__ == "__main__":
                     kc_specs[fid] = gp_vocab_size
             elif isinstance(family_def, KcDbClassFamily):
                 # Multi-class DB families (GENDER_CLASS/FORMALITY_CLASS)
+                kc_specs[fid] = family_def.num_classes
+            elif isinstance(family_def, KcDbMultilabelFamily):
+                # Multi-label DB families (REGISTER)
                 kc_specs[fid] = family_def.num_classes
             else:
                 # MSE families (GENDER/FORMALITY) output a single scalar

@@ -38,10 +38,11 @@ class TestContinuousGender(unittest.TestCase):
         mask = torch.ones(bs, 10)
 
         out = model(inputs, mask)
-        # forward() returns 4 outputs: formality_prag, gender_prag, gram, register
-        self.assertEqual(len(out), 4)
+        # forward() returns 3 outputs: formality_prag, gender_prag, gram
+        # Register is now handled by KC decoder
+        self.assertEqual(len(out), 3)
 
-        formality_prag, gender_prag, _gram, _reg = out
+        formality_prag, gender_prag, _gram = out
 
         self.assertEqual(gender_prag.shape, (bs, 2))
         self.assertEqual(formality_prag.shape, (bs, 2))

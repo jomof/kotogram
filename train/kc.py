@@ -70,6 +70,9 @@ class KcFamilyId(str, Enum):
     FORMALITY = "formality"
     GENDER_CLASS = "gender_class"  # Classification version (3 classes: -1, 0, +1)
     FORMALITY_CLASS = "formality_class"  # Classification version (5 classes)
+    REGISTER = (
+        "register"  # Multi-label classification (14 registers, can have multiple)
+    )
 
 
 # =============================================================================
@@ -379,6 +382,43 @@ class KcDbClassFamily(KcFamily):
         return self._num_classes
 
 
+@dataclass(frozen=True)
+class KcDbMultilabelFamily(KcFamily):
+    """DB-sourced families using multi-label classification (BCE loss).
+
+    Used for register classification where a sentence can have multiple
+    simultaneous labels (e.g., both sonkeigo and joseigo). Uses BCE loss
+    on multi-hot targets rather than CE loss on single class indices.
+    """
+
+    _num_classes: int = 14  # Default for register (14 register types)
+    _loss_weight: float = 1.0
+
+    @property
+    def is_sparse(self) -> bool:
+        return False  # Dense multi-hot output
+
+    @property
+    def is_db_sourced(self) -> bool:
+        return True
+
+    @property
+    def feature_field(self) -> str:
+        return ""  # No tokenizer feature, targets from batch
+
+    @property
+    def is_slim_decoder(self) -> bool:
+        return False  # Needed at inference time for register prediction
+
+    @property
+    def loss_weight(self) -> float:
+        return self._loss_weight
+
+    @property
+    def num_classes(self) -> int:
+        return self._num_classes
+
+
 # =============================================================================
 # Family Registry
 # =============================================================================
@@ -517,6 +557,12 @@ KC_FAMILIES: Dict[KcFamilyId, KcFamily] = {
     KcFamilyId.FORMALITY_CLASS: KcDbClassFamily(
         family_id=KcFamilyId.FORMALITY_CLASS,
         _num_classes=5,  # Very Casual, Casual, Neutral, Formal, Very Formal
+        _loss_weight=1.0,
+    ),
+    # Multi-label families
+    KcFamilyId.REGISTER: KcDbMultilabelFamily(
+        family_id=KcFamilyId.REGISTER,
+        _num_classes=14,  # 14 register types (sonkeigo, kenjogo, etc.)
         _loss_weight=1.0,
     ),
 }

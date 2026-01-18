@@ -675,6 +675,25 @@ class KCTrainer:
                         pos_density_counts[name] = (
                             pos_density_counts.get(name, 0) + batch_size
                         )
+                    else:
+                        # Check for multi-label families (register)
+                        multilabel_key = f"kc_multilabel_{name}"
+                        if multilabel_key in kc_targets:
+                            # Multi-label families use actual positive rate
+                            targets_ml = kc_targets[multilabel_key]
+                            batch_size = targets_ml.size(0)
+                            num_pos = targets_ml.sum().item()
+                            # Positive rate across all positions
+                            p = num_pos / max(1, batch_size * vocab_size)
+                            biases.sums[name] = biases.sums.get(name, 0.0) + p
+                            biases.counts[name] = biases.counts.get(name, 0) + 1
+                            # PosDen for multi-label: average positives per example
+                            pos_density_sums[name] = (
+                                pos_density_sums.get(name, 0.0) + num_pos
+                            )
+                            pos_density_counts[name] = (
+                                pos_density_counts.get(name, 0) + batch_size
+                            )
 
         for name_id, vocab_size in self.config.kc_target_specs.items():
             name = name_id.name.lower()
@@ -823,6 +842,9 @@ class KCTrainer:
                 continue
             # DB-sourced classification families (gender_class/formality_class) use class_ prefix
             if f"kc_class_{name}" in kc_targets:
+                continue
+            # DB-sourced multi-label families (register) use multilabel_ prefix
+            if f"kc_multilabel_{name}" in kc_targets:
                 continue
             missing_keys.append(name)
 
@@ -1295,7 +1317,11 @@ class KCTrainer:
                 # Special handling for DB-sourced families (e.g., GRAMMAR_POINT, GENDER, FORMALITY)
                 # These use PNU loss (KcPnuFamily), MSE loss (KcMseFamily), or CE loss (KcDbClassFamily)
                 if is_family_db_sourced(fid):
-                    from train.kc import KcDbClassFamily, KcPnuFamily
+                    from train.kc import (
+                        KcDbClassFamily,
+                        KcDbMultilabelFamily,
+                        KcPnuFamily,
+                    )
 
                     family_def = get_family(fid)
 
@@ -1468,6 +1494,114 @@ class KCTrainer:
                                 task_loss.item(),
                                 logits=logits_t,
                             )
+                    elif isinstance(family_def, KcDbMultilabelFamily):
+                        # Multi-label classification for register
+                        # Targets are multi-hot [B, num_classes] (can have multiple active)
+                        multilabel_key = f"kc_multilabel_{name}"
+                        if multilabel_key in kc_targets:
+                            targets_multilabel = (
+                                kc_targets[multilabel_key].to(self.device).float()
+                            )
+
+                            # logits shape: [B, num_classes]
+                            # Use BCE with logits for multi-label classification
+                            raw_bce_loss = F.binary_cross_entropy_with_logits(
+                                logits, targets_multilabel, reduction="mean"
+                            )
+
+                            # Apply per-family loss weight for balanced training
+                            task_loss = raw_bce_loss * family_def.loss_weight
+                            batch_kc_losses[f"{name}"] = task_loss.item()
+                            structural_loss = structural_loss + task_loss
+                            num_struct += 1
+
+                            # Update FamilyAccumulator for pos_ex_frac tracking
+                            fam_acc.update(
+                                logits.detach(),
+                                targets_multilabel.detach(),
+                                pos_mask=None,
+                                valid_mask=None,  # All positions valid for multi-label
+                                source="dense",
+                            )
+
+                            # Update diagnostics for multi-label families
+                            if not skip_metrics and kc_diag is not None:
+                                probs = torch.sigmoid(logits.float()).detach()
+                                batch_size = logits.size(0)
+                                num_classes = logits.size(1)
+
+                                # Build sampled representation for kc_diag
+                                max_samples = min(32, num_classes)
+                                pos_ids_list = []
+                                pos_mask_list = []
+                                probs_list = []
+                                targets_list = []
+                                logits_list = []
+
+                                for i in range(batch_size):
+                                    # Collect all positive and some negative classes
+                                    pos_cls = torch.nonzero(
+                                        targets_multilabel[i] > 0.5, as_tuple=True
+                                    )[0].tolist()
+                                    neg_cls = torch.nonzero(
+                                        targets_multilabel[i] <= 0.5, as_tuple=True
+                                    )[0].tolist()
+
+                                    # Include all positives, then fill with negatives
+                                    ids = pos_cls[:]
+                                    target_vals = [1.0] * len(pos_cls)
+
+                                    # Add negatives up to max_samples
+                                    for c in neg_cls:
+                                        if len(ids) >= max_samples:
+                                            break
+                                        ids.append(c)
+                                        target_vals.append(0.0)
+
+                                    # Pad to max_samples
+                                    n = len(ids)
+                                    ids += [0] * (max_samples - n)
+                                    target_vals += [0.0] * (max_samples - n)
+
+                                    # Gather probs and logits
+                                    ids_tensor = torch.tensor(
+                                        ids[:max_samples], device=self.device
+                                    )
+                                    probs_vals = probs[i, ids_tensor].cpu().tolist()
+                                    logits_vals = (
+                                        logits[i, ids_tensor].detach().cpu().tolist()
+                                    )
+
+                                    pos_ids_list.append(ids)
+                                    pos_mask_list.append(
+                                        [True] * n + [False] * (max_samples - n)
+                                    )
+                                    probs_list.append(probs_vals)
+                                    targets_list.append(target_vals)
+                                    logits_list.append(logits_vals)
+
+                                # Convert to tensors
+                                pos_ids_t = torch.tensor(pos_ids_list, dtype=torch.long)
+                                pos_mask_t = torch.tensor(
+                                    pos_mask_list, dtype=torch.bool
+                                )
+                                probs_t = torch.tensor(probs_list, dtype=torch.float32)
+                                targets_t = torch.tensor(
+                                    targets_list, dtype=torch.float32
+                                )
+                                logits_t = torch.tensor(
+                                    logits_list, dtype=torch.float32
+                                )
+
+                                kc_diag.update_family(
+                                    name,
+                                    pos_ids_t,
+                                    pos_mask_t,
+                                    probs_t,
+                                    targets_t,
+                                    task_loss.item(),
+                                    logits=logits_t,
+                                )
                     else:
                         # MSE loss for continuous families (gender/formality)
                         # Get target values from the original batch

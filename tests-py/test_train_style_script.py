@@ -183,9 +183,9 @@ class TestTrainStyleScript(unittest.TestCase):
             slim_state = torch.load(style_model, map_location="cpu", weights_only=True)
 
             # Slim state should NOT contain kc_decoders for families with is_slim_decoder=True
-            # But it MAY contain gender/formality/grammar_point decoders (is_slim_decoder=False)
+            # But it MAY contain gender/formality/grammar_point/register decoders (is_slim_decoder=False)
             # slim_state is the state dict directly
-            allowed_slim_families = {"gender", "formality", "grammar_point"}
+            allowed_slim_families = {"gender", "formality", "grammar_point", "register"}
             allowed_shared_layers = {
                 "label_hidden1",
                 "label_hidden2",  # Label pathway (for grammar_point)

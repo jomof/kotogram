@@ -674,6 +674,7 @@ def create_kc_batch(
 
         # Import here to avoid circular import
         from train.kc import (
+            KcDbMultilabelFamily,
             KcPnuFamily,
             get_family,
             is_family_db_sourced,
@@ -756,6 +757,10 @@ def create_kc_batch(
                     formality_class = ((batch.formality_value + 1.0) / 0.5).long()
                     formality_class = formality_class.clamp(0, 4)
                     result[f"kc_class_{name}"] = formality_class.to(device)
+                elif isinstance(family_def, KcDbMultilabelFamily):
+                    # Multi-label families (register) use multi-hot targets from batch
+                    # batch.register_labels is already [B, num_classes] multi-hot tensor
+                    result[f"kc_multilabel_{name}"] = batch.register_labels.to(device)
 
             continue
 

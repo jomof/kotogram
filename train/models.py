@@ -87,7 +87,7 @@ class KCDecoder(nn.Module):
             Dict mapping family name to output tensor.
 
         Strategy:
-            - Style families (gender, formality, gender_class, formality_class):
+            - Style families (gender, formality, gender_class, formality_class, register):
               Use kc_probs (full distribution) since style is encoded diffusely
             - Structural families (grammar_point, n-grams, particles):
               Use kc_activations (sparse top-k) since structure is localized
@@ -108,7 +108,8 @@ class KCDecoder(nn.Module):
         # Label pathway: Structural features use sparse, style classification uses full
         if self.decoders:
             # Style classification families (also diffuse like MSE)
-            style_class_families = {"gender_class", "formality_class"}
+            # Register is also a style feature that uses full KC probs
+            style_class_families = {"gender_class", "formality_class", "register"}
 
             for name, decoder in self.decoders.items():
                 if name in style_class_families:

@@ -370,6 +370,7 @@ class KCDecoderInference(nn.Module):  # type: ignore[misc]
     Supports:
     - grammar_point: Multi-label classification via label pathway
     - formality/gender: Continuous regression via MSE pathway
+    - register: Multi-label classification via label pathway (style family)
 
     Architecture matches training:
     - label_hidden1: kc_vocab_size -> hidden_dim (256)
@@ -377,16 +378,19 @@ class KCDecoderInference(nn.Module):  # type: ignore[misc]
     - mse_hidden1: kc_vocab_size -> hidden_dim (256)
     - mse_hidden2: hidden_dim -> hidden_dim
     - decoders.grammar_point: hidden_dim -> num_grammar_points
+    - decoders.register: hidden_dim -> num_register_classes
     - mse_decoders.formality: hidden_dim -> 1
     - mse_decoders.gender: hidden_dim -> 1
     """
 
+    # pylint: disable=too-many-positional-arguments
     def __init__(
         self,
         config: ModelConfig,
         num_grammar_points: int,
         has_formality: bool = False,
         has_gender: bool = False,
+        has_register: bool = False,
     ):
         super().__init__()
         kc_vocab_size = config.kc_vocab_size
@@ -406,6 +410,10 @@ class KCDecoderInference(nn.Module):  # type: ignore[misc]
         self.decoders = nn.ModuleDict(
             {"grammar_point": nn.Linear(KC_DECODER_HIDDEN_DIM, num_grammar_points)}
         )
+        if has_register:
+            self.decoders["register"] = nn.Linear(
+                KC_DECODER_HIDDEN_DIM, config.num_register_classes
+            )
 
         # MSE decoders for continuous style predictions
         self.mse_decoders = nn.ModuleDict()
@@ -415,6 +423,7 @@ class KCDecoderInference(nn.Module):  # type: ignore[misc]
             self.mse_decoders["gender"] = nn.Linear(KC_DECODER_HIDDEN_DIM, 1)
 
         self.num_grammar_points = num_grammar_points
+        self.has_register = has_register
 
     def forward(self, kc_activations: torch.Tensor) -> torch.Tensor:
         """Predict grammar point probabilities from KC activations.
@@ -465,6 +474,27 @@ class KCDecoderInference(nn.Module):  # type: ignore[misc]
             gender_val = self.tanh(self.mse_decoders["gender"](h))
 
         return formality_val, gender_val
+
+    def predict_register(self, kc_probs: torch.Tensor) -> Optional[torch.Tensor]:
+        """Predict register probabilities from KC probabilities.
+
+        Register uses the label pathway with full KC probabilities (diffuse signal)
+        since it's a style feature, not a structural one.
+
+        Args:
+            kc_probs: Full KC probabilities [B, kc_vocab_size]
+
+        Returns:
+            register_probs: [B, num_register_classes] probabilities or None if not available
+        """
+        if "register" not in self.decoders:
+            return None
+
+        # Register uses full KC probs (style family = diffuse signal)
+        h = self.activation(self.label_hidden1(kc_probs))
+        h = self.activation(self.label_hidden2(h))
+        logits = self.decoders["register"](h)
+        return cast(torch.Tensor, torch.sigmoid(logits))
 
     @property
     def weight_loading_modules(self) -> List[nn.Module]:
@@ -593,12 +623,8 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
             nn.Linear(config.hidden_dim, config.num_grammaticality_classes),
         )
 
-        self.register_classifier = nn.Sequential(
-            nn.Linear(classifier_input_dim, config.hidden_dim),
-            nn.GELU(),
-            nn.Dropout(config.dropout),
-            nn.Linear(config.hidden_dim, config.num_register_classes),
-        )
+        # Note: Register predictions now come from the KC decoder pathway,
+        # not a standalone classifier. See kc_decoders.predict_register().
 
         self.kc_head = KCHead(config)
 
@@ -652,13 +678,12 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         torch.Tensor,
         torch.Tensor,
         torch.Tensor,
-        torch.Tensor,
     ]:
         """Forward pass for classification heads only.
 
         Returns:
-            Tuple of (formality_prag, gender_prag, grammaticality, register) logits.
-            Style values (formality_value, gender_value) come from KC decoder.
+            Tuple of (formality_prag, gender_prag, grammaticality) logits.
+            Style values (formality_value, gender_value) and register come from KC decoder.
         """
         # Get encoder hidden states
         encoder_output = self.get_encoder_output(field_inputs, attention_mask)
@@ -670,7 +695,6 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
             self.formality_pragmatic_head(classifier_input),
             self.gender_pragmatic_head(classifier_input),
             self.grammaticality_classifier(classifier_input),
-            self.register_classifier(classifier_input),
         )
 
     def predict(
@@ -679,22 +703,21 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
         attention_mask: torch.Tensor,
     ) -> StylePrediction:
         """Full prediction including style values from KC decoder."""
-        formality_prag, gender_prag, gram, reg = self(field_inputs, attention_mask)
+        formality_prag, gender_prag, gram = self(field_inputs, attention_mask)
 
         # Get KC probabilities for style value prediction
         kc_logits = self.predict_kcs(field_inputs, attention_mask)
         cur_temp = getattr(self.config, "kc_temperature", 1.0)
         kc_probs = torch.sigmoid(kc_logits / cur_temp)
 
-        # Get style values from KC decoder
+        # Get style values and register from KC decoder
+        formality_val = None
+        gender_val = None
+        register_probs = None
+
         if self.kc_decoders is not None:
             formality_val, gender_val = self.kc_decoders.predict_style_values(kc_probs)
-        else:
-            # Fallback: return zeros if kc_decoders not initialized
-            batch_size = formality_prag.size(0)
-            device = formality_prag.device
-            formality_val = torch.zeros(batch_size, 1, device=device)
-            gender_val = torch.zeros(batch_size, 1, device=device)
+            register_probs = self.kc_decoders.predict_register(kc_probs)
 
         # Handle None from predict_style_values
         if formality_val is None:
@@ -705,6 +728,12 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
             batch_size = gender_prag.size(0)
             device = gender_prag.device
             gender_val = torch.zeros(batch_size, 1, device=device)
+        if register_probs is None:
+            batch_size = gram.size(0)
+            device = gram.device
+            register_probs = torch.zeros(
+                batch_size, self.config.num_register_classes, device=device
+            )
 
         return StylePrediction(
             formality_value=formality_val,
@@ -712,7 +741,7 @@ class InferenceClassifier(nn.Module):  # type: ignore[misc]
             gender_value=gender_val,
             gender_pragmatic_probs=F.softmax(gender_prag, dim=-1),
             grammaticality_probs=F.softmax(gram, dim=-1),
-            register_probs=torch.sigmoid(reg),
+            register_probs=register_probs,
         )
 
     def resize_embeddings(self, new_vocab_sizes: Dict[str, int]) -> Dict[str, int]:
@@ -872,12 +901,14 @@ def load_model(  # pylint: disable=too-many-locals
     gp_weight_key = "kc_decoders.decoders.grammar_point.weight"
     formality_weight_key = "kc_decoders.mse_decoders.formality.weight"
     gender_weight_key = "kc_decoders.mse_decoders.gender.weight"
+    register_weight_key = "kc_decoders.decoders.register.weight"
 
     has_grammar_point = gp_weight_key in state_dict
     has_formality = formality_weight_key in state_dict
     has_gender = gender_weight_key in state_dict
+    has_register = register_weight_key in state_dict
 
-    if has_grammar_point or has_formality or has_gender:
+    if has_grammar_point or has_formality or has_gender or has_register:
         # Infer num_grammar_points from weight shape (default to 1 if not present)
         num_grammar_points = (
             state_dict[gp_weight_key].shape[0] if has_grammar_point else 1
@@ -889,6 +920,7 @@ def load_model(  # pylint: disable=too-many-locals
             num_grammar_points,
             has_formality=has_formality,
             has_gender=has_gender,
+            has_register=has_register,
         )
         if device:
             model.kc_decoders.to(device)
