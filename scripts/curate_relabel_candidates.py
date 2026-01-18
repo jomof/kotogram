@@ -7,12 +7,12 @@ This module identifies sentences where the model's predictions strongly disagree
 with the current database labels for formality, gender, and grammar_point families.
 """
 
+import heapq
 import os
 import random
 import sqlite3
 from dataclasses import dataclass
-from multiprocessing import cpu_count, get_context, get_start_method
-from typing import Any, Callable, Dict, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 from rich.console import Console
 from rich.progress import track
@@ -40,20 +40,7 @@ class _RelabelThresholds:
     """Thresholds for suggesting relabel candidates."""
 
     MSE_MIN_DISAGREEMENT = 0.3  # Minimum score difference to suggest relabel
-    GP_POSITIVE_MIN_PROB = 0.6  # Minimum probability to suggest positive label
-    GP_FALSE_POSITIVE_MIN_PROB = 0.7  # High confidence threshold for FP detection
-
-
-_GP_PARALLEL_MIN = 2000
-_GP_PARALLEL_MAX_WORKERS = 4
-_GP_PARALLEL_CHUNK_SIZE = 50
-
-# Global state for multiprocessing workers (only used with fork)
-_GP_WORKER_DB_GRAMMAR: Optional[GPLabelsDict] = None
-_GP_WORKER_MODEL_PROBS: Optional[GPProbsDict] = None
-_GP_WORKER_NAMES: Optional[Dict[str, str]] = None
-_GP_WORKER_MAX_LEN: Optional[int] = None
-_GP_WORKER_PROB_THRESHOLD: Optional[float] = None
+    GP_MIN_PROB = 0.6  # Minimum probability to consider as high-confidence prediction
 
 
 @dataclass
@@ -166,64 +153,6 @@ class RelabelCandidate:
                 else "neutral"
             )
         return self.current_value
-
-
-def _set_gp_worker_state(  # pylint: disable=global-statement
-    db_grammar: GPLabelsDict,
-    model_gp_probs: GPProbsDict,
-    gp_names: Dict[str, str],
-    max_sentence_len: int,
-    prob_threshold: float,
-) -> None:
-    """Set global state used by multiprocessing workers (fork mode only)."""
-    global _GP_WORKER_DB_GRAMMAR, _GP_WORKER_MODEL_PROBS, _GP_WORKER_NAMES
-    global _GP_WORKER_MAX_LEN, _GP_WORKER_PROB_THRESHOLD
-
-    _GP_WORKER_DB_GRAMMAR = db_grammar
-    _GP_WORKER_MODEL_PROBS = model_gp_probs
-    _GP_WORKER_NAMES = gp_names
-    _GP_WORKER_MAX_LEN = max_sentence_len
-    _GP_WORKER_PROB_THRESHOLD = prob_threshold
-
-
-def _compute_gp_candidates_worker(sent: str) -> List[RelabelCandidate]:
-    """Compute grammar point candidates for a single sentence."""
-    if _GP_WORKER_DB_GRAMMAR is None or _GP_WORKER_MODEL_PROBS is None:
-        return []
-    if _GP_WORKER_NAMES is None or _GP_WORKER_MAX_LEN is None:
-        return []
-    if _GP_WORKER_PROB_THRESHOLD is None:
-        return []
-
-    if len(sent) > _GP_WORKER_MAX_LEN:
-        return []
-
-    gp_probs = _GP_WORKER_MODEL_PROBS.get(sent)
-    if gp_probs is None:
-        return []
-
-    pos_gp_ids, neg_gp_ids = _GP_WORKER_DB_GRAMMAR.get(sent, ([], []))
-    labeled_ids = set(pos_gp_ids) | set(neg_gp_ids)
-
-    candidates: List[RelabelCandidate] = []
-    for gp_id, prob in enumerate(gp_probs):
-        if gp_id in labeled_ids:
-            continue
-        if prob > _GP_WORKER_PROB_THRESHOLD:
-            gp_id_str = f"gp{gp_id:04d}"
-            candidates.append(
-                RelabelCandidate(
-                    family="grammar_point",
-                    sentence=sent,
-                    current_value="unlabeled",
-                    predicted_value="positive",
-                    confidence=prob,
-                    gp_id=gp_id_str,
-                    gp_name=_GP_WORKER_NAMES.get(gp_id_str),
-                )
-            )
-
-    return candidates
 
 
 def _shuffle_by_confidence_and_dedupe(
@@ -532,19 +461,18 @@ def _run_batch_inference(
 
 
 def _run_inference_with_cache(
-    sentences: List[str], cache_path: str, families: List[str]
+    sentences: List[str], cache_path: str
 ) -> Tuple[PredictionDict, PredictionDict, GPProbsDict]:
     """Load from cache or run inference for uncached sentences.
 
-    All inference results (formality, gender, gp_probs) are cached.
+    Note: For grammar_point, we don't load gp_probs into memory - they are
+    streamed on-demand when processing candidates.
     """
     console.print(f"[bold blue]Checking inference cache ({cache_path})...[/bold blue]")
 
-    # Only load/parse gp_probs if we need them
-    load_gp_probs = "grammar_point" in families
-
+    # Never load gp_probs upfront - we stream them for grammar_point
     model_formality, model_gender, model_gp_probs, uncached = _load_cached_inference(
-        cache_path, sentences, load_gp_probs=load_gp_probs
+        cache_path, sentences, load_gp_probs=False
     )
     cached_count = len(sentences) - len(uncached)
     console.print(f"  Cached: {cached_count:,}, Need inference: {len(uncached):,}")
@@ -570,48 +498,6 @@ def _run_inference_with_cache(
     return model_formality, model_gender, model_gp_probs
 
 
-def _run_gp_scan_threaded(
-    eligible_sents: List[str], worker_func: Callable[[str], List[RelabelCandidate]]
-) -> List[RelabelCandidate]:
-    """Scan sentences using ThreadPoolExecutor (for non-fork systems)."""
-    from concurrent.futures import ThreadPoolExecutor, as_completed
-
-    candidates: List[RelabelCandidate] = []
-    with ThreadPoolExecutor(
-        max_workers=min(8, max(1, len(eligible_sents) // 5000))
-    ) as executor:
-        with create_progress(console) as progress:
-            task = progress.add_task(
-                "Scanning grammar points...", total=len(eligible_sents)
-            )
-            for future in as_completed(
-                {executor.submit(worker_func, s): s for s in eligible_sents}
-            ):
-                candidates.extend(future.result())
-                progress.advance(task)
-    return candidates
-
-
-def _run_gp_scan_forked(eligible_sents: List[str]) -> List[RelabelCandidate]:
-    """Scan sentences using multiprocessing Pool (fork mode only)."""
-    candidates: List[RelabelCandidate] = []
-    with create_progress(console) as progress:
-        task = progress.add_task(
-            "Scanning grammar points...", total=len(eligible_sents)
-        )
-        with get_context("fork").Pool(
-            min(_GP_PARALLEL_MAX_WORKERS, cpu_count() or 1)
-        ) as pool:
-            for result in pool.imap_unordered(
-                _compute_gp_candidates_worker,
-                eligible_sents,
-                chunksize=_GP_PARALLEL_CHUNK_SIZE,
-            ):
-                candidates.extend(result)
-                progress.advance(task)
-    return candidates
-
-
 def _compute_and_collect_candidates(
     *,
     families: List[str],
@@ -621,7 +507,7 @@ def _compute_and_collect_candidates(
     db_grammar: GPLabelsDict,
     model_formality: PredictionDict,
     model_gender: PredictionDict,
-    model_gp_probs: GPProbsDict,
+    cache_path: str,
     gp_names: Dict[str, str],
     top_n: int,
     max_sentence_len: int = 30,
@@ -663,112 +549,170 @@ def _compute_and_collect_candidates(
             _compute_grammar_point_candidates(
                 sentences,
                 db_grammar,
-                model_gp_probs,
+                cache_path,
                 gp_names,
                 max_sentence_len,
-                detect_false_positives=True,
+                target_count=top_n,
+                seen_sentences=seen_sentences,
             ),
         )
 
     return results
 
 
-def _compute_grammar_point_candidates(  # pylint: disable=too-many-positional-arguments
+class _GPCandidateHeap:
+    """Min-heap for tracking top grammar point candidates."""
+
+    def __init__(self, target_count: int):
+        self.heap: List[Tuple[float, int, RelabelCandidate]] = []
+        self.heap_size = target_count * 3
+        self.seen_pairs: Set[Tuple[str, int]] = set()
+        self.unique_sentences: Set[str] = set()
+        self.tiebreaker = 0
+        self.target_count = target_count
+
+    def add_candidate(self, candidate: RelabelCandidate, gp_id_int: int) -> None:
+        """Add or update candidate in heap."""
+        pair = (candidate.sentence, gp_id_int)
+        if pair in self.seen_pairs:
+            return
+
+        self.seen_pairs.add(pair)
+        self.unique_sentences.add(candidate.sentence)
+        prob = candidate.confidence
+        self.tiebreaker += 1
+
+        if len(self.heap) < self.heap_size:
+            heapq.heappush(self.heap, (prob, self.tiebreaker, candidate))
+        elif prob > self.heap[0][0]:
+            heapq.heapreplace(self.heap, (prob, self.tiebreaker, candidate))
+
+    def has_enough_sentences(self) -> bool:
+        """Check if we have enough unique sentences."""
+        return len(self.unique_sentences) >= self.target_count
+
+    def get_candidates_sorted(self) -> List[RelabelCandidate]:
+        """Return candidates sorted by confidence descending."""
+        return [c for _, _, c in sorted(self.heap, key=lambda x: -x[0])]
+
+
+def _compute_grammar_point_candidates(  # pylint: disable=too-many-positional-arguments,too-many-locals
     sentences: List[str],
     db_grammar: GPLabelsDict,
-    model_gp_probs: GPProbsDict,
+    cache_path: str,
     gp_names: Dict[str, str],
     max_sentence_len: int = 30,
-    detect_false_positives: bool = True,
+    target_count: int = 20,
+    seen_sentences: Optional[Set[str]] = None,
 ) -> List[RelabelCandidate]:
-    """Find grammar point mislabeling candidates.
+    """Find grammar point candidates for negative labeling.
 
-    Looks for:
-    1. High prob for GP that is unlabeled in DB (propose positive)
-    2. Very high prob for unlabeled GP (likely false positive, propose negative for manual review)
+    Finds the highest-confidence predictions that aren't already positively
+    labeled. Suggests all as negatives - user will manually filter out any
+    that are actually valid positives.
 
     Args:
+        cache_path: Path to inference cache database
         max_sentence_len: Exclude sentences longer than this (character count)
-        detect_false_positives: If True, flag very high confidence as potential FPs
+        target_count: Target number of candidates to find (stops early once satisfied)
+        seen_sentences: Sentences to exclude (already processed in previous runs)
+
+    Streams from the cache on-demand for efficiency - stops as soon as we find
+    enough unique sentences.
     """
+    import json
+
+    import numpy as np
+
+    if seen_sentences is None:
+        seen_sentences = set()
+
+    # Filter by length and seen upfront
     eligible_sents = [
-        s for s in sentences if len(s) <= max_sentence_len and s in model_gp_probs
+        s for s in sentences if len(s) <= max_sentence_len and s not in seen_sentences
     ]
     if not eligible_sents:
         return []
 
-    prob_threshold = _RelabelThresholds.GP_POSITIVE_MIN_PROB
-    fp_threshold = _RelabelThresholds.GP_FALSE_POSITIVE_MIN_PROB
+    random.shuffle(eligible_sents)  # Shuffle in place for randomization
 
-    # Worker closure for threading (doesn't need globals)
-    def compute_for_sent(sent: str) -> List[RelabelCandidate]:
-        gp_probs = model_gp_probs.get(sent)
-        if not gp_probs:
-            return []
-        pos_gp_ids, neg_gp_ids = db_grammar.get(sent, ([], []))
-        labeled_ids = set(pos_gp_ids) | set(neg_gp_ids)
+    min_prob = _RelabelThresholds.GP_MIN_PROB
+    heap = _GPCandidateHeap(target_count)
 
-        candidates = []
-        for gp_id, prob in enumerate(gp_probs):
-            if gp_id in labeled_ids:
-                continue
-            if prob <= prob_threshold:
-                continue
+    console.print(f"  Sampling from {len(eligible_sents):,} eligible sentences...")
 
-            gp_id_str = f"gp{gp_id:04d}"
+    # Stream from cache on-demand
+    conn = sqlite3.connect(cache_path)
+    cursor = conn.cursor()
+    processed = 0
 
-            # Heuristic: Very high confidence (>0.7) on unlabeled is suspicious
-            # These are more likely false positives that need manual review as negatives
-            if detect_false_positives and prob > fp_threshold:
-                # Check if we have many negative labels already (suggests model overpredicting)
-                num_negatives = len(neg_gp_ids)
-                # If sentence has 3+ explicit negatives, model may be overpredicting
-                # Suggest negative for manual review
-                if num_negatives >= 3:
-                    candidates.append(
-                        RelabelCandidate(
-                            family="grammar_point",
-                            sentence=sent,
-                            current_value="unlabeled",
-                            predicted_value="negative",  # Suggest negative for review
-                            confidence=prob,
-                            gp_id=gp_id_str,
-                            gp_name=gp_names.get(gp_id_str),
-                        )
-                    )
-                    continue
+    try:
+        with create_progress(console) as progress:
+            task = progress.add_task("Sampling...", total=target_count)
 
-            # Default: suggest positive
-            candidates.append(
-                RelabelCandidate(
-                    family="grammar_point",
-                    sentence=sent,
-                    current_value="unlabeled",
-                    predicted_value="positive",
-                    confidence=prob,
-                    gp_id=gp_id_str,
-                    gp_name=gp_names.get(gp_id_str),
+            for sent in eligible_sents:
+                # Query cache for this sentence
+                cursor.execute(
+                    "SELECT gp_probs FROM inference WHERE sentence = ?", (sent,)
                 )
-            )
+                row = cursor.fetchone()
+                if not row or not row[0]:
+                    continue  # No cache entry
 
-        return candidates
+                processed += 1
+                gp_probs = json.loads(row[0])
 
-    # Choose parallelization strategy
-    use_fork = (
-        len(eligible_sents) >= _GP_PARALLEL_MIN
-        and (cpu_count() or 1) > 1
-        and get_start_method(allow_none=True) == "fork"
+                pos_gp_ids, _ = db_grammar.get(sent, ([], []))
+                positive_ids = set(pos_gp_ids)
+
+                probs_array = np.array(gp_probs, dtype=np.float32)
+
+                # Find high confidence predictions not already positively labeled
+                high_prob_indices = np.where(probs_array > min_prob)[0]
+                for gp_id in high_prob_indices:
+                    gp_id_int = int(gp_id)
+                    if gp_id_int in positive_ids:
+                        continue
+                    prob = float(probs_array[gp_id])
+                    gp_id_str = f"gp{gp_id_int:04d}"
+                    candidate = RelabelCandidate(
+                        family="grammar_point",
+                        sentence=sent,
+                        current_value="unlabeled",
+                        predicted_value="negative",
+                        confidence=prob,
+                        gp_id=gp_id_str,
+                        gp_name=gp_names.get(gp_id_str),
+                    )
+                    heap.add_candidate(candidate, gp_id_int)
+
+                progress.update(task, completed=len(heap.unique_sentences))
+
+                # Stop early once we have enough unique sentences
+                if heap.has_enough_sentences():
+                    console.print(
+                        f"  [dim]Early stop: found {len(heap.unique_sentences)} unique "
+                        f"sentences after {processed:,} cache hits[/dim]"
+                    )
+                    break
+    finally:
+        conn.close()
+
+    candidates = heap.get_candidates_sorted()
+
+    # Keep only top candidate per sentence
+    seen_sents: Set[str] = set()
+    unique: List[RelabelCandidate] = []
+    for c in candidates:
+        if c.sentence not in seen_sents:
+            seen_sents.add(c.sentence)
+            unique.append(c)
+
+    console.print(
+        f"  Processed {processed:,} sentences, found {len(unique)} candidates"
     )
 
-    if use_fork:
-        _set_gp_worker_state(
-            db_grammar, model_gp_probs, gp_names, max_sentence_len, prob_threshold
-        )
-        candidates = _run_gp_scan_forked(eligible_sents)
-    else:
-        candidates = _run_gp_scan_threaded(eligible_sents, compute_for_sent)
-
-    return _shuffle_by_confidence_and_dedupe(candidates)
+    return unique
 
 
 def _load_seen_sentences(seen_file: str) -> Set[str]:
@@ -811,15 +755,34 @@ def _write_candidates_file(
 def _append_to_seen_file(
     seen_file: str, all_candidates: List[RelabelCandidate]
 ) -> None:
-    """Append candidate sentences to seen file."""
-    if all_candidates:
-        with open(seen_file, "a", encoding="utf-8") as f:
-            for candidate in all_candidates:
-                f.write(candidate.sentence + "\n")
-        console.print(
-            f"[dim]Appended {len(all_candidates)} sentences to "
-            f"relabel-candidates-seen.txt[/dim]"
-        )
+    """Append candidate sentences to seen file.
+
+    Also validates that no proposed sentence was already in the seen file,
+    which would indicate a bug in the filtering logic.
+    """
+    if not all_candidates:
+        return
+
+    # Validation: check that we're not proposing sentences that are already seen
+    if os.path.exists(seen_file):
+        with open(seen_file, encoding="utf-8") as f:
+            existing_seen = {line.strip() for line in f if line.strip()}
+        proposed_sentences = {c.sentence for c in all_candidates}
+        already_seen = proposed_sentences & existing_seen
+        if already_seen:
+            examples = list(already_seen)[:3]
+            raise RuntimeError(
+                f"BUG: {len(already_seen)} proposed sentences were already in "
+                f"relabel-candidates-seen.txt. Examples: {examples}"
+            )
+
+    with open(seen_file, "a", encoding="utf-8") as f:
+        for candidate in all_candidates:
+            f.write(candidate.sentence + "\n")
+    console.print(
+        f"[dim]Appended {len(all_candidates)} sentences to "
+        f"relabel-candidates-seen.txt[/dim]"
+    )
 
 
 def find_relabel_candidates(
@@ -862,7 +825,7 @@ def find_relabel_candidates(
     # Load grammar point names and run inference
     gp_names = _load_gp_names(db_path)
     cache_path = os.path.join(data_dir, "corpus-inference.db")
-    inference_data = _run_inference_with_cache(db_data[0], cache_path, families)
+    inference_data = _run_inference_with_cache(db_data[0], cache_path)
 
     # Compute candidates
     all_candidates = _compute_and_collect_candidates(
@@ -873,7 +836,7 @@ def find_relabel_candidates(
         db_grammar=db_data[3],
         model_formality=inference_data[0],
         model_gender=inference_data[1],
-        model_gp_probs=inference_data[2],
+        cache_path=cache_path,
         gp_names=gp_names,
         top_n=top_n,
         seen_sentences=seen_sentences,
