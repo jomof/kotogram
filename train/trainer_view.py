@@ -46,44 +46,27 @@ class GrammaticalityMetric:
 
 
 @dataclass(frozen=True)
-class MseMetric:
-    """Mean squared error metric with sample count."""
-
-    value: float
-    sample_count: int
-
-
-@dataclass(frozen=True)
-class RegisterMetric:
-    """Metric for multi-label register classification."""
-
-    loss: float
-    accuracy: float
-    sample_count: int
-
-
-@dataclass(frozen=True)
 class GradientNorms:
     """Average gradient L2 norms per model component."""
 
     formality: float = 0.0
     gender: float = 0.0
     grammaticality: float = 0.0
-    register: float = 0.0
     encoder: float = 0.0
     pooler: float = 0.0
 
 
 @dataclass(frozen=True)
 class StyleEpochStats:
-    """Semantic epoch statistics for style training."""
+    """Semantic epoch statistics for style training.
+
+    Note: Style trainer only handles pragmatic head training.
+    Formality/gender values and register are handled by the KC decoder.
+    """
 
     formality: BinaryMetric
-    formality_mse: MseMetric
     gender: BinaryMetric
-    gender_mse: MseMetric
     grammaticality: GrammaticalityMetric
-    register: RegisterMetric
     total_loss: float
     avg_accuracy: float
     grad_norms: Optional[GradientNorms] = None
@@ -283,7 +266,6 @@ class TrainerDiagnosticsView(TrainerView):
             stats.formality.population.class1_count,
             "formality",
         )
-        self._add_mse_row(table, stats.formality_mse.value, "formality_mse")
 
         # Gender
         self._add_metric_row(
@@ -297,7 +279,6 @@ class TrainerDiagnosticsView(TrainerView):
             stats.gender.population.class1_count,
             "gender",
         )
-        self._add_mse_row(table, stats.gender_mse.value, "gender_mse")
 
         # Grammaticality
         self._add_metric_row(
@@ -310,16 +291,6 @@ class TrainerDiagnosticsView(TrainerView):
             stats.grammaticality.class0_count,
             stats.grammaticality.class1_count,
             "grammaticality",
-        )
-
-        # Register (no per-class breakdown)
-        self._add_register_row(
-            table,
-            "Register",
-            stats.register.loss,
-            stats.register.accuracy,
-            stats.register.sample_count,
-            "register",
         )
 
         # Add section end row
@@ -353,7 +324,6 @@ class TrainerDiagnosticsView(TrainerView):
                 "formality",
                 "gender",
                 "grammaticality",
-                "register",
                 "encoder",
                 "pooler",
             ]:
@@ -395,37 +365,6 @@ class TrainerDiagnosticsView(TrainerView):
             "pos_acc": pos_acc,
         }
 
-    def _add_mse_row(self, table: Any, value: float, key: str) -> None:
-        """Add an MSE row (indented, spanning fewer columns)."""
-        val_arrow = self._get_mse_arrow(key, value)
-        table.add_row(
-            "[grey62]  MSE[/grey62]",
-            "",
-            f"[grey62]{value:.4f}{val_arrow}[/grey62]",
-            "",
-            "",
-            "",
-            "",
-        )
-        self.last_eval_stats[key] = {"value": value}
-
-    def _add_register_row(
-        self, table: Any, label: str, loss: float, acc: float, n: int, key: str
-    ) -> None:
-        """Add register row (no per-class breakdown, just count)."""
-        loss_arrow = self._get_loss_arrow(key, loss)
-        acc_arrow = self._get_acc_arrow(key, acc)
-        table.add_row(
-            label,
-            f"{loss:.4f}{loss_arrow}",
-            f"{acc * 100:.1f}%{acc_arrow}",
-            "",
-            "",
-            "",
-            str(n),
-        )
-        self.last_eval_stats[key] = {"loss": loss, "value": acc}
-
     def _get_loss_arrow(self, key: str, loss: float) -> str:
         """Get arrow indicator for loss change."""
         last = self.last_eval_stats.get(key)
@@ -446,17 +385,6 @@ class TrainerDiagnosticsView(TrainerView):
                 return "[green]↑[/green]"
             if acc < prev:
                 return "[red]↓[/red]"
-        return " "
-
-    def _get_mse_arrow(self, key: str, value: float) -> str:
-        """Get arrow indicator for MSE change (lower is better)."""
-        last = self.last_eval_stats.get(key)
-        if last and "value" in last:
-            prev = last["value"]
-            if value < prev:
-                return "[green]↓[/green]"
-            if value > prev:
-                return "[red]↑[/red]"
         return " "
 
     def _get_class_acc_arrow(self, key: str, field: str, value: float) -> str:

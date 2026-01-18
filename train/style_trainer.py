@@ -33,8 +33,6 @@ from train.trainer_view import (
     ClassPopulation,
     GradientNorms,
     GrammaticalityMetric,
-    MseMetric,
-    RegisterMetric,
     StyleEpochStats,
     TrainerDiagnosticsView,
     TrainerView,
@@ -697,8 +695,7 @@ class Trainer:
                 eval_res.formality_accuracy
                 + eval_res.gender_accuracy
                 + eval_res.grammaticality_accuracy
-                + eval_res.register_accuracy
-            ) / 4.0
+            ) / 3.0
 
             # Build semantic epoch stats
             f_population = ClassPopulation(
@@ -717,7 +714,6 @@ class Trainer:
                     formality=gn.get("formality", 0.0),
                     gender=gn.get("gender", 0.0),
                     grammaticality=gn.get("grammaticality", 0.0),
-                    register=0.0,  # Register handled by KC decoder
                     encoder=gn.get("encoder", 0.0),
                     pooler=gn.get("pooler", 0.0),
                 )
@@ -730,20 +726,12 @@ class Trainer:
                     class1_accuracy=eval_res.formality_class1_accuracy,
                     population=f_population,
                 ),
-                formality_mse=MseMetric(
-                    value=eval_res.formality_mse,
-                    sample_count=f_population.total,
-                ),
                 gender=BinaryMetric(
                     loss=eval_res.gender_loss,
                     accuracy=eval_res.gender_accuracy,
                     class0_accuracy=eval_res.gender_class0_accuracy,
                     class1_accuracy=eval_res.gender_class1_accuracy,
                     population=g_population,
-                ),
-                gender_mse=MseMetric(
-                    value=eval_res.gender_mse,
-                    sample_count=g_population.total,
                 ),
                 grammaticality=GrammaticalityMetric(
                     loss=eval_res.grammaticality_loss,
@@ -752,11 +740,6 @@ class Trainer:
                     class1_accuracy=eval_res.gram_class1_accuracy,
                     class0_count=eval_res.gram_class0_count,
                     class1_count=eval_res.gram_class1_count,
-                ),
-                register=RegisterMetric(
-                    loss=eval_res.register_loss,
-                    accuracy=eval_res.register_accuracy,
-                    sample_count=eval_res.register_count,
                 ),
                 total_loss=eval_res.loss,
                 avg_accuracy=avg_acc,

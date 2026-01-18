@@ -23,12 +23,14 @@ class PreprocessingResult:
 
 @dataclass
 class FinalResults:
-    """Final evaluation results for display."""
+    """Final evaluation results for display.
+
+    Note: Register accuracy is handled by KC trainer, not style trainer.
+    """
 
     formality_accuracy: float
     gender_accuracy: float
     grammaticality_accuracy: float
-    register_accuracy: float
 
 
 # pylint: disable=too-many-public-methods,too-many-positional-arguments,too-many-locals
@@ -471,8 +473,7 @@ class TrainStyleDiagnosticsView(TrainStyleView):
         console.print(
             f"  Accuracy: form={results.formality_accuracy:.4f}, "
             f"gender={results.gender_accuracy:.4f}, "
-            f"gram={results.grammaticality_accuracy:.4f}, "
-            f"register={results.register_accuracy:.4f}"
+            f"gram={results.grammaticality_accuracy:.4f}"
         )
         self._header("-", 34)
 
