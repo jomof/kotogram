@@ -21,10 +21,8 @@ class TestTrainingResumption(unittest.TestCase):
             bottle.train_style("--label")
 
             # Paths
-            checkpoint_path = bottle.resolve_path(
-                "[models]/style-support/checkpoint.pt"
-            )
-            kc_ckpt = bottle.resolve_path("[models]/style-support/checkpoint_kc.pt")
+            model_path = bottle.resolve_path("[models]/style/model.pt")
+            continuation_path = bottle.resolve_path("[models]/style/continuation.json")
 
             # =========================================================================
             # PART 1: Style Auto-Resume (From test_auto_resume.py)
@@ -34,23 +32,26 @@ class TestTrainingResumption(unittest.TestCase):
             # 1.A: Train Epoch 1 (Fresh)
             res = bottle.train_style(f"--epochs 1 --kc-epochs 0 {common_args}")
             bottle.assert_style_epochs_trained([1])
-            self.assertNotIn("Auto-resume enabled", res.stdout)
-            self.assertTrue(os.path.exists(checkpoint_path), "Checkpoint should exist")
+            self.assertNotIn("Resuming: Loaded model weights from", res.stdout)
+            self.assertTrue(os.path.exists(model_path), "model.pt should exist")
+            self.assertTrue(
+                os.path.exists(continuation_path), "continuation.json should exist"
+            )
 
             # Verify KC config - KC is always enabled now
             # Config no longer has kc_enabled field
 
             print("\n[UnifiedTest] Part 1: Style Training - Epoch 2 (Auto-Resume)")
-            # 1.B: Train Epoch 2 (Auto-Resume) - resume is default when checkpoint exists
+            # 1.B: Train Epoch 2 (Auto-Resume) - resume is default when continuation exists
             res = bottle.train_style(f"--epochs 2 --kc-epochs 0 {common_args}")
             bottle.assert_style_epochs_trained([1, 2])
-            self.assertIn("Auto-resume enabled", res.stdout)
+            self.assertIn("Resuming: Loaded model weights from", res.stdout)
 
             print("\n[UnifiedTest] Part 1: Style Training - Epoch 3 (Auto-Resume)")
             # 1.C: Train Epoch 3 (Auto-Resume continues) - no explicit flag needed
             res = bottle.train_style(f"--epochs 3 --kc-epochs 0 {common_args}")
             bottle.assert_style_epochs_trained([1, 2, 3])
-            self.assertIn("Auto-resume enabled", res.stdout)
+            self.assertIn("Resuming: Loaded model weights from", res.stdout)
 
             # =========================================================================
             # PART 2: Config Transition & KC Pretrain (From test_kc_pretrain.py)
@@ -68,7 +69,7 @@ class TestTrainingResumption(unittest.TestCase):
             # In this simple case, vocab/embeddings are stable.
             # The test `test_kc_pretrain` used `epochs 1`.
 
-            self.assertTrue(os.path.exists(kc_ckpt), "KC checkpoint should exist")
+            self.assertTrue(os.path.exists(model_path), "model.pt should exist")
 
             # =========================================================================
             # PART 3: KC Resumption (From test_resume_pretrain.py)
@@ -92,16 +93,17 @@ class TestTrainingResumption(unittest.TestCase):
             # =========================================================================
             print("\n[UnifiedTest] Part 4: Retrain Style")
 
-            # Force retrain of style (ignore checkpoint).
-            # This should wipe the style checkpoint and start over.
+            # Force retrain (ignore existing model/continuation).
             # We'll ask for epochs 1 for speed.
             # Vary percent to 50% and verify it's logged.
             res = bottle.train_style(
                 f"--epochs 1 --retrain --percent 50 --kc-epochs 0 {common_args}"
             )
             bottle.assert_style_epochs_trained([1])
+            self.assertNotIn("Resuming: Loaded model weights from", res.stdout)
             self.assertIn("Retrain:        from scratch", res.stdout)
-            self.assertIn("Sampling 50.0% of dataset...", res.stdout)
+            self.assertIn("Data usage:", res.stdout)
+            self.assertIn("50.0%", res.stdout)
 
             # KC should NOT have been touched/retrained since we didn't ask for it
             # KC resumption respects kc-epochs

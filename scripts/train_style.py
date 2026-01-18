@@ -14,9 +14,10 @@ import time
 from typing import Any, Dict, List, Optional, Union, cast
 
 import torch
+from torch import nn
 
 from kotogram import locations
-from kotogram.model import InferenceClassifier
+from kotogram.model import InferenceClassifier, load_model
 
 # pylint: disable=ungrouped-imports
 from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer
@@ -205,14 +206,28 @@ if __name__ == "__main__":
     data_path = os.path.join(cache_dir, "grammatic_combined.tsv")
     agrammatic_data_path = os.path.join(cache_dir, "agrammatic_combined.tsv")
     output_path = locations.get_style_output_dir()
-    support_dir = paths.get_style_support_dir()
+    history_dir = paths.get_style_history_dir()
 
     # Epoch history logging
-    history_path = os.path.join(support_dir, "training-history.tsv")
+    history_path = os.path.join(history_dir, "training-history.tsv")
+
+    # Determine how many epochs have already been completed
+    initial_kc_epochs = 0
+    initial_style_epochs = 0
+    continuation_path = os.path.join(output_path, "continuation.json")
+    if os.path.exists(continuation_path):
+        with open(continuation_path, "r", encoding="utf-8") as cont_file:
+            cont_data = json.load(cont_file)
+            initial_kc_epochs = cont_data.get("kc_epochs_trained", 0)
+            initial_style_epochs = cont_data.get("style_epochs_trained", 0)
 
     # Clear history if starting fresh (retrain mode, and not just labeling)
     if trainer_config.retrain and not trainer_config.label_only:
         history.clear_history(history_path)
+        if os.path.exists(continuation_path):
+            os.remove(continuation_path)
+        initial_kc_epochs = 0
+        initial_style_epochs = 0
 
     def _log_epoch_event(
         raw_history: Union[TrainingHistory, KCTrainingHistory],
@@ -241,7 +256,10 @@ if __name__ == "__main__":
         if idx < 0:
             return
 
-        current_epoch = idx + 1
+        base_epoch = (
+            initial_kc_epochs if phase_type == "pretrain-kc" else initial_style_epochs
+        )
+        current_epoch = base_epoch + idx + 1
 
         # Extract metrics for this epoch
         metrics = {}
@@ -274,11 +292,53 @@ if __name__ == "__main__":
 
         history.append_event(history_path, event)
 
+    def _export_model(model_to_save: Union[nn.Module, InferenceClassifier]) -> None:
+        """Save the model weights and config to the output directory."""
+        # Ensure we use the base model (unwrap DDP if present)
+        inner_model = model_to_save
+        if hasattr(inner_model, "module"):
+            inner_model = cast(nn.Module, inner_model.module)
+
+        os.makedirs(output_path, exist_ok=True)
+
+        # Create __init__.py to make the model directory a valid Python package
+        # This is required for 'kotogram.model_data' redirection in pyproject.toml
+        init_path = os.path.join(output_path, "__init__.py")
+        if not os.path.exists(init_path):
+            with open(init_path, "w", encoding="utf-8"):
+                pass
+
+        save_model(
+            cast(InferenceClassifier, inner_model),
+            output_path,
+            model_config,
+        )
+
+        # Save continuation info
+        cont_json_path = os.path.join(output_path, "continuation.json")
+        with open(cont_json_path, "w", encoding="utf-8") as cont_f_handle:
+            json.dump(
+                {
+                    "kc_epochs_trained": kc_epochs_done,
+                    "style_epochs_trained": style_epochs_done,
+                },
+                cont_f_handle,
+                indent=2,
+            )
+
+        _view.on_model_saved(output_path)
+
     model: Optional[InferenceClassifier] = None
     tokenizer: Optional[Tokenizer] = None
     # pylint: disable=invalid-name
     checkpoint: Optional[Dict[str, Any]] = None
     vocab_grew = False
+
+    # Load existing model if resuming
+    model_pt_path = os.path.join(output_path, "model.pt")
+    if not trainer_config.retrain and os.path.exists(model_pt_path):
+        model, _loaded_tokenizer = load_model(output_path)
+        _view.on_model_loaded(model_pt_path)
 
     data_files = [data_path]
     grammaticality_labels = [1]
@@ -312,15 +372,6 @@ if __name__ == "__main__":
 
     tokenizer = Tokenizer.load(tokenizer_path)
     _view.on_tokenizer_loaded(tokenizer_path)
-
-    # Auto-enable resume when checkpoint files exist (unless --retrain)
-    # This ensures KC and style trainers can resume without explicit flag
-    if not trainer_config.retrain and not trainer_config.checkpoint.resume_from:
-        kc_ckpt = os.path.join(support_dir, "checkpoint_kc.pt")
-        style_ckpt = os.path.join(support_dir, "checkpoint.pt")
-        if os.path.exists(kc_ckpt) or os.path.exists(style_ckpt):
-            # type: ignore[misc]
-            object.__setattr__(trainer_config.checkpoint, "resume_from", support_dir)
 
     # Tokenizer and Device after config load
     device = torch.device(trainer_config.device)
@@ -373,9 +424,11 @@ if __name__ == "__main__":
             fname = FAMILY_FEATURES[fid]
             kc_specs[fid] = current_vocabs[fname]
 
+    # Always update with computed KC specs to ensure trainers have full configuration
+    trainer_config = dataclasses.replace(trainer_config, kc_target_specs=kc_specs)
+
     # Initialize model if not already loaded, OR upgrade if loaded model is not WithKC
     if model is None:
-        trainer_config = dataclasses.replace(trainer_config, kc_target_specs=kc_specs)
         model = TrainingClassifier(model_config, kc_target_specs=kc_specs)
     elif not isinstance(model, TrainingClassifier):
         # Ubiquity: Upgrade base InferenceClassifier to TrainingClassifier
@@ -459,9 +512,8 @@ if __name__ == "__main__":
 
     # Interleaved KC + Style Training
     # KC epochs run first in each round to prevent forgetting
-    events = history.read_events(history_path)
-    kc_epochs_done = sum(1 for e in events if isinstance(e, history.KcEpochEvent))
-    style_epochs_done = sum(1 for e in events if isinstance(e, history.StyleEpochEvent))
+    kc_epochs_done = initial_kc_epochs
+    style_epochs_done = initial_style_epochs
 
     kc_epochs_target = trainer_config.kc_epochs
     style_epochs_target = trainer_config.epochs
@@ -503,6 +555,8 @@ if __name__ == "__main__":
                 start_epoch=kc_epochs_done,
             )
             kc_epochs_done += 1
+            # Save model.pt after every KC epoch as requested
+            _export_model(model)
 
         # Style epoch (if remaining)
         if style_epochs_done < style_epochs_target:
@@ -512,6 +566,8 @@ if __name__ == "__main__":
                 start_epoch=style_epochs_done,
             )
             style_epochs_done += 1
+            # Save model and continuation.json after every style epoch
+            _export_model(model)
 
         # Both done?
         if (
@@ -538,29 +594,9 @@ if __name__ == "__main__":
         )
     )
 
-    # Save model
-    output_dir = locations.get_style_output_dir()
-    os.makedirs(output_dir, exist_ok=True)
-    # from train.io import save_model  # Already imported
-    # pylint: disable=reimported
-
-    # Ensure we use the trained model
-    trained_model = style_trainer.model
-    if hasattr(trained_model, "module"):
-        trained_model = cast(InferenceClassifier, trained_model.module)
-
-    # Create __init__.py to make the model directory a valid Python package
-    # This is required for 'kotogram.model_data' redirection in pyproject.toml
-    init_path = os.path.join(output_dir, "__init__.py")
-    with open(init_path, "w", encoding="utf-8"):
-        pass
-
-    save_model(
-        cast(InferenceClassifier, trained_model),
-        output_dir,
-        model_config,
-    )
-    _view.on_model_saved(output_dir)
+    # Final model export
+    if model:
+        _export_model(model)
 
     # Final timing report
     _view.on_timing_summary(style_end - style_start)

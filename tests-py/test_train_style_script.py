@@ -48,7 +48,7 @@ class TestTrainStyleScript(unittest.TestCase):
                 "[.cache]/style_dataset/labels.bin_*",
                 "[.cache]/style_dataset/offsets.bin",
                 "[.cache]/style_dataset/gp_*.bin",  # Grammar point ids/offsets
-                "[models]/style-support/config.json",
+                "[history]/config.json",
                 "[models]/style/tokenizer.json",
             ]
             bottle.assert_dir_layout(expected_label_manifest)
@@ -73,28 +73,27 @@ class TestTrainStyleScript(unittest.TestCase):
             # Verify epochs trained: expect [1, 2] KC epochs and [1] style epoch
             bottle.assert_kc_epochs_trained([1, 2])
             bottle.assert_style_epochs_trained([1])
+            bottle.assert_continuation_epochs(kc=2, style=1)
 
             # Verify no NaNs in history
             bottle.assert_no_nans_in_history()
 
             # Verify changes since snapshot (should only be training artifacts)
-            bottle.assert_files_exist(["[models]/style-support/training.log"])
+            bottle.assert_files_exist(["[history]/training.log"])
 
             expected_train_differences = [
-                "[models]/style-support/training.log ADDED",
-                "[models]/style-support/training-history.tsv ADDED",
-                "[models]/style-support/checkpoint.pt ADDED",
-                "[models]/style-support/checkpoint_meta.pt ADDED",
+                "[history]/training.log ADDED",
+                "[history]/training-history.tsv ADDED",
                 "[.profile]/* ADDED",
-                "[models]/style-support/config.json MODIFIED",
+                "[history]/config.json MODIFIED",
                 "[models]/style/__init__.py ADDED",
                 "[models]/style/model.pt ADDED",
                 "[models]/style/model.json ADDED",
                 "[models]/style/labels.json ADDED",
                 "[models]/style/model_type.txt ADDED",
-                "[models]/style-support/*confusion.csv ADDED",
-                "[models]/style-support/confusion_matrices/*.tsv ADDED",
-                "[models]/style-support/checkpoint_kc.pt ADDED",
+                "[models]/style/continuation.json ADDED",
+                "[history]/*confusion.csv ADDED",
+                "[history]/confusion_matrices/*.tsv ADDED",
             ]
 
             bottle.assert_dir_diff("after_label", expected_train_differences)
@@ -109,6 +108,7 @@ class TestTrainStyleScript(unittest.TestCase):
             # Verify only style epoch 2 was trained. KC history remains [1, 2].
             bottle.assert_kc_epochs_trained([1, 2])
             bottle.assert_style_epochs_trained([1, 2])
+            bottle.assert_continuation_epochs(kc=2, style=2)
 
             # Verify no NaNs in history after resume
             bottle.assert_no_nans_in_history()
@@ -116,20 +116,16 @@ class TestTrainStyleScript(unittest.TestCase):
             # Verify changes since first training pass
             expected_resume_differences = [
                 # Training artifacts should be modified
-                "[models]/style-support/training.log MODIFIED",
-                "[models]/style-support/training-history.tsv MODIFIED",
-                "[models]/style-support/checkpoint.pt MODIFIED",
-                "[models]/style-support/checkpoint_meta.pt MODIFIED",
+                "[history]/training.log MODIFIED",
+                "[history]/training-history.tsv MODIFIED",
                 "[.profile]/* ADDED",
                 "[.profile]/training-profile.txt MODIFIED",
-                "[models]/style-support/config.json MODIFIED",
+                "[history]/config.json MODIFIED",
                 "[models]/style/model.pt MAYBE-MODIFIED",
-                "[models]/style-support/*confusion.csv MAYBE-MODIFIED",
-                "[models]/style-support/confusion_matrices/*.tsv MAYBE-MODIFIED",
+                "[models]/style/continuation.json MODIFIED",
+                "[history]/*confusion.csv MAYBE-MODIFIED",
+                "[history]/confusion_matrices/*.tsv MAYBE-MODIFIED",
             ]
-
-            # NOTE: checkpoint_kc.pt should NOT be modified
-            # because we are resuming and pretraining is already complete.
 
             bottle.assert_dir_diff("after_epoch_1", expected_resume_differences)
 
@@ -177,27 +173,14 @@ class TestTrainStyleScript(unittest.TestCase):
 
             # --- Model Verification Logic ---
             style_model = bottle.get_file("[models]/style/model.pt")
-            support_checkpoint = bottle.get_file("[models]/style-support/checkpoint.pt")
             style_config_path = bottle.get_file("[models]/style/model.json")
 
             # 1. Assert FP8 for export
             bottle.assert_model_is_fp8(style_model)
 
-            # 2. Assert Slim vs Full Content using torch.load
+            # 2. Assert Slim Content using torch.load
             # Map location CPU to avoid CUDA errors if on CPU only machine
             slim_state = torch.load(style_model, map_location="cpu", weights_only=True)
-            full_state = torch.load(
-                support_checkpoint, map_location="cpu", weights_only=False
-            )
-
-            # Full state should contain kc_decoders
-            # full_state is dict with "model_state_dict"
-            self.assertTrue(
-                any(
-                    k.startswith("kc_decoders.") for k in full_state["model_state_dict"]
-                ),
-                "Support checkpoint MUST contain kc_decoders (Full State)",
-            )
 
             # Slim state should NOT contain kc_decoders for families with is_slim_decoder=True
             # But it MAY contain gender/formality/grammar_point decoders (is_slim_decoder=False)

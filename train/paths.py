@@ -6,9 +6,9 @@ import platform
 from kotogram import locations
 
 
-def get_style_support_dir() -> str:
-    """Returns the directory for style model training support artifacts (checkpoints, logs)."""
-    return os.path.join(locations.get_models_dir(), "style-support")
+def get_style_history_dir() -> str:
+    """Returns the directory for style training history and config (resides in .cache)."""
+    return os.path.join(get_cache_dir(), "style-training")
 
 
 def get_data_dir() -> str:

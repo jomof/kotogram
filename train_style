@@ -33,7 +33,6 @@ from kotogram.model import (
 )
 from kotogram.tokenizer import Tokenizer
 from train.config import (
-    CheckpointConfig,
     DataLoaderSettings,
     HardwareConfig,
     KCConfig,
@@ -197,8 +196,6 @@ def run_preprocessing(
 def build_trainer_config(
     args: argparse.Namespace,
     env: dict,
-    support_dir: str,
-    should_resume: bool,
     grad_accum_steps: int,
     loaded_config: Optional[TrainerConfig],
     current_kc_epochs: int = 0,
@@ -213,10 +210,6 @@ def build_trainer_config(
     trainer_kwargs: Dict[str, Any] = {
         "learning_rate": args.learning_rate,
         "grad_accum_steps": grad_accum_steps,
-        "checkpoint": CheckpointConfig(
-            dir=support_dir,
-            resume_from=support_dir if should_resume else None,
-        ),
         "hardware": HardwareConfig(
             cpu_reserve_cores=int(env.get("CPU_RESERVE_CORES", 2)),
         ),
@@ -263,11 +256,11 @@ def generate_and_save_config(
 ) -> str:
     """Generate and save the unified configuration file."""
     # pylint: disable=import-outside-toplevel
-    from train.paths import get_style_support_dir
-    support_dir = get_style_support_dir()
+    from train.paths import get_style_history_dir
+    history_dir = get_style_history_dir()
     cache_dir = train_paths.get_cache_dir()
 
-    config_path = os.path.join(support_dir, "config.json")
+    config_path = os.path.join(history_dir, "config.json")
 
     # Load tokenizer
     output_dir = locations.get_style_output_dir()
@@ -317,14 +310,15 @@ def generate_and_save_config(
 
     # Read history to get current epoch counts (for +N syntax support)
     from train import history
-    history_path = os.path.join(support_dir, "training-history.tsv")
+    history_dir = get_style_history_dir()
+    history_path = os.path.join(history_dir, "training-history.tsv")
     events = history.read_events(history_path) if os.path.exists(history_path) else []
     current_kc_epochs = sum(1 for e in events if isinstance(e, history.KcEpochEvent))
     current_style_epochs = sum(1 for e in events if isinstance(e, history.StyleEpochEvent))
 
     # Build TrainerConfig
     trainer_config = build_trainer_config(
-        args, env, support_dir, should_resume, grad_accum_steps, loaded_trainer_config,
+        args, env, grad_accum_steps, loaded_trainer_config,
         current_kc_epochs=current_kc_epochs,
         current_style_epochs=current_style_epochs,
     )
@@ -365,9 +359,9 @@ def run_training_phase(
 
     """Run the training phase using the generated configuration."""
     # pylint: disable=import-outside-toplevel
-    from train.paths import get_style_support_dir
+    from train.paths import get_style_history_dir
 
-    support_dir = get_style_support_dir()
+    history_dir = get_style_history_dir()
     # output_dir isn't used immediately here? Wait, let's look at 404 view.
     # It just continues to "Training Phase".
     # But look at line 682 in 405 view: output_dir = locations.get_style_output_dir().
@@ -391,7 +385,8 @@ def run_training_phase(
         config_path,
     ]
 
-    training_log = os.path.join(support_dir, "training.log")
+    history_dir = get_style_history_dir()
+    training_log = os.path.join(history_dir, "training.log")
     t_train_start = time.perf_counter()
 
     train_cmd = launcher + train_args
@@ -606,7 +601,7 @@ def main() -> int:
 
 
     cache_dir = train_paths.get_cache_dir()
-    support_dir = train_paths.get_style_support_dir()
+    history_dir = train_paths.get_style_history_dir()
     output_dir = locations.get_style_output_dir()
 
     # Print configuration header
@@ -614,21 +609,17 @@ def main() -> int:
 
     # Create directories
     os.makedirs(cache_dir, exist_ok=True)
-    os.makedirs(support_dir, exist_ok=True)
+    os.makedirs(history_dir, exist_ok=True)
     if not args.label:
         os.makedirs(output_dir, exist_ok=True)
 
-    # Resume logic: always resume when checkpoints exist, unless --retrain
-    checkpoint_path = os.path.join(support_dir, "checkpoint.pt")
-    kc_checkpoint_path = os.path.join(support_dir, "checkpoint_kc.pt")
-
-    # Resume is the default when any checkpoint exists (unless --retrain)
+    # Resume is the default when continuation exists (unless --retrain)
     should_resume = False
     if not args.retrain:
-        if os.path.exists(checkpoint_path) or os.path.exists(kc_checkpoint_path):
+        continuation_path = os.path.join(output_dir, "continuation.json")
+        model_pt_path = os.path.join(output_dir, "model.pt")
+        if os.path.exists(continuation_path) or os.path.exists(model_pt_path):
             should_resume = True
-            found_ckpt = checkpoint_path if os.path.exists(checkpoint_path) else kc_checkpoint_path
-            _view.on_auto_resume(found_ckpt)
 
     # Determine process count and launcher
     num_devices, device_type = get_device_info()

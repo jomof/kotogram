@@ -107,49 +107,6 @@ class TestParameterVariation(unittest.TestCase):
         )
         self.assertEqual(trainer2.output_path, path2)
 
-    def test_restore_from_checkpoint_variation(self):
-        """Test restore_from_checkpoint with varying paths."""
-        mock_model = DummyKCModel()
-        # Explicit usage to satisfy dead code analysis
-        self.assertIsNotNone(mock_model.gender_value_head)
-
-        mock_dataset = self._create_mock_dataset()
-        config = TrainerConfig(device="cpu")
-        dl_config = DataLoaderConfig(
-            num_workers=0, pin_memory=False, persistent_workers=False
-        )
-
-        trainer = Trainer(
-            mock_model,
-            mock_dataset,
-            mock_dataset,
-            config,
-            dl_config,
-            dl_config,
-            output_path=self.output_path,
-        )
-
-        # Variation 1: Path A
-        path_a = os.path.join(self.output_path, "path_a")
-        os.makedirs(path_a, exist_ok=True)
-        # Create a dummy checkpoint file
-        with open(os.path.join(path_a, "checkpoint.pt"), "wb") as f:
-            torch.save(
-                {
-                    "epoch": 1,
-                    "history": {"train_loss": []},
-                    "model_state_dict": mock_model.state_dict(),
-                },
-                f,
-            )
-
-        trainer.restore_from_checkpoint(path_a)
-
-        # Variation 2: Path B (empty/missing)
-        path_b = os.path.join(self.output_path, "path_b")
-        os.makedirs(path_b, exist_ok=True)
-        trainer.restore_from_checkpoint(path_b)
-
     def test_kc_trainer_variation(self):
         """Test KCTrainer parameters including freeze_encoder and accum."""
         model = DummyKCModel()

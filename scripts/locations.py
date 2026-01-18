@@ -17,7 +17,7 @@ from train.paths import (
     get_data_dir,
     get_shards_cache_dir,
     get_style_dataset_cache_dir,
-    get_style_support_dir,
+    get_style_history_dir,
 )
 
 if __name__ == "__main__":
@@ -27,7 +27,7 @@ if __name__ == "__main__":
             print(f"export DATA_DIR='{get_data_dir()}'")
             print(f"export CACHE_DIR='{get_cache_dir()}'")
             print(f"export MODELS_DIR='{get_models_dir()}'")
-            print(f"export SUPPORT_DIR='{get_style_support_dir()}'")
+            print(f"export HISTORY_DIR='{get_style_history_dir()}'")
         elif sys.argv[1] == "cache":
             print(get_cache_dir())
         elif sys.argv[1] == "data":
@@ -40,7 +40,7 @@ if __name__ == "__main__":
             print(get_style_dataset_cache_dir())
         elif sys.argv[1] == "style-output":
             print(get_style_output_dir())
-        elif sys.argv[1] == "style-support":
-            print(get_style_support_dir())
+        elif sys.argv[1] == "style-history":
+            print(get_style_history_dir())
         elif sys.argv[1] == "train-root":
             print(get_train_root())

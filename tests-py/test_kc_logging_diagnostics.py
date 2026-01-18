@@ -11,7 +11,6 @@ from torch import nn
 from kotogram.model import ModelConfig
 from train import display
 from train.config import (
-    CheckpointConfig,
     DataLoaderConfig,
     KCConfig,
     KcFamilyId,
@@ -131,7 +130,6 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
         self.trainer_config = TrainerConfig(
             batch_size=3,
             device="cpu",
-            checkpoint=CheckpointConfig(),
             kc_target_specs={KcFamilyId.BAG_POS: 10},
         )
         self.dl_config = DataLoaderConfig(

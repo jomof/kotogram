@@ -178,28 +178,6 @@ class RecordingKCTrainerView(KCTrainerView):
     def on_kc_progress_stop(self) -> None:
         self._record("on_kc_progress_stop")
 
-    def on_kc_checkpoint_restored(
-        self, path: str, epoch: int, batch_idx: int, global_step: int
-    ) -> None:
-        self._record(
-            "on_kc_checkpoint_restored",
-            path=path,
-            epoch=epoch,
-            batch_idx=batch_idx,
-            global_step=global_step,
-        )
-
-    def on_kc_checkpoint_saved(
-        self, path: str, epoch: int, global_step: int, filename: str
-    ) -> None:
-        self._record(
-            "on_kc_checkpoint_saved",
-            path=path,
-            epoch=epoch,
-            global_step=global_step,
-            filename=filename,
-        )
-
     def on_kc_bias_init(
         self, name: str, p_mean: float, bias: float, bias_count: int
     ) -> None:
@@ -277,9 +255,6 @@ class TestKCTrainerView(TestCase):
         )
 
     def test_train_calls_view_hooks(self):
-        # Override save_checkpoint to prevent file I/O
-        self.trainer.save_checkpoint = MagicMock()
-
         self.trainer.train(
             epochs=1,
             on_epoch_end=lambda h: None,
@@ -309,8 +284,6 @@ class TestKCTrainerView(TestCase):
 
     def test_bias_init_called(self):
         # Trigger bias init manually or rely on train doing it?
-        # train() calls _init_structural_decoder_biases if start_epoch=0
-        self.trainer.save_checkpoint = MagicMock()
         self.trainer.train(epochs=1, on_epoch_end=lambda h: None)
 
         # bias_calls = [c for c in self.view.calls if c.name == "on_kc_bias_init"]
@@ -319,16 +292,6 @@ class TestKCTrainerView(TestCase):
         # The Trainer calls it on line 1579.
         # If DummyKCModel doesn't have layers to iterate, it won't fire.
         # We can mock _init_structural_decoder_biases or just verify that IF it ran, it would call view.
-
-    def test_checkpoint_hooks(self):
-        self.trainer.restore_from_checkpoint = MagicMock(return_value=True)
-        # We need to manually call the on_restored since we mocked the method that calls it?
-        # Or better, let's call the actual restore logic but mocking OS.path?
-        # Too complex for quick unit test.
-
-        # Direct invocation validation
-        self.trainer.view.on_kc_checkpoint_restored("path", 0, 0, 0)
-        self.assertIn("on_kc_checkpoint_restored", [c.name for c in self.view.calls])
 
     def test_skip_first_metrics(self):
         """Test that skip_first_metrics skips on_kc_batch_stats and on_kc_epoch_summary."""
@@ -346,7 +309,6 @@ class TestKCTrainerView(TestCase):
             kc_config=kc_config_skip,
             view=view_skip,
         )
-        trainer_skip.save_checkpoint = MagicMock()
 
         # Train for 1 epoch (epoch 0, should be skipped)
         trainer_skip.train(epochs=1, on_epoch_end=lambda h: None)
@@ -366,8 +328,6 @@ class TestKCTrainerView(TestCase):
 
     def test_skip_first_metrics_zero_means_no_skip(self):
         """Test that skip_first_metrics=0 (default) calls all metrics."""
-        # Default kc_config has skip_first_metrics=0
-        self.trainer.save_checkpoint = MagicMock()
         self.trainer.train(epochs=1, on_epoch_end=lambda h: None)
 
         calls = [c.name for c in self.view.calls]

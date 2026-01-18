@@ -44,14 +44,6 @@ class KCTrainerView(Protocol):
 
     def on_kc_progress_stop(self) -> None: ...
 
-    def on_kc_checkpoint_restored(
-        self, path: str, epoch: int, batch_idx: int, global_step: int
-    ) -> None: ...
-
-    def on_kc_checkpoint_saved(
-        self, path: str, epoch: int, global_step: int, filename: str
-    ) -> None: ...
-
     def on_kc_bias_init(
         self, name: str, p_mean: float, bias: float, bias_count: int
     ) -> None:
@@ -175,22 +167,6 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
     def on_kc_progress_stop(self) -> None:
         pass
-
-    def on_kc_checkpoint_restored(
-        self, path: str, epoch: int, batch_idx: int, global_step: int
-    ) -> None:
-        _ = path
-        _ = epoch
-        _ = batch_idx
-        _ = global_step
-
-    def on_kc_checkpoint_saved(
-        self, path: str, epoch: int, global_step: int, filename: str
-    ) -> None:
-        _ = path
-        _ = epoch
-        _ = global_step
-        _ = filename
 
     def on_kc_bias_init(
         self, name: str, p_mean: float, bias: float, bias_count: int
@@ -925,5 +901,3 @@ class KCTrainerDiagnosticsView(KCTrainerView):
 
 # Explicitly reference unused methods for static analysis tools
 # pylint: disable=pointless-statement
-KCTrainerView.on_kc_checkpoint_saved
-KCTrainerDiagnosticsView.on_kc_checkpoint_saved
