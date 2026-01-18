@@ -36,7 +36,7 @@ GPLabelsDict = Dict[
 ]  # sentence -> (pos_gp_ids, neg_gp_ids)
 GPProbsDict = Dict[str, List[float]]  # sentence -> grammar_point_probs
 RegisterLabelsDict = Dict[str, List[int]]  # sentence -> register_ids
-RegisterProbsDict = Dict[str, List[float]]  # sentence -> register_probs
+RegisterProbsDict = Dict[str, Dict[str, float]]  # sentence -> {reg_name: prob}
 
 
 # Thresholds for relabel candidate suggestions (script-specific, not used in production)
@@ -868,8 +868,6 @@ def _compute_register_candidates(  # pylint: disable=too-many-positional-argumen
     """
     import json
 
-    import numpy as np
-
     if seen_sentences is None:
         seen_sentences = set()
 
@@ -910,24 +908,30 @@ def _compute_register_candidates(  # pylint: disable=too-many-positional-argumen
 
                 current_reg_ids = set(db_register.get(sent, []))
 
-                probs_array = np.array(reg_probs, dtype=np.float32)
+                # reg_probs is now Dict[str, float] (reg_name -> prob)
+                # Handle both old list format and new dict format for cache compatibility
+                if isinstance(reg_probs, list):
+                    # Old cache format: convert list to dict
+                    reg_probs_dict: Dict[str, float] = {}
+                    for reg_id, prob in enumerate(reg_probs):
+                        label = REGISTER_ID_TO_LABEL.get(reg_id)
+                        if label:
+                            reg_probs_dict[label.value] = prob
+                else:
+                    reg_probs_dict = reg_probs
 
                 # Find high confidence predictions not already labeled
-                high_prob_indices = np.where(probs_array > min_prob)[0]
-                for reg_id in high_prob_indices:
-                    reg_id_int = int(reg_id)
+                # Build value-to-id mapping (REGISTER_LABEL_TO_ID has RegisterLevel keys)
+                val_to_id = {r.value: i for r, i in REGISTER_LABEL_TO_ID.items()}
+                for reg_name, prob in reg_probs_dict.items():
+                    if prob <= min_prob:
+                        continue
+                    # Convert register name (string) to ID using value lookup
+                    reg_id_int = val_to_id.get(reg_name)
+                    if reg_id_int is None:
+                        continue
                     if reg_id_int in current_reg_ids:
                         continue
-                    prob = float(probs_array[reg_id])
-                    # Get register label name from ID
-                    reg_label = REGISTER_ID_TO_LABEL.get(reg_id_int)
-                    if reg_label is None:
-                        continue
-                    reg_name = (
-                        reg_label.value
-                        if hasattr(reg_label, "value")
-                        else str(reg_label)
-                    )
                     # Build human-readable current labels
                     current_labels = []
                     for rid in sorted(current_reg_ids):

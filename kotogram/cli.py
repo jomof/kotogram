@@ -100,6 +100,15 @@ def cmd_grammar(args: argparse.Namespace) -> int:
 
     # Use to_json() then load/dump for pretty printing
     data = json.loads(result.to_json())
+
+    # Filter register_probs: only include >= 50% and round to 2 decimal places
+    if "register_probs" in data and data["register_probs"]:
+        data["register_probs"] = {
+            name: round(prob, 2)
+            for name, prob in data["register_probs"].items()
+            if prob >= 0.5
+        }
+
     print(json.dumps(data, indent=2, ensure_ascii=False))
     return 0
 
