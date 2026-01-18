@@ -112,8 +112,15 @@ class RecordingTrainerView(TrainerView):
             start_batch=start_batch,
         )
 
-    def on_epoch_start(self, epoch: int, total_epochs: int) -> None:
-        self._record("on_epoch_start", epoch=epoch, total_epochs=total_epochs)
+    def on_epoch_start(
+        self, epoch: int, total_epochs: int, encoder_frozen: bool
+    ) -> None:
+        self._record(
+            "on_epoch_start",
+            epoch=epoch,
+            total_epochs=total_epochs,
+            encoder_frozen=encoder_frozen,
+        )
 
     # pylint: disable=too-many-positional-arguments
     def on_epoch_end(
