@@ -1,6 +1,19 @@
 #!/bin/bash
 # Setup script for kotogram training environment
-# Run with: ./requirements.sh (or source requirements.sh)
+# Run with: source requirements.sh
+
+# Fail if not sourced (environment changes would be lost in a subshell)
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  echo "Error: This script must be sourced, not executed directly."
+  echo "Please run: source requirements.sh"
+  exit 1
+fi
+
+# Fast path: already in a venv, skip setup
+if [[ -n "${VIRTUAL_ENV:-}" ]] && [[ -f "$VIRTUAL_ENV/bin/python" ]]; then
+  echo "Already in virtual environment: $VIRTUAL_ENV"
+  return 0
+fi
 
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

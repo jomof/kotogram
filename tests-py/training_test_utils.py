@@ -148,6 +148,15 @@ def populate_test_data(root_dir: str, project_root: str):
         "CREATE TABLE corpus (sentence TEXT, formality REAL, gender REAL, grammatic INTEGER, register_ids TEXT, grammar TEXT, grammar_negative TEXT)"
     )
 
+    # Create register table with mapping from kotogram.constants (source of truth)
+    from kotogram.constants import REGISTER_ID_TO_LABEL
+
+    target_c.execute("CREATE TABLE register (id INTEGER PRIMARY KEY, label TEXT)")
+    register_data = [
+        (id_val, label.name) for id_val, label in REGISTER_ID_TO_LABEL.items()
+    ]
+    target_c.executemany("INSERT INTO register VALUES (?, ?)", register_data)
+
     all_sentences = grammatic_samples.union(agrammatic_samples)
     for s in register_samples.values():
         all_sentences.update(s)

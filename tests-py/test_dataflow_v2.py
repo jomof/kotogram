@@ -99,8 +99,8 @@ class TestDataflowV2(unittest.TestCase):
         self.assertTrue(len(valid_ids) > 0, f"All tokens special: {rg_ids}")
 
         # Check Register Labels (ragged)
-        # "これはテスト文です0" has override KYOSHIGO (assumed ID 4)
-        self.assertEqual(sample.register_labels, [4])
+        # "これはテスト文です0" has override KYOSHIGO (ID 5)
+        self.assertEqual(sample.register_labels, [5])
 
         # Split
         train_ds, val_ds = dataset.split(train_ratio=0.8)

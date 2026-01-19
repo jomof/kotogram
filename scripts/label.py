@@ -58,13 +58,11 @@ from kotogram.analysis import FormalityLevel, RegisterLevel
 from kotogram.constants import (
     FORMALITY_ID_TO_LABEL,
     FORMALITY_LABEL_TO_ID,
+    REGISTER_ID_TO_LABEL,
     REGISTER_LABEL_TO_ID,
 )
 from kotogram.japanese_parser import KotogramFormat
 from kotogram.kotogram import extract_token_features, split_kotogram
-from kotogram.model import (
-    REGISTER_ID_TO_LABEL,
-)
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 from kotogram.tokenizer import FEATURE_FIELDS, Tokenizer, get_vocab_strings
 from scripts.progress_utils import create_progress
@@ -120,6 +118,83 @@ _TOKENIZER: Optional[Tokenizer] = None
 
 
 console = Console()
+
+
+def _validate_register_mapping_against_db(db_path: str) -> None:
+    """Validate that corpus.db register table matches kotogram.constants mapping.
+
+    This ensures the source of truth (kotogram/constants.py) is in sync with the DB.
+    The code mapping is what's used at inference time, so DB must match it.
+
+    Args:
+        db_path: Path to corpus.db
+
+    Raises:
+        ValueError: If mappings don't match
+    """
+    if not os.path.exists(db_path):
+        raise ValueError(
+            f"Database not found at {db_path}. "
+            "The register mapping validation requires a valid corpus.db."
+        )
+
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    # Check if register table exists
+    cursor.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='register'"
+    )
+    if not cursor.fetchone():
+        conn.close()
+        raise ValueError(
+            f"Register table not found in {db_path}. "
+            "The database must have a 'register' table with the mapping from kotogram.constants. "
+            "Rebuild the database using: python scripts/curate build <source>"
+        )
+
+    cursor.execute("SELECT id, label FROM register ORDER BY id")
+    db_rows = cursor.fetchall()
+    conn.close()
+
+    db_mapping = {row[0]: row[1].upper() for row in db_rows}
+
+    # Validate all DB entries are in code
+    mismatches = []
+    for db_id, db_label_upper in db_mapping.items():
+        code_label = REGISTER_ID_TO_LABEL.get(db_id)
+        if code_label is None:
+            mismatches.append(
+                f"  ID {db_id}: exists in DB ('{db_label_upper}') but not in kotogram.constants"
+            )
+        elif code_label.name != db_label_upper:
+            mismatches.append(
+                f"  ID {db_id}: DB has '{db_label_upper}' but kotogram.constants has '{code_label.name}'"
+            )
+
+    # Validate all code entries are in DB
+    for code_id, code_label in REGISTER_ID_TO_LABEL.items():
+        if code_id not in db_mapping:
+            mismatches.append(
+                f"  ID {code_id}: exists in kotogram.constants ('{code_label.name}') but not in DB"
+            )
+
+    if mismatches:
+        error_msg = (
+            "\n[bold red]ERROR: Register mapping mismatch between corpus.db and kotogram.constants![/bold red]\n\n"
+            "[yellow]The source of truth is kotogram/constants.py (used at inference time).[/yellow]\n"
+            "[yellow]The corpus.db register table must match it exactly.[/yellow]\n\n"
+            "Mismatches found:\n" + "\n".join(mismatches) + "\n\n"
+            "[bold]Fix options:[/bold]\n"
+            "  1. Rebuild corpus.db using: python scripts/curate build <source_file>\n"
+            "  2. If kotogram.constants is wrong, fix it and rebuild the DB\n"
+        )
+        console.print(error_msg)
+        raise ValueError("Register mapping validation failed")
+
+    console.print(
+        f"[green]✓ Register mapping validated: {len(db_mapping)} labels match between DB and code[/green]"
+    )
 
 
 def _build_and_save_vocab(
@@ -989,6 +1064,10 @@ def main() -> None:
     if args.source_db:
         # DB PATH: fast loading of golden labels.
         console.print(f"Loading data from DB: {args.source_db}")
+
+        # Validate that DB register table matches our code constants (source of truth)
+        _validate_register_mapping_against_db(args.source_db)
+
         conn = sqlite3.connect(args.source_db)
         c = conn.cursor()
         # Fetch all sentences and their metadata.

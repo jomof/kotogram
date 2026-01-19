@@ -9,9 +9,12 @@ from typing import Any, Dict, Literal
 from sudachipy import dictionary
 
 from kotogram.analysis import _ANALYZER, check_model_available, grammar
-from kotogram.constants import FORMALITY_ID_TO_LABEL, GENDER_ID_TO_LABEL
+from kotogram.constants import (
+    FORMALITY_ID_TO_LABEL,
+    GENDER_ID_TO_LABEL,
+    REGISTER_ID_TO_LABEL,
+)
 from kotogram.japanese_parser import KotogramFormat
-from kotogram.model import REGISTER_ID_TO_LABEL
 from kotogram.sudachi_japanese_parser import SudachiJapaneseParser
 
 

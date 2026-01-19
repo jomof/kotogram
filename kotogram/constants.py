@@ -59,7 +59,25 @@ class RegisterLevel(Enum):
     BUSHI = "bushi"  # Samurai/Archaic register
 
 
-REGISTER_LABEL_TO_ID = {v: i for i, v in enumerate(RegisterLevel)}
+# Source of truth for register label-to-ID mapping
+# This must match the data/corpus.db register table and is used at inference time
+# DO NOT use enumerate() as enum order does not guarantee these IDs
+REGISTER_LABEL_TO_ID = {
+    RegisterLevel.NEUTRAL: 0,
+    RegisterLevel.SONKEIGO: 1,
+    RegisterLevel.KENJOGO: 2,
+    RegisterLevel.KANSAIBEN: 3,
+    RegisterLevel.HAKATABEN: 4,
+    RegisterLevel.KYOSHIGO: 5,
+    RegisterLevel.NETSLANG: 6,
+    RegisterLevel.OJOUSAMA: 7,
+    RegisterLevel.GUNTAI: 8,
+    RegisterLevel.JOSEIGO: 9,
+    RegisterLevel.DANSEIGO: 10,
+    RegisterLevel.BURIKKO: 11,
+    RegisterLevel.TOHOKU: 12,
+    RegisterLevel.BUSHI: 13,
+}
 REGISTER_ID_TO_LABEL = {v: k for k, v in REGISTER_LABEL_TO_ID.items()}
 
 
