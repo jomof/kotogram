@@ -75,6 +75,14 @@ class KcFamilyId(str, Enum):
     )
 
 
+class KcLogitMode(str, Enum):
+    """Defines which KC logits a family is trained against."""
+
+    SPARSE_LOGITS = "sparse_logits"  # k-budget sparse activations (localized)
+    ALL_LOGITS = "all_logits"  # Full KC probabilities (diffuse style)
+    HOT_LOGITS = "hot_logits"  # Only logits with prob >= 0.5 (thresholded)
+
+
 # =============================================================================
 # KC Family ABC and Subclasses
 # =============================================================================
@@ -132,12 +140,13 @@ class KcFamily(ABC):
 
     @property
     def loss_weight(self) -> float:
-        """Per-family loss multiplier for balanced training.
-
-        Weights are calibrated so all families contribute roughly equally
-        on epoch 1 and sum to ~10.0 total. Derived from calibration runs.
-        """
+        """Per-family loss multiplier (calibrated so families contribute equally)."""
         return 1.0
+
+    @property
+    @abstractmethod
+    def logit_mode(self) -> KcLogitMode:
+        """Which KC logits this family trains against (SPARSE_LOGITS or ALL_LOGITS)."""
 
 
 @dataclass(frozen=True)
@@ -167,6 +176,10 @@ class KcBagFamily(KcFamily):
     @property
     def loss_weight(self) -> float:
         return self._loss_weight
+
+    @property
+    def logit_mode(self) -> KcLogitMode:
+        return KcLogitMode.SPARSE_LOGITS
 
 
 @dataclass(frozen=True)
@@ -200,6 +213,10 @@ class KcTailFamily(KcFamily):
     @property
     def loss_weight(self) -> float:
         return self._loss_weight
+
+    @property
+    def logit_mode(self) -> KcLogitMode:
+        return KcLogitMode.SPARSE_LOGITS
 
 
 @dataclass(frozen=True)
@@ -239,6 +256,10 @@ class KcNgramFamily(KcFamily):
     @property
     def loss_weight(self) -> float:
         return self._loss_weight
+
+    @property
+    def logit_mode(self) -> KcLogitMode:
+        return KcLogitMode.SPARSE_LOGITS
 
 
 @dataclass(frozen=True)
@@ -283,14 +304,14 @@ class KcTailNgramFamily(KcFamily):
     def loss_weight(self) -> float:
         return self._loss_weight
 
+    @property
+    def logit_mode(self) -> KcLogitMode:
+        return KcLogitMode.SPARSE_LOGITS
+
 
 @dataclass(frozen=True)
 class KcPnuFamily(KcFamily):
-    """DB-sourced families using PNU (Positive-Negative-Unlabeled) loss.
-
-    Used for families like GRAMMAR_POINT where targets come from corpus.db
-    and use pos/neg separate arrays for training.
-    """
+    """DB-sourced PNU (Positive-Negative-Unlabeled) loss families like GRAMMAR_POINT."""
 
     _loss_weight: float = 1.0
 
@@ -314,14 +335,14 @@ class KcPnuFamily(KcFamily):
     def loss_weight(self) -> float:
         return self._loss_weight
 
+    @property
+    def logit_mode(self) -> KcLogitMode:
+        return KcLogitMode.HOT_LOGITS
+
 
 @dataclass(frozen=True)
 class KcMseFamily(KcFamily):
-    """DB-sourced families using MSE loss for continuous scalar targets.
-
-    Used for families like GENDER and FORMALITY where targets are
-    continuous float values (typically in range [0, 1]).
-    """
+    """DB-sourced MSE loss families for continuous targets (GENDER, FORMALITY)."""
 
     _loss_weight: float = 1.0
 
@@ -345,14 +366,14 @@ class KcMseFamily(KcFamily):
     def loss_weight(self) -> float:
         return self._loss_weight
 
+    @property
+    def logit_mode(self) -> KcLogitMode:
+        return KcLogitMode.ALL_LOGITS
+
 
 @dataclass(frozen=True)
 class KcDbClassFamily(KcFamily):
-    """DB-sourced families using multi-class classification (dense BCE/CE loss).
-
-    Used for classification versions of GENDER and FORMALITY where continuous
-    values are discretized into class labels for comparison with MSE approach.
-    """
+    """DB-sourced multi-class classification families (GENDER_CLASS, FORMALITY_CLASS)."""
 
     _num_classes: int = 3
     _loss_weight: float = 1.0
@@ -378,18 +399,17 @@ class KcDbClassFamily(KcFamily):
         return self._loss_weight
 
     @property
+    def logit_mode(self) -> KcLogitMode:
+        return KcLogitMode.ALL_LOGITS
+
+    @property
     def num_classes(self) -> int:
         return self._num_classes
 
 
 @dataclass(frozen=True)
 class KcDbMultilabelFamily(KcFamily):
-    """DB-sourced families using multi-label classification (BCE loss).
-
-    Used for register classification where a sentence can have multiple
-    simultaneous labels (e.g., both sonkeigo and joseigo). Uses BCE loss
-    on multi-hot targets rather than CE loss on single class indices.
-    """
+    """DB-sourced multi-label classification for REGISTER (multiple labels per sample)."""
 
     _num_classes: int = 14  # Default for register (14 register types)
     _loss_weight: float = 1.0
@@ -413,6 +433,10 @@ class KcDbMultilabelFamily(KcFamily):
     @property
     def loss_weight(self) -> float:
         return self._loss_weight
+
+    @property
+    def logit_mode(self) -> KcLogitMode:
+        return KcLogitMode.ALL_LOGITS
 
     @property
     def num_classes(self) -> int:

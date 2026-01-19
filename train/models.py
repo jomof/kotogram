@@ -6,7 +6,7 @@ import torch
 from torch import nn
 
 from kotogram.model import InferenceClassifier, ModelConfig
-from train.kc import KcFamilyId
+from train.kc import KC_FAMILIES, KcFamilyId, KcLogitMode
 
 
 class KCDecoder(nn.Module):
@@ -43,12 +43,26 @@ class KCDecoder(nn.Module):
         self.tanh = nn.Tanh()
 
         # Derive MSE families from registry
-        from train.kc import KC_FAMILIES, KcMseFamily
+        from train.kc import KcMseFamily
 
         self._mse_families = frozenset(
             fid.name.lower()
             for fid, fam in KC_FAMILIES.items()
             if isinstance(fam, KcMseFamily) and fid in target_specs
+        )
+
+        # Derive ALL_LOGITS families from registry (use full KC probs, not sparse)
+        self._all_logits_families = frozenset(
+            fid.name.lower()
+            for fid, fam in KC_FAMILIES.items()
+            if fam.logit_mode == KcLogitMode.ALL_LOGITS and fid in target_specs
+        )
+
+        # Derive HOT_LOGITS families from registry (use only prob >= 0.5)
+        self._hot_logits_families = frozenset(
+            fid.name.lower()
+            for fid, fam in KC_FAMILIES.items()
+            if fam.logit_mode == KcLogitMode.HOT_LOGITS and fid in target_specs
         )
 
         # Separate hidden layers for MSE families (style features)
@@ -86,13 +100,15 @@ class KCDecoder(nn.Module):
         Returns:
             Dict mapping family name to output tensor.
 
-        Strategy:
-            - Style families (gender, formality, gender_class, formality_class, register):
-              Use kc_probs (full distribution) since style is encoded diffusely
-            - Structural families (grammar_point, n-grams, particles):
-              Use kc_activations (sparse top-k) since structure is localized
+        Strategy (driven by KcLogitMode):
+            - ALL_LOGITS families: Use kc_probs (full distribution)
+            - HOT_LOGITS families: Use kc_probs masked to only values >= 0.5
+            - SPARSE_LOGITS families: Use kc_activations (sparse top-k)
         """
         result = {}
+
+        # Compute hot_probs lazily (only if needed)
+        hot_probs = None
 
         # MSE pathway: Process style features (gender, formality)
         # Uses FULL KC probabilities (not sparse top-k) since style is diffuse
@@ -105,19 +121,21 @@ class KCDecoder(nn.Module):
                 out = self.tanh(out)  # Bound to [-1, 1]
                 result[name] = out
 
-        # Label pathway: Structural features use sparse, style classification uses full
+        # Label pathway: Selection driven by logit_mode from family registry
         if self.decoders:
-            # Style classification families (also diffuse like MSE)
-            # Register is also a style feature that uses full KC probs
-            style_class_families = {"gender_class", "formality_class", "register"}
-
             for name, decoder in self.decoders.items():
-                if name in style_class_families:
-                    # Style classification: use full KC probs (diffuse signal)
+                if name in self._all_logits_families:
+                    # ALL_LOGITS: use full KC probs (diffuse signal)
                     h_label = self.activation(self.label_hidden1(kc_probs))
                     h_label = self.activation(self.label_hidden2(h_label))
+                elif name in self._hot_logits_families:
+                    # HOT_LOGITS: use only probs >= 0.5 (thresholded)
+                    if hot_probs is None:
+                        hot_probs = kc_probs * (kc_probs >= 0.5).float()
+                    h_label = self.activation(self.label_hidden1(hot_probs))
+                    h_label = self.activation(self.label_hidden2(h_label))
                 else:
-                    # Structural features: use sparse activations (localized signal)
+                    # SPARSE_LOGITS: use sparse activations (localized signal)
                     h_label = self.activation(self.label_hidden1(kc_activations))
                     h_label = self.activation(self.label_hidden2(h_label))
 
