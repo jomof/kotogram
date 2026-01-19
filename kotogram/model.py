@@ -91,10 +91,10 @@ class ModelConfig:
             "reading": 64,  # Raw reading for encoder
         }
     )
-    d_model: int = 256
-    hidden_dim: int = 768  # Increased from 512 for more capacity
-    num_layers: int = 3
-    num_heads: int = 8
+    d_model: int = 384
+    hidden_dim: int = 1536  # Increased from 768 for more capacity
+    num_layers: int = 4
+    num_heads: int = 12
     dropout: float = 0.1
     max_seq_len: int = 512
     pooling: str = "cls"
