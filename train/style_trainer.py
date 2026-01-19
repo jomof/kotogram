@@ -709,7 +709,9 @@ class Trainer:
         all_preds["is_valid"].extend(preds.is_valid)
         sentences = batch.original_sentence
         # If sentences are missing (empty strings) and dataset allows retrieval, fetch them
-        if (not sentences or not sentences[0]) and hasattr(self.val_dataset, "get_sentence_by_idx"):
+        if (not sentences or not sentences[0]) and hasattr(
+            self.val_dataset, "get_sentence_by_idx"
+        ):
             sentences = [
                 self.val_dataset.get_sentence_by_idx(int(idx.item()))
                 for idx in batch.indices

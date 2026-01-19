@@ -866,7 +866,9 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                     # Find position to insert before grammar_point_fp
                     insert_pos = len(sorted_items)
                     for i, (name, _) in enumerate(sorted_items):
-                        if name > "grammar_point" and not name.startswith("grammar_point"):
+                        if name > "grammar_point" and not name.startswith(
+                            "grammar_point"
+                        ):
                             insert_pos = i
                             break
                     sorted_items.insert(insert_pos, (fam_name, sample))
@@ -877,11 +879,13 @@ class KCTrainerDiagnosticsView(KCTrainerView):
                         if name == "grammar_point":
                             insert_pos = i + 1
                             break
-                        elif name > "grammar_point_fp" and not name.startswith("grammar_point"):
+                        if name > "grammar_point_fp" and not name.startswith(
+                            "grammar_point"
+                        ):
                             insert_pos = i
                             break
                     sorted_items.insert(insert_pos, (fam_name, sample))
-            
+
             for fam_name, sample in sorted_items:
                 # Truncate long sentences for display
                 sentence = sample.sentence
