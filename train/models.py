@@ -65,6 +65,13 @@ class KCDecoder(nn.Module):
             if fam.logit_mode == KcLogitMode.HOT_LOGITS and fid in target_specs
         )
 
+        # Derive SPARSE_LOGITS families from registry (use sparse top-k activations)
+        self._sparse_logits_families = frozenset(
+            fid.name.lower()
+            for fid, fam in KC_FAMILIES.items()
+            if fam.logit_mode == KcLogitMode.SPARSE_LOGITS and fid in target_specs
+        )
+
         # Separate hidden layers for MSE families (style features)
         self.mse_hidden1 = nn.Linear(kc_vocab_size, hidden_dim)
         self.mse_hidden2 = nn.Linear(hidden_dim, hidden_dim)
@@ -134,10 +141,12 @@ class KCDecoder(nn.Module):
                         hot_probs = kc_probs * (kc_probs >= 0.5).float()
                     h_label = self.activation(self.label_hidden1(hot_probs))
                     h_label = self.activation(self.label_hidden2(h_label))
-                else:
+                elif name in self._sparse_logits_families:
                     # SPARSE_LOGITS: use sparse activations (localized signal)
                     h_label = self.activation(self.label_hidden1(kc_activations))
                     h_label = self.activation(self.label_hidden2(h_label))
+                else:
+                    raise ValueError(f"Unknown logit_mode for family '{name}'")
 
                 result[name] = decoder(h_label)
 

@@ -505,9 +505,9 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             prev_spill = self.prev_bin_spill.get(s.bin_label)
             if prev_spill is not None:
                 delta = s.spill_prob_mean - prev_spill
-                if delta < -0.01:
+                if delta < -0.001:
                     spill_arrow = "[green]↓[/green]"
-                elif delta > 0.01:
+                elif delta > 0.001:
                     spill_arrow = "[red]↑[/red]"
 
             table_sizing.add_row(
@@ -723,9 +723,9 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             loss_arrow = ""
             if prev_loss is not None:
                 delta = fam.loss_mean - prev_loss
-                if delta < -0.01:
+                if delta < -0.001:
                     loss_arrow = "[green]↓[/green]"
-                elif delta > 0.01:
+                elif delta > 0.001:
                     loss_arrow = "[red]↑[/red]"
 
             # Gap arrow: higher is better (green ↑, red ↓)
@@ -741,18 +741,18 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             posp_arrow = ""
             if prev_posp is not None:
                 delta = fam.prob_pos_mean - prev_posp
-                if delta > 0.05:  # 5% threshold for significance
+                if delta > 0.005:  # 0.5% threshold for significance
                     posp_arrow = "[green]↑[/green]"
-                elif delta < -0.05:
+                elif delta < -0.005:
                     posp_arrow = "[red]↓[/red]"
 
             # Accuracy arrow: higher is better (green ↑, red ↓)
             acc_arrow = ""
             if prev_acc is not None:
                 delta = fam.accuracy - prev_acc
-                if delta > 0.02:  # 2% threshold for significance
+                if delta > 0.002:  # 0.2% threshold for significance
                     acc_arrow = "[green]↑[/green]"
-                elif delta < -0.02:
+                elif delta < -0.002:
                     acc_arrow = "[red]↓[/red]"
 
             # Colors

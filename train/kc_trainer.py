@@ -430,8 +430,8 @@ class KCTrainer:
 
         # Progressive false positive penalty:
         # Count unlabeled positions predicted positive (prob > 0.5) per sample
-        # Cost grows superlinearly: (count - 1)^1.5 * weight
-        # First unlabeled positive is free, subsequent ones get progressively expensive
+        # Cost grows superlinearly: (count - 3)^1.5 * weight
+        # First 3 unlabeled positives are free, subsequent ones get progressively expensive
         progressive_loss = torch.tensor(0.0, device=device)
         if progressive_fp_weight > 0 and unlabeled_mask.sum() > 0:
             probs = torch.sigmoid(logits)
@@ -440,9 +440,9 @@ class KCTrainer:
                 dim=1
             )
 
-            # Cost = (count - 1)^1.5 for count > 1, else 0
-            # This makes: f(1)=0, f(2)=1, f(3)=2.83, f(10)=27, f(20)=83
-            cost_per_sample = torch.pow(F.relu(unlabeled_positive_count - 1), 1.5)
+            # Cost = (count - 3)^1.5 for count > 3, else 0
+            # This makes: f(1)=0, f(2)=0, f(3)=0, f(4)=1, f(5)=2.83, f(10)=18.5
+            cost_per_sample = torch.pow(F.relu(unlabeled_positive_count - 3), 1.5)
             progressive_loss = progressive_fp_weight * cost_per_sample.mean()
 
         return pos_loss + neg_loss + unlab_loss + progressive_loss

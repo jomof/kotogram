@@ -137,10 +137,10 @@ class KCConfig:
         10.0  # Weight multiplier for high-confidence false positives
     )
     # Progressive penalty for multiple unlabeled positive predictions
-    # Cost grows superlinearly: (count - 1)^1.5 * weight
-    # First unlabeled positive is free, subsequent ones become progressively expensive
+    # Cost grows superlinearly: (count - 3)^1.5 * weight
+    # First 3 unlabeled positives are free, subsequent ones become progressively expensive
     gp_progressive_fp_weight: float = (
-        0.01  # Weight for progressive false positive penalty
+        0.001  # Weight for progressive false positive penalty
     )
 
     # Style Oversampling (for addressing class imbalance in gender/formality)
