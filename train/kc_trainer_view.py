@@ -851,7 +851,38 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         # BLOCK 4.5: Worst Samples (most problematic samples per family)
         if summary.worst_samples:
             console.print("[bold]Worst Samples (highest loss per family):[/bold]")
+            # Sort entries, ensuring grammar_point and grammar_point_fp appear together
+            sorted_items = []
+            grammar_point_items = []
             for fam_name, sample in sorted(summary.worst_samples.items()):
+                if fam_name.startswith("grammar_point"):
+                    grammar_point_items.append((fam_name, sample))
+                else:
+                    sorted_items.append((fam_name, sample))
+            # Insert grammar_point items together
+            for fam_name, sample in grammar_point_items:
+                # Find insertion position (after other grammar_point entries or at appropriate alphabetical position)
+                if fam_name == "grammar_point":
+                    # Find position to insert before grammar_point_fp
+                    insert_pos = len(sorted_items)
+                    for i, (name, _) in enumerate(sorted_items):
+                        if name > "grammar_point" and not name.startswith("grammar_point"):
+                            insert_pos = i
+                            break
+                    sorted_items.insert(insert_pos, (fam_name, sample))
+                elif fam_name == "grammar_point_fp":
+                    # Insert right after grammar_point
+                    insert_pos = len(sorted_items)
+                    for i, (name, _) in enumerate(sorted_items):
+                        if name == "grammar_point":
+                            insert_pos = i + 1
+                            break
+                        elif name > "grammar_point_fp" and not name.startswith("grammar_point"):
+                            insert_pos = i
+                            break
+                    sorted_items.insert(insert_pos, (fam_name, sample))
+            
+            for fam_name, sample in sorted_items:
                 # Truncate long sentences for display
                 sentence = sample.sentence
                 if len(sentence) > 60:
