@@ -156,3 +156,30 @@ def save_model(
     # Mark as feature-based multi-task model
     with open(os.path.join(path, "model_type.txt"), "w", encoding="utf-8") as f:
         f.write("style-multitask")
+
+
+def get_checkpoint_path() -> str:
+    """Returns the path to the checkpoint file (.cache/checkpoint.pt)."""
+    # pylint: disable=import-outside-toplevel
+    from train.paths import get_cache_dir
+
+    return os.path.join(get_cache_dir(), "checkpoint.pt")
+
+
+def save_checkpoint(model: InferenceClassifier) -> None:
+    """Save full model state as checkpoint for training resumption.
+
+    Unlike save_model which strips KC decoders and converts to FP8,
+    this saves the complete model state in FP32 for seamless resumption.
+    """
+    # pylint: disable=import-outside-toplevel
+    from train.paths import get_cache_dir
+
+    cache_dir = get_cache_dir()
+    os.makedirs(cache_dir, exist_ok=True)
+
+    checkpoint_path = get_checkpoint_path()
+
+    # Save full state dict in FP32 (no stripping, no fp8 conversion)
+    state_dict = {k: v.cpu() for k, v in model.state_dict().items()}
+    torch.save(state_dict, checkpoint_path)

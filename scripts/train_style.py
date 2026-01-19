@@ -29,6 +29,7 @@ from train.config import (
 )
 from train.dataset import DatasetConfig, StyleDataset
 from train.io import (
+    get_checkpoint_path,
     save_model,
 )
 from train.kc import (
@@ -333,10 +334,20 @@ if __name__ == "__main__":
     # pylint: disable=invalid-name
     checkpoint: Optional[Dict[str, Any]] = None
     vocab_grew = False
+    loaded_from_checkpoint = False
+    pending_checkpoint_path: Optional[str] = None
 
     # Load existing model if resuming
+    # Priority: checkpoint.pt (full state) > model.pt (stripped/fp8)
+    checkpoint_path = get_checkpoint_path()
     model_pt_path = os.path.join(output_path, "model.pt")
-    if not trainer_config.retrain and os.path.exists(model_pt_path):
+    if not trainer_config.retrain and os.path.exists(checkpoint_path):
+        # Checkpoint exists - don't load model.pt, we'll load checkpoint after model init
+        # The checkpoint contains full TrainingClassifier state, so we skip model.pt loading
+        loaded_from_checkpoint = True
+        pending_checkpoint_path = checkpoint_path
+        _view.on_model_loaded(checkpoint_path)
+    elif not trainer_config.retrain and os.path.exists(model_pt_path):
         model, _loaded_tokenizer = load_model(output_path)
         _view.on_model_loaded(model_pt_path)
 
@@ -438,6 +449,10 @@ if __name__ == "__main__":
     # Initialize model if not already loaded, OR upgrade if loaded model is not WithKC
     if model is None:
         model = TrainingClassifier(model_config, kc_target_specs=kc_specs)
+        # If we have a pending checkpoint, load it now that model is properly initialized
+        if pending_checkpoint_path is not None:
+            checkpoint_state = torch.load(pending_checkpoint_path, map_location="cpu")
+            model.load_state_dict(checkpoint_state, strict=True)
     elif not isinstance(model, TrainingClassifier):
         # Ubiquity: Upgrade base InferenceClassifier to TrainingClassifier
         # This handles cases where we resume from a checkpoint that matches the base
@@ -518,7 +533,7 @@ if __name__ == "__main__":
         )
         trainer_config = dataclasses.replace(trainer_config, learning_rate=scaled_lr)
 
-    if trainer_config.retrain:
+    if trainer_config.retrain or loaded_from_checkpoint:
         trainer_config = dataclasses.replace(trainer_config, freeze_encoder_epochs=0)
 
     # Interleaved KC + Style Training
@@ -539,7 +554,9 @@ if __name__ == "__main__":
         trainer_config,
         dl_config=trainer_config.resolve_dataloader_config(device),
         kc_config=KCConfig(
-            freeze_encoder_epochs=0 if trainer_config.retrain else 3,
+            freeze_encoder_epochs=0
+            if (trainer_config.retrain or loaded_from_checkpoint)
+            else 3,
         ),
     )
 

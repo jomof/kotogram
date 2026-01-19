@@ -24,6 +24,7 @@ from train.display import (
     RichTrainerProgressBar,
 )
 from train.io import (
+    save_checkpoint,
     save_model,
 )
 from train.profile import Timer, get_profile_dir
@@ -786,6 +787,7 @@ class Trainer:
                     # However, to be safe and independent:
                     self.best_state = {k: v.cpu().clone() for k, v in state.items()}
                     save_model(self.model, self.output_path, self.model.config)
+                    save_checkpoint(self.model)
                     model_path = os.path.join(self.output_path, "model.pt")
                     self.view.on_best_model_saved(model_path, self.best_val_loss)
                 else:
