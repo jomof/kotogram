@@ -664,11 +664,15 @@ class Trainer:
             tl, tfl, tgl, tgraml, trl = self.train_epoch(epoch=epoch)
 
             # Determine if we should run full evaluation this epoch
-            # Always eval: first epoch, last epoch, every N epochs
-            is_first = epoch == effective_start
-            is_last = epoch == epochs - 1
+            # Always eval: first epoch of session, final target epoch, every N epochs
+            # Use session_start_epoch (not effective_start) and config.epochs (not epochs arg)
+            # to correctly handle incremental train() calls
+            session_start = self.session_start_epoch or 0
+            total_epochs = self.config.epochs
+            is_first = epoch == session_start
+            is_last = epoch == total_epochs - 1
             eval_interval = self.config.eval_every_n_epochs
-            is_nth = (epoch - effective_start) % eval_interval == 0
+            is_nth = (epoch - session_start) % eval_interval == 0
             should_eval = is_first or is_last or is_nth
 
             if should_eval:
