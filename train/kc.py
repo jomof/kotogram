@@ -179,7 +179,7 @@ class KcBagFamily(KcFamily):
 
     @property
     def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.SPARSE_LOGITS
+        return KcLogitMode.HOT_LOGITS
 
 
 @dataclass(frozen=True)
@@ -216,7 +216,7 @@ class KcTailFamily(KcFamily):
 
     @property
     def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.SPARSE_LOGITS
+        return KcLogitMode.HOT_LOGITS
 
 
 @dataclass(frozen=True)
@@ -259,7 +259,7 @@ class KcNgramFamily(KcFamily):
 
     @property
     def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.SPARSE_LOGITS
+        return KcLogitMode.HOT_LOGITS
 
 
 @dataclass(frozen=True)
@@ -306,7 +306,7 @@ class KcTailNgramFamily(KcFamily):
 
     @property
     def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.SPARSE_LOGITS
+        return KcLogitMode.HOT_LOGITS
 
 
 @dataclass(frozen=True)
@@ -368,7 +368,7 @@ class KcMseFamily(KcFamily):
 
     @property
     def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.ALL_LOGITS
+        return KcLogitMode.HOT_LOGITS
 
 
 @dataclass(frozen=True)
@@ -400,7 +400,7 @@ class KcDbClassFamily(KcFamily):
 
     @property
     def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.ALL_LOGITS
+        return KcLogitMode.HOT_LOGITS
 
     @property
     def num_classes(self) -> int:
@@ -436,7 +436,7 @@ class KcDbMultilabelFamily(KcFamily):
 
     @property
     def logit_mode(self) -> KcLogitMode:
-        return KcLogitMode.ALL_LOGITS
+        return KcLogitMode.HOT_LOGITS
 
     @property
     def num_classes(self) -> int:
