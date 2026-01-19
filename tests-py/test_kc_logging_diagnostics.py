@@ -222,7 +222,6 @@ class TestKCLoggingDiagnostics(unittest.TestCase):
         self.assertIn("KC EP1 Thawed Loss Breakdown:", output)
         # Loss breakdown is now on separate lines
         self.assertIn("struct", output)
-        self.assertIn("gap", output)
         # Prior KC losses (formality, gender, register) removed - handled by style classifier
         self.assertIn("diversity", output)
         self.assertIn("load_bal", output)

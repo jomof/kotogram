@@ -367,13 +367,6 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             "",
             "",
         )
-        table_loss.add_row(
-            "[yellow]gap[/yellow]",
-            _f(lc.gap * w.gap / nb),
-            _delta_arrow(lc.gap, prev_lc.gap if prev_lc else None),
-            "",
-            "",
-        )
         # Prior KC losses (formality KC0-3, gender KC4-5, register KC6-18) removed
         # - now handled by style classifier
         table_loss.add_row(
@@ -420,11 +413,10 @@ class KCTrainerDiagnosticsView(KCTrainerView):
         )
         console.print(table_loss)
 
-        # INVARIANT: total_loss = struct + gap + div + lb + collapse + sparsity + saturation + coverage
+        # INVARIANT: total_loss = struct + div + lb + collapse + sparsity + saturation + coverage
         # All components are on the same scale (per-batch sums), so they add to epoch loss.
         loss_sum = (
             lc.struct * w.struct / nb
-            + lc.gap * w.gap / nb
             # Prior KC losses (formality, gender, register) removed - handled by style classifier
             + lc.div * w.div / nb
             + lc.lb * w.lb / nb
@@ -842,13 +834,13 @@ class KCTrainerDiagnosticsView(KCTrainerView):
             label_loss_sum = sum(fam.loss_mean for fam in all_label_families)
             mse_loss_sum = sum(fam.loss_mean for fam in all_mse_families)
             family_loss_sum = label_loss_sum + mse_loss_sum
-            # struct is BCE only, gap is separate regularizer (both weighted)
-            struct_loss = (lc.struct * w.struct + lc.gap * w.gap) / nb
+            # struct is BCE only (gap regularizer removed)
+            struct_loss = lc.struct * w.struct / nb
             tolerance = 1e-3
             if abs(family_loss_sum - struct_loss) > tolerance:
                 raise RuntimeError(
                     f"Family loss sum mismatch: sum={family_loss_sum:.4f} vs "
-                    f"struct+gap={struct_loss:.4f} (diff={abs(family_loss_sum - struct_loss):.4f})"
+                    f"struct={struct_loss:.4f} (diff={abs(family_loss_sum - struct_loss):.4f})"
                 )
 
         # Print Warns if shape mismatch detected?

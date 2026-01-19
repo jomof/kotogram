@@ -127,10 +127,6 @@ class KCConfig:
     # Saturation Penalty
     sat_weight: float = 1.0
 
-    # Gap Regularizer
-    gap_weight: float = 0.001
-    gap_target: float = 0.1
-
     # Performance: Skip diagnostic metrics until epoch N
     skip_first_metrics: int = 0
 
