@@ -329,6 +329,7 @@ class KCTrainer:
         hard_negative_threshold: float = 0.7,
         hard_negative_multiplier: float = 10.0,
         progressive_fp_weight: float = 0.0,
+        labeled_weight: float = 1.0,
     ) -> torch.Tensor:
         """Compute PNU (Positive-Negative-Unlabeled) loss for grammar points.
 
@@ -343,6 +344,7 @@ class KCTrainer:
             hard_negative_threshold: probability threshold for hard negative mining
             hard_negative_multiplier: weight multiplier for hard negatives
             progressive_fp_weight: weight for progressive false positive penalty
+            labeled_weight: weight for labeled (positive/negative) loss components
 
         Returns:
             Scalar loss tensor
@@ -382,6 +384,9 @@ class KCTrainer:
             neg_loss = (neg_loss * labeled_neg).sum() / neg_count
         else:
             neg_loss = torch.tensor(0.0, device=device)
+
+        # Apply labeled weight to known labels
+        labeled_loss = labeled_weight * (pos_loss + neg_loss)
 
         # Unlabeled loss: soft negative for all unlabeled positions
         # With hard negative mining for high-confidence predictions
@@ -445,7 +450,7 @@ class KCTrainer:
             cost_per_sample = torch.pow(F.relu(unlabeled_positive_count - 3), 1.5)
             progressive_loss = progressive_fp_weight * cost_per_sample.mean()
 
-        return pos_loss + neg_loss + unlab_loss + progressive_loss
+        return labeled_loss + unlab_loss + progressive_loss
 
     # pylint: disable=too-many-locals,too-many-positional-arguments
     def _bce_sampled_from_sparse(
@@ -1354,6 +1359,7 @@ class KCTrainer:
                                 hard_negative_threshold=self.kc_config.gp_hard_neg_threshold,
                                 hard_negative_multiplier=self.kc_config.gp_hard_neg_multiplier,
                                 progressive_fp_weight=self.kc_config.gp_progressive_fp_weight,
+                                labeled_weight=self.kc_config.gp_labeled_weight,
                             )
 
                             # Apply per-family loss weight for balanced training
